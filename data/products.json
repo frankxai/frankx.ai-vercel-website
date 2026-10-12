@@ -1111,7 +1111,7 @@
     "category": "Music Intelligence",
     "badge": "FREE DOWNLOAD",
     "headline": "The Exact Prompts Behind My Top Suno Tracks",
-    "subheadline": "Copy the 5 prompts that generated 500+ plays. Each with breakdowns of why it works and variations to try.",
+    "subheadline": "Five Suno prompts with notes on why each works and variations to try.",
     "promise": "Skip the guessing. Get proven prompts that actually produce great Suno tracks.",
     "summary": "Free guide with 5 battle-tested Suno prompts, a power words cheat sheet, and common mistakes to avoid.",
     "transformation": [
@@ -1727,10 +1727,6 @@
     "socialProof": {
       "stats": [
         {
-          "number": "12",
-          "label": "Max Members"
-        },
-        {
           "number": "1:1",
           "label": "Bespoke Consulting"
         },
@@ -1791,59 +1787,38 @@
     "promise": "Ship high-coherence, brand-aligned visual assets consistently without breaking your brand or credit budget.",
     "summary": "Visual Creation Loop provides an operational, zero-slop substrate for builders in the frankx ecosystem.",
     "transformation": [
-      "Deploy Visual Creation Loop with less than 180 seconds Time-to-First-Value",
+      "Deploy Visual Creation Loop",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
       "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "100%",
-          "label": "Empirical Grounding"
-        },
-        {
-          "number": "0%",
-          "label": "AI Slop"
-        },
-        {
-          "number": "<180s",
-          "label": "Time-to-First-Value"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
       "primaryPrice": 147,
       "primaryPriceDisplay": "$147",
       "currency": "USD",
-      "ctaPrimary": "Acquire Visual Creation Loop",
-      "ctaPrimaryHref": "https://buy.lemonsqueezy.com/checkout/buy/visual-creation-loop",
-      "ctaPrimaryTracking": "visual-creation-loop-checkout",
-      "guarantee": {
-        "label": "14-Day System Integration Promise",
-        "description": "Zero risk. If this substrate does not tangibly elevate your operational velocity, we provide immediate support or full refund."
-      }
+      "ctaPrimary": "Join the Launch List",
+      "ctaPrimaryHref": "/waitlist?intent=visual-creation-loop",
+      "ctaPrimaryTracking": "visual-creation-loop-checkout"
     },
     "modules": [
       {
         "title": "Core Architecture Blueprint",
-        "description": "Complete, battle-tested implementation files for Core Architecture Blueprint."
+        "description": "Implementation files for Core Architecture Blueprint."
       },
       {
         "title": "Runnable Operational Scaffold",
-        "description": "Complete, battle-tested implementation files for Runnable Operational Scaffold."
+        "description": "Implementation files for Runnable Operational Scaffold."
       },
       {
         "title": "Quickstart Verification Runbook",
-        "description": "Complete, battle-tested implementation files for Quickstart Verification Runbook."
+        "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
     "faq": [
-      {
-        "question": "How quickly can I deploy Visual Creation Loop?",
-        "answer": "Every release in the Starlight Forge is benchmarked for under 180 seconds Time-to-First-Value."
-      },
       {
         "question": "Is this generated with AI slop?",
         "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
@@ -1869,26 +1844,13 @@
     "promise": "Every automated income stream mapped with mathematical honesty: maintenance hours, latency-to-cash, capital required, and kill criteria.",
     "summary": "The 12-Stream Atlas: Honest Stream Engineering provides an operational, zero-slop substrate for builders in the agentic-passive-income ecosystem.",
     "transformation": [
-      "Deploy The 12-Stream Atlas: Honest Stream Engineering with less than 180 seconds Time-to-First-Value",
+      "Deploy The 12-Stream Atlas: Honest Stream Engineering",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
       "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "100%",
-          "label": "Empirical Grounding"
-        },
-        {
-          "number": "0%",
-          "label": "AI Slop"
-        },
-        {
-          "number": "<180s",
-          "label": "Time-to-First-Value"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
@@ -1906,22 +1868,18 @@
     "modules": [
       {
         "title": "Core Architecture Blueprint",
-        "description": "Complete, battle-tested implementation files for Core Architecture Blueprint."
+        "description": "Implementation files for Core Architecture Blueprint."
       },
       {
         "title": "Runnable Operational Scaffold",
-        "description": "Complete, battle-tested implementation files for Runnable Operational Scaffold."
+        "description": "Implementation files for Runnable Operational Scaffold."
       },
       {
         "title": "Quickstart Verification Runbook",
-        "description": "Complete, battle-tested implementation files for Quickstart Verification Runbook."
+        "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
     "faq": [
-      {
-        "question": "How quickly can I deploy The 12-Stream Atlas: Honest Stream Engineering?",
-        "answer": "Every release in the Starlight Forge is benchmarked for under 180 seconds Time-to-First-Value."
-      },
       {
         "question": "Is this generated with AI slop?",
         "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
@@ -1946,59 +1904,38 @@
     "promise": "Build active agentic cash flow: from high-ticket skills to productized services and autonomous systems.",
     "summary": "Income Architecture Blueprint provides an operational, zero-slop substrate for builders in the agentic-income ecosystem.",
     "transformation": [
-      "Deploy Income Architecture Blueprint with less than 180 seconds Time-to-First-Value",
+      "Deploy Income Architecture Blueprint",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
       "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "100%",
-          "label": "Empirical Grounding"
-        },
-        {
-          "number": "0%",
-          "label": "AI Slop"
-        },
-        {
-          "number": "<180s",
-          "label": "Time-to-First-Value"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
       "primaryPrice": 67,
       "primaryPriceDisplay": "$67",
       "currency": "USD",
-      "ctaPrimary": "Acquire Income Architecture Blueprint",
-      "ctaPrimaryHref": "https://buy.lemonsqueezy.com/checkout/buy/income-blueprint",
-      "ctaPrimaryTracking": "income-architecture-blueprint-checkout",
-      "guarantee": {
-        "label": "14-Day System Integration Promise",
-        "description": "Zero risk. If this substrate does not tangibly elevate your operational velocity, we provide immediate support or full refund."
-      }
+      "ctaPrimary": "Join the Launch List",
+      "ctaPrimaryHref": "/waitlist?intent=income-blueprint",
+      "ctaPrimaryTracking": "income-architecture-blueprint-checkout"
     },
     "modules": [
       {
         "title": "Core Architecture Blueprint",
-        "description": "Complete, battle-tested implementation files for Core Architecture Blueprint."
+        "description": "Implementation files for Core Architecture Blueprint."
       },
       {
         "title": "Runnable Operational Scaffold",
-        "description": "Complete, battle-tested implementation files for Runnable Operational Scaffold."
+        "description": "Implementation files for Runnable Operational Scaffold."
       },
       {
         "title": "Quickstart Verification Runbook",
-        "description": "Complete, battle-tested implementation files for Quickstart Verification Runbook."
+        "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
     "faq": [
-      {
-        "question": "How quickly can I deploy Income Architecture Blueprint?",
-        "answer": "Every release in the Starlight Forge is benchmarked for under 180 seconds Time-to-First-Value."
-      },
       {
         "question": "Is this generated with AI slop?",
         "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
@@ -2024,59 +1961,38 @@
     "promise": "Income decoupled from hours. Local SQLite ledger, Gate G1-G5 progression auditor, and SIP attestation generator.",
     "summary": "DPI Field Kit: Wealth Substrate Pro provides an operational, zero-slop substrate for builders in the dpi ecosystem.",
     "transformation": [
-      "Deploy DPI Field Kit: Wealth Substrate Pro with less than 180 seconds Time-to-First-Value",
+      "Deploy DPI Field Kit: Wealth Substrate Pro",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
       "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "100%",
-          "label": "Empirical Grounding"
-        },
-        {
-          "number": "0%",
-          "label": "AI Slop"
-        },
-        {
-          "number": "<180s",
-          "label": "Time-to-First-Value"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
       "primaryPrice": 97,
       "primaryPriceDisplay": "$97",
       "currency": "USD",
-      "ctaPrimary": "Acquire DPI Field Kit: Wealth Substrate Pro",
-      "ctaPrimaryHref": "https://buy.lemonsqueezy.com/checkout/buy/dpi-field-kit",
-      "ctaPrimaryTracking": "dpi-field-kit-checkout",
-      "guarantee": {
-        "label": "14-Day System Integration Promise",
-        "description": "Zero risk. If this substrate does not tangibly elevate your operational velocity, we provide immediate support or full refund."
-      }
+      "ctaPrimary": "Join the Launch List",
+      "ctaPrimaryHref": "/waitlist?intent=dpi-field-kit",
+      "ctaPrimaryTracking": "dpi-field-kit-checkout"
     },
     "modules": [
       {
         "title": "Core Architecture Blueprint",
-        "description": "Complete, battle-tested implementation files for Core Architecture Blueprint."
+        "description": "Implementation files for Core Architecture Blueprint."
       },
       {
         "title": "Runnable Operational Scaffold",
-        "description": "Complete, battle-tested implementation files for Runnable Operational Scaffold."
+        "description": "Implementation files for Runnable Operational Scaffold."
       },
       {
         "title": "Quickstart Verification Runbook",
-        "description": "Complete, battle-tested implementation files for Quickstart Verification Runbook."
+        "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
     "faq": [
-      {
-        "question": "How quickly can I deploy DPI Field Kit: Wealth Substrate Pro?",
-        "answer": "Every release in the Starlight Forge is benchmarked for under 180 seconds Time-to-First-Value."
-      },
       {
         "question": "Is this generated with AI slop?",
         "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
@@ -2102,59 +2018,38 @@
     "promise": "Scaffold an autonomous multi-agent operational fleet with auto-healing Sentinel daemons and hybrid memory in under 180 seconds.",
     "summary": "Agent Fleet Pro: Turnkey Multi-Agent Mesh provides an operational, zero-slop substrate for builders in the acos ecosystem.",
     "transformation": [
-      "Deploy Agent Fleet Pro: Turnkey Multi-Agent Mesh with less than 180 seconds Time-to-First-Value",
+      "Deploy Agent Fleet Pro: Turnkey Multi-Agent Mesh",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
       "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "100%",
-          "label": "Empirical Grounding"
-        },
-        {
-          "number": "0%",
-          "label": "AI Slop"
-        },
-        {
-          "number": "<180s",
-          "label": "Time-to-First-Value"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
       "primaryPrice": 147,
       "primaryPriceDisplay": "$147",
       "currency": "USD",
-      "ctaPrimary": "Acquire Agent Fleet Pro: Turnkey Multi-Agent Mesh",
-      "ctaPrimaryHref": "https://buy.lemonsqueezy.com/checkout/buy/agent-fleet-pro",
-      "ctaPrimaryTracking": "agent-fleet-pro-checkout",
-      "guarantee": {
-        "label": "14-Day System Integration Promise",
-        "description": "Zero risk. If this substrate does not tangibly elevate your operational velocity, we provide immediate support or full refund."
-      }
+      "ctaPrimary": "Join the Launch List",
+      "ctaPrimaryHref": "/waitlist?intent=agent-fleet-pro",
+      "ctaPrimaryTracking": "agent-fleet-pro-checkout"
     },
     "modules": [
       {
         "title": "Core Architecture Blueprint",
-        "description": "Complete, battle-tested implementation files for Core Architecture Blueprint."
+        "description": "Implementation files for Core Architecture Blueprint."
       },
       {
         "title": "Runnable Operational Scaffold",
-        "description": "Complete, battle-tested implementation files for Runnable Operational Scaffold."
+        "description": "Implementation files for Runnable Operational Scaffold."
       },
       {
         "title": "Quickstart Verification Runbook",
-        "description": "Complete, battle-tested implementation files for Quickstart Verification Runbook."
+        "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
     "faq": [
-      {
-        "question": "How quickly can I deploy Agent Fleet Pro: Turnkey Multi-Agent Mesh?",
-        "answer": "Every release in the Starlight Forge is benchmarked for under 180 seconds Time-to-First-Value."
-      },
       {
         "question": "Is this generated with AI slop?",
         "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
@@ -2180,59 +2075,38 @@
     "promise": "Convert passive note storage into an active, self-indexing intelligence palace connected directly to your coding agents.",
     "summary": "The Sovereign Memory Palace OS provides an operational, zero-slop substrate for builders in the second-brain ecosystem.",
     "transformation": [
-      "Deploy The Sovereign Memory Palace OS with less than 180 seconds Time-to-First-Value",
+      "Deploy The Sovereign Memory Palace OS",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
       "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "100%",
-          "label": "Empirical Grounding"
-        },
-        {
-          "number": "0%",
-          "label": "AI Slop"
-        },
-        {
-          "number": "<180s",
-          "label": "Time-to-First-Value"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
       "primaryPrice": 97,
       "primaryPriceDisplay": "$97",
       "currency": "USD",
-      "ctaPrimary": "Acquire The Sovereign Memory Palace OS",
-      "ctaPrimaryHref": "https://buy.lemonsqueezy.com/checkout/buy/memory-palace-os",
-      "ctaPrimaryTracking": "memory-palace-os-checkout",
-      "guarantee": {
-        "label": "14-Day System Integration Promise",
-        "description": "Zero risk. If this substrate does not tangibly elevate your operational velocity, we provide immediate support or full refund."
-      }
+      "ctaPrimary": "Join the Launch List",
+      "ctaPrimaryHref": "/waitlist?intent=memory-palace-os",
+      "ctaPrimaryTracking": "memory-palace-os-checkout"
     },
     "modules": [
       {
         "title": "Core Architecture Blueprint",
-        "description": "Complete, battle-tested implementation files for Core Architecture Blueprint."
+        "description": "Implementation files for Core Architecture Blueprint."
       },
       {
         "title": "Runnable Operational Scaffold",
-        "description": "Complete, battle-tested implementation files for Runnable Operational Scaffold."
+        "description": "Implementation files for Runnable Operational Scaffold."
       },
       {
         "title": "Quickstart Verification Runbook",
-        "description": "Complete, battle-tested implementation files for Quickstart Verification Runbook."
+        "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
     "faq": [
-      {
-        "question": "How quickly can I deploy The Sovereign Memory Palace OS?",
-        "answer": "Every release in the Starlight Forge is benchmarked for under 180 seconds Time-to-First-Value."
-      },
       {
         "question": "Is this generated with AI slop?",
         "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
@@ -2258,59 +2132,38 @@
     "promise": "Convert single raw voice or text captures into multi-platform attested distribution assets autonomously with zero AI slop.",
     "summary": "The Agentic Media Machine provides an operational, zero-slop substrate for builders in the creator-intelligence ecosystem.",
     "transformation": [
-      "Deploy The Agentic Media Machine with less than 180 seconds Time-to-First-Value",
+      "Deploy The Agentic Media Machine",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
       "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "100%",
-          "label": "Empirical Grounding"
-        },
-        {
-          "number": "0%",
-          "label": "AI Slop"
-        },
-        {
-          "number": "<180s",
-          "label": "Time-to-First-Value"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
       "primaryPrice": 97,
       "primaryPriceDisplay": "$97",
       "currency": "USD",
-      "ctaPrimary": "Acquire The Agentic Media Machine",
-      "ctaPrimaryHref": "https://buy.lemonsqueezy.com/checkout/buy/agentic-media-machine",
-      "ctaPrimaryTracking": "agentic-media-machine-checkout",
-      "guarantee": {
-        "label": "14-Day System Integration Promise",
-        "description": "Zero risk. If this substrate does not tangibly elevate your operational velocity, we provide immediate support or full refund."
-      }
+      "ctaPrimary": "Join the Launch List",
+      "ctaPrimaryHref": "/waitlist?intent=agentic-media-machine",
+      "ctaPrimaryTracking": "agentic-media-machine-checkout"
     },
     "modules": [
       {
         "title": "Core Architecture Blueprint",
-        "description": "Complete, battle-tested implementation files for Core Architecture Blueprint."
+        "description": "Implementation files for Core Architecture Blueprint."
       },
       {
         "title": "Runnable Operational Scaffold",
-        "description": "Complete, battle-tested implementation files for Runnable Operational Scaffold."
+        "description": "Implementation files for Runnable Operational Scaffold."
       },
       {
         "title": "Quickstart Verification Runbook",
-        "description": "Complete, battle-tested implementation files for Quickstart Verification Runbook."
+        "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
     "faq": [
-      {
-        "question": "How quickly can I deploy The Agentic Media Machine?",
-        "answer": "Every release in the Starlight Forge is benchmarked for under 180 seconds Time-to-First-Value."
-      },
       {
         "question": "Is this generated with AI slop?",
         "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
@@ -2336,26 +2189,13 @@
     "promise": "Sovereign reference manual for generative worldbuilding, radiant shader design, and mythic lore consistency.",
     "summary": "The Arcanea Mythic Codex provides an operational, zero-slop substrate for builders in the arcanea ecosystem.",
     "transformation": [
-      "Deploy The Arcanea Mythic Codex with less than 180 seconds Time-to-First-Value",
+      "Deploy The Arcanea Mythic Codex",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
       "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "100%",
-          "label": "Empirical Grounding"
-        },
-        {
-          "number": "0%",
-          "label": "AI Slop"
-        },
-        {
-          "number": "<180s",
-          "label": "Time-to-First-Value"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
@@ -2373,22 +2213,18 @@
     "modules": [
       {
         "title": "Core Architecture Blueprint",
-        "description": "Complete, battle-tested implementation files for Core Architecture Blueprint."
+        "description": "Implementation files for Core Architecture Blueprint."
       },
       {
         "title": "Runnable Operational Scaffold",
-        "description": "Complete, battle-tested implementation files for Runnable Operational Scaffold."
+        "description": "Implementation files for Runnable Operational Scaffold."
       },
       {
         "title": "Quickstart Verification Runbook",
-        "description": "Complete, battle-tested implementation files for Quickstart Verification Runbook."
+        "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
     "faq": [
-      {
-        "question": "How quickly can I deploy The Arcanea Mythic Codex?",
-        "answer": "Every release in the Starlight Forge is benchmarked for under 180 seconds Time-to-First-Value."
-      },
       {
         "question": "Is this generated with AI slop?",
         "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
@@ -2413,26 +2249,13 @@
     "promise": "50 banned AI cliches, negative prompt tokens, and empirical craft filters for sovereign content teams.",
     "summary": "The Anti-Slop Content Matrix provides an operational, zero-slop substrate for builders in the gencreator ecosystem.",
     "transformation": [
-      "Deploy The Anti-Slop Content Matrix with less than 180 seconds Time-to-First-Value",
+      "Deploy The Anti-Slop Content Matrix",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
       "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "100%",
-          "label": "Empirical Grounding"
-        },
-        {
-          "number": "0%",
-          "label": "AI Slop"
-        },
-        {
-          "number": "<180s",
-          "label": "Time-to-First-Value"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
@@ -2450,22 +2273,18 @@
     "modules": [
       {
         "title": "Core Architecture Blueprint",
-        "description": "Complete, battle-tested implementation files for Core Architecture Blueprint."
+        "description": "Implementation files for Core Architecture Blueprint."
       },
       {
         "title": "Runnable Operational Scaffold",
-        "description": "Complete, battle-tested implementation files for Runnable Operational Scaffold."
+        "description": "Implementation files for Runnable Operational Scaffold."
       },
       {
         "title": "Quickstart Verification Runbook",
-        "description": "Complete, battle-tested implementation files for Quickstart Verification Runbook."
+        "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
     "faq": [
-      {
-        "question": "How quickly can I deploy The Anti-Slop Content Matrix?",
-        "answer": "Every release in the Starlight Forge is benchmarked for under 180 seconds Time-to-First-Value."
-      },
       {
         "question": "Is this generated with AI slop?",
         "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
@@ -2490,26 +2309,13 @@
     "promise": "Spartan, numerate self-audit protocol for converting technical skills into non-linear income streams.",
     "summary": "The Capability-to-Cash Inventory Audit provides an operational, zero-slop substrate for builders in the agentic-income ecosystem.",
     "transformation": [
-      "Deploy The Capability-to-Cash Inventory Audit with less than 180 seconds Time-to-First-Value",
+      "Deploy The Capability-to-Cash Inventory Audit",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
       "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "100%",
-          "label": "Empirical Grounding"
-        },
-        {
-          "number": "0%",
-          "label": "AI Slop"
-        },
-        {
-          "number": "<180s",
-          "label": "Time-to-First-Value"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
@@ -2527,22 +2333,18 @@
     "modules": [
       {
         "title": "Core Architecture Blueprint",
-        "description": "Complete, battle-tested implementation files for Core Architecture Blueprint."
+        "description": "Implementation files for Core Architecture Blueprint."
       },
       {
         "title": "Runnable Operational Scaffold",
-        "description": "Complete, battle-tested implementation files for Runnable Operational Scaffold."
+        "description": "Implementation files for Runnable Operational Scaffold."
       },
       {
         "title": "Quickstart Verification Runbook",
-        "description": "Complete, battle-tested implementation files for Quickstart Verification Runbook."
+        "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
     "faq": [
-      {
-        "question": "How quickly can I deploy The Capability-to-Cash Inventory Audit?",
-        "answer": "Every release in the Starlight Forge is benchmarked for under 180 seconds Time-to-First-Value."
-      },
       {
         "question": "Is this generated with AI slop?",
         "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
@@ -2567,26 +2369,13 @@
     "promise": "Mathematical reference manual for decoupling income from hours across five progression gates.",
     "summary": "The DPI Stream Taxonomy & Progression Map provides an operational, zero-slop substrate for builders in the dpi ecosystem.",
     "transformation": [
-      "Deploy The DPI Stream Taxonomy & Progression Map with less than 180 seconds Time-to-First-Value",
+      "Deploy The DPI Stream Taxonomy & Progression Map",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
       "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "100%",
-          "label": "Empirical Grounding"
-        },
-        {
-          "number": "0%",
-          "label": "AI Slop"
-        },
-        {
-          "number": "<180s",
-          "label": "Time-to-First-Value"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
@@ -2604,22 +2393,18 @@
     "modules": [
       {
         "title": "Core Architecture Blueprint",
-        "description": "Complete, battle-tested implementation files for Core Architecture Blueprint."
+        "description": "Implementation files for Core Architecture Blueprint."
       },
       {
         "title": "Runnable Operational Scaffold",
-        "description": "Complete, battle-tested implementation files for Runnable Operational Scaffold."
+        "description": "Implementation files for Runnable Operational Scaffold."
       },
       {
         "title": "Quickstart Verification Runbook",
-        "description": "Complete, battle-tested implementation files for Quickstart Verification Runbook."
+        "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
     "faq": [
-      {
-        "question": "How quickly can I deploy The DPI Stream Taxonomy & Progression Map?",
-        "answer": "Every release in the Starlight Forge is benchmarked for under 180 seconds Time-to-First-Value."
-      },
       {
         "question": "Is this generated with AI slop?",
         "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
@@ -2644,26 +2429,13 @@
     "promise": "Open protocol standard for sovereign multi-agent meshes, hybrid event memory, and cryptographic attestations.",
     "summary": "Starlight Intelligence Protocol (SIP v1.1.1) Spec provides an operational, zero-slop substrate for builders in the starlight ecosystem.",
     "transformation": [
-      "Deploy Starlight Intelligence Protocol (SIP v1.1.1) Spec with less than 180 seconds Time-to-First-Value",
+      "Deploy Starlight Intelligence Protocol (SIP v1.1.1) Spec",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
       "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "100%",
-          "label": "Empirical Grounding"
-        },
-        {
-          "number": "0%",
-          "label": "AI Slop"
-        },
-        {
-          "number": "<180s",
-          "label": "Time-to-First-Value"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
@@ -2681,22 +2453,18 @@
     "modules": [
       {
         "title": "Core Architecture Blueprint",
-        "description": "Complete, battle-tested implementation files for Core Architecture Blueprint."
+        "description": "Implementation files for Core Architecture Blueprint."
       },
       {
         "title": "Runnable Operational Scaffold",
-        "description": "Complete, battle-tested implementation files for Runnable Operational Scaffold."
+        "description": "Implementation files for Runnable Operational Scaffold."
       },
       {
         "title": "Quickstart Verification Runbook",
-        "description": "Complete, battle-tested implementation files for Quickstart Verification Runbook."
+        "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
     "faq": [
-      {
-        "question": "How quickly can I deploy Starlight Intelligence Protocol (SIP v1.1.1) Spec?",
-        "answer": "Every release in the Starlight Forge is benchmarked for under 180 seconds Time-to-First-Value."
-      },
       {
         "question": "Is this generated with AI slop?",
         "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
@@ -2721,59 +2489,38 @@
     "promise": "Production orchestration harness, sentinel monitoring daemons, and council dispatch scripts for operators.",
     "summary": "Starlight Operator Field Kit & Council Harness provides an operational, zero-slop substrate for builders in the starlight ecosystem.",
     "transformation": [
-      "Deploy Starlight Operator Field Kit & Council Harness with less than 180 seconds Time-to-First-Value",
+      "Deploy Starlight Operator Field Kit & Council Harness",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
       "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "100%",
-          "label": "Empirical Grounding"
-        },
-        {
-          "number": "0%",
-          "label": "AI Slop"
-        },
-        {
-          "number": "<180s",
-          "label": "Time-to-First-Value"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
       "primaryPrice": 97,
       "primaryPriceDisplay": "$97",
       "currency": "USD",
-      "ctaPrimary": "Acquire Starlight Operator Field Kit & Council Harness",
-      "ctaPrimaryHref": "https://buy.lemonsqueezy.com/checkout/buy/starlight-operator-pack",
-      "ctaPrimaryTracking": "starlight-operator-pack-checkout",
-      "guarantee": {
-        "label": "14-Day System Integration Promise",
-        "description": "Zero risk. If this substrate does not tangibly elevate your operational velocity, we provide immediate support or full refund."
-      }
+      "ctaPrimary": "Join the Launch List",
+      "ctaPrimaryHref": "/waitlist?intent=starlight-operator-pack",
+      "ctaPrimaryTracking": "starlight-operator-pack-checkout"
     },
     "modules": [
       {
         "title": "Core Architecture Blueprint",
-        "description": "Complete, battle-tested implementation files for Core Architecture Blueprint."
+        "description": "Implementation files for Core Architecture Blueprint."
       },
       {
         "title": "Runnable Operational Scaffold",
-        "description": "Complete, battle-tested implementation files for Runnable Operational Scaffold."
+        "description": "Implementation files for Runnable Operational Scaffold."
       },
       {
         "title": "Quickstart Verification Runbook",
-        "description": "Complete, battle-tested implementation files for Quickstart Verification Runbook."
+        "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
     "faq": [
-      {
-        "question": "How quickly can I deploy Starlight Operator Field Kit & Council Harness?",
-        "answer": "Every release in the Starlight Forge is benchmarked for under 180 seconds Time-to-First-Value."
-      },
       {
         "question": "Is this generated with AI slop?",
         "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."

@@ -91,6 +91,7 @@ const banned = [
   ['app/golden-age/page.tsx', ['500+', 'AI Songs Created']],
   ['app/products/(index)/page.tsx', ['deployed across live operations', 'Battle-tested architectures', 'verified across live operations', 'rolling updates', 'instant fulfillment', 'continuous version updates', 'conform to standard Model Context Protocol', 'Center of Excellence', 'turnkey multi-agent meshes']],
   ['lib/products.ts', ["startsWith('http')"]],
+  ['data/products.json', ['battle-tested implementation', 'Empirical Grounding', 'AI Slop"', '180 seconds Time-to-First-Value', 'buy.lemonsqueezy.com/checkout/buy', '14-Day System Integration', '500+ plays', 'Max Members']],
   ['lib/email-templates-premium.ts', ['12,000+', '12K+', '500+ AI Songs']],
   ['lib/email-templates-welcome.ts', ['12,000+', '12K+', '500+ AI']],
   ['lib/email-templates.ts', ['12,000+', '12K+']],
