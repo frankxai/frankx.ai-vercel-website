@@ -139,6 +139,16 @@ for (const [file, phrases] of banned) {
   })
 }
 
+test('welcome email describes the Suno guide and prompt library without unsourced claims', () => {
+  const welcome = fs.readFileSync(path.join(root, 'lib/email-templates-welcome.ts'), 'utf8')
+  for (const phrase of ['Free Suno Prompt Pack', 'production-ready prompts', 'top-performing tracks', 'Battle-tested prompts']) {
+    assert.equal(welcome.toLowerCase().includes(phrase.toLowerCase()), false, phrase)
+  }
+  for (const phrase of ['Suno prompt guide (coming soon)', 'Five Suno prompts with notes on why each works. Coming soon.', 'Prompts for Suno, ChatGPT, Claude, and Midjourney. Organized by use case.']) {
+    assert.ok(welcome.includes(phrase), phrase)
+  }
+})
+
 test('the stale 5-suno PDF is not shipped or uploaded', () => {
   assert.equal(fs.existsSync(path.join(root, 'public/pdfs/5-suno-prompts.pdf')), false)
   const upload = fs.readFileSync(path.join(root, 'scripts/upload-products-to-blob.mjs'), 'utf8')
