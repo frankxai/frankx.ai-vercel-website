@@ -15,18 +15,10 @@ export interface LifeBook {
   accentGradient: string
   icon: string
   duration: string
-  sessions: number
-  price: {
-    original: number
-    current: number
-    currency: string
-  }
-  features: string[]
   pillars: Pillar[]
   outcomes: string[]
   forWho: string[]
   testimonials: Testimonial[]
-  guarantee: string
   image?: string
 }
 
@@ -45,30 +37,16 @@ export const lifeBooks: LifeBook[] = [
     title: 'Life Symphony',
     tagline: 'Orchestrate Your Complete Transformation',
     subtitle: 'The Full 7-Pillar Integration Journey',
-    description: 'A comprehensive 12-week journey integrating all 7 pillars of conscious living. This is for those ready to transform every area of their life in a harmonious, interconnected way.',
-    shortDescription: 'Complete 7-pillar transformation over 12 weeks. Transform every area of your life.',
+    description:
+      'A comprehensive 12-week journey integrating all 7 pillars of conscious living. This is for those ready to transform every area of their life in a harmonious, interconnected way.',
+    shortDescription:
+      'Complete 7-pillar transformation over 12 weeks. Transform every area of your life.',
     color: 'amber',
     gradient: 'from-amber-400 via-yellow-500 to-orange-600',
     accentGradient: 'from-yellow-300 via-amber-400 to-orange-500',
     icon: '🎼',
     image: '/images/soulbook/life-symphony.png',
     duration: '12 weeks',
-    sessions: 24,
-    price: {
-      original: 997,
-      current: 697,
-      currency: 'USD'
-    },
-    features: [
-      '24 live coaching sessions (2x weekly)',
-      'Complete Soulbook workbook (200+ pages)',
-      '7 pillar audio meditations',
-      'Weekly video teachings',
-      'Private community access',
-      '3x monthly group Q&A calls',
-      'Lifetime access to recordings',
-      'Personal transformation roadmap'
-    ],
     pillars: getPillarsForLifeBook('symphony'),
     outcomes: [
       'All 7 pillars, and how they connect',
@@ -76,16 +54,15 @@ export const lifeBooks: LifeBook[] = [
       'Emotional intelligence, and how to develop it',
       'Relationship patterns',
       'Purpose and direction',
-      'Building a creative practice'
+      'Building a creative practice',
     ],
     forWho: [
       'Ready for comprehensive change',
       'Want to transform multiple life areas',
       'Committed to 12-week journey',
-      'Value community support'
+      'Value community support',
     ],
     testimonials: [],
-    guarantee: 'You can request a refund within 14 days of purchase if you have accessed less than 25% of the course content. No outcome is promised.'
   },
   {
     id: 'golden-path',
@@ -93,45 +70,30 @@ export const lifeBooks: LifeBook[] = [
     title: 'Golden Path',
     tagline: 'Your Accelerated 4-Week Breakthrough',
     subtitle: 'Core Pillar Intensive Program',
-    description: 'A focused 4-week journey targeting the 3 most transformative pillars: Consciousness, Emotional Mastery, and Purpose. Perfect for those seeking rapid shifts with less time commitment.',
-    shortDescription: '4-week intensive on the 3 most powerful pillars. Rapid transformation in less time.',
+    description:
+      'A focused 4-week journey targeting the 3 most transformative pillars: Consciousness, Emotional Mastery, and Purpose. Perfect for those seeking rapid shifts with less time commitment.',
+    shortDescription:
+      '4-week intensive on the 3 most powerful pillars. Rapid transformation in less time.',
     color: 'purple',
     gradient: 'from-purple-400 via-violet-500 to-indigo-600',
     accentGradient: 'from-violet-400 via-purple-500 to-indigo-500',
     icon: '🛤️',
     image: '/images/soulbook/golden-path.png',
     duration: '4 weeks',
-    sessions: 8,
-    price: {
-      original: 497,
-      current: 297,
-      currency: 'USD'
-    },
-    features: [
-      '8 live coaching sessions (2x weekly)',
-      'Golden Path workbook (80 pages)',
-      '3 pillar audio meditations',
-      'Weekly video teachings',
-      'Private community access',
-      '2x monthly Q&A calls',
-      'Lifetime access to recordings',
-      'Personal clarity roadmap'
-    ],
     pillars: getPillarsForLifeBook('path'),
     outcomes: [
       'Self-awareness practices',
       'Core emotional patterns, and how to work with them',
       'Purpose, and how to explore it',
-      'A roadmap for what to work on next'
+      'A roadmap for what to work on next',
     ],
     forWho: [
       'Want rapid transformation',
       'Have limited time availability',
       'Prefer focused, intensive work',
-      'Want to test the framework first'
+      'Want to test the framework first',
     ],
     testimonials: [],
-    guarantee: 'You can request a refund within 14 days of purchase if you have accessed less than 25% of the course content. No outcome is promised.'
   },
   {
     id: 'seven-pillars',
@@ -139,136 +101,65 @@ export const lifeBooks: LifeBook[] = [
     title: '7 Pillars',
     tagline: 'Master Each Foundation Systematically',
     subtitle: 'Deep-Dive Individual Pillar Courses',
-    description: 'Seven separate intensive courses, each devoted to mastering one pillar. Take them in order or follow your intuition. For those who want comprehensive expertise in each area.',
-    shortDescription: '7 separate courses, one for each pillar. Master each foundation systematically.',
+    description:
+      'Seven separate intensive courses, each devoted to mastering one pillar. Take them in order or follow your intuition. For those who want comprehensive expertise in each area.',
+    shortDescription:
+      '7 separate courses, one for each pillar. Master each foundation systematically.',
     color: 'emerald',
     gradient: 'from-emerald-400 via-green-500 to-teal-600',
     accentGradient: 'from-green-400 via-emerald-500 to-teal-500',
     icon: '🗽',
     image: '/images/soulbook/seven-pillars.png',
     duration: '7 weeks (one pillar per week)',
-    sessions: 14,
-    price: {
-      original: 1297,
-      current: 897,
-      currency: 'USD'
-    },
-    features: [
-      '14 live coaching sessions (2x per pillar)',
-      '7 pillar workbooks (40 pages each)',
-      '7 pillar audio meditation sets',
-      '7 video teaching modules',
-      'Private community access',
-      'Weekly Q&A calls',
-      'Lifetime access to all materials',
-      'Complete pillar mastery'
-    ],
     pillars: getPillarsForLifeBook('pillars'),
     outcomes: [
       'Each pillar in depth, one per week',
       'Exercises and tools for each pillar',
       'How to teach the pillars to others',
-      'How the 7 pillars fit together'
+      'How the 7 pillars fit together',
     ],
     forWho: [
       'Want to master each pillar deeply',
       'Prefer systematic learning',
       'Plan to become a practitioner',
-      'Value comprehensive expertise'
+      'Value comprehensive expertise',
     ],
     testimonials: [],
-    guarantee: 'You can request a refund within 14 days of purchase if you have accessed less than 25% of the course content. No outcome is promised.'
-  }
+  },
 ]
 
 // Helper functions
 export function getLifeBookBySlug(slug: string): LifeBook | undefined {
-  return lifeBooks.find(book => book.slug === slug)
+  return lifeBooks.find((book) => book.slug === slug)
 }
 
 export function getLifeBookById(id: string): LifeBook | undefined {
-  return lifeBooks.find(book => book.id === id)
+  return lifeBooks.find((book) => book.id === id)
 }
-
-export const pricingTiers = [
-  {
-    name: 'Starter',
-    description: 'Begin your journey with a single pillar',
-    price: 97,
-    features: [
-      '1 pillar deep-dive course',
-      'Workbook included',
-      '3 meditation tracks',
-      'Community access'
-    ],
-    cta: 'Start Single Pillar',
-    popular: false
-  },
-  {
-    name: 'Golden Path',
-    description: 'Accelerated 4-week transformation',
-    price: 297,
-    features: [
-      '3 core pillars',
-      'Complete workbook',
-      '8 coaching sessions',
-      'Weekly video teachings',
-      'Priority community access'
-    ],
-    cta: 'Begin Golden Path',
-    popular: true
-  },
-  {
-    name: 'Life Symphony',
-    description: 'Complete 12-week transformation',
-    price: 697,
-    features: [
-      'All 7 pillars integrated',
-      'Full workbook collection',
-      '24 coaching sessions',
-      'All meditation tracks',
-      'Lifetime community access',
-      'Monthly Q&A calls'
-    ],
-    cta: 'Start Transformation',
-    popular: false
-  },
-  {
-    name: '7 Pillars Mastery',
-    description: 'Expert-level systematic mastery',
-    price: 897,
-    features: [
-      'All 7 pillar courses',
-      'Complete workbooks (7)',
-      '14 pillar coaching sessions',
-      'All meditation sets',
-      'Practitioner certification option',
-      'Exclusive mastermind access'
-    ],
-    cta: 'Master All Pillars',
-    popular: false
-  }
-]
 
 export const philosophyStatements = [
   {
     title: 'Transformation is a Journey',
-    description: 'Sustainable change happens gradually, through consistent practice and compassionate self-reflection.',
-    icon: '🌱'
+    description:
+      'Sustainable change happens gradually, through consistent practice and compassionate self-reflection.',
+    icon: '🌱',
   },
   {
     title: 'You Already Have the Answers',
-    description: 'The Soulbook framework isn\'t about adding new things—it\'s about uncovering what\'s already within you.',
-    icon: '💎'
+    description:
+      "The Soulbook framework isn't about adding new things—it's about uncovering what's already within you.",
+    icon: '💎',
   },
   {
     title: 'Integration Over Information',
-    description: 'Knowing isn\'t enough. We focus on embodied transformation that integrates into daily life.',
-    icon: '🔄'
+    description:
+      "Knowing isn't enough. We focus on embodied transformation that integrates into daily life.",
+    icon: '🔄',
   },
   {
     title: 'Community Accelerates Growth',
-    description: 'We rise together. The collective energy of like-minded seekers amplifies individual transformation.',
-    icon: '🤝'
-  }
+    description:
+      'We rise together. The collective energy of like-minded seekers amplifies individual transformation.',
+    icon: '🤝',
+  },
 ]

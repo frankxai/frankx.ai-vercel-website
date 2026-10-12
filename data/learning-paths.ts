@@ -72,7 +72,7 @@ export interface LearningPath {
   description: string
   icon: string
   difficulty: 'beginner' | 'intermediate' | 'advanced'
-  estimatedHours: number
+  estimatedHours?: number
   color: 'emerald' | 'cyan' | 'amber' | 'violet' | 'sky'
   category: LearningPathCategory
   videos: VideoResource[]
@@ -2474,8 +2474,8 @@ export const learningPaths: LearningPath[] = [
     },
     title: 'Higgsfield video production workshop',
     slug: 'higgsfield-mastery',
-    description: 'Make a three-shot sequence with a shot brief, reference pack, camera test and credit budget. Free guides and a verified official walkthrough.',
-    icon: 'image', difficulty: 'intermediate', estimatedHours: 6, color: 'violet', category: 'consumer',
+    description: 'Make a three-shot sequence with a shot brief, reference pack, camera test and credit budget. Free guides and an official walkthrough.',
+    icon: 'image', difficulty: 'intermediate', color: 'violet', category: 'consumer',
     heroEyebrow: 'Documentation checked October 10, 2026',
     longIntro: 'Start with one story and three shots. This workshop takes you from a written brief to a reviewed sequence using Higgsfield, then helps you diagnose motion, identity and editing problems. The curriculum is free; generating media may require a paid product plan. Product capabilities are documented by the vendor. The production exercises and acceptance rules are FrankX editorial proposals.',
     distillation: 'Write the acceptance rule before generating: what should the viewer understand, which movement carries that meaning, and what makes the clip usable? Keep one subject and one camera movement in your first test. Review the first, middle and last frames before accepting it.\n\nReference tools can help with character continuity, but inspect faces, wardrobe, product labels and background geometry across every shot. Test one variable at a time instead of changing the model, reference and prompt together.\n\nMeasure cost per accepted shot rather than cost per generation. Stop when a repeat failure needs a different reference or simpler composition. Assemble the accepted shots in an editor, review the sequence at phone size and export for your chosen platform.',
@@ -2504,10 +2504,11 @@ export const learningPaths: LearningPath[] = [
       tags: ['higgsfield', 'short-film', 'references'],
     }],
     ecosystem: [
-      { name: 'Cinema Studio 4.0 documentation', category: 'Direction', description: 'Current vendor announcement for camera look, references and sequence controls.', href: 'https://higgsfield.ai/blog/cinema-studio-4-0', lastVerified: '2026-10-10' },
-      { name: 'Agent connection guide', category: 'Automation', description: 'Official supported agent and MCP integrations. Inspect tools and job status before generating.', href: 'https://higgsfield.ai/blog/generate-ai-videos-ai-agents-2026', lastVerified: '2026-10-10' },
-      { name: 'Developer console', category: 'Integration', description: 'Use documented interfaces and account limits rather than an assumed third-party endpoint.', href: 'https://console.higgsfield.ai/', lastVerified: '2026-10-10' },
-      { name: 'Current pricing', category: 'Budget', description: 'Verify included credits, model availability and cancellation terms for your account before subscribing.', href: 'https://higgsfield.ai/pricing', lastVerified: '2026-10-10' },
+      { name: 'Higgsfield platform', category: 'Platform', description: 'Access Higgsfield AI Cinema Studio, model selection, and account settings (referral link).', href: '/go/higgsfield', lastVerified: '2026-10-12' },
+      { name: 'Cinema Studio 4.0 documentation', category: 'Direction', description: 'Current vendor announcement for camera look, references and sequence controls.', href: 'https://higgsfield.ai/blog/cinema-studio-4-0', lastVerified: '2026-10-11' },
+      { name: 'Agent connection guide', category: 'Automation', description: "Higgsfield's own guide to connecting Claude, ChatGPT, Cursor and other agents via MCP or CLI. Inspect tools and job status before generating.", href: 'https://higgsfield.ai/blog/generate-ai-videos-ai-agents-2026', lastVerified: '2026-10-11' },
+      { name: 'Developer console', category: 'Integration', description: 'Use documented interfaces and account limits rather than an assumed third-party endpoint.', href: 'https://open.higgsfield.ai/', lastVerified: '2026-10-12' },
+      { name: 'Current pricing', category: 'Budget', description: 'Verify included credits, model availability and cancellation terms for your account before subscribing.', href: 'https://higgsfield.ai/pricing', lastVerified: '2026-10-11' },
     ],
     faqs: [
       { question: 'Is this Higgsfield course free?', answer: 'The FrankX guides, exercises and worksheets are free to read. Higgsfield generation and connected-agent usage may require credits or a paid plan. Check current pricing before starting.' },
