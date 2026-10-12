@@ -183,10 +183,12 @@ export default function LearningPathPage() {
 
               {/* Stats */}
               <div className="flex items-center gap-6 text-white/50">
-                <div className="flex items-center gap-2">
-                  <Clock className="w-5 h-5" />
-                  {path.estimatedHours} hours
-                </div>
+                {path.estimatedHours !== undefined && (
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-5 h-5" />
+                    {path.estimatedHours} hours
+                  </div>
+                )}
                 <div className="flex items-center gap-2">
                   <Play className="w-5 h-5" />
                   {path.videos.length} {path.videos.length === 1 ? 'video' : 'videos'}
