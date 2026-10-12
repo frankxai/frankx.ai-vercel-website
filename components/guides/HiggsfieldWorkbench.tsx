@@ -55,7 +55,7 @@ const WORKFLOWS: WorkflowDef[] = [
     title: 'Character Consistency (Soul ID)',
     shortLabel: 'Soul ID',
     badge: 'Presenter Lock',
-    description: 'Maintain presenter identity across scenes using an approved 3-angle reference pack.',
+    description: 'Maintain presenter identity across scenes using multi-angle reference stills.',
     icon: UserCheck,
     subject: 'Fixed presenter identity across multiple camera angles and lighting setups.',
     shotSequence: [
@@ -112,9 +112,9 @@ const WORKFLOWS: WorkflowDef[] = [
     shotSequence: [
       'Step 01: Connect MCP server at https://mcp.higgsfield.ai/mcp',
       'Step 02: Run read-only preflight to verify account balance and inspect available tools.',
-      'Step 03: Submit bounded brief with authorized credit cap and track returned job ID.',
+      'Step 03: Submit bounded brief with authorized credit cap and poll job to terminal status.',
     ],
-    acceptanceCheck: 'Preflight returns valid account balance and tool list before any job submission.',
+    acceptanceCheck: 'Preflight verifies account balance and tools; returned job reaches terminal completion without error.',
     stopRule: 'Halt agent execution if credit balance is missing, quota exceeded, or tool errors occur.',
     route: 'Higgsfield MCP Server + Agentic SDK',
   },
