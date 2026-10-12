@@ -695,7 +695,7 @@
     "name": "Suno Prompt Library Pack",
     "category": "Music Intelligence",
     "badge": "Coming soon",
-    "headline": "100+ Battle-Tested Suno Prompts for Every Genre",
+    "headline": "Suno Prompts for Every Genre",
     "subheadline": "Skip the prompt guessing game. The prompts are organized by genre, mood, and energy for electronic, hip-hop, cinematic, ambient, and world music.",
     "promise": "Stop wasting generations on prompts that don't work. Get prompts organized by genre, mood, and energy level.",
     "summary": "A prompt library organized by genre, mood, and energy for a creative project.",
@@ -708,10 +708,6 @@
     "socialProof": {
       "stats": [
         {
-          "number": "100+",
-          "label": "Curated Prompts"
-        },
-        {
           "number": "12",
           "label": "Genre Categories"
         }
@@ -719,7 +715,7 @@
       "quotes": []
     },
     "offer": {
-      "primaryPrice": 27,
+      "primaryPrice": 29,
       "currency": "USD",
       "ctaPrimary": "Join Waitlist",
       "ctaPrimaryHref": "/waitlist?intent=suno-prompt-library",
@@ -1057,10 +1053,10 @@
     "name": "5 Prompts That Made My Best Suno Tracks",
     "category": "Music Intelligence",
     "badge": "Coming soon",
-    "headline": "The Exact Prompts Behind My Top Suno Tracks",
-    "subheadline": "Copy five Suno prompts, with a breakdown of each one and variations to try.",
-    "promise": "Skip the guessing. Get proven prompts that actually produce great Suno tracks.",
-    "summary": "Free guide with 5 battle-tested Suno prompts, a power words cheat sheet, and common mistakes to avoid.",
+    "headline": "The Prompts Behind Five of My Suno Tracks",
+    "subheadline": "Five Suno prompts with notes on why each works and variations to try.",
+    "promise": "Five Suno prompts to start your next track.",
+    "summary": "A free guide, coming soon: 5 Suno prompts, a power words cheat sheet, and common mistakes to avoid.",
     "transformation": [
       "Copy 5 prompts directly into Suno.",
       "Understand the specific keywords that control Suno output quality",
@@ -1084,11 +1080,7 @@
       "ctaPrimaryHref": "/waitlist?intent=5-suno-prompts",
       "ctaPrimaryTracking": "5-suno-prompts-waitlist",
       "ctaSecondary": "Full Prompt Library",
-      "ctaSecondaryHref": "/products/suno-prompt-library",
-      "guarantee": {
-        "label": "Waitlist",
-        "description": "Join the waitlist. This guide is not delivered from the page yet."
-      }
+      "ctaSecondaryHref": "/products/suno-prompt-library"
     },
     "modules": [],
     "faq": [
