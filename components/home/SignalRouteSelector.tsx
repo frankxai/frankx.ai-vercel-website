@@ -79,16 +79,16 @@ const signalRoutes: SignalRoute[] = [
   {
     id: 'creator-systems',
     label: 'Creator Systems',
-    audience: 'Creators, video makers, musicians, and operators turning signals into repeatable releases.',
-    title: 'Make the next campaign, video, or song shippable.',
+    audience: 'Creators, video makers, and operators turning signals into repeatable releases.',
+    title: 'Make the next campaign, article, or video script shippable.',
     description:
-      'The multi-modal creator studio: social campaign engines, video pacing, Suno prompt systems, and the 100-tool Agentic Creator Stack.',
+      'The GenCreator workspace: turn one source idea into a social campaign, long-form article or video script, with proof checks, review notes and a portable export.',
     proof: '',
     href: 'https://gencreator.ai/create',
     cta: 'Open Creator Studio',
     icon: Sparkles,
     accent: 'emerald',
-    checks: ['Social campaigns', 'Video scripts', 'Suno audio', '100-tool stack'],
+    checks: ['Social campaigns', 'Long-form articles', 'Video scripts', 'Portable export'],
   },
   {
     id: 'builder-systems',
