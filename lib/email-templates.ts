@@ -212,7 +212,7 @@ export function pdfDeliveryEmail(data: {
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top: 1px solid #334155;">
             <tr>
               <td style="padding: 20px 0 0 0;">
-                <p style="font-size: 14px; color: #94a3b8; margin: 0 0 4px 0; line-height: 1.5;">Questions? Reply to this email. I read every one.</p>
+                <p style="font-size: 14px; color: #94a3b8; margin: 0 0 4px 0; line-height: 1.5;">Hit reply if you have a question.</p>
                 <p style="font-size: 13px; color: #64748b; margin: 0;">More at <a href="https://frankx.ai/blog" style="color: #22d3ee; text-decoration: none;">frankx.ai/blog</a></p>
               </td>
             </tr>
