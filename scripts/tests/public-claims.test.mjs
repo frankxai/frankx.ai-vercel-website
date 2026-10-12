@@ -194,3 +194,25 @@ test('higgsfield-mastery publishes no estimatedHours', () => {
   assert.ok(start >= 0 && end > at, 'higgsfield-mastery object bounds not found')
   assert.doesNotMatch(text.slice(start, end), /\bestimatedHours\s*:/)
 })
+
+test('email follow-ups drop early-access promises, song counts and the prompt download', () => {
+  const read = (p) => fs.readFileSync(path.join(root, p), 'utf8')
+  const bans = [
+    ['lib/email-templates-welcome.ts', ['new guides, frameworks, and products before anyone else', 'early access to new work']],
+    ['lib/email-templates.ts', ['new guides and frameworks before public', 'Tracks Included']],
+    ['emails/templates/Welcome.tsx', ['12,000+', 'AI-generated songs and counting']],
+    ['emails/templates/MusicPrompts.tsx', ['Download Your 5 Prompts', 'Your 5 Suno prompts are ready', '500+', 'plays', 'likes', 'top-performing tracks', 'Tracks Included', 'downloadUrl}']],
+    ...['CardBased', 'ClassicWhite', 'DarkPremium', 'MinimalGradient', 'ModernLight'].map((v) => [`emails/variants/${v}.tsx`, ['500+ AI songs']]),
+  ]
+  for (const [file, phrases] of bans) {
+    const text = read(file)
+    for (const phrase of phrases) assert.equal(text.includes(phrase), false, `${file}: ${phrase}`)
+  }
+  assert.ok(read('lib/email-templates-welcome.ts').includes('New guides, frameworks and products in your inbox'))
+  assert.ok(read('lib/email-templates-welcome.ts').includes('and notes on new work.'))
+  assert.ok(read('lib/email-templates.ts').includes('New guides and frameworks in your inbox'))
+  assert.ok(read('lib/email-templates.ts').includes('Tracks in the guide'))
+  assert.ok(read('emails/templates/Welcome.tsx').includes("I'm Frank. I build enterprise AI systems during the day and make songs with Suno at night."))
+  const mp = read('emails/templates/MusicPrompts.tsx')
+  for (const phrase of ["isn't ready yet", 'Join the launch list', 'waitlist?intent=suno-prompt-library', 'Tracks in the guide']) assert.ok(mp.includes(phrase), phrase)
+})
