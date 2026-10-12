@@ -194,3 +194,13 @@ test('higgsfield-mastery publishes no estimatedHours', () => {
   assert.ok(start >= 0 && end > at, 'higgsfield-mastery object bounds not found')
   assert.doesNotMatch(text.slice(start, end), /\bestimatedHours\s*:/)
 })
+
+test('Vibe OS final CTA and products shell carry no music-mastery claims', () => {
+  const cta = fs.readFileSync(path.join(root, 'app/products/vibe-os/components/VibeOSFinalCTA.tsx'), 'utf8')
+  assert.equal(cta.includes('Start using Vibe OS'), false)
+  assert.ok(cta.includes('Vibe OS is free'))
+  const shell = fs.readFileSync(path.join(root, 'components/products/ProductsShell.tsx'), 'utf8')
+  for (const phrase of ['Emotion-to-sound mapping system', 'Production enhancement and mastering guide', 'Suno Music Mastery', 'production checklists for Suno creators']) {
+    assert.equal(shell.includes(phrase), false, phrase)
+  }
+})
