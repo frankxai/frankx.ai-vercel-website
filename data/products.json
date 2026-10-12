@@ -12,7 +12,7 @@
     "transformation": [
       "Map all 7 life pillars (Energy, Mind, Soul, Craft, Capital, Circle, Legacy) with structured reflection exercises",
       "Choose your transformation lens: Life Symphony (for artists), Golden Path (for seekers), or 7 Pillars (for builders)",
-      "Access 25+ AI coaching prompts designed for deep self-reflection and life architecture",
+      "AI coaching prompts for self-reflection",
       "Download ready-to-use Obsidian vault with templates, dashboards, and pre-configured themes"
     ],
     "socialProof": {
@@ -103,7 +103,7 @@
     "promise": "Go from AI overwhelm to a trusted daily ritual. One week to measurable creative velocity.",
     "summary": "Structured prompts, workflow templates, and daily rituals that turn AI into your creative co-pilot, not a distraction.",
     "transformation": [
-      "Deploy 100+ validated prompts across storytelling, marketing, content, and operations within 48 hours",
+      "Use prompts across storytelling, marketing, content and operations.",
       "Spend your working hours on the thinking, since the mechanical steps already come templated",
       "Run 12 plug-and-play automations (email, social, drafting) that handle the mechanical stuff",
       "Build a repeatable daily ritual that ships consistently without burnout"
@@ -309,7 +309,7 @@
     "summary": "Strategic frameworks, AI-assisted workflows, and distribution rituals that ship stories consistently and build real authority.",
     "transformation": [
       "Replace scattered messaging with a core narrative arc that runs through every piece you ship (essays, videos, social)",
-      "Publish 2-3x more content with the same effort using templated AI workflows (writers report 40-60% time savings)",
+      "Publish 2-3x more content with the same effort using templated AI workflows",
       "Grow engaged community with distribution playbooks that send your best work to the right people every week",
       "Track revenue impact: each piece connected to pipeline milestones so you see what storytelling actually returns"
     ],
@@ -586,10 +586,6 @@
         {
           "number": "New",
           "label": "Lab Cohort Format"
-        },
-        {
-          "number": "Apply",
-          "label": "Limited Spots Available"
         }
       ],
       "quotes": []
@@ -725,7 +721,7 @@
     "promise": "Stop wasting generations on prompts that don't work. Get prompts organized by genre, mood, and energy level.",
     "summary": "A prompt library organized by genre, mood, and energy for a creative project.",
     "transformation": [
-      "Access 100+ prompts organized by genre, mood, and energy, with notes on what each one is for",
+      "Suno prompts organized by genre, mood and energy, each with notes on why it works.",
       "Find the perfect prompt in seconds with genre, mood, and energy filters (no more scrolling through chaos)",
       "Learn prompt patterns that unlock specific sounds (the 'why' behind each prompt so you can create your own)",
       "Get bonus prompt modifiers for tempo, instrumentation, and vocal styles that stack with any base prompt"
@@ -881,11 +877,7 @@
       "ctaPrimaryHref": "/waitlist?intent=aurora-ui-kit",
       "ctaPrimaryTracking": "aurora-ui-kit-primary",
       "ctaSecondary": "Preview Components",
-      "ctaSecondaryHref": "/design-lab",
-      "guarantee": {
-        "label": "Ship It Guarantee",
-        "description": "If you can't ship a polished UI within 48 hours of purchase, get a full refund."
-      }
+      "ctaSecondaryHref": "/design-lab"
     },
     "modules": [
       {
@@ -996,11 +988,7 @@
       "ctaPrimaryHref": "/waitlist?intent=agentic-content-engine",
       "ctaPrimaryTracking": "agentic-content-engine-primary",
       "ctaSecondary": "See It In Action",
-      "ctaSecondaryHref": "/blog",
-      "guarantee": {
-        "label": "Content Velocity Guarantee",
-        "description": "Publish your first AI-assisted article within 24 hours of setup or get a full refund."
-      }
+      "ctaSecondaryHref": "/blog"
     },
     "modules": [
       {
@@ -1408,7 +1396,7 @@
     "id": "golden-age-book",
     "slug": "golden-age",
     "title": "The Golden Age of Creators",
-    "description": "How the creator economy crossed $250 billion and the barriers to creative expression evaporated. The definitive guide to building in the golden age.",
+    "description": "The definitive guide to building in the golden age.",
     "category": "book",
     "badge": "FREE PDF",
     "image": "/images/golden-age/golden-age-hero-council-v2.png",
@@ -1515,11 +1503,7 @@
       "ctaPrimaryHref": "/waitlist?intent=starter-kit",
       "ctaPrimaryTracking": "starter-kit-purchase",
       "ctaSecondary": "View Workflows",
-      "ctaSecondaryHref": "/command-center#workflows",
-      "guarantee": {
-        "label": "30-Day Money Back Guarantee",
-        "description": "If you don't save at least 5 hours in your first week, email support for a full refund."
-      }
+      "ctaSecondaryHref": "/command-center#workflows"
     },
     "modules": [
       { "title": "Content Ops n8n Workflows", "description": "JSON templates for automatic audio/video ingestion and drafting." },
@@ -1573,11 +1557,7 @@
       "ctaPrimaryHref": "/waitlist?intent=command-center",
       "ctaPrimaryTracking": "cc-template-purchase",
       "ctaSecondary": "Watch Preview",
-      "ctaSecondaryHref": "/command-center/preview",
-      "guarantee": {
-        "label": "100% Satisfaction Guarantee",
-        "description": "Full setup support included. We will ensure the dashboard runs cleanly in your local development environment."
-      }
+      "ctaSecondaryHref": "/command-center/preview"
     },
     "modules": [
       { "title": "Next.js Dashboard App Shell", "description": "Obisidian-Void dashboard template featuring HaaStA Queue, ledger graphs, and model arena panels." },
@@ -1631,11 +1611,7 @@
       "ctaPrimaryHref": "/founders-circle/apply",
       "ctaPrimaryTracking": "founders-circle-apply",
       "ctaSecondary": "Book Discovery Call",
-      "ctaSecondaryHref": "/consulting/discovery",
-      "guarantee": {
-        "label": "Bespoke Execution Guarantee",
-        "description": "If your custom swarm isn't operational within 30 days, we work 1:1 with you for free until it is."
-      }
+      "ctaSecondaryHref": "/consulting/discovery"
     },
     "modules": [
       { "title": "Bespoke Swarm Design", "description": "Direct systems engineering to map, code, and deploy custom agent operations in your business." },
