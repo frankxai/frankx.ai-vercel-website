@@ -79,7 +79,7 @@ const signalRoutes: SignalRoute[] = [
   {
     id: 'creator-systems',
     label: 'Creator Systems',
-    audience: 'Creators, video makers, musicians, and operators turning signals into repeatable releases.',
+    audience: 'Creators, video makers, and operators turning signals into repeatable releases.',
     title: 'Make the next campaign, article, or video script shippable.',
     description:
       'The GenCreator workspace: turn one source idea into a social campaign, long-form article or video script, with proof checks, review notes and a portable export.',
