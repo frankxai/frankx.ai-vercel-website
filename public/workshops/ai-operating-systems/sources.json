@@ -1,0 +1,217 @@
+{
+  "version": "2026-10-02.1",
+  "status": "curriculum candidate; unpiloted",
+  "reviewPolicy": "Review primary sources fortnightly and before each facilitated session. Propose changes; test examples and review teaching before publication.",
+  "sources": [
+    {
+      "id": "agents",
+      "title": "Building effective agents",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "purpose": "patterns",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved",
+      "kind": "primary"
+    },
+    {
+      "id": "context",
+      "title": "Effective context engineering for AI agents",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "purpose": "context",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved",
+      "kind": "primary"
+    },
+    {
+      "id": "tools",
+      "title": "Writing effective tools for AI agents",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+      "purpose": "tools",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved",
+      "kind": "primary"
+    },
+    {
+      "id": "evals",
+      "title": "Demystifying evals for AI agents",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "purpose": "evaluation",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved",
+      "kind": "primary"
+    },
+    {
+      "id": "research",
+      "title": "How we built our multi-agent research system",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "purpose": "coordination",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved",
+      "kind": "primary"
+    },
+    {
+      "id": "harness",
+      "title": "Harness engineering",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/harness-engineering/",
+      "purpose": "delivery",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved",
+      "kind": "primary"
+    },
+    {
+      "id": "managed",
+      "title": "Agents API overview",
+      "publisher": "OpenAI",
+      "url": "https://developers.openai.com/api/docs/guides/agents-api/overview",
+      "purpose": "managed harness",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved",
+      "kind": "primary"
+    },
+    {
+      "id": "claude",
+      "title": "Agent SDK overview",
+      "publisher": "Anthropic",
+      "url": "https://code.claude.com/docs/en/agent-sdk/overview",
+      "purpose": "programmable harness",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved",
+      "kind": "primary"
+    },
+    {
+      "id": "sdk",
+      "title": "Building agents",
+      "publisher": "Vercel AI SDK",
+      "url": "https://ai-sdk.dev/docs/agents/building-agents",
+      "purpose": "application loop",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved",
+      "kind": "primary"
+    },
+    {
+      "id": "memory",
+      "title": "Persistence",
+      "publisher": "LangChain",
+      "url": "https://docs.langchain.com/oss/python/langgraph/persistence",
+      "purpose": "memory",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved",
+      "kind": "primary"
+    },
+    {
+      "id": "mcp",
+      "title": "MCP specification",
+      "publisher": "Model Context Protocol",
+      "url": "https://modelcontextprotocol.io/specification/latest",
+      "purpose": "protocol",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved",
+      "kind": "primary",
+      "resolvedUrl": "https://modelcontextprotocol.io/specification/2026-07-28"
+    },
+    {
+      "id": "skills",
+      "title": "Agent Skills specification",
+      "publisher": "Agent Skills",
+      "url": "https://agentskills.io/specification",
+      "purpose": "portable instructions",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved",
+      "kind": "primary"
+    },
+    {
+      "id": "a2a",
+      "title": "A2A protocol",
+      "publisher": "A2A project",
+      "url": "https://a2a-protocol.org/latest/",
+      "purpose": "interoperability",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved",
+      "kind": "primary"
+    },
+    {
+      "id": "rls",
+      "title": "Row level security",
+      "publisher": "Supabase",
+      "url": "https://supabase.com/docs/guides/database/postgres/row-level-security",
+      "purpose": "data access",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved",
+      "kind": "primary"
+    },
+    {
+      "id": "hermes",
+      "title": "Hermes Agent documentation",
+      "publisher": "Nous Research",
+      "url": "https://hermes-agent.nousresearch.com/docs/",
+      "purpose": "persistent assistant",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved",
+      "kind": "primary"
+    },
+    {
+      "id": "openclaw",
+      "title": "OpenClaw documentation",
+      "publisher": "OpenClaw",
+      "url": "https://docs.openclaw.ai/",
+      "purpose": "personal assistant",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved",
+      "kind": "primary"
+    },
+    {
+      "id": "video-agents",
+      "title": "Building more effective AI agents",
+      "publisher": "YouTube",
+      "url": "https://www.youtube.com/watch?v=uhJJgc-0iTQ",
+      "purpose": "supplementary video",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "search metadata only; transcript not reviewed",
+      "kind": "video"
+    },
+    {
+      "id": "video-graph",
+      "title": "Building Effective Agents with LangGraph",
+      "publisher": "YouTube",
+      "url": "https://www.youtube.com/watch?v=aHCDrAbH_go",
+      "purpose": "supplementary video",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "search metadata only; transcript not reviewed",
+      "kind": "video"
+    },
+    {
+      "id": "claude-managed",
+      "title": "Claude Managed Agents overview",
+      "publisher": "Anthropic",
+      "url": "https://platform.claude.com/docs/en/managed-agents/overview",
+      "purpose": "hosted runtime; distinct from Agent SDK",
+      "checkedAt": "2026-10-02",
+      "reviewDue": "2026-10-16",
+      "verification": "primary page retrieved; beta interface managed-agents-2026-04-01",
+      "kind": "primary"
+    }
+  ]
+}

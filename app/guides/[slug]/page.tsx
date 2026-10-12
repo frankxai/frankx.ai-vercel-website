@@ -94,15 +94,15 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             </div>
             {guide.slug === 'agentic-obsidian-second-brain' ? (
               <AgenticObsidianHero />
-            ) : (
+            ) : guide.image ? (
               <HeroImage
-                src={guide.image || undefined}
+                src={guide.image}
                 title={guide.title}
                 subtitle={guide.description}
                 alt={guide.title}
                 className="mb-10"
               />
-            )}
+            ) : null}
             <div className="space-y-6 text-base leading-relaxed text-white/75">
               <MDXContent source={guide.content} />
             </div>

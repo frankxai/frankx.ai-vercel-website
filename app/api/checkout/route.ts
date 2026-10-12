@@ -22,6 +22,71 @@ const PRODUCTS: Record<string, { name: string; priceId: string; amount: number }
     priceId: process.env.STRIPE_PRICE_SUNO || '',
     amount: 2900,
   },
+  'system-architect-starter-kit': {
+    name: 'System Architect Starter Kit',
+    priceId: process.env.STRIPE_PRICE_SYSTEM_ARCHITECT || '',
+    amount: 9700,
+  },
+  'visual-creation-loop': {
+    name: 'Visual Creation Loop',
+    priceId: process.env.STRIPE_PRICE_VISUAL_LOOP || '',
+    amount: 14700,
+  },
+  'income-architecture-blueprint': {
+    name: 'Income Architecture Blueprint',
+    priceId: process.env.STRIPE_PRICE_INCOME_ARCH || '',
+    amount: 6700,
+  },
+  'dpi-field-kit': {
+    name: 'DPI Field Kit: Wealth Substrate Pro',
+    priceId: process.env.STRIPE_PRICE_DPI_KIT || '',
+    amount: 9700,
+  },
+  'agent-fleet-pro': {
+    name: 'Agent Fleet Pro',
+    priceId: process.env.STRIPE_PRICE_FLEET_PRO || '',
+    amount: 14700,
+  },
+  'memory-palace-os': {
+    name: 'The Sovereign Memory Palace OS',
+    priceId: process.env.STRIPE_PRICE_MEMORY_PALACE || '',
+    amount: 9700,
+  },
+  'agentic-media-machine': {
+    name: 'The Agentic Media Machine',
+    priceId: process.env.STRIPE_PRICE_MEDIA_MACHINE || '',
+    amount: 9700,
+  },
+  'agentic-content-engine': {
+    name: 'Agentic Content Engine',
+    priceId: process.env.STRIPE_PRICE_AGENTIC_CONTENT || '',
+    amount: 9700,
+  },
+  'starlight-operator-pack': {
+    name: 'Starlight Operator Field Kit',
+    priceId: process.env.STRIPE_PRICE_OPERATOR_PACK || '',
+    amount: 9700,
+  },
+  'aurora-ui-kit': {
+    name: 'Aurora UI Kit',
+    priceId: process.env.STRIPE_PRICE_AURORA || '',
+    amount: 1900,
+  },
+  'founders-circle-guild': {
+    name: 'Founders Circle Guild',
+    priceId: process.env.STRIPE_PRICE_FOUNDERS_GUILD || '',
+    amount: 299700,
+  },
+  'creation-chronicles': {
+    name: 'Creation Chronicles',
+    priceId: process.env.STRIPE_PRICE_CHRONICLES || '',
+    amount: 49700,
+  },
+  'command-center-template': {
+    name: 'The Command Center Template',
+    priceId: process.env.STRIPE_PRICE_COMMAND_CENTER || '',
+    amount: 49700,
+  },
 }
 
 export async function POST(request: NextRequest) {

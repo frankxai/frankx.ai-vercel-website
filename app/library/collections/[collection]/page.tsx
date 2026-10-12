@@ -5,6 +5,8 @@ import { libraryCollections, belongsToCollection } from '@/data/library-collecti
 import { libraryBooks } from '@/lib/library-catalog';
 import { LibraryExplorer } from '@/components/library/LibraryExplorer';
 import { FeaturedShelf } from '@/components/library/FeaturedShelf';
+import { SacredShelfMap } from '@/components/library/SacredShelfMap';
+import { bookReviews } from '@/data/book-reviews';
 
 type Props = { params: Promise<{ collection: string }> };
 
@@ -31,6 +33,7 @@ export default async function CollectionPage({ params }: Props) {
   if (!collection) notFound();
   const books = libraryBooks.filter(book => belongsToCollection(book, collection));
   const url = `https://www.frankx.ai/library/collections/${slug}`;
+  const traditions = Object.fromEntries(bookReviews.filter(book => book.guide).map(book => [book.slug, book.guide!.tradition]));
   const jsonLd = {
     '@context': 'https://schema.org', '@graph': [
       { '@type': 'BreadcrumbList', itemListElement: [
@@ -52,6 +55,7 @@ export default async function CollectionPage({ params }: Props) {
     </header>
     <div className="mx-auto max-w-6xl px-6"><LibraryExplorer books={books}>
       <FeaturedShelf title="Begin with these three" description="A suggested sequence through this collection. Each page names its sources, edition choices, and place to begin." books={collection.featured.map(featuredSlug => books.find(book => book.slug === featuredSlug)).filter((book): book is (typeof books)[number] => Boolean(book))} />
+      {slug === 'sacred-texts' && <SacredShelfMap books={books} traditions={traditions} />}
     </LibraryExplorer></div>
   </main>;
 }

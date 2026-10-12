@@ -78,7 +78,7 @@ export default function BuildYourAICreatorOSPage() {
               className="max-w-4xl"
             >
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-400/60 mb-6">
-                Flagship Course
+                Creator OS · Free introduction and lab
               </p>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
@@ -98,9 +98,9 @@ export default function BuildYourAICreatorOSPage() {
 
               <div className="flex flex-wrap gap-8 mb-12">
                 {[
-                  { value: '8', label: 'Modules' },
-                  { value: '500+', label: 'Skills' },
-                  { value: '58', label: 'Workflows' },
+                  { value: '8', label: 'Curriculum modules planned' },
+                  { value: '1', label: 'Free introduction available' },
+                  { value: '1', label: 'Free workflow lab available' },
                 ].map((stat, i) => (
                   <motion.div
                     key={stat.label}
@@ -129,6 +129,15 @@ export default function BuildYourAICreatorOSPage() {
         </section>
 
         {/* What You'll Learn */}
+        <section className="border-t border-emerald-300/20 bg-emerald-300/[0.03] py-12">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <p className="font-mono text-xs uppercase tracking-widest text-emerald-300">Free self-guided workflow lab</p>
+            <h2 className="mt-4 font-display text-3xl font-semibold text-white">Build work you can inspect.</h2>
+            <p className="mt-4 max-w-2xl leading-7 text-slate-300">Six AI-generated lessons, a fictional worked example, three failure tests and an exportable peer-review packet. Founder pedagogical review and learner validation are pending.</p>
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- This App Route serves a complete HTML document and requires native navigation. */}
+          <a href="/courses/build-your-ai-creator-os/reliable-workflow" className="mt-6 inline-flex min-h-12 items-center rounded-full bg-emerald-300 px-6 py-3 font-semibold text-[#06110d] hover:bg-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]">Open the free workflow lab</a>
+          </div>
+        </section>
         <section className="py-16 border-t border-white/5">
           <div className="max-w-6xl mx-auto px-6">
             <motion.div

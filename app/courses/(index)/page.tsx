@@ -153,7 +153,7 @@ export default function CoursesPage() {
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-emerald-200">
                   <CircleDot className="h-3.5 w-3.5" aria-hidden="true" />
-                  Module 1 live and free
+                  Free introduction and workflow lab
                 </span>
                 <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#98989f]">
                   FrankX original
@@ -166,6 +166,10 @@ export default function CoursesPage() {
                 {featuredCourse.summary}
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- This App Route serves a complete HTML document and requires native navigation. */}
+          <a href="/courses/build-your-ai-creator-os/reliable-workflow" className="inline-flex min-h-12 items-center justify-center rounded-full border border-emerald-300/40 px-6 py-3 text-sm font-semibold text-emerald-200 hover:bg-emerald-300/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300">
+                  Build a source-based workflow
+                </a>
                 <Link
                   href="/courses/build-your-ai-creator-os/module-1"
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#06110d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111113]"

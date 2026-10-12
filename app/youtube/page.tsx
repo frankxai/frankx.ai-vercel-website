@@ -74,7 +74,7 @@ const pillarIcons: Record<string, typeof Cpu> = {
 
 const pillarDescriptions: Record<string, string> = {
   'ai-architecture': 'Enterprise AI systems, multi-agent orchestration, MCP servers, RAG patterns. Deep technical tutorials from production experience.',
-  'music-production': 'Suno AI prompt engineering, genre mastery, production workflows. From 12,000+ songs to commercial-ready tracks.',
+  'music-production': 'Suno AI prompt engineering, genre mastery, production workflows. From a Suno practice to commercial-ready tracks.',
   'creator-tools': 'Claude Code advanced workflows, ACOS commands, content automation pipelines. Tools that 10x your output.',
   opinion: 'Industry analysis, hot takes on AI content, the solo builder thesis. Data-driven perspectives that challenge the mainstream.',
   shorts: 'Rapid-fire clips, production montages, compressed workflows. Algorithm-optimized content for maximum reach.',
@@ -403,7 +403,7 @@ export default function YouTubePage() {
                 Subscribe to the Channel
               </h2>
               <p className="mx-auto mb-3 text-sm text-white/40">
-                AI Architect & Creator &middot; 12,000+ AI songs &middot; Building in public
+                AI Architect & Creator &middot; Songs made with Suno &middot; Building in public
               </p>
               <p className="mx-auto mb-8 max-w-lg text-slate-400">
                 Get weekly tutorials, production field notes, and behind-the-scenes of building

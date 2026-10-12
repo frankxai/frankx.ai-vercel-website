@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, use } from 'react'
+import React, { useState, use, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import leadMagnetsData from '@/data/lead-magnets.json'
@@ -41,7 +41,31 @@ export default function LeadMagnetDownloadPage({ params }: { params: Promise<{ s
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [unlocked, setUnlocked] = useState(false)
 
+  // Soft-nav from MDX/next-link to /downloads/*.md hits this client page and
+  // falsely shows "Digital Asset Not Found". A full document load serves the
+  // real file from public/downloads (verified live). Force that path for
+  // uncatalogued markdown vaults such as mini-me-storyboard-prompt-vault.md.
+  const isPublicMarkdownVault = !leadMagnet && slug.endsWith('.md')
+  useEffect(() => {
+    if (!isPublicMarkdownVault) return
+    window.location.replace(`/downloads/${slug}`)
+  }, [isPublicMarkdownVault, slug])
+
   if (!leadMagnet) {
+    if (isPublicMarkdownVault) {
+      return (
+        <div className="min-h-screen bg-[#0A0D14] text-white flex flex-col items-center justify-center p-6 text-center">
+          <h1 className="text-3xl font-bold mb-4">Opening vault</h1>
+          <p className="text-neutral-400 mb-6">Loading the markdown download…</p>
+          <a
+            href={`/downloads/${slug}`}
+            className="px-5 py-2.5 bg-amber-500 text-black font-semibold rounded-lg hover:bg-amber-400"
+          >
+            Open file directly
+          </a>
+        </div>
+      )
+    }
     return (
       <div className="min-h-screen bg-[#0A0D14] text-white flex flex-col items-center justify-center p-6 text-center">
         <h1 className="text-3xl font-bold mb-4">Digital Asset Not Found</h1>

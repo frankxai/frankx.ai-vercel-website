@@ -7,10 +7,16 @@ import { Calculator, Sparkles } from "lucide-react"
 import type { ModelRow } from '@/lib/llm-hub/rows'
 import { tokenCost } from '@/lib/llm-hub/pricing'
 
+// Current registry models; rates come from the registry rows passed in, never from this file.
 const CALCULATOR_IDS = new Set([
-  'gpt-6-astra', 'deepseek-v4-pro-0813', 'gemini-3-7-flash',
-  'claude-sonnet-5', 'grok-4-6', 'claude-opus-5', 'claude-fable-5',
+  'gpt-6-1-sol', 'gpt-6-astra', 'deepseek-v4-pro-0813', 'gemini-3-8-flash',
+  'claude-sonnet-5-5', 'grok-4-7', 'claude-opus-5-5', 'claude-fable-5-1',
+  'claude-haiku-5-5',
 ])
+// Rates shown are the lower prompt tier; the note gives the rates above it.
+const PROMPT_TIER_SUFFIX: Record<string, string> = { 'claude-haiku-5-5': ' up to 100K' }
+const FAST_PATH_ID = 'gemini-3-8-flash'
+const DEEP_REASON_ID = 'claude-opus-5-5'
 
 const PRESETS = [
   {
@@ -50,12 +56,12 @@ export function CostCalculator({ rows }: { rows: ModelRow[] }) {
 
 
   const hybrid = useMemo(() => {
-    const fast = calculations.find(c => c.id === 'gemini-3-7-flash')
-    const deep = calculations.find(c => c.id === 'claude-opus-5')
+    const fast = calculations.find(c => c.id === FAST_PATH_ID)
+    const deep = calculations.find(c => c.id === DEEP_REASON_ID)
     if (!fast || !deep) return null
     const total = fast.total * 0.8 + deep.total * 0.2
     const diff = deep.total - total
-    return { total, diff, pct: deep.total > 0 ? ((diff / deep.total) * 100).toFixed(0) : '0' }
+    return { total, diff, pct: deep.total > 0 ? ((diff / deep.total) * 100).toFixed(0) : '0', fastName: fast.name, deepName: deep.name }
   }, [calculations])
 
   if (!calculations.length) return <p>No token-price estimates are available. Check provider pricing before budgeting.</p>
@@ -152,8 +158,8 @@ export function CostCalculator({ rows }: { rows: ModelRow[] }) {
                 Hybrid 80/20 Architecture: <span className="text-emerald-300">${hybrid.total.toFixed(2)}/mo</span>
               </h3>
               <p className="text-xs text-white/60">
-                Illustrative split: 80% of input and output tokens to Fast-Path (Gemini 3.7 Flash) + 20% to Deep-Reason (Claude Opus 5). Saves{" "}
-                <strong className="text-emerald-400">${hybrid.diff.toFixed(2)}/mo ({hybrid.pct}%)</strong> vs 100% flagship.
+                Illustrative split: 80% of input and output tokens to Fast-Path ({hybrid.fastName}) + 20% to Deep-Reason ({hybrid.deepName}). Saves{" "}
+                <strong className="text-emerald-400">${hybrid.diff.toFixed(2)}/mo ({hybrid.pct}%)</strong> vs 100% {hybrid.deepName}.
               </p>
             </div>
           </div>
@@ -196,9 +202,23 @@ export function CostCalculator({ rows }: { rows: ModelRow[] }) {
                   </span>
                 </div>
                 <div className="flex justify-between text-[11px] text-white/40">
-                  <span>In: ${model.inputCost.toFixed(2)}</span>
-                  <span>Out: ${model.outputCost.toFixed(2)}</span>
+                  <span>In: ${model.inputCost.toFixed(2)}{model.pricingWindow === 'off-peak' ? ' off-peak' : ''}{PROMPT_TIER_SUFFIX[model.id] ?? ''}</span>
+                  <span>Out: ${model.outputCost.toFixed(2)}{model.pricingWindow === 'off-peak' ? ' off-peak' : ''}{PROMPT_TIER_SUFFIX[model.id] ?? ''}</span>
                 </div>
+                {model.pricingWindow === 'off-peak' && (
+                  <p className="mt-1 text-[11px] text-amber-300/80">
+                    Off-peak rates. Peak rates are 2× (
+                    <a
+                      href="https://api-docs.deepseek.com/quick_start/pricing"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline hover:text-amber-200"
+                    >
+                      DeepSeek pricing page
+                    </a>
+                    ).
+                  </p>
+                )}
               </div>
             </motion.div>
           )

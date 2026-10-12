@@ -6,7 +6,6 @@ export const metadata: Metadata = {
     'Compare selected LLM providers, inspect GPT-6 Astra sources and pricing, and explore workload evaluation with free founder, creator and architecture guides.',
   keywords: [
     'llm provider comparison',
-    'best llm 2026',
     'agentic ai platforms',
     'frontier ai models 2026',
     'llm hub',

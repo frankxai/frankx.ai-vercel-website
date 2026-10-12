@@ -63,14 +63,13 @@ export async function trackPDFDownload(
   }
 }
 
-// Get recent download count for a guide
+// Failed or malformed reads stay unavailable; only a successful count may be zero.
 export async function getRecentDownloadCount(guideSlug: string): Promise<number> {
-  try {
-    const response = await fetch(`/api/analytics/recent-downloads?guideSlug=${guideSlug}`)
-    const data = await response.json()
-    return data.count || 0
-  } catch (error) {
-    console.error('Failed to get download count:', error)
-    return 0
+  const response = await fetch(`/api/analytics/recent-downloads?guideSlug=${encodeURIComponent(guideSlug)}`)
+  if (!response.ok) throw new Error('Download count is unavailable')
+  const data = await response.json()
+  if (data.success !== true || !Number.isSafeInteger(data.count) || data.count < 0) {
+    throw new Error('Download count is unavailable')
   }
+  return data.count
 }

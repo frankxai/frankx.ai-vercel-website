@@ -15,7 +15,7 @@ export const ritualsMeta = [
     title: 'Studio Session',
     time: '9:00 PM — 12:00 AM',
     description:
-      'The night studio. This is where 12,000+ songs came from — late-night sessions with Suno, experimenting across genres, pushing what AI music can do.',
+      'The night studio. Late-night sessions with Suno, experimenting across genres, pushing what AI music can do.',
   },
   {
     title: 'Evening Review',

@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import {
   ArrowLeft,
   ArrowRight,
@@ -36,17 +37,25 @@ function ModuleAccordion({
 }) {
   const [isOpen, setIsOpen] = useState(index === 0)
   const [showNotes, setShowNotes] = useState(false)
+  const disclosureId = useId()
+  const panelId = `${disclosureId}-panel`
+  const notesId = `${disclosureId}-notes`
+  const reducedMotion = useReducedMotion()
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={reducedMotion ? false : { opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.08 }}
+      transition={{ duration: reducedMotion ? 0 : 0.4, delay: reducedMotion ? 0 : index * 0.08 }}
       className="rounded-2xl border border-white/[0.08] bg-white/[0.02] overflow-hidden"
     >
       <button
+        type="button"
+        id={disclosureId}
+        aria-expanded={isOpen}
+        aria-controls={isOpen ? panelId : undefined}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center gap-4 p-5 sm:p-6 text-left hover:bg-white/[0.02] transition-colors"
+        className="w-full flex items-center gap-4 p-5 sm:p-6 text-left hover:bg-white/[0.02] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cyan-400"
       >
         <div className="w-8 h-8 rounded-full bg-white/[0.06] flex items-center justify-center text-sm font-semibold text-zinc-400 flex-shrink-0">
           {index + 1}
@@ -61,7 +70,7 @@ function ModuleAccordion({
           </p>
         </div>
         <ChevronDown
-          className={`w-5 h-5 text-zinc-500 transition-transform duration-200 flex-shrink-0 ${
+          className={`w-5 h-5 text-zinc-500 transition-transform duration-200 motion-reduce:transition-none flex-shrink-0 ${
             isOpen ? 'rotate-180' : ''
           }`}
         />
@@ -70,10 +79,13 @@ function ModuleAccordion({
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
+            id={panelId}
+            role="region"
+            aria-labelledby={disclosureId}
+            initial={reducedMotion ? false : { height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
+            transition={{ duration: reducedMotion ? 0 : 0.25 }}
             className="overflow-hidden"
           >
             <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-0 space-y-4">
@@ -112,11 +124,15 @@ function ModuleAccordion({
 
               <div>
                 <button
+                  type="button"
+                  id={`${disclosureId}-notes-trigger`}
+                  aria-expanded={showNotes}
+                  aria-controls={showNotes ? notesId : undefined}
                   onClick={(e) => {
                     e.stopPropagation()
                     setShowNotes(!showNotes)
                   }}
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-500 hover:text-zinc-300 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-500 hover:text-zinc-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded"
                 >
                   <StickyNote className="w-3.5 h-3.5" />
                   {showNotes ? 'Hide' : 'Show'} instructor notes
@@ -124,10 +140,13 @@ function ModuleAccordion({
                 <AnimatePresence>
                   {showNotes && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
+                      id={notesId}
+                      role="region"
+                      aria-labelledby={`${disclosureId}-notes-trigger`}
+                      initial={reducedMotion ? false : { height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
+                      exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
+                      transition={{ duration: reducedMotion ? 0 : 0.2 }}
                       className="overflow-hidden"
                     >
                       <div className="mt-3 p-4 rounded-xl bg-amber-500/[0.05] border border-amber-500/10">
@@ -189,6 +208,7 @@ function ShareSection({ slug }: { slug: string }) {
 // ============================================================================
 
 export default function WorkshopClient({ workshop }: { workshop: Workshop }) {
+  const reducedMotion = useReducedMotion()
   const difficultyColor =
     workshop.difficulty === 'Beginner'
       ? 'text-emerald-400'
@@ -211,9 +231,9 @@ export default function WorkshopClient({ workshop }: { workshop: Workshop }) {
           </Link>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={reducedMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: reducedMotion ? 0 : 0.5 }}
           >
             <div className="flex flex-wrap items-center gap-3 mb-4">
               <span
@@ -320,6 +340,20 @@ export default function WorkshopClient({ workshop }: { workshop: Workshop }) {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <ShareSection slug={workshop.slug} />
 
+          {workshop.selfStudyResource ? (
+            <GlowCard color="emerald">
+              <div className="p-6 sm:p-8">
+                <h3 className="text-xl font-semibold text-white mb-3">Study and build at your own pace</h3>
+                <p className="text-sm text-zinc-300 mb-5">{workshop.selfStudyResource.description}</p>
+                <div className="flex flex-wrap gap-4">
+                  <TrackedLink href="/guides/ai-operating-systems-workshop" className="text-sm font-semibold text-cyan-300 underline underline-offset-4" eventName="workshop_learning_cta_clicked" eventProperties={{ action: "read_curriculum", placement: "workshop_detail", workshop: workshop.slug }}>Read the full curriculum</TrackedLink>
+                  <TrackedLink href={workshop.selfStudyResource.href} download className="text-sm font-semibold text-emerald-300 underline underline-offset-4" eventName="workshop_learning_cta_clicked" eventProperties={{ action: "download_workbook", placement: "workshop_detail", workshop: workshop.slug }}>{workshop.selfStudyResource.label}</TrackedLink>
+                  <TrackedLink href="/workshops/ai-operating-systems/lab.mjs" download className="text-sm font-semibold text-emerald-300 underline underline-offset-4" eventName="workshop_learning_cta_clicked" eventProperties={{ action: "download_lab", placement: "workshop_detail", workshop: workshop.slug }}>Download the offline lab</TrackedLink>
+                  <TrackedLink href="/contact?intent=workshop" className="text-sm font-semibold text-zinc-300 underline underline-offset-4" eventName="workshop_learning_cta_clicked" eventProperties={{ action: "pilot_inquiry", placement: "workshop_detail", workshop: workshop.slug }}>Discuss a facilitated pilot</TrackedLink>
+                </div>
+              </div>
+            </GlowCard>
+          ) : (
           <GlowCard color="emerald">
             <div className="p-6 sm:p-8 text-center">
               <Mail className="w-8 h-8 text-emerald-400 mx-auto mb-3" />
@@ -340,6 +374,7 @@ export default function WorkshopClient({ workshop }: { workshop: Workshop }) {
               </div>
             </div>
           </GlowCard>
+          )}
 
           <div className="flex items-center justify-between pt-4">
             <Link

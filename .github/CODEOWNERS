@@ -1,4 +1,6 @@
-# CODEOWNERS — Frank is the required reviewer on every path.
-# Bots may comment, but cannot approve. Merges require Frank's explicit approval.
+# CODEOWNERS — Frank owns every path and is asked to review; code-owner approval is not a merge requirement.
+# Merges are gated by required checks and resolved review conversations. Protected surfaces
+# (.github/protected-surfaces.json) need a Surface change brief; a rearchitect of one, or any change to a
+# locked surface, needs Frank's `surface-approved` label. Every AI review finding must be answered (Review Gate).
 
 *       @frankxai

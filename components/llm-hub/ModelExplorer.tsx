@@ -21,6 +21,8 @@ export interface ModelRow {
   modalities: string[]
   capabilities: Capability[]
   tagline?: string
+  /** Set when the listed rates hold only in a discounted time window. */
+  pricingWindow?: 'off-peak'
 }
 
 type SortKey = 'name' | 'released' | 'context' | 'input' | 'output'
@@ -205,9 +207,13 @@ export function ModelExplorer({ rows }: { rows: ModelRow[] }) {
                   <span className="inline-flex items-center gap-1">
                     {r.live ? <Zap className="h-3 w-3 text-emerald-400/70" aria-label="live" /> : null}
                     {fmtPrice(r.input)}
+                    {r.pricingWindow === 'off-peak' ? <span className="ml-1 text-[10px] text-amber-200/70">off-peak</span> : null}
                   </span>
                 </td>
-                <td className="py-3 pr-4 text-right font-mono text-white/70">{fmtPrice(r.output)}</td>
+                <td className="py-3 pr-4 text-right font-mono text-white/70">
+                  {fmtPrice(r.output)}
+                  {r.pricingWindow === 'off-peak' ? <span className="ml-1 text-[10px] text-amber-200/70">off-peak</span> : null}
+                </td>
               </tr>
             ))}
             {filtered.length === 0 ? (

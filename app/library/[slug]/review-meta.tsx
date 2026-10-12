@@ -3,8 +3,15 @@ import { getReviewBySlug } from '@/data/book-reviews';
 import type { BookReview } from '@/app/books/types';
 import { sacredEditorial } from '@/data/sacred-editorial';
 import { contemporaryEditorial } from '@/data/contemporary-editorial';
+import { hasSacredDepth, SACRED_DEPTH_REVISED } from '@/data/sacred-depth-slugs';
 
 const guideRevised = (slug: string) => Boolean(sacredEditorial[slug] || contemporaryEditorial[slug]);
+
+function modifiedDate(review: BookReview): string {
+  if (hasSacredDepth(review.slug)) return SACRED_DEPTH_REVISED;
+  if (guideRevised(review.slug)) return '2026-09-25';
+  return review.reviewDate;
+}
 
 const SITE_URL = 'https://www.frankx.ai';
 
@@ -62,7 +69,7 @@ export async function generateMetadata({
       siteName: 'FrankX Library',
       authors: [review.guide ? 'FrankX Library' : 'Frank Riemer'],
       publishedTime: review.reviewDate,
-      modifiedTime: guideRevised(review.slug) ? '2026-09-25' : review.reviewDate,
+      modifiedTime: modifiedDate(review),
       ...(ogImage ? { images: [{ url: ogImage, width: 1200, height: 630, alt: `${review.title} — FrankX reading guide` }] } : {}),
     },
     twitter: {
@@ -119,7 +126,7 @@ export function JsonLd({ review }: { review: BookReview }) {
         url: SITE_URL,
       },
       datePublished: review.reviewDate,
-      dateModified: guideRevised(review.slug) ? '2026-09-25' : review.reviewDate,
+      dateModified: modifiedDate(review),
       articleSection: review.categories,
       keywords: [...review.categories, review.author, 'book review'].join(', '),
       mainEntityOfPage: { '@type': 'WebPage', '@id': url },
@@ -184,7 +191,9 @@ export function JsonLd({ review }: { review: BookReview }) {
       graph.push({
         '@type': 'Quotation',
         text: quote.text,
-        spokenByCharacter: { '@type': 'Person', name: review.author },
+        ...(quote.source
+          ? { citation: quote.source.url, creator: { '@type': 'Person', name: quote.source.label } }
+          : { spokenByCharacter: { '@type': 'Person', name: review.author } }),
         isPartOf: {
           '@type': 'Book',
           name: review.title,

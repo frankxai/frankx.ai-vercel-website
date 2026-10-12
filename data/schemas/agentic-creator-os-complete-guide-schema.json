@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "The Complete Guide to Agentic Creator OS v6: Your AI Operating System",
+      "description": "Master the AI operating system that transforms Claude Code into a creative studio: 25 commands, 80+ skills, swarm intelligence, and auto-activation.",
+      "url": "https://frankx.ai/blog/agentic-creator-os-complete-guide",
+      "datePublished": "2026-01-27",
+      "dateModified": "2026-01-27",
+      "author": {
+        "@type": "Person",
+        "name": "Frank",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/agentic-creator-os-complete-guide"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/blog/agentic-creator-os-complete-guide-hero.png"
+      },
+      "keywords": "agentic creator os, ai operating system, claude code productivity, multi-agent orchestration, ai workflow automation, creator os, acos v6",
+      "abstract": "Agentic Creator OS (ACOS) is an open-source development harness that transforms Claude Code into an autonomous creative engineering studio. With 25 slash commands, 80+ domain skills, and native MCP orchestration, ACOS coordinates research, production, and quality assurance into a unified operating loop."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Agentic Creator OS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ACOS is a structured configuration and orchestration layer that turns terminal-based AI tools into full-featured creative operating systems."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does ACOS coordinate multiple agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It uses specialized agent profiles, role-scoped permission models, and Model Context Protocol servers to hand off tasks between specialist agents."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What skills are included with ACOS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Over 80 modular skills covering technical architecture, content engineering, SEO schema generation, workflow automation, and brand voice protection."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can ACOS integrate with existing CI/CD pipelines?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. All ACOS quality checks and workflows can execute via command-line scripts inside standard GitHub Actions or Vercel build steps."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I start with ACOS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Clone the repository, configure your local CLAUDE.md and environment tokens, and run the 30-minute quick-start setup."
+          }
+        }
+      ]
+    }
+  ]
+}

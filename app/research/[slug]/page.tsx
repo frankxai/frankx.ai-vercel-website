@@ -1,22 +1,15 @@
-import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import { ArrowLeft, ArrowUpRight, FileSearch, FlaskConical } from 'lucide-react'
 import { researchDomains, getDomainBySlug, getRelatedDomains } from '@/lib/research/domains'
-import { getSourcesForDomain } from '@/lib/research/sources'
-import { getClaimCountForDomain } from '@/lib/research/validated-claims'
-import { getBlogPost } from '@/lib/blog'
-import ResearchDomainPage from './ResearchDomainPage'
-import LearnHubSection from '@/components/learn/LearnHubSection'
-import { portalsForResearch } from '@/lib/learn/related-portals'
-import { nativeGalleries } from '@/lib/research/native-galleries'
 
 interface PageProps {
   params: Promise<{ slug: string }>
 }
 
-export async function generateStaticParams() {
-  return researchDomains.map((domain) => ({
-    slug: domain.slug,
-  }))
+export function generateStaticParams() {
+  return researchDomains.map(({ slug }) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -25,142 +18,75 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!domain) return {}
 
   return {
-    title: `${domain.title} — Research`,
-    description: domain.tldr,
-    keywords: [
-      domain.title.toLowerCase(),
-      ...domain.highlights.map(h => h.label.toLowerCase()),
-      'AI research',
-      'Frank Riemer',
-    ],
-    openGraph: {
-      title: `${domain.title} | FrankX Research`,
-      description: domain.description,
-      type: 'article',
-      url: `https://www.frankx.ai/research/${domain.slug}`,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${domain.title} | FrankX Research`,
-      description: domain.tldr,
-    },
-    alternates: {
-      canonical: `https://www.frankx.ai/research/${domain.slug}`,
-    },
+    title: `${domain.title} — Research review`,
+    description: `The ${domain.title} brief is being reviewed against individual sources and methods.`,
+    alternates: { canonical: `https://www.frankx.ai/research/${slug}` },
+    robots: { index: false, follow: true },
   }
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function ResearchDomainRoute({ params }: PageProps) {
   const { slug } = await params
   const domain = getDomainBySlug(slug)
-
-  if (!domain) {
-    notFound()
-  }
-
-  const relatedDomains = getRelatedDomains(slug)
-  const domainSources = getSourcesForDomain(slug)
-  const claimCount = getClaimCountForDomain(slug)
-
-  // Resolve blog post titles for display in "Published Articles" section
-  const blogPostTitles: Record<string, string> = {}
-  for (const postPath of domain.relatedBlogPosts) {
-    const postSlug = postPath.replace('/blog/', '')
-    const post = getBlogPost(postSlug)
-    if (post) {
-      blogPostTitles[postPath] = post.title
-    }
-  }
-
-  // Generate FAQ from keyFindings (convert statements to Q&A pairs)
-  const faqItems = domain.faq && domain.faq.length > 0
-    ? domain.faq
-    : domain.keyFindings.slice(0, 5).map((finding) => ({
-        question: `What does the research show about ${finding.split(' — ')[0].split(' at ')[0].split(' leads ')[0].toLowerCase().replace(/^'?/, '')}?`,
-        answer: finding,
-      }))
-
-  // JSON-LD structured data - safe because data is from our own static domain registry
-  const techArticleLd = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'TechArticle',
-    headline: domain.title,
-    alternativeHeadline: domain.subtitle,
-    description: domain.tldr,
-    author: {
-      '@type': 'Person',
-      name: 'Frank Riemer',
-      url: 'https://www.frankx.ai',
-      jobTitle: 'AI Architect',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'FrankX',
-      url: 'https://www.frankx.ai',
-    },
-    dateModified: domain.lastUpdated,
-    datePublished: domain.publishedAt ?? '2026-01-27',
-    mainEntityOfPage: `https://www.frankx.ai/research/${domain.slug}`,
-    about: domain.keyFindings.slice(0, 3).join('. '),
-    keywords: [domain.title, ...domain.highlights.map(h => h.label)].join(', '),
-    ...(domainSources.length > 0 ? {
-      citation: domainSources.map(src => ({
-          '@type': 'CreativeWork',
-          name: src.title,
-          url: src.url,
-          ...(src.date && { datePublished: src.date }),
-        })),
-    } : {}),
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.frankx.ai' },
-        { '@type': 'ListItem', position: 2, name: 'Research Hub', item: 'https://www.frankx.ai/research' },
-        { '@type': 'ListItem', position: 3, name: domain.title, item: `https://www.frankx.ai/research/${domain.slug}` },
-      ],
-    },
-  })
-
-  const faqLd = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqItems.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  })
+  if (!domain) notFound()
+  const related = getRelatedDomains(slug).slice(0, 4)
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: techArticleLd }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: faqLd }}
-      />
-      <ResearchDomainPage
-        domain={domain}
-        relatedDomains={relatedDomains}
-        claimCount={claimCount}
-        blogPostTitles={blogPostTitles}
-        gallery={nativeGalleries[domain.slug] ?? []}
-        showGrokPanel={domain.slug === 'grok-4-6' || domain.slug === 'image-generation-bakeoff'}
-      />
-      <div className="bg-[#0a0a0b] pb-16">
-        <LearnHubSection
-          relatedPortals={portalsForResearch(domain.slug)}
-          variant="compact"
-          eyebrow="From research to practice"
-          heading="Learn these tools hands-on"
-          blurb="The research maps the landscape. These portals curate the videos, docs, and experts to actually build with the platforms it covers."
-        />
+    <main className="min-h-screen bg-[#0a0a0b] px-4 pb-24 pt-28 text-white sm:px-6 md:pt-36">
+      <div className="mx-auto max-w-5xl">
+        <Link href="/research" className="inline-flex min-h-11 items-center gap-2 text-sm text-white/65 hover:text-white focus-visible:ring-2 focus-visible:ring-emerald-300">
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          Research
+        </Link>
+
+        <div className="mt-14 grid gap-10 border-t border-white/10 pt-10 md:grid-cols-[minmax(0,1fr)_17rem] md:gap-16">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.25em] text-emerald-300">Source review in progress</p>
+            <h1 className="mt-5 font-display text-4xl font-semibold leading-tight tracking-tight md:text-6xl">{domain.title}</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">{domain.subtitle}</p>
+            <p className="mt-10 max-w-2xl text-base leading-8 text-white/65">
+              This brief is being checked against individual publications, benchmarks and methods.
+              Its earlier generated source list and confidence labels did not meet the publication standard.
+              The topic remains available here while the evidence is reviewed.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Link href="/research/methodology" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#0a0a0b] hover:bg-white/90 focus-visible:ring-2 focus-visible:ring-emerald-300">
+                Review the method <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <Link href="/research#hubs" className="inline-flex min-h-11 items-center rounded-full border border-white/20 px-5 py-3 text-sm text-white/75 hover:border-white/40 hover:text-white focus-visible:ring-2 focus-visible:ring-emerald-300">
+                Explore the hubs
+              </Link>
+            </div>
+          </div>
+
+          <aside className="border-t border-white/10 pt-6 md:border-l md:border-t-0 md:pl-6 md:pt-0">
+            <FileSearch className="h-6 w-6 text-emerald-300" aria-hidden="true" />
+            <h2 className="mt-4 text-sm font-semibold">Publication gate</h2>
+            <ul className="mt-4 space-y-4 text-sm leading-6 text-white/60">
+              <li>Exact source and claim locator</li>
+              <li>Method, date and limitations</li>
+              <li>Contrary evidence and corrections</li>
+              <li>Independent editorial review</li>
+            </ul>
+          </aside>
+        </div>
+
+        {related.length > 0 && (
+          <section className="mt-24 border-t border-white/10 pt-8" aria-labelledby="related-heading">
+            <div className="flex items-center gap-3">
+              <FlaskConical className="h-5 w-5 text-emerald-300" aria-hidden="true" />
+              <h2 id="related-heading" className="text-xl font-semibold">Related topics</h2>
+            </div>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {related.map((item) => (
+                <Link key={item.slug} href={`/research/${item.slug}`} className="flex min-h-16 items-center justify-between gap-4 rounded-2xl border border-white/10 p-5 text-sm text-white/75 hover:border-emerald-300/40 hover:text-white focus-visible:ring-2 focus-visible:ring-emerald-300">
+                  {item.title} <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
-    </>
+    </main>
   )
 }

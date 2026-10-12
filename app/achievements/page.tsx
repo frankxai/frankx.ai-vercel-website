@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export const metadata = createMetadata({
   title: 'Achievements | FrankX',
-  description: 'Real milestones from building AI systems, creating 12,000+ AI songs, and shipping products. No fabricated stats — just documented results.',
+  description: 'Milestones from building AI systems, making music with Suno, and shipping products.',
   path: '/achievements',
 })
 
@@ -36,8 +36,8 @@ const milestones = [
     year: '2025',
     items: [
       {
-        title: '12,000+ AI-Generated Songs',
-        description: 'Created over 12,000 tracks on Suno covering tech house, orchestral, ambient, hip-hop, and experimental genres. 456 followers, 13K hooks.',
+        title: 'Songs made with Suno',
+        description: 'Tracks across tech house, orchestral, ambient, hip-hop, and experimental genres.',
         category: 'Music',
         icon: Music,
       },
@@ -58,7 +58,6 @@ const milestones = [
 ]
 
 const stats = [
-  { label: 'AI Songs Created', value: '12,000+' },
   { label: 'Blog Articles', value: '80+' },
   { label: 'ACOS Skills', value: '75+' },
   { label: 'Site Pages', value: '240+' },
@@ -78,14 +77,14 @@ export default function AchievementsPage() {
             Built, shipped, measured.
           </h1>
           <p className="text-xl text-white/60 max-w-2xl mx-auto">
-            Every number on this page is real. No fabricated certifications, no invented organizations — just work that speaks for itself.
+            Milestones from the work on this site. No fabricated certifications and no invented organizations.
           </p>
         </div>
       </section>
 
       {/* Stats Bar */}
       <section className="border-y border-white/[0.08] bg-white/[0.03]">
-        <div className="max-w-5xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="max-w-5xl mx-auto px-6 py-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] bg-clip-text text-transparent">

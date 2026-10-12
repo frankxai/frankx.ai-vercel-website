@@ -51,7 +51,7 @@ const STREAM_RECOMMENDATIONS: Record<
     streamName: 'FrankX Music Letters',
     character: { src: '/images/brand/logo-mark-v2.png', name: 'FrankX' },
     resources: [
-      { href: '/music', label: 'Music Hub', desc: '12,000+ AI-crafted songs', gradient: 'from-pink-500/10 to-pink-600/10', border: 'border-pink-500/30',
+      { href: '/music', label: 'Music Hub', desc: 'Songs made with Suno', gradient: 'from-pink-500/10 to-pink-600/10', border: 'border-pink-500/30',
       },
       { href: '/music-lab', label: 'Music Lab', desc: 'Interactive production tools', gradient: 'from-rose-500/10 to-rose-600/10', border: 'border-rose-500/30',
       },

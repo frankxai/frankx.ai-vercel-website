@@ -25,12 +25,6 @@ export default function HomePage() {
       {/* Floating Stat Cards */}
       <div className="pointer-events-none absolute inset-0 hidden md:block">
         <FloatingStatCard
-          value="500+"
-          label="AI Songs"
-          delay={0}
-          className="absolute left-[8%] top-[20%]"
-        />
-        <FloatingStatCard
           value="40+"
           label="Agents"
           delay={1}
@@ -93,8 +87,7 @@ export default function HomePage() {
           </div>
 
           {/* Mobile Stat Cards */}
-          <div className="mt-16 grid grid-cols-3 gap-4 md:hidden">
-            <FloatingStatCard value="500+" label="AI Songs" delay={0} />
+          <div className="mt-16 grid grid-cols-2 gap-4 md:hidden">
             <FloatingStatCard value="40+" label="Agents" delay={1} />
             <FloatingStatCard value="70+" label="Articles" delay={2} />
           </div>
