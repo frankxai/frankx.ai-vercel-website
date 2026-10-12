@@ -18,12 +18,13 @@ interface VibeOSModulesProps {
 const moduleIcons = [Library, Workflow, Heart, Sliders]
 
 export default function VibeOSModules({ productId, modules, offer }: VibeOSModulesProps) {
+  const waitlistHref = `/waitlist?intent=${productId}`
   const handleCTAClick = () => {
     trackEvent('product_cta_click', {
       productId,
       location: 'modules',
       target: COMING_SOON_MODE ? 'waitlist' : 'primary',
-      href: COMING_SOON_MODE ? '/newsletter' : offer.ctaPrimaryHref,
+      href: COMING_SOON_MODE ? waitlistHref : offer.ctaPrimaryHref,
       label: COMING_SOON_MODE ? 'join-waitlist' : offer.ctaPrimaryTracking
     })
   }
@@ -123,7 +124,7 @@ export default function VibeOSModules({ productId, modules, offer }: VibeOSModul
                     </div>
 
                     <Link
-                      href="/newsletter"
+                      href={waitlistHref}
                       onClick={handleCTAClick}
                       className="mt-8 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.15em] text-white shadow-[0_20px_60px_rgba(6,182,212,0.35)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(6,182,212,0.45)]"
                     >

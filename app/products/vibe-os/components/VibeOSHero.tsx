@@ -16,12 +16,13 @@ interface VibeOSHeroProps {
 }
 
 export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
+  const waitlistHref = `/waitlist?intent=${productId}`
   const handleCTAClick = (target: 'primary' | 'secondary') => {
     trackEvent('product_cta_click', {
       productId,
       location: 'hero',
       target,
-      href: target === 'primary' ? '/newsletter' : product.offer.ctaSecondaryHref,
+      href: target === 'primary' ? waitlistHref : product.offer.ctaSecondaryHref,
       label: target === 'primary' ? 'join-waitlist' : product.offer.ctaSecondaryTracking
     })
   }
@@ -132,7 +133,7 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
         >
           {COMING_SOON_MODE ? (
             <Link
-              href="/newsletter"
+              href={waitlistHref}
               onClick={() => handleCTAClick('primary')}
               className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white shadow-[0_20px_60px_rgba(6,182,212,0.4)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(6,182,212,0.5)]"
             >

@@ -15,12 +15,13 @@ interface VibeOSFinalCTAProps {
 }
 
 export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps) {
+  const waitlistHref = `/waitlist?intent=${productId}`
   const handleClick = () => {
     trackEvent('product_cta_click', {
       productId,
       location: 'final',
       target: COMING_SOON_MODE ? 'waitlist' : 'primary',
-      href: COMING_SOON_MODE ? '/newsletter' : offer.ctaPrimaryHref,
+      href: COMING_SOON_MODE ? waitlistHref : offer.ctaPrimaryHref,
       label: COMING_SOON_MODE ? 'join-waitlist' : offer.ctaPrimaryTracking
     })
   }
@@ -110,7 +111,7 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
         >
           {COMING_SOON_MODE ? (
             <Link
-              href="/newsletter"
+              href={waitlistHref}
               onClick={handleClick}
               className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-10 py-5 text-lg font-semibold text-white shadow-[0_20px_70px_rgba(6,182,212,0.45)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(6,182,212,0.55)]"
             >
