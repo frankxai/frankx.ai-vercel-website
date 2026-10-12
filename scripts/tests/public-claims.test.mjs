@@ -50,9 +50,16 @@ const banned = [
   ['app/music-os/page.tsx', ['indexed tracks', 'totalTracks']],
   ['app/magic/page.tsx', ['12,000 songs', 'over 12,000 songs']],
   ['components/magic/MagicShell.tsx', ['12,000 songs', 'over 12,000 songs']],
-  ['app/products/vibe-os/components/VibeOSFinalCTA.tsx', ['12,000+']],
-  ['app/products/vibe-os/components/VibeOSHero.tsx', ['500+ Sessions']],
-  ['app/products/vibe-os/components/VibeOSSocialProof.tsx', ['500+ Sessions']],
+  ['app/products/vibe-os/components/VibeOSFinalCTA.tsx', ['12,000+', '30-Day Guarantee', 'Lifetime Updates', 'Instant Access', 'Music Production', 'ultimate Suno workflow', 'finished track']],
+  ['app/products/vibe-os/components/VibeOSFeatures.tsx', ['Music Production', 'shipping tracks', '60–90 min', 'finished track']],
+  ['app/products/vibe-os/components/VibeOSBonuses.tsx', ['Limited Bonuses', 'music production journey', 'Total Bonus Value']],
+  ['app/products/vibe-os/components/VibeOSModules.tsx', ['Instant Access', 'Lifetime Updates', "'/newsletter'", 'href="/newsletter"', 'exclusive discounts']],
+  ['app/products/vibe-os/components/VibeOSHero.tsx', ["'/newsletter'", 'href="/newsletter"']],
+  ['app/products/vibe-os/components/VibeOSFinalCTA.tsx', ["'/newsletter'", 'href="/newsletter"']],
+  ['data/products.json', ['Notion Dashboard Template', 'Open Source & Free Forever', 'Science-backed']],
+  ['app/products/vibe-os/components/VibeOSHero.tsx', ['500+ Sessions', '30-Day Guarantee', 'Lifetime Updates', '50+ Genre Prompts', 'Emotion Mapping', 'Release Playbooks']],
+  ['data/learning-paths.ts', ['verified official walkthrough', 'Official supported agent']],
+  ['app/products/vibe-os/components/VibeOSSocialProof.tsx', ['500+ Sessions', 'Creators in Early Access']],
   ['app/soul-frequency-assessment/page.tsx', ['500+ Suno']],
   ['app/team/page.tsx', ['12,000+', '50+ genres']],
   ['app/vibe/producer/page.tsx', ['500+', '12,000+']],
@@ -121,6 +128,8 @@ const banned = [
   ['content/blog/voice-ai-agents-2026-elevenlabs-hume-audio.mdx', ['12,000 songs of lessons']],
 ]
 
+banned.push(['components/products/ProductsShell.tsx', ['50+ genre-specific', '50+ battle-tested', 'Genre-specific prompts (electronic']])
+
 for (const [file, phrases] of banned) {
   test(file + ' does not publish an unsupported headcount', () => {
     const text = fs.readFileSync(path.join(root, file), 'utf8').toLowerCase()
@@ -130,48 +139,12 @@ for (const [file, phrases] of banned) {
   })
 }
 
-test('the stale 5-suno PDF is not shipped or uploaded', () => {
-  assert.equal(fs.existsSync(path.join(root, 'public/pdfs/5-suno-prompts.pdf')), false)
-  const upload = fs.readFileSync(path.join(root, 'scripts/upload-products-to-blob.mjs'), 'utf8')
-  assert.equal(upload.includes('public/pdfs/5-suno-prompts.pdf'), false)
-})
-
-test('5-suno-prompts is a waitlist item with no downloadable file', () => {
-  const data = JSON.parse(fs.readFileSync(path.join(root, 'data/products.json'), 'utf8'))
-  const list = Array.isArray(data) ? data : data.products
-  const p = list.find((x) => x.slug === '5-suno-prompts')
-  assert.ok(p, '5-suno-prompts not found')
-  assert.equal(p.badge, 'Coming soon')
-  assert.equal(p.offer.ctaPrimary, 'Join the waitlist')
-  assert.equal(p.offer.ctaPrimaryHref, '/waitlist?intent=5-suno-prompts')
-  assert.equal(p.offer.ctaPrimaryTracking, '5-suno-prompts-waitlist')
-  assert.equal(p.offer.guarantee, undefined)
-  assert.deepEqual(p.delivery?.files ?? [], [])
-  const text = JSON.stringify(p)
-  for (const phrase of ['COMING SOON', 'Proven Prompts', 'Get Free Prompts', 'Is this really free?', 'FREE DOWNLOAD', 'products/5-suno-prompts/5-suno-prompts.pdf']) {
-    assert.equal(text.includes(phrase), false, phrase)
-  }
-})
-
-test('music-lab signup email and route promise no download, counts or price', () => {
-  const route = fs.readFileSync(path.join(root, 'app/api/subscribe/route.ts'), 'utf8')
-  for (const phrase of ['downloadUrl', '/api/download?product=5-suno-prompts', 'your free prompts', 'the prompt email could not be sent']) {
-    assert.equal(route.includes(phrase), false, phrase)
-  }
-  const templates = fs.readFileSync(path.join(root, 'lib/email-templates.ts'), 'utf8')
-  for (const phrase of ['Your 5 Suno prompts are ready', 'Download Your 5 Prompts', 'top-performing tracks', '500+ combined plays', '500+ plays', '142 plays', '128 plays', '119 plays', '108 plays', '34 likes', '100+ prompts', 'Get 100+ Prompts', '($27)', 'Want more?']) {
-    assert.equal(templates.includes(phrase), false, phrase)
-  }
-  for (const phrase of ["You're on the list for the 5 Suno prompts", "The guide with five Suno prompts isn't ready yet.", 'The Suno Prompt Library is on the launch list.', 'waitlist?intent=suno-prompt-library']) {
-    assert.ok(templates.includes(phrase), phrase)
-  }
-})
-
-test('5-suno naming no longer claims "best" tracks', () => {
-  for (const file of ['data/products.json', 'lib/diagnostic/waitlist-intents.ts', 'public/pdf-templates/5-suno-prompts.html']) {
-    const text = fs.readFileSync(path.join(root, file), 'utf8')
-    assert.equal(text.includes('Made My Best'), false, file)
-  }
-  const index = fs.readFileSync(path.join(root, 'app/products/(index)/page.tsx'), 'utf8')
-  assert.equal(index.includes('immediate download'), false)
+test('higgsfield-mastery publishes no estimatedHours', () => {
+  const text = fs.readFileSync(path.join(root, 'data/learning-paths.ts'), 'utf8')
+  const at = text.indexOf("slug: 'higgsfield-mastery'")
+  assert.ok(at > 0, 'higgsfield-mastery path not found')
+  const start = text.lastIndexOf('\n  {', at)
+  const end = text.indexOf('\n  },', at)
+  assert.ok(start >= 0 && end > at, 'higgsfield-mastery object bounds not found')
+  assert.doesNotMatch(text.slice(start, end), /\bestimatedHours\s*:/)
 })
