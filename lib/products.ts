@@ -75,6 +75,7 @@ export function getProductCards(): ProductCard[] {
 
       const isWaitlist = Boolean(
         product.offer?.ctaPrimary?.toLowerCase().includes('waitlist') ||
+        product.offer?.ctaPrimaryHref?.startsWith('/waitlist') ||
         legacy.cta?.label?.toLowerCase().includes('waitlist')
       )
 

@@ -1801,7 +1801,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=visual-creation-loop",
-      "ctaPrimaryTracking": "visual-creation-loop-checkout"
+      "ctaPrimaryTracking": "visual-creation-loop-waitlist"
     },
     "modules": [
       {
@@ -1852,7 +1852,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=stream-atlas",
-      "ctaPrimaryTracking": "12-stream-atlas-checkout"
+      "ctaPrimaryTracking": "12-stream-atlas-waitlist"
     },
     "modules": [
       {
@@ -1902,7 +1902,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=income-blueprint",
-      "ctaPrimaryTracking": "income-architecture-blueprint-checkout"
+      "ctaPrimaryTracking": "income-architecture-blueprint-waitlist"
     },
     "modules": [
       {
@@ -1953,7 +1953,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=dpi-field-kit",
-      "ctaPrimaryTracking": "dpi-field-kit-checkout"
+      "ctaPrimaryTracking": "dpi-field-kit-waitlist"
     },
     "modules": [
       {
@@ -2004,7 +2004,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=agent-fleet-pro",
-      "ctaPrimaryTracking": "agent-fleet-pro-checkout"
+      "ctaPrimaryTracking": "agent-fleet-pro-waitlist"
     },
     "modules": [
       {
@@ -2055,7 +2055,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=memory-palace-os",
-      "ctaPrimaryTracking": "memory-palace-os-checkout"
+      "ctaPrimaryTracking": "memory-palace-os-waitlist"
     },
     "modules": [
       {
@@ -2106,7 +2106,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=agentic-media-machine",
-      "ctaPrimaryTracking": "agentic-media-machine-checkout"
+      "ctaPrimaryTracking": "agentic-media-machine-waitlist"
     },
     "modules": [
       {
@@ -2157,7 +2157,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=mythic-codex",
-      "ctaPrimaryTracking": "arcanea-mythic-codex-checkout"
+      "ctaPrimaryTracking": "arcanea-mythic-codex-waitlist"
     },
     "modules": [
       {
@@ -2207,7 +2207,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=anti-slop-matrix",
-      "ctaPrimaryTracking": "anti-slop-content-matrix-checkout"
+      "ctaPrimaryTracking": "anti-slop-content-matrix-waitlist"
     },
     "modules": [
       {
@@ -2257,7 +2257,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=capability-audit",
-      "ctaPrimaryTracking": "capability-to-cash-audit-checkout"
+      "ctaPrimaryTracking": "capability-to-cash-audit-waitlist"
     },
     "modules": [
       {
@@ -2307,7 +2307,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=stream-taxonomy",
-      "ctaPrimaryTracking": "dpi-stream-taxonomy-checkout"
+      "ctaPrimaryTracking": "dpi-stream-taxonomy-waitlist"
     },
     "modules": [
       {
@@ -2357,7 +2357,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=starlight-spec",
-      "ctaPrimaryTracking": "starlight-protocol-spec-checkout"
+      "ctaPrimaryTracking": "starlight-protocol-spec-waitlist"
     },
     "modules": [
       {
@@ -2407,7 +2407,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=starlight-operator-pack",
-      "ctaPrimaryTracking": "starlight-operator-pack-checkout"
+      "ctaPrimaryTracking": "starlight-operator-pack-waitlist"
     },
     "modules": [
       {
