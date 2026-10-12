@@ -13,14 +13,15 @@ A Passage Card is the atomic unit of the Lineage series. It is written once and 
 
 ```markdown
 ---
-series: hidden-flower | uncarved-block | live-the-questions | definite-aim
+series: hidden-flower | uncarved-block | live-the-questions | definite-aim | unassigned   # unassigned for any classic outside the four series; add a slug when a new series is approved
 slug: kebab-case
 source_work: "Fūshikaden"
 source_author: "Zeami Motokiyo"
 source_date: "c. 1418"
 source_location: "Book 7 (Besshi kuden)"      # chapter, section, letter, page
+source_id: ""                                   # required for sacred or contemplative texts: the source_id in research/sacred-texts/ledgers/source-ledger.jsonl
 text_basis: own-translation | public-domain-translation | modern-translation | paraphrase
-edition: "Name, translator, year, page"        # required unless own-translation from a named original
+edition: "Name, translator, year, page"        # always required; for own-translation, name the original-language edition or witness translated from
 license: public-domain | in-copyright-short-quote | in-copyright-paraphrase-only
 lenses: [established, symbolic, experiential]
 status: draft | verified | receipt-attached
@@ -41,11 +42,14 @@ status: draft | verified | receipt-attached
 
 Cards live in `content/lineage/cards/<series>/<slug>.md`.
 
+**Sacred and contemplative texts** (Tao Te Ching, Dōgen, Takuan, Bhagavad Gita, Rumi, scripture, and any work in scope of `research/sacred-texts/`) are not sourced in the card. `research/sacred-texts/` is the canonical home for their witnesses, editions, and rights records, and `content/rails/` owns their public interpretation (`AGENTS.md`). For these texts: record or reuse the source in `research/sacred-texts/ledgers/source-ledger.jsonl` under that corpus's ingestion gate, put its `source_id` on the card, and keep the card's `edition` and `license` consistent with the ledger entry rather than a second, independent record. Public essays on these texts follow `docs/rails/` editorial policy.
+
 ## Procedure
 
 1. **Locate the passage in the source.** Find it in the original or a named edition. Record the exact location. If it cannot be located, stop: the line is probably misattributed. Misattribution is common for Laozi, Rumi, Musashi, Bashō, Buddha, and Hill quotes that circulate online.
 2. **Settle the text basis and license.**
-   - Pre-1930 publication or original-language text by an author dead 70+ years: public domain in most jurisdictions. Own translations are preferred.
+   - Check rights item by item, never from publication year alone. Per `research/sacred-texts/RIGHTS.md`, the work, the edition, the transcription, the translation, and the editorial notes are separate rights objects. For a translation, check the translator's death date against life-plus-70 terms, the country of publication, and possible restored US rights for foreign works. Record the evidence URL. Unresolved means `in-copyright-paraphrase-only`.
+   - Own translations from a cleared original-language edition are preferred. Name that edition in `edition`.
    - Modern translations (Hinton, Le Guin, Mitchell, Harris, Wilson, Keene, Barks, Mitchell's Rilke): quote at most a sentence or two with edition and page; otherwise paraphrase.
    - Still in copyright (Tanizaki, Mary Oliver, Szymborska, Suzuki's *Zen Mind, Beginner's Mind*): paraphrase only.
    - Hill's *Think and Grow Rich* (1937): check US renewal status before quoting more than a line.
@@ -60,6 +64,9 @@ Cards live in `content/lineage/cards/<series>/<slug>.md`.
 - [ ] All six fields present and non-empty (Receipt may read "To be filled").
 - [ ] `source_location` points to a findable place in a named work.
 - [ ] `text_basis` and `license` set; in-copyright text is not quoted beyond a sentence or two.
+- [ ] `edition` names a specific edition; for own translations, the original-language edition or witness.
+- [ ] `license` rests on an item-level rights check with evidence, not on publication date alone.
+- [ ] Sacred or contemplative text: `source_id` resolves in `research/sacred-texts/ledgers/source-ledger.jsonl`.
 - [ ] Transposition names a concrete mechanism.
 - [ ] Kata states an observable output.
 - [ ] Limit is specific to this passage.

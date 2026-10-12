@@ -47,7 +47,7 @@ The **Limit** field is the differentiator. Most "ancient wisdom for business" co
 | Skill | 5–12 | Cards become rules and checks an agent can run |
 | Workshop / retreat block | 3 | Morning reading, midday build, evening review |
 
-Cards live in `content/lineage/cards/<series>/<slug>.md` once the first series is approved. The `source-to-practice` skill (`.claude/skills/source-to-practice/`) writes and validates them.
+Cards live in `content/lineage/cards/<series>/<slug>.md` once the first series is approved. The `source-to-practice` skill (`.claude/skills/source-to-practice/`) writes and validates them. Sacred and contemplative sources (Tao Te Ching, Dōgen, Takuan, the Gita) keep their witness, edition, and rights record in the canonical `research/sacred-texts/` corpus; their cards reference that ledger by `source_id`, and public interpretation of them follows the `content/rails/` and `docs/rails/` policy.
 
 ---
 
@@ -187,7 +187,7 @@ Output for the audience: a free guide ("The Lineage practice: five texts, five d
 
 Hard rules for every card, essay, chapter, and guide:
 
-1. **Primary source first.** Quote from public-domain originals or pre-1930 translations, or write an own translation and label it. Modern translations are cited by name, edition, and page, and quoted only briefly.
+1. **Primary source first.** Quote from originals or translations whose rights are cleared item by item (work, edition, transcription, translation) per `research/sacred-texts/RIGHTS.md`; publication year alone never clears a text. Own translations name the original-language edition they translate. Modern translations are cited by name, edition, and page, and quoted only briefly.
 2. **Every attribution is checked.** Many famous lines are misattributed (much of what circulates as Rumi, Laozi, or Musashi online is not in the texts). A card without a verifiable source location does not ship.
 3. **Every essay ends in a kata** with an observable output.
 4. **Every mapping states its Limit.**
