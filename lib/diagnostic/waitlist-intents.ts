@@ -41,7 +41,7 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
   'starlight-spec': { label: 'Starlight Intelligence Protocol (SIP v1.1.1) Spec', listType: 'premium-packs' },
   'mythic-codex': { label: 'The Arcanea Mythic Codex', listType: 'premium-packs' },
   'suno-prompt-library': { label: 'Suno Prompt Library Pack', listType: 'premium-packs' },
-  '5-suno-prompts': { label: '5 Prompts That Made My Best Suno Tracks', listType: 'premium-packs' },
+  '5-suno-prompts': { label: '5 Suno Prompts', listType: 'premium-packs' },
   // Product rows in the knowledge-to-offer graph.
   'creative-ai-toolkit': { label: 'Creative AI Toolkit', listType: 'premium-packs' },
   'creation-chronicles': { label: 'Creation Chronicles', listType: 'creation-chronicles' },

@@ -734,7 +734,7 @@ export default function ProductsPage() {
                 },
                 {
                   q: 'How does digital delivery work?',
-                  a: 'Free resources link to an immediate download or reading page. Paid products open for purchase later; join the launch list on each page.',
+                  a: 'Free resources link to a download or reading page, or to the waitlist while they are not ready. Paid products open for purchase later; join the launch list on each page.',
                 },
               ].map((faq) => (
                 <div
