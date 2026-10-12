@@ -7,6 +7,16 @@ import { fileURLToPath } from 'node:url'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
 const banned = [
+  ['data/products.json', ['500+', 'Top Plays', '25+ AI coaching', '40-60%', 'within 48 hours', '$250 billion', 'Limited Spots', 'Ship It Guarantee', 'Content Velocity Guarantee', '30-Day Money Back', '100% Satisfaction', 'Bespoke Execution', '2-3x more content', 'Agent Team Promise', 'Narrative Impact Guarantee', 'Creative Integrity Promise', 'Momentum Promise', 'Prompt Success Guarantee', 'Open source on GitHub for the creator community', 'Open Source & Free Forever', 'without paying a penny', 'originalPrice', ', guaranteed']],
+  ['app/products/vibe-os/components/VibeOSModules.tsx', ['Instant Access', 'Lifetime Updates', "'/newsletter'", 'href="/newsletter"', 'exclusive discounts']],
+  ['components/products/ProductHero.tsx', ["'/newsletter'", 'href="/newsletter"']],
+  ['components/products/OfferStack.tsx', ["'/newsletter'", 'href="/newsletter"']],
+  ['components/products/FinalCTA.tsx', ["'/newsletter'", 'href="/newsletter"']],
+  ['app/products/vibe-os/app/page.tsx', ['href="/newsletter"']],
+  ['app/products/vibe-os/docs/page.tsx', ['href="/newsletter"']],
+  ['app/products/[slug]/page.tsx', ['href="/newsletter"']],
+  ['components/products/OfferStack.tsx', ['Limited Bonuses', 'Lifetime updates included', 'exclusive discounts', 'early-bird pricing']],
+  ['components/products/FinalCTA.tsx', ['exclusive launch discounts']],
   ['app/links/page.tsx', ['10K+ Creators', '500+ AI Songs', '50+ proven templates', 'exclusive creator community']],
   ['app/showcase/page.tsx', ['500+ Suno', '500+ creators', 'Proven Results', 'WCAG 2.2 AAA', 'Sarah Chen']],
   ['app/linktree/page.tsx', ['12K+', '75+', '90+']],
@@ -40,9 +50,16 @@ const banned = [
   ['app/music-os/page.tsx', ['indexed tracks', 'totalTracks']],
   ['app/magic/page.tsx', ['12,000 songs', 'over 12,000 songs']],
   ['components/magic/MagicShell.tsx', ['12,000 songs', 'over 12,000 songs']],
-  ['app/products/vibe-os/components/VibeOSFinalCTA.tsx', ['12,000+']],
-  ['app/products/vibe-os/components/VibeOSHero.tsx', ['500+ Sessions']],
-  ['app/products/vibe-os/components/VibeOSSocialProof.tsx', ['500+ Sessions']],
+  ['app/products/vibe-os/components/VibeOSFinalCTA.tsx', ['12,000+', '30-Day Guarantee', 'Lifetime Updates', 'Instant Access', 'Music Production', 'ultimate Suno workflow', 'finished track']],
+  ['app/products/vibe-os/components/VibeOSFeatures.tsx', ['Music Production', 'shipping tracks', '60–90 min', 'finished track']],
+  ['app/products/vibe-os/components/VibeOSBonuses.tsx', ['Limited Bonuses', 'music production journey', 'Total Bonus Value']],
+  ['app/products/vibe-os/components/VibeOSModules.tsx', ['Instant Access', 'Lifetime Updates', "'/newsletter'", 'href="/newsletter"', 'exclusive discounts']],
+  ['app/products/vibe-os/components/VibeOSHero.tsx', ["'/newsletter'", 'href="/newsletter"']],
+  ['app/products/vibe-os/components/VibeOSFinalCTA.tsx', ["'/newsletter'", 'href="/newsletter"']],
+  ['data/products.json', ['Notion Dashboard Template', 'Open Source & Free Forever', 'Science-backed']],
+  ['app/products/vibe-os/components/VibeOSHero.tsx', ['500+ Sessions', '30-Day Guarantee', 'Lifetime Updates', '50+ Genre Prompts', 'Emotion Mapping', 'Release Playbooks']],
+  ['data/learning-paths.ts', ['verified official walkthrough', 'Official supported agent']],
+  ['app/products/vibe-os/components/VibeOSSocialProof.tsx', ['500+ Sessions', 'Creators in Early Access']],
   ['app/soul-frequency-assessment/page.tsx', ['500+ Suno']],
   ['app/team/page.tsx', ['12,000+', '50+ genres']],
   ['app/vibe/producer/page.tsx', ['500+', '12,000+']],
@@ -60,6 +77,8 @@ const banned = [
   ['app/frank-riemer/page.tsx', ['12,000+', '12K+']],
   ['app/(landing)/connect/page.tsx', ['12,000+', '12K+']],
   ['app/downloads/preview/soulbook/page.tsx', ['12,000+', '12K+']],
+  ['app/soulbook/vault/page.tsx', ['regularPrice', 'Download Free Vault (.zip)', '25 Inquiry Prompts', '30-Day Money', 'Instant digital delivery', 'Acquire System Architect Kit', 'SQLite FTS5']],
+  ['components/funnel/UpsellModal.tsx', ['Lifetime access', 'Money Back Guarantee', 'Sovereign Bundle', 'Download Starting']],
   ['app/free-playbook/layout.tsx', ['12,000+', '12K+']],
   ['app/free-playbook/page.tsx', ['12,000+', '12K+']],
   ['app/goals/page.tsx', ['12,000+', '12K+']],
@@ -77,7 +96,7 @@ const banned = [
   ['components/design-lab/CosmicForgeHero.tsx', ['12,000+', '12K+']],
   ['components/design-lab/GlassCathedralHero.tsx', ['12,000+', '12K+']],
   ['components/design-lab/NeonGridHero.tsx', ['12,000+', '12K+']],
-  ['components/home/SignalRouteSelector.tsx', ['12,000+', '12K+']],
+  ['components/home/SignalRouteSelector.tsx', ['12,000+', '12K+', 'Suno audio', '100-tool', 'Suno prompt systems', 'video makers, musicians']],
   ['components/intelligence-map/IntelligenceMapShell.tsx', ['12,000+', '12K+']],
   ['components/rituals/RitualsShell.tsx', ['12,000+', '12K+']],
   ['components/rituals/rituals-data.ts', ['12,000+', '12K+']],
@@ -105,6 +124,8 @@ const banned = [
   ['content/blog/voice-ai-agents-2026-elevenlabs-hume-audio.mdx', ['12,000 songs of lessons']],
 ]
 
+banned.push(['components/products/ProductsShell.tsx', ['50+ genre-specific', '50+ battle-tested', 'Genre-specific prompts (electronic']])
+
 for (const [file, phrases] of banned) {
   test(file + ' does not publish an unsupported headcount', () => {
     const text = fs.readFileSync(path.join(root, file), 'utf8').toLowerCase()
@@ -113,3 +134,13 @@ for (const [file, phrases] of banned) {
     }
   })
 }
+
+test('higgsfield-mastery publishes no estimatedHours', () => {
+  const text = fs.readFileSync(path.join(root, 'data/learning-paths.ts'), 'utf8')
+  const at = text.indexOf("slug: 'higgsfield-mastery'")
+  assert.ok(at > 0, 'higgsfield-mastery path not found')
+  const start = text.lastIndexOf('\n  {', at)
+  const end = text.indexOf('\n  },', at)
+  assert.ok(start >= 0 && end > at, 'higgsfield-mastery object bounds not found')
+  assert.doesNotMatch(text.slice(start, end), /\bestimatedHours\s*:/)
+})
