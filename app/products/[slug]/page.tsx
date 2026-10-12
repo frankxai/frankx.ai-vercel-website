@@ -25,6 +25,7 @@ const LIVE_FREE_CTA_SLUGS = new Set([
   'imagination',
   'manifestation',
   'reality-architect-os',
+  'golden-age',
 ])
 
 function normalize(product: ProductRecord) {
@@ -70,11 +71,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     notFound()
   }
 
-  const { name, headline, summary } = normalize(product)
+  const { name, headline, summary, legacyPrice, legacyCta } = normalize(product)
   const offer = product.offer
   // Free products whose registry CTA target was checked live (returns 200) link to it.
   // Everything else is not deliverable yet and goes to the waitlist.
-  const liveFreeCta =
+  const registryFreeCta =
     offer &&
     offer.primaryPrice === 0 &&
     LIVE_FREE_CTA_SLUGS.has(product.slug) &&
@@ -82,6 +83,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     offer.ctaPrimaryHref
       ? { label: offer.ctaPrimary, href: offer.ctaPrimaryHref }
       : null
+  // golden-age has no offer block; its registry CTA is the legacy cta to /books/golden-age, read online.
+  const liveFreeCta =
+    registryFreeCta ??
+    (LIVE_FREE_CTA_SLUGS.has(product.slug) && legacyPrice === 0 && legacyCta?.href
+      ? { label: 'Read Online', href: legacyCta.href }
+      : null)
 
   const productSchema = {
     name,

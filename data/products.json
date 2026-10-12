@@ -217,8 +217,8 @@
       "ctaSecondaryHref": "/products/vibe-os/docs",
       "ctaSecondaryTracking": "vibe-os-docs",
       "guarantee": {
-        "label": "Open Source & Free Forever",
-        "description": "Vibe OS is free to use with no strings attached. Track your creative states and optimize your workflow without paying a penny."
+        "label": "Open source",
+        "description": "Vibe OS is free. The web app is still in development."
       }
     },
     "modules": [
@@ -1425,7 +1425,7 @@
       "ctaSecondary": "Read the Spec",
       "ctaSecondaryHref": "/standard",
       "guarantee": {
-        "label": "Open Source Forever",
+        "label": "Open source",
         "description": "Fork, remix, and modify. The method is built to be owned locally by the creator."
       }
     },
