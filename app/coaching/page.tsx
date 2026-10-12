@@ -149,7 +149,7 @@ const faqs = [
   {
     question: 'What makes this coaching different?',
     answer:
-      'I combine production AI architecture and hands-on ACOS agent orchestration with practical creator experience (12,000+ AI songs, 70+ articles). You get implementation guidance grounded in systems I actively maintain.',
+      'I combine production AI architecture and hands-on ACOS agent orchestration with practical creator experience. You get implementation guidance grounded in systems I actively maintain.',
   },
   {
     question: 'What tech stack do you work with?',
@@ -407,7 +407,7 @@ export default function CoachingPage() {
 
             <p className="mb-8 max-w-2xl text-xl leading-relaxed text-slate-400 text-balance">
               Skip the generic AI advice. Work directly with someone who maintains ACOS,
-              ships production systems, and has created 12,000+ AI songs.
+              ships production systems, and makes music with Suno.
             </p>
 
             <motion.div
@@ -426,8 +426,6 @@ export default function CoachingPage() {
               <span>AI Architect & Creator</span>
               <span className="text-white/20">|</span>
               <span>99-Agent ACOS Catalog</span>
-              <span className="text-white/20">|</span>
-              <span>12,000+ AI Songs</span>
               <span className="text-white/20">|</span>
               <span>ACOS 1,000+ Builders</span>
             </motion.div>

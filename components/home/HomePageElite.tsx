@@ -468,7 +468,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 
               <p className="max-w-2xl text-lg leading-8 text-white/60 md:text-xl">
                 Most AI advice is noise. Here are the working blueprints: personal Centers of
-                Excellence, agentic operating systems, and twelve thousand tracks of studio craft—built
+                Excellence and agentic operating systems—built
                 with your own keys on your own terms.
               </p>
 
@@ -584,7 +584,7 @@ const products = [
   },
   {
     title: 'Music Lab',
-    description: 'An evolving music archive with Suno production workflows and genre-focused frequency field guides.',
+    description: 'Playable browser instruments (violin, piano, drums, and pads) with guided notes and tabs.',
     href: '/music-lab',
     color: 'orange' as const,
   },
@@ -1608,9 +1608,9 @@ export default function HomePageElite({
         {/* 7. Music Lab hub showcase */}
         <HubShowcase
           id="music-lab"
-          eyebrow="AI music production"
+          eyebrow="Browser instruments"
           title="Music Lab"
-          description="A working archive of AI songs, Suno prompt systems, production notes, and playable instruments—built from daily studio practice."
+          description="Playable browser instruments (violin, piano, drums, and pads) with guided notes and tabs, next to a working archive of AI songs and production notes."
           imageSrc={musicArtwork}
           imageAlt="Conceptual music studio with a grand piano, analog synthesizer, and amber light wave"
           links={[

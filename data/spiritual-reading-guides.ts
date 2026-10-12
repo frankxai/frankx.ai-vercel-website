@@ -2,11 +2,14 @@ import type { BookReview } from '@/app/books/types';
 import entries from './library-reading-guides.json';
 import { sacredEditorial } from './sacred-editorial';
 import { contemporaryEditorial } from './contemporary-editorial';
-import { sacredDepth } from './sacred-depth';
+import { hasSacredDepth } from './sacred-depth-slugs';
 
 // Publication date records this editorial guide, never a personal reading claim.
+// Quotations, section maps, and depth FAQ stay off this shared review. The guide
+// page overlays them from the server-only depth record so client routes that
+// import bookReviews do not download the corpus, and the quotes vault does not
+// list those passages as personal excerpts.
 export const spiritualReadingGuides: BookReview[] = entries.map(entry => {
-  const depth = sacredDepth[entry.slug];
   return {
   slug: entry.slug,
   title: entry.title,
@@ -15,18 +18,10 @@ export const spiritualReadingGuides: BookReview[] = entries.map(entry => {
   hasCover: false,
   rating: 0, // Unrated guides do not emit Review/Rating markup.
   reviewDate: '2026-09-07',
-  readingTime: depth ? '10 min' : sacredEditorial[entry.slug] || contemporaryEditorial[entry.slug] ? '4 min' : '2 min',
+  readingTime: hasSacredDepth(entry.slug) ? '10 min' : sacredEditorial[entry.slug] || contemporaryEditorial[entry.slug] ? '4 min' : '2 min',
   categories: entry.categories,
   tldr: entry.summary,
   keyInsights: entry.keyInsights,
-  quotes: depth?.quotes.map(quote => ({
-    text: quote.text,
-    chapter: quote.locator,
-    context: quote.why,
-    source: { label: [`${depth.translation.translator}, ${depth.translation.year}`, depth.translation.notice].filter(Boolean).join(' · '), url: quote.sourceUrl },
-  })),
-  chapters: depth?.sections,
-  faq: depth?.faq,
   bestFor: [`Readers exploring ${entry.tradition}`, 'Readers choosing a source or edition before a complete reading'],
   guide: {
     ...entry,

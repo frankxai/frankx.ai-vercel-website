@@ -14,8 +14,8 @@ export function FeaturedShelf({ title, description, books, label = 'Selected rea
     <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
       <div><p className="text-xs uppercase tracking-[0.18em] text-emerald-200/80">{label}</p><h2 className="mt-2 font-display text-2xl text-white sm:text-3xl">{title}</h2><p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/65">{description}</p></div>
     </div>
-    <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-5 sm:gap-6" role="list">
-      {books.map((book, index) => <div key={book.slug} role="listitem" className="w-[46vw] max-w-[190px] min-w-[148px] shrink-0 snap-start sm:w-48">
+    <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-5" role="list">
+      {books.map((book, index) => <div key={book.slug} role="listitem" className="min-w-0">
         <Link href={`/library/${book.slug}`} prefetch={false} className="group block rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]">
           <BookCover title={book.title} author={book.author} src={book.cover} imageAlt={book.coverAlt} hasGuide={book.hasGuide} className="w-full shadow-[0_18px_30px_-24px_rgba(0,0,0,0.9)] transition-transform duration-200 group-hover:-translate-y-1 motion-reduce:transition-none motion-reduce:shadow-none" />
           <div className="mt-4">

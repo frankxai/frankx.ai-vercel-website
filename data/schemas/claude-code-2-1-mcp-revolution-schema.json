@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Claude Code 2.1: How MCP Tool Search Changed Everything",
+      "description": "Claude Code 2.1 introduces MCP Tool Search, cutting token usage by 85% and boosting accuracy from 79.5% to 88.1%. An architectural analysis of the biggest productivity upgrade since launch.",
+      "url": "https://frankx.ai/blog/claude-code-2-1-mcp-revolution",
+      "datePublished": "2026-01-26",
+      "dateModified": "2026-01-26",
+      "author": {
+        "@type": "Person",
+        "name": "Frank",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/claude-code-2-1-mcp-revolution"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/blog/claude-code-mcp.png"
+      },
+      "keywords": "claude code 2.1, mcp tool search, claude code mcp, anthropic mcp, ai coding assistant, claude code hooks",
+      "abstract": "Claude Code 2.1 introduces dynamic MCP Tool Search, deferring tool schemas when definitions exceed context budgets to slash token overhead by 85 percent and improve execution accuracy from 79.5 to 88.1 percent on complex engineering tasks."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is MCP Tool Search in Claude Code 2.1?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A feature that defers loading full tool schemas until explicitly needed, preventing context exhaustion from multiple large MCP servers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much token usage does MCP Tool Search save?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Benchmarked tests demonstrate an average 85 percent reduction in initial context consumption across complex multi-server setups."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does tool search improve model accuracy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Opus 4.5 accuracy increased from 79.5 percent to 88.1 percent due to reduced distraction in the active context window."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Claude Code integrate with external APIs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Through the open Model Context Protocol, enabling secure bi-directional communication between the LLM and external systems."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are Claude Code hooks?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Custom shell scripts triggered before or after tool executions to enforce quality gates, format code, and validate constraints."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -269,7 +269,7 @@ export const genBackends: GenBackend[] = [
     tagline: 'Pay-per-use aggregator — the economical lane for batch video and bulk B-roll.',
     models: ['FLUX', 'Kling', 'MiniMax Hailuo', 'Wan', 'Veo (via fal)', 'Seedance'],
     bestFor: [
-      'Lyric-video batches across the 12k catalog',
+      'Lyric-video batches for music releases',
       'Bulk B-roll where per-generation cost matters',
       'Programmatic generation from scripts (one API, many models)',
     ],

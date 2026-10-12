@@ -406,7 +406,7 @@ export default function MusicProducerPage() {
               {[
                 {
                   title: 'The Complete Suno Prompt Engineering Guide',
-                  desc: '6-part prompt anatomy + 500+ genre templates',
+                  desc: '6-part prompt anatomy and genre templates',
                   href: '/blog/suno-prompt-engineering-complete-guide',
                   icon: BookOpen,
                 },
@@ -424,7 +424,7 @@ export default function MusicProducerPage() {
                 },
                 {
                   title: 'Music as Consciousness Technology',
-                  desc: "Frank's journey with 12,000+ AI songs",
+                  desc: "Frank's journey with AI songs",
                   href: '/blog/music-as-consciousness-technology',
                   icon: Headphones,
                 },

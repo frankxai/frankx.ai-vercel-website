@@ -33,14 +33,14 @@
 Founder and AI Architect helping founders build practical AI operating systems without losing the judgment that makes the company theirs.
 
 ### Bio (Medium - 1 paragraph)
-Frank X. Riemer is the founder of FrankX.AI, a musician-technologist, and an AI Architect. He has worked around enterprise-scale AI/cloud transformation environments, helped build a seven-figure business with his brother, and now helps founders build practical AI systems that turn consequential ideas into durable work.
+Frank X. Riemer is the founder of FrankX.AI, a musician-technologist, and an AI Architect. He has worked around enterprise-scale AI/cloud transformation environments, helped build a business with his brother, and now helps founders build practical AI systems that turn consequential ideas into durable work.
 
 ### Bio (Long - Full Background)
 Frank X. Riemer is a musician, technologist, and creator transformation guide who spent the first half of his career as a professional violinist before discovering his calling at the intersection of creativity, business, and artificial intelligence.
 
 Today, he builds AI systems that amplify human creativity rather than replace it. As the founder of FrankX.AI, he's built Vibe OS (an AI-powered music creation system), the Agentic Creator OS framework, and the Creation Chronicles—a weekly dispatch on practical AI integration for independent creators.
 
-His work combines enterprise-scale AI/cloud pattern recognition from his former AI architect role at Oracle, the operator experience of helping build a seven-figure business with his brother, and a musician's understanding of flow, ritual, and creative practice. Frank believes AI becomes most valuable when it is connected to real workflows, strong taste, and human judgment.
+His work combines enterprise-scale AI/cloud pattern recognition from his former AI architect role at Oracle, the operator experience of helping build a business with his brother, and a musician's understanding of flow, ritual, and creative practice. Frank believes AI becomes most valuable when it is connected to real workflows, strong taste, and human judgment.
 
 FrankX is his independent studio for human-first AI systems: creator operating systems, prompt libraries, AI music workflows, automation playbooks, and founder-grade execution frameworks. The work is based on public knowledge, personal experience, and independent experimentation, not Oracle endorsement, confidential Oracle material, or private customer information.
 

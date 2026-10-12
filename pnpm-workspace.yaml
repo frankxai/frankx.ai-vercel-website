@@ -10,8 +10,8 @@ overrides:
   'ip-address': '^10.4.0'
   'nanoid': '^3.3.18'
   'postcss': '^8.5.26'
-  '@vercel/blob>undici': '6.28.0'
-  'jsdom@28.1.0>undici': '7.29.0'
+  'undici@6': '6.28.1'
+  'jsdom@28.1.0>undici': '7.29.1'
   # Advisory floors added 2026-09-03 (#647). Every value is bounded to the
   # package's current major; a major selector such as js-yaml@3 is used where
   # two majors coexist so each line only touches its own major.

@@ -57,12 +57,12 @@ const navigation = {
     href: '/music',
     featured: {
       title: 'AI Music Portfolio',
-      description: '12,000+ songs created with Suno AI. Explore the catalog.',
+      description: 'Songs created with Suno AI. Explore the catalog.',
       href: '/music',
-      badge: '12K+ Tracks',
+      badge: 'Portfolio',
     },
     items: [
-      { name: 'Music Showcase', href: '/music', icon: Music, description: '12K+ AI-generated tracks',
+      { name: 'Music Showcase', href: '/music', icon: Music, description: 'AI-generated tracks',
       },
       { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method',
       },

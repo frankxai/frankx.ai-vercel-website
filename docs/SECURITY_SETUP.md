@@ -144,33 +144,24 @@ node scripts/generate-password-hash.mjs "NewPassword123!"
 
 ### Data Structure
 
+Four append-only Redis lists, written and read only through `lib/pdf-analytics.ts`:
+
 ```typescript
-// PDF Views
-pdf_views:vibe-os → Array<PDFView>
-pdf_views:soulbook → Array<PDFView>
-pdf_views:all → Array<PDFView> (global)
-
-// PDF Downloads
-pdf_downloads:vibe-os → Array<PDFDownload>
-pdf_downloads:all → Array<PDFDownload>
-
-// Leads
-leads → Array<Lead>
+pdf-analytics:views     → List<PDFView>
+pdf-analytics:downloads → List<PDFDownload>
+pdf-analytics:leads     → List<PDFLead>        // read by /api/dashboard/leads
+pdf-analytics:emails    → List<PDFEmailRequest>
 ```
+
+Leads written before 2026-10-01 by the removed `lib/kv.ts` sit under the old `leads` key, which nothing reads.
 
 ### Managing Data
 
 **View data** (Vercel Dashboard):
 - Go to Storage → Your KV Database → Data Browser
-- Search by key: `pdf_views:all`, `leads`, etc.
+- Search by key: `pdf-analytics:leads`, `pdf-analytics:views`, etc.
 
-**Clear data** (use with caution):
-```typescript
-import { clearAllAnalytics } from '@/lib/kv'
-
-// In API route or script
-await clearAllAnalytics()
-```
+**Clear data** (use with caution): delete the list key in the Data Browser. There is no clear function in code.
 
 ---
 
@@ -357,7 +348,7 @@ curl -X POST http://localhost:3000/api/send-pdf \
 | File | Purpose |
 |------|---------|
 | `lib/auth.ts` | NextAuth.js configuration |
-| `lib/kv.ts` | Vercel KV client & functions |
+| `lib/pdf-analytics.ts` | PDF view, download, lead and email storage |
 | `lib/ratelimit.ts` | Rate limiting configuration |
 | `lib/validation.ts` | Input validation & sanitization |
 | `middleware.ts` | Route protection |

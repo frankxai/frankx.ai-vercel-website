@@ -118,10 +118,7 @@ export default function SoulFrequencyFramework() {
                 authentically theirs. The Soul Frequency Framework offers a different approach—one that ensures
                 AI amplifies your unique creative signature rather than diluting it.
               </p>
-              <p className="text-white/80 leading-relaxed">
-                This framework has emerged from working with hundreds of creators, entrepreneurs, and executives
-                who want to harness AI's power while maintaining their creative integrity and personal values.
-              </p>
+
             </div>
           </section>
 
@@ -133,20 +130,7 @@ export default function SoulFrequencyFramework() {
               authenticity. This leads to homogenized content that lacks the unique voice and perspective
               that audiences connect with.
             </p>
-            <div className="grid gap-4 md:grid-cols-3">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-red-400">73%</div>
-                <div className="text-sm text-white/60">of creators report feeling disconnected from AI-assisted content</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-red-400">58%</div>
-                <div className="text-sm text-white/60">struggle with maintaining brand consistency</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-red-400">41%</div>
-                <div className="text-sm text-white/60">have reduced AI usage due to authenticity concerns</div>
-              </div>
-            </div>
+
           </section>
 
           {/* Framework Components */}

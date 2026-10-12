@@ -25,24 +25,25 @@ export async function generateMetadata({
 
   const url = `${SITE_URL}/library/${slug}/q/${n}`;
   // Use the quote text itself as the description — works for OG, Twitter, search
-  const description = `"${quote.text}" — ${review.author}, ${review.title}`;
+  const credit = quote.source?.label ?? review.author;
+  const description = `"${quote.text}" — ${credit}, ${review.title}`;
 
   return {
-    title: `"${quote.text.slice(0, 60)}${quote.text.length > 60 ? '…' : ''}" — ${review.author}`,
+    title: `"${quote.text.slice(0, 60)}${quote.text.length > 60 ? '…' : ''}" — ${credit}`,
     description,
     alternates: { canonical: url },
     openGraph: {
-      title: `${review.author} — ${review.title}`,
+      title: `${credit} — ${review.title}`,
       description: quote.text,
       type: 'article',
       url,
       siteName: 'FrankX Library',
-      authors: [review.author],
+      authors: [credit],
       // The opengraph-image.tsx in this folder is auto-picked up by Next.js
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${review.author} — ${review.title}`,
+      title: `${credit} — ${review.title}`,
       description: quote.text,
     },
   };
@@ -53,7 +54,7 @@ function QuoteJsonLd({
   review,
   url,
 }: {
-  quote: { text: string; chapter?: string };
+  quote: { text: string; chapter?: string; source?: { label: string; url: string } };
   review: { title: string; author: string; slug: string };
   url: string;
 }) {
@@ -77,7 +78,9 @@ function QuoteJsonLd({
       {
         '@type': 'Quotation',
         text: quote.text,
-        spokenByCharacter: { '@type': 'Person', name: review.author },
+        ...(quote.source
+          ? { citation: quote.source.url, creator: { '@type': 'Person', name: quote.source.label } }
+          : { spokenByCharacter: { '@type': 'Person', name: review.author } }),
         isPartOf: {
           '@type': 'Book',
           name: review.title,
@@ -152,24 +155,25 @@ export default async function QuotePage({
             tabIndex={0}
             data-shareable="quote"
             data-quote-text={quote.text}
-            data-quote-author={review.author}
+            data-quote-author={quote.source?.label ?? review.author}
             data-quote-source={review.title}
             data-quote-permalink={url}
             className="relative outline-none focus-visible:ring-2 focus-visible:ring-rose-400/30 rounded-2xl"
           >
-            <span
-              aria-hidden
-              className="block text-rose-400/30 font-serif text-7xl md:text-9xl leading-none text-center mb-2 select-none"
-            >
-              &ldquo;
-            </span>
-            <blockquote className="text-2xl md:text-4xl leading-snug font-light italic text-white/90 text-center max-w-2xl mx-auto">
+            <blockquote className={`mx-auto max-w-[40rem] text-left font-serif italic text-[1.5rem] leading-[1.6] text-white/90 md:text-[1.75rem]${quote.source ? ' whitespace-pre-line' : ''}`}>
               {quote.text}
             </blockquote>
             <figcaption className="mt-12 text-center space-y-3">
               <p className="text-[15px] md:text-base text-white/60">
-                — <span className="font-medium text-white/85">{review.author}</span>
+                — {quote.source
+                  ? <cite className="not-italic font-medium text-white/85">{quote.source.label}</cite>
+                  : <span className="font-medium text-white/85">{review.author}</span>}
               </p>
+              {quote.source && (
+                <p>
+                  <a href={quote.source.url} target="_blank" rel="noopener noreferrer" className="text-[13px] text-white/50 underline underline-offset-4 hover:text-rose-200 focus-visible:ring-2 focus-visible:ring-rose-300">check the source</a>
+                </p>
+              )}
               <Link
                 href={`/library/${slug}`}
                 className="inline-block text-[14px] text-amber-300/80 hover:text-amber-200 transition-colors"

@@ -1,7 +1,9 @@
 import Image from 'next/image'
+import { ArticleVideo } from './ArticleVideo'
 import { ArticleFigure } from './ArticleFigure'
 import { ArticleRecommendation } from './ArticleRecommendation'
 import Link from 'next/link'
+import { TrackedLink } from '@/components/analytics/TrackedLink'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import type { MDXComponents } from 'mdx/types'
 import AffiliateLink from '@/components/affiliates/AffiliateLink'
@@ -15,6 +17,7 @@ import { EcosystemBadge, EcosystemStack } from '@/components/blog/EcosystemBadge
 import { MascotInsight } from '@/components/blog/MascotInsight'
 import { LiquidGlassImage } from '@/components/blog/LiquidGlassImage'
 import PlatformMarkGrid from '@/components/blog/PlatformMarkGrid'
+import HiggsfieldWorkbench from '@/components/guides/HiggsfieldWorkbench'
 import {
   VoiceArchitectureChoice,
   VoiceCostBaseline,
@@ -147,6 +150,7 @@ function CustomImage({ src, alt, caption, ...props }: any) {
 }
 
 export const mdxComponents: MDXComponents = {
+  TrackedLink,
   // ── Headings ──────────────────────────────────────────────────────────
   h1: ({ children, ...props }: ComponentPropsWithoutRef<'h1'>) => (
     <h1 className="mt-14 mb-6 text-3xl font-bold tracking-tight text-white md:text-4xl" {...props}>
@@ -211,6 +215,7 @@ export const mdxComponents: MDXComponents = {
   a: ({ href, children, rel, ...props }: ComponentPropsWithoutRef<'a'>) => (
     <Link
       href={href || '#'}
+      prefetch={href?.startsWith('/go/') ? false : undefined}
       rel={editorialLinkRel(href, rel)}
       className="text-emerald-400 underline decoration-emerald-400/30 underline-offset-[3px] transition-colors hover:text-emerald-300 hover:decoration-emerald-300/50"
       {...props}
@@ -317,6 +322,7 @@ export const mdxComponents: MDXComponents = {
   img: CustomImage,
   LiquidGlassImage,
   ArticleFigure,
+  ArticleVideo,
   ArticleRecommendation,
   InfographicImage: LiquidGlassImage,
   Diagram,
@@ -335,6 +341,7 @@ export const mdxComponents: MDXComponents = {
   VoiceCostBaseline,
   VoiceProviderRoles,
   VoiceReferenceArchitecture,
+  HiggsfieldWorkbench,
   Link,
   // Embed components for immersive media in blog posts
   YouTubeEmbed,

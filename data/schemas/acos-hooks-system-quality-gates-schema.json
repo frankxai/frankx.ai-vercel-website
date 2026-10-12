@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "The ACOS Hooks System: Automated Quality Gates",
+      "description": "Mastering the ACOS hooks system: enforcing automated quality gates, linting checks, and brand voice validation before git commit.",
+      "url": "https://frankx.ai/blog/acos-hooks-system-quality-gates",
+      "datePublished": "2026-01-27",
+      "dateModified": "2026-01-27",
+      "author": {
+        "@type": "Person",
+        "name": "Frank",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/acos-hooks-system-quality-gates"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/blog/acos-hooks-hero.png"
+      },
+      "keywords": "acos hooks system, quality gates, pre commit ai checks, brand voice linting, automated verification",
+      "abstract": "Unsupervised AI code generation inevitably leads to drift, broken links, and brand voice degradation. The ACOS Hooks System establishes programmatic quality gates at critical lifecycle moments, automatically executing TypeScript type checks, AI-slop refusal audits, and broken link verification before any changes are committed or deployed."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are ACOS hooks?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Automated lifecycle scripts triggered before or after agent tool calls, file writes, and git commits to enforce system invariants."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do hooks prevent AI-slop copy from reaching production?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By executing regex and semantic scans that flag banned marketing clichés and jargon before markdown files are saved."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can hooks reject agent file modifications?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. If a pre-commit hook fails its validation gate, the operation terminates with actionable error output returned to the agent."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What hooks are included by default in ACOS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Type-check verification, strict claim audits, static link checks, brand rail validation, and schema integrity tests."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do developers create custom hooks?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By writing standard Node.js or bash scripts in the hooks directory and declaring them in the ACOS configuration manifest."
+          }
+        }
+      ]
+    }
+  ]
+}

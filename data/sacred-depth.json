@@ -1750,5 +1750,80 @@
       "form": "190 paragraphs in the main text; the authorized edition adds supplementary texts, 107 Questions and Answers, a Synopsis and Codification and 194 notes",
       "firstRead": "1–2 hours for the main text; 5–6 hours with the notes and apparatus"
     }
+  },
+  {
+    "slug": "tao-te-ching",
+    "translation": {
+      "translator": "James Legge (comparison pointer only)",
+      "title": "The Tao Teh King (Sacred Books of the East, vol. 39)",
+      "year": 1891,
+      "sourceUrl": "https://sacred-texts.com/tao/sbe39/index.htm",
+      "rightsBasis": "locator-only",
+      "rightsNote": "The quotations already on this page are short excerpts from David Hinton’s copyrighted translation, kept with the photographed pages. James Legge’s 1891 English in Sacred Books of the East, volume 39, is a separate public-domain comparison (Legge died in 1897). His wording is linked from this record and left on his page, so the field note stays with one named edition."
+    },
+    "quotes": [],
+    "sections": [
+      {
+        "number": 1,
+        "title": "How to use this map",
+        "keyIdea": "A reading order for the received 81-chapter text.",
+        "summary": "These rows are an editorial reading map of the received order associated with Wang Bi: 81 short chapters, traditionally grouped as a Dao section (chapters 1–37) and a De section (chapters 38–81). Excavated manuscripts, including Guodian and Mawangdui, arrange and include the material differently. The quotations on this page stay with David Hinton’s translation and the photographed pages."
+      },
+      {
+        "number": 2,
+        "title": "The opening (received chapter 1)",
+        "keyIdea": "The first chapter sets a limit on naming.",
+        "summary": "The received text opens on the difficulty of fixing the Dao in a definition or a name. Readers use this chapter to notice how quickly a definition becomes smaller than what it points at. When you want the English of the photographed copy, use the pages named in the field note."
+      },
+      {
+        "number": 3,
+        "title": "Reversal, emptiness, and yielding (received chapters 2–25)",
+        "keyIdea": "Completion is described through bending, hollowing, and return.",
+        "summary": "Early chapters return to pairs that reverse: what bends, what is hollow, what sits low. Chapter 7 and chapter 22 are the passages this field note photographed. The map points at those chapters so a reader can open the same edition and read the lines around the excerpts."
+      },
+      {
+        "number": 4,
+        "title": "The close of the Dao section (received chapters 26–37)",
+        "keyIdea": "The first half keeps returning to the cost of forcing an outcome.",
+        "summary": "The traditional Dao section runs through chapter 37 in the received order. These chapters speak about weapons, display, and knowing when to stop. Treat the chapter numbers as that received numbering. A manuscript edition can place the same passages somewhere else in the collection."
+      },
+      {
+        "number": 5,
+        "title": "The De section (received chapters 38–81)",
+        "keyIdea": "The second half turns to conduct, government, and the sage who leaves credit unclaimed.",
+        "summary": "From chapter 38 the received text takes up virtue, ritual, and the government of a state. Later chapters include water, the valley, and the uncarved block as pictures of usefulness that stays quiet. Many political readings of the book begin in this half. The field note’s application sits beside this map and keeps its own scope."
+      },
+      {
+        "number": 6,
+        "title": "Manuscripts and editions",
+        "keyIdea": "Order and wording depend on which witness you open.",
+        "summary": "The Guodian bamboo slips, found in 1993, preserve part of the collection in an earlier arrangement. The Mawangdui silk manuscripts, found in 1973, place the De material before the Dao material and use different chapter breaks. Hinton’s translation and Legge’s 1891 translation are two English doors into that history. This page quotes only the photographed Hinton pages."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Which English wording does this page quote?",
+        "a": "The photographed copy is David Hinton’s translation, pages 6, 7, 21, and 22. Those short excerpts stay on the page. James Legge’s 1891 translation is linked as a comparison, and his sentences stay on his page."
+      },
+      {
+        "q": "Why does the map use the received chapter numbers?",
+        "a": "The familiar 81-chapter sequence is the transmitted text associated with Wang Bi’s edition. Bamboo and silk manuscripts found in the twentieth century show other orders and a smaller early collection. A chapter number on this map means that received sequence."
+      },
+      {
+        "q": "Where does the field note end and this map begin?",
+        "a": "The field note records one reading session and the application drawn from the photographed pages. This map shows the larger shape of the received text beside that note. The quotations and the field note’s own questions stay as they were."
+      }
+    ],
+    "practice": {
+      "title": "Read one chapter around a photographed page",
+      "duration": "15 minutes",
+      "instruction": "Open the Hinton copy at page 7 or page 22, the pages already named on this field note. Read the whole chapter those lines sit in, then read the chapter immediately before it. Write two sentences: what the surrounding chapter adds, and which sentence you are leaving in Hinton’s wording. For a second English, open Legge’s 1891 chapter with the same received number and compare the sense. Leave his sentences on his page."
+    },
+    "facts": {
+      "origin": "Traditionally attributed to Laozi. Scholars most often place the received text in the 4th–3rd century BCE. Excavated manuscripts show the collection was still being arranged in the late Warring States and early Han.",
+      "language": "Classical Chinese",
+      "form": "Received text of 81 short chapters, traditionally read as a Dao section (1–37) and a De section (38–81). Manuscripts differ in order and contents.",
+      "firstRead": "About an hour for the received text in a named translation; this page’s field note is one photographed sitting."
+    }
   }
 ]

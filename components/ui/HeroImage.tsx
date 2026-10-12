@@ -59,7 +59,7 @@ export default function HeroImage({
         <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
           FrankX Studio
         </span>
-        <h2 className="text-2xl font-semibold leading-tight text-white md:text-3xl">{title}</h2>
+        <p className="text-2xl font-semibold leading-tight text-white md:text-3xl">{title}</p>
         {subtitle && <p className="max-w-2xl text-sm text-white/70">{subtitle}</p>}
       </div>
     </div>

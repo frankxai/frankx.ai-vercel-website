@@ -135,12 +135,12 @@ export const plannedCourses: PlannedCourse[] = [
 export const featuredCourse: PlannedCourse = {
   slug: 'build-your-ai-creator-os',
   title: 'Build Your AI Creator OS',
-  shortDescription: 'The complete blueprint for building an AI-powered creator business — from Claude Code to n8n automation to revenue.',
+  shortDescription: 'Start with the free Claude Code introduction and source-based workflow lab. Explore the planned eight-module AI Creator OS curriculum.',
   summary:
-    'Learn how to replicate the exact system behind frankx.ai: 500+ AI skills, 58 automated workflows, multi-agent systems, content pipelines, and revenue automation. Module 1 is available now; the remaining curriculum is in development.',
-  launchWindow: 'Module 1 available now',
-  commitment: '8 weeks — 3-4 focused hours per week',
-  format: 'Self-paced modules with live implementation sessions',
+    'Practice Claude Code setup in the free introduction, then specify, test and review one source-based workflow in the free lab. Further modules are in development; the outline describes the planned curriculum.',
+  launchWindow: 'Free introduction and workflow lab available now',
+  commitment: 'Self-guided practice; wider curriculum in development',
+  format: 'Free self-guided introduction and lab; further modules planned',
   audience: [
     'Creators who want to build AI-powered businesses',
     'Developers learning agentic AI and automation',

@@ -49,7 +49,7 @@ export async function GET() {
 
   const content = `# FrankX
 
-> Personal hub of Frank X. Riemer — AI Architect & Creator. 12,000+ AI-generated songs with Suno. ${siteConfig.description}
+> Personal hub of Frank X. Riemer, AI Architect and Creator. Songs made with Suno. ${siteConfig.description}
 
 The site combines enterprise-grade AI architecture (multi-agent orchestration, MCP, agentic SDLC) with creative practice (AI music production, content systems, practical creator workflows). Frank translates lessons from enterprise-scale AI/cloud work into free, personal-scale tooling for creators, individuals, and families. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
 
@@ -141,7 +141,7 @@ ${blogLinks}
 ${journalLinks}
 
 ## Agent access
-- [MCP endpoint](${SITE_URL}/api/mcp): Read-only Model Context Protocol server (Streamable HTTP, no key). Tools: frankx_search_site, frankx_get_article, frankx_list_products. Claude Code: \`claude mcp add --transport http frankx ${SITE_URL}/api/mcp\`
+- [MCP endpoint](${SITE_URL}/api/mcp): Read-only Model Context Protocol server (Streamable HTTP, no key). Tools: frankx_search_site, frankx_get_article, frankx_list_products. Anonymous POST is limited to 30 requests per minute per address; a 429 means wait and retry. Claude Code: \`claude mcp add --transport http frankx ${SITE_URL}/api/mcp\`
 - [Markdown export](${SITE_URL}/api/md?path=/blog/agentic-ai-roadmap-2025): Any article as plain markdown; replace the path with /blog/<slug>
 
 ## Optional

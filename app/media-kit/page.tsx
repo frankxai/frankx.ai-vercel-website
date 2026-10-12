@@ -42,7 +42,7 @@ const proofPoints = [
   },
   {
     label: 'Creator lab',
-    value: '12,000+ AI songs',
+    value: 'Songs made with Suno',
     note: 'A large Suno-based music practice used to study taste, state, workflow, and creative output.',
   },
   {
@@ -66,7 +66,7 @@ const storyAngles = [
   {
     title: 'AI music as a serious creative lab',
     description:
-      'What 12,000+ generated songs reveal about iteration, style, mood, memory, and the difference between generation and direction.',
+      'What a Suno practice reveals about iteration, style, mood, memory, and the difference between generation and direction.',
   },
   {
     title: 'Peak state without performance theater',
