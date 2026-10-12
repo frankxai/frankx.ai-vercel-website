@@ -204,10 +204,16 @@ test('email follow-ups drop early-access promises, song counts and the prompt do
     ['emails/templates/MusicPrompts.tsx', ['Download Your 5 Prompts', 'Your 5 Suno prompts are ready', '500+', 'plays', 'likes', 'top-performing tracks', 'Tracks Included', 'downloadUrl}']],
     ...['CardBased', 'ClassicWhite', 'DarkPremium', 'MinimalGradient', 'ModernLight'].map((v) => [`emails/variants/${v}.tsx`, ['500+ AI songs']]),
   ]
-  for (const [file, phrases] of bans) {
-    const text = read(file)
-    for (const phrase of phrases) assert.equal(text.includes(phrase), false, `${file}: ${phrase}`)
+  // Case-insensitive; scoped to the files this PR owns. 'I read every one' still signs other live emails (lib/email-templates.ts,
+  // emails/components/Layout.tsx, lib/email-design-system.ts, emails/templates/PdfDelivery.tsx, lib/email-templates-foundry.ts).
+  for (const file of ['emails/index.ts', 'emails/templates/MusicPrompts.tsx', 'emails/templates/Welcome.tsx', 'lib/email-templates-welcome.ts']) {
+    bans.push([file, ['ready to use', 'three things happen', 'I read every one']])
   }
+  for (const [file, phrases] of bans) {
+    const text = read(file).toLowerCase()
+    for (const phrase of phrases) assert.equal(text.includes(phrase.toLowerCase()), false, `${file}: ${phrase}`)
+  }
+  assert.ok(read('emails/index.ts').includes("subject: \"You're on the list for the 5 Suno prompts\""))
   assert.ok(read('lib/email-templates-welcome.ts').includes('New guides, frameworks and products in your inbox'))
   assert.ok(read('lib/email-templates-welcome.ts').includes('and notes on new work.'))
   assert.ok(read('lib/email-templates.ts').includes('New guides and frameworks in your inbox'))
