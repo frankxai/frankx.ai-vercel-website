@@ -1159,7 +1159,7 @@
       },
       {
         "question": "Is this really free?",
-        "answer": "Yes. Enter your email and the PDF is delivered instantly."
+        "answer": "Not yet. Join the waitlist and you will get a note when the guide is ready."
       }
     ],
     "analyticsId": "5-suno-prompts",
@@ -1852,11 +1852,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=stream-atlas",
-      "ctaPrimaryTracking": "12-stream-atlas-checkout",
-      "guarantee": {
-        "label": "100% Free Forever",
-        "description": "Unconditional open access to elevate creator agency."
-      }
+      "ctaPrimaryTracking": "12-stream-atlas-checkout"
     },
     "modules": [
       {
@@ -2159,13 +2155,9 @@
       "primaryPrice": 0,
       "primaryPriceDisplay": "Free",
       "currency": "USD",
-      "ctaPrimary": "Download Now",
-      "ctaPrimaryHref": "/mythic-codex/download",
-      "ctaPrimaryTracking": "arcanea-mythic-codex-checkout",
-      "guarantee": {
-        "label": "100% Free Forever",
-        "description": "Unconditional open access to elevate creator agency."
-      }
+      "ctaPrimary": "Join the Launch List",
+      "ctaPrimaryHref": "/waitlist?intent=mythic-codex",
+      "ctaPrimaryTracking": "arcanea-mythic-codex-checkout"
     },
     "modules": [
       {
@@ -2215,11 +2207,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=anti-slop-matrix",
-      "ctaPrimaryTracking": "anti-slop-content-matrix-checkout",
-      "guarantee": {
-        "label": "100% Free Forever",
-        "description": "Unconditional open access to elevate creator agency."
-      }
+      "ctaPrimaryTracking": "anti-slop-content-matrix-checkout"
     },
     "modules": [
       {
@@ -2269,11 +2257,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=capability-audit",
-      "ctaPrimaryTracking": "capability-to-cash-audit-checkout",
-      "guarantee": {
-        "label": "100% Free Forever",
-        "description": "Unconditional open access to elevate creator agency."
-      }
+      "ctaPrimaryTracking": "capability-to-cash-audit-checkout"
     },
     "modules": [
       {
@@ -2323,11 +2307,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=stream-taxonomy",
-      "ctaPrimaryTracking": "dpi-stream-taxonomy-checkout",
-      "guarantee": {
-        "label": "100% Free Forever",
-        "description": "Unconditional open access to elevate creator agency."
-      }
+      "ctaPrimaryTracking": "dpi-stream-taxonomy-checkout"
     },
     "modules": [
       {
@@ -2377,11 +2357,7 @@
       "currency": "USD",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=starlight-spec",
-      "ctaPrimaryTracking": "starlight-protocol-spec-checkout",
-      "guarantee": {
-        "label": "100% Free Forever",
-        "description": "Unconditional open access to elevate creator agency."
-      }
+      "ctaPrimaryTracking": "starlight-protocol-spec-checkout"
     },
     "modules": [
       {
