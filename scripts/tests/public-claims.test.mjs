@@ -150,7 +150,7 @@ test('Vibe OS final CTA and products shell carry no music-mastery claims', () =>
   assert.equal(cta.includes('Start using Vibe OS'), false)
   assert.ok(cta.includes('Vibe OS is free'))
   const shell = fs.readFileSync(path.join(root, 'components/products/ProductsShell.tsx'), 'utf8')
-  for (const phrase of ['Emotion-to-sound mapping system', 'Production enhancement and mastering guide']) {
+  for (const phrase of ['Emotion-to-sound mapping system', 'Production enhancement and mastering guide', 'Suno Music Mastery', 'production checklists for Suno creators']) {
     assert.equal(shell.includes(phrase), false, phrase)
   }
 })
