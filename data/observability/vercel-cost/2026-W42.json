@@ -17,7 +17,7 @@
     "count_ready": 173,
     "count_building": 3,
     "count_unclassified": 1,
-    "state_note": "count_ready + count_error + count_skipped + count_building + count_unclassified = 173+14+110+3+1 = 301 = count_total. The 1 unclassified deploy had state rendered as '[truncated]' in the MCP list_deployments response — a display artifact, not a real deploy state.",
+    "state_note": "count_ready + count_error + count_skipped + count_building + count_unclassified = 173+14+110+3+1 = 301 = count_total. The 1 unclassified deploy had state rendered as '[truncated]' in the MCP list_deployments response (a display/rendering artifact; the underlying deploy state is unknown).",
     "duration_p50_seconds": 169,
     "duration_p95_seconds": 205,
     "duration_max_seconds": 208,
