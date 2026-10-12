@@ -91,8 +91,8 @@ const banned = [
   ['app/golden-age/page.tsx', ['500+', 'AI Songs Created']],
   ['app/products/(index)/page.tsx', ['deployed across live operations', 'Battle-tested architectures', 'verified across live operations', 'rolling updates', 'instant fulfillment', 'continuous version updates', 'conform to standard Model Context Protocol', 'Center of Excellence', 'turnkey multi-agent meshes', 'Rigorous execution standards', 'Decoupled, observable, and reproducible']],
   ['lib/products.ts', ["startsWith('http')"]],
-  ['public/pdf-templates/5-suno-prompts.html', ['$27', 'cta-price-old', 'battle-tested', '100+']],
-  ['data/products.json', ['battle-tested', 'proven prompts that actually produce', 'Empirical Grounding', 'AI Slop"', '180 seconds Time-to-First-Value', 'buy.lemonsqueezy.com/checkout/buy', '14-Day System Integration', '500+ plays', 'Max Members', 'in under 180 seconds', 'zero-slop', 'Anti-Slop Linter', 'empirical production benchmarks', 'Cryptographically verified SIP attestation', '100+ prompt library for', '/stream-atlas/download', '/anti-slop-matrix/download', '/capability-audit/download', '/stream-taxonomy/download', '/starlight-spec/download', '/mythic-codex/download', '100% Free Forever', 'Unconditional open access', 'PDF is delivered instantly']],
+  ['public/pdf-templates/5-suno-prompts.html', ['$27', 'cta-price-old', 'battle-tested', '100+', '500+', 'plays &middot;', 'likes &middot;', '432Hz', '528Hz', '~2 min', 'Get the Full Library', '$29', 'Longer, more descriptive', 'most powerful Suno keywords', 'Top Plays']],
+  ['data/products.json', ['battle-tested', 'proven prompts that actually produce', '100+ Suno Prompts', '100+ prompts and 12', 'Curated Prompts', 'Sessions Tested', 'Prompts Included', 'Automation Recipes"', 'Complete 100+', '25 prompts for', '20 prompts spanning', '15 prompts for', 'get the PDF delivered immediately', 'Empirical Grounding', 'AI Slop"', '180 seconds Time-to-First-Value', 'buy.lemonsqueezy.com/checkout/buy', '14-Day System Integration', '500+ plays', 'Max Members', 'in under 180 seconds', 'zero-slop', 'Anti-Slop Linter', 'empirical production benchmarks', 'Cryptographically verified SIP attestation', '100+ prompt library for', '/stream-atlas/download', '/anti-slop-matrix/download', '/capability-audit/download', '/stream-taxonomy/download', '/starlight-spec/download', '/mythic-codex/download', '100% Free Forever', 'Unconditional open access', 'PDF is delivered instantly']],
   ['lib/email-templates-premium.ts', ['12,000+', '12K+', '500+ AI Songs']],
   ['lib/email-templates-welcome.ts', ['12,000+', '12K+', '500+ AI']],
   ['lib/email-templates.ts', ['12,000+', '12K+']],
@@ -117,3 +117,9 @@ for (const [file, phrases] of banned) {
     }
   })
 }
+
+test('the stale 5-suno PDF is not shipped or uploaded', () => {
+  assert.equal(fs.existsSync(path.join(root, 'public/pdfs/5-suno-prompts.pdf')), false)
+  const upload = fs.readFileSync(path.join(root, 'scripts/upload-products-to-blob.mjs'), 'utf8')
+  assert.equal(upload.includes('public/pdfs/5-suno-prompts.pdf'), false)
+})

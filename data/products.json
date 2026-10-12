@@ -101,25 +101,18 @@
     "category": "Creative Intelligence",
     "badge": "CREATORS SHIPPING",
     "headline": "Replace AI Panic with Proven Workflows",
-    "subheadline": "100+ prompts and 12 automation recipes, organized so you can put them to work the day you download them.",
+    "subheadline": "Prompts and automation recipes for storytelling, marketing, content and operations.",
     "promise": "Go from AI overwhelm to a trusted daily ritual. One week to measurable creative velocity.",
     "summary": "Structured prompts, workflow templates, and daily rituals that turn AI into your creative co-pilot, not a distraction.",
     "transformation": [
       "Deploy 100+ validated prompts across storytelling, marketing, content, and operations within 48 hours",
       "Spend your working hours on the thinking, since the mechanical steps already come templated",
-      "Run 12 plug-and-play automations (email, social, drafting) that handle the mechanical stuff",
+      "Run plug-and-play automations (email, social, drafting) that handle the mechanical stuff",
       "Build a repeatable daily ritual that ships consistently without burnout"
     ],
     "socialProof": {
       "stats": [
-        {
-          "number": "100+",
-          "label": "Prompts Included"
-        },
-        {
-          "number": "12",
-          "label": "Automation Recipes"
-        }
+
       ],
       "quotes": []
     },
@@ -140,7 +133,7 @@
     "modules": [
       {
         "title": "Creative Intelligence Prompts",
-        "description": "100+ prompts validated by Strategist, Creator, Engineer, and Guardian agents to cover storytelling, marketing, operations, and delivery."
+        "description": "Prompts covering storytelling, marketing, operations, and delivery."
       },
       {
         "title": "Workflow Automations",
@@ -729,7 +722,7 @@
     "name": "Suno Prompt Library Pack",
     "category": "Music Intelligence",
     "badge": "INSTANT ACCESS",
-    "headline": "100+ Suno Prompts for Every Genre",
+    "headline": "Suno Prompts for Every Genre",
     "subheadline": "Skip the prompt guessing game. Get the exact prompts that powered 500+ tracks across electronic, hip-hop, cinematic, ambient, and world music.",
     "promise": "Stop wasting generations on prompts that don't work. Get proven prompts organized by genre, mood, and energy level.",
     "summary": "A comprehensive prompt library extracted from 500+ Suno sessions, organized for instant use in any creative project.",
@@ -741,14 +734,6 @@
     ],
     "socialProof": {
       "stats": [
-        {
-          "number": "100+",
-          "label": "Curated Prompts"
-        },
-        {
-          "number": "500+",
-          "label": "Sessions Tested"
-        },
         {
           "number": "12",
           "label": "Genre Categories"
@@ -773,19 +758,19 @@
     "modules": [
       {
         "title": "Electronic & EDM Pack",
-        "description": "25 prompts for house, techno, trance, dubstep, and synthwave with BPM and energy modifiers."
+        "description": "Prompts for house, techno, trance, dubstep, and synthwave with BPM and energy modifiers."
       },
       {
         "title": "Hip-Hop & R&B Pack",
-        "description": "20 prompts spanning boom bap, trap, lo-fi, and modern R&B with flow and vibe variations."
+        "description": "Prompts spanning boom bap, trap, lo-fi, and modern R&B with flow and vibe variations."
       },
       {
         "title": "Cinematic & Ambient Pack",
-        "description": "25 prompts for film scores, meditation, focus music, and atmospheric soundscapes."
+        "description": "Prompts for film scores, meditation, focus music, and atmospheric soundscapes."
       },
       {
         "title": "World & Fusion Pack",
-        "description": "15 prompts for afrobeats, Latin, reggae, and cross-cultural fusion experiments."
+        "description": "Prompts for afrobeats, Latin, reggae, and cross-cultural fusion experiments."
       },
       {
         "title": "Modifier Library",
@@ -838,7 +823,7 @@
           "name": "Suno Prompt Library Guide",
           "format": "pdf",
           "blobKey": "suno-prompt-library-guide.pdf",
-          "description": "Complete 100+ prompt library with annotations"
+          "description": "Prompt library with annotations"
         },
         {
           "name": "Notion Database Template",
@@ -1109,7 +1094,7 @@
     "slug": "5-suno-prompts",
     "name": "5 Prompts That Made My Best Suno Tracks",
     "category": "Music Intelligence",
-    "badge": "FREE DOWNLOAD",
+    "badge": "COMING SOON",
     "headline": "The Exact Prompts Behind My Top Suno Tracks",
     "subheadline": "Five Suno prompts with notes on why each works and variations to try.",
     "promise": "Five Suno prompts to start your next track.",
@@ -1122,14 +1107,6 @@
     ],
     "socialProof": {
       "stats": [
-        {
-          "number": "500+",
-          "label": "Tracks Created"
-        },
-        {
-          "number": "142",
-          "label": "Top Plays"
-        },
         {
           "number": "5",
           "label": "Proven Prompts"
@@ -1145,11 +1122,7 @@
       "ctaPrimaryHref": "/music-lab",
       "ctaPrimaryTracking": "5-suno-prompts-download",
       "ctaSecondary": "Full Prompt Library",
-      "ctaSecondaryHref": "/products/suno-prompt-library",
-      "guarantee": {
-        "label": "Instant Access",
-        "description": "Enter your email and get the PDF delivered immediately. No spam, unsubscribe anytime."
-      }
+      "ctaSecondaryHref": "/products/suno-prompt-library"
     },
     "modules": [],
     "faq": [
