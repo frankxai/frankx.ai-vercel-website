@@ -729,7 +729,7 @@
     "name": "Suno Prompt Library Pack",
     "category": "Music Intelligence",
     "badge": "INSTANT ACCESS",
-    "headline": "100+ Battle-Tested Suno Prompts for Every Genre",
+    "headline": "100+ Suno Prompts for Every Genre",
     "subheadline": "Skip the prompt guessing game. Get the exact prompts that powered 500+ tracks across electronic, hip-hop, cinematic, ambient, and world music.",
     "promise": "Stop wasting generations on prompts that don't work. Get proven prompts organized by genre, mood, and energy level.",
     "summary": "A comprehensive prompt library extracted from 500+ Suno sessions, organized for instant use in any creative project.",
@@ -1112,7 +1112,7 @@
     "badge": "FREE DOWNLOAD",
     "headline": "The Exact Prompts Behind My Top Suno Tracks",
     "subheadline": "Five Suno prompts with notes on why each works and variations to try.",
-    "promise": "Skip the guessing. Get proven prompts that actually produce great Suno tracks.",
+    "promise": "Five Suno prompts to start your next track.",
     "summary": "Free guide with 5 Suno prompts, a power words cheat sheet, and common mistakes to avoid.",
     "transformation": [
       "Copy 5 proven prompts directly into Suno for immediate results",
@@ -1174,7 +1174,7 @@
           "name": "5 Suno Prompts Guide",
           "format": "pdf",
           "blobKey": "products/5-suno-prompts/5-suno-prompts.pdf",
-          "description": "5 battle-tested Suno prompts with breakdowns"
+          "description": "5 Suno prompts with breakdowns"
         }
       ]
     }
