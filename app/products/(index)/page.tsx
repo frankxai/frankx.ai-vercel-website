@@ -265,12 +265,18 @@ export default function ProductsPage() {
     return allProducts.filter((p) => FLAGSHIP_IDS.includes(p.id))
   }, [allProducts])
 
-  const visibleProducts = useMemo(() => {
+  // Flagships already render in the spotlight above the grid in the default All view.
+  const gridProducts = useMemo(() => {
     if (!isDefaultAllView) return filteredProducts
-    if (showAllCards) return filteredProducts
+    return filteredProducts.filter((p) => !FLAGSHIP_IDS.includes(p.id))
+  }, [isDefaultAllView, filteredProducts])
+
+  const visibleProducts = useMemo(() => {
+    if (!isDefaultAllView) return gridProducts
+    if (showAllCards) return gridProducts
     // In All view without search, show 9 curated systems initially
-    return filteredProducts.slice(0, 9)
-  }, [isDefaultAllView, showAllCards, filteredProducts])
+    return gridProducts.slice(0, 9)
+  }, [isDefaultAllView, showAllCards, gridProducts])
 
   // Structured Data Schema for Google Product Carousel with verified currencies and stock status
   const structuredData = useMemo(() => {
@@ -694,14 +700,14 @@ export default function ProductsPage() {
                 </div>
 
                 {/* Progressive Reveal Toggle to Avoid Card Wall in All View */}
-                {isDefaultAllView && !showAllCards && filteredProducts.length > 9 && (
+                {isDefaultAllView && !showAllCards && gridProducts.length > 9 && (
                   <div className="mt-12 text-center">
                     <button
                       type="button"
                       onClick={() => setShowAllCards(true)}
                       className="min-h-[44px] inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.04] px-8 py-3 text-sm font-semibold text-white hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-300 transition-[border-color,background-color,color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
                     >
-                      <span>Show all {filteredProducts.length} systems</span>
+                      <span>Show all {gridProducts.length} systems</span>
                       <ChevronDown className="h-4 w-4" />
                     </button>
                   </div>
