@@ -83,7 +83,7 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
               Launches
             </>
           ) : (
-            <>Start using Vibe OS</>
+            <>Vibe OS is free</>
           )}
         </motion.h2>
 
