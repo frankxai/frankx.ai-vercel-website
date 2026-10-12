@@ -51,7 +51,7 @@ export function PdfDeliveryEmail({ recipientName, pdfTitle, pdfUrl }: PdfDeliver
 
         <EmailButton href={pdfUrl}>Download Your Guide</EmailButton>
 
-        <SignatureBlock message="Questions? Reply to this email. I read every one." />
+        <SignatureBlock message="Hit reply if you have a question." />
       </GlassCard>
     </EmailLayout>
   )

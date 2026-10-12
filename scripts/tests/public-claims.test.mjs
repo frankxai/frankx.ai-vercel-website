@@ -129,6 +129,7 @@ const banned = [
 ]
 
 banned.push(['components/products/ProductsShell.tsx', ['50+ genre-specific', '50+ battle-tested', 'Genre-specific prompts (electronic']])
+for (const file of ['lib/email-templates.ts', 'emails/components/Layout.tsx', 'lib/email-design-system.ts', 'emails/templates/PdfDelivery.tsx', 'lib/email-templates-foundry.ts']) banned.push([file, ['I read every one']])
 
 for (const [file, phrases] of banned) {
   test(file + ' does not publish an unsupported headcount', () => {
