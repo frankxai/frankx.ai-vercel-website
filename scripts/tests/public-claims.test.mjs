@@ -125,3 +125,19 @@ for (const [file, phrases] of banned) {
     }
   })
 }
+
+test('music-lab and welcome emails promise no 5-suno download or play counts', () => {
+  const route = fs.readFileSync(path.join(root, 'app/api/subscribe/route.ts'), 'utf8')
+  for (const phrase of ['/api/download?product=5-suno-prompts', 'your free prompts']) {
+    assert.equal(route.includes(phrase), false, phrase)
+  }
+  assert.ok(route.includes('/waitlist?intent=5-suno-prompts'), 'music-lab email links to the waitlist')
+  const templates = fs.readFileSync(path.join(root, 'lib/email-templates.ts'), 'utf8')
+  for (const phrase of ['Your 5 Suno prompts are ready', 'Download Your 5 Prompts', 'top-performing tracks', '500+ combined plays', '500+ plays', '142 plays', 'Get 100+ Prompts', 'has 100+ prompts']) {
+    assert.equal(templates.includes(phrase), false, phrase)
+  }
+  const welcome = fs.readFileSync(path.join(root, 'lib/email-templates-welcome.ts'), 'utf8')
+  for (const phrase of ['production-ready prompts', 'top-performing tracks']) {
+    assert.equal(welcome.includes(phrase), false, phrase)
+  }
+})

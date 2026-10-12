@@ -230,7 +230,7 @@ export function welcomeEmail1(data: {
 
           ${resourceRow(
             'Free Suno Prompt Pack',
-            'Five production-ready prompts from my top-performing tracks. Copy, paste, create.',
+            'Five Suno prompts to start your next track.',
             'https://frankx.ai/products/5-suno-prompts',
             '#10b981'
           )}
