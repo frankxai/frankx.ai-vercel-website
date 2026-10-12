@@ -757,7 +757,7 @@
       "quotes": []
     },
     "offer": {
-      "primaryPrice": 27,
+      "primaryPrice": 29,
       "originalPrice": 47,
       "currency": "USD",
       "ctaPrimary": "Join Waitlist",
@@ -1159,7 +1159,7 @@
       },
       {
         "question": "Is this really free?",
-        "answer": "Yes. Enter your email and the PDF is delivered instantly. We also offer a full 100+ prompt library for $27."
+        "answer": "Yes. Enter your email and the PDF is delivered instantly. We also offer a full 100+ prompt library for $29."
       }
     ],
     "analyticsId": "5-suno-prompts",

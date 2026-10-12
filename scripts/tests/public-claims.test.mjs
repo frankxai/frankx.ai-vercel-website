@@ -89,6 +89,8 @@ const banned = [
   ['components/v0-variants/AboutPageV0.tsx', ['AI Songs']],
   ['components/golden-age/GoldenAgeShell.tsx', ['500+', 'AI Songs Created']],
   ['app/golden-age/page.tsx', ['500+', 'AI Songs Created']],
+  ['app/products/(index)/page.tsx', ['deployed across live operations', 'Battle-tested architectures', 'verified across live operations', 'rolling updates', 'instant fulfillment', 'continuous version updates', 'conform to standard Model Context Protocol', 'Center of Excellence', 'turnkey multi-agent meshes']],
+  ['lib/products.ts', ["startsWith('http')"]],
   ['lib/email-templates-premium.ts', ['12,000+', '12K+', '500+ AI Songs']],
   ['lib/email-templates-welcome.ts', ['12,000+', '12K+', '500+ AI']],
   ['lib/email-templates.ts', ['12,000+', '12K+']],
