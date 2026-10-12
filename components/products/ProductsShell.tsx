@@ -82,10 +82,7 @@ const products = [
     status: 'active',
     href: '/products/vibe-os',
     color: 'emerald',
-    highlights: [
-      'Emotion-to-sound mapping system',
-      'Production enhancement and mastering guide',
-    ],
+    highlights: [],
     featured: true,
   },
   {
