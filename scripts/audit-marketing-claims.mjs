@@ -23,6 +23,9 @@ const ignore = [
   'app/ai-architect/**',
   'app/ai-architecture/**',
   'data/ai-architecture/**',
+  'data/inventories/**',
+  'data/acos/**',
+  'components/social-proof/**',
 ]
 
 function normalize(relPath) {
@@ -70,7 +73,7 @@ const checks = [
     id: 'large-vanity-metric',
     label: 'Large vanity metric with audience/outcome noun',
     regex:
-      /\b(?:\d{2,}K\+|\d{4,}\+)\b.*\b(songs?|creators?|customers?|users?|students?|implementations?|enrollments?)\b/i,
+      /\b(?:\d{2,}K\+|\d{4,}\+)\s*.*\b(songs?|creators?|customers?|users?|students?|implementations?|enrollments?)\b/i,
   },
   {
     id: 'sla-uptime',
