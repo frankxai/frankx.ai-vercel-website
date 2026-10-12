@@ -77,6 +77,16 @@ const PRODUCTS: Record<string, { name: string; priceId: string; amount: number }
     priceId: process.env.STRIPE_PRICE_FOUNDERS_GUILD || '',
     amount: 299700,
   },
+  'creation-chronicles': {
+    name: 'Creation Chronicles',
+    priceId: process.env.STRIPE_PRICE_CHRONICLES || '',
+    amount: 49700,
+  },
+  'command-center-template': {
+    name: 'The Command Center Template',
+    priceId: process.env.STRIPE_PRICE_COMMAND_CENTER || '',
+    amount: 49700,
+  },
 }
 
 export async function POST(request: NextRequest) {

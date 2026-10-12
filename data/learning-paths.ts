@@ -2504,10 +2504,11 @@ export const learningPaths: LearningPath[] = [
       tags: ['higgsfield', 'short-film', 'references'],
     }],
     ecosystem: [
-      { name: 'Cinema Studio 4.0 documentation', category: 'Direction', description: 'Current vendor announcement for camera look, references and sequence controls.', href: 'https://higgsfield.ai/blog/cinema-studio-4-0', lastVerified: '2026-10-10' },
-      { name: 'Agent connection guide', category: 'Automation', description: 'Official supported agent and MCP integrations. Inspect tools and job status before generating.', href: 'https://higgsfield.ai/blog/generate-ai-videos-ai-agents-2026', lastVerified: '2026-10-10' },
-      { name: 'Developer console', category: 'Integration', description: 'Use documented interfaces and account limits rather than an assumed third-party endpoint.', href: 'https://console.higgsfield.ai/', lastVerified: '2026-10-10' },
-      { name: 'Current pricing', category: 'Budget', description: 'Verify included credits, model availability and cancellation terms for your account before subscribing.', href: 'https://higgsfield.ai/pricing', lastVerified: '2026-10-10' },
+      { name: 'Higgsfield Official Portal', category: 'Platform', description: 'Access Higgsfield AI Cinema Studio, model selection, and account settings.', href: '/go/higgsfield', lastVerified: '2026-10-11' },
+      { name: 'Cinema Studio 4.0 documentation', category: 'Direction', description: 'Current vendor announcement for camera look, references and sequence controls.', href: 'https://higgsfield.ai/blog/cinema-studio-4-0', lastVerified: '2026-10-11' },
+      { name: 'Agent connection guide', category: 'Automation', description: 'Official supported agent and MCP integrations. Inspect tools and job status before generating.', href: 'https://higgsfield.ai/blog/generate-ai-videos-ai-agents-2026', lastVerified: '2026-10-11' },
+      { name: 'Developer console', category: 'Integration', description: 'Use documented interfaces and account limits rather than an assumed third-party endpoint.', href: 'https://open.higgsfield.ai/', lastVerified: '2026-10-11' },
+      { name: 'Current pricing', category: 'Budget', description: 'Verify included credits, model availability and cancellation terms for your account before subscribing.', href: 'https://higgsfield.ai/pricing', lastVerified: '2026-10-11' },
     ],
     faqs: [
       { question: 'Is this Higgsfield course free?', answer: 'The FrankX guides, exercises and worksheets are free to read. Higgsfield generation and connected-agent usage may require credits or a paid plan. Check current pricing before starting.' },

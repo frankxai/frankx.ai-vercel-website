@@ -34,8 +34,12 @@ export default function BookTOC({ items, activeClass, mode = 'desktop' }: BookTO
             onClick={() => {
               if (disclosure.current) disclosure.current.open = false;
               setActiveId(item.id);
-              // Native hash/history navigation remains available without scripts.
-              document.getElementById(item.id)?.focus({ preventScroll: true });
+              const target = document.getElementById(item.id);
+              if (target) {
+                target.focus({ preventScroll: true });
+                const prefersReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                target.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth' });
+              }
             }}
             className={`flex min-h-11 items-center rounded-lg px-3 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition-colors motion-reduce:transition-none ${item.level === 3 ? 'pl-6' : ''} ${activeId === item.id ? activeClass : 'text-white/70 hover:bg-white/5 hover:text-white'}`}
           >

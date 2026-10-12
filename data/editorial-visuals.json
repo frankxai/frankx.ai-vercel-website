@@ -28,7 +28,7 @@
     "width": 960,
     "height": 1060,
     "alt": "Three shots and one stop rule: arrival wide view, preparation contact view, decision close push, and concrete rejection conditions before rendering another clip.",
-    "caption": "The three-shot acceptance workflow and stop rule. Verify geometry, physical contact, and facial identity before spending credits on subsequent takes.",
+    "caption": "The three-shot acceptance workflow and stop rule. Verify geometry and contact, and accept the face only when it still matches the reference.",
     "credit": "Original diagram by FrankX",
     "sourceUrl": "https://www.frankx.ai/guides/higgsfield-ai-video-guide",
     "rights": "original",
