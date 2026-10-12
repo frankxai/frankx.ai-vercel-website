@@ -123,3 +123,20 @@ test('the stale 5-suno PDF is not shipped or uploaded', () => {
   const upload = fs.readFileSync(path.join(root, 'scripts/upload-products-to-blob.mjs'), 'utf8')
   assert.equal(upload.includes('public/pdfs/5-suno-prompts.pdf'), false)
 })
+
+test('5-suno-prompts is a waitlist item with no downloadable file', () => {
+  const data = JSON.parse(fs.readFileSync(path.join(root, 'data/products.json'), 'utf8'))
+  const list = Array.isArray(data) ? data : data.products
+  const p = list.find((x) => x.slug === '5-suno-prompts')
+  assert.ok(p, '5-suno-prompts not found')
+  assert.equal(p.badge, 'Coming soon')
+  assert.equal(p.offer.ctaPrimary, 'Join the waitlist')
+  assert.equal(p.offer.ctaPrimaryHref, '/waitlist?intent=5-suno-prompts')
+  assert.equal(p.offer.ctaPrimaryTracking, '5-suno-prompts-waitlist')
+  assert.equal(p.offer.guarantee, undefined)
+  assert.deepEqual(p.delivery?.files ?? [], [])
+  const text = JSON.stringify(p)
+  for (const phrase of ['COMING SOON', 'Proven Prompts', 'Get Free Prompts', 'Is this really free?', 'FREE DOWNLOAD', 'products/5-suno-prompts/5-suno-prompts.pdf']) {
+    assert.equal(text.includes(phrase), false, phrase)
+  }
+})

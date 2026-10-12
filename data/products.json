@@ -1094,13 +1094,13 @@
     "slug": "5-suno-prompts",
     "name": "5 Prompts That Made My Best Suno Tracks",
     "category": "Music Intelligence",
-    "badge": "COMING SOON",
-    "headline": "The Exact Prompts Behind My Top Suno Tracks",
+    "badge": "Coming soon",
+    "headline": "The Prompts Behind Five of My Suno Tracks",
     "subheadline": "Five Suno prompts with notes on why each works and variations to try.",
     "promise": "Five Suno prompts to start your next track.",
-    "summary": "Free guide with 5 Suno prompts, a power words cheat sheet, and common mistakes to avoid.",
+    "summary": "A free guide, coming soon: 5 Suno prompts, a power words cheat sheet, and common mistakes to avoid.",
     "transformation": [
-      "Copy 5 proven prompts directly into Suno for immediate results",
+      "Copy 5 prompts directly into Suno.",
       "Understand the specific keywords that control Suno output quality",
       "Learn genre fusion techniques that create original sounds",
       "Get a power words cheat sheet for any future prompt"
@@ -1109,7 +1109,7 @@
       "stats": [
         {
           "number": "5",
-          "label": "Proven Prompts"
+          "label": "Prompts in the guide"
         }
       ],
       "quotes": []
@@ -1118,9 +1118,9 @@
       "primaryPrice": 0,
       "primaryPriceDisplay": "Free",
       "currency": "USD",
-      "ctaPrimary": "Get Free Prompts",
-      "ctaPrimaryHref": "/music-lab",
-      "ctaPrimaryTracking": "5-suno-prompts-download",
+      "ctaPrimary": "Join the waitlist",
+      "ctaPrimaryHref": "/waitlist?intent=5-suno-prompts",
+      "ctaPrimaryTracking": "5-suno-prompts-waitlist",
       "ctaSecondary": "Full Prompt Library",
       "ctaSecondaryHref": "/products/suno-prompt-library"
     },
@@ -1131,7 +1131,7 @@
         "answer": "Yes. All prompts are tested on v4 and newer. They work with any recent Suno version."
       },
       {
-        "question": "Is this really free?",
+        "question": "Can I download it now?",
         "answer": "Not yet. Join the waitlist and you will get a note when the guide is ready."
       }
     ],
@@ -1142,14 +1142,7 @@
         "gated"
       ],
       "requiresEmail": true,
-      "files": [
-        {
-          "name": "5 Suno Prompts Guide",
-          "format": "pdf",
-          "blobKey": "products/5-suno-prompts/5-suno-prompts.pdf",
-          "description": "5 Suno prompts with breakdowns"
-        }
-      ]
+      "files": []
     }
   },
   {
