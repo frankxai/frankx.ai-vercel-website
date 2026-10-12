@@ -170,9 +170,9 @@ export default function VibeOSModules({ productId, modules, offer }: VibeOSModul
                           ${offer.primaryPrice}
                         </span>
                       </div>
-                      <p className="mt-3 text-sm text-white/50">
-                        {offer.note || 'Lifetime updates included'}
-                      </p>
+                      {offer.note && (
+                        <p className="mt-3 text-sm text-white/50">{offer.note}</p>
+                      )}
                     </div>
 
                     <Link
