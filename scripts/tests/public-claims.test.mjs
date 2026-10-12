@@ -112,7 +112,7 @@ const banned = [
   ['content/blog/voice-ai-agents-2026-elevenlabs-hume-audio.mdx', ['12,000 songs of lessons']],
 ]
 
-banned.push(['components/products/ProductsShell.tsx', ['50+ genre-specific', '50+ battle-tested']])
+banned.push(['components/products/ProductsShell.tsx', ['50+ genre-specific', '50+ battle-tested', 'Genre-specific prompts (electronic']])
 
 for (const [file, phrases] of banned) {
   test(file + ' does not publish an unsupported headcount', () => {

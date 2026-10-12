@@ -83,7 +83,6 @@ const products = [
     href: '/products/vibe-os',
     color: 'emerald',
     highlights: [
-      'Genre-specific prompts (electronic, hip-hop, ambient, cinematic)',
       'Emotion-to-sound mapping system',
       'Production enhancement and mastering guide',
     ],
