@@ -82,13 +82,7 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
               Launches
             </>
           ) : (
-            <>
-              Ready to Transform Your{' '}
-              <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-violet-300 bg-clip-text text-transparent">
-                Music Production
-              </span>
-              ?
-            </>
+            <>Start using Vibe OS</>
           )}
         </motion.h2>
 
@@ -101,8 +95,8 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
           className="mx-auto mt-6 max-w-2xl text-lg text-white/70"
         >
           {COMING_SOON_MODE
-            ? 'Join the waitlist for early access, exclusive launch pricing, and behind-the-scenes updates as we build the ultimate Suno workflow system.'
-            : 'From emotional vision to finished track in one session.'
+            ? 'Join the waitlist to hear when it launches.'
+            : 'The web app is still in development.'
           }
         </motion.p>
 

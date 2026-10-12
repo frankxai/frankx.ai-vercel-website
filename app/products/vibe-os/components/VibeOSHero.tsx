@@ -123,23 +123,6 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
           </p>
         </motion.div>
 
-        {/* Key Benefits */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-10 flex flex-wrap justify-center gap-6 text-sm text-white/70"
-        >
-          <div className="flex items-center gap-2">
-            <div className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
-            <span>Emotion Mapping</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="h-1.5 w-1.5 rounded-full bg-violet-400" />
-            <span>Release Playbooks</span>
-          </div>
-        </motion.div>
-
         {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
