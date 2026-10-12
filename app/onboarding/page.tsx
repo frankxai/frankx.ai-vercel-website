@@ -324,7 +324,7 @@ export default function OnboardingPage() {
                     {[
                       { icon: Target, title: 'Personalized Path', description: 'Tailored to your goals and experience' },
                       { icon: Clock, title: 'Quick Setup', description: 'Get value in your first 15 minutes' },
-                      { icon: Trophy, title: 'Structured Progression', description: 'Step-by-step guidance from foundation to mastery' }
+                      { icon: Trophy, title: 'Proven Results', description: 'Join 10,000+ successful transformations' }
                     ].map((feature, index) => (
                       <div key={index} className="text-center">
                         <feature.icon className="w-8 h-8 text-blue-600 mx-auto mb-3" />
