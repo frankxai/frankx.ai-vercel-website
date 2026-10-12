@@ -242,7 +242,7 @@ export function welcomeEmail1(data: {
                 <p style="font-size: 12px; color: #22d3ee; margin: 0 0 12px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">What to Expect</p>
                 <p style="font-size: 15px; color: #CBD5E1; margin: 0 0 6px 0; line-height: 1.5;"><span style="color: #22d3ee;">›</span> <strong style="color: white;">Curated AI insights</strong> — tools and techniques that actually work</p>
                 <p style="font-size: 15px; color: #CBD5E1; margin: 0 0 6px 0; line-height: 1.5;"><span style="color: #22d3ee;">›</span> <strong style="color: white;">Behind-the-scenes</strong> — from late-night studio sessions and enterprise builds</p>
-                <p style="font-size: 15px; color: #CBD5E1; margin: 0; line-height: 1.5;"><span style="color: #22d3ee;">›</span> <strong style="color: white;">Early access</strong> — new guides, frameworks, and products before anyone else</p>
+                <p style="font-size: 15px; color: #CBD5E1; margin: 0; line-height: 1.5;"><span style="color: #22d3ee;">›</span> New guides, frameworks and products in your inbox</p>
               </td>
             </tr>
           </table>
@@ -453,7 +453,7 @@ export function welcomeEmail3(data: {
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top: 1px solid #334155;">
             <tr>
               <td style="padding: 20px 0 0 0;">
-                <p style="font-size: 14px; color: #94a3b8; margin: 0 0 4px 0; line-height: 1.5;">This is the last onboarding email. From here, you'll receive the regular newsletter — curated AI insights, studio notes, and early access to new work.</p>
+                <p style="font-size: 14px; color: #94a3b8; margin: 0 0 4px 0; line-height: 1.5;">This is the last onboarding email. From here, you'll receive the regular newsletter — curated AI insights, studio notes, and notes on new work.</p>
                 <p style="font-size: 14px; color: #94a3b8; margin: 0 0 4px 0; line-height: 1.5;">Reply anytime. I read every message.</p>
                 <p style="font-size: 13px; color: #64748b; margin: 0;">— Frank</p>
               </td>
