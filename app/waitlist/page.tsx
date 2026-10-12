@@ -5,7 +5,7 @@ import { createMetadata } from '@/lib/seo'
 export const metadata = createMetadata({
   title: 'Waitlist | FrankX',
   description:
-    'Join the FrankX waitlist for planned courses, product launches, and early-access announcements.',
+    'Join the FrankX waitlist for planned courses, product launches, and launch announcements.',
   path: '/waitlist',
 })
 
@@ -37,7 +37,7 @@ export default async function WaitlistPage({ searchParams }: WaitlistPageProps) 
       <div className="mx-auto max-w-3xl px-6 py-20 pt-28 space-y-8">
         <header className="space-y-4">
           <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400/70">FrankX Waitlist</p>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Get early access updates</h1>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Get launch updates</h1>
           <p className="text-white/65 text-lg leading-relaxed">
             Join once and get launch updates for planned courses and product releases.
           </p>

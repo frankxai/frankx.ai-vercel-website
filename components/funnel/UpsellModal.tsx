@@ -36,7 +36,9 @@ export function UpsellModal({
 }: UpsellModalProps) {
   const modalRef = useRef<HTMLDivElement>(null)
   const onCloseRef = useRef(onClose)
-  onCloseRef.current = onClose
+  useEffect(() => {
+    onCloseRef.current = onClose
+  }, [onClose])
 
   // Dialog focus management: move focus in on open, trap Tab, close on Escape,
   // and return focus to the element that was focused when the dialog opened.
