@@ -1159,7 +1159,7 @@
       },
       {
         "question": "Is this really free?",
-        "answer": "Yes. Enter your email and the PDF is delivered instantly. We also offer a full 100+ prompt library for $29."
+        "answer": "Yes. Enter your email and the PDF is delivered instantly."
       }
     ],
     "analyticsId": "5-suno-prompts",
@@ -1785,11 +1785,10 @@
     "headline": "Visual Creation Loop",
     "subheadline": "Ship high-coherence, brand-aligned visual assets consistently without breaking your brand or credit budget.",
     "promise": "Ship high-coherence, brand-aligned visual assets consistently without breaking your brand or credit budget.",
-    "summary": "Visual Creation Loop provides an operational, zero-slop substrate for builders in the frankx ecosystem.",
+    "summary": "Visual Creation Loop provides a substrate for builders in the frankx ecosystem.",
     "transformation": [
       "Deploy Visual Creation Loop",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
@@ -1818,12 +1817,7 @@
         "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
-    "faq": [
-      {
-        "question": "Is this generated with AI slop?",
-        "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
-      }
-    ],
+    "faq": [],
     "analyticsId": "visual-creation-loop",
     "delivery": {
       "methods": [
@@ -1842,11 +1836,10 @@
     "headline": "The 12-Stream Atlas: Honest Stream Engineering",
     "subheadline": "Every automated income stream mapped with mathematical honesty: maintenance hours, latency-to-cash, capital required, and kill criteria.",
     "promise": "Every automated income stream mapped with mathematical honesty: maintenance hours, latency-to-cash, capital required, and kill criteria.",
-    "summary": "The 12-Stream Atlas: Honest Stream Engineering provides an operational, zero-slop substrate for builders in the agentic-passive-income ecosystem.",
+    "summary": "The 12-Stream Atlas: Honest Stream Engineering provides a substrate for builders in the agentic-passive-income ecosystem.",
     "transformation": [
       "Deploy The 12-Stream Atlas: Honest Stream Engineering",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
@@ -1879,12 +1872,7 @@
         "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
-    "faq": [
-      {
-        "question": "Is this generated with AI slop?",
-        "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
-      }
-    ],
+    "faq": [],
     "analyticsId": "12-stream-atlas",
     "delivery": {
       "methods": [
@@ -1902,11 +1890,10 @@
     "headline": "Income Architecture Blueprint",
     "subheadline": "Build active agentic cash flow: from high-ticket skills to productized services and autonomous systems.",
     "promise": "Build active agentic cash flow: from high-ticket skills to productized services and autonomous systems.",
-    "summary": "Income Architecture Blueprint provides an operational, zero-slop substrate for builders in the agentic-income ecosystem.",
+    "summary": "Income Architecture Blueprint provides a substrate for builders in the agentic-income ecosystem.",
     "transformation": [
       "Deploy Income Architecture Blueprint",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
@@ -1935,12 +1922,7 @@
         "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
-    "faq": [
-      {
-        "question": "Is this generated with AI slop?",
-        "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
-      }
-    ],
+    "faq": [],
     "analyticsId": "income-architecture-blueprint",
     "delivery": {
       "methods": [
@@ -1959,11 +1941,10 @@
     "headline": "DPI Field Kit: Wealth Substrate Pro",
     "subheadline": "Income decoupled from hours. Local SQLite ledger, Gate G1-G5 progression auditor, and SIP attestation generator.",
     "promise": "Income decoupled from hours. Local SQLite ledger, Gate G1-G5 progression auditor, and SIP attestation generator.",
-    "summary": "DPI Field Kit: Wealth Substrate Pro provides an operational, zero-slop substrate for builders in the dpi ecosystem.",
+    "summary": "DPI Field Kit: Wealth Substrate Pro provides a substrate for builders in the dpi ecosystem.",
     "transformation": [
       "Deploy DPI Field Kit: Wealth Substrate Pro",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
@@ -1992,12 +1973,7 @@
         "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
-    "faq": [
-      {
-        "question": "Is this generated with AI slop?",
-        "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
-      }
-    ],
+    "faq": [],
     "analyticsId": "dpi-field-kit",
     "delivery": {
       "methods": [
@@ -2014,13 +1990,12 @@
     "category": "Agentic Architecture",
     "badge": "SOVEREIGN RELEASE",
     "headline": "Agent Fleet Pro: Turnkey Multi-Agent Mesh",
-    "subheadline": "Scaffold an autonomous multi-agent operational fleet with auto-healing Sentinel daemons and hybrid memory in under 180 seconds.",
-    "promise": "Scaffold an autonomous multi-agent operational fleet with auto-healing Sentinel daemons and hybrid memory in under 180 seconds.",
-    "summary": "Agent Fleet Pro: Turnkey Multi-Agent Mesh provides an operational, zero-slop substrate for builders in the acos ecosystem.",
+    "subheadline": "Scaffold a multi-agent operational fleet with Sentinel daemons and hybrid memory.",
+    "promise": "Scaffold a multi-agent operational fleet with Sentinel daemons and hybrid memory.",
+    "summary": "Agent Fleet Pro: Turnkey Multi-Agent Mesh is a kit for builders in the acos ecosystem.",
     "transformation": [
       "Deploy Agent Fleet Pro: Turnkey Multi-Agent Mesh",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
@@ -2049,12 +2024,7 @@
         "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
-    "faq": [
-      {
-        "question": "Is this generated with AI slop?",
-        "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
-      }
-    ],
+    "faq": [],
     "analyticsId": "agent-fleet-pro",
     "delivery": {
       "methods": [
@@ -2073,11 +2043,10 @@
     "headline": "The Sovereign Memory Palace OS",
     "subheadline": "Convert passive note storage into an active, self-indexing intelligence palace connected directly to your coding agents.",
     "promise": "Convert passive note storage into an active, self-indexing intelligence palace connected directly to your coding agents.",
-    "summary": "The Sovereign Memory Palace OS provides an operational, zero-slop substrate for builders in the second-brain ecosystem.",
+    "summary": "The Sovereign Memory Palace OS provides a substrate for builders in the second-brain ecosystem.",
     "transformation": [
       "Deploy The Sovereign Memory Palace OS",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
@@ -2106,12 +2075,7 @@
         "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
-    "faq": [
-      {
-        "question": "Is this generated with AI slop?",
-        "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
-      }
-    ],
+    "faq": [],
     "analyticsId": "memory-palace-os",
     "delivery": {
       "methods": [
@@ -2130,11 +2094,10 @@
     "headline": "The Agentic Media Machine",
     "subheadline": "Convert single raw voice or text captures into multi-platform attested distribution assets autonomously with zero AI slop.",
     "promise": "Convert single raw voice or text captures into multi-platform attested distribution assets autonomously with zero AI slop.",
-    "summary": "The Agentic Media Machine provides an operational, zero-slop substrate for builders in the creator-intelligence ecosystem.",
+    "summary": "The Agentic Media Machine provides a substrate for builders in the creator-intelligence ecosystem.",
     "transformation": [
       "Deploy The Agentic Media Machine",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
@@ -2163,12 +2126,7 @@
         "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
-    "faq": [
-      {
-        "question": "Is this generated with AI slop?",
-        "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
-      }
-    ],
+    "faq": [],
     "analyticsId": "agentic-media-machine",
     "delivery": {
       "methods": [
@@ -2187,11 +2145,10 @@
     "headline": "The Arcanea Mythic Codex",
     "subheadline": "Sovereign reference manual for generative worldbuilding, radiant shader design, and mythic lore consistency.",
     "promise": "Sovereign reference manual for generative worldbuilding, radiant shader design, and mythic lore consistency.",
-    "summary": "The Arcanea Mythic Codex provides an operational, zero-slop substrate for builders in the arcanea ecosystem.",
+    "summary": "The Arcanea Mythic Codex provides a substrate for builders in the arcanea ecosystem.",
     "transformation": [
       "Deploy The Arcanea Mythic Codex",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
@@ -2224,12 +2181,7 @@
         "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
-    "faq": [
-      {
-        "question": "Is this generated with AI slop?",
-        "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
-      }
-    ],
+    "faq": [],
     "analyticsId": "arcanea-mythic-codex",
     "delivery": {
       "methods": [
@@ -2247,11 +2199,10 @@
     "headline": "The Anti-Slop Content Matrix",
     "subheadline": "50 banned AI cliches, negative prompt tokens, and empirical craft filters for sovereign content teams.",
     "promise": "50 banned AI cliches, negative prompt tokens, and empirical craft filters for sovereign content teams.",
-    "summary": "The Anti-Slop Content Matrix provides an operational, zero-slop substrate for builders in the gencreator ecosystem.",
+    "summary": "The Anti-Slop Content Matrix provides a substrate for builders in the gencreator ecosystem.",
     "transformation": [
       "Deploy The Anti-Slop Content Matrix",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
@@ -2284,12 +2235,7 @@
         "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
-    "faq": [
-      {
-        "question": "Is this generated with AI slop?",
-        "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
-      }
-    ],
+    "faq": [],
     "analyticsId": "anti-slop-content-matrix",
     "delivery": {
       "methods": [
@@ -2307,11 +2253,10 @@
     "headline": "The Capability-to-Cash Inventory Audit",
     "subheadline": "Spartan, numerate self-audit protocol for converting technical skills into non-linear income streams.",
     "promise": "Spartan, numerate self-audit protocol for converting technical skills into non-linear income streams.",
-    "summary": "The Capability-to-Cash Inventory Audit provides an operational, zero-slop substrate for builders in the agentic-income ecosystem.",
+    "summary": "The Capability-to-Cash Inventory Audit provides a substrate for builders in the agentic-income ecosystem.",
     "transformation": [
       "Deploy The Capability-to-Cash Inventory Audit",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
@@ -2344,12 +2289,7 @@
         "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
-    "faq": [
-      {
-        "question": "Is this generated with AI slop?",
-        "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
-      }
-    ],
+    "faq": [],
     "analyticsId": "capability-to-cash-audit",
     "delivery": {
       "methods": [
@@ -2367,11 +2307,10 @@
     "headline": "The DPI Stream Taxonomy & Progression Map",
     "subheadline": "Mathematical reference manual for decoupling income from hours across five progression gates.",
     "promise": "Mathematical reference manual for decoupling income from hours across five progression gates.",
-    "summary": "The DPI Stream Taxonomy & Progression Map provides an operational, zero-slop substrate for builders in the dpi ecosystem.",
+    "summary": "The DPI Stream Taxonomy & Progression Map provides a substrate for builders in the dpi ecosystem.",
     "transformation": [
       "Deploy The DPI Stream Taxonomy & Progression Map",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
@@ -2404,12 +2343,7 @@
         "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
-    "faq": [
-      {
-        "question": "Is this generated with AI slop?",
-        "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
-      }
-    ],
+    "faq": [],
     "analyticsId": "dpi-stream-taxonomy",
     "delivery": {
       "methods": [
@@ -2427,11 +2361,10 @@
     "headline": "Starlight Intelligence Protocol (SIP v1.1.1) Spec",
     "subheadline": "Open protocol standard for sovereign multi-agent meshes, hybrid event memory, and cryptographic attestations.",
     "promise": "Open protocol standard for sovereign multi-agent meshes, hybrid event memory, and cryptographic attestations.",
-    "summary": "Starlight Intelligence Protocol (SIP v1.1.1) Spec provides an operational, zero-slop substrate for builders in the starlight ecosystem.",
+    "summary": "Starlight Intelligence Protocol (SIP v1.1.1) Spec provides a substrate for builders in the starlight ecosystem.",
     "transformation": [
       "Deploy Starlight Intelligence Protocol (SIP v1.1.1) Spec",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
@@ -2464,12 +2397,7 @@
         "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
-    "faq": [
-      {
-        "question": "Is this generated with AI slop?",
-        "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
-      }
-    ],
+    "faq": [],
     "analyticsId": "starlight-protocol-spec",
     "delivery": {
       "methods": [
@@ -2487,11 +2415,10 @@
     "headline": "Starlight Operator Field Kit & Council Harness",
     "subheadline": "Production orchestration harness, sentinel monitoring daemons, and council dispatch scripts for operators.",
     "promise": "Production orchestration harness, sentinel monitoring daemons, and council dispatch scripts for operators.",
-    "summary": "Starlight Operator Field Kit & Council Harness provides an operational, zero-slop substrate for builders in the starlight ecosystem.",
+    "summary": "Starlight Operator Field Kit & Council Harness provides a substrate for builders in the starlight ecosystem.",
     "transformation": [
       "Deploy Starlight Operator Field Kit & Council Harness",
       "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Cryptographically verified SIP attestation and license assurance",
       "Direct integration with FrankX & Starlight estate toolchains"
     ],
     "socialProof": {
@@ -2520,12 +2447,7 @@
         "description": "Implementation files for Quickstart Verification Runbook."
       }
     ],
-    "faq": [
-      {
-        "question": "Is this generated with AI slop?",
-        "answer": "No. Every line of code, documentation, and prompt has been audited by the Forge Anti-Slop Linter and verified against empirical production benchmarks."
-      }
-    ],
+    "faq": [],
     "analyticsId": "starlight-operator-pack",
     "delivery": {
       "methods": [

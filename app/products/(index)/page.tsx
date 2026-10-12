@@ -10,7 +10,6 @@ import {
   Cpu,
   CheckCircle2,
   Package,
-  Zap,
   Search,
   Layers,
   Terminal,
@@ -709,39 +708,6 @@ export default function ProductsPage() {
                 )}
               </>
             )}
-          </div>
-        </section>
-
-        {/* Operating Pillars Summary */}
-        <section className="py-16 border-t border-white/5">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="text-center mb-12">
-              <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400 mb-2">
-                Rigorous execution standards
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: 'Modular agent workflows',
-                  description:
-                    'Turnkey multi-agent workflows designed for Claude Code, Codex, and modern orchestrators. Decoupled, observable, and reproducible.',
-                  icon: Zap,
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="p-7 rounded-2xl border border-white/[0.06] bg-white/[0.02]"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4">
-                    <item.icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
