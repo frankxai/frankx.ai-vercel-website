@@ -83,7 +83,7 @@ const products = [
     href: '/products/vibe-os',
     color: 'emerald',
     highlights: [
-      '50+ genre-specific prompts (electronic, hip-hop, ambient, cinematic)',
+      'Genre-specific prompts (electronic, hip-hop, ambient, cinematic)',
       'Emotion-to-sound mapping system',
       'Production enhancement and mastering guide',
     ],
@@ -116,7 +116,7 @@ const products = [
     href: '/products/suno-prompt-library',
     color: 'violet',
     highlights: [
-      '50+ battle-tested prompts across 5 genres',
+      'Prompts across 5 genres',
       'Emotion and tempo mapping for each genre',
       'Production tips and remixing guides',
     ],
