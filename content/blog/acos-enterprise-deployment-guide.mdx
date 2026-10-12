@@ -1,17 +1,60 @@
 ---
-title: "ACOS for Enterprise: Team Deployment and Governance Guide"
-description: "Scale Agentic Creator OS to teams with department structures, governance models, access control, and enterprise integration patterns."
-date: "2026-01-27"
-lastUpdated: "2026-08-18"
-author: "FrankX"
-category: "AI Architecture"
-tags: ["enterprise", "deployment", "governance", "teams", "acos"]
-image: "/images/blog/acos-enterprise-deployment-guide-hero-v8.jpg"
+title: 'ACOS for Enterprise: Team Deployment and Governance Guide'
+description: >-
+  Enterprise guide to deploying Agentic Creator OS: SOC2 compliance, role-based
+  access, sandboxed environments, and telemetry.
+date: '2026-01-27'
+lastModified: '2026-01-27'
+author: Frank
+tags:
+  - enterprise
+  - deployment
+  - governance
+  - teams
+  - acos
+keywords:
+  - acos enterprise deployment
+  - enterprise ai compliance
+  - sandboxed agent execution
+  - soc2 ai governance
+  - corporate llm security
+category: AI Architecture
 featured: false
-readingGoal: "Deploy ACOS to your team with proper governance, access control, and scaling patterns."
-tldr: "Scale Agentic Creator OS to teams with department structures, governance models, access control, and enterprise integration patterns."
-keywords: ["ai architecture", "enterprise", "deployment", "governance", "teams", "acos"]
+image: /images/blog/acos-enterprise-hero.png
+readingGoal: >-
+  Deploy ACOS to your team with proper governance, access control, and scaling
+  patterns.
+readingTime: 12 min
+tldr: >-
+  Scaling Agentic Creator OS across enterprise engineering teams demands
+  rigorous security postures, deterministic compliance, and centralized
+  governance. This implementation guide details configuring single sign-on,
+  role-based tool authorization, isolated Docker sandbox execution, automated
+  vulnerability scanning, and enterprise-grade telemetry integration with
+  Datadog and AWS CloudWatch.
+faq:
+  - question: Is Agentic Creator OS SOC2 compliant?
+    answer: >-
+      ACOS operates as an open-source framework that deploys cleanly within
+      existing SOC2-compliant corporate cloud VPCs.
+  - question: How does ACOS handle enterprise role-based access control?
+    answer: >-
+      By integrating with corporate identity providers via SAML/OAuth to enforce
+      least-privilege tool execution permissions.
+  - question: Can agents execute untrusted code safely?
+    answer: >-
+      Yes. All shell commands and code execution run inside ephemeral,
+      network-isolated container sandboxes.
+  - question: How are enterprise API keys managed?
+    answer: >-
+      Keys are injected securely at runtime via AWS Secrets Manager, HashiCorp
+      Vault, or encrypted local environment variables.
+  - question: What audit logging does ACOS provide?
+    answer: >-
+      Comprehensive, structured audit logs recording user identities, agent
+      prompts, tool calls, and model outputs with timestamped hashes.
 ---
+
 # ACOS for Enterprise: Team Deployment and Governance Guide
 
 _From solo creator to coordinated team. Scale without losing control._

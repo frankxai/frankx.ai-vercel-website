@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "How AI Agents Are Transforming Due Diligence in 2026",
+      "description": "How orchestrated multi-agent systems compress investment due diligence from 40+ hours to minutes while improving audit thoroughness and trust.",
+      "url": "https://frankx.ai/blog/ai-agents-transform-due-diligence",
+      "datePublished": "2026-02-14",
+      "dateModified": "2026-02-14",
+      "author": {
+        "@type": "Person",
+        "name": "Frank",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/ai-agents-transform-due-diligence"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/blog/ai-dd-agents-v2.png"
+      },
+      "keywords": "AI due diligence, investment research automation, AI agents investors, due diligence AI tools",
+      "abstract": "Multi-agent AI systems are revolutionizing investment due diligence by orchestrating financial modeling, regulatory cross-referencing, and competitor analysis into automated pipelines that cut review time by 70 percent while eliminating blind spots."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do AI agents reduce due diligence time?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By automating document parsing, financial data extraction, and competitive research into concurrent multi-agent workflows."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is data accuracy maintained in AI due diligence?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Through rigorous source validation that requires claims to be cross-referenced with primary SEC filings and audit reports."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can AI agents detect red flags in investment memos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Specialized risk agents compare financial projections against historical industry benchmarks to flag anomalies."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the role of human analysts in AI due diligence?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Human analysts evaluate strategic qualitative factors, conduct management interviews, and make final capital allocation decisions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which tools form the core of an AI due diligence stack?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Claude Code with web scraping MCP servers, persistent memory graphs, and structured valuation analysis skills."
+          }
+        }
+      ]
+    }
+  ]
+}

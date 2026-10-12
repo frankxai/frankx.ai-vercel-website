@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "The 30-Minute Creator OS: Build Your Minimum Viable Creative System",
+      "description": "Skip the theory. In 30 minutes, you'll have a working creative system with capture, create, and ship workflows. Everything else can wait.",
+      "url": "https://frankx.ai/blog/30-minute-creator-os-quick-start",
+      "datePublished": "2026-01-09",
+      "dateModified": "2026-01-09",
+      "author": {
+        "@type": "Person",
+        "name": "Frank",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/30-minute-creator-os-quick-start"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/blog/30-minute-creator-os-quick-start-hero.png"
+      },
+      "keywords": "creator os quick start, minimum viable creative system, creator productivity, 30 minute workflow, creator setup, simple creative system",
+      "abstract": "Set up your personal Creator OS in 30 minutes. This actionable walkthrough covers setting up Claude Code, defining your brand contract, connecting file tools, and shipping your first verified piece of content."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What will I accomplish in this 30-minute guide?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You will configure Claude Code with custom brand guidelines, install primary development tools, and execute an automated content workflow."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need prior programming experience?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Basic familiarity with the terminal is helpful, but the guide provides copy-paste commands and clear step-by-step instructions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What files govern my Creator OS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CLAUDE.md establishes your operating guidelines, while settings.json manages tool configurations and environment tokens."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I ensure the output matches my voice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By defining explicit voice rules, banned phrases, and structural examples directly in your CLAUDE.md contract."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I build first with Creator OS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A structured blog post or newsletter issue that tests research, drafting, and automated quality validation."
+          }
+        }
+      ]
+    }
+  ]
+}

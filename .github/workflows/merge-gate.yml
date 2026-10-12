@@ -170,6 +170,7 @@ jobs:
           pnpm run test:seo-title
           pnpm run test:music-release-registry
           pnpm run test:affiliate-links
+          pnpm run test:higgsfield-reader
 
       - name: Content and claims integrity
         run: |

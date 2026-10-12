@@ -70,6 +70,8 @@ const banned = [
   ['app/frank-riemer/page.tsx', ['12,000+', '12K+']],
   ['app/(landing)/connect/page.tsx', ['12,000+', '12K+']],
   ['app/downloads/preview/soulbook/page.tsx', ['12,000+', '12K+']],
+  ['app/soulbook/vault/page.tsx', ['regularPrice', 'Download Free Vault (.zip)', '25 Inquiry Prompts', '30-Day Money', 'Instant digital delivery', 'Acquire System Architect Kit', 'SQLite FTS5']],
+  ['components/funnel/UpsellModal.tsx', ['Lifetime access', 'Money Back Guarantee', 'Sovereign Bundle', 'Download Starting']],
   ['app/free-playbook/layout.tsx', ['12,000+', '12K+']],
   ['app/free-playbook/page.tsx', ['12,000+', '12K+']],
   ['app/goals/page.tsx', ['12,000+', '12K+']],
