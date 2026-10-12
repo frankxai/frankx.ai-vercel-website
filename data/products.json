@@ -228,8 +228,8 @@
       "ctaSecondaryHref": "/products/vibe-os/docs",
       "ctaSecondaryTracking": "vibe-os-docs",
       "guarantee": {
-        "label": "Open Source & Free Forever",
-        "description": "Vibe OS is free to use with no strings attached. Track your creative states and optimize your workflow without paying a penny."
+        "label": "Open source",
+        "description": "Vibe OS is free. The web app is still in development."
       }
     },
     "modules": [
@@ -259,7 +259,7 @@
       {
         "title": "Energy Optimization Guide",
         "value": "Free",
-        "description": "Science-backed strategies for managing energy, focus, and creative momentum."
+        "description": "Strategies for managing energy, focus, and creative momentum."
       }
     ],
     "faq": [

@@ -119,7 +119,7 @@ export default function VibeOSModules({ productId, modules, offer }: VibeOSModul
                         Join the Waitlist
                       </h3>
                       <p className="mt-3 text-sm text-white/60">
-                        Be the first to know when Vibe OS launches. Get early access, exclusive discounts, and behind-the-scenes updates.
+                        Be the first to know when Vibe OS launches.
                       </p>
                     </div>
 
