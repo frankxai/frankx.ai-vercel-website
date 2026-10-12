@@ -202,7 +202,7 @@ export function welcomeEmail1(data: {
           </p>
 
           <p style="font-size: 15px; color: #94a3b8; line-height: 1.6; margin: 0 0 24px 0;">
-            You just joined a community of creators and builders who use AI as a creative amplifier. Here are three resources to get you started right away.
+            You just joined a community of creators and builders who use AI as a creative amplifier. Here are two resources you can use now, and one that is coming soon.
           </p>
 
           <!-- Top 3 Resources -->
@@ -229,7 +229,7 @@ export function welcomeEmail1(data: {
           )}
 
           ${resourceRow(
-            'Suno Prompt Guide (coming soon)',
+            'Suno prompt guide (coming soon)',
             'Five Suno prompts with notes on why each works. Coming soon.',
             'https://frankx.ai/products/5-suno-prompts',
             '#10b981'
@@ -265,7 +265,7 @@ export function welcomeEmail1(data: {
 
   return {
     subject: 'Welcome to the FrankX Ecosystem',
-    html: welcomeWrapper(content, 'You\'re in. Here are three resources to get started right away.', data.recipientEmail)
+    html: welcomeWrapper(content, 'You\'re in. Two resources to start with now, and one coming soon.', data.recipientEmail)
   }
 }
 

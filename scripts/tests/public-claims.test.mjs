@@ -142,9 +142,9 @@ for (const [file, phrases] of banned) {
 test('welcome email describes the Suno guide and prompt library without unsourced claims', () => {
   const welcome = fs.readFileSync(path.join(root, 'lib/email-templates-welcome.ts'), 'utf8')
   for (const phrase of ['Free Suno Prompt Pack', 'production-ready prompts', 'top-performing tracks', 'Battle-tested prompts']) {
-    assert.equal(welcome.includes(phrase), false, phrase)
+    assert.equal(welcome.toLowerCase().includes(phrase.toLowerCase()), false, phrase)
   }
-  for (const phrase of ['Suno Prompt Guide (coming soon)', 'Five Suno prompts with notes on why each works. Coming soon.', 'Prompts for Suno, ChatGPT, Claude, and Midjourney. Organized by use case.']) {
+  for (const phrase of ['Suno prompt guide (coming soon)', 'Five Suno prompts with notes on why each works. Coming soon.', 'Prompts for Suno, ChatGPT, Claude, and Midjourney. Organized by use case.']) {
     assert.ok(welcome.includes(phrase), phrase)
   }
 })
