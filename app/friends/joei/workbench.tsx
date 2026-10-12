@@ -47,6 +47,8 @@ const storyPrompts = [
   'Tell a story about something you learned by making a mistake.',
 ]
 
+const responsibilities: Record<string, string> = { Pip: 'coordinates', Echo: 'preserves sources and voice', Moss: 'drafts activities', Folio: 'shapes the edition', Sunny: 'prepares an approved handoff' }
+
 export function JoeiWorkbench() {
   const [selected, setSelected] = useState(0)
   useEffect(() => {
@@ -70,7 +72,7 @@ export function JoeiWorkbench() {
   const [storyStatus, setStoryStatus] = useState('')
   const [promptIndex, setPromptIndex] = useState(0)
   const workflow = workflows[selected]
-  const brief = `${workflow.command}\n\nYou are preparing a draft for Joei’s review. This is a portable creative brief; do not claim to activate tools or agents you do not have.\n\nGoal: ${workflow.description}\n\nProposed team: ${workflow.roles.join(', ')}. Pip coordinates; Echo preserves sources and voice; Moss drafts activities; Folio shapes the edition; Sunny prepares an approved handoff.\n\nRequired inputs:\n${workflow.inputs.map(input => `- ${input}`).join('\n')}\n\nDeliverables:\n${workflow.outputs.map(output => `- ${output}`).join('\n')}\n\nReview gate: ${workflow.review}\n\nAsk for missing required inputs. Use only supplied, approved source material. Mark assumptions and invented examples. Preserve Joei’s voice; never invent client facts or personal stories. Show a small sample first. Pause for Joei’s approval before producing a final edition. Do not publish, contact clients or spend money.`
+  const brief = `${workflow.command}\n\nYou are preparing a draft for Joei’s review. This is a portable creative brief; do not claim to activate tools or agents you do not have.\n\nGoal: ${workflow.description}\n\nProposed team: ${workflow.roles.join(', ')}. ${workflow.roles.map(role => `${role} ${responsibilities[role]}`).join('; ')}.\n\nRequired inputs:\n${workflow.inputs.map(input => `- ${input}`).join('\n')}\n\nDeliverables:\n${workflow.outputs.map(output => `- ${output}`).join('\n')}\n\nReview gate: ${workflow.review}\n\nAsk for missing required inputs. Use only supplied, approved source material. Mark assumptions and invented examples. Preserve Joei’s voice; never invent client facts or personal stories. Show a small sample first. Pause for Joei’s approval before producing a final edition. Do not publish, contact clients or spend money.`
 
   async function copy(text: string, target: 'brief' | 'story') {
     const update = target === 'brief' ? setCopyStatus : setStoryStatus

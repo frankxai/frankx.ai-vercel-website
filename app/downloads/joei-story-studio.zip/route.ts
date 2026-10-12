@@ -7,7 +7,7 @@ import { createJoeiZip } from '@/lib/friends/joei-zip'
 export const runtime = 'nodejs'
 
 const assetNames = [
-  'story-atelier.webp', 'crew-sheet.webp', 'client-delivery.webp',
+  'crew-sheet.webp', 'client-delivery.webp',
   'story-garden.webp', 'workflow-infographic.svg', 'provenance.json',
 ] as const
 
@@ -18,6 +18,10 @@ export async function GET() {
   for (const name of assetNames) {
     const bytes = await readFile(join(process.cwd(), 'public', 'images', 'friends', 'joei', name))
     entries.push({ name: `assets/${name}`, bytes })
+  }
+  const provenance = JSON.parse(entries.find(entry => entry.name === 'assets/provenance.json')!.bytes.toString('utf8')) as { assets: { file: string; prompt: string }[] }
+  for (const asset of provenance.assets) {
+    entries.push({ name: `production/${asset.file.replace('.webp', '')}-prompt.txt`, bytes: Buffer.from(asset.prompt, 'utf8') })
   }
   const manifest = {
     revision: '2026-10-13.2', state: 'proposal',

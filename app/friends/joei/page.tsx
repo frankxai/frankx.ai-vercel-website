@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'A personal invitation from Frank: a proposed storytelling crew, printable products and creative workflows for Joei Chan.',
   alternates: { canonical: 'https://frankx.ai/friends/joei' },
   robots: { index: false, follow: false },
-  openGraph: { title: 'A little story studio for Joei', description: 'A creative proposal from Frank, with original robot characters and hands-on story experiments.', url: 'https://frankx.ai/friends/joei', images: ['/images/friends/joei/story-atelier.webp'] },
+  openGraph: { title: 'A little story studio for Joei', description: 'A creative proposal from Frank, with original robot characters and hands-on story experiments.', url: 'https://frankx.ai/friends/joei', images: ['/images/friends/joei/crew-sheet.webp'] },
 }
 
 const crew = [
@@ -39,7 +39,7 @@ export default function JoeiPage() {
           <p className={styles.source}>Your <a href="https://joei-chan.com/" target="_blank" rel="noopener noreferrer">storytelling, speaking and creative sessions <ExternalLink size={12} aria-hidden="true" /></a> are the starting point. These are my proposals for you to explore; they carry no endorsement from you.</p>
           <a className={styles.primary} href="#workbench">Try your story crew <ArrowDown size={17} aria-hidden="true" /></a>
           <figure className={styles.heroImage}>
-            <Image src="/images/friends/joei/story-atelier.webp" width={1536} height={1024} alt="Original concept art of five friendly robot assistants in a warm storytelling atelier, surrounded by paper, books and handmade objects." sizes="(max-width: 1200px) 100vw, 1160px" preload />
+            <Image src="/images/friends/joei/crew-sheet.webp" width={1600} height={900} alt="Original concept lineup of Echo, Moss, Pip, Folio and Sunny on a warm cream background." sizes="(max-width: 1200px) 100vw, 1160px" preload />
             <figcaption>Imagined studio · original characters · a proposal, ready to play with</figcaption>
           </figure>
         </header>
