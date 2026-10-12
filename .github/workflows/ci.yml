@@ -94,6 +94,9 @@ jobs:
       - name: Navigation completeness
         run: pnpm run test:navigation-completeness
 
+      - name: Blank-target noopener links
+        run: pnpm run test:noopener
+
       - name: Rate limiter reads the Upstash integration env
         run: pnpm run test:redis-env
 
