@@ -2,8 +2,20 @@
 
 import { useState, useCallback, useEffect, useRef } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
-import { Download, Mail, Loader2, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from 'lucide-react'
-import { getSessionId, trackPDFView, trackPDFDownload } from '@/lib/client-analytics'
+import {
+  Download,
+  Mail,
+  Loader2,
+  ChevronLeft,
+  ChevronRight,
+  ZoomIn,
+  ZoomOut,
+} from 'lucide-react'
+import {
+  getSessionId,
+  trackPDFView,
+  trackPDFDownload,
+} from '@/lib/client-analytics'
 import PDFEmailModal from './PDFEmailModal'
 import DownloadCounter from '../guides/DownloadCounter'
 import 'react-pdf/dist/Page/AnnotationLayer.css'
@@ -29,7 +41,7 @@ export default function EnhancedPDFViewer({
   description,
   showEmailButton = true,
   showDownloadCounter = true,
-  className = ''
+  className = '',
 }: EnhancedPDFViewerProps) {
   const [numPages, setNumPages] = useState<number | null>(null)
   const [pageNumber, setPageNumber] = useState(1)
@@ -42,7 +54,7 @@ export default function EnhancedPDFViewer({
   const pagesViewedRef = useRef<Set<number>>(new Set([1]))
   const startTimeRef = useRef<number>(0)
   const lastTrackTimeRef = useRef<number>(0)
-  const trackingIntervalRef = useRef<NodeJS.Timeout>()
+  const trackingIntervalRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
   // Initialize timestamps on mount
   useEffect(() => {
@@ -64,14 +76,16 @@ export default function EnhancedPDFViewer({
 
     trackingIntervalRef.current = setInterval(() => {
       const timeSpent = Math.floor((Date.now() - startTimeRef.current) / 1000)
-      const completionRate = numPages ? (pagesViewedRef.current.size / numPages) * 100 : 0
+      const completionRate = numPages
+        ? (pagesViewedRef.current.size / numPages) * 100
+        : 0
 
       trackPDFView(
         guideSlug,
         title,
         Array.from(pagesViewedRef.current),
         timeSpent,
-        completionRate
+        completionRate,
       )
 
       lastTrackTimeRef.current = Date.now()
@@ -94,16 +108,19 @@ export default function EnhancedPDFViewer({
         title,
         Array.from(pagesViewed),
         timeSpent,
-        completionRate
+        completionRate,
       )
     }
   }, [guideSlug, title, numPages])
 
-  const onDocumentLoadSuccess = useCallback(({ numPages }: { numPages: number }) => {
-    setNumPages(numPages)
-    setIsLoading(false)
-    setError(null)
-  }, [])
+  const onDocumentLoadSuccess = useCallback(
+    ({ numPages }: { numPages: number }) => {
+      setNumPages(numPages)
+      setIsLoading(false)
+      setError(null)
+    },
+    [],
+  )
 
   const onDocumentLoadError = useCallback((error: Error) => {
     setError('Failed to load PDF. Please try again.')
@@ -128,19 +145,19 @@ export default function EnhancedPDFViewer({
   }, [])
 
   const goToPrevPage = useCallback(() => {
-    setPageNumber(prev => Math.max(1, prev - 1))
+    setPageNumber((prev) => Math.max(1, prev - 1))
   }, [])
 
   const goToNextPage = useCallback(() => {
-    setPageNumber(prev => Math.min(numPages || prev, prev + 1))
+    setPageNumber((prev) => Math.min(numPages || prev, prev + 1))
   }, [numPages])
 
   const zoomIn = useCallback(() => {
-    setScale(prev => Math.min(2.0, prev + 0.2))
+    setScale((prev) => Math.min(2.0, prev + 0.2))
   }, [])
 
   const zoomOut = useCallback(() => {
-    setScale(prev => Math.max(0.5, prev - 0.2))
+    setScale((prev) => Math.max(0.5, prev - 0.2))
   }, [])
 
   return (
@@ -248,8 +265,18 @@ export default function EnhancedPDFViewer({
             <div className="absolute inset-0 flex items-center justify-center bg-gray-900/80 backdrop-blur-sm z-20">
               <div className="text-center p-8 max-w-md">
                 <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-8 h-8 text-red-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </div>
                 <p className="text-red-400 mb-4">{error}</p>

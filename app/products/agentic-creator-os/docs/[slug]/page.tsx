@@ -2,11 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Script from 'next/script'
-import {
-  ArrowLeft,
-  ArrowRight,
-  ExternalLink
-} from 'lucide-react'
+import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react'
 import { docsContent } from '../docs-content'
 
 /**
@@ -31,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!doc) {
     return {
-      title: 'Not Found | Agentic Creator OS Documentation'
+      title: 'Not Found | Agentic Creator OS Documentation',
     }
   }
 
@@ -43,11 +39,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${doc.title} - Agentic Creator OS`,
       description: doc.description,
       url: `https://frankx.ai/products/agentic-creator-os/docs/${slug}`,
-      type: 'article'
+      type: 'article',
     },
     alternates: {
-      canonical: `https://frankx.ai/products/agentic-creator-os/docs/${slug}`
-    }
+      canonical: `https://frankx.ai/products/agentic-creator-os/docs/${slug}`,
+    },
   }
 }
 
@@ -62,7 +58,8 @@ function getPrevNext(currentSlug: string) {
   const currentIndex = docOrder.indexOf(currentSlug)
   return {
     prev: currentIndex > 0 ? docOrder[currentIndex - 1] : null,
-    next: currentIndex < docOrder.length - 1 ? docOrder[currentIndex + 1] : null
+    next:
+      currentIndex < docOrder.length - 1 ? docOrder[currentIndex + 1] : null,
   }
 }
 
@@ -70,7 +67,9 @@ function getPrevNext(currentSlug: string) {
 function CodeBlock({ code, language }: { code: string; language?: string }) {
   return (
     <pre className="bg-void/50 rounded-lg p-4 overflow-x-auto border border-white/10">
-      <code className={`text-sm font-mono ${language ? `language-${language}` : ''}`}>
+      <code
+        className={`text-sm font-mono ${language ? `language-${language}` : ''}`}
+      >
         {code}
       </code>
     </pre>
@@ -90,18 +89,20 @@ export default async function DocPage({ params }: Props) {
   const nextDoc = next ? docsContent[next] : null
 
   // HowTo schema for technical documentation
-  const howToSchema = doc.steps ? {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: doc.title,
-    description: doc.description,
-    step: doc.steps.map((step, index) => ({
-      '@type': 'HowToStep',
-      position: index + 1,
-      name: step.title,
-      text: step.description
-    }))
-  } : null
+  const howToSchema = doc.steps
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name: doc.title,
+        description: doc.description,
+        step: doc.steps.map((step, index) => ({
+          '@type': 'HowToStep',
+          position: index + 1,
+          name: step.title,
+          text: step.description,
+        })),
+      }
+    : null
 
   return (
     <article className="max-w-none">
@@ -123,7 +124,9 @@ export default async function DocPage({ params }: Props) {
       {/* Table of Contents */}
       {doc.sections && doc.sections.length > 0 && (
         <nav className="mb-8 p-6 rounded-xl bg-space/80 backdrop-blur-xl border border-white/10">
-          <h2 className="text-lg font-semibold text-white mb-4">On this page</h2>
+          <h2 className="text-lg font-semibold text-white mb-4">
+            On this page
+          </h2>
           <ul className="space-y-2">
             {doc.sections.map((section) => (
               <li key={section.id}>
@@ -144,15 +147,23 @@ export default async function DocPage({ params }: Props) {
         {doc.contentBlocks.map((block, index) => {
           switch (block.type) {
             case 'heading':
-              const HeadingTag = `h${block.level}` as keyof JSX.IntrinsicElements
+              const HeadingTag = `h${block.level}` as
+                | 'h1'
+                | 'h2'
+                | 'h3'
+                | 'h4'
+                | 'h5'
+                | 'h6'
               return (
                 <HeadingTag
                   key={index}
                   id={block.id}
                   className={`font-bold text-white ${
-                    block.level === 2 ? 'text-2xl mt-12 mb-4' :
-                    block.level === 3 ? 'text-xl mt-8 mb-3' :
-                    'text-lg mt-6 mb-2'
+                    block.level === 2
+                      ? 'text-2xl mt-12 mb-4'
+                      : block.level === 3
+                        ? 'text-xl mt-8 mb-3'
+                        : 'text-lg mt-6 mb-2'
                   }`}
                 >
                   {block.text}
@@ -172,7 +183,10 @@ export default async function DocPage({ params }: Props) {
               )
             case 'list':
               return (
-                <ul key={index} className="list-disc list-inside space-y-2 mb-4 text-slate-300">
+                <ul
+                  key={index}
+                  className="list-disc list-inside space-y-2 mb-4 text-slate-300"
+                >
                   {block.items.map((item, i) => (
                     <li key={i}>{item}</li>
                   ))}
@@ -186,8 +200,8 @@ export default async function DocPage({ params }: Props) {
                     block.variant === 'tip'
                       ? 'bg-tech-primary/10 border-tech-primary/30'
                       : block.variant === 'warning'
-                      ? 'bg-amber-500/10 border-amber-500/30'
-                      : 'bg-white/5 border-white/10'
+                        ? 'bg-amber-500/10 border-amber-500/30'
+                        : 'bg-white/5 border-white/10'
                   }`}
                 >
                   <p className="text-slate-200">{block.text}</p>
@@ -200,7 +214,10 @@ export default async function DocPage({ params }: Props) {
                     <thead>
                       <tr className="border-b border-white/10">
                         {block.headers.map((header, i) => (
-                          <th key={i} className="py-3 px-4 font-semibold text-white">
+                          <th
+                            key={i}
+                            className="py-3 px-4 font-semibold text-white"
+                          >
                             {header}
                           </th>
                         ))}
@@ -210,7 +227,10 @@ export default async function DocPage({ params }: Props) {
                       {block.rows.map((row, rowIndex) => (
                         <tr key={rowIndex} className="border-b border-white/5">
                           {row.map((cell, cellIndex) => (
-                            <td key={cellIndex} className="py-3 px-4 text-slate-300">
+                            <td
+                              key={cellIndex}
+                              className="py-3 px-4 text-slate-300"
+                            >
                               {cell}
                             </td>
                           ))}
@@ -229,7 +249,9 @@ export default async function DocPage({ params }: Props) {
       {/* Related Links */}
       {doc.relatedLinks && doc.relatedLinks.length > 0 && (
         <section className="mt-12 p-6 rounded-xl bg-space/80 backdrop-blur-xl border border-white/10">
-          <h2 className="text-lg font-semibold text-white mb-4">Related Resources</h2>
+          <h2 className="text-lg font-semibold text-white mb-4">
+            Related Resources
+          </h2>
           <div className="space-y-3">
             {doc.relatedLinks.map((link) => (
               <a
