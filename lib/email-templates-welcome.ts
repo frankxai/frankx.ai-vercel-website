@@ -229,8 +229,8 @@ export function welcomeEmail1(data: {
           )}
 
           ${resourceRow(
-            'Free Suno Prompt Pack',
-            'Five Suno prompts to start your next track.',
+            'Suno Prompt Guide (coming soon)',
+            'Five Suno prompts with notes on why each works. Coming soon.',
             'https://frankx.ai/products/5-suno-prompts',
             '#10b981'
           )}
@@ -313,7 +313,7 @@ export function welcomeEmail2(data: {
 
           ${resourceRow(
             '02 — Prompt Library',
-            'Battle-tested prompts for Suno, ChatGPT, Claude, and Midjourney. Organized by use case.',
+            'Prompts for Suno, ChatGPT, Claude, and Midjourney. Organized by use case.',
             'https://frankx.ai/prompt-library',
             '#7C3AED'
           )}

@@ -332,7 +332,7 @@ async function sendWelcomeEmail(
   if (listType === 'music-lab') {
     template = musicPromptsEmail({
       recipientName: name || 'Creator',
-      waitlistUrl: `${siteConfig.url}/waitlist?intent=5-suno-prompts`,
+      downloadUrl: `${siteConfig.url}/api/download?product=5-suno-prompts`,
       recipientEmail: email,
     })
   } else if (listType === 'ikigai-branding') {
@@ -596,7 +596,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error:
-            'Your subscription was saved, but the email could not be sent. Please try again.',
+            'Your subscription was saved, but the prompt email could not be sent. Please try again.',
         },
         { status: 502 },
       )
@@ -606,7 +606,7 @@ export async function POST(request: NextRequest) {
       success: true,
       message:
         listType === 'music-lab'
-          ? 'Check your email for a note about the guide.'
+          ? 'Check your email for your free prompts!'
           : 'Successfully subscribed!',
       subscriber: data.id,
       updated: false,

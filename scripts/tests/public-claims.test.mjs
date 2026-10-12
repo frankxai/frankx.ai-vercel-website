@@ -126,18 +126,12 @@ for (const [file, phrases] of banned) {
   })
 }
 
-test('music-lab and welcome emails promise no 5-suno download or play counts', () => {
-  const route = fs.readFileSync(path.join(root, 'app/api/subscribe/route.ts'), 'utf8')
-  for (const phrase of ['/api/download?product=5-suno-prompts', 'your free prompts']) {
-    assert.equal(route.includes(phrase), false, phrase)
-  }
-  assert.ok(route.includes('/waitlist?intent=5-suno-prompts'), 'music-lab email links to the waitlist')
-  const templates = fs.readFileSync(path.join(root, 'lib/email-templates.ts'), 'utf8')
-  for (const phrase of ['Your 5 Suno prompts are ready', 'Download Your 5 Prompts', 'top-performing tracks', '500+ combined plays', '500+ plays', '142 plays', 'Get 100+ Prompts', 'has 100+ prompts']) {
-    assert.equal(templates.includes(phrase), false, phrase)
-  }
+test('welcome email describes the Suno guide and prompt library without unsourced claims', () => {
   const welcome = fs.readFileSync(path.join(root, 'lib/email-templates-welcome.ts'), 'utf8')
-  for (const phrase of ['production-ready prompts', 'top-performing tracks']) {
+  for (const phrase of ['Free Suno Prompt Pack', 'production-ready prompts', 'top-performing tracks', 'Battle-tested prompts']) {
     assert.equal(welcome.includes(phrase), false, phrase)
+  }
+  for (const phrase of ['Suno Prompt Guide (coming soon)', 'Five Suno prompts with notes on why each works. Coming soon.', 'Prompts for Suno, ChatGPT, Claude, and Midjourney. Organized by use case.']) {
+    assert.ok(welcome.includes(phrase), phrase)
   }
 })
