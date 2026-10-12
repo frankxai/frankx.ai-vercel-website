@@ -22,6 +22,7 @@ function isExternal(href: string) {
 }
 
 export default function OfferStack({ productId, offer, modules, bonuses, pricingTiers }: OfferStackProps) {
+  const waitlistHref = `/waitlist?intent=${productId}`
   const handleClick = (target: 'primary' | 'secondary' | string, href: string, label?: string) => {
     trackEvent('product_cta_click', {
       productId,
@@ -83,8 +84,8 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                   Be the first to know when this product launches.
                 </p>
                 <Link
-                  href="/newsletter"
-                  onClick={() => handleClick('waitlist', '/newsletter', 'product-waitlist')}
+                  href={waitlistHref}
+                  onClick={() => handleClick('waitlist', waitlistHref, 'product-waitlist')}
                   className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_55px_rgba(45,212,191,0.35)] transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(56,189,248,0.45)]"
                 >
                   <Mail className="w-4 h-4" />

@@ -23,9 +23,10 @@ function isExternal(href: string) {
 }
 
 export default function ProductHero({ productId, badge, title, subtitle, promise, offer }: ProductHeroProps) {
+  const waitlistHref = `/waitlist?intent=${productId}`
   const handleClick = (target: 'primary' | 'secondary') => {
     const href = COMING_SOON_MODE
-      ? '/newsletter'
+      ? waitlistHref
       : target === 'primary'
         ? offer?.ctaPrimaryHref
         : offer?.ctaSecondaryHref
@@ -74,7 +75,7 @@ export default function ProductHero({ productId, badge, title, subtitle, promise
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           {COMING_SOON_MODE ? (
             <Link
-              href="/newsletter"
+              href={waitlistHref}
               onClick={() => handleClick('primary')}
               className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_50px_rgba(45,212,191,0.35)] transition hover:-translate-y-1"
             >
