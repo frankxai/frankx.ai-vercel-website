@@ -85,6 +85,17 @@
           }
         ]
       }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/skill-activation-prompt.mjs",
+            "timeout": 5
+          }
+        ]
+      }
     ]
   }
 }
