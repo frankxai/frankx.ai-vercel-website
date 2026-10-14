@@ -88,7 +88,7 @@ export default function CreativeAIToolkitPage() {
       <FinalCTA
         productId={product.analyticsId ?? product.id}
         title="Join the Intelligence Revolution"
-        description="Install the operating system that thousands of creators and teams trust to orchestrate AI with soul and precision."
+        description="The toolkit is not on sale yet. Join the waitlist and tell us what you would pay for it."
         primaryLabel={product.offer.ctaPrimary}
         primaryHref={product.offer.ctaPrimaryHref}
         primaryTracking={product.offer.ctaPrimaryTracking}

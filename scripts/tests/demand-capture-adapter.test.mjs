@@ -82,6 +82,12 @@ test('both frankx registry products are waitlist-only until their row records a 
 
   const passed = { products: registry.products.map((row) => ({ ...row, gate: 'G5 PASS 2026-10-14 receipt queen/reports/product-gates/x.md' })) }
   assert.equal(productsModule(passed).isWaitlistOnly('creative-ai-toolkit'), false)
+
+  const revoked = { products: registry.products.map((row) => ({ ...row, gate: 'G1 FAIL 2026-10-14; earlier PASS revoked' })) }
+  assert.equal(productsModule(revoked).isWaitlistOnly('creative-ai-toolkit'), true, 'a PASS mentioned later in the text is not a pass')
+
+  const closedList = { products: registry.products.map((row) => ({ ...row, waitlist: { ...row.waitlist, enabled: false } })) }
+  assert.equal(productsModule(closedList).isWaitlistOnly('creative-ai-toolkit'), true, 'closing the waitlist never opens a sale')
 })
 
 test('a consented /api/demand call becomes a DemandSignal through the shared handler', async () => {

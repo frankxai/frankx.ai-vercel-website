@@ -36,7 +36,7 @@ export default async function ProductWaitlistPage({ params }: Props) {
     <main className="min-h-[100svh] bg-[#0a0a0b] text-white">
       <div className="mx-auto max-w-2xl space-y-10 px-4 pb-20 pt-28 sm:px-6">
         <header className="space-y-4">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-emerald-400/80">
+          <p className="text-sm font-medium text-emerald-400/80">
             Waitlist · not on sale
           </p>
           <h1 className="text-4xl font-bold tracking-tight md:text-5xl">{copy.name}</h1>

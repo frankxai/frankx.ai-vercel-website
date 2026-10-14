@@ -11,12 +11,13 @@ const rows = registry.products as RegistryRow[]
 
 const rowFor = (id: unknown) => (typeof id === 'string' ? rows.find((row) => row.id === id) : undefined)
 
-const holdsGatePass = (row: RegistryRow) => /\bPASS\b/.test(row.gate)
+// Only a gate text that opens with a PASS stamp counts; "G1 FAIL; earlier PASS revoked" does not.
+const holdsGatePass = (row: RegistryRow) => /^(G\d+\s+)?PASS\b/.test(row.gate.trim())
 
 /** True while the product may only be offered through its waitlist: no price, no buy path. */
 export function isWaitlistOnly(id: unknown): boolean {
   const row = rowFor(id)
-  return Boolean(row && row.waitlist.enabled && !holdsGatePass(row))
+  return Boolean(row && !holdsGatePass(row))
 }
 
 /** The registry row as the shared capture handler expects it, or undefined for an unknown id. */
