@@ -17,6 +17,7 @@ import { EcosystemBadge, EcosystemStack } from '@/components/blog/EcosystemBadge
 import { MascotInsight } from '@/components/blog/MascotInsight'
 import { LiquidGlassImage } from '@/components/blog/LiquidGlassImage'
 import PlatformMarkGrid from '@/components/blog/PlatformMarkGrid'
+import HiggsfieldWorkbench from '@/components/guides/HiggsfieldWorkbench'
 import {
   VoiceArchitectureChoice,
   VoiceCostBaseline,
@@ -340,6 +341,7 @@ export const mdxComponents: MDXComponents = {
   VoiceCostBaseline,
   VoiceProviderRoles,
   VoiceReferenceArchitecture,
+  HiggsfieldWorkbench,
   Link,
   // Embed components for immersive media in blog posts
   YouTubeEmbed,
