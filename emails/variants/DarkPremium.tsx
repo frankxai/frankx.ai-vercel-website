@@ -138,7 +138,7 @@ export const DarkPremium = ({
               color: 'rgba(255,255,255,0.9)',
               marginBottom: '24px',
             }}>
-              I'm an AI architect. I've shipped AI products and built multi-agent orchestration systems.
+              I'm an AI Architect. I've shipped AI products and built multi-agent orchestration systems.
             </Text>
 
             <Text style={{

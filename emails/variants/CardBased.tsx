@@ -173,7 +173,7 @@ export const CardBased = ({
               color: '#1a1a1a',
               marginBottom: '16px',
             }}>
-              I'm an AI architect. I've shipped AI products and built multi-agent orchestration systems.
+              I'm an AI Architect. I've shipped AI products and built multi-agent orchestration systems.
             </Text>
 
             <Text style={{
