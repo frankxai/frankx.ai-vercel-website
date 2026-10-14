@@ -8,26 +8,9 @@
 @import '@fontsource/poppins/600.css';
 @import '@fontsource/poppins/700.css';
 @import '@fontsource/poppins/800.css';
-@import '@fontsource/playfair-display/400.css';
-@import '@fontsource/playfair-display/400-italic.css';
-@import '@fontsource/playfair-display/500.css';
-@import '@fontsource/playfair-display/500-italic.css';
-@import '@fontsource/playfair-display/600.css';
-@import '@fontsource/playfair-display/600-italic.css';
-@import '@fontsource/playfair-display/700.css';
-@import '@fontsource/playfair-display/700-italic.css';
-@import '@fontsource/playfair-display/800.css';
-@import '@fontsource/playfair-display/800-italic.css';
-@import '@fontsource/playfair-display/900.css';
-@import '@fontsource/playfair-display/900-italic.css';
-@import '@fontsource/jetbrains-mono/100.css';
-@import '@fontsource/jetbrains-mono/200.css';
-@import '@fontsource/jetbrains-mono/300.css';
-@import '@fontsource/jetbrains-mono/400.css';
-@import '@fontsource/jetbrains-mono/500.css';
-@import '@fontsource/jetbrains-mono/600.css';
-@import '@fontsource/jetbrains-mono/700.css';
-@import '@fontsource/jetbrains-mono/800.css';
+@import '@fontsource-variable/playfair-display/index.css';
+@import '@fontsource-variable/playfair-display/wght-italic.css';
+@import '@fontsource-variable/jetbrains-mono/index.css';
 @import '@fontsource/cormorant-garamond/300.css';
 @import '@fontsource/cormorant-garamond/300-italic.css';
 @import '@fontsource/cormorant-garamond/400.css';
@@ -38,44 +21,109 @@
 @import '@fontsource/cormorant-garamond/600-italic.css';
 @import '@fontsource/cormorant-garamond/700.css';
 @import '@fontsource/cormorant-garamond/700-italic.css';
-@import '@fontsource/lora/400.css';
-@import '@fontsource/lora/400-italic.css';
-@import '@fontsource/lora/500.css';
-@import '@fontsource/lora/500-italic.css';
-@import '@fontsource/lora/600.css';
-@import '@fontsource/lora/600-italic.css';
-@import '@fontsource/lora/700.css';
-@import '@fontsource/lora/700-italic.css';
+@import '@fontsource-variable/lora/index.css';
+@import '@fontsource-variable/lora/wght-italic.css';
 @import '@fontsource/dancing-script/400.css';
 @import '@fontsource/dancing-script/500.css';
 @import '@fontsource/dancing-script/600.css';
 @import '@fontsource/dancing-script/700.css';
-@import '@fontsource/eb-garamond/400.css';
-@import '@fontsource/eb-garamond/500.css';
-@import '@fontsource/eb-garamond/600.css';
-@import '@fontsource/eb-garamond/700.css';
-@import '@fontsource/eb-garamond/800.css';
+@import '@fontsource-variable/eb-garamond/index.css';
 @import '@fontsource/dm-serif-display/400.css';
-@import '@fontsource/outfit/100.css';
-@import '@fontsource/outfit/200.css';
-@import '@fontsource/outfit/300.css';
-@import '@fontsource/outfit/400.css';
-@import '@fontsource/outfit/500.css';
-@import '@fontsource/outfit/600.css';
-@import '@fontsource/outfit/700.css';
-@import '@fontsource/outfit/800.css';
-@import '@fontsource/outfit/900.css';
+@import '@fontsource-variable/outfit/index.css';
 
-.fx-font-var-inter { --font-inter: 'Inter', Arial, sans-serif; }
-.fx-font-var-poppins { --font-poppins: 'Poppins', Arial, sans-serif; }
-.fx-font-var-serif { --font-serif: 'Playfair Display', Georgia, serif; }
-.fx-font-var-mono { --font-mono: 'JetBrains Mono', monospace; }
-.fx-font-var-serif-editorial { --font-serif-editorial: 'Playfair Display', Georgia, serif; }
-.fx-font-var-display { --font-display: 'Cormorant Garamond', Georgia, serif; }
-.fx-font-var-body-serif { --font-body-serif: 'Lora', Georgia, serif; }
-.fx-font-var-cursive { --font-cursive: 'Dancing Script', cursive; }
-.fx-font-var-garamond { --font-garamond: 'EB Garamond', Georgia, serif; }
-.fx-font-var-lora { --font-lora: 'Lora', Georgia, serif; }
-.fx-font-var-dm-serif { --font-dm-serif: 'DM Serif Display', Georgia, serif; }
-.fx-font-var-outfit { --font-outfit: 'Outfit', Arial, sans-serif; }
-.fx-font-var-playfair { --font-playfair: 'Playfair Display', Georgia, serif; }
+
+/* Generated from Next 16.4 calculateSizeAdjustValues and its packaged font metrics. */
+@font-face {
+  font-family: 'FX inter Fallback';
+  src: local('Arial');
+  ascent-override: 90.44%;
+  descent-override: 22.52%;
+  line-gap-override: 0.00%;
+  size-adjust: 107.12%;
+}
+@font-face {
+  font-family: 'FX poppins Fallback';
+  src: local('Arial');
+  ascent-override: 93.62%;
+  descent-override: 31.21%;
+  line-gap-override: 8.92%;
+  size-adjust: 112.16%;
+}
+@font-face {
+  font-family: 'FX playfair-display Fallback';
+  src: local('Times New Roman');
+  ascent-override: 97.25%;
+  descent-override: 22.56%;
+  line-gap-override: 0.00%;
+  size-adjust: 111.26%;
+}
+@font-face {
+  font-family: 'FX jetbrains-mono Fallback';
+  src: local('Arial');
+  ascent-override: 75.79%;
+  descent-override: 22.29%;
+  line-gap-override: 0.00%;
+  size-adjust: 134.59%;
+}
+@font-face {
+  font-family: 'FX cormorant-garamond Fallback';
+  src: local('Times New Roman');
+  ascent-override: 95.27%;
+  descent-override: 29.59%;
+  line-gap-override: 0.00%;
+  size-adjust: 96.98%;
+}
+@font-face {
+  font-family: 'FX lora Fallback';
+  src: local('Times New Roman');
+  ascent-override: 87.33%;
+  descent-override: 23.78%;
+  line-gap-override: 0.00%;
+  size-adjust: 115.20%;
+}
+@font-face {
+  font-family: 'FX dancing-script Fallback';
+  src: local('Arial');
+  ascent-override: 112.99%;
+  descent-override: 34.39%;
+  line-gap-override: 0.00%;
+  size-adjust: 81.43%;
+}
+@font-face {
+  font-family: 'FX eb-garamond Fallback';
+  src: local('Times New Roman');
+  ascent-override: 106.26%;
+  descent-override: 31.44%;
+  line-gap-override: 0.00%;
+  size-adjust: 94.77%;
+}
+@font-face {
+  font-family: 'FX dm-serif-display Fallback';
+  src: local('Times New Roman');
+  ascent-override: 94.37%;
+  descent-override: 30.51%;
+  line-gap-override: 0.00%;
+  size-adjust: 109.78%;
+}
+@font-face {
+  font-family: 'FX outfit Fallback';
+  src: local('Arial');
+  ascent-override: 100.18%;
+  descent-override: 26.05%;
+  line-gap-override: 0.00%;
+  size-adjust: 99.82%;
+}
+
+.fx-font-var-inter { --font-inter: 'Inter', 'FX inter Fallback', Arial, sans-serif; }
+.fx-font-var-poppins { --font-poppins: 'Poppins', 'FX poppins Fallback', Arial, sans-serif; }
+.fx-font-var-serif { --font-serif: 'Playfair Display Variable', 'FX playfair-display Fallback', 'Times New Roman', serif; }
+.fx-font-var-mono { --font-mono: 'JetBrains Mono Variable', 'FX jetbrains-mono Fallback', Arial, monospace; }
+.fx-font-var-serif-editorial { --font-serif-editorial: 'Playfair Display Variable', 'FX playfair-display Fallback', 'Times New Roman', serif; }
+.fx-font-var-display { --font-display: 'Cormorant Garamond', 'FX cormorant-garamond Fallback', 'Times New Roman', serif; }
+.fx-font-var-body-serif { --font-body-serif: 'Lora Variable', 'FX lora Fallback', 'Times New Roman', serif; }
+.fx-font-var-cursive { --font-cursive: 'Dancing Script', 'FX dancing-script Fallback', Arial, cursive; }
+.fx-font-var-garamond { --font-garamond: 'EB Garamond Variable', 'FX eb-garamond Fallback', 'Times New Roman', serif; }
+.fx-font-var-lora { --font-lora: 'Lora Variable', 'FX lora Fallback', 'Times New Roman', serif; }
+.fx-font-var-dm-serif { --font-dm-serif: 'DM Serif Display', 'FX dm-serif-display Fallback', 'Times New Roman', serif; }
+.fx-font-var-outfit { --font-outfit: 'Outfit Variable', 'FX outfit Fallback', Arial, sans-serif; }
+.fx-font-var-playfair { --font-playfair: 'Playfair Display Variable', 'FX playfair-display Fallback', 'Times New Roman', serif; }

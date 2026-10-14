@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 const garamond = { variable: 'fx-font-var-garamond' }
 
-const lora = { variable: 'fx-font-var-body-serif' }
+const lora = { variable: 'fx-font-var-lora' }
 
 export const metadata: Metadata = {
   title: 'Hoffnung — Ein Licht in der Dunkelheit',
