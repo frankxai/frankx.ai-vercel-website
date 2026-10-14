@@ -188,8 +188,10 @@ export function getDistroKidCandidates(): TrackAnalytics[] {
 
 export function getMusicStats() {
   const profileStats = musicInventory._profileStats
+  const listed = tracks.length
+  const headerAgrees = musicInventory._count === listed
   return {
-    totalTracks: musicInventory._count,
+    totalTracks: headerAgrees ? listed : null,
     indexedTracks: musicInventory._indexedCount,
     followers: profileStats.followers,
     totalPlays: profileStats.totalPlays,

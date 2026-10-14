@@ -229,7 +229,6 @@ export default async function PackPage({ params }: PageProps) {
           <h2 className="text-2xl font-bold text-white">{p.specialists.length} specialists in this pack</h2>
           <p className="mt-2 text-sm text-slate-400">
             Status badges reflect what&rsquo;s shipped in the current catalog. In-progress slots ship as Frank writes them.
-            Buyers get all updates as the pack evolves.
           </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
             {p.specialists.map((s) => {

@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "ACOS Use Cases: Find Your Creator Type and Ideal Workflow",
+      "description": "Explore production use cases for Agentic Creator OS across technical writers, indie hackers, music producers, and enterprise AI architects.",
+      "url": "https://frankx.ai/blog/acos-use-cases-creator-types",
+      "datePublished": "2026-01-27",
+      "dateModified": "2026-01-27",
+      "author": {
+        "@type": "Person",
+        "name": "Frank",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/acos-use-cases-creator-types"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/blog/acos-use-cases-creator-types-hero.png"
+      },
+      "keywords": "acos use cases, creator workflows, ai creator os, autonomous agent workflows, developer productivity",
+      "abstract": "Agentic Creator OS adapts across four distinct builder profiles: Technical Writers synthesizing complex research, Indie Hackers shipping full-stack prototypes, Music Producers scaling sonic production, and AI Architects managing enterprise systems. Each archetype leverages modular skills and custom prompts to compress multi-day workflows into repeatable hours."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who benefits most from Agentic Creator OS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Solo builders, developers, writers, and technical creators who want to automate operations and code shipping without hiring agency staff."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do technical writers use ACOS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "They leverage research intake agents, structured outline generators, and automated schema linters to produce deeply cited technical essays."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can music producers utilize ACOS workflows?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. ACOS orchestrates lyrics generation, Suno prompt engineering, metadata management, and playlist distribution pipelines."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do indie hackers integrate ACOS into product building?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By using autonomous agents to scaffold Next.js routes, validate TypeScript interfaces, and execute automated deployment checks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is ACOS suitable for enterprise architects?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Enterprise architects use ACOS to enforce security guardrails, generate architecture diagrams, and evaluate multi-cloud models."
+          }
+        }
+      ]
+    }
+  ]
+}

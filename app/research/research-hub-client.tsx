@@ -129,7 +129,9 @@ function HeroSection() {
           {[
             { label: 'Research domains', value: String(publicTopicMaps.length), icon: Layers },
             { label: 'Reviewed domains', value: String(sourcedDomainCount), icon: ShieldCheck },
-            { label: 'Published sources', value: String(totalSources), icon: Search },
+            ...(totalSources > 0
+              ? [{ label: 'Published sources', value: String(totalSources), icon: Search }]
+              : []),
             { label: 'Research hubs', value: '7', icon: Compass },
           ].map((stat, i) => (
             <div key={i} className="border-l border-white/15 py-1 pl-4">
@@ -399,13 +401,15 @@ function MethodologySection() {
             Full Methodology
             <ArrowRight className="w-3 h-3" />
           </Link>
-          <Link
-            href="/research/sources"
-            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white bg-white/[0.03] border border-white/[0.06] px-4 py-2 rounded-full transition-[background-color,color] hover:bg-white/[0.06]"
-          >
-            Browse {totalSources} Registered Sources
-            <ArrowRight className="w-3 h-3" />
-          </Link>
+          {totalSources > 0 && (
+            <Link
+              href="/research/sources"
+              className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white bg-white/[0.03] border border-white/[0.06] px-4 py-2 rounded-full transition-[background-color,color] hover:bg-white/[0.06]"
+            >
+              Browse {totalSources} Registered Sources
+              <ArrowRight className="w-3 h-3" />
+            </Link>
+          )}
         </div>
       </div>
     </section>

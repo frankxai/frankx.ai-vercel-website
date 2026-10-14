@@ -97,6 +97,14 @@ test('changing the gates themselves is a locked governance surface once they exi
 
 test('a brief left inside the template comment does not count', () => {
   assert.match(run({ body: `<!--\n${brief()}\n-->` }).errors.join('\n'), /Add a Surface change brief/)
+  assert.match(run({ body: `Notes <!-- never closed\n${brief()}` }).errors.join('\n'), /Add a Surface change brief/, 'GitHub hides everything after an unclosed comment')
+  assert.deepEqual(run({ body: 'Strips `<!--` markers.\n\n```html\n<!-- example\n```\n\n' + brief() }).errors, [], 'a marker inside code renders as text')
+  assert.match(run({ body: `prose \`\`\` <!--\n${brief()}\n-->` }).errors.join('\n'), /Add a Surface change brief/, 'mid-line backticks are not a fence')
+  assert.deepEqual(run({ body: '```\ncode\n````\n\n' + brief() }).errors, [], 'a longer closing fence closes the block')
+  assert.match(run({ body: `a \`\`x <!--\` y\n${brief()}\n-->` }).errors.join('\n'), /Add a Surface change brief/, 'unmatched backtick runs are not a code span')
+  // CommonMark 0.31.2 §4.5, example 145: a backtick in a backtick fence's info string makes the line inline code.
+  assert.match(run({ body: `\`\`\` a\`b\n<!--\n${brief()}\n` }).errors.join('\n'), /Add a Surface change brief/, 'a backtick info string is not a fence, so the comment hides the brief')
+  assert.deepEqual(run({ body: '~~~ a`b\n<!-- example\n~~~\n\n' + brief() }).errors, [], 'a tilde fence may carry a backtick in its info string')
 })
 
 test('parseBriefs reads several surfaces from one body', () => {
@@ -228,6 +236,75 @@ test('review gate: with several findings in one thread, each answer must name it
   assert.equal(gate([thread]).length, 2, 'a generic reply names neither')
   thread.comments.push(reply('Unbounded loop in parser: fixed in a1b2c3d.'), reply('Missing auth check on export: fixed in a1b2c3d.'))
   assert.deepEqual(gate([thread]), [])
+})
+
+test('review gate: a quoted title must tell the finding apart from siblings that share its opening words', () => {
+  const shared = 'Validate the pull request fix references before accepting'
+  const thread = { isResolved: false, comments: [
+    finding(`![P1 Badge] ${shared} them for P0 findings`),
+    finding(`![P1 Badge] ${shared} them for P1 findings`, { createdAt: '2026-09-28T10:10:00Z' }),
+    reply(`${shared}: fixed in a1b2c3d.`),
+  ] }
+  assert.equal(gate([thread]).length, 2, 'the shared prefix names neither finding')
+  thread.comments.push(reply(`${shared} them for P0 findings: fixed in a1b2c3d.`))
+  assert.equal(gate([thread]).length, 1, 'a full quote answers only its own finding')
+  const twins = { isResolved: false, comments: [
+    finding('![P1 Badge] Same title twice', { url: 'https://x/pull/1#discussion_r11' }),
+    finding('![P1 Badge] Same title twice', { url: 'https://x/pull/1#discussion_r12', createdAt: '2026-09-28T10:10:00Z' }),
+    reply('Same title twice: fixed in a1b2c3d.'),
+  ] }
+  assert.equal(gate([twins]).length, 2, 'identical titles can only be answered by link')
+  twins.comments.push(reply('discussion_r11 and discussion_r12: fixed in a1b2c3d.'))
+  assert.deepEqual(gate([twins]), [])
+})
+
+test('review gate: separate top-level findings with the same opening words need their own answers', () => {
+  const shared = 'Validate the pull request fix references before accepting'
+  const topLevel = [
+    finding(`![P1 Badge] ${shared} them for P0 findings`),
+    finding(`![P1 Badge] ${shared} them for P1 findings`, { createdAt: '2026-09-28T10:10:00Z' }),
+    reply(`${shared}: fixed in a1b2c3d.`),
+  ]
+  assert.equal(gate([], topLevel).length, 2, 'one quote of the shared opening answers neither')
+  topLevel.push(reply(`${shared} them for P0 findings: fixed in a1b2c3d.`))
+  assert.equal(gate([], topLevel).length, 1)
+})
+
+test('review gate: a title that prefixes a sibling is answered by quoting it without the longer one', () => {
+  const body = '![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat) Validate input\n\ntext\n\n![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat) Validate input before saving the draft\n\ntext'
+  const topLevel = [finding(body), reply('Validate input: fixed in a1b2c3d.')]
+  assert.equal(gate([], topLevel).length, 1, 'the short title is answered, the longer sibling is not')
+})
+
+test('review gate: findings in one review whose titles share 90+ characters can still be answered', () => {
+  const long = 'Validate every fix reference against the commits of this pull request before the gate accepts it'
+  const body = `![P1 Badge](x) ${long} for P0\n\ntext\n\n![P1 Badge](x) ${long} for P1\n\ntext`
+  const topLevel = [finding(body), reply(`${long} for P0 and ${long} for P1: fixed in a1b2c3d.`)]
+  assert.deepEqual(gate([], topLevel), [])
+  const twins = [finding(`![P1 Badge](x) ${long}\n\n![P1 Badge](x) ${long}`), reply(`${long}: fixed in a1b2c3d.`)]
+  assert.deepEqual(gate([], twins), [], 'identical sections of one review have no link, so the title answers them')
+})
+
+test('review gate: plain-text badges split a review body into findings too', () => {
+  const topLevel = [finding('P2 Badge Rename the helper for clarity\n\nP1 Badge Missing auth check on export route'), reply('Rename the helper for clarity: done in a1b2c3d.')]
+  assert.match(gate([], topLevel).join('\n'), /P1\): "P1 Badge Missing auth check/)
+})
+
+test('review gate: an answer edited after a revised finding counts from its edit', () => {
+  const thread = { isResolved: false, comments: [
+    finding('![P2 Badge] Tighten the retry bound', { editedAt: '2026-09-28T12:00:00Z' }),
+    reply('Bounded at 3 retries.', { editedAt: '2026-09-28T12:30:00Z' }),
+  ] }
+  assert.deepEqual(gate([thread]), [])
+})
+
+test('review gate: a later finding does not undo an answer given while it did not exist', () => {
+  const thread = { isResolved: false, comments: [
+    finding('![P2 Badge] Cache key ignores locale'),
+    reply('Good catch, keyed by locale now.', { createdAt: '2026-09-28T10:30:00Z' }),
+    finding('![P2 Badge] Cache key ignores locale for drafts', { createdAt: '2026-09-28T11:00:00Z' }),
+  ] }
+  assert.deepEqual(gate([thread]).map((e) => /drafts/.test(e)), [true], 'only the new finding is open')
 })
 
 test('review gate: resolving does not cover a finding edited afterwards', () => {

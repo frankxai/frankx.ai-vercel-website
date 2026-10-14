@@ -1,22 +1,56 @@
 ---
-title: "AWS Bedrock AgentCore: Production Patterns for Enterprise AI Agents"
-description: "A comprehensive guide to building production-ready AI agents on AWS using Bedrock, AgentCore, and the Strands framework."
-date: "2026-01-21"
-lastUpdated: "2026-08-18"
-author: "FrankX"
-category: "AI Architecture"
-tags: ["ai-architecture", "ai-systems", "production"]
-image: "/images/blog/production-agent-patterns-aws-bedrock-hero.png"
+title: >-
+  AWS Bedrock AgentCore Architecture: Production Patterns for Enterprise AI
+  Agents
+description: >-
+  A comprehensive guide to building production-ready AI agents on AWS using
+  Bedrock, AgentCore, and the Strands framework. Learn the architectural
+  patterns, security controls, and operational best practices that power
+  enterprise agent deployments.
+date: '2026-01-21'
+publishedAt: '2026-01-21'
+updatedAt: '2026-01-21'
+author: Frank
+category: AI Architecture
+tags:
+  - AWS
+  - Bedrock
+  - AgentCore
+  - AI Agents
+  - Production AI
+  - Enterprise AI
+image: /images/blog/aws-bedrock-agents.png
 featured: false
-readingGoal: "You'll master production agent architecture, tool integration patterns, and resilient multi-agent orchestration systems."
-tldr: "AWS offers three tiers for building AI agents: Bedrock Agents (managed, no-code), AgentCore (framework-agnostic runtime), and Strands (open-source orchestration). The key differentiator is security-first design with IAM integration, Guardrails for content filtering, and."
-keywords: ["ai architecture", "ai-architecture", "ai-systems", "production", "frankx", "creator systems"]
-series:
-  slug: "undefined"
-  title: "undefined"
-  part: undefined
-  total: undefined
+series: Production Agent Patterns
+seriesPart: 2
+tldr: >-
+  AWS Bedrock provides an enterprise foundation for AI agents through Bedrock
+  Agents, AgentCore runtime, and the open-source Strands framework. Deep IAM
+  integration, automated guardrails, and persistent DynamoDB memory enable
+  production workloads with strict compliance.
+faq:
+  - question: What are the three agent tiers in AWS Bedrock?
+    answer: >-
+      Bedrock Agents for managed workflows, AgentCore for framework-agnostic
+      execution, and Strands for multi-agent orchestration.
+  - question: How does AWS Bedrock enforce security?
+    answer: >-
+      Through native AWS IAM roles, VPC private endpoints, and automated
+      Guardrails that filter harmful inputs and data leaks.
+  - question: How is agent memory managed on AWS?
+    answer: >-
+      Bedrock utilizes managed session storage backed by DynamoDB, preserving
+      conversation history and user preferences across sessions.
+  - question: What is the latency impact of Bedrock Guardrails?
+    answer: >-
+      Guardrails typically add 100 to 200 milliseconds per request, with options
+      for asynchronous evaluation in high-speed pipelines.
+  - question: Can Bedrock agents call third-party APIs?
+    answer: >-
+      Yes, via OpenAPI schema action groups that invoke AWS Lambda functions to
+      communicate securely with external services.
 ---
+
 **TL;DR**: AWS offers three tiers for building AI agents: Bedrock Agents (managed, no-code), AgentCore (framework-agnostic runtime), and Strands (open-source orchestration). The key differentiator is security-first design with IAM integration, Guardrails for content filtering, and managed memory that persists across sessions. Choose Bedrock Agents for quick deployment, AgentCore for production workloads, and Strands for complex multi-agent systems.
 
 ---
@@ -28,11 +62,11 @@ This is Part 2 of the [Production Agent Patterns](/blog/production-agent-pattern
 **Series Navigation:**
 
 1. [The 7 Pillars of Production Agent Systems](/blog/production-agent-patterns-7-pillars)
-2. **AWS Bedrock AgentCore** (this post)
-3. Google Vertex AI Agent Engine (coming soon)
-4. Azure AI Foundry
-5. OpenAI Agents SDK
-6. Claude Agent SDK
+2. **AWS Bedrock AgentCore Architecture** (this post)
+3. Google Vertex AI Agent Engine Architecture (coming soon)
+4. Azure AI Foundry Architecture
+5. OpenAI Agents SDK Architecture
+6. Claude Agent SDK Architecture
 7. MCP - The Unifying Standard
 8. Choosing Your Stack (Decision Guide)
 
@@ -597,7 +631,7 @@ Memory uses DynamoDB under the hood. For most use cases, you'll stay within the 
 
 ## Next in the Series
 
-**Part 3: Google Vertex AI Agent Engine**
+**Part 3: Google Vertex AI Agent Engine Architecture**
 
 We'll explore Google's "agentic leap" vision, the Agent2Agent protocol, and how Model Armor provides security for production deployments.
 

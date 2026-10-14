@@ -126,7 +126,7 @@ export const platformPersonas: PlatformPersona[] = [
   {
     platform: 'instagram',
     label: 'Instagram',
-    persona: 'The Aesthete — the 12k music catalog and generative art',
+    persona: 'The Aesthete — generative art and the music practice',
     voicePosture:
       'Visual-first. Caption is liner notes, not pitch. Soul spectrum dominant — this is the music side of the brand.',
     visualTreatment:

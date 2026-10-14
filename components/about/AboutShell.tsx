@@ -240,7 +240,7 @@ export default function AboutShell() {
                   what it means to build something from nothing.
                 </p>
                 <p className="text-white/90">
-                  Alex built a seven-figure solar business. Same DNA: take nothing
+                  Alex built a solar business. Same DNA: take nothing
                   and turn it into infrastructure. My medium is different — AI
                   systems and music — but the instinct is the same.
                 </p>

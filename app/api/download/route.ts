@@ -1,7 +1,10 @@
-import { type NextRequest, NextResponse } from 'next/server'
+import { after, type NextRequest, NextResponse } from 'next/server'
 import registry from '@/data/products.json'
 import type { ProductRecord } from '@/types/products'
 import { isPublicDownloadProduct } from '@/lib/download-access'
+import { describeStoreFailure } from '@/lib/store-failure'
+import { TRACKED_GUIDES, trackDirectDownloadOnce } from '@/lib/pdf-analytics'
+import { bookDownloadRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 
 const products = registry as ProductRecord[]
 
@@ -15,7 +18,7 @@ const BLOB_BASE_URL = 'https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com'
  * Product Download API
  *
  * Handles file downloads from your existing Vercel Blob storage.
- * Supports gated downloads (email required) and direct downloads.
+ * Provides direct free downloads; legacy POST validates email without enrollment.
  *
  * GET /api/download?product={slug}&file={filename}
  * POST /api/download (with email for gated content)
@@ -78,7 +81,30 @@ export async function GET(request: NextRequest) {
   }
 
   // Construct the public blob URL
-  const blobUrl = `${BLOB_BASE_URL}/${file.blobKey}`
+  const blobUrl = `${BLOB_BASE_URL}/${file.blobKey}?download=1`
+
+  // Count a production redirect once per rendered link. The attempt token is
+  // short-lived and never enters the stored event or the public Blob URL.
+  const attemptId = searchParams.get('attempt')
+  if (request.method === 'GET' && process.env.VERCEL_ENV === 'production' && attemptId && /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(attemptId) && TRACKED_GUIDES.has(product.slug) && request.headers.get('dnt') !== '1' && request.headers.get('sec-gpc') !== '1') {
+    try {
+      after(async () => {
+        try {
+          const { success } = await bookDownloadRatelimit.limit(getClientIdentifier(request))
+          if (!success) return
+          await trackDirectDownloadOnce({
+            guideSlug: product.slug,
+            guideTitle: product.name || (product as ProductRecord & { title?: string }).title || product.slug,
+            downloadMethod: 'direct',
+          }, attemptId)
+        } catch (error) {
+          console.error('Book download analytics failed:', describeStoreFailure(error, 'store'))
+        }
+      })
+    } catch (error) {
+      console.error('Book download analytics scheduling failed:', describeStoreFailure(error, 'store'))
+    }
+  }
 
   // Redirect to the public blob URL for download
   return NextResponse.redirect(blobUrl)
@@ -148,7 +174,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Generate direct download URL from your blob storage
-    const downloadUrl = `${BLOB_BASE_URL}/${file.blobKey}`
+    const downloadUrl = `${BLOB_BASE_URL}/${file.blobKey}?download=1`
 
     return NextResponse.json({
       success: true,

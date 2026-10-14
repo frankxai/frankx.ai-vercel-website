@@ -55,9 +55,10 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
   const suggestion = routeMusicSuggestion(pathname)
   const isHome = pathname === '/'
   const onLibrary = pathname === '/library' || pathname.startsWith('/library/')
-  // Home and the library keep the corner chip until the reader opens the player.
+  const onBooks = pathname === '/books' || pathname.startsWith('/books/')
+  // Reading surfaces keep the corner chip until the reader opens the player.
   // A wide bar covers the last shelf row at 375 and 1440.
-  const collapsedChip = (isHome || onLibrary) && !expanded
+  const collapsedChip = (isHome || onLibrary || onBooks) && !expanded
   const dockRef = useRef<HTMLElement>(null)
   const playable = catalog.filter(track => safeMediaUrl(track.streamUrl))
   const results = searched ? suggestTracks(catalog, request) : browseAll ? playable : playable.slice(0, 6)

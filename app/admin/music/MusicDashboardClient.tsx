@@ -59,7 +59,6 @@ interface GenreRow {
 
 interface DashboardData {
   stats: {
-    totalTracks: number
     indexedTracks: number
     followers: number
     totalPlays: number
@@ -73,7 +72,6 @@ interface DashboardData {
   albumAnalytics: AlbumRow[]
   playlistAnalytics: PlaylistRow[]
   distroKidCandidates: TrackRow[]
-  totalTracksInInventory: number
   totalPlaylists: number
 }
 
@@ -122,24 +120,13 @@ function StatCard({ value, label, icon: Icon, accent }: { value: string | number
 
 function OverviewTab({ data }: { data: DashboardData }) {
   const { stats, trackAnalytics, genreDistribution } = data
-  const inventoryCoverage = Math.round((data.totalTracksInInventory / stats.totalTracks) * 100)
   const totalPlays = trackAnalytics.reduce((s, t) => s + t.plays, 0)
 
   return (
     <div className="space-y-8">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StatCard value={stats.totalTracks} label="Total on Suno" icon={Music2} accent="text-emerald-400" />
-        <StatCard value={data.totalTracksInInventory} label="Indexed Tracks" icon={Disc3} accent="text-cyan-400" />
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <StatCard value={totalPlays.toLocaleString()} label="Total Plays" icon={Play} accent="text-violet-400" />
         <StatCard value={stats.followers} label="Followers" icon={Heart} accent="text-rose-400" />
-      </div>
-
-      <div className={`flex items-center gap-3 px-4 py-3 rounded-lg border ${inventoryCoverage < 50 ? 'bg-amber-500/10 border-amber-500/20' : 'bg-emerald-500/10 border-emerald-500/20'}`}>
-        {inventoryCoverage < 50 ? <AlertCircle className="w-5 h-5 text-amber-400 shrink-0" /> : <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />}
-        <p className="text-sm text-white/70">
-          <strong className="text-white">{inventoryCoverage}% indexed</strong> &mdash; {data.totalTracksInInventory} of {stats.totalTracks} tracks.
-          {inventoryCoverage < 50 && ' Run Coworker scrape to index remaining tracks.'}
-        </p>
       </div>
 
       <div className="grid lg:grid-cols-2 gap-8">
@@ -595,7 +582,7 @@ export function MusicDashboardClient({ data }: { data: DashboardData }) {
           <div>
             <h1 className="text-3xl font-bold">Music Dashboard</h1>
             <p className="text-white/50 mt-1">
-              {data.totalTracksInInventory} indexed &middot; {data.stats.totalTracks} total on Suno &middot; {totalPlays.toLocaleString()} plays
+              {totalPlays.toLocaleString()} plays
             </p>
           </div>
           <Link

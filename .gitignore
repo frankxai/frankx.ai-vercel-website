@@ -214,3 +214,7 @@ link-checker-report.txt
 
 # scratch exports from the v0 template engine
 v0.html
+
+# estate-guard pack — per-machine files, never tracked
+.claude/settings.local.json
+.claude/ci/estate-guard/last-scan.json

@@ -23,7 +23,6 @@ import {
   ShoppingBag,
   BarChart3,
   AudioWaveform,
-  Network,
   Orbit,
 } from 'lucide-react'
 import {
@@ -54,7 +53,6 @@ const musicStats = getMusicStats()
 const compact = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(1)}K` : String(n))
 
 const stats = [
-  { value: `${musicStats.totalTracks}+`, label: 'Public Tracks' },
   { value: compact(musicStats.totalPlays), label: 'Total Plays' },
   { value: String(musicStats.followers), label: 'Followers' },
   { value: String(musicStats.playlists), label: 'Playlists' },
@@ -167,12 +165,6 @@ const revenuePaths = [
     icon: Clapperboard,
     summary: 'Offer clean licensing lanes for creators, podcasters, and video teams.',
     actions: ['Create licensing tiers', 'Publish usage terms', 'Ship pre-cleared packs'],
-  },
-  {
-    title: 'Membership + Inner Circle',
-    icon: Network,
-    summary: 'Monthly drops with unreleased tracks, prompts, and production breakdowns.',
-    actions: ['Run themed monthly drop', 'Publish private breakdown notes', 'Reward early members'],
   },
 ]
 
@@ -310,7 +302,7 @@ function HeroSection() {
             </p>
 
             <p className="text-lg text-white/50 mb-8 max-w-lg leading-relaxed">
-              {musicStats.totalTracks}+ published tracks on Suno AI. From meditation-inspired soundscapes to orchestral epics
+              Songs made with Suno. From meditation-inspired soundscapes to orchestral epics
               to tech house and hip hop. This page now runs as a visual operating system: narrative assets,
               swarm-owned media pipelines, and platform-ready sales paths.
             </p>
@@ -432,7 +424,7 @@ function StatsSection() {
   return (
     <section className="py-12 border-y border-white/5">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -778,12 +770,12 @@ function RevenuePathsSection() {
           <p className="text-xs uppercase tracking-[0.2em] text-amber-300/80 mb-4">Music Sales Possibilities</p>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Monetization Lanes, Steered by Agents</h2>
           <p className="text-lg text-white/50 max-w-3xl">
-            Keep revenue diversified: streaming, direct products, licensing, and membership. Each lane gets a
+            Keep revenue diversified: streaming, direct products, and licensing. Each lane gets a
             dedicated asset system and feedback loop.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {revenuePaths.map((path, i) => {
             const Icon = path.icon
             return (
