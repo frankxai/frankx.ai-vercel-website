@@ -67,13 +67,18 @@ const sections = [
 ]
 
 export default function ShopPage() {
-  const [nowTs, setNowTs] = useState(() => Date.now())
+  // The clock starts after mount so the prerendered HTML and the first client render agree; until then
+  // the card shows the neutral closed state rather than a stale build-time "Live".
+  const [nowTs, setNowTs] = useState<number | null>(null)
   useEffect(() => {
+    setNowTs(Date.now())
     const timer = setInterval(() => setNowTs(Date.now()), 60_000)
     return () => clearInterval(timer)
   }, [])
   const visibleSections = sections.map((section) =>
-    section.id === 'auctions' ? { ...section, ...auctionShopLabel(auctions, nowTs) } : section
+    section.id === 'auctions' && nowTs !== null
+      ? { ...section, ...auctionShopLabel(auctions, nowTs) }
+      : section
   )
 
   return (

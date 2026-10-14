@@ -34,5 +34,6 @@ test('an open window is labelled live, priced from its real starting bid', () =>
 
 test('the shop page derives the auction label instead of hardcoding it', () => {
   assert.match(shopSource, /auctionShopLabel\(auctions, nowTs\)/)
+  assert.match(shopSource, /useState<number \| null>\(null\)/, 'the first render must not read the clock')
   assert.doesNotMatch(shopSource, /'Live Auctions'|badge: 'Live'/)
 })
