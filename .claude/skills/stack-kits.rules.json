@@ -89,6 +89,7 @@
           "add.*react.*portal"
         ]
       },
+      "stage": "framework",
       "description": "framework patterns (stack-kits routes react triggers here)"
     },
     "tailwindcss": {
@@ -112,7 +113,8 @@
           "customize.*theme",
           "add.*dark.*mode"
         ]
-      }
+      },
+      "stage": "framework"
     },
     "shadcn": {
       "type": "domain",
@@ -138,7 +140,8 @@
           "style.*component.*shadcn",
           "use.*shadcn"
         ]
-      }
+      },
+      "stage": "framework"
     },
     "web-release-gate": {
       "type": "guardrail",
