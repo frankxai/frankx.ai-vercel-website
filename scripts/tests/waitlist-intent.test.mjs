@@ -34,6 +34,20 @@ function findElement(node, predicate) {
   }
 }
 
+const redirectSignal = (url) => Object.assign(new Error('NEXT_REDIRECT'), { redirectTo: url })
+
+function loadWaitlistPage(imports) {
+  return loadModule('app/waitlist/page.tsx', {
+    'next/navigation': { permanentRedirect: (url) => { throw redirectSignal(url) } },
+    '@/lib/diagnostic/waitlist-intents': loadModule('lib/diagnostic/waitlist-intents.ts'),
+    '@/lib/seo': { createMetadata: (value) => value },
+    '@/lib/waitlist/products': loadModule('lib/waitlist/products.ts', {
+      '@/data/products.graph.json': { default: JSON.parse(readFileSync(repoFile('data/products.graph.json'), 'utf8')) },
+    }),
+    ...imports,
+  })
+}
+
 async function submitWaitlist(intent) {
   const state = []
   let hookIndex = 0
@@ -56,11 +70,7 @@ async function submitWaitlist(intent) {
     requests.push({ url, method: options.method, body: JSON.parse(options.body) })
     return { ok: true, json: async () => ({ success: true }) }
   })
-  const { default: WaitlistPage } = loadModule('app/waitlist/page.tsx', {
-    '@/components/email-signup': { EmailSignup },
-    '@/lib/diagnostic/waitlist-intents': loadModule('lib/diagnostic/waitlist-intents.ts'),
-    '@/lib/seo': { createMetadata: (value) => value },
-  })
+  const { default: WaitlistPage } = loadWaitlistPage({ '@/components/email-signup': { EmailSignup } })
   const page = await WaitlistPage({ searchParams: Promise.resolve({ intent }) })
   const signup = findElement(page, (element) => element.type === EmailSignup)
   assert.ok(signup, 'the route must render the existing signup form')
@@ -89,10 +99,20 @@ for (const [intent, label] of [['bv-kit', 'Creator BV Kit'], ['prompt-vault', 'P
 }
 
 test('legacy waitlist entry points preserve their current list routing', async () => {
-  for (const intent of ['course-creator-business-systems', 'creative-ai-toolkit']) {
+  for (const intent of ['course-creator-business-systems']) {
     const { body } = await submitWaitlist(intent)
     assert.equal(body.intent, intent)
     assert.equal(body.listType, 'courses-waitlist')
+  }
+})
+
+test('registry products without a release-gate PASS move to their shared-capture waitlist page', async () => {
+  const { default: WaitlistPage } = loadWaitlistPage({ '@/components/email-signup': { EmailSignup() {} } })
+  for (const intent of ['creative-ai-toolkit', 'creation-chronicles']) {
+    await assert.rejects(
+      WaitlistPage({ searchParams: Promise.resolve({ intent }) }),
+      (error) => error.redirectTo === `/waitlist/${intent}`,
+    )
   }
 })
 

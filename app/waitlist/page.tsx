@@ -1,6 +1,8 @@
+import { permanentRedirect } from 'next/navigation'
 import { EmailSignup } from '@/components/email-signup'
 import { LAUNCH_LIST_INTENTS, sanitizeIntent, WAITLIST_INTENTS } from '@/lib/diagnostic/waitlist-intents'
 import { createMetadata } from '@/lib/seo'
+import { isWaitlistOnly, waitlistHref } from '@/lib/waitlist/products'
 
 export const metadata = createMetadata({
   title: 'Waitlist | FrankX',
@@ -26,6 +28,8 @@ const intentLabelMap: Record<string, string> = {
 
 export default async function WaitlistPage({ searchParams }: WaitlistPageProps) {
   const intent = sanitizeIntent((await searchParams)?.intent)
+  // Registry products have their own page on the shared capture; old ?intent= links land there.
+  if (isWaitlistOnly(intent)) permanentRedirect(waitlistHref(intent))
   // Keep the existing list routing for other waitlist entry points.
   const productLaunch = LAUNCH_LIST_INTENTS.has(intent)
     ? WAITLIST_INTENTS[intent]

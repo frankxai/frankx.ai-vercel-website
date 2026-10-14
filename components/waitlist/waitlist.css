@@ -1,0 +1,89 @@
+/* The shared demand-capture form styles itself through wl-* class names that each site defines,
+   so the form matches the page it sits on. Values mirror the existing EmailSignup inputs. */
+.waitlist fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+
+.wl-input {
+  min-height: 2.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(51 65 85);
+  background: rgb(30 41 59 / 0.5);
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+}
+.wl-input::placeholder { color: rgb(148 163 184); }
+
+.wl-btn {
+  min-height: 2.75rem;
+  padding: 0 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid transparent;
+  background: rgb(52 211 153);
+  color: #07120d;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.wl-btn:disabled { opacity: 0.6; cursor: progress; }
+.wl-btn-quiet { background: transparent; color: #fff; border-color: rgb(255 255 255 / 0.2); }
+
+.wl-note { font-size: 0.875rem; line-height: 1.5; color: rgb(148 163 184); }
+.wl-check { accent-color: rgb(52 211 153); width: 1rem; height: 1rem; flex: none; }
+.wl-error { font-size: 0.875rem; color: rgb(248 113 113); }
+.wl-label { display: block; font-size: 0.875rem; font-weight: 600; color: rgb(226 232 240); }
+
+.wl-chip {
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border-radius: 999px;
+  border: 1px solid rgb(51 65 85);
+  background: transparent;
+  color: rgb(203 213 225);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.wl-chip-active { border-color: rgb(52 211 153); color: #fff; background: rgb(16 185 129 / 0.15); }
+
+.wl-link {
+  min-height: 2.75rem;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: rgb(148 163 184);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.wl-panel {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem 1.1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(16 185 129 / 0.25);
+  background: rgb(16 185 129 / 0.08);
+}
+.wl-panel-title { color: #fff; font-weight: 600; }
+.wl-panel-text { font-size: 0.875rem; color: rgb(203 213 225); }
+
+.wl-input:focus-visible,
+.wl-btn:focus-visible,
+.wl-chip:focus-visible,
+.wl-link:focus-visible,
+.wl-check:focus-visible {
+  outline: 2px solid rgb(52 211 153);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .wl-btn:not(:disabled):hover { background: rgb(110 231 183); }
+  .wl-btn-quiet:not(:disabled):hover { background: rgb(255 255 255 / 0.06); }
+  .wl-chip:hover { color: #fff; border-color: rgb(100 116 139); }
+  .wl-link:hover { color: #fff; }
+}
