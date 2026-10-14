@@ -21,7 +21,10 @@ frankx.ai is the front door to Frank: a living studio where architecture, music,
 
 GTM.md asks for one primary conversion. The homepage does not name one today.
 
-- **Primary: an application or inquiry to work with Frank** (Founders Circle, Studio, Foundry). All three post to `processIntake`, which handles Resend, Notion "Inquiries" and Slack.
+- **Primary: an application or inquiry to work with Frank** (Founders Circle, Foundry, Studio, Architect Residency).
+  - Founders Circle (`/api/founders-circle/apply`) and Foundry (`/api/foundry/apply`) go through `processIntake`, which handles Resend, Notion "Inquiries" and Slack.
+  - Studio (`/work-with-me` → `/api/studio-inquiry`) and the Architect Residency (`/coaching` → `/api/coaching-apply`) only send a Resend email. Nothing is recorded in Notion and nothing reaches Slack.
+  - Move those two onto `processIntake` before any funnel work treats every inquiry as recorded and observable.
 - Secondary: the newsletter, `/api/subscribe` (Resend audience plus Supabase `growth-capture`).
 - Activation for creators: open GenCreator or ACOS from the Signal Router.
 
@@ -84,7 +87,12 @@ Each direction adds one founder-commerce route. None removes music, portfolio br
 | Risk | Lowest | Medium | Highest |
 | Measure | Existing `trackEvent` on the router (`SignalRouteSelector.tsx:251`) | Add an event on the band CTA | Hero CTA events already exist (:487, :496) |
 
-**Recommendation: A now, B when a retreat or residency offer has its own page.** Today no live retreat, mastermind or residency offer exists. "Architect Residency" on `/coaching` has no price, and "Vibe OS Residency $9,800" exists only in `docs/strategy/v2/GRAND_SLAM_OFFERS.md`. A homepage band pointing at an offer that cannot take an application is a dead CTA.
+**Recommendation: A now, B when the residency has a price and a recorded intake.**
+
+- The Architect Residency is already live. It is a 12-week programme on `/coaching`, listed in the sitemap, and its `#apply` form posts to `/api/coaching-apply`, so a B band could take an application today.
+- What it lacks is a published price, and an intake that is recorded beyond one email (see "The one conversion").
+- No retreat or mastermind offer exists. "Vibe OS Residency $9,800" exists only in `docs/strategy/v2/GRAND_SLAM_OFFERS.md`.
+- B is Frank's call once the residency's price is set. Pointing it at `/coaching#apply` would work now. Pointing it at the Vibe OS offer would be a dead CTA.
 
 ### Preservation matrix: direction A (paste into the PR)
 

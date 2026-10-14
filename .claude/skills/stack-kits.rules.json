@@ -6,18 +6,16 @@
     "kits": [
       "nextjs",
       "react",
-      "tailwindcss",
       "shadcn"
     ],
     "aliases": {
-      "nextjs": "nextjs-react-expert",
-      "react": "nextjs-react-expert"
+      "nextjs": "nextjs-expert"
     }
   },
   "_precedence": "taste.md, design.md, CREATOR.md and docs/experience-brief.md outrank every skill listed here. app/page.tsx and components/home/** follow docs/strategy/HOMEPAGE-PRESERVATION-CONTRACT.md: baselines, preservation matrix, exactly three directions and Frank's approval before code. Kit examples use placeholder colors and fonts; use this repo's tokens instead.",
   "version": "1.0",
   "skills": {
-    "nextjs-react-expert": {
+    "nextjs-expert": {
       "type": "domain",
       "enforcement": "suggest",
       "priority": "high",
@@ -34,7 +32,33 @@
           "generateStaticParams",
           "next/navigation",
           "next/link",
-          "use client",
+          "use client"
+        ],
+        "intentPatterns": [
+          "create.*(page|route|layout|component)",
+          "add.*(page|route|layout|component)",
+          "build.*component",
+          "make.*component",
+          "add.*route.*handler",
+          "create.*api.*route",
+          "add.*server.*action",
+          "create.*server.*component",
+          "create.*client.*component",
+          "add.*metadata",
+          "create.*loading.*state",
+          "add.*error.*boundary",
+          "implement.*dynamic.*route"
+        ]
+      },
+      "stage": "framework",
+      "description": "framework patterns (stack-kits routes nextjs triggers here)"
+    },
+    "react": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "promptTriggers": {
+        "keywords": [
           "react",
           "useState",
           "useEffect",
@@ -64,19 +88,6 @@
           "cloneElement"
         ],
         "intentPatterns": [
-          "create.*(page|route|layout|component)",
-          "add.*(page|route|layout|component)",
-          "build.*component",
-          "make.*component",
-          "add.*route.*handler",
-          "create.*api.*route",
-          "add.*server.*action",
-          "create.*server.*component",
-          "create.*client.*component",
-          "add.*metadata",
-          "create.*loading.*state",
-          "add.*error.*boundary",
-          "implement.*dynamic.*route",
           "use.*react.*hook",
           "implement.*(useState|useEffect|useCallback|useMemo|useContext|useReducer)",
           "add.*react.*(lazy|suspense|memo)",
@@ -87,31 +98,6 @@
           "create.*error.*boundary",
           "implement.*react.*(forwardRef|memo)",
           "add.*react.*portal"
-        ]
-      },
-      "stage": "framework",
-      "description": "framework patterns (stack-kits routes react triggers here)"
-    },
-    "tailwindcss": {
-      "type": "domain",
-      "enforcement": "suggest",
-      "priority": "medium",
-      "promptTriggers": {
-        "keywords": [
-          "tailwind",
-          "tailwindcss",
-          "utility classes",
-          "@apply",
-          "tailwind.config",
-          "dark mode"
-        ],
-        "intentPatterns": [
-          "style.*with.*tailwind",
-          "add.*tailwind.*classes",
-          "configure.*tailwind",
-          "setup.*tailwind",
-          "customize.*theme",
-          "add.*dark.*mode"
         ]
       },
       "stage": "framework"
@@ -168,10 +154,14 @@
           "navbar",
           "pricing page",
           "visual polish",
-          "premium feel"
+          "premium feel",
+          "css",
+          "stylesheet",
+          "ui component"
         ],
         "intentPatterns": [
           "\\b(design|redesign|build|improve|polish|overhaul|refresh|restyle|revamp)\\b.*\\b(page|site|website|section|hero|landing|ui|layout|header|footer|nav)\\b",
+          "\\b(create|make|add|build|style|restyle|design)\\b.*\\b(components?|screens?|modals?|dialogs?|css|stylesheet|ui)\\b",
           "\\b(mobile|responsive)\\b.*\\b(fix|design|layout|view|break|broken)",
           "\\b(increase|improve|boost|raise)\\b.*\\b(conversions?|sign-?ups?|click-?through)"
         ]
