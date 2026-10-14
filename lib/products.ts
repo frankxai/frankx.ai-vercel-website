@@ -75,6 +75,7 @@ export function getProductCards(): ProductCard[] {
 
       const isWaitlist = Boolean(
         product.offer?.ctaPrimary?.toLowerCase().includes('waitlist') ||
+        product.offer?.ctaPrimaryHref?.startsWith('/waitlist') ||
         legacy.cta?.label?.toLowerCase().includes('waitlist')
       )
 
@@ -82,9 +83,7 @@ export function getProductCards(): ProductCard[] {
         ? (product.offer?.ctaPrimaryHref ?? `/waitlist?intent=${product.slug}`)
         : (price === 0
             ? (product.offer?.ctaPrimaryHref ?? legacy.cta?.href ?? `/products/${product.slug}`)
-            : (product.offer?.ctaPrimaryHref?.startsWith('http')
-                ? product.offer.ctaPrimaryHref
-                : `/checkout/${product.slug}`))
+            : (product.offer?.ctaPrimaryHref ?? `/checkout/${product.slug}`))
 
       const primaryCtaLabel =
         product.offer?.ctaPrimary ??

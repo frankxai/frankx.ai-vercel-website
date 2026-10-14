@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1055,
+    "total": 1057,
     "aliases": 59,
     "byType": {
       "core": 24,
-      "section": 445,
+      "section": 446,
       "community": 17,
       "tool": 75,
       "static": 15,
-      "blog": 270,
+      "blog": 271,
       "research": 23,
       "guide": 34,
       "library": 88,
@@ -3287,6 +3287,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/official-openai-plugins-guide",
+      "title": "Official OpenAI plugins worth knowing: a builder’s guide",
+      "description": "A practical guide to OpenAI-published plugins for building products, creating content, managing knowledge, and packaging repeatable AI workflows.",
+      "tags": [
+        "OpenAI",
+        "ChatGPT",
+        "Codex",
+        "AI Architecture",
+        "Creator Systems"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/ollama-local-ai-models-privacy-guide",
       "title": "Running Local AI Models with Ollama: The Privacy Guide",
       "description": "How to run Llama 4, DeepSeek, and Mistral on your own hardware — no API keys, no data leaving your machine, full model control.",
@@ -5612,6 +5625,16 @@
         "estefania"
       ],
       "type": "section"
+    },
+    {
+      "href": "/friends/joei",
+      "title": "Joei",
+      "tags": [
+        "friends",
+        "joei"
+      ],
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/friends/jojo",
