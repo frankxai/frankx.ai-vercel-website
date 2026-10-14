@@ -1,22 +1,9 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, Lora } from 'next/font/google'
 import './fire-horse.css'
 
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-})
+const cormorant = { variable: 'fx-font-var-display' }
 
-const lora = Lora({
-  subsets: ['latin'],
-  variable: '--font-body-serif',
-  display: 'swap',
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-})
+const lora = { variable: 'fx-font-var-body-serif' }
 
 export const metadata: Metadata = {
   title: 'Year of the Fire Horse 2026 — Poetry, Wisdom & Vision | FrankX.ai',

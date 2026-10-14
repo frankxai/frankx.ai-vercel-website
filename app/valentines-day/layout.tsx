@@ -1,29 +1,11 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, Lora, Dancing_Script } from 'next/font/google'
 import './valentines.css'
 
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-})
+const cormorant = { variable: 'fx-font-var-display' }
 
-const lora = Lora({
-  subsets: ['latin'],
-  variable: '--font-body-serif',
-  display: 'swap',
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-})
+const lora = { variable: 'fx-font-var-body-serif' }
 
-const dancingScript = Dancing_Script({
-  subsets: ['latin'],
-  variable: '--font-cursive',
-  display: 'swap',
-  weight: ['400', '500', '600', '700'],
-})
+const dancingScript = { variable: 'fx-font-var-cursive' }
 
 export const metadata: Metadata = {
   title: "In Praise of Love — Poems & Passages for Today | FrankX.ai",

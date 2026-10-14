@@ -1,17 +1,8 @@
-import { EB_Garamond, Lora } from 'next/font/google'
 import type { Metadata } from 'next'
 
-const garamond = EB_Garamond({
-  subsets: ['latin', 'latin-ext'],
-  variable: '--font-garamond',
-  display: 'swap',
-})
+const garamond = { variable: 'fx-font-var-garamond' }
 
-const lora = Lora({
-  subsets: ['latin', 'latin-ext'],
-  variable: '--font-lora',
-  display: 'swap',
-})
+const lora = { variable: 'fx-font-var-body-serif' }
 
 export const metadata: Metadata = {
   title: 'Hoffnung — Ein Licht in der Dunkelheit',

@@ -188,6 +188,16 @@
     "test:book-chapter:rendered": "node --test scripts/tests/book-chapter-rendered.test.mjs"
   },
   "dependencies": {
+    "@fontsource/cormorant-garamond": "5.3.0",
+    "@fontsource/dancing-script": "5.3.0",
+    "@fontsource/dm-serif-display": "5.3.0",
+    "@fontsource/eb-garamond": "5.3.0",
+    "@fontsource/inter": "5.3.0",
+    "@fontsource/jetbrains-mono": "5.3.0",
+    "@fontsource/lora": "5.3.0",
+    "@fontsource/outfit": "5.3.0",
+    "@fontsource/playfair-display": "5.3.0",
+    "@fontsource/poppins": "5.3.0",
     "@gsap/react": "^2.1.2",
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",

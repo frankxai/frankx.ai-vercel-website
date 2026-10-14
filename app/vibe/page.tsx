@@ -1,19 +1,9 @@
 import { Metadata } from 'next'
-import { DM_Serif_Display, Outfit } from 'next/font/google'
 import VibeOSContent from './VibeOSContent'
 
-const dmSerif = DM_Serif_Display({
-  weight: ['400'],
-  subsets: ['latin'],
-  variable: '--font-dm-serif',
-  display: 'swap',
-})
+const dmSerif = { variable: 'fx-font-var-dm-serif' }
 
-const outfit = Outfit({
-  subsets: ['latin'],
-  variable: '--font-outfit',
-  display: 'swap',
-})
+const outfit = { variable: 'fx-font-var-outfit' }
 
 export const metadata: Metadata = {
   title: 'Vibe OS — Multi-Agent Music Creation & AI Orchestration | FrankX.AI',

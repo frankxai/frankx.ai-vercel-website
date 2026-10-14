@@ -1,19 +1,8 @@
 import { Metadata } from 'next';
-import { Playfair_Display, Inter } from 'next/font/google';
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-playfair',
-  display: 'swap',
-});
+const playfair = { variable: 'fx-font-var-playfair' }
 
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-inter',
-  display: 'swap',
-});
+const inter = { variable: 'fx-font-var-inter' }
 
 export const metadata: Metadata = {
   title: 'The Golden Age of Creators | FrankX.AI',

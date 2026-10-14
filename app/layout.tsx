@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Poppins, Playfair_Display, JetBrains_Mono } from 'next/font/google'
+import './local-fonts.css'
 import './globals.css'
 import './qa-overlay-clearance.css'
 import Script from 'next/script'
@@ -30,45 +30,15 @@ const aisSchemaGraph = (() => {
   }
 })()
 
-// Inter as primary sans-serif (geometric, variable weight, screen-optimized)
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
-})
+const inter = { variable: 'fx-font-var-inter' }
 
-// Poppins for display headings (≥18px only per brand guidelines)
-const poppins = Poppins({
-  subsets: ['latin'],
-  variable: '--font-poppins',
-  display: 'swap',
-  weight: ['600', '700', '800'],
-})
+const poppins = { variable: 'fx-font-var-poppins' }
 
-// Playfair Display for editorial touches (italic quotes only per brand)
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-serif',
-  display: 'swap',
-  style: ['normal', 'italic'],
-})
+const playfair = { variable: 'fx-font-var-serif' }
 
-// JetBrains Mono for code/technical elements
-const jetbrains = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-  display: 'swap',
-})
+const jetbrains = { variable: 'fx-font-var-mono' }
 
-// Playfair Display for editorial/serif register (fallback from Source Serif 4 due to Google Fonts 404s)
-const sourceSerif = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-serif-editorial',
-  display: 'swap',
-})
+const sourceSerif = { variable: 'fx-font-var-serif-editorial' }
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),

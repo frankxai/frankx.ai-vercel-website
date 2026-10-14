@@ -1,0 +1,81 @@
+/* Fontsource CSS preserves each upstream subset's unicode-range. Browsers fetch
+   only the faces needed by page text; no font binary is eagerly preloaded. */
+@import '@fontsource/inter/300.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/poppins/600.css';
+@import '@fontsource/poppins/700.css';
+@import '@fontsource/poppins/800.css';
+@import '@fontsource/playfair-display/400.css';
+@import '@fontsource/playfair-display/400-italic.css';
+@import '@fontsource/playfair-display/500.css';
+@import '@fontsource/playfair-display/500-italic.css';
+@import '@fontsource/playfair-display/600.css';
+@import '@fontsource/playfair-display/600-italic.css';
+@import '@fontsource/playfair-display/700.css';
+@import '@fontsource/playfair-display/700-italic.css';
+@import '@fontsource/playfair-display/800.css';
+@import '@fontsource/playfair-display/800-italic.css';
+@import '@fontsource/playfair-display/900.css';
+@import '@fontsource/playfair-display/900-italic.css';
+@import '@fontsource/jetbrains-mono/100.css';
+@import '@fontsource/jetbrains-mono/200.css';
+@import '@fontsource/jetbrains-mono/300.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/600.css';
+@import '@fontsource/jetbrains-mono/700.css';
+@import '@fontsource/jetbrains-mono/800.css';
+@import '@fontsource/cormorant-garamond/300.css';
+@import '@fontsource/cormorant-garamond/300-italic.css';
+@import '@fontsource/cormorant-garamond/400.css';
+@import '@fontsource/cormorant-garamond/400-italic.css';
+@import '@fontsource/cormorant-garamond/500.css';
+@import '@fontsource/cormorant-garamond/500-italic.css';
+@import '@fontsource/cormorant-garamond/600.css';
+@import '@fontsource/cormorant-garamond/600-italic.css';
+@import '@fontsource/cormorant-garamond/700.css';
+@import '@fontsource/cormorant-garamond/700-italic.css';
+@import '@fontsource/lora/400.css';
+@import '@fontsource/lora/400-italic.css';
+@import '@fontsource/lora/500.css';
+@import '@fontsource/lora/500-italic.css';
+@import '@fontsource/lora/600.css';
+@import '@fontsource/lora/600-italic.css';
+@import '@fontsource/lora/700.css';
+@import '@fontsource/lora/700-italic.css';
+@import '@fontsource/dancing-script/400.css';
+@import '@fontsource/dancing-script/500.css';
+@import '@fontsource/dancing-script/600.css';
+@import '@fontsource/dancing-script/700.css';
+@import '@fontsource/eb-garamond/400.css';
+@import '@fontsource/eb-garamond/500.css';
+@import '@fontsource/eb-garamond/600.css';
+@import '@fontsource/eb-garamond/700.css';
+@import '@fontsource/eb-garamond/800.css';
+@import '@fontsource/dm-serif-display/400.css';
+@import '@fontsource/outfit/100.css';
+@import '@fontsource/outfit/200.css';
+@import '@fontsource/outfit/300.css';
+@import '@fontsource/outfit/400.css';
+@import '@fontsource/outfit/500.css';
+@import '@fontsource/outfit/600.css';
+@import '@fontsource/outfit/700.css';
+@import '@fontsource/outfit/800.css';
+@import '@fontsource/outfit/900.css';
+
+.fx-font-var-inter { --font-inter: 'Inter', Arial, sans-serif; }
+.fx-font-var-poppins { --font-poppins: 'Poppins', Arial, sans-serif; }
+.fx-font-var-serif { --font-serif: 'Playfair Display', Georgia, serif; }
+.fx-font-var-mono { --font-mono: 'JetBrains Mono', monospace; }
+.fx-font-var-serif-editorial { --font-serif-editorial: 'Playfair Display', Georgia, serif; }
+.fx-font-var-display { --font-display: 'Cormorant Garamond', Georgia, serif; }
+.fx-font-var-body-serif { --font-body-serif: 'Lora', Georgia, serif; }
+.fx-font-var-cursive { --font-cursive: 'Dancing Script', cursive; }
+.fx-font-var-garamond { --font-garamond: 'EB Garamond', Georgia, serif; }
+.fx-font-var-lora { --font-lora: 'Lora', Georgia, serif; }
+.fx-font-var-dm-serif { --font-dm-serif: 'DM Serif Display', Georgia, serif; }
+.fx-font-var-outfit { --font-outfit: 'Outfit', Arial, sans-serif; }
+.fx-font-var-playfair { --font-playfair: 'Playfair Display', Georgia, serif; }
