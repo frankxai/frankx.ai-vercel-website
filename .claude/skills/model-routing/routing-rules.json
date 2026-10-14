@@ -92,8 +92,11 @@
       "/council",
       "/research",
       "/plan-week",
-      "/author-team",
       "/starlight-intelligence"
+    ],
+    "fable": [
+      "/author-team",
+      "/excellence-book-writing"
     ]
   },
 
@@ -108,7 +111,11 @@
     ],
     "opus_keywords": [
       "architect", "design", "strategy", "council", "enterprise", "complex",
-      "research", "plan", "analyze", "system", "multi-agent", "book"
+      "research", "plan", "analyze", "system", "multi-agent"
+    ],
+    "fable_keywords": [
+      "book", "story", "narrative", "long-form", "author", "fiction",
+      "chapter", "manuscript", "prose", "creative writing"
     ]
   },
 
@@ -127,7 +134,7 @@
     "enabled": true,
     "target_savings": 0.5,
     "prefer_cheaper_when_ambiguous": true,
-    "track_actual_vs_predicted": true
+    "track_actual_vs_predicted": false
   },
 
   "agent_routing": {
@@ -149,12 +156,15 @@
       "starlight-architecture-design",
       "starlight-orchestrator",
       "luminor-strategic-guidance",
-      "master-story-architect",
       "golden-age-visionary",
-      "line-editor-voice-alchemist",
-      "research-librarian",
+      "research-librarian"
+    ],
+    "fable_agents": [
+      "master-story-architect",
       "world-architect",
-      "character-psychologist"
+      "character-psychologist",
+      "line-editor-voice-alchemist",
+      "developmental-editor"
     ]
   }
 }
