@@ -34,7 +34,8 @@ const sections = [
     accent: 'from-amber-500/20 to-orange-500/20',
     border: 'border-amber-500/30',
     icon: Gavel,
-    badge: 'All drops closed',
+    // Neutral until the client clock runs: the prerendered HTML must claim neither live nor closed.
+    badge: 'See drop schedule',
     priceRange: '',
   },
   {
@@ -68,7 +69,7 @@ const sections = [
 
 export default function ShopPage() {
   // The clock starts after mount so the prerendered HTML and the first client render agree; until then
-  // the card shows the neutral closed state rather than a stale build-time "Live".
+  // the card shows a neutral schedule label rather than a stale build-time "Live".
   const [nowTs, setNowTs] = useState<number | null>(null)
   useEffect(() => {
     setNowTs(Date.now())

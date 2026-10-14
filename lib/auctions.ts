@@ -27,7 +27,11 @@ export function auctionShopLabel(auctions: AuctionWindow[], now: number = Date.n
     const lowestBid = Math.min(...live.map((auction) => auction.startingBid))
     return { title: 'Live auctions', badge: 'Live', priceRange: `Bids from $${lowestBid}` }
   }
-  if (auctions.some((auction) => auction.status === 'upcoming')) {
+  const notStartedYet = (auction: AuctionWindow) => {
+    const start = auction.startTime ? Date.parse(auction.startTime) : NaN
+    return auction.status === 'active' && Number.isFinite(start) && now < start
+  }
+  if (auctions.some((auction) => auction.status === 'upcoming' || notStartedYet(auction))) {
     return { title: 'Auctions', badge: 'Upcoming', priceRange: '' }
   }
   return { title: 'Auctions', badge: 'All drops closed', priceRange: '' }
