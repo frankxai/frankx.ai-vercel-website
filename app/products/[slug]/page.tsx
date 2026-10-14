@@ -198,7 +198,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                   {product.socialProof.stats.slice(0, 4).map((stat: any, idx: number) => (
                     <div key={idx} className="text-center">
                       <div className="text-xl font-bold text-cyan-200">{stat.number}</div>
-                      <div className="text-[10px] uppercase tracking-wider text-gray-500">
+                      <div className="text-xs uppercase tracking-wider text-gray-400">
                         {stat.label}
                       </div>
                     </div>

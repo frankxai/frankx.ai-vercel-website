@@ -26,7 +26,7 @@ export default function TrustBar() {
               <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-amber-200 to-yellow-400 bg-clip-text text-transparent">
                 {stat.value}
               </div>
-              <div className="text-xs text-white/40 mt-1 tracking-wide uppercase">
+              <div className="text-xs text-white/60 mt-1 tracking-wide uppercase">
                 {stat.label}
               </div>
             </motion.div>

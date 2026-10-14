@@ -314,6 +314,7 @@
       "ctaPrimary": "Explore the Framework",
       "ctaPrimaryHref": "/creation-chronicles",
       "ctaPrimaryTracking": "creation-chronicles-primary",
+      "checkoutOpen": false,
       "ctaSecondary": "Preview Free Resources",
       "ctaSecondaryHref": "/resources"
     },

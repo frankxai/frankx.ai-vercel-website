@@ -96,7 +96,7 @@ export default function TestimonialsSection() {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-white/90">{testimonial.name}</p>
-                    <p className="text-xs text-white/40">{testimonial.role} &middot; {testimonial.program}</p>
+                    <p className="text-xs text-white/60">{testimonial.role} &middot; {testimonial.program}</p>
                   </div>
                 </div>
               </motion.div>
