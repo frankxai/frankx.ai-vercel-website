@@ -28,10 +28,12 @@ test('music article is retitled without the song count and keeps its slug', () =
   assert.ok(!frontmatter.includes('12,000 Songs Later'))
 })
 
-test('links to the music article use the new title', () => {
+test('links to the music article use the new title and contain no 12,000 song count', () => {
   for (const post of linkingPosts) {
     assert.ok(post.includes(`[${title}](/blog/music-as-consciousness-technology)`))
     assert.ok(!post.includes('12,000 Songs Later'))
+    assert.ok(!post.includes('12,000+ songs'))
+    assert.ok(!post.includes('12,000'))
   }
 })
 
