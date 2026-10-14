@@ -82,6 +82,7 @@ export const LAUNCH_LIST_INTENTS: ReadonlySet<string> = new Set([
   'suno-prompt-library',
   '5-suno-prompts',
   'vibe-os',
+  'creation-chronicles',
 ])
 
 export const WAITLIST_INTENT_LABELS: Record<string, string> = Object.fromEntries(
