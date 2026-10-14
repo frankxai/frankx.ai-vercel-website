@@ -29,6 +29,11 @@ const CONSTRAINTS: ConstraintOption[] = [
     id: 'cost-volume',
     label: 'High Volume & Budget Gated',
     description: 'Running hundreds of parallel requests or high-frequency tasks where cost per token dictates the margins.'
+  },
+  {
+    id: 'multimodal-1m-canvas',
+    label: '1M Multimodal & Visual UI Synthesis',
+    description: 'Ingesting whole repositories alongside video, audio, PDFs, or screenshots with 95% cached-input discount ($0.10/1M).'
   }
 ]
 
@@ -61,6 +66,20 @@ export function TaskRoutingPlayground() {
     const hasPushback = selectedIds.includes('governance-pushback')
     const hasComplex = selectedIds.includes('complex-code')
     const hasCost = selectedIds.includes('cost-volume')
+    const hasMultimodal = selectedIds.includes('multimodal-1m-canvas')
+
+    // Scenario: 1M Multimodal & Visual UI Synthesis (Round 6 Argon Proving Ground)
+    if (hasMultimodal && !hasPushback) {
+      return {
+        model: 'Gemini 4 Argon',
+        reason: 'Passed 5/5 tasks in Starlight Arena Round 6 (2026-10-14) at $2/$10 ($0.10/M cached input) across a 1,048,576-token native text/vision/audio/video window.',
+        tier: 'Argon (1M Multimodal Flagship)',
+        color: 'text-sky-400',
+        borderColor: 'border-sky-500/20',
+        bg: 'bg-sky-500/5',
+        modelId: 'gemini-4-argon'
+      }
+    }
 
     // Scenario: High Volume + Standard Coding
     if (hasCost && !hasPushback && !hasComplex && !hasStrict) {

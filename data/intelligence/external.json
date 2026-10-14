@@ -1,7 +1,7 @@
 {
   "schema": "frankx/external-intelligence@1",
   "_description": "External model intelligence from policy-approved public sources. Every ingested figure carries source, licence and retrieval time. Link-only sources are normalised once at the top level and never ingested.",
-  "generated_at": "2026-09-16T03:04:49.644Z",
+  "generated_at": "2026-10-14T12:00:00.000Z",
   "sources": [
     {
       "id": "models-dev",
@@ -22,7 +22,7 @@
         }
       ],
       "attribution": "models.dev (SST)",
-      "retrieved_at": "2026-09-16T03:04:49.644Z",
+      "retrieved_at": "2026-10-14T12:00:00.000Z",
       "status": "ok"
     },
     {
@@ -386,6 +386,27 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 2000000,
+      "benchmarks": []
+    },
+    {
+      "id": "gemini-4-argon",
+      "name": "Gemini 4 Argon",
+      "org": "google",
+      "in_registry": true,
+      "names": {
+        "models-dev": "Gemini 4 Argon"
+      },
+      "pricing": {
+        "in_usd_per_m": 2,
+        "out_usd_per_m": 10,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-10-14T12:00:00.000Z",
+        "modified": true
+      },
+      "adoption": null,
+      "context_tokens": 1048576,
       "benchmarks": []
     },
     {

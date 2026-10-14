@@ -1,0 +1,73 @@
+{
+  "schema": "frankx/model-arena-routing-verdicts@1",
+  "updated_at": "2026-10-14",
+  "description": "First-party task-class routing verdicts backed by committed receipts in public/research/arena-receipts/*.json. Enforced by scripts/check-intelligence-freshness.mjs.",
+  "verdicts": [
+    {
+      "task_class": "1M multimodal repository + video/UI synthesis",
+      "recommended_model": "gemini-4-argon",
+      "fallback_model": "claude-sonnet-5",
+      "rationale": "Passed 5/5 tasks in Round 6 at $2.00/$10.00 per 1M tokens ($0.10/1M cached input through 2026-11-30) with sub-2.4s latency across TypeScript row normalization, WCAG AA dark-mode UI synthesis, and Langfuse telemetry wiring.",
+      "named_weakness": "Requires thinking=high on subtle specification/governance pushback prompts; at thinking=low it prioritizes speed over critique.",
+      "evidence": {
+        "round_ids": [
+          "r6-argon-proving-ground-2026-10-14"
+        ]
+      }
+    },
+    {
+      "task_class": "Strict multi-constraint formatting & schema pipelines",
+      "recommended_model": "claude-fable-5-1",
+      "fallback_model": "gemini-4-argon",
+      "rationale": "Held 7/7 constraint stacks across Rounds 1, 3, 4, 5, and 6 while closing the Round 2 governance pushback gap.",
+      "named_weakness": "$10/$50 per 1M token pricing is 5x higher than Gemini 4 Argon and Claude Sonnet 5 on routine coding tasks.",
+      "evidence": {
+        "round_ids": [
+          "r1-proving-ground-2026-06-14",
+          "r4-proving-ground-2026-06-15",
+          "r5-proving-ground-2026-06-15",
+          "r6-argon-proving-ground-2026-10-14"
+        ]
+      }
+    },
+    {
+      "task_class": "Architectural review, policy pushback & ambiguous specs",
+      "recommended_model": "claude-opus-5",
+      "fallback_model": "claude-opus-4-8",
+      "rationale": "Consistently flags self-contradictory specifications, provenance violations, and canon-lock boundaries without requiring manual thinking-level overrides.",
+      "named_weakness": "Higher latency (3.1s–4.8s) and $5/$25 pricing make it overkill for saturated single-file coding.",
+      "evidence": {
+        "round_ids": [
+          "r2-proving-ground-2026-06-14",
+          "r4-proving-ground-2026-06-15",
+          "r6-argon-proving-ground-2026-10-14"
+        ]
+      }
+    },
+    {
+      "task_class": "Balanced production coding & MCP tool loops",
+      "recommended_model": "claude-sonnet-5",
+      "fallback_model": "gemini-4-argon",
+      "rationale": "Passed 5/5 tasks in Round 6 at $2.00/$10.00 per 1M tokens with 128K synchronous output and tight Claude Code / MCP integration.",
+      "named_weakness": "Text/vision/code only (no native audio or video input); cached input ($0.20/M) is 2x Argon's introductory cached rate ($0.10/M).",
+      "evidence": {
+        "round_ids": [
+          "r6-argon-proving-ground-2026-10-14"
+        ]
+      }
+    },
+    {
+      "task_class": "High-volume budget fan-out & standard coding",
+      "recommended_model": "claude-haiku-4-5",
+      "fallback_model": "gemini-3-8-flash",
+      "rationale": "Matched frontier tiers on standard TypeScript validation in Round 3 at <10% of flagship token cost.",
+      "named_weakness": "Drops cells on tight 4–6 word table constraints (Round 4 T1) and requires explicit structural guards on destructive migrations.",
+      "evidence": {
+        "round_ids": [
+          "r3-proving-ground-2026-06-14",
+          "r4-proving-ground-2026-06-15"
+        ]
+      }
+    }
+  ]
+}

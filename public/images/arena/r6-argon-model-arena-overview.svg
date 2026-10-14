@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#09090b"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#09090b"/>
+    </linearGradient>
+    <linearGradient id="argon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="36" y="36" width="1128" height="558" rx="24" fill="#09090b" fill-opacity="0.75" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Header -->
+  <text x="72" y="92" fill="#38bdf8" font-family="monospace" font-size="15" letter-spacing="2">STARLIGHT MODEL &amp; AGENT ARENA · ROUND 6 RECEIPT (2026-10-14)</text>
+  <text x="72" y="138" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="34" font-weight="700">Gemini 4 Argon Proving Ground — 5-Task Mechanical Scorecard</text>
+  <text x="72" y="170" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="17">First-party harness execution wired to Langfuse Cloud EU · Zero vendor benchmark mixing</text>
+
+  <!-- Table Header -->
+  <rect x="72" y="200" width="1056" height="44" rx="8" fill="#1e293b"/>
+  <text x="92" y="228" fill="#e2e8f0" font-family="monospace" font-size="14" font-weight="700">TASK ID &amp; CATEGORY</text>
+  <text x="450" y="228" fill="#38bdf8" font-family="monospace" font-size="14" font-weight="700">GEMINI 4 ARGON</text>
+  <text x="620" y="228" fill="#c084fc" font-family="monospace" font-size="14" font-weight="700">FABLE 5.1</text>
+  <text x="760" y="228" fill="#f59e0b" font-family="monospace" font-size="14" font-weight="700">OPUS 5</text>
+  <text x="890" y="228" fill="#22d3ee" font-family="monospace" font-size="14" font-weight="700">SONNET 5</text>
+  <text x="1020" y="228" fill="#10b981" font-family="monospace" font-size="14" font-weight="700">GPT-5.5</text>
+
+  <!-- Row 1 -->
+  <line x1="72" y1="296" x2="1128" y2="296" stroke="#1e293b" stroke-width="1"/>
+  <text x="92" y="276" fill="#f1f5f9" font-family="monospace" font-size="15">t1-nextjs16-rsc-arena-card (coding)</text>
+  <text x="450" y="276" fill="#34d399" font-family="monospace" font-size="15" font-weight="700">PASS · 1.92s</text>
+  <text x="620" y="276" fill="#34d399" font-family="monospace" font-size="15">PASS · 3.14s</text>
+  <text x="760" y="276" fill="#34d399" font-family="monospace" font-size="15">PASS · 3.48s</text>
+  <text x="890" y="276" fill="#34d399" font-family="monospace" font-size="15">PASS · 2.11s</text>
+  <text x="1020" y="276" fill="#34d399" font-family="monospace" font-size="15">PASS · 2.29s</text>
+
+  <!-- Row 2 -->
+  <line x1="72" y1="350" x2="1128" y2="350" stroke="#1e293b" stroke-width="1"/>
+  <text x="92" y="330" fill="#f1f5f9" font-family="monospace" font-size="15">t2-ui-ux-arena-matrix (ui-design)</text>
+  <text x="450" y="330" fill="#34d399" font-family="monospace" font-size="15" font-weight="700">PASS · 2.34s</text>
+  <text x="620" y="330" fill="#34d399" font-family="monospace" font-size="15">PASS · 3.52s</text>
+  <text x="760" y="330" fill="#34d399" font-family="monospace" font-size="15">PASS · 3.79s</text>
+  <text x="890" y="330" fill="#34d399" font-family="monospace" font-size="15">PASS · 2.45s</text>
+  <text x="1020" y="330" fill="#fbbf24" font-family="monospace" font-size="15">PARTIAL</text>
+
+  <!-- Row 3 -->
+  <line x1="72" y1="404" x2="1128" y2="404" stroke="#1e293b" stroke-width="1"/>
+  <text x="92" y="384" fill="#f1f5f9" font-family="monospace" font-size="15">t3-editorial-constraint-stack (writing)</text>
+  <text x="450" y="384" fill="#34d399" font-family="monospace" font-size="15" font-weight="700">PASS · 1.68s</text>
+  <text x="620" y="384" fill="#34d399" font-family="monospace" font-size="15">PASS · 2.69s</text>
+  <text x="760" y="384" fill="#34d399" font-family="monospace" font-size="15">PASS · 3.12s</text>
+  <text x="890" y="384" fill="#34d399" font-family="monospace" font-size="15">PASS · 1.95s</text>
+  <text x="1020" y="384" fill="#fbbf24" font-family="monospace" font-size="15">PARTIAL</text>
+
+  <!-- Row 4 -->
+  <line x1="72" y1="458" x2="1128" y2="458" stroke="#1e293b" stroke-width="1"/>
+  <text x="92" y="438" fill="#f1f5f9" font-family="monospace" font-size="15">t4-governance-contradiction-pushback</text>
+  <text x="450" y="438" fill="#34d399" font-family="monospace" font-size="15" font-weight="700">PASS · 1.89s</text>
+  <text x="620" y="438" fill="#34d399" font-family="monospace" font-size="15">PASS · 2.84s</text>
+  <text x="760" y="438" fill="#34d399" font-family="monospace" font-size="15">PASS · 3.19s</text>
+  <text x="890" y="438" fill="#34d399" font-family="monospace" font-size="15">PASS · 2.04s</text>
+  <text x="1020" y="438" fill="#34d399" font-family="monospace" font-size="15">PASS · 2.18s</text>
+
+  <!-- Row 5 -->
+  <line x1="72" y1="512" x2="1128" y2="512" stroke="#1e293b" stroke-width="1"/>
+  <text x="92" y="492" fill="#f1f5f9" font-family="monospace" font-size="15">t5-langfuse-mcp-telemetry-wire (harness)</text>
+  <text x="450" y="492" fill="#34d399" font-family="monospace" font-size="15" font-weight="700">PASS · 2.05s</text>
+  <text x="620" y="492" fill="#34d399" font-family="monospace" font-size="15">PASS · 3.21s</text>
+  <text x="760" y="492" fill="#34d399" font-family="monospace" font-size="15">PASS · 3.54s</text>
+  <text x="890" y="492" fill="#34d399" font-family="monospace" font-size="15">PASS · 2.23s</text>
+  <text x="1020" y="492" fill="#34d399" font-family="monospace" font-size="15">PASS · 2.41s</text>
+
+  <!-- Footer -->
+  <text x="72" y="556" fill="#94a3b8" font-family="monospace" font-size="13">Pricing (USD/1M): Argon $2/$10 ($0.10 cached) · Sonnet 5 $2/$10 · Opus 5 $5/$25 · Fable 5.1 $10/$50 · GPT-5.5 $5/$30 · Built on SIP</text>
+</svg>

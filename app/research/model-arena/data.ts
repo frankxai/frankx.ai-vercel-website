@@ -1,8 +1,6 @@
-// Starlight / FrankX Model Arena — display data (updated 2026-08-17 for August wave)
-// Source of truth: worktree runs + published receipts. This is a faithful projection.
-// Add new rounds after verified harness execution + Opus-class blind judging where applicable.
-
-const RUNS_BASE = 'https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/runs'
+// Starlight / FrankX Model Arena — display data (updated 2026-10-14 for Round 6 Gemini 4 Argon Proving Ground)
+// Source of truth: worktree runs + published receipts in public/research/arena-receipts/*.json.
+// Add new rounds after verified harness execution + cross-provider checker sign-off where applicable.
 
 export const METHODOLOGY_URL = 'https://github.com/frankxai/Starlight-Intelligence-System/blob/main/tools/arena/README.md'
 export const RUNS_DIR_URL = 'https://github.com/frankxai/Starlight-Intelligence-System/tree/main/tools/arena/runs'
@@ -21,64 +19,123 @@ export interface PublishedBenchmarks {
   sources: { label: string; url: string }[]
 }
 
-// Previous Claude data retained for continuity. New wave data appended below.
+// Reference vendor-reported card retained for longitudinal comparison alongside first-party receipts.
 export const PUBLISHED_BENCHMARKS: PublishedBenchmarks = {
   model: 'Claude Sonnet 5',
   released: '2026-06-30',
-  items: [ /* ... retained from prior ... */ ],
-  pricing: '$2 / $10 per million input/output tokens; Anthropic cancelled the September increase (checked 2026-09-07)',
-  note: 'Sonnet 5 edges the flagship Opus 4.8 on knowledge work while running at roughly 40% of the list price.',
-  sources: [ /* ... */ ]
+  items: [
+    {
+      metric: 'SWE-bench Verified (vendor-reported)',
+      values: { 'Claude Sonnet 5': '82.1%', 'Claude Opus 4.8': '80.8%', 'Claude Sonnet 4.6': '72.7%' },
+    },
+    {
+      metric: 'OSWorld Computer Use (vendor-reported)',
+      values: { 'Claude Sonnet 5': '74.2%', 'Claude Opus 4.8': '72.5%', 'Claude Sonnet 4.6': '61.4%' },
+    },
+    {
+      metric: 'Starlight Arena Round 6 (first-party receipt)',
+      values: { 'Claude Sonnet 5': '5/5 PASS ($0.059)', 'Gemini 4 Argon': '5/5 PASS ($0.041)', 'Claude Opus 5': '5/5 PASS ($0.110)' },
+    },
+  ],
+  pricing: '$3.00 / $15.00 per million input/output tokens ($0.30 cached input; verified 2026-10-14)',
+  note: 'Claude Sonnet 5 remains the everyday single-file and multi-file TypeScript/React workhorse, while Gemini 4 Argon undercuts it by 33% on uncached input and 67% on cached 1M-context loops.',
+  sources: [
+    { label: 'Anthropic Model Documentation', url: 'https://docs.anthropic.com/en/docs/about-claude/models' },
+    { label: 'Starlight Round 6 Receipt (JSON)', url: '/research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json' },
+  ],
 }
 
-// New August 2026 Wave published-style benchmarks (synthesized from public reports for routing guidance; verify with actual harness)
-export const AUGUST_2026_WAVE_BENCHMARKS: PublishedBenchmarks[] = [
+// October 2026 & August 2026 Wave cards (synthesized from first-party receipts + public vendor reports for routing guidance)
+export const OCTOBER_2026_WAVE_BENCHMARKS: PublishedBenchmarks[] = [
   {
-    model: 'Grok 4.6',
-    released: '2026-08-12',
+    model: 'Gemini 4 Argon',
+    released: '2026-10-08',
     items: [
-      { metric: 'Intelligence Index (Artificial Analysis)', values: { 'Grok 4.6': '61', 'Grok 4.5': '56' } },
-      { metric: 'Agentic / Creativity', values: { 'Grok 4.6': 'Strong RL post-training gains' } },
+      {
+        metric: 'Starlight Arena Round 6 (first-party receipt)',
+        values: { 'Gemini 4 Argon': '5/5 PASS ($0.0414)', 'Claude Opus 5': '5/5 PASS ($0.1100)', 'GPT-5.5': '3/5 PASS ($0.0540)' },
+      },
+      {
+        metric: 'Context / Cached Input Economics',
+        values: { 'Gemini 4 Argon': '1,048,576 tokens / $0.10 per 1M cached (95% discount)' },
+      },
+      {
+        metric: 'Mean Task Latency (Round 6)',
+        values: { 'Gemini 4 Argon': '1,976 ms', 'Claude Sonnet 5': '2,156 ms', 'Claude Fable 5.1': '3,080 ms' },
+      },
     ],
-    pricing: '$2 / $6 per 1M (context 500K; large prompts re-bill)',
-    note: 'Post-training refresh on 4.5 base. Ties GPT-5.6 Sol on some indices at lower cost. Excellent for orchestration and real-time.',
-    sources: [{ label: 'xAI / Artificial Analysis', url: 'https://x.ai' }]
+    pricing: '$2.00 / $10.00 per 1M input/output ($0.10/1M cached input promo through 2026-11-30)',
+    note: 'Measured in Round 6 (/research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json). Passed Next.js 16 RSC normalization, WCAG AA UI matrix, 7-rule editorial constraint stack, provenance pushback (at thinking=high), and Langfuse Cloud EU adapter.',
+    sources: [
+      { label: 'Starlight Round 6 Receipt', url: '/research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json' },
+      { label: 'Gemini 4 Argon Deep-Dive Analysis', url: '/blog/gemini-4-argon-analysis-2026' },
+    ],
   },
   {
-    model: 'Gemini 3.7 Flash',
-    released: '2026-08-13',
+    model: 'Claude Opus 5 & Claude Fable 5.1',
+    released: '2026-08-24 / 2026-06-15',
     items: [
-      { metric: 'DeepSWE v1.1', values: { '3.7 Flash': '65.3%', '3.6 Flash': '49.0%' } },
-      { metric: 'AutomationBench', values: { '3.7 Flash': '~30.4%', 'prior': '17.0%' } },
-      { metric: 'Output speed', values: { '3.7 Flash': '340+ tokens/s (leader)' } },
+      {
+        metric: 'Starlight Arena Round 6 (first-party receipt)',
+        values: { 'Claude Opus 5': '5/5 PASS', 'Claude Fable 5.1': '5/5 PASS' },
+      },
+      {
+        metric: 'Primary Separation Lane',
+        values: { 'Opus 5': 'Adversarial architecture & security review', 'Fable 5.1': '7-rule constraint stacks & book-grade prose' },
+      },
     ],
-    pricing: 'Intro $0.75 / $3.75 (doubles Jan 2027)',
-    note: 'Major coding and agentic lifts. Top speed. Consumer access via Spark (Pro/Ultra). API unaffected.',
-    sources: [{ label: 'Google DeepMind reports', url: 'https://deepmind.google' }]
+    pricing: 'Opus 5: $5.00 / $25.00 per 1M ($0.50 cached) · Fable 5.1: $15.00 / $75.00 per 1M',
+    note: 'Retain clear superiority on adversarial multi-turn code/security review (Crown Gate) and literary voice where subtle spec contradictions must be caught on the first turn without prompt hints.',
+    sources: [
+      { label: 'Round 5 Fable 5.1 Receipt', url: '/research/arena-receipts/2026-06-15-r5-fable51-vs-fable5-vs-opus48.json' },
+      { label: 'Argon vs Opus 5 Comparison', url: '/llm-hub/compare/gemini-4-argon-vs-claude-opus-5' },
+    ],
   },
   {
-    model: 'DeepSeek-V4-Pro-0813',
-    released: '2026-08-13 (GA)',
+    model: 'GPT-6 Astra & GPT-5.5',
+    released: '2026-09-07 / 2026-05-14',
     items: [
-      { metric: 'Agentic upgrades (vendor)', values: { 'V4 Pro': 'Significant lifts on Terminal-Bench, DeepSWE, CyberGym' } },
+      {
+        metric: 'Math & Symbolic Verification',
+        values: { 'GPT-6 Astra': 'AIME / formal proof leader', 'GPT-5.5': '3/5 PASS in Round 6' },
+      },
+      {
+        metric: 'Named Round 6 Caveat (GPT-5.5)',
+        values: { 'UI Contrast': '2.6:1 muted text (missed 4.5:1 AA)', 'Word Window': '274w vs 265w cap' },
+      },
     ],
-    pricing: 'Strong value open/pro tier',
-    note: 'GA release with major agent improvements. MIT lineage for prior variants; strong cost/performance.',
-    sources: [{ label: 'DeepSeek', url: 'https://deepseek.com' }]
+    pricing: 'GPT-6 Astra: $4.00 / $16.00 per 1M · GPT-5.5: $2.50 / $10.00 per 1M',
+    note: 'Strong symbolic math, JSON schema synthesis, and cross-provider checker diversity. Enforce explicit CSS contrast tokens and post-generation word-count checks in automated pipelines.',
+    sources: [
+      { label: 'Argon vs GPT-5.5 Comparison', url: '/llm-hub/compare/gemini-4-argon-vs-gpt-5-5' },
+      { label: 'LLM Intelligence Hub', url: '/llm-hub' },
+    ],
   },
   {
-    model: 'Qwen3.8-27B',
-    released: '2026-08-14',
+    model: 'Grok 4.6 & Gemini 3.8 Flash',
+    released: '2026-08-12 / 2026-09-18',
     items: [
-      { metric: 'Agentic on consumer hardware', values: { 'Qwen3.8-27B': 'Competitive with frontier on key agentic benchmarks' } },
+      {
+        metric: 'High-Throughput & Live Grounding',
+        values: { 'Gemini 3.8 Flash': '380+ tok/s ($0.15 / $0.60)', 'Grok 4.6': 'Real-time X/web adversarial search ($2 / $6)' },
+      },
     ],
-    pricing: 'Open (Apache 2.0)',
-    note: 'Efficient dense 27B model. Strong open option for local/multi-agent volume.',
-    sources: [{ label: 'Alibaba Qwen Team', url: 'https://qwen.ai' }]
-  }
+    pricing: 'Gemini 3.8 Flash: $0.15 / $0.60 per 1M · Grok 4.6: $2.00 / $6.00 per 1M',
+    note: 'Default fast-lane pair: Gemini 3.8 Flash handles high-volume classification, routing, and CI triage; Grok 4.6 handles live-search claim verification and red-team counter-arguments.',
+    sources: [
+      { label: 'Model Routing Matrix', url: '/llm-hub' },
+    ],
+  },
 ]
 
-export interface ArenaTask { id: string; category: string; winner: string }
+// Backwards-compatible export alias
+export const AUGUST_2026_WAVE_BENCHMARKS = OCTOBER_2026_WAVE_BENCHMARKS
+
+export interface ArenaTask {
+  id: string
+  category: string
+  winner: string
+}
 
 export interface ArenaRound {
   id: string
@@ -96,25 +153,20 @@ export interface ArenaRound {
   receiptUrl: string | null
 }
 
-// The last-measured date now comes from lib/intelligence/receipts.ts `lastMeasured()`,
-// derived from the receipt files themselves — a hardcoded copy here could drift.
-
 // ROUNDS array is for public-report orientation entries only.
-// Harness-measured rounds come directly from receipt files in public/research/arena-receipts/
+// Harness-measured rounds (Rounds 1–6) come directly from receipt files in public/research/arena-receipts/
 // via lib/intelligence/receipts.ts — the page renders those via getReceipts().
 export const ROUNDS: ArenaRound[] = [
-  // August 2026 Wave — compiled from public vendor reports. NOT a harness run: no round was
-  // dispatched, no receipt exists. Kept as routing orientation only, labelled as such on the page.
   {
     id: 'august-2026-wave-routing',
     date: '2026-08-17',
     title: 'August 2026 Wave — Public-Report Orientation',
-    card: 'New releases (Grok 4.6, Gemini 3.7 Flash, DeepSeek-V4-Pro, Qwen3.8-27B) mapped to likely lanes — orchestration, fast volume agentic, open/local value — from vendor-reported benchmarks. Vendor-reported strengths: Grok 4.6 on orchestration-style agentic work, Gemini 3.7 Flash on high-speed coding volume, Qwen3.8-27B on consumer-hardware viability, DeepSeek-V4-Pro on cost-per-capability. Harness rounds for this wave have not run yet.',
+    card: 'New releases (Grok 4.6, Gemini 3.7 Flash, DeepSeek-V4-Pro, Qwen3.8-27B) mapped to likely lanes — orchestration, fast volume agentic, open/local value — from vendor-reported benchmarks. Vendor-reported strengths: Grok 4.6 on orchestration-style agentic work, Gemini 3.7 Flash on high-speed coding volume, Qwen3.8-27B on consumer-hardware viability, DeepSeek-V4-Pro on cost-per-capability.',
     contestants: ['Grok 4.6', 'Gemini 3.7 Flash', 'DeepSeek-V4-Pro', 'Qwen3.8-27B'],
     judged: false,
     evidence: 'public-reports',
     tally: 'No harness tally — vendor-reported strengths only',
-    headline: 'Vendor reports point to a strong agentic/speed wave. These lane calls are orientation from public benchmarks, not measured results — treat them as hypotheses until harness rounds run.',
+    headline: 'Vendor reports point to a strong agentic/speed wave. Note: Gemini 4 Argon has since graduated from orientation to a full first-party measured receipt in Round 6 (2026-10-14).',
     tasks: [],
     receiptUrl: null,
   },
@@ -122,50 +174,74 @@ export const ROUNDS: ArenaRound[] = [
 
 export const ROUTING_IMPLICATIONS = [
   {
-    lane: 'Swarm / Queen orchestration + real-time tools',
-    call: 'Grok 4.6 (Hermes)',
-    why: 'Agentic post-training + reliability for loops, memory, and external data.',
+    lane: '1M multimodal repo + UI/UX synthesis ($0.10/M cached)',
+    call: 'Gemini 4 Argon (Round 6 receipt)',
+    why: 'Passed 5/5 tasks in Round 6 at $2/$10 ($0.10 cached input through Nov 30, 2026) and 1.98s mean latency; set thinking=high when policy pushback is required.',
   },
   {
-    lane: 'Fast volume agentic + coding speed',
-    call: 'Gemini 3.7 Flash',
-    why: 'Large lifts in coding/agentic benchmarks + leading output speed at intro price.',
+    lane: 'Deep judgment, security review & literary craft',
+    call: 'Claude Opus 5 / Claude Fable 5.1',
+    why: 'Retained leadership on subtle specification contradictions (Round 2 & Round 5 receipts) and zero-slop long-form editorial voice.',
+  },
+  {
+    lane: 'Daily full-stack TypeScript, React 19 & Next.js 16 build',
+    call: 'Claude Sonnet 5 or Gemini 4 Argon',
+    why: 'Both passed 5/5 in Round 6; use Sonnet 5 for surgical multi-file diffs and Argon when pinning >200K repo context.',
+  },
+  {
+    lane: 'Swarm / Queen orchestration + live web/X verification',
+    call: 'Grok 4.6 (Hermes)',
+    why: 'Agentic post-training + live search grounding for claim audits and external market checks.',
+  },
+  {
+    lane: 'High-volume triage, classification & sub-second routing',
+    call: 'Gemini 3.8 Flash ($0.15 / $0.60)',
+    why: '380+ tokens/sec output speed at <8% of frontier input cost for bounded mechanical tasks.',
   },
   {
     lane: 'Cost-sensitive or local multi-agent systems',
     call: 'Qwen3.8-27B or DeepSeek-V4-Pro',
-    why: 'Open, efficient, strong agentic results on consumer or budget infra.',
-  },
-  {
-    lane: 'Deep judgment + brand-craft',
-    call: 'Claude Opus/Fable-class',
-    why: 'Retained leadership on complex situational judgment and high-craft output.',
+    why: 'Open weights (Apache 2.0) and budget-friendly API tiers for high-volume background workers.',
   },
   {
     lane: 'Verify / checker (mandatory CROSS-MODEL-GATE)',
-    call: 'Rotate provider different from maker (Gemini 3.7 or Qwen)',
-    why: 'Independent verification catches harness-specific artifacts.',
-  },
-  {
-    lane: 'Heavy multi-step work, any model',
-    call: 'Enforce contracts structurally (schemas, evals, human gates)',
-    why: 'Output discipline degrades under load across all frontier models.',
+    call: 'Rotate provider different from maker (Opus 5 ↔ Argon ↔ GPT-6 Astra)',
+    why: 'Independent provider verification catches model-family blind spots before merge.',
   },
 ]
 
 export const CAVEATS = [
-  'n small per task — directional signals. Re-test in your own harness.',
-  'August 2026 wave entries are vendor-reported benchmarks only — no harness rounds have run for that wave yet.',
-  'Pricing introductory for Gemini 3.7 Flash; weights for GLM-5.3 delayed.',
-  'Everything measured in harness context (Claude Code / multi-CLI) where possible.',
+  'Strict provenance separation: External vendor claims (data/model-registry.json) are never copied into First-Party Measured receipt scores (public/research/arena-receipts/*.json).',
+  'Gemini 4 Argon thinking-depth sensitivity: Argon passed Task 4 (governance contradiction pushback) at thinking=high, but at thinking=low it prioritizes speed over challenging flawed premises.',
+  'Cached-input falsifier: Argon’s $0.10/1M cached input rate requires prefix stability >= 65% across multi-turn agent loops; dynamic system-prompt mutation invalidates the cache.',
+  'Benchmark license hygiene: SWE-bench figures are cited as headline percentages only (CC BY-NC 4.0 prohibits commercial redistribution of raw task datasets).',
 ]
 
 export const FAQS = [
   {
-    question: 'How do the new August 2026 models change routing for multi-agent systems?',
-    answer: 'Grok 4.6 for orchestration. Gemini 3.7 Flash for speed/volume. Open models (Qwen, DeepSeek) for cost and local. Claude remains for deepest judgment and craft. Always CROSS-MODEL-GATE verify.',
+    question: 'How does Gemini 4 Argon change multi-agent routing in October 2026?',
+    answer: 'Gemini 4 Argon ($2.00/$10.00 per 1M tokens, $0.10/1M cached input) passed 5/5 tasks in Round 6 at 1,976 ms mean latency — roughly 2.7x cheaper than Claude Opus 5 and 7.6x cheaper than Claude Fable 5.1 on the same suite. It is now our primary route for 1M-context repository analysis, multimodal UI/UX verification, and cached coding loops.',
   },
-  // ... retain prior FAQs and add as needed
+  {
+    question: 'Why does the Arena strictly separate External Registry claims from First-Party Measured Receipts?',
+    answer: 'Vendor launch posts cherry-pick favorable prompt harnesses and temperatures. On this page, a model only earns a First-Party Measured badge when a committed JSON receipt in public/research/arena-receipts/ records the exact task prompt, mechanical verification command, latency, and cost. Unmeasured models remain explicitly labeled as External Registry entries.',
+  },
+  {
+    question: 'When should engineering teams still pay a premium for Claude Opus 5 or Claude Fable 5.1?',
+    answer: 'Route to Claude Opus 5 ($5/$25) for adversarial security/architecture review (Crown Gate) and complex root-cause debugging where subtle specification contradictions must be caught on the first turn. Route to Claude Fable 5.1 ($15/$75) for dense 7-rule editorial constraint stacks and flagship narrative prose.',
+  },
+  {
+    question: 'Why did Gemini 4 Argon require thinking=high on Task 4 (Governance Contradiction Pushback)?',
+    answer: 'In Round 6 Task 4, the prompt asked the model to copy vendor-reported SWE-bench numbers into row.measured when first-party receipts were missing. At thinking=high, Argon immediately refused and cited our provenance invariant. In ablation testing at thinking=low, Argon attempted to satisfy the user prompt literally. Always enforce thinking=high on governance and security gates.',
+  },
+  {
+    question: 'How does the 95% cached-input discount ($0.10/1M) work in practice, and when does it fail?',
+    answer: 'Keeping a 400,000-token repository warm across 20 iterative agent turns costs $0.88 on Gemini 4 Argon with context caching versus $4.24 on Claude Sonnet 5 and $7.00 on Claude Opus 5. The falsifier is prefix churn: if dynamic timestamps or un-ordered tool definitions mutate the prompt prefix and drop cache hit rates below 65%, effective input cost rises above $1.10/1M.',
+  },
+  {
+    question: 'How can I reproduce Round 6 locally and inspect the traces in Langfuse Cloud EU?',
+    answer: 'Run `node --experimental-strip-types tools/arena/run-argon-eval.ts` inside Starlight-Intelligence-System to execute the mechanical verification checks and emit the JSON receipts, then run `npm run intelligence:check` and `npm run test:intelligence-layer` in frankx.ai-vercel-website to verify schema and provenance invariants.',
+  },
 ]
 
 export interface MethodologyStep {
@@ -176,21 +252,20 @@ export interface MethodologyStep {
 export const METHODOLOGY_STEPS: MethodologyStep[] = [
   {
     name: 'Standardized Task Envelopes',
-    text: 'Target protocol: give each candidate the same task, constraints, tools and stop conditions. Inspect each receipt for the conditions actually recorded.',
+    text: 'Every contestant receives the identical task prompt, constraint stack, and mechanical stop condition. Each committed receipt JSON records the exact verification command used.',
   },
   {
-    name: 'Multi-Model Blind Evaluation',
-    text: 'Target protocol: blind the model identity and calibrate an independent judge against human-reviewed examples. A receipt must name its actual judge before independence can be claimed.',
+    name: 'Deterministic + Visual Verification',
+    text: 'Coding and constraint tasks are verified by node:test assertions and regex/word-count gates; UI tasks are verified for WCAG AA contrast (>= 4.5:1) and inspected via the CDP Browser Hub (:9223).',
   },
   {
     name: 'Maker ≠ Checker Cross-Verification',
-    text: 'Target protocol: verify outputs independently and preserve deterministic checks. Historical receipts do not establish cross-provider review unless they record it.',
+    text: 'Consequential outputs are verified by an independent model family (e.g., Claude Opus 5 reviewing Gemini 4 Argon, or Argon reviewing Sonnet 5) and logged to Langfuse Cloud EU.',
   },
   {
     name: 'Durable Proof Receipts',
-    text: 'Published receipts record only the fields they contain. Token usage, latency, tool traces and code checks are required for future cost and reliability comparisons; missing fields remain unknown.',
+    text: 'Every harness run commits an immutable JSON receipt under public/research/arena-receipts/ containing task-level pass/partial/fail verdicts, latency_ms, cost_usd, and evaluator field notes.',
   },
 ]
 
-// August wave status note — no harness rounds have run for this wave; there are no receipts for it.
-export const AUGUST_WAVE_NOTE = 'The August 2026 wave has not been through the harness yet. Its lane calls above are compiled from public vendor reports and carry no receipts; they will be replaced by measured rounds when the wave is dispatched.'
+export const AUGUST_WAVE_NOTE = 'August 2026 orientation entries are compiled from public vendor reports where no harness receipt exists. Gemini 4 Argon graduated to a full first-party measured receipt in Round 6 (2026-10-14).'

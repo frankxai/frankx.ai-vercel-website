@@ -234,6 +234,20 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     watchOut: 'Reasoning benchmarks trail current-generation flagships.',
     openrouterId: 'openai/gpt-5.2-pro',
   },
+  'gemini-4-argon': {
+    tagline:
+      'Google DeepMind’s October 2026 flagship — 1M native multimodal context and $2/$10 introductory pricing, with a published Round 6 Starlight Arena receipt.',
+    bestFor: [
+      'Whole-repository + video/image/PDF synthesis in a 1,048,576-token window',
+      'High-throughput TypeScript/Next.js and UI component builds at $2/$10 ($0.10 cached input)',
+      'Multi-agent tool routing with adjustable thinking depth (low, medium, high)',
+    ],
+    watchOut:
+      'Introductory $2/$10 ($0.10 cached) pricing runs through 30 November 2026. In Starlight Arena Round 6, Argon required thinking=high to catch subtle governance/provenance pushback prompts — at thinking=low it optimizes for speed over specification critique.',
+    creatorUse:
+      'The new default for 1M-context multimodal ingestion, video-to-code UI synthesis, and warm-cache repository sessions; keep Claude Opus 5 or Fable 5.1 on long-form literary prose and adversarial review.',
+    openrouterId: 'google/gemini-4-argon',
+  },
   'gemini-3-pro': {
     tagline: 'Prior Gemini Pro tier — superseded by the Gemini 3.5 line (Flash GA, Pro in preview).',
     bestFor: ['Workloads not yet migrated to Gemini 3.5', '2M-context multimodal tasks'],

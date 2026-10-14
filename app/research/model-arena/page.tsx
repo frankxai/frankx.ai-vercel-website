@@ -18,6 +18,7 @@ import {
   FAQS,
   METHODOLOGY_URL,
   PUBLISHED_BENCHMARKS,
+  OCTOBER_2026_WAVE_BENCHMARKS,
 } from './data'
 
 /**
@@ -171,13 +172,45 @@ export default function ModelArenaPage() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 bg-gradient-to-r from-white via-zinc-100 to-zinc-400 bg-clip-text text-transparent">
             Starlight Model Arena
           </h1>
-          <p className="text-base md:text-lg text-zinc-400 leading-relaxed">
+          <p className="text-base md:text-lg text-zinc-400 leading-relaxed mb-6">
             Which model should handle which task? This page answers with two kinds of claim, kept
             apart on purpose: <strong>first-party measurements</strong>, each backed by a public
             JSON receipt, and <strong>third-party figures</strong>, each carrying its source and
             licence. No number appears without one or the other, and the two are never merged into
             a ranking.
           </p>
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            <Link
+              href="/llm-hub"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#22d3ee]/30 bg-[#22d3ee]/10 px-3.5 py-1.5 font-medium text-[#22d3ee] transition-colors hover:bg-[#22d3ee]/20"
+            >
+              LLM Intelligence Hub →
+            </Link>
+            <Link
+              href="/llm-hub/gemini-4-argon"
+              className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1.5 font-medium text-emerald-300 transition-colors hover:bg-emerald-500/20"
+            >
+              Gemini 4 Argon Dossier (Round 6: 5/5 PASS)
+            </Link>
+            <Link
+              href="/blog/gemini-4-argon-analysis-2026"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-zinc-300 transition-colors hover:border-white/25 hover:text-white"
+            >
+              Read Round 6 Engineering Brief
+            </Link>
+            <Link
+              href="/llm-hub/compare/gemini-4-argon-vs-claude-opus-5"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-zinc-300 transition-colors hover:border-white/25 hover:text-white"
+            >
+              Argon vs Opus 5
+            </Link>
+            <Link
+              href="/llm-hub/compare/gemini-4-argon-vs-gpt-5-5"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-zinc-300 transition-colors hover:border-white/25 hover:text-white"
+            >
+              Argon vs GPT-5.5
+            </Link>
+          </div>
         </header>
 
         {/* Measured evidence — receipts */}
@@ -255,21 +288,79 @@ export default function ModelArenaPage() {
           </div>
         </section>
 
-        {/* Published Benchmarks — vendor claims, labelled */}
+        {/* Published Benchmarks & Frontier Wave Dossiers */}
         <section className="mb-14 border-t border-white/5 pt-14">
-          <div className="mb-4 flex items-center gap-2">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-zinc-400">
-              Vendor-published benchmarks — {PUBLISHED_BENCHMARKS.model}
+          <div className="mb-6">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-zinc-300 mb-2">
+              Frontier Wave Dossiers &amp; Reference Benchmarks
             </h2>
-            <span className="text-xs bg-white/5 text-white/70 px-2 py-0.5 rounded font-mono">
-              Released {PUBLISHED_BENCHMARKS.released}
-            </span>
-          </div>
-          <div className="rounded-3xl border border-white/5 bg-slate-950/40 p-6">
-            <p className="text-xs text-zinc-300 mb-4">
-              These are Anthropic&apos;s own numbers at launch, not measured by this harness —
-              cited for context only.
+            <p className="text-sm text-zinc-400">
+              Side-by-side synthesis of our October 2026 Round 6 receipts and vendor-published launch figures, explicitly labelled by provenance.
             </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 mb-6">
+            {OCTOBER_2026_WAVE_BENCHMARKS.map((card) => (
+              <div
+                key={card.model}
+                className="rounded-3xl border border-white/10 bg-slate-950/50 p-6 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                    <h3 className="text-base font-bold text-white">{card.model}</h3>
+                    <span className="text-[11px] bg-white/5 text-zinc-300 px-2.5 py-0.5 rounded-full font-mono border border-white/10">
+                      Released {card.released}
+                    </span>
+                  </div>
+                  <p className="text-xs text-zinc-300 leading-relaxed mb-4">{card.note}</p>
+                  {card.items.length > 0 && (
+                    <div className="mb-4 space-y-2 rounded-2xl border border-white/5 bg-white/[0.02] p-3.5">
+                      {card.items.map((item) => (
+                        <div key={item.metric} className="text-xs">
+                          <div className="font-mono text-[11px] text-zinc-400 mb-1">{item.metric}</div>
+                          <div className="flex flex-wrap gap-2">
+                            {Object.entries(item.values).map(([k, v]) => (
+                              <span
+                                key={k}
+                                className="inline-flex items-center gap-1 rounded bg-white/[0.04] px-2 py-0.5 font-mono text-[11px] text-zinc-200 border border-white/5"
+                              >
+                                <span className="text-zinc-400">{k}:</span> {v}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <p className="text-xs text-emerald-300/90 mb-3 font-mono">Pricing: {card.pricing}</p>
+                  <div className="flex flex-wrap gap-3 text-[11px]">
+                    {card.sources.map((s) => (
+                      <a
+                        key={s.url}
+                        href={s.url}
+                        className="inline-flex items-center gap-1 text-zinc-300 hover:text-white underline decoration-zinc-600 underline-offset-4"
+                      >
+                        {s.label}
+                        <ExternalLink className="h-3 w-3" aria-hidden />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="rounded-3xl border border-white/5 bg-slate-950/40 p-6">
+            <div className="mb-3 flex flex-wrap items-center gap-2">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-400">
+                Longitudinal Baseline — {PUBLISHED_BENCHMARKS.model}
+              </h3>
+              <span className="text-xs bg-white/5 text-white/70 px-2 py-0.5 rounded font-mono">
+                Released {PUBLISHED_BENCHMARKS.released}
+              </span>
+            </div>
             <p className="text-sm text-zinc-300 leading-relaxed mb-3">{PUBLISHED_BENCHMARKS.note}</p>
             <p className="text-xs text-zinc-300 mb-3 font-mono">Pricing: {PUBLISHED_BENCHMARKS.pricing}</p>
             <div className="flex flex-wrap gap-3 text-[11px]">
@@ -277,8 +368,6 @@ export default function ModelArenaPage() {
                 <a
                   key={s.url}
                   href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-zinc-300 hover:text-white underline decoration-zinc-600 underline-offset-4"
                 >
                   {s.label}

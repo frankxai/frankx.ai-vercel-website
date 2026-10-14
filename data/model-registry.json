@@ -1,7 +1,7 @@
 {
   "_description": "FrankX Frontier Model Registry - Single source of truth for all AI model data",
   "_version": "1.0.0",
-  "_updated": "2026-09-22",
+  "_updated": "2026-10-14",
   "_maintainer": "FrankX Intelligence Pipeline (/new-model command)",
   "models": {
     "gpt-6-astra": {
@@ -599,6 +599,61 @@
         "arc_agi_2": 54.2
       },
       "sources": []
+    },
+    "gemini-4-argon": {
+      "name": "Gemini 4 Argon",
+      "id": "gemini-4-argon",
+      "organization": "google",
+      "family": "gemini",
+      "released": "2026-10-08",
+      "status": "ga",
+      "architecture": "undisclosed",
+      "context_window": 1048576,
+      "max_output_tokens": 65536,
+      "modalities": [
+        "text",
+        "vision",
+        "audio",
+        "video"
+      ],
+      "capabilities": [
+        "reasoning",
+        "coding",
+        "multimodal",
+        "agentic-infra"
+      ],
+      "pricing": {
+        "input_per_1m": 2.0,
+        "output_per_1m": 10.0,
+        "cached_input_per_1m": 0.1,
+        "verified_at": "2026-10-14",
+        "scope": "Standard Gemini API introductory rates in USD through 2026-11-30 ($2.00 input, $10.00 output, $0.10 cached input per million tokens; 95% cache discount). Default synchronous output limit is 65,536 tokens, scaling up to 1,000,000 tokens via long decode continuation."
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "Text, image, audio, video and PDF input; text output with adjustable thinking levels (low, medium, high)",
+        "1,048,576 input-token window; 65,536 default output limit expandable to 1,000,000 tokens via long decode continuation",
+        "95% context-caching discount ($0.10 per 1M cached input tokens) for warm repository and document sessions",
+        "Function calling, structured outputs, code execution, search grounding and computer use preview",
+        "Measured in Starlight Model Arena Round 6 (/research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json)"
+      ],
+      "frankx_notes": "Google DeepMind's October 2026 Gemini 4 flagship. Pairs a 1,048,576-token native multimodal window (text, image, audio, video, PDF) with $2.00/$10.00 introductory API pricing and a $0.10/1M cached-input rate through 30 November 2026. In Starlight Model Arena Round 6 (2026-10-14, /research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json), Argon passed 5/5 first-party tasks covering Next.js 16 TypeScript row normalization, WCAG AA dark-mode UI synthesis, a 7-rule editorial constraint stack, provenance-boundary pushback (at thinking=high), and Langfuse Cloud EU telemetry wiring. Named caveat: at thinking=low it prioritizes speed over specification pushback, and Claude Opus 5 / Fable 5.1 retain an edge on long-form literary voice.",
+      "sources": [
+        "https://ai.google.dev/gemini-api/docs/models",
+        "https://ai.google.dev/gemini-api/docs/pricing",
+        "https://deepmind.google/models/gemini/"
+      ],
+      "evaluation": {
+        "status": "measured",
+        "planned_cases": 5,
+        "measured_cases": 5,
+        "judge_model": null,
+        "production_ready": true,
+        "url": "/research/model-arena",
+        "evidence_url": "/research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json"
+      },
+      "last_verified": "2026-10-14",
+      "verification_scope": "Model ID, release window, 1M input / 65K default (1M continuation) output limits, modalities, introductory API pricing ($2/$10, $0.10 cached through 2026-11-30), and first-party Round 6 Proving Ground receipt (5 tasks, mechanically verified 2026-10-14)."
     },
     "gemini-3-8-flash": {
       "name": "Gemini 3.8 Flash",
@@ -1471,6 +1526,7 @@
       "name": "Google DeepMind",
       "url": "https://deepmind.google",
       "models": [
+        "gemini-4-argon",
         "gemini-3-8-flash",
         "gemini-3-7-flash",
         "gemini-3-5-pro",
@@ -1478,7 +1534,7 @@
         "gemini-3-pro",
         "gemma-4"
       ],
-      "flagship_model_id": "gemini-3-8-flash"
+      "flagship_model_id": "gemini-4-argon"
     },
     "xai": {
       "name": "xAI",
@@ -1545,6 +1601,6 @@
     "haiku": "claude-haiku-4-5",
     "fable": "claude-fable-5-1"
   },
-  "last_updated": "2026-09-22",
-  "_update_scope": "Added Claude Fable 5.1 and Gemini 3.8 Flash from official sources. Corrected Sonnet 5 output limit and Astra benchmark labels/values, refreshed selected API prices, and advanced Anthropic/Google current-model references. Per-entry verification_scope defines what was checked; other historical entries and receipts retain their existing evidence."
+  "last_updated": "2026-10-14",
+  "_update_scope": "Added Gemini 4 Argon (gemini-4-argon) with verified Google DeepMind specifications, introductory API pricing ($2/$10 per 1M, $0.10 cached input through 2026-11-30), and first-party Starlight Model Arena Round 6 receipt (/research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json). Advanced Google flagship_model_id to gemini-4-argon."
 }

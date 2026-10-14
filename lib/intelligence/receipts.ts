@@ -24,12 +24,18 @@ const RECEIPTS_DIR = join(process.cwd(), 'public', 'research', 'arena-receipts')
 export interface ReceiptTaskResult {
   answer?: unknown
   status?: string
+  latency_ms?: number
+  cost_usd?: number
+  notes?: string
+  screenshot_url?: string
   [k: string]: unknown
 }
 
 export interface ReceiptTask {
   id: string
+  category?: string
   prompt: string
+  verification?: string
   ground_truth?: unknown
   ground_truth_check?: string
   results: Record<string, ReceiptTaskResult>
@@ -43,6 +49,10 @@ export interface Receipt {
   contestants: string[]
   methodology: string
   tasks: ReceiptTask[]
+  visual_evidence?: {
+    screenshots?: string[]
+    recordings?: string[]
+  }
   /** Vendor-reported figures cited for context. Explicitly NOT measured by the harness. */
   published_benchmarks_cross_reference?: Record<string, unknown>
   /** Relative URL the file is served from. Derived, not stored in the file. */

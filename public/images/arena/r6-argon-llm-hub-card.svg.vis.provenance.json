@@ -1,0 +1,11 @@
+{
+  "asset": "/images/arena/r6-argon-llm-hub-card.svg",
+  "tier": "C",
+  "medium": "exact-vector-svg-infographic",
+  "brandOperatingUnit": "FrankX",
+  "createdAt": "2026-10-14T21:50:00Z",
+  "generator": "hand-authored-code-svg",
+  "sourceReceipt": "/research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json",
+  "description": "Gemini 4 Argon LLM Hub dossier card visual proof showing T1 Next.js 16 RSC row joiner and pricing comparison.",
+  "qaScore": 28
+}

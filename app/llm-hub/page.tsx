@@ -183,7 +183,21 @@ export default async function LlmHubPage() {
               <Stat label="Agentic platforms" value={platforms.length.toString()} />
               <Stat label="Live-priced" value={liveCount > 0 ? `${liveCount}` : 'registry'} />
             </div>
-            <section aria-labelledby="astra-update" className="mt-10 rounded-3xl border border-emerald-500/25 bg-emerald-500/5 p-6 md:p-8">
+            <section aria-labelledby="argon-update" className="mt-10 rounded-3xl border border-cyan-500/30 bg-cyan-500/[0.06] p-6 md:p-8">
+              <p className="mb-3 text-xs text-cyan-300 font-mono uppercase tracking-wider">October release · First-party Round 6 receipt verified 14 October 2026</p>
+              <h2 id="argon-update" className="text-2xl font-semibold">Gemini 4 Argon: 5/5 Proving Ground pass at $2 / $10 ($0.10 cached input)</h2>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/75">
+                Measured in Starlight Model Arena Round 6 against Claude Fable 5.1, Claude Opus 5, Claude Sonnet 5, and GPT-5.5 across five production tasks: Next.js 16 RSC provenance normalization, WCAG AA dark-mode UI synthesis, 7-rule editorial constraint stack, governance contradiction pushback (requires <code>thinking=high</code>), and dual-schema Langfuse Cloud EU telemetry.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+                <Link href="/llm-hub/gemini-4-argon" className="rounded-full bg-cyan-300 px-5 py-2 font-medium text-slate-950">Read the Argon dossier</Link>
+                <Link href="/blog/gemini-4-argon-analysis-2026" className="py-2 text-cyan-200 underline underline-offset-4">Round 6 engineering analysis</Link>
+                <Link href="/llm-hub/compare/gemini-4-argon-vs-claude-opus-5" className="py-2 text-cyan-200 underline underline-offset-4">Argon vs Claude Opus 5</Link>
+                <Link href="/llm-hub/compare/gemini-4-argon-vs-gpt-5-5" className="py-2 text-cyan-200 underline underline-offset-4">Argon vs GPT-5.5</Link>
+                <a href="/research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json" className="py-2 text-cyan-200 underline underline-offset-4 font-mono text-xs">Raw Round 6 JSON receipt</a>
+              </div>
+            </section>
+            <section aria-labelledby="astra-update" className="mt-6 rounded-3xl border border-emerald-500/25 bg-emerald-500/5 p-6 md:p-8">
               <p className="mb-3 text-xs text-emerald-300">September release · Sources checked 7 September 2026</p>
               <h2 id="astra-update" className="text-2xl font-semibold">GPT-6 Astra: model facts before accepted work</h2>
               <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/70">The new entry connects model facts, pricing and three free practical guides. Twelve synthetic evaluation cases are defined and have not run; treat any capability claim below as vendor-reported until a scored evaluation run backs it.</p>
@@ -204,7 +218,7 @@ export default async function LlmHubPage() {
             <div className="mb-8 flex flex-col gap-1">
               <h2 className="text-2xl font-bold">Start here: pick your constraint</h2>
               <p className="text-sm text-white/40">
-                Candidate policies reviewed 10 September 2026. Each names what must pass before adoption; none certifies a production route.
+                Candidate policies reviewed 14 October 2026. Each names what must pass before adoption; none certifies a production route.
               </p>
             </div>
             <div className="grid gap-8">
@@ -351,13 +365,13 @@ export default async function LlmHubPage() {
         <section className="border-t border-white/5 px-6 py-14">
           <div className="mx-auto max-w-6xl">
             <h2 className="mb-6 text-2xl font-bold">Related research & analysis</h2>
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               <RelatedLink
-                href="/blog/frontier-model-routing-without-fable-5"
-                label="Research"
-                title="Frontier Model Freedom Guide"
-                description="Fable 5, Kilo Code, Grok 4.3, Gemini 3.5, and fallback routing"
-                accent="#06b6d4"
+                href="/blog/gemini-4-argon-analysis-2026"
+                label="Round 6 Analysis"
+                title="Gemini 4 Argon Architecture Brief"
+                description="1M cached context ($0.10/M), Round 6 receipts, and thinking=high governance"
+                accent="#22d3ee"
               />
               <RelatedLink
                 href="/research/model-arena"
@@ -365,6 +379,13 @@ export default async function LlmHubPage() {
                 title="Starlight Model Arena"
                 description="Open JSON receipts for routing claims and model behavior"
                 accent="#10b981"
+              />
+              <RelatedLink
+                href="/blog/frontier-model-routing-without-fable-5"
+                label="Research"
+                title="Frontier Model Freedom Guide"
+                description="Fable 5.1, Claude Opus 5, Grok 4.6, Gemini 4 Argon, and fallback routing"
+                accent="#06b6d4"
               />
               <RelatedLink
                 href="/blog/ai-model-routing-guide"
@@ -379,7 +400,7 @@ export default async function LlmHubPage() {
 
         <footer className="border-t border-white/5 px-6 py-12">
           <div className="mx-auto max-w-6xl text-center">
-            <p className="text-sm text-white/30">FrankX Intelligence Pipeline · Last refreshed May 20, 2026</p>
+            <p className="text-sm text-white/30">FrankX Intelligence Pipeline · Last refreshed {formatUpdated(registryLastUpdated())}</p>
             <p className="mt-2 text-xs text-white/15">
               Source of truth: <code>data/model-registry.json</code> · Agent surface: <a href="/llm-hub.json" className="underline">/llm-hub.json</a> · Add a model via <code>/new-model</code>
             </p>

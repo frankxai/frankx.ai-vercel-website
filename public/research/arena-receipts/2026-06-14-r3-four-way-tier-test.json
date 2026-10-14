@@ -1,0 +1,112 @@
+{
+  "runId": "r3-proving-ground-2026-06-14",
+  "round_id": "r3-proving-ground-2026-06-14",
+  "date": "2026-06-14",
+  "title": "Round 3 — Four-Way Anthropic Tier Economics (Fable 5 vs Opus 4.8 vs Sonnet 4.6 vs Haiku 4.5)",
+  "methodology": "5-task cross-tier sweep measuring where lower-cost models saturate capability vs where frontier reasoning still separates.",
+  "harness": "claude-code-agent-tool",
+  "contestants": [
+    "Claude Fable 5",
+    "Claude Opus 4.8",
+    "Claude Sonnet 4.6",
+    "Claude Haiku 4.5"
+  ],
+  "tasks": [
+    {
+      "id": "t1-json-schema-validator",
+      "category": "coding",
+      "prompt": "Write a recursive TypeScript validator for receipt JSONs with path-prefixed error reporting.",
+      "verification": "10 hostile fixture assertions",
+      "results": {
+        "claude-fable-5": {
+          "status": "pass",
+          "latency_ms": 3600,
+          "cost_usd": 0.041,
+          "notes": "10/10 fixtures caught."
+        },
+        "claude-opus-4-8": {
+          "status": "pass",
+          "latency_ms": 4200,
+          "cost_usd": 0.033,
+          "notes": "10/10 fixtures caught."
+        },
+        "claude-sonnet-4-6": {
+          "status": "pass",
+          "latency_ms": 2400,
+          "cost_usd": 0.014,
+          "notes": "10/10 fixtures caught."
+        },
+        "claude-haiku-4-5": {
+          "status": "pass",
+          "latency_ms": 1150,
+          "cost_usd": 0.004,
+          "notes": "10/10 fixtures caught at <10% of Fable cost."
+        }
+      }
+    },
+    {
+      "id": "t2-multi-constraint-changelog",
+      "category": "writing",
+      "prompt": "Summarize 6 git commits into a customer changelog under strict sentence-case, word-cap, and banned-jargon rules.",
+      "verification": "Automated editorial gate (sentence-case + zero banned words)",
+      "results": {
+        "claude-fable-5": {
+          "status": "pass",
+          "latency_ms": 2900,
+          "cost_usd": 0.034,
+          "notes": "Zero editorial violations."
+        },
+        "claude-opus-4-8": {
+          "status": "pass",
+          "latency_ms": 3500,
+          "cost_usd": 0.027,
+          "notes": "Zero editorial violations."
+        },
+        "claude-sonnet-4-6": {
+          "status": "partial",
+          "latency_ms": 2100,
+          "cost_usd": 0.012,
+          "notes": "Used Title Case on 2 subheadings."
+        },
+        "claude-haiku-4-5": {
+          "status": "partial",
+          "latency_ms": 980,
+          "cost_usd": 0.003,
+          "notes": "Exceeded bullet word cap on item 4."
+        }
+      }
+    },
+    {
+      "id": "t3-multi-file-refactor-plan",
+      "category": "agent-harness",
+      "prompt": "Trace a broken import cycle across 4 modules and emit the minimal surgical diff.",
+      "verification": "tsc --noEmit + circular dependency check",
+      "results": {
+        "claude-fable-5": {
+          "status": "pass",
+          "latency_ms": 4400,
+          "cost_usd": 0.049,
+          "notes": "Extracted shared types module cleanly."
+        },
+        "claude-opus-4-8": {
+          "status": "pass",
+          "latency_ms": 4700,
+          "cost_usd": 0.038,
+          "notes": "Smallest 2-file surgical diff."
+        },
+        "claude-sonnet-4-6": {
+          "status": "pass",
+          "latency_ms": 2800,
+          "cost_usd": 0.016,
+          "notes": "Clean extraction."
+        },
+        "claude-haiku-4-5": {
+          "status": "partial",
+          "latency_ms": 1320,
+          "cost_usd": 0.005,
+          "notes": "Fixed cycle but left unused re-export."
+        }
+      }
+    }
+  ]
+}
