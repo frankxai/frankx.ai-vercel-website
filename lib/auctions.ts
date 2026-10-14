@@ -14,3 +14,21 @@ export function isAuctionWindowOpen(
   if (!Number.isFinite(end) || now > end) return false
   return true
 }
+
+type AuctionWindow = { status: string; startingBid: number; startTime?: string; endTime: string }
+
+/**
+ * The shop's auction card label. It uses the same window check as /auctions and the bid API, so
+ * the shop never calls a set of closed drops live.
+ */
+export function auctionShopLabel(auctions: AuctionWindow[], now: number = Date.now()) {
+  const live = auctions.filter((auction) => auction.status === 'active' && isAuctionWindowOpen(auction, now))
+  if (live.length > 0) {
+    const lowestBid = Math.min(...live.map((auction) => auction.startingBid))
+    return { title: 'Live auctions', badge: 'Live', priceRange: `Bids from $${lowestBid}` }
+  }
+  if (auctions.some((auction) => auction.status === 'upcoming')) {
+    return { title: 'Auctions', badge: 'Upcoming', priceRange: '' }
+  }
+  return { title: 'Auctions', badge: 'All drops closed', priceRange: '' }
+}

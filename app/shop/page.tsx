@@ -1,9 +1,12 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowLeft, ArrowRight, ShoppingBag, Sparkles, Gavel, Layers } from 'lucide-react'
+import auctions from '@/data/auctions.json'
+import { auctionShopLabel } from '@/lib/auctions'
 
 const sections = [
   {
@@ -22,17 +25,17 @@ const sections = [
   },
   {
     id: 'auctions',
-    title: 'Live Auctions',
+    title: 'Auctions',
     description: 'Limited edition prints, 1:1 coaching sessions, custom ACOS builds, and exclusive experiences.',
     image: '/images/gallery/instruments/biotech-grand-piano.png',
-    imageAlt: 'Bio-tech grand piano design print — one of the limited editions currently at auction',
+    imageAlt: 'Bio-tech grand piano design print from the limited-edition auction drops',
     href: '/auctions',
-    count: 5,
+    count: auctions.length,
     accent: 'from-amber-500/20 to-orange-500/20',
     border: 'border-amber-500/30',
     icon: Gavel,
-    badge: 'Live',
-    priceRange: '$47 – $1,997',
+    badge: 'All drops closed',
+    priceRange: '',
   },
   {
     id: 'collectibles',
@@ -64,6 +67,15 @@ const sections = [
 ]
 
 export default function ShopPage() {
+  const [nowTs, setNowTs] = useState(() => Date.now())
+  useEffect(() => {
+    const timer = setInterval(() => setNowTs(Date.now()), 60_000)
+    return () => clearInterval(timer)
+  }, [])
+  const visibleSections = sections.map((section) =>
+    section.id === 'auctions' ? { ...section, ...auctionShopLabel(auctions, nowTs) } : section
+  )
+
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
       {/* Hero */}
@@ -120,7 +132,7 @@ export default function ShopPage() {
       {/* Sections Grid */}
       <section className="max-w-7xl mx-auto px-6 pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {sections.map((section, index) => (
+          {visibleSections.map((section, index) => (
             <motion.div
               key={section.id}
               initial={{ opacity: 0, y: 30 }}
@@ -164,7 +176,7 @@ export default function ShopPage() {
                   </p>
                   <div className="flex items-center gap-4 text-xs text-white/30">
                     <span>{section.count} items</span>
-                    <span>{section.priceRange}</span>
+                    {section.priceRange && <span>{section.priceRange}</span>}
                   </div>
                 </div>
               </Link>
