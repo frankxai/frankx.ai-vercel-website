@@ -38,10 +38,16 @@ test('the shop page derives the auction label instead of hardcoding it', () => {
   assert.doesNotMatch(shopSource, /'Live Auctions'|badge: 'Live'/)
 })
 
-test('an active drop before its start time is upcoming, not closed', () => {
+test('a drop with status upcoming is labelled upcoming, as /auctions lists it open', () => {
+  const upcoming = [{ status: 'upcoming', startingBid: 67, startTime: '2026-02-01T00:00:00Z', endTime: '2026-02-28T00:00:00Z' }]
+  const label = auctionShopLabel(upcoming, Date.parse('2026-01-15T00:00:00Z'))
+  assert.deepEqual(label, { title: 'Auctions', badge: 'Upcoming', priceRange: '' })
+})
+
+test('an active drop before its start time is neither upcoming nor closed on the shop', () => {
   const scheduled = [{ status: 'active', startingBid: 67, startTime: '2026-02-01T00:00:00Z', endTime: '2026-02-28T00:00:00Z' }]
   const label = auctionShopLabel(scheduled, Date.parse('2026-01-15T00:00:00Z'))
-  assert.deepEqual(label, { title: 'Auctions', badge: 'Upcoming', priceRange: '' })
+  assert.deepEqual(label, { title: 'Auctions', badge: 'See drop schedule', priceRange: '' })
 })
 
 test('the prerendered auction badge claims neither live nor closed', () => {

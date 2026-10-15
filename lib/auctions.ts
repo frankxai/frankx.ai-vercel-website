@@ -27,12 +27,18 @@ export function auctionShopLabel(auctions: AuctionWindow[], now: number = Date.n
     const lowestBid = Math.min(...live.map((auction) => auction.startingBid))
     return { title: 'Live auctions', badge: 'Live', priceRange: `Bids from $${lowestBid}` }
   }
+  // /auctions lists `upcoming` drops as open, so the shop can say "Upcoming" for those.
+  if (auctions.some((auction) => auction.status === 'upcoming')) {
+    return { title: 'Auctions', badge: 'Upcoming', priceRange: '' }
+  }
+  // An `active` drop that has not reached its start time is listed under Closed Drops on
+  // /auctions, so the shop claims neither "Upcoming" nor "closed" for it.
   const notStartedYet = (auction: AuctionWindow) => {
     const start = auction.startTime ? Date.parse(auction.startTime) : NaN
     return auction.status === 'active' && Number.isFinite(start) && now < start
   }
-  if (auctions.some((auction) => auction.status === 'upcoming' || notStartedYet(auction))) {
-    return { title: 'Auctions', badge: 'Upcoming', priceRange: '' }
+  if (auctions.some(notStartedYet)) {
+    return { title: 'Auctions', badge: 'See drop schedule', priceRange: '' }
   }
   return { title: 'Auctions', badge: 'All drops closed', priceRange: '' }
 }
