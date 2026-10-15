@@ -1,3 +1,5 @@
+<cursor_untrusted_data_1337 source="CallDynamicTool">
+
 import type { DemandSignal } from './types'
 
 /**
@@ -8,15 +10,15 @@ import type { DemandSignal } from './types'
 const KV_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
 const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
 const RESEND_KEY = process.env.RESEND_API_KEY
-const RESEND_AUDIENCE = process.env.RESEND_AUDIENCE_ID
 
 /**
- * A product promises its list "nothing from any other list". That only holds
- * with one audience per product, so RESEND_AUDIENCE_ID__<PRODUCT_ID> wins
- * over the shared RESEND_AUDIENCE_ID when it is set.
+ * A product's list is for that product only. That holds only with one audience per product, so
+ * only RESEND_AUDIENCE_ID__<PRODUCT_ID> is used. There is no fallback to the shared
+ * RESEND_AUDIENCE_ID, which is the newsletter audience: without a product audience the signal
+ * stays in KV only.
  */
 const audienceFor = (productId: string) =>
-  process.env['RESEND_AUDIENCE_ID__' + productId.toUpperCase().replace(/-/g, '_')] ?? RESEND_AUDIENCE
+  process.env['RESEND_AUDIENCE_ID__' + productId.toUpperCase().replace(/-/g, '_')]
 
 const key = (productId: string, suffix: string) => `waitlist:${productId}:${suffix}`
 
@@ -29,7 +31,10 @@ async function kv(command: unknown[]): Promise<unknown> {
     cache: 'no-store',
   })
   if (!res.ok) throw new Error(`KV ${res.status}`)
-  return (await res.json()).result
+  // Upstash can answer HTTP 200 with an { error } payload (rate limit, quota, suspended database).
+  const payload = (await res.json()) as { result?: unknown; error?: unknown }
+  if (payload.error) throw new Error(`KV error: ${String(payload.error)}`)
+  return payload.result
 }
 
 /** Email is the identity, so a re-submit updates in place instead of double-counting. */
@@ -81,3 +86,6 @@ export async function addToAudience(email: string, name: string | undefined, pro
     console.error(`demand-capture: audience sync failed for ${productId}`, err)
   }
 }
+
+
+</cursor_untrusted_data_1337>

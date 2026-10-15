@@ -1,3 +1,5 @@
+<cursor_untrusted_data_1337 source="CallDynamicTool">
+
 import registry from '@/data/products.graph.json'
 import type { ProductConfig } from '@/lib/demand-capture/handler'
 
@@ -11,8 +13,9 @@ const rows = registry.products as RegistryRow[]
 
 const rowFor = (id: unknown) => (typeof id === 'string' ? rows.find((row) => row.id === id) : undefined)
 
-// Only a gate text that opens with a PASS stamp counts; "G1 FAIL; earlier PASS revoked" does not.
-const holdsGatePass = (row: RegistryRow) => /^(G\d+\s+)?PASS\b/.test(row.gate.trim())
+// Only a gate text that opens with a G5 PASS stamp (the price-evidence gate) lifts the hold.
+// An intermediate pass such as "G1 PASS", or "G1 FAIL; earlier PASS revoked", does not.
+const holdsGatePass = (row: RegistryRow) => /^G5\s+PASS\b/.test(row.gate.trim())
 
 /** True while the product may only be offered through its waitlist: no price, no buy path. */
 export function isWaitlistOnly(id: unknown): boolean {
@@ -32,3 +35,6 @@ export const waitlistIds = (): string[] => rows.filter((row) => row.waitlist.ena
 export const waitlistHref = (id: string) => `/waitlist/${id}`
 
 export const NOT_PRICED_LABEL = 'Not priced yet'
+
+
+</cursor_untrusted_data_1337>

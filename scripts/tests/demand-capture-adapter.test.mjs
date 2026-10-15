@@ -1,3 +1,5 @@
+<cursor_untrusted_data_1337 source="CallDynamicTool">
+
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
@@ -83,6 +85,9 @@ test('both frankx registry products are waitlist-only until their row records a 
   const passed = { products: registry.products.map((row) => ({ ...row, gate: 'G5 PASS 2026-10-14 receipt queen/reports/product-gates/x.md' })) }
   assert.equal(productsModule(passed).isWaitlistOnly('creative-ai-toolkit'), false)
 
+  const intermediate = { products: registry.products.map((row) => ({ ...row, gate: 'G1 PASS 2026-10-14 receipt queen/reports/product-gates/x.md' })) }
+  assert.equal(productsModule(intermediate).isWaitlistOnly('creative-ai-toolkit'), true, 'only a G5 PASS lifts the hold, not an intermediate gate')
+
   const revoked = { products: registry.products.map((row) => ({ ...row, gate: 'G1 FAIL 2026-10-14; earlier PASS revoked' })) }
   assert.equal(productsModule(revoked).isWaitlistOnly('creative-ai-toolkit'), true, 'a PASS mentioned later in the text is not a pass')
 
@@ -108,6 +113,8 @@ test('a consented /api/demand call becomes a DemandSignal through the shared han
   assert.equal(body.success, true)
   assert.equal(body.position, 1)
   assert.equal(body.publicCount, null, 'a count below the threshold is withheld')
+  assert.equal('count' in body, false, 'the raw count is not part of the public response')
+  assert.equal(body.foundingSeatsLeft, null, 'seats left would reveal the withheld count')
 
   const stored = JSON.parse(kv.hashes.get('waitlist:creative-ai-toolkit:signals').get('unit-test@example.invalid'))
   assert.equal(stored.productId, 'creative-ai-toolkit')
@@ -141,3 +148,6 @@ test('/api/waitlist refuses a product with no registry row and requires consent'
   const noConsent = await capture.join.joinWaitlist(post('/api/waitlist', {}), { productId: 'creation-chronicles', email: 'a@example.invalid' })
   assert.equal(noConsent.status, 400)
 })
+
+
+</cursor_untrusted_data_1337>
