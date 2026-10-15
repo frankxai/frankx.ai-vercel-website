@@ -145,6 +145,9 @@ const CATEGORY_MAPPINGS: Record<string, string[]> = {
   ],
 }
 
+// Shown instead of a price while a product is on its launch list.
+const NOT_PRICED_LABEL = 'Not priced yet'
+
 const FLAGSHIP_IDS = ['agentic-creator-os', 'vibe-os', 'creators-soulbook']
 
 function resolveProductColor(category: string, price: number): GlowColor {
@@ -223,7 +226,7 @@ export default function ProductsPage() {
           category,
           badge: p.badge,
           price,
-          priceDisplay,
+          priceDisplay: launchListIntent ? NOT_PRICED_LABEL : priceDisplay,
           currency,
           originalPrice: p.offer?.originalPrice,
           highlights,
@@ -306,14 +309,19 @@ export default function ProductsPage() {
           description: product.headline || product.description,
           url: `https://www.frankx.ai/products/${product.slug}`,
           sku: product.id,
-          offers: {
-            '@type': 'Offer',
-            price: product.price,
-            priceCurrency: product.currency,
-            availability: product.isWaitlist
-              ? 'https://schema.org/PreOrder'
-              : 'https://schema.org/InStock',
-          },
+          // A launch-list product has no price yet, so it carries no Offer.
+          ...(product.isLaunchList
+            ? {}
+            : {
+                offers: {
+                  '@type': 'Offer',
+                  price: product.price,
+                  priceCurrency: product.currency,
+                  availability: product.isWaitlist
+                    ? 'https://schema.org/PreOrder'
+                    : 'https://schema.org/InStock',
+                },
+              }),
         },
       })),
     }

@@ -66,7 +66,7 @@ export const DELIVERY_CONFIG: Record<string, DeliveryConfig> = {
   'system-architect-starter-kit': {
     productId: 'system-architect-starter-kit',
     deliveryType: 'access-code',
-    // Same object as data/products.json delivery.files[0].blobKey (products/starter-kit/starter-kit-v1.zip).
+    // Basename of data/products.json delivery.files[0].blobKey; the blob does not exist yet.
     files: ['starter-kit-v1.zip'],
     accessCategories: ['systems-architecture', 'ai-architecture'],
     emailTemplateId: 'premium-product',
