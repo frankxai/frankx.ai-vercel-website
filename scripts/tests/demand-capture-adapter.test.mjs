@@ -1,5 +1,3 @@
-<cursor_untrusted_data_1337 source="CallDynamicTool">
-
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
@@ -148,6 +146,3 @@ test('/api/waitlist refuses a product with no registry row and requires consent'
   const noConsent = await capture.join.joinWaitlist(post('/api/waitlist', {}), { productId: 'creation-chronicles', email: 'a@example.invalid' })
   assert.equal(noConsent.status, 400)
 })
-
-
-</cursor_untrusted_data_1337>

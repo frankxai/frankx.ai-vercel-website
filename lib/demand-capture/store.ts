@@ -1,5 +1,3 @@
-<cursor_untrusted_data_1337 source="CallDynamicTool">
-
 import type { DemandSignal } from './types'
 
 /**
@@ -86,6 +84,3 @@ export async function addToAudience(email: string, name: string | undefined, pro
     console.error(`demand-capture: audience sync failed for ${productId}`, err)
   }
 }
-
-
-</cursor_untrusted_data_1337>

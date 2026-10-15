@@ -1,5 +1,3 @@
-<cursor_untrusted_data_1337 source="CallDynamicTool">
-
 import registry from '@/data/products.graph.json'
 import type { ProductConfig } from '@/lib/demand-capture/handler'
 
@@ -35,6 +33,3 @@ export const waitlistIds = (): string[] => rows.filter((row) => row.waitlist.ena
 export const waitlistHref = (id: string) => `/waitlist/${id}`
 
 export const NOT_PRICED_LABEL = 'Not priced yet'
-
-
-</cursor_untrusted_data_1337>
