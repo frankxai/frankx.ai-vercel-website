@@ -27,7 +27,8 @@ export function publicState(product: ProductConfig, count: number, position?: nu
   const published = count >= publicCountThreshold
   return {
     productId: product.id,
-    position,
+    // For a first signup the position equals the count, so it is withheld with the count.
+    position: published ? position : undefined,
     publicCount: published ? count : null,
     foundingCohort,
     // Seats left would reveal the withheld count (foundingCohort - seats), so it is withheld too.

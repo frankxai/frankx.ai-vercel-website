@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { notFound, permanentRedirect } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { ArrowRight, ShieldCheck, Clock } from 'lucide-react'
 
 import { getProductBySlug } from '@/lib/products'
@@ -71,7 +71,7 @@ export default async function CheckoutPage({ params }: { params: Promise<{ slug:
   }
 
   // No fresh release-gate PASS: there is nothing to buy, so the old checkout link lands on the waitlist.
-  if (isWaitlistOnly(product.id)) permanentRedirect(waitlistHref(product.id))
+  if (isWaitlistOnly(product.id)) redirect(waitlistHref(product.id))
 
   const offer = product.offer as Offer
   const priceDisplay =
