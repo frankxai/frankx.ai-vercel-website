@@ -109,7 +109,7 @@ test('a consented /api/demand call becomes a DemandSignal through the shared han
   assert.equal(response.status, 200)
   const body = await response.json()
   assert.equal(body.success, true)
-  assert.equal(body.position, 1)
+  assert.equal(body.position, undefined, 'for a first signup the position equals the count, so it is withheld below the threshold')
   assert.equal(body.publicCount, null, 'a count below the threshold is withheld')
   assert.equal('count' in body, false, 'the raw count is not part of the public response')
   assert.equal(body.foundingSeatsLeft, null, 'seats left would reveal the withheld count')

@@ -14,17 +14,17 @@ export const URGENCY: { value: Urgency; label: string }[] = [
 
 export const PRICE_BANDS: { value: PriceBand; label: string }[] = [
   { value: 'free-only', label: 'Only if free' },
-  { value: 'under-25', label: 'Under 25' },
-  { value: '25-99', label: '25 - 99' },
-  { value: '100-299', label: '100 - 299' },
-  { value: '300-999', label: '300 - 999' },
-  { value: 'over-1000', label: '1000+' },
+  { value: 'under-25', label: 'Under €25' },
+  { value: '25-99', label: '€25 - 99' },
+  { value: '100-299', label: '€100 - 299' },
+  { value: '300-999', label: '€300 - 999' },
+  { value: 'over-1000', label: '€1000+' },
   { value: 'company-pays', label: 'My company would pay' },
 ]
 
 export const PAIN_PROMPT = 'What are you trying to do that this would help with?'
 export const ALTERNATIVE_PROMPT = 'What do you use for this today?'
-export const PRICE_PROMPT = 'What would you expect something like this to cost?'
+export const PRICE_PROMPT = 'What would you expect something like this to cost? Amounts are in euros.'
 
 /** Roles differ per product; a generic set is worse than none. */
 export const ROLES: Record<string, string[]> = {
