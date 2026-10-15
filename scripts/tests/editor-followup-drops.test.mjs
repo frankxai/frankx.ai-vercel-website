@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { readdirSync, readFileSync, statSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import test from 'node:test'
 
 const read = (relative) => readFileSync(new URL(relative, import.meta.url), 'utf8')
@@ -66,4 +67,39 @@ test('golden-age and SEO masterplan copy carries no word-count claim', () => {
     const source = read(relative)
     for (const claim of claims) assert.ok(!source.includes(claim), `${relative}: ${claim}`)
   }
+})
+
+// Repo-wide guard: the song count and a few unsourced figures must not come back anywhere in blog content or app routes.
+const repoRoot = fileURLToPath(new URL('../../', import.meta.url))
+const walk = (dir, extensions) =>
+  readdirSync(dir).flatMap((name) => {
+    if (name === 'node_modules' || name === '.next') return []
+    const full = `${dir}${name}`
+    if (statSync(full).isDirectory()) return walk(`${full}/`, extensions)
+    return extensions.some((extension) => name.endsWith(extension)) ? [full] : []
+  })
+const scanned = [
+  ...walk(`${repoRoot}content/blog/`, ['.mdx', '.md']),
+  ...walk(`${repoRoot}app/`, ['.ts', '.tsx', '.md', '.mdx']),
+]
+// Only the archived slug may carry the number; it is a URL, not a claim.
+const withoutSlug = (source) => source.replaceAll('suno-ai-12000-songs-production-lessons', '')
+const bannedClaims = [
+  ['a 12,000 song or track count', /12,?000\s*\+?[\s-]*(?:[A-Za-z-]+\s+){0,2}(?:songs?|tracks?)\b/i],
+  ['the 114,000-word book count', /114,000\s+words/i],
+  ['the unsourced studio comparator', /500-1,000 tracks per year/i],
+  ['the unsourced years-in-enterprise-AI count', /15 years (?:building|architecting|in) enterprise/i],
+  ['the unsourced 320% impressions result', /Organic impressions rose 320%/i],
+]
+
+test('no blog post or app route carries the unsourced song count or figures', () => {
+  assert.ok(scanned.length > 100, `expected to scan the whole blog and app tree, found ${scanned.length} files`)
+  const hits = []
+  for (const file of scanned) {
+    const source = withoutSlug(readFileSync(file, 'utf8'))
+    for (const [label, pattern] of bannedClaims) {
+      if (pattern.test(source)) hits.push(`${file.slice(repoRoot.length)}: ${label}`)
+    }
+  }
+  assert.deepEqual(hits, [])
 })
