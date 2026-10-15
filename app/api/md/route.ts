@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { agentNotFoundResponse } from '@/lib/agent-not-found'
 import { getBlogPost } from '@/lib/blog'
 import { blogPostToMarkdown } from '@/lib/blog-markdown'
 
@@ -16,7 +17,7 @@ export async function GET(request: NextRequest) {
     const post = getBlogPost(slug)
 
     if (!post) {
-      return new NextResponse('Not found', { status: 404 })
+      return agentNotFoundResponse('GET', contentPath)
     }
 
     return new NextResponse(blogPostToMarkdown(post), {
@@ -30,7 +31,5 @@ export async function GET(request: NextRequest) {
     })
   }
 
-  return new NextResponse('Content type not supported for markdown export', {
-    status: 404,
-  })
+  return agentNotFoundResponse('GET', contentPath)
 }
