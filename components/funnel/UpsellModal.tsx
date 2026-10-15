@@ -13,7 +13,7 @@ export interface UpsellOffer {
   description: string
   price: number
   regularPrice?: number
-  currencySymbol?: string
+  currencySymbol: string
   features: string[]
   ctaText: string
   ctaHref: string
@@ -149,7 +149,7 @@ export function UpsellModal({
               <div className="flex items-center gap-2 mb-3">
                 <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-cyan-500/10 border border-cyan-500/20 text-cyan-300">
                   <Sparkles className="w-3 h-3 text-cyan-400" />
-                  {offer.badge || 'Sovereign Elevation'}
+                  {offer.badge || 'Launch list'}
                 </span>
                 {triggerContext === 'download' && (
                   <span className="text-xs text-zinc-400">
@@ -195,7 +195,7 @@ export function UpsellModal({
                 <div>
                   <div className="flex items-baseline gap-2">
                     <span className="text-3xl font-bold text-white tracking-tight">
-                      {offer.currencySymbol || '$'}{offer.price}
+                      {offer.currencySymbol}{offer.price}
                     </span>
                     {offer.regularPrice && (
                       <span className="text-sm line-through text-zinc-500">
