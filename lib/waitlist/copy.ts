@@ -35,9 +35,9 @@ export const WAITLIST_COPY: Record<string, WaitlistCopy> = {
       'Distribution templates for search, social and partnerships',
     ],
     freeNow: {
-      text: 'Build logs from the studio are already public. No email needed.',
+      text: 'Essays and music from the studio are already public. No email needed.',
       href: '/creation-chronicles',
-      label: 'Read the build logs',
+      label: 'Read the Chronicles',
     },
   },
 }
