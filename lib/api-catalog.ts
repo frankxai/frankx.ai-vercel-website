@@ -1,3 +1,4 @@
+import { apiDiscoveryLink } from './api-problem.ts'
 import { publicApiCatalog } from './public-api-catalog.ts'
 
 const SITE = 'https://www.frankx.ai'
@@ -35,4 +36,19 @@ export function apiCatalogDocument(): ApiCatalogDocument {
       })),
     ],
   }
+}
+
+const catalogHeaders = {
+  'Content-Type': apiCatalogContentType,
+  'Cache-Control': 'public, max-age=3600, s-maxage=86400',
+  'Access-Control-Allow-Origin': '*',
+  'X-Content-Type-Options': 'nosniff',
+  Link: apiDiscoveryLink,
+}
+
+export function apiCatalogResponse(method: 'GET' | 'HEAD'): Response {
+  return new Response(method === 'HEAD' ? null : JSON.stringify(apiCatalogDocument()), {
+    status: 200,
+    headers: catalogHeaders,
+  })
 }

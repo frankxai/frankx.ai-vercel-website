@@ -72,3 +72,15 @@ export function apiRouteNotFoundResponse(method: string, pathname: string): Resp
 export function methodNotAllowedResponse(method: string, pathname: string): Response {
   return problemResponse(methodNotAllowedProblem(pathname), method, { Allow: 'GET, HEAD, OPTIONS' })
 }
+
+export function readOnlyOptionsResponse(): Response {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      Allow: 'GET, HEAD, OPTIONS',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS',
+      'Access-Control-Allow-Headers': 'Accept, Content-Type',
+    },
+  })
+}

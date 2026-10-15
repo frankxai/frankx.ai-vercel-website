@@ -2,13 +2,15 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
 import test from 'node:test'
-import { apiCatalogContentType, apiCatalogDocument } from '../../lib/api-catalog.ts'
+import { apiCatalogContentType, apiCatalogDocument, apiCatalogResponse } from '../../lib/api-catalog.ts'
 import {
+  apiDiscoveryLink,
   apiRouteNotFoundResponse,
   displayedApiPath,
   methodNotAllowedResponse,
+  readOnlyOptionsResponse,
 } from '../../lib/api-problem.ts'
-import { publicApiCatalog } from '../../lib/public-api-catalog.ts'
+import { publicApiCatalog, publicApiCatalogResponse } from '../../lib/public-api-catalog.ts'
 
 const root = path.resolve(import.meta.dirname, '../..')
 
@@ -26,7 +28,8 @@ test('unknown API routes return problem+json', async () => {
   assert.equal(response.headers.get('content-type'), 'application/problem+json; charset=utf-8')
   assert.equal(response.headers.get('cache-control'), 'no-store')
   assert.equal(response.headers.get('x-content-type-options'), 'nosniff')
-  assert.match(response.headers.get('link') ?? '', /rel="api-catalog"/)
+  assert.equal(response.headers.get('x-robots-tag'), 'noindex, nofollow')
+  assert.equal(response.headers.get('link'), apiDiscoveryLink)
   const body = await response.json()
   assert.deepEqual(Object.keys(body), [
     'type',
@@ -64,11 +67,42 @@ test('the catalog rejects other methods with JSON', async () => {
   assert.equal(response.headers.get('allow'), 'GET, HEAD, OPTIONS')
   const body = await response.json()
   assert.equal(body.code, 'method_not_allowed')
+  assert.equal(body.status, 405)
   assert.equal(body.instance, 'https://www.frankx.ai/api/v1')
   assert.match(body.resolution, /GET https:\/\/www\.frankx\.ai\/api\/v1/)
+  assert.equal('message' in body, false)
+  assert.deepEqual(Object.keys(body), [
+    'type',
+    'title',
+    'status',
+    'detail',
+    'instance',
+    'code',
+    'resolution',
+  ])
 })
 
-test('the RFC 9727 catalog is a linkset', () => {
+test('read routes answer OPTIONS with 204', async () => {
+  const response = readOnlyOptionsResponse()
+  assert.equal(response.status, 204)
+  assert.equal(response.headers.get('allow'), 'GET, HEAD, OPTIONS')
+  assert.equal(response.headers.get('access-control-allow-origin'), '*')
+  assert.equal(response.headers.get('access-control-allow-methods'), 'GET, HEAD, OPTIONS')
+  assert.equal(await response.text(), '')
+})
+
+test('GET /api/v1 returns the public catalog', async () => {
+  const response = publicApiCatalogResponse()
+  assert.equal(response.status, 200)
+  assert.equal(response.headers.get('content-type'), 'application/json')
+  assert.equal(response.headers.get('cache-control'), 'public, max-age=3600, s-maxage=86400')
+  assert.equal(response.headers.get('access-control-allow-origin'), '*')
+  assert.equal(response.headers.get('x-content-type-options'), 'nosniff')
+  assert.equal(response.headers.get('link'), apiDiscoveryLink)
+  assert.deepEqual(await response.json(), publicApiCatalog)
+})
+
+test('the RFC 9727 catalog is a linkset', async () => {
   assert.equal(
     apiCatalogContentType,
     'application/linkset+json; charset=utf-8; profile="https://www.rfc-editor.org/info/rfc9727"',
@@ -85,8 +119,24 @@ test('the RFC 9727 catalog is a linkset', () => {
   assert.equal(blob.includes('/openapi.json'), false)
   assert.doesNotMatch(blob, /\/api\/(?:admin|checkout|webhooks|music|dashboard|leads)\b/)
   const route = fs.readFileSync(path.join(root, 'app/.well-known/api-catalog/route.ts'), 'utf8')
-  assert.match(route, /apiCatalogContentType/)
-  assert.match(route, /apiCatalogDocument/)
+  assert.match(route, /return apiCatalogResponse\('GET'\)/)
+  assert.match(route, /return apiCatalogResponse\('HEAD'\)/)
+  assert.match(route, /return readOnlyOptionsResponse\(\)/)
+  assert.match(route, /methodNotAllowedResponse\(request\.method, new URL\(request\.url\)\.pathname\)/)
+  assert.equal(route.includes('NextResponse.json'), false)
+
+  const response = apiCatalogResponse('GET')
+  assert.equal(response.status, 200)
+  assert.equal(response.headers.get('content-type'), apiCatalogContentType)
+  assert.equal(response.headers.get('cache-control'), 'public, max-age=3600, s-maxage=86400')
+  assert.equal(response.headers.get('access-control-allow-origin'), '*')
+  assert.equal(response.headers.get('link'), apiDiscoveryLink)
+  assert.deepEqual(await response.json(), document)
+
+  const head = apiCatalogResponse('HEAD')
+  assert.equal(head.status, 200)
+  assert.equal(head.headers.get('content-type'), apiCatalogContentType)
+  assert.equal(await head.text(), '')
 })
 
 test('the public catalog lists only real read routes', () => {
@@ -106,11 +156,25 @@ test('the public catalog lists only real read routes', () => {
   }
   const blob = [...seen].join('\n')
   assert.doesNotMatch(blob, /\/api\/(?:admin|checkout|webhooks|music|dashboard|leads)\b/)
+  const byPath = Object.fromEntries(publicApiCatalog.endpoints.map((endpoint) => [`${endpoint.method} ${endpoint.path}`, endpoint]))
+  assert.match(byPath['GET /api/quote/today'].description, /HTTP 500/)
+  assert.match(byPath['GET /api/quote/random'].description, /404 JSON/)
+  assert.match(byPath['GET /api/dare/today'].description, /HTTP 200/)
+  assert.match(byPath['GET /api/md'].description, /Missing path parameter/)
+  assert.match(byPath['GET /api/404/match'].description, /always 200/)
+  assert.match(byPath['GET /api/vcard'].description, /text\/vcard/)
+  assert.match(byPath['GET /api/mcp'].description, /text\/event-stream/)
+  assert.match(byPath['GET /api/mcp'].description, /406/)
+  assert.match(byPath['POST /api/mcp'].description, /30 requests per minute/)
+  const index = fs.readFileSync(path.join(root, 'app/api/v1/route.ts'), 'utf8')
+  assert.match(index, /return publicApiCatalogResponse\(\)/)
+  assert.match(index, /return readOnlyOptionsResponse\(\)/)
+  assert.match(index, /methodNotAllowedResponse\(request\.method, new URL\(request\.url\)\.pathname\)/)
 })
 
 test('the catch-all returns JSON instead of the HTML not-found page', () => {
   const source = fs.readFileSync(path.join(root, 'app/api/[...slug]/route.ts'), 'utf8')
-  assert.match(source, /apiRouteNotFoundResponse/)
+  assert.match(source, /apiRouteNotFoundResponse\(request\.method, request\.nextUrl\.pathname\)/)
   assert.match(source, /force-dynamic/)
   assert.doesNotMatch(source, /notFound\(/)
   for (const method of ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']) {

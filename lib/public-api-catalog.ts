@@ -1,3 +1,5 @@
+import { apiDiscoveryLink } from './api-problem.ts'
+
 const SITE = 'https://www.frankx.ai'
 
 export type PublicEndpoint = {
@@ -20,7 +22,7 @@ export const publicApiCatalog = {
       method: 'GET',
       path: '/api/quote/today',
       description:
-        'Returns the quote for the calendar day in the given IANA timezone. The default timezone is UTC. An unrecognized tz fails the request.',
+        'Returns the quote for the calendar day in the given IANA timezone. The default timezone is UTC. An unrecognized tz returns HTTP 500.',
       example: `${SITE}/api/quote/today?tz=UTC`,
     },
     {
@@ -34,7 +36,7 @@ export const publicApiCatalog = {
       method: 'GET',
       path: '/api/dare/today',
       description:
-        'Returns the daily dare. tz is an IANA timezone and defaults to UTC. An unrecognized tz is read as UTC.',
+        'Returns the daily dare. tz is an IANA timezone and defaults to UTC. An unrecognized tz still returns HTTP 200. The date is the UTC day, and the timezone field echoes the query value.',
       example: `${SITE}/api/dare/today?tz=UTC`,
     },
     {
@@ -60,7 +62,8 @@ export const publicApiCatalog = {
     {
       method: 'GET',
       path: '/api/mcp',
-      description: 'Opens the stateless MCP session. No API key is required.',
+      description:
+        'Opens the stateless MCP session when Accept includes text/event-stream. The body is an event stream. A GET without that media type returns 406 JSON-RPC. No API key is required.',
       example: `${SITE}/api/mcp`,
     },
     {
@@ -71,4 +74,15 @@ export const publicApiCatalog = {
       example: `${SITE}/api/mcp`,
     },
   ] satisfies PublicEndpoint[],
+}
+
+export function publicApiCatalogResponse(): Response {
+  return Response.json(publicApiCatalog, {
+    headers: {
+      'Cache-Control': 'public, max-age=3600, s-maxage=86400',
+      'Access-Control-Allow-Origin': '*',
+      'X-Content-Type-Options': 'nosniff',
+      Link: apiDiscoveryLink,
+    },
+  })
 }
