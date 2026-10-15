@@ -141,6 +141,8 @@ ${blogLinks}
 ${journalLinks}
 
 ## Agent access
+- [Developer notes](${SITE_URL}/developers): FrankX developer hub. MCP architecture and how the public tools fit together.
+- [Public API catalog](${SITE_URL}/api/v1): JSON list of the public read routes, with authentication notes and example requests. Unknown /api paths return application/problem+json.
 - [MCP endpoint](${SITE_URL}/api/mcp): Read-only Model Context Protocol server (Streamable HTTP, no key). Tools: frankx_search_site, frankx_get_article, frankx_list_products. Anonymous POST is limited to 30 requests per minute per address; a 429 means wait and retry. Claude Code: \`claude mcp add --transport http frankx ${SITE_URL}/api/mcp\`
 - [Markdown export](${SITE_URL}/api/md?path=/blog/agentic-ai-roadmap-2025): Any article as plain markdown; replace the path with /blog/<slug>
 
