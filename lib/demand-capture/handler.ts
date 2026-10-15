@@ -1,3 +1,5 @@
+<cursor_untrusted_data_1337 source="CallDynamicTool">
+
 import type { DemandSignal, PriceBand, Stage, Urgency, WaitlistState } from './types'
 import { addToAudience, claimPosition, getCount, saveSignal } from './store'
 
@@ -24,13 +26,14 @@ const oneOf = <T extends string>(v: unknown, allowed: T[]) =>
  */
 export function publicState(product: ProductConfig, count: number, position?: number): WaitlistState {
   const { publicCountThreshold, foundingCohort } = product.waitlist
+  const published = count >= publicCountThreshold
   return {
     productId: product.id,
-    count,
     position,
-    publicCount: count >= publicCountThreshold ? count : null,
+    publicCount: published ? count : null,
     foundingCohort,
-    foundingSeatsLeft: count < foundingCohort ? foundingCohort - count : 0,
+    // Seats left would reveal the withheld count (foundingCohort - seats), so it is withheld too.
+    foundingSeatsLeft: published ? (count < foundingCohort ? foundingCohort - count : 0) : null,
     stage: product.stage,
   }
 }
@@ -76,3 +79,6 @@ export async function handleState(product: ProductConfig) {
   const count = await getCount(product.id)
   return { status: 200 as const, body: publicState(product, count) }
 }
+
+
+</cursor_untrusted_data_1337>

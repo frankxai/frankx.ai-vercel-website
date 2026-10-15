@@ -1,3 +1,5 @@
+<cursor_untrusted_data_1337 source="CallDynamicTool">
+
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowRight } from 'lucide-react'
@@ -45,8 +47,8 @@ export default async function ProductWaitlistPage({ params }: Props) {
 
         <section className="space-y-8 rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-8">
           <p className="text-sm leading-relaxed text-slate-300">
-            There is no price and no launch date yet. What people on this list say they would pay,
-            and what they need, decides both. Join only if you would use it.
+            There is no price and no launch date yet. What people on this list tell us will
+            inform both. Join only if you would use it.
           </p>
 
           <div className="space-y-3">
@@ -77,3 +79,6 @@ export default async function ProductWaitlistPage({ params }: Props) {
     </main>
   )
 }
+
+
+</cursor_untrusted_data_1337>

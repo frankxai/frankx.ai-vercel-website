@@ -1,3 +1,5 @@
+<cursor_untrusted_data_1337 source="CallDynamicTool">
+
 'use client'
 
 import { useState } from 'react'
@@ -40,12 +42,12 @@ export type WaitlistCopy = {
 export const DEFAULT_COPY: WaitlistCopy = {
   join: 'Join the list',
   joining: 'Joining...',
-  quiet: 'One email when it opens. Nothing else.',
+  quiet: 'We will email you when it opens.',
   waiting: '{count} people waiting.',
   entered: 'You are in, at number {n}.',
   enteredNoPosition: 'You are in.',
   seats: '{n} founding places left. {benefit}',
-  intro: 'Three optional questions. They decide what gets built first, and what it costs.',
+  intro: 'Three optional questions. Your answers inform what gets built first and how it is priced.',
   roleLabel: 'You are',
   pricePrompt: PRICE_PROMPT,
   urgencyLabel: 'How soon',
@@ -56,8 +58,8 @@ export const DEFAULT_COPY: WaitlistCopy = {
   skip: 'Skip',
   done: 'Thank you. You are number {n}.',
   doneNoPosition: 'Thank you.',
-  doneText: 'You will hear from us when {product} is ready, and not before.',
-  consent: 'Email me about {product}. Your address and your answers stay with this list. Unsubscribe in any email.',
+  doneText: 'We will email you when {product} is ready.',
+  consent: 'Email me about {product}. Your address and answers are used only for this waitlist. Privacy details below.',
 }
 
 const fill = (template: string, vars: Record<string, string | number>) =>
@@ -276,3 +278,6 @@ function Choice({
     </fieldset>
   )
 }
+
+
+</cursor_untrusted_data_1337>
