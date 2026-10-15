@@ -104,6 +104,7 @@ export function homepageMarkdown(): string {
     link('Agent index', '/llms.txt'),
     link('Sitemap', '/sitemap.xml'),
     link('Public API catalog', '/api/v1'),
+    link('API catalog (RFC 9727)', '/.well-known/api-catalog'),
     link('MCP endpoint', '/api/mcp'),
     link("Today's quote", '/api/quote/today'),
   ].join('\n')

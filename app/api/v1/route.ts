@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { methodNotAllowedResponse } from '@/lib/api-problem'
+import { apiDiscoveryLink, methodNotAllowedResponse } from '@/lib/api-problem'
 import { publicApiCatalog } from '@/lib/public-api-catalog'
 
 export const revalidate = 86400
@@ -8,6 +8,7 @@ const catalogHeaders = {
   'Cache-Control': 'public, max-age=3600, s-maxage=86400',
   'Access-Control-Allow-Origin': '*',
   'X-Content-Type-Options': 'nosniff',
+  Link: apiDiscoveryLink,
 }
 
 export function GET() {
@@ -15,7 +16,7 @@ export function GET() {
 }
 
 function methodNotAllowed(request: Request): Response {
-  return methodNotAllowedResponse(request.method)
+  return methodNotAllowedResponse(request.method, new URL(request.url).pathname)
 }
 
 export const POST = methodNotAllowed

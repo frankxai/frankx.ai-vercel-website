@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
 import test from 'node:test'
+import { apiCatalogContentType, apiCatalogDocument } from '../../lib/api-catalog.ts'
 import {
   apiRouteNotFoundResponse,
   displayedApiPath,
@@ -23,17 +24,30 @@ test('unknown API routes return problem+json', async () => {
   const response = apiRouteNotFoundResponse('GET', '/api/v1/orank-probe-test?injected=1')
   assert.equal(response.status, 404)
   assert.equal(response.headers.get('content-type'), 'application/problem+json; charset=utf-8')
-  assert.equal(response.headers.get('cache-control'), 'private, no-store')
+  assert.equal(response.headers.get('cache-control'), 'no-store')
   assert.equal(response.headers.get('x-content-type-options'), 'nosniff')
+  assert.match(response.headers.get('link') ?? '', /rel="api-catalog"/)
   const body = await response.json()
+  assert.deepEqual(Object.keys(body), [
+    'type',
+    'title',
+    'status',
+    'detail',
+    'instance',
+    'code',
+    'resolution',
+  ])
+  assert.equal(body.type, 'https://www.frankx.ai/llms.txt#api-route-not-found')
+  assert.equal(body.title, 'API route not found')
   assert.equal(body.status, 404)
   assert.equal(body.code, 'api_route_not_found')
   assert.equal(body.detail, 'No API route exists at /api/v1/orank-probe-test.')
-  assert.equal(body.message, body.detail)
-  assert.match(body.resolution, /https:\/\/www\.frankx\.ai\/api\/v1/)
+  assert.equal(body.instance, 'https://www.frankx.ai/api/v1/orank-probe-test')
+  assert.match(body.resolution, /https:\/\/www\.frankx\.ai\/\.well-known\/api-catalog/)
   assert.match(body.resolution, /https:\/\/www\.frankx\.ai\/llms\.txt/)
   assert.equal(JSON.stringify(body).includes('<'), false)
   assert.equal(JSON.stringify(body).includes('injected'), false)
+  assert.equal('message' in body, false)
 })
 
 test('HEAD on an unknown API route has no body', async () => {
@@ -44,12 +58,35 @@ test('HEAD on an unknown API route has no body', async () => {
 })
 
 test('the catalog rejects other methods with JSON', async () => {
-  const response = methodNotAllowedResponse('POST')
+  const response = methodNotAllowedResponse('POST', '/api/v1')
   assert.equal(response.status, 405)
+  assert.equal(response.headers.get('content-type'), 'application/problem+json; charset=utf-8')
   assert.equal(response.headers.get('allow'), 'GET, HEAD, OPTIONS')
   const body = await response.json()
   assert.equal(body.code, 'method_not_allowed')
+  assert.equal(body.instance, 'https://www.frankx.ai/api/v1')
   assert.match(body.resolution, /GET https:\/\/www\.frankx\.ai\/api\/v1/)
+})
+
+test('the RFC 9727 catalog is a linkset', () => {
+  assert.equal(
+    apiCatalogContentType,
+    'application/linkset+json; charset=utf-8; profile="https://www.rfc-editor.org/info/rfc9727"',
+  )
+  const document = apiCatalogDocument()
+  assert.ok(Array.isArray(document.linkset))
+  assert.equal(document.linkset[0].anchor, 'https://www.frankx.ai/api/v1')
+  assert.equal(document.linkset[0]['service-desc'][0].type, 'application/json')
+  const anchors = document.linkset.map((entry) => entry.anchor)
+  for (const endpoint of publicApiCatalog.endpoints.filter((item) => item.method === 'GET')) {
+    assert.ok(anchors.includes(`https://www.frankx.ai${endpoint.path}`), endpoint.path)
+  }
+  const blob = JSON.stringify(document)
+  assert.equal(blob.includes('/openapi.json'), false)
+  assert.doesNotMatch(blob, /\/api\/(?:admin|checkout|webhooks|music|dashboard|leads)\b/)
+  const route = fs.readFileSync(path.join(root, 'app/.well-known/api-catalog/route.ts'), 'utf8')
+  assert.match(route, /apiCatalogContentType/)
+  assert.match(route, /apiCatalogDocument/)
 })
 
 test('the public catalog lists only real read routes', () => {
