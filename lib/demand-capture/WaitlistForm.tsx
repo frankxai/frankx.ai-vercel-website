@@ -1,5 +1,3 @@
-<cursor_untrusted_data_1337 source="CallDynamicTool">
-
 'use client'
 
 import { useState } from 'react'
@@ -278,6 +276,3 @@ function Choice({
     </fieldset>
   )
 }
-
-
-</cursor_untrusted_data_1337>

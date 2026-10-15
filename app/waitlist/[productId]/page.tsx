@@ -1,5 +1,3 @@
-<cursor_untrusted_data_1337 source="CallDynamicTool">
-
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowRight } from 'lucide-react'
@@ -79,6 +77,3 @@ export default async function ProductWaitlistPage({ params }: Props) {
     </main>
   )
 }
-
-
-</cursor_untrusted_data_1337>

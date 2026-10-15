@@ -1,5 +1,3 @@
-<cursor_untrusted_data_1337 source="CallDynamicTool">
-
 export type Stage = 'concept' | 'building' | 'gated' | 'live'
 
 export type PriceBand =
@@ -46,6 +44,3 @@ export interface WaitlistState {
   foundingSeatsLeft: number | null
   stage: Stage
 }
-
-
-</cursor_untrusted_data_1337>

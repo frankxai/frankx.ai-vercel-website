@@ -1,5 +1,3 @@
-<cursor_untrusted_data_1337 source="CallDynamicTool">
-
 import type { DemandSignal, PriceBand, Stage, Urgency, WaitlistState } from './types'
 import { addToAudience, claimPosition, getCount, saveSignal } from './store'
 
@@ -79,6 +77,3 @@ export async function handleState(product: ProductConfig) {
   const count = await getCount(product.id)
   return { status: 200 as const, body: publicState(product, count) }
 }
-
-
-</cursor_untrusted_data_1337>
