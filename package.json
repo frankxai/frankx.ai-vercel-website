@@ -244,7 +244,7 @@
     "react": "^18.3.1",
     "react-confetti": "^6.4.0",
     "react-dom": "^18.3.1",
-    "react-pdf": "^11.0.0",
+    "react-pdf": "^10.3.0",
     "react-syntax-highlighter": "^16.1.2",
     "reading-time": "^1.5.0",
     "rehype-highlight": "^7.0.2",
