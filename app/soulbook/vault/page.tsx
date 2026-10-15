@@ -128,7 +128,7 @@ export default function VaultPage() {
   const systemArchitectOffer: UpsellOffer = {
     id: 'system-architect-starter-kit',
     title: 'System Architect Starter Kit',
-    badge: 'Sovereign Elevation Upgrade',
+    badge: 'Launch list',
     headline: 'System Architect Starter Kit',
     description: 'Ready-to-use JSON pipelines and automation templates that run content atomization, guest research, and newsletter queueing.',
     price: 97,
