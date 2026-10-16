@@ -14,7 +14,7 @@
  */
 
 export type EcosystemTier =
-  | 'tier-1-frankx-surface' // public on frankx.ai
+  | 'tier-1-frankx-surface' // public on frankx.ai or linked from it
   | 'tier-2-substrate' // open-source sibling repos
   | 'tier-3-operational' // internal-only systems that drive the business
   | 'tier-4-ops-tooling' // PP swarm / cc-tabs / repo management
@@ -83,7 +83,7 @@ export interface EcosystemEntry {
 // ─────────────────────────────────────────────────────────────────────────
 
 export const ecosystemEntries: EcosystemEntry[] = [
-  // ─── Tier 1 — FrankX surface (live on frankx.ai) ────────────────────────
+  // ─── Tier 1 — FrankX surface (on frankx.ai or linked from it) ────────────────────────
   {
     id: 'watch-os',
     name: 'Watch OS',
@@ -484,7 +484,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
     name: 'GenCreator',
     slug: 'gencreator',
     tier: 'tier-1-frankx-surface',
-    layer: 'L5-substrate',
+    layer: 'L4-public-face',
     repo: 'gencreator.ai',
     publicUrl: 'https://gencreator.ai',
     repoUrl: null,
@@ -705,6 +705,6 @@ export const ECOSYSTEM_LAYERS: { id: EcosystemLayer; label: string; description:
   { id: 'L1-second-brain', label: 'L1 — Second Brain', description: 'Long-form prose that informs decisions.' },
   { id: 'L2-command-center', label: 'L2 — Command Center', description: 'Skills, commands, agents, hooks — the runtime.' },
   { id: 'L3-operational-data', label: 'L3 — Operational Data', description: 'Typed records, MDX content, library code.' },
-  { id: 'L4-public-face', label: 'L4 — Public Face', description: 'Pages, components, static assets — frankx.ai.' },
+  { id: 'L4-public-face', label: 'L4 — Public Face', description: 'Pages, components, static assets — frankx.ai and the product sites it links to.' },
   { id: 'L5-substrate', label: 'L5 — Substrate', description: 'Open-source frameworks others can fork.' },
 ]
