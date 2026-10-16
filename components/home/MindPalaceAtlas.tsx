@@ -87,7 +87,7 @@ const palaceRooms: PalaceRoom[] = [
     coordinate: 'B1',
     name: 'GenCreator',
     role: 'Creator studio & tools',
-    description: 'The multi-modal creator studio: social campaign engines, 100-tool stack directory, and generative pipelines.',
+    description: 'A studio for expert creators: one idea becomes campaign, article, video and offer drafts you review before anything publishes.',
     href: 'https://gencreator.ai',
     domain: 'gencreator.ai',
     icon: Sparkles,
