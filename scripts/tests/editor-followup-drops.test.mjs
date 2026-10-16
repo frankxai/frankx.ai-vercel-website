@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { readdirSync, readFileSync, statSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import test from 'node:test'
 
@@ -69,36 +69,103 @@ test('golden-age and SEO masterplan copy carries no word-count claim', () => {
   }
 })
 
-// Repo-wide guard: the song count and a few unsourced figures must not come back anywhere in blog content or app routes.
+// Repo-wide guard: the song count and a few unsourced figures must not come back in any authored copy surface.
+// It walks the blog and app routes plus the other places copy lives (all of content/, components, lib, email templates,
+// data/*.ts, and public markdown, text and html). Generated JSON inventories and the docs/ and scripts/ folders are not scanned.
 const repoRoot = fileURLToPath(new URL('../../', import.meta.url))
-const walk = (dir, extensions) =>
-  readdirSync(dir).flatMap((name) => {
+const walk = (dir, extensions) => {
+  if (!existsSync(dir)) return []
+  return readdirSync(dir).flatMap((name) => {
     if (name === 'node_modules' || name === '.next') return []
     const full = `${dir}${name}`
     if (statSync(full).isDirectory()) return walk(`${full}/`, extensions)
     return extensions.some((extension) => name.endsWith(extension)) ? [full] : []
   })
-const scanned = [
-  ...walk(`${repoRoot}content/blog/`, ['.mdx', '.md']),
-  ...walk(`${repoRoot}app/`, ['.ts', '.tsx', '.md', '.mdx']),
+}
+const scanRoots = [
+  ['content/blog/', ['.mdx', '.md']],
+  ['app/', ['.ts', '.tsx', '.md', '.mdx']],
+  ['content/', ['.md', '.mdx']],
+  ['components/', ['.ts', '.tsx']],
+  ['lib/', ['.ts', '.tsx']],
+  ['email-templates/', ['.tsx']],
+  ['data/', ['.ts']],
+  ['public/', ['.md', '.txt', '.html']],
 ]
+const scanned = [...new Set(scanRoots.flatMap(([root, extensions]) => walk(`${repoRoot}${root}`, extensions)))]
 // Only the archived slug may carry the number; it is a URL, not a claim.
 const withoutSlug = (source) => source.replaceAll('suno-ai-12000-songs-production-lessons', '')
+// Matches "12,000", "12000" or "12K" (with an optional "+") followed by up to two words and songs, tracks or experiments:
+// "12,000+ AI songs", "12K songs", "12,000-experiment practice". It does not match "$12,000+" prices, "12K impressions" or "12,000 steps".
+const songCountClaim = /\b12(?:,?000|\s?k)\b\s*\+?[\s-]*(?:[A-Za-z-]+\s+){0,2}(?:songs?|tracks?|experiments?)\b/i
 const bannedClaims = [
-  ['a 12,000 song or track count', /12,?000\s*\+?[\s-]*(?:[A-Za-z-]+\s+){0,2}(?:songs?|tracks?)\b/i],
+  ['a 12,000 song, track or experiment count', songCountClaim],
   ['the 114,000-word book count', /114,000\s+words/i],
   ['the unsourced studio comparator', /500-1,000 tracks per year/i],
   ['the unsourced years-in-enterprise-AI count', /15 years (?:building|architecting|in) enterprise/i],
   ['the unsourced 320% impressions result', /Organic impressions rose 320%/i],
 ]
+// Known leftovers outside content/blog and app that still carry the song count. They predate this guard and need their own
+// copy sweep. Do not add to this list: new copy must not carry the count. Remove an entry when its file is cleaned.
+const knownSongCountLeftovers = new Set([
+  'content/2-ready-to-publish/social/frankx-intelligence-ecosystem-complete-guide/instagram-post.md',
+  'content/2-ready-to-publish/social/frankx-intelligence-ecosystem-complete-guide/linkedin-post.md',
+  'content/2-ready-to-publish/social/frankx-intelligence-ecosystem-complete-guide/twitter-thread.md',
+  'content/books/agentic-builder/chapter-11-case-studies.md',
+  'content/books/architects-playbook/chapter-01-the-personal-ai-coe.md',
+  'content/books/architects-playbook/chapter-09-multi-cloud-ai-architecture.md',
+  'content/books/architects-playbook/chapter-11-memory-and-learning.md',
+  'content/books/architects-playbook/chapter-12-building-in-public.md',
+  'content/books/architects-playbook/chapter-13-the-creators-stack.md',
+  'content/books/architects-playbook/chapter-14-the-cross-domain-laboratory.md',
+  'content/books/architects-playbook/chapter-18-from-enterprise-to-individual.md',
+  'content/books/gencreator/chapter-01-the-one-person-studio.md',
+  'content/books/gencreator/chapter-02-the-strategy-layer.md',
+  'content/books/gencreator/chapter-08-the-compound-creator.md',
+  'content/books/gencreator/chapter-10-the-gencreator-manifesto.md',
+  'content/books/personal-ai-coe/chapter-01-the-million-dollar-framework-for-fifty-dollars.md',
+  'content/books/personal-ai-coe/chapter-08-the-integration.md',
+  'content/books/vibe/chapter-07-the-compound-stack.md',
+  'content/books/vibe/chapter-11-the-evidence.md',
+  'content/books/vibe-os/chapter-01-the-50-dollar-architecture.md',
+  'content/golden-age-book/chapter-06-the-creator-who-stayed.md',
+  'content/guides/suno-prompt-playbook.mdx',
+  'content/lead-magnets/5-suno-prompts.md',
+  'content/social/blog/suno-ai-12000-songs-production-lessons.md',
+  'components/connect/FeaturedWorkGrid.tsx',
+  'data/acos/agents.ts',
+  'data/ask-questions.ts',
+  'data/tallinn-studio.ts',
+  'email-templates/follow-up-3-day.tsx',
+  'email-templates/follow-up-7-day.tsx',
+  'email-templates/pdf-delivery.tsx',
+  'public/images/products/suno-prompt-library/suno-prompt-library-og.spec.md',
+  'public/social/linkedin/agentic-creator-os-complete-guide.md',
+  'public/social/linkedin/build-your-own-jarvis-claude-code.md',
+  'public/social/linkedin/build-your-own-jarvis.md',
+  'public/social/twitter/agentic-creator-os-complete-guide.md',
+  'public/social/twitter/build-your-own-jarvis-claude-code.md',
+  'public/social/twitter/build-your-own-jarvis.md',
+])
 
-test('no blog post or app route carries the unsourced song count or figures', () => {
-  assert.ok(scanned.length > 100, `expected to scan the whole blog and app tree, found ${scanned.length} files`)
+test('song-count pattern catches 12K and 12,000 variants but not legitimate figures', () => {
+  for (const claim of ['12,000+ AI songs', '12000 tracks', '12K songs', '12K+ AI-generated tracks', 'the 12,000-experiment music practice', 'The Music Laboratory: 12,000 Experiments', 'Over 12,000 songs created']) {
+    assert.match(claim, songCountClaim, claim)
+  }
+  for (const fine of ['Studio & Residency ($2,500–$12,000+)', 'Walked 12,000 steps today', '12K impressions, 450 likes', 'Search impressions: 12K/month', '12x faster', '112,000 songs of noise', 'Raw Trajectory: [Tool 2: 12,000 lines]', 'Revenue: ~EUR 12,000 per batch', '$12,000 in the first month']) {
+    assert.doesNotMatch(fine, songCountClaim, fine)
+  }
+})
+
+test('no authored copy carries the unsourced song count or figures', () => {
+  assert.ok(scanned.length > 100, `expected to scan the whole copy tree, found ${scanned.length} files`)
   const hits = []
   for (const file of scanned) {
+    const relative = file.slice(repoRoot.length)
     const source = withoutSlug(readFileSync(file, 'utf8'))
     for (const [label, pattern] of bannedClaims) {
-      if (pattern.test(source)) hits.push(`${file.slice(repoRoot.length)}: ${label}`)
+      if (pattern === songCountClaim && knownSongCountLeftovers.has(relative)) continue
+      if (pattern.test(source)) hits.push(`${relative}: ${label}`)
     }
   }
   assert.deepEqual(hits, [])
