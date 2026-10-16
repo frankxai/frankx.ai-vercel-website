@@ -140,7 +140,7 @@ const premiumTemplates = [
     description: 'Prompt systems, 5-layer architecture, and production packs for Suno music creation.',
     href: '/products/vibe-os',
     icon: Music,
-    meta: 'Music creation · Launch list',
+    meta: 'Music creation · Free tool (beta)',
     color: 'text-rose-300',
     gradient: 'from-rose-500/20 to-rose-500/5',
     deployUrl: null,
