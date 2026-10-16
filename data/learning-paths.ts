@@ -112,7 +112,7 @@ export const learningPaths: LearningPath[] = [
     category: 'model-maker',
     heroEyebrow: 'Updated June 10, 2026 · Reflects Claude 4.X family + MCP general availability',
     longIntro:
-      "Anthropic ships fast: Opus 4.8 leads the family for the hardest reasoning, Sonnet 4.6 is the everyday default, and Haiku 4.5 is the cheap-and-fast tier — all sharing the same agent harness, tool-use surface, and Claude Code IDE. This portal collects four videos — three from Anthropic and one independent tutorial — to take you from your first prompts to a first Claude Code session.\n\nThe videos cover two things: how to write prompts that work (video 1), and how to install and use Claude Code (videos 2 and 3), plus a conversation with its creators (video 4). The ecosystem grid and FAQ below explain the wider Claude stack — the API, the Agent SDK, MCP, Computer Use, Skills, Bedrock and Vertex — in text with links to Anthropic's documentation; none of these videos teaches those topics.\n\nStart with video 1 for prompting, then video 2 for the Claude Code workflow and video 3 to install it and run a first session. Video 4 is a conversation with the people behind Claude Code about how it started and how they work with it. The announcements timeline and FAQ give you the lay of the land in text.",
+      "Anthropic ships fast: Opus 4.8 leads the family for the hardest reasoning, Sonnet 4.6 is the everyday default, and Haiku 4.5 is the cheap-and-fast tier — all sharing the same agent harness, tool-use surface, and Claude Code IDE. This portal collects four videos — three from Anthropic and one independent tutorial — as an introduction to prompting and to Claude Code.\n\nThe videos cover two things: how to write prompts that work (video 1), and how to install and use Claude Code (videos 2 and 3), plus a conversation with two Anthropic team members (video 4). The ecosystem grid and FAQ below explain the wider Claude stack — the API, the Agent SDK, MCP, Computer Use, Skills, Bedrock and Vertex — in text with links to Anthropic's documentation; none of these videos teaches those topics.\n\nStart with video 1 for prompting, then video 2 for Claude Code's features, shortcuts and workflows and video 3 to install and set it up. Video 4 is a conversation with two Anthropic team members about how Claude Code started and how to get the most out of it. The announcements timeline and FAQ give you the lay of the land in text.",
     distillation:
       "Here is the honest shape of learning Claude in 2026, from someone who has watched enterprise AI up close: the model is no longer the hard part. Opus, Sonnet, and Haiku are all good enough that your results are decided by everything around the model — how you frame the work, what context you give it, and how much of the loop you let it run. The videos in this portal are worth your time in that order: get the prompt fundamentals first, then see Claude Code at work. Skip that order and you will ship the wrong thing quickly.\n\nThe single mental model that pays off: Claude is a reasoning engine, and everything around it is how you feed and fence it. Prompting is how you frame the task. Claude Code is that same engine wired into your repo with an approval model. Once you see it as one engine with layers around it, the learning order picks itself.\n\nAs you start using Claude Code, keep the human in the loop — the approval gates, the CLAUDE.md instructions, the verification step — because that is what separates people who ship with Claude from people who post screenshots of it.\n\nWhere I would spend your first week: run Claude Code on one real, small task in a repo you care about, add a CLAUDE.md, and force yourself to review every change. The goal is not to know Claude; it is to reliably direct it to a working, defensible result. That skill compounds.",
     ctaTitle: 'Ready to ship with Claude?',
@@ -120,9 +120,9 @@ export const learningPaths: LearningPath[] = [
       'Pair these videos with our written Claude guide, or compare Claude head-to-head against Gemini.',
     outcomes: [
       'Engineer prompts that survive contact with real-world inputs',
-      'Install Claude Code and run a first session in your terminal',
-      'Follow the Claude Code workflow: plan, edit, run, test',
-      'Understand how Claude Code started and how its creators work with it',
+      'Install and set up Claude Code',
+      'Learn Claude Code\'s features, shortcuts and workflows',
+      'Hear how Claude Code started and get practical tips from two Anthropic team members',
     ],
     relatedGuides: [
       '/guides/claude-anthropic-guide',
@@ -140,7 +140,7 @@ export const learningPaths: LearningPath[] = [
         creatorChannel: youtubeChannels.anthropic.url,
         duration: 'See YouTube',
         level: 'beginner',
-        description: "Anthropic's own deep dive on what makes a Claude prompt work — the single highest-leverage starting point.",
+        description: "Anthropic's prompt engineering experts discuss what makes a good prompt, how to refine prompts, and practical tips for improving.",
         tags: ['prompts', 'claude', 'foundations'],
       },
       {
@@ -151,7 +151,7 @@ export const learningPaths: LearningPath[] = [
         creatorChannel: youtubeChannels.anthropic.url,
         duration: 'See YouTube',
         level: 'intermediate',
-        description: 'Official walkthrough of the Claude Code workflow — plan, edit, run, test — straight from the team that built it.',
+        description: "Anthropic's walkthrough of Claude Code's advanced features, shortcuts and workflows.",
         tags: ['claude-code', 'workflow', 'builder'],
       },
       {
@@ -162,7 +162,7 @@ export const learningPaths: LearningPath[] = [
         creatorChannel: youtubeChannels.netNinja.url,
         duration: 'See YouTube',
         level: 'beginner',
-        description: "Net Ninja's clean, no-noise setup walkthrough — install, authenticate, and run your first Claude Code session.",
+        description: "The first video of Net Ninja's Claude Code course: an introduction, how to install it and how to set it up.",
         tags: ['claude-code', 'setup', 'beginner'],
       },
       {
@@ -173,7 +173,7 @@ export const learningPaths: LearningPath[] = [
         creatorChannel: youtubeChannels.anthropic.url,
         duration: 'See YouTube',
         level: 'beginner',
-        description: "Boris Cherny and Alex Albert talk about the inception of Claude Code as an internal utility and share power-user developer workflow strategies.",
+        description: "Boris Cherny and Alex Albert talk about how Claude Code started as Anthropic's own internal agentic coding tool, and share practical tips for getting the most out of it.",
         tags: ['claude-code', 'discussion', 'beginner'],
       },
     ],
@@ -709,7 +709,7 @@ export const learningPaths: LearningPath[] = [
     longIntro:
       "ChatGPT is where most people meet AI, and in 2026 it runs GPT-5.5 — OpenAI's flagship since it replaced the whole o-series in a single unified line. This portal is the practical path: how to prompt it well, turn repeat work into reusable Projects and Custom GPTs, analyze files without trusting them blindly, and know the moment to graduate to Codex or the API.\n\nThe surface is broader than a chat box now. Custom GPTs and the GPT Store let you package instructions and knowledge; Projects keep files and context together for ongoing work; Advanced Voice (powered by the gpt-realtime-2 line) turns it into a real-time spoken collaborator; and ChatGPT Images 2.0 handles visual generation. One thing to know going in: ChatGPT focuses on images, not video.\n\nStart with the beginner get-work-done walkthrough (video 1), then the prompt-engineering course (video 2) to build the habit that makes everything else work. Each tool below links to its official OpenAI page.",
     distillation:
-      "ChatGPT is where most people meet AI, and that is exactly why it is underused. The instinct is to treat it as a clever answer machine, so people ask it one-off questions and move on. The shift that changes everything is treating it as a surface you build repeatable systems on. GPT-5.5 is more than capable; the constraint is almost always the human's framing and follow-through, not the model.\n\nThe single habit that separates casual use from real output: give it the goal, the context, the constraints, and the output format you want — every time — and treat the first answer as a draft, not a verdict. The prompt-engineering course in this portal is worth more than it looks, because that discipline is what makes Projects, Custom GPTs, and data analysis actually pay off. A vague prompt wastes a good model; a structured one turns it into a collaborator.\n\nThe part people skip is turning a good session into a system. A Custom GPT packages your instructions and knowledge so you never re-explain a repeat task. A Project keeps files and context together for ongoing work. Advanced Voice turns it into a thinking partner you can talk to. None of that is exotic — it is just the difference between using ChatGPT and building with it.\n\nWhere I would start: pick one task you do every week, write it up as a Custom GPT with clear instructions and a couple of reference files, and use it for a month. Then learn the edge — when to stop reaching for the chat box and graduate to Codex for real repo work or the API for anything programmatic. The goal is not to know every ChatGPT feature; it is to build a small set of systems that quietly do real work for you.",
+      "ChatGPT is where most people meet AI, and that is exactly why it is underused. The instinct is to treat it as a clever answer machine, so people ask it one-off questions and move on. The shift that changes everything is treating it as a surface you build repeatable systems on. GPT-5.5 is more than capable; the constraint is almost always the human's framing and follow-through, not the model.\n\nThe single habit that separates casual use from real output: give it the goal, the context, the constraints, and the output format you want — every time — and treat the first answer as a draft you will revise. The prompt-engineering course in this portal is worth more than it looks, because that discipline is what makes Projects, Custom GPTs, and data analysis actually pay off. A vague prompt wastes a good model; a structured one turns it into a collaborator.\n\nThe part people skip is turning a good session into a system. A Custom GPT packages your instructions and knowledge so you never re-explain a repeat task. A Project keeps files and context together for ongoing work. Advanced Voice turns it into a thinking partner you can talk to. None of that is exotic — it is just the difference between using ChatGPT and building with it.\n\nWhere I would start: pick one task you do every week, write it up as a Custom GPT with clear instructions and a couple of reference files, and use it for a month. Then learn the edge — when to stop reaching for the chat box and graduate to Codex for real repo work or the API for anything programmatic. The goal is not to know every ChatGPT feature; it is to build a small set of systems that quietly do real work for you.",
     ctaTitle: 'Ready to get real work done with ChatGPT?',
     ctaBody:
       'Pair this portal with our written guides — a prompt library, the founder AI stack, and when to reach past ChatGPT for Codex or the API.',
@@ -967,7 +967,7 @@ export const learningPaths: LearningPath[] = [
       {
         question: 'How do I write better prompts?',
         answer:
-          'Include four things: the goal, the context, the constraints, and the output format you want. Then iterate — treat the first answer as a draft, not a verdict. Video 2 in this portal is a full course on exactly this.',
+          'Include four things: the goal, the context, the constraints, and the output format you want. Then iterate: treat the first answer as a draft you will revise. Video 2 in this portal is a full course on exactly this.',
       },
       {
         question: 'Where should I start if I’m new to ChatGPT?',
@@ -1262,7 +1262,7 @@ export const learningPaths: LearningPath[] = [
       {
         question: 'What is the latest Gemini model in May 2026?',
         answer:
-          'Gemini 3.5 Flash is GA since Google I/O 2026 (May 19) and is now the default across Antigravity. Gemini 3.1 Pro remains the flagship for reasoning, and Gemini 3.5 Pro is rolling out publicly in June 2026.',
+          'Gemini 3.5 Flash is GA since Google I/O 2026 (May 19) and is now the default across Antigravity. Gemini 3.1 Pro remains the flagship for reasoning. Check Google\'s current model lineup for anything newer.',
       },
       {
         question: 'Is Gemini CLI still supported?',
@@ -1896,7 +1896,7 @@ export const learningPaths: LearningPath[] = [
         name: 'Foundry Agent Service',
         category: 'Agents',
         description:
-          'Managed agent platform, GA since March 2026. Prompt Agents (config-only) for quick starts; Hosted Agents (GA early July 2026) add sandboxed runtime, memory, and filesystem per session.',
+          'Managed agent platform, GA since March 2026. Prompt Agents (config-only) for quick starts; Hosted Agents add sandboxed runtime, memory, and filesystem per session. Check Microsoft\'s documentation for current availability.',
         href: 'https://learn.microsoft.com/en-us/azure/foundry/agents/overview',
         status: 'New',
         lastVerified: '2026-07-06',
@@ -1983,9 +1983,9 @@ export const learningPaths: LearningPath[] = [
       },
       {
         date: '2026-07-01',
-        title: 'Hosted Agents expected to reach general availability',
+        title: 'Check current Hosted Agents availability',
         summary:
-          'Hosted Agents — the managed runtime with per-session sandboxed compute, memory, and filesystem — move from preview to GA in early July 2026.',
+          'Hosted Agents are the managed runtime with per-session sandboxed compute, memory, and filesystem. Check Microsoft\'s documentation for their current availability.',
         source: 'https://learn.microsoft.com/en-us/azure/foundry/agents/overview',
         tag: 'Update',
       },
@@ -2020,7 +2020,7 @@ export const learningPaths: LearningPath[] = [
       {
         question: 'What is the Foundry Agent Service?',
         answer:
-          'A managed platform for building AI agents, GA since March 2026. Prompt Agents are config-only (instructions, model, tools) for a fast start. Hosted Agents add a managed runtime with per-session sandboxed compute, memory, and filesystem — reaching GA in early July 2026.',
+          'A managed platform for building AI agents, GA since March 2026. Prompt Agents are config-only (instructions, model, tools) for a fast start. Hosted Agents add a managed runtime with per-session sandboxed compute, memory, and filesystem. Check Microsoft\'s documentation for the current availability of Hosted Agents.',
       },
       {
         question: 'Does Foundry support Model Context Protocol (MCP)?',
