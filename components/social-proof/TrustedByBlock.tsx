@@ -29,14 +29,13 @@ export default function TrustedByBlock() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em] sm:tracking-[0.4em] text-emerald-300/70">
-            Built with the leading AI stack
+            Tool guides
           </p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white mt-3 sm:mt-4">
-            Real tools. Real workflows. Real outputs.
+            Tools I have written guides about
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-white/60 mt-3 sm:mt-4">
-            Every logo below links to a dedicated guide showing how the tool fits into our creator
-            and intelligence systems.
+            Every logo below links to a guide or post I have written about the tool.
           </p>
         </div>
 
