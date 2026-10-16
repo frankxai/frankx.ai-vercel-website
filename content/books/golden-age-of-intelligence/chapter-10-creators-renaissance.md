@@ -91,15 +91,15 @@ I have spent more time on music than on any other generative domain, and I want 
 
 Music as a medium has properties that make it the leading edge of the generative wave in some respects. Music is short — a typical piece runs three to five minutes. Music is iterable — generating a hundred drafts takes a day, not a year. Music is felt — the difference between alive and dead, in a song, is registered in the body within seconds, which makes the curation loop fast. Music has a long tradition of micro-genre specialization, which gives the prompter a vocabulary of particulars to draw on. And music is consumed casually — most listening happens in the background, which means that even imperfect generative work has a use case (workouts, focus, reflection) that text or video does not have to the same degree.
 
-What I have learned in three years and twelve thousand tracks is, roughly, the following.
+What I have learned across hundreds of tracks is, roughly, the following.
 
 *The model is most powerful when the prompter has a specific emotional or sensory target*. A vague request for "a chill song" returns the average. A request for "the feeling of returning to your old neighbourhood after fifteen years away, on a winter afternoon, the streets emptier than you remember, an old jazz radio playing through someone's open window" returns something with a chance of being alive. The prompt is the seen thing.
 
-*The catalog is more important than any single track*. A creator with one viral hit and no body of work is a fragile creature in the new economy. A creator with twelve thousand tracks, of which five hundred are good and fifty are excellent, has built an instrument no individual track could replace. The catalog is the artist. The tracks are its facets.
+*The catalog is more important than any single track*. A creator with one viral hit and no body of work is a fragile creature in the new economy. A creator with a deep catalog, where a fraction is good and a few tracks are excellent, has built an instrument no individual track could replace. The catalog is the artist. The tracks are its facets.
 
 *State-engineered music is its own emerging genre*. The frequency entrainment work I described in Chapter 5 is a real, durable use case, and it cannot be served by any pre-existing music industry — there is no Spotify catalog of "a forty-minute 40 Hz binaural focus piece in the harmonic register I find pleasant in late afternoon". Generative tools make this kind of bespoke composition trivial, and a meaningful subset of my catalog now serves this function for me and for friends who use it. The genre will scale.
 
-*The hardest skill is restraint*. With the price of generation near zero, the temptation is to make more. The discipline is to make less, choose better, and refine the small set that matters. Most catalogs are too large to be useful. Mine, at twelve thousand, is past the point where any human listener could go through it linearly. The next phase of work is curation — building views, playlists, sequences that surface the alive ones. The making is done. The seeing has just begun.
+*The hardest skill is restraint*. With the price of generation near zero, the temptation is to make more. The discipline is to make less, choose better, and refine the small set that matters. Most catalogs are too large to be useful. Mine is large enough that a listener would struggle to go through it linearly. The next phase of work is curation — building views, playlists, sequences that surface the alive ones. The making is done. The seeing has just begun.
 
 I share these specifics so the reader has a concrete picture of one operator's three years inside the wave. The patterns generalize beyond music. They will become the common patterns of every creative domain over the next half decade.
 
@@ -143,7 +143,7 @@ The choice of *what to make* matters more, not less, in the era of cheap making.
 
 The tools do not care. The aggregate of your making is, however, who you become.
 
-I keep returning, in my own life, to this observation. The twelve thousand songs are not just a catalog. They are three years of who I have been becoming. The decisions about which prompts to write, which iterations to keep, which directions to refuse — these decisions are not just craft decisions. They are decisions about character. The catalog has shaped me as much as I have shaped the catalog.
+I keep returning, in my own life, to this observation. The songs in my catalog are a record as well as a catalog. They are years of who I have been becoming. The decisions about which prompts to write, which iterations to keep, which directions to refuse are decisions about character as well as craft. The catalog has shaped me as much as I have shaped the catalog.
 
 This is the part the discourse about AI as a productivity tool gets badly wrong. AI is not a productivity tool. It is a *making* tool, and what we make returns into us. The Renaissance is not just an economic event. It is a substrate event. We are about to become a different species — gradually, partially, unevenly — through what the new instruments allow us to make and what the making does to us.
 
