@@ -71,7 +71,7 @@ test('golden-age and SEO masterplan copy carries no word-count claim', () => {
 
 // Repo-wide guard: the song count and a few unsourced figures must not come back in any authored copy surface.
 // It walks the blog and app routes plus the other places copy lives (all of content/, components, lib, email templates,
-// data/*.ts, and public markdown, text and html). Four JSON files are scanned by name (renderedJsonFiles): two route-rendered files and the two search indexes. Other JSON
+// data/*.ts, and public markdown, text, html and svg: text-bearing SVG art such as blog heroes and social cards renders on the vault and in link previews). Four JSON files are scanned by name (renderedJsonFiles): two route-rendered files and the two search indexes. Other JSON
 // inventories (generated or admin-only) and the docs/ and scripts/ folders are not scanned.
 const repoRoot = fileURLToPath(new URL('../../', import.meta.url))
 const walk = (dir, extensions) => {
@@ -91,7 +91,7 @@ const scanRoots = [
   ['lib/', ['.ts', '.tsx']],
   ['email-templates/', ['.tsx']],
   ['data/', ['.ts']],
-  ['public/', ['.md', '.txt', '.html']],
+  ['public/', ['.md', '.txt', '.html', '.svg']],
 ]
 // JSON that routes render or search serves: /newsletter (streams), /youtube + /content-strategy/video-creation (calendar), and the two search indexes.
 // content-index.json is authoritative for descriptions (lib/route-enumeration.mjs takes its entries first) and route-index.json is what site search serves,
@@ -111,8 +111,10 @@ const songCountClaim = /\b(?:12(?:,?000|\s?k|\s+thousand)|twelve[\s-]+thousand)\
 // Unitless forms of the same count: "12k+ catalog", "12k+ song catalog", "most of my 12,000 live". A "$12,000 catalog" budget is not a count.
 const songCatalogClaim = /(?<![$€£\d,.])\b12(?:,?000|\s?k)\b\s*\+?\s+(?:(?:AI|song|track)\s+)*catalog\b|\bmy\s+12(?:,?000|\s?k)\b\s*\+?\s+(?:live|catalog|here|are|were|still)\b/i
 const yearsClaim = /\b15\+?[\s-]+years?(?:[\s-]+(?:of|in|building|architecting|as(?:\s+an?)?))*[\s-]+(?:an?\s+)?(?:enterprise|architect\w*)/i
-// The withdrawn "15,000-word" length claim ("15,000-word masterplan", "15,000-word operating system", "15,000-word masterwork"). "15,000 words" as a plain quantity is fine.
-const wordCountClaim = /(?<![$€£\d,.])\b15,?000[\s-]word\b/i
+// The withdrawn "15,000-word" length claim ("15,000-word masterplan", "15,000-word operating system", "15,000-word masterwork"), in two forms:
+// the compound adjective, and the plural noun when it sizes authored work ("condenses 15,000 words of research", "15,000 words of written content").
+// A plain quantity such as a context-window or token limit ("15,000 words of context window", "15,000 words per request") is fine.
+const wordCountClaim = /(?<![$€£\d,.])\b15,?000(?:[\s-]word\b|\+?\s+words\s+(?:of|in)\s+(?:(?:original|written|authored|published|long-form|new)\s+)?(?:research|content|writing|copy|prose|analysis|documentation|strategy)\b)/i
 const bannedClaims = [
   ['a 12,000 song, track or experiment count', songCountClaim],
   ['a 12,000 catalog count without a unit noun', songCatalogClaim],
@@ -174,10 +176,10 @@ const knownWordCountLeftovers = new Set([
 ])
 
 test('15,000-word pattern catches the withdrawn length claim but not other quantities', () => {
-  for (const claim of ['A 15,000-word masterwork', '15,000-word masterplan', 'This 15,000-word operating system', '15,000-word intelligence system', '15000 word guide', '15,000-Word Strategic Operating System']) {
+  for (const claim of ['A 15,000-word masterwork', '15,000-word masterplan', 'This 15,000-word operating system', '15,000-word intelligence system', '15000 word guide', '15,000-Word Strategic Operating System', 'condenses 15,000 words of research from my series', 'about 15,000 words of written content', 'the 15,000+ words in original research']) {
     assert.match(claim, wordCountClaim, claim)
   }
-  for (const fine of ['115,000-word archive', '$15,000 word budget', '15,000 words of context window', 'a 1,500-word post', 'a 5,000-word post', '12-day sprint']) {
+  for (const fine of ['115,000-word archive', '$15,000 word budget', '15,000 words of context window', 'fits 15,000 words of context for research', 'a limit of 15,000 words per request', 'about 115,000 words of research', '$15,000 words of content', 'a 1,500-word post', 'a 5,000-word post', '12-day sprint']) {
     assert.doesNotMatch(fine, wordCountClaim, fine)
   }
 })

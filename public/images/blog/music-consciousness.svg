@@ -13,10 +13,10 @@
   <rect width="1200" height="630" fill="url(#music)"/>
   <rect width="1200" height="630" fill="url(#wave)"/>
   <g transform="translate(120 120)" fill="#FFEFFF">
-    <text x="0" y="60" font-family="'Inter', 'Segoe UI', sans-serif" font-size="54" font-weight="700">500 Songs of Conscious Co-Creation</text>
+    <text x="0" y="60" font-family="'Inter', 'Segoe UI', sans-serif" font-size="54" font-weight="700">Songs of Conscious Co-Creation</text>
     <text x="0" y="112" font-family="'Inter', 'Segoe UI', sans-serif" font-size="30" font-weight="500">What AI music revealed about transformation, healing, and business</text>
   </g>
   <g transform="translate(120 500)" fill="#FFDFF8" opacity="0.85">
-    <text x="0" y="0" font-family="'Inter', 'Segoe UI', sans-serif" font-size="24">Suno Labs · Frequency Mapping · Commercial Pathways</text>
+    <text x="0" y="0" font-family="'Inter', 'Segoe UI', sans-serif" font-size="24">Suno Labs Â· Frequency Mapping Â· Commercial Pathways</text>
   </g>
 </svg>
