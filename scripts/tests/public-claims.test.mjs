@@ -103,6 +103,8 @@ const banned = [
   ['components/design-lab/GlassCathedralHero.tsx', ['12,000+', '12K+']],
   ['components/design-lab/NeonGridHero.tsx', ['12,000+', '12K+']],
   ['components/home/SignalRouteSelector.tsx', ['12,000+', '12K+', 'Suno audio', '100-tool', 'Suno prompt systems', 'video makers, musicians']],
+  ['components/home/MindPalaceAtlas.tsx', ['100-tool', 'multi-modal creator studio', 'generative pipelines']],
+  ['data/ecosystem.ts', ['100-tool', 'multi-modal creator studio', 'generative pipelines']],
   ['components/intelligence-map/IntelligenceMapShell.tsx', ['12,000+', '12K+']],
   ['components/rituals/RitualsShell.tsx', ['12,000+', '12K+']],
   ['components/rituals/rituals-data.ts', ['12,000+', '12K+']],

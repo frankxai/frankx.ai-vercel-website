@@ -490,9 +490,9 @@ export const ecosystemEntries: EcosystemEntry[] = [
     repoUrl: 'https://github.com/frankxai/gencreator.ai',
     status: 'live',
     shipped: '2026-05',
-    summary: 'The AI-native creator engine — social campaigns, video scripts, 100-tool stack, and cohort studio.',
+    summary: 'A studio for expert creators: one idea becomes campaign, article, video and offer drafts you review and sign.',
     description:
-      'Full-stack creator operating platform at gencreator.ai. Powers multi-platform social campaigns, video script pacing, the 100-tool Agentic Creator Stack, persona workflows, and cohort studio.',
+      'Creator studio at gencreator.ai. The first result runs in your browser, exports land on your disk, and nothing publishes until you sign.',
     relatedSystems: ['acos', 'vibe-os', 'visual-intelligence-system'],
     commands: [],
     color: 'orange',
