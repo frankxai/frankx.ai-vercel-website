@@ -189,10 +189,12 @@ export default function LearningPathPage() {
                     {path.estimatedHours} hours
                   </div>
                 )}
-                <div className="flex items-center gap-2">
-                  <Play className="w-5 h-5" />
-                  {path.videos.length} {path.videos.length === 1 ? 'video' : 'videos'}
-                </div>
+                {path.videos.length > 0 && (
+                  <div className="flex items-center gap-2">
+                    <Play className="w-5 h-5" />
+                    {path.videos.length} {path.videos.length === 1 ? 'video' : 'videos'}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -215,23 +217,25 @@ export default function LearningPathPage() {
         </div>
       </section>
 
-      {/* Videos */}
-      <section className="max-w-6xl mx-auto px-6 pb-16">
-        <h2 className="text-2xl font-bold text-white mb-8">Course Videos</h2>
+      {/* Videos (hidden when a path has none, rather than showing an empty section) */}
+      {path.videos.length > 0 && (
+        <section className="max-w-6xl mx-auto px-6 pb-16">
+          <h2 className="text-2xl font-bold text-white mb-8">Course Videos</h2>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {path.videos.map((video, i) => (
-            <motion.div
-              key={video.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <VideoPlayer video={video} color={path.color} />
-            </motion.div>
-          ))}
-        </div>
-      </section>
+          <div className="grid md:grid-cols-2 gap-6">
+            {path.videos.map((video, i) => (
+              <motion.div
+                key={video.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <VideoPlayer video={video} color={path.color} />
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Related Resources */}
       {path.relatedGuides.length > 0 && (
