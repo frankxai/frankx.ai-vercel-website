@@ -98,11 +98,14 @@ const withoutSlug = (source) => source.replaceAll('suno-ai-12000-songs-productio
 // Matches "12,000", "12000" or "12K" (with an optional "+") followed by up to two words and songs, tracks or experiments:
 // "12,000+ AI songs", "12K songs", "12,000-experiment practice". It does not match "$12,000+" prices, "12K impressions" or "12,000 steps".
 const songCountClaim = /\b12(?:,?000|\s?k)\b\s*\+?[\s-]*(?:[A-Za-z-]+\s+){0,2}(?:songs?|tracks?|experiments?)\b/i
+// Matches "15 years building enterprise", "15 years in enterprise" and hyphenated forms such as "15-year architect's".
+// It does not match "a 15-year veteran of enterprise software" persona examples or "the 15-year CUDA ecosystem".
+const yearsClaim = /\b15\+?[\s-]+years?(?:[\s-]+(?:of|in|building|architecting|as(?:\s+an?)?))*[\s-]+(?:an?\s+)?(?:enterprise|architect\w*)/i
 const bannedClaims = [
   ['a 12,000 song, track or experiment count', songCountClaim],
   ['the 114,000-word book count', /114,000\s+words/i],
   ['the unsourced studio comparator', /500-1,000 tracks per year/i],
-  ['the unsourced years-in-enterprise-AI count', /15 years (?:building|architecting|in) enterprise/i],
+  ['the unsourced years-in-enterprise-AI count', yearsClaim],
   ['the unsourced 320% impressions result', /Organic impressions rose 320%/i],
 ]
 // Known leftovers outside content/blog and app that still carry the song count. They predate this guard and need their own
@@ -131,7 +134,6 @@ const knownSongCountLeftovers = new Set([
   'content/golden-age-book/chapter-06-the-creator-who-stayed.md',
   'content/lead-magnets/5-suno-prompts.md',
   'content/social/blog/suno-ai-12000-songs-production-lessons.md',
-  'data/tallinn-studio.ts',
   'email-templates/follow-up-3-day.tsx',
   'email-templates/follow-up-7-day.tsx',
   'email-templates/pdf-delivery.tsx',
@@ -150,6 +152,15 @@ test('song-count pattern catches 12K and 12,000 variants but not legitimate figu
   }
   for (const fine of ['Studio & Residency ($2,500–$12,000+)', 'Walked 12,000 steps today', '12K impressions, 450 likes', 'Search impressions: 12K/month', '12x faster', '112,000 songs of noise', 'Raw Trajectory: [Tool 2: 12,000 lines]', 'Revenue: ~EUR 12,000 per batch', '$12,000 in the first month']) {
     assert.doesNotMatch(fine, songCountClaim, fine)
+  }
+})
+
+test('years-in-enterprise pattern catches hyphenated forms but not legitimate figures', () => {
+  for (const claim of ["A 15-year architect's turning point", '15 years building enterprise AI systems', '15+ years in enterprise AI', 'after 15 years architecting enterprise systems']) {
+    assert.match(claim, yearsClaim, claim)
+  }
+  for (const fine of ['You are Alex, a 15-year veteran of enterprise software architecture', "NVIDIA's 15-year CUDA software ecosystem", '15 years of scattered expertise into a second brain', 'average lifespan: 10-15 years']) {
+    assert.doesNotMatch(fine, yearsClaim, fine)
   }
 })
 
