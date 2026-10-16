@@ -71,7 +71,7 @@ test('golden-age and SEO masterplan copy carries no word-count claim', () => {
 
 // Repo-wide guard: the song count and a few unsourced figures must not come back in any authored copy surface.
 // It walks the blog and app routes plus the other places copy lives (all of content/, components, lib, email templates,
-// data/*.ts, and public markdown, text and html). Two route-rendered JSON files are scanned by name (renderedJsonFiles). Other JSON
+// data/*.ts, and public markdown, text and html). Four JSON files are scanned by name (renderedJsonFiles): two route-rendered files and the two search indexes. Other JSON
 // inventories (generated or admin-only) and the docs/ and scripts/ folders are not scanned.
 const repoRoot = fileURLToPath(new URL('../../', import.meta.url))
 const walk = (dir, extensions) => {
@@ -93,8 +93,10 @@ const scanRoots = [
   ['data/', ['.ts']],
   ['public/', ['.md', '.txt', '.html']],
 ]
-// Hand-authored JSON that routes render: /newsletter (streams) and /youtube + /content-strategy/video-creation (calendar). Not all of data/*.json.
-const renderedJsonFiles = ['data/newsletter-streams.json', 'data/video-creation-calendar.json']
+// JSON that routes render or search serves: /newsletter (streams), /youtube + /content-strategy/video-creation (calendar), and the two search indexes.
+// content-index.json is authoritative for descriptions (lib/route-enumeration.mjs takes its entries first) and route-index.json is what site search serves,
+// so a withdrawn claim restored in either one would reach readers. The archived slug in route-index.json is stripped by withoutSlug like everywhere else. Not all of data/*.json.
+const renderedJsonFiles = ['data/newsletter-streams.json', 'data/video-creation-calendar.json', 'data/content-index.json', 'data/route-index.json']
 const scanned = [...new Set([
   ...scanRoots.flatMap(([root, extensions]) => walk(`${repoRoot}${root}`, extensions)),
   ...renderedJsonFiles.map((relative) => `${repoRoot}${relative}`),
