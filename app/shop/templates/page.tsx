@@ -25,6 +25,7 @@ import {
 import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 import { GlowButton } from '@/components/ui/GlowButton'
 import templates from '@/data/templates.json'
+import { templatesFaq } from './faq'
 
 // ── Category Config ─────────────────────────────────────────────────────────
 
@@ -592,20 +593,7 @@ export default function ShopTemplatesPage() {
         <div className="mx-auto max-w-4xl px-6">
           <h2 className="mb-8 text-2xl font-bold text-white">Frequently Asked Questions</h2>
           <div className="grid gap-4 md:grid-cols-2">
-            {[
-              {
-                q: 'Can I buy these templates now?',
-                a: 'No. There is no checkout yet and nothing is on sale. Join the launch list at /waitlist to hear when a kit is released.',
-              },
-              {
-                q: 'Do I need my own API keys?',
-                a: 'Yes. Templates require your own API keys for AI providers (Anthropic, OpenAI, Google, or OCI). You control your costs.',
-              },
-              {
-                q: 'What platforms can I deploy to?',
-                a: 'It varies by kit and is not final. Some kits are n8n workflows, Next.js starters or Python backends, and the platforms for each are confirmed per kit before launch. No deploy buttons exist yet.',
-              },
-            ].map((faq) => (
+            {templatesFaq.map((faq) => (
               <div
                 key={faq.q}
                 className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-5"

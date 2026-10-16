@@ -363,7 +363,7 @@
     "price": 197,
     "originalPrice": 397,
     "tier": "enterprise",
-    "description": "Full-stack Next.js 15 SaaS template with authentication (NextAuth), billing (Lemon Squeezy), admin dashboard, user management, and dark glassmorphic UI. Deploy to Vercel in 5 minutes.",
+    "description": "Full-stack Next.js 15 SaaS template with authentication (NextAuth), billing (Lemon Squeezy), admin dashboard, user management, and dark glassmorphic UI.",
     "features": [
       "NextAuth.js authentication (GitHub, Google, Email)",
       "Lemon Squeezy billing integration",

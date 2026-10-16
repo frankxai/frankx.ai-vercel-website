@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import templates from '@/data/templates.json'
+import { templatesFaq } from './faq'
 
 // ── Build schema data at render time ──────────────────────────────────────────
 // Note: All schema data is static/build-time from our own templates.json.
@@ -17,21 +18,6 @@ const templateItems = templates.map((t, i) => ({
   },
 }))
 
-const faqItems = [
-  {
-    q: 'Can I buy these templates now?',
-    a: 'No. There is no checkout yet and nothing is on sale. Join the launch list at /waitlist to hear when a kit is released.',
-  },
-  {
-    q: 'Do I need my own API keys?',
-    a: 'Yes. Templates require your own API keys for AI providers (Anthropic, OpenAI, Google, or OCI). You control your costs.',
-  },
-  {
-    q: 'What platforms can I deploy to?',
-    a: 'Templates include configs for Railway (backend), Vercel (frontend), and n8n (workflows). One-click deploy buttons included.',
-  },
-]
-
 const jsonLdGraph = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -45,7 +31,7 @@ const jsonLdGraph = {
     },
     {
       '@type': 'FAQPage',
-      mainEntity: faqItems.map((faq) => ({
+      mainEntity: templatesFaq.map((faq) => ({
         '@type': 'Question',
         name: faq.q,
         acceptedAnswer: { '@type': 'Answer', text: faq.a },
@@ -78,8 +64,8 @@ export const metadata: Metadata = {
     'Next.js starter templates',
     'AI architecture templates',
     'MCP configuration packs',
-    'deploy to Railway',
-    'deploy to Vercel',
+    'launch list',
+    'planned template kits',
     'AI developer tools',
   ],
   openGraph: {
@@ -91,7 +77,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'FrankX Templates — Deploy-Ready AI Architecture',
+    title: 'FrankX Templates — Planned AI Architecture Kits',
     description:
       `${templates.length} planned templates. Skill packs, workflows, starters, and blueprints. Launch list open.`,
   },
