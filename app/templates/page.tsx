@@ -339,7 +339,7 @@ export default function TemplatesPage() {
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium text-sm transition-colors"
                 >
                   <Crown className="w-4 h-4 text-amber-300" />
-                  <span>See Commercial Kits (launch list)</span>
+                  <span>See commercial kits (launch list)</span>
                 </Link>
               </div>
             </motion.div>
