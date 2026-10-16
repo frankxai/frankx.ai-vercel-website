@@ -122,7 +122,7 @@ function LaunchListLink({ size = 'sm' }: { size?: 'sm' | 'lg' }) {
   const sizeClasses = size === 'lg' ? 'px-8 py-4 text-lg' : 'px-4 py-2 text-sm'
   return (
     <Link
-      href="/waitlist?intent=starter-kit"
+      href="/waitlist"
       className={`${sizeClasses} inline-flex items-center rounded-xl border border-white/10 bg-white/[0.06] font-semibold text-white/80 transition-colors hover:bg-white/[0.12]`}
     >
       Join the launch list
