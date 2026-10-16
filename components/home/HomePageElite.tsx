@@ -561,7 +561,7 @@ const products = [
   {
     title: 'Sovereign Business Kits',
     description: 'Modular starter-kit templates (Micro-SaaS, Marketplace, Creator Hub). Launch list open.',
-    href: '/waitlist?intent=starter-kit',
+    href: '/waitlist',
     color: 'emerald' as const,
   },
   {
