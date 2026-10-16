@@ -681,7 +681,7 @@ export const ECOSYSTEM_TIERS: { id: EcosystemTier; label: string; description: s
   {
     id: 'tier-1-frankx-surface',
     label: 'FrankX Surface',
-    description: 'Live on frankx.ai — what the world sees.',
+    description: 'On frankx.ai or linked from it — what the world sees.',
   },
   {
     id: 'tier-2-substrate',

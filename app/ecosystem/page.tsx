@@ -152,7 +152,7 @@ export default function EcosystemPage() {
           </h1>
 
           <p className="text-lg sm:text-xl text-zinc-400 max-w-3xl leading-relaxed mb-6">
-            {ecosystemEntries.length} systems across 4 tiers — public surfaces on frankx.ai, open-source substrate
+            {ecosystemEntries.length} systems across 4 tiers — public surfaces on or linked from frankx.ai, open-source substrate
             you can fork, internal operational layers, and the daily ops tooling that keeps it all running.
           </p>
 
