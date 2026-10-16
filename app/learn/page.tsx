@@ -157,7 +157,7 @@ function VideoCard({ video, pathColor }: { video: VideoResource; pathColor: stri
 export default function LearnPage() {
   const learningPathSchema = {
     name: 'FrankX AI Learning Paths',
-    description: 'Curated video learning paths covering AI architecture, music production with AI, prompt engineering, and creative AI workflows.',
+    description: 'Curated learning paths (videos and guides) covering AI architecture, music production with AI, prompt engineering, and creative AI workflows.',
     numberOfItems: learningPaths.length,
     itemListElement: learningPaths.map((path, index) => ({
       '@type': 'ListItem',
