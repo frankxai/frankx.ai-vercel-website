@@ -73,6 +73,7 @@ export const publicRobotAllows = [
   '/api/404/match',
   '/api/vcard',
   '/.well-known/',
+  '/openapi.json',
 ]
 
 function entityTag(body: string): string {

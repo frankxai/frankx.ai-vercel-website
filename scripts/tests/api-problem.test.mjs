@@ -110,13 +110,14 @@ test('the RFC 9727 catalog is a linkset', async () => {
   const document = apiCatalogDocument()
   assert.ok(Array.isArray(document.linkset))
   assert.equal(document.linkset[0].anchor, 'https://www.frankx.ai/api/v1')
-  assert.equal(document.linkset[0]['service-desc'][0].type, 'application/json')
+  assert.equal(document.linkset[0]['service-desc'][0].href, 'https://www.frankx.ai/openapi.json')
+  assert.equal(document.linkset[0]['service-desc'][0].type, 'application/vnd.oai.openapi+json')
   const anchors = document.linkset.map((entry) => entry.anchor)
   for (const endpoint of publicApiCatalog.endpoints.filter((item) => item.method === 'GET')) {
     assert.ok(anchors.includes(`https://www.frankx.ai${endpoint.path}`), endpoint.path)
   }
   const blob = JSON.stringify(document)
-  assert.equal(blob.includes('/openapi.json'), false)
+  assert.equal(blob.includes('https://www.frankx.ai/openapi.json'), true)
   assert.doesNotMatch(blob, /\/api\/(?:admin|checkout|webhooks|music|dashboard|leads)\b/)
   const route = fs.readFileSync(path.join(root, 'app/.well-known/api-catalog/route.ts'), 'utf8')
   assert.match(route, /return apiCatalogResponse\('GET'\)/)

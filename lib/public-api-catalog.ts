@@ -75,6 +75,13 @@ export const publicApiCatalog = {
     },
     {
       method: 'GET',
+      path: '/openapi.json',
+      description:
+        'OpenAPI 3.1 document for these public reads. The content type is application/vnd.oai.openapi+json;version=3.1.',
+      example: `${SITE}/openapi.json`,
+    },
+    {
+      method: 'GET',
       path: '/.well-known/ai-catalog.json',
       description: 'SEP-2127 AI Catalog. One entry points at the FrankX MCP server card.',
       example: `${SITE}/.well-known/ai-catalog.json`,

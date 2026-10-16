@@ -1,6 +1,7 @@
 const SITE = 'https://www.frankx.ai'
 
 export const apiDiscoveryLink = [
+  `<${SITE}/openapi.json>; rel="service-desc"; type="application/vnd.oai.openapi+json"`,
   `<${SITE}/.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"`,
   `<${SITE}/developers>; rel="service-doc"; type="text/html"`,
   `<${SITE}/llms.txt>; rel="describedby"; type="text/plain"`,

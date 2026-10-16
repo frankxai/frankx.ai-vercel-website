@@ -67,10 +67,10 @@ test('homepage markdown follows the page copy', async () => {
   for (const description of quotedValues(products, 'description')) {
     assert.ok(body.includes(description), description)
   }
-  for (const href of ['/developers', '/llms.txt', '/sitemap.xml', '/api/v1', '/.well-known/api-catalog', '/.well-known/ai-catalog.json', '/api/mcp', '/api/mcp/server-card', '/music', '/guides']) {
+  for (const href of ['/developers', '/llms.txt', '/sitemap.xml', '/api/v1', '/openapi.json', '/.well-known/api-catalog', '/.well-known/ai-catalog.json', '/api/mcp', '/api/mcp/server-card', '/music', '/guides']) {
     assert.ok(body.includes(`https://www.frankx.ai${href}`), href)
   }
-  assert.equal(body.includes('/openapi.json'), false)
+  assert.equal(body.includes('https://www.frankx.ai/openapi.json'), true)
 
   const response = homepageMarkdownResponse('GET')
   assert.equal(response.status, 200)
@@ -112,6 +112,7 @@ test('negotiation stays in the proxy and off the not-found boundary', () => {
   const llms = fs.readFileSync(path.join(root, 'app/llms.txt/route.ts'), 'utf8')
   assert.match(llms, /\$\{SITE_URL\}\/developers/)
   assert.match(llms, /\$\{SITE_URL\}\/api\/v1/)
+  assert.match(llms, /\$\{SITE_URL\}\/openapi\.json/)
   assert.match(llms, /\$\{SITE_URL\}\/\.well-known\/api-catalog/)
   assert.match(llms, /application\/linkset\+json/)
   assert.match(llms, /application\/problem\+json/)

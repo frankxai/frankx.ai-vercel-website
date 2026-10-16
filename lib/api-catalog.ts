@@ -27,7 +27,7 @@ export function apiCatalogDocument(): ApiCatalogDocument {
     linkset: [
       {
         anchor: `${SITE}/api/v1`,
-        'service-desc': [{ href: `${SITE}/api/v1`, type: 'application/json' }],
+        'service-desc': [{ href: `${SITE}/openapi.json`, type: 'application/vnd.oai.openapi+json' }],
         'service-doc': serviceDoc,
       },
       ...reads.map((endpoint) => ({

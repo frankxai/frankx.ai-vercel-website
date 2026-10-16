@@ -22,6 +22,7 @@ export default function robots(): MetadataRoute.Robots {
     '/api/404/match',
     '/api/vcard',
     '/.well-known/',
+    '/openapi.json',
   ]
 
   return {
