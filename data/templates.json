@@ -8,7 +8,7 @@
     "price": 27,
     "originalPrice": 47,
     "tier": "starter",
-    "description": "Production-ready Claude Code skill that turns any session into an AI music production studio. Includes genre templates, prompt formulas, vocal separation workflows, and commercial licensing guides.",
+    "description": "Claude Code skill that turns any session into an AI music production studio. Includes genre templates, prompt formulas, vocal separation workflows, and commercial licensing guides.",
     "features": [
       "50+ genre-specific prompt templates",
       "Vocal isolation and remix workflows",
@@ -358,7 +358,7 @@
     "id": "nextjs-saas-boilerplate",
     "slug": "nextjs-saas-boilerplate",
     "name": "Next.js SaaS Boilerplate",
-    "subtitle": "Production-ready SaaS starter with auth, billing, dashboard",
+    "subtitle": "SaaS starter with auth, billing, dashboard",
     "category": "starter-kit",
     "price": 197,
     "originalPrice": 397,
@@ -455,7 +455,7 @@
     "price": 47,
     "originalPrice": 97,
     "tier": "starter",
-    "description": "The exact blog architecture powering frankx.ai. MDX content, optimized typography, automatic SEO, schema markup, and a clean dark design. 70+ blog posts proven.",
+    "description": "The exact blog architecture powering frankx.ai. MDX content, optimized typography, automatic SEO, schema markup, and a clean dark design.",
     "features": [
       "MDX blog with frontmatter",
       "Optimized typography (680px prose column)",
