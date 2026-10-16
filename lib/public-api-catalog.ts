@@ -22,7 +22,7 @@ export const publicApiCatalog = {
       method: 'GET',
       path: '/api/quote/today',
       description:
-        'Returns the quote for the calendar day in the given IANA timezone. The default timezone is UTC. An unrecognized tz returns HTTP 500.',
+        'Returns the quote for the calendar day in the given IANA timezone. The default timezone is UTC. An unrecognized tz returns HTTP 400 with an error message.',
       example: `${SITE}/api/quote/today?tz=UTC`,
     },
     {
@@ -63,8 +63,21 @@ export const publicApiCatalog = {
       method: 'GET',
       path: '/api/mcp',
       description:
-        'Opens the stateless MCP session when Accept includes text/event-stream. The body is an event stream. A GET without that media type returns 406 JSON-RPC. No API key is required.',
+        'Opens the stateless MCP session when Accept includes text/event-stream. The body is an event stream. A GET without that media type returns 406 JSON-RPC. No API key is required. The server card is https://www.frankx.ai/api/mcp/server-card.',
       example: `${SITE}/api/mcp`,
+    },
+    {
+      method: 'GET',
+      path: '/api/mcp/server-card',
+      description:
+        'Returns the MCP server card (application/mcp-server-card+json). It names the transport and does not list tools.',
+      example: `${SITE}/api/mcp/server-card`,
+    },
+    {
+      method: 'GET',
+      path: '/.well-known/ai-catalog.json',
+      description: 'SEP-2127 AI Catalog. One entry points at the FrankX MCP server card.',
+      example: `${SITE}/.well-known/ai-catalog.json`,
     },
     {
       method: 'POST',

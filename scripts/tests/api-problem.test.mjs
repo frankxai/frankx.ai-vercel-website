@@ -157,7 +157,7 @@ test('the public catalog lists only real read routes', () => {
   const blob = [...seen].join('\n')
   assert.doesNotMatch(blob, /\/api\/(?:admin|checkout|webhooks|music|dashboard|leads)\b/)
   const byPath = Object.fromEntries(publicApiCatalog.endpoints.map((endpoint) => [`${endpoint.method} ${endpoint.path}`, endpoint]))
-  assert.match(byPath['GET /api/quote/today'].description, /HTTP 500/)
+  assert.match(byPath['GET /api/quote/today'].description, /HTTP 400/)
   assert.match(byPath['GET /api/quote/random'].description, /404 JSON/)
   assert.match(byPath['GET /api/dare/today'].description, /HTTP 200/)
   assert.match(byPath['GET /api/md'].description, /Missing path parameter/)

@@ -105,7 +105,9 @@ export function homepageMarkdown(): string {
     link('Sitemap', '/sitemap.xml'),
     link('Public API catalog', '/api/v1'),
     link('API catalog (RFC 9727)', '/.well-known/api-catalog'),
+    link('AI catalog (SEP-2127)', '/.well-known/ai-catalog.json'),
     link('MCP endpoint', '/api/mcp'),
+    link('MCP server card', '/api/mcp/server-card'),
     link("Today's quote", '/api/quote/today'),
   ].join('\n')
 

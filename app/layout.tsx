@@ -118,6 +118,9 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
   },
   category: 'Technology',
+  other: {
+    'is-agentic-site-type': 'content',
+  },
   robots: {
     index: true,
     follow: true,
