@@ -59,3 +59,21 @@ allowBuilds:
 # For an urgent security fix younger than 3 days, add the package to
 # minimumReleaseAgeExclude with a dated comment and remove it afterwards.
 minimumReleaseAge: 4320
+# 2026-10-14: Next.js 16.4.1 security release (GHSA-673q-mjm6-r5xr,
+# GHSA-2464-fhr4-w9xw, GHSA-p3m5-59mp-jv5r) is younger than the cooldown.
+# Remove these entries once 16.4.1 is older than 3 days (after 2026-10-17).
+minimumReleaseAgeExclude:
+  - '@next/env@16.4.1'
+  - '@next/eslint-plugin-next@16.4.1'
+  - '@next/mdx@16.4.1'
+  - '@next/swc-darwin-arm64@16.4.1'
+  - '@next/swc-darwin-x64@16.4.1'
+  - '@next/swc-linux-arm64-gnu@16.4.1'
+  - '@next/swc-linux-arm64-musl@16.4.1'
+  - '@next/swc-linux-x64-gnu@16.4.1'
+  - '@next/swc-linux-x64-musl@16.4.1'
+  - '@next/swc-win32-arm64-msvc@16.4.1'
+  - '@next/swc-win32-x64-msvc@16.4.1'
+  - '@next/third-parties@16.4.1'
+  - 'eslint-config-next@16.4.1'
+  - 'next@16.4.1'
