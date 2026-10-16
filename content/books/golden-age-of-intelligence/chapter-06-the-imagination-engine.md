@@ -17,7 +17,7 @@ There is a small moment, before I press *generate* on any track that ends up mat
 
 The Lenovo is open. The cursor is in the prompt field. My coffee is going cold. I have a vague specification — *late-night, broken piano, a male voice that has been awake too long, cold synth pad, no drums until the second verse*. I could just type this and click. Most of the catalog was made that way and most of the catalog is fine.
 
-But on the songs I love — the seventy or eighty out of twelve thousand that I keep going back to — there was always this preparatory minute. I stop typing. I close my eyes. I listen for the track in the silence. Sometimes I can hear it almost completely before I have written a single word into the model. Other times I get only a colour, a tempo, a feel, an emotional shape. Either way, when I open my eyes and write the prompt, I am no longer specifying — I am *transcribing*.
+But on the songs I love — the handful out of hundreds that I keep going back to — there was always this preparatory minute. I stop typing. I close my eyes. I listen for the track in the silence. Sometimes I can hear it almost completely before I have written a single word into the model. Other times I get only a colour, a tempo, a feel, an emotional shape. Either way, when I open my eyes and write the prompt, I am no longer specifying — I am *transcribing*.
 
 The track that comes back from the model is then one of two things. It is either close enough to what I heard internally that I can land it in two or three iterations. Or it is far enough away that I know, immediately, the right correction.
 
@@ -107,7 +107,7 @@ Before the models, you could be a person of vivid inner experience and produce, 
 
 The models change the ratio.
 
-I have made twelve thousand songs in three years. Most are not good. I want to be honest about that. But twelve thousand is a number that the entire history of recorded music could not have offered to a single individual until 2023. Before the models, twelve thousand songs from one person was inconceivable in the way that running a mile in three minutes is inconceivable. After the models, the bottleneck is not output — it is whether the operator has anything to say.
+I have published 817 clips on my public Suno profile (as of 2 July 2026). Most are not good. I want to be honest about that. The models change what one person can finish and release in a few years. After the models, the bottleneck moves from output to whether the operator has anything to say.
 
 This is the part that most commentary misses.
 

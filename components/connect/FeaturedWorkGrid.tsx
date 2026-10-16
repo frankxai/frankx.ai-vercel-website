@@ -27,7 +27,7 @@ const work = [
   {
     id: "music-practice",
     index: "C",
-    title: "The 12,000-experiment music practice",
+    title: "The music practice",
     description:
       "A long-running record of iteration, selection, and creative direction with generative tools.",
     proof: "Creative endurance",
