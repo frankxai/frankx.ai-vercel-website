@@ -122,7 +122,7 @@ const premiumTemplates = [
   },
   {
     title: 'Autonomous Swarm Workstation (ACOS Core)',
-    description: `Multi-agent orchestration system with ${acosAgentCounts.shipped} shipped agents in the ACOS catalog and deterministic test gates.`,
+    description: `Multi-agent orchestration system with ${acosAgentCounts.shipped} shipped entries in the ACOS catalog and deterministic test gates.`,
     href: '/products/agentic-creator-os',
     icon: Sparkles,
     meta: 'Flagship OS · Launch list',
