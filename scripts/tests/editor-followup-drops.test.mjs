@@ -71,7 +71,8 @@ test('golden-age and SEO masterplan copy carries no word-count claim', () => {
 
 // Repo-wide guard: the song count and a few unsourced figures must not come back in any authored copy surface.
 // It walks the blog and app routes plus the other places copy lives (all of content/, components, lib, email templates,
-// data/*.ts, and public markdown, text and html). Generated JSON inventories and the docs/ and scripts/ folders are not scanned.
+// data/*.ts, and public markdown, text and html). Two route-rendered JSON files are scanned by name (renderedJsonFiles). Other JSON
+// inventories (generated or admin-only) and the docs/ and scripts/ folders are not scanned.
 const repoRoot = fileURLToPath(new URL('../../', import.meta.url))
 const walk = (dir, extensions) => {
   if (!existsSync(dir)) return []
@@ -92,7 +93,12 @@ const scanRoots = [
   ['data/', ['.ts']],
   ['public/', ['.md', '.txt', '.html']],
 ]
-const scanned = [...new Set(scanRoots.flatMap(([root, extensions]) => walk(`${repoRoot}${root}`, extensions)))]
+// Hand-authored JSON that routes render: /newsletter (streams) and /youtube + /content-strategy/video-creation (calendar). Not all of data/*.json.
+const renderedJsonFiles = ['data/newsletter-streams.json', 'data/video-creation-calendar.json']
+const scanned = [...new Set([
+  ...scanRoots.flatMap(([root, extensions]) => walk(`${repoRoot}${root}`, extensions)),
+  ...renderedJsonFiles.map((relative) => `${repoRoot}${relative}`),
+])]
 // Only the archived slug may carry the number; it is a URL, not a claim.
 const withoutSlug = (source) => source.replaceAll('suno-ai-12000-songs-production-lessons', '')
 // Matches "12,000", "12000", "12K", "12 thousand" or "twelve thousand" (with an optional "+") followed by up to two words and songs, tracks or experiments:
@@ -184,6 +190,11 @@ test('years-in-enterprise pattern catches hyphenated forms but not legitimate fi
 
 test('no authored copy carries the unsourced song count or figures', () => {
   assert.ok(scanned.length > 100, `expected to scan the whole copy tree, found ${scanned.length} files`)
+  for (const relative of renderedJsonFiles) {
+    assert.ok(existsSync(`${repoRoot}${relative}`), `${relative} must exist so the guard can scan it`)
+    assert.ok(scanned.includes(`${repoRoot}${relative}`), `${relative} must be a scan target`)
+    assert.ok(!knownSongCountLeftovers.has(relative), `${relative} must not be allowlisted`)
+  }
   const hits = []
   for (const file of scanned) {
     const relative = file.slice(repoRoot.length)
