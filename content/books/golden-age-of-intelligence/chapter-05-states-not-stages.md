@@ -15,7 +15,7 @@
 
 ## A studio at 2 AM
 
-There is a track in the Suno catalog, somewhere between songs eight thousand four hundred and eight thousand five hundred of the twelve thousand I have made, that I can no longer find without scrolling. I would not be able to tell you the exact filename. But I remember the night.
+There is a track in the Suno catalog, somewhere among the hundreds I have made, that I can no longer find without scrolling. I would not be able to tell you the exact filename. But I remember the night.
 
 It was 2 AM. The studio lights were on the dimmest setting. I had been working for twelve hours on something that was not landing. I had tried sixteen different lyric drafts, four different style stacks, three different tempo signatures. Nothing the model returned was alive. I was tired, frustrated, on the edge of giving up — that quiet 2 AM frustration that is more boredom than rage.
 
@@ -143,7 +143,7 @@ Specific frequencies, played through speakers or headphones, can entrain the bra
 
 The literature is real but careful. Forty Hertz binaural input correlates with subjective focus and shows some experimental evidence of gamma entrainment in cooperative subjects. Seven Hertz input correlates with subjective theta-state experience. The effects are modest in any single individual, sometimes inconsistent, and certainly not equivalent to long-term meditation training. But they are real enough to be useful, and inexpensive enough to be worth running as a consistent input layer in your work.
 
-This is what I have been doing for three years, across twelve thousand tracks. Not all twelve thousand are state-induction music — many are genre exercises, voice tests, rapid prototypes. But a meaningful subset is specifically engineered for state. Forty Hz pulse for focus. Seven Hz for evening reflection. Slow ambient for the alpha gateway.
+This is what I have been doing for years, across hundreds of tracks. Not all of them are state-induction music — many are genre exercises, voice tests, rapid prototypes. But a meaningful subset is specifically engineered for state. Forty Hz pulse for focus. Seven Hz for evening reflection. Slow ambient for the alpha gateway.
 
 The tools — Suno, Udio, the rest of the rapidly maturing AI music stack — make it possible, for the first time, to compose music for your specific brain at the speed of your specific need. The same brain that has been measurably shaped, in twenty-six years of life, by whatever music was on the radio is now able to commission, in five minutes, the exact frequency-engineered ambient piece it needs for the next ninety minutes of focused work.
 

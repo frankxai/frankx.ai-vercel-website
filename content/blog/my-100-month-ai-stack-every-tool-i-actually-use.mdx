@@ -1,24 +1,24 @@
 ---
-title: "My $100/Month AI Stack: Every Tool I Actually Use"
+title: "My AI Stack: Every Tool I Actually Use"
 description: "The exact AI tools, subscriptions, and infrastructure I run to ship music, code, content, and products — with monthly costs broken down."
 date: "2026-03-21"
-lastUpdated: "2026-08-18"
+lastUpdated: "2026-10-16"
 author: "FrankX"
 category: "Creator Systems"
 tags: ["AI Tools", "AI Stack", "Productivity", "Creator Tools", "Cost"]
 image: "/images/blog/my-100-month-ai-stack-hero.webp"
 featured: true
 readingGoal: "You will know every AI tool I pay for, what each one does, and whether you need it — with exact monthly costs."
-tldr: "I run a full AI production stack for under $100/month: Claude Pro ($20), Suno Pro ($10), Vercel Pro ($20), Railway ($5 for n8n), Resend ($0-20), and API costs (~$20-40). Total: $75-115/month. This stack ships a 170+ page website, 12,000+ songs, 9 automation workflows, and a complete content pipeline. No enterprise contracts. No team. One person. Here is every tool, what it costs, and whether you need it."
+tldr: "I run a full AI production stack on the tools I actually use: Claude Pro ($20), Suno Pro ($10), Vercel Pro ($20), Railway ($5 for n8n), Resend ($0-20), and API costs (~$20-40). This stack ships a 170+ page website, a public Suno catalog, 9 automation workflows, and a complete content pipeline. No enterprise contracts. No team. One person. Here is every tool, what it costs, and whether you need it."
 keywords: ["creator systems", "ai tools", "ai stack", "productivity", "creator tools", "cost"]
 ---
-**TL;DR:** I run a full AI production stack for under $100/month: Claude Pro ($20), Suno Pro ($10), Vercel Pro ($20), Railway ($5 for n8n), Resend ($0-20), and API costs (~$20-40). Total: $75-115/month. This stack ships a 170+ page website, 12,000+ songs, 9 automation workflows, and a complete content pipeline. No enterprise contracts. No team. One person. Here is every tool, what it costs, and whether you need it.
+**TL;DR:** I run a full AI production stack on the tools I actually use: Claude Pro ($20), Suno Pro ($10), Vercel Pro ($20), Railway ($5 for n8n), Resend ($0-20), and API costs (~$20-40). This stack ships a 170+ page website, a public Suno catalog, 9 automation workflows, and a complete content pipeline. No enterprise contracts. No team. One person. Here is every tool, what it costs, and whether you need it.
 
 ---
 
 People in AI build communities assume everyone is running enterprise contracts. Six-figure annual deals for Copilot, a Snowflake instance for RAG, a dedicated Databricks workspace for fine-tuning.
 
-I have architected that pattern in enterprise AI contexts. The same categories of work — intelligence infrastructure, agentic pipelines, content production, product shipping — run on my personal stack for under $100/month.
+I have architected that pattern in enterprise AI contexts. The same categories of work — intelligence infrastructure, agentic pipelines, content production, product shipping — run on my personal stack.
 
 This is what I actually pay for, what each tool does, and the honest answer to whether you need it.
 
@@ -38,7 +38,7 @@ Claude Pro gives me 5x the usage of the free tier plus priority access during pe
 
 ### Suno Pro — $10/month
 
-Music generation at scale. I have 12,000+ tracks and still produce new ones regularly. Suno Pro gives 2,500 credits/month, commercial licensing rights, and no watermarks. My tracks self-host on Vercel Blob and stream through a custom audio player I built.
+Music generation at scale. I have a public Suno catalog and still produce new ones regularly. Suno Pro gives 2,500 credits/month, commercial licensing rights, and no watermarks. My tracks self-host on Vercel Blob and stream through a custom audio player I built.
 
 **Whether you need it:** Only if music production is part of your output. For most creators, this is optional.
 
@@ -130,14 +130,14 @@ The pattern: infrastructure that requires significant ops knowledge (email deliv
 
 ## How This Connects to the Personal AI CoE
 
-The framework I use at Oracle — a six-pillar AI Center of Excellence — has a direct personal equivalent. Technology is one of the six pillars, and your tool stack is the Technology layer.
+The framework I used at Oracle — a six-pillar AI Center of Excellence — has a direct personal equivalent. Technology is one of the six pillars, and your tool stack is the Technology layer.
 
-The $75-115/month total maps to the "$0-100/month tier" in the [Personal AI CoE framework](/research/personal-ai-coe). Most individual creators land in this range. The principle is the same whether you are a Fortune 500 or a solo builder: you need the right tools in the right layers, measured against actual output.
+The stack above maps to the Technology pillar in the [Personal AI CoE framework](/research/personal-ai-coe). The principle is the same whether you are a Fortune 500 or a solo builder: you need the right tools in the right layers, measured against actual output.
 
 What this stack produces:
 
 - **170+ page website** (Vercel Pro + GitHub + Claude Code)
-- **12,000+ music tracks** (Suno Pro + Vercel Blob)
+- **A public Suno music catalog** (Suno Pro + Vercel Blob)
 - **9 automation workflows** (Railway + n8n)
 - **Content pipeline** (Claude Pro + n8n Content Atomizer)
 - **Email sequences and product delivery** (Resend + Vercel API routes)
@@ -158,7 +158,6 @@ The [ACOS framework](/acos) formalizes how these tools connect — not as a list
 | Resend                | $0-20       | Distribution   |
 | GitHub                | $0          | Infrastructure |
 | Vercel Blob           | Included    | Storage        |
-| **Total**             | **$75-115** | —              |
 
 ---
 
@@ -179,7 +178,7 @@ The free tier is genuinely capable. Claude Pro makes sense once you are shipping
 Yes. Railway's hobby plan at $5/month covers the compute needed for a standard n8n instance handling dozens of workflow executions per day. For reference: 9 active workflows running on this instance, some with multi-node AI chains, all within the $5 allocation.
 
 **What if I do not use Suno or music production?**
-Drop it. The core stack without Suno runs $65-95/month. Your $10 stays in your pocket unless music is part of your output.
+Drop it. Your $10 stays in your pocket unless music is part of your output.
 
 **Why Vercel instead of a cheaper host?**
 Vercel's edge network and zero-config Next.js deployment save hours of infrastructure management per month. The build pipeline, preview deployments, and serverless functions handle what would take significant DevOps effort on a raw VPS. For a solo builder, the time cost is the real currency.
