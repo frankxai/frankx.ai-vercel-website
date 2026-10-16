@@ -169,7 +169,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
     shipped: '2026-04-23',
     summary: 'Public catalog of ACOS agents across 11 pillars.',
     description:
-      'The discoverable index of every specialist agent in ACOS — 11 pillars × 9 specialists each. Pairs with the hook-learning loop (CSV → learned.json → /hook bias) for measurable improvement over time.',
+      'The discoverable index of every specialist agent in ACOS, organized into 11 pillars. Pairs with the hook-learning loop (CSV → learned.json → /hook bias) for measurable improvement over time.',
     relatedSystems: ['acos'],
     commands: ['/acos-agents', '/hook', '/hook-learn'],
     color: 'emerald',
@@ -362,7 +362,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
     repoUrl: null,
     status: 'live',
     shipped: '2026-04-23',
-    summary: 'Operational systems Frank uses to run the business — 5+ modules.',
+    summary: 'Operational systems Frank uses to run the business — ten modules.',
     description:
       'The FrankXOSHeader-unified meta-spine of operational systems. Originally 5 (Watch / Workshop / ACO / ACOS / CoE Hub) — Library OS and the Build First funnel join in the 2026-05-03 reconciliation. Cross-links to /ecosystem for the full picture.',
     relatedSystems: ['watch-os', 'workshop-os', 'aco', 'acos', 'coe-hub', 'library-frankx-surface', 'ecosystem-page'],

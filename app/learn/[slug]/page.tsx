@@ -269,7 +269,7 @@ export default function LearningPathPage() {
             Ready for Hands-On Practice?
           </h2>
           <p className="text-white/60 mb-8 max-w-xl mx-auto">
-            These free videos give you the foundation.
+            {path.videos.length > 0 ? 'These free videos give you the foundation. ' : ''}
             Our guides take you deeper with practical exercises.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

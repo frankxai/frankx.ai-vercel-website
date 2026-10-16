@@ -710,9 +710,9 @@ export const learningPaths: LearningPath[] = [
     category: 'model-maker',
     heroEyebrow: 'Updated July 5, 2026 · Runs GPT-5.5 · Everyday AI fluency',
     longIntro:
-      "ChatGPT is where most people meet AI, and in 2026 it runs GPT-5.5 — OpenAI's flagship since it replaced the whole o-series in a single unified line. This portal is the practical path: how to prompt it well, turn repeat work into reusable Projects and Custom GPTs, analyze files without trusting them blindly, and know the moment to graduate to Codex or the API.\n\nThe surface is broader than a chat box now. Custom GPTs and the GPT Store let you package instructions and knowledge; Projects keep files and context together for ongoing work; Advanced Voice (powered by the gpt-realtime-2 line) turns it into a real-time spoken collaborator; and ChatGPT Images 2.0 handles visual generation. One thing to know going in: ChatGPT focuses on images, not video.\n\nStart with the beginner get-work-done walkthrough (video 1), then the two prompt-engineering courses (videos 2 and 3) to build the habit that makes everything else work. Each tool below links to its official OpenAI page.",
+      "ChatGPT is where most people meet AI, and in 2026 it runs GPT-5.5 — OpenAI's flagship since it replaced the whole o-series in a single unified line. This portal is the practical path: how to prompt it well, turn repeat work into reusable Projects and Custom GPTs, analyze files without trusting them blindly, and know the moment to graduate to Codex or the API.\n\nThe surface is broader than a chat box now. Custom GPTs and the GPT Store let you package instructions and knowledge; Projects keep files and context together for ongoing work; Advanced Voice (powered by the gpt-realtime-2 line) turns it into a real-time spoken collaborator; and ChatGPT Images 2.0 handles visual generation. One thing to know going in: ChatGPT focuses on images, not video.\n\nStart with the beginner get-work-done walkthrough (video 1), then the prompt-engineering course (video 2) to build the habit that makes everything else work. Each tool below links to its official OpenAI page.",
     distillation:
-      "ChatGPT is where most people meet AI, and that is exactly why it is underused. The instinct is to treat it as a clever answer machine, so people ask it one-off questions and move on. The shift that changes everything is treating it as a surface you build repeatable systems on. GPT-5.5 is more than capable; the constraint is almost always the human's framing and follow-through, not the model.\n\nThe single habit that separates casual use from real output: give it the goal, the context, the constraints, and the output format you want — every time — and treat the first answer as a draft, not a verdict. The two prompt-engineering courses in this portal are worth more than they look, because that discipline is what makes Projects, Custom GPTs, and data analysis actually pay off. A vague prompt wastes a good model; a structured one turns it into a collaborator.\n\nThe part people skip is turning a good session into a system. A Custom GPT packages your instructions and knowledge so you never re-explain a repeat task. A Project keeps files and context together for ongoing work. Advanced Voice turns it into a thinking partner you can talk to. None of that is exotic — it is just the difference between using ChatGPT and building with it.\n\nWhere I would start: pick one task you do every week, write it up as a Custom GPT with clear instructions and a couple of reference files, and use it for a month. Then learn the edge — when to stop reaching for the chat box and graduate to Codex for real repo work or the API for anything programmatic. The goal is not to know every ChatGPT feature; it is to build a small set of systems that quietly do real work for you.",
+      "ChatGPT is where most people meet AI, and that is exactly why it is underused. The instinct is to treat it as a clever answer machine, so people ask it one-off questions and move on. The shift that changes everything is treating it as a surface you build repeatable systems on. GPT-5.5 is more than capable; the constraint is almost always the human's framing and follow-through, not the model.\n\nThe single habit that separates casual use from real output: give it the goal, the context, the constraints, and the output format you want — every time — and treat the first answer as a draft, not a verdict. The prompt-engineering course in this portal is worth more than it looks, because that discipline is what makes Projects, Custom GPTs, and data analysis actually pay off. A vague prompt wastes a good model; a structured one turns it into a collaborator.\n\nThe part people skip is turning a good session into a system. A Custom GPT packages your instructions and knowledge so you never re-explain a repeat task. A Project keeps files and context together for ongoing work. Advanced Voice turns it into a thinking partner you can talk to. None of that is exotic — it is just the difference between using ChatGPT and building with it.\n\nWhere I would start: pick one task you do every week, write it up as a Custom GPT with clear instructions and a couple of reference files, and use it for a month. Then learn the edge — when to stop reaching for the chat box and graduate to Codex for real repo work or the API for anything programmatic. The goal is not to know every ChatGPT feature; it is to build a small set of systems that quietly do real work for you.",
     ctaTitle: 'Ready to get real work done with ChatGPT?',
     ctaBody:
       'Pair this portal with our written guides — a prompt library, the founder AI stack, and when to reach past ChatGPT for Codex or the API.',
@@ -743,18 +743,6 @@ export const learningPaths: LearningPath[] = [
         description:
           'Practical beginner workflow for using ChatGPT on real work instead of one-off novelty prompts.',
         tags: ['chatgpt', 'productivity', 'beginner'],
-      },
-      {
-        id: 'chatgpt-prompt-engineering-devs',
-        youtubeId: 'kifXwGtKubs',
-        title: 'ChatGPT Prompt Engineering for Developers',
-        creator: youtubeChannels.deepLearningAI.name,
-        creatorChannel: youtubeChannels.deepLearningAI.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description:
-          'Andrew Ng and Isa Fulford teach prompt structure, iteration, and reliable LLM interaction patterns.',
-        tags: ['prompts', 'developers', 'openai'],
       },
       {
         id: 'chatgpt-prompt-engineering-freecodecamp',
@@ -982,7 +970,7 @@ export const learningPaths: LearningPath[] = [
       {
         question: 'How do I write better prompts?',
         answer:
-          'Include four things: the goal, the context, the constraints, and the output format you want. Then iterate — treat the first answer as a draft, not a verdict. Videos 2 and 3 in this portal are full courses on exactly this.',
+          'Include four things: the goal, the context, the constraints, and the output format you want. Then iterate — treat the first answer as a draft, not a verdict. Video 2 in this portal is a full course on exactly this.',
       },
       {
         question: 'Where should I start if I’m new to ChatGPT?',
@@ -1003,7 +991,7 @@ export const learningPaths: LearningPath[] = [
     category: 'model-maker',
     heroEyebrow: 'Updated May 23, 2026 · Reflects Google I/O 2026',
     longIntro:
-      "Google shipped its biggest developer release in years at I/O 2026 (May 19): Antigravity 2.0 as a standalone agentic platform, Gemini 3.5 Flash going GA as the new default, Gemini Omni unifying multimodal generation, and NotebookLM gaining cinematic Video Overviews. This portal pulls the official launches and the sharpest expert walkthroughs into one immersive path — so you can move from your first AI Studio prompt to shipping production agents without sifting the noise.\n\nThink of it as a map: Gemini 3.1 Pro and 3.5 Flash are the brains, Antigravity is where agents live, NotebookLM is the research and briefing surface, and Veo 3.1 + Nano Banana Pro handle the media. Each tool is linked below with its official Google page; each video below is curated for signal, not view count.\n\nStart with Foundations (videos 1–3) for the model layer, then branch into the track that fits — Builder (Antigravity, CLI), Researcher (NotebookLM), or Creator (Veo, Nano Banana). The Ecosystem grid, I/O 2026 timeline, and FAQ give you the lay of the land in one screen.",
+      "Google shipped its biggest developer release in years at I/O 2026 (May 19): Antigravity 2.0 as a standalone agentic platform, Gemini 3.5 Flash going GA as the new default, Gemini Omni unifying multimodal generation, and NotebookLM gaining cinematic Video Overviews. This portal pulls the official launches and the sharpest expert walkthroughs into one immersive path — so you can move from your first AI Studio prompt to shipping production agents without sifting the noise.\n\nThink of it as a map: Gemini 3.1 Pro and 3.5 Flash are the brains, Antigravity is where agents live, NotebookLM is the research and briefing surface, and Veo 3.1 + Nano Banana Pro handle the media. Each tool is linked below with its official Google page; each video below is curated for signal, not view count.\n\nStart with Foundations (videos 1–2) for the model layer, then branch into the track that fits — Builder (Antigravity, CLI), Researcher (NotebookLM), or Creator (Veo, Nano Banana). The Ecosystem grid, I/O 2026 timeline, and FAQ give you the lay of the land in one screen.",
     distillation:
       "Google's edge in 2026 is not a single model — it is the shape of the whole stack. A million-plus token context window, native multimodality, and agent infrastructure built in rather than bolted on. The learning trap is treating Gemini like a chatbot with a bigger window. The payoff comes from seeing the pieces as one system: the models are the reasoning layer, Antigravity is where agents live, NotebookLM is the research surface, and Veo and Nano Banana handle media.\n\nStart with the foundations videos for the model layer, because the model-selection instinct is what everything else rides on: 3.5 Flash for speed and cost, 3.1 Pro with a high thinking level when the problem is genuinely hard. Get that right and the rest of the stack is a set of branches you take when a specific job calls for it — Antigravity when you are building agents, NotebookLM when you are grounding work in your own sources, Veo when you need video.\n\nThe underused capability is the huge context window used deliberately. Most people paste a paragraph; the actual edge is feeding an entire codebase, a full set of documents, or a long research corpus and asking questions across all of it at once. That is a different way of working, and it is where Gemini pulls ahead of models that make you chunk everything. NotebookLM is the same idea with guardrails — grounded answers, no invented citations.\n\nWhere I would spend your first week: get a free key at AI Studio, run one real multimodal prompt, and try the big-context move on a project you actually have — a repo, a research folder, a stack of PDFs. Then pick your track: Builder if you want agents, Researcher if you want NotebookLM, Creator if you want media. The goal is not to know Gemini's feature list; it is to work at the scale the context window makes possible.",
     ctaTitle: 'Ready to ship with Gemini?',
@@ -1054,18 +1042,6 @@ export const learningPaths: LearningPath[] = [
         description:
           'Logan Kilpatrick walks through Gemini Omni — the new "anything from any input" model unveiled at I/O 2026.',
         tags: ['gemini-omni', 'multimodal', 'video'],
-      },
-      {
-        id: 'gemini-deep-think',
-        youtubeId: 'OTRvoxPSQ_8',
-        title: 'Gemini 3.1 Pro, Deep Think, New AlphaFold... Buckle Up!',
-        creator: 'AI Explained',
-        creatorChannel: youtubeChannels.aiExplained.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description:
-          'Benchmark-driven analysis of Gemini 3.1 Pro\'s Deep Think mode and what HIGH thinking level actually unlocks.',
-        tags: ['deep-think', 'reasoning', 'benchmarks'],
       },
       {
         id: 'antigravity-2-walkthrough',
@@ -1228,10 +1204,10 @@ export const learningPaths: LearningPath[] = [
         tag: 'Research',
       },
       {
-        date: '2026-06-01',
-        title: 'Gemini 3.5 Pro arrives next month (preview)',
+        date: '2026-05-19',
+        title: "Check Google's current model lineup",
         summary:
-          "Sundar Pichai's I/O keynote confirmed Gemini 3.5 Pro is being used internally and will roll out publicly in June 2026.",
+          "Google's Gemini lineup changes often. Check Google's current model documentation and the I/O keynote recap for what is available today.",
         source: 'https://blog.google/innovation-and-ai/sundar-pichai-io-2026/',
         tag: 'Update',
       },
@@ -1334,7 +1310,7 @@ export const learningPaths: LearningPath[] = [
       {
         question: "Where do I start if I'm new to Google AI?",
         answer:
-          'Watch video 1 (Gemini 3 launch) and video 4 (Antigravity 2.0 walkthrough) in this portal. Then create a free key at aistudio.google.com, try a multimodal prompt, and follow the Builder track from there.',
+          'Watch video 1 (Gemini 3 launch) and video 3 (Antigravity 2.0 walkthrough) in this portal. Then create a free key at aistudio.google.com, try a multimodal prompt, and follow the Builder track from there.',
       },
     ],
   },
@@ -1593,7 +1569,7 @@ export const learningPaths: LearningPath[] = [
     category: 'cloud',
     heroEyebrow: 'Updated July 6, 2026 · AgentCore + Managed Knowledge Base GA',
     longIntro:
-      "Bedrock is AWS's managed model gateway — one API surface for Anthropic, Meta, Mistral, Cohere, AI21, Amazon's own Nova family, DeepSeek, and 100+ Marketplace models, plus Knowledge Bases and Agents for orchestration. Pricing is per-token like the model APIs directly, but IAM, VPC, and CloudWatch come for free if you already live in AWS — no separate proxy or vendor relationship to stand up.\n\nTwo capabilities matured to general availability in June 2026 and change what \"production-ready\" means here: AgentCore is a code-first platform for building, deploying, and operating agents with a real runtime, identity, memory, and observability layer — its SDK passed 2 million downloads within 5 months of preview. Managed Knowledge Base now runs the entire RAG pipeline (chunking, embeddings, re-ranking, retrieval) as AWS-operated infrastructure, with native AgentCore integration and MCP compatibility.\n\nStart with the beginner walkthrough (video 1) to get a model responding, then AgentCore (video 2) once you're ready to operationalize an agent, Guardrails (video 3) before anything touches real users, and the Nova model tour (video 4) to see what AWS's own models are for. This is the right portal if your team already runs on AWS and needs SOC 2 / procurement alignment without standing up a separate model vendor.",
+      "Bedrock is AWS's managed model gateway — one API surface for Anthropic, Meta, Mistral, Cohere, AI21, Amazon's own Nova family, DeepSeek, and 100+ Marketplace models, plus Knowledge Bases and Agents for orchestration. Pricing is per-token like the model APIs directly, but IAM, VPC, and CloudWatch come for free if you already live in AWS — no separate proxy or vendor relationship to stand up.\n\nTwo capabilities matured to general availability in June 2026 and change what \"production-ready\" means here: AgentCore is a code-first platform for building, deploying, and operating agents with a real runtime, identity, memory, and observability layer — its SDK passed 2 million downloads within 5 months of preview. Managed Knowledge Base now runs the entire RAG pipeline (chunking, embeddings, re-ranking, retrieval) as AWS-operated infrastructure, with native AgentCore integration and MCP compatibility.\n\nStart with the beginner walkthrough (video 1) to get a model responding, then AgentCore (video 2) once you're ready to operationalize an agent, and Guardrails (video 3) before anything touches real users. This is the right portal if your team already runs on AWS and needs SOC 2 / procurement alignment without standing up a separate model vendor.",
     distillation:
       "Bedrock is where production runs when you already live in AWS, and the most important thing to understand is that you are not really buying a model — you are buying everything around it. The models (Anthropic, Meta, Mistral, Amazon's Nova family) are a token API like any other. The reason to be on Bedrock is that IAM, VPC, CloudWatch, Knowledge Bases, and Agents are already there, and your security and procurement story is already written. If your stack is on AWS, that is worth more than a few cents per million tokens.\n\nThe map to keep in your head: the model is the reasoning engine, Knowledge Bases is managed retrieval, Bedrock Agents is the orchestration layer, and Guardrails is the safety boundary — all sitting inside the AWS identity and networking you already run. Learn it in that order. The trap is treating Bedrock as just a model endpoint and missing that the platform is the whole point.\n\nHaving watched enterprise AI up close, the failure mode I see most is teams reaching for Bedrock Agents before they need them, and getting surprised by cross-region inference billing. Start simpler than you think: a model call inside your VPC, then Knowledge Bases against real data, then Agents only when a workflow genuinely needs multi-step orchestration. And instrument spend per region from day one — that is the bill that surprises people.\n\nWhere I would start: stand up one model call through the API inside your existing AWS account, then wire a Knowledge Base to a data source you actually have and measure the retrieval quality honestly. Compare it against calling the model's direct API to feel the tradeoff — Bedrock buys you the platform, the direct API gets new models first and is simpler. The goal is not to use every Bedrock feature; it is to run AI in production without leaving the security boundary you already trust.",
     ctaTitle: 'Ready to ship on Bedrock?',
@@ -1649,18 +1625,6 @@ export const learningPaths: LearningPath[] = [
         description:
           'The safety layer for production GenAI on Bedrock — content filters, denied topics, PII redaction, and contextual grounding checks.',
         tags: ['guardrails', 'safety', 'production'],
-      },
-      {
-        id: 'bedrock-nova-models',
-        youtubeId: '07w2Kc556u4',
-        title: 'AWS Cloud Coach: Exploring Amazon Nova models using Amazon Bedrock',
-        creator: youtubeChannels.amazonWebServices.name,
-        creatorChannel: youtubeChannels.amazonWebServices.url,
-        duration: 'See YouTube',
-        level: 'beginner',
-        description:
-          "Tour of Amazon's own Nova model family (Premier, Pro, Lite, Micro) — where they fit alongside Claude and the rest of the Bedrock catalog.",
-        tags: ['nova', 'models', 'amazon'],
       },
     ],
     ecosystem: [

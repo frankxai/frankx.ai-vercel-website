@@ -96,9 +96,9 @@ export const osModules: OSModule[] = [
     commands: ['/acos', '/acos-flow', '/acos-monitor', '/agentic-jujutsu'],
     deepDive: {
       route: '/acos/agents',
-      label: 'Browse the 99-agent catalog',
+      label: 'Browse the ACOS catalog',
       description:
-        '11 pillars × 9 specialists. The full ACOS agent + skill + command catalog with shipped / in-progress / gap status per slot.',
+        '11 pillars. The full ACOS agent + skill + command catalog with shipped / in-progress / gap status per slot.',
     },
   },
   {
