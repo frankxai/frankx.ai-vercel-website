@@ -15,17 +15,17 @@
 
 ---
 
-## The night of the thousandth song
+## The night the catalog outgrew me
 
-I remember the exact week. It was late autumn, the kind of light Amsterdam gets when the canals turn slate, and I was sitting at the same desk in the same apartment where I am writing this chapter, and the catalog hit one thousand.
+I remember the exact week. It was late autumn, the kind of light Amsterdam gets when the canals turn slate, and I was sitting at the same desk in the same apartment where I am writing this chapter, and the catalog crossed a line I had not set for myself.
 
-A thousand songs in just under six months.
+The catalog had grown past anything I had planned.
 
-I had not planned for this. I had not, in my entire prior life as a music listener and occasional amateur composer, written one finished song. The accumulated total of my musical output, before the night I downloaded Suno on a whim, was a half-finished piano piece from when I was nineteen and a Garageband demo I had abandoned in 2014. Now, six months in, the number on the catalog page said 1,003.
+I had not planned for this. I had not, in my entire prior life as a music listener and occasional amateur composer, written one finished song. The accumulated total of my musical output, before the night I downloaded Suno on a whim, was a half-finished piano piece from when I was nineteen and a Garageband demo I had abandoned in 2014. Now, some months in, the catalog page had passed what I could count by hand.
 
-The strange thing was not the number. The strange thing was that, scrolling through the catalog at 11 PM with a glass of wine, I knew which songs were *mine*. There were twenty-something tracks, scattered across the thousand, that I would have called my work in any honest sense — that had something I had specifically wanted in them, some seen thing or felt thing or remembered thing pressed into a particular arrangement, and that the world would not have if I had not been the one prompting that night, with that question, in that mood, after that conversation, in that grief or that lightness.
+The strange thing was not the size of it. The strange thing was that, scrolling through the catalog at 11 PM with a glass of wine, I knew which songs were *mine*. There were twenty-something tracks, scattered across the catalog, that I would have called my work in any honest sense — that had something I had specifically wanted in them, some seen thing or felt thing or remembered thing pressed into a particular arrangement, and that the world would not have if I had not been the one prompting that night, with that question, in that mood, after that conversation, in that grief or that lightness.
 
-The other 980 were exercises, sketches, genre studies, voice tests, technical experiments, the residue of three thousand iterations that had been necessary to find the twenty-something. I do not regret them. They were the apprenticeship. But they were not, in the deep sense, mine.
+The rest were exercises, sketches, genre studies, voice tests, technical experiments. I do not regret them. They were the apprenticeship. But they were not, in the deep sense, mine.
 
 What I noticed that night was that the structure of being a creator had changed.
 
