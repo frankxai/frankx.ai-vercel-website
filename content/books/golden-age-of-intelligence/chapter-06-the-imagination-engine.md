@@ -107,7 +107,7 @@ Before the models, you could be a person of vivid inner experience and produce, 
 
 The models change the ratio.
 
-I have published 817 clips on my public Suno profile (as of 2 July 2026). Most are not good. I want to be honest about that. But a catalog of that size is something the entire history of recorded music could not have offered to a single individual until 2023. Before the models, hundreds of songs from one person was inconceivable in the way that running a mile in three minutes is inconceivable. After the models, the bottleneck is not output — it is whether the operator has anything to say.
+I have published 817 clips on my public Suno profile (as of 2 July 2026). Most are not good. I want to be honest about that. The models change what one person can finish and release in a few years. After the models, the bottleneck moves from output to whether the operator has anything to say.
 
 This is the part that most commentary misses.
 

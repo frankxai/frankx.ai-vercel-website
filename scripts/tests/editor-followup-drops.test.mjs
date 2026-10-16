@@ -100,9 +100,12 @@ const withoutSlug = (source) => source.replaceAll('suno-ai-12000-songs-productio
 const songCountClaim = /\b(?:12(?:,?000|\s?k|\s+thousand)|twelve[\s-]+thousand)\b\s*\+?[\s-]*(?:[A-Za-z-]+\s+){0,2}(?:songs?|tracks?|experiments?)\b/i
 // Matches "15 years building enterprise", "15 years in enterprise" and hyphenated forms such as "15-year architect's".
 // It does not match "a 15-year veteran of enterprise software" persona examples or "the 15-year CUDA ecosystem".
+// Unitless forms of the same count: "12k+ catalog", "12k+ song catalog", "most of my 12,000 live". A "$12,000 catalog" budget is not a count.
+const songCatalogClaim = /(?<![$€£\d,.])\b12(?:,?000|\s?k)\b\s*\+?\s+(?:(?:AI|song|track)\s+)*catalog\b|\bmy\s+12(?:,?000|\s?k)\b\s*\+?\s+(?:live|catalog|here|are|were|still)\b/i
 const yearsClaim = /\b15\+?[\s-]+years?(?:[\s-]+(?:of|in|building|architecting|as(?:\s+an?)?))*[\s-]+(?:an?\s+)?(?:enterprise|architect\w*)/i
 const bannedClaims = [
   ['a 12,000 song, track or experiment count', songCountClaim],
+  ['a 12,000 catalog count without a unit noun', songCatalogClaim],
   ['the 114,000-word book count', /114,000\s+words/i],
   ['the unsourced studio comparator', /500-1,000 tracks per year/i],
   ['the unsourced years-in-enterprise-AI count', yearsClaim],
@@ -161,6 +164,15 @@ test('song-count pattern catches 12K and 12,000 variants but not legitimate figu
   }
 })
 
+test('unitless catalog-count pattern catches the forms cleaned from agents.ts and the music-generator post but not budgets', () => {
+  for (const claim of ['Batch lyric video generation across 12k+ catalog.', 'Source-of-truth indexer for 12k+ song catalog.', 'where most of my 12,000 live', 'the 12,000 AI catalog']) {
+    assert.match(claim, songCatalogClaim, claim)
+  }
+  for (const fine of ['a $12,000 catalog budget', 'EUR 12,000 for the catalog licence', 'my 12,000 steps', 'a 112,000 catalog']) {
+    assert.doesNotMatch(fine, songCatalogClaim, fine)
+  }
+})
+
 test('years-in-enterprise pattern catches hyphenated forms but not legitimate figures', () => {
   for (const claim of ["A 15-year architect's turning point", '15 years building enterprise AI systems', '15+ years in enterprise AI', 'after 15 years architecting enterprise systems']) {
     assert.match(claim, yearsClaim, claim)
@@ -177,7 +189,7 @@ test('no authored copy carries the unsourced song count or figures', () => {
     const relative = file.slice(repoRoot.length)
     const source = withoutSlug(readFileSync(file, 'utf8'))
     for (const [label, pattern] of bannedClaims) {
-      if (pattern === songCountClaim && knownSongCountLeftovers.has(relative)) continue
+      if ((pattern === songCountClaim || pattern === songCatalogClaim) && knownSongCountLeftovers.has(relative)) continue
       if (pattern.test(source)) hits.push(`${relative}: ${label}`)
     }
   }
