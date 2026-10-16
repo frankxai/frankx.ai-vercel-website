@@ -123,7 +123,7 @@ function LaunchListLink({ size = 'sm' }: { size?: 'sm' | 'lg' }) {
   return (
     <Link
       href="/waitlist"
-      className={`${sizeClasses} inline-flex items-center rounded-xl border border-white/10 bg-white/[0.06] font-semibold text-white/80 transition-colors hover:bg-white/[0.12]`}
+      className={`${sizeClasses} inline-flex items-center rounded-full border border-white/10 bg-white/[0.06] font-semibold text-white/80 transition-colors hover:bg-white/[0.12]`}
     >
       Join the launch list
     </Link>
@@ -437,14 +437,14 @@ export default function ShopTemplatesPage() {
       {/* ── What's Included ─────────────────────────────────────────────── */}
       <section className="border-y border-white/[0.06] py-10">
         <div className="mx-auto max-w-7xl px-6">
-          <p className="mb-6 text-xs text-white/40">Planned for each kit. Nothing is on sale yet.</p>
+          <p className="mb-6 text-xs text-white/40">Nothing is on sale yet. Planned contents vary by kit and are not final.</p>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
             {[
-              { icon: Code2, title: 'Full Source Code', desc: 'No obfuscation. Yours forever.' },
-              { icon: Zap, title: 'One-Click Deploy', desc: 'Railway, Vercel, n8n ready.' },
-              { icon: Play, title: 'Video Walkthrough', desc: 'Setup and customization guide.' },
-              { icon: Shield, title: 'Commercial License', desc: 'Use in client projects.' },
-              { icon: Download, title: 'Free Updates', desc: 'Lifetime access to improvements.' },
+              { icon: Code2, title: 'Source Files', desc: 'Planned as readable source, not a hosted service.' },
+              { icon: Zap, title: 'Deploy Guidance', desc: 'May include Railway, Vercel or n8n setup.' },
+              { icon: Play, title: 'Walkthrough', desc: 'May include a setup and customization guide.' },
+              { icon: Shield, title: 'License Terms', desc: 'Confirmed per kit before launch.' },
+              { icon: Download, title: 'Updates', desc: 'Update policy confirmed per kit before launch.' },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="flex items-start gap-3">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/[0.06]">
