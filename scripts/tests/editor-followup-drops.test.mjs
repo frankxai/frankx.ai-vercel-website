@@ -95,9 +95,9 @@ const scanRoots = [
 const scanned = [...new Set(scanRoots.flatMap(([root, extensions]) => walk(`${repoRoot}${root}`, extensions)))]
 // Only the archived slug may carry the number; it is a URL, not a claim.
 const withoutSlug = (source) => source.replaceAll('suno-ai-12000-songs-production-lessons', '')
-// Matches "12,000", "12000" or "12K" (with an optional "+") followed by up to two words and songs, tracks or experiments:
+// Matches "12,000", "12000", "12K", "12 thousand" or "twelve thousand" (with an optional "+") followed by up to two words and songs, tracks or experiments:
 // "12,000+ AI songs", "12K songs", "12,000-experiment practice". It does not match "$12,000+" prices, "12K impressions" or "12,000 steps".
-const songCountClaim = /\b12(?:,?000|\s?k)\b\s*\+?[\s-]*(?:[A-Za-z-]+\s+){0,2}(?:songs?|tracks?|experiments?)\b/i
+const songCountClaim = /\b(?:12(?:,?000|\s?k|\s+thousand)|twelve[\s-]+thousand)\b\s*\+?[\s-]*(?:[A-Za-z-]+\s+){0,2}(?:songs?|tracks?|experiments?)\b/i
 // Matches "15 years building enterprise", "15 years in enterprise" and hyphenated forms such as "15-year architect's".
 // It does not match "a 15-year veteran of enterprise software" persona examples or "the 15-year CUDA ecosystem".
 const yearsClaim = /\b15\+?[\s-]+years?(?:[\s-]+(?:of|in|building|architecting|as(?:\s+an?)?))*[\s-]+(?:an?\s+)?(?:enterprise|architect\w*)/i
@@ -108,7 +108,7 @@ const bannedClaims = [
   ['the unsourced years-in-enterprise-AI count', yearsClaim],
   ['the unsourced 320% impressions result', /Organic impressions rose 320%/i],
 ]
-// Known leftovers outside content/blog and app that still carry the song count. They predate this guard and need their own
+// Known leftovers outside content/blog and app that still carry the song count, numeric or spelled out ("twelve thousand") in book chapters. They predate this guard and need their own
 // copy sweep. Do not add to this list: new copy must not carry the count. Remove an entry when its file is cleaned.
 const knownSongCountLeftovers = new Set([
   'content/2-ready-to-publish/social/frankx-intelligence-ecosystem-complete-guide/instagram-post.md',
@@ -116,22 +116,32 @@ const knownSongCountLeftovers = new Set([
   'content/2-ready-to-publish/social/frankx-intelligence-ecosystem-complete-guide/twitter-thread.md',
   'content/books/agentic-builder/chapter-11-case-studies.md',
   'content/books/architects-playbook/chapter-01-the-personal-ai-coe.md',
+  'content/books/architects-playbook/chapter-06-the-skill-stack.md',
   'content/books/architects-playbook/chapter-09-multi-cloud-ai-architecture.md',
   'content/books/architects-playbook/chapter-11-memory-and-learning.md',
   'content/books/architects-playbook/chapter-12-building-in-public.md',
   'content/books/architects-playbook/chapter-13-the-creators-stack.md',
+  'content/books/architects-playbook/chapter-14-music-as-architecture.md',
   'content/books/architects-playbook/chapter-14-the-cross-domain-laboratory.md',
+  'content/books/architects-playbook/chapter-15-design-as-architecture.md',
+  'content/books/architects-playbook/chapter-16-evaluation-and-trust.md',
   'content/books/architects-playbook/chapter-18-from-enterprise-to-individual.md',
   'content/books/gencreator/chapter-01-the-one-person-studio.md',
   'content/books/gencreator/chapter-02-the-strategy-layer.md',
   'content/books/gencreator/chapter-08-the-compound-creator.md',
   'content/books/gencreator/chapter-10-the-gencreator-manifesto.md',
+  'content/books/golden-age-of-intelligence/chapter-05-states-not-stages.md',
+  'content/books/golden-age-of-intelligence/chapter-06-the-imagination-engine.md',
+  'content/books/golden-age-of-intelligence/chapter-09-personal-center-of-excellence.md',
+  'content/books/golden-age-of-intelligence/chapter-10-creators-renaissance.md',
+  'content/books/great-transition/chapter-09-the-intelligence-layer.md',
   'content/books/personal-ai-coe/chapter-01-the-million-dollar-framework-for-fifty-dollars.md',
   'content/books/personal-ai-coe/chapter-08-the-integration.md',
+  'content/books/vibe-os/chapter-01-the-50-dollar-architecture.md',
   'content/books/vibe/chapter-07-the-compound-stack.md',
   'content/books/vibe/chapter-11-the-evidence.md',
-  'content/books/vibe-os/chapter-01-the-50-dollar-architecture.md',
   'content/golden-age-book/chapter-06-the-creator-who-stayed.md',
+  'content/golden-age-book/chapter-07-a-letter-to-the-future-creator.md',
   'content/lead-magnets/5-suno-prompts.md',
   'content/social/blog/suno-ai-12000-songs-production-lessons.md',
   'email-templates/follow-up-3-day.tsx',
@@ -147,10 +157,10 @@ const knownSongCountLeftovers = new Set([
 ])
 
 test('song-count pattern catches 12K and 12,000 variants but not legitimate figures', () => {
-  for (const claim of ['12,000+ AI songs', '12000 tracks', '12K songs', '12K+ AI-generated tracks', 'the 12,000-experiment music practice', 'The Music Laboratory: 12,000 Experiments', 'Over 12,000 songs created']) {
+  for (const claim of ['12,000+ AI songs', '12000 tracks', '12K songs', '12K+ AI-generated tracks', 'the 12,000-experiment music practice', 'The Music Laboratory: 12,000 Experiments', 'Over 12,000 songs created', 'Twelve thousand songs in three years', 'twelve-thousand AI tracks', '12 thousand songs']) {
     assert.match(claim, songCountClaim, claim)
   }
-  for (const fine of ['Studio & Residency ($2,500–$12,000+)', 'Walked 12,000 steps today', '12K impressions, 450 likes', 'Search impressions: 12K/month', '12x faster', '112,000 songs of noise', 'Raw Trajectory: [Tool 2: 12,000 lines]', 'Revenue: ~EUR 12,000 per batch', '$12,000 in the first month']) {
+  for (const fine of ['Studio & Residency ($2,500–$12,000+)', 'Walked 12,000 steps today', '12K impressions, 450 likes', 'Search impressions: 12K/month', '12x faster', '112,000 songs of noise', 'Raw Trajectory: [Tool 2: 12,000 lines]', 'Revenue: ~EUR 12,000 per batch', '$12,000 in the first month', 'Twelve thousand dollars in the first month', 'twelve thousand steps a day']) {
     assert.doesNotMatch(fine, songCountClaim, fine)
   }
 })
