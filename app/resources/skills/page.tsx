@@ -323,7 +323,7 @@ export default function SkillsPage() {
                 step: 2,
                 title: 'Copy to Claude Code Directory',
                 description: 'Place skills in your Claude Code skills folder',
-                code: 'cp -r claude-skills-library/* ~/.claude/skills/',
+                code: 'cp -r claude-skills-library/free-skills/* ~/.claude/skills/',
               },
               {
                 step: 3,
