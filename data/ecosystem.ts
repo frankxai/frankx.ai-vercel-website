@@ -380,7 +380,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
     repoUrl: null,
     status: 'live',
     shipped: '2026-05-03',
-    summary: 'The complete map of every FrankX system — 25+ entries across 4 tiers.',
+    summary: 'The complete map of every FrankX system, grouped across 4 tiers.',
     description:
       "The Arcanea-equivalent for FrankX — every system, repo, and operational tool indexed in one place. Mirrors the arcanea-meta pattern. Powered by data/ecosystem.ts (this file). Built in F1 night session 2026-05-03.",
     relatedSystems: ['frankx-os-meta', 'frankx-meta-skill'],
