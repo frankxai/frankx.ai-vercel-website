@@ -561,7 +561,7 @@ const products = [
   {
     title: 'Sovereign Business Kits',
     description: 'Modular starter-kit templates (Micro-SaaS, Marketplace, Creator Hub). Launch list open.',
-    href: '/templates',
+    href: '/waitlist?intent=starter-kit',
     color: 'emerald' as const,
   },
   {
@@ -1296,7 +1296,7 @@ function EmailCTA() {
 
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
               <Sparkles className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm text-emerald-400">Field Notes</span>
+              <span className="text-sm text-emerald-400">Field notes</span>
             </div>
 
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-2">
