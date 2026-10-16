@@ -21,6 +21,8 @@ faqs:
     answer: "No. Dashboard chat, production investigations, and approved actions are in public beta for Pro and Enterprise teams, with a gradual rollout. The primary page is https://vercel.com/changelog/an-expanded-vercel-agent-chat-investigations-and-approved-actions-now-in-public-beta."
 ---
 
+_Checked against vercel.com on 16 Oct 2026._
+
 Vercel Ship 2026 is Vercel's multi-city launch of agent infrastructure: a place where coding agents deploy software, where you run your own agents, and where Vercel's agents investigate production. It is for founders, AI architects, creators, and people who ship SaaS or an agent platform. The constraint is that the 15 October 2026 recap and the product changelogs do not always share a status label, so a launch sentence is not a license to treat a beta as finished. The primary recap is [Vercel Ship 2026 recap](https://vercel.com/blog/vercel-ship-2026-recap).
 
 This guide stays on that recap and on the product pages it points at. The runtime choices that moved on 15 October 2026, including Python, Daemons, Drives, and Connect events, are in the [agent runtime guide](/guides/vercel-agent-runtime-decisions). The working adopt, wait, and skip table is the [audience decision matrix](/guides/vercel-agent-runtime-decisions#decision-matrix). The shorter decision essay is [Vercel Ship 2026 decisions for people who ship agents](/blog/vercel-ship-2026-builder-decisions).
@@ -55,7 +57,7 @@ Those five are the stack. eve, on the same page, is the opinionated directory la
 
 At Ship, Connect was the new block: the agent asks for a temporary credential scoped to the task, instead of a long-lived provider token sitting in environment variables. That sentence is in the [Ship 2026 recap](https://vercel.com/blog/vercel-ship-2026-recap) and, in more detail, in the [Agent Stack](https://vercel.com/blog/agent-stack) section on Connect.
 
-Status moved after the tour. On 25 August 2026 Vercel marked Connect generally available on all plans. The current rule on that page is the one to implement: instead of storing long-lived provider secrets, your code requests short-lived, scoped tokens at runtime, and deployments authenticate with the existing Vercel OIDC identity. Read [Vercel Connect is now generally available](https://vercel.com/changelog/vercel-connect-ga).
+Status moved after the London and New York keynotes. On 25 August 2026 Vercel marked Connect generally available on all plans. The current rule on that page is the one to implement: instead of storing long-lived provider secrets, your code requests short-lived, scoped tokens at runtime, and deployments authenticate with the existing Vercel OIDC identity. Read [Vercel Connect is now generally available](https://vercel.com/changelog/vercel-connect-ga).
 
 Two later Connect capabilities are still public beta, and they are not the same feature. [MCP Events](https://vercel.com/changelog/mcp-events-support-in-vercel-connect-is-now-in-public-beta) let an app subscribe to webhook events from a compatible MCP server. [Enterprise-Managed Authorization](https://vercel.com/changelog/vercel-connect-adds-enterprise-managed-authorization) lets an app access supported services on behalf of a signed-in user without a separate consent prompt per service. Both pages say public beta. The runtime guide treats them as wait items unless the workforce identity problem is the one you actually have.
 
