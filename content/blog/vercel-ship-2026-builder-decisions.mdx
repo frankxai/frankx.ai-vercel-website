@@ -13,6 +13,8 @@ keywords: ["Vercel Ship 2026", "Vercel Agent", "Vercel Daemons", "AI architectur
 faqSource: "body"
 ---
 
+_Checked against vercel.com on 16 Oct 2026._
+
 Vercel Ship 2026 is the launch record for Vercel's agent infrastructure, and the 15 October 2026 changelog is the status record. This note is for founders, AI architects, creators, and people who ship SaaS or an agent platform and need one call they can act on. The constraint is that a keynote sentence and a changelog status are different documents. The launch record is [the Ship 2026 recap](https://vercel.com/blog/vercel-ship-2026-recap). The status record starts at [Python on Vercel](https://vercel.com/changelog/python-on-vercel-is-now-generally-available).
 
 Read the long version in two guides. [Vercel Ship 2026: a sourced recap for builders](/guides/vercel-ship-2026-recap) holds the Agent Stack, Connect, containers, Services, and Vercel Agent. [Vercel agent runtimes: Python, Daemons, Drives](/guides/vercel-agent-runtime-decisions) holds the October runtime split. The table you can use while you decide is the [audience decision matrix](/guides/vercel-agent-runtime-decisions#decision-matrix).
@@ -35,7 +37,7 @@ Creators skip Daemons. [Daemons](https://vercel.com/changelog/vercel-daemons-is-
 
 SaaS and agent-platform builders adopt Python where the backend is already Python. The [15 October changelog](https://vercel.com/changelog/python-on-vercel-is-now-generally-available) makes the runtime generally available, including FastAPI, Flask, and Django. Services stay beta in the [Services docs](https://vercel.com/docs/services). MCP Events stay public beta, and the SDK names are experimental, on the [MCP Events note](https://vercel.com/changelog/mcp-events-support-in-vercel-connect-is-now-in-public-beta). Adopt the runtime. Leave the betas on a branch until a workload forces them.
 
-## What changed between the tour and 15 October
+## What changed between the London and New York keynotes and 15 October
 
 Connect launched at Ship as scoped, short-lived access and is now generally available. The page to implement is [Vercel Connect is now generally available](https://vercel.com/changelog/vercel-connect-ga): request a token at runtime instead of storing a long-lived provider secret.
 
@@ -47,7 +49,7 @@ Enterprise-Managed Authorization is a separate public beta for workforce sign-in
 
 ## A mistake that will waste a quarter
 
-The mistake is shipping the June diagram with October traffic. The [Ship recap](https://vercel.com/blog/vercel-ship-2026-recap) is the right history of London, Berlin, New York, and Sydney. It is the wrong status page for Python, Daemons, Drives, and Connect events. Open the changelog URL on the matrix row, then decide.
+The mistake is shipping the June diagram with October traffic. The [Ship recap](https://vercel.com/blog/vercel-ship-2026-recap) is the right history of London, Berlin, New York, Sydney, and San Francisco. It is the wrong status page for Python, Daemons, Drives, and Connect events. Open the changelog URL on the matrix row, then decide.
 
 If you only have time for one page after this note, make it the [audience decision matrix](/guides/vercel-agent-runtime-decisions#decision-matrix).
 

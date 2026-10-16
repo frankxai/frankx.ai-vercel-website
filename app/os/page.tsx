@@ -18,6 +18,7 @@ import {
   Hammer,
 } from 'lucide-react'
 import { FrankXOSHeader } from '@/components/os/FrankXOSHeader'
+import { ecosystemEntries } from '@/data/ecosystem'
 import { osModules, osCRM, type OSModule, type ModuleColor, type ModulePhase } from '@/data/os-modules'
 
 export const metadata: Metadata = {
@@ -313,7 +314,7 @@ export default function OSPage() {
               <Layers className="h-3.5 w-3.5" aria-hidden="true" />
               FrankX Ecosystem map
             </Link>
-            {' '}— 28 systems across 4 tiers.
+            {' '}— {ecosystemEntries.length} systems across 4 tiers.
           </p>
         </div>
       </section>
