@@ -1303,7 +1303,7 @@ function EmailCTA() {
               Stay in the Signal Loop
             </h2>
             <p className="text-sm text-white/60 mb-8 max-w-xs mx-auto">
-              Occasional field notes. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
+              Field notes from the workspace. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
             </p>
             <div className="max-w-sm mx-auto">
               <EmailSignup
