@@ -12,7 +12,7 @@ video:
   url: "https://www.youtube.com/watch?v=Fr5vzNknYJE"
 faqs:
   - question: "What is Vercel Ship 2026?"
-    answer: "Vercel Ship 2026 is Vercel's multi-city launch of agent infrastructure. The primary recap is https://vercel.com/blog/vercel-ship-2026-recap. It is for founders, AI architects, creators, and SaaS builders and people who ship agent platforms. The constraint is that the June recap is not the October status of every product."
+    answer: "Vercel Ship 2026 is Vercel's multi-city launch of agent infrastructure. The primary recap is https://vercel.com/blog/vercel-ship-2026-recap, published 15 October 2026. It is for founders, AI architects, creators, and SaaS builders and people who ship agent platforms. The constraint is that a sentence on that recap still has to be checked against the product page, because several capabilities there remain public beta."
   - question: "What is in the Vercel Agent Stack?"
     answer: "The Agent Stack page names five primitives: AI SDK, AI Gateway, Workflow SDK, Vercel Sandbox, and Chat SDK, plus Vercel Connect for scoped access. The primary page is https://vercel.com/blog/agent-stack."
   - question: "Does Vercel Connect still store a long-lived provider token?"
@@ -21,7 +21,7 @@ faqs:
     answer: "No. Dashboard chat, production investigations, and approved actions are in public beta for Pro and Enterprise teams, with a gradual rollout. The primary page is https://vercel.com/changelog/an-expanded-vercel-agent-chat-investigations-and-approved-actions-now-in-public-beta."
 ---
 
-Vercel Ship 2026 is Vercel's multi-city launch of agent infrastructure: a place where coding agents deploy software, where you run your own agents, and where Vercel's agents investigate production. It is for founders, AI architects, creators, and people building SaaS or an agentic substrate. The constraint is that the June recap and the October changelog do not have the same status labels, so a launch sentence is not a license to treat a beta as finished. The primary recap is [Vercel Ship 2026 recap](https://vercel.com/blog/vercel-ship-2026-recap).
+Vercel Ship 2026 is Vercel's multi-city launch of agent infrastructure: a place where coding agents deploy software, where you run your own agents, and where Vercel's agents investigate production. It is for founders, AI architects, creators, and people who ship SaaS or an agent platform. The constraint is that the 15 October 2026 recap and the product changelogs do not always share a status label, so a launch sentence is not a license to treat a beta as finished. The primary recap is [Vercel Ship 2026 recap](https://vercel.com/blog/vercel-ship-2026-recap).
 
 This guide stays on that recap and on the product pages it points at. The runtime choices that moved on 15 October 2026, including Python, Daemons, Drives, and Connect events, are in the [agent runtime guide](/guides/vercel-agent-runtime-decisions). The working adopt, wait, and skip table is the [audience decision matrix](/guides/vercel-agent-runtime-decisions#decision-matrix). The shorter decision essay is [Vercel Ship 2026 decisions for people who ship agents](/blog/vercel-ship-2026-builder-decisions).
 
@@ -35,9 +35,9 @@ The London morning keynote is a separate recording, [Keynote - Ship 26 London](h
 
 ## What the recap says the platform is
 
-The recap splits Vercel into three jobs. Coding agents get a deploy target. You get the primitives to build and run your own agents. Vercel uses production signals, traces, and anomalies so its own agents can open pull requests instead of only paging a human. That third job is the one teams misread as "the platform will ship my product." The recap describes investigation and review. A merge waits for a person. See the [Ship 2026 recap](https://vercel.com/blog/vercel-ship-2026-recap).
+The recap splits Vercel into three jobs. Coding agents get a deploy target. You get the primitives to build and run your own agents. Vercel uses production traffic, traces, and anomalies so its own agents can investigate on their own and then surface pull requests. The published sentence pairs that pull request with alerts: agents surface the request after they investigate. That third job is the one teams misread as "the platform will ship my product." On the London panel, Arthur Viegers of Cursor said Shopify and Amplitude already auto-review and merge 60-70% of low-risk pull requests with no developer time, while a two-line authentication change still goes to a human. That 60-70% figure is his report about those two companies. See the [Ship 2026 recap](https://vercel.com/blog/vercel-ship-2026-recap).
 
-The same page is the right scope for the tour. It documents Ship in London, Berlin, New York, and Sydney, and it says San Francisco was still ahead, in October. The live [Ship page](https://vercel.com/ship) now lists San Francisco speakers and a set of later announcements. Speaker names on that page are not a transcript. If a talk is not written on vercel.com, it is not a claim in this guide.
+The same page is the right scope for the tour. Published 15 October 2026, it records Ship as held in London, Berlin, New York, Sydney, and San Francisco. The opening line says thousands of people gathered across those five cities. The close says the tour returns in May for Ship 2027. The live [Ship page](https://vercel.com/ship) lists speakers and announcements. Speaker names on that page are not a transcript. If a talk is not written on vercel.com, it is not a claim in this guide.
 
 ## The Agent Stack
 
@@ -69,13 +69,13 @@ That distinction matters. The October [Daemons](https://vercel.com/changelog/ver
 
 ## Vercel Services
 
-The recap says Services make microservices a first-class unit, with frontend and backend in one preview, and with service-to-service calls that do not cross the public internet. The current docs page is the status check. [Services](https://vercel.com/docs/services) says Services (Beta) are available on all plans. A service is an independently built unit. Public traffic reaches it only through a top-level rewrite. A binding lets one service call another without exposing that target on the internet.
+The recap says that with Vercel Services, the frontend and backend deploy together, with previews of the full app. The current docs page is the status check for how services call each other. [Services](https://vercel.com/docs/services) says Services (Beta) are available on all plans. A service is an independently built unit. Public traffic reaches it only through a top-level rewrite. A binding lets one service call another without exposing that target on the internet.
 
 Use Services when a JavaScript frontend and a Python or Go backend should share a project, a domain, and a preview. Use a single framework deploy when you do not have that split. The docs also point background workers at Daemons, which remain a separate beta. Read [the Services docs](https://vercel.com/docs/services) before you rewrite a monorepo around the beta key.
 
 ## Vercel Agent
 
-The recap describes Vercel Agent as the intelligence layer that watches production, investigates anomalies, and opens fixes for a person to review. The changelog that matches the expanded product, published 30 June 2026, is narrower and more useful than the keynote sentence. [An expanded Vercel Agent](https://vercel.com/changelog/an-expanded-vercel-agent-chat-investigations-and-approved-actions-now-in-public-beta) says three things are in public beta:
+The 15 October 2026 recap says Vercel's own agents investigate production and then surface pull requests. It does not name the dashboard product Vercel Agent or give that product a status. The changelog that matches the expanded product, published 30 June 2026, is the status check. [An expanded Vercel Agent](https://vercel.com/changelog/an-expanded-vercel-agent-chat-investigations-and-approved-actions-now-in-public-beta) says three things are in public beta:
 
 - Dashboard chat answers questions from the project's deployment data.
 - Production investigations take a failed deployment, a runtime error, or a cost spike and recommend a fix.
@@ -87,4 +87,4 @@ There is an older changelog titled as a limited beta from 2025. It describes a d
 
 ## How to read the tour without copying it
 
-London, Berlin, New York, and Sydney were customer and product sessions on top of the same primitives. The useful pattern in the recap is not a metric from a keynote slide. It is the split between a human decision and an agent action: identity on the call, a sandbox around generated code, and a preview before production. When you want the October runtime map, leave this recap and open the [agent runtime guide](/guides/vercel-agent-runtime-decisions). When you want the four calls in one table, open the [audience decision matrix](/guides/vercel-agent-runtime-decisions#decision-matrix).
+London, Berlin, New York, Sydney, and San Francisco were customer and product sessions on top of the same primitives. The useful pattern in the recap is not a metric from a keynote slide. It is the split between a human decision and an agent action: identity on the call, a sandbox around generated code, and a preview before production. When you want the October runtime map, leave this recap and open the [agent runtime guide](/guides/vercel-agent-runtime-decisions). When you want the four calls in one table, open the [audience decision matrix](/guides/vercel-agent-runtime-decisions#decision-matrix).
