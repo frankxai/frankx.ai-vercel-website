@@ -166,12 +166,11 @@ const knownSongCountLeftovers = new Set([
   'public/social/twitter/build-your-own-jarvis.md',
 ])
 
-// Known leftovers for the 15,000-word pattern only. They predate the pattern and are not part of the blog cleanup: an agent memory log, an unrouted social draft and one static file that is served live.
+// Known leftovers for the 15,000-word pattern only. They predate the pattern and are not part of the blog cleanup: an agent memory log and an unrouted social draft.
 // Do not add to this list. Remove an entry when its file is cleaned.
 const knownWordCountLeftovers = new Set([
   'content/blog/CLAUDE.md',
   'content/social/blog/golden-age-of-intelligence.md',
-  'public/social/linkedin/golden-age-intelligence.md',
 ])
 
 test('15,000-word pattern catches the withdrawn length claim but not other quantities', () => {
