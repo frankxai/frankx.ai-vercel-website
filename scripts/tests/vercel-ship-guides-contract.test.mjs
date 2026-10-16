@@ -80,6 +80,16 @@ test('ship and runtime guides carry sourced themes, four audience calls, videos,
     assert.ok(combined.includes(url), `missing citation ${url}`)
   }
 
+  const recap = getGuide('vercel-ship-2026-recap')
+  assert.doesNotMatch(recap.content, /San Francisco was still ahead/)
+  assert.doesNotMatch(recap.content, /A merge waits for a person/)
+  assert.doesNotMatch(recap.content, /microservices a first-class/)
+  assert.match(recap.content, /London, Berlin, New York, Sydney, and San Francisco/)
+  assert.match(recap.content, /frontend and backend deploy together/)
+  assert.match(recap.content, /surface pull requests/)
+  assert.match(recap.content, /Arthur Viegers/)
+  assert.match(recap.content, /60-70% of low-risk pull requests/)
+
   const runtime = getGuide('vercel-agent-runtime-decisions')
   assert.equal(runtime.decisions.length, 4)
   for (const audience of audiences) {
