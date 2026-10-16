@@ -23,14 +23,9 @@ import {
   ArrowUpRight,
 } from 'lucide-react'
 
-import { pillarCounts } from '@/data/acos/agents'
-
 // ============================================================================
 // TEMPLATE DATA
 // ============================================================================
-
-// Single source of truth for agent counts: data/acos/agents.ts (same catalog as /acos/agents).
-const acosAgentCounts = pillarCounts()
 
 const freeTemplates = [
   {
@@ -122,7 +117,7 @@ const premiumTemplates = [
   },
   {
     title: 'Autonomous Swarm Workstation (ACOS Core)',
-    description: `Multi-agent orchestration system with ${acosAgentCounts.shipped} shipped entries in the ACOS catalog and deterministic test gates.`,
+    description: 'Multi-agent orchestration system built on the ACOS agent catalog, with deterministic test gates.',
     href: '/products/agentic-creator-os',
     icon: Sparkles,
     meta: 'Flagship OS · Launch list',
