@@ -22,7 +22,6 @@ import {
   Workflow,
   ExternalLink,
 } from 'lucide-react'
-import CheckoutButton from '@/components/commerce/CheckoutButton'
 import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 import { GlowButton } from '@/components/ui/GlowButton'
 import templates from '@/data/templates.json'
@@ -51,21 +50,21 @@ const categoryColors: Record<string, string> = {
 const tiers = [
   {
     name: 'Starter',
-    range: '$19 – $47',
+    range: 'Launch list',
     description: 'Individual skills and configs. Perfect for adding one capability.',
     color: 'cyan',
     filter: (t: { price: number }) => t.price <= 47,
   },
   {
     name: 'Professional',
-    range: '$47 – $97',
+    range: 'Launch list',
     description: 'Multi-component workflows and chat apps. Ship features in hours.',
     color: 'emerald',
     filter: (t: { price: number }) => t.price > 47 && t.price <= 97,
   },
   {
     name: 'Enterprise',
-    range: '$197 – $297',
+    range: 'Launch list',
     description: 'Full production systems. RAG platforms, SaaS boilerplates, agent frameworks.',
     color: 'purple',
     filter: (t: { price: number }) => t.price > 97,
@@ -77,7 +76,7 @@ const tiers = [
 const stats = [
   { value: '15', label: 'Templates' },
   { value: '5', label: 'Categories' },
-  { value: '$27', label: 'Starting at' },
+  { value: 'Launch list', label: 'Open, nothing on sale yet' },
   { value: '100%', label: 'Source code' },
 ]
 
@@ -117,6 +116,20 @@ function DeployBadges({ techStack }: { techStack: string[] }) {
   )
 }
 
+// ── Launch list link (no checkout exists yet) ────────────────────────────────
+
+function LaunchListLink({ size = 'sm' }: { size?: 'sm' | 'lg' }) {
+  const sizeClasses = size === 'lg' ? 'px-8 py-4 text-lg' : 'px-4 py-2 text-sm'
+  return (
+    <Link
+      href="/waitlist"
+      className={`${sizeClasses} inline-flex items-center rounded-xl border border-white/10 bg-white/[0.06] font-semibold text-white/80 transition-colors hover:bg-white/[0.12]`}
+    >
+      Join the launch list
+    </Link>
+  )
+}
+
 // ── Featured Template Card ──────────────────────────────────────────────────
 
 function FeaturedCard({
@@ -132,7 +145,7 @@ function FeaturedCard({
           <div className="flex-1">
             <div className="mb-3 flex items-center gap-2">
               <span className="rounded-full bg-amber-500/20 px-2.5 py-0.5 text-[10px] font-semibold uppercase text-amber-400">
-                Most Popular
+                Featured
               </span>
               <span className="rounded-full bg-purple-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase text-purple-400">
                 {categoryLabels[template.category]}
@@ -156,15 +169,9 @@ function FeaturedCard({
             </ul>
 
             <div className="flex flex-wrap items-center gap-3">
-              <CheckoutButton
-                variantId={template.lemonSqueezy.variantId || undefined}
-                price={template.price}
-                originalPrice={template.originalPrice}
-                label="Get Template"
-                size="lg"
-              />
+              <LaunchListLink size="lg" />
               <span className="text-xs text-white/30">
-                Includes commercial license
+                Not available to buy yet
               </span>
             </div>
           </div>
@@ -173,15 +180,10 @@ function FeaturedCard({
           <div className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] p-5 md:w-72">
             <div className="mb-4 text-center">
               <div className="mb-1 flex items-baseline justify-center gap-2">
-                <span className="text-4xl font-bold text-white">${template.price}</span>
-                {template.originalPrice && (
-                  <span className="text-lg text-white/30 line-through">
-                    ${template.originalPrice}
-                  </span>
-                )}
+                <span className="text-2xl font-bold text-white">Launch list</span>
               </div>
               <span className="text-xs text-emerald-400">
-                Save ${(template.originalPrice || template.price) - template.price}
+                Coming soon
               </span>
             </div>
 
@@ -291,10 +293,7 @@ function TemplateCard({
       {/* Footer */}
       <div className="mt-auto flex items-center justify-between border-t border-white/[0.06] px-5 py-4">
         <div className="flex items-baseline gap-2">
-          <span className="text-2xl font-bold text-white">${template.price}</span>
-          {template.originalPrice && (
-            <span className="text-sm text-white/30 line-through">${template.originalPrice}</span>
-          )}
+          <span className="text-lg font-bold text-white">Launch list</span>
         </div>
         <div className="flex items-center gap-2">
           {'vercelDeployUrl' in template && template.vercelDeployUrl && (
@@ -308,13 +307,7 @@ function TemplateCard({
               <span>▲ Deploy</span>
             </a>
           )}
-          <CheckoutButton
-            variantId={template.lemonSqueezy.variantId || undefined}
-            price={template.price}
-            originalPrice={template.originalPrice}
-            label="Get"
-            size="sm"
-          />
+          <LaunchListLink />
         </div>
       </div>
     </motion.div>
@@ -383,7 +376,7 @@ export default function ShopTemplatesPage() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-400">
               <Sparkles className="h-4 w-4" />
-              {templates.length} Production Templates
+              {templates.length} Planned Templates
             </div>
 
             <h1 className="mb-4 text-4xl font-bold tracking-tight text-white md:text-6xl">
@@ -395,7 +388,7 @@ export default function ShopTemplatesPage() {
             </h1>
 
             <p className="mb-8 max-w-2xl text-lg text-white/50">
-              Production-tested templates from the systems behind frankx.ai.
+              Planned templates from the systems behind frankx.ai. Nothing is on sale yet; join the launch list.
               Claude Code skills, n8n workflows, Next.js starters, and full AI architecture blueprints.
               Built by an AI architect who ships in production.
             </p>
@@ -444,6 +437,7 @@ export default function ShopTemplatesPage() {
       {/* ── What's Included ─────────────────────────────────────────────── */}
       <section className="border-y border-white/[0.06] py-10">
         <div className="mx-auto max-w-7xl px-6">
+          <p className="mb-6 text-xs text-white/40">Planned for each kit. Nothing is on sale yet.</p>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
             {[
               { icon: Code2, title: 'Full Source Code', desc: 'No obfuscation. Yours forever.' },
@@ -600,28 +594,16 @@ export default function ShopTemplatesPage() {
           <div className="grid gap-4 md:grid-cols-2">
             {[
               {
-                q: 'What do I get when I purchase?',
-                a: 'Full source code in a private GitHub repo, deploy configs for Railway/Vercel, a video walkthrough, and access to our Discord support channel.',
-              },
-              {
-                q: 'Can I use templates for client projects?',
-                a: 'Yes. All templates include a commercial license. Use them for client projects, SaaS products, or internal tools.',
+                q: 'Can I buy these templates now?',
+                a: 'No. There is no checkout yet and nothing is on sale. Join the launch list at /waitlist to hear when a kit is released.',
               },
               {
                 q: 'Do I need my own API keys?',
                 a: 'Yes. Templates require your own API keys for AI providers (Anthropic, OpenAI, Google, or OCI). You control your costs.',
               },
               {
-                q: 'Are updates included?',
-                a: 'Yes. All future updates to the template are included free. You get lifetime access to the GitHub repo.',
-              },
-              {
                 q: 'What platforms can I deploy to?',
                 a: 'Templates include configs for Railway (backend), Vercel (frontend), and n8n (workflows). One-click deploy buttons included.',
-              },
-              {
-                q: 'Is there a refund policy?',
-                a: 'Due to the digital nature of the product (immediate source code access), we cannot offer refunds. Review the features carefully before purchasing.',
               },
             ].map((faq) => (
               <div
