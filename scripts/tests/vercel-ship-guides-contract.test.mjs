@@ -44,7 +44,7 @@ const audiences = [
   'Founders',
   'AI architects',
   'Creators',
-  'SaaS and agentic-substrate builders',
+  'SaaS and agent-platform builders',
 ]
 
 function readRepo(relativePath) {
@@ -97,6 +97,7 @@ test('ship and runtime guides carry sourced themes, four audience calls, videos,
   assert.match(page, /buildFAQPageData\(guide\.faqs\)/)
   assert.match(page, /guide\.faqs\.map\(\(faq\)/)
   assert.match(matrix, /id="decision-matrix"/)
+  assert.match(matrix, /scroll-mt-24/)
   assert.doesNotMatch(matrix, /fetch\(|axios|fs\./)
 
   for (const guide of guides) {

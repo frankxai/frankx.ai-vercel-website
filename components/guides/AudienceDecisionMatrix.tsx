@@ -19,7 +19,7 @@ export default function AudienceDecisionMatrix({ decisions }: { decisions: Audie
   if (decisions.length === 0) return null
 
   return (
-    <section id="decision-matrix" aria-labelledby="decision-matrix-heading" className="mt-16 border-t border-white/[0.08] pt-12">
+    <section id="decision-matrix" aria-labelledby="decision-matrix-heading" className="mt-16 scroll-mt-24 border-t border-white/[0.08] pt-12">
       <h2 id="decision-matrix-heading" className="text-3xl font-bold tracking-tight text-white">
         Audience decisions
       </h2>
