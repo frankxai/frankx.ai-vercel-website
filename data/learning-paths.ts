@@ -179,94 +179,6 @@ export const learningPaths: LearningPath[] = [
         description: "Boris Cherny and Alex Albert talk about the inception of Claude Code as an internal utility and share power-user developer workflow strategies.",
         tags: ['claude-code', 'discussion', 'beginner'],
       },
-      {
-        id: 'claude-agent-sdk',
-        youtubeId: 'S08x1x2kC1w',
-        title: 'Claude Agent SDK [Full Workshop]',
-        creator: youtubeChannels.aiEngineer.name,
-        creatorChannel: youtubeChannels.aiEngineer.url,
-        duration: 'See YouTube',
-        level: 'advanced',
-        description: "Thariq Shihipar from Anthropic hosts a deep-dive technical workshop on the Agent SDK architecture, Unix-like agent loops, and context engineering.",
-        tags: ['agent-sdk', 'agents', 'advanced'],
-      },
-      {
-        id: 'mcp-building-agents',
-        youtubeId: 'W0S83pS_Z3A',
-        title: 'Building Agents with Model Context Protocol [Full Workshop]',
-        creator: youtubeChannels.aiEngineer.name,
-        creatorChannel: youtubeChannels.aiEngineer.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description: "Anthropic's Mahesh Murag leads a complete workshop on the open MCP standard, showing how to connect Claude to filesystems, databases, and third-party APIs.",
-        tags: ['mcp', 'context', 'api'],
-      },
-      {
-        id: 'build-skills-not-agents',
-        youtubeId: 'nO3S8L_oK84',
-        title: "Don't Build Agents, Build Skills Instead",
-        creator: youtubeChannels.aiEngineer.name,
-        creatorChannel: youtubeChannels.aiEngineer.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description: "Barry Zhang and Mahesh Murag lay out Anthropic's paradigm shift: packaging agent operations into reusable, composable Skills rather than custom models.",
-        tags: ['skills', 'architecture', 'strategy'],
-      },
-      {
-        id: 'claude-code-future-engineering',
-        youtubeId: 'kYv9x4p15OQ',
-        title: 'Claude Code & the Future of Software Engineering',
-        creator: youtubeChannels.acquired.name,
-        creatorChannel: youtubeChannels.acquired.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description: "Claude Code creator Boris Cherny sits down at Acquired Unplugged to discuss the IDE-free developer experience, agent loop metrics, and how AI coding changes the role of the engineer.",
-        tags: ['claude-code', 'discussion', 'future'],
-      },
-      {
-        id: 'seq-coding-solved',
-        youtubeId: 'sD48wJ-J-XQ',
-        title: 'Why Coding Is Solved, and What Comes Next',
-        creator: youtubeChannels.sequoia.name,
-        creatorChannel: youtubeChannels.sequoia.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description: "Sequoia Capital hosts Boris Cherny for a fireside chat on the trajectory of developer productivity and the next frontiers of autonomous code maintenance.",
-        tags: ['discussion', 'future', 'developer'],
-      },
-      {
-        id: 'figma-mcp-workflows',
-        youtubeId: 'wX-y_c9D6qQ',
-        title: 'Figma x Claude Code Live: Roundtrip Workflows with Figma MCP',
-        creator: youtubeChannels.figma.name,
-        creatorChannel: youtubeChannels.figma.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description: "A live demonstration showing how Claude Code interacts with Figma designs via MCP to generate and synchronize frontend components.",
-        tags: ['figma', 'mcp', 'design-to-code'],
-      },
-      {
-        id: 'inside-building-claude',
-        youtubeId: 'Oy7tzmfbl64',
-        title: 'Inside How Anthropic Is Building the Next Claude',
-        creator: youtubeChannels.peterYang.name,
-        creatorChannel: youtubeChannels.peterYang.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description: "Anthropic research PM Alex Albert discusses the model-building pipeline, background memory consolidation ('dreaming'), and training model personalities.",
-        tags: ['research', 'product', 'inside'],
-      },
-      {
-        id: 'anthropic-html-ai-specs',
-        youtubeId: 'kYJjX79P908',
-        title: 'Why this Claude Code Engineer Uses HTML Files as AI Specs',
-        creator: youtubeChannels.aiEngineer.name,
-        creatorChannel: youtubeChannels.aiEngineer.url,
-        duration: 'See YouTube',
-        level: 'advanced',
-        description: "Thariq Shihipar demonstrates how HTML specs and throwaway user interfaces accelerate the agentic planning and implementation loop.",
-        tags: ['specs', 'workflow', 'advanced'],
-      },
     ],
     ecosystem: [
       {
@@ -432,12 +344,6 @@ export const learningPaths: LearningPath[] = [
         role: 'Long-form interviews — Dario Amodei, research conversations',
         channelUrl: youtubeChannels.lexFridman.url,
         why: 'For the strategic/research view: full conversations with Anthropic leadership on what Claude is for and where the field is heading.',
-      },
-      {
-        name: 'The Neuron',
-        role: 'Daily AI newsletter + companion video coverage',
-        channelUrl: youtubeChannels.theNeuron.url,
-        why: 'Fast daily signal on Claude releases, comparisons, and emerging workflows — good for staying current between official launches.',
       },
     ],
     faqs: [
@@ -1031,12 +937,6 @@ export const learningPaths: LearningPath[] = [
         channelUrl: youtubeChannels.aiExplained.url,
         why: 'Honest, benchmark-driven analysis of GPT-5.5 versus the field. Trust this over launch-day hype for real capability calibration.',
       },
-      {
-        name: 'The Neuron',
-        role: 'Daily AI newsletter + companion videos',
-        channelUrl: youtubeChannels.theNeuron.url,
-        why: 'Fast daily signal on OpenAI releases and practical workflows — good for staying current between official launches.',
-      },
     ],
     faqs: [
       {
@@ -1103,7 +1003,7 @@ export const learningPaths: LearningPath[] = [
     category: 'model-maker',
     heroEyebrow: 'Updated May 23, 2026 · Reflects Google I/O 2026',
     longIntro:
-      "Google shipped its biggest developer release in years at I/O 2026 (May 19): Antigravity 2.0 as a standalone agentic platform, Gemini 3.5 Flash going GA as the new default, Gemini Omni unifying multimodal generation, and NotebookLM gaining cinematic Video Overviews. This portal pulls the official launches and the sharpest expert walkthroughs into one immersive path — so you can move from your first AI Studio prompt to shipping production agents without sifting the noise.\n\nThink of it as a map: Gemini 3.1 Pro and 3.5 Flash are the brains, Antigravity is where agents live, NotebookLM is the research and briefing surface, and Veo 3.1 + Nano Banana Pro handle the media. Each tool is linked below with its official Google page; each video below is curated for signal, not view count.\n\nStart with Foundations (videos 1–4) for the model layer, then branch into the track that fits — Builder (Antigravity, CLI), Researcher (NotebookLM), or Creator (Veo, Nano Banana). The Ecosystem grid, I/O 2026 timeline, and FAQ give you the lay of the land in one screen.",
+      "Google shipped its biggest developer release in years at I/O 2026 (May 19): Antigravity 2.0 as a standalone agentic platform, Gemini 3.5 Flash going GA as the new default, Gemini Omni unifying multimodal generation, and NotebookLM gaining cinematic Video Overviews. This portal pulls the official launches and the sharpest expert walkthroughs into one immersive path — so you can move from your first AI Studio prompt to shipping production agents without sifting the noise.\n\nThink of it as a map: Gemini 3.1 Pro and 3.5 Flash are the brains, Antigravity is where agents live, NotebookLM is the research and briefing surface, and Veo 3.1 + Nano Banana Pro handle the media. Each tool is linked below with its official Google page; each video below is curated for signal, not view count.\n\nStart with Foundations (videos 1–3) for the model layer, then branch into the track that fits — Builder (Antigravity, CLI), Researcher (NotebookLM), or Creator (Veo, Nano Banana). The Ecosystem grid, I/O 2026 timeline, and FAQ give you the lay of the land in one screen.",
     distillation:
       "Google's edge in 2026 is not a single model — it is the shape of the whole stack. A million-plus token context window, native multimodality, and agent infrastructure built in rather than bolted on. The learning trap is treating Gemini like a chatbot with a bigger window. The payoff comes from seeing the pieces as one system: the models are the reasoning layer, Antigravity is where agents live, NotebookLM is the research surface, and Veo and Nano Banana handle media.\n\nStart with the foundations videos for the model layer, because the model-selection instinct is what everything else rides on: 3.5 Flash for speed and cost, 3.1 Pro with a high thinking level when the problem is genuinely hard. Get that right and the rest of the stack is a set of branches you take when a specific job calls for it — Antigravity when you are building agents, NotebookLM when you are grounding work in your own sources, Veo when you need video.\n\nThe underused capability is the huge context window used deliberately. Most people paste a paragraph; the actual edge is feeding an entire codebase, a full set of documents, or a long research corpus and asking questions across all of it at once. That is a different way of working, and it is where Gemini pulls ahead of models that make you chunk everything. NotebookLM is the same idea with guardrails — grounded answers, no invented citations.\n\nWhere I would spend your first week: get a free key at AI Studio, run one real multimodal prompt, and try the big-context move on a project you actually have — a repo, a research folder, a stack of PDFs. Then pick your track: Builder if you want agents, Researcher if you want NotebookLM, Creator if you want media. The goal is not to know Gemini's feature list; it is to work at the scale the context window makes possible.",
     ctaTitle: 'Ready to ship with Gemini?',
@@ -1154,18 +1054,6 @@ export const learningPaths: LearningPath[] = [
         description:
           'Logan Kilpatrick walks through Gemini Omni — the new "anything from any input" model unveiled at I/O 2026.',
         tags: ['gemini-omni', 'multimodal', 'video'],
-      },
-      {
-        id: 'gemini-3-pros-tutorial',
-        youtubeId: 'vEzbJ6gIqeA',
-        title: 'How Pros Use Gemini 3.0 with Google DeepMind\'s Logan Kilpatrick',
-        creator: youtubeChannels.theNeuron.name,
-        creatorChannel: youtubeChannels.theNeuron.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description:
-          'Deep-dive on practical Gemini 3 Pro workflows — vibe coding in AI Studio, agentic patterns, and where 3.1 Pro shines.',
-        tags: ['gemini-3-pro', 'workflow', 'ai-studio'],
       },
       {
         id: 'gemini-deep-think',
@@ -1446,7 +1334,7 @@ export const learningPaths: LearningPath[] = [
       {
         question: "Where do I start if I'm new to Google AI?",
         answer:
-          'Watch video 1 (Gemini 3 launch) and video 5 (Antigravity 2.0 walkthrough) in this portal. Then create a free key at aistudio.google.com, try a multimodal prompt, and follow the Builder track from there.',
+          'Watch video 1 (Gemini 3 launch) and video 4 (Antigravity 2.0 walkthrough) in this portal. Then create a free key at aistudio.google.com, try a multimodal prompt, and follow the Builder track from there.',
       },
     ],
   },
@@ -2545,27 +2433,7 @@ export const learningPaths: LearningPath[] = [
       '/blog/ai-infrastructure-blackwell-lpu-ai-factories-2026',
       '/blog/cost-per-verified-outcome-infrastructure-roi',
     ],
-    videos: [
-      {
-        id: 'agentic-systems-overview',
-        youtubeId: 'Sal4s84k3iE',
-        title: 'Building Production AI Agents & MCP Systems',
-        creator: 'FrankX AI',
-        creatorChannel: 'https://www.youtube.com/@frankxai',
-        duration: '28:45',
-        level: 'advanced',
-        description:
-          'A comprehensive engineering breakdown of the 4-layer agentic hierarchy, evaluated skill patterns, and production MCP tool meshes.',
-        tags: ['AI Agents', 'MCP', 'Agent Architecture', 'Skills Standard'],
-        keyTakeaways: [
-          'The 4-layer hierarchy separates ephemeral prompts, standardized MCP wires, evaluated skills, and autonomous agents.',
-          'Finite State Machines prevent exponential multi-agent state entropy and infinite loops.',
-          'Outcome-based hardware economics save 80%+ on enterprise inference costs.',
-        ],
-        architectNote:
-          'Never deploy unconstrained while loops in production. Always gate agent state transitions with deterministic typecheckers and linters.',
-      },
-    ],
+    videos: [],
     ecosystem: [
       {
         name: 'Model Context Protocol (MCP)',
