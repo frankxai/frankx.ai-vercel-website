@@ -17,9 +17,6 @@ import {
   Play,
   Shield,
   Zap,
-  Train,
-  Triangle,
-  Workflow,
   ExternalLink,
 } from 'lucide-react'
 import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
@@ -59,7 +56,7 @@ const tiers = [
   {
     name: 'Professional',
     range: 'Launch list',
-    description: 'Multi-component workflows and chat apps. Ship features in hours.',
+    description: 'Multi-component workflows and chat apps.',
     color: 'emerald',
     filter: (t: { price: number }) => t.price > 47 && t.price <= 97,
   },
@@ -78,44 +75,8 @@ const stats = [
   { value: '15', label: 'Templates' },
   { value: '5', label: 'Categories' },
   { value: 'Launch list', label: 'Open, nothing on sale yet' },
-  { value: '100%', label: 'Source code' },
+  { value: 'Planned', label: 'As readable source' },
 ]
-
-// ── Deploy Platform Badges ──────────────────────────────────────────────────
-
-const platformIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  railway: Train,
-  vercel: Triangle,
-  n8n: Workflow,
-}
-
-function DeployBadges({ techStack }: { techStack: string[] }) {
-  const platforms = ['railway', 'vercel', 'n8n'].filter(
-    (p) =>
-      techStack.some((t) => t.toLowerCase().includes(p)) ||
-      (p === 'vercel' && techStack.some((t) => t.toLowerCase().includes('next'))) ||
-      (p === 'railway' && techStack.some((t) => ['Python', 'FastAPI', 'Redis'].includes(t))) ||
-      (p === 'n8n' && techStack.some((t) => t.toLowerCase().includes('n8n')))
-  )
-  if (platforms.length === 0) return null
-
-  return (
-    <div className="flex items-center gap-1.5">
-      {platforms.map((p) => {
-        const Icon = platformIcons[p]
-        return (
-          <span
-            key={p}
-            className="flex items-center gap-1 rounded bg-white/[0.06] px-1.5 py-0.5 text-[9px] text-white/40"
-          >
-            <Icon className="h-2.5 w-2.5" />
-            {p}
-          </span>
-        )
-      })}
-    </div>
-  )
-}
 
 // ── Launch list link (no checkout exists yet) ────────────────────────────────
 
@@ -271,7 +232,7 @@ function TemplateCard({
         </p>
       </div>
 
-      {/* Tech Stack + Deploy */}
+      {/* Tech Stack */}
       <div className="px-5 pb-3">
         <div className="mb-2 flex flex-wrap gap-1">
           {template.techStack.slice(0, 4).map((tech) => (
@@ -288,7 +249,6 @@ function TemplateCard({
             </span>
           )}
         </div>
-        <DeployBadges techStack={template.techStack} />
       </div>
 
       {/* Footer */}

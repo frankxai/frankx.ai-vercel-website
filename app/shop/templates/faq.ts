@@ -7,7 +7,7 @@ export const templatesFaq = [
   },
   {
     q: 'Do I need my own API keys?',
-    a: 'Yes. Templates require your own API keys for AI providers (Anthropic, OpenAI, Google, or OCI). You control your costs.',
+    a: 'Planned kits may need your own API keys for the services they use. Details will be confirmed per kit before launch.',
   },
   {
     q: 'What platforms can I deploy to?',
