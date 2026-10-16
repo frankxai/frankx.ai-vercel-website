@@ -189,11 +189,11 @@ function FeaturedCard({
 
             <div className="mb-4 space-y-2 border-t border-white/[0.06] pt-4">
               {[
-                { icon: Code2, text: 'Full source code' },
-                { icon: Github, text: 'GitHub repo access' },
-                { icon: Play, text: 'Video walkthrough' },
-                { icon: Shield, text: 'Commercial license' },
-                { icon: Zap, text: 'One-click deploy' },
+                { icon: Code2, text: 'Planned: source files' },
+                { icon: Github, text: 'Repo access confirmed per kit' },
+                { icon: Play, text: 'Walkthrough may be included' },
+                { icon: Shield, text: 'License terms confirmed per kit' },
+                { icon: Zap, text: 'Deploy guidance may be included' },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-2 text-sm text-white/50">
                   <Icon className="h-3.5 w-3.5 text-white/30" />
@@ -376,7 +376,7 @@ export default function ShopTemplatesPage() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-400">
               <Sparkles className="h-4 w-4" />
-              {templates.length} Planned Templates
+              {templates.length} planned templates
             </div>
 
             <h1 className="mb-4 text-4xl font-bold tracking-tight text-white md:text-6xl">
@@ -440,10 +440,10 @@ export default function ShopTemplatesPage() {
           <p className="mb-6 text-xs text-white/40">Nothing is on sale yet. Planned contents vary by kit and are not final.</p>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
             {[
-              { icon: Code2, title: 'Source Files', desc: 'Planned as readable source, not a hosted service.' },
-              { icon: Zap, title: 'Deploy Guidance', desc: 'May include Railway, Vercel or n8n setup.' },
+              { icon: Code2, title: 'Source files', desc: 'Planned as readable source, not a hosted service.' },
+              { icon: Zap, title: 'Deploy guidance', desc: 'May include Railway, Vercel or n8n setup.' },
               { icon: Play, title: 'Walkthrough', desc: 'May include a setup and customization guide.' },
-              { icon: Shield, title: 'License Terms', desc: 'Confirmed per kit before launch.' },
+              { icon: Shield, title: 'License terms', desc: 'Confirmed per kit before launch.' },
               { icon: Download, title: 'Updates', desc: 'Update policy confirmed per kit before launch.' },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="flex items-start gap-3">
@@ -603,7 +603,7 @@ export default function ShopTemplatesPage() {
               },
               {
                 q: 'What platforms can I deploy to?',
-                a: 'Templates include configs for Railway (backend), Vercel (frontend), and n8n (workflows). One-click deploy buttons included.',
+                a: 'It varies by kit and is not final. Some kits are n8n workflows, Next.js starters or Python backends, and the platforms for each are confirmed per kit before launch. No deploy buttons exist yet.',
               },
             ].map((faq) => (
               <div
