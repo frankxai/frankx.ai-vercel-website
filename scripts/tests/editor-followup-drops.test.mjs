@@ -111,10 +111,13 @@ const songCountClaim = /\b(?:12(?:,?000|\s?k|\s+thousand)|twelve[\s-]+thousand)\
 // Unitless forms of the same count: "12k+ catalog", "12k+ song catalog", "most of my 12,000 live". A "$12,000 catalog" budget is not a count.
 const songCatalogClaim = /(?<![$€£\d,.])\b12(?:,?000|\s?k)\b\s*\+?\s+(?:(?:AI|song|track)\s+)*catalog\b|\bmy\s+12(?:,?000|\s?k)\b\s*\+?\s+(?:live|catalog|here|are|were|still)\b/i
 const yearsClaim = /\b15\+?[\s-]+years?(?:[\s-]+(?:of|in|building|architecting|as(?:\s+an?)?))*[\s-]+(?:an?\s+)?(?:enterprise|architect\w*)/i
+// The withdrawn "15,000-word" length claim ("15,000-word masterplan", "15,000-word operating system", "15,000-word masterwork"). "15,000 words" as a plain quantity is fine.
+const wordCountClaim = /(?<![$€£\d,.])\b15,?000[\s-]word\b/i
 const bannedClaims = [
   ['a 12,000 song, track or experiment count', songCountClaim],
   ['a 12,000 catalog count without a unit noun', songCatalogClaim],
   ['the 114,000-word book count', /114,000\s+words/i],
+  ['the withdrawn 15,000-word length claim', wordCountClaim],
   ['the unsourced studio comparator', /500-1,000 tracks per year/i],
   ['the unsourced years-in-enterprise-AI count', yearsClaim],
   ['the unsourced 320% impressions result', /Organic impressions rose 320%/i],
@@ -163,6 +166,23 @@ const knownSongCountLeftovers = new Set([
   'public/social/twitter/build-your-own-jarvis.md',
 ])
 
+// Known leftovers for the 15,000-word pattern only. They predate the pattern and are not part of the blog cleanup: an agent memory log, an unrouted social draft and one static file that is served live.
+// Do not add to this list. Remove an entry when its file is cleaned.
+const knownWordCountLeftovers = new Set([
+  'content/blog/CLAUDE.md',
+  'content/social/blog/golden-age-of-intelligence.md',
+  'public/social/linkedin/golden-age-intelligence.md',
+])
+
+test('15,000-word pattern catches the withdrawn length claim but not other quantities', () => {
+  for (const claim of ['A 15,000-word masterwork', '15,000-word masterplan', 'This 15,000-word operating system', '15,000-word intelligence system', '15000 word guide', '15,000-Word Strategic Operating System']) {
+    assert.match(claim, wordCountClaim, claim)
+  }
+  for (const fine of ['115,000-word archive', '$15,000 word budget', '15,000 words of context window', 'a 1,500-word post', 'a 5,000-word post', '12-day sprint']) {
+    assert.doesNotMatch(fine, wordCountClaim, fine)
+  }
+})
+
 test('song-count pattern catches 12K and 12,000 variants but not legitimate figures', () => {
   for (const claim of ['12,000+ AI songs', '12000 tracks', '12K songs', '12K+ AI-generated tracks', 'the 12,000-experiment music practice', 'The Music Laboratory: 12,000 Experiments', 'Over 12,000 songs created', 'Twelve thousand songs in three years', 'twelve-thousand AI tracks', '12 thousand songs']) {
     assert.match(claim, songCountClaim, claim)
@@ -195,7 +215,7 @@ test('no authored copy carries the unsourced song count or figures', () => {
   for (const relative of renderedJsonFiles) {
     assert.ok(existsSync(`${repoRoot}${relative}`), `${relative} must exist so the guard can scan it`)
     assert.ok(scanned.includes(`${repoRoot}${relative}`), `${relative} must be a scan target`)
-    assert.ok(!knownSongCountLeftovers.has(relative), `${relative} must not be allowlisted`)
+    assert.ok(!knownSongCountLeftovers.has(relative) && !knownWordCountLeftovers.has(relative), `${relative} must not be allowlisted`)
   }
   const hits = []
   for (const file of scanned) {
@@ -203,6 +223,7 @@ test('no authored copy carries the unsourced song count or figures', () => {
     const source = withoutSlug(readFileSync(file, 'utf8'))
     for (const [label, pattern] of bannedClaims) {
       if ((pattern === songCountClaim || pattern === songCatalogClaim) && knownSongCountLeftovers.has(relative)) continue
+      if (pattern === wordCountClaim && knownWordCountLeftovers.has(relative)) continue
       if (pattern.test(source)) hits.push(`${relative}: ${label}`)
     }
   }
