@@ -56,13 +56,13 @@ A request path accepts HTTP, does the work, and returns. [Dockerfile support](ht
 
 A pull path waits on a queue, a database, or someone else's control plane. [Vercel Daemons](https://vercel.com/changelog/vercel-daemons-is-now-in-public-beta) are this shape, and they are in public beta. You package the worker with a Dockerfile or Containerfile, then declare a `daemons` entry with a root, an entrypoint, a command, and a replica count per region. The changelog's example is one Celery worker in `iad1`. Daemons run on Fluid compute beside the app. Vercel restarts instances that exit. There is no inbound HTTP server in that design.
 
-[Services](https://vercel.com/docs/services) are the request-path way to put more than one build in a single project. The docs mark Services as beta. Public routes are top-level rewrites. A binding is how one service calls another without a public URL. The same docs tell you to use Daemons, not Services, for a worker that pulls its own work. A project may declare both. Declaring both does not promote Daemons out of beta.
+[Services](https://vercel.com/docs/services) are the request-path way to put more than one build in a single project. The docs mark Services as beta. Public routes are top-level rewrites. A binding is how one service calls another without a public URL. The same docs point a worker that pulls its own work at Daemons. Services stay on the request path. A project may declare both. Declaring both does not promote Daemons out of beta.
 
 ## Python is generally available. Several Python SDKs are not.
 
 [Python on Vercel](https://vercel.com/changelog/python-on-vercel-is-now-generally-available) says Python is now a first-class language and runtime. FastAPI, Flask, and Django are recognized automatically. The runtime is CPython on Linux, with `uv` and `pyproject.toml`. The post shows a frontend and a FastAPI backend deployed together through [Services](https://vercel.com/docs/services), which remain beta in the docs even though the Python runtime post is a GA announcement.
 
-Read the SDK list on that Python page as a status table, not as a bundle:
+Read the SDK list on that Python page as a status table. Each row has its own mark:
 
 - Sandbox, Connect, and Blob have Python SDK entries on the page.
 - The AI SDK for Python is marked beta.
@@ -81,14 +81,14 @@ Drives do not make the sandbox a production database. The sandbox is still an is
 
 ## Connect events and workforce authorization
 
-Connect itself is generally available. The rule is still short-lived tokens, not a long-lived provider secret. That is [Vercel Connect is now generally available](https://vercel.com/changelog/vercel-connect-ga).
+Connect itself is generally available. The rule on that page is a short-lived, scoped token requested at runtime. That is [Vercel Connect is now generally available](https://vercel.com/changelog/vercel-connect-ga).
 
 Two 15 October 2026 additions stay in public beta:
 
 - [MCP Events](https://vercel.com/changelog/mcp-events-support-in-vercel-connect-is-now-in-public-beta) subscribe to events from a compatible MCP server. The documented functions are `experimental_subscribe` and `experimental_verifyMcpEvent`. An experimental prefix is a status. Treat the API as beta even if the product headline says public beta.
 - [Enterprise-Managed Authorization](https://vercel.com/changelog/vercel-connect-adds-enterprise-managed-authorization) is public beta. Administrators grant or revoke access in the identity provider. Users sign in with a corporate account. The app requests scopes, and Connect exchanges and renews tokens. Access stays inside the approved scopes and the user's existing permissions. The page names Vercel Passport and Slack's MCP server as the worked example.
 
-Chat SDK remains the channel layer from the [Agent Stack](https://vercel.com/blog/agent-stack). It is how an agent shows up in Slack or GitHub. It is not a runtime, and it does not make a Daemon unnecessary.
+Chat SDK remains the channel layer from the [Agent Stack](https://vercel.com/blog/agent-stack). It is how an agent shows up in Slack or GitHub. The runtime underneath is still the request path or a Daemon.
 
 ## Vercel Agent is a reviewer with a keyboard, still in public beta
 
