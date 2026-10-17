@@ -336,7 +336,7 @@ export default function OperatorScorecardClient() {
   }
 
   return (
-    <div className="min-h-screen bg-[#05070a] text-white">
+    <main className="min-h-screen bg-[#05070a] text-white">
       <div className="mx-auto max-w-4xl px-6 pb-24 pt-32">
         <div ref={stageRef}>
           {stage === 'intro' && (
@@ -366,7 +366,7 @@ export default function OperatorScorecardClient() {
                   Grade my agent stack
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </button>
-                <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/40">
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/60">
                   ~5 minutes &middot; free instant result &middot; 4 tiers
                 </p>
               </div>
@@ -629,7 +629,7 @@ export default function OperatorScorecardClient() {
           )}
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 

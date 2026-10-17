@@ -104,3 +104,11 @@ test('missing, repeated, or unsafe intents cannot become product attribution', a
     assert.equal(body.listType, 'courses-waitlist')
   }
 })
+
+test('creation-chronicles launch-list CTA files the signup under its own list, not the generic waitlist', async () => {
+  const { props, body } = await submitWaitlist('creation-chronicles')
+  assert.equal(props.intentLabel, 'Creation Chronicles')
+  assert.equal(body.intent, 'creation-chronicles')
+  assert.equal(body.listType, 'creation-chronicles')
+  assert.equal(body.source, '/waitlist')
+})
