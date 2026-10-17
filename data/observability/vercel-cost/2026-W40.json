@@ -1,0 +1,38 @@
+{
+  "week": "2026-W40",
+  "generatedAt": "2026-09-28T07:16:55Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-09-21T07:07:14Z",
+  "windowEnd": "2026-09-28T07:07:14Z",
+  "windowClosed": true,
+  "metrics": {
+    "count_total": 100,
+    "count_production": 11,
+    "count_preview": 89,
+    "count_skipped": 38,
+    "count_error": 3,
+    "count_ready": 58,
+    "duration_p50_seconds": 206,
+    "duration_p95_seconds": 333,
+    "duration_max_seconds": 382,
+    "total_build_minutes": 214,
+    "duration_method": "ready_minus_buildingAt",
+    "ready_deploys_sampled": 15,
+    "ready_deploys_total": 58,
+    "duration_note": "15/58 READY deploys sampled via get_deployment (every 4th from ordered list). Sorted durations (s): 183.7, 185.9, 186.6, 192.9, 195.4, 201.0, 201.8, 205.9, 206.2, 206.5, 211.5, 213.9, 233.5, 312.2, 381.8. p50=205.9s (0-based idx 7). p95=333.1s (linear interp at pos 13.3: 312.2+0.3*(381.8-312.2)). total_build_minutes=(mean 221.3s/60)×58=214min. Two outliers: dpl_CZq1Uvcut1LQYfPwyGrfAaHrX1hU at 381.8s (source=redeploy, codex/draft-repair) and dpl_5qkcpKYX1YeeR9X2pR5G6At5EpyL at 312.2s (dependabot marked bump v12→v18). Both are plausible cache-miss or large-diff builds. Remainder cluster at 184–234s."
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W37",
+    "prior_week_note": "W38 and W39 snapshots are absent — two consecutive missed runs. W37 is the most recent available baseline. Deltas span 3 weeks, not 1.",
+    "count_total_delta": "+22",
+    "duration_p50_delta_seconds": "+14",
+    "total_build_minutes_delta": "-65"
+  },
+  "verdict": "RED",
+  "alerts": [
+    "count_error=3 meets the >=2/week RED threshold. ERROR deploy UIDs not individually resolved in this run — investigate in Vercel dashboard or re-run get_deployment on ERROR-state entries from the raw deployment list.",
+    "W38 and W39 snapshots are missing — two consecutive weeks without a cost-watch run. Drift for those weeks is unknown; the +30% delta guard cannot reliably fire against a 3-week-old baseline.",
+    "count_skipped=38 of 100 (38%). Cancels remain high — rapid branch-push supersessions dominate as in W37. No ignoreCommand skips detected separately."
+  ]
+}
