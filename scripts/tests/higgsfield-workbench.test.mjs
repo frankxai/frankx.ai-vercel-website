@@ -19,7 +19,7 @@ test('Higgsfield Workbench component is exported, accessible, and registered', (
   assert.match(componentContent, /\/downloads\/higgsfield-shot-brief\.md/)
   assert.match(componentContent, /\/downloads\/higgsfield-shot-ledger\.csv/)
   assert.match(componentContent, /\/go\/higgsfield/)
-  assert.match(componentContent, /Official Partner Link/)
+  assert.match(componentContent, /Referral Link/)
 
   // MDX registration
   assert.match(mdxComponentsContent, /import HiggsfieldWorkbench from '@\/components\/guides\/HiggsfieldWorkbench'/)

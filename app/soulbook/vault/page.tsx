@@ -128,24 +128,18 @@ export default function VaultPage() {
   const systemArchitectOffer: UpsellOffer = {
     id: 'system-architect-starter-kit',
     title: 'System Architect Starter Kit',
-    badge: 'Sovereign Elevation Upgrade',
-    headline: 'Bridge Your Soulbook with an Autonomous Multi-Agent Swarm OS',
-    description: 'You now possess the foundational 7-pillar reflection architecture. The System Architect Starter Kit provides the production TypeScript runtime, Obsidian SQLite FTS5 event sync, and verified council orchestration engine to execute autonomously.',
+    badge: 'Launch list',
+    headline: 'System Architect Starter Kit',
+    description: 'Ready-to-use JSON pipelines and automation templates that run content atomization, guest research, and newsletter queueing.',
     price: 97,
-    regularPrice: 197,
-    currencySymbol: '$',
+    currencySymbol: '€',
     features: [
-      'Complete Production Terminal CLI with multi-agent orchestration daemon',
-      'Bidirectional Obsidian Vault to SQLite FTS5 Event-Sourced Hybrid Indexer',
-      '30+ Pre-Configured Specialist Agent Cards (Council, Sentinel, Architect)',
-      'Zero-Token Ingestion Protocol & Context Compression Pipeline',
-      'Cryptographic SIP Attestation Generator & Multi-Device Sync Engine',
-      '30-Day Money-Back Guarantee + Private Discord Practitioner Access'
+      'Content Ops n8n Workflows',
+      'Voice Intelligence Pack'
     ],
-    ctaText: 'Acquire System Architect Kit — $97',
-    ctaHref: '/products/starter-kit',
+    ctaText: 'Join the launch list',
+    ctaHref: '/waitlist?intent=starter-kit',
     dismissText: 'No thanks, continue with my free vault',
-    footnote: 'Instant digital delivery · Built on SIP v1.1.1'
   };
 
   const handleDownloadVault = () => {
@@ -171,7 +165,7 @@ export default function VaultPage() {
         ? journalEntries.map((j) => `### ${new Date(j.date).toLocaleDateString()} — Pillar: ${j.pillarId}\n\n${j.content}\n`)
         : ['*No journal entries recorded.*']),
       '',
-      '## 25 Inquiry Prompts for Creators',
+      '## 5 Inquiry Prompts for Creators',
       '1. What single activity produced 80% of your energetic fulfillment this week?',
       '2. Where is your attention leaking into low-leverage obligations?',
       '3. Which autonomous system would free up 10 hours of cognitive load?',
@@ -402,10 +396,10 @@ export default function VaultPage() {
               <button
                 onClick={handleDownloadVault}
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-300 hover:text-amber-200 transition-colors shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
-                aria-label="Download free Obsidian vault zip"
+                aria-label="Download your Soulbook notes as Markdown"
               >
                 <Download className="w-4 h-4" />
-                <span>Download Free Vault (.zip)</span>
+                <span>Download your vault (.md)</span>
               </button>
             </div>
           </motion.div>

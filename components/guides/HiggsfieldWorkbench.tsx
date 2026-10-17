@@ -55,7 +55,7 @@ const WORKFLOWS: WorkflowDef[] = [
     title: 'Character Consistency (Soul ID)',
     shortLabel: 'Soul ID',
     badge: 'Presenter Lock',
-    description: 'Maintain presenter identity across scenes using an approved 5-angle reference pack.',
+    description: 'Maintain presenter identity across scenes using multi-angle reference stills.',
     icon: UserCheck,
     subject: 'Fixed presenter identity across multiple camera angles and lighting setups.',
     shotSequence: [
@@ -111,11 +111,11 @@ const WORKFLOWS: WorkflowDef[] = [
     subject: 'Automated video generation workflow via Claude MCP server.',
     shotSequence: [
       'Step 01: Connect MCP server at https://mcp.higgsfield.ai/mcp',
-      'Step 02: Submit bounded generate_video request with validated reference asset IDs.',
-      'Step 03: Poll get_generation_status until complete before triggering downstream jobs.',
+      'Step 02: Run read-only preflight to verify account balance and inspect available tools.',
+      'Step 03: Submit bounded brief with authorized credit cap and poll job to terminal status.',
     ],
-    acceptanceCheck: 'API response returns valid job ID and completed status string without retry loops.',
-    stopRule: 'Halt agent execution if status returns error, quota exceeded, or schema mismatch.',
+    acceptanceCheck: 'Preflight verifies account balance and tools; returned job reaches terminal completion without error.',
+    stopRule: 'Halt agent execution if credit balance is missing, quota exceeded, or tool errors occur.',
     route: 'Higgsfield MCP Server + Agentic SDK',
   },
   {
@@ -168,18 +168,18 @@ Prepared with FrankX Higgsfield Workbench (frankx.ai/guides/higgsfield-ai-video-
         <div>
           <div className="flex items-center gap-2 mb-1.5">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-400">
-              <ShieldCheck className="w-3.5 h-3.5" /> Verified Workbench
+              <ShieldCheck className="w-3.5 h-3.5" /> Production Brief Workbench
             </span>
           </div>
           <h2 id="higgsfield-wb-title" className="text-2xl font-bold tracking-tight text-white">Higgsfield Workflow & Brief Builder</h2>
           <p className="mt-1 text-xs text-white/70">Select a workflow to generate a copy-ready production brief with acceptance and stop rules.</p>
         </div>
         <div className="shrink-0">
-          <a href="/go/higgsfield" target="_blank" rel="noopener sponsored" className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-3.5 py-2 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400" aria-label="Open Higgsfield official portal (Partner Link)">
+          <a href="/go/higgsfield" target="_blank" rel="noopener sponsored" className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-3.5 py-2 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400" aria-label="Open Higgsfield (Referral Link)">
             <span>Open Higgsfield</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
-          <p className="mt-0.5 text-[10px] text-right text-white/40">Official Partner Link</p>
+          <p className="mt-0.5 text-[10px] text-right text-white/40">Referral Link</p>
         </div>
       </div>
 

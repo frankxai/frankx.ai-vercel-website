@@ -78,7 +78,7 @@ export async function renderPurchaseConfirmationEmail(data: {
 export async function renderMusicPromptsEmail(data: { recipientName: string; downloadUrl: string }): Promise<EmailResult> {
   const { MusicPromptsEmail: MPE } = await import('./templates/MusicPrompts')
   const html = await render(React.createElement(MPE, data))
-  return { subject: 'Your 5 studio prompts — ready to use', html }
+  return { subject: "You're on the list for the 5 Suno prompts", html }
 }
 
 // ─── Variant Metadata (legacy A/B test suite) ────────────────────

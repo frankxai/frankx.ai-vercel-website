@@ -71,9 +71,11 @@ function PathCard({ path }: { path: LearningPath }) {
         <span className="text-[11px] px-2 py-0.5 rounded bg-white/[0.03] text-white/40 border border-white/5 uppercase">
           {path.difficulty}
         </span>
-        <span className="text-[11px] px-2 py-0.5 rounded bg-white/[0.03] text-white/40 border border-white/5">
-          {path.estimatedHours} hours
-        </span>
+        {path.estimatedHours !== undefined && (
+          <span className="text-[11px] px-2 py-0.5 rounded bg-white/[0.03] text-white/40 border border-white/5">
+            {path.estimatedHours} hours
+          </span>
+        )}
       </div>
 
       <ArrowRight className="absolute bottom-6 right-6 w-5 h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-[color,transform] duration-200" />

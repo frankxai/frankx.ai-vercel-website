@@ -28,7 +28,11 @@ concurrency:
 
 jobs:
   review-gate:
-    if: github.event_name != 'issue_comment' || github.event.issue.pull_request
+    if: >-
+      github.event_name == 'pull_request' ||
+      github.event_name == 'pull_request_review' ||
+      (github.event_name == 'issue_comment' && github.event.issue.pull_request && contains(github.event.comment.body, '/gate')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '/gate'))
     runs-on: ubuntu-latest
     timeout-minutes: 3
     permissions:
@@ -36,11 +40,11 @@ jobs:
       pull-requests: read
       statuses: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           sparse-checkout: scripts/governance
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
       # The live head wins (a push may have landed since the event); the payload head is the fallback, so a failed
