@@ -131,6 +131,36 @@ test('ship and runtime guides carry sourced themes, four audience calls, videos,
   }
 })
 
+test('the skill map is crawlable, linked from related pages, and the primary videos stay real', () => {
+  const recap = getGuide('vercel-ship-2026-recap')
+  assert.match(recap.content, /<GuideSkillMap/)
+  assert.match(recap.content, /id="skill-map"|#skill-map/)
+  for (const skill of ['AI SDK', 'AI Gateway', 'Workflow SDK', 'Vercel Sandbox', 'Chat SDK', 'Vercel Connect', 'Python', 'Vercel Drives', 'Vercel Daemons', 'Vercel Agent']) {
+    assert.ok(recap.content.includes(skill), `skill map missing ${skill}`)
+  }
+  assert.match(recap.content, /https:\/\/www\.youtube\.com\/watch\?v=Fr5vzNknYJE/)
+  assert.match(recap.content, /https:\/\/www\.youtube\.com\/watch\?v=T1vs9jE-EEI/)
+  assert.match(recap.content, /https:\/\/www\.youtube\.com\/watch\?v=w6bjGDwn4ZY/)
+  assert.doesNotMatch(recap.content, /structuredData=\{false\}/)
+
+  const map = readRepo('components/guides/GuideSkillMap.tsx')
+  assert.match(map, /id="skill-map"/)
+  assert.match(map, /scroll-mt-28/)
+  assert.doesNotMatch(map, /fetch\(|axios|fs\./)
+  assert.match(readRepo('components/blog/MDXComponents.tsx'), /GuideSkillMap/)
+
+  for (const relativePath of [
+    'content/guides/founder-ai-stack-2026.mdx',
+    'content/guides/vercel-agent-runtime-decisions.mdx',
+    'content/blog/vercel-ship-2026-builder-decisions.mdx',
+    'content/blog/ai-architecture-2026-four-decisions-hard-to-reverse.mdx',
+    'content/blog/best-ai-app-builders-2026.mdx',
+    'content/blog/vercel-ai-sdk-first-agent-stack.mdx',
+  ]) {
+    assert.ok(readRepo(relativePath).includes('/guides/vercel-ship-2026-recap#skill-map'), `${relativePath} missing skill-map link`)
+  }
+})
+
 test('the blog post cross-links the guides and the matrix, and its FAQ schema matches the body', async () => {
   const filepath = path.join(root, 'content', 'blog', `${blogSlug}.mdx`)
   const source = readFileSync(filepath, 'utf8')
