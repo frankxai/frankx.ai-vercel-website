@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { frankxMcpServerInfo } from './mcp/server-identity.ts'
 
 const SITE = 'https://www.frankx.ai'
 
@@ -21,14 +22,13 @@ export type FrankxServerCard = {
   websiteUrl: string
   repository: { url: string; source: string; subfolder: string }
   remotes: Array<{ type: 'streamable-http'; url: string }>
-  _meta: { 'ai.frankx/serverInfoName': string }
 }
 
 export function frankxServerCard(): FrankxServerCard {
   return {
     $schema: SERVER_CARD_SCHEMA,
-    name: 'ai.frankx/frankx',
-    version: '1.1.0',
+    name: frankxMcpServerInfo.name,
+    version: frankxMcpServerInfo.version,
     description: 'Read-only MCP for FrankX search, articles, and the public product list.',
     title: 'FrankX',
     websiteUrl: `${SITE}/developers`,
@@ -38,7 +38,6 @@ export function frankxServerCard(): FrankxServerCard {
       subfolder: 'lib/mcp',
     },
     remotes: [{ type: 'streamable-http', url: MCP_ENDPOINT }],
-    _meta: { 'ai.frankx/serverInfoName': 'frankx' },
   }
 }
 
@@ -80,11 +79,22 @@ function entityTag(body: string): string {
   return `"${createHash('sha256').update(body).digest('hex')}"`
 }
 
+function opaqueTag(value: string): string | null {
+  let token = value.trim()
+  if (token.startsWith('W/')) token = token.slice(2)
+  if (token.length >= 2 && token.startsWith('"') && token.endsWith('"')) return token
+  return null
+}
+
+/** If-None-Match uses weak comparison (RFC 9110 §13.1.2): W/"tag" matches "tag". */
 function matchesTag(ifNoneMatch: string | null, etag: string): boolean {
   if (!ifNoneMatch) return false
+  const current = opaqueTag(etag)
+  if (!current) return false
   return ifNoneMatch.split(',').some((part) => {
     const value = part.trim()
-    return value === '*' || value === etag
+    if (value === '*') return true
+    return opaqueTag(value) === current
   })
 }
 

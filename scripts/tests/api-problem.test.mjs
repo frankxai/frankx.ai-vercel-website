@@ -29,6 +29,9 @@ test('unknown API routes return problem+json', async () => {
   assert.equal(response.headers.get('cache-control'), 'no-store')
   assert.equal(response.headers.get('x-content-type-options'), 'nosniff')
   assert.equal(response.headers.get('x-robots-tag'), 'noindex, nofollow')
+  assert.equal(response.headers.get('access-control-allow-origin'), '*')
+  assert.equal(response.headers.get('access-control-allow-methods'), 'GET, HEAD, OPTIONS')
+  assert.equal(response.headers.get('access-control-allow-headers'), 'Accept, Content-Type')
   assert.equal(response.headers.get('link'), apiDiscoveryLink)
   const body = await response.json()
   assert.deepEqual(Object.keys(body), [
@@ -65,6 +68,9 @@ test('the catalog rejects other methods with JSON', async () => {
   assert.equal(response.status, 405)
   assert.equal(response.headers.get('content-type'), 'application/problem+json; charset=utf-8')
   assert.equal(response.headers.get('allow'), 'GET, HEAD, OPTIONS')
+  assert.equal(response.headers.get('access-control-allow-origin'), '*')
+  assert.equal(response.headers.get('access-control-allow-methods'), 'GET, HEAD, OPTIONS')
+  assert.equal(response.headers.get('access-control-allow-headers'), 'Accept, Content-Type')
   const body = await response.json()
   assert.equal(body.code, 'method_not_allowed')
   assert.equal(body.status, 405)
@@ -174,12 +180,14 @@ test('the public catalog lists only real read routes', () => {
 })
 
 test('the catch-all returns JSON instead of the HTML not-found page', () => {
-  const source = fs.readFileSync(path.join(root, 'app/api/[...slug]/route.ts'), 'utf8')
-  assert.match(source, /apiRouteNotFoundResponse\(request\.method, request\.nextUrl\.pathname\)/)
-  assert.match(source, /force-dynamic/)
-  assert.doesNotMatch(source, /notFound\(/)
-  for (const method of ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']) {
-    assert.match(source, new RegExp(`export const ${method}`))
+  for (const rel of ['app/api/[...slug]/route.ts', 'app/api/route.ts']) {
+    const source = fs.readFileSync(path.join(root, rel), 'utf8')
+    assert.match(source, /apiRouteNotFoundResponse\(request\.method, request\.nextUrl\.pathname\)/, rel)
+    assert.match(source, /force-dynamic/, rel)
+    assert.doesNotMatch(source, /notFound\(/, rel)
+    for (const method of ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']) {
+      assert.match(source, new RegExp(`export const ${method}`), `${rel} ${method}`)
+    }
   }
   const enumeration = fs.readFileSync(path.join(root, 'lib/route-enumeration.mjs'), 'utf8')
   assert.match(enumeration, /CATCH_ALL_PAGE_FILES/)
@@ -200,6 +208,7 @@ test('sitemap gate ignores a route.ts catch-all', async (t) => {
   }
   assert.equal(hasAppRoute('/__ora-404-probe-5czgmg5h'), false)
   assert.equal(hasAppRoute('/developers'), true)
+  assert.equal(hasAppRoute('/api'), true)
   assert.equal(hasAppRoute('/api/v1'), true)
   assert.equal(hasAppRoute('/api/quote/today'), true)
   assert.equal(hasAppRoute('/api/v1/orank-probe-test'), false)

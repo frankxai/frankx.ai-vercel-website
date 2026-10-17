@@ -3,6 +3,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import test from 'node:test'
 import { calendarDay } from '../../lib/quote-day.ts'
+import { frankxMcpServerInfo } from '../../lib/mcp/server-identity.ts'
 import {
   AI_CATALOG_URL,
   aiCatalogContentType,
@@ -23,11 +24,12 @@ test('the server card matches SEP-2127 and omits tools', async () => {
   const card = frankxServerCard()
   assert.equal(card.$schema, SERVER_CARD_SCHEMA)
   assert.match(card.name, /^[a-zA-Z0-9.-]+\/[a-zA-Z0-9._-]+$/)
-  assert.equal(card.version, '1.1.0')
+  assert.equal(card.name, frankxMcpServerInfo.name)
+  assert.equal(card.version, frankxMcpServerInfo.version)
   assert.ok(card.description.length >= 1 && card.description.length <= 100)
   assert.equal(card.remotes[0].type, 'streamable-http')
   assert.equal(card.remotes[0].url, MCP_ENDPOINT)
-  assert.equal(card._meta['ai.frankx/serverInfoName'], 'frankx')
+  assert.equal(Object.hasOwn(card, '_meta'), false)
   const blob = JSON.stringify(card)
   assert.equal(blob.includes('frankx_search_site'), false)
   assert.equal(blob.includes('tools'), false)
@@ -45,6 +47,14 @@ test('the server card matches SEP-2127 and omits tools', async () => {
   const cached = serverCardResponse('GET', etag)
   assert.equal(cached.status, 304)
   assert.equal(await cached.text(), '')
+  const weak = serverCardResponse('GET', `W/${etag}`)
+  assert.equal(weak.status, 304)
+  const listed = serverCardResponse('GET', `"stale", W/${etag}`)
+  assert.equal(listed.status, 304)
+  const miss = serverCardResponse('GET', 'W/"not-this-representation"')
+  assert.equal(miss.status, 200)
+  const lowerWeak = serverCardResponse('GET', `w/${etag}`)
+  assert.equal(lowerWeak.status, 200)
 
   const head = serverCardResponse('HEAD', null)
   assert.equal(head.status, 200)
@@ -74,6 +84,9 @@ test('routes, robots, and the quote timezone use the published helpers', () => {
 
   assert.match(cardRoute, /serverCardResponse/)
   assert.match(catalogRoute, /aiCatalogResponse/)
+  const server = fs.readFileSync(path.join(root, 'lib/mcp/frankx-server.ts'), 'utf8')
+  assert.match(server, /frankxMcpServerInfo\.name/)
+  assert.match(server, /frankxMcpServerInfo\.version/)
   for (const allow of publicRobotAllows) {
     assert.ok(robots.includes(allow), allow)
   }
