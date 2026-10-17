@@ -60,10 +60,12 @@ function PortalCard({ portal, description }: { portal: LearningPath; description
             {portal.estimatedHours} hours
           </span>
         )}
-        <span className="inline-flex items-center gap-1">
-          <Play className="w-3 h-3" aria-hidden="true" />
-          {portal.videos.length} videos
-        </span>
+        {portal.videos.length > 0 && (
+          <span className="inline-flex items-center gap-1">
+            <Play className="w-3 h-3" aria-hidden="true" />
+            {portal.videos.length} {portal.videos.length === 1 ? 'video' : 'videos'}
+          </span>
+        )}
       </div>
       <ArrowRight className="absolute bottom-4 right-4 w-4 h-4 text-white/20 group-hover:text-white/70 group-hover:translate-x-1 transition-all" />
     </Link>
