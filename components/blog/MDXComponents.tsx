@@ -45,14 +45,16 @@ import {
 // Supporting editorial embeds should opt out with structuredData={false}.
 function YouTubeEmbed({
   structuredData = true,
+  uploadDate,
   ...props
 }: {
   id: string
   title?: string
   structuredData?: boolean
+  uploadDate?: string
   [key: string]: unknown
 }) {
-  const schema = buildInlineVideoSchema(props.id, props.title)
+  const schema = buildInlineVideoSchema(props.id, props.title, uploadDate)
   return (
     <>
       <BaseYouTubeEmbed {...props} />

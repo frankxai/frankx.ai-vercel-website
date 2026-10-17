@@ -1,8 +1,8 @@
-import type { ReactNode } from 'react'
+import { Children, isValidElement, type ReactElement, type ReactNode } from 'react'
 
 /**
  * Crawlable skill map for a guide. The MDX owns every claim and URL.
- * This component only lays those claims out as a linked figure.
+ * Skills that share a status render once under that label, as a list.
  */
 export function GuideSkillMap({
   caption,
@@ -11,11 +11,25 @@ export function GuideSkillMap({
   caption: string
   children: ReactNode
 }) {
+  const items = Children.toArray(children).filter(isValidElement) as ReactElement<{
+    status?: string
+  }>[]
+  const groups: { status: string; items: ReactElement[] }[] = []
+  for (const item of items) {
+    const status =
+      typeof item.props.status === 'string' && item.props.status.trim()
+        ? item.props.status.trim()
+        : 'Status'
+    const existing = groups.find((group) => group.status === status)
+    if (existing) existing.items.push(item)
+    else groups.push({ status, items: [item] })
+  }
+
   return (
     <figure
       id="skill-map"
       aria-labelledby="skill-map-caption"
-      className="my-10 scroll-mt-28 border border-white/10 bg-white/[0.03]"
+      className="my-10 scroll-mt-28 border border-white/10"
     >
       <figcaption
         id="skill-map-caption"
@@ -23,9 +37,26 @@ export function GuideSkillMap({
       >
         {caption}
       </figcaption>
-      <ol className="grid list-none grid-cols-1 gap-px bg-white/10 p-px md:grid-cols-2">
-        {children}
-      </ol>
+      <div>
+        {groups.map((group) => {
+          const bandId = `skill-band-${group.status
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-|-$/g, '')}`
+          return (
+            <section
+              key={group.status}
+              aria-labelledby={bandId}
+              className="border-b border-white/10 px-4 py-4 last:border-b-0"
+            >
+              <h3 id={bandId} className="text-sm font-medium text-white/80">
+                {group.status}
+              </h3>
+              <ul className="mt-1 list-none">{group.items}</ul>
+            </section>
+          )
+        })}
+      </div>
     </figure>
   )
 }
@@ -47,21 +78,18 @@ export function GuideSkill({
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '')
   return (
-    <li id={`skill-${slug}`} className="bg-[#0a0a0b] px-4 py-4">
-      <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-white/45">
-        {status}
-      </p>
+    <li id={`skill-${slug}`} data-status={status} className="border-t border-white/10 py-3 first:border-t-0">
       {safeHref ? (
         <a
           href={safeHref}
-          className="mt-2 inline-block text-base font-semibold text-white underline decoration-white/25 underline-offset-4 outline-none hover:decoration-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          className="text-base font-semibold text-white underline decoration-white/25 underline-offset-4 outline-none hover:decoration-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
           {name}
         </a>
       ) : (
-        <p className="mt-2 text-base font-semibold text-white">{name}</p>
+        <p className="text-base font-semibold text-white">{name}</p>
       )}
-      <div className="mt-2 text-sm leading-6 text-white/70">{children}</div>
+      <div className="mt-1 text-sm leading-6 text-white/70">{children}</div>
     </li>
   )
 }
