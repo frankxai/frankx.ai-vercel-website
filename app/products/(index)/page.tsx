@@ -24,6 +24,7 @@ import {
 import { trackEvent } from '@/lib/analytics'
 import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 import rawProducts from '@/data/products.json'
+import { isWaitlistOnly, NOT_PRICED_LABEL, waitlistHref } from '@/lib/waitlist/products'
 
 interface NormalizedProduct {
   id: string
@@ -42,6 +43,8 @@ interface NormalizedProduct {
   icon: typeof Cpu
   isFree: boolean
   isWaitlist: boolean
+  /** No fresh release-gate PASS: no price shown, no offer in structured data, waitlist only. */
+  isUnpriced: boolean
   featured: boolean
   href: string
   primaryCtaHref: string
@@ -171,17 +174,20 @@ export default function ProductsPage() {
     return (rawProducts as any[])
       .filter((p) => !p.id.includes('arcanea') && !p.slug?.includes('arcanea') && p.brand !== 'arcanea')
       .map((p) => {
-        const price = p.offer?.primaryPrice ?? p.price ?? 0
+        const isUnpriced = isWaitlistOnly(p.id)
+        const price = isUnpriced ? 0 : (p.offer?.primaryPrice ?? p.price ?? 0)
         const currency = p.offer?.currency ?? 'USD'
-        const priceDisplay =
-          p.offer?.primaryPriceDisplay ??
-          (price === 0 ? 'Free' : currency === 'EUR' ? `€${price}` : `$${price}`)
+        const priceDisplay = isUnpriced
+          ? NOT_PRICED_LABEL
+          : p.offer?.primaryPriceDisplay ??
+            (price === 0 ? 'Free' : currency === 'EUR' ? `€${price}` : `$${price}`)
         const name = p.name ?? p.title ?? p.slug
         const headline = p.headline ?? p.description ?? ''
         const description = p.summary ?? p.promise ?? p.description ?? ''
         const category = p.category || 'General'
 
         const isWaitlist = Boolean(
+          isUnpriced ||
           p.offer?.ctaPrimary?.toLowerCase().includes('waitlist') ||
           p.cta?.label?.toLowerCase().includes('waitlist')
         )
@@ -192,7 +198,9 @@ export default function ProductsPage() {
             ? p.transformation.slice(0, 3)
             : []
 
-        const primaryCtaHref = isWaitlist
+        const primaryCtaHref = isUnpriced
+          ? waitlistHref(p.id)
+          : isWaitlist
           ? (p.offer?.ctaPrimaryHref ?? `/waitlist?intent=${p.slug}`)
           : (price === 0
               ? (p.offer?.ctaPrimaryHref ?? p.cta?.href ?? `/products/${p.slug}`)
@@ -220,8 +228,9 @@ export default function ProductsPage() {
           highlights,
           color: resolveProductColor(category, price),
           icon: resolveProductIcon(category, p.id),
-          isFree: price === 0,
+          isFree: !isUnpriced && price === 0,
           isWaitlist,
+          isUnpriced,
           featured: FLAGSHIP_IDS.includes(p.id) || p.featured === true || price >= 147,
           href: `/products/${p.slug}`,
           primaryCtaHref,
@@ -296,14 +305,18 @@ export default function ProductsPage() {
           description: product.headline || product.description,
           url: `https://www.frankx.ai/products/${product.slug}`,
           sku: product.id,
-          offers: {
-            '@type': 'Offer',
-            price: product.price,
-            priceCurrency: product.currency,
-            availability: product.isWaitlist
-              ? 'https://schema.org/PreOrder'
-              : 'https://schema.org/InStock',
-          },
+          ...(product.isUnpriced
+            ? {}
+            : {
+                offers: {
+                  '@type': 'Offer',
+                  price: product.price,
+                  priceCurrency: product.currency,
+                  availability: product.isWaitlist
+                    ? 'https://schema.org/PreOrder'
+                    : 'https://schema.org/InStock',
+                },
+              }),
         },
       })),
     }

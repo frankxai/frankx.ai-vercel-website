@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import {
   Check,
   ArrowRight,
@@ -187,13 +188,13 @@ export default function PromptVaultPage() {
 
             {/* CTA */}
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <a
+              <Link
                 href="/waitlist?intent=prompt-vault"
                 className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#8B5CF6] via-[#EC4899] to-[#F59E0B] px-8 py-4 text-lg font-semibold text-white shadow-xl shadow-[#8B5CF6]/30 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-[#8B5CF6]/40"
               >
                 Join the launch list
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </a>
+              </Link>
               <div className="flex items-baseline gap-2">
                 <span className="text-3xl font-bold text-white">€19</span>
                 <span className="text-sm text-slate-500">listed price</span>
@@ -359,13 +360,13 @@ export default function PromptVaultPage() {
                   <span className="text-5xl font-bold text-white">€19</span>
                   <span className="text-slate-500">listed price</span>
                 </div>
-                <a
+                <Link
                   href="/waitlist?intent=prompt-vault"
                   className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#8B5CF6] via-[#EC4899] to-[#F59E0B] px-10 py-5 text-xl font-semibold text-white shadow-xl shadow-[#8B5CF6]/30 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-[#8B5CF6]/40"
                 >
                   Join the launch list
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </a>
+                </Link>
               </div>
 
               <p className="text-sm text-slate-500">
