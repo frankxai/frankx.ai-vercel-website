@@ -83,7 +83,7 @@ export default function SkillsPage() {
   const [copiedSkill, setCopiedSkill] = useState<string | null>(null)
 
   const handleDownload = () => {
-    window.open('https://github.com/FrankXio/claude-skills/archive/refs/heads/main.zip', '_blank')
+    window.open('https://github.com/frankxai/claude-skills-library/archive/refs/heads/main.zip', '_blank', 'noopener,noreferrer')
   }
 
   const copyToClipboard = (text: string, skillName: string) => {
@@ -136,7 +136,7 @@ export default function SkillsPage() {
                 Download All Skills
               </PremiumButton>
               <a
-                href="https://github.com/FrankXio/claude-skills"
+                href="https://github.com/frankxai/claude-skills-library"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 text-lg rounded-xl min-h-[48px] bg-slate-900/20 backdrop-blur-md border border-slate-700/30 text-slate-200 hover:bg-slate-800/30 transition-all font-medium"
@@ -317,13 +317,13 @@ export default function SkillsPage() {
                 step: 1,
                 title: 'Download or Clone',
                 description: 'Get the skills library from GitHub',
-                code: 'git clone https://github.com/FrankXio/claude-skills.git',
+                code: 'git clone https://github.com/frankxai/claude-skills-library.git',
               },
               {
                 step: 2,
                 title: 'Copy to Claude Code Directory',
                 description: 'Place skills in your Claude Code skills folder',
-                code: 'cp -r claude-skills/* ~/.claude/skills/',
+                code: 'cp -r claude-skills-library/free-skills/* ~/.claude/skills/',
               },
               {
                 step: 3,
