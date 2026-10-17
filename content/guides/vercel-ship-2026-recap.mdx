@@ -1,12 +1,12 @@
 ---
 title: "Vercel Ship 2026: a sourced recap for builders"
-description: "What Vercel Ship 2026 put on the platform, who it is for, and which parts were still beta. Every product claim cites a primary Vercel page."
+description: "What Vercel Ship 2026 put on the platform, which skills are generally available or public beta, and which recording to watch. Every claim cites a Vercel page."
 date: "2026-10-16"
-updated: "2026-10-16"
+updated: "2026-10-17"
 author: "FrankX"
 category: "AI Architecture"
 tags: ["vercel", "agent-stack", "founders", "saas"]
-keywords: ["Vercel Ship 2026", "Agent Stack", "Vercel Connect", "Vercel Services", "Vercel Agent"]
+keywords: ["Vercel Ship 2026", "Vercel Ship 2026 recap", "Agent Stack", "AI Gateway", "Vercel Connect", "Vercel Daemons", "Vercel Drives"]
 video:
   title: "Vercel Ship 2026"
   url: "https://www.youtube.com/watch?v=Fr5vzNknYJE"
@@ -19,21 +19,58 @@ faqs:
     answer: "No. The general-availability post says that instead of storing long-lived provider secrets, your code requests short-lived, scoped tokens at runtime. The primary page is https://vercel.com/changelog/vercel-connect-ga."
   - question: "Is Vercel Agent generally available?"
     answer: "No. Dashboard chat, production investigations, and approved actions are in public beta for Pro and Enterprise teams, with a gradual rollout. The primary page is https://vercel.com/changelog/an-expanded-vercel-agent-chat-investigations-and-approved-actions-now-in-public-beta."
+  - question: "Which Vercel Ship 2026 skills are generally available?"
+    answer: "On the pages checked for this guide, AI Gateway, Vercel Workflows, Vercel Sandbox, Vercel Connect, the Python runtime, and Vercel Drives are generally available. The pages are https://vercel.com/blog/ai-gateway-is-now-generally-available, https://vercel.com/blog/a-new-programming-model-for-durable-execution, https://vercel.com/changelog/vercel-sandboxes-ga, https://vercel.com/changelog/vercel-connect-ga, https://vercel.com/changelog/python-on-vercel-is-now-generally-available, and https://vercel.com/changelog/vercel-drives-is-now-generally-available. Daemons, MCP Events, and Vercel Agent remain public beta. Services remain beta in the docs. The Workflow Python SDK remains beta on the Workflows page."
+  - question: "Which Vercel Ship 2026 recording should I watch first?"
+    answer: "Start with Vercel Ship 2026, the livestream replay at https://www.youtube.com/watch?v=Fr5vzNknYJE. The Ship page uses that recording. For the room, watch Keynote - Ship 26 London at https://www.youtube.com/watch?v=T1vs9jE-EEI and Opening Keynote - Ship 26 NYC at https://www.youtube.com/watch?v=w6bjGDwn4ZY."
 ---
 
-_Checked against vercel.com on 16 Oct 2026._
+_Checked against vercel.com on 17 Oct 2026._
 
 Vercel Ship 2026 is Vercel's multi-city launch of agent infrastructure: a place where coding agents deploy software, where you run your own agents, and where Vercel's agents investigate production. It is for founders, AI architects, creators, and people who ship SaaS or an agent platform. The constraint is that the 15 October 2026 recap and the product changelogs do not always share a status label, so a launch sentence is not a license to treat a beta as finished. The primary recap is [Vercel Ship 2026 recap](https://vercel.com/blog/vercel-ship-2026-recap).
 
 This guide stays on that recap and on the product pages it points at. The runtime choices that moved on 15 October 2026, including Python, Daemons, Drives, and Connect events, are in the [agent runtime guide](/guides/vercel-agent-runtime-decisions). The working adopt, wait, and skip table is the [audience decision matrix](/guides/vercel-agent-runtime-decisions#decision-matrix). The shorter decision essay is [Vercel Ship 2026 decisions for people who ship agents](/blog/vercel-ship-2026-builder-decisions).
 
-## Watch the recording
+## On this page
 
-[Vercel Ship 2026](https://www.youtube.com/watch?v=Fr5vzNknYJE) is the official Vercel recording. The [Ship page](https://vercel.com/ship) uses that same video as its livestream replay.
+- [Recordings to watch](#recordings-to-watch)
+- [Skills on the current pages](#skill-map)
+- [What the recap says the platform is](#what-the-recap-says-the-platform-is)
+- [The Agent Stack](#the-agent-stack)
+- [Vercel Connect, without a standing secret](#vercel-connect-without-a-standing-secret)
+- [Containers and Dockerfile support](#containers-and-dockerfile-support)
+- [Vercel Services](#vercel-services)
+- [Vercel Agent](#vercel-agent)
+- [How to read the tour without copying it](#how-to-read-the-tour-without-copying-it)
 
-<YouTubeEmbed id="Fr5vzNknYJE" title="Vercel Ship 2026" structuredData={false} />
+## Recordings to watch
 
-The London morning keynote is a separate recording, [Keynote - Ship 26 London](https://www.youtube.com/watch?v=T1vs9jE-EEI), and the New York opening keynote is [Opening Keynote - Ship 26 NYC](https://www.youtube.com/watch?v=w6bjGDwn4ZY). Use those when you want the room. Use the recap page when you want the written claims.
+[Vercel Ship 2026](https://www.youtube.com/watch?v=Fr5vzNknYJE) is the official Vercel recording. The [Ship page](https://vercel.com/ship) uses that same video as its livestream replay. Watch this one first when you want the tour in one sitting. YouTube lists its upload time as 15 October 2026, 17:09 Pacific.
+
+<YouTubeEmbed id="Fr5vzNknYJE" title="Vercel Ship 2026" uploadDate="2026-10-15T17:09:50-07:00" />
+
+The London morning keynote is a separate recording, [Keynote - Ship 26 London](https://www.youtube.com/watch?v=T1vs9jE-EEI), uploaded 18 June 2026 at 06:14 Pacific. The New York opening keynote is [Opening Keynote - Ship 26 NYC](https://www.youtube.com/watch?v=w6bjGDwn4ZY), uploaded 20 July 2026 at 09:04 Pacific. Use those when you want the room. Use the recap page when you want the written claims.
+
+## Skills on the current pages
+
+The map below is the index. Each name links to the primary Vercel page. The status is the label on that page at the time this guide was checked. The four audience calls that follow from the map are on the [decision matrix](/guides/vercel-agent-runtime-decisions#decision-matrix).
+
+<GuideSkillMap caption="Skills named on the current Vercel pages, grouped by the status on the linked page. Open that page before you treat a status as final.">
+<GuideSkill name="AI Gateway" status="Generally available" href="https://vercel.com/blog/ai-gateway-is-now-generally-available">Generally available since 21 August 2025. One endpoint, failover when a provider is down, and the provider list price with no markup.</GuideSkill>
+<GuideSkill name="Workflow SDK" status="Generally available" href="https://vercel.com/blog/a-new-programming-model-for-durable-execution">Vercel Workflows has been generally available since 16 April 2026. A step retries on its own, and a hook can pause until an outside event arrives. The Workflow Python SDK on that page is in beta.</GuideSkill>
+<GuideSkill name="Vercel Sandbox" status="Generally available" href="https://vercel.com/changelog/vercel-sandboxes-ga">Generally available since 30 January 2026. Each sandbox is a Firecracker microVM. Code inside it is blocked from production environment variables, database connections, and cloud resources.</GuideSkill>
+<GuideSkill name="Vercel Connect" status="Generally available" href="https://vercel.com/changelog/vercel-connect-ga">Code requests short-lived, scoped tokens at runtime instead of storing a long-lived provider secret.</GuideSkill>
+<GuideSkill name="Python" status="Generally available" href="https://vercel.com/changelog/python-on-vercel-is-now-generally-available">FastAPI, Flask, and Django on CPython. The AI SDK for Python, the Workflow SDK for Python, and Queues stay marked beta on that page.</GuideSkill>
+<GuideSkill name="Vercel Drives" status="Generally available" href="https://vercel.com/changelog/vercel-drives-is-now-generally-available">Persistent storage for Sandbox. Files outlive the sandbox. A Drive does not replace a database.</GuideSkill>
+<GuideSkill name="AI SDK" status="Named on the Agent Stack" href="https://vercel.com/blog/agent-stack">One interface for model calls. Streaming, tool calls, and structured output stay on that interface.</GuideSkill>
+<GuideSkill name="Chat SDK" status="Named on the Agent Stack" href="https://vercel.com/blog/agent-stack">The delivery layer for Slack, GitHub, and the other channels listed on the Agent Stack page.</GuideSkill>
+<GuideSkill name="eve" status="Public beta" href="https://vercel.com/blog/agent-stack">The opinionated directory layout on top of the five primitives. The Agent Stack page marks eve as public beta.</GuideSkill>
+<GuideSkill name="Vercel Daemons" status="Public beta" href="https://vercel.com/changelog/vercel-daemons-is-now-in-public-beta">Pull workers that keep running. A Dockerfile HTTP server and a Daemon are different products.</GuideSkill>
+<GuideSkill name="MCP Events" status="Public beta" href="https://vercel.com/changelog/mcp-events-support-in-vercel-connect-is-now-in-public-beta">An app can subscribe to webhook events from a compatible MCP server. The functions on that page are experimental.</GuideSkill>
+<GuideSkill name="Vercel Agent" status="Public beta" href="https://vercel.com/changelog/an-expanded-vercel-agent-chat-investigations-and-approved-actions-now-in-public-beta">Dashboard chat, production investigations, and approved actions for Pro and Enterprise. Read-only until a person approves a scoped plan.</GuideSkill>
+<GuideSkill name="Vercel Services" status="Beta" href="https://vercel.com/docs/services">The docs say Services are in beta on all plans. The recap says the frontend and backend deploy together, with previews of the full app.</GuideSkill>
+<GuideSkill name="Dockerfile.vercel" status="Stateless request path" href="https://vercel.com/blog/dockerfile-on-vercel">The container listens on the PORT variable, returns a response, and keeps nothing between requests.</GuideSkill>
+</GuideSkillMap>
 
 ## What the recap says the platform is
 
@@ -50,6 +87,8 @@ Tom Occhino's [Agent Stack](https://vercel.com/blog/agent-stack) post is the arc
 - [Workflow SDK](https://vercel.com/blog/agent-stack) checkpoints steps, retries the failed step, and can pause for a person, a slow API, or a webhook.
 - [Vercel Sandbox](https://vercel.com/blog/agent-stack) gives the agent an isolated microVM with its own filesystem and kernel. The page says credentials are injected when code calls a service, so the agent does not see a raw token.
 - [Chat SDK](https://vercel.com/blog/agent-stack) is the delivery layer for Slack, GitHub, and the other channels listed there, from one codebase.
+
+Three of those primitives have a later general-availability page. [AI Gateway](https://vercel.com/blog/ai-gateway-is-now-generally-available) has been generally available since 21 August 2025. [Vercel Workflows](https://vercel.com/blog/a-new-programming-model-for-durable-execution) has been generally available since 16 April 2026, and the Workflow Python SDK on that page is in beta. [Vercel Sandbox](https://vercel.com/changelog/vercel-sandboxes-ga) has been generally available since 30 January 2026. That changelog says code inside a sandbox is blocked from production environment variables, database connections, and cloud resources.
 
 Those five are the stack. eve, on the same page, is the opinionated directory layout on top of them, and that page marks eve as public beta. Do not promote eve to a generally available framework from a later memory. Re-read [the Agent Stack](https://vercel.com/blog/agent-stack) before you standardize a team on it.
 
