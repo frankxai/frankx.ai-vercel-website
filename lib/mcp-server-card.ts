@@ -1,0 +1,115 @@
+import { createHash } from 'node:crypto'
+
+const SITE = 'https://www.frankx.ai'
+
+export const MCP_ENDPOINT = `${SITE}/api/mcp`
+export const SERVER_CARD_URL = `${MCP_ENDPOINT}/server-card`
+export const AI_CATALOG_URL = `${SITE}/.well-known/ai-catalog.json`
+
+export const serverCardContentType = 'application/mcp-server-card+json; charset=utf-8'
+export const aiCatalogContentType = 'application/ai-catalog+json; charset=utf-8'
+
+export const SERVER_CARD_SCHEMA =
+  'https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json'
+
+export type FrankxServerCard = {
+  $schema: string
+  name: string
+  version: string
+  description: string
+  title: string
+  websiteUrl: string
+  repository: { url: string; source: string; subfolder: string }
+  remotes: Array<{ type: 'streamable-http'; url: string }>
+  _meta: { 'ai.frankx/serverInfoName': string }
+}
+
+export function frankxServerCard(): FrankxServerCard {
+  return {
+    $schema: SERVER_CARD_SCHEMA,
+    name: 'ai.frankx/frankx',
+    version: '1.1.0',
+    description: 'Read-only MCP for FrankX search, articles, and the public product list.',
+    title: 'FrankX',
+    websiteUrl: `${SITE}/developers`,
+    repository: {
+      url: 'https://github.com/frankxai/frankx.ai-vercel-website',
+      source: 'github',
+      subfolder: 'lib/mcp',
+    },
+    remotes: [{ type: 'streamable-http', url: MCP_ENDPOINT }],
+    _meta: { 'ai.frankx/serverInfoName': 'frankx' },
+  }
+}
+
+export type FrankxAiCatalog = {
+  specVersion: '1.0'
+  entries: Array<{
+    identifier: string
+    type: 'application/mcp-server-card+json'
+    url: string
+  }>
+}
+
+export function frankxAiCatalog(): FrankxAiCatalog {
+  return {
+    specVersion: '1.0',
+    entries: [
+      {
+        identifier: 'urn:air:frankx.ai:mcp:frankx',
+        type: 'application/mcp-server-card+json',
+        url: SERVER_CARD_URL,
+      },
+    ],
+  }
+}
+
+export const publicRobotAllows = [
+  '/api/mcp',
+  '/api/v1',
+  '/api/quote/',
+  '/api/dare/',
+  '/api/md',
+  '/api/404/match',
+  '/api/vcard',
+  '/.well-known/',
+  '/openapi.json',
+]
+
+function entityTag(body: string): string {
+  return `"${createHash('sha256').update(body).digest('hex')}"`
+}
+
+function matchesTag(ifNoneMatch: string | null, etag: string): boolean {
+  if (!ifNoneMatch) return false
+  return ifNoneMatch.split(',').some((part) => {
+    const value = part.trim()
+    return value === '*' || value === etag
+  })
+}
+
+const sharedHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, HEAD',
+  'Access-Control-Allow-Headers': 'Content-Type, If-None-Match',
+  'Access-Control-Expose-Headers': 'ETag',
+  'Cache-Control': 'public, max-age=3600',
+  'X-Content-Type-Options': 'nosniff',
+}
+
+function taggedResponse(method: 'GET' | 'HEAD', body: string, contentType: string, ifNoneMatch: string | null): Response {
+  const etag = entityTag(body)
+  const headers = { ...sharedHeaders, 'Content-Type': contentType, ETag: etag }
+  if (matchesTag(ifNoneMatch, etag)) {
+    return new Response(null, { status: 304, headers })
+  }
+  return new Response(method === 'HEAD' ? null : body, { status: 200, headers })
+}
+
+export function serverCardResponse(method: 'GET' | 'HEAD', ifNoneMatch: string | null): Response {
+  return taggedResponse(method, JSON.stringify(frankxServerCard()), serverCardContentType, ifNoneMatch)
+}
+
+export function aiCatalogResponse(method: 'GET' | 'HEAD', ifNoneMatch: string | null): Response {
+  return taggedResponse(method, JSON.stringify(frankxAiCatalog()), aiCatalogContentType, ifNoneMatch)
+}
