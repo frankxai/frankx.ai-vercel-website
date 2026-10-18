@@ -167,6 +167,7 @@ jobs:
           pnpm run test:community-platform-guide
           pnpm run test:learning-routes
           pnpm run test:blog-discoverability
+          pnpm run test:ship-guides
           pnpm run test:social-identity
           pnpm run test:seo-title
           pnpm run test:music-release-registry
