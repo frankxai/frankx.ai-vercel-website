@@ -16,6 +16,18 @@ export interface DeliveryConfig {
 
 // Delivery configurations for each product
 export const DELIVERY_CONFIG: Record<string, DeliveryConfig> = {
+  'reality-md-starter-pack': {
+    productId: 'reality-md-starter-pack',
+    deliveryType: 'pdf',
+    files: ['reality-md-starter-pack.zip'],
+    emailTemplateId: 'product-delivery',
+  },
+  'suno-power-pack-25': {
+    productId: 'suno-power-pack-25',
+    deliveryType: 'pdf',
+    files: ['suno-power-pack-25.pdf'],
+    emailTemplateId: 'product-delivery',
+  },
   'creative-ai-toolkit': {
     productId: 'creative-ai-toolkit',
     deliveryType: 'pdf',
