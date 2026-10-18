@@ -16,12 +16,10 @@ const sections = [
     image: '/images/downloads/acos-skills-pack.png',
     imageAlt: 'ACOS Skills Pack cover art — agent council ring with skill definition blocks and a terminal command',
     href: '/shop/templates',
-    count: 15,
     accent: 'from-cyan-500/20 to-blue-500/20',
     border: 'border-cyan-500/30',
     icon: Layers,
     badge: 'New',
-    priceRange: '$27 – $297',
   },
   {
     id: 'auctions',
@@ -41,29 +39,25 @@ const sections = [
   {
     id: 'collectibles',
     title: 'Collectibles',
-    description: 'ACOS trading cards (40-card Genesis set), bio-tech instrument prints, and mixed drop packs.',
+    description: 'ACOS trading cards, bio-tech instrument prints, and mixed drop packs.',
     image: '/images/gallery/instruments/biotech-hex-drum-pads.png',
     imageAlt: 'Bio-tech hexagonal drum pads design print from the collectible instrument series',
     href: '/collectibles',
-    count: 40,
     accent: 'from-purple-500/20 to-pink-500/20',
     border: 'border-purple-500/30',
     icon: Sparkles,
     badge: 'Genesis Set',
-    priceRange: '$5 – $497',
   },
   {
     id: 'products',
     title: 'Digital Products',
-    description: 'Full courses, toolkits, and operating systems. Soulbook, Vibe OS, ACOS, Creative AI Toolkit.',
+    description: 'Full courses, toolkits, and operating systems. Soulbook, Vibe OS, ACOS.',
     image: '/images/ecosystem/01-frankx-ecosystem-overview.png',
     imageAlt: 'FrankX product ecosystem diagram — Vibe OS, ACOS, and GenCreator OS with the Starlight layer above',
     href: '/products',
-    count: 10,
     accent: 'from-emerald-500/20 to-teal-500/20',
     border: 'border-emerald-500/30',
     icon: ShoppingBag,
-    priceRange: 'Free – $997',
   },
 ]
 
@@ -129,7 +123,7 @@ export default function ShopPage() {
 
             <p className="text-xl text-white/50 max-w-2xl mx-auto mb-10">
               Templates, blueprints, and tools built by an AI architect who ships in production.
-              No theory. Just working code, tested workflows, and real results.
+              No theory. Just working code and tested workflows.
             </p>
           </motion.div>
         </div>
@@ -181,7 +175,7 @@ export default function ShopPage() {
                     {section.description}
                   </p>
                   <div className="flex items-center gap-4 text-xs text-white/30">
-                    <span>{section.count} items</span>
+                    {typeof section.count === 'number' && <span>{section.count} items</span>}
                     {section.priceRange && <span>{section.priceRange}</span>}
                   </div>
                 </div>
