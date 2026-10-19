@@ -1,0 +1,29 @@
+{
+  "$schema": "https://frankx.ai/schemas/vis-provenance-sidecar.schema.json",
+  "schema_version": "1.0.0",
+  "asset": {
+    "asset_id": "economy-native-economy-atlas-design.md",
+    "version_id": "c9b87e414abf0dd4855fa7660d9a6e125e2e031e08f0728f3b20279e52498504",
+    "media_type": "design-source",
+    "sha256": "c9b87e414abf0dd4855fa7660d9a6e125e2e031e08f0728f3b20279e52498504",
+    "relative_path": "docs/ops/economy-atlas-design.md"
+  },
+  "generation": {
+    "provider": "OpenAI",
+    "model": "GPT-6 Codex",
+    "prompt": "Implement the selected evidence atlas direction as a native Next.js research page for FrankX. Follow the current production research desktop/mobile baseline, obsidian/emerald tokens and host fonts. Show actual proposed product-to-channel relationships; mobile uses readable sequential paths. Include source qualifications, comparison, editable costs, browser save/restore, public-ID sharing and JSON export/import. No fabricated demand, sales or legal clearance. Compare exactly three compositions in the design record. Purposeful state feedback, native keyboard/touch semantics and static reduced motion. Founder release approval remains pending. Review refinement: honor Poppins display and Inter body roles; preserve unknown prices as missing research, hide unqualified assertions, remove empty channel actions, and show a share link only for its current assumptions. Production publication remains gated on accepted release evidence.",
+    "seed": null,
+    "created_at": "2026-10-02T12:49:23.820227+00:00"
+  },
+  "agent": {
+    "coding_agent": "Codex",
+    "repo": "frankxai/frankx.ai-vercel-website",
+    "session_ref": "economy-atlas-20261002"
+  },
+  "evaluation": {
+    "status": "Reviewed findings addressed in candidate; exact-revision build/browser/review reconciliation pending"
+  },
+  "rights": {
+    "composition": "Original interface, source-backed research"
+  }
+}

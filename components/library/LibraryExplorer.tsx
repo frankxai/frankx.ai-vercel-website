@@ -9,7 +9,12 @@ import { createLibrarySearch, filterLibrary, type LibraryBook } from '@/lib/libr
 type Filters = { q: string; category: string; sort: string };
 const emptyFilters: Filters = { q: '', category: '', sort: 'recent' };
 
-export function LibraryExplorer({ books, children }: { books: LibraryBook[]; children?: ReactNode }) {
+export function LibraryExplorer({ books, children, opening, field = false }: {
+  books: LibraryBook[];
+  children?: ReactNode;
+  opening?: ReactNode;
+  field?: boolean;
+}) {
   const [filters, setFilters] = useState(emptyFilters);
   const categories = useMemo(() => [...new Set(books.flatMap(book => book.categories))].sort(), [books]);
   const index = useMemo(() => createLibrarySearch(books), [books]);
@@ -35,33 +40,34 @@ export function LibraryExplorer({ books, children }: { books: LibraryBook[]; chi
     window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
   }
 
-  return (
-    <div>
-      <form role="search" aria-label="Search the Library" onSubmit={event => event.preventDefault()} className="border-b border-white/10 pb-6">
-        <label htmlFor="library-search" className="mb-2 block text-sm font-medium text-white">Find your next book</label>
-        <div className="relative">
-          <Search className="pointer-events-none absolute left-4 top-4 h-5 w-5 text-emerald-300" aria-hidden="true" />
-          <input id="library-search" type="search" value={filters.q} onChange={event => update({ ...filters, q: event.target.value })} placeholder="Title, author, tradition, or idea…" autoComplete="off"
-            className="min-h-[52px] w-full rounded-xl border border-white/20 bg-[#0a0a0b] py-3 pl-12 pr-12 text-base text-white placeholder:text-white/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 [&::-webkit-search-cancel-button]:appearance-none" />
-          {filters.q && <button type="button" onClick={() => update({ ...filters, q: '' })} aria-label="Clear search" className="absolute right-1 top-1 flex h-11 w-11 items-center justify-center rounded-lg text-white/70 focus-visible:ring-2 focus-visible:ring-emerald-300"><X className="h-5 w-5" aria-hidden="true" /></button>}
-        </div>
-        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
-          <label className="text-xs text-white/70">Topic
-            <select value={filters.category} onChange={event => update({ ...filters, category: event.target.value })} className="mt-1 block min-h-11 w-full rounded-lg border border-white/15 bg-[#0a0a0b] px-3 text-sm text-white focus-visible:ring-2 focus-visible:ring-emerald-300">
-              <option value="">All topics</option>{categories.map(category => <option key={category}>{category}</option>)}
-            </select>
-          </label>
-          <label className="text-xs text-white/70">Order
-            <select value={filters.sort} onChange={event => update({ ...filters, sort: event.target.value })} className="mt-1 block min-h-11 w-full rounded-lg border border-white/15 bg-[#0a0a0b] px-3 text-sm text-white focus-visible:ring-2 focus-visible:ring-emerald-300">
-              <option value="recent">{filters.q ? 'Best match' : 'Recently added'}</option><option value="title">Title A–Z</option><option value="author">Author A–Z</option>
-            </select>
-          </label>
-          {(filters.q || filters.category || filters.sort !== 'recent') && <button type="button" onClick={() => update(emptyFilters)} className="min-h-11 rounded-lg px-3 text-sm text-emerald-200 underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-emerald-300">Reset filters</button>}
-        </div>
-      </form>
-
-      {!filters.q && !filters.category && children}
-
+  const idle = !filters.q && !filters.category;
+  const search = (
+    <form role="search" aria-label="Search the Library" onSubmit={event => event.preventDefault()} className="border-b border-white/10 pb-6">
+      <label htmlFor="library-search" className="mb-2 block text-sm font-medium text-white">Find your next book</label>
+      <div className="relative">
+        <Search className="pointer-events-none absolute left-4 top-4 h-5 w-5 text-emerald-300" aria-hidden="true" />
+        <input id="library-search" type="search" value={filters.q} onChange={event => update({ ...filters, q: event.target.value })} placeholder="Title, author, tradition, or idea…" autoComplete="off"
+          className="min-h-[52px] w-full rounded-xl border border-white/20 bg-[#0a0a0b] py-3 pl-12 pr-12 text-base text-white placeholder:text-white/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 [&::-webkit-search-cancel-button]:appearance-none" />
+        {filters.q && <button type="button" onClick={() => update({ ...filters, q: '' })} aria-label="Clear search" className="absolute right-1 top-1 flex h-11 w-11 items-center justify-center rounded-lg text-white/70 focus-visible:ring-2 focus-visible:ring-emerald-300"><X className="h-5 w-5" aria-hidden="true" /></button>}
+      </div>
+      <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
+        <label className="text-xs text-white/70">Topic
+          <select value={filters.category} onChange={event => update({ ...filters, category: event.target.value })} className="mt-1 block min-h-11 w-full rounded-lg border border-white/15 bg-[#0a0a0b] px-3 text-sm text-white focus-visible:ring-2 focus-visible:ring-emerald-300">
+            <option value="">All topics</option>{categories.map(category => <option key={category}>{category}</option>)}
+          </select>
+        </label>
+        <label className="text-xs text-white/70">Order
+          <select value={filters.sort} onChange={event => update({ ...filters, sort: event.target.value })} className="mt-1 block min-h-11 w-full rounded-lg border border-white/15 bg-[#0a0a0b] px-3 text-sm text-white focus-visible:ring-2 focus-visible:ring-emerald-300">
+            <option value="recent">{filters.q ? 'Best match' : 'Recently added'}</option><option value="title">Title A–Z</option><option value="author">Author A–Z</option>
+          </select>
+        </label>
+        {(filters.q || filters.category || filters.sort !== 'recent') && <button type="button" onClick={() => update(emptyFilters)} className="min-h-11 rounded-lg px-3 text-sm text-emerald-200 underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-emerald-300">Reset filters</button>}
+      </div>
+    </form>
+  );
+  const below = (
+    <>
+      {idle && children}
       <section id="book-results" aria-label="Books" className="scroll-mt-24 py-10">
         <div className="mb-6 flex items-baseline justify-between gap-3">
           <h2 className="text-xl font-semibold text-white">{filters.q || filters.category ? 'Matching books' : 'Browse the shelves'}</h2>
@@ -82,6 +88,20 @@ export function LibraryExplorer({ books, children }: { books: LibraryBook[]; chi
             </article>)}
           </div>}
       </section>
-    </div>
+    </>
+  );
+  if (!field) {
+    return <div>{search}{below}</div>;
+  }
+  return (
+    <>
+      <div className={idle
+        ? 'mx-auto flex min-h-[100svh] max-w-6xl flex-col px-6 pb-16 pt-28 sm:pt-32'
+        : 'mx-auto max-w-6xl px-6 pt-28 sm:pt-32'}>
+        {opening}
+        {search}
+      </div>
+      <div className="mx-auto max-w-6xl px-6">{below}</div>
+    </>
   );
 }
