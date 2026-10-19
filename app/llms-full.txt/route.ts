@@ -102,7 +102,7 @@ Founder Stack → Foundry or Founder's Circle → Human Layer and Signal Loop.
 - [Signal Loop](${SITE_URL}/newsletter): Main founder letter, with additional editorial lanes available through the newsletter hub
 - [Start Here](${SITE_URL}/start): Founder-led entry spine for new visitors
 - [Peak State Systems](${SITE_URL}/peak-performance): Evidence-led attention, energy, recovery, environment, and review loops; educational, not medical advice
-- [Build with Me](${SITE_URL}/build): 5-tier product ladder (€0 Primer / €7 Pack / €197 Toolkit / €497 Mastery / €997 Architect / €2,997 Founder's Circle)
+- [Build with Me](${SITE_URL}/build): Product ladder: see /build; prices on each product page.
 - [Coaching](${SITE_URL}/coaching): 1:1 advisory across AI architecture, creator strategy, music production
 - [Work With Me](${SITE_URL}/work-with-me): Studio engagements
 

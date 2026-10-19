@@ -94,6 +94,9 @@ jobs:
       - name: Navigation completeness
         run: pnpm run test:navigation-completeness
 
+      - name: Ship 2026 guide contract
+        run: pnpm run test:ship-guides
+
       - name: Blank-target noopener links
         run: pnpm run test:noopener
 

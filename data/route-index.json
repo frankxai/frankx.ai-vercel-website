@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1056,
+    "total": 1057,
     "aliases": 59,
     "byType": {
       "core": 24,
@@ -9,7 +9,7 @@
       "community": 17,
       "tool": 75,
       "static": 15,
-      "blog": 270,
+      "blog": 271,
       "research": 23,
       "guide": 34,
       "library": 88,
@@ -1073,7 +1073,7 @@
     {
       "href": "/blog/agentic-creator-os-complete-guide",
       "title": "The Complete Guide to Agentic Creator OS v6: Your AI Operating System",
-      "description": "Master the AI operating system that transforms Claude Code into a full creative studio. 25 commands, 80+ skills, swarm intelligence, and auto-activation. The definitive guide.",
+      "description": "Master the AI operating system that transforms Claude Code into a creative studio: 25 commands, 80+ skills, swarm intelligence, and auto-activation.",
       "tags": [
         "agentic ai",
         "claude code",
@@ -1263,7 +1263,7 @@
     {
       "href": "/blog/ai-doesnt-have-to-be-soulless",
       "title": "AI Doesn't Have To Be Soulless (And Here's How I Know)",
-      "description": "A 15-year architect's turning point: how collaborative creation with AI revealed a path where technology amplifies human creativity, not replaces it.",
+      "description": "An architect's turning point: how collaborative creation with AI revealed a path where technology amplifies human creativity, not replaces it.",
       "tags": [
         "AI",
         "Creativity",
@@ -1688,7 +1688,7 @@
     {
       "href": "/blog/best-cheap-ai-music-generator-2026",
       "title": "Best Cheap AI Music Generator 2026: Free Tiers and Commercial Rights Compared",
-      "description": "A creator with 12,000+ AI songs compares the cheapest AI music generators in 2026 — Suno, Udio, AIVA, Riffusion, Soundraw, Mubert — on price, free-tier limits, and the one thing that de...",
+      "description": "A creator compares the cheapest AI music generators in 2026 — Suno, Udio, AIVA, Riffusion, Soundraw, Mubert — on price, free-tier limits, and commercial rights.",
       "tags": [
         "AI Music",
         "Suno",
@@ -1786,7 +1786,7 @@
     {
       "href": "/blog/build-your-own-jarvis-claude-code",
       "title": "Build Your Own Jarvis: Turn Claude Code Into Your Personal Intelligence System",
-      "description": "Stop using AI tools like everyone else. Build a personal AI system that knows your work, executes your workflows, and gets smarter every day. Here's exactly how.",
+      "description": "Build a personal AI system that knows your work, runs your workflows, and gets sharper every week. The exact CLAUDE.md + MCP + skills + subagents stack I run, updated for June 2026.",
       "tags": [
         "claude code",
         "personal ai",
@@ -2497,7 +2497,7 @@
     {
       "href": "/blog/golden-age-of-intelligence",
       "title": "The Golden Age of Intelligence: Agentic SEO OS for Exponential Reach",
-      "description": "Launch a 12-day sprint and 15,000-word masterplan for flagship content, high-frequency publishing, automation pipelines, distribution loops, and measurement rituals.",
+      "description": "Launch a 12-day sprint and masterplan for flagship content, high-frequency publishing, automation pipelines, distribution loops, and measurement rituals.",
       "tags": [
         "Agentic SEO",
         "Intelligence Era",
@@ -3146,7 +3146,7 @@
     },
     {
       "href": "/blog/music-as-consciousness-technology",
-      "title": "12,000 Songs Later: What AI Music Taught Me About Creative Systems",
+      "title": "What AI Music Taught Me About Creative Systems",
       "description": "An experiential field note on iteration, taste, emotional specificity, and what high-volume AI music practice can—and cannot—prove.",
       "tags": [
         "Music",
@@ -3186,7 +3186,7 @@
     },
     {
       "href": "/blog/my-100-month-ai-stack-every-tool-i-actually-use",
-      "title": "My $100/Month AI Stack: Every Tool I Actually Use",
+      "title": "My AI Stack: Every Tool I Actually Use",
       "description": "The exact AI tools, subscriptions, and infrastructure I run to ship music, code, content, and products — with monthly costs broken down.",
       "tags": [
         "AI Tools",
@@ -3283,6 +3283,19 @@
         "langsmith",
         "production",
         "monitoring"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/official-openai-plugins-guide",
+      "title": "Official OpenAI plugins worth knowing: a builder’s guide",
+      "description": "A practical guide to OpenAI-published plugins for building products, creating content, managing knowledge, and packaging repeatable AI workflows.",
+      "tags": [
+        "OpenAI",
+        "ChatGPT",
+        "Codex",
+        "AI Architecture",
+        "Creator Systems"
       ],
       "type": "blog"
     },
@@ -3874,7 +3887,7 @@
     {
       "href": "/blog/suno-prompt-engineering-complete-guide",
       "title": "The Complete Suno Prompt Engineering Guide: From Beginner to Pro",
-      "description": "Master Suno AI music creation with proven prompt formulas from 500+ sessions. Learn genre-specific techniques, advanced modifiers, and the anatomy of prompts that generate professional tracks.",
+      "description": "Master Suno AI music creation with one reusable prompt formula: genre, tempo, instruments, vocals, mood and special elements.",
       "tags": [
         "suno",
         "ai-music",
@@ -3887,7 +3900,7 @@
     {
       "href": "/blog/suno-vs-udio-2026",
       "title": "Suno vs Udio 2026: Which AI Music Tool Is Safe to Release Commercially",
-      "description": "After 12,000+ AI songs, here's the honest 2026 verdict on Suno vs Udio — and the licensing change that makes one of them risky to release commercially right now.",
+      "description": "Here's the honest 2026 verdict on Suno vs Udio — and the licensing change that makes one of them risky to release commercially right now.",
       "tags": [
         "Suno",
         "Udio",

@@ -218,3 +218,4 @@ v0.html
 # estate-guard pack — per-machine files, never tracked
 .claude/settings.local.json
 .claude/ci/estate-guard/last-scan.json
+.claude/skills/**/__pycache__/
