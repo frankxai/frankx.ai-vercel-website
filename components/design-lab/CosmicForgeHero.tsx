@@ -316,7 +316,7 @@ export function CosmicForgeHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, delay: 0.8, ease: staggerEase }}
         >
-          Enterprise AI systems. 12,000+ songs. 75+ open-source skills. Everything documented.
+          Enterprise AI systems. Songs made with Suno. 75+ open-source skills. Everything documented.
         </motion.p>
 
         {/* CTAs */}

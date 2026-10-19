@@ -3,7 +3,7 @@ import { createMetadata } from '@/lib/seo'
 export const metadata = createMetadata({
   title: 'Workshops and Session Studio',
   description:
-    'One delivered Ikigai & Branding workshop plus adaptable AI agent, AI music, leadership, and session-amplification studio formats to shape and pilot.',
+    'Delivered workshops and studio curricula, including twelve lessons on AI agents, MCP, accountable memory and coordinated work with a free offline lab.',
   path: '/workshops',
   keywords: [
     'AI workshops',

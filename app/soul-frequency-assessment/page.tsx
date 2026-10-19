@@ -46,7 +46,7 @@ export default function SoulFrequencyAssessmentPage() {
             <p className="mt-6 text-lg text-slate-300 leading-relaxed">
               In 7 minutes you will map your soul frequency, identify your signature transformation, and receive a
               custom AI-powered operating plan. This is not a personality quiz. It is a strategic assessment built from
-              enterprise AI delivery experience, 500+ Suno compositions, and dozens of conscious launches.
+              enterprise AI delivery experience, Suno compositions, and conscious launches.
             </p>
 
             <div className="mt-10 grid sm:grid-cols-3 gap-6">

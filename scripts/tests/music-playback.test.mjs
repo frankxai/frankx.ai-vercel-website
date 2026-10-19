@@ -117,3 +117,14 @@ test('the /hoffnung golden frequencies player receives verified owned audio for 
   assert.match(readText('../../app/hoffnung/page.tsx'), /<GoldenFrequenciesPlayer tracks=\{getGoldenFrequencyTracks\(\)\} \/>/)
   assert.doesNotMatch(readText('../../components/hoffnung/GoldenFrequenciesPlayer.tsx'), /cdn1\.suno\.ai/)
 })
+
+test('MusicRuntime restores focus to disclosure element on collapse across full and chip modes', () => {
+  const readText = path => readFileSync(new URL(path, import.meta.url), 'utf8')
+  const runtime = readText('../../components/music/MusicRuntime.tsx')
+  assert.match(runtime, /const restoreFocusOnCollapseRef = useRef\(false\)/)
+  assert.match(runtime, /function collapse\(\) \{\s*restoreFocusOnCollapseRef\.current = true\s*setExpanded\(false\)/)
+  assert.match(runtime, /useLayoutEffect\(\(\) => \{\s*if \(typeof window === 'undefined'\) return\s*if \(!expanded && restoreFocusOnCollapseRef\.current\) \{\s*restoreFocusOnCollapseRef\.current = false\s*disclosureRef\.current\?\.focus\(\)/)
+  assert.match(runtime, /if \(expanded\) \{\s*collapse\(\)\s*\} else \{\s*setExpanded\(true\)/)
+  assert.match(runtime, /event\.key === 'Escape' && expanded[\s\S]*minimize\(\)/)
+})
+

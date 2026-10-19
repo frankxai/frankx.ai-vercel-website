@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createPDFLead } from '@/lib/pdf-analytics'
+import { describeStoreFailure } from '@/lib/store-failure'
 
 export async function POST(request: NextRequest) {
+  let stage: 'request' | 'store' = 'request'
   try {
     const data = await request.json()
 
@@ -27,6 +29,7 @@ export async function POST(request: NextRequest) {
     const referrer = request.headers.get('referer') || ''
 
     // Create lead
+    stage = 'store'
     const lead = await createPDFLead({
       email: data.email,
       name: data.name,
@@ -43,9 +46,9 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, lead })
   } catch (error) {
-    console.error('Create lead error:', error)
+    console.error('Create lead error:', describeStoreFailure(error, stage))
     return NextResponse.json(
-      { error: 'Failed to create lead' },
+      { error: 'Failed to create lead', ...describeStoreFailure(error, stage) },
       { status: 500 }
     )
   }

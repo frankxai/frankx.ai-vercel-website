@@ -9,8 +9,8 @@ import { createLibrarySearch, filterLibrary, type LibraryBook } from '@/lib/libr
 type Filters = { q: string; category: string; sort: string };
 const emptyFilters: Filters = { q: '', category: '', sort: 'recent' };
 
-export function LibraryExplorer({ books, children, initial = emptyFilters }: { books: LibraryBook[]; children?: ReactNode; initial?: Filters }) {
-  const [filters, setFilters] = useState(initial);
+export function LibraryExplorer({ books, children }: { books: LibraryBook[]; children?: ReactNode }) {
+  const [filters, setFilters] = useState(emptyFilters);
   const categories = useMemo(() => [...new Set(books.flatMap(book => book.categories))].sort(), [books]);
   const index = useMemo(() => createLibrarySearch(books), [books]);
   const results = useMemo(() => filterLibrary(books, filters.q, filters.category, undefined, filters.sort, index), [books, filters, index]);
@@ -20,6 +20,7 @@ export function LibraryExplorer({ books, children, initial = emptyFilters }: { b
       const params = new URLSearchParams(window.location.search);
       setFilters({ q: params.get('q') || '', category: params.get('category') || '', sort: params.get('sort') || 'recent' });
     }
+    syncFromUrl();
     window.addEventListener('popstate', syncFromUrl);
     return () => window.removeEventListener('popstate', syncFromUrl);
   }, []);
@@ -36,7 +37,7 @@ export function LibraryExplorer({ books, children, initial = emptyFilters }: { b
 
   return (
     <div>
-      <form role="search" aria-label="Search the Library" onSubmit={event => event.preventDefault()} className="rounded-2xl border border-white/15 bg-white/[0.025] p-4 sm:p-5">
+      <form role="search" aria-label="Search the Library" onSubmit={event => event.preventDefault()} className="border-b border-white/10 pb-6">
         <label htmlFor="library-search" className="mb-2 block text-sm font-medium text-white">Find your next book</label>
         <div className="relative">
           <Search className="pointer-events-none absolute left-4 top-4 h-5 w-5 text-emerald-300" aria-hidden="true" />
@@ -67,16 +68,15 @@ export function LibraryExplorer({ books, children, initial = emptyFilters }: { b
           <p role="status" aria-live="polite" aria-atomic="true" className="text-sm text-white/65">{results.length} {results.length === 1 ? 'book' : 'books'}</p>
         </div>
         {results.length === 0 ? <div className="rounded-2xl border border-white/10 p-8 text-center"><h3 className="text-lg font-medium text-white">No books found</h3><p className="mt-2 text-white/65">Try an author’s surname, a shorter title, or clear the topic filter.</p><button type="button" onClick={() => update(emptyFilters)} className="mt-5 min-h-11 rounded-full border border-emerald-300/40 px-5 text-sm text-emerald-200 focus-visible:ring-2 focus-visible:ring-emerald-300">Show all books</button></div> :
-          <div className="grid gap-x-8 md:grid-cols-2">
-            {results.map(book => <article key={book.slug} className="border-t border-white/10 py-6">
-              <Link href={`/library/${book.slug}`} prefetch={false} className="group flex gap-5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]">
-                <BookCover title={book.title} author={book.author} src={book.cover} imageAlt={book.coverAlt} className="w-20 sm:w-24" />
-                <div className="min-w-0 flex-1">
-                  <p className="mb-2 text-xs text-emerald-200/90">{book.kind}</p>
-                  <h3 className="text-base font-semibold leading-snug text-white group-hover:text-emerald-200 sm:text-lg">{book.title}</h3>
-                  <p className="mt-1 text-sm text-white/70">{book.author}</p>
-                  <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-white/65">{book.description}</p>
-                  <span className="mt-3 inline-flex items-center gap-2 text-xs text-white/65">{book.readingTime} guide<ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" /></span>
+          <div className="grid grid-cols-2 gap-x-5 gap-y-12 sm:grid-cols-3 sm:gap-x-8 lg:grid-cols-4 lg:gap-x-10">
+            {results.map(book => <article key={book.slug} className="min-w-0">
+              <Link href={`/library/${book.slug}`} prefetch={false} className="group block rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]">
+                <BookCover title={book.title} author={book.author} src={book.cover} imageAlt={book.coverAlt} hasGuide={book.hasGuide} className="w-full max-w-[220px] shadow-[0_18px_30px_-24px_rgba(0,0,0,0.9)] transition-transform duration-200 group-hover:-translate-y-1 motion-reduce:transition-none motion-reduce:shadow-none" />
+                <div className="mt-4 max-w-[220px]">
+                  <p className="mb-1 text-[11px] leading-snug text-emerald-200/85">{book.kind}</p>
+                  <h3 className="text-base font-medium leading-snug text-white group-hover:text-emerald-200">{book.title}</h3>
+                  <p className="mt-1 line-clamp-2 text-xs leading-snug text-white/65">{book.author}</p>
+                  <span className="mt-2 inline-flex items-center gap-1 text-xs text-white/60">{book.readingTime}{book.hasGuide ? ' guide' : ''}<ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" /></span>
                 </div>
               </Link>
             </article>)}

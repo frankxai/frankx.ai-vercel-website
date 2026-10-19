@@ -72,11 +72,12 @@ export interface LearningPath {
   description: string
   icon: string
   difficulty: 'beginner' | 'intermediate' | 'advanced'
-  estimatedHours: number
+  estimatedHours?: number
   color: 'emerald' | 'cyan' | 'amber' | 'violet' | 'sky'
   category: LearningPathCategory
   videos: VideoResource[]
   relatedGuides: string[]
+  relatedResourceTitles?: Record<string, string>
   outcomes: string[]
   // Optional richer portal sections — render conditionally when populated.
   heroEyebrow?: string
@@ -104,10 +105,9 @@ export const learningPaths: LearningPath[] = [
     title: 'Claude & Anthropic Mastery',
     slug: 'claude-mastery',
     description:
-      "Master Anthropic's full Claude stack — Opus 4.8, Sonnet 4.6, Haiku 4.5, Claude Code, the Agent SDK, MCP, Computer Use, and Skills — from first prompt to production agents.",
+      "Master Anthropic's full Claude stack — Claude Code, the Agent SDK, MCP, Computer Use, and Skills — from first prompt to production agents.",
     icon: 'brain',
     difficulty: 'beginner',
-    estimatedHours: 10,
     color: 'amber',
     category: 'model-maker',
     heroEyebrow: 'Updated June 10, 2026 · Reflects Claude 4.X family + MCP general availability',
@@ -119,7 +119,7 @@ export const learningPaths: LearningPath[] = [
     ctaBody:
       'Pair this portal with our written walkthrough and architecture playbooks. Build an agent, ship an MCP-backed app, or compare Claude head-to-head against Gemini.',
     outcomes: [
-      'Pick the right Claude model — Opus 4.8, Sonnet 4.6, Haiku 4.5 — for each task and budget',
+      'Pick the right Claude model for each task and budget',
       'Engineer prompts that survive contact with real-world inputs',
       'Build agents with the Claude Agent SDK + MCP for tool and data access',
       'Use Claude Code in the terminal, IDE, and on the web for end-to-end coding workflows',
@@ -444,7 +444,7 @@ export const learningPaths: LearningPath[] = [
       {
         question: 'What is the latest Claude model in June 2026?',
         answer:
-          'Claude Opus 4.8 is the current family lead (launched May 14, 2026). Claude Sonnet 4.6 is the everyday default across Claude.ai and Claude Code. Claude Haiku 4.5 covers the cheap-and-fast tier for high-volume agent loops.',
+          'Claude Opus 4.8 launched May 14, 2026. Claude Sonnet 4.6 is the everyday default across Claude.ai and Claude Code. Claude Haiku 4.5 covers the cheap-and-fast tier for high-volume agent loops.',
       },
       {
         question: 'Which Claude model should I use for coding?',
@@ -501,7 +501,6 @@ export const learningPaths: LearningPath[] = [
       'Master OpenAI Codex for agentic software work: setup, local CLI workflows, AGENTS.md, code review, and production-ready iteration.',
     icon: 'zap',
     difficulty: 'intermediate',
-    estimatedHours: 9,
     color: 'emerald',
     category: 'model-maker',
     heroEyebrow: 'Updated July 5, 2026 · Runs GPT-5.5 · CLI + Cloud + AGENTS.md',
@@ -801,7 +800,6 @@ export const learningPaths: LearningPath[] = [
       'Master ChatGPT for everyday work, prompting, data analysis, custom workflows, and practical OpenAI fluency.',
     icon: 'brain',
     difficulty: 'beginner',
-    estimatedHours: 10,
     color: 'cyan',
     category: 'model-maker',
     heroEyebrow: 'Updated July 5, 2026 · Runs GPT-5.5 · Everyday AI fluency',
@@ -1098,10 +1096,9 @@ export const learningPaths: LearningPath[] = [
     title: 'Gemini & Google AI Mastery',
     slug: 'gemini-mastery',
     description:
-      "Master Google's full AI stack — Gemini 3.5 Flash, Gemini 3.1 Pro, Antigravity 2.0, NotebookLM, Veo 3.1, and Nano Banana Pro — from your first prompt to production agents.",
+      "Master Google's full AI stack — Gemini, Antigravity 2.0, NotebookLM, Veo 3.1, and Nano Banana Pro — from your first prompt to production agents.",
     icon: 'sparkles',
     difficulty: 'beginner',
-    estimatedHours: 12,
     color: 'sky',
     category: 'model-maker',
     heroEyebrow: 'Updated May 23, 2026 · Reflects Google I/O 2026',
@@ -1458,10 +1455,9 @@ export const learningPaths: LearningPath[] = [
     title: 'Antigravity Mastery',
     slug: 'antigravity-mastery',
     description:
-      "Master Google Antigravity — the standalone agent-first development platform (desktop app, CLI, SDK) that replaced Gemini CLI — from first install to production multi-agent workflows.",
+      "Master Google Antigravity — the standalone agent-first development platform (desktop app, CLI, SDK) — from first install to production multi-agent workflows.",
     icon: 'zap',
     difficulty: 'intermediate',
-    estimatedHours: 8,
     color: 'sky',
     category: 'model-maker',
     heroEyebrow: 'Updated July 6, 2026 · Antigravity 2.0, four pillars',
@@ -1705,7 +1701,6 @@ export const learningPaths: LearningPath[] = [
       "Master Amazon Bedrock — the managed model gateway for AWS: Claude, Nova, Knowledge Bases, AgentCore, and Guardrails — from first API call to production agents.",
     icon: 'zap',
     difficulty: 'intermediate',
-    estimatedHours: 10,
     color: 'amber',
     category: 'cloud',
     heroEyebrow: 'Updated July 6, 2026 · AgentCore + Managed Knowledge Base GA',
@@ -1965,7 +1960,6 @@ export const learningPaths: LearningPath[] = [
       'Master Microsoft Foundry (formerly Azure AI Foundry) — 11,000+ models, the Foundry Agent Service, and MCP-connected agents — from your first deployment to production.',
     icon: 'zap',
     difficulty: 'intermediate',
-    estimatedHours: 10,
     color: 'sky',
     category: 'cloud',
     heroEyebrow: 'Updated July 6, 2026 · Microsoft Foundry GA + Hosted Agents',
@@ -2224,7 +2218,6 @@ export const learningPaths: LearningPath[] = [
       'Master OCI Generative AI — Cohere Command A, Agent Hub, and Select AI natural-language database queries — from your first model call to production agents on OCI.',
     icon: 'zap',
     difficulty: 'intermediate',
-    estimatedHours: 10,
     color: 'violet',
     category: 'cloud',
     heroEyebrow: 'Updated July 6, 2026 · Cohere Command A + Agent Hub',
@@ -2462,139 +2455,58 @@ export const learningPaths: LearningPath[] = [
   },
   {
     id: 'higgsfield-mastery',
-    title: 'Higgsfield AI & Cinematic Video Mastery',
+    relatedResourceTitles: {
+      '/guides/higgsfield-ai-video-guide': 'Start here: video production',
+      '/guides/higgsfield-camera-movement-prompts': 'Camera movement prompts',
+      '/guides/higgsfield-soul-id-character-consistency': 'Soul ID and character continuity',
+      '/guides/higgsfield-ugc-product-video-workflow': 'UGC and product video workshop',
+      '/guides/higgsfield-music-video-workflow': 'Music video workshop',
+      '/guides/higgsfield-credits-pricing-guide': 'Credits and cost per accepted shot',
+      '/blog/ultimate-higgsfield-workflow-2026': 'Agent and MCP connection guide',
+    },
+    title: 'Higgsfield video production workshop',
     slug: 'higgsfield-mastery',
-    description:
-      'Master multi-model AI video production with Higgsfield AI: Cinema Studio, 70+ camera presets, Soul ID consistency, Seedance 2.0, Kling 3.0, and Veo 3.1.',
-    icon: 'image',
-    difficulty: 'intermediate',
-    estimatedHours: 6,
-    color: 'violet',
-    category: 'consumer',
-    heroEyebrow: 'Updated August 2026 · Multi-Model Video Suite',
-    longIntro:
-      'Higgsfield AI unifies the top AI video generation models under a single studio interface. Rather than switching between separate tools, you can direct Kling 3.0 for character motion, Veo 3.1 for lighting and realism, Seedance 2.0 for commercial ads, and Wan 2.6 for VFX. This portal guides you through camera trajectory control with Cinema Studio, persistent characters with Soul ID, and automated commercial production with Marketing Studio.',
-    distillation:
-      'Generative video has shifted from single-model toys to multi-model director suites. No single generative model wins every shot type: Kling 3.0 dominates human anatomy and acting, Veo 3.1 delivers physical realism and lighting, and Seedance 2.0 powers rapid commercial B-roll. Higgsfield unifies these engines under one interface with precision camera trajectory controls and character identity locks.\n\nThe real breakthrough in Higgsfield is Cinema Studio and Soul ID. Text prompts alone are terrible at controlling physical camera trajectories — Cinema Studio gives you deterministic mathematical moves like Orbital 360, Bullet Time, and Vertigo Dolly Zooms. Soul ID anchors facial geometry across multiple scene renders, solving character drift for narrative filmmaking.\n\nFor creators and founders, the highest-impact move is pairing Marketing Studio (URL-to-Video) for rapid ad production with custom Cinema Studio shots for hero brand content. Master the multi-model selection matrix and camera moves, and you can produce studio-grade video at 10x speed.',
-
-    ctaTitle: 'Ready to direct your first AI film?',
-    ctaBody:
-      'Pair this video portal with our in-depth written playbook. Master prompt engineering, camera move coordinates, and automated production pipelines.',
+    description: 'Make a three-shot sequence with a shot brief, reference pack, camera test and credit budget. Free guides and an official walkthrough.',
+    icon: 'image', difficulty: 'intermediate', color: 'violet', category: 'consumer',
+    heroEyebrow: 'Documentation checked October 10, 2026',
+    longIntro: 'Start with one story and three shots. This workshop takes you from a written brief to a reviewed sequence using Higgsfield, then helps you diagnose motion, identity and editing problems. The curriculum is free; generating media may require a paid product plan. Product capabilities are documented by the vendor. The production exercises and acceptance rules are FrankX editorial proposals.',
+    distillation: 'Write the acceptance rule before generating: what should the viewer understand, which movement carries that meaning, and what makes the clip usable? Keep one subject and one camera movement in your first test. Review the first, middle and last frames before accepting it.\n\nReference tools can help with character continuity, but inspect faces, wardrobe, product labels and background geometry across every shot. Test one variable at a time instead of changing the model, reference and prompt together.\n\nMeasure cost per accepted shot rather than cost per generation. Stop when a repeat failure needs a different reference or simpler composition. Assemble the accepted shots in an editor, review the sequence at phone size and export for your chosen platform.',
+    ctaTitle: 'Build your first three-shot sequence',
+    ctaBody: 'Follow the production guide, download the brief and ledger, then choose a focused workshop for your next project.',
     outcomes: [
-      'Direct 70+ camera movements including Orbital 360, Bullet Time, and Dolly Zooms',
-      'Maintain character facial identity across 10+ sequential shots with Soul ID',
-      'Select the optimal model (Kling 3.0, Veo 3.1, Seedance 2.0, Wan 2.6) for each scene',
-      'Generate commercial product video ads with Marketing Studio URL-to-Video',
-      'Integrate Higgsfield programmatically via Fal.ai and developer APIs',
-      'Upscale and export pristine 4K 24fps master videos for client delivery',
+      'Write a shot brief with a subject, movement, reference and acceptance rule',
+      'Test camera movement with a controlled prompt and diagnose failures',
+      'Review character continuity across close-ups, profiles and lighting changes',
+      'Create a product-video shot plan with one demonstrable claim',
+      'Calculate credits per accepted clip and set a retry budget',
+      'Connect a supported agent workflow and inspect job status before retrying',
     ],
     relatedGuides: [
-      '/guides/higgsfield-ai-video-guide',
-      '/guides/image-generation-mastery',
-      '/learn/gemini-mastery',
-      '/learn/claude-mastery',
+      '/guides/higgsfield-ai-video-guide', '/guides/higgsfield-camera-movement-prompts',
+      '/guides/higgsfield-soul-id-character-consistency', '/guides/higgsfield-ugc-product-video-workflow',
+      '/guides/higgsfield-music-video-workflow', '/guides/higgsfield-credits-pricing-guide',
+      '/blog/ultimate-higgsfield-workflow-2026',
     ],
-    videos: [
-      {
-        id: 'higgsfield-overview',
-        youtubeId: 'mKyaNr3jK-E',
-        title: 'Learn 98% of Higgsfield AI in 18 Minutes',
-        creator: 'Youri van Hofwegen',
-        creatorChannel: 'https://www.youtube.com/@yourivanhofwegen',
-        duration: '18 min',
-        level: 'beginner',
-        description:
-          'Complete walkthrough of Higgsfield AI: Cinema Studio, Marketing Studio, audio tools, and character consistency.',
-        tags: ['higgsfield', 'overview', 'ai-video'],
-      },
-      {
-        id: 'higgsfield-tutorial-beginner',
-        youtubeId: 'FF1sRs4LDCN',
-        title: 'How to Use Higgsfield AI for Beginners (Step by Step)',
-        creator: 'Creator Tutorials',
-        creatorChannel: 'https://www.youtube.com/results?search_query=Higgsfield+AI+tutorial',
-        duration: '14 min',
-        level: 'beginner',
-        description:
-          'Step-by-step beginner guide covering text-to-video, image-to-video, and camera movements.',
-        tags: ['higgsfield', 'tutorial', 'camera-control'],
-      },
-      {
-        id: 'higgsfield-cinema-studio',
-        youtubeId: 'Ee9qCk59BIv',
-        title: 'Directing Cinematic AI Video with Camera Presets and Soul ID',
-        creator: 'AI Filmmaking Lab',
-        creatorChannel: 'https://www.youtube.com/results?search_query=Higgsfield+Cinema+Studio',
-        duration: '16 min',
-        level: 'intermediate',
-        description:
-          'Deep dive into Cinema Studio camera trajectories, character facial locks, and multi-shot composition.',
-        tags: ['cinema-studio', 'soul-id', 'consistency'],
-      },
-    ],
+    videos: [{
+      id: 'higgsfield-official-short-film', youtubeId: 'tW40b122Rbs',
+      title: "The Complete AI Short Film Workflow Everyone's Missing",
+      creator: 'Higgsfield AI', creatorChannel: 'https://www.youtube.com/@HiggsfieldAI',
+      duration: 'See YouTube', level: 'beginner',
+      description: 'Official short-film walkthrough linked from Higgsfield documentation. Watch reference reuse and scene construction, then write your own shot brief. The interface shown predates Cinema Studio 4.0.',
+      tags: ['higgsfield', 'short-film', 'references'],
+    }],
     ecosystem: [
-      {
-        name: 'Cinema Studio',
-        category: 'Camera Direction',
-        description:
-          '70+ camera presets including Orbital 360, Bullet Time, Vertigo Dolly Zoom, and Drone Passes with precision trajectory vectors.',
-        href: 'https://higgsfield.ai',
-        status: 'New',
-      },
-      {
-        name: 'Soul ID',
-        category: 'Character Consistency',
-        description:
-          'Face landmark and identity embedding anchor preserving subject likeness across sequential scene renders.',
-        href: 'https://higgsfield.ai',
-        status: 'New',
-      },
-      {
-        name: 'Marketing Studio',
-        category: 'Commercial Ads',
-        description:
-          'URL-to-video e-commerce ad generation with automated scriptwriting, voiceover sync, and multi-ratio exports.',
-        href: 'https://higgsfield.ai',
-        status: 'Updated',
-      },
-      {
-        name: 'Kling 3.0 Integration',
-        category: 'Motion Engine',
-        description:
-          'Frontier human anatomy and organic motion engine, ideal for dialogue scenes and complex character choreography.',
-        href: 'https://higgsfield.ai',
-        status: 'Updated',
-      },
-      {
-        name: 'Veo 3.1 Integration',
-        category: 'Cinematic Realism',
-        description:
-          'Google DeepMind cinematic model for photorealism, atmospheric lighting, and native synchronized soundscapes.',
-        href: 'https://deepmind.google/models/veo/',
-        status: 'Updated',
-      },
+      { name: 'Higgsfield platform', category: 'Platform', description: 'Access Higgsfield AI Cinema Studio, model selection, and account settings (referral link).', href: '/go/higgsfield', lastVerified: '2026-10-12' },
+      { name: 'Cinema Studio 4.0 documentation', category: 'Direction', description: 'Current vendor announcement for camera look, references and sequence controls.', href: 'https://higgsfield.ai/blog/cinema-studio-4-0', lastVerified: '2026-10-11' },
+      { name: 'Agent connection guide', category: 'Automation', description: "Higgsfield's own guide to connecting Claude, ChatGPT, Cursor and other agents via MCP or CLI. Inspect tools and job status before generating.", href: 'https://higgsfield.ai/blog/generate-ai-videos-ai-agents-2026', lastVerified: '2026-10-11' },
+      { name: 'Developer console', category: 'Integration', description: 'Use documented interfaces and account limits rather than an assumed third-party endpoint.', href: 'https://open.higgsfield.ai/', lastVerified: '2026-10-12' },
+      { name: 'Current pricing', category: 'Budget', description: 'Verify included credits, model availability and cancellation terms for your account before subscribing.', href: 'https://higgsfield.ai/pricing', lastVerified: '2026-10-11' },
     ],
     faqs: [
-      {
-        question: 'What is Higgsfield AI?',
-        answer:
-          'Higgsfield AI is a unified multi-model video production platform that aggregates top generative engines (Kling 3.0, Veo 3.1, Seedance 2.0, Wan 2.6) with precision camera control (Cinema Studio) and character consistency (Soul ID).',
-      },
-      {
-        question: 'How does Soul ID preserve character faces across shots?',
-        answer:
-          'Soul ID analyzes 3 to 5 reference photos, generates a facial embedding vector, and locks the character token (e.g. [HERO_NAME]) across sequential prompts, achieving 98%+ identity retention across varying lighting and angles.',
-      },
-      {
-        question: 'How do Cinema Studio camera presets work?',
-        answer:
-          'Cinema Studio applies trajectory vector math to the rendering pipeline, giving you deterministic control over moves like Orbital 360, Vertigo Dolly Zoom, Bullet Time, and Crane High Passes rather than relying on random text prompts.',
-      },
-      {
-        question: 'Can I use Higgsfield programmatically via API?',
-        answer:
-          'Yes. Higgsfield Cinema Studio and generation endpoints are accessible programmatically via Fal.ai and direct developer APIs for batch video generation and automated pipelines.',
-      },
+      { question: 'Is this Higgsfield course free?', answer: 'The FrankX guides, exercises and worksheets are free to read. Higgsfield generation and connected-agent usage may require credits or a paid plan. Check current pricing before starting.' },
+      { question: 'Does Soul ID guarantee the same face in every shot?', answer: 'No guaranteed retention percentage is established here. Use a reference pack and review close-ups, profiles, lighting and movement. The character consistency guide gives you a test matrix.' },
+      { question: 'Which AI video model should I choose?', answer: 'Test the models available in your account against the same brief and acceptance rule. Score motion, identity, composition, editability and cost per accepted clip. There is no universal winner for every shot.' },
+      { question: 'Can I use Higgsfield from Claude or another agent?', answer: 'Higgsfield documents Claude MCP and other supported agent connections. Follow the current connection guide and inspect exposed tools, costs, job IDs and completion state before automating retries.' },
     ],
   },
   {
@@ -2605,7 +2517,6 @@ export const learningPaths: LearningPath[] = [
       'Master the 2026 Agentic Hierarchy — Prompts, Skills, Agents, MCP, Subagent FSMs, Blackwell NVL72 liquid cooling, and Cost-Per-Verified-Outcome economics.',
     icon: 'brain',
     difficulty: 'advanced',
-    estimatedHours: 14,
     color: 'emerald',
     category: 'cloud',
     heroEyebrow: '2026 Master Curriculum · Evaluated Skills, MCP Meshes & Sovereign Compute',

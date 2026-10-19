@@ -12,6 +12,7 @@ export type LibraryBook = {
   reviewDate: string;
   readingTime: string;
   kind: string;
+  hasGuide: boolean;
 };
 
 export const normalizeLibraryQuery = (value: string) => value.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[’']/g, '').toLowerCase().trim();

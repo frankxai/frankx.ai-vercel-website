@@ -96,7 +96,7 @@ export default function PDFAnalyticsDashboard() {
         />
         <MetricCard
           icon={<Download className="w-6 h-6" />}
-          label="Total Downloads"
+          label="Download events"
           value={summary.totalDownloads}
           color="purple"
         />
@@ -113,6 +113,9 @@ export default function PDFAnalyticsDashboard() {
           color="blue"
         />
       </div>
+      <p className="text-sm text-gray-400">
+        Download events include link requests and redirect starts. They do not confirm that a file transfer finished.
+      </p>
 
       {/* Engagement metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -175,7 +178,7 @@ export default function PDFAnalyticsDashboard() {
                 <div className="flex items-center gap-4 text-sm text-gray-400">
                   <span>{guide.views} views</span>
                   <span>•</span>
-                  <span>{guide.downloads} downloads</span>
+                  <span>{guide.downloads} download events</span>
                   <span>•</span>
                   <span>{guide.leads} leads</span>
                 </div>
