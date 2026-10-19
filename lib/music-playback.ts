@@ -131,5 +131,25 @@ export function buildPlaybackCatalog(entries: CatalogEntry[], registry: Register
       mood: [], streamUrl, duration: `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`,
     })
   }
-  return [...tracks.values()].sort((a, b) => Number(!!b.streamUrl) - Number(!!a.streamUrl))
+  return [...tracks.values()].sort((a, b) =>
+    Number(!!b.streamUrl) - Number(!!a.streamUrl) || Number(isPlaceholderTitle(a.title)) - Number(isPlaceholderTitle(b.title)))
+}
+
+/** Registry fallback titles look like "Track 57d126dd"; they sort after named tracks. */
+export function isPlaceholderTitle(title: string): boolean {
+  return /^Track [a-f0-9]{8}$/i.test(title.trim())
+}
+
+/** The neighbouring track in a queue, wrapping at both ends. Returns undefined for an empty queue. */
+export function queueNeighbor<T extends { sunoId: string }>(queue: readonly T[], currentId: string | undefined, step: 1 | -1): T | undefined {
+  if (!queue.length) return undefined
+  const index = queue.findIndex(track => track.sunoId === currentId)
+  if (index < 0) return step === 1 ? queue[0] : queue[queue.length - 1]
+  return queue[(index + step + queue.length) % queue.length]
+}
+
+export function formatClock(seconds: number): string {
+  if (!Number.isFinite(seconds) || seconds < 0) return '0:00'
+  const whole = Math.floor(seconds)
+  return `${Math.floor(whole / 60)}:${String(whole % 60).padStart(2, '0')}`
 }
