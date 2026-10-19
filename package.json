@@ -173,7 +173,7 @@
     "test:contract-guard": "node scripts/check-contract-guard.mjs",
     "test:media-guard": "node --test scripts/tests/media-guard.contract.mjs",
     "test:syntax": "node scripts/check-test-syntax.mjs",
-    "test:noopener": "node --test scripts/tests/visual-catalog-noopener.test.mjs scripts/tests/ikigai-speaker-noopener.test.mjs scripts/tests/ikigai-return-noopener.test.mjs",
+    "test:noopener": "node --test scripts/tests/visual-catalog-noopener.test.mjs scripts/tests/ikigai-speaker-noopener.test.mjs scripts/tests/ikigai-return-noopener.test.mjs scripts/tests/skills-library-url.test.mjs scripts/tests/content-studio-noopener.test.mjs",
     "test:glow-button": "node --test scripts/tests/glow-button-behavior.test.mjs",
     "analytics:summary": "node scripts/observability/analytics-cli.mjs --summary",
     "analytics:gsc": "node scripts/observability/analytics-cli.mjs --gsc",
