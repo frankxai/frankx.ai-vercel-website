@@ -91,11 +91,9 @@ test('homepage markdown follows the page copy', async () => {
   assert.equal(await head.text(), '')
 })
 
-test('negotiation stays in the proxy and off the not-found boundary', () => {
+test('negotiation stays off the not-found boundary and does not rewrite homepage in proxy', () => {
   const proxy = fs.readFileSync(path.join(root, 'proxy.ts'), 'utf8')
-  assert.match(proxy, /wantsMarkdown\(request\.headers\.get\('accept'\)\)/)
-  assert.match(proxy, /pathname === '\/'/)
-  assert.match(proxy, /url\.pathname = '\/api\/homepage-markdown'/)
+  assert.equal(proxy.includes('/api/homepage-markdown'), false)
   assert.equal(proxy.includes("from 'next/headers'"), false)
 
   const notFound = fs.readFileSync(path.join(root, 'app/not-found.tsx'), 'utf8')

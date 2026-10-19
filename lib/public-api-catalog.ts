@@ -61,6 +61,13 @@ export const publicApiCatalog = {
     },
     {
       method: 'GET',
+      path: '/api/workshops/ikigai-branding/prompts.json',
+      description:
+        'Returns the Ikigai & Branding Workshop prompt library and metadata as CC BY 4.0 JSON.',
+      example: `${SITE}/api/workshops/ikigai-branding/prompts.json`,
+    },
+    {
+      method: 'GET',
       path: '/api/mcp',
       description:
         'Opens the stateless MCP session when Accept includes text/event-stream. The body is an event stream. A GET without that media type returns 406 JSON-RPC. No API key is required. The server card is https://www.frankx.ai/api/mcp/server-card.',

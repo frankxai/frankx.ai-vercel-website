@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { getToken } from 'next-auth/jwt'
-import { wantsMarkdown } from '@/lib/accept-markdown'
 
 // Pages that have a /de/ version available
 const deAvailablePages = ['/valentines-day']
@@ -15,18 +14,6 @@ export async function proxy(request: NextRequest) {
     const url = request.nextUrl.clone()
     url.pathname = '/linktree'
     return NextResponse.redirect(url, 301)
-  }
-
-  // Homepage markdown is negotiated here, not in app/page.tsx or app/not-found.tsx.
-  // Reading Accept inside those boundaries opts the whole site out of static generation.
-  if (
-    (request.method === 'GET' || request.method === 'HEAD') &&
-    pathname === '/' &&
-    wantsMarkdown(request.headers.get('accept'))
-  ) {
-    const url = request.nextUrl.clone()
-    url.pathname = '/api/homepage-markdown'
-    return NextResponse.rewrite(url)
   }
 
   // ─── 1. /md Markdown endpoint (terminal rewrite) ──────────

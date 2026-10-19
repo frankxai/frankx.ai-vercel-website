@@ -62,7 +62,15 @@ export async function GET(request: Request) {
 
   const day = calendarDay(tz, new Date());
   if (!day) {
-    return NextResponse.json({ error: 'Unrecognized IANA timezone.' }, { status: 400 });
+    return NextResponse.json(
+      { error: 'Unrecognized IANA timezone.' },
+      {
+        status: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    );
   }
   const idx = hashString(day) % pool.length;
   const quote = pool[idx];

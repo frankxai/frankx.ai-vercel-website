@@ -308,7 +308,21 @@ export const publicOpenApi = {
         tags: ['mcp'],
         summary: 'Send one MCP JSON-RPC message',
         description:
-          'Post a JSON-RPC 2.0 message. Read-only tools are frankx_search_site (query, optional limit 1-25), frankx_get_article (slug, optional maxChars and offset), and frankx_list_products (optional limit 1-100). initialize and tools/list follow the MCP protocol. Anonymous POST is limited to 30 requests per minute per address. A 429 includes Retry-After: 60.',
+          'Post a JSON-RPC 2.0 message with Accept: application/json, text/event-stream. Read-only tools are frankx_search_site (query, optional limit 1-25), frankx_get_article (slug, optional maxChars and offset), and frankx_list_products (optional limit 1-100). initialize and tools/list follow the MCP protocol. Anonymous POST is limited to 30 requests per minute per address. A 429 includes Retry-After: 60.',
+        parameters: [
+          {
+            name: 'Accept',
+            in: 'header',
+            required: true,
+            description:
+              'Streamable HTTP MCP requires the client to accept both application/json and text/event-stream.',
+            schema: {
+              type: 'string',
+              default: 'application/json, text/event-stream',
+              examples: ['application/json, text/event-stream'],
+            },
+          },
+        ],
         requestBody: {
           required: true,
           content: {
@@ -340,6 +354,15 @@ export const publicOpenApi = {
               },
             },
           },
+          '406': {
+            description:
+              'The client did not accept both application/json and text/event-stream.',
+            content: {
+              'application/json': {
+                schema: { $ref: '#/components/schemas/McpNotAcceptable' },
+              },
+            },
+          },
           '429': {
             description: 'The address exceeded 30 POST requests in a minute.',
             headers: {
@@ -351,6 +374,25 @@ export const publicOpenApi = {
             content: {
               'application/json': {
                 schema: { $ref: '#/components/schemas/McpRateLimit' },
+              },
+            },
+          },
+        },
+      },
+    },
+    '/api/workshops/ikigai-branding/prompts.json': {
+      get: {
+        operationId: 'getIkigaiWorkshopPrompts',
+        tags: ['content'],
+        summary: 'Read the Ikigai & Branding Workshop prompts',
+        description:
+          'Returns the Ikigai & Branding Workshop metadata, facilitator credentials, and prompt chain as CC BY 4.0 JSON.',
+        responses: {
+          '200': {
+            description: 'Workshop metadata and prompt chain.',
+            content: {
+              'application/json': {
+                schema: { type: 'object', additionalProperties: true },
               },
             },
           },

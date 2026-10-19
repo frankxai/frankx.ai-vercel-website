@@ -4,8 +4,8 @@ const products = [
   {
     title: 'Sovereign Business Kits',
     description:
-      'Turn-key modular starter kits (Micro-SaaS, Marketplace, Creator Hub) designed for builders to launch globally on their own terms.',
-    href: '/templates',
+      'Modular starter-kit templates (Micro-SaaS, Marketplace, Creator Hub). Launch list open.',
+    href: '/waitlist',
   },
   {
     title: 'Mental Models & Peak OS',
