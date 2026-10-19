@@ -131,6 +131,46 @@ test('ship and runtime guides carry sourced themes, four audience calls, videos,
   }
 })
 
+test('the skill map is crawlable, linked from related pages, and the primary videos stay real', () => {
+  const recap = getGuide('vercel-ship-2026-recap')
+  assert.match(recap.content, /<GuideSkillMap/)
+  assert.match(recap.content, /id="skill-map"|#skill-map/)
+  for (const skill of ['AI SDK', 'AI Gateway', 'Workflow SDK', 'Vercel Sandbox', 'Chat SDK', 'Vercel Connect', 'Python', 'Vercel Drives', 'Vercel Daemons', 'Vercel Agent']) {
+    assert.ok(recap.content.includes(skill), `skill map missing ${skill}`)
+  }
+  assert.match(recap.content, /https:\/\/www\.youtube\.com\/watch\?v=Fr5vzNknYJE/)
+  assert.match(recap.content, /https:\/\/www\.youtube\.com\/watch\?v=T1vs9jE-EEI/)
+  assert.match(recap.content, /https:\/\/www\.youtube\.com\/watch\?v=w6bjGDwn4ZY/)
+  assert.doesNotMatch(recap.content, /structuredData=\{false\}/)
+  assert.match(recap.content, /name="AI Gateway" status="Generally available" href="https:\/\/vercel.com\/blog\/ai-gateway-is-now-generally-available"/)
+  assert.match(recap.content, /name="Workflow SDK" status="Generally available" href="https:\/\/vercel.com\/blog\/a-new-programming-model-for-durable-execution"/)
+  assert.match(recap.content, /name="Vercel Sandbox" status="Generally available" href="https:\/\/vercel.com\/changelog\/vercel-sandboxes-ga"/)
+  assert.match(recap.content, /uploadDate="2026-10-15T17:09:50-07:00"/)
+  assert.match(readRepo('content/guides/vercel-agent-runtime-decisions.mdx'), /uploadDate="2026-06-18T06:14:58-07:00"/)
+  assert.match(readRepo('content/blog/vercel-ship-2026-builder-decisions.mdx'), /uploadDate="2026-07-20T09:04:26-07:00"/)
+  assert.match(readRepo('lib/video-schema.ts'), /schema\.uploadDate = uploadDate/)
+
+  const map = readRepo('components/guides/GuideSkillMap.tsx')
+  assert.match(map, /id="skill-map"/)
+  assert.match(map, /scroll-mt-28/)
+  assert.match(map, /skill-band-/)
+  assert.doesNotMatch(map, /uppercase/)
+  assert.doesNotMatch(map, /md:grid-cols-2/)
+  assert.doesNotMatch(map, /fetch\(|axios|fs\./)
+  assert.match(readRepo('components/blog/MDXComponents.tsx'), /GuideSkillMap/)
+
+  for (const relativePath of [
+    'content/guides/founder-ai-stack-2026.mdx',
+    'content/guides/vercel-agent-runtime-decisions.mdx',
+    'content/blog/vercel-ship-2026-builder-decisions.mdx',
+    'content/blog/ai-architecture-2026-four-decisions-hard-to-reverse.mdx',
+    'content/blog/best-ai-app-builders-2026.mdx',
+    'content/blog/vercel-ai-sdk-first-agent-stack.mdx',
+  ]) {
+    assert.ok(readRepo(relativePath).includes('/guides/vercel-ship-2026-recap#skill-map'), `${relativePath} missing skill-map link`)
+  }
+})
+
 test('the blog post cross-links the guides and the matrix, and its FAQ schema matches the body', async () => {
   const filepath = path.join(root, 'content', 'blog', `${blogSlug}.mdx`)
   const source = readFileSync(filepath, 'utf8')
@@ -155,4 +195,46 @@ test('the blog post cross-links the guides and the matrix, and its FAQ schema ma
   const blogPage = readRepo('app/blog/[slug]/page.tsx')
   assert.match(blogPage, /BodyFaqSchema source=\{post\.content\}/)
   assert.doesNotMatch(blogPage, /type="FAQPage"/)
+})
+
+test('the Vercel hub and AI SDK guide are sourced doors on the track', () => {
+  const hub = getGuide('vercel')
+  const sdk = getGuide('vercel-ai-sdk')
+  assert.ok(hub)
+  assert.ok(sdk)
+  assert.equal(hub.title, 'Vercel for builders')
+  assert.equal(sdk.title, 'Vercel AI SDK for builders')
+  assert.match(hub.content, /\/guides\/vercel-ai-sdk/)
+  assert.match(hub.content, /\/guides\/vercel-ship-2026-recap#skill-map/)
+  assert.match(hub.content, /\/guides\/vercel-agent-runtime-decisions#decision-matrix/)
+  assert.match(hub.content, /uploadDate="2026-10-15T17:09:50-07:00"/)
+  assert.match(hub.content, /public beta/)
+  assert.doesNotMatch(hub.content, /structuredData=\{false\}/)
+
+  assert.equal(sdk.decisions.length, 4)
+  assert.equal(sdk.faqs.length, 5)
+  const schema = buildFAQPageData(sdk.faqs)
+  assert.equal(schema.mainEntity.length, sdk.faqs.length)
+  assert.match(sdk.content, /https:\/\/vercel.com\/docs\/ai-sdk/)
+  assert.match(sdk.content, /https:\/\/vercel.com\/blog\/ai-gateway-is-now-generally-available/)
+  assert.match(sdk.content, /https:\/\/vercel.com\/docs\/ai-gateway\/sdks-and-apis\/ai-sdk-python/)
+  assert.match(sdk.content, /in public beta/)
+  assert.match(sdk.content, /uploadDate="2026-06-18T06:14:58-07:00"/)
+  assert.doesNotMatch(sdk.content, /2 million downloads/)
+  assert.doesNotMatch(sdk.content, /structuredData=\{false\}/)
+
+  const hrefs = new Set(enumerateRoutes().map((route) => route.href))
+  assert.ok(hrefs.has('/guides/vercel'))
+  assert.ok(hrefs.has('/guides/vercel-ai-sdk'))
+
+  for (const relativePath of [
+    'content/guides/vercel-ship-2026-recap.mdx',
+    'content/guides/vercel-agent-runtime-decisions.mdx',
+    'content/guides/founder-ai-stack-2026.mdx',
+    'content/blog/vercel-ai-sdk-first-agent-stack.mdx',
+  ]) {
+    const source = readRepo(relativePath)
+    assert.ok(source.includes('/guides/vercel'), `${relativePath} missing the hub`)
+    assert.ok(source.includes('/guides/vercel-ai-sdk'), `${relativePath} missing the AI SDK guide`)
+  }
 })
