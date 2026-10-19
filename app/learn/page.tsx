@@ -55,9 +55,11 @@ function PathCard({ path }: { path: LearningPath }) {
         <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10 w-fit">
           <Icon className="w-6 h-6 text-white/80" />
         </div>
-        <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-white/60">
-          {path.videos.length} videos
-        </span>
+        {path.videos.length > 0 && (
+          <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-white/60">
+            {path.videos.length} {path.videos.length === 1 ? 'video' : 'videos'}
+          </span>
+        )}
       </div>
 
       <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
@@ -71,9 +73,11 @@ function PathCard({ path }: { path: LearningPath }) {
         <span className="text-[11px] px-2 py-0.5 rounded bg-white/[0.03] text-white/40 border border-white/5 uppercase">
           {path.difficulty}
         </span>
-        <span className="text-[11px] px-2 py-0.5 rounded bg-white/[0.03] text-white/40 border border-white/5">
-          {path.estimatedHours} hours
-        </span>
+        {path.estimatedHours !== undefined && (
+          <span className="text-[11px] px-2 py-0.5 rounded bg-white/[0.03] text-white/40 border border-white/5">
+            {path.estimatedHours} hours
+          </span>
+        )}
       </div>
 
       <ArrowRight className="absolute bottom-6 right-6 w-5 h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-[color,transform] duration-200" />
@@ -153,7 +157,7 @@ function VideoCard({ video, pathColor }: { video: VideoResource; pathColor: stri
 export default function LearnPage() {
   const learningPathSchema = {
     name: 'FrankX AI Learning Paths',
-    description: 'Curated video learning paths covering AI architecture, music production with AI, prompt engineering, and creative AI workflows.',
+    description: 'Curated learning paths (videos and guides) covering AI architecture, music production with AI, prompt engineering, and creative AI workflows.',
     numberOfItems: learningPaths.length,
     itemListElement: learningPaths.map((path, index) => ({
       '@type': 'ListItem',
@@ -165,8 +169,9 @@ export default function LearnPage() {
         url: `https://frankx.ai/learn/${path.slug}`,
         provider: { '@type': 'Organization', name: 'FrankX.AI' },
         educationalLevel: path.difficulty === 'beginner' ? 'Beginner' : path.difficulty === 'intermediate' ? 'Intermediate' : 'Advanced',
-        learningResourceType: 'Video',
-        numberOfItems: path.videos.length,
+        ...(path.videos.length > 0
+          ? { learningResourceType: 'Video', numberOfItems: path.videos.length }
+          : {}),
       },
     })),
   }

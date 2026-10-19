@@ -79,3 +79,114 @@ test('image rates cannot become generic text estimates or live price attestation
     assert.equal(model.image_pricing.image_output, 30)
   }
 })
+
+const source = (path) => readFileSync(new URL(`../../${path}`, import.meta.url), 'utf8')
+
+test('every creator-stack model link resolves to a registry entry (no /llm-hub/gemini-omni 404)', () => {
+  const ids = [...source('lib/llm-hub/creator-stacks.ts').matchAll(/modelId:\s*'([^']+)'/g)].map((m) => m[1])
+  assert.ok(ids.length > 0)
+  for (const id of ids) assert.ok(registry.models[id], `creator-stack modelId ${id} has no registry entry`)
+  assert.ok(!ids.includes('gemini-omni') || registry.models['gemini-omni'])
+})
+
+test('cost-calculator examples are registry models with registry token rates', () => {
+  const block = source('components/llm-hub/CostCalculator.tsx').match(/CALCULATOR_IDS = new Set\(\[([\s\S]*?)\]\)/)
+  assert.ok(block)
+  const ids = [...block[1].matchAll(/'([^']+)'/g)].map((m) => m[1])
+  for (const id of ids) {
+    const model = registry.models[id]
+    assert.ok(model, `calculator id ${id} is not in the registry`)
+    assert.notEqual(model.status, 'superseded', id)
+    assert.equal(typeof model.pricing?.input_per_1m, 'number', id)
+    assert.equal(typeof model.pricing?.output_per_1m, 'number', id)
+  }
+})
+
+test('research lab tiles name a logo-less lab once and date checks from the registry', () => {
+  const watch = source('app/research/research-model-watch.tsx')
+  assert.doesNotMatch(watch, /sr-only">\s*\{lab\.name\}/)
+  assert.doesNotMatch(watch, /\b\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) 20\d\d\b/)
+  assert.match(watch, /last_verified/)
+})
+
+test('research hub does not render a zero registered-sources count', () => {
+  const hub = source('app/research/research-hub-client.tsx')
+  assert.match(hub, /\{totalSources > 0 && \(\s*<Link\s+href="\/research\/sources"/)
+  assert.match(hub, /totalSources > 0\s*\?\s*\[\{ label: 'Published sources'/)
+})
+
+test('no unsourced throughput or fastest-in-class claims for Grok 4.3', () => {
+  for (const path of ['lib/llm-hub/comparisons.ts', 'data/model-registry.json']) {
+    const text = source(path)
+    assert.doesNotMatch(text, /181 tok/, path)
+    assert.doesNotMatch(text, /fastest in its class/, path)
+    assert.doesNotMatch(text, /fastest throughput in (its )?class/, path)
+  }
+})
+
+test('a newly linked model page carries no unsourced editorial verdict', () => {
+  const editorial = source('lib/llm-hub/editorial.ts')
+  assert.doesNotMatch(editorial, /'gemini-omni-flash':/)
+  assert.doesNotMatch(source('lib/llm-hub/comparisons.ts'), /Latency-sensitive products/)
+})
+
+test('DeepSeek off-peak rates carry a visible label that live prices cannot drop', () => {
+  assert.equal(typeof registry.models['deepseek-v4-pro-0813'].pricing.peak_input_per_1m, 'number')
+  const rows = source('lib/llm-hub/rows.ts')
+  assert.match(rows, /m\.image_pricing \|\| offPeak \? undefined : live\[m\.id\]/)
+  assert.match(rows, /pricingWindow: 'off-peak'/)
+  const calculator = source('components/llm-hub/CostCalculator.tsx')
+  assert.match(calculator, /model\.pricingWindow === 'off-peak' \? ' off-peak' : ''/)
+  assert.match(source('components/llm-hub/ModelExplorer.tsx'), /r\.pricingWindow === 'off-peak' \? <span[^>]*>off-peak<\/span>/)
+  assert.match(calculator, /Off-peak rates\. Peak rates are 2×/)
+})
+
+// Scope copy checks to the field they protect, so sourced uses elsewhere stay possible.
+function editorialEntry(id) {
+  const text = source('lib/llm-hub/editorial.ts')
+  const start = text.indexOf(`  '${id}': {`)
+  assert.notEqual(start, -1, `editorial entry ${id}`)
+  return text.slice(start, text.indexOf('\n  },', start))
+}
+
+function keywordList(path) {
+  const text = source(path)
+  const start = text.indexOf('keywords: [')
+  assert.notEqual(start, -1, `${path} keywords`)
+  return text.slice(start, text.indexOf(']', start))
+}
+
+test('no unbacked ranking or latency claims on model pages and Grok 4.3 editorial', () => {
+  assert.doesNotMatch(keywordList('app/llm-hub/[slug]/page.tsx'), /best llm 2026/i)
+  assert.doesNotMatch(keywordList('app/llm-hub/layout.tsx'), /best llm 2026/i)
+  assert.doesNotMatch(editorialEntry('grok-4-3'), /Latency-sensitive/)
+  assert.doesNotMatch(registry.models['deepseek-v4-pro-0813'].frankx_notes, /at or near the top of published tables/)
+})
+
+test('DeepSeek tagline states the vendor number and Haiku cells carry their prompt tier', () => {
+  const deepseek = editorialEntry('deepseek-v4-pro-0813')
+  assert.match(deepseek, /vendor-reported 96\.4% on SWE-bench Verified/)
+  assert.doesNotMatch(deepseek, /at the top of SWE-bench/)
+  const calculator = source('components/llm-hub/CostCalculator.tsx')
+  assert.match(calculator, /'claude-haiku-5-5': ' up to 100K'/)
+  assert.match(calculator, /href="https:\/\/api-docs\.deepseek\.com\/quick_start\/pricing"/)
+  const haiku = registry.models['claude-haiku-5-5'].pricing
+  assert.match(haiku.scope, /\$0\.50 \/ \$2\.50/)
+  assert.doesNotMatch(haiku.scope, /over_100k/)
+})
+
+test('long-prompt pricing notes give dollar figures, not raw registry field names', () => {
+  for (const [id, model] of Object.entries(registry.models)) {
+    assert.doesNotMatch(model.pricing?.scope ?? '', /over_\d+k/, `${id} pricing.scope`)
+  }
+  const sol = registry.models['gpt-6-1-sol'].pricing
+  assert.equal(sol.input_per_1m_over_272k, 4)
+  assert.equal(sol.output_per_1m_over_272k, 15)
+  assert.equal(sol.cached_input_per_1m_over_272k, 0.2)
+  assert.match(sol.scope, /more than 272K input tokens pays \$4 \/ \$15 per million input\/output tokens \(\$0\.20 cached input\)/)
+  const grok = registry.models['grok-4-7'].pricing
+  assert.equal(grok.input_per_1m_over_200k, 4)
+  assert.equal(grok.output_per_1m_over_200k, 12)
+  assert.equal(grok.cached_input_per_1m_over_200k, 1)
+  assert.match(grok.scope, /200K prompt tokens or more pays \$4 \/ \$12 per million input\/output tokens \(\$1 cached input\)/)
+})

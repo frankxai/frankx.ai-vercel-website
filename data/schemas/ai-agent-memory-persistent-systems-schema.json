@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "AI Agent Memory: From Chat History to Persistent Systems",
+      "description": "How to give AI agents memory that persists across sessions — CLAUDE.md, mem0, ChromaDB, and the architecture that makes agents smarter over time.",
+      "url": "https://frankx.ai/blog/ai-agent-memory-persistent-systems",
+      "datePublished": "2026-03-21",
+      "dateModified": "2026-03-21",
+      "author": {
+        "@type": "Person",
+        "name": "FrankX",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/ai-agent-memory-persistent-systems"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/ai-art/digital-knowledge-flow.png"
+      },
+      "keywords": "ai agent memory, persistent memory ai, claude code memory, mem0 mcp, ai agent context",
+      "abstract": "Persistent memory is the defining capability of production AI agents. By combining short-term working context, semantic vector retrieval, and structured JSON entity graphs, agents maintain coherence and institutional knowledge across sessions."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are the three layers of AI agent memory?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Immediate working context (active prompt window), episodic memory (vector retrieval of past conversations), and semantic memory (structured knowledge graphs)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you prevent memory bloat in long-running agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Through periodic summarization, memory compaction routines, and relevance score thresholds during retrieval."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What database technologies power agent memory?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vector databases like Qdrant and pgvector combined with relational or key-value stores like SQLite and DynamoDB."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does MCP standardize memory access?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Via dedicated memory MCP servers that expose standard tools for creating, reading, updating, and querying relation graphs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do agents resolve conflicting memories?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By applying timestamp precedence and source validation trust scores to prioritize recent and higher-authority data."
+          }
+        }
+      ]
+    }
+  ]
+}

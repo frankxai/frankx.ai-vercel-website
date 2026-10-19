@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Building a Research Intelligence System: How I Use AI Agents for Daily Knowledge Operations",
+      "description": "An architectural breakdown of the multi-agent research system powering FrankX.AI: five specialized agents, three workflow modes, and a publication pipeline optimized for the AI age.",
+      "url": "https://frankx.ai/blog/building-research-intelligence-system",
+      "datePublished": "2026-01-21",
+      "dateModified": "2026-01-21",
+      "author": {
+        "@type": "Person",
+        "name": "Frank",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/building-research-intelligence-system"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/blog/building-research-intelligence-system-hero.png"
+      },
+      "keywords": "ai research system, multi-agent workflow, claude code research, knowledge management ai, research automation, generative engine optimization",
+      "abstract": "The FrankX Research Intelligence System deploys five coordinated agents across three operational modes: Signal Intake, Deep Research, and Publication. This multi-agent pipeline compresses 40-hour manual investigation cycles into structured, citation-verified knowledge packages ready for distribution."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are the three modes of the Research Intelligence System?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mode 1 handles rapid signal intake, Mode 2 executes deep research investigations, and Mode 3 formats verified findings for publication."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do research agents verify sources?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Agents score source credibility on a multi-tier trust hierarchy, cross-referencing claims across primary documentation before inclusion."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What agents make up the research team?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Signal Scout, Deep Researcher, Synthesis Engine, Fact Validator, and Editorial Architect."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How are research outputs stored?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Outputs are compiled as version-controlled markdown dossiers with structured frontmatter and verified reference citations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does this system support generative engine optimization?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By structuring research findings with high Information Gain and clean data tables that search engines cite directly."
+          }
+        }
+      ]
+    }
+  ]
+}

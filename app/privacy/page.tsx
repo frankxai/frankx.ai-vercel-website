@@ -37,6 +37,7 @@ export default function PrivacyPage() {
               <li>Email address (when you request a resource, subscribe to the newsletter, or make a purchase)</li>
               <li>Name and assessment answers when you ask us to email a diagnostic result</li>
               <li>Aggregate page-view data (page path, referrer category, browser, device, and approximate region)</li>
+              <li>Counts of free resource download redirects (resource and time, without an email or browser identifier)</li>
               <li>Performance data (such as Core Web Vitals)</li>
               <li>Payment information (processed securely through third-party providers)</li>
             </ul>
@@ -53,6 +54,13 @@ export default function PrivacyPage() {
               Before a Web Analytics page view is sent, this site removes query strings and URL fragments.
               It also suppresses Web Analytics events when your browser sends a Do Not Track signal. We do not
               load optional marketing analytics on the current site because there is no visitor consent control.
+            </p>
+            <p className="mt-4 text-white/70 leading-relaxed">
+              We also count free resource download redirects. These records contain the resource and time,
+              without an email address or browser identifier. A random link-attempt token prevents duplicate
+              counts, expires after one hour, and is not saved in the download record. We skip these counts
+              when your browser sends Do Not Track or Global Privacy Control. Short-lived rate limits use your
+              network address to protect this route from abuse; it is not saved in the download record.
             </p>
           </section>
 
