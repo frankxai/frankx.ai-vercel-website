@@ -113,8 +113,12 @@ export function buildVideoListSchema(
 /**
  * Builds inline VideoObject schema for a single YouTube embed in a blog post
  */
-export function buildInlineVideoSchema(videoId: string, title?: string): Record<string, unknown> {
-  return {
+export function buildInlineVideoSchema(
+  videoId: string,
+  title?: string,
+  uploadDate?: string,
+): Record<string, unknown> {
+  const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
     name: title || `Video ${videoId}`,
@@ -122,4 +126,11 @@ export function buildInlineVideoSchema(videoId: string, title?: string): Record<
     embedUrl: `https://www.youtube.com/embed/${videoId}`,
     contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
   }
+  if (
+    typeof uploadDate === 'string' &&
+    /^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2}))?$/.test(uploadDate)
+  ) {
+    schema.uploadDate = uploadDate
+  }
+  return schema
 }

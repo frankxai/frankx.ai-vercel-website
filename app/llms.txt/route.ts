@@ -141,7 +141,14 @@ ${blogLinks}
 ${journalLinks}
 
 ## Agent access
+- [Developer notes](${SITE_URL}/developers): FrankX developer hub. MCP architecture and how the public tools fit together.
+- [Public API catalog](${SITE_URL}/api/v1): JSON list of the public read routes, with authentication notes and example requests.
+- [OpenAPI](${SITE_URL}/openapi.json): OpenAPI 3.1 document, application/vnd.oai.openapi+json;version=3.1.
+- [API catalog (RFC 9727)](${SITE_URL}/.well-known/api-catalog): Linkset (application/linkset+json) of those same reads.
+- Unknown /api paths return application/problem+json (RFC 9457). The code is api_route_not_found. The resolution points at the RFC 9727 catalog.
 - [MCP endpoint](${SITE_URL}/api/mcp): Read-only Model Context Protocol server (Streamable HTTP, no key). Tools: frankx_search_site, frankx_get_article, frankx_list_products. Anonymous POST is limited to 30 requests per minute per address; a 429 means wait and retry. Claude Code: \`claude mcp add --transport http frankx ${SITE_URL}/api/mcp\`
+- [MCP server card](${SITE_URL}/api/mcp/server-card): application/mcp-server-card+json. It names the transport. Tools stay on the live server.
+- [AI catalog (SEP-2127)](${SITE_URL}/.well-known/ai-catalog.json): Domain discovery entry pointing at that server card.
 - [Markdown export](${SITE_URL}/api/md?path=/blog/agentic-ai-roadmap-2025): Any article as plain markdown; replace the path with /blog/<slug>
 
 ## Optional
