@@ -1,4 +1,5 @@
 import { bookReviews } from '@/data/book-reviews'
+import { hasSacredDepth, SACRED_DEPTH_REVISED } from '@/data/sacred-depth-slugs'
 
 const SITE_URL = 'https://www.frankx.ai'
 
@@ -12,17 +13,19 @@ function escapeXml(str: string): string {
 }
 
 export async function GET() {
+  const itemDate = (slug: string, reviewDate?: string) => hasSacredDepth(slug) ? SACRED_DEPTH_REVISED : reviewDate
   const sorted = [...bookReviews].sort((a, b) => {
-    const dateA = a.reviewDate ? new Date(a.reviewDate).getTime() : 0
-    const dateB = b.reviewDate ? new Date(b.reviewDate).getTime() : 0
+    const dateA = itemDate(a.slug, a.reviewDate) ? new Date(itemDate(a.slug, a.reviewDate)!).getTime() : 0
+    const dateB = itemDate(b.slug, b.reviewDate) ? new Date(itemDate(b.slug, b.reviewDate)!).getTime() : 0
     return dateB - dateA
   })
 
   const items = sorted
     .map((book) => {
       const link = `${SITE_URL}/library/${book.slug}`
-      const pubDate = book.reviewDate
-        ? new Date(book.reviewDate).toUTCString()
+      const dated = itemDate(book.slug, book.reviewDate)
+      const pubDate = dated
+        ? new Date(dated).toUTCString()
         : new Date().toUTCString()
       const description = book.tldr || book.keyInsights?.[0] || `${book.title} by ${book.author}`
       const categoryLine = (book.categories || [])

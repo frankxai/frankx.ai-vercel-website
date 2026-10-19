@@ -20,6 +20,13 @@ export interface OutboundLink {
 
 export const outboundLinks: OutboundLink[] = [
   {
+    slug: 'higgsfield',
+    destination: 'https://higgsfield.ai',
+    label: 'Higgsfield',
+    category: 'tool',
+    description: 'Official fallback. Issued affiliate destination lives only in data/affiliate/programs.json.',
+  },
+  {
     slug: 'canva',
     destination: 'https://www.canva.com/',
     label: 'Canva',

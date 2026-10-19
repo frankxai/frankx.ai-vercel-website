@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowLeft, Download, Code, Sparkles, Terminal, Brain, Music, BookOpen, Briefcase, Heart, Github, CheckCircle, Copy } from 'lucide-react'
+import { ArrowLeft, Download, Code, Sparkles, Terminal, Brain, Music, BookOpen, Briefcase, Github, CheckCircle, Copy } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
@@ -10,18 +10,8 @@ import PremiumButton from '@/components/ui/PremiumButton'
 
 const skillCategories = [
   {
-    id: 'soulbook',
-    name: 'Soulbook Skills',
-    count: 25,
-    icon: Heart,
-    description: 'Life architecture, 7 pillars, transformation coaching',
-    color: 'amber',
-    examples: ['soulbook', 'life-symphony', 'lifesmith', 'soul-composer'],
-  },
-  {
     id: 'technical',
     name: 'Technical Skills',
-    count: 10,
     icon: Code,
     description: 'MCP servers, Claude SDK, LangGraph, Oracle ADK',
     color: 'blue',
@@ -30,16 +20,14 @@ const skillCategories = [
   {
     id: 'creative',
     name: 'Creative Skills',
-    count: 7,
     icon: Music,
     description: 'Music production, content creation, book writing',
     color: 'purple',
-    examples: ['suno-ai-mastery', 'frankx-brand', 'golden-age-book-writing'],
+    examples: ['suno-ai-mastery', 'brand-voice', 'excellence-book-writing'],
   },
   {
     id: 'personal',
     name: 'Personal Mastery',
-    count: 4,
     icon: Brain,
     description: 'Philosophy, discipline, fitness, nutrition',
     color: 'emerald',
@@ -48,7 +36,6 @@ const skillCategories = [
   {
     id: 'business',
     name: 'Business Skills',
-    count: 2,
     icon: Briefcase,
     description: 'Oracle Cloud, product management',
     color: 'cyan',
@@ -58,9 +45,9 @@ const skillCategories = [
 
 const featuredSkills = [
   {
-    name: 'frankx-brand',
-    description: 'Apply official FrankX brand standards to all content',
-    usage: '/skill frankx-brand',
+    name: 'brand-voice',
+    description: 'Apply and enforce a brand voice across content: tone by channel, style rules, terminology',
+    usage: '/skill brand-voice',
   },
   {
     name: 'suno-ai-mastery',
@@ -73,9 +60,9 @@ const featuredSkills = [
     usage: '/skill mcp-architecture',
   },
   {
-    name: 'golden-age-book-writing',
-    description: 'Master-level book writing with 9-author council methodology',
-    usage: '/skill golden-age-book-writing',
+    name: 'excellence-book-writing',
+    description: 'Structure, clarity, narrative flow and editorial polish for long-form nonfiction',
+    usage: '/skill excellence-book-writing',
   },
 ]
 
@@ -83,7 +70,7 @@ export default function SkillsPage() {
   const [copiedSkill, setCopiedSkill] = useState<string | null>(null)
 
   const handleDownload = () => {
-    window.open('https://github.com/FrankXio/claude-skills/archive/refs/heads/main.zip', '_blank')
+    window.open('https://github.com/frankxai/claude-skills-library/archive/refs/heads/main.zip', '_blank', 'noopener,noreferrer')
   }
 
   const copyToClipboard = (text: string, skillName: string) => {
@@ -91,8 +78,6 @@ export default function SkillsPage() {
     setCopiedSkill(skillName)
     setTimeout(() => setCopiedSkill(null), 2000)
   }
-
-  const totalSkills = skillCategories.reduce((acc, cat) => acc + cat.count, 0)
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
@@ -126,8 +111,8 @@ export default function SkillsPage() {
             </h1>
 
             <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-400 leading-relaxed">
-              {totalSkills}+ specialized Claude Code skills for music production, content creation,
-              life architecture, and technical development. Open source and ready to use.
+              Specialized Claude Code skills for music production, content creation,
+              personal mastery, and technical development. Open source and ready to use.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -136,7 +121,7 @@ export default function SkillsPage() {
                 Download All Skills
               </PremiumButton>
               <a
-                href="https://github.com/FrankXio/claude-skills"
+                href="https://github.com/frankxai/claude-skills-library"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 text-lg rounded-xl min-h-[48px] bg-slate-900/20 backdrop-blur-md border border-slate-700/30 text-slate-200 hover:bg-slate-800/30 transition-all font-medium"
@@ -149,8 +134,8 @@ export default function SkillsPage() {
             {/* Quick Stats */}
             <div className="grid grid-cols-3 gap-4 max-w-xl mx-auto">
               {[
-                { label: 'Total Skills', value: `${totalSkills}+` },
-                { label: 'Categories', value: '6' },
+                { label: 'Format', value: 'SKILL.md' },
+                { label: 'Runs in', value: 'Claude Code' },
                 { label: 'Open Source', value: 'Yes' },
               ].map((stat) => (
                 <GlassmorphicCard key={stat.label} variant="default" border="subtle" className="p-4">
@@ -226,7 +211,6 @@ export default function SkillsPage() {
 
                     <div className="flex items-center justify-between mb-2">
                       <h3 className="text-lg font-semibold text-slate-200">{category.name}</h3>
-                      <span className="text-sm font-medium text-slate-500">{category.count} skills</span>
                     </div>
 
                     <p className="text-slate-400 text-sm mb-4">{category.description}</p>
@@ -317,19 +301,19 @@ export default function SkillsPage() {
                 step: 1,
                 title: 'Download or Clone',
                 description: 'Get the skills library from GitHub',
-                code: 'git clone https://github.com/FrankXio/claude-skills.git',
+                code: 'git clone https://github.com/frankxai/claude-skills-library.git',
               },
               {
                 step: 2,
                 title: 'Copy to Claude Code Directory',
                 description: 'Place skills in your Claude Code skills folder',
-                code: 'cp -r claude-skills/* ~/.claude/skills/',
+                code: 'cp -r claude-skills-library/free-skills/* ~/.claude/skills/',
               },
               {
                 step: 3,
                 title: 'Start Using Skills',
                 description: 'Activate any skill with the /skill command',
-                code: '/skill frankx-brand',
+                code: '/skill brand-voice',
               },
             ].map((step, index) => (
               <motion.div

@@ -64,7 +64,7 @@ export const CREATOR_STACKS: CreatorStack[] = [
     accent: '#ec4899',
     headline: 'Generate and edit video with natural language',
     picks: [
-      { name: 'Gemini Omni', modelId: 'gemini-omni', why: 'Native video gen + natural-language editing, agent-pipeline ready', role: 'primary' },
+      { name: 'Gemini Omni Flash', modelId: 'gemini-omni-flash', why: 'Native video gen + natural-language editing, agent-pipeline ready', role: 'primary' },
       { name: 'Sora 2 / Veo 3', href: 'https://openai.com/sora', why: 'High cinematic fidelity for hero pieces', role: 'alt' },
     ],
     workflow: 'Script with an LLM → generate with Omni → edit by instruction (background swap, camera angle) → produce. Increasingly a single agentic sequence.',

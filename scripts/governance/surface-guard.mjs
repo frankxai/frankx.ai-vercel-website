@@ -40,8 +40,18 @@ export function matches(file, pattern) {
 /** Every "Surface: <id>" starts a brief; its Key: value lines follow until the next one. */
 export function parseBriefs(body) {
   const briefs = []
-  // Only visible text counts: the PR template carries an example brief inside an HTML comment.
-  for (const line of String(body ?? '').replace(/<!--[\s\S]*?-->/g, '').split(/\r?\n/)) {
+  // Only visible text counts: the PR template carries an example brief inside an HTML comment, and an unclosed
+  // "<!--" hides the rest of the body on GitHub. Inside code spans and fences the marker renders as text instead.
+  // A fence only opens at the start of a line; backticks mid-line ("prose ``` <!--") are not a fence.
+  const neutralise = (code) => code.replaceAll('<!--', '<! --')
+  const visible = String(body ?? '')
+    // A fence closes on a run of the same character at least as long as the opener; a code span needs a closing
+    // backtick run of exactly the opener's length, as GitHub renders them. A backtick fence's info string may not
+    // contain a backtick (CommonMark 0.31.2 §4.5): "``` a`b" is inline code, so a "<!--" after it still hides text.
+    .replace(/^ {0,3}((`|~)\2{2,})(?:(?<=~)|(?![^\n]*`))[^\n]*\n[\s\S]*?(?:^ {0,3}\1\2*[ \t]*$|$(?![\s\S]))/gm, neutralise)
+    .replace(/(?<!`)(`+)(?!`)[^\n]*?(?<!`)\1(?!`)/g, neutralise)
+    .replace(/<!--[\s\S]*?(?:-->|$)/g, '')
+  for (const line of visible.split(/\r?\n/)) {
     const match = /^\s*[-*]?\s*\**(Surface|Kind|Intent|Keeps|Changes|Evidence)\**\s*:\s*(.*)$/i.exec(line)
     if (!match) continue
     const key = FIELDS.find((field) => field.toLowerCase() === match[1].toLowerCase())
@@ -114,14 +124,16 @@ const git = (...args) => execFileSync('git', args, { encoding: 'utf8', stdio: ['
 async function labelActor() {
   if (!process.env.GITHUB_TOKEN) return {}
   const events = []
-  for (let page = 1; page <= 10; page++) {
+  // An incomplete history could name an earlier approver for a label someone else re-applied, so it fails closed.
+  for (let page = 1; ; page++) {
     const response = await fetch(`https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/issues/${process.env.PR_NUMBER}/events?per_page=100&page=${page}`, {
       headers: { authorization: `bearer ${process.env.GITHUB_TOKEN}`, accept: 'application/vnd.github+json' },
     })
     const batch = await response.json()
-    if (!Array.isArray(batch)) break
+    if (!Array.isArray(batch)) return {}
     events.push(...batch)
     if (batch.length < 100) break
+    if (page === 30) return {}
   }
   const last = events.filter((e) => e.event === 'labeled' && e.label?.name === APPROVAL_LABEL).at(-1)
   return { approvedBy: last?.actor?.login, approvedAt: last?.created_at }

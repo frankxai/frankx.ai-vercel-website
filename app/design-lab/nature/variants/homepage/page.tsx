@@ -219,7 +219,6 @@ function RotatingNatureWord() {
 // ── Seed Pod Stats ─────────────────────────────────────────────────────
 
 const seedStats = [
-  { value: '12K+', label: 'AI Songs', icon: Music2, color: glow.creation },
   { value: '70+', label: 'Articles', icon: BookOpen, color: glow.data },
   { value: '75+', label: 'Skills', icon: Terminal, color: glow.synapse },
   { value: '38', label: 'Agents', icon: Code2, color: glow.growth },
@@ -229,7 +228,7 @@ function SeedPodStats() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
       {seedStats.map((stat, i) => (
         <motion.div
           key={stat.label}
@@ -324,7 +323,7 @@ function NatureHero() {
             animate={{ opacity: 1 }}
             transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.3 }}
           >
-            AI Architect & Creator. 12,000+ songs with Suno.
+            AI Architect & Creator. Songs made with Suno.
             Building intelligent systems at the intersection of{' '}
             <span className="text-emerald-400/80">technology</span> and{' '}
             <span className="text-cyan-400/80">creativity</span>.
@@ -392,7 +391,7 @@ const contentPillars = [
   {
     icon: Music2,
     title: 'Music Lab',
-    subtitle: '12,000+ AI songs',
+    subtitle: 'Songs made with Suno',
     description: 'AI music production with Suno. Genre-fluid exploration from orchestral to electronic to experimental.',
     href: '/music-lab',
     color: glow.creation,

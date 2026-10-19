@@ -10,7 +10,7 @@ import {
   Search,
   ShieldCheck,
 } from 'lucide-react'
-import { researchDomains } from '@/lib/research/domains'
+import { publicTopicMaps } from '@/lib/research/topic-maps.public'
 import {
   domainSources,
   sourceTypeLabels,
@@ -31,7 +31,7 @@ interface SourceWithDomains extends ResearchSource {
 // are deduplicated so domain filters remain accurate.
 const sourceMap = new Map<string, SourceWithDomains>()
 Object.entries(domainSources).forEach(([slug, sources]) => {
-  const domain = researchDomains.find((item) => item.slug === slug)
+  const domain = publicTopicMaps.find((item) => item.slug === slug)
   const domainRef = { slug, title: domain?.title || slug }
 
   sources.forEach((source) => {
@@ -51,7 +51,7 @@ Object.entries(domainSources).forEach(([slug, sources]) => {
 })
 
 const uniqueSources = Array.from(sourceMap.values())
-const domainsWithSources = researchDomains.filter(
+const domainsWithSources = publicTopicMaps.filter(
   (domain) => (domainSources[domain.slug]?.length ?? 0) > 0
 )
 
@@ -172,7 +172,7 @@ export default function SourceBrowserPage() {
                   Source Browser
                 </h1>
                 <p className="text-white/65 mt-1">
-                  Source references currently registered across the research hub
+                  Reviewed source records will appear here as briefs pass publication review.
                 </p>
               </div>
             </div>
@@ -335,7 +335,9 @@ export default function SourceBrowserPage() {
             <div className="text-center py-16">
               <Search className="w-8 h-8 text-white/55 mx-auto mb-4" />
               <p className="text-white/65 text-sm">
-                No sources match your filters.
+                {uniqueSources.length === 0
+                  ? 'Source review is in progress. No citations are published from the generated index.'
+                  : 'No sources match your filters.'}
               </p>
               <button
                 type="button"

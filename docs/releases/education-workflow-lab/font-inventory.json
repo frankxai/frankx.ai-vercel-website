@@ -1,0 +1,74 @@
+[
+  {
+    "file": "public/education/fonts/inter.woff2",
+    "sha256": "c940764593d0fe5d596be327ca7558855e018039fb78509aa21921fd3644c3e4",
+    "bytes": 48432,
+    "names": {
+      "0": "Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter)",
+      "1": "Inter",
+      "2": "Regular",
+      "5": "Version 4.001;git-66647c0bb",
+      "6": "Inter-Regular",
+      "13": "",
+      "14": "https://openfontlicense.org"
+    },
+    "axes": [
+      {
+        "tag": "wght",
+        "min": 100.0,
+        "max": 900.0
+      }
+    ],
+    "glyphs": 230,
+    "web_self_host": "allowed under included SIL Open Font License 1.1",
+    "redistribution": "allowed with included license and copyright; no font renaming/modification performed",
+    "reviewed_on": "2026-10-02",
+    "source": "Existing next/font/google build; canonical sources google/fonts/ofl/inter"
+  },
+  {
+    "file": "public/education/fonts/jetbrains-mono.woff2",
+    "sha256": "1e06740a02a443fb7f3eeda8fcaa685a0f6c620e3f01e6666e847295469ce3ad",
+    "bytes": 40480,
+    "names": {
+      "0": "Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)",
+      "1": "JetBrains Mono",
+      "2": "Regular",
+      "5": "Version 2.211",
+      "6": "JetBrainsMono-Regular",
+      "13": "",
+      "14": "https://scripts.sil.org/OFL"
+    },
+    "axes": [
+      {
+        "tag": "wght",
+        "min": 100.0,
+        "max": 800.0
+      }
+    ],
+    "glyphs": 229,
+    "web_self_host": "allowed under included SIL Open Font License 1.1",
+    "redistribution": "allowed with included license and copyright; no font renaming/modification performed",
+    "reviewed_on": "2026-10-02",
+    "source": "Existing next/font/google build; canonical sources google/fonts/ofl/jetbrainsmono"
+  },
+  {
+    "file": "public/education/fonts/poppins-600.woff2",
+    "sha256": "872e862918591a9e824dc03ed92f05729435ffbb8ebbb10eff7eda26592b1798",
+    "bytes": 7992,
+    "names": {
+      "0": "Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins)",
+      "1": "Poppins SemiBold",
+      "2": "Regular",
+      "5": "4.004",
+      "6": "Poppins-SemiBold",
+      "13": "",
+      "14": "https://scripts.sil.org/OFL"
+    },
+    "axes": [],
+    "glyphs": 217,
+    "web_self_host": "allowed under included SIL Open Font License 1.1",
+    "redistribution": "allowed with included license and copyright; no font renaming/modification performed",
+    "reviewed_on": "2026-10-02",
+    "source": "Existing next/font/google build; canonical sources google/fonts/ofl/poppins"
+  }
+]
