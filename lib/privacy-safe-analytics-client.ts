@@ -8,8 +8,8 @@ import {
 
 import {
   allowsAnalyticsMeasurement,
+  sanitizeAnalyticsEventUrl,
   sanitizeAnalyticsProperties,
-  sanitizeAnalyticsUrl,
 } from './analytics-policy.ts'
 
 let analyticsInitialized = false
@@ -31,7 +31,7 @@ export function privacySafeBeforeSend(event: BeforeSendEvent): BeforeSendEvent |
 
   return {
     ...event,
-    url: sanitizeAnalyticsUrl(event.url),
+    url: sanitizeAnalyticsEventUrl(event.url),
   }
 }
 
