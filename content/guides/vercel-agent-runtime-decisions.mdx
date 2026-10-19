@@ -1,0 +1,109 @@
+---
+title: "Vercel agent runtimes: Python, Daemons, Drives"
+description: "Choose Python, Daemons, Drives, Services, and Connect events on Vercel. Four audiences each get one adopt, wait, or skip call tied to a primary page."
+date: "2026-10-16"
+updated: "2026-10-17"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["vercel", "python", "daemons", "agent-runtime"]
+keywords: ["Vercel Python", "Vercel Daemons", "Vercel Drives", "MCP Events", "agent runtime"]
+video:
+  title: "Keynote - Ship 26 London"
+  url: "https://www.youtube.com/watch?v=T1vs9jE-EEI"
+decisions:
+  - audience: "Founders"
+    call: "adopt"
+    because: "Use the AI SDK as the one model interface and AI Gateway as the single endpoint with failover. That is the part of the Agent Stack a small team can ship without taking on a new runtime."
+    source: "https://vercel.com/blog/agent-stack"
+  - audience: "AI architects"
+    call: "wait"
+    because: "Vercel Agent chat, investigations, and approved actions are in public beta for Pro and Enterprise, with a gradual rollout and a scoped approval step before elevated changes. Wait until that permission model is in your review."
+    source: "https://vercel.com/changelog/an-expanded-vercel-agent-chat-investigations-and-approved-actions-now-in-public-beta"
+  - audience: "Creators"
+    call: "skip"
+    because: "Daemons are a public beta for queue consumers, workflow workers, and self-hosted CI runners packaged as a container. Skip them until a job has to keep running after the HTTP response."
+    source: "https://vercel.com/changelog/vercel-daemons-is-now-in-public-beta"
+  - audience: "SaaS and agent-platform builders"
+    call: "adopt"
+    because: "Python is a first-class runtime as of 15 October 2026, including FastAPI, Flask, and Django. Adopt it for the backend you already have. Keep Services in beta and MCP Events in public beta until the workload needs them."
+    source: "https://vercel.com/changelog/python-on-vercel-is-now-generally-available"
+faqs:
+  - question: "Is Python on Vercel generally available?"
+    answer: "Yes. The 15 October 2026 changelog says Python is a first-class language and runtime for APIs, full-stack applications, and AI agents, with FastAPI, Flask, and Django recognized automatically. The primary page is https://vercel.com/changelog/python-on-vercel-is-now-generally-available. The AI SDK for Python, the Workflow SDK for Python, and Queues are marked beta on that same page."
+  - question: "Are Vercel Daemons generally available?"
+    answer: "No. Vercel Daemons are in public beta. They run long-running processes that pull work from queues, databases, or third-party systems without an HTTP server. The primary page is https://vercel.com/changelog/vercel-daemons-is-now-in-public-beta."
+  - question: "What is a Vercel Drive?"
+    answer: "A Drive is persistent storage you mount as a directory in a Vercel Sandbox. Files remain after the sandbox stops, and a Drive can be forked for parallel workers. Drives are generally available on Hobby, Pro, and Enterprise. The primary page is https://vercel.com/changelog/vercel-drives-is-now-generally-available."
+  - question: "What should I do with MCP Events and Enterprise-Managed Authorization?"
+    answer: "Both are public beta as of 15 October 2026. MCP Events subscribe to webhook events from a compatible MCP server. Enterprise-Managed Authorization lets an app act for a signed-in user without a separate consent prompt per service. The pages are https://vercel.com/changelog/mcp-events-support-in-vercel-connect-is-now-in-public-beta and https://vercel.com/changelog/vercel-connect-adds-enterprise-managed-authorization."
+---
+
+_Checked against vercel.com on 16 Oct 2026._
+
+An agent runtime on Vercel is the set of processes that have to outlive one HTTP request: a Python backend, a Daemon that pulls work, a Sandbox with a Drive, and Connect when the agent needs another system. It is for founders, AI architects, creators, and people who ship SaaS or an agent platform and have to pick a runtime. The constraint is that general availability and public beta were published on the same 15 October 2026 changelog, so "Python is GA" does not make Daemons, MCP Events, or Enterprise-Managed Authorization generally available. Start from [Python on Vercel is now generally available](https://vercel.com/changelog/python-on-vercel-is-now-generally-available).
+
+The track door is [Vercel for builders](/guides/vercel). The interface lesson is the [Vercel AI SDK guide](/guides/vercel-ai-sdk). The narrative of the London and New York keynotes is the [Ship 2026 recap guide](/guides/vercel-ship-2026-recap). The linked index of each skill and its status is the [skill map](/guides/vercel-ship-2026-recap#skill-map). The four calls are in the [audience decision matrix](#decision-matrix) on this page. The essay that ties them together is [Vercel Ship 2026 decisions for people who ship agents](/blog/vercel-ship-2026-builder-decisions).
+
+## Watch the recording
+
+[Keynote - Ship 26 London](https://www.youtube.com/watch?v=T1vs9jE-EEI) is the official Vercel recording of the London morning keynote, where the Agent Stack was walked through in the room. The written stack is still [the Agent Stack post](https://vercel.com/blog/agent-stack). The October runtime notes below are newer than that keynote.
+
+<YouTubeEmbed id="T1vs9jE-EEI" title="Keynote - Ship 26 London" uploadDate="2026-06-18T06:14:58-07:00" />
+
+## Two shapes of compute
+
+Keep the shapes apart or the architecture memo will lie.
+
+A request path accepts HTTP, does the work, and returns. [Dockerfile support](https://vercel.com/blog/dockerfile-on-vercel) is this shape. `Dockerfile.vercel` builds an image, Fluid compute runs it, and the process listens on `$PORT`. The page says the container is stateless.
+
+A pull path waits on a queue, a database, or someone else's control plane. [Vercel Daemons](https://vercel.com/changelog/vercel-daemons-is-now-in-public-beta) are this shape, and they are in public beta. You package the worker with a Dockerfile or Containerfile, then declare a `daemons` entry with a root, an entrypoint, a command, and a replica count per region. The changelog's example is one Celery worker in `iad1`. Daemons run on Fluid compute beside the app. Vercel restarts instances that exit. There is no inbound HTTP server in that design.
+
+[Services](https://vercel.com/docs/services) are the request-path way to put more than one build in a single project. The docs mark Services as beta. Public routes are top-level rewrites. A binding is how one service calls another without a public URL. The same docs point a worker that pulls its own work at Daemons. Services stay on the request path. A project may declare both. Declaring both does not promote Daemons out of beta.
+
+## Python is generally available. Several Python SDKs are not.
+
+[Python on Vercel](https://vercel.com/changelog/python-on-vercel-is-now-generally-available) says Python is now a first-class language and runtime. FastAPI, Flask, and Django are recognized automatically. The runtime is CPython on Linux, with `uv` and `pyproject.toml`. The post shows a frontend and a FastAPI backend deployed together through [Services](https://vercel.com/docs/services), which remain beta in the docs even though the Python runtime post is a GA announcement.
+
+Read the SDK list on that Python page as a status table. Each row has its own mark:
+
+- Sandbox, Connect, and Blob have Python SDK entries on the page.
+- The AI SDK for Python is marked beta.
+- The Workflow SDK for Python is marked beta.
+- Queues are marked beta.
+
+Adopt the runtime when the backend is already Python. Keep the beta SDKs off the critical path until you have read the current page and accepted the beta.
+
+The [Ship page](https://vercel.com/ship) links the same Python work as a current announcement. Use the changelog above for the sentences you are willing to repeat.
+
+## Drives are persistent. The Sandbox is not.
+
+[Vercel Drives](https://vercel.com/changelog/vercel-drives-is-now-generally-available) are generally available for Vercel Sandbox on Hobby, Pro, and Enterprise. A Drive mounts as a directory. Files stay after the sandbox stops, so a later run or another sandbox can mount the same Drive. The page names agent workspaces, file-based memory, datasets, models, dependencies, and build artifacts as the uses. A fork inherits the source data, region, and maximum size, then stores its own changes, so parallel workers do not write on each other.
+
+Drives do not make the sandbox a production database. The sandbox is still an isolated microVM, as described on the [Agent Stack](https://vercel.com/blog/agent-stack) page. The Drive is the piece that outlives that VM. An earlier private-beta note said drives were not for production data. The GA page does not repeat that ban. It also does not say a Drive replaces a database. Put durable product records in a database. Put the workspace you would hate to rebuild in a Drive.
+
+## Connect events and workforce authorization
+
+Connect itself is generally available. The rule on that page is a short-lived, scoped token requested at runtime. That is [Vercel Connect is now generally available](https://vercel.com/changelog/vercel-connect-ga).
+
+Two 15 October 2026 additions stay in public beta:
+
+- [MCP Events](https://vercel.com/changelog/mcp-events-support-in-vercel-connect-is-now-in-public-beta) subscribe to events from a compatible MCP server. The documented functions are `experimental_subscribe` and `experimental_verifyMcpEvent`. An experimental prefix is a status. Treat the API as beta even if the product headline says public beta.
+- [Enterprise-Managed Authorization](https://vercel.com/changelog/vercel-connect-adds-enterprise-managed-authorization) is public beta. Administrators grant or revoke access in the identity provider. Users sign in with a corporate account. The app requests scopes, and Connect exchanges and renews tokens. Access stays inside the approved scopes and the user's existing permissions. The page names Vercel Passport and Slack's MCP server as the worked example.
+
+Chat SDK remains the channel layer from the [Agent Stack](https://vercel.com/blog/agent-stack). It is how an agent shows up in Slack or GitHub. The runtime underneath is still the request path or a Daemon.
+
+## Vercel Agent is a reviewer with a keyboard, still in public beta
+
+[The expanded Agent changelog](https://vercel.com/changelog/an-expanded-vercel-agent-chat-investigations-and-approved-actions-now-in-public-beta) is the page for dashboard chat, production investigations, and approved actions. It is public beta, Pro and Enterprise, gradual rollout, read-only until you approve a scoped plan. Sandbox runs the generated code before production. That is the consideration for an AI architect: the value is the production context, and the cost is an identity, an approval, and a token bill you have not put through review.
+
+## What to check before you change a production runtime
+
+Use this list against the matrix. If a box fails, the call on that row stands.
+
+1. Name the shape. Request and response, or pull from a queue. [Containers](https://vercel.com/blog/dockerfile-on-vercel) and [Daemons](https://vercel.com/changelog/vercel-daemons-is-now-in-public-beta) answer different sentences.
+2. Name the status on today's primary page. Python runtime: generally available. Services: beta. Daemons, MCP Events, Enterprise-Managed Authorization, and Vercel Agent's approved actions: public beta. Drives: generally available.
+3. Name the secret. Connect should mint a short-lived token. A long-lived provider token in the environment is the pattern the [Connect GA note](https://vercel.com/changelog/vercel-connect-ga) replaces.
+4. Name what is allowed to survive a crash. A Drive can hold a workspace. A product ledger still wants a database.
+5. Name the human approval. Vercel Agent does not get a standing write on production. The [public beta note](https://vercel.com/changelog/an-expanded-vercel-agent-chat-investigations-and-approved-actions-now-in-public-beta) says it asks first.
+
+The [audience decision matrix](#decision-matrix) is the same five checks collapsed to one call per audience.

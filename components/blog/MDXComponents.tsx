@@ -18,6 +18,7 @@ import { MascotInsight } from '@/components/blog/MascotInsight'
 import { LiquidGlassImage } from '@/components/blog/LiquidGlassImage'
 import PlatformMarkGrid from '@/components/blog/PlatformMarkGrid'
 import HiggsfieldWorkbench from '@/components/guides/HiggsfieldWorkbench'
+import { GuideSkill, GuideSkillMap } from '@/components/guides/GuideSkillMap'
 import {
   VoiceArchitectureChoice,
   VoiceCostBaseline,
@@ -44,14 +45,16 @@ import {
 // Supporting editorial embeds should opt out with structuredData={false}.
 function YouTubeEmbed({
   structuredData = true,
+  uploadDate,
   ...props
 }: {
   id: string
   title?: string
   structuredData?: boolean
+  uploadDate?: string
   [key: string]: unknown
 }) {
-  const schema = buildInlineVideoSchema(props.id, props.title)
+  const schema = buildInlineVideoSchema(props.id, props.title, uploadDate)
   return (
     <>
       <BaseYouTubeEmbed {...props} />
@@ -342,6 +345,8 @@ export const mdxComponents: MDXComponents = {
   VoiceProviderRoles,
   VoiceReferenceArchitecture,
   HiggsfieldWorkbench,
+  GuideSkillMap,
+  GuideSkill,
   Link,
   // Embed components for immersive media in blog posts
   YouTubeEmbed,
