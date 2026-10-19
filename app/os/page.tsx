@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'FrankX OS — Personal AI Operating System',
     description:
-      'Seven interlocking modules. One CRM. One amplification loop. The operating system behind frankx.ai.',
+      'Ten interlocking modules. One CRM. One amplification loop. The operating system behind frankx.ai.',
     url: 'https://frankx.ai/os',
     siteName: 'FrankX',
     type: 'website',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'FrankX OS — Personal AI Operating System',
-    description: 'Seven interlocking modules. One CRM. One amplification loop.',
+    description: 'Ten interlocking modules. One CRM. One amplification loop.',
     images: ['/hero-homepage.png'],
   },
   alternates: { canonical: 'https://frankx.ai/os' },
@@ -135,7 +135,7 @@ function OSSchema() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'FrankX OS',
-    description: 'Personal AI Operating System. Five interlocking modules + unified CRM.',
+    description: 'Personal AI Operating System. Ten interlocking modules + unified CRM.',
     url: 'https://frankx.ai/os',
     author: {
       '@type': 'Person',
@@ -294,7 +294,7 @@ export default function OSPage() {
           </h1>
 
           <p className="text-lg sm:text-xl text-zinc-400 max-w-3xl leading-relaxed mb-6">
-            Seven interlocking modules. One CRM. One amplification loop.
+            Ten interlocking modules. One CRM. One amplification loop.
             <br className="hidden sm:block" />
             The operating system behind every workshop, video, and agent on this site.
           </p>
@@ -362,7 +362,7 @@ export default function OSPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="text-2xl font-bold text-zinc-50 mb-1">The seven modules</h2>
+              <h2 className="text-2xl font-bold text-zinc-50 mb-1">The ten modules</h2>
               <p className="text-sm text-zinc-500">
                 Click any module for the full overview, or jump straight to the surface.
               </p>
