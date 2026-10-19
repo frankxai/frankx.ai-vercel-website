@@ -36,9 +36,28 @@ const add = (t) => selected.set(t.id, t)
 byPlays.slice(0, 120).forEach(add)
 byLikes.slice(0, 60).forEach(add)
 byDate.slice(0, 40).forEach(add)
+// Everything published since the previous sync is "latest music": list all of
+// it, not only the newest 40, so no new song is skipped between syncs.
+const lastSync = oldInventory._lastUpdated ? new Date(oldInventory._lastUpdated) : null
+if (lastSync && !Number.isNaN(lastSync.getTime())) {
+  catalog.tracks.filter((t) => t.createdAt && new Date(t.createdAt) >= lastSync).forEach(add)
+}
 catalog.tracks.filter((t) => t.pinned).forEach(add)
 catalog.tracks.filter((t) => playlistNameByTrackId.has(t.id)).forEach(add)
 catalog.tracks.filter((t) => albumSunoIds.has(t.id)).forEach(add)
+// Sticky membership: a track that was already listed on the site stays listed
+// while it is still public on Suno, so the latest-window rotation never removes
+// previously published songs or breaks links to them.
+const previouslyIndexed = new Set(oldInventory.tracks.map((t) => t.sunoId))
+catalog.tracks.filter((t) => previouslyIndexed.has(t.id)).forEach(add)
+// Tracks with a registered owned export must stay in the inventory so native
+// playback keeps its exact catalog match (see docs/media/music-runtime.md).
+const registryPath = 'data/music-asset-registry.json'
+if (fs.existsSync(registryPath)) {
+  const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'))
+  const registered = new Set((registry.tracks || []).map((r) => r.sunoId).filter(Boolean))
+  catalog.tracks.filter((t) => registered.has(t.id)).forEach(add)
+}
 
 const slugify = (s) =>
   s
@@ -50,10 +69,14 @@ const slugify = (s) =>
     .replace(/-+/g, '-')
     .slice(0, 60) || 'track'
 
-const usedIds = new Set()
+// Reserve every preserved id up front so a higher-ranked new track with the
+// same title can never take an existing track's id.
+const usedIds = new Set(
+  [...selected.values()].map((t) => oldIdBySunoId.get(t.id)).filter(Boolean),
+)
 const trackId = (t) => {
   const preserved = oldIdBySunoId.get(t.id)
-  if (preserved && !usedIds.has(preserved)) return preserved
+  if (preserved) return preserved
   let slug = slugify(t.title)
   if (usedIds.has(slug)) slug = `${slug}-${t.id.slice(0, 8)}`
   return slug
