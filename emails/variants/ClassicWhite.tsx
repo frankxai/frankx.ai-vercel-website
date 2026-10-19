@@ -115,7 +115,7 @@ export const ClassicWhite = ({
               color: '#1a1a1a',
               marginBottom: '24px',
             }}>
-              I'm an AI Architect building enterprise systems for Oracle. Before that, I shipped AI products, and built multi-agent orchestration systems.
+              I'm an AI Architect. I've shipped AI products and built multi-agent orchestration systems.
             </Text>
 
             <Text style={{

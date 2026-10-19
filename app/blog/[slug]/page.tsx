@@ -18,6 +18,7 @@ import {
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 import JsonLd from '@/components/seo/JsonLd'
+import BodyFaqSchema from '@/components/blog/BodyFaqSchema'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import HeroImage from '@/components/ui/HeroImage'
 import RelatedQualities from '@/components/qualities/RelatedQualities'
@@ -147,6 +148,9 @@ export default async function BlogPostPage({
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
       <JsonLd type="Article" data={articleSchema} />
+      {post.slug === 'vercel-ship-2026-builder-decisions' && post.content ? (
+        <BodyFaqSchema source={post.content} id="blog-faq-vercel-ship-2026" />
+      ) : null}
 
       {/* Aurora Background Effect */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
