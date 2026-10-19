@@ -158,7 +158,7 @@
         "agentic-infra"
       ],
       "pricing": {
-        "scope": "Standard USD rates for prompts up to 272K input tokens. A request with more than 272K input tokens pays the over_272k rates for the full request. Cache writes, tools and other processing tiers are charged separately.",
+        "scope": "Standard USD rates for prompts up to 272K input tokens. A request with more than 272K input tokens pays $4 / $15 per million input/output tokens ($0.20 cached input) for the full request. Cache writes, tools and other processing tiers are charged separately.",
         "verified_at": "2026-10-09",
         "input_per_1m": 2,
         "output_per_1m": 10,
@@ -254,7 +254,7 @@
         "output_per_1m_over_200k": 12,
         "cached_input_per_1m_over_200k": 1,
         "verified_at": "2026-10-09",
-        "scope": "xAI API rates in USD for prompts under 200K tokens; at 200K prompt tokens and above the over_200k rates apply. Tool calls, the US regional endpoint premium and the Cursor/Grok Build fast variant are excluded."
+        "scope": "xAI API rates in USD for prompts under 200K tokens; a request with 200K prompt tokens or more pays $4 / $12 per million input/output tokens ($1 cached input). Tool calls, the US regional endpoint premium and the Cursor/Grok Build fast variant are excluded."
       },
       "benchmarks": {},
       "key_capabilities": [

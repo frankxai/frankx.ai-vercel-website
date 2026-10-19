@@ -152,6 +152,7 @@ jobs:
       # every pull request until they were added below.
       - name: Contract tests
         run: |
+          pnpm run test:noopener
           pnpm run test:glow-button
           pnpm run test:media-guard
           pnpm run test:homepage-release
@@ -166,10 +167,12 @@ jobs:
           pnpm run test:community-platform-guide
           pnpm run test:learning-routes
           pnpm run test:blog-discoverability
+          pnpm run test:ship-guides
           pnpm run test:social-identity
           pnpm run test:seo-title
           pnpm run test:music-release-registry
           pnpm run test:affiliate-links
+          pnpm run test:higgsfield-reader
 
       - name: Content and claims integrity
         run: |

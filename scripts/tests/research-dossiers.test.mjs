@@ -10,6 +10,7 @@ test('production and ordinary production builds cannot expose held dossiers', ()
   assert.equal(canReviewDossiers({ VERCEL_ENV: 'production', NODE_ENV: 'development' }), false)
   assert.equal(canReviewDossiers({ NODE_ENV: 'production' }), false)
   assert.equal(canReviewDossiers({ VERCEL_ENV: 'preview', NODE_ENV: 'production' }), true)
+  assert.equal(canReviewDossiers({ VERCEL_ENV: 'development', NODE_ENV: 'development' }), true)
   assert.equal(canReviewDossiers({ NODE_ENV: 'development' }), true)
 })
 test('current packet binds material facts and media to inspectable records', () => {
