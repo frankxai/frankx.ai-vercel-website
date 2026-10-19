@@ -1,13 +1,26 @@
-import { NextRequest, NextResponse } from 'next/server'
+import routeIndex from '@/data/route-index.json'
 import { agentNotFoundResponse } from '@/lib/agent-not-found'
 import { getBlogPost } from '@/lib/blog'
 import { blogPostToMarkdown } from '@/lib/blog-markdown'
+import type { RouteIndex } from '@/lib/fuzzy-route-match'
 
-export async function GET(request: NextRequest) {
-  const contentPath = request.nextUrl.searchParams.get('path')
+const typedIndex = routeIndex as RouteIndex
+
+function routeExists(pathname: string): boolean {
+  const clean = pathname.split(/[?#]/)[0].replace(/\/+$/, '') || '/'
+  return (
+    clean === '/' ||
+    typedIndex.routes.some((r) => r.href === clean) ||
+    Boolean(typedIndex.aliases[clean])
+  )
+}
+
+async function handle(request: Request) {
+  const url = new URL(request.url)
+  const contentPath = url.searchParams.get('path')
 
   if (!contentPath) {
-    return new NextResponse('Missing path parameter', { status: 400 })
+    return new Response('Missing path parameter', { status: 400 })
   }
 
   const blogMatch = contentPath.match(/^\/blog\/(.+)$/)
@@ -17,10 +30,11 @@ export async function GET(request: NextRequest) {
     const post = getBlogPost(slug)
 
     if (!post) {
-      return agentNotFoundResponse('GET', contentPath)
+      return agentNotFoundResponse(request.method, contentPath)
     }
 
-    return new NextResponse(blogPostToMarkdown(post), {
+    const body = request.method === 'HEAD' ? null : blogPostToMarkdown(post)
+    return new Response(body, {
       status: 200,
       headers: {
         'Content-Type': 'text/markdown; charset=utf-8',
@@ -31,5 +45,19 @@ export async function GET(request: NextRequest) {
     })
   }
 
-  return agentNotFoundResponse('GET', contentPath)
+  if (routeExists(contentPath)) {
+    const body =
+      request.method === 'HEAD' ? null : 'Content type not supported for markdown export'
+    return new Response(body, {
+      status: 404,
+      headers: {
+        'Content-Type': 'text/plain; charset=utf-8',
+      },
+    })
+  }
+
+  return agentNotFoundResponse(request.method, contentPath)
 }
+
+export const GET = handle
+export const HEAD = handle

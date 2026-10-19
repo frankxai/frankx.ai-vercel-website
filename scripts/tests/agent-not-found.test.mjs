@@ -1,14 +1,17 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
+import { register } from 'node:module'
 import { dirname, join } from 'node:path'
 import test from 'node:test'
 import { fileURLToPath } from 'node:url'
 
-import {
+register('./support/app-module-hooks.mjs', import.meta.url)
+
+const {
   agentNotFoundMarkdown,
   agentNotFoundResponse,
   wantsMarkdownNotFound,
-} from '../../lib/agent-not-found.ts'
+} = await import('../../lib/agent-not-found.ts')
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '../..')
 
@@ -25,6 +28,10 @@ test('markdown is chosen only when it is explicitly acceptable', () => {
   assert.equal(wantsMarkdownNotFound('text/html, text/markdown;q=0'), false)
   assert.equal(wantsMarkdownNotFound('text/markdown, text/html'), true)
   assert.equal(wantsMarkdownNotFound('text/html, text/markdown'), false)
+  assert.equal(wantsMarkdownNotFound('text/markdown;q=0.5, text/*;q=0.9'), false)
+  assert.equal(wantsMarkdownNotFound('text/markdown;q=0.9, text/*;q=0.5'), true)
+  assert.equal(wantsMarkdownNotFound('text/markdown;q=0.5, */*;q=0.9'), false)
+  assert.equal(wantsMarkdownNotFound('text/markdown;q=0.9, */*;q=0.5'), true)
 })
 
 test('the 404 body tells an agent where to recover', () => {
@@ -72,11 +79,14 @@ test('a missing root path stays missing for the sitemap gate', async (t) => {
 })
 
 test('unknown URLs negotiate markdown outside the shared not-found boundary', () => {
-  const route = readFileSync(join(root, 'app/[...slug]/route.ts'), 'utf8')
-  assert.match(route, /wantsMarkdownNotFound/)
-  assert.match(route, /agentNotFoundResponse/)
-  assert.match(route, /notFound\(\)/)
-  assert.match(route, /force-dynamic/)
+  const page = readFileSync(join(root, 'app/[...slug]/page.tsx'), 'utf8')
+  assert.match(page, /notFound\(\)/)
+  assert.match(page, /force-dynamic/)
+
+  const proxySource = readFileSync(join(root, 'proxy.ts'), 'utf8')
+  assert.match(proxySource, /wantsMarkdownNotFound/)
+  assert.match(proxySource, /\/api\/md/)
+
   const notFoundPage = readFileSync(join(root, 'app/not-found.tsx'), 'utf8')
   assert.match(notFoundPage, /'use client'/)
   assert.equal(notFoundPage.includes("from 'next/headers'"), false)
@@ -84,4 +94,31 @@ test('unknown URLs negotiate markdown outside the shared not-found boundary', ()
   const enumeration = readFileSync(join(root, 'lib/route-enumeration.mjs'), 'utf8')
   assert.match(enumeration, /CATCH_ALL_PAGE_FILES/)
   assert.match(enumeration, /route\.ts alone does not/)
+})
+
+test('/api/md distinguishes existing routes from unknown routes', async () => {
+  const { GET, HEAD } = await import('../../app/api/md/route.ts')
+
+  const reqUnknown = new Request('https://www.frankx.ai/api/md?path=/this-page-does-not-exist')
+  const resUnknown = await GET(reqUnknown)
+  assert.equal(resUnknown.status, 404)
+  assert.equal(resUnknown.headers.get('content-type'), 'text/markdown; charset=utf-8')
+  const bodyUnknown = await resUnknown.text()
+  assert.match(bodyUnknown, /^# Page not found/)
+  assert.match(bodyUnknown, /No page exists at `\/this-page-does-not-exist`\./)
+
+  const reqHead = new Request('https://www.frankx.ai/api/md?path=/this-page-does-not-exist', {
+    method: 'HEAD',
+  })
+  const resHead = await HEAD(reqHead)
+  assert.equal(resHead.status, 404)
+  assert.equal(resHead.headers.get('content-type'), 'text/markdown; charset=utf-8')
+  assert.equal(await resHead.text(), '')
+
+  const reqExisting = new Request('https://www.frankx.ai/api/md?path=/developers')
+  const resExisting = await GET(reqExisting)
+  assert.equal(resExisting.status, 404)
+  assert.match(resExisting.headers.get('content-type') ?? '', /text\/plain/)
+  const bodyExisting = await resExisting.text()
+  assert.match(bodyExisting, /Content type not supported for markdown export/)
 })

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { getToken } from 'next-auth/jwt'
+import { wantsMarkdownNotFound } from '@/lib/agent-not-found'
 
 // Pages that have a /de/ version available
 const deAvailablePages = ['/valentines-day']
@@ -22,6 +23,18 @@ export async function proxy(request: NextRequest) {
     const url = request.nextUrl.clone()
     url.pathname = '/api/md'
     url.searchParams.set('path', contentPath)
+    return NextResponse.rewrite(url)
+  }
+
+  // ─── 1b. Accept: text/markdown negotiation ────────────────
+  if (
+    pathname !== '/' &&
+    (request.method === 'GET' || request.method === 'HEAD') &&
+    wantsMarkdownNotFound(request.headers.get('accept'))
+  ) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/api/md'
+    url.searchParams.set('path', pathname)
     return NextResponse.rewrite(url)
   }
 

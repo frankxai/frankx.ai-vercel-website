@@ -24,13 +24,34 @@ export function parseAccept(header: string | null): AcceptItem[] {
     .filter((item) => item.type.length > 0)
 }
 
-/** True when text/markdown is explicitly acceptable and beats text/html. */
+function htmlQuality(items: AcceptItem[]): { q: number; index: number } | null {
+  let best: AcceptItem | null = null
+  let bestSpecificity = -1
+  for (const item of items) {
+    let specificity = -1
+    if (item.type === 'text/html') {
+      specificity = 2
+    } else if (item.type === 'text/*') {
+      specificity = 1
+    } else if (item.type === '*/*') {
+      specificity = 0
+    }
+    if (specificity > bestSpecificity) {
+      best = item
+      bestSpecificity = specificity
+    }
+  }
+  if (!best || best.q <= 0) return null
+  return { q: best.q, index: best.index }
+}
+
+/** True when text/markdown is explicitly acceptable and beats text/html (including wildcard ranges). */
 export function wantsMarkdownNotFound(header: string | null): boolean {
   const items = parseAccept(header)
   const markdown = items.find((item) => item.type === 'text/markdown')
   if (!markdown || markdown.q <= 0) return false
-  const html = items.find((item) => item.type === 'text/html')
-  if (!html || html.q <= 0) return true
+  const html = htmlQuality(items)
+  if (!html) return true
   if (markdown.q !== html.q) return markdown.q > html.q
   return markdown.index < html.index
 }
