@@ -1,4 +1,5 @@
 import type { BookReview } from '@/app/books/types';
+import { attachLibraryApplications } from './library-applications';
 import { bookReviews as legacyBookReviews } from './book-reviews';
 
 const blitzscalingReview: BookReview = {
@@ -117,10 +118,10 @@ const blitzscalingReview: BookReview = {
 
 // Keep capture modules small and independently publishable. The filter makes this
 // migration-safe while older entries are gradually moved out of the legacy registry.
-export const bookReviews: BookReview[] = [
+export const bookReviews: BookReview[] = attachLibraryApplications([
   blitzscalingReview,
   ...legacyBookReviews.filter((review) => review.slug !== blitzscalingReview.slug),
-];
+]);
 
 export function getReviewBySlug(slug: string): BookReview | undefined {
   return bookReviews.find((review) => review.slug === slug);
