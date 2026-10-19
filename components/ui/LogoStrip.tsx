@@ -44,28 +44,36 @@ export function LogoStrip({
     return logo.brandUrl
   }
 
-  const renderLogo = (logo: BrandLogo, index: number) => (
-    <a
-      key={`${logo.slug}-${index}`}
-      href={getHref(logo)}
-      className={itemClassName}
-      aria-label={`${logo.name} ${linkMode === 'case-study' ? 'case study' : 'website'}`}
-      target={linkMode === 'brand' ? '_blank' : undefined}
-      rel={linkMode === 'brand' ? 'noopener noreferrer' : undefined}
-    >
-      <Image
-        src={logo.logo}
-        alt={`${logo.name} logo`}
-        width={160}
-        height={40}
-        className={`w-auto object-contain ${sizeClasses[size]} ${
-          logo.treatment === 'mono'
-            ? 'opacity-70 brightness-0 invert'
-            : 'opacity-90'
-        } transition-opacity group-hover:opacity-100`}
-      />
-    </a>
-  )
+  // In the marquee the logo list is rendered twice for a seamless loop. The
+  // second copy is decoration: it is hidden from assistive tech, removed from
+  // the tab order, and not shown at all when the visitor prefers reduced motion.
+  const renderLogo = (logo: BrandLogo, index: number) => {
+    const isDuplicate = variant === 'marquee' && index >= logos.length
+    return (
+      <a
+        key={`${logo.slug}-${index}`}
+        href={getHref(logo)}
+        className={`${itemClassName}${isDuplicate ? ' motion-reduce:hidden' : ''}`}
+        aria-label={`${logo.name} ${linkMode === 'case-study' ? 'guide' : 'website'}`}
+        aria-hidden={isDuplicate ? true : undefined}
+        tabIndex={isDuplicate ? -1 : undefined}
+        target={linkMode === 'brand' ? '_blank' : undefined}
+        rel={linkMode === 'brand' ? 'noopener noreferrer' : undefined}
+      >
+        <Image
+          src={logo.logo}
+          alt={`${logo.name} logo`}
+          width={160}
+          height={40}
+          className={`w-auto object-contain ${sizeClasses[size]} ${
+            logo.treatment === 'mono'
+              ? 'opacity-70 brightness-0 invert'
+              : 'opacity-90'
+          } transition-opacity group-hover:opacity-100`}
+        />
+      </a>
+    )
+  }
 
   if (variant === 'grid') {
     return (
@@ -78,16 +86,10 @@ export function LogoStrip({
   return (
     <div className={`w-full overflow-hidden ${className}`}>
       <div
-        className={`relative ${pauseOnHover ? 'group' : ''}`}
-        style={{
-          maskImage:
-            'linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)',
-          WebkitMaskImage:
-            'linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)',
-        }}
+        className={`relative [-webkit-mask-image:linear-gradient(90deg,transparent_0%,black_8%,black_92%,transparent_100%)] [mask-image:linear-gradient(90deg,transparent_0%,black_8%,black_92%,transparent_100%)] motion-reduce:[-webkit-mask-image:none] motion-reduce:[mask-image:none] ${pauseOnHover ? 'group' : ''}`}
       >
         <div
-          className={`flex w-max items-center gap-6 py-2 ${
+          className={`flex w-max items-center gap-6 py-2 motion-reduce:w-full motion-reduce:flex-wrap motion-reduce:justify-center ${
             pauseOnHover ? 'group-hover:[animation-play-state:paused]' : ''
           } animate-logo-marquee motion-reduce:animate-none`}
           style={{ animationDuration: `${speed}s` }}

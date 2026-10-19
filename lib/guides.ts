@@ -17,8 +17,22 @@ export interface GuideDoc {
   image?: string
   updated?: string
   faqs?: Array<{ question: string; answer: string }>
+  video?: GuideVideo
+  decisions?: GuideDecision[]
   readingTime: string
   content: string
+}
+
+export interface GuideVideo {
+  title: string
+  url: string
+}
+
+export interface GuideDecision {
+  audience: string
+  call: 'adopt' | 'wait' | 'skip'
+  because: string
+  source: string
 }
 
 type GuideFrontmatter = Record<string, unknown>
@@ -29,6 +43,31 @@ function textValue(value: unknown, fallback = '') {
 
 function stringArray(value: unknown) {
   return Array.isArray(value) ? value.filter((item): item is string => typeof item === 'string') : []
+}
+
+const DECISION_CALLS = new Set(['adopt', 'wait', 'skip'])
+
+function guideVideo(value: unknown): GuideVideo | undefined {
+  if (!value || typeof value !== 'object') return undefined
+  const row = value as Record<string, unknown>
+  const title = textValue(row.title)
+  const url = textValue(row.url)
+  if (!title || !url.startsWith('https://')) return undefined
+  return { title, url }
+}
+
+function guideDecisions(value: unknown): GuideDecision[] {
+  if (!Array.isArray(value)) return []
+  return value.flatMap((item) => {
+    if (!item || typeof item !== 'object') return []
+    const row = item as Record<string, unknown>
+    const call = textValue(row.call)
+    const audience = textValue(row.audience)
+    const because = textValue(row.because)
+    const source = textValue(row.source)
+    if (!DECISION_CALLS.has(call) || !audience || !because || !source.startsWith('https://')) return []
+    return [{ audience, call: call as GuideDecision['call'], because, source }]
+  })
 }
 
 function guideFromFrontmatter(slug: string, data: GuideFrontmatter, content: string): GuideDoc {
@@ -57,6 +96,8 @@ function guideFromFrontmatter(slug: string, data: GuideFrontmatter, content: str
     image: textValue(data.image),
     updated: textValue(data.updated, date),
     faqs,
+    video: guideVideo(data.video),
+    decisions: guideDecisions(data.decisions),
   }
 }
 

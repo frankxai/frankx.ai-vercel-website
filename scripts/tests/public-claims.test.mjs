@@ -7,6 +7,12 @@ import { fileURLToPath } from 'node:url'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
 const banned = [
+  // Email variants must not claim current employment at Oracle (or any employer).
+  ['emails/variants/CardBased.tsx', ['Oracle', 'enterprise systems for']],
+  ['emails/variants/MinimalGradient.tsx', ['Oracle', 'enterprise systems for']],
+  ['emails/variants/ModernLight.tsx', ['Oracle', 'enterprise systems for']],
+  ['emails/variants/ClassicWhite.tsx', ['Oracle', 'enterprise systems for']],
+  ['emails/variants/DarkPremium.tsx', ['Oracle', 'enterprise systems for']],
   ['data/products.json', ['500+', 'Top Plays', '25+ AI coaching', '40-60%', 'within 48 hours', '$250 billion', 'Limited Spots', 'Ship It Guarantee', 'Content Velocity Guarantee', '30-Day Money Back', '100% Satisfaction', 'Bespoke Execution', '2-3x more content', 'Agent Team Promise', 'Narrative Impact Guarantee', 'Creative Integrity Promise', 'Momentum Promise', 'Prompt Success Guarantee', 'Open source on GitHub for the creator community', 'Open Source & Free Forever', 'without paying a penny', 'originalPrice', ', guaranteed']],
   ['app/products/vibe-os/components/VibeOSModules.tsx', ['Instant Access', 'Lifetime Updates', "'/newsletter'", 'href="/newsletter"', 'exclusive discounts']],
   ['components/products/ProductHero.tsx', ["'/newsletter'", 'href="/newsletter"']],
@@ -97,6 +103,8 @@ const banned = [
   ['components/design-lab/GlassCathedralHero.tsx', ['12,000+', '12K+']],
   ['components/design-lab/NeonGridHero.tsx', ['12,000+', '12K+']],
   ['components/home/SignalRouteSelector.tsx', ['12,000+', '12K+', 'Suno audio', '100-tool', 'Suno prompt systems', 'video makers, musicians']],
+  ['components/home/MindPalaceAtlas.tsx', ['100-tool', 'multi-modal creator studio', 'generative pipelines']],
+  ['data/ecosystem.ts', ['100-tool', 'multi-modal creator studio', 'generative pipelines']],
   ['components/intelligence-map/IntelligenceMapShell.tsx', ['12,000+', '12K+']],
   ['components/rituals/RitualsShell.tsx', ['12,000+', '12K+']],
   ['components/rituals/rituals-data.ts', ['12,000+', '12K+']],
