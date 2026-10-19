@@ -87,10 +87,10 @@ const freeTemplates = [
 const premiumTemplates = [
   {
     title: 'Agentic Micro-SaaS Starter Kit',
-    description: 'Turn-key Next.js 16 + Edge API + Stripe checkout + MCP bridge for launching sovereign AI tools.',
+    description: 'Next.js 16 + Edge API + MCP bridge starter for launching sovereign AI tools.',
     href: '/shop/templates',
     icon: Rocket,
-    meta: 'Starter Kit · $47',
+    meta: 'Starter kit · Launch list',
     color: 'text-emerald-300',
     gradient: 'from-emerald-500/20 to-emerald-500/5',
     deployUrl: null,
@@ -100,7 +100,7 @@ const premiumTemplates = [
     description: 'Zero-database markdown/JSON architecture with instant search, live previews, and automated delivery.',
     href: '/shop/templates',
     icon: Crown,
-    meta: 'Marketplace OS · $49',
+    meta: 'Marketplace OS · Launch list',
     color: 'text-amber-300',
     gradient: 'from-amber-500/20 to-amber-500/5',
     deployUrl: null,
@@ -110,37 +110,37 @@ const premiumTemplates = [
     description: 'Autonomous content engine, book reviews, quote networks, and GEO-optimized JSON-LD schemas.',
     href: '/library/build',
     icon: Workflow,
-    meta: 'Open & Premium · Free/$29',
+    meta: 'Open source · Premium on launch list',
     color: 'text-cyan-300',
     gradient: 'from-cyan-500/20 to-cyan-500/5',
     deployUrl: null,
   },
   {
     title: 'Autonomous Swarm Workstation (ACOS Core)',
-    description: 'Multi-agent orchestration system with 38 specialized agents, 75+ skills, and deterministic test gates.',
+    description: 'Multi-agent orchestration system built on the ACOS agent catalog, with deterministic test gates.',
     href: '/products/agentic-creator-os',
     icon: Sparkles,
-    meta: 'Flagship OS · $47/$197',
+    meta: 'Flagship OS · Launch list',
     color: 'text-violet-300',
     gradient: 'from-violet-500/20 to-violet-500/5',
     deployUrl: null,
   },
   {
     title: 'AI Architecture Production Templates',
-    description: 'Enterprise RAG, multi-cloud LLMOps, and agent gateway blueprints battle-tested for production scale.',
+    description: 'Enterprise RAG, multi-cloud LLMOps, and agent gateway blueprints.',
     href: '/ai-architecture/templates',
     icon: Shield,
-    meta: 'Architecture Kit · $49',
+    meta: 'Architecture kit · Launch list',
     color: 'text-blue-300',
     gradient: 'from-blue-500/20 to-blue-500/5',
     deployUrl: null,
   },
   {
     title: 'Vibe OS & Suno Prompt Architecture',
-    description: '12,000-track battle-tested prompt systems, 5-layer architecture, and frequency science production packs.',
+    description: 'Prompt systems, 5-layer architecture, and production packs for Suno music creation.',
     href: '/products/vibe-os',
     icon: Music,
-    meta: 'Music Creation · $37',
+    meta: 'Music creation · Free tool (beta)',
     color: 'text-rose-300',
     gradient: 'from-rose-500/20 to-rose-500/5',
     deployUrl: null,
@@ -162,7 +162,7 @@ const upsellOffers = [
     description: 'Run live sessions to operationalize AI templates with your team.',
     href: '/workshops',
     icon: Users,
-    meta: 'B2B upsell',
+    meta: 'For teams',
     color: 'text-indigo-300',
     gradient: 'from-indigo-500/20 to-indigo-500/5',
   },
@@ -321,7 +321,7 @@ export default function TemplatesPage() {
 
               {/* Subtext */}
               <p className="text-lg text-white/60 max-w-2xl leading-relaxed mb-8">
-                Turn-key modular architectures built on local-first principles. Launch micro-SaaS tools, digital asset marketplaces, autonomous swarms, and creator knowledge hubs with zero SaaS cage lock-in.
+                Modular architectures built on local-first principles. Launch micro-SaaS tools, digital asset marketplaces, autonomous swarms, and creator knowledge hubs with zero SaaS cage lock-in.
               </p>
 
               {/* Action Buttons */}
@@ -339,7 +339,7 @@ export default function TemplatesPage() {
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium text-sm transition-colors"
                 >
                   <Crown className="w-4 h-4 text-amber-300" />
-                  <span>Shop Commercial Kits</span>
+                  <span>See commercial kits (launch list)</span>
                 </Link>
               </div>
             </motion.div>
@@ -370,7 +370,7 @@ export default function TemplatesPage() {
                   </p>
                   <div className="flex items-center gap-4 text-xs text-zinc-400">
                     <span className="flex items-center gap-1 text-emerald-400">
-                      <CheckSquare className="w-3.5 h-3.5" /> 19 SOTA Models
+                      <CheckSquare className="w-3.5 h-3.5" /> 19 live studies
                     </span>
                     <span className="flex items-center gap-1 text-cyan-400">
                       <CheckSquare className="w-3.5 h-3.5" /> Next.js 16 Native
@@ -425,7 +425,7 @@ export default function TemplatesPage() {
                 href="/shop/templates"
                 className="text-xs text-emerald-400 hover:text-emerald-300 font-medium inline-flex items-center gap-1"
               >
-                <span>View All in Shop</span>
+                <span>View launch list</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
