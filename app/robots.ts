@@ -13,12 +13,23 @@ export default function robots(): MetadataRoute.Robots {
     '/onboarding/',
     '/command-center/',
   ]
+  const publicReads = [
+    '/api/mcp',
+    '/api/v1',
+    '/api/quote/',
+    '/api/dare/',
+    '/api/md',
+    '/api/404/match',
+    '/api/vcard',
+    '/.well-known/',
+    '/openapi.json',
+  ]
 
   return {
     rules: [
       {
         userAgent: '*',
-        allow: '/',
+        allow: ['/', ...publicReads],
         disallow: commonDisallows,
       },
       {
@@ -34,7 +45,7 @@ export default function robots(): MetadataRoute.Robots {
           'cohere-ai',
           'Meta-ExternalAgent',
         ],
-        allow: '/',
+        allow: ['/', ...publicReads],
         disallow: commonDisallows,
       },
     ],

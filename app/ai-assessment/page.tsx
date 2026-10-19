@@ -233,7 +233,7 @@ export default function AIAssessmentPage() {
     } else if (overall < 65) {
       recs.push('Develop a structured AI adoption roadmap for your team')
       recs.push('Invest in AI governance and ethical guidelines')
-      recs.push('Consider Vibe OS for systematic music and creative AI workflows')
+      recs.push('Test a focused creative workflow with the free music prompt templates')
     } else {
       recs.push('You\'re ready for advanced AI implementations like Agentic Creator OS')
       recs.push('Consider becoming an AI transformation leader in your industry')
@@ -259,7 +259,7 @@ export default function AIAssessmentPage() {
       steps.push('Join the AI Readiness community')
     } else if (overall < 65) {
       steps.push('Schedule a strategy session with our team')
-      steps.push('Explore Vibe OS for creative AI workflows')
+      steps.push('Try the free music prompt templates on one creative brief')
       steps.push('Implement AI governance framework')
     } else {
       steps.push('Book a consultation for Agentic Creator OS')
