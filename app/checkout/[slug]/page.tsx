@@ -1,10 +1,11 @@
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { ArrowRight, ShieldCheck, Clock } from 'lucide-react'
 
 import { getProductBySlug } from '@/lib/products'
 import { isConfigured, buildDirectCheckoutUrl } from '@/lib/lemon-squeezy'
 import { createMetadata } from '@/lib/seo'
+import { isWaitlistOnly, waitlistHref } from '@/lib/waitlist/products'
 import type { ProductRecord } from '@/types/products'
 
 /**
@@ -68,6 +69,9 @@ export default async function CheckoutPage({ params }: { params: Promise<{ slug:
   if (!product) {
     notFound()
   }
+
+  // No fresh release-gate PASS: there is nothing to buy, so the old checkout link lands on the waitlist.
+  if (isWaitlistOnly(product.id)) redirect(waitlistHref(product.id))
 
   const offer = product.offer as Offer
   const priceDisplay =

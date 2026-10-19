@@ -1,0 +1,92 @@
+{
+  "generatedFrom": "starlight graph/products.graph.json @ 2ada597",
+  "products": [
+    {
+      "id": "creative-ai-toolkit",
+      "name": "Creative AI Toolkit",
+      "brand": "FrankX",
+      "surface": "frankx.ai",
+      "stage": "building",
+      "listType": "premium-packs",
+      "priceHypothesis": {
+        "band": "49-99",
+        "currency": "EUR",
+        "evidence": "none yet - the waitlist price_band field is the evidence"
+      },
+      "buyer": "Creators using AI daily who want a curated system, not another prompt dump",
+      "mustBeat": [
+        "free prompt megathreads on X",
+        "God of Prompt (~$97)",
+        "generic Notion AI templates"
+      ],
+      "gate": "G1 FAIL 2026-07-18 - CTA pointed at a dead Gumroad link",
+      "waitlist": {
+        "enabled": true,
+        "publicCountThreshold": 50,
+        "foundingCohort": 100
+      },
+      "gift": {
+        "name": "Three complete prompt patterns, with their evals",
+        "deliverable": "pattern.md + examples.md + promptfoo eval each. The eval is the differentiator — nobody in the genre ships tests",
+        "assetPath": null,
+        "status": "on-disk"
+      },
+      "founding": [
+        "Every future pattern free for life",
+        "Named in the library",
+        "Submit-a-pattern rights with attribution"
+      ],
+      "milestones": [
+        {
+          "atCount": 100,
+          "commitment": "The eval harness ships open-source.",
+          "publishedAt": null,
+          "honouredAt": null
+        }
+      ]
+    },
+    {
+      "id": "creation-chronicles",
+      "name": "Creation Chronicles",
+      "brand": "FrankX",
+      "surface": "frankx.ai",
+      "stage": "building",
+      "listType": "creation-chronicles",
+      "priceHypothesis": {
+        "band": "0-29",
+        "currency": "EUR",
+        "evidence": "none yet"
+      },
+      "buyer": "Readers following the build-in-public arc who want the long-form record",
+      "mustBeat": [
+        "free Substack build logs",
+        "Every.to membership"
+      ],
+      "gate": "G1 FAIL 2026-07-18 - CTA pointed at a dead Gumroad link",
+      "waitlist": {
+        "enabled": true,
+        "publicCountThreshold": 50,
+        "foundingCohort": 100
+      },
+      "gift": {
+        "name": "One full chronicle entry",
+        "deliverable": "A real build episode with the numbers that were wrong and what they actually were",
+        "assetPath": null,
+        "status": "needs-packaging"
+      },
+      "founding": [
+        "Lifetime access",
+        "Named in the record",
+        "The raw measurement scripts"
+      ],
+      "milestones": [
+        {
+          "atCount": 100,
+          "commitment": "The estate's live metrics dashboard goes public.",
+          "publishedAt": null,
+          "honouredAt": null
+        }
+      ]
+    }
+  ]
+}

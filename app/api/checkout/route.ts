@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { isWaitlistOnly, waitlistHref } from '@/lib/waitlist/products'
 
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
 
@@ -103,6 +104,14 @@ export async function POST(request: NextRequest) {
     const product = PRODUCTS[productId]
     if (!product) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 })
+    }
+
+    // Fails closed until the registry row records a fresh release-gate PASS, even if a price ID is set.
+    if (isWaitlistOnly(productId)) {
+      return NextResponse.json(
+        { error: 'This product is not on sale yet.', waitlist: waitlistHref(productId) },
+        { status: 409 }
+      )
     }
 
     // Create Stripe Checkout Session via API
