@@ -16,13 +16,12 @@ interface VibeOSHeroProps {
 }
 
 export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
-  const waitlistHref = `/waitlist?intent=${productId}`
   const handleCTAClick = (target: 'primary' | 'secondary') => {
     trackEvent('product_cta_click', {
       productId,
       location: 'hero',
       target,
-      href: target === 'primary' ? waitlistHref : product.offer.ctaSecondaryHref,
+      href: target === 'primary' ? '/newsletter' : product.offer.ctaSecondaryHref,
       label: target === 'primary' ? 'join-waitlist' : product.offer.ctaSecondaryTracking
     })
   }
@@ -124,6 +123,27 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
           </p>
         </motion.div>
 
+        {/* Key Benefits */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-10 flex flex-wrap justify-center gap-6 text-sm text-white/70"
+        >
+          <div className="flex items-center gap-2">
+            <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span>50+ Genre Prompts</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+            <span>Emotion Mapping</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="h-1.5 w-1.5 rounded-full bg-violet-400" />
+            <span>Release Playbooks</span>
+          </div>
+        </motion.div>
+
         {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -133,7 +153,7 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
         >
           {COMING_SOON_MODE ? (
             <Link
-              href={waitlistHref}
+              href="/newsletter"
               onClick={() => handleCTAClick('primary')}
               className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white shadow-[0_20px_60px_rgba(6,182,212,0.4)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(6,182,212,0.5)]"
             >
@@ -170,7 +190,19 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
-            <span>Free</span>
+            <span>500+ Sessions by Frank</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <span>30-Day Guarantee</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <span>Lifetime Updates</span>
           </div>
         </motion.div>
       </div>

@@ -130,7 +130,7 @@ export const qualities: Quality[] = [
         kind: 'Essay',
       },
       {
-        title: 'Suno practice: production lessons',
+        title: '12,000 Songs: Production Lessons',
         href: '/blog/suno-ai-12000-songs-production-lessons',
         note: 'A field report on what high-volume creative practice teaches that theory cannot.',
         kind: 'Essay',

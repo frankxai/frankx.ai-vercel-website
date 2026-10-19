@@ -149,12 +149,12 @@ export default function ContentStudioPage() {
   const openPlatform = (platform: string, prefill?: string) => {
     if (platform === 'linkedin') {
       // LinkedIn share URL
-      window.open('https://www.linkedin.com/feed/?shareActive=true', '_blank', 'noopener,noreferrer');
+      window.open('https://www.linkedin.com/feed/?shareActive=true', '_blank');
     } else if (platform === 'twitter') {
       const url = prefill
         ? `https://twitter.com/intent/tweet?text=${encodeURIComponent(prefill)}`
         : 'https://twitter.com/compose/tweet';
-      window.open(url, '_blank', 'noopener,noreferrer');
+      window.open(url, '_blank');
     }
   };
 

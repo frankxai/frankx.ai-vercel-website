@@ -6,8 +6,7 @@ import OfferStack from '@/components/products/OfferStack'
 import ProductHero from '@/components/products/ProductHero'
 import ProofRail from '@/components/products/ProofRail'
 import TransformationList from '@/components/products/TransformationList'
-import { waitlistBonuses } from '@/lib/products/waitlist-public'
-import { comingSoonProductStructuredData, createMetadata } from '@/lib/seo'
+import { createMetadata } from '@/lib/seo'
 import type { ProductRecord } from '@/types/products'
 
 const product = products.find((entry) => entry.id === 'creation-chronicles') as ProductRecord
@@ -29,7 +28,23 @@ export const metadata = createMetadata({
   ]
 })
 
-const structuredData = comingSoonProductStructuredData(product.name, product.promise)
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: product.name,
+  description: product.promise,
+  brand: {
+    '@type': 'Brand',
+    name: 'FrankX.ai'
+  },
+  offers: {
+    '@type': 'Offer',
+    price: String(product.offer.primaryPrice),
+    priceCurrency: product.offer.currency,
+    availability: 'https://schema.org/InStock',
+    priceValidUntil: '2026-12-31',
+  }
+}
 
 export default function CreationChroniclesPage() {
   const productId = product.analyticsId ?? product.id
@@ -42,6 +57,7 @@ export default function CreationChroniclesPage() {
         title={product.headline}
         subtitle={product.subheadline}
         promise={product.promise}
+        offer={product.offer}
       />
 
       <TransformationList items={product.transformation} title="Immediate Narrative Upgrades" />
@@ -50,8 +66,10 @@ export default function CreationChroniclesPage() {
 
       <OfferStack
         productId={productId}
+        offer={product.offer}
         modules={product.modules}
-        bonuses={waitlistBonuses(product.bonuses)}
+        bonuses={product.bonuses}
+        pricingTiers={product.pricingTiers}
       />
 
       <section className="bg-[#0a0a0b] py-16">

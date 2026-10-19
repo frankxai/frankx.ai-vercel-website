@@ -16,7 +16,7 @@ interface InlineLeadMagnetProps {
 
 export function InlineLeadMagnet({
   variant = 'banner',
-  headline = 'Get AI insights',
+  headline = 'Get weekly AI insights',
   description = 'Practical tutorials on AI architecture, music production, and creator tools. No spam.',
   listType = 'newsletter',
   className = '',

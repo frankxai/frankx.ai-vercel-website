@@ -79,16 +79,16 @@ const signalRoutes: SignalRoute[] = [
   {
     id: 'creator-systems',
     label: 'Creator Systems',
-    audience: 'Creators, video makers, and operators turning signals into repeatable releases.',
-    title: 'Make the next campaign, article, or video script shippable.',
+    audience: 'Creators, video makers, musicians, and operators turning signals into repeatable releases.',
+    title: 'Make the next campaign, video, or song shippable.',
     description:
-      'The GenCreator workspace: turn one source idea into a social campaign, long-form article or video script, with proof checks, review notes and a portable export.',
-    proof: '',
+      'The multi-modal creator studio: social campaign engines, video pacing, Suno prompt systems, and the 100-tool Agentic Creator Stack.',
+    proof: '12,000+ AI songs shipped · 100 creator tools benchmarked.',
     href: 'https://gencreator.ai/create',
     cta: 'Open Creator Studio',
     icon: Sparkles,
     accent: 'emerald',
-    checks: ['Social campaigns', 'Long-form articles', 'Video scripts', 'Portable export'],
+    checks: ['Social campaigns', 'Video scripts', 'Suno audio', '100-tool stack'],
   },
   {
     id: 'builder-systems',
@@ -97,7 +97,7 @@ const signalRoutes: SignalRoute[] = [
     title: 'Fork the system behind the work.',
     description:
       'Move from tool experiments to a working creator stack: ACOS, prompts, templates, agent patterns, and build notes.',
-    proof: '',
+    proof: '630+ AI skills shipped across the operating system.',
     href: '/acos',
     cta: 'Explore ACOS',
     icon: Bot,
@@ -181,7 +181,7 @@ export function SignalRouteSelector() {
         </div>
 
         <div className="mt-12 grid gap-4 lg:grid-cols-3">
-          {signalRoutes.map((route) => {
+          {signalRoutes.map((route, index) => {
             const Icon = route.icon
             const accent = routeAccents[route.accent]
 
@@ -222,14 +222,12 @@ export function SignalRouteSelector() {
                     {route.description}
                   </p>
 
-                  {route.proof ? (
-                    <div className="mt-6 rounded-2xl border border-white/[0.07] bg-[#0a0a0b]/45 p-4">
-                      <div className="flex items-start gap-3">
-                        <ShieldCheck className={`mt-0.5 h-4 w-4 shrink-0 ${accent.text}`} aria-hidden="true" />
-                        <p className="text-sm leading-relaxed text-white/62">{route.proof}</p>
-                      </div>
+                  <div className="mt-6 rounded-2xl border border-white/[0.07] bg-[#0a0a0b]/45 p-4">
+                    <div className="flex items-start gap-3">
+                      <ShieldCheck className={`mt-0.5 h-4 w-4 shrink-0 ${accent.text}`} aria-hidden="true" />
+                      <p className="text-sm leading-relaxed text-white/62">{route.proof}</p>
                     </div>
-                  ) : null}
+                  </div>
 
                   <div className="mt-5 flex flex-wrap gap-2">
                     {route.checks.map((check) => (
@@ -244,9 +242,6 @@ export function SignalRouteSelector() {
 
                   <Link
                     href={route.href}
-                    {...(route.href.startsWith('http')
-                      ? { target: '_blank', rel: 'noopener noreferrer' }
-                      : {})}
                     onClick={() =>
                       trackEvent('frankx_route_selected', {
                         route: route.id,
@@ -254,7 +249,7 @@ export function SignalRouteSelector() {
                         surface: 'homepage_signal_route_selector',
                       })
                     }
-                    className={`mt-auto inline-flex h-12 items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.06] px-5 text-sm font-semibold text-white transition hover:bg-white/[0.1] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${accent.focus}`}
+                    className={`mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.06] px-5 text-sm font-semibold text-white transition hover:bg-white/[0.1] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${accent.focus}`}
                   >
                     {route.cta}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
@@ -270,8 +265,8 @@ export function SignalRouteSelector() {
             <GitBranch className="h-4 w-4 text-emerald-300/70" aria-hidden="true" />
             <span>Routing contract: creator output, builder systems, team architecture.</span>
           </div>
-          <span className="text-[11px] text-white/40">
-            Open field notes · Inspectable architecture · Independent release
+          <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/30">
+            tracked as frankx_route_selected
           </span>
         </div>
       </div>

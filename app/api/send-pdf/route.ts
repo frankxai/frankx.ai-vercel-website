@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
-import { createPDFLead } from '@/lib/pdf-analytics'
-import { describeStoreFailure } from '@/lib/store-failure'
+import { storeLead } from '@/lib/kv'
 import { emailRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 import { validateLeadData } from '@/lib/validation'
 import { socialLinks } from '@/lib/social-links'
@@ -69,30 +68,16 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Stored where the leads dashboard reads. A store outage must not cost the
-    // visitor the guide they asked for, so it is reported in the response instead
-    // of aborting the email.
-    let leadStore: { stored: true } | ({ stored: false } & ReturnType<typeof describeStoreFailure>)
-    try {
-      await createPDFLead({
-        email: leadData.email,
-        name: leadData.name,
-        company: leadData.company,
-        role: leadData.role,
-        primaryInterest: leadData.primaryInterest,
-        referralSource: leadData.referralSource,
-        guideSlug: String(guideSlug).slice(0, 100),
-        guideTitle: String(pdfTitle).slice(0, 200),
-        sessionId: String(sessionId).slice(0, 100),
-        userAgent: (request.headers.get('user-agent') || 'unknown').slice(0, 300),
-        referrer: (request.headers.get('referer') || '').slice(0, 300)
-      })
-      leadStore = { stored: true }
-    } catch (error) {
-      const failure = describeStoreFailure(error, 'store')
-      console.error('PDF lead not stored:', failure)
-      leadStore = { stored: false, ...failure }
-    }
+    // Store lead in Vercel KV
+    await storeLead({
+      email: leadData.email,
+      name: leadData.name,
+      company: leadData.company,
+      role: leadData.role,
+      primaryInterest: leadData.primaryInterest,
+      referralSource: leadData.referralSource,
+      guideId: guideSlug
+    })
 
     // Send email with Resend
     const { data, error } = await resend.emails.send({
@@ -127,7 +112,7 @@ export async function POST(request: NextRequest) {
       </h1>
 
       <p style="font-size: 17px; color: #CBD5E1; line-height: 1.7; margin: 0 0 16px 0;">
-        Picture this: the same frameworks I use for Suno songs and enterprise AI systems, now in your hands.
+        Picture this: same frameworks I used to create 12,000+ AI songs and build enterprise AI systems - now in your hands.
       </p>
 
       <p style="font-size: 16px; color: #94a3b8; line-height: 1.7; margin: 0 0 28px 0;">
@@ -157,7 +142,7 @@ export async function POST(request: NextRequest) {
           Quick note: Hit reply with questions. I read every message. Really.
         </p>
         <p style="font-size: 14px; color: #64748b; margin: 0; line-height: 1.6;">
-          Want more? Check out our <a href="https://frankx.ai/blog" style="color: #22d3ee; text-decoration: none;">creator insights</a> or explore the <a href="https://frankx.ai/music" style="color: #22d3ee; text-decoration: none;">music</a>.
+          Want more? Check out our <a href="https://frankx.ai/blog" style="color: #22d3ee; text-decoration: none;">creator insights</a> or explore <a href="https://frankx.ai/music" style="color: #22d3ee; text-decoration: none;">12,000+ AI songs</a>.
         </p>
       </div>
     </div>
@@ -170,7 +155,7 @@ export async function POST(request: NextRequest) {
         </p>
         <p style="font-size: 13px; color: #94a3b8; margin: 0; line-height: 1.6;">
           Musician → AI Architect<br>
-          <span style="color: #22d3ee;">Songs made with Suno</span> | <span style="color: #8B5CF6;">Enterprise AI Systems</span>
+          <span style="color: #22d3ee;">12,000+ AI Songs</span> | <span style="color: #8B5CF6;">Enterprise AI Systems</span>
         </p>
       </div>
 
@@ -208,7 +193,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    return NextResponse.json({ success: true, emailId: data?.id, leadStore })
+    return NextResponse.json({ success: true, emailId: data?.id })
   } catch (error) {
     console.error('API error:', error)
     return NextResponse.json(

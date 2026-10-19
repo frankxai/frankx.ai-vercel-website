@@ -426,7 +426,7 @@
       ],
       "featured": true,
       "image": "/images/blog/agentic-creator-os-complete-guide-hero.png",
-      "description": "Master the AI operating system that transforms Claude Code into a creative studio: 25 commands, 80+ skills, swarm intelligence, and auto-activation.",
+      "description": "Master the AI operating system that transforms Claude Code into a full creative studio. 25 commands, 80+ skills, swarm intelligence, and auto-activation. The definitive guide.",
       "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 2370,
@@ -714,7 +714,7 @@
       ],
       "featured": true,
       "image": "/images/blog/suno-prompt-engineering-complete-guide-hero.png",
-      "description": "Master Suno AI music creation with one reusable prompt formula: genre, tempo, instruments, vocals, mood and special elements.",
+      "description": "Master Suno AI music creation with proven prompt formulas from 500+ sessions. Learn genre-specific techniques, advanced modifiers, and the anatomy of prompts that generate professional tracks.",
       "streams": ["music-lab", "creation-chronicles"],
       "metrics": {
         "wordCount": 3083,
@@ -966,7 +966,7 @@
       ],
       "featured": true,
       "image": "/images/blog/build-your-own-jarvis-hero.png",
-      "description": "Build a personal AI system that knows your work, runs your workflows, and gets sharper every week. The exact CLAUDE.md + MCP + skills + subagents stack I run, updated for June 2026.",
+      "description": "Stop using AI tools like everyone else. Build a personal AI system that knows your work, executes your workflows, and gets smarter every day. Here's exactly how.",
       "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1929,
@@ -1314,7 +1314,7 @@
       "tags": ["AI", "Creativity", "Technology", "Personal Story"],
       "featured": true,
       "image": "/images/blog/ai-soul-story-hero.svg",
-      "description": "An architect's turning point: how collaborative creation with AI revealed a path where technology amplifies human creativity, not replaces it.",
+      "description": "A 15-year architect's turning point: how collaborative creation with AI revealed a path where technology amplifies human creativity, not replaces it.",
       "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1210,
@@ -1333,7 +1333,7 @@
       "tags": ["AI", "Creativity", "Technology", "Personal Story"],
       "featured": true,
       "image": "/images/blog/ai-soul-story-hero.svg",
-      "description": "An architect's turning point: how collaborative creation with AI revealed a path where technology amplifies human creativity, not replaces it.",
+      "description": "A 15-year architect's turning point: how collaborative creation with AI revealed a path where technology amplifies human creativity, not replaces it.",
       "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1407,

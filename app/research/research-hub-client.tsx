@@ -32,9 +32,10 @@ import {
   DraftingCompass,
   Image,
 } from 'lucide-react'
+import { researchDomains, domainCategories } from '@/lib/research/domains'
 import type { DomainCategory } from '@/lib/research/domains'
-import { publicTopicMaps, publicCategoryLabels, publicResearchCategory } from '@/lib/research/topic-maps.public'
 import { domainSources } from '@/lib/research/sources'
+import { researchCategory } from '@/lib/research/hubs'
 import { TrackedLink } from '@/components/analytics/TrackedLink'
 import LearnHubSection from '@/components/learn/LearnHubSection'
 import { MODEL_MAKER_PORTALS } from '@/lib/learn/related-portals'
@@ -68,10 +69,11 @@ const colorConfig: Record<string, { border: string; text: string; bg: string; gr
 const totalSources = new Set(
   Object.values(domainSources).flat().map((source) => source.url),
 ).size
-const sourcedDomainCount = publicTopicMaps.filter(
+const sourcedDomainCount = researchDomains.filter(
   (domain) =>
     !domain.slug.startsWith('REMOVED-') &&
     !domain.title.startsWith('[REMOVED]') &&
+    domain.sourceCount > 0 &&
     (domainSources[domain.slug]?.length ?? 0) > 0,
 ).length
 const sourceCountFor = (slug: string) => domainSources[slug]?.length ?? 0
@@ -97,8 +99,7 @@ function HeroSection() {
 
           <p className="text-lg md:text-xl text-white/70 mb-8 leading-relaxed max-w-3xl">
             Explore the ideas shaping intelligent systems, creative work and human potential.
-            Seven topic hubs map the questions. Individual briefs are under source review;
-            reviewed evidence will return to each page as it is checked.
+            Seven focused hubs connect the research, the sources and the decisions you can make with them.
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -127,11 +128,9 @@ function HeroSection() {
         {/* Stats */}
         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: 'Research domains', value: String(publicTopicMaps.length), icon: Layers },
-            { label: 'Reviewed domains', value: String(sourcedDomainCount), icon: ShieldCheck },
-            ...(totalSources > 0
-              ? [{ label: 'Published sources', value: String(totalSources), icon: Search }]
-              : []),
+            { label: 'Research domains', value: String(researchDomains.filter(d => !d.slug.startsWith('REMOVED-') && !d.title.startsWith('[REMOVED]') && d.sourceCount > 0).length), icon: Layers },
+            { label: 'Domains with sources', value: String(sourcedDomainCount), icon: ShieldCheck },
+            { label: 'Source references', value: `${totalSources}+`, icon: Search },
             { label: 'Research hubs', value: '7', icon: Compass },
           ].map((stat, i) => (
             <div key={i} className="border-l border-white/15 py-1 pl-4">
@@ -156,18 +155,21 @@ function DomainsGrid() {
   const filteredDomains = useMemo(() => {
     // Exclude removed/pending domains from display
     let domains = (activeCategory === 'all'
-      ? publicTopicMaps
-      : publicTopicMaps.filter(d => publicResearchCategory(d.category) === activeCategory)
+      ? researchDomains
+      : researchDomains.filter(d => researchCategory(d.category) === activeCategory)
     ).filter((d) =>
       !d.slug.startsWith('REMOVED-') &&
-      !d.title.startsWith('[REMOVED]')
+      !d.title.startsWith('[REMOVED]') &&
+      d.sourceCount > 0
     )
 
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase()
       domains = domains.filter(d =>
         d.title.toLowerCase().includes(q) ||
-        (d.category ?? '').toLowerCase().includes(q)
+        d.subtitle.toLowerCase().includes(q) ||
+        d.tldr.toLowerCase().includes(q) ||
+        d.keyFindings.some(f => f.toLowerCase().includes(q))
       )
     }
 
@@ -182,20 +184,21 @@ function DomainsGrid() {
             All research domains
           </h2>
           <p className="text-white/60 max-w-2xl">
-            {publicTopicMaps.length} topic maps organized by question. Briefs return when their sources and claims pass review.
+            {researchDomains.filter(d => !d.slug.startsWith('REMOVED-') && !d.title.startsWith('[REMOVED]') && d.sourceCount > 0).length} research areas organized by topic. Specialist agents map the
+            evidence and contradictions; I review what the page can responsibly conclude.
           </p>
         </div>
 
         {/* Search */}
         <div className="relative mb-6">
           <label htmlFor="research-domain-search" className="sr-only">
-            Search research topics
+            Search research domains, findings, and insights
           </label>
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/60" />
           <input
             id="research-domain-search"
             type="text"
-            placeholder="Search research topics..."
+            placeholder="Search domains, findings, insights..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-3 pl-11 pr-4 text-sm text-white placeholder:text-white/50 transition-[border-color,background-color,box-shadow] focus-visible:border-white/20 focus-visible:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
@@ -216,14 +219,15 @@ function DomainsGrid() {
         <div className="flex flex-wrap gap-2 mb-8">
           {categoryKeys.map((key) => {
             const isActive = activeCategory === key
-            const label = key === 'all' ? 'All Domains' : (publicCategoryLabels[key] || key)
-            const activeDomains = publicTopicMaps.filter((d) =>
+            const label = key === 'all' ? 'All Domains' : (domainCategories[key]?.label || key)
+            const activeDomains = researchDomains.filter((d) =>
               !d.slug.startsWith('REMOVED-') &&
-              !d.title.startsWith('[REMOVED]')
+              !d.title.startsWith('[REMOVED]') &&
+              d.sourceCount > 0
             )
             const count = key === 'all'
               ? activeDomains.length
-              : activeDomains.filter(d => publicResearchCategory(d.category) === key).length
+              : activeDomains.filter(d => researchCategory(d.category) === key).length
 
             return (
               <button
@@ -253,7 +257,7 @@ function DomainsGrid() {
         {/* Results count */}
         {(searchQuery || activeCategory !== 'all') && (
           <p className="text-xs text-white/50 mb-4">
-            Showing {filteredDomains.length} of {publicTopicMaps.length} domains
+            Showing {filteredDomains.length} of {researchDomains.filter(d => !d.slug.startsWith('REMOVED-') && !d.title.startsWith('[REMOVED]') && d.sourceCount > 0).length} domains
           </p>
         )}
 
@@ -291,9 +295,7 @@ function DomainsGrid() {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${colors.bg} ${colors.text}`}>
-                          {domain.slug === 'agentic-life-observatory'
-                            ? 'Published dataset'
-                            : sourceCountFor(domain.slug) > 0
+                          {sourceCountFor(domain.slug) > 0
                             ? `${sourceCountFor(domain.slug)} sources`
                             : 'Sources pending'}
                         </span>
@@ -305,15 +307,14 @@ function DomainsGrid() {
                       {domain.title}
                     </h3>
                     <p className="text-sm text-white/60 mb-4 line-clamp-2">
-                      {domain.slug === 'agentic-life-observatory'
-                        ? 'Published dataset and methodology'
-                        : 'Topic map under evidence review'}
+                      {domain.subtitle}
                     </p>
 
                     <p className="text-xs leading-5 text-white/50">
-                      {domain.slug === 'agentic-life-observatory'
-                        ? 'Registry and methods available'
+                      {sourceCountFor(domain.slug) > 0
+                        ? `Evidence grade ${domain.evidenceGrade ?? 'pending'}`
                         : 'Evidence review pending'}
+                      {' · '}Updated {domain.lastUpdated}
                     </p>
                   </div>
                 </Link>
@@ -401,15 +402,13 @@ function MethodologySection() {
             Full Methodology
             <ArrowRight className="w-3 h-3" />
           </Link>
-          {totalSources > 0 && (
-            <Link
-              href="/research/sources"
-              className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white bg-white/[0.03] border border-white/[0.06] px-4 py-2 rounded-full transition-[background-color,color] hover:bg-white/[0.06]"
-            >
-              Browse {totalSources} Registered Sources
-              <ArrowRight className="w-3 h-3" />
-            </Link>
-          )}
+          <Link
+            href="/research/sources"
+            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white bg-white/[0.03] border border-white/[0.06] px-4 py-2 rounded-full transition-[background-color,color] hover:bg-white/[0.06]"
+          >
+            Browse {totalSources} Registered Sources
+            <ArrowRight className="w-3 h-3" />
+          </Link>
         </div>
       </div>
     </section>

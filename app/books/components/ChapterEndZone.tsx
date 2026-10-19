@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import ChapterFeedback from './ChapterFeedback';
 import ChapterShareButtons from './ChapterShareButtons';
-import BookDownloadGate, { hasBookPdf } from './BookDownloadGate';
+import BookDownloadGate from './BookDownloadGate';
 import { GlassCard } from '@/components/liquid-glass';
 import { markChapterRead } from '@/lib/reading-progress';
 import { getBookGlossary } from '@/lib/glossary';
@@ -106,14 +106,13 @@ export default function ChapterEndZone({
         chapterSlug={chapterSlug}
       />
 
-      {hasBookPdf(bookSlug) && (
-        <BookDownloadGate
-          bookSlug={bookSlug}
-          bookTitle={bookTitle}
-          themeColor={themeId}
-          className="max-w-md mx-auto"
-        />
-      )}
+      {/* PDF Download Gate */}
+      <BookDownloadGate
+        bookSlug={bookSlug}
+        bookTitle={bookTitle}
+        themeColor={themeId}
+        className="max-w-md mx-auto"
+      />
     </div>
   );
 }

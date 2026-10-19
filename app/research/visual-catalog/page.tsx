@@ -352,7 +352,7 @@ export default function VisualCatalogPage() {
               <div 
                 key={hero.id}
                 onClick={() => setSelectedAsset(hero)}
-                className="group bg-slate-950/30 border border-white/5 hover:border-violet-500/30 rounded-3xl overflow-hidden transition-[border-color,box-shadow] duration-300 ease-out flex flex-col cursor-pointer shadow-lg hover:shadow-violet-500/5"
+                className="group bg-slate-950/30 border border-white/5 hover:border-violet-500/30 rounded-3xl overflow-hidden transition-all duration-300 flex flex-col cursor-pointer shadow-lg hover:shadow-violet-500/5"
               >
                 {/* Image Wrapper [16:9] */}
                 <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950">
@@ -439,7 +439,7 @@ export default function VisualCatalogPage() {
                 href={selectedAsset.proImage || selectedAsset.image}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute bottom-4 right-4 flex items-center gap-1.5 text-xs bg-slate-950/80 border border-white/10 px-3 py-1.5 rounded-full hover:bg-slate-900 transition-colors ease-out text-white"
+                className="absolute bottom-4 right-4 flex items-center gap-1.5 text-xs bg-slate-950/80 border border-white/10 px-3 py-1.5 rounded-full hover:bg-slate-900 transition-all text-white"
               >
                 Inspect Original File
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -545,8 +545,7 @@ export default function VisualCatalogPage() {
                   <Link
                     href={selectedAsset.blog}
                     target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-1.5 w-full bg-white hover:bg-white/90 text-black px-4 py-2.5 rounded-xl font-semibold text-xs transition-colors ease-out"
+                    className="inline-flex items-center justify-center gap-1.5 w-full bg-white hover:bg-white/90 text-black px-4 py-2.5 rounded-xl font-semibold text-xs transition-all"
                   >
                     View Active Page
                     <ExternalLink className="w-3.5 h-3.5" />

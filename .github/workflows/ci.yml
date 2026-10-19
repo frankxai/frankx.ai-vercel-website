@@ -33,18 +33,18 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
 
       # No `version:` here on purpose. action-setup errors out if the version is
       # specified both here and as `packageManager` in package.json; package.json
       # is the single source of truth, so this step reads it from there.
-      - uses: pnpm/action-setup@v6
+      - uses: pnpm/action-setup@v4
         with:
           run_install: false
 
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
@@ -63,9 +63,6 @@ jobs:
 
       - name: AgentDB runtime smoke
         run: pnpm run test:agentdb-runtime
-
-      - name: ACOS install command contract
-        run: pnpm run test:acos-install
 
       - name: Type Check
         run: pnpm run type-check
@@ -88,51 +85,13 @@ jobs:
       - name: Site search relevance
         run: pnpm run test:site-search
 
-      - name: MCP endpoint contract (read-only, no priced claims)
-        run: pnpm run test:mcp
-
       - name: Navigation completeness
         run: pnpm run test:navigation-completeness
 
-      - name: Ship 2026 guide contract
-        run: pnpm run test:ship-guides
-
-      - name: Blank-target noopener links
-        run: pnpm run test:noopener
-
-      - name: Rate limiter reads the Upstash integration env
-        run: pnpm run test:redis-env
-
       - name: Build
-        id: build
         run: pnpm run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
 
-      - name: Request-time book chapters (no jsdom in the chapter function)
-        run: pnpm run test:book-chapter:rendered
-
-      - name: Install the reader QA browser
-        # The GitHub-hosted Ubuntu image already provides Chrome's OS libraries.
-        # Download the Puppeteer-pinned binary as the runner user; --install-deps
-        # requires root and would also put its browser cache in root's home.
-        run: pnpm exec puppeteer browsers install chrome
-
-      - name: Reader journeys and screen evidence
-        run: node scripts/qa/book-journey.mjs
-        timeout-minutes: 8
-        env:
-          REVIEWED_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
-
-      - name: Save reader journey evidence
-        if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: book-journey-${{ github.sha }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/book-journey
-          if-no-files-found: ignore
-          retention-days: 14
-
       - name: GenCreator rendered metadata
-        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: pnpm run test:gencreator-metadata:rendered

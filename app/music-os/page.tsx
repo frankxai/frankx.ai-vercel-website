@@ -736,8 +736,9 @@ export default function AgenticMusicOsPage() {
                       </div>
                     </div>
 
-                    <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                    <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
                       {[
+                        { label: 'indexed tracks', value: musicStats.totalTracks },
                         { label: 'followers', value: musicStats.followers },
                         { label: 'playlists', value: playlists.length },
                         { label: 'release candidates', value: candidates.length },

@@ -18,13 +18,12 @@ interface VibeOSModulesProps {
 const moduleIcons = [Library, Workflow, Heart, Sliders]
 
 export default function VibeOSModules({ productId, modules, offer }: VibeOSModulesProps) {
-  const waitlistHref = `/waitlist?intent=${productId}`
   const handleCTAClick = () => {
     trackEvent('product_cta_click', {
       productId,
       location: 'modules',
       target: COMING_SOON_MODE ? 'waitlist' : 'primary',
-      href: COMING_SOON_MODE ? waitlistHref : offer.ctaPrimaryHref,
+      href: COMING_SOON_MODE ? '/newsletter' : offer.ctaPrimaryHref,
       label: COMING_SOON_MODE ? 'join-waitlist' : offer.ctaPrimaryTracking
     })
   }
@@ -119,12 +118,12 @@ export default function VibeOSModules({ productId, modules, offer }: VibeOSModul
                         Join the Waitlist
                       </h3>
                       <p className="mt-3 text-sm text-white/60">
-                        Be the first to know when Vibe OS launches.
+                        Be the first to know when Vibe OS launches. Get early access, exclusive discounts, and behind-the-scenes updates.
                       </p>
                     </div>
 
                     <Link
-                      href={waitlistHref}
+                      href="/newsletter"
                       onClick={handleCTAClick}
                       className="mt-8 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.15em] text-white shadow-[0_20px_60px_rgba(6,182,212,0.35)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(6,182,212,0.45)]"
                     >
@@ -157,38 +156,22 @@ export default function VibeOSModules({ productId, modules, offer }: VibeOSModul
                   <>
                     {/* Normal Pricing Mode */}
                     <div className="mb-6 text-center">
-                      {offer.primaryPrice > 0 ? (
-                        <>
-                          <div className="text-xs font-medium uppercase tracking-[0.2em] text-white/50">
-                            One-time investment
-                          </div>
-                          <div className="mt-4 flex items-center justify-center gap-3">
-                            {offer.originalPrice && (
-                              <span className="text-2xl text-white/30 line-through">
-                                ${offer.originalPrice}
-                              </span>
-                            )}
-                            <span className="bg-gradient-to-r from-cyan-300 to-cyan-500 bg-clip-text text-5xl font-bold text-transparent">
-                              ${offer.primaryPrice}
-                            </span>
-                          </div>
-                          {offer.note && (
-                            <p className="mt-3 text-sm text-white/50">{offer.note}</p>
-                          )}
-                        </>
-                      ) : (
-                        <>
-                          <div className="text-xs font-medium uppercase tracking-[0.2em] text-white/50">
-                            Free
-                          </div>
-                          <div className="mt-4 bg-gradient-to-r from-cyan-300 to-cyan-500 bg-clip-text text-5xl font-bold text-transparent">
-                            Free
-                          </div>
-                          <p className="mt-3 text-sm text-white/50">
-                            The web app is still in development.
-                          </p>
-                        </>
-                      )}
+                      <div className="text-xs font-medium uppercase tracking-[0.2em] text-white/50">
+                        One-time investment
+                      </div>
+                      <div className="mt-4 flex items-center justify-center gap-3">
+                        {offer.originalPrice && (
+                          <span className="text-2xl text-white/30 line-through">
+                            ${offer.originalPrice}
+                          </span>
+                        )}
+                        <span className="bg-gradient-to-r from-cyan-300 to-cyan-500 bg-clip-text text-5xl font-bold text-transparent">
+                          ${offer.primaryPrice}
+                        </span>
+                      </div>
+                      <p className="mt-3 text-sm text-white/50">
+                        {offer.note || 'Lifetime updates included'}
+                      </p>
                     </div>
 
                     <Link
@@ -200,16 +183,14 @@ export default function VibeOSModules({ productId, modules, offer }: VibeOSModul
                     </Link>
 
                     {/* Guarantee */}
-                    {offer.guarantee && (
-                      <div className="mt-8 rounded-2xl border border-cyan-500/20 bg-cyan-500/5 p-5">
-                        <div className="mb-2 text-xs font-semibold uppercase tracking-[0.15em] text-cyan-300">
-                          {offer.guarantee.label}
-                        </div>
-                        <p className="text-sm text-white/70 leading-relaxed">
-                          {offer.guarantee.description}
-                        </p>
+                    <div className="mt-8 rounded-2xl border border-cyan-500/20 bg-cyan-500/5 p-5">
+                      <div className="mb-2 text-xs font-semibold uppercase tracking-[0.15em] text-cyan-300">
+                        {offer.guarantee.label}
                       </div>
-                    )}
+                      <p className="text-sm text-white/70 leading-relaxed">
+                        {offer.guarantee.description}
+                      </p>
+                    </div>
                   </>
                 )}
 
@@ -220,6 +201,18 @@ export default function VibeOSModules({ productId, modules, offer }: VibeOSModul
                       <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
                     </svg>
                     Secure
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" />
+                    </svg>
+                    Instant Access
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    Lifetime Updates
                   </div>
                 </div>
               </div>

@@ -541,7 +541,7 @@ export const booksRegistry: BookConfig[] = [
         title: 'The Creator\'s Renaissance',
         number: 10,
         readingTime: '14 min',
-        description: 'The Renaissance atelier returning, with cheaper apprentices. What becomes scarce when execution becomes free.',
+        description: 'Twelve thousand songs in three years. The Renaissance atelier returning, with cheaper apprentices. What becomes scarce when execution becomes free.',
         published: true,
         type: 'prose',
         epigraph: {

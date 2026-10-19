@@ -306,8 +306,6 @@ interface ArchitectureDiagramProps {
   title?: string
   className?: string
   interactive?: boolean
-  editable?: boolean
-  onNodeSelect?: (id: string) => void
 }
 
 export function ArchitectureDiagram({
@@ -317,8 +315,6 @@ export function ArchitectureDiagram({
   title,
   className,
   interactive = true,
-  editable = true,
-  onNodeSelect,
 }: ArchitectureDiagramProps) {
   // Get nodes and edges from preset or props
   const presetData = preset ? ARCHITECTURE_PRESETS[preset] : null
@@ -364,12 +360,7 @@ export function ArchitectureDiagram({
           edges={edges}
           onNodesChange={interactive ? onNodesChange : undefined}
           onEdgesChange={interactive ? onEdgesChange : undefined}
-          onConnect={interactive && editable ? onConnect : undefined}
-          nodesConnectable={interactive && editable}
-          edgesReconnectable={interactive && editable}
-          deleteKeyCode={interactive && editable ? ['Backspace', 'Delete'] : null}
-          nodesDraggable={interactive}
-          onNodeClick={onNodeSelect ? (_event, node) => onNodeSelect(node.id) : undefined}
+          onConnect={interactive ? onConnect : undefined}
           nodeTypes={nodeTypes}
           fitView
           attributionPosition="bottom-left"

@@ -14,9 +14,9 @@
   <rect width="1200" height="630" fill="url(#glow)"/>
   <g transform="translate(120 120)">
     <text x="0" y="70" font-family="'Inter', 'Segoe UI', sans-serif" font-size="58" font-weight="700" fill="#F8F4FF">AI Doesn't Have To Be Soulless</text>
-    <text x="0" y="122" font-family="'Inter', 'Segoe UI', sans-serif" font-size="30" font-weight="500" fill="#E9E2FF">FrankX Â· Conscious AI Manifesto</text>
+    <text x="0" y="122" font-family="'Inter', 'Segoe UI', sans-serif" font-size="30" font-weight="500" fill="#E9E2FF">FrankX · Conscious AI Manifesto</text>
   </g>
   <g transform="translate(120 480)" fill="#F9EFFF" opacity="0.85">
-    <text x="0" y="0" font-family="'Inter', 'Segoe UI', sans-serif" font-size="24">Enterprise AI Â· Suno Collaborations Â· Human-First Systems</text>
+    <text x="0" y="0" font-family="'Inter', 'Segoe UI', sans-serif" font-size="24">15 Years of Enterprise AI · 500 Suno Collaborations · Human-First Systems</text>
   </g>
 </svg>

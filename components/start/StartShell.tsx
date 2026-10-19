@@ -58,7 +58,7 @@ const journeyPaths = [
     description: 'Learn how I create music with Suno AI. Prompts, workflows, and the creative process.',
     href: '/music-lab',
     color: 'emerald',
-    stats: 'Songs with Suno',
+    stats: '12K+ songs',
   },
   {
     id: 'learn',

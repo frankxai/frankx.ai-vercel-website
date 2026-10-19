@@ -54,18 +54,14 @@ function PortalCard({ portal, description }: { portal: LearningPath; description
       </h3>
       <p className="text-xs text-white/55 mb-3 line-clamp-2 leading-relaxed">{description ?? portal.description}</p>
       <div className="flex items-center gap-3 text-[11px] text-white/40">
-        {portal.estimatedHours !== undefined && (
-          <span className="inline-flex items-center gap-1">
-            <Clock className="w-3 h-3" aria-hidden="true" />
-            {portal.estimatedHours} hours
-          </span>
-        )}
-        {portal.videos.length > 0 && (
-          <span className="inline-flex items-center gap-1">
-            <Play className="w-3 h-3" aria-hidden="true" />
-            {portal.videos.length} {portal.videos.length === 1 ? 'video' : 'videos'}
-          </span>
-        )}
+        <span className="inline-flex items-center gap-1">
+          <Clock className="w-3 h-3" aria-hidden="true" />
+          {portal.estimatedHours} hours
+        </span>
+        <span className="inline-flex items-center gap-1">
+          <Play className="w-3 h-3" aria-hidden="true" />
+          {portal.videos.length} videos
+        </span>
       </div>
       <ArrowRight className="absolute bottom-4 right-4 w-4 h-4 text-white/20 group-hover:text-white/70 group-hover:translate-x-1 transition-all" />
     </Link>

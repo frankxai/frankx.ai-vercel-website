@@ -215,9 +215,6 @@ export function getVisionBoardContext(): VisionBoardContext {
   const roadmapSignals = (roadmap.signals as JsonRecord[] | undefined) ?? []
   const roadmapActions = (roadmap.nextActions as JsonRecord[] | undefined) ?? []
 
-  const musicTracks = Array.isArray(musicData.tracks) ? musicData.tracks : []
-  const musicHeaderAgrees = Number(musicData._count) === musicTracks.length
-
   const context: VisionBoardContext = {
     generatedAt: new Date().toISOString(),
     site: {
@@ -234,8 +231,8 @@ export function getVisionBoardContext(): VisionBoardContext {
       blogCount: Number(blogData._count) || articles.length,
       featuredArticles:
         featuredArticles.length > 0 ? featuredArticles : fallbackArticles,
-      musicPublishedCount: musicHeaderAgrees ? musicTracks.length : 0,
-      musicEstimatedCount: musicHeaderAgrees ? Number(musicData._estimatedTotal) || 0 : 0,
+      musicPublishedCount: Number(musicData._count) || 0,
+      musicEstimatedCount: Number(musicData._estimatedTotal) || 0,
       playlistNames,
       profileCount,
     },

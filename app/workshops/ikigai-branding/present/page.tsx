@@ -211,7 +211,6 @@ export default function IkigaiPresentPage() {
                 <Link
                   href="/workshops/ikigai-branding/present/speaker"
                   target="_blank"
-                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-amber-300 transition-colors"
                   title="Opens speaker view in new window for dual-screen setup"
                 >
@@ -309,7 +308,7 @@ export default function IkigaiPresentPage() {
                     key={s.id}
                     onClick={() => setIndex(i)}
                     aria-label={`Go to slide ${i + 1}: ${s.title}`}
-                    className={`h-1.5 rounded-full transition-[width,background-color] duration-200 ease-out ${
+                    className={`h-1.5 rounded-full transition-all ${
                       i === index ? 'w-6 bg-violet-400' : 'w-1.5 bg-white/[0.12] hover:bg-white/[0.25]'
                     }`}
                   />
@@ -398,7 +397,6 @@ export default function IkigaiPresentPage() {
                   <Link
                     href="/workshops/ikigai-branding/present/speaker"
                     target="_blank"
-                    rel="noopener noreferrer"
                     className="text-xs text-amber-300 hover:text-amber-200 ml-2 underline underline-offset-2"
                   >
                     Open full speaker view →

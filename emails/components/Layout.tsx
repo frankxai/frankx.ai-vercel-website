@@ -295,7 +295,7 @@ export function ResourceCard({ title, description, href, color = t.accentCyan }:
   )
 }
 
-export function SignatureBlock({ message = 'Hit reply if you have a question.' }: { message?: string }) {
+export function SignatureBlock({ message = 'Reply anytime. I read every one.' }: { message?: string }) {
   return (
     <>
       <Hr style={{ borderColor: t.borderGlass, margin: '24px 0' }} />

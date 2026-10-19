@@ -1,4 +1,0 @@
-{
-  "_comment": "Repo-owned routing for the stack-kits router. install.sh never writes this file; it merges it over the generated stack-kits.rules.json.",
-  "_precedence": "taste.md, design.md, CREATOR.md and docs/experience-brief.md outrank every skill listed here. app/page.tsx and components/home/** follow docs/strategy/HOMEPAGE-PRESERVATION-CONTRACT.md: baselines, preservation matrix, exactly three directions and Frank's approval before code. Kit examples use placeholder colors and fonts; use this repo's tokens instead."
-}

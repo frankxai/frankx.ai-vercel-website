@@ -252,15 +252,15 @@ function premiumPacksConfirmation(name: string) {
       '',
       "You're on the list for the FrankX premium agent packs.",
       '',
-      'The catalog maps nine specialist roles per pillar. Standalone bundles are',
-      'still being packaged, and installation will differ by runtime.',
+      'These are the same pillar packs I run on my own machine — content, music,',
+      'visuals, books, research, and the rest. Each ships nine specialist agents you',
+      'install into Claude Code, Cursor, or Antigravity and run with your own keys.',
       '',
-      "We'll send a release update and build notes when a pack is ready.",
-      'No purchase is required to stay on this list.',
+      "When a pack ships, you'll be the first to install it — plus the build notes",
+      'along the way. No spam, and nothing to pay until a pack is in your hands.',
       '',
-      'The public ACOS source installer is available now. It installs a broader',
-      'system. Standalone pillar bundles are still being packaged:',
-      `${siteConfig.url}/agents`,
+      'In the meantime, the free Foundation pack is ready now:',
+      `${siteConfig.url}/agents/packs/meta`,
       '',
       '— Frank',
     ].join('\n'),
@@ -332,6 +332,7 @@ async function sendWelcomeEmail(
   if (listType === 'music-lab') {
     template = musicPromptsEmail({
       recipientName: name || 'Creator',
+      downloadUrl: `${siteConfig.url}/api/download?product=5-suno-prompts`,
       recipientEmail: email,
     })
   } else if (listType === 'ikigai-branding') {
@@ -595,7 +596,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error:
-            'Your subscription was saved, but the confirmation email could not be sent. Please try again.',
+            'Your subscription was saved, but the prompt email could not be sent. Please try again.',
         },
         { status: 502 },
       )
@@ -605,7 +606,7 @@ export async function POST(request: NextRequest) {
       success: true,
       message:
         listType === 'music-lab'
-          ? "You're on the list. We'll email you when the prompts are ready."
+          ? 'Check your email for your free prompts!'
           : 'Successfully subscribed!',
       subscriber: data.id,
       updated: false,

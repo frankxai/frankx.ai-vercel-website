@@ -1,6 +1,6 @@
 {
   "$schema": "https://frankx.ai/schemas/site-links.json",
-  "updated": "2026-10-14",
+  "updated": "2026-06-17",
   "policy": {
     "commerce": "Do not migrate paid-product destinations without a verified checkout/product identifier. Flag uncertain paid links as needs-verification.",
     "sourceOfTruth": "This registry complements lib/social-links.ts, lib/cta-links.ts, data/products.json, and lib/delivery.ts. It exists for site-wide wiring audits and command-map generation."
@@ -322,13 +322,6 @@
       "label": "Books",
       "kind": "internal",
       "url": "/books",
-      "status": "verified"
-    },
-    {
-      "id": "official-openai-plugins-guide",
-      "label": "Official OpenAI plugins guide",
-      "kind": "internal",
-      "url": "/blog/official-openai-plugins-guide",
       "status": "verified"
     }
   ],

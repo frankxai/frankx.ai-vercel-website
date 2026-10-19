@@ -1,12 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowLeft, ArrowRight, ShoppingBag, Sparkles, Gavel, Layers } from 'lucide-react'
-import auctions from '@/data/auctions.json'
-import { auctionShopLabel } from '@/lib/auctions'
 
 const sections = [
   {
@@ -16,66 +13,57 @@ const sections = [
     image: '/images/downloads/acos-skills-pack.png',
     imageAlt: 'ACOS Skills Pack cover art — agent council ring with skill definition blocks and a terminal command',
     href: '/shop/templates',
+    count: 15,
     accent: 'from-cyan-500/20 to-blue-500/20',
     border: 'border-cyan-500/30',
     icon: Layers,
     badge: 'New',
+    priceRange: '$27 – $297',
   },
   {
     id: 'auctions',
-    title: 'Auctions',
+    title: 'Live Auctions',
     description: 'Limited edition prints, 1:1 coaching sessions, custom ACOS builds, and exclusive experiences.',
     image: '/images/gallery/instruments/biotech-grand-piano.png',
-    imageAlt: 'Bio-tech grand piano design print from the limited-edition auction drops',
+    imageAlt: 'Bio-tech grand piano design print — one of the limited editions currently at auction',
     href: '/auctions',
-    count: auctions.length,
+    count: 5,
     accent: 'from-amber-500/20 to-orange-500/20',
     border: 'border-amber-500/30',
     icon: Gavel,
-    // Neutral until the client clock runs: the prerendered HTML must claim neither live nor closed.
-    badge: 'See drop schedule',
-    priceRange: '',
+    badge: 'Live',
+    priceRange: '$47 – $1,997',
   },
   {
     id: 'collectibles',
     title: 'Collectibles',
-    description: 'ACOS trading cards, bio-tech instrument prints, and mixed drop packs.',
+    description: 'ACOS trading cards (40-card Genesis set), bio-tech instrument prints, and mixed drop packs.',
     image: '/images/gallery/instruments/biotech-hex-drum-pads.png',
     imageAlt: 'Bio-tech hexagonal drum pads design print from the collectible instrument series',
     href: '/collectibles',
+    count: 40,
     accent: 'from-purple-500/20 to-pink-500/20',
     border: 'border-purple-500/30',
     icon: Sparkles,
     badge: 'Genesis Set',
+    priceRange: '$5 – $497',
   },
   {
     id: 'products',
     title: 'Digital Products',
-    description: 'Full courses, toolkits, and operating systems. Soulbook, Vibe OS, ACOS.',
+    description: 'Full courses, toolkits, and operating systems. Soulbook, Vibe OS, ACOS, Creative AI Toolkit.',
     image: '/images/ecosystem/01-frankx-ecosystem-overview.png',
     imageAlt: 'FrankX product ecosystem diagram — Vibe OS, ACOS, and GenCreator OS with the Starlight layer above',
     href: '/products',
+    count: 10,
     accent: 'from-emerald-500/20 to-teal-500/20',
     border: 'border-emerald-500/30',
     icon: ShoppingBag,
+    priceRange: 'Free – $997',
   },
 ]
 
 export default function ShopPage() {
-  // The clock starts after mount so the prerendered HTML and the first client render agree; until then
-  // the card shows a neutral schedule label rather than a stale build-time "Live".
-  const [nowTs, setNowTs] = useState<number | null>(null)
-  useEffect(() => {
-    setNowTs(Date.now())
-    const timer = setInterval(() => setNowTs(Date.now()), 60_000)
-    return () => clearInterval(timer)
-  }, [])
-  const visibleSections = sections.map((section) =>
-    section.id === 'auctions' && nowTs !== null
-      ? { ...section, ...auctionShopLabel(auctions, nowTs) }
-      : section
-  )
-
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
       {/* Hero */}
@@ -123,7 +111,7 @@ export default function ShopPage() {
 
             <p className="text-xl text-white/50 max-w-2xl mx-auto mb-10">
               Templates, blueprints, and tools built by an AI architect who ships in production.
-              No theory. Just working code and tested workflows.
+              No theory. Just working code, tested workflows, and real results.
             </p>
           </motion.div>
         </div>
@@ -132,7 +120,7 @@ export default function ShopPage() {
       {/* Sections Grid */}
       <section className="max-w-7xl mx-auto px-6 pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {visibleSections.map((section, index) => (
+          {sections.map((section, index) => (
             <motion.div
               key={section.id}
               initial={{ opacity: 0, y: 30 }}
@@ -175,8 +163,8 @@ export default function ShopPage() {
                     {section.description}
                   </p>
                   <div className="flex items-center gap-4 text-xs text-white/30">
-                    {typeof section.count === 'number' && <span>{section.count} items</span>}
-                    {section.priceRange && <span>{section.priceRange}</span>}
+                    <span>{section.count} items</span>
+                    <span>{section.priceRange}</span>
                   </div>
                 </div>
               </Link>

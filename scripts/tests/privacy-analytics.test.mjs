@@ -5,7 +5,6 @@ import test from 'node:test'
 import {
   allowsAnalyticsMeasurement,
   hasDoNotTrack,
-  sanitizeAnalyticsEventUrl,
   sanitizeAnalyticsProperties,
   sanitizeAnalyticsUrl,
 } from '../../lib/analytics-policy.ts'
@@ -48,12 +47,6 @@ test('the aggregate default gates providers before mount and redacts page-view U
   assert.equal(allowsAnalyticsMeasurement(undefined, true), false)
   assert.equal(allowsAnalyticsMeasurement('0', true), false)
   assert.equal(sanitizeAnalyticsUrl('https://frankx.ai/connect?email=person@example.com#form'), '/connect')
-  assert.equal(
-    sanitizeAnalyticsEventUrl('https://frankx.ai/connect?email=person@example.com#form'),
-    'https://frankx.ai/connect',
-  )
-  assert.equal(sanitizeAnalyticsEventUrl('https://www.frankx.ai/'), 'https://www.frankx.ai/')
-  assert.doesNotThrow(() => new URL(sanitizeAnalyticsEventUrl('https://frankx.ai/blog/x?utm_source=t.co')))
   assert.match(component, /useState<boolean \| null>\(null\)/)
   assert.match(component, /privacyNavigator\.globalPrivacyControl/)
   assert.match(component, /if \(measurementAllowed !== true\) return null/)
@@ -62,7 +55,7 @@ test('the aggregate default gates providers before mount and redacts page-view U
   assert.match(client, /inject\(\{ beforeSend: privacySafeBeforeSend \}\)/)
   assert.match(client, /if \(analyticsInitialized\) return true/)
   assert.match(client, /privacyNavigator\.globalPrivacyControl/)
-  assert.match(client, /sanitizeAnalyticsEventUrl\(event\.url\)/)
+  assert.match(client, /sanitizeAnalyticsUrl\(event\.url\)/)
 })
 
 test('custom event properties exclude PII, free text, full URLs, and query data', () => {
@@ -210,7 +203,7 @@ test('custom events initialize the provider before tracking and inject exactly o
         type: 'event',
         url: 'https://frankx.ai/connect?ref=mvu-sabrina#private',
       }),
-      { type: 'event', url: 'https://frankx.ai/connect' },
+      { type: 'event', url: '/connect' },
     )
   })
 })

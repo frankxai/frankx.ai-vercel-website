@@ -212,7 +212,7 @@ export function pdfDeliveryEmail(data: {
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top: 1px solid #334155;">
             <tr>
               <td style="padding: 20px 0 0 0;">
-                <p style="font-size: 14px; color: #94a3b8; margin: 0 0 4px 0; line-height: 1.5;">Hit reply if you have a question.</p>
+                <p style="font-size: 14px; color: #94a3b8; margin: 0 0 4px 0; line-height: 1.5;">Questions? Reply to this email. I read every one.</p>
                 <p style="font-size: 13px; color: #64748b; margin: 0;">More at <a href="https://frankx.ai/blog" style="color: #22d3ee; text-decoration: none;">frankx.ai/blog</a></p>
               </td>
             </tr>
@@ -244,7 +244,7 @@ export function newsletterWelcomeEmail(data: {
           </h1>
 
           <p style="font-size: 16px; color: #CBD5E1; line-height: 1.6; margin: 0 0 12px 0;">
-            I'm Frank. I build enterprise AI systems during the day. At night I'm in the studio making songs with Suno.
+            I'm Frank. I build enterprise AI systems during the day. At night I'm in the studio — 12,000+ AI-generated songs and counting.
           </p>
 
           <p style="font-size: 15px; color: #94a3b8; line-height: 1.6; margin: 0 0 24px 0;">
@@ -258,7 +258,7 @@ export function newsletterWelcomeEmail(data: {
                 <p style="font-size: 12px; color: #7C3AED; margin: 0 0 12px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">What to Expect</p>
                 <p style="font-size: 15px; color: #CBD5E1; margin: 0 0 6px 0; line-height: 1.5;"><span style="color: #7C3AED;">›</span> <strong style="color: white;">AI tools and workflows</strong> — what's actually useful, not hype</p>
                 <p style="font-size: 15px; color: #CBD5E1; margin: 0 0 6px 0; line-height: 1.5;"><span style="color: #7C3AED;">›</span> <strong style="color: white;">Music creation insights</strong> — prompts, techniques, production notes</p>
-                <p style="font-size: 15px; color: #CBD5E1; margin: 0 0 6px 0; line-height: 1.5;"><span style="color: #7C3AED;">›</span> New guides and frameworks in your inbox</p>
+                <p style="font-size: 15px; color: #CBD5E1; margin: 0 0 6px 0; line-height: 1.5;"><span style="color: #7C3AED;">›</span> <strong style="color: white;">Early access</strong> — new guides and frameworks before public</p>
                 <p style="font-size: 15px; color: #CBD5E1; margin: 0; line-height: 1.5;"><span style="color: #7C3AED;">›</span> <strong style="color: white;">Real results</strong> — successes, failures, and everything between</p>
               </td>
             </tr>
@@ -391,21 +391,22 @@ export function communityBroadcastEmail(data: {
 
 export function musicPromptsEmail(data: {
   recipientName: string
+  downloadUrl: string
   recipientEmail?: string
 }): EmailTemplate {
   const tracks = [
-    { title: 'The Awakening', genre: 'African / World', url: 'https://suno.com/song/8374d2ad-9142-4900-9028-a1e805688407' },
-    { title: 'Vibe O S', genre: 'Hip Hop / Bass', url: 'https://suno.com/song/9cbad174-9276-427f-9aed-1ba00c7db3db' },
-    { title: 'Golden Age of Intelligence', genre: 'EDM / Epic', url: 'https://suno.com/song/d1ad41a9-9239-454d-bc2c-a187f42ac30b' },
-    { title: 'Trust in Yourself', genre: 'Pop Punk / Symphonic', url: 'https://suno.com/song/66572f21-2682-41f3-9051-86446e9b9bd7' },
-    { title: 'Lumina', genre: 'Rock / Soul', url: 'https://suno.com/song/1fc13c04-a7b3-427d-bff0-cac92ee524ae' },
+    { title: 'The Awakening', stat: '142 plays', genre: 'African / World', url: 'https://suno.com/song/8374d2ad-9142-4900-9028-a1e805688407' },
+    { title: 'Vibe O S', stat: '128 plays', genre: 'Hip Hop / Bass', url: 'https://suno.com/song/9cbad174-9276-427f-9aed-1ba00c7db3db' },
+    { title: 'Golden Age of Intelligence', stat: '119 plays', genre: 'EDM / Epic', url: 'https://suno.com/song/d1ad41a9-9239-454d-bc2c-a187f42ac30b' },
+    { title: 'Trust in Yourself', stat: '34 likes', genre: 'Pop Punk / Symphonic', url: 'https://suno.com/song/66572f21-2682-41f3-9051-86446e9b9bd7' },
+    { title: 'Lumina', stat: '108 plays', genre: 'Rock / Soul', url: 'https://suno.com/song/1fc13c04-a7b3-427d-bff0-cac92ee524ae' },
   ]
 
   const trackRows = tracks.map(t => `
             <tr>
               <td style="padding: 10px 0; border-bottom: 1px solid #1E293B;">
                 <a href="${t.url}" style="color: #22d3ee; text-decoration: none; font-weight: 600; font-size: 15px; line-height: 1.4;">${t.title}</a>
-                <br><span style="font-size: 13px; color: #64748b;">${t.genre}</span>
+                <br><span style="font-size: 13px; color: #64748b;">${t.genre} &middot; ${t.stat}</span>
               </td>
             </tr>`).join('')
 
@@ -415,18 +416,24 @@ export function musicPromptsEmail(data: {
         <td class="content-pad" style="padding: 24px 20px;">
 
           <h1 class="h1" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 700; color: white; margin: 0 0 16px 0; line-height: 1.3;">
-            You're on the list, ${data.recipientName}.
+            Your 5 Suno prompts are ready, ${data.recipientName}.
           </h1>
 
-          <p style="font-size: 16px; color: #CBD5E1; line-height: 1.6; margin: 0 0 24px 0;">
-            The guide with five Suno prompts isn't ready yet. You'll get a note when it is.
+          <p style="font-size: 16px; color: #CBD5E1; line-height: 1.6; margin: 0 0 8px 0;">
+            These are the exact prompts behind my top-performing tracks. 500+ combined plays, refined over 12,000+ songs.
           </p>
+
+          <p style="font-size: 15px; color: #94a3b8; line-height: 1.6; margin: 0 0 24px 0;">
+            Each one includes a breakdown of <strong style="color: #10b981;">why it works</strong> and <strong style="color: #10b981;">variations to try</strong>. Copy, paste, create.
+          </p>
+
+          ${ctaButton('Download Your 5 Prompts', data.downloadUrl, '#059669')}
 
           <!-- Track list -->
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin: 0 0 24px 0;">
             <tr>
               <td style="padding: 16px 0 8px 16px; border-left: 3px solid #10b981;">
-                <p style="font-size: 12px; color: #10b981; margin: 0 0 8px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Tracks in the guide</p>
+                <p style="font-size: 12px; color: #10b981; margin: 0 0 8px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Tracks Included</p>
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="color: #E2E8F0;">
                   ${trackRows}
                 </table>
@@ -434,14 +441,14 @@ export function musicPromptsEmail(data: {
             </tr>
           </table>
 
-          <!-- Launch list -->
+          <!-- Upsell -->
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top: 1px solid #334155;">
             <tr>
               <td style="padding: 20px 0 0 0;">
                 <p style="font-size: 15px; color: #CBD5E1; margin: 0 0 12px 0; line-height: 1.5;">
-                  The Suno Prompt Library is on the launch list.
+                  <strong style="color: white;">Want more?</strong> The full Suno Prompt Library has 100+ prompts organized by genre, plus a formula cheatsheet.
                 </p>
-                ${outlineButton('Join the launch list', 'https://frankx.ai/waitlist?intent=suno-prompt-library')}
+                ${outlineButton('Get 100+ Prompts ($27)', 'https://frankx.ai/products/suno-prompt-library')}
               </td>
             </tr>
           </table>
@@ -452,8 +459,8 @@ export function musicPromptsEmail(data: {
   `
 
   return {
-    subject: "You're on the list for the 5 Suno prompts",
-    html: emailWrapper(content, "The guide is coming. You'll get a note when it's ready.", data.recipientEmail)
+    subject: 'Your 5 Suno prompts are ready',
+    html: emailWrapper(content, 'The exact prompts behind 500+ plays on Suno AI. Download your 5 free prompts now.', data.recipientEmail)
   }
 }
 

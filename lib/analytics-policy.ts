@@ -32,20 +32,6 @@ export function sanitizeAnalyticsUrl(value: string): string {
   }
 }
 
-/**
- * The page URL Vercel Web Analytics records. The insights script parses it with
- * `new URL()`, so a bare path drops the event: frankx.ai recorded zero pageviews
- * from 2026-07-11, when beforeSend began returning `/path`. Query and hash still go.
- */
-export function sanitizeAnalyticsEventUrl(value: string): string {
-  try {
-    const url = new URL(value)
-    return `${url.origin}${url.pathname || '/'}`
-  } catch {
-    return value.split(/[?#]/, 1)[0]
-  }
-}
-
 export function sanitizeAnalyticsProperties(
   properties: Record<string, unknown> = {}
 ): Record<string, AnalyticsProperty> {

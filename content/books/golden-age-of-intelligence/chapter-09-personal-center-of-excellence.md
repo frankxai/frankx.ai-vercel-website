@@ -248,7 +248,7 @@ The personal Center of Excellence is the architecture. The architecture exists t
 
 The next chapter opens the room I have spent the most time in.
 
-Hundreds of tracks. The shape of the creator's life when the constraint of execution drops away and the constraint of taste becomes everything.
+Twelve thousand songs. Three years. The shape of the creator's life when the constraint of execution drops away and the constraint of taste becomes everything.
 
 In Chapter 10 we walk into the Renaissance — the second one, the one happening now, the one that is happening to anyone willing to receive it.
 

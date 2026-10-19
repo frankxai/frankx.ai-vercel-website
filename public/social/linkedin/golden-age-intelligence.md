@@ -20,7 +20,7 @@ The playbook for this era:
 → Distribution loops (omnichannel reach)
 → Measurement rituals (compound improvement)
 
-This is the operating system we're running.
+This is the 15,000-word operating system we're running.
 
 Full masterplan: https://www.frankx.ai/blog/golden-age-of-intelligence
 

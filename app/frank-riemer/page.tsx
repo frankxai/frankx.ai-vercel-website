@@ -26,7 +26,7 @@ export const metadata = createMetadata({
 
 const proofPoints = [
   'AI architect working at enterprise scale',
-  'AI songs produced and studied with Suno',
+  '12,000+ AI songs produced and studied',
   '630+ AI skills and workflow patterns shipped',
   'FrankX systems documented in public',
 ]

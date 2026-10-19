@@ -47,7 +47,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     creatorUse: 'Coordinate documented tools, then inspect outputs and editable sources. Adobe, Canva and HeyGen have separate access requirements. Astra does not natively output audio or video.',
   },
   'gemini-3-7-flash': {
-    tagline: 'Google\u2019s Flash tier \u2014 a coding and agent refresh at an introductory price with a known expiry.',
+    tagline: 'Google\u2019s current Flash tier \u2014 a coding and agent refresh at an introductory price with a known expiry.',
     bestFor: [
       'High-volume agentic coding where cost compounds',
       'Web development and agent workflows (Google\u2019s stated focus)',
@@ -58,7 +58,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'google/gemini-3.7-flash',
   },
   'gemini-3-5-flash': {
-    tagline: 'Frontier agentic coding at sub-flagship economics.',
+    tagline: 'Frontier agentic coding at sub-flagship economics — the new default agent runtime.',
     bestFor: [
       'High-volume agentic workloads where cost compounds',
       'MCP-heavy tool-use pipelines (83.6% MCP Atlas)',
@@ -85,6 +85,11 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     watchOut: 'Preview. Head-to-head vs Veo 3 / Sora 2 not yet independently run.',
     creatorUse: 'The one to watch for agentic video pipelines — author, narrate, produce in one tool-use sequence.',
   },
+  'gemini-omni-flash': {
+    tagline: 'Production-ready video generation at Flash economics.',
+    bestFor: ['High-throughput video gen', 'Cost-sensitive creative pipelines'],
+    creatorUse: 'Bulk short-form video generation where speed and cost beat cinematic fidelity.',
+  },
   'mai-thinking-1': {
     tagline: 'Microsoft’s in-house reasoning flagship — frontier ambitions on MAIA silicon.',
     bestFor: [
@@ -108,7 +113,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     creatorUse: 'Cheap, fast in-editor help; route real architecture work to a frontier model.',
   },
   'claude-fable-5': {
-    tagline: 'Mythos-class made generally available, at 2× Opus pricing.',
+    tagline: 'Mythos-class made generally available — the new agentic-coding ceiling, at 2× Opus pricing.',
     bestFor: [
       'Agentic pipelines feeding schemas, tools, and other agents (measured constraint precision)',
       'Long-horizon coding — SWE-Bench Verified 95% / Pro ~80% at launch (vendor-claimed)',
@@ -129,7 +134,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'anthropic/claude-opus-5',
   },
   'claude-opus-4-8': {
-    tagline: 'Modest version bump, real frontier gains, at the same price as 4.7.',
+    tagline: 'Modest version bump, real frontier gains — tops the intelligence index at the same price as 4.7.',
     bestFor: [
       'Hard agentic coding and codebase-scale migrations',
       'Long-horizon autonomous work with a clear up-front spec',
@@ -140,7 +145,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'anthropic/claude-opus-4.8',
   },
   'claude-sonnet-5': {
-    tagline: '1M context and frontier computer-use at Sonnet economics.',
+    tagline: 'The new mid-tier default \u2014 1M context and frontier computer-use at Sonnet economics.',
     bestFor: [
       'Production coding and integrations at $2/$10',
       'Computer-use agents (81.2% OSWorld, vendor-reported)',
@@ -186,20 +191,21 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'anthropic/claude-haiku-4.5',
   },
   'grok-4-6': {
-    tagline: 'xAI flagship from 12 August to 21 September 2026: same-scale agent refresh of 4.5, AA Index 61, $2/$6 under 200k. No Starlight arena receipt yet.',
+    tagline: 'Current xAI flagship: same-scale agent refresh of 4.5, AA Index 61, $2/$6 under 200k. No Starlight arena receipt yet.',
     bestFor: [
       'Long-running coding and knowledge-work agents on the xAI API',
       'First-pass app and visual structure work (vendor-stated focus)',
       'Frontier-priced loops that must stay under the 200k prompt cliff',
     ],
     watchOut: 'Not a documented new base model. Cached input rose to $0.50. Price doubles past 200k prompt tokens. Do not treat vendor or AA tables as SIS Model Arena winners.',
-    creatorUse: 'Use for multi-step build loops; keep Claude on receipt-gated SIS arena work until a Grok 4.6 JSON receipt exists.',
+    creatorUse: 'Use as the default Grok API model for multi-step build loops; keep Claude on receipt-gated SIS arena work until a Grok 4.6 JSON receipt exists.',
     openrouterId: 'x-ai/grok-4.6',
   },
   'grok-4-3': {
     tagline: 'Previous cheap-frontier Grok — superseded as flagship by Grok 4.6 on 12 August 2026.',
     bestFor: [
       'High-volume cost-sensitive inference (classification, extraction, summarization)',
+      'Latency-sensitive agentic tool loops',
       'Native video-input and voice-cloning workflows',
     ],
     watchOut: 'Context window dropped 2M → 1M; per-token price doubles past 200K tokens in a single request; reasoning is always-on so trivial calls cost slightly more.',
@@ -212,7 +218,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'x-ai/grok-4.1',
   },
   'gpt-5-5': {
-    tagline: 'OpenAI’s agentic flagship at its April 2026 launch: best-in-class computer-use and knowledge-work scores at the time, at double the price.',
+    tagline: 'OpenAI’s agentic flagship: best-in-class computer-use and knowledge-work scores, at double the price.',
     bestFor: [
       'Terminal-agent and Codex-style autonomous loops',
       'Computer-use / OSWorld automation',
@@ -263,7 +269,7 @@ export const MODEL_EDITORIAL: Record<string, ModelEditorial> = {
     openrouterId: 'meta-llama/llama-4-maverick',
   },
   'deepseek-v4-pro-0813': {
-    tagline: 'A 1.6T MoE with a vendor-reported 96.4% on SWE-bench Verified and last on agentic coding \u2014 read both numbers.',
+    tagline: 'A 1.6T MoE at the top of SWE-bench Verified and last on agentic coding \u2014 read both numbers.',
     bestFor: [
       'Verifiable, well-specified coding tasks at low cost per test',
       'Long-context work (1M in, up to 384K out)',

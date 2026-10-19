@@ -30,11 +30,14 @@ export default function VibeOSBonuses({ bonuses }: VibeOSBonusesProps) {
         >
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-400/20 bg-amber-500/10 px-5 py-2 text-xs font-medium uppercase tracking-[0.2em] text-amber-200">
             <Gift className="h-4 w-4" />
-            Bonuses
+            Limited Bonuses
           </div>
           <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
             Included With Your Purchase
           </h2>
+          <p className="mx-auto mt-4 max-w-lg text-white/60">
+            Extra resources to accelerate your music production journey
+          </p>
         </motion.div>
 
         {/* Bonuses Grid */}
@@ -78,6 +81,22 @@ export default function VibeOSBonuses({ bonuses }: VibeOSBonusesProps) {
             )
           })}
         </div>
+
+        {/* Total Value */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-12 text-center"
+        >
+          <div className="inline-flex items-center gap-4 rounded-full border border-white/10 bg-white/5 px-6 py-3 backdrop-blur-sm">
+            <span className="text-sm text-white/60">Total Bonus Value:</span>
+            <span className="bg-gradient-to-r from-amber-300 to-orange-400 bg-clip-text text-xl font-bold text-transparent">
+              ${bonuses.reduce((sum, b) => sum + parseInt(b.value.replace(/[^0-9]/g, '') || '0'), 0)}+
+            </span>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

@@ -78,7 +78,7 @@ export default function BuildYourAICreatorOSPage() {
               className="max-w-4xl"
             >
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-400/60 mb-6">
-                Creator OS · Free introduction and lab
+                Flagship Course
               </p>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
@@ -98,9 +98,9 @@ export default function BuildYourAICreatorOSPage() {
 
               <div className="flex flex-wrap gap-8 mb-12">
                 {[
-                  { value: '8', label: 'Curriculum modules planned' },
-                  { value: '1', label: 'Free introduction available' },
-                  { value: '1', label: 'Free workflow lab available' },
+                  { value: '8', label: 'Modules' },
+                  { value: '500+', label: 'Skills' },
+                  { value: '58', label: 'Workflows' },
                 ].map((stat, i) => (
                   <motion.div
                     key={stat.label}
@@ -129,15 +129,6 @@ export default function BuildYourAICreatorOSPage() {
         </section>
 
         {/* What You'll Learn */}
-        <section className="border-t border-emerald-300/20 bg-emerald-300/[0.03] py-12">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <p className="font-mono text-xs uppercase tracking-widest text-emerald-300">Free self-guided workflow lab</p>
-            <h2 className="mt-4 font-display text-3xl font-semibold text-white">Build work you can inspect.</h2>
-            <p className="mt-4 max-w-2xl leading-7 text-slate-300">Six AI-generated lessons, a fictional worked example, three failure tests and an exportable peer-review packet. Founder pedagogical review and learner validation are pending.</p>
-            {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- This App Route serves a complete HTML document and requires native navigation. */}
-          <a href="/courses/build-your-ai-creator-os/reliable-workflow" className="mt-6 inline-flex min-h-12 items-center rounded-full bg-emerald-300 px-6 py-3 font-semibold text-[#06110d] hover:bg-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]">Open the free workflow lab</a>
-          </div>
-        </section>
         <section className="py-16 border-t border-white/5">
           <div className="max-w-6xl mx-auto px-6">
             <motion.div
@@ -298,7 +289,7 @@ export default function BuildYourAICreatorOSPage() {
                 Module 1 is free. Start now.
               </h2>
               <p className="text-lg text-white/50 mb-10 max-w-2xl mx-auto">
-                Set up your AI foundation today. Module 1 is available to read now.
+                Set up your AI foundation today. Get notified when new modules launch.
               </p>
 
               <div className="flex flex-col items-center gap-6">
@@ -312,16 +303,12 @@ export default function BuildYourAICreatorOSPage() {
 
                 <div className="w-full max-w-md mt-8">
                   <p className="text-sm text-white/40 mb-4">
-                    Submitting records interest in the rest of the course and subscribes you to
-                    occasional FrankX field notes. The immediate email is the standard newsletter
-                    welcome, not a module notification or course-specific follow-up.
+                    Get notified when new modules launch
                   </p>
                   <EmailSignup
                     listType="courses-waitlist"
-                    source="/courses/build-your-ai-creator-os"
-                    intent="course-build-your-ai-creator-os"
                     placeholder="you@example.com"
-                    buttonText="Record course interest"
+                    buttonText="Notify Me"
                     compact
                   />
                 </div>

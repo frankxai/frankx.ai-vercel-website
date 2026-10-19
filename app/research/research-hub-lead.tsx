@@ -60,7 +60,7 @@ export default function ResearchHubLead() {
                     />
                     <span className="font-mono">0{i + 1}</span>
                     <span>
-                      {domainsForHub(hub.category).length} topic maps
+                      {domainsForHub(hub.category).length} research briefs
                     </span>
                   </span>
                   <ArrowUpRight

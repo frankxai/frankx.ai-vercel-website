@@ -1,5 +1,4 @@
 import programs from '@/data/affiliate/programs.json'
-import { programToRecord, sponsorDecision, toolSlug } from '../tools/record.ts'
 import { getAffiliate } from './affiliate-manager'
 import { resolveProgramDestination } from './resolve-destination'
 
@@ -16,11 +15,8 @@ export function getAffiliateDestination(affiliateId: string) {
 }
 
 export function editorialLinkRel(href?: string, rel?: string) {
-  const sponsored = programs.programs.some(program => {
-    const decision = sponsorDecision(programToRecord(program))
-    return (decision.sponsored && decision.href === href)
-      || (href === `/go/${toolSlug(program.tool)}` && program.hasProgram && Boolean(program.ourLink))
-  })
+  const sponsored = programs.programs.some(program =>
+    program.hasProgram && program.status === 'active' && program.ourLink === href)
   if (!sponsored) return rel
   return [...new Set([...(rel ?? '').split(/\s+/).filter(Boolean), 'sponsored'])].join(' ')
 }

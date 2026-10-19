@@ -152,7 +152,6 @@ export default function IkigaiSpeakerPage() {
             <Link
               href="/workshops/ikigai-branding/present"
               target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-zinc-300 bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:text-white"
             >
               <ExternalLink className="w-3.5 h-3.5" />
@@ -266,7 +265,7 @@ export default function IkigaiSpeakerPage() {
                 onClick={() => setIndex(i)}
                 title={s.title}
                 aria-label={`Jump to slide ${i + 1}: ${s.title}`}
-                className={`h-2 rounded-full transition-[width,background-color] duration-200 ease-out ${
+                className={`h-2 rounded-full transition-all ${
                   i === index ? 'w-8 bg-violet-400' : 'w-2 bg-white/[0.12] hover:bg-white/[0.25]'
                 }`}
               />

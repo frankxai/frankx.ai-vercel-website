@@ -7,6 +7,7 @@ import {
   getAlbumAnalytics,
   getPlaylistAnalytics,
   getDistroKidCandidates,
+  getAllTracks,
   getPlaylists,
 } from '@/lib/music'
 
@@ -22,6 +23,7 @@ export default function MusicDashboardPage() {
   const albumAnalytics = getAlbumAnalytics()
   const playlistAnalytics = getPlaylistAnalytics()
   const distroKidCandidates = getDistroKidCandidates()
+  const allTracks = getAllTracks()
   const playlists = getPlaylists()
 
   // Serialize for client component (strip non-serializable Track objects)
@@ -81,6 +83,7 @@ export default function MusicDashboardPage() {
       rank: a.rank,
       tier: a.tier,
     })),
+    totalTracksInInventory: allTracks.length,
     totalPlaylists: playlists.length,
   }
 

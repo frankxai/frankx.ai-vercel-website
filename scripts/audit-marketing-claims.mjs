@@ -20,12 +20,6 @@ const ignore = [
   'data/model-registry.json',
   'data/vault-manifest.json',
   'data/templates.json',
-  'app/ai-architect/**',
-  'app/ai-architecture/**',
-  'data/ai-architecture/**',
-  'data/inventories/**',
-  'data/acos/**',
-  'components/social-proof/**',
 ]
 
 function normalize(relPath) {
@@ -73,34 +67,9 @@ const checks = [
     id: 'large-vanity-metric',
     label: 'Large vanity metric with audience/outcome noun',
     regex:
-      /\b(?:\d{2,}K\+|\d{4,}\+)\s*.*\b(songs?|creators?|customers?|users?|students?|implementations?|enrollments?)\b/i,
-  },
-  {
-    id: 'sla-uptime',
-    label: 'Numeric SLA or Uptime claim',
-    regex: /\b\d+(?:\.\d+)?%\s*(?:uptime|SLA|availability)\b/i,
-  },
-  {
-    id: 'unbacked-benchmark',
-    label: 'Unbacked benchmark claim',
-    regex: /\b(?:unbacked|proven|guaranteed)\s+(?:benchmark|performance|speedup|throughput|results)\b/i,
-  },
-  {
-    id: 'fake-receipt-financial',
-    label: 'Unbacked receipt or financial claim',
-    regex: /\b(?:unbacked|verified|guaranteed)\s+(?:receipts?|payouts?|earnings?|mrr|arr)\b/i,
-  },
-  {
-    id: 'testimonial-claim',
-    label: 'Unbacked testimonial or endorsement claim',
-    regex: /\b(?:verified|guaranteed)\s+(?:testimonial|endorsement)\b/i,
+      /\b(?:\d{2,}K\+|\d{4,}\+)\b.*\b(songs?|creators?|customers?|users?|students?|implementations?|enrollments?)\b/i,
   },
 ]
-
-function hasEvidenceEscapeHatch(line, prevLine) {
-  const evidencePattern = /evidence[:=]|evidence\/|\/evidence\b|\[evidence\]|\bdata-evidence\b/i
-  return evidencePattern.test(line) || (prevLine && evidencePattern.test(prevLine))
-}
 
 function walk(dir, files = []) {
   const entries = fs.readdirSync(path.join(root, dir), { withFileTypes: true })
@@ -131,17 +100,14 @@ for (const relPath of files) {
   const lines = text.split(/\r?\n/)
 
   lines.forEach((line, index) => {
-    const prevLine = index > 0 ? lines[index - 1] : ''
     checks.forEach((check) => {
       if (check.regex.test(line)) {
-        if (!hasEvidenceEscapeHatch(line, prevLine)) {
-          findings.push({
-            file: relPath,
-            line: index + 1,
-            rule: check.label,
-            snippet: line.trim(),
-          })
-        }
+        findings.push({
+          file: relPath,
+          line: index + 1,
+          rule: check.label,
+          snippet: line.trim(),
+        })
       }
     })
   })

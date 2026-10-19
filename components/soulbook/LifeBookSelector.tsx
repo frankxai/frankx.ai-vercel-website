@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import PremiumButton from '@/components/ui/PremiumButton'
@@ -118,7 +119,7 @@ function LifeBookCard({
           {/* Tagline */}
           <p className="text-white/80 font-medium mb-4">{book.tagline}</p>
 
-          {/* Duration */}
+          {/* Duration & Sessions */}
           <div className="flex items-center gap-4 text-sm text-white/60 mb-6">
             <span className="flex items-center gap-1">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -126,10 +127,42 @@ function LifeBookCard({
               </svg>
               {book.duration}
             </span>
+            <span className="flex items-center gap-1">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+              {book.sessions} sessions
+            </span>
           </div>
 
           {/* Description */}
           <p className="text-white/70 mb-6 flex-grow">{book.shortDescription}</p>
+
+          {/* Price */}
+          <div className="flex items-baseline gap-2 mb-6">
+            <span className="text-3xl font-bold text-white">${book.price.current}</span>
+            <span className="text-white/40 line-through text-sm">${book.price.original}</span>
+            <span className="text-amber-400 text-sm font-medium">
+              Save ${book.price.original - book.price.current}
+            </span>
+          </div>
+
+          {/* Features preview */}
+          <ul className="space-y-2 mb-6">
+            {book.features.slice(0, 4).map((feature, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-white/60">
+                <svg className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+            {book.features.length > 4 && (
+              <li className="text-sm text-white/40">
+                +{book.features.length - 4} more features
+              </li>
+            )}
+          </ul>
 
           {/* CTA */}
           <PremiumButton
@@ -233,7 +266,7 @@ export default function LifeBookSelector() {
 
               {/* Outcomes */}
               <div className="space-y-3 mb-6">
-                <h4 className="font-semibold text-white/90">What the book covers:</h4>
+                <h4 className="font-semibold text-white/90">What you'll transform:</h4>
                 <div className="grid grid-cols-2 gap-2">
                   {lifeBooks[selectedBook].outcomes.slice(0, 4).map((outcome, i) => (
                     <div key={i} className="flex items-center gap-2 text-sm text-white/60">
@@ -244,6 +277,13 @@ export default function LifeBookSelector() {
                 </div>
               </div>
 
+              {/* Guarantee */}
+              <div className="flex items-center gap-2 text-sm text-white/50">
+                <svg className="w-5 h-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                {lifeBooks[selectedBook].guarantee}
+              </div>
             </div>
 
             <div className="space-y-6">
@@ -261,6 +301,17 @@ export default function LifeBookSelector() {
                   ))}
                 </ul>
               </div>
+
+              {/* CTA */}
+              <PremiumButton
+                variant="luxury"
+                size="xl"
+                glow
+                className="w-full"
+                href={lifeBooks[selectedBook].slug === 'seven-pillars' ? '/soulbook/7-pillars' : `/soulbook/${lifeBooks[selectedBook].slug}`}
+              >
+                Start Your {lifeBooks[selectedBook].title} Journey — ${lifeBooks[selectedBook].price.current}
+              </PremiumButton>
             </div>
           </div>
           </div>

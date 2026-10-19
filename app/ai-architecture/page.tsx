@@ -1,5 +1,4 @@
 import { OfficialArchitectureAtlas } from '@/components/ai-architecture/OfficialArchitectureAtlas'
-import { ArchitectureShowroom } from '@/components/ai-architecture/ArchitectureShowroom'
 import RunItCta from '@/components/ai-architecture/RunItCta'
 import { PillarGuide, pillarFaqs } from '@/components/ai-architecture/pillar/PillarGuide'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
@@ -14,12 +13,12 @@ const GUIDE_REVIEWS = `https://github.com/frankxai/ai-architect/blob/${GUIDE_COM
 // so the client-rendered catalog children do not inherit og:type=article and the
 // hub's modified date.
 export const metadata = createMetadata({
-  title: 'AI Architecture: Explore the Systems, Inspect the Code, Start a Build',
+  title: 'AI Architecture: The Field Guide to Production Agent Systems',
   description:
-    'Explore retrieval apps, bounded agent teams, persistent cloud workers, and n8n automation. Inspect source-backed diagrams, deploy starters, and read the AI architecture field guide.',
+    'How to structure a system that calls a language model: the seven planes, choosing between workflow and agent, the 2026-07-28 MCP revision, the OWASP GenAI LLM Top 10 2026, and where these systems actually break.',
   path: '/ai-architecture',
   type: 'article',
-  updatedTime: '2026-10-11',
+  updatedTime: '2026-09-07',
 })
 
 const CONTENTS = [
@@ -50,8 +49,7 @@ export default function AIArchitecturePage() {
       />
       <FAQPageJsonLd faqs={pillarFaqs} id="ai-architecture-faq" />
 
-      <ArchitectureShowroom />
-      <OfficialArchitectureAtlas showHero={false} />
+      <OfficialArchitectureAtlas />
 
       <nav
         id="working-edition"

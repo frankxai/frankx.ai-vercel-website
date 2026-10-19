@@ -11,7 +11,7 @@ const COMING_SOON_MODE = true
 
 interface OfferStackProps {
   productId: string
-  offer?: ProductOffer
+  offer: ProductOffer
   modules: ProductModule[]
   bonuses?: ProductBonus[]
   pricingTiers?: ProductPricingTier[]
@@ -22,7 +22,6 @@ function isExternal(href: string) {
 }
 
 export default function OfferStack({ productId, offer, modules, bonuses, pricingTiers }: OfferStackProps) {
-  const waitlistHref = `/waitlist?intent=${productId}`
   const handleClick = (target: 'primary' | 'secondary' | string, href: string, label?: string) => {
     trackEvent('product_cta_click', {
       productId,
@@ -33,9 +32,9 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
     })
   }
 
-  const secondaryHref = offer?.ctaSecondaryHref
-  const secondaryLabel = offer?.ctaSecondary
-  const secondaryTracking = offer?.ctaSecondaryTracking
+  const secondaryHref = offer.ctaSecondaryHref
+  const secondaryLabel = offer.ctaSecondary
+  const secondaryTracking = offer.ctaSecondaryTracking
 
   return (
     <section className="bg-[#0a0a0b] py-20">
@@ -55,13 +54,11 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
           </div>
           {bonuses && bonuses.length > 0 && (
             <div className="mt-8">
-              <h3 className="text-xl font-semibold text-cyan-200">Bonuses</h3>
+              <h3 className="text-xl font-semibold text-cyan-200">Limited Bonuses</h3>
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 {bonuses.map((bonus) => (
                   <div key={bonus.title} className="rounded-2xl border border-cyan-500/30 bg-cyan-500/10 p-5 text-white">
-                    {!COMING_SOON_MODE && bonus.value ? (
-                      <div className="text-sm uppercase tracking-[0.3em] text-cyan-200">{bonus.value}</div>
-                    ) : null}
+                    <div className="text-sm uppercase tracking-[0.3em] text-cyan-200">{bonus.value}</div>
                     <div className="mt-2 text-lg font-semibold">{bonus.title}</div>
                     <p className="mt-2 text-sm text-white/70">{bonus.description}</p>
                   </div>
@@ -81,11 +78,11 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">Join the Waitlist</h3>
                 <p className="text-sm text-white/60 mb-6">
-                  Be the first to know when this product launches.
+                  Be the first to know when this product launches. Get early access, exclusive discounts, and behind-the-scenes updates.
                 </p>
                 <Link
-                  href={waitlistHref}
-                  onClick={() => handleClick('waitlist', waitlistHref, 'product-waitlist')}
+                  href="/newsletter"
+                  onClick={() => handleClick('waitlist', '/newsletter', 'product-waitlist')}
                   className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_55px_rgba(45,212,191,0.35)] transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(56,189,248,0.45)]"
                 >
                   <Mail className="w-4 h-4" />
@@ -95,10 +92,10 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                   <div className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-200">
                     Waitlist Benefits
                   </div>
-                  <p className="mt-2 leading-relaxed">Priority access when it launches.</p>
+                  <p className="mt-2 leading-relaxed">Priority access when launched, exclusive early-bird pricing, and insider updates on development progress.</p>
                 </div>
               </>
-            ) : offer ? (
+            ) : (
               <>
                 {/* Normal Pricing Mode */}
                 <div className="text-sm uppercase tracking-[0.3em] text-white/50">One-time investment</div>
@@ -112,7 +109,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                     {offer.primaryPriceDisplay ?? `$${offer.primaryPrice}`}
                   </span>
                 </div>
-                {offer.note ? <p className="mt-4 text-sm text-white/60">{offer.note}</p> : null}
+                {offer.note ? <p className="mt-4 text-sm text-white/60">{offer.note}</p> : <p className="mt-4 text-sm text-white/60">Lifetime updates included</p>}
                 {(() => {
                   const content = (
                     <span className="block w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_55px_rgba(45,212,191,0.35)] transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(56,189,248,0.45)]">
@@ -167,16 +164,14 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                     )}
                   </p>
                 ) : null}
-                {offer.guarantee ? (
-                  <div className="mt-6 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 p-4 text-left text-xs text-white/70">
-                    <div className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-200">
-                      {offer.guarantee.label}
-                    </div>
-                    <p className="mt-2 leading-relaxed">{offer.guarantee.description}</p>
+                <div className="mt-6 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 p-4 text-left text-xs text-white/70">
+                  <div className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-200">
+                    {offer.guarantee.label}
                   </div>
-                ) : null}
+                  <p className="mt-2 leading-relaxed">{offer.guarantee.description}</p>
+                </div>
               </>
-            ) : null}
+            )}
           </div>
         </div>
       </div>

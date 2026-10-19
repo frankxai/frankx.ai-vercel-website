@@ -5,7 +5,7 @@ description: Weekly content intelligence sweep — outliers, hooks, demand valid
 
 # /monday-intel
 
-Run the Monday intelligence stage of the Content Engine. Model: Sonnet 5.5 (`claude-sonnet-5-5`).
+Run the Monday intelligence stage of the Content Engine. Model: Sonnet.
 
 1. Load skills: `xpoz-intelligence`, `brand-voice`, `content-strategy`.
 2. Xpoz sweep per pillar (AI architecture / creator systems / performance): top posts 7d, hook patterns, competitor outliers.

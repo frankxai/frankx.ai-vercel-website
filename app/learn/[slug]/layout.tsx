@@ -11,11 +11,6 @@ import { createMetadata } from '@/lib/seo'
 // to consolidate all 8 portal pages into the listing and drop the details.
 // This restores unique title / description / canonical / OG per portal.
 
-// Only the portals in data/learning-paths.ts exist. Any other slug (for example
-// /learn/paths) must return a real 404 instead of the client page's soft
-// "Path not found" screen, which answered 200 and was indexable.
-export const dynamicParams = false
-
 export function generateStaticParams() {
   return learningPaths.map((p) => ({ slug: p.slug }))
 }

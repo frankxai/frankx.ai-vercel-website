@@ -8,8 +8,8 @@ const uniqueCount = new Set(
 
 export const metadata: Metadata = {
   title: 'Research Source Browser',
-  description: 'Reviewed research sources will appear here as each claim passes publication review.',
-  robots: { index: false, follow: true },
+  description:
+    `Browse ${uniqueCount}+ source references across the FrankX research domains and filter them by type, topic, or publisher.`,
   keywords: [
     'AI research sources',
     'verified AI research',
@@ -21,14 +21,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'FrankX Research Source Browser',
     description:
-      'Reviewed sources will appear after publication review.',
+      `${uniqueCount}+ visible source references across the FrankX research domains.`,
     type: 'website',
     url: 'https://www.frankx.ai/research/sources',
   },
   twitter: {
     card: 'summary',
     title: 'FrankX Research Source Browser',
-    description: 'Reviewed sources will appear after publication review.',
+    description: `${uniqueCount}+ visible source references across the FrankX research domains.`,
   },
   alternates: {
     canonical: 'https://www.frankx.ai/research/sources',
@@ -65,7 +65,7 @@ const collectionLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
   name: 'Source Browser',
-  description: 'Reviewed sources will appear after publication review.',
+  description: `Browse ${uniqueCount}+ source references across the FrankX research domains.`,
   url: 'https://www.frankx.ai/research/sources',
   isPartOf: {
     '@type': 'WebPage',

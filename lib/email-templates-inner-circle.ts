@@ -40,25 +40,36 @@ export interface InnerCircleEmailContext {
 
 export function innerCircleWaitlistEmail(ctx: InnerCircleEmailContext) {
   const greeting = ctx.name ? `Hi ${ctx.name}` : 'Hi there'
+  const positionLine = ctx.waitlistPosition
+    ? `You're #${ctx.waitlistPosition} on the Inner Circle waitlist.`
+    : `You're on the Inner Circle waitlist.`
 
   return {
-    subject: `You're on the Inner Circle interest list`,
-    preview: 'One note when the scope is real. No payment is collected.',
+    subject: `You're in — Inner Circle waitlist confirmed`,
+    preview: 'June 1 launch. Here\'s what to expect between now and then.',
     plainText: `${greeting},
 
-You're on the Inner Circle interest list.
+${positionLine}
 
-Inner Circle is not currently open. It is not a paid membership or a live community, and no payment is collected.
+Inner Circle opens June 1, 2026. Between now and then, three things happen:
 
-You'll get one note when the scope, cadence and operating contract are real, plus occasional FrankX field notes. Unsubscribe anytime.
+1. May 27 (T-5) — I send the pricing email. Circle tier price + founding-member bonus + what's actually inside. You'll have 4 days to decide before launch.
 
-If you have a question, hit reply.
+2. May 30 (T-2) — I send the "what you'll get in the first 30 days" preview. First masterclass topic + first lab session date + first vault drop schedule.
+
+3. June 1 09:00 CET — I open the doors. If you're committing, you'll have a one-click checkout from that email.
+
+Between now and May 27, you don't need to do anything. No content marketing in your inbox. No FOMO-driven countdowns. Just the three emails above.
+
+If you have a question I should answer in the pricing email, hit reply. I read every one.
 
 —Frank
 
 Frank Riemer
 AI Architect · FrankX founder
 Creator of FrankX — frankx.ai
+
+P.S. The Inner Circle is small by design. I'm capping the first cohort at 100 founding members. If you want a sense of what's inside before May 27, the closest public surface is /labs — that's the same format the live build labs will run on, just member-only.
 
 ---
 Unsubscribe: https://frankx.ai/unsubscribe?email=${encodeURIComponent(ctx.email)}&list=inner-circle

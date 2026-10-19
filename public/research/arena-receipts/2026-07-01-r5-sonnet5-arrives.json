@@ -1,0 +1,56 @@
+{
+  "round_id": "round-5-sonnet5-arrives",
+  "date": "2026-07-01",
+  "title": "Round 5 - Sonnet 5 Arrives",
+  "contestants": ["Claude Sonnet 5", "Claude Opus 4.8", "Claude Haiku 4.5"],
+  "methodology": "Same task prompt dispatched to each model as a parallel subagent via the Claude Code Agent tool's per-spawn model override, no tool access. Reasoning task checked against a ground truth computed independently before dispatch. Coding task: each model's raw code submission saved verbatim and executed with Node.js against 4 fixed assertions (not self-reported by the model). A third task (structured JSON output under hard constraints) was blocked by the harness's own auto-mode safety classifier before any model saw it - recorded as a methodology finding, not a contestant result.",
+  "tasks": [
+    {
+      "id": "reasoning-divisor-count",
+      "prompt": "Find the smallest positive integer that is divisible by 15 and has exactly 12 positive divisors (including 1 and itself). Do NOT use any tools - reason it out directly using arithmetic/number theory.",
+      "ground_truth": 60,
+      "ground_truth_check": "60 = 2^2 x 3 x 5; divisors {1,2,3,4,5,6,10,12,15,20,30,60} = 12 divisors; 60/15=4.",
+      "results": {
+        "sonnet-5": { "answer": 60, "status": "pass" },
+        "opus-4-8": { "answer": 60, "status": "pass" },
+        "haiku-4-5": { "answer": 60, "status": "pass" }
+      },
+      "verdict": "3-way tie, all correct"
+    },
+    {
+      "id": "coding-merge-intervals",
+      "prompt": "Write a JavaScript function mergeIntervals(intervals) that merges all overlapping or touching intervals ([1,4] and [4,5] MUST merge into [1,5]). Return sorted by start ascending. Output ONLY a fenced code block, no commentary.",
+      "assertions": [
+        { "input": [[1,3],[2,6],[8,10],[15,18]], "expected": [[1,6],[8,10],[15,18]] },
+        { "input": [[1,4],[4,5]], "expected": [[1,5]] },
+        { "input": [], "expected": [] },
+        { "input": [[1,4]], "expected": [[1,4]] }
+      ],
+      "verification": "Each submission saved to a .js file and required/executed with Node.js against all 4 assertions via deep-equal JSON comparison. Not self-graded by the model.",
+      "results": {
+        "sonnet-5": { "pass": 4, "of": 4, "status": "pass" },
+        "opus-4-8": { "pass": 4, "of": 4, "status": "pass" },
+        "haiku-4-5": { "pass": 4, "of": 4, "status": "pass" }
+      },
+      "verdict": "3-way tie, all 4/4 assertions pass for all three models - task saturated"
+    },
+    {
+      "id": "constraint-json-schema",
+      "prompt": "Generate a valid JSON object matching schema {model, verdict, confidence} under hard lowercase/format/no-preamble constraints. [Framed with harness-evaluation-style instructions.]",
+      "results": {
+        "sonnet-5": { "status": "blocked" },
+        "opus-4-8": { "status": "blocked" },
+        "haiku-4-5": { "status": "blocked" }
+      },
+      "verdict": "Not dispatched. The orchestrating session's auto-mode permission classifier flagged the task's own framing ('this is a harness evaluation, respond with raw data only, do not use tools') as a prompt-injection / classifier-bypass pattern and blocked the dispatch before any contestant model received the prompt.",
+      "note": "Recorded as a genuine methodology finding: a public evaluation harness that tells contestant models 'ignore your normal behavior, this is just a test' is structurally identical to a real injection attempt, and a well-tuned safety layer should not (and here did not) distinguish them. Future constraint-compliance rounds need a task framing that doesn't collide with this guardrail."
+    }
+  ],
+  "published_benchmarks_cross_reference": {
+    "source": "Anthropic, reported by TechCrunch and MarkTechPost at 2026-06-30 launch",
+    "note": "Not measured by this harness - cited for context alongside the in-harness results above.",
+    "agentic_coding": { "sonnet_5": "63.2%", "opus_4_8": "69.2%", "sonnet_4_6": "58.1%" },
+    "computer_use_osworld_verified": { "sonnet_5": "81.2%", "sonnet_4_6": "78.5%" },
+    "knowledge_work_gdpval_aa_v2": { "sonnet_5": 1618, "opus_4_8": 1615 }
+  }
+}

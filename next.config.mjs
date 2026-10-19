@@ -55,9 +55,6 @@ function siteContentSecurityPolicy(frameAncestors, additionalScriptSources = [])
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
-  outputFileTracingIncludes: {
-    '/downloads/joei-story-studio.zip': ['./public/images/friends/joei/*'],
-  },
   typescript: {
     // Type-check on every Vercel build. `npm run merge:gate` enforces tsc locally
     // and in CI; this guarantees the same gate fires at deploy time. Flipped to

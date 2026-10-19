@@ -6,6 +6,7 @@ import { getProductBySlug } from '@/lib/products'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
+import BuyButton from './BuyButton'
 import type { ProductRecord } from '@/types/products'
 
 // Some registry entries (e.g. golden-age) predate the full ProductRecord shape:
@@ -17,16 +18,6 @@ type LegacyFields = {
   price?: number
   cta?: { label: string; href: string }
 }
-
-const LIVE_FREE_CTA_SLUGS = new Set([
-  'love-and-poetry',
-  'spartan-mindset',
-  'self-development',
-  'imagination',
-  'manifestation',
-  'reality-architect-os',
-  'golden-age',
-])
 
 function normalize(product: ProductRecord) {
   const legacy = product as ProductRecord & LegacyFields
@@ -71,25 +62,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     notFound()
   }
 
-  const { name, headline, summary, legacyPrice, legacyCta } = normalize(product)
-  const offer = product.offer
-  // Free products whose registry CTA target was checked live (returns 200) link to it.
-  // Everything else is not deliverable yet and goes to the waitlist.
-  const registryFreeCta =
-    offer &&
-    offer.primaryPrice === 0 &&
-    LIVE_FREE_CTA_SLUGS.has(product.slug) &&
-    offer.ctaPrimary &&
-    offer.ctaPrimaryHref
-      ? { label: offer.ctaPrimary, href: offer.ctaPrimaryHref }
-      : null
-  // golden-age has no offer block; its registry CTA is the legacy cta to /books/golden-age, read online.
-  const liveFreeCta =
-    registryFreeCta ??
-    (LIVE_FREE_CTA_SLUGS.has(product.slug) && legacyPrice === 0 && legacyCta?.href
-      ? { label: 'Read Online', href: legacyCta.href }
-      : null)
+  const { name, headline, summary, offer, legacyPrice, legacyCta } = normalize(product)
+  const schemaPrice = offer?.primaryPrice ?? legacyPrice
 
+  // Structured Data for Product
   const productSchema = {
     name,
     description: summary,
@@ -99,6 +75,22 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       '@type': 'Brand',
       name: 'FrankX',
     },
+    ...(schemaPrice !== undefined
+      ? {
+          offers: {
+            '@type': 'Offer',
+            url: `${siteConfig.url}/products/${product.slug}`,
+            priceCurrency: offer?.currency || 'USD',
+            price: schemaPrice,
+            priceValidUntil: '2026-12-31',
+            availability: 'https://schema.org/InStock',
+            seller: {
+              '@type': 'Organization',
+              name: 'FrankX',
+            },
+          },
+        }
+      : {}),
   }
 
   return (
@@ -169,26 +161,62 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           {/* Right Column: Offer & Pricing */}
           <div className="lg:sticky lg:top-24 lg:h-fit">
             <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm sm:p-10">
-              {liveFreeCta ? (
-                <Link
-                  href={liveFreeCta.href}
-                  className="mt-8 flex min-h-14 w-full items-center justify-center rounded-xl bg-white px-8 py-4 text-base font-semibold text-[#0a0a0b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                >
-                  {liveFreeCta.label}
-                </Link>
+              <h3 className="text-xl font-semibold text-white">Get Instant Access</h3>
+
+              {offer ? (
+                <>
+                  <div className="mt-6 flex items-baseline gap-2">
+                    <span className="text-5xl font-bold text-white">
+                      ${offer.primaryPrice}
+                    </span>
+                    {offer.originalPrice && (
+                      <span className="text-xl text-gray-500 line-through">
+                        ${offer.originalPrice}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="mt-8 space-y-4">
+                    <BuyButton
+                      href={offer.ctaPrimaryHref}
+                      label={offer.ctaPrimary}
+                      trackingId={offer.ctaPrimaryTracking}
+                    />
+
+                    {offer.ctaSecondary && offer.ctaSecondaryHref && (
+                      <Link
+                        href={offer.ctaSecondaryHref}
+                        className="flex w-full items-center justify-center rounded-xl border border-white/10 bg-transparent px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/5"
+                      >
+                        {offer.ctaSecondary}
+                      </Link>
+                    )}
+                  </div>
+
+                  {offer.guarantee && (
+                    <div className="mt-8 rounded-xl bg-cyan-500/10 p-4 text-center">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-cyan-300">
+                        {offer.guarantee.label}
+                      </p>
+                      <p className="mt-1 text-xs text-gray-400">
+                        {offer.guarantee.description}
+                      </p>
+                    </div>
+                  )}
+                </>
               ) : (
                 <>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-200">Coming soon</p>
-                  <h3 className="mt-3 text-xl font-semibold text-white">Join the waitlist</h3>
-                  <p className="mt-3 text-sm leading-6 text-white/70">
-                    You will get a note when this product is ready to deliver.
-                  </p>
-                  <Link
-                    href={`/waitlist?intent=${product.slug}`}
-                    className="mt-8 flex min-h-14 w-full items-center justify-center rounded-xl bg-white px-8 py-4 text-base font-semibold text-[#0a0a0b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                  >
-                    Join the waitlist
-                  </Link>
+                  <div className="mt-6 flex items-baseline gap-2">
+                    <span className="text-5xl font-bold text-white">
+                      {legacyPrice === 0 ? 'Free' : legacyPrice !== undefined ? `$${legacyPrice}` : ''}
+                    </span>
+                  </div>
+
+                  {legacyCta && (
+                    <div className="mt-8 space-y-4">
+                      <BuyButton href={legacyCta.href} label={legacyCta.label} />
+                    </div>
+                  )}
                 </>
               )}
 

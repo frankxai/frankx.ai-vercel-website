@@ -168,15 +168,6 @@ const productivityTools: Affiliate[] = [
 
 const creativeTools: Affiliate[] = [
   {
-    id: 'higgsfield',
-    name: 'Higgsfield',
-    url: 'https://higgsfield.ai',
-    category: 'creative-tool',
-    commission: 'See partner dashboard',
-    cookieDuration: 'See partner dashboard',
-    oracleCompatible: true,
-  },
-  {
     id: 'canva-pro',
     name: 'Canva Pro',
     url: 'https://www.canva.com/pro/',

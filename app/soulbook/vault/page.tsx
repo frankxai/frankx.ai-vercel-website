@@ -22,12 +22,10 @@ import {
   Flame,
   Award,
   Check,
-  Download,
 } from 'lucide-react';
 import GlassmorphicCard from '@/components/ui/GlassmorphicCard';
 import InteractiveCard from '@/components/ui/InteractiveCard';
 import PremiumButton from '@/components/ui/PremiumButton';
-import { UpsellModal, UpsellOffer } from '@/components/funnel/UpsellModal';
 import { cn } from '@/lib/utils';
 
 interface JournalEntry {
@@ -122,71 +120,7 @@ export default function VaultPage() {
   const [selectedPillar, setSelectedPillar] = useState('energy');
   const [newGoal, setNewGoal] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const [isUpsellOpen, setIsUpsellOpen] = useState(false);
   const idCounter = useRef(0);
-
-  const systemArchitectOffer: UpsellOffer = {
-    id: 'system-architect-starter-kit',
-    title: 'System Architect Starter Kit',
-    badge: 'Launch list',
-    headline: 'System Architect Starter Kit',
-    description: 'Ready-to-use JSON pipelines and automation templates that run content atomization, guest research, and newsletter queueing.',
-    price: 97,
-    currencySymbol: '€',
-    features: [
-      'Content Ops n8n Workflows',
-      'Voice Intelligence Pack'
-    ],
-    ctaText: 'Join the launch list',
-    ctaHref: '/waitlist?intent=starter-kit',
-    dismissText: 'No thanks, continue with my free vault',
-  };
-
-  const handleDownloadVault = () => {
-    const timestamp = new Date().toISOString().split('T')[0];
-    const lines = [
-      '# Creator Soulbook — Sovereign Vault',
-      `*Exported on ${timestamp} · Built on SIP v1.1.1*`,
-      '',
-      '## Life Symphony Dashboard',
-      `- Overall Progress: ${overallProgress}%`,
-      `- Current Streak: ${streak.current} days (Longest: ${streak.longest} days)`,
-      '',
-      '### Pillar Diagnostics',
-      ...pillarConfig.map((p) => `- **${p.title}**: ${pillarScores[p.id] || 0}%`),
-      '',
-      '## Active Strategic Goals',
-      ...(goals.length > 0
-        ? goals.map((g) => `- [${g.completed ? 'x' : ' '}] ${g.title} *(Pillar: ${g.pillarId})*`)
-        : ['*No active goals recorded.*']),
-      '',
-      '## Reflection Journal Entries',
-      ...(journalEntries.length > 0
-        ? journalEntries.map((j) => `### ${new Date(j.date).toLocaleDateString()} — Pillar: ${j.pillarId}\n\n${j.content}\n`)
-        : ['*No journal entries recorded.*']),
-      '',
-      '## 5 Inquiry Prompts for Creators',
-      '1. What single activity produced 80% of your energetic fulfillment this week?',
-      '2. Where is your attention leaking into low-leverage obligations?',
-      '3. Which autonomous system would free up 10 hours of cognitive load?',
-      '4. What truth about your creative practice are you avoiding?',
-      '5. What would this project look like if it were effortless?',
-    ];
-
-    const blob = new Blob([lines.join('\n')], { type: 'text/markdown;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `creators-soulbook-vault-${timestamp}.md`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-
-    setTimeout(() => {
-      setIsUpsellOpen(true);
-    }, 750);
-  };
 
   const getNextId = (prefix: string) => {
     idCounter.current += 1;
@@ -369,38 +303,27 @@ export default function VaultPage() {
               </div>
             </div>
 
-            {/* Tab Navigation & Download Vault Toolbar */}
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div className="flex gap-2 p-1 bg-slate-800/50 rounded-xl w-fit">
-                {[
-                  { id: 'overview', label: 'Overview', icon: Target },
-                  { id: 'journal', label: 'Journal', icon: BookOpen },
-                  { id: 'goals', label: 'Goals', icon: TrendingUpIcon },
-                ].map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id as typeof activeTab)}
-                    className={cn(
-                      'flex items-center gap-2 px-4 py-2 rounded-lg transition-colors duration-200',
-                      activeTab === tab.id
-                        ? 'bg-amber-500/20 text-amber-400'
-                        : 'text-slate-400 hover:text-white'
-                    )}
-                  >
-                    <tab.icon className="w-4 h-4" />
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-
-              <button
-                onClick={handleDownloadVault}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-300 hover:text-amber-200 transition-colors shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
-                aria-label="Download your Soulbook notes as Markdown"
-              >
-                <Download className="w-4 h-4" />
-                <span>Download your vault (.md)</span>
-              </button>
+            {/* Tab Navigation */}
+            <div className="flex gap-2 p-1 bg-slate-800/50 rounded-xl w-fit">
+              {[
+                { id: 'overview', label: 'Overview', icon: Target },
+                { id: 'journal', label: 'Journal', icon: BookOpen },
+                { id: 'goals', label: 'Goals', icon: TrendingUpIcon },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id as typeof activeTab)}
+                  className={cn(
+                    'flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200',
+                    activeTab === tab.id
+                      ? 'bg-amber-500/20 text-amber-400'
+                      : 'text-slate-400 hover:text-white'
+                  )}
+                >
+                  <tab.icon className="w-4 h-4" />
+                  {tab.label}
+                </button>
+              ))}
             </div>
           </motion.div>
         </div>
@@ -575,7 +498,7 @@ export default function VaultPage() {
                               key={pillar.id}
                               onClick={() => setSelectedPillar(pillar.id)}
                               className={cn(
-                                'p-2 rounded-lg transition-colors',
+                                'p-2 rounded-lg transition-all',
                                 selectedPillar === pillar.id
                                   ? pillar.color === 'amber'
                                     ? 'bg-amber-500/30 text-amber-400'
@@ -716,7 +639,7 @@ export default function VaultPage() {
                               key={pillar.id}
                               onClick={() => setSelectedPillar(pillar.id)}
                               className={cn(
-                                'p-2 rounded-lg transition-colors',
+                                'p-2 rounded-lg transition-all',
                                 selectedPillar === pillar.id
                                   ? pillar.color === 'amber'
                                     ? 'bg-amber-500/30 text-amber-400'
@@ -795,7 +718,7 @@ export default function VaultPage() {
                               <button
                                 onClick={() => handleToggleGoal(goal.id)}
                                 className={cn(
-                                  'w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors',
+                                  'w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all',
                                   goal.completed
                                     ? 'bg-amber-500 border-amber-500'
                                     : 'border-slate-600 hover:border-amber-500'
@@ -848,14 +771,6 @@ export default function VaultPage() {
           </AnimatePresence>
         </div>
       </section>
-
-      {/* Sovereign Elevation Upsell Modal */}
-      <UpsellModal
-        isOpen={isUpsellOpen}
-        onClose={() => setIsUpsellOpen(false)}
-        offer={systemArchitectOffer}
-        triggerContext="download"
-      />
     </div>
   );
 }

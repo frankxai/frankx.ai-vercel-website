@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getBlogPost } from '@/lib/blog'
-import { blogPostToMarkdown } from '@/lib/blog-markdown'
 
 export async function GET(request: NextRequest) {
   const contentPath = request.nextUrl.searchParams.get('path')
@@ -19,7 +18,23 @@ export async function GET(request: NextRequest) {
       return new NextResponse('Not found', { status: 404 })
     }
 
-    return new NextResponse(blogPostToMarkdown(post), {
+    const markdown = [
+      `# ${post.title}`,
+      '',
+      `> ${post.description}`,
+      '',
+      `**Author:** ${post.author}  `,
+      `**Date:** ${post.date}  `,
+      `**Reading time:** ${post.readingTime}  `,
+      `**Category:** ${post.category}  `,
+      post.tags?.length ? `**Tags:** ${post.tags.join(', ')}  ` : null,
+      '',
+      '---',
+      '',
+      post.content,
+    ].filter((line): line is string => line !== null).join('\n')
+
+    return new NextResponse(markdown, {
       status: 200,
       headers: {
         'Content-Type': 'text/markdown; charset=utf-8',

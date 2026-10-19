@@ -85,12 +85,12 @@ const sections: NavSection[] = [
     tagline: 'The catalog, the method, the school',
     featured: {
       title: 'AI Music Portfolio',
-      description: 'Songs created with Suno AI.',
+      description: '12,000+ songs created with Suno AI.',
       href: '/music',
-      badge: 'Portfolio',
+      badge: '12K+ Tracks',
     },
     items: [
-      { name: 'Music Showcase', href: '/music', icon: Music, description: 'AI-generated tracks',
+      { name: 'Music Showcase', href: '/music', icon: Music, description: '12K+ AI-generated tracks',
       },
       { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method',
       },

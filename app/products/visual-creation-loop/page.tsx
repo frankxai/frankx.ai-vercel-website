@@ -2,8 +2,7 @@ import Script from 'next/script'
 import { notFound } from 'next/navigation'
 
 import products from '@/data/products.json'
-import { waitlistBonuses } from '@/lib/products/waitlist-public'
-import { comingSoonProductStructuredData, createMetadata } from '@/lib/seo'
+import { createMetadata } from '@/lib/seo'
 import type { ProductRecord } from '@/types/products'
 
 import ProductHero from '@/components/products/ProductHero'
@@ -30,11 +29,23 @@ export default function VisualCreationLoopPage() {
   }
 
   const productId = product.analyticsId ?? product.id
-  const structuredData = comingSoonProductStructuredData(
-    product.name,
-    product.promise,
-    'https://www.frankx.ai/images/products/visual-creation-loop-hero.jpg',
-  )
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.promise,
+    image: 'https://frankx.ai/images/products/visual-creation-loop-hero.jpg',
+    brand: {
+      '@type': 'Brand',
+      name: 'FrankX.ai'
+    },
+    offers: {
+      '@type': 'Offer',
+      price: product.offer.primaryPrice.toString(),
+      priceCurrency: product.offer.currency,
+      availability: 'https://schema.org/InStock'
+    }
+  }
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-void">
@@ -53,12 +64,15 @@ export default function VisualCreationLoopPage() {
           title={product.name}
           subtitle={product.headline}
           promise={product.promise}
+          offer={product.offer}
         />
 
         <OfferStack 
           productId={productId}
+          offer={product.offer}
           modules={product.modules}
-          bonuses={waitlistBonuses(product.bonuses)}
+          bonuses={product.bonuses}
+          pricingTiers={product.pricingTiers}
         />
       </div>
 

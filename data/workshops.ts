@@ -1,5 +1,3 @@
-import { aiOperatingSystemsWorkshop } from './ai-os-workshop'
-
 export interface WorkshopModule {
   title: string
   duration: string
@@ -33,12 +31,10 @@ export interface Workshop {
    * (`components/workshops/IntakeForm.tsx`) and exposes an #intake anchor.
    * Omit or set `false` for self-serve / informational workshops.
    */
-  selfStudyResource?: { href: string; label: string; description: string }
   intakeEnabled?: boolean
 }
 
 export const workshops: Workshop[] = [
-  aiOperatingSystemsWorkshop,
   {
     slug: 'ikigai-branding',
     title: 'Ikigai & Branding Workshop',

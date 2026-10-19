@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getWeeklyStats } from '@/lib/pdf-analytics'
 
-import { describeStoreFailure } from '@/lib/store-failure'
-
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams
@@ -12,7 +10,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ success: true, stats })
   } catch (error) {
-    console.error('Get weekly stats error:', describeStoreFailure(error, 'read'))
+    console.error('Get weekly stats error:', error)
     return NextResponse.json(
       { error: 'Failed to get weekly stats' },
       { status: 500 }

@@ -197,10 +197,10 @@ export default function CreativeAIAssessmentPage() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
                 <Link
-                  href="/music/templates"
+                  href="/products/vibe-os"
                   className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10"
                 >
-                  Try free music prompts
+                  Try Vibe OS
                 </Link>
               </div>
             </section>

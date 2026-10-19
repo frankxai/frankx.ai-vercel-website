@@ -190,7 +190,7 @@ function SystemTopology() {
   )
 }
 
-export function OfficialArchitectureAtlas({ showHero = true }: { showHero?: boolean }) {
+export function OfficialArchitectureAtlas() {
   const [filter, setFilter] = useState<string>('All')
   const visibleSources = useMemo(
     () => filter === 'All' ? sources : sources.filter((source) => source.layer === filter),
@@ -199,7 +199,7 @@ export function OfficialArchitectureAtlas({ showHero = true }: { showHero?: bool
 
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white">
-      {showHero && <section className="relative overflow-hidden border-b border-white/[0.06] pt-28 sm:pt-32">
+      <section className="relative overflow-hidden border-b border-white/[0.06] pt-28 sm:pt-32">
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <div className="absolute left-[12%] top-20 h-72 w-72 rounded-full bg-emerald-500/[0.07] blur-[110px]" />
           <div className="absolute right-[8%] top-36 h-80 w-80 rounded-full bg-cyan-500/[0.06] blur-[130px]" />
@@ -235,7 +235,7 @@ export function OfficialArchitectureAtlas({ showHero = true }: { showHero?: bool
           </div>
           <SystemTopology />
         </div>
-      </section>}
+      </section>
 
       <section className="border-b border-white/[0.06] py-16">
         <div className="mx-auto max-w-6xl px-6">

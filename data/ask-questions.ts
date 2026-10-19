@@ -106,7 +106,7 @@ Use Suno\'s \`[Instrumental]\`, \`[Verse]\`, \`[Chorus]\`, \`[Bridge]\` structur
 4. Select best 2 clips per variant, extend them
 5. Crop and splice in post
 
-I\'ve produced hundreds of tracks this way. The model rewards structural clarity over creative prose.`,
+I\'ve produced 12,000+ tracks this way. The model rewards structural clarity over creative prose.`,
     category: 'music-production',
     persona: 'producer',
     tags: ['suno', 'prompting', 'music-production', 'ai-music'],

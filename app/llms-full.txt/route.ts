@@ -70,7 +70,7 @@ ${d.subtitle}
 
   const content = `# FrankX — Comprehensive Site Map (llms-full.txt)
 
-> Personal hub of Frank X. Riemer, AI Architect and Creator. Songs made with Suno. ${siteConfig.description}
+> Personal hub of Frank X. Riemer — AI Architect & Creator. 12,000+ AI-generated songs with Suno. ${siteConfig.description}
 
 This is the deep-link variant of /llms.txt — designed for AI agents that benefit from per-page summaries before fetching full content. For the concise version see [/llms.txt](${SITE_URL}/llms.txt).
 
@@ -102,7 +102,7 @@ Founder Stack → Foundry or Founder's Circle → Human Layer and Signal Loop.
 - [Signal Loop](${SITE_URL}/newsletter): Main founder letter, with additional editorial lanes available through the newsletter hub
 - [Start Here](${SITE_URL}/start): Founder-led entry spine for new visitors
 - [Peak State Systems](${SITE_URL}/peak-performance): Evidence-led attention, energy, recovery, environment, and review loops; educational, not medical advice
-- [Build with Me](${SITE_URL}/build): Product ladder: see /build; prices on each product page.
+- [Build with Me](${SITE_URL}/build): 5-tier product ladder (€0 Primer / €7 Pack / €197 Toolkit / €497 Mastery / €997 Architect / €2,997 Founder's Circle)
 - [Coaching](${SITE_URL}/coaching): 1:1 advisory across AI architecture, creator strategy, music production
 - [Work With Me](${SITE_URL}/work-with-me): Studio engagements
 

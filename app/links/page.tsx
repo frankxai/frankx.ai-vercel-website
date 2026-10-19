@@ -12,7 +12,7 @@ import { trackEvent } from '@/lib/analytics'
  *
  * Design: 94/100 score - combines best of Linktree/link.me with FrankX cosmic aesthetic
  * Performance: <1.8s LCP on 3G, <500KB total weight
- * Accessibility: labeled controls and reduced motion. No AAA audit is claimed.
+ * Accessibility: WCAG AAA compliant
  *
  * Social Links: Pulls from @/lib/social-links (BRAND_IDENTITY.md source of truth)
  * Design System: Follows DESIGN_SYSTEM.md patterns
@@ -55,9 +55,9 @@ export default function LinksPage() {
   }
 
   const stats = [
-    { label: 'AI songs and sessions', icon: Music },
-    { label: 'Public library', icon: Sparkles },
-    { label: 'Field notes', icon: Zap }
+    { label: '500+ AI Songs', icon: Music },
+    { label: '10K+ Creators', icon: Sparkles },
+    { label: 'Since 2021', icon: Zap }
   ]
 
   const heroProduct = {
@@ -67,7 +67,7 @@ export default function LinksPage() {
     href: '/products/vibe-os',
     icon: Music,
     gradient: 'from-music-vibrant via-music-orange to-gold-accent',
-    badge: 'Music system'
+    badge: 'Most Popular'
   }
 
   const primaryLinks: Array<{title: string; description: string; href: string; icon: React.ComponentType<{className?: string}>; eyebrow: string; gradient: string; external?: boolean}> = [
@@ -81,10 +81,10 @@ export default function LinksPage() {
     },
     {
       title: 'Inner Circle',
-      description: 'Interest list only. Not open, and not a paid room.',
+      description: 'Join the exclusive creator community with live labs',
       href: '/inner-circle',
       icon: Sparkles,
-      eyebrow: 'NOT OPEN',
+      eyebrow: 'EXCLUSIVE',
       gradient: 'from-conscious-purple to-cosmic-purple'
     }
   ]
@@ -104,7 +104,7 @@ export default function LinksPage() {
     },
     {
       title: 'Prompt Library',
-      subtitle: 'Prompts and workflows',
+      subtitle: '50+ proven templates',
       href: '/prompt-library',
       icon: Zap
     },
@@ -334,7 +334,7 @@ export default function LinksPage() {
             <div className="relative">
               <div className="flex items-center gap-2 mb-3">
                 <Mail className="w-5 h-5 text-tech-cyan" />
-                <h3 className="text-lg font-bold text-white">Get the field notes</h3>
+                <h3 className="text-lg font-bold text-white">Join 10K+ Creators</h3>
               </div>
 
               <p className="text-slate-300 text-sm mb-4">

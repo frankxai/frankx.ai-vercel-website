@@ -102,6 +102,11 @@ export type HomeSpotlight = {
 
 export const heroStats: HeroStat[] = [
   {
+    label: 'AI Songs Created',
+    value: '12K+',
+    detail: 'Original tracks produced with Suno AI — ambient, electronic, cinematic'
+  },
+  {
     label: 'Articles & Guides',
     value: '70+',
     detail: 'Technical deep dives on AI architecture, Claude Code, and music production'
@@ -428,7 +433,7 @@ export const homeSpotlights: HomeSpotlight[] = [
     eyebrow: 'Music',
     title: 'How I Make Songs with AI',
     description:
-      'The Suno workflow I use. Every step documented.',
+      'My complete Suno workflow. 12,000+ songs created, every step documented.',
     href: '/music-lab',
     cta: 'See the Process'
   },

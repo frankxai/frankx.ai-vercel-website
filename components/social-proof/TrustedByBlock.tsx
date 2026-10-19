@@ -14,7 +14,11 @@ const platformAccents: Record<string, { gradient: string; iconBg: string; text: 
   suno: { gradient: 'from-violet-500/10 to-purple-500/5', iconBg: 'bg-violet-500/10', text: 'text-violet-400' },
   midjourney: { gradient: 'from-blue-500/10 to-indigo-500/5', iconBg: 'bg-blue-500/10', text: 'text-blue-400' },
   perplexity: { gradient: 'from-cyan-500/10 to-teal-500/5', iconBg: 'bg-cyan-500/10', text: 'text-cyan-400' },
+  'hugging-face': { gradient: 'from-yellow-500/10 to-amber-500/5', iconBg: 'bg-yellow-500/10', text: 'text-yellow-400' },
   elevenlabs: { gradient: 'from-pink-500/10 to-rose-500/5', iconBg: 'bg-pink-500/10', text: 'text-pink-400' },
+  'stability-ai': { gradient: 'from-purple-500/10 to-violet-500/5', iconBg: 'bg-purple-500/10', text: 'text-purple-400' },
+  google: { gradient: 'from-blue-500/10 to-green-500/5', iconBg: 'bg-blue-500/10', text: 'text-blue-400' },
+  meta: { gradient: 'from-blue-500/10 to-indigo-500/5', iconBg: 'bg-blue-500/10', text: 'text-blue-400' },
 }
 
 const defaultAccent = { gradient: 'from-emerald-500/10 to-cyan-500/5', iconBg: 'bg-emerald-500/10', text: 'text-emerald-400' }
@@ -25,13 +29,14 @@ export default function TrustedByBlock() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em] sm:tracking-[0.4em] text-emerald-300/70">
-            Tool guides
+            Built with the leading AI stack
           </p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white mt-3 sm:mt-4">
-            Tools I have written guides about
+            Real tools. Real workflows. Real outputs.
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-white/60 mt-3 sm:mt-4">
-            Every logo below links to a guide I have written about the tool.
+            Every logo below links to a dedicated guide showing how the tool fits into our creator
+            and intelligence systems.
           </p>
         </div>
 

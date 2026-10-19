@@ -1,7 +1,11 @@
 import type { Metadata } from 'next'
 import { researchDomains } from '@/lib/research/domains'
+import { domainSources } from '@/lib/research/sources'
 
 const domainCount = researchDomains.length
+const sourceCount = new Set(
+  Object.values(domainSources).flat().map(s => s.url)
+).size
 
 export const metadata: Metadata = {
   title: 'Research Hubs: AI, Creative Systems & Human Potential',
@@ -23,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Research Hubs: AI, Creative Systems & Human Potential',
     description:
-      `Seven research hubs and ${domainCount} topic maps. Research briefs are under source review.`,
+      'Seven research hubs. Original investigations, primary sources and current model coverage.',
     type: 'website',
     url: 'https://www.frankx.ai/research',
     images: [
@@ -38,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Research Hubs: AI, Creative Systems & Human Potential',
-    description: `${domainCount} topic maps across seven hubs. Source review is in progress.`,
+    description: `${domainCount} domains. Seven topic hubs. Primary sources. Original investigations.`,
     images: ['/images/brand/frankx-public-workspace-og-1200x630.png'],
   },
   alternates: {
@@ -54,7 +58,7 @@ const websiteLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
   name: 'FrankX Research Hub',
-  description: `Explore ${domainCount} topic maps across seven hubs. Individual research briefs are under source review.`,
+  description: `Research across ${domainCount} domains with ${sourceCount}+ source references.`,
   url: 'https://www.frankx.ai/research',
   author: {
     '@type': 'Person',
