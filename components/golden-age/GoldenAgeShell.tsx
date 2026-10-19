@@ -84,11 +84,6 @@ export default function GoldenAgeShell() {
               className="flex items-center justify-center gap-8 pt-4"
             >
               <div className="text-center">
-                <div className="text-3xl font-bold text-white">500+</div>
-                <div className="text-sm text-gray-400">AI Songs Created</div>
-              </div>
-              <div className="h-12 w-px bg-white/20" />
-              <div className="text-center">
                 <div className="text-3xl font-bold text-white">{chapters.length}</div>
                 <div className="text-sm text-gray-400">Chapters</div>
               </div>

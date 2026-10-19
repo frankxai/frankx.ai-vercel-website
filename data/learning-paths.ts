@@ -72,11 +72,12 @@ export interface LearningPath {
   description: string
   icon: string
   difficulty: 'beginner' | 'intermediate' | 'advanced'
-  estimatedHours: number
+  estimatedHours?: number
   color: 'emerald' | 'cyan' | 'amber' | 'violet' | 'sky'
   category: LearningPathCategory
   videos: VideoResource[]
   relatedGuides: string[]
+  relatedResourceTitles?: Record<string, string>
   outcomes: string[]
   // Optional richer portal sections — render conditionally when populated.
   heroEyebrow?: string
@@ -104,28 +105,24 @@ export const learningPaths: LearningPath[] = [
     title: 'Claude & Anthropic Mastery',
     slug: 'claude-mastery',
     description:
-      "Master Anthropic's full Claude stack — Opus 4.8, Sonnet 4.6, Haiku 4.5, Claude Code, the Agent SDK, MCP, Computer Use, and Skills — from first prompt to production agents.",
+      "A short, video-led introduction to prompting Claude and to Claude Code, from Anthropic's own videos plus one independent setup tutorial.",
     icon: 'brain',
     difficulty: 'beginner',
-    estimatedHours: 10,
     color: 'amber',
     category: 'model-maker',
     heroEyebrow: 'Updated June 10, 2026 · Reflects Claude 4.X family + MCP general availability',
     longIntro:
-      "Anthropic ships fast: Opus 4.8 leads the family for the hardest reasoning, Sonnet 4.6 is the everyday default, and Haiku 4.5 is the cheap-and-fast tier — all sharing the same agent harness, tool-use surface, and Claude Code IDE. This portal pulls Anthropic's official walkthroughs and the sharpest independent walkthroughs into one path so you can move from your first claude.ai conversation to shipping agents on Bedrock or Vertex without sifting noise.\n\nThink of it as a map: the model line (Opus / Sonnet / Haiku) is the brain, the Claude API is the surface, Claude Code is the IDE companion, the Agent SDK is for building autonomous loops, and MCP is the connector protocol that lets all of them reach your data and tools. Computer Use and Skills are the newer abilities on top.\n\nStart with Foundations (videos 1–3) for the prompt and model layer, then branch into the track that fits — Builder (Claude Code, Agent SDK, MCP), Architect (Bedrock / Vertex / production patterns), or Operator (Skills, Computer Use, daily workflows). The Ecosystem grid, announcements timeline, and FAQ give you the lay of the land in one screen.",
+      "Anthropic ships fast: Opus 4.8 leads the family for the hardest reasoning, Sonnet 4.6 is the everyday default, and Haiku 4.5 is the cheap-and-fast tier — all sharing the same agent harness, tool-use surface, and Claude Code IDE. This portal collects four videos — three from Anthropic and one independent tutorial — as an introduction to prompting and to Claude Code.\n\nThe videos cover two things: how to write prompts that work (video 1), and how to install and use Claude Code (videos 2 and 3), plus a conversation with two Anthropic team members (video 4). The ecosystem grid and FAQ below explain the wider Claude stack — the API, the Agent SDK, MCP, Computer Use, Skills, Bedrock and Vertex — in text with links to Anthropic's documentation; none of these videos teaches those topics.\n\nStart with video 1 for prompting, then video 2 for Claude Code's features, shortcuts and workflows and video 3 to install and set it up. Video 4 is a conversation with two Anthropic team members about how Claude Code started and how to get the most out of it. The announcements timeline and FAQ give you the lay of the land in text.",
     distillation:
-      "Here is the honest shape of learning Claude in 2026, from someone who has watched enterprise AI up close: the model is no longer the hard part. Opus, Sonnet, and Haiku are all good enough that your results are decided by everything around the model — how you frame the work, what context you give it, and how much of the loop you let it run. The videos in this portal are worth your time in that order: get the prompt-and-context fundamentals first, then the harness, then the production surface. Skip that order and you will build a fast agent that ships the wrong thing.\n\nThe single mental model that pays off: Claude is a reasoning engine, and the ecosystem is how you feed and fence it. Prompting is how you frame the task. The Claude API is the raw surface. Claude Code is that same engine wired into your repo with an approval model. The Agent SDK is Claude Code's primitives exposed so you can build your own loops. MCP is the wire that lets any of them reach your data and tools. Skills are reusable capabilities you compose on top. Once you see it as one engine with concentric layers — not seven separate products — the learning order picks itself.\n\nThe most useful shift in the last year is captured by the 'don't build agents, build skills' idea: the payoff is not in a bigger autonomous loop, it is in small, sharp, reusable units of capability that a human still directs. That is the difference between a demo and a system you trust in production. When you watch the Claude Code and Agent SDK material, watch for where the human stays in the loop — the approval gates, the CLAUDE.md instructions, the verification step — because that is what separates people who ship with Claude from people who post screenshots of it.\n\nWhere I would spend your first week: run Claude Code on one real, small task in a repo you care about, add a CLAUDE.md, and force yourself to review every change. Then write one MCP server against a data source you actually use. Everything else in this portal — Computer Use, Bedrock/Vertex deployment, the model-selection tradeoffs — is a branch you take once that spine is solid. The goal is not to know Claude; it is to reliably direct it to a working, defensible result. That skill compounds.",
+      "Here is the honest shape of learning Claude in 2026, from someone who has watched enterprise AI up close: the model is no longer the hard part. Opus, Sonnet, and Haiku are all good enough that your results are decided by everything around the model — how you frame the work, what context you give it, and how much of the loop you let it run. The videos in this portal are worth your time in that order: get the prompt fundamentals first, then see Claude Code at work. Skip that order and you will ship the wrong thing quickly.\n\nThe single mental model that pays off: Claude is a reasoning engine, and everything around it is how you feed and fence it. Prompting is how you frame the task. Claude Code is that same engine wired into your repo with an approval model. Once you see it as one engine with layers around it, the learning order picks itself.\n\nAs you start using Claude Code, keep the human in the loop — the approval gates, the CLAUDE.md instructions, the verification step — because that is what separates people who ship with Claude from people who post screenshots of it.\n\nWhere I would spend your first week: run Claude Code on one real, small task in a repo you care about, add a CLAUDE.md, and force yourself to review every change. The goal is not to know Claude; it is to reliably direct it to a working, defensible result. That skill compounds.",
     ctaTitle: 'Ready to ship with Claude?',
     ctaBody:
-      'Pair this portal with our written walkthrough and architecture playbooks. Build an agent, ship an MCP-backed app, or compare Claude head-to-head against Gemini.',
+      'Pair these videos with our written Claude guide, or compare Claude head-to-head against Gemini.',
     outcomes: [
-      'Pick the right Claude model — Opus 4.8, Sonnet 4.6, Haiku 4.5 — for each task and budget',
       'Engineer prompts that survive contact with real-world inputs',
-      'Build agents with the Claude Agent SDK + MCP for tool and data access',
-      'Use Claude Code in the terminal, IDE, and on the web for end-to-end coding workflows',
-      'Ship Claude on Amazon Bedrock or Google Vertex AI with the right IAM/VPC posture',
-      'Apply Computer Use and Skills to automate desktop and repeated-task workflows',
-      'Cut token spend with prompt caching, batches, and the Files API',
+      'Install and set up Claude Code',
+      'Learn Claude Code\'s features, shortcuts and workflows',
+      'Hear how Claude Code started and get practical tips from two Anthropic team members',
     ],
     relatedGuides: [
       '/guides/claude-anthropic-guide',
@@ -143,7 +140,7 @@ export const learningPaths: LearningPath[] = [
         creatorChannel: youtubeChannels.anthropic.url,
         duration: 'See YouTube',
         level: 'beginner',
-        description: "Anthropic's own deep dive on what makes a Claude prompt work — the single highest-leverage starting point.",
+        description: "Anthropic's prompt engineering experts discuss what makes a good prompt, how to refine prompts, and practical tips for improving.",
         tags: ['prompts', 'claude', 'foundations'],
       },
       {
@@ -154,7 +151,7 @@ export const learningPaths: LearningPath[] = [
         creatorChannel: youtubeChannels.anthropic.url,
         duration: 'See YouTube',
         level: 'intermediate',
-        description: 'Official walkthrough of the Claude Code workflow — plan, edit, run, test — straight from the team that built it.',
+        description: "Anthropic's walkthrough of Claude Code's advanced features, shortcuts and workflows.",
         tags: ['claude-code', 'workflow', 'builder'],
       },
       {
@@ -165,7 +162,7 @@ export const learningPaths: LearningPath[] = [
         creatorChannel: youtubeChannels.netNinja.url,
         duration: 'See YouTube',
         level: 'beginner',
-        description: "Net Ninja's clean, no-noise setup walkthrough — install, authenticate, and run your first Claude Code session.",
+        description: "The first video of Net Ninja's Claude Code course: an introduction, how to install it and how to set it up.",
         tags: ['claude-code', 'setup', 'beginner'],
       },
       {
@@ -176,96 +173,8 @@ export const learningPaths: LearningPath[] = [
         creatorChannel: youtubeChannels.anthropic.url,
         duration: 'See YouTube',
         level: 'beginner',
-        description: "Boris Cherny and Alex Albert talk about the inception of Claude Code as an internal utility and share power-user developer workflow strategies.",
+        description: "Boris Cherny and Alex Albert talk about how Claude Code started as Anthropic's own internal agentic coding tool, and share practical tips for getting the most out of it.",
         tags: ['claude-code', 'discussion', 'beginner'],
-      },
-      {
-        id: 'claude-agent-sdk',
-        youtubeId: 'S08x1x2kC1w',
-        title: 'Claude Agent SDK [Full Workshop]',
-        creator: youtubeChannels.aiEngineer.name,
-        creatorChannel: youtubeChannels.aiEngineer.url,
-        duration: 'See YouTube',
-        level: 'advanced',
-        description: "Thariq Shihipar from Anthropic hosts a deep-dive technical workshop on the Agent SDK architecture, Unix-like agent loops, and context engineering.",
-        tags: ['agent-sdk', 'agents', 'advanced'],
-      },
-      {
-        id: 'mcp-building-agents',
-        youtubeId: 'W0S83pS_Z3A',
-        title: 'Building Agents with Model Context Protocol [Full Workshop]',
-        creator: youtubeChannels.aiEngineer.name,
-        creatorChannel: youtubeChannels.aiEngineer.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description: "Anthropic's Mahesh Murag leads a complete workshop on the open MCP standard, showing how to connect Claude to filesystems, databases, and third-party APIs.",
-        tags: ['mcp', 'context', 'api'],
-      },
-      {
-        id: 'build-skills-not-agents',
-        youtubeId: 'nO3S8L_oK84',
-        title: "Don't Build Agents, Build Skills Instead",
-        creator: youtubeChannels.aiEngineer.name,
-        creatorChannel: youtubeChannels.aiEngineer.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description: "Barry Zhang and Mahesh Murag lay out Anthropic's paradigm shift: packaging agent operations into reusable, composable Skills rather than custom models.",
-        tags: ['skills', 'architecture', 'strategy'],
-      },
-      {
-        id: 'claude-code-future-engineering',
-        youtubeId: 'kYv9x4p15OQ',
-        title: 'Claude Code & the Future of Software Engineering',
-        creator: youtubeChannels.acquired.name,
-        creatorChannel: youtubeChannels.acquired.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description: "Claude Code creator Boris Cherny sits down at Acquired Unplugged to discuss the IDE-free developer experience, agent loop metrics, and how AI coding changes the role of the engineer.",
-        tags: ['claude-code', 'discussion', 'future'],
-      },
-      {
-        id: 'seq-coding-solved',
-        youtubeId: 'sD48wJ-J-XQ',
-        title: 'Why Coding Is Solved, and What Comes Next',
-        creator: youtubeChannels.sequoia.name,
-        creatorChannel: youtubeChannels.sequoia.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description: "Sequoia Capital hosts Boris Cherny for a fireside chat on the trajectory of developer productivity and the next frontiers of autonomous code maintenance.",
-        tags: ['discussion', 'future', 'developer'],
-      },
-      {
-        id: 'figma-mcp-workflows',
-        youtubeId: 'wX-y_c9D6qQ',
-        title: 'Figma x Claude Code Live: Roundtrip Workflows with Figma MCP',
-        creator: youtubeChannels.figma.name,
-        creatorChannel: youtubeChannels.figma.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description: "A live demonstration showing how Claude Code interacts with Figma designs via MCP to generate and synchronize frontend components.",
-        tags: ['figma', 'mcp', 'design-to-code'],
-      },
-      {
-        id: 'inside-building-claude',
-        youtubeId: 'Oy7tzmfbl64',
-        title: 'Inside How Anthropic Is Building the Next Claude',
-        creator: youtubeChannels.peterYang.name,
-        creatorChannel: youtubeChannels.peterYang.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description: "Anthropic research PM Alex Albert discusses the model-building pipeline, background memory consolidation ('dreaming'), and training model personalities.",
-        tags: ['research', 'product', 'inside'],
-      },
-      {
-        id: 'anthropic-html-ai-specs',
-        youtubeId: 'kYJjX79P908',
-        title: 'Why this Claude Code Engineer Uses HTML Files as AI Specs',
-        creator: youtubeChannels.aiEngineer.name,
-        creatorChannel: youtubeChannels.aiEngineer.url,
-        duration: 'See YouTube',
-        level: 'advanced',
-        description: "Thariq Shihipar demonstrates how HTML specs and throwaway user interfaces accelerate the agentic planning and implementation loop.",
-        tags: ['specs', 'workflow', 'advanced'],
       },
     ],
     ecosystem: [
@@ -433,18 +342,12 @@ export const learningPaths: LearningPath[] = [
         channelUrl: youtubeChannels.lexFridman.url,
         why: 'For the strategic/research view: full conversations with Anthropic leadership on what Claude is for and where the field is heading.',
       },
-      {
-        name: 'The Neuron',
-        role: 'Daily AI newsletter + companion video coverage',
-        channelUrl: youtubeChannels.theNeuron.url,
-        why: 'Fast daily signal on Claude releases, comparisons, and emerging workflows — good for staying current between official launches.',
-      },
     ],
     faqs: [
       {
         question: 'What is the latest Claude model in June 2026?',
         answer:
-          'Claude Opus 4.8 is the current family lead (launched May 14, 2026). Claude Sonnet 4.6 is the everyday default across Claude.ai and Claude Code. Claude Haiku 4.5 covers the cheap-and-fast tier for high-volume agent loops.',
+          'Claude Opus 4.8 launched May 14, 2026. Claude Sonnet 4.6 is the everyday default across Claude.ai and Claude Code. Claude Haiku 4.5 covers the cheap-and-fast tier for high-volume agent loops.',
       },
       {
         question: 'Which Claude model should I use for coding?',
@@ -501,7 +404,6 @@ export const learningPaths: LearningPath[] = [
       'Master OpenAI Codex for agentic software work: setup, local CLI workflows, AGENTS.md, code review, and production-ready iteration.',
     icon: 'zap',
     difficulty: 'intermediate',
-    estimatedHours: 9,
     color: 'emerald',
     category: 'model-maker',
     heroEyebrow: 'Updated July 5, 2026 · Runs GPT-5.5 · CLI + Cloud + AGENTS.md',
@@ -801,14 +703,13 @@ export const learningPaths: LearningPath[] = [
       'Master ChatGPT for everyday work, prompting, data analysis, custom workflows, and practical OpenAI fluency.',
     icon: 'brain',
     difficulty: 'beginner',
-    estimatedHours: 10,
     color: 'cyan',
     category: 'model-maker',
     heroEyebrow: 'Updated July 5, 2026 · Runs GPT-5.5 · Everyday AI fluency',
     longIntro:
-      "ChatGPT is where most people meet AI, and in 2026 it runs GPT-5.5 — OpenAI's flagship since it replaced the whole o-series in a single unified line. This portal is the practical path: how to prompt it well, turn repeat work into reusable Projects and Custom GPTs, analyze files without trusting them blindly, and know the moment to graduate to Codex or the API.\n\nThe surface is broader than a chat box now. Custom GPTs and the GPT Store let you package instructions and knowledge; Projects keep files and context together for ongoing work; Advanced Voice (powered by the gpt-realtime-2 line) turns it into a real-time spoken collaborator; and ChatGPT Images 2.0 handles visual generation. One thing to know going in: ChatGPT focuses on images, not video.\n\nStart with the beginner get-work-done walkthrough (video 1), then the two prompt-engineering courses (videos 2 and 3) to build the habit that makes everything else work. Each tool below links to its official OpenAI page.",
+      "ChatGPT is where most people meet AI, and in 2026 it runs GPT-5.5 — OpenAI's flagship since it replaced the whole o-series in a single unified line. This portal is the practical path: how to prompt it well, turn repeat work into reusable Projects and Custom GPTs, analyze files without trusting them blindly, and know the moment to graduate to Codex or the API.\n\nThe surface is broader than a chat box now. Custom GPTs and the GPT Store let you package instructions and knowledge; Projects keep files and context together for ongoing work; Advanced Voice (powered by the gpt-realtime-2 line) turns it into a real-time spoken collaborator; and ChatGPT Images 2.0 handles visual generation. One thing to know going in: ChatGPT focuses on images, not video.\n\nStart with the beginner get-work-done walkthrough (video 1), then the prompt-engineering course (video 2) to build the habit that makes everything else work. Each tool below links to its official OpenAI page.",
     distillation:
-      "ChatGPT is where most people meet AI, and that is exactly why it is underused. The instinct is to treat it as a clever answer machine, so people ask it one-off questions and move on. The shift that changes everything is treating it as a surface you build repeatable systems on. GPT-5.5 is more than capable; the constraint is almost always the human's framing and follow-through, not the model.\n\nThe single habit that separates casual use from real output: give it the goal, the context, the constraints, and the output format you want — every time — and treat the first answer as a draft, not a verdict. The two prompt-engineering courses in this portal are worth more than they look, because that discipline is what makes Projects, Custom GPTs, and data analysis actually pay off. A vague prompt wastes a good model; a structured one turns it into a collaborator.\n\nThe part people skip is turning a good session into a system. A Custom GPT packages your instructions and knowledge so you never re-explain a repeat task. A Project keeps files and context together for ongoing work. Advanced Voice turns it into a thinking partner you can talk to. None of that is exotic — it is just the difference between using ChatGPT and building with it.\n\nWhere I would start: pick one task you do every week, write it up as a Custom GPT with clear instructions and a couple of reference files, and use it for a month. Then learn the edge — when to stop reaching for the chat box and graduate to Codex for real repo work or the API for anything programmatic. The goal is not to know every ChatGPT feature; it is to build a small set of systems that quietly do real work for you.",
+      "ChatGPT is where most people meet AI, and that is exactly why it is underused. The instinct is to treat it as a clever answer machine, so people ask it one-off questions and move on. The shift that changes everything is treating it as a surface you build repeatable systems on. GPT-5.5 is more than capable; the constraint is almost always the human's framing and follow-through, not the model.\n\nThe single habit that separates casual use from real output: give it the goal, the context, the constraints, and the output format you want — every time — and treat the first answer as a draft you will revise. The prompt-engineering course in this portal is worth more than it looks, because that discipline is what makes Projects, Custom GPTs, and data analysis actually pay off. A vague prompt wastes a good model; a structured one turns it into a collaborator.\n\nThe part people skip is turning a good session into a system. A Custom GPT packages your instructions and knowledge so you never re-explain a repeat task. A Project keeps files and context together for ongoing work. Advanced Voice turns it into a thinking partner you can talk to. None of that is exotic — it is just the difference between using ChatGPT and building with it.\n\nWhere I would start: pick one task you do every week, write it up as a Custom GPT with clear instructions and a couple of reference files, and use it for a month. Then learn the edge — when to stop reaching for the chat box and graduate to Codex for real repo work or the API for anything programmatic. The goal is not to know every ChatGPT feature; it is to build a small set of systems that quietly do real work for you.",
     ctaTitle: 'Ready to get real work done with ChatGPT?',
     ctaBody:
       'Pair this portal with our written guides — a prompt library, the founder AI stack, and when to reach past ChatGPT for Codex or the API.',
@@ -839,18 +740,6 @@ export const learningPaths: LearningPath[] = [
         description:
           'Practical beginner workflow for using ChatGPT on real work instead of one-off novelty prompts.',
         tags: ['chatgpt', 'productivity', 'beginner'],
-      },
-      {
-        id: 'chatgpt-prompt-engineering-devs',
-        youtubeId: 'kifXwGtKubs',
-        title: 'ChatGPT Prompt Engineering for Developers',
-        creator: youtubeChannels.deepLearningAI.name,
-        creatorChannel: youtubeChannels.deepLearningAI.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description:
-          'Andrew Ng and Isa Fulford teach prompt structure, iteration, and reliable LLM interaction patterns.',
-        tags: ['prompts', 'developers', 'openai'],
       },
       {
         id: 'chatgpt-prompt-engineering-freecodecamp',
@@ -1033,12 +922,6 @@ export const learningPaths: LearningPath[] = [
         channelUrl: youtubeChannels.aiExplained.url,
         why: 'Honest, benchmark-driven analysis of GPT-5.5 versus the field. Trust this over launch-day hype for real capability calibration.',
       },
-      {
-        name: 'The Neuron',
-        role: 'Daily AI newsletter + companion videos',
-        channelUrl: youtubeChannels.theNeuron.url,
-        why: 'Fast daily signal on OpenAI releases and practical workflows — good for staying current between official launches.',
-      },
     ],
     faqs: [
       {
@@ -1084,7 +967,7 @@ export const learningPaths: LearningPath[] = [
       {
         question: 'How do I write better prompts?',
         answer:
-          'Include four things: the goal, the context, the constraints, and the output format you want. Then iterate — treat the first answer as a draft, not a verdict. Videos 2 and 3 in this portal are full courses on exactly this.',
+          'Include four things: the goal, the context, the constraints, and the output format you want. Then iterate: treat the first answer as a draft you will revise. Video 2 in this portal is a full course on exactly this.',
       },
       {
         question: 'Where should I start if I’m new to ChatGPT?',
@@ -1098,22 +981,21 @@ export const learningPaths: LearningPath[] = [
     title: 'Gemini & Google AI Mastery',
     slug: 'gemini-mastery',
     description:
-      "Master Google's full AI stack — Gemini 3.5 Flash, Gemini 3.1 Pro, Antigravity 2.0, NotebookLM, Veo 3.1, and Nano Banana Pro — from your first prompt to production agents.",
+      "Master Google's full AI stack — Gemini, Antigravity 2.0, NotebookLM, Veo 3.1, and Nano Banana Pro — from your first prompt to production agents.",
     icon: 'sparkles',
     difficulty: 'beginner',
-    estimatedHours: 12,
     color: 'sky',
     category: 'model-maker',
     heroEyebrow: 'Updated May 23, 2026 · Reflects Google I/O 2026',
     longIntro:
-      "Google shipped its biggest developer release in years at I/O 2026 (May 19): Antigravity 2.0 as a standalone agentic platform, Gemini 3.5 Flash going GA as the new default, Gemini Omni unifying multimodal generation, and NotebookLM gaining cinematic Video Overviews. This portal pulls the official launches and the sharpest expert walkthroughs into one immersive path — so you can move from your first AI Studio prompt to shipping production agents without sifting the noise.\n\nThink of it as a map: Gemini 3.1 Pro and 3.5 Flash are the brains, Antigravity is where agents live, NotebookLM is the research and briefing surface, and Veo 3.1 + Nano Banana Pro handle the media. Each tool is linked below with its official Google page; each video below is curated for signal, not view count.\n\nStart with Foundations (videos 1–4) for the model layer, then branch into the track that fits — Builder (Antigravity, CLI), Researcher (NotebookLM), or Creator (Veo, Nano Banana). The Ecosystem grid, I/O 2026 timeline, and FAQ give you the lay of the land in one screen.",
+      "Google shipped its biggest developer release in years at I/O 2026 (May 19): Antigravity 2.0 as a standalone agentic platform, Gemini 3.5 Flash going GA as the new default, Gemini Omni unifying multimodal generation, and NotebookLM gaining cinematic Video Overviews. This portal pulls the official launches and the sharpest expert walkthroughs into one immersive path — so you can move from your first AI Studio prompt to shipping production agents without sifting the noise.\n\nThink of it as a map: Gemini 3.1 Pro and 3.5 Flash are the brains, Antigravity is where agents live, NotebookLM is the research and briefing surface, and Veo 3.1 + Nano Banana Pro handle the media. Each tool is linked below with its official Google page; each video below is curated for signal, not view count.\n\nStart with Foundations (videos 1–2): the Gemini 3 launch film and an introduction to Gemini Omni. Neither teaches how to choose between models; the FAQ covers that in text. Then branch into the track that fits — Builder (Antigravity, CLI), Researcher (NotebookLM), or Creator (Veo, Nano Banana). The Ecosystem grid, I/O 2026 timeline, and FAQ give you the lay of the land in one screen.",
     distillation:
-      "Google's edge in 2026 is not a single model — it is the shape of the whole stack. A million-plus token context window, native multimodality, and agent infrastructure built in rather than bolted on. The learning trap is treating Gemini like a chatbot with a bigger window. The payoff comes from seeing the pieces as one system: the models are the reasoning layer, Antigravity is where agents live, NotebookLM is the research surface, and Veo and Nano Banana handle media.\n\nStart with the foundations videos for the model layer, because the model-selection instinct is what everything else rides on: 3.5 Flash for speed and cost, 3.1 Pro with a high thinking level when the problem is genuinely hard. Get that right and the rest of the stack is a set of branches you take when a specific job calls for it — Antigravity when you are building agents, NotebookLM when you are grounding work in your own sources, Veo when you need video.\n\nThe underused capability is the huge context window used deliberately. Most people paste a paragraph; the actual edge is feeding an entire codebase, a full set of documents, or a long research corpus and asking questions across all of it at once. That is a different way of working, and it is where Gemini pulls ahead of models that make you chunk everything. NotebookLM is the same idea with guardrails — grounded answers, no invented citations.\n\nWhere I would spend your first week: get a free key at AI Studio, run one real multimodal prompt, and try the big-context move on a project you actually have — a repo, a research folder, a stack of PDFs. Then pick your track: Builder if you want agents, Researcher if you want NotebookLM, Creator if you want media. The goal is not to know Gemini's feature list; it is to work at the scale the context window makes possible.",
+      "Google's edge in 2026 is not a single model — it is the shape of the whole stack. A million-plus token context window, native multimodality, and agent infrastructure built in rather than bolted on. The learning trap is treating Gemini like a chatbot with a bigger window. The payoff comes from seeing the pieces as one system: the models are the reasoning layer, Antigravity is where agents live, NotebookLM is the research surface, and Veo and Nano Banana handle media.\n\nStart with the two foundations videos, the Gemini 3 launch film and the Gemini Omni introduction, for an overview of the models. They do not teach model selection. The FAQ below gives a rule of thumb: 3.5 Flash for speed and cost, 3.1 Pro with a high thinking level when the problem is genuinely hard. With that in hand the rest of the stack is a set of branches you take when a specific job calls for it — Antigravity when you are building agents, NotebookLM when you are grounding work in your own sources, Veo when you need video.\n\nThe underused capability is the huge context window used deliberately. Most people paste a paragraph; the actual edge is feeding an entire codebase, a full set of documents, or a long research corpus and asking questions across all of it at once. That is a different way of working, and it is where Gemini pulls ahead of models that make you chunk everything. NotebookLM is the same idea with guardrails — grounded answers, no invented citations.\n\nWhere I would spend your first week: get a free key at AI Studio, run one real multimodal prompt, and try the big-context move on a project you actually have — a repo, a research folder, a stack of PDFs. Then pick your track: Builder if you want agents, Researcher if you want NotebookLM, Creator if you want media. The goal is not to know Gemini's feature list; it is to work at the scale the context window makes possible.",
     ctaTitle: 'Ready to ship with Gemini?',
     ctaBody:
       'Pair this portal with our hands-on guides and architecture playbooks. Build an agent, ship a multimodal app, or deep-dive how Gemini compares to Claude.',
     outcomes: [
-      'Pick the right Gemini model — 3.5 Flash, 3.1 Pro, Deep Think — for each task',
+      'Get an overview of the Gemini models and how they fit together, using the ecosystem grid and FAQ',
       'Build production agents with Antigravity 2.0 (Desktop, CLI, and SDK)',
       'Turn any source set into briefings, audio, and cinematic video with NotebookLM',
       'Generate 2K/4K images with Nano Banana 2 (Flash) and Nano Banana Pro',
@@ -1157,30 +1039,6 @@ export const learningPaths: LearningPath[] = [
         description:
           'Logan Kilpatrick walks through Gemini Omni — the new "anything from any input" model unveiled at I/O 2026.',
         tags: ['gemini-omni', 'multimodal', 'video'],
-      },
-      {
-        id: 'gemini-3-pros-tutorial',
-        youtubeId: 'vEzbJ6gIqeA',
-        title: 'How Pros Use Gemini 3.0 with Google DeepMind\'s Logan Kilpatrick',
-        creator: youtubeChannels.theNeuron.name,
-        creatorChannel: youtubeChannels.theNeuron.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description:
-          'Deep-dive on practical Gemini 3 Pro workflows — vibe coding in AI Studio, agentic patterns, and where 3.1 Pro shines.',
-        tags: ['gemini-3-pro', 'workflow', 'ai-studio'],
-      },
-      {
-        id: 'gemini-deep-think',
-        youtubeId: 'OTRvoxPSQ_8',
-        title: 'Gemini 3.1 Pro, Deep Think, New AlphaFold... Buckle Up!',
-        creator: 'AI Explained',
-        creatorChannel: youtubeChannels.aiExplained.url,
-        duration: 'See YouTube',
-        level: 'intermediate',
-        description:
-          'Benchmark-driven analysis of Gemini 3.1 Pro\'s Deep Think mode and what HIGH thinking level actually unlocks.',
-        tags: ['deep-think', 'reasoning', 'benchmarks'],
       },
       {
         id: 'antigravity-2-walkthrough',
@@ -1343,10 +1201,10 @@ export const learningPaths: LearningPath[] = [
         tag: 'Research',
       },
       {
-        date: '2026-06-01',
-        title: 'Gemini 3.5 Pro arrives next month (preview)',
+        date: '2026-05-19',
+        title: "Check Google's current model lineup",
         summary:
-          "Sundar Pichai's I/O keynote confirmed Gemini 3.5 Pro is being used internally and will roll out publicly in June 2026.",
+          "Google's Gemini lineup changes often. Check Google's current model documentation and the I/O keynote recap for what is available today.",
         source: 'https://blog.google/innovation-and-ai/sundar-pichai-io-2026/',
         tag: 'Update',
       },
@@ -1404,7 +1262,7 @@ export const learningPaths: LearningPath[] = [
       {
         question: 'What is the latest Gemini model in May 2026?',
         answer:
-          'Gemini 3.5 Flash is GA since Google I/O 2026 (May 19) and is now the default across Antigravity. Gemini 3.1 Pro remains the flagship for reasoning, and Gemini 3.5 Pro is rolling out publicly in June 2026.',
+          'Gemini 3.5 Flash is GA since Google I/O 2026 (May 19) and is now the default across Antigravity. Gemini 3.1 Pro remains the flagship for reasoning. Check Google\'s current model lineup for anything newer.',
       },
       {
         question: 'Is Gemini CLI still supported?',
@@ -1449,7 +1307,7 @@ export const learningPaths: LearningPath[] = [
       {
         question: "Where do I start if I'm new to Google AI?",
         answer:
-          'Watch video 1 (Gemini 3 launch) and video 5 (Antigravity 2.0 walkthrough) in this portal. Then create a free key at aistudio.google.com, try a multimodal prompt, and follow the Builder track from there.',
+          'Watch video 1 (Gemini 3 launch) and video 3 (Antigravity 2.0 walkthrough) in this portal. Then create a free key at aistudio.google.com, try a multimodal prompt, and follow the Builder track from there.',
       },
     ],
   },
@@ -1458,10 +1316,9 @@ export const learningPaths: LearningPath[] = [
     title: 'Antigravity Mastery',
     slug: 'antigravity-mastery',
     description:
-      "Master Google Antigravity — the standalone agent-first development platform (desktop app, CLI, SDK) that replaced Gemini CLI — from first install to production multi-agent workflows.",
+      "Master Google Antigravity — the standalone agent-first development platform (desktop app, CLI, SDK) — from first install to production multi-agent workflows.",
     icon: 'zap',
     difficulty: 'intermediate',
-    estimatedHours: 8,
     color: 'sky',
     category: 'model-maker',
     heroEyebrow: 'Updated July 6, 2026 · Antigravity 2.0, four pillars',
@@ -1705,12 +1562,11 @@ export const learningPaths: LearningPath[] = [
       "Master Amazon Bedrock — the managed model gateway for AWS: Claude, Nova, Knowledge Bases, AgentCore, and Guardrails — from first API call to production agents.",
     icon: 'zap',
     difficulty: 'intermediate',
-    estimatedHours: 10,
     color: 'amber',
     category: 'cloud',
     heroEyebrow: 'Updated July 6, 2026 · AgentCore + Managed Knowledge Base GA',
     longIntro:
-      "Bedrock is AWS's managed model gateway — one API surface for Anthropic, Meta, Mistral, Cohere, AI21, Amazon's own Nova family, DeepSeek, and 100+ Marketplace models, plus Knowledge Bases and Agents for orchestration. Pricing is per-token like the model APIs directly, but IAM, VPC, and CloudWatch come for free if you already live in AWS — no separate proxy or vendor relationship to stand up.\n\nTwo capabilities matured to general availability in June 2026 and change what \"production-ready\" means here: AgentCore is a code-first platform for building, deploying, and operating agents with a real runtime, identity, memory, and observability layer — its SDK passed 2 million downloads within 5 months of preview. Managed Knowledge Base now runs the entire RAG pipeline (chunking, embeddings, re-ranking, retrieval) as AWS-operated infrastructure, with native AgentCore integration and MCP compatibility.\n\nStart with the beginner walkthrough (video 1) to get a model responding, then AgentCore (video 2) once you're ready to operationalize an agent, Guardrails (video 3) before anything touches real users, and the Nova model tour (video 4) to see what AWS's own models are for. This is the right portal if your team already runs on AWS and needs SOC 2 / procurement alignment without standing up a separate model vendor.",
+      "Bedrock is AWS's managed model gateway — one API surface for Anthropic, Meta, Mistral, Cohere, AI21, Amazon's own Nova family, DeepSeek, and 100+ Marketplace models, plus Knowledge Bases and Agents for orchestration. Pricing is per-token like the model APIs directly, but IAM, VPC, and CloudWatch come for free if you already live in AWS — no separate proxy or vendor relationship to stand up.\n\nTwo capabilities matured to general availability in June 2026 and change what \"production-ready\" means here: AgentCore is a code-first platform for building, deploying, and operating agents with a real runtime, identity, memory, and observability layer — its SDK passed 2 million downloads within 5 months of preview. Managed Knowledge Base now runs the entire RAG pipeline (chunking, embeddings, re-ranking, retrieval) as AWS-operated infrastructure, with native AgentCore integration and MCP compatibility.\n\nStart with the beginner walkthrough (video 1) to get a model responding, then AgentCore (video 2) once you're ready to operationalize an agent, and Guardrails (video 3) before anything touches real users. This is the right portal if your team already runs on AWS and needs SOC 2 / procurement alignment without standing up a separate model vendor.",
     distillation:
       "Bedrock is where production runs when you already live in AWS, and the most important thing to understand is that you are not really buying a model — you are buying everything around it. The models (Anthropic, Meta, Mistral, Amazon's Nova family) are a token API like any other. The reason to be on Bedrock is that IAM, VPC, CloudWatch, Knowledge Bases, and Agents are already there, and your security and procurement story is already written. If your stack is on AWS, that is worth more than a few cents per million tokens.\n\nThe map to keep in your head: the model is the reasoning engine, Knowledge Bases is managed retrieval, Bedrock Agents is the orchestration layer, and Guardrails is the safety boundary — all sitting inside the AWS identity and networking you already run. Learn it in that order. The trap is treating Bedrock as just a model endpoint and missing that the platform is the whole point.\n\nHaving watched enterprise AI up close, the failure mode I see most is teams reaching for Bedrock Agents before they need them, and getting surprised by cross-region inference billing. Start simpler than you think: a model call inside your VPC, then Knowledge Bases against real data, then Agents only when a workflow genuinely needs multi-step orchestration. And instrument spend per region from day one — that is the bill that surprises people.\n\nWhere I would start: stand up one model call through the API inside your existing AWS account, then wire a Knowledge Base to a data source you actually have and measure the retrieval quality honestly. Compare it against calling the model's direct API to feel the tradeoff — Bedrock buys you the platform, the direct API gets new models first and is simpler. The goal is not to use every Bedrock feature; it is to run AI in production without leaving the security boundary you already trust.",
     ctaTitle: 'Ready to ship on Bedrock?',
@@ -1766,18 +1622,6 @@ export const learningPaths: LearningPath[] = [
         description:
           'The safety layer for production GenAI on Bedrock — content filters, denied topics, PII redaction, and contextual grounding checks.',
         tags: ['guardrails', 'safety', 'production'],
-      },
-      {
-        id: 'bedrock-nova-models',
-        youtubeId: '07w2Kc556u4',
-        title: 'AWS Cloud Coach: Exploring Amazon Nova models using Amazon Bedrock',
-        creator: youtubeChannels.amazonWebServices.name,
-        creatorChannel: youtubeChannels.amazonWebServices.url,
-        duration: 'See YouTube',
-        level: 'beginner',
-        description:
-          "Tour of Amazon's own Nova model family (Premier, Pro, Lite, Micro) — where they fit alongside Claude and the rest of the Bedrock catalog.",
-        tags: ['nova', 'models', 'amazon'],
       },
     ],
     ecosystem: [
@@ -1965,12 +1809,11 @@ export const learningPaths: LearningPath[] = [
       'Master Microsoft Foundry (formerly Azure AI Foundry) — 11,000+ models, the Foundry Agent Service, and MCP-connected agents — from your first deployment to production.',
     icon: 'zap',
     difficulty: 'intermediate',
-    estimatedHours: 10,
     color: 'sky',
     category: 'cloud',
     heroEyebrow: 'Updated July 6, 2026 · Microsoft Foundry GA + Hosted Agents',
     longIntro:
-      "Microsoft renamed Azure AI Foundry to Microsoft Foundry in 2026 and shipped the Foundry Agent Service to general availability in March. The pitch: one catalog of 11,000+ models — OpenAI, Anthropic, Meta, Google, xAI, Hugging Face, and Microsoft's own MAI multimodal family — plus an agent runtime that plugs directly into Microsoft 365 (Work IQ) and Microsoft Fabric (Fabric IQ). If your organization already runs on Microsoft's stack, that connective tissue is the actual product, not the model catalog.\n\nTwo agent types matter here. Prompt Agents are config-only — instructions, model, tools, defined in the portal or via SDK/REST for CI/CD. Hosted Agents (reaching GA in early July 2026) add a managed runtime where every session gets its own sandboxed compute, memory, and filesystem — the difference between a demo and something you'd trust with real data. May 2026 also added Model Context Protocol support, so a Foundry agent can reach the same MCP servers a Claude Code or Codex session uses.\n\nStart with the GA breakdown (video 1) to see what's actually production-ready today, then the from-scratch agent build (video 2). If your models of choice are Claude rather than OpenAI's own line, video 3 shows exactly that path. Video 4 covers the MAI model family Microsoft ships as its in-house alternative.",
+      "Microsoft renamed Azure AI Foundry to Microsoft Foundry in 2026 and shipped the Foundry Agent Service to general availability in March. The pitch: one catalog of 11,000+ models — OpenAI, Anthropic, Meta, Google, xAI, Hugging Face, and Microsoft's own MAI multimodal family — plus an agent runtime that plugs directly into Microsoft 365 (Work IQ) and Microsoft Fabric (Fabric IQ). If your organization already runs on Microsoft's stack, that connective tissue is the actual product, and the model catalog comes second.\n\nTwo agent types matter here. Prompt Agents are config-only — instructions, model, tools, defined in the portal or via SDK/REST for CI/CD. Hosted Agents add a managed runtime where every session gets its own sandboxed compute, memory, and filesystem — the difference between a demo and something you'd trust with real data. May 2026 also added Model Context Protocol support, so a Foundry agent can reach the same MCP servers a Claude Code or Codex session uses.\n\nStart with the GA breakdown (video 1) to see what's actually production-ready today, then the from-scratch agent build (video 2). If your models of choice are Claude rather than OpenAI's own line, video 3 shows exactly that path. Video 4 covers the MAI model family Microsoft ships as its in-house alternative.",
     distillation:
       "Azure AI Foundry is Microsoft's managed surface for building with AI, and like Bedrock its real value is the enterprise substance around the model, not the model itself. The catalog is broad — Azure OpenAI, Microsoft's own MAI family, open models — but the reason organizations choose Foundry is that it plugs into the identity, governance, and compliance fabric they already run on Azure: Entra, Purview, private networking, the audit trail their security team already accepts.\n\nThe mental model: Foundry is the surface, the model catalog is the menu, and the surrounding governance is the actual product. If your organization lives on Microsoft 365 and Azure, the integration is the deciding factor — the model quality across the frontier is close enough now that where it runs and how it is governed usually matters more than which model tops a benchmark this month.\n\nThe honest caution: enterprise AI surfaces reward teams who treat governance as the starting point, not an afterthought. The people who succeed on Foundry map identity, data boundaries, and audit before they build the clever agent — because retrofitting governance onto a working prototype is where projects stall. Start with the boring parts and the interesting parts get easier.\n\nWhere I would start: deploy one model through Foundry inside your existing Azure tenant, wire it to a single governed data source, and confirm the identity and audit story end to end before you add capability. Then decide model selection deliberately — the MAI family, Azure OpenAI, or an open model — based on cost and the task, not the launch headline. The goal is not to explore every Foundry feature; it is to ship AI that your security and compliance teams sign off on without a fight.",
     ctaTitle: 'Ready to ship on Microsoft Foundry?',
@@ -2053,7 +1896,7 @@ export const learningPaths: LearningPath[] = [
         name: 'Foundry Agent Service',
         category: 'Agents',
         description:
-          'Managed agent platform, GA since March 2026. Prompt Agents (config-only) for quick starts; Hosted Agents (GA early July 2026) add sandboxed runtime, memory, and filesystem per session.',
+          'Managed agent platform, GA since March 2026. Prompt Agents (config-only) for quick starts; Hosted Agents add sandboxed runtime, memory, and filesystem per session. Check Microsoft\'s documentation for current availability.',
         href: 'https://learn.microsoft.com/en-us/azure/foundry/agents/overview',
         status: 'New',
         lastVerified: '2026-07-06',
@@ -2140,9 +1983,9 @@ export const learningPaths: LearningPath[] = [
       },
       {
         date: '2026-07-01',
-        title: 'Hosted Agents expected to reach general availability',
+        title: 'Check current Hosted Agents availability',
         summary:
-          'Hosted Agents — the managed runtime with per-session sandboxed compute, memory, and filesystem — move from preview to GA in early July 2026.',
+          'Hosted Agents are the managed runtime with per-session sandboxed compute, memory, and filesystem. Check Microsoft\'s documentation for their current availability.',
         source: 'https://learn.microsoft.com/en-us/azure/foundry/agents/overview',
         tag: 'Update',
       },
@@ -2177,7 +2020,7 @@ export const learningPaths: LearningPath[] = [
       {
         question: 'What is the Foundry Agent Service?',
         answer:
-          'A managed platform for building AI agents, GA since March 2026. Prompt Agents are config-only (instructions, model, tools) for a fast start. Hosted Agents add a managed runtime with per-session sandboxed compute, memory, and filesystem — reaching GA in early July 2026.',
+          'A managed platform for building AI agents, GA since March 2026. Prompt Agents are config-only (instructions, model, tools) for a fast start. Hosted Agents add a managed runtime with per-session sandboxed compute, memory, and filesystem. Check Microsoft\'s documentation for the current availability of Hosted Agents.',
       },
       {
         question: 'Does Foundry support Model Context Protocol (MCP)?',
@@ -2224,7 +2067,6 @@ export const learningPaths: LearningPath[] = [
       'Master OCI Generative AI — Cohere Command A, Agent Hub, and Select AI natural-language database queries — from your first model call to production agents on OCI.',
     icon: 'zap',
     difficulty: 'intermediate',
-    estimatedHours: 10,
     color: 'violet',
     category: 'cloud',
     heroEyebrow: 'Updated July 6, 2026 · Cohere Command A + Agent Hub',
@@ -2462,139 +2304,58 @@ export const learningPaths: LearningPath[] = [
   },
   {
     id: 'higgsfield-mastery',
-    title: 'Higgsfield AI & Cinematic Video Mastery',
+    relatedResourceTitles: {
+      '/guides/higgsfield-ai-video-guide': 'Start here: video production',
+      '/guides/higgsfield-camera-movement-prompts': 'Camera movement prompts',
+      '/guides/higgsfield-soul-id-character-consistency': 'Soul ID and character continuity',
+      '/guides/higgsfield-ugc-product-video-workflow': 'UGC and product video workshop',
+      '/guides/higgsfield-music-video-workflow': 'Music video workshop',
+      '/guides/higgsfield-credits-pricing-guide': 'Credits and cost per accepted shot',
+      '/blog/ultimate-higgsfield-workflow-2026': 'Agent and MCP connection guide',
+    },
+    title: 'Higgsfield video production workshop',
     slug: 'higgsfield-mastery',
-    description:
-      'Master multi-model AI video production with Higgsfield AI: Cinema Studio, 70+ camera presets, Soul ID consistency, Seedance 2.0, Kling 3.0, and Veo 3.1.',
-    icon: 'image',
-    difficulty: 'intermediate',
-    estimatedHours: 6,
-    color: 'violet',
-    category: 'consumer',
-    heroEyebrow: 'Updated August 2026 · Multi-Model Video Suite',
-    longIntro:
-      'Higgsfield AI unifies the top AI video generation models under a single studio interface. Rather than switching between separate tools, you can direct Kling 3.0 for character motion, Veo 3.1 for lighting and realism, Seedance 2.0 for commercial ads, and Wan 2.6 for VFX. This portal guides you through camera trajectory control with Cinema Studio, persistent characters with Soul ID, and automated commercial production with Marketing Studio.',
-    distillation:
-      'Generative video has shifted from single-model toys to multi-model director suites. No single generative model wins every shot type: Kling 3.0 dominates human anatomy and acting, Veo 3.1 delivers physical realism and lighting, and Seedance 2.0 powers rapid commercial B-roll. Higgsfield unifies these engines under one interface with precision camera trajectory controls and character identity locks.\n\nThe real breakthrough in Higgsfield is Cinema Studio and Soul ID. Text prompts alone are terrible at controlling physical camera trajectories — Cinema Studio gives you deterministic mathematical moves like Orbital 360, Bullet Time, and Vertigo Dolly Zooms. Soul ID anchors facial geometry across multiple scene renders, solving character drift for narrative filmmaking.\n\nFor creators and founders, the highest-impact move is pairing Marketing Studio (URL-to-Video) for rapid ad production with custom Cinema Studio shots for hero brand content. Master the multi-model selection matrix and camera moves, and you can produce studio-grade video at 10x speed.',
-
-    ctaTitle: 'Ready to direct your first AI film?',
-    ctaBody:
-      'Pair this video portal with our in-depth written playbook. Master prompt engineering, camera move coordinates, and automated production pipelines.',
+    description: 'Make a three-shot sequence with a shot brief, reference pack, camera test and credit budget. Free guides and an official walkthrough.',
+    icon: 'image', difficulty: 'intermediate', color: 'violet', category: 'consumer',
+    heroEyebrow: 'Documentation checked October 10, 2026',
+    longIntro: 'Start with one story and three shots. This workshop takes you from a written brief to a reviewed sequence using Higgsfield, then helps you diagnose motion, identity and editing problems. The curriculum is free; generating media may require a paid product plan. Product capabilities are documented by the vendor. The production exercises and acceptance rules are FrankX editorial proposals.',
+    distillation: 'Write the acceptance rule before generating: what should the viewer understand, which movement carries that meaning, and what makes the clip usable? Keep one subject and one camera movement in your first test. Review the first, middle and last frames before accepting it.\n\nReference tools can help with character continuity, but inspect faces, wardrobe, product labels and background geometry across every shot. Test one variable at a time instead of changing the model, reference and prompt together.\n\nMeasure cost per accepted shot rather than cost per generation. Stop when a repeat failure needs a different reference or simpler composition. Assemble the accepted shots in an editor, review the sequence at phone size and export for your chosen platform.',
+    ctaTitle: 'Build your first three-shot sequence',
+    ctaBody: 'Follow the production guide, download the brief and ledger, then choose a focused workshop for your next project.',
     outcomes: [
-      'Direct 70+ camera movements including Orbital 360, Bullet Time, and Dolly Zooms',
-      'Maintain character facial identity across 10+ sequential shots with Soul ID',
-      'Select the optimal model (Kling 3.0, Veo 3.1, Seedance 2.0, Wan 2.6) for each scene',
-      'Generate commercial product video ads with Marketing Studio URL-to-Video',
-      'Integrate Higgsfield programmatically via Fal.ai and developer APIs',
-      'Upscale and export pristine 4K 24fps master videos for client delivery',
+      'Write a shot brief with a subject, movement, reference and acceptance rule',
+      'Test camera movement with a controlled prompt and diagnose failures',
+      'Review character continuity across close-ups, profiles and lighting changes',
+      'Create a product-video shot plan with one demonstrable claim',
+      'Calculate credits per accepted clip and set a retry budget',
+      'Connect a supported agent workflow and inspect job status before retrying',
     ],
     relatedGuides: [
-      '/guides/higgsfield-ai-video-guide',
-      '/guides/image-generation-mastery',
-      '/learn/gemini-mastery',
-      '/learn/claude-mastery',
+      '/guides/higgsfield-ai-video-guide', '/guides/higgsfield-camera-movement-prompts',
+      '/guides/higgsfield-soul-id-character-consistency', '/guides/higgsfield-ugc-product-video-workflow',
+      '/guides/higgsfield-music-video-workflow', '/guides/higgsfield-credits-pricing-guide',
+      '/blog/ultimate-higgsfield-workflow-2026',
     ],
-    videos: [
-      {
-        id: 'higgsfield-overview',
-        youtubeId: 'mKyaNr3jK-E',
-        title: 'Learn 98% of Higgsfield AI in 18 Minutes',
-        creator: 'Youri van Hofwegen',
-        creatorChannel: 'https://www.youtube.com/@yourivanhofwegen',
-        duration: '18 min',
-        level: 'beginner',
-        description:
-          'Complete walkthrough of Higgsfield AI: Cinema Studio, Marketing Studio, audio tools, and character consistency.',
-        tags: ['higgsfield', 'overview', 'ai-video'],
-      },
-      {
-        id: 'higgsfield-tutorial-beginner',
-        youtubeId: 'FF1sRs4LDCN',
-        title: 'How to Use Higgsfield AI for Beginners (Step by Step)',
-        creator: 'Creator Tutorials',
-        creatorChannel: 'https://www.youtube.com/results?search_query=Higgsfield+AI+tutorial',
-        duration: '14 min',
-        level: 'beginner',
-        description:
-          'Step-by-step beginner guide covering text-to-video, image-to-video, and camera movements.',
-        tags: ['higgsfield', 'tutorial', 'camera-control'],
-      },
-      {
-        id: 'higgsfield-cinema-studio',
-        youtubeId: 'Ee9qCk59BIv',
-        title: 'Directing Cinematic AI Video with Camera Presets and Soul ID',
-        creator: 'AI Filmmaking Lab',
-        creatorChannel: 'https://www.youtube.com/results?search_query=Higgsfield+Cinema+Studio',
-        duration: '16 min',
-        level: 'intermediate',
-        description:
-          'Deep dive into Cinema Studio camera trajectories, character facial locks, and multi-shot composition.',
-        tags: ['cinema-studio', 'soul-id', 'consistency'],
-      },
-    ],
+    videos: [{
+      id: 'higgsfield-official-short-film', youtubeId: 'tW40b122Rbs',
+      title: "The Complete AI Short Film Workflow Everyone's Missing",
+      creator: 'Higgsfield AI', creatorChannel: 'https://www.youtube.com/@HiggsfieldAI',
+      duration: 'See YouTube', level: 'beginner',
+      description: 'Official short-film walkthrough linked from Higgsfield documentation. Watch reference reuse and scene construction, then write your own shot brief. The interface shown predates Cinema Studio 4.0.',
+      tags: ['higgsfield', 'short-film', 'references'],
+    }],
     ecosystem: [
-      {
-        name: 'Cinema Studio',
-        category: 'Camera Direction',
-        description:
-          '70+ camera presets including Orbital 360, Bullet Time, Vertigo Dolly Zoom, and Drone Passes with precision trajectory vectors.',
-        href: 'https://higgsfield.ai',
-        status: 'New',
-      },
-      {
-        name: 'Soul ID',
-        category: 'Character Consistency',
-        description:
-          'Face landmark and identity embedding anchor preserving subject likeness across sequential scene renders.',
-        href: 'https://higgsfield.ai',
-        status: 'New',
-      },
-      {
-        name: 'Marketing Studio',
-        category: 'Commercial Ads',
-        description:
-          'URL-to-video e-commerce ad generation with automated scriptwriting, voiceover sync, and multi-ratio exports.',
-        href: 'https://higgsfield.ai',
-        status: 'Updated',
-      },
-      {
-        name: 'Kling 3.0 Integration',
-        category: 'Motion Engine',
-        description:
-          'Frontier human anatomy and organic motion engine, ideal for dialogue scenes and complex character choreography.',
-        href: 'https://higgsfield.ai',
-        status: 'Updated',
-      },
-      {
-        name: 'Veo 3.1 Integration',
-        category: 'Cinematic Realism',
-        description:
-          'Google DeepMind cinematic model for photorealism, atmospheric lighting, and native synchronized soundscapes.',
-        href: 'https://deepmind.google/models/veo/',
-        status: 'Updated',
-      },
+      { name: 'Higgsfield platform', category: 'Platform', description: 'Access Higgsfield AI Cinema Studio, model selection, and account settings (referral link).', href: '/go/higgsfield', lastVerified: '2026-10-12' },
+      { name: 'Cinema Studio 4.0 documentation', category: 'Direction', description: 'Current vendor announcement for camera look, references and sequence controls.', href: 'https://higgsfield.ai/blog/cinema-studio-4-0', lastVerified: '2026-10-11' },
+      { name: 'Agent connection guide', category: 'Automation', description: "Higgsfield's own guide to connecting Claude, ChatGPT, Cursor and other agents via MCP or CLI. Inspect tools and job status before generating.", href: 'https://higgsfield.ai/blog/generate-ai-videos-ai-agents-2026', lastVerified: '2026-10-11' },
+      { name: 'Developer console', category: 'Integration', description: 'Use documented interfaces and account limits rather than an assumed third-party endpoint.', href: 'https://open.higgsfield.ai/', lastVerified: '2026-10-12' },
+      { name: 'Current pricing', category: 'Budget', description: 'Verify included credits, model availability and cancellation terms for your account before subscribing.', href: 'https://higgsfield.ai/pricing', lastVerified: '2026-10-11' },
     ],
     faqs: [
-      {
-        question: 'What is Higgsfield AI?',
-        answer:
-          'Higgsfield AI is a unified multi-model video production platform that aggregates top generative engines (Kling 3.0, Veo 3.1, Seedance 2.0, Wan 2.6) with precision camera control (Cinema Studio) and character consistency (Soul ID).',
-      },
-      {
-        question: 'How does Soul ID preserve character faces across shots?',
-        answer:
-          'Soul ID analyzes 3 to 5 reference photos, generates a facial embedding vector, and locks the character token (e.g. [HERO_NAME]) across sequential prompts, achieving 98%+ identity retention across varying lighting and angles.',
-      },
-      {
-        question: 'How do Cinema Studio camera presets work?',
-        answer:
-          'Cinema Studio applies trajectory vector math to the rendering pipeline, giving you deterministic control over moves like Orbital 360, Vertigo Dolly Zoom, Bullet Time, and Crane High Passes rather than relying on random text prompts.',
-      },
-      {
-        question: 'Can I use Higgsfield programmatically via API?',
-        answer:
-          'Yes. Higgsfield Cinema Studio and generation endpoints are accessible programmatically via Fal.ai and direct developer APIs for batch video generation and automated pipelines.',
-      },
+      { question: 'Is this Higgsfield course free?', answer: 'The FrankX guides, exercises and worksheets are free to read. Higgsfield generation and connected-agent usage may require credits or a paid plan. Check current pricing before starting.' },
+      { question: 'Does Soul ID guarantee the same face in every shot?', answer: 'No guaranteed retention percentage is established here. Use a reference pack and review close-ups, profiles, lighting and movement. The character consistency guide gives you a test matrix.' },
+      { question: 'Which AI video model should I choose?', answer: 'Test the models available in your account against the same brief and acceptance rule. Score motion, identity, composition, editability and cost per accepted clip. There is no universal winner for every shot.' },
+      { question: 'Can I use Higgsfield from Claude or another agent?', answer: 'Higgsfield documents Claude MCP and other supported agent connections. Follow the current connection guide and inspect exposed tools, costs, job IDs and completion state before automating retries.' },
     ],
   },
   {
@@ -2605,7 +2366,6 @@ export const learningPaths: LearningPath[] = [
       'Master the 2026 Agentic Hierarchy — Prompts, Skills, Agents, MCP, Subagent FSMs, Blackwell NVL72 liquid cooling, and Cost-Per-Verified-Outcome economics.',
     icon: 'brain',
     difficulty: 'advanced',
-    estimatedHours: 14,
     color: 'emerald',
     category: 'cloud',
     heroEyebrow: '2026 Master Curriculum · Evaluated Skills, MCP Meshes & Sovereign Compute',
@@ -2634,27 +2394,7 @@ export const learningPaths: LearningPath[] = [
       '/blog/ai-infrastructure-blackwell-lpu-ai-factories-2026',
       '/blog/cost-per-verified-outcome-infrastructure-roi',
     ],
-    videos: [
-      {
-        id: 'agentic-systems-overview',
-        youtubeId: 'Sal4s84k3iE',
-        title: 'Building Production AI Agents & MCP Systems',
-        creator: 'FrankX AI',
-        creatorChannel: 'https://www.youtube.com/@frankxai',
-        duration: '28:45',
-        level: 'advanced',
-        description:
-          'A comprehensive engineering breakdown of the 4-layer agentic hierarchy, evaluated skill patterns, and production MCP tool meshes.',
-        tags: ['AI Agents', 'MCP', 'Agent Architecture', 'Skills Standard'],
-        keyTakeaways: [
-          'The 4-layer hierarchy separates ephemeral prompts, standardized MCP wires, evaluated skills, and autonomous agents.',
-          'Finite State Machines prevent exponential multi-agent state entropy and infinite loops.',
-          'Outcome-based hardware economics save 80%+ on enterprise inference costs.',
-        ],
-        architectNote:
-          'Never deploy unconstrained while loops in production. Always gate agent state transitions with deterministic typecheckers and linters.',
-      },
-    ],
+    videos: [],
     ecosystem: [
       {
         name: 'Model Context Protocol (MCP)',

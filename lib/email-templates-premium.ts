@@ -393,10 +393,6 @@ export function premiumNewsletterEmail(data: NewsletterData): { subject: string;
                     <table role="presentation" cellpadding="0" cellspacing="0" style="background: rgba(30, 41, 59, 0.5); border-radius: 12px; margin-bottom: 24px;">
                       <tr>
                         <td style="padding: 16px 24px; text-align: center; border-right: 1px solid rgba(100, 116, 139, 0.2);">
-                          <p style="margin: 0 0 4px 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 20px; font-weight: 700; color: #22d3ee;">12,000+</p>
-                          <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">AI Songs</p>
-                        </td>
-                        <td style="padding: 16px 24px; text-align: center; border-right: 1px solid rgba(100, 116, 139, 0.2);">
                           <p style="margin: 0 0 4px 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 20px; font-weight: 700; color: #8B5CF6;">10K+</p>
                           <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Creators</p>
                         </td>
@@ -443,7 +439,7 @@ export function samplePremiumNewsletter(): { subject: string; html: string } {
     issueNumber: 1,
     headline: 'Welcome to the Golden Age of Creator AI',
     subheadline: 'Your weekly dispatch from the intersection of music, AI, and conscious creation.',
-    personalNote: "It's 2 AM. I'm in the studio, and something magical just happened. After 12,000+ AI-generated songs and years building enterprise AI systems, I've realized we're living in the most exciting time to be a creator. This newsletter is how I share what I'm learning in the trenches.",
+    personalNote: "It's 2 AM. I'm in the studio, and something magical just happened. After years building enterprise AI systems, and making songs with Suno, I've realized we're living in the most exciting time to be a creator. This newsletter is how I share what I'm learning in the trenches.",
     sections: [
       {
         icon: '🎵',
@@ -451,7 +447,7 @@ export function samplePremiumNewsletter(): { subject: string; html: string } {
         title: 'Suno v4.5 Changes Everything',
         content: 'The latest update dropped and creators are making studio-quality tracks in minutes. I\'ve been experimenting with frequency-based compositions for consciousness transformation — the results are mind-blowing. Here\'s what I learned this week.',
         link: 'https://frankx.ai/music',
-        linkText: 'Explore 500+ AI Songs',
+        linkText: 'Explore the music lab',
         highlight: true
       },
       {
@@ -477,7 +473,7 @@ export function samplePremiumNewsletter(): { subject: string; html: string } {
     },
     featuredLink: {
       title: 'The Complete Guide to AI Music Production',
-      description: 'Everything I\'ve learned from creating 12,000+ AI songs, distilled into a comprehensive guide for creators ready to level up.',
+      description: 'What I have learned making songs with Suno, distilled into a guide for creators ready to level up.',
       url: 'https://frankx.ai/guides/ai-music'
     },
     closingNote: 'Hit reply anytime. I read every message and respond personally. No spam, no fluff — just real insights from someone building in public.',

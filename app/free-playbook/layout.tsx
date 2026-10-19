@@ -86,7 +86,7 @@ const jsonLdGraph = {
           name: 'Who created these AI playbooks?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'The playbooks were created by Frank, an AI architect and creator who builds enterprise-grade AI systems and has produced 12,000+ AI songs. The content is drawn from real production workflows.',
+            text: 'The playbooks were created by Frank, an AI architect and creator who builds enterprise-grade AI systems and makes songs with Suno. The content is drawn from real production workflows.',
           },
         },
       ],

@@ -229,3 +229,35 @@ test('the route is stateless and the markdown format is shared with /api/md', ()
   assert.match(mdRoute, /blogPostToMarkdown\(post\)/)
   assert.match(server, /blogPostToMarkdown\(post\)/)
 })
+
+test('anonymous MCP POST is rate limited before a server is built', () => {
+  assert.match(route, /mcpRatelimit\.limit\(`mcp:ip:\$\{getClientIdentifier\(request\)\}`\)/)
+  assert.ok(
+    route.indexOf('mcpRatelimit.limit') < route.indexOf('createFrankxMcpServer()'),
+    'the limiter must run before a server is allocated',
+  )
+  assert.match(route, /status: 429/)
+  assert.match(route, /'retry-after': '60'/)
+  assert.match(read('app/llms.txt/route.ts'), /30 requests per minute/)
+  assert.doesNotMatch(server, /\b(checkout|newsletter|webhook|subscribe|leads|byok)\b/)
+  assert.doesNotMatch(route, /\b(checkout|newsletter|webhook|subscribe|leads|byok)\b/)
+})
+
+test('the 31st anonymous POST from one address returns 429 and GET stays open', async () => {
+  const { POST, GET } = await import('../../app/api/mcp/route.ts')
+  const headers = {
+    'content-type': 'application/json',
+    accept: 'application/json, text/event-stream',
+    'x-forwarded-for': '203.0.113.30',
+  }
+  const body = JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/list', params: {} })
+  for (let i = 0; i < 30; i++) {
+    const response = await POST(new Request('https://www.frankx.ai/api/mcp', { method: 'POST', headers, body }))
+    assert.equal(response.status, 200, `request ${i + 1} returned ${response.status}`)
+  }
+  const blocked = await POST(new Request('https://www.frankx.ai/api/mcp', { method: 'POST', headers, body }))
+  assert.equal(blocked.status, 429)
+  assert.equal(blocked.headers.get('retry-after'), '60')
+  const listing = await GET(new Request('https://www.frankx.ai/api/mcp', { method: 'GET', headers }))
+  assert.notEqual(listing.status, 429)
+})

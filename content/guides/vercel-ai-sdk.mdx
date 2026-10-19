@@ -1,0 +1,109 @@
+---
+title: "Vercel AI SDK for builders"
+description: "One TypeScript API for models, tools, structured output, and streaming, plus the Gateway and the Python SDK that is still public beta. Every claim cites a Vercel page."
+date: "2026-10-19"
+updated: "2026-10-19"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["vercel", "ai-sdk", "ai-gateway", "founders"]
+keywords: ["Vercel AI SDK", "Vercel AI SDK guide", "AI Gateway", "AI SDK for Python", "Vercel eve"]
+video:
+  title: "Keynote - Ship 26 London"
+  url: "https://www.youtube.com/watch?v=T1vs9jE-EEI"
+decisions:
+  - audience: "Founders"
+    call: adopt
+    because: "The AI SDK docs give one TypeScript API for models, tools, structured output, and streaming across Next.js, Vue, Svelte, and Node.js."
+    source: "https://vercel.com/docs/ai-sdk"
+  - audience: "AI architects"
+    call: adopt
+    because: "AI Gateway has been generally available since 21 August 2025. It fails over when a provider is down, and tokens stay at the provider list price with no markup."
+    source: "https://vercel.com/blog/ai-gateway-is-now-generally-available"
+  - audience: "Creators"
+    call: wait
+    because: "The AI SDK for Python page says the SDK is in public beta. It routes through AI Gateway and asks for Python 3.12 or later."
+    source: "https://vercel.com/docs/ai-gateway/sdks-and-apis/ai-sdk-python"
+  - audience: "SaaS and agent-platform builders"
+    call: skip
+    because: "The Agent Stack page marks eve as public beta. Skip eve as the directory standard until that page changes the label."
+    source: "https://vercel.com/blog/agent-stack"
+faqs:
+  - question: "What is the Vercel AI SDK?"
+    answer: "The Vercel AI SDK is one TypeScript API for models, tools, structured output, and streaming. The primary page is https://vercel.com/docs/ai-sdk, last updated 5 October 2026. It is for founders, AI architects, creators, and people who ship SaaS or an agent platform. The constraint is that the model string on that page is an example, and the Python SDK is a separate public beta."
+  - question: "How do I switch models with the Vercel AI SDK?"
+    answer: "The docs page says the unified interface lets you switch providers by changing the model string. The example on that page, checked 19 October 2026, uses openai/gpt-6-astra and anthropic/claude-fable-5.1. Read https://vercel.com/docs/ai-sdk again before you copy a model string into a product."
+  - question: "Is AI Gateway generally available?"
+    answer: "Yes. The general-availability post of 21 August 2025 says AI Gateway is generally available, fails over when a provider is down, and keeps tokens at the provider list price with no markup. The page is https://vercel.com/blog/ai-gateway-is-now-generally-available."
+  - question: "Is the AI SDK for Python generally available?"
+    answer: "No. https://vercel.com/docs/ai-gateway/sdks-and-apis/ai-sdk-python says the AI SDK for Python is in public beta. That page describes unified access to 400+ models through AI Gateway and requires Python 3.12 or later."
+  - question: "Should I standardize on eve?"
+    answer: "No. The Agent Stack page marks eve as public beta. The page is https://vercel.com/blog/agent-stack. Inspect the layout. Skip it as the team directory until that page changes the label."
+---
+
+_Checked against vercel.com on 19 Oct 2026._
+
+The Vercel AI SDK is one TypeScript API for models, tools, structured output, and streaming. It is for founders, AI architects, creators, and people who ship SaaS or an agent platform. The constraint is that the model string on the docs page is an example, and the Python SDK on its own page is still in public beta. The primary page is the [AI SDK docs](https://vercel.com/docs/ai-sdk).
+
+The track door is [Vercel for builders](/guides/vercel). The status index for the rest of the platform is the [Ship 2026 skill map](/guides/vercel-ship-2026-recap#skill-map). The adopt, wait, and skip calls for this interface are the [decision matrix](#decision-matrix) on this page.
+
+## On this page
+
+- [The interface](#the-interface)
+- [The model string](#the-model-string)
+- [AI Gateway](#ai-gateway)
+- [Python stays in public beta](#python-stays-in-public-beta)
+- [What the docs still mark experimental](#what-the-docs-still-mark-experimental)
+- [The room recording](#the-room-recording)
+
+## The interface
+
+The [AI SDK docs](https://vercel.com/docs/ai-sdk), last updated 5 October 2026, say you build TypeScript agents and AI applications with one API for models, tools, structured output, and streaming across Next.js, Vue, Svelte, Node.js, and other frameworks. The [Agent Stack](https://vercel.com/blog/agent-stack) post describes the same primitive: one interface to call any model, platform and framework agnostic, including text, images, speech, and video.
+
+The docs page shows this install:
+
+```bash
+pnpm i ai
+```
+
+The reference for the core functions lives at [AI SDK Core](https://ai-sdk.dev/docs/ai-sdk-core/overview). The longer comparison of first-agent stacks is the essay [Why Vercel AI SDK is the right first-agent stack in 2026](/blog/vercel-ai-sdk-first-agent-stack). This guide keeps the status labels. That essay keeps the comparison.
+
+## The model string
+
+The docs page says the unified interface lets you switch providers by changing the model string. This is the generate-text example on that page at the check above. The model id is the page's example. Read the page again before you copy it into a product.
+
+```ts
+import { generateText } from 'ai'
+
+const { text } = await generateText({
+  model: 'openai/gpt-6-astra',
+  prompt: 'Explain the concept of quantum entanglement.',
+})
+```
+
+The same page shows the Anthropic example as `anthropic/claude-fable-5.1` with the same `generateText` call. Structured output on that page is `generateObject` and `streamObject` with a schema. Tool calling is a `tool` helper passed into `generateText`. Streaming is the default posture the page names: stream text, objects, and UI to the frontend.
+
+[Vercel Connect](https://vercel.com/docs/connect/frameworks/ai-sdk-and-mcp) on that same docs page supplies short-lived OAuth tokens to MCP clients built with the AI SDK, so a model can call a service such as Linear without a provider credential stored in the app.
+
+## AI Gateway
+
+[AI Gateway](https://vercel.com/blog/ai-gateway-is-now-generally-available) has been generally available since 21 August 2025. That post says the gateway fails over when a provider is down, and that tokens stay at the provider list price with no markup. Bring-your-own-key traffic on that post also carries no added markup.
+
+The [Agent Stack](https://vercel.com/blog/agent-stack) post describes the same gateway: one endpoint, failover when a provider is down, and the provider's price with no markup. Put the gateway in front of the TypeScript SDK when the agent has to survive a provider outage. The model string still comes from the current docs page. The August 2025 sample shows the same shape with an older model id.
+
+## Python stays in public beta
+
+The [AI SDK for Python](https://vercel.com/docs/ai-gateway/sdks-and-apis/ai-sdk-python) page, last updated 8 September 2026, says the SDK is in public beta. It routes through AI Gateway by default, requires Python 3.12 or later, and describes unified access to 400+ models. The package name on that page is `ai`. The quick start on that page uses `anthropic/claude-sonnet-5` as its example model string. That string is the page's example.
+
+The [Python on Vercel](https://vercel.com/changelog/python-on-vercel-is-now-generally-available) changelog of 15 October 2026 is the runtime status for FastAPI, Flask, and Django. The language runtime being generally available is a different fact from the Python AI SDK, which the SDK page still marks public beta. Keep those two labels apart. The October runtime split is the [agent runtime guide](/guides/vercel-agent-runtime-decisions).
+
+## What the docs still mark experimental
+
+The [AI SDK docs](https://vercel.com/docs/ai-sdk) say the experimental `decide` API in `ai` 7.0.128 or later calls Jev through AI Gateway. The page says the previous `experimental_evaluate` export still works as a deprecated alias. Treat `decide` as experimental until that page removes the word.
+
+eve is the opinionated directory on the [Agent Stack](https://vercel.com/blog/agent-stack) page, and that page marks eve public beta. The longer eve note is the [launch post](https://vercel.com/blog/introducing-eve). Inspect the layout. The skip call on the matrix is the directory standard, and it holds while the Agent Stack page keeps the public-beta label.
+
+## The room recording
+
+[Keynote - Ship 26 London](https://www.youtube.com/watch?v=T1vs9jE-EEI) is the official Vercel recording of the London morning keynote. The Agent Stack, which names the AI SDK, was walked through in that room. YouTube lists the upload time as 18 June 2026, 06:14 Pacific. The written interface is the docs page above. The tour in one sitting is [Vercel Ship 2026](https://www.youtube.com/watch?v=Fr5vzNknYJE) on the [track hub](/guides/vercel).
+
+<YouTubeEmbed id="T1vs9jE-EEI" title="Keynote - Ship 26 London" uploadDate="2026-06-18T06:14:58-07:00" />

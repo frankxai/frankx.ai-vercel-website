@@ -2,7 +2,7 @@
 /**
  * Content-integrity guard.
  *
- * Catches two classes of bug that shipped to production undetected because they
+ * Catches three classes of bug that shipped to production undetected because they
  * render "fine" locally but are structurally wrong — neither the TypeScript
  * compiler nor `next build` flags them:
  *
@@ -19,12 +19,19 @@
  *      fallback — a typo or a renamed/never-generated file is a silent 404 on
  *      every page load.
  *
+ *   3. TWO BLOG POSTS RESOLVE TO THE SAME HERO BYTES.
+ *      One file saved under many names shipped as 25 heroes. Blog `image:`
+ *      frontmatter is hashed once per file. A shared hash fails unless every
+ *      slug in that group is named in scripts/hero-byte-allowlist.json.
+ *      A hero over 2 MB is a warning and does not fail the run.
+ *
  * Runs in `prebuild`, so it fails in ~1s with a precise file:line BEFORE the
  * expensive `next build`. Precision over recall: every pattern flagged here is
- * a proven-breaking one, so a green run means these two bugs are absent.
+ * a proven-breaking one, so a green run means these bugs are absent.
  */
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join, relative } from 'node:path';
+import { findSharedHeroes, loadHeroAllowlist } from './lib/hero-bytes.mjs';
 
 const ROOT = process.cwd();
 
@@ -117,6 +124,20 @@ for (const rel of ASSET_LITERAL_FILES) {
         });
       }
     }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Check 3 — blog heroes must not share bytes unless every slug is allowlisted
+// ---------------------------------------------------------------------------
+const hero = findSharedHeroes(ROOT, loadHeroAllowlist(ROOT));
+violations.push(...hero.violations);
+if (hero.warnings.length > 0) {
+  console.error('\nContent-integrity hero size warnings:\n');
+  for (const warning of hero.warnings) {
+    console.error(`  ${warning.file}:${warning.line}  [${warning.kind}]`);
+    console.error(`    ${warning.detail}`);
+    console.error(`    ${warning.text}\n`);
   }
 }
 

@@ -1,5 +1,4 @@
 // PDF Analytics & Lead Tracking System
-import { createClient } from '@vercel/kv'
 import type {
   PDFView,
   PDFDownload,
@@ -8,12 +7,12 @@ import type {
   AnalyticsSummary,
   WeeklyStats
 } from './types/pdf-analytics'
-import { redisRestConfig } from './redis-env'
+import { createRedisClient } from './redis-client'
 
 // Vercel's filesystem is read-only, so the JSON files this module used to write
 // were never persisted and every view, download and lead was lost. Each
 // collection is now an append-only Redis list, capped to its newest entries.
-const kv = createClient(redisRestConfig())
+const kv = createRedisClient()
 const VIEWS = 'pdf-analytics:views'
 const DOWNLOADS = 'pdf-analytics:downloads'
 const LEADS = 'pdf-analytics:leads'
@@ -21,19 +20,21 @@ const EMAILS = 'pdf-analytics:emails'
 const MAX_ENTRIES = 50_000
 
 // Only these guides are tracked; anything else is rejected before it is stored.
+export const DIRECT_BOOK_GUIDES = new Set([
+  'love-and-poetry', 'spartan-mindset', 'self-development',
+  'imagination', 'manifestation', 'golden-age',
+])
 export const TRACKED_GUIDES = new Set(['soulbook', 'vibe-os'])
+DIRECT_BOOK_GUIDES.forEach(slug => TRACKED_GUIDES.add(slug))
 
 function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
 }
 
+// A failed read throws: reporting zero views while the store is down made the
+// dashboards and the download counter look healthy during a total outage.
 async function readAll<T>(key: string): Promise<T[]> {
-  try {
-    return (await kv.lrange<T>(key, 0, -1)) ?? []
-  } catch (error) {
-    console.error(`PDF analytics read failed for ${key}:`, error)
-    return []
-  }
+  return (await kv.lrange<T>(key, 0, -1)) ?? []
 }
 
 async function append<T>(key: string, item: T): Promise<T> {
@@ -50,6 +51,22 @@ export async function trackPDFView(data: Omit<PDFView, 'id' | 'timestamp'>): Pro
 // Track PDF download
 export async function trackPDFDownload(data: Omit<PDFDownload, 'id' | 'timestamp'>): Promise<PDFDownload> {
   return append(DOWNLOADS, { id: generateId(), timestamp: new Date().toISOString(), ...data })
+}
+
+// An attempt ID belongs to one rendered link, not to a browser or person. It
+// expires after an hour; the stored download event has no visitor identifier.
+export async function trackDirectDownloadOnce(
+  data: Pick<PDFDownload, 'guideSlug' | 'guideTitle' | 'downloadMethod'>,
+  attemptId: string
+): Promise<boolean> {
+  const key = `pdf-analytics:download-attempt:${data.guideSlug}:${attemptId}`
+  const claimed = await kv.set(key, '1', { nx: true, ex: 3_600 })
+  if (claimed !== 'OK') return false
+
+  // Keep the claim if a later write fails: RPUSH may have succeeded before
+  // LTRIM failed, so releasing it could duplicate the event on retry.
+  await trackPDFDownload({ ...data, sessionId: 'anonymous', userAgent: 'omitted' })
+  return true
 }
 
 // Create PDF lead
@@ -123,8 +140,14 @@ export async function getAnalyticsSummary(days: number = 30): Promise<AnalyticsS
   })
 
   recentDownloads.forEach(d => {
-    const stats = guideStats.get(d.guideSlug)
-    if (stats) stats.downloads++
+    const stats = guideStats.get(d.guideSlug) || {
+      title: d.guideTitle,
+      views: 0,
+      downloads: 0,
+      leads: 0
+    }
+    stats.downloads++
+    guideStats.set(d.guideSlug, stats)
   })
 
   recentLeads.forEach(l => {

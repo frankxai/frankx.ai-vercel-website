@@ -22,12 +22,13 @@ function isExternal(href: string) {
 }
 
 export default function FinalCTA({ productId, title, description, primaryLabel, primaryHref, primaryTracking }: FinalCTAProps) {
+  const waitlistHref = `/waitlist?intent=${productId}`
   const handleClick = () => {
     trackEvent('product_cta_click', {
       productId,
       location: 'final',
       target: COMING_SOON_MODE ? 'waitlist' : 'primary',
-      href: COMING_SOON_MODE ? '/newsletter' : primaryHref,
+      href: COMING_SOON_MODE ? waitlistHref : primaryHref,
       label: COMING_SOON_MODE ? 'join-waitlist' : (primaryTracking ?? primaryLabel)
     })
   }
@@ -46,13 +47,13 @@ export default function FinalCTA({ productId, title, description, primaryLabel, 
         </h2>
         <p className="mt-4 text-base text-white/70 sm:text-lg">
           {COMING_SOON_MODE
-            ? 'Join the waitlist for early access, exclusive launch discounts, and behind-the-scenes updates.'
+            ? 'Join the waitlist to hear when it launches.'
             : description
           }
         </p>
         {COMING_SOON_MODE ? (
           <Link
-            href="/newsletter"
+            href={waitlistHref}
             onClick={handleClick}
             className="mt-10 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_45px_rgba(56,189,248,0.4)] transition hover:-translate-y-1"
           >

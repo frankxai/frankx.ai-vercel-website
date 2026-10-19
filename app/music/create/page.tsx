@@ -298,7 +298,7 @@ export default function CreateMusicPage() {
               Create Music with AI
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-white/60 sm:text-xl">
-              From prompt to production. 500+ tracks and counting.
+              From prompt to production.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm text-white/40">
               <span className="rounded-full border border-white/10 px-3 py-1">Suno AI</span>
@@ -402,7 +402,7 @@ export default function CreateMusicPage() {
             <span className="text-sm font-medium tracking-wider text-amber-400 uppercase">Genre Mastery</span>
             <h2 className="mt-2 text-3xl font-bold text-white sm:text-4xl">Genre Techniques</h2>
             <p className="mt-3 text-white/50">
-              Each genre has its own prompt vocabulary. These are the patterns refined across 500+ generations.
+              Each genre has its own prompt vocabulary.
             </p>
           </motion.div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -437,7 +437,7 @@ export default function CreateMusicPage() {
             <span className="text-sm font-medium tracking-wider text-emerald-400 uppercase">Behind the Process</span>
             <h2 className="mt-2 text-3xl font-bold text-white sm:text-4xl">How Frank Creates at Scale</h2>
             <p className="mt-3 text-white/50">
-              The workflow behind 500+ tracks. Systems thinking applied to music production.
+              The workflow behind the tracks. Systems thinking applied to music production.
             </p>
           </motion.div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -524,7 +524,7 @@ export default function CreateMusicPage() {
             <span className="text-sm font-medium tracking-wider text-violet-400 uppercase">The Catalog</span>
             <h2 className="mt-2 text-3xl font-bold text-white sm:text-4xl">Listen to Frank&apos;s Music</h2>
             <p className="mt-3 text-white/50">
-              500+ tracks across every genre. Built entirely with AI music generation and prompt engineering.
+              Tracks across genres, built with AI music generation and prompt engineering.
             </p>
           </motion.div>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -571,7 +571,7 @@ export default function CreateMusicPage() {
         >
           <h2 className="text-2xl font-bold text-white">Get 5 Free Suno Prompts</h2>
           <p className="mx-auto mt-3 max-w-lg text-white/50">
-            Professional-quality prompts for neoclassical, orchestral, electronic, hip hop, and ambient — tested across 500+ tracks. Plus weekly AI music tips.
+            Professional-quality prompts for neoclassical, orchestral, electronic, hip hop, and ambient. Plus weekly AI music tips.
           </p>
           <div className="mx-auto mt-6 max-w-sm">
             <EmailSignup
@@ -583,20 +583,20 @@ export default function CreateMusicPage() {
           <p className="mt-3 text-xs text-white/30">Pure signal. Unsubscribe anytime.</p>
         </motion.section>
 
-        {/* ── Vibe OS Product ── */}
+        {/* ── Free prompt templates ── */}
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <Link href="/products/vibe-os" className="group block rounded-2xl border border-white/10 bg-white/[0.03] p-8 transition hover:border-violet-500/30 hover:bg-white/[0.05]">
+          <Link href="/music/templates" className="group block rounded-2xl border border-white/10 bg-white/[0.03] p-8 transition hover:border-violet-500/30 hover:bg-white/[0.05]">
             <div className="flex items-center gap-4">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-violet-500/20">
                 <Sparkles className="h-6 w-6 text-violet-400" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white group-hover:text-violet-400">Vibe OS — The AI Music Creation System</h3>
-                <p className="mt-1 text-sm text-white/50">The complete framework for creating AI music at scale. Prompts, workflows, genre templates, and production pipelines.</p>
+                <h3 className="text-lg font-bold text-white group-hover:text-violet-400">Free Suno prompt templates</h3>
+                <p className="mt-1 text-sm text-white/50">Copy nine prompts with defined tempo, key, instrumentation, and style details.</p>
               </div>
               <ArrowRight className="hidden h-5 w-5 shrink-0 text-white/30 group-hover:text-violet-400 sm:block" />
             </div>
