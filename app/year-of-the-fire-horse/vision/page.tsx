@@ -199,7 +199,7 @@ const revenueStreams = [
   { stream: 'Affiliate Revenue', range: '15% — 30%', note: 'Railway, n8n, Vercel deploy button referrals' },
   { stream: 'Books & Content', range: '$0 — $47', note: 'Free + premium tiers, growing library' },
   { stream: 'AI Architect Academy', range: '$97 — $997', note: 'Labs, courses, premium content' },
-  { stream: 'Music Licensing', range: 'Per track', note: '500+ AI-produced songs across genres' },
+  { stream: 'Music Licensing', range: 'Per track', note: 'AI-produced songs across genres' },
   { stream: 'Consulting & Coaching', range: '$297 — $997/hr', note: 'AI architecture, Oracle Cloud, agent design' },
   { stream: 'Inner Circle Community', range: '$47/mo', note: 'Premium community for AI builders' },
 ]

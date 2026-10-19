@@ -1,17 +1,60 @@
 ---
-title: "AI Engineering Without the Hype: Simon Willison's Practical Protocol"
-description: "A deep dive into Simon Willison's pragmatic approach to building with LLMs, focusing on truth, transparency, and architectural rigor."
-date: "2026-02-19"
-lastUpdated: "2026-08-18"
-author: "FrankX"
-category: "Intelligence Dispatches"
-tags: ["AI Engineering", "LLMs", "Simon Willison", "Pragmatism"]
-image: "/images/blog/editorial/headers/best-ai-tools-for-creators-2026-hero.webp"
+title: 'AI Engineering Without the Hype: Simon Willison''s Practical Protocol'
+description: >-
+  Practical lessons in pragmatic AI engineering inspired by Simon Willison:
+  SQLite, prompt injection defense, and useful tools.
+date: '2026-02-19'
+lastModified: '2026-02-19'
+author: Frank
+tags:
+  - AI Engineering
+  - LLMs
+  - Simon Willison
+  - Pragmatism
+keywords:
+  - pragmatic ai engineering
+  - simon willison ai
+  - prompt injection defense
+  - sqlite ai workflows
+  - developer tools
+category: Intelligence Dispatches
+image: /images/blog/ai-engineering-without-hype-hero.png
 featured: false
-readingGoal: "Master the pragmatic mental models required to deploy AI systems that actually work in production."
-tldr: "A deep dive into Simon Willison's pragmatic approach to building with LLMs, focusing on truth, transparency, and architectural rigor."
-keywords: ["intelligence dispatches", "ai engineering", "llms", "simon willison", "pragmatism", "ai architecture"]
+readingGoal: >-
+  Master the pragmatic mental models required to deploy AI systems that actually
+  work in production.
+readingTime: 10 min
+tldr: >-
+  Pragmatic AI engineering rejects corporate marketing hype in favor of
+  inspectable, modular developer utilities. Drawing inspiration from Simon
+  Willison's engineering principles, this guide explores building with SQLite,
+  constructing defensive barriers against prompt injection, utilizing local CLI
+  models, and maintaining strict human ownership over production software
+  architecture.
+faq:
+  - question: What defines pragmatic AI engineering?
+    answer: >-
+      Building small, composable tools that solve concrete user problems
+      reliably, without over-promising artificial general intelligence.
+  - question: How do you defend against prompt injection in production?
+    answer: >-
+      By treating untrusted input as hostile, enforcing strict dual-prompt
+      boundaries, and limiting the automated privileges granted to agentic
+      tools.
+  - question: Why is SQLite effective for AI developer workflows?
+    answer: >-
+      SQLite is single-file, zero-latency, embedded everywhere, and provides
+      rock-solid storage for embeddings, transcripts, and session states.
+  - question: What role do local open-source models play?
+    answer: >-
+      Local models running via Ollama or llama.cpp provide offline capability,
+      zero inference cost, and complete data privacy for sensitive tasks.
+  - question: How should engineers approach LLM output evaluation?
+    answer: >-
+      By implementing automated unit tests with assertion suites and continuous
+      diff checks rather than relying solely on vibes.
 ---
+
 # AI Engineering Without the Hype
 
 <YouTubeEmbed
@@ -51,7 +94,7 @@ As the person who coined the term "prompt injection," Simon is uniquely qualifie
 
 ## 🚀 The Multiplier: Short-Form Nexus
 
-This 45-minute technical analysis is a goldmine for content atomization. Using our [Short-Form Nexus](/opus-pro) strategy, we can extract the following "Intellectual Atoms":
+This 45-minute deep dive is a goldmine for content atomization. Using our [Short-Form Nexus](/opus-pro) strategy, we can extract the following "Intellectual Atoms":
 
 | Segment     | Topic                   | Target Platform                    |
 | :---------- | :---------------------- | :--------------------------------- |

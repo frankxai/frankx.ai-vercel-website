@@ -2,7 +2,8 @@
 import fs from 'node:fs/promises'
 import fsSync from 'node:fs'
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
+import { editorialTitle, fitHeroTitle, titleTextSvg } from './editorial-title.mjs'
 
 import matter from 'gray-matter'
 import sharp from 'sharp'
@@ -31,12 +32,17 @@ const palettes = [
 ]
 
 function parseArgs(argv) {
-  const opts = { limit: 50, infographics: 12, social: 8, writeFrontmatter: true }
+  const opts = { limit: 50, infographics: 12, social: 8, writeFrontmatter: true, slugs: [] }
   for (let i = 0; i < argv.length; i += 1) {
     const token = argv[i]
     if (token === '--dry-run') opts.dryRun = true
     if (token === '--no-frontmatter') opts.writeFrontmatter = false
     if (token === '--from-manifest') opts.fromManifest = true
+    if (token === '--slug') {
+      opts.slugs.push(argv[i + 1])
+      opts.writeFrontmatter = false
+      i += 1
+    }
     if (token === '--limit') {
       opts.limit = Number.parseInt(argv[i + 1], 10)
       i += 1
@@ -105,39 +111,6 @@ function formatDate(value) {
   const date = new Date(value)
   if (Number.isNaN(date.getTime())) return String(value)
   return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-}
-
-function decodeTitle(title) {
-  return String(title || 'Untitled field note')
-    .replace(/\s+/g, ' ')
-    .replace(/\s+\|\s+FrankX.*$/i, '')
-    .trim()
-}
-
-function editorialTitle(post) {
-  const title = decodeTitle(post.title)
-  const noYear = title
-    .replace(/\b(?:2024|2025|2026|Q[1-4]\s+2026|June\s+2026)\b/gi, '')
-    .replace(/\s{2,}/g, ' ')
-    .trim()
-
-  const bestMatch = noYear.match(/^Best AI ([^:]+):?\s*/i)
-  if (bestMatch) {
-    const subject = bestMatch[1].replace(/\btool|tools\b/gi, '').trim()
-    return `The ${subject} field test`
-  }
-
-  if (/ultimate/i.test(noYear) && /workflow/i.test(noYear)) {
-    return noYear.replace(/^The Ultimate\s+/i, '').replace(/:\s+.+$/, '') + ' playbook'
-  }
-
-  if (noYear.length > 86 && noYear.includes(':')) {
-    const [lead, ...rest] = noYear.split(':')
-    const tail = rest.join(':').trim()
-    return `${lead.trim()}: ${tail.split(/[.?!]/)[0].slice(0, 82).trim()}`
-  }
-
-  return noYear
 }
 
 function humanHook(post) {
@@ -263,8 +236,9 @@ function railDiagram(palette, hash, x = 1048, y = 176) {
 }
 
 function heroOverlay(post, palette) {
-  const title = editorialTitle(post)
-  const titleLines = wrapText(title, 26, 4)
+  const fitted = fitHeroTitle(post)
+  const title = fitted.title
+  const titleLines = fitted.lines
   const hookLines = wrapText(humanHook(post), 56, 3)
   const tags = (post.tags || toKebabWords(title)).slice(0, 3)
   const hash = hashText(post.slug)
@@ -285,7 +259,7 @@ function heroOverlay(post, palette) {
       <text x="96" y="74" fill="${palette.accent}" font-size="13" font-weight="900" font-family="Inter, Arial, sans-serif" letter-spacing="0">FRANKX INTELLIGENCE JOURNAL</text>
       ${chip(category, 96, 128, palette)}
       ${chip(formatDate(post.date), 96 + Math.max(180, String(category).length * 8 + 48), 128, palette, { fill: '#ffffff', stroke: '#ffffff33', text: '#ffffffcc' })}
-      ${textBlock(titleLines, { x: 96, y: 278, size: titleLines.length > 3 ? 58 : 66, lineHeight: titleLines.length > 3 ? 64 : 72, weight: 850, fill: '#ffffff', family: 'Poppins, Inter, Arial, sans-serif' })}
+      ${titleTextSvg(titleLines, { x: 96, y: 278, size: fitted.size, lineHeight: fitted.lineHeight, weight: 850, fill: '#ffffff', family: 'Poppins, Inter, Arial, sans-serif' })}
       ${textBlock(hookLines, { x: 100, y: 620, size: 25, lineHeight: 38, weight: 500, fill: '#d7e7df', opacity: 0.78 })}
       <g transform="translate(96 738)">
         ${tags.map((tag, index) => chip(`#${tag}`, index * 154, 0, palette, { fill: index === 1 ? palette.accent2 : palette.accent, width: 138 })).join('')}
@@ -667,7 +641,14 @@ async function main() {
   let infographicSlugs
   let socialSlugs
 
-  if (previousManifest) {
+  if (opts.slugs.length) {
+    const wanted = new Set(opts.slugs)
+    targets = posts.filter((post) => wanted.has(post.slug))
+    const missing = opts.slugs.filter((slug) => !targets.some((post) => post.slug === slug))
+    if (missing.length) throw new Error(`Unknown slug: ${missing.join(', ')}`)
+    infographicSlugs = new Set()
+    socialSlugs = new Set()
+  } else if (previousManifest) {
     const bySlug = new Map(posts.map((post) => [post.slug, post]))
     targets = previousManifest.posts.map((post) => bySlug.get(post.slug)).filter(Boolean)
     infographicSlugs = new Set(previousManifest.posts.filter((post) => post.infographic).map((post) => post.slug))
@@ -763,11 +744,21 @@ async function main() {
     posts: records,
   }
 
+  if (opts.slugs.length) {
+    console.log(`Slug render only. Manifest left unchanged. ${records.length} hero(s).`)
+    return
+  }
+
   await fs.writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8')
   console.log(`Manifest -> ${path.relative(root, manifestPath)}`)
 }
 
-main().catch((error) => {
-  console.error(error)
-  process.exit(1)
-})
+const invokedDirectly = process.argv[1]
+  && pathToFileURL(process.argv[1]).href === import.meta.url
+
+if (invokedDirectly) {
+  main().catch((error) => {
+    console.error(error)
+    process.exit(1)
+  })
+}

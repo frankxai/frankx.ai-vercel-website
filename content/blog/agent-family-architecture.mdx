@@ -1,17 +1,61 @@
 ---
-title: "Agent Family Architecture vs Agent Swarms"
-description: "More agents is not more intelligence. The architectural choice between swarm (more workers) and family (governed roles) determines whether your agent stack scales coherently or fragments under load."
-date: "2026-05-03"
-lastUpdated: "2026-08-18"
-author: "FrankX"
-category: "AI Architecture"
-tags: ["agent architecture", "multi-agent", "agent swarm", "self-led ai", "ai design"]
-image: "/images/blog/agent-family-architecture-hero-v8.jpg"
+title: Agent Family Architecture vs Agent Swarms
+description: >-
+  Designing collaborative agent families: specialized subagent roles, team
+  council governance, and clean handoff protocols.
+date: '2026-05-03'
+lastModified: '2026-05-03'
+author: Frank
+tags:
+  - agent architecture
+  - multi-agent
+  - agent swarm
+  - self-led ai
+  - ai design
+keywords:
+  - agent family architecture
+  - subagent patterns
+  - multi-agent council
+  - hierarchical agent systems
+  - agent coordination
+category: AI Architecture
 featured: false
-readingGoal: "Understand the architectural difference between agent swarms and agent families, and which scaling decisions distinguish coherent multi-agent systems from fragmented ones."
-tldr: "More agents is not more intelligence. The architectural choice between swarm (more workers) and family (governed roles) determines whether your agent stack scales coherently or fragments under load."
-keywords: ["ai architecture", "agent architecture", "multi-agent", "agent swarm", "self-led ai", "ai design"]
+image: /images/blog/agent-family-architecture-hero.jpg
+readingGoal: >-
+  Understand the architectural difference between agent swarms and agent
+  families, and which scaling decisions distinguish coherent multi-agent systems
+  from fragmented ones.
+readingTime: 6 min
+tldr: >-
+  Monolithic AI agents stumble when forced to juggle research, writing, styling,
+  and code validation simultaneously. The Agent Family pattern resolves
+  cognitive overload by delegating tasks across specialized subagents governed
+  by a lead orchestrator, ensuring every subsystem operates within focused
+  context limits with well-defined interface contracts.
+faq:
+  - question: What is an Agent Family?
+    answer: >-
+      A structured collection of specialized agents that collaborate under a
+      shared orchestrator to complete multifaceted business goals.
+  - question: How do agents communicate within a family?
+    answer: >-
+      Through structured JSON messages, shared state files, and unambiguous
+      handoff schemas specifying requirements and success criteria.
+  - question: What happens when subagents produce conflicting recommendations?
+    answer: >-
+      A designated Council Leader or arbitration protocol evaluates arguments
+      against defined priority weights to resolve impasses.
+  - question: How do you prevent infinite loops between chatting agents?
+    answer: >-
+      By enforcing strict recursion depth limits, task turn caps, and automated
+      timeout watchdogs across all inter-agent dialogues.
+  - question: Can subagents use different LLM models?
+    answer: >-
+      Yes. Specialized agents can utilize models matched to their specific task,
+      such as fast lightweight models for routing and frontier models for
+      synthesis.
 ---
+
 # Agent Family Architecture vs Agent Swarms
 
 _The architectural choice that determines whether multi-agent stacks scale coherently or fragment under load._

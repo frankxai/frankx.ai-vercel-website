@@ -49,7 +49,7 @@ export async function GET() {
 
   const content = `# FrankX
 
-> Personal hub of Frank X. Riemer — AI Architect & Creator. 12,000+ AI-generated songs with Suno. ${siteConfig.description}
+> Personal hub of Frank X. Riemer, AI Architect and Creator. Songs made with Suno. ${siteConfig.description}
 
 The site combines enterprise-grade AI architecture (multi-agent orchestration, MCP, agentic SDLC) with creative practice (AI music production, content systems, practical creator workflows). Frank translates lessons from enterprise-scale AI/cloud work into free, personal-scale tooling for creators, individuals, and families. Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
 
@@ -73,7 +73,7 @@ Founder Stack → Foundry or Founder's Circle → Human Layer and Signal Loop.
 - [Signal Loop](${SITE_URL}/newsletter): Main founder letter, with additional editorial lanes available through the newsletter hub
 - [Start Here](${SITE_URL}/start): Founder-led entry spine for new visitors
 - [Peak State Systems](${SITE_URL}/peak-performance): Evidence-led attention, energy, recovery, and work-review system; not medical advice
-- [Build with Me](${SITE_URL}/build): 5-tier product ladder (€0 Primer to €2,997 Founder's Circle)
+- [Build with Me](${SITE_URL}/build): Product ladder: see /build; prices on each product page.
 
 ## Operating Systems (the FrankX OS spine)
 ${osLinks}

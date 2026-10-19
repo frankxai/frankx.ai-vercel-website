@@ -1,7 +1,7 @@
 {
   "schema": "frankx/external-intelligence@1",
   "_description": "External model intelligence from policy-approved public sources. Every ingested figure carries source, licence and retrieval time. Link-only sources are normalised once at the top level and never ingested.",
-  "generated_at": "2026-09-16T03:04:49.644Z",
+  "generated_at": "2026-10-12T06:15:45.052Z",
   "sources": [
     {
       "id": "models-dev",
@@ -22,7 +22,7 @@
         }
       ],
       "attribution": "models.dev (SST)",
-      "retrieved_at": "2026-09-16T03:04:49.644Z",
+      "retrieved_at": "2026-10-12T06:15:45.052Z",
       "status": "ok"
     },
     {
@@ -85,7 +85,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -106,7 +106,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -115,6 +115,17 @@
     },
     {
       "id": "claude-haiku-4-5",
+      "name": "Claude Haiku 4.5",
+      "org": "anthropic",
+      "in_registry": true,
+      "names": {},
+      "pricing": null,
+      "adoption": null,
+      "context_tokens": 200000,
+      "benchmarks": []
+    },
+    {
+      "id": "claude-haiku-4-5-20251001",
       "name": "Claude Haiku 4.5",
       "org": "anthropic",
       "in_registry": true,
@@ -127,11 +138,32 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
       "context_tokens": 200000,
+      "benchmarks": []
+    },
+    {
+      "id": "claude-haiku-5-5",
+      "name": "Claude Haiku 5.5",
+      "org": "anthropic",
+      "in_registry": true,
+      "names": {
+        "models-dev": "Claude Haiku 5.5"
+      },
+      "pricing": {
+        "in_usd_per_m": 0.1,
+        "out_usd_per_m": 0.5,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
+        "modified": true
+      },
+      "adoption": null,
+      "context_tokens": 1000000,
       "benchmarks": []
     },
     {
@@ -148,7 +180,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -169,7 +201,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -190,7 +222,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -211,7 +243,28 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
+        "modified": true
+      },
+      "adoption": null,
+      "context_tokens": 1000000,
+      "benchmarks": []
+    },
+    {
+      "id": "claude-opus-5-5",
+      "name": "Claude Opus 5.5",
+      "org": "anthropic",
+      "in_registry": true,
+      "names": {
+        "models-dev": "Claude Opus 5.5"
+      },
+      "pricing": {
+        "in_usd_per_m": 4,
+        "out_usd_per_m": 20,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -232,7 +285,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -253,7 +306,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -274,7 +327,28 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
+        "modified": true
+      },
+      "adoption": null,
+      "context_tokens": 1000000,
+      "benchmarks": []
+    },
+    {
+      "id": "claude-sonnet-5-5",
+      "name": "Claude Sonnet 5.5",
+      "org": "anthropic",
+      "in_registry": true,
+      "names": {
+        "models-dev": "Claude Sonnet 5.5"
+      },
+      "pricing": {
+        "in_usd_per_m": 2,
+        "out_usd_per_m": 10,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -317,7 +391,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -349,7 +423,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -370,7 +444,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -386,6 +460,17 @@
       "pricing": null,
       "adoption": null,
       "context_tokens": 2000000,
+      "benchmarks": []
+    },
+    {
+      "id": "gemini-omni-flash",
+      "name": "Gemini Omni Flash",
+      "org": "google",
+      "in_registry": true,
+      "names": {},
+      "pricing": null,
+      "adoption": null,
+      "context_tokens": 1048576,
       "benchmarks": []
     },
     {
@@ -413,7 +498,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -434,11 +519,32 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
       "context_tokens": 1000000,
+      "benchmarks": []
+    },
+    {
+      "id": "gpt-6-1-sol",
+      "name": "GPT-6.1 Sol",
+      "org": "openai",
+      "in_registry": true,
+      "names": {
+        "models-dev": "GPT-6.1 Sol"
+      },
+      "pricing": {
+        "in_usd_per_m": 2,
+        "out_usd_per_m": 10,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
+        "modified": true
+      },
+      "adoption": null,
+      "context_tokens": 1050000,
       "benchmarks": []
     },
     {
@@ -455,7 +561,28 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
+        "modified": true
+      },
+      "adoption": null,
+      "context_tokens": 1050000,
+      "benchmarks": []
+    },
+    {
+      "id": "gpt-6-sol",
+      "name": "GPT-6 Sol",
+      "org": "openai",
+      "in_registry": true,
+      "names": {
+        "models-dev": "GPT-6 Sol"
+      },
+      "pricing": {
+        "in_usd_per_m": 2,
+        "out_usd_per_m": 10,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -511,18 +638,8 @@
       "name": "Grok 4.3",
       "org": "xai",
       "in_registry": true,
-      "names": {
-        "models-dev": "Grok 4.3"
-      },
-      "pricing": {
-        "in_usd_per_m": 1.25,
-        "out_usd_per_m": 2.5,
-        "source": "models-dev",
-        "source_url": "https://models.dev/api.json",
-        "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
-        "modified": true
-      },
+      "names": {},
+      "pricing": null,
       "adoption": null,
       "context_tokens": 1000000,
       "benchmarks": []
@@ -541,11 +658,53 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
       "context_tokens": 500000,
+      "benchmarks": []
+    },
+    {
+      "id": "grok-4-7",
+      "name": "Grok 4.7",
+      "org": "xai",
+      "in_registry": true,
+      "names": {
+        "models-dev": "Grok 4.7"
+      },
+      "pricing": {
+        "in_usd_per_m": 2,
+        "out_usd_per_m": 6,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
+        "modified": true
+      },
+      "adoption": null,
+      "context_tokens": 500000,
+      "benchmarks": []
+    },
+    {
+      "id": "grok-4.3",
+      "name": "Grok 4.3",
+      "org": "xai",
+      "in_registry": true,
+      "names": {
+        "models-dev": "Grok 4.3"
+      },
+      "pricing": {
+        "in_usd_per_m": 1.25,
+        "out_usd_per_m": 2.5,
+        "source": "models-dev",
+        "source_url": "https://models.dev/api.json",
+        "license": "MIT",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
+        "modified": true
+      },
+      "adoption": null,
+      "context_tokens": 1000000,
       "benchmarks": []
     },
     {
@@ -562,7 +721,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -627,7 +786,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -648,7 +807,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,
@@ -669,7 +828,7 @@
         "source": "models-dev",
         "source_url": "https://models.dev/api.json",
         "license": "MIT",
-        "retrieved_at": "2026-09-16T03:04:49.644Z",
+        "retrieved_at": "2026-10-12T06:15:45.052Z",
         "modified": true
       },
       "adoption": null,

@@ -61,9 +61,11 @@ function PathRow({ path }: { path: LearningPath }) {
         </span>
       </span>
       <span className="flex items-center gap-4 sm:justify-end">
-        <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#98989f]">
-          {path.estimatedHours}h path
-        </span>
+        {path.estimatedHours !== undefined && (
+          <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#98989f]">
+            {path.estimatedHours}h path
+          </span>
+        )}
         <ArrowRight
           className="h-4 w-4 text-[#98989f] transition-transform group-hover:translate-x-1 group-hover:text-white"
           aria-hidden="true"
