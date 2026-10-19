@@ -34,7 +34,7 @@ export const youtubeChannels = {
   },
   googleDeepMind: {
     name: 'Google DeepMind',
-    url: 'https://www.youtube.com/@Google_DeepMind',
+    url: 'https://www.youtube.com/@googledeepmind',
   },
   googleDevelopers: {
     name: 'Google for Developers',
@@ -51,10 +51,6 @@ export const youtubeChannels = {
   mattWolfe: {
     name: 'Matt Wolfe',
     url: 'https://www.youtube.com/@mreflow',
-  },
-  theNeuron: {
-    name: 'The Neuron',
-    url: 'https://www.youtube.com/@theneurondaily',
   },
   figma: {
     name: 'Figma',
