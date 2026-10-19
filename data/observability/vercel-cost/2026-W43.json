@@ -14,6 +14,8 @@
     "count_skipped": 161,
     "count_error": 13,
     "count_ready": 197,
+    "count_other": 1,
+    "state_note": "count_ready + count_error + count_skipped + count_other = 197+13+161+1 = 372 = count_total. The 1 'other' deploy had a state that was not READY, ERROR, or CANCELED (likely BUILDING or QUEUED at snapshot time); it is excluded from duration metrics and build-minute totals.",
     "duration_p50_seconds": 168,
     "duration_p95_seconds": 274,
     "duration_max_seconds": 285,
