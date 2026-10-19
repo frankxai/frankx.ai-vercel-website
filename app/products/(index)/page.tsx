@@ -5,14 +5,11 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowRight,
-  Sparkles,
   Music,
   BookOpen,
   Cpu,
   CheckCircle2,
   Package,
-  Zap,
-  Star,
   Search,
   Layers,
   Terminal,
@@ -268,12 +265,18 @@ export default function ProductsPage() {
     return allProducts.filter((p) => FLAGSHIP_IDS.includes(p.id))
   }, [allProducts])
 
-  const visibleProducts = useMemo(() => {
+  // Flagships already render in the spotlight above the grid in the default All view.
+  const gridProducts = useMemo(() => {
     if (!isDefaultAllView) return filteredProducts
-    if (showAllCards) return filteredProducts
+    return filteredProducts.filter((p) => !FLAGSHIP_IDS.includes(p.id))
+  }, [isDefaultAllView, filteredProducts])
+
+  const visibleProducts = useMemo(() => {
+    if (!isDefaultAllView) return gridProducts
+    if (showAllCards) return gridProducts
     // In All view without search, show 9 curated systems initially
-    return filteredProducts.slice(0, 9)
-  }, [isDefaultAllView, showAllCards, filteredProducts])
+    return gridProducts.slice(0, 9)
+  }, [isDefaultAllView, showAllCards, gridProducts])
 
   // Structured Data Schema for Google Product Carousel with verified currencies and stock status
   const structuredData = useMemo(() => {
@@ -349,8 +352,7 @@ export default function ProductsPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
-              Verified agent frameworks, system prompt suites, multi-modal pipelines, and
-              enterprise advisory playbooks deployed across live operations.
+              Agent frameworks, system prompt suites, multi-modal pipelines and advisory playbooks.
             </motion.p>
           </div>
         </section>
@@ -698,68 +700,20 @@ export default function ProductsPage() {
                 </div>
 
                 {/* Progressive Reveal Toggle to Avoid Card Wall in All View */}
-                {isDefaultAllView && !showAllCards && filteredProducts.length > 9 && (
+                {isDefaultAllView && !showAllCards && gridProducts.length > 9 && (
                   <div className="mt-12 text-center">
                     <button
                       type="button"
                       onClick={() => setShowAllCards(true)}
                       className="min-h-[44px] inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.04] px-8 py-3 text-sm font-semibold text-white hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-300 transition-[border-color,background-color,color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
                     >
-                      <span>Show all {filteredProducts.length} systems</span>
+                      <span>Show all {gridProducts.length} systems</span>
                       <ChevronDown className="h-4 w-4" />
                     </button>
                   </div>
                 )}
               </>
             )}
-          </div>
-        </section>
-
-        {/* Operating Pillars Summary */}
-        <section className="py-16 border-t border-white/5">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="text-center mb-12">
-              <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400 mb-2">
-                Rigorous execution standards
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white">
-                Battle-tested architectures for sovereign builders
-              </h2>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: 'Production prompts and contracts',
-                  description:
-                    'Every prompt suite is verified across live operations. Typed parameters and concrete schemas with zero theoretical filler.',
-                  icon: Sparkles,
-                },
-                {
-                  title: 'Modular agent workflows',
-                  description:
-                    'Turnkey multi-agent workflows designed for Claude Code, Codex, and modern orchestrators. Decoupled, observable, and reproducible.',
-                  icon: Zap,
-                },
-                {
-                  title: 'Continuous protocol updates',
-                  description:
-                    'AI models and protocols advance continuously. Every asset receives rolling updates as frontier models and frameworks evolve.',
-                  icon: Star,
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="p-7 rounded-2xl border border-white/[0.06] bg-white/[0.02]"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4">
-                    <item.icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -776,19 +730,11 @@ export default function ProductsPage() {
               {[
                 {
                   q: 'What formats and deliverables are included?',
-                  a: 'Assets are delivered as version-controlled markdown dossiers, system prompt suites, Obsidian vaults, runnable CLI scripts, or verified architectural specifications ready for immediate deployment.',
+                  a: 'Assets are delivered as markdown documents, prompt files, Obsidian vaults or scripts, as listed on each product page.',
                 },
                 {
                   q: 'How does digital delivery work?',
-                  a: 'Free resources provide immediate download or reading links. Paid frameworks trigger instant fulfillment via secure download links with continuous version updates included.',
-                },
-                {
-                  q: 'Are these tools compatible with modern AI orchestrators?',
-                  a: 'Yes. All agentic architectures, MCP configurations, and prompt chains conform to standard Model Context Protocol and modern agent execution environments like Claude Code, Cursor, and custom Python and TypeScript runtimes.',
-                },
-                {
-                  q: 'How are enterprise advisory and custom mesh deployments handled?',
-                  a: 'Advanced tiers such as the Founders Circle Guild and Center of Excellence kits include dedicated architecture advisory sessions, governance setup, and customized swarm orchestration reviews.',
+                  a: 'Free resources link to a download or reading page, or to the waitlist while they are not ready. Paid products open for purchase later; join the launch list on each page.',
                 },
               ].map((faq) => (
                 <div
@@ -818,8 +764,7 @@ export default function ProductsPage() {
                   Deploy elite AI architectures in your own stack
                 </h2>
                 <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
-                  Start with open specifications and free starter kits, or acquire complete operational
-                  systems with turnkey multi-agent meshes and enterprise blueprints.
+                  Start with open specifications and free starter kits, or join the launch list for paid kits.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md pt-2">
                   <Link

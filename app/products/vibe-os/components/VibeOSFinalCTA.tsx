@@ -15,12 +15,13 @@ interface VibeOSFinalCTAProps {
 }
 
 export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps) {
+  const waitlistHref = `/waitlist?intent=${productId}`
   const handleClick = () => {
     trackEvent('product_cta_click', {
       productId,
       location: 'final',
       target: COMING_SOON_MODE ? 'waitlist' : 'primary',
-      href: COMING_SOON_MODE ? '/newsletter' : offer.ctaPrimaryHref,
+      href: COMING_SOON_MODE ? waitlistHref : offer.ctaPrimaryHref,
       label: COMING_SOON_MODE ? 'join-waitlist' : offer.ctaPrimaryTracking
     })
   }
@@ -82,13 +83,7 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
               Launches
             </>
           ) : (
-            <>
-              Ready to Transform Your{' '}
-              <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-violet-300 bg-clip-text text-transparent">
-                Music Production
-              </span>
-              ?
-            </>
+            <>Vibe OS is free</>
           )}
         </motion.h2>
 
@@ -101,8 +96,8 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
           className="mx-auto mt-6 max-w-2xl text-lg text-white/70"
         >
           {COMING_SOON_MODE
-            ? 'Join the waitlist for early access, exclusive launch pricing, and behind-the-scenes updates as we build the ultimate Suno workflow system.'
-            : 'From emotional vision to finished track in one session.'
+            ? 'Join the waitlist to hear when it launches.'
+            : 'The web app is still in development.'
           }
         </motion.p>
 
@@ -116,7 +111,7 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
         >
           {COMING_SOON_MODE ? (
             <Link
-              href="/newsletter"
+              href={waitlistHref}
               onClick={handleClick}
               className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-10 py-5 text-lg font-semibold text-white shadow-[0_20px_70px_rgba(6,182,212,0.45)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(6,182,212,0.55)]"
             >
@@ -148,19 +143,7 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
             <svg className="h-5 w-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
-            <span>30-Day Guarantee</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg className="h-5 w-5 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>Lifetime Updates</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg className="h-5 w-5 text-violet-400" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>Instant Access</span>
+            <span>Free</span>
           </div>
         </motion.div>
 

@@ -72,7 +72,7 @@ export interface LearningPath {
   description: string
   icon: string
   difficulty: 'beginner' | 'intermediate' | 'advanced'
-  estimatedHours: number
+  estimatedHours?: number
   color: 'emerald' | 'cyan' | 'amber' | 'violet' | 'sky'
   category: LearningPathCategory
   videos: VideoResource[]
@@ -105,10 +105,9 @@ export const learningPaths: LearningPath[] = [
     title: 'Claude & Anthropic Mastery',
     slug: 'claude-mastery',
     description:
-      "Master Anthropic's full Claude stack — Opus 4.8, Sonnet 4.6, Haiku 4.5, Claude Code, the Agent SDK, MCP, Computer Use, and Skills — from first prompt to production agents.",
+      "Master Anthropic's full Claude stack — Claude Code, the Agent SDK, MCP, Computer Use, and Skills — from first prompt to production agents.",
     icon: 'brain',
     difficulty: 'beginner',
-    estimatedHours: 10,
     color: 'amber',
     category: 'model-maker',
     heroEyebrow: 'Updated June 10, 2026 · Reflects Claude 4.X family + MCP general availability',
@@ -120,7 +119,7 @@ export const learningPaths: LearningPath[] = [
     ctaBody:
       'Pair this portal with our written walkthrough and architecture playbooks. Build an agent, ship an MCP-backed app, or compare Claude head-to-head against Gemini.',
     outcomes: [
-      'Pick the right Claude model — Opus 4.8, Sonnet 4.6, Haiku 4.5 — for each task and budget',
+      'Pick the right Claude model for each task and budget',
       'Engineer prompts that survive contact with real-world inputs',
       'Build agents with the Claude Agent SDK + MCP for tool and data access',
       'Use Claude Code in the terminal, IDE, and on the web for end-to-end coding workflows',
@@ -445,7 +444,7 @@ export const learningPaths: LearningPath[] = [
       {
         question: 'What is the latest Claude model in June 2026?',
         answer:
-          'Claude Opus 4.8 is the current family lead (launched May 14, 2026). Claude Sonnet 4.6 is the everyday default across Claude.ai and Claude Code. Claude Haiku 4.5 covers the cheap-and-fast tier for high-volume agent loops.',
+          'Claude Opus 4.8 launched May 14, 2026. Claude Sonnet 4.6 is the everyday default across Claude.ai and Claude Code. Claude Haiku 4.5 covers the cheap-and-fast tier for high-volume agent loops.',
       },
       {
         question: 'Which Claude model should I use for coding?',
@@ -502,7 +501,6 @@ export const learningPaths: LearningPath[] = [
       'Master OpenAI Codex for agentic software work: setup, local CLI workflows, AGENTS.md, code review, and production-ready iteration.',
     icon: 'zap',
     difficulty: 'intermediate',
-    estimatedHours: 9,
     color: 'emerald',
     category: 'model-maker',
     heroEyebrow: 'Updated July 5, 2026 · Runs GPT-5.5 · CLI + Cloud + AGENTS.md',
@@ -802,7 +800,6 @@ export const learningPaths: LearningPath[] = [
       'Master ChatGPT for everyday work, prompting, data analysis, custom workflows, and practical OpenAI fluency.',
     icon: 'brain',
     difficulty: 'beginner',
-    estimatedHours: 10,
     color: 'cyan',
     category: 'model-maker',
     heroEyebrow: 'Updated July 5, 2026 · Runs GPT-5.5 · Everyday AI fluency',
@@ -1099,10 +1096,9 @@ export const learningPaths: LearningPath[] = [
     title: 'Gemini & Google AI Mastery',
     slug: 'gemini-mastery',
     description:
-      "Master Google's full AI stack — Gemini 3.5 Flash, Gemini 3.1 Pro, Antigravity 2.0, NotebookLM, Veo 3.1, and Nano Banana Pro — from your first prompt to production agents.",
+      "Master Google's full AI stack — Gemini, Antigravity 2.0, NotebookLM, Veo 3.1, and Nano Banana Pro — from your first prompt to production agents.",
     icon: 'sparkles',
     difficulty: 'beginner',
-    estimatedHours: 12,
     color: 'sky',
     category: 'model-maker',
     heroEyebrow: 'Updated May 23, 2026 · Reflects Google I/O 2026',
@@ -1459,10 +1455,9 @@ export const learningPaths: LearningPath[] = [
     title: 'Antigravity Mastery',
     slug: 'antigravity-mastery',
     description:
-      "Master Google Antigravity — the standalone agent-first development platform (desktop app, CLI, SDK) that replaced Gemini CLI — from first install to production multi-agent workflows.",
+      "Master Google Antigravity — the standalone agent-first development platform (desktop app, CLI, SDK) — from first install to production multi-agent workflows.",
     icon: 'zap',
     difficulty: 'intermediate',
-    estimatedHours: 8,
     color: 'sky',
     category: 'model-maker',
     heroEyebrow: 'Updated July 6, 2026 · Antigravity 2.0, four pillars',
@@ -1706,7 +1701,6 @@ export const learningPaths: LearningPath[] = [
       "Master Amazon Bedrock — the managed model gateway for AWS: Claude, Nova, Knowledge Bases, AgentCore, and Guardrails — from first API call to production agents.",
     icon: 'zap',
     difficulty: 'intermediate',
-    estimatedHours: 10,
     color: 'amber',
     category: 'cloud',
     heroEyebrow: 'Updated July 6, 2026 · AgentCore + Managed Knowledge Base GA',
@@ -1966,7 +1960,6 @@ export const learningPaths: LearningPath[] = [
       'Master Microsoft Foundry (formerly Azure AI Foundry) — 11,000+ models, the Foundry Agent Service, and MCP-connected agents — from your first deployment to production.',
     icon: 'zap',
     difficulty: 'intermediate',
-    estimatedHours: 10,
     color: 'sky',
     category: 'cloud',
     heroEyebrow: 'Updated July 6, 2026 · Microsoft Foundry GA + Hosted Agents',
@@ -2225,7 +2218,6 @@ export const learningPaths: LearningPath[] = [
       'Master OCI Generative AI — Cohere Command A, Agent Hub, and Select AI natural-language database queries — from your first model call to production agents on OCI.',
     icon: 'zap',
     difficulty: 'intermediate',
-    estimatedHours: 10,
     color: 'violet',
     category: 'cloud',
     heroEyebrow: 'Updated July 6, 2026 · Cohere Command A + Agent Hub',
@@ -2474,8 +2466,8 @@ export const learningPaths: LearningPath[] = [
     },
     title: 'Higgsfield video production workshop',
     slug: 'higgsfield-mastery',
-    description: 'Make a three-shot sequence with a shot brief, reference pack, camera test and credit budget. Free guides and a verified official walkthrough.',
-    icon: 'image', difficulty: 'intermediate', estimatedHours: 6, color: 'violet', category: 'consumer',
+    description: 'Make a three-shot sequence with a shot brief, reference pack, camera test and credit budget. Free guides and an official walkthrough.',
+    icon: 'image', difficulty: 'intermediate', color: 'violet', category: 'consumer',
     heroEyebrow: 'Documentation checked October 10, 2026',
     longIntro: 'Start with one story and three shots. This workshop takes you from a written brief to a reviewed sequence using Higgsfield, then helps you diagnose motion, identity and editing problems. The curriculum is free; generating media may require a paid product plan. Product capabilities are documented by the vendor. The production exercises and acceptance rules are FrankX editorial proposals.',
     distillation: 'Write the acceptance rule before generating: what should the viewer understand, which movement carries that meaning, and what makes the clip usable? Keep one subject and one camera movement in your first test. Review the first, middle and last frames before accepting it.\n\nReference tools can help with character continuity, but inspect faces, wardrobe, product labels and background geometry across every shot. Test one variable at a time instead of changing the model, reference and prompt together.\n\nMeasure cost per accepted shot rather than cost per generation. Stop when a repeat failure needs a different reference or simpler composition. Assemble the accepted shots in an editor, review the sequence at phone size and export for your chosen platform.',
@@ -2504,10 +2496,11 @@ export const learningPaths: LearningPath[] = [
       tags: ['higgsfield', 'short-film', 'references'],
     }],
     ecosystem: [
-      { name: 'Cinema Studio 4.0 documentation', category: 'Direction', description: 'Current vendor announcement for camera look, references and sequence controls.', href: 'https://higgsfield.ai/blog/cinema-studio-4-0', lastVerified: '2026-10-10' },
-      { name: 'Agent connection guide', category: 'Automation', description: 'Official supported agent and MCP integrations. Inspect tools and job status before generating.', href: 'https://higgsfield.ai/blog/generate-ai-videos-ai-agents-2026', lastVerified: '2026-10-10' },
-      { name: 'Developer console', category: 'Integration', description: 'Use documented interfaces and account limits rather than an assumed third-party endpoint.', href: 'https://console.higgsfield.ai/', lastVerified: '2026-10-10' },
-      { name: 'Current pricing', category: 'Budget', description: 'Verify included credits, model availability and cancellation terms for your account before subscribing.', href: 'https://higgsfield.ai/pricing', lastVerified: '2026-10-10' },
+      { name: 'Higgsfield platform', category: 'Platform', description: 'Access Higgsfield AI Cinema Studio, model selection, and account settings (referral link).', href: '/go/higgsfield', lastVerified: '2026-10-12' },
+      { name: 'Cinema Studio 4.0 documentation', category: 'Direction', description: 'Current vendor announcement for camera look, references and sequence controls.', href: 'https://higgsfield.ai/blog/cinema-studio-4-0', lastVerified: '2026-10-11' },
+      { name: 'Agent connection guide', category: 'Automation', description: "Higgsfield's own guide to connecting Claude, ChatGPT, Cursor and other agents via MCP or CLI. Inspect tools and job status before generating.", href: 'https://higgsfield.ai/blog/generate-ai-videos-ai-agents-2026', lastVerified: '2026-10-11' },
+      { name: 'Developer console', category: 'Integration', description: 'Use documented interfaces and account limits rather than an assumed third-party endpoint.', href: 'https://open.higgsfield.ai/', lastVerified: '2026-10-12' },
+      { name: 'Current pricing', category: 'Budget', description: 'Verify included credits, model availability and cancellation terms for your account before subscribing.', href: 'https://higgsfield.ai/pricing', lastVerified: '2026-10-11' },
     ],
     faqs: [
       { question: 'Is this Higgsfield course free?', answer: 'The FrankX guides, exercises and worksheets are free to read. Higgsfield generation and connected-agent usage may require credits or a paid plan. Check current pricing before starting.' },
@@ -2524,7 +2517,6 @@ export const learningPaths: LearningPath[] = [
       'Master the 2026 Agentic Hierarchy — Prompts, Skills, Agents, MCP, Subagent FSMs, Blackwell NVL72 liquid cooling, and Cost-Per-Verified-Outcome economics.',
     icon: 'brain',
     difficulty: 'advanced',
-    estimatedHours: 14,
     color: 'emerald',
     category: 'cloud',
     heroEyebrow: '2026 Master Curriculum · Evaluated Skills, MCP Meshes & Sovereign Compute',

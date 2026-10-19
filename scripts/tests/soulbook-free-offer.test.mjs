@@ -6,7 +6,11 @@ import { fileURLToPath } from 'node:url'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const pagePath = path.resolve(currentDir, '../../app/soulbook/page.tsx')
-const selectorPath = path.resolve(currentDir, '../../components/soulbook/LifeBookSelector.tsx')
+const selectorPath = path.resolve(
+  currentDir,
+  '../../components/soulbook/LifeBookSelector.tsx',
+)
+const dataPath = path.resolve(currentDir, '../../lib/soulbook/soulbook-data.ts')
 
 test('soulbook offers the free vault and publishes no price', () => {
   const pageContent = fs.readFileSync(pagePath, 'utf8')
@@ -42,10 +46,29 @@ test('life-book cards publish no sessions, feature bundle or journey CTA', () =>
     [/lifetime/i, 'lifetime'],
   ]
   for (const [pattern, label] of absent) {
-    assert.doesNotMatch(selectorContent, pattern, `LifeBookSelector.tsx still contains ${label}`)
+    assert.doesNotMatch(
+      selectorContent,
+      pattern,
+      `LifeBookSelector.tsx still contains ${label}`,
+    )
   }
-  const actions = selectorContent.match(/<(PremiumButton|Link|a)\b[\s\S]*?<\/\1>/g) ?? []
+  const actions =
+    selectorContent.match(/<(PremiumButton|Link|a)\b[\s\S]*?<\/\1>/g) ?? []
   for (const action of actions) {
-    assert.doesNotMatch(action, /journey|waitlist|deliver/i, `action text: ${action}`)
+    assert.doesNotMatch(
+      action,
+      /journey|waitlist|deliver/i,
+      `action text: ${action}`,
+    )
   }
+})
+
+test('soulbook data contains no price, pricingTiers, guarantee, sessions or features', () => {
+  const dataContent = fs.readFileSync(dataPath, 'utf8')
+
+  assert.equal(dataContent.includes('price'), false)
+  assert.equal(dataContent.includes('pricingTiers'), false)
+  assert.equal(dataContent.includes('guarantee'), false)
+  assert.equal(dataContent.includes('sessions'), false)
+  assert.equal(dataContent.includes('features'), false)
 })

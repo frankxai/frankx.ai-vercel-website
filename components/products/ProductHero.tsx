@@ -15,7 +15,7 @@ interface ProductHeroProps {
   title: string
   subtitle: string
   promise: string
-  offer: ProductOffer
+  offer?: ProductOffer
 }
 
 function isExternal(href: string) {
@@ -23,13 +23,24 @@ function isExternal(href: string) {
 }
 
 export default function ProductHero({ productId, badge, title, subtitle, promise, offer }: ProductHeroProps) {
+  const waitlistHref = `/waitlist?intent=${productId}`
   const handleClick = (target: 'primary' | 'secondary') => {
+    const href = COMING_SOON_MODE
+      ? waitlistHref
+      : target === 'primary'
+        ? offer?.ctaPrimaryHref
+        : offer?.ctaSecondaryHref
+    const label = COMING_SOON_MODE
+      ? 'join-waitlist'
+      : target === 'primary'
+        ? offer?.ctaPrimaryTracking ?? offer?.ctaPrimary
+        : offer?.ctaSecondaryTracking ?? offer?.ctaSecondary
     trackEvent('product_cta_click', {
       productId,
       location: 'hero',
       target,
-      href: target === 'primary' ? offer.ctaPrimaryHref : offer.ctaSecondaryHref,
-      label: target === 'primary' ? offer.ctaPrimaryTracking ?? offer.ctaPrimary : offer.ctaSecondaryTracking ?? offer.ctaSecondary
+      href,
+      label,
     })
   }
 
@@ -64,14 +75,14 @@ export default function ProductHero({ productId, badge, title, subtitle, promise
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           {COMING_SOON_MODE ? (
             <Link
-              href="/newsletter"
+              href={waitlistHref}
               onClick={() => handleClick('primary')}
               className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_50px_rgba(45,212,191,0.35)] transition hover:-translate-y-1"
             >
               <Mail className="h-4 w-4" />
               Join Waitlist
             </Link>
-          ) : (
+          ) : offer ? (
             <>
               {(() => {
                 const content = (
@@ -120,7 +131,7 @@ export default function ProductHero({ productId, badge, title, subtitle, promise
                 })()
               ) : null}
             </>
-          )}
+          ) : null}
         </div>
       </div>
     </section>
