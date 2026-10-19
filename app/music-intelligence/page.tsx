@@ -8,7 +8,7 @@ const PAGE_URL = 'https://frankx.ai/music-intelligence'
 export const metadata = createMetadata({
   title: 'Music Intelligence System — Research, Agents & Tools for AI-Era Music | FrankX',
   description:
-    'An open, interconnected system for AI-era music creation: state-change research, portable agent exports, curated tooling, and free education. Built in public across GitHub.',
+    'An index of AI-era music resources: browser instruments, prompt templates, portable agent exports, curated tooling, and free education.',
   path: '/music-intelligence',
   keywords: [
     'music intelligence system',
@@ -17,7 +17,6 @@ export const metadata = createMetadata({
     'music agents',
     'mcp servers for music',
     'music psychology research',
-    'vibe os',
   ],
 })
 
@@ -46,8 +45,10 @@ type AudienceEntry = {
   entry: SystemLink
 }
 
-const systems = ecosystem.systems as SystemEntry[]
-const audiences = ecosystem.audiences as AudienceEntry[]
+const systems = (ecosystem.systems as SystemEntry[]).filter((system) => system.id !== 'vibe-os')
+const audiences = (ecosystem.audiences as AudienceEntry[]).filter(
+  (audience) => audience.id !== 'orchestras-arrangers'
+)
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -211,10 +212,9 @@ export default function MusicIntelligencePage() {
             Music Intelligence System
           </h1>
           <p className="mb-8 max-w-3xl text-lg leading-relaxed text-white/60 sm:text-xl">
-            An open, interconnected system for AI-era music creation. State-change research that
-            maps musical parameters to outcomes, agents and MCP servers that put it to work,
-            curated tooling, and free education — built in public across GitHub, with the live
-            surfaces here on frankx.ai.
+            A working index of AI-era music resources: browser instruments, prompt templates,
+            portable agent exports, curated tooling, and free education. The public repositories
+            hold the technical artifacts; the live tools and catalog are here on frankx.ai.
           </p>
           <Link
             href="/music/templates"
@@ -236,8 +236,8 @@ export default function MusicIntelligencePage() {
             What&apos;s in the system?
           </h2>
           <p className="mb-10 max-w-xl text-base text-white/60">
-            Six interlocking pieces. Each works on its own; together they cover the full path from
-            research to released track.
+            Each resource works on its own, from browser instruments to repositories for music
+            tooling and education.
           </p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {systems.map((system) => (
@@ -268,55 +268,34 @@ export default function MusicIntelligencePage() {
         </div>
       </section>
 
-      {/* The research */}
+      {/* Working notes */}
       <section className="border-t border-white/5 py-24 lg:py-32">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400/60">
-            The Research
+            Working notes
           </p>
           <h2 className="mb-6 text-3xl font-bold tracking-tight text-white md:text-4xl">
-            What does the research actually say?
+            What is documented today?
           </h2>
           <div className="space-y-4 text-base leading-relaxed text-white/60">
             <p>
-              The system rests on music psychology: tempo is the strongest lever on arousal, mode
-              (major or minor) shapes valence, timbre colors how a piece reads, and lyrics carry
-              measurable emotional weight of their own. Those four parameters are what every Vibe
-              OS state definition is built from.
+              The public hub records schemas, source notes, agent exports, and open questions for
+              this work. Treat the prompt templates as creative starting points. They do not promise
+              a particular mental, emotional, or health outcome.
             </p>
             <p>
-              On brainwave entrainment we stay precise: rhythmic entrainment to tempo is well
-              supported, while stronger claims around binaural beats have weaker and more mixed
-              evidence. We treat those as open questions rather than selling points — tracked in
-              public, with sources.
+              Research notes remain working material until their sources and conclusions receive
+              independent review. The live resources describe what you can inspect or use now.
             </p>
           </div>
           <div className="mt-8 flex flex-col gap-2 text-sm">
-            <a
-              href="https://github.com/frankxai/vibe-os/blob/main/docs/whitepaper-the-science-of-state-change.md"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-emerald-300 transition-colors hover:text-emerald-200"
-            >
-              The Science of State Change — whitepaper
-              <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-            </a>
-            <a
-              href="https://github.com/frankxai/vibe-os/tree/main/docs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-emerald-300 transition-colors hover:text-emerald-200"
-            >
-              Vibe OS research docs
-              <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-            </a>
             <a
               href="https://github.com/frankxai/music-intelligence-systems"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-emerald-300 transition-colors hover:text-emerald-200"
             >
-              Open questions registry — Music Intelligence Hub
+              Inspect the Music Intelligence Hub
               <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
             </a>
           </div>
@@ -330,8 +309,7 @@ export default function MusicIntelligencePage() {
             <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-8">
               <h2 className="mb-2 text-xl font-semibold text-white">Start free</h2>
               <p className="mb-6 text-sm leading-relaxed text-white/60">
-                Nine copy-paste Suno templates from the state library, and browser instruments you
-                can play right now.
+                Nine copy-paste Suno templates and browser instruments you can use right now.
               </p>
               <div className="flex flex-wrap items-center gap-4">
                 <Link
@@ -368,22 +346,14 @@ export default function MusicIntelligencePage() {
             </div>
           </div>
           <p className="mt-10 text-sm text-white/40">
-            Related:{' '}
+            Related: browse{' '}
             <Link href="/music" className="text-white/60 transition-colors hover:text-white">
               the music catalog
             </Link>
-            ,{' '}
-            <Link href="/vibe" className="text-white/60 transition-colors hover:text-white">
-              Vibe OS overview
-            </Link>
-            , and{' '}
-            <Link
-              href="/products/vibe-os"
-              className="text-white/60 transition-colors hover:text-white"
-            >
-              the Vibe OS product
-            </Link>
-            .
+            {' '}or start with the{' '}
+            <Link href="/music/create" className="text-white/60 transition-colors hover:text-white">
+              AI music creation guide
+            </Link>.
           </p>
         </div>
       </section>
