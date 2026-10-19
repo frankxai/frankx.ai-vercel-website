@@ -1,24 +1,24 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import { createMetadata } from '@/lib/seo'
+import { economyAtlasAvailable } from '@/lib/research/economy-release'
 import atlas from '@/data/economy-atlas.json'
 import EconomyAtlasClient from './economy-atlas-client'
 import styles from './economy-atlas.module.css'
 
-export const metadata: Metadata = {
+export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = createMetadata({
   title: 'Economic atlas: products, marketplaces and costs',
   description: 'Compare 73 product proposals, 30 distribution channels and their evidence. Inspect sources and save an illustrative cost scenario. Demand remains unmeasured.',
-  alternates: { canonical: 'https://www.frankx.ai/research/economy' },
-  openGraph: {
-    title: 'Economic atlas: products, marketplaces and costs',
-    description: 'A source-linked research tool for choosing what to build and where to distribute it.',
-    url: 'https://www.frankx.ai/research/economy',
-    type: 'website',
-  },
-  // Reviewed research preview; indexing waits for the publication gate.
-  robots: { index: false, follow: true },
-}
+  path: '/research/economy',
+  canonical: 'https://www.frankx.ai/research/economy',
+  noindex: true,
+})
 
 export default function EconomyPage() {
+  if (!economyAtlasAvailable(process.env)) notFound()
   return (
     <main className={styles.atlas} id="economic-atlas">
       <header className={styles.hero}>
