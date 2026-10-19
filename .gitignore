@@ -219,3 +219,7 @@ v0.html
 .claude/settings.local.json
 .claude/ci/estate-guard/last-scan.json
 .claude/skills/**/__pycache__/
+
+# queen-ops pack — local briefs and receipts, not repo artifacts
+.starlight/queen/
+.claude/hooks/__pycache__/
