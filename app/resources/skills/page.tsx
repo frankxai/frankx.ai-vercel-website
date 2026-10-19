@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowLeft, Download, Code, Sparkles, Terminal, Brain, Music, BookOpen, Briefcase, Heart, Github, CheckCircle, Copy } from 'lucide-react'
+import { ArrowLeft, Download, Code, Sparkles, Terminal, Brain, Music, BookOpen, Briefcase, Github, CheckCircle, Copy } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
@@ -9,14 +9,6 @@ import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import PremiumButton from '@/components/ui/PremiumButton'
 
 const skillCategories = [
-  {
-    id: 'soulbook',
-    name: 'Soulbook Skills',
-    icon: Heart,
-    description: 'Life architecture, 7 pillars, transformation coaching',
-    color: 'amber',
-    examples: ['soulbook', 'life-symphony', 'lifesmith', 'soul-composer'],
-  },
   {
     id: 'technical',
     name: 'Technical Skills',
@@ -31,7 +23,7 @@ const skillCategories = [
     icon: Music,
     description: 'Music production, content creation, book writing',
     color: 'purple',
-    examples: ['suno-ai-mastery', 'frankx-brand', 'golden-age-book-writing'],
+    examples: ['suno-ai-mastery', 'brand-voice', 'excellence-book-writing'],
   },
   {
     id: 'personal',
@@ -53,9 +45,9 @@ const skillCategories = [
 
 const featuredSkills = [
   {
-    name: 'frankx-brand',
-    description: 'Apply official FrankX brand standards to all content',
-    usage: '/skill frankx-brand',
+    name: 'brand-voice',
+    description: 'Apply and enforce a brand voice across content: tone by channel, style rules, terminology',
+    usage: '/skill brand-voice',
   },
   {
     name: 'suno-ai-mastery',
@@ -68,9 +60,9 @@ const featuredSkills = [
     usage: '/skill mcp-architecture',
   },
   {
-    name: 'golden-age-book-writing',
-    description: 'Master-level book writing with 9-author council methodology',
-    usage: '/skill golden-age-book-writing',
+    name: 'excellence-book-writing',
+    description: 'Structure, clarity, narrative flow and editorial polish for long-form nonfiction',
+    usage: '/skill excellence-book-writing',
   },
 ]
 
@@ -120,7 +112,7 @@ export default function SkillsPage() {
 
             <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-400 leading-relaxed">
               Specialized Claude Code skills for music production, content creation,
-              life architecture, and technical development. Open source and ready to use.
+              personal mastery, and technical development. Open source and ready to use.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -321,7 +313,7 @@ export default function SkillsPage() {
                 step: 3,
                 title: 'Start Using Skills',
                 description: 'Activate any skill with the /skill command',
-                code: '/skill frankx-brand',
+                code: '/skill brand-voice',
               },
             ].map((step, index) => (
               <motion.div
