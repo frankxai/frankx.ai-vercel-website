@@ -568,6 +568,21 @@ export default function StackGalleryClient() {
           </motion.div>
         </section>
 
+        <section aria-label="XR device guide" className="mx-auto max-w-6xl px-6 pb-2">
+          <div className="flex flex-col gap-6 border-y border-white/10 py-7 sm:flex-row sm:items-center sm:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-[11px] font-medium tracking-[0.16em] text-[#D4AF37] uppercase">XR hardware guide</p>
+              <h2 className="mt-2 font-serif text-2xl text-white sm:text-3xl">Choose glasses for the work you do.</h2>
+              <p className="mt-2 text-sm leading-relaxed text-white/65">
+                Starlight compares VR headsets, display glasses and camera glasses by workflow. Each choice includes its source, setup and a reason to wait.
+              </p>
+            </div>
+            <a href="https://starlight.technology/xr" className="inline-flex min-h-11 shrink-0 items-center gap-2 self-start border border-white/20 px-4 py-2 text-sm font-medium text-white transition-colors hover:border-[#D4AF37]/60 hover:text-[#D4AF37] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:self-auto">
+              Compare XR devices <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+            </a>
+          </div>
+        </section>
+
         {/* ── Category sections ── */}
         <AnimatePresence mode="wait">
           <motion.div
