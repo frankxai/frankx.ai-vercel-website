@@ -77,7 +77,7 @@ export async function GET(request: Request) {
         source: 'frankx.ai/library',
         license: 'Quotes excerpted under fair use for review and commentary purposes.',
         attribution_required: true,
-        rotation: 'deterministic by UTC date — same quote for every caller within a 24h window',
+        rotation: 'deterministic by calendar date in the requested IANA timezone (tz, default UTC); same quote for every caller using that timezone on that date',
       },
     },
     {
