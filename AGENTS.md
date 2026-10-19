@@ -110,6 +110,16 @@ and it is never able to overrule a gate. Anything irreversible goes to Frank.
 
 This file is the canonical brief for any AI agent (Claude Code, Codex, Gemini, Grok, Cursor, OpenCode, etc.) entering this repo. Read it before assuming anything about deploy mechanics, branch protocol, or repo identity.
 
+## Architecture Stack (canonical)
+
+Before recommending or choosing technology, hosting, AI gateways, agent runtimes, databases, or storage:
+
+1. Fetch and follow the living document:  
+   https://github.com/frankxai/frankx-starlight-command/blob/main/ARCHITECTURE-STACK.md
+2. Use the Architectural Checker prompt inside that file for any new surface.
+3. Record repo-specific exceptions as short ADRs and link them back to the canonical file.
+4. Do not invent a parallel stack doctrine in this repo.
+
 ---
 
 ## 1. Repo identity — read this first
