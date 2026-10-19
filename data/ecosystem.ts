@@ -14,7 +14,7 @@
  */
 
 export type EcosystemTier =
-  | 'tier-1-frankx-surface' // public on frankx.ai
+  | 'tier-1-frankx-surface' // public on frankx.ai or linked from it
   | 'tier-2-substrate' // open-source sibling repos
   | 'tier-3-operational' // internal-only systems that drive the business
   | 'tier-4-ops-tooling' // PP swarm / cc-tabs / repo management
@@ -83,7 +83,7 @@ export interface EcosystemEntry {
 // ─────────────────────────────────────────────────────────────────────────
 
 export const ecosystemEntries: EcosystemEntry[] = [
-  // ─── Tier 1 — FrankX surface (live on frankx.ai) ────────────────────────
+  // ─── Tier 1 — FrankX surface (on frankx.ai or linked from it) ────────────────────────
   {
     id: 'watch-os',
     name: 'Watch OS',
@@ -151,7 +151,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
     shipped: 'ongoing',
     summary: 'Agent orchestration with learning across sessions.',
     description:
-      'The Agentic Creator Operating System — a persistent agent runtime that learns from past trajectories, scores intelligence, and routes complex tasks across 150+ skills and dozens of agents. The engine under the hood.',
+      'The Agentic Creator Operating System — a persistent agent runtime that learns from past trajectories, scores intelligence, and routes complex tasks across its skills and agents. The engine under the hood.',
     relatedSystems: ['watch-os', 'workshop-os', 'aco', 'coe-hub', 'frankx-meta'],
     commands: ['/acos', '/acos-flow', '/acos-monitor', '/acos-score', '/agentic-jujutsu'],
     color: 'emerald',
@@ -167,9 +167,9 @@ export const ecosystemEntries: EcosystemEntry[] = [
     repoUrl: null,
     status: 'live',
     shipped: '2026-04-23',
-    summary: 'Public catalog of 99 agents across 11 pillars.',
+    summary: 'Public catalog of ACOS agents across 11 pillars.',
     description:
-      'The discoverable index of every specialist agent in ACOS — 11 pillars × 9 specialists each. Pairs with the hook-learning loop (CSV → learned.json → /hook bias) for measurable improvement over time.',
+      'The discoverable index of every specialist agent in ACOS, organized into 11 pillars. Pairs with the hook-learning loop (CSV → learned.json → /hook bias) for measurable improvement over time.',
     relatedSystems: ['acos'],
     commands: ['/acos-agents', '/hook', '/hook-learn'],
     color: 'emerald',
@@ -257,7 +257,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
     repoUrl: null,
     status: 'scaffolded',
     shipped: '2026-04-25',
-    summary: '5-tier premium funnel — €0 Primer to €2,997 Founder Circle.',
+    summary: 'Product ladder from Primer to Founder Circle.',
     description:
       "Test-branch funnel: Primer → Pack → Toolkit → Mastery → Architect → Founder's Circle. Lemon Squeezy + Claude Managed Agents customer service. Routes /start-here, /build, /build/[slug], /founders-circle. Lives on funnel/build-first-ai-agent-v1 branch.",
     relatedSystems: ['workshop-os', 'unified-crm'],
@@ -362,7 +362,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
     repoUrl: null,
     status: 'live',
     shipped: '2026-04-23',
-    summary: 'Operational systems Frank uses to run the business — 5+ modules.',
+    summary: 'Operational systems Frank uses to run the business — ten modules.',
     description:
       'The FrankXOSHeader-unified meta-spine of operational systems. Originally 5 (Watch / Workshop / ACO / ACOS / CoE Hub) — Library OS and the Build First funnel join in the 2026-05-03 reconciliation. Cross-links to /ecosystem for the full picture.',
     relatedSystems: ['watch-os', 'workshop-os', 'aco', 'acos', 'coe-hub', 'library-frankx-surface', 'ecosystem-page'],
@@ -380,7 +380,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
     repoUrl: null,
     status: 'live',
     shipped: '2026-05-03',
-    summary: 'The complete map of every FrankX system — 25+ entries across 4 tiers.',
+    summary: 'The complete map of every FrankX system, grouped across 4 tiers.',
     description:
       "The Arcanea-equivalent for FrankX — every system, repo, and operational tool indexed in one place. Mirrors the arcanea-meta pattern. Powered by data/ecosystem.ts (this file). Built in F1 night session 2026-05-03.",
     relatedSystems: ['frankx-os-meta', 'frankx-meta-skill'],
@@ -483,16 +483,16 @@ export const ecosystemEntries: EcosystemEntry[] = [
     id: 'gencreator',
     name: 'GenCreator',
     slug: 'gencreator',
-    tier: 'tier-2-substrate',
-    layer: 'L5-substrate',
+    tier: 'tier-1-frankx-surface',
+    layer: 'L4-public-face',
     repo: 'gencreator.ai',
     publicUrl: 'https://gencreator.ai',
-    repoUrl: 'https://github.com/frankxai/gencreator.ai',
-    status: 'live',
-    shipped: '2026-05',
-    summary: 'The AI-native creator engine — social campaigns, video scripts, 100-tool stack, and cohort studio.',
+    repoUrl: null,
+    status: 'active',
+    shipped: 'ongoing',
+    summary: 'A creator studio: one idea becomes campaign, article, video and offer drafts you review before anything publishes.',
     description:
-      'Full-stack creator operating platform at gencreator.ai. Powers multi-platform social campaigns, video script pacing, the 100-tool Agentic Creator Stack, persona workflows, and cohort studio.',
+      'Creator studio at gencreator.ai, edition in progress. The first result runs in your browser, exports land on your disk, and you review before anything publishes.',
     relatedSystems: ['acos', 'vibe-os', 'visual-intelligence-system'],
     commands: [],
     color: 'orange',
@@ -681,7 +681,7 @@ export const ECOSYSTEM_TIERS: { id: EcosystemTier; label: string; description: s
   {
     id: 'tier-1-frankx-surface',
     label: 'FrankX Surface',
-    description: 'Live on frankx.ai — what the world sees.',
+    description: 'On frankx.ai or linked from it — what the world sees.',
   },
   {
     id: 'tier-2-substrate',
@@ -705,6 +705,6 @@ export const ECOSYSTEM_LAYERS: { id: EcosystemLayer; label: string; description:
   { id: 'L1-second-brain', label: 'L1 — Second Brain', description: 'Long-form prose that informs decisions.' },
   { id: 'L2-command-center', label: 'L2 — Command Center', description: 'Skills, commands, agents, hooks — the runtime.' },
   { id: 'L3-operational-data', label: 'L3 — Operational Data', description: 'Typed records, MDX content, library code.' },
-  { id: 'L4-public-face', label: 'L4 — Public Face', description: 'Pages, components, static assets — frankx.ai.' },
+  { id: 'L4-public-face', label: 'L4 — Public Face', description: 'Pages, components, static assets — frankx.ai and the product sites it links to.' },
   { id: 'L5-substrate', label: 'L5 — Substrate', description: 'Open-source frameworks others can fork.' },
 ]

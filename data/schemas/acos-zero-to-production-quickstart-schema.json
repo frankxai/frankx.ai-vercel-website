@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "ACOS Quick Start: Zero to Production in 10 Minutes",
+      "description": "Deploy Agentic Creator OS from zero to production in under an hour: prerequisites, repository setup, MCP configuration, and initial deployment.",
+      "url": "https://frankx.ai/blog/acos-zero-to-production-quickstart",
+      "datePublished": "2026-01-27",
+      "dateModified": "2026-01-27",
+      "author": {
+        "@type": "Person",
+        "name": "Frank",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/acos-zero-to-production-quickstart"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/blog/acos-quick-start-hero.png"
+      },
+      "keywords": "acos quick start, agentic creator os tutorial, claude code setup, ai productivity setup, acos installation",
+      "abstract": "This zero-to-production quickstart walks through configuring Agentic Creator OS from scratch. In under an hour, developers set up environment variables, connect essential MCP servers, and run their first orchestrated multi-agent workflow."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are the prerequisites for running ACOS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Node.js v20+, an Anthropic API key, Git, and a modern terminal environment (PowerShell, Bash, or Zsh)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does the initial setup take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The foundational quickstart can be completed and verified in approximately 30 to 45 minutes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which MCP servers should I configure first?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Start with the Memory server for persistent context and the Filesystem server for local project navigation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does ACOS require paid software subscriptions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ACOS itself is open-source. You only pay for model API consumption through your own Anthropic or OpenAI API keys."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I test that ACOS is operating correctly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Execute the built-in smoke test suite to verify agent registration, tool calling, and quality gate scripts."
+          }
+        }
+      ]
+    }
+  ]
+}

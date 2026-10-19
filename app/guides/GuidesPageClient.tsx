@@ -51,7 +51,7 @@ const GUIDE_CATEGORIES = [
     icon: Image,
     color: 'from-purple-500/20 to-pink-500/20',
     iconColor: 'text-purple-400',
-    slugs: ['higgsfield-ai-video-guide', 'midjourney-guide', 'image-generation-mastery', 'product-photography-ai', 'brand-identity-design']
+    slugs: ['higgsfield-ai-video-guide', 'midjourney-guide', 'image-generation-mastery', 'mini-me-storyboard', 'product-photography-ai', 'brand-identity-design']
   },
   {
     id: 'content',

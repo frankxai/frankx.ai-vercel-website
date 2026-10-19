@@ -125,7 +125,7 @@ export default function AIContemplativePracticePage() {
         }}
       />
 
-      <div className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
+      <div className="mx-auto max-w-3xl px-6 pb-16 pt-28 sm:pb-24 md:pt-36">
         {/* Back link */}
         <Link
           href="/research"

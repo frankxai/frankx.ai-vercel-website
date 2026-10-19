@@ -1,17 +1,60 @@
 ---
-title: "AI Agent Memory: From Chat History to Persistent Systems"
-description: "How to give AI agents memory that persists across sessions — CLAUDE.md, mem0, ChromaDB, and the architecture that makes agents smarter over time."
-date: "2026-03-21"
-lastUpdated: "2026-08-18"
-author: "FrankX"
-category: "Intelligence Dispatches"
-tags: ["AI Memory", "Agent Architecture", "Claude Code", "RAG", "MCP"]
-image: "/images/ai-art/digital-knowledge-flow.png"
+title: 'AI Agent Memory: From Chat History to Persistent Systems'
+description: >-
+  How to give AI agents memory that persists across sessions — CLAUDE.md, mem0,
+  ChromaDB, and the architecture that makes agents smarter over time.
+date: '2026-03-21'
+author: FrankX
+category: Intelligence Dispatches
+tags:
+  - AI Memory
+  - Agent Architecture
+  - Claude Code
+  - RAG
+  - MCP
+image: /images/ai-art/digital-knowledge-flow.png
 featured: false
-readingGoal: "You will understand the memory architecture for AI agents — from ephemeral chats to persistent systems that compound knowledge across sessions."
-tldr: "Most AI conversations start from zero. Every session, you re-explain your project, your preferences, your constraints. Agent memory systems solve this. The stack: CLAUDE.md for project memory, mem0 for cross-session user memory, ChromaDB for semantic search over documents, and knowledge graphs for entity relationships. This guide covers each layer, how they connect, and the exact setup I run."
-keywords: ["intelligence dispatches", "ai memory", "agent architecture", "claude code", "rag", "mcp"]
+keywords:
+  - ai agent memory
+  - persistent memory ai
+  - claude code memory
+  - mem0 mcp
+  - ai agent context
+readingGoal: >-
+  You will understand the memory architecture for AI agents — from ephemeral
+  chats to persistent systems that compound knowledge across sessions.
+tldr: >-
+  Persistent memory is the defining capability of production AI agents. By
+  combining short-term working context, semantic vector retrieval, and
+  structured JSON entity graphs, agents maintain coherence and institutional
+  knowledge across sessions.
+schema:
+  - Article
+  - FAQPage
+faq:
+  - question: What are the three layers of AI agent memory?
+    answer: >-
+      Immediate working context (active prompt window), episodic memory (vector
+      retrieval of past conversations), and semantic memory (structured
+      knowledge graphs).
+  - question: How do you prevent memory bloat in long-running agents?
+    answer: >-
+      Through periodic summarization, memory compaction routines, and relevance
+      score thresholds during retrieval.
+  - question: What database technologies power agent memory?
+    answer: >-
+      Vector databases like Qdrant and pgvector combined with relational or
+      key-value stores like SQLite and DynamoDB.
+  - question: How does MCP standardize memory access?
+    answer: >-
+      Via dedicated memory MCP servers that expose standard tools for creating,
+      reading, updating, and querying relation graphs.
+  - question: How do agents resolve conflicting memories?
+    answer: >-
+      By applying timestamp precedence and source validation trust scores to
+      prioritize recent and higher-authority data.
 ---
+
 **TL;DR:** Most AI conversations start from zero. Agent memory fixes this with four layers: session memory (ephemeral), project memory (CLAUDE.md — persistent in the codebase), user memory (mem0 — cross-session facts), and knowledge memory (ChromaDB — semantic search). Together they create agents that compound — getting smarter with every session.
 
 ---

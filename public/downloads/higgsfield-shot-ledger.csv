@@ -1,0 +1,4 @@
+shot_id,attempt,model,prompt_version,reference,credits,job_id,status,accepted,reason,next_change
+S01,1,,v1,,,,pending,no,,
+S02,1,,v1,,,,pending,no,,
+S03,1,,v1,,,,pending,no,,

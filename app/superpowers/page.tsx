@@ -44,6 +44,7 @@ import {
 
 import superpowersData from '@/data/tools/superpowers.json'
 import programsData from '@/data/affiliate/programs.json'
+import { programToRecord, sponsorDecision } from '@/lib/tools/record'
 
 const categoryIcons: Record<string, any> = {
   'content-creation': FileText,
@@ -63,26 +64,14 @@ export default function SuperpowersPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [searchQuery, setSearchQuery] = useState('')
 
-  // Map ourLink from programs.json to look up affiliate links dynamically
-  const affiliateLinks = useMemo(() => {
-    const map = new Map<string, string>()
-    programsData.programs.forEach((p: any) => {
-      if (p.ourLink) {
-        map.set(p.tool.toLowerCase(), p.ourLink)
-      }
-    })
-    return map
-  }, [])
-
-  const getToolLink = (toolName: string, defaultLink = '#') => {
-    const affiliateLink = affiliateLinks.get(toolName.toLowerCase())
-    if (affiliateLink) return affiliateLink
-
-    // If it's a known non-affiliate tool, try to link to its official site or signupUrl
+  const getToolLink = (toolName: string) => {
     const matchedProgram = programsData.programs.find(
-      (p: any) => p.tool.toLowerCase() === toolName.toLowerCase()
+      (p) => p.tool.toLowerCase() === toolName.toLowerCase()
     )
-    return matchedProgram?.signupUrl || defaultLink
+    if (!matchedProgram) return null
+    const decision = sponsorDecision(programToRecord(matchedProgram))
+    if (!decision.sponsored || !decision.href) return null
+    return { href: decision.href, rel: decision.rel }
   }
 
   // Filter categories and tools based on search and selected category
@@ -353,11 +342,11 @@ export default function SuperpowersPage() {
                                         {tool.price && (
                                           <span className="text-xs text-slate-500 font-mono">{tool.price}</span>
                                         )}
-                                        {link !== '#' && (
+                                        {link && (
                                           <a 
-                                            href={link}
+                                            href={link.href}
                                             target="_blank"
-                                            rel="noopener noreferrer"
+                                            rel={link.rel}
                                             className="inline-flex items-center gap-1 text-xs text-purple-400 hover:text-purple-300 font-semibold group/link"
                                           >
                                             <span>Acquire</span>
@@ -571,7 +560,9 @@ export default function SuperpowersPage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-800/50 text-slate-300">
-                      {payingPrograms.map((p: any, idx: number) => (
+                      {payingPrograms.map((p: any, idx: number) => {
+                        const decision = sponsorDecision(programToRecord(p))
+                        return (
                         <tr key={idx} className="hover:bg-slate-900/10 transition-colors">
                           <td className="px-6 py-4 font-semibold text-white">{p.tool}</td>
                           <td className="px-6 py-4 capitalize">{p.category}</td>
@@ -579,22 +570,23 @@ export default function SuperpowersPage() {
                           <td className="px-6 py-4 font-mono text-xs">{p.recurring}</td>
                           <td className="px-6 py-4 text-xs">{p.network}</td>
                           <td className="px-6 py-4">
-                            {p.ourLink ? (
-                              <a 
-                                href={p.ourLink} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
+                            {decision.sponsored && decision.href ? (
+                              <a
+                                href={decision.href}
+                                target="_blank"
+                                rel={decision.rel}
                                 className="inline-flex items-center gap-1 text-purple-400 hover:text-purple-300 font-semibold"
                               >
-                                <span>go.agenticincome.ai</span>
+                                <span>Partner link</span>
                                 <ExternalLink className="w-3 h-3" />
                               </a>
                             ) : (
-                              <span className="text-slate-600">—</span>
+                              <span className="text-slate-600">Not a live hop</span>
                             )}
                           </td>
                         </tr>
-                      ))}
+                        )
+                      })}
                     </tbody>
                   </table>
                 </div>

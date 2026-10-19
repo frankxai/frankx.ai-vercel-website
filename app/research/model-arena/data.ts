@@ -99,22 +99,10 @@ export interface ArenaRound {
 // The last-measured date now comes from lib/intelligence/receipts.ts `lastMeasured()`,
 // derived from the receipt files themselves — a hardcoded copy here could drift.
 
-// Retained historical rounds (Claude-focused) + placeholder for new wave runs
+// ROUNDS array is for public-report orientation entries only.
+// Harness-measured rounds come directly from receipt files in public/research/arena-receipts/
+// via lib/intelligence/receipts.ts — the page renders those via getReceipts().
 export const ROUNDS: ArenaRound[] = [
-  // ... (retain prior rounds for continuity; abbreviated here for file size)
-  {
-    id: 'round-5-sonnet5-arrives',
-    date: '2026-07-01',
-    title: 'Round 5 — Sonnet 5 Arrives',
-    card: 'Claude Sonnet 5 shipped 2026-06-30. ...',
-    contestants: ['Sonnet 5', 'Opus 4.8', 'Haiku 4.5'],
-    judged: false,
-    evidence: 'harness',
-    tally: 'Sonnet 5 2/2 · Opus 4.8 2/2 · Haiku 4.5 2/2 (both tasks saturated)',
-    headline: 'Every contestant solved both tasks...',
-    tasks: [ /* ... */ ],
-    receiptUrl: '/research/arena-receipts/2026-07-01-r5-sonnet5-arrives.json',
-  },
   // August 2026 Wave — compiled from public vendor reports. NOT a harness run: no round was
   // dispatched, no receipt exists. Kept as routing orientation only, labelled as such on the page.
   {

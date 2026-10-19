@@ -1,9 +1,280 @@
 {
   "_description": "FrankX Frontier Model Registry - Single source of truth for all AI model data",
   "_version": "1.0.0",
-  "_updated": "2026-09-13",
+  "_updated": "2026-10-09",
   "_maintainer": "FrankX Intelligence Pipeline (/new-model command)",
   "models": {
+    "claude-opus-5-5": {
+      "name": "Claude Opus 5.5",
+      "id": "claude-opus-5-5",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2026-09-22",
+      "status": "ga",
+      "context_window": 1000000,
+      "max_output_tokens": 128000,
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "capabilities": [
+        "reasoning",
+        "multimodal",
+        "coding",
+        "agentic-infra"
+      ],
+      "pricing": {
+        "input_per_1m": 4,
+        "output_per_1m": 20,
+        "cached_input_per_1m": 0.2,
+        "verified_at": "2026-10-09",
+        "scope": "Standard Claude API rates in USD; cache writes, batch, fast mode, geography and partner-platform modifiers excluded."
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "Text and image input; text output",
+        "1M-token context and 128K maximum output",
+        "Adaptive thinking is always on; default effort is medium",
+        "Cache reads cost $0.20 per million tokens (0.05x base input)",
+        "Fast mode (research preview, Claude API only) is priced at $8/$40 per million tokens"
+      ],
+      "acos_tier": "opus",
+      "frankx_notes": "Released 22 September 2026. As of 9 October 2026, Anthropic's model overview recommends starting with Opus 5.5 for most workloads and using Fable 5.1 for demanding reasoning and long-horizon agentic work. Launch-post benchmarks are vendor-reported and are not recorded here. No first-party FrankX evaluation is recorded for this model.",
+      "sources": [
+        "https://www.anthropic.com/claude-opus-5-5",
+        "https://platform.claude.com/docs/en/about-claude/models/overview",
+        "https://platform.claude.com/docs/en/about-claude/pricing"
+      ],
+      "last_verified": "2026-10-09",
+      "verification_scope": "Release date, model ID, context/output limits, modalities, thinking mode, default effort, vendor-stated positioning and standard API pricing; no benchmarks recorded and no independent capability evaluation."
+    },
+    "claude-sonnet-5-5": {
+      "name": "Claude Sonnet 5.5",
+      "id": "claude-sonnet-5-5",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2026-09-28",
+      "status": "ga",
+      "context_window": 1000000,
+      "max_output_tokens": 128000,
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "capabilities": [
+        "reasoning",
+        "multimodal",
+        "coding",
+        "agentic-infra"
+      ],
+      "pricing": {
+        "input_per_1m": 2,
+        "output_per_1m": 10,
+        "cached_input_per_1m": 0.1,
+        "verified_at": "2026-10-09",
+        "scope": "Standard Claude API rates in USD; cache writes, batch, fast mode, geography and partner-platform modifiers excluded."
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "Text and image input; text output",
+        "1M-token context and 128K maximum output",
+        "Adaptive thinking; default effort is high",
+        "Cache reads cost $0.10 per million tokens (0.05x base input) from 7 October 2026; the launch rate was $0.20"
+      ],
+      "acos_tier": "sonnet",
+      "frankx_notes": "Released 28 September 2026 at the same $2/$10 list price as Sonnet 5. Anthropic cut the cache-read rate to $0.10 per million tokens on 7 October 2026. Launch-post benchmarks are vendor-reported and are not recorded here. No first-party FrankX evaluation is recorded for this model.",
+      "sources": [
+        "https://www.anthropic.com/claude-sonnet-5-5",
+        "https://www.anthropic.com/claude-haiku-5-5",
+        "https://platform.claude.com/docs/en/about-claude/models/overview",
+        "https://platform.claude.com/docs/en/about-claude/pricing"
+      ],
+      "last_verified": "2026-10-09",
+      "verification_scope": "Release date, model ID, context/output limits, modalities, thinking mode, default effort and standard API pricing including the 7 October 2026 cache-read change; no benchmarks recorded and no independent capability evaluation."
+    },
+    "claude-haiku-5-5": {
+      "name": "Claude Haiku 5.5",
+      "id": "claude-haiku-5-5",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2026-10-07",
+      "status": "ga",
+      "context_window": 1000000,
+      "max_output_tokens": 128000,
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "capabilities": [
+        "reasoning",
+        "multimodal",
+        "coding",
+        "agentic-infra"
+      ],
+      "pricing": {
+        "input_per_1m": 0.1,
+        "output_per_1m": 0.5,
+        "cached_input_per_1m": 0.01,
+        "input_per_1m_over_100k": 0.5,
+        "output_per_1m_over_100k": 2.5,
+        "cached_input_per_1m_over_100k": 0.05,
+        "verified_at": "2026-10-09",
+        "scope": "Standard Claude API rates in USD for prompts up to 100,000 tokens. A request whose prompt is over 100,000 tokens pays $0.50 / $2.50 per million input/output tokens for the full request. Cache writes, batch, geography and partner-platform modifiers excluded."
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "Text and image input; text output",
+        "1M-token context and 128K maximum output",
+        "Default effort is medium",
+        "Priced by prompt length: $0.10/$0.50 per million tokens up to 100K prompt tokens, $0.50/$2.50 above"
+      ],
+      "acos_tier": "haiku",
+      "frankx_notes": "Released 7 October 2026. Pricing changes at a 100,000-token prompt threshold, so long-context requests cost five times the short-prompt rate. Launch-post benchmarks are vendor-reported and are not recorded here. No first-party FrankX evaluation is recorded for this model.",
+      "sources": [
+        "https://www.anthropic.com/claude-haiku-5-5",
+        "https://platform.claude.com/docs/en/about-claude/models/overview",
+        "https://platform.claude.com/docs/en/about-claude/pricing"
+      ],
+      "last_verified": "2026-10-09",
+      "verification_scope": "Release date, model ID, context/output limits, modalities, default effort and both prompt-length price bands; no benchmarks recorded and no independent capability evaluation."
+    },
+    "gpt-6-1-sol": {
+      "name": "GPT-6.1 Sol",
+      "id": "gpt-6.1-sol",
+      "organization": "openai",
+      "family": "gpt",
+      "released": "2026-09-29",
+      "status": "ga",
+      "context_window": 1050000,
+      "max_output_tokens": 128000,
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "capabilities": [
+        "reasoning",
+        "multimodal",
+        "coding",
+        "agentic-infra"
+      ],
+      "pricing": {
+        "scope": "Standard USD rates for prompts up to 272K input tokens. A request with more than 272K input tokens pays $4 / $15 per million input/output tokens ($0.20 cached input) for the full request. Cache writes, tools and other processing tiers are charged separately.",
+        "verified_at": "2026-10-09",
+        "input_per_1m": 2,
+        "output_per_1m": 10,
+        "cached_input_per_1m": 0.1,
+        "input_per_1m_over_272k": 4,
+        "output_per_1m_over_272k": 15,
+        "cached_input_per_1m_over_272k": 0.2
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "Text and image input; text output",
+        "1,050,000-token context window (922,000 maximum input) and 128,000 maximum output",
+        "API reasoning effort: low, medium (default), high, xhigh, max",
+        "Fast mode is priced at 2x and Ultrafast at 6x the applicable rates; Batch and Flex at 50%",
+        "Available in ChatGPT Work, Codex and the API at launch; not yet in Chat",
+        "Priced by prompt length: $2/$10 per million tokens up to 272K input tokens, $4/$15 above (cached input $0.10, then $0.20)"
+      ],
+      "frankx_notes": "Released 29 September 2026 as the newer Sol model, one week after GPT-6 Sol, at the same $2/$10 list price with cached input at $0.10. Launch-page benchmarks are vendor-reported and are not recorded here. No first-party FrankX evaluation is recorded for this model.",
+      "sources": [
+        "https://openai.com/index/introducing-gpt-6-1-sol/",
+        "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+        "https://deploymentsafety.openai.com/gpt-6-1-sol",
+        "https://developers.openai.com/api/docs/pricing"
+      ],
+      "last_verified": "2026-10-09",
+      "verification_scope": "Release date, model ID, context/input/output limits, modalities, reasoning effort levels, availability and standard API pricing, including the long-context rates for prompts over 272K tokens (input $4, output $15, cached input $0.20 per million tokens, OpenAI pricing page https://developers.openai.com/api/docs/pricing); no benchmarks recorded and no independent capability evaluation."
+    },
+    "gpt-6-sol": {
+      "name": "GPT-6 Sol",
+      "id": "gpt-6-sol",
+      "organization": "openai",
+      "family": "gpt",
+      "released": "2026-09-22",
+      "status": "ga",
+      "context_window": 1050000,
+      "max_output_tokens": 128000,
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "capabilities": [
+        "reasoning",
+        "multimodal",
+        "coding",
+        "agentic-infra"
+      ],
+      "pricing": {
+        "scope": "Base Standard USD rates for prompts up to 272K input tokens. OpenAI's model page states that prompts with more than 272K input tokens are priced at 2x input and cache rates and 1.5x output for the full request; it lists no separate long-context price row. Cache writes, tools and other processing tiers are charged separately.",
+        "verified_at": "2026-10-09",
+        "input_per_1m": 2,
+        "output_per_1m": 10,
+        "cached_input_per_1m": 0.2
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "Text and image input; text output",
+        "1,050,000-token context window (922,000 maximum input) and 128,000 maximum output",
+        "API reasoning effort: none, low, medium (default), high, xhigh, max",
+        "Batch and Flex are priced at 50% of Standard; fast mode at 2x",
+        "Listed $2/$10 is the base rate up to 272K input tokens; above 272K, OpenAI charges 2x input and cache rates and 1.5x output for the full request"
+      ],
+      "frankx_notes": "Released 22 September 2026 alongside GPT-6 Luna, at half the GPT-5.6 Sol promotional API price. OpenAI's model page points to GPT-6.1 Sol (29 September 2026) as the newer Sol model. Launch-page benchmarks are vendor-reported and are not recorded here. No first-party FrankX evaluation is recorded for this model.",
+      "sources": [
+        "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+        "https://developers.openai.com/api/docs/models/gpt-6-sol"
+      ],
+      "last_verified": "2026-10-09",
+      "verification_scope": "Release date, model ID, context/input/output limits, modalities, reasoning effort levels and standard API pricing; no benchmarks recorded and no independent capability evaluation."
+    },
+    "grok-4-7": {
+      "name": "Grok 4.7",
+      "id": "grok-4.7",
+      "organization": "xai",
+      "family": "grok",
+      "released": "2026-09-21",
+      "status": "ga",
+      "context_window": 500000,
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "capabilities": [
+        "reasoning",
+        "multimodal",
+        "coding",
+        "agentic-infra"
+      ],
+      "pricing": {
+        "input_per_1m": 2,
+        "output_per_1m": 6,
+        "cached_input_per_1m": 0.5,
+        "input_per_1m_over_200k": 4,
+        "output_per_1m_over_200k": 12,
+        "cached_input_per_1m_over_200k": 1,
+        "verified_at": "2026-10-09",
+        "scope": "xAI API rates in USD for prompts under 200K tokens; a request with 200K prompt tokens or more pays $4 / $12 per million input/output tokens ($1 cached input). Tool calls, the US regional endpoint premium and the Cursor/Grok Build fast variant are excluded."
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "New, larger base model than Grok 4.6 (vendor-stated); parameter count undisclosed",
+        "500k context window",
+        "Text and image input, text output",
+        "Reasoning effort: low, medium, high (default), xhigh",
+        "Function calling, web search, X search and code execution via the Responses API",
+        "Priced by prompt length: $2/$6 per million tokens below 200K prompt tokens, $4/$12 at 200K and above (cached input $0.50, then $1)"
+      ],
+      "frankx_notes": "Released 21 September 2026 at the same $2/$6 list price as Grok 4.6. xAI describes it as a new, larger base model. A 2x-priced fast variant is offered only in Cursor and Grok Build. Launch-post benchmarks are vendor-reported and are not recorded here. No Starlight Model Arena receipt or other FrankX evaluation is recorded for this model.",
+      "sources": [
+        "https://x.ai/news/grok-4-7",
+        "https://docs.x.ai/developers/grok-4-7",
+        "https://docs.x.ai/developers/release-notes",
+        "https://docs.x.ai/developers/pricing"
+      ],
+      "last_verified": "2026-10-09",
+      "verification_scope": "Release date, API model name, context window, modalities, reasoning effort levels, tools and both price bands; no benchmarks recorded and no independent capability evaluation."
+    },
     "gpt-6-astra": {
       "name": "GPT-6 Astra",
       "id": "gpt-6-astra",
@@ -95,14 +366,14 @@
         "Cache reads cost $0.25 per million tokens; input and output prices are unchanged from Fable 5"
       ],
       "acos_tier": "fable",
-      "frankx_notes": "Current Fable release, verified against Anthropic model documentation on 13 September 2026. Anthropic recommends Opus 5 for most workloads and Fable 5.1 for demanding reasoning or long-horizon work where Opus evaluation results fall short. No first-party FrankX evaluation is recorded for this version. Fable 5 arena receipts remain historical evidence for that earlier model.",
+      "frankx_notes": "Current Fable release, verified against Anthropic model documentation on 13 September 2026. On 13 September 2026 Anthropic recommended Opus 5 for most workloads and Fable 5.1 for demanding reasoning or long-horizon work where Opus evaluation results fall short. As of 9 October 2026 the model overview recommends Opus 5.5 for most workloads and keeps Fable 5.1 for demanding reasoning and long-horizon agentic work. No first-party FrankX evaluation is recorded for this version. Fable 5 arena receipts remain historical evidence for that earlier model.",
       "sources": [
         "https://platform.claude.com/docs/en/models/fable-5-1/overview",
         "https://www.anthropic.com/claude-fable-and-mythos-5-1",
         "https://platform.claude.com/docs/en/about-claude/pricing"
       ],
-      "last_verified": "2026-09-13",
-      "verification_scope": "Release date, model ID, availability, context/output limits, modalities, pricing and vendor-stated positioning; no independent capability evaluation."
+      "last_verified": "2026-10-09",
+      "verification_scope": "Vendor-stated positioning re-checked on 2026-10-09 against the Claude model overview; release date, model ID, availability, context/output limits, modalities and pricing verified on 2026-09-13; no independent capability evaluation."
     },
     "claude-fable-5": {
       "name": "Claude Fable 5",
@@ -175,7 +446,7 @@
         "Frontier-class agentic coding and computer use at unchanged Opus pricing"
       ],
       "acos_tier": "opus",
-      "frankx_notes": "Shipped 24 July 2026 at the unchanged Opus price of $5/$25, which makes it half the cost of Fable 5 while reporting higher coding numbers - the routing question between the two Anthropic flagships is now cost and task shape, not capability tiers. Benchmarks are vendor-reported. Note that published leaderboards disagree on ordering at the top of SWE-Bench Verified: DeepSeek V4 Pro 0813 reports 96.4% against this model's 96.0%, and different trackers rank them differently, so treat any '#1' claim as source-dependent.",
+      "frankx_notes": "Shipped 24 July 2026 at the unchanged Opus price of $5/$25, which makes it half the cost of Fable 5 while reporting higher coding numbers - at launch the routing question between the two Anthropic flagships was cost and task shape. Benchmarks are vendor-reported. Note that published leaderboards disagree on ordering at the top of SWE-Bench Verified: DeepSeek V4 Pro 0813 reports 96.4% against this model's 96.0%, and different trackers rank them differently, so treat any '#1' claim as source-dependent.",
       "sources": [
         "https://www.anthropic.com/news/claude-opus-5",
         "https://platform.claude.com/docs/en/models/overview",
@@ -384,7 +655,7 @@
         "Standard $2/$10 pricing; the previously announced September price increase was cancelled"
       ],
       "acos_tier": "sonnet",
-      "frankx_notes": "Supersedes Sonnet 4.6 as the mid-tier default. Pricing checked 7 September 2026: Anthropic retains $2/$10 standard pricing after cancelling the announced September increase. Opus still leads hard agentic coding (69.2% vs 63.2% SWE-Bench Pro on Opus 4.8, and further on Opus 5), which Anthropic states in its own launch material as reported by multiple outlets. Benchmarks are vendor-reported. The Starlight Model Arena does hold a receipt for this model - round 5, 2026-07-01, published at /research/arena-receipts/2026-07-01-r5-sonnet5-arrives.json.",
+      "frankx_notes": "Supersedes Sonnet 4.6. Pricing checked 7 September 2026: Anthropic retains $2/$10 standard pricing after cancelling the announced September increase.",
       "sources": [
         "https://platform.claude.com/docs/en/models/sonnet-5/overview",
         "https://platform.claude.com/docs/en/models/overview",
@@ -495,18 +766,16 @@
       },
       "benchmarks": {
         "aa_intelligence_index": 53,
-        "gdpval_aa": 1500,
-        "output_tokens_per_sec": 181.3
+        "gdpval_aa": 1500
       },
       "key_capabilities": [
         "Always-on reasoning by default",
         "1M-token context window",
         "Native video input (first for xAI API)",
         "Custom Voices voice-cloning suite",
-        "Agentic tool use (web search, Python sandbox, PDF/Excel/PPTX generation)",
-        "Highest output throughput in its price tier (~181 tok/s)"
+        "Agentic tool use (web search, Python sandbox, PDF/Excel/PPTX generation)"
       ],
-      "frankx_notes": "Not a benchmark leader — sits ~8 points below Claude Opus 4.8 on the AA Intelligence Index. The play is intelligence-per-dollar: ~10x cheaper output than Opus-tier with the fastest throughput in its class. Context window shrank from 2M to 1M, and reasoning can no longer be turned off. SWE-bench Verified / ARC-AGI-2 scores specific to 4.3 were not independently published, so they are omitted rather than recycled from older Grok versions.",
+      "frankx_notes": "Not a benchmark leader — sits ~8 points below Claude Opus 4.8 on the AA Intelligence Index. The play is intelligence-per-dollar: ~10x cheaper output than Opus-tier. Context window shrank from 2M to 1M, and reasoning can no longer be turned off. SWE-bench Verified / ARC-AGI-2 scores specific to 4.3 were not independently published, so they are omitted rather than recycled from older Grok versions.",
       "sources": [
         "https://artificialanalysis.ai/articles/xai-launches-grok-4-3-with-improved-agentic-performance-and-lower-pricing",
         "https://docs.x.ai/developers/models/grok-4.3",
@@ -640,6 +909,37 @@
       "last_verified": "2026-09-13",
       "verification_scope": "Release date, model ID, stable availability, input/output limits, modalities, API capabilities and pricing; no independent capability evaluation."
     },
+    "gemini-omni-flash": {
+      "name": "Gemini Omni Flash",
+      "id": "gemini-omni-1.1-flash",
+      "organization": "google",
+      "family": "gemini",
+      "status": "ga",
+      "context_window": 1048576,
+      "modalities": [
+        "text",
+        "vision",
+        "video"
+      ],
+      "capabilities": [
+        "multimodal",
+        "video-gen"
+      ],
+      "key_capabilities": [
+        "Input: text, image and video (video up to 10s for editing and extension); output: video",
+        "Output video 3s-10s at 360p, 720p, 1080p or 4K, 24 FPS; 1,048,576-token context window",
+        "Text- and image-to-video generation, conversational editing through the Interactions API, video extension, resolution upscaling and interpolation (vendor-described)",
+        "Paid tier only, USD per million tokens: input $1.50 (text/image/video/audio); output $9.00 text, $17.50 video. Google bills video output at 5,792 tokens per second of 720p video, about $0.10 per second."
+      ],
+      "frankx_notes": "Stable Gemini API release of Google's Omni video model; the preview version is gemini-omni-flash-preview. No FrankX video-workflow evaluation is recorded, so this entry establishes no ranking or production recommendation. Video rates are listed in key capabilities and are not text-token estimates.",
+      "sources": [
+        "https://ai.google.dev/gemini-api/docs/models/gemini-omni-flash",
+        "https://ai.google.dev/gemini-api/docs/pricing",
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni/"
+      ],
+      "last_verified": "2026-10-09",
+      "verification_scope": "Model ID, stable and preview versions, input/output types, context and output-video limits, and paid-tier pricing from Google's Gemini API model and pricing pages; release date not recorded; no benchmarks and no independent capability evaluation."
+    },
     "gemini-3-7-flash": {
       "name": "Gemini 3.7 Flash",
       "id": "gemini-3.7-flash",
@@ -709,7 +1009,7 @@
         "MCP-native tool use (83.6% MCP Atlas)",
         "Full multimodal: text, vision, audio, video"
       ],
-      "frankx_notes": "The one Google actually shipped at the 3.5 line. Beats the prior Gemini 3.1 Pro tier on agentic coding (Terminal-Bench 2.1 76.2%) at Flash pricing — the new default agent runtime. Gemini 3.5 Pro remains in limited preview as of June 2026.",
+      "frankx_notes": "The one Google actually shipped at the 3.5 line. Beats the prior Gemini 3.1 Pro tier on agentic coding (Terminal-Bench 2.1 76.2%) at Flash pricing. Gemini 3.5 Pro remains in limited preview as of June 2026.",
       "sources": [
         "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
         "https://deepmind.google/models/model-cards/gemini-3-5-flash/",
@@ -829,7 +1129,9 @@
         "input_per_1m": 0.66,
         "output_per_1m": 1.98,
         "peak_input_per_1m": 1.32,
-        "peak_output_per_1m": 3.96
+        "peak_output_per_1m": 3.96,
+        "verified_at": "2026-10-09",
+        "scope": "Off-peak DeepSeek API rates (cache-miss input, output). Peak rates are double: input $1.32, output $3.96 per million tokens, 01:00-04:00 and 06:00-10:00 UTC Monday to Friday, excluding Chinese public holidays. Cache-hit input is $0.022 off-peak and $0.044 peak."
       },
       "benchmarks": {
         "swe_bench_verified": 96.4,
@@ -842,15 +1144,18 @@
         "Pretrained on 32T+ tokens (vendor-stated)",
         "Peak/off-peak billing since 2026-08-16 16:00 UTC"
       ],
-      "frankx_notes": "GA on 13 August 2026, ending the preview that began in April; a tier above DeepSeek V4, not a replacement for it. Read its benchmarks together rather than selectively: 96.4% on SWE-bench Verified - at or near the top of published tables, though trackers disagree on the exact ordering against Claude Opus 5's 96.0% - yet last of seven frontier peers on LiveBench agentic coding. That spread is the story - a headline score here does not predict agent behaviour. Prices rose sharply on 2026-08-16 (up to 12x on some lanes) and now vary peak/off-peak; recorded pricing is off-peak. Vendor figures await independent proof. The Model Arena's August 2026 wave lists this model, but that wave is labelled in its own source as synthesized from public reports pending harness verification - treat it as routing guidance, not a first-party receipt.",
+      "frankx_notes": "GA on 13 August 2026, ending the preview that began in April; a tier above DeepSeek V4, not a replacement for it. Read its benchmarks together rather than selectively: 96.4% on SWE-bench Verified, yet last of seven frontier peers on LiveBench agentic coding. That spread is the story - a headline score here does not predict agent behaviour. Prices rose sharply on 2026-08-16 (up to 12x on some lanes) and now vary peak/off-peak; recorded pricing is off-peak. Vendor figures await independent proof. The Model Arena's August 2026 wave lists this model, but that wave is labelled in its own source as synthesized from public reports pending harness verification - treat it as routing guidance, not a first-party receipt.",
       "sources": [
+        "https://api-docs.deepseek.com/quick_start/pricing",
         "https://openrouter.ai/deepseek/deepseek-v4-pro-0813",
         "https://artificialanalysis.ai/models/deepseek-v4-pro",
         "https://www.techtimes.com/articles/324241/20260813/deepseek-v4-pro-0813-goes-ga-benchmark-claims-await-independent-proof.htm",
         "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813"
       ],
       "open_weights": true,
-      "open_weights_verified_at": "2026-09-10"
+      "open_weights_verified_at": "2026-09-10",
+      "last_verified": "2026-10-09",
+      "verification_scope": "Model version (DeepSeek-V4-Pro-0813 behind deepseek-v4-pro) and off-peak/peak API pricing from DeepSeek's official pricing page; no independent capability evaluation."
     },
     "deepseek-v4": {
       "name": "DeepSeek V4",
@@ -1387,6 +1692,53 @@
         "https://developers.openai.com/api/docs/pricing"
       ],
       "frankx_notes": "Evaluate complete asset workflows, including identity preservation, exact copy, correction time, retries and cost per approved asset. No ranking or production recommendation is established by this entry."
+    },
+    "claude-haiku-4-5-20251001": {
+      "name": "Claude Haiku 4.5",
+      "id": "claude-haiku-4-5-20251001",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2025-10-01",
+      "status": "available",
+      "architecture": "dense",
+      "context_window": 200000,
+      "max_output_tokens": 16000,
+      "modalities": [
+        "text",
+        "vision",
+        "code"
+      ],
+      "pricing": {
+        "input_per_1m": 0.8,
+        "output_per_1m": 4.0
+      },
+      "acos_tier": "haiku",
+      "sources": []
+    },
+    "grok-4.3": {
+      "name": "Grok 4.3",
+      "id": "grok-4.3",
+      "organization": "xai",
+      "family": "grok",
+      "released": "2026-04-30",
+      "status": "previous",
+      "architecture": "dense",
+      "context_window": 1000000,
+      "modalities": [
+        "text",
+        "vision",
+        "video"
+      ],
+      "pricing": {
+        "input_per_1m": 1.25,
+        "output_per_1m": 2.5,
+        "cached_input_per_1m": 0.2
+      },
+      "sources": [
+        "https://artificialanalysis.ai/articles/xai-launches-grok-4-3-with-improved-agentic-performance-and-lower-pricing",
+        "https://docs.x.ai/developers/models/grok-4.3",
+        "https://venturebeat.com/technology/xai-launches-grok-4-3-at-an-aggressively-low-price-and-a-new-fast-powerful-voice-cloning-suite"
+      ]
     }
   },
   "organizations": {
@@ -1394,6 +1746,9 @@
       "name": "Anthropic",
       "url": "https://anthropic.com",
       "models": [
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "claude-haiku-5-5",
         "claude-fable-5-1",
         "claude-sonnet-5",
         "claude-opus-5",
@@ -1411,6 +1766,8 @@
       "name": "OpenAI",
       "url": "https://openai.com",
       "models": [
+        "gpt-6-1-sol",
+        "gpt-6-sol",
         "gpt-6-astra",
         "gpt-5-5",
         "gpt-5-2-pro",
@@ -1425,6 +1782,7 @@
       "url": "https://deepmind.google",
       "models": [
         "gemini-3-8-flash",
+        "gemini-omni-flash",
         "gemini-3-7-flash",
         "gemini-3-5-pro",
         "gemini-3-5-flash",
@@ -1437,11 +1795,12 @@
       "name": "xAI",
       "url": "https://x.ai",
       "models": [
+        "grok-4-7",
         "grok-4-6",
         "grok-4-3",
         "grok-4-1"
       ],
-      "flagship_model_id": "grok-4-6"
+      "flagship_model_id": "grok-4-7"
     },
     "meta": {
       "name": "Meta AI",
@@ -1498,6 +1857,6 @@
     "haiku": "claude-haiku-4-5",
     "fable": "claude-fable-5-1"
   },
-  "last_updated": "2026-09-13",
-  "_update_scope": "Added Claude Fable 5.1 and Gemini 3.8 Flash from official sources. Corrected Sonnet 5 output limit and Astra benchmark labels/values, refreshed selected API prices, and advanced Anthropic/Google current-model references. Per-entry verification_scope defines what was checked; other historical entries and receipts retain their existing evidence."
+  "last_updated": "2026-10-09",
+  "_update_scope": "Added Claude Opus 5.5, Sonnet 5.5 and Haiku 5.5, GPT-6 Sol, GPT-6.1 Sol and Grok 4.7 from official sources, checked 9 October 2026, and made Grok 4.7 the xAI flagship. Anthropic and OpenAI flagship IDs were re-checked against vendor pages on 9 October 2026 and kept: Anthropic does not call Opus 5.5 its flagship or most capable model, and OpenAI names GPT-6 Astra its flagship. Per-entry verification_scope defines what was checked; other historical entries and receipts retain their existing evidence."
 }

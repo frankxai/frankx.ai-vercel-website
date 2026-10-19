@@ -163,9 +163,17 @@ export async function POST(request: NextRequest) {
       }),
     })
 
+    // This notification is the only place the application text is kept, so a
+    // failed send means the application was not received.
     if (!emailResponse.ok) {
-      const errorData = await emailResponse.json()
+      const errorData = await emailResponse.json().catch(() => null)
       console.error('Resend email error:', errorData)
+      return NextResponse.json(
+        {
+          error: `We couldn't submit your application just now. Please try again, or email ${NOTIFY_EMAIL} directly.`,
+        },
+        { status: 502 }
+      )
     }
 
     // 3. Send confirmation email to applicant

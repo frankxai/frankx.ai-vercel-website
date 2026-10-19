@@ -18,6 +18,7 @@ import { GlowCard } from '@/components/ui/glow-card'
 import { FrankOmegaAvatar } from '@/components/FrankOmega'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
 import { MindPalaceAtlas } from '@/components/home/MindPalaceAtlas'
+import { SignalRouteSelector } from '@/components/home/SignalRouteSelector'
 import { FeaturedTrackPlayer } from '@/components/home/FeaturedTrackPlayer'
 import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
 
@@ -467,7 +468,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 
               <p className="max-w-2xl text-lg leading-8 text-white/60 md:text-xl">
                 Most AI advice is noise. Here are the working blueprints: personal Centers of
-                Excellence, agentic operating systems, and twelve thousand tracks of studio craft—built
+                Excellence and agentic operating systems—built
                 with your own keys on your own terms.
               </p>
 
@@ -559,8 +560,8 @@ function AuthorityBar() {
 const products = [
   {
     title: 'Sovereign Business Kits',
-    description: 'Turn-key modular starter kits (Micro-SaaS, Marketplace, Creator Hub) designed for builders to launch globally on their own terms.',
-    href: '/templates',
+    description: 'Modular starter-kit templates (Micro-SaaS, Marketplace, Creator Hub). Launch list open.',
+    href: '/waitlist',
     color: 'emerald' as const,
   },
   {
@@ -583,7 +584,7 @@ const products = [
   },
   {
     title: 'Music Lab',
-    description: 'An evolving music archive with Suno production workflows and genre-focused frequency field guides.',
+    description: 'Playable browser instruments (violin, piano, drums, and pads) with guided notes and tabs.',
     href: '/music-lab',
     color: 'orange' as const,
   },
@@ -1036,7 +1037,7 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
             </Link>
             <Link
               href="/library/build"
-              className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-4 py-1.5 text-xs font-medium text-emerald-200 hover:bg-emerald-400/10 hover:border-emerald-400/50 transition-colors"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-4 py-2.5 text-xs font-medium text-emerald-200 hover:border-emerald-400/50 hover:bg-emerald-400/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
             >
               Build your own
               <ArrowRight className="w-3.5 h-3.5" />
@@ -1090,7 +1091,6 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> MIT-licensed</span>
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> Cross-AI portable</span>
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> SEO + JSON-LD per book</span>
-          <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> 3 commands, 1 schema</span>
         </motion.div>
       </div>
     </section>
@@ -1296,14 +1296,14 @@ function EmailCTA() {
 
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
               <Sparkles className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm text-emerald-400">Weekly Insights</span>
+              <span className="text-sm text-emerald-400">Field notes</span>
             </div>
 
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-2">
               Stay in the Signal Loop
             </h2>
             <p className="text-sm text-white/60 mb-8 max-w-xs mx-auto">
-              One focused transmission a week. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
+              Field notes from the workspace. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
             </p>
             <div className="max-w-sm mx-auto">
               <EmailSignup
@@ -1354,37 +1354,44 @@ function FAQSection({ faqs }: { faqs: FAQItem[] }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
+              className="rounded-2xl border border-white/[0.08] bg-white/[0.03] [backdrop-filter:blur(24px)_saturate(150%)] overflow-hidden transition-colors duration-300 hover:border-white/[0.18] hover:bg-white/[0.06] [box-shadow:0_4px_16px_-4px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.04)]"
             >
-              <button
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full text-left rounded-2xl border border-white/[0.08] bg-white/[0.03] [backdrop-filter:blur(24px)_saturate(150%)] p-5 transition-all duration-300 hover:border-white/[0.18] hover:bg-white/[0.06] [box-shadow:0_4px_16px_-4px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.04)]"
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-sm sm:text-base font-semibold text-white pr-4">
-                    {faq.question}
-                  </h3>
+              <h3 className="text-sm sm:text-base font-semibold text-white">
+                <button
+                  type="button"
+                  id={`faq-trigger-${i}`}
+                  aria-expanded={openIndex === i}
+                  aria-controls={`faq-answer-${i}`}
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  className="w-full text-left p-5 flex items-center justify-between gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
+                >
+                  <span className="pr-4">{faq.question}</span>
                   <ChevronDown
                     className={`w-4 h-4 text-white/40 flex-shrink-0 transition-transform duration-200 ${
                       openIndex === i ? 'rotate-180' : ''
                     }`}
+                    aria-hidden="true"
                   />
-                </div>
-                <AnimatePresence>
-                  {openIndex === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <p className="mt-3 text-sm text-white/50 leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </button>
+                </button>
+              </h3>
+              <AnimatePresence>
+                {openIndex === i && (
+                  <motion.div
+                    id={`faq-answer-${i}`}
+                    role="region"
+                    aria-labelledby={`faq-trigger-${i}`}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden"
+                  >
+                    <p className="px-5 pb-5 text-sm text-white/50 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ))}
         </div>
@@ -1560,6 +1567,9 @@ export default function HomePageElite({
         {/* 4c. Signature route atlas — one earned GSAP scene */}
         <MindPalaceAtlas />
 
+        {/* 4d. Interactive Signal Route Selector */}
+        <SignalRouteSelector />
+
         {/* 5. Products & Tools — moved up, expanded to 6 cards */}
         <ProductsTools />
 
@@ -1597,9 +1607,9 @@ export default function HomePageElite({
         {/* 7. Music Lab hub showcase */}
         <HubShowcase
           id="music-lab"
-          eyebrow="AI music production"
+          eyebrow="Browser instruments"
           title="Music Lab"
-          description="A working archive of AI songs, Suno prompt systems, production notes, and playable instruments—built from daily studio practice."
+          description="Playable browser instruments (violin, piano, drums, and pads) with guided notes and tabs, next to a working archive of AI songs and production notes."
           imageSrc={musicArtwork}
           imageAlt="Conceptual music studio with a grand piano, analog synthesizer, and amber light wave"
           links={[

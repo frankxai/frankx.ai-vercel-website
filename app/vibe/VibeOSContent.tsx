@@ -106,7 +106,6 @@ const stack = [
 const stats = [
   { value: '4+', label: 'Specialist agents', color: '#AB47C7' },
   { value: '9', label: 'LLM models', color: '#43BFE3' },
-  { value: '12K+', label: 'Suno sessions', color: '#10B981' },
   { value: '$19', label: 'Vibe Club / mo', color: '#F59E0B' },
 ]
 
@@ -347,7 +346,7 @@ export default function VibeOSContent() {
 
           {/* Stats */}
           <div
-            className="grid grid-cols-2 gap-px sm:grid-cols-4"
+            className="grid grid-cols-3 gap-px"
             style={{
               background: 'rgba(255,255,255,0.07)',
               borderRadius: '16px',
@@ -359,7 +358,7 @@ export default function VibeOSContent() {
             {stats.map((s) => (
               <div
                 key={s.label}
-                className="flex flex-col items-center px-6 py-5"
+                className="flex flex-col items-center px-2 py-5 sm:px-6"
                 style={{ background: '#060B18' }}
               >
                 <span

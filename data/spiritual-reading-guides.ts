@@ -1,8 +1,16 @@
 import type { BookReview } from '@/app/books/types';
 import entries from './library-reading-guides.json';
+import { sacredEditorial } from './sacred-editorial';
+import { contemporaryEditorial } from './contemporary-editorial';
+import { hasSacredDepth } from './sacred-depth-slugs';
 
 // Publication date records this editorial guide, never a personal reading claim.
-export const spiritualReadingGuides: BookReview[] = entries.map(entry => ({
+// Quotations, section maps, and depth FAQ stay off this shared review. The guide
+// page overlays them from the server-only depth record so client routes that
+// import bookReviews do not download the corpus, and the quotes vault does not
+// list those passages as personal excerpts.
+export const spiritualReadingGuides: BookReview[] = entries.map(entry => {
+  return {
   slug: entry.slug,
   title: entry.title,
   author: entry.author,
@@ -10,7 +18,7 @@ export const spiritualReadingGuides: BookReview[] = entries.map(entry => ({
   hasCover: false,
   rating: 0, // Unrated guides do not emit Review/Rating markup.
   reviewDate: '2026-09-07',
-  readingTime: '2 min',
+  readingTime: hasSacredDepth(entry.slug) ? '10 min' : sacredEditorial[entry.slug] || contemporaryEditorial[entry.slug] ? '4 min' : '2 min',
   categories: entry.categories,
   tldr: entry.summary,
   keyInsights: entry.keyInsights,
@@ -20,7 +28,8 @@ export const spiritualReadingGuides: BookReview[] = entries.map(entry => ({
     kind: entry.kind as NonNullable<BookReview['guide']>['kind'],
     claimBasis: entry.kind === 'Primary text' ? 'Symbolic' : entry.kind === 'Modern commentary' ? 'Established' : 'Experiential',
   },
-}));
+  };
+});
 
 export const taoReadingGuide: NonNullable<BookReview['guide']> = {
   tradition: 'Daoism',

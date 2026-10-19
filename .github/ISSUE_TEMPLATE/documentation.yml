@@ -1,0 +1,35 @@
+name: Documentation or feedback
+description: Suggest a correction or share feedback about public documentation.
+title: "[Documentation] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping us improve the public documentation. Do not include vulnerability details, credentials, secrets, personal data, or private logs. [Report suspected vulnerabilities privately](https://github.com/frankxai/frankx.ai-vercel-website/security/advisories/new).
+
+        This form does not request a code or content contribution. Those contributions require agreed terms with the maintainers before submission.
+  - type: input
+    id: location
+    attributes:
+      label: Page or URL
+      description: Link to the page or name the repository file that needs attention.
+      placeholder: https://frankx.ai/example or path/to/file
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What needs correction or clarification?
+      description: Quote the exact claim when possible, then explain what is inaccurate, unclear, or missing.
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested wording or supporting source
+      description: Share concise replacement wording, a reliable source, or both. A suggestion is enough; please do not open a pull request without agreed terms.
+  - type: textarea
+    id: impact
+    attributes:
+      label: Why does this matter?
+      description: Explain how the current documentation affects readers or use of the site.
