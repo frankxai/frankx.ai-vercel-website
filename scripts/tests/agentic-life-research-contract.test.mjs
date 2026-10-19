@@ -28,6 +28,8 @@ test('agentic life registry passes the production contract', () => {
   assert.ok(receipt.registry.systems >= 24)
   assert.ok(receipt.registry.categories >= 8)
   assert.ok(receipt.registry.coveragePercent >= 50)
+  assert.equal(receipt.publication.approvedClaimsByDomain['agentic-life-architecture'], 0)
+  assert.ok(receipt.warnings.some((warning) => warning.includes('archived leads are excluded')))
 })
 
 test('agentic life registry covers every strategic role', () => {

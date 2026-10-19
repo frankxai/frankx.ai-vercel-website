@@ -1,0 +1,35 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "The Creator's AI Toolkit: Build Your Complete Content System",
+      "description": "Transform from overwhelmed creator to AI-empowered content machine. Build ideation engines, research pipelines, writing assistants, and distribution automation.",
+      "url": "https://frankx.ai/blog/creators-ai-toolkit-workshop",
+      "datePublished": "2026-01-16",
+      "dateModified": "2026-01-16",
+      "author": {
+        "@type": "Person",
+        "name": "Frank",
+        "url": "https://frankx.ai/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FrankX.AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://frankx.ai/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://frankx.ai/blog/creators-ai-toolkit-workshop"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://frankx.ai/images/blog/creators-ai-toolkit-workshop-hero-v2.png"
+      },
+      "abstract": "The Creator's AI Toolkit Workshop helps content creators build a complete AI-powered system. Learn to create ideation engines, research pipelines, voice-matched writing assistants, and distribution automation. Soul + Systems approach ensures your content stays authentically YOU while scaling output."
+    }
+  ]
+}

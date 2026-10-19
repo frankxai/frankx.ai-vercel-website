@@ -9,6 +9,9 @@ Private reports may cover this source repository or the deployed website.
 Do not open a public issue with exploit details, credentials, secrets, personal
 data, or other information that could put people or systems at risk.
 
+This source repository is public. The private data classification in the
+repository contract below applies to product-owned data, not source visibility.
+
 <!-- STARLIGHT-REPO-CONTRACT:START -->
 ## Starlight repository contract
 

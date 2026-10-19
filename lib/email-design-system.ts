@@ -448,7 +448,7 @@ export function emailWrapper(content: string, preheader: string = ''): string {
 
 // ─── Signature Block ─────────────────────────────────────────────
 
-export function signatureBlock(message: string = 'Reply anytime. I read every one.'): string {
+export function signatureBlock(message: string = 'Hit reply if you have a question.'): string {
   return `
     ${divider()}
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0">

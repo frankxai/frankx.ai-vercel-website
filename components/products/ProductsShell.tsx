@@ -76,17 +76,12 @@ const products = [
     id: 'vibe-os',
     icon: Music,
     name: 'Vibe OS',
-    tagline: 'Suno Music Mastery',
-    description:
-      'Prompt packs, emotion mapping, and production checklists for Suno creators.',
+    tagline: '',
+    description: '',
     status: 'active',
     href: '/products/vibe-os',
     color: 'emerald',
-    highlights: [
-      '50+ genre-specific prompts (electronic, hip-hop, ambient, cinematic)',
-      'Emotion-to-sound mapping system',
-      'Production enhancement and mastering guide',
-    ],
+    highlights: [],
     featured: true,
   },
   {
@@ -116,7 +111,7 @@ const products = [
     href: '/products/suno-prompt-library',
     color: 'violet',
     highlights: [
-      '50+ battle-tested prompts across 5 genres',
+      'Prompts across 5 genres',
       'Emotion and tempo mapping for each genre',
       'Production tips and remixing guides',
     ],

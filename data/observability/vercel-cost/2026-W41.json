@@ -1,0 +1,70 @@
+{
+  "week": "2026-W41",
+  "generatedAt": "2026-10-05T07:19:02Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-09-28T07:04:05Z",
+  "windowEnd": "2026-10-05T07:04:05Z",
+  "paginationNote": "4 pages fetched (p1: 100 rows, p2: 100 rows, p3: 100 rows, p4: 26 rows). 7 entries have truncated state fields (5 from p1, 2 from p3 — all target=null, states unknown). Counts below use confirmed observations; unknown-state entries are excluded from per-state totals.",
+  "metrics": {
+    "count_total": 326,
+    "count_production": 39,
+    "count_preview": 287,
+    "count_skipped": 110,
+    "count_error": 42,
+    "count_ready": 167,
+    "count_unknown_state": 7,
+    "duration_p50_seconds": 174,
+    "duration_p95_seconds": 280,
+    "duration_max_seconds": 356,
+    "total_build_minutes": 526,
+    "duration_method": "readyAt_minus_buildingAt",
+    "ready_deploys_sampled": 10,
+    "ready_deploys_total": 167,
+    "duration_note": "10 READY production deploys sampled via get_deployment. Sorted (s): 146.9, 149.5, 164.8, 171.6, 172.7, 174.5, 180.7, 185.6, 187.4, 356.4. p50=173.6s (avg of idx 4+5). p95=280.4s (linear interp at idx 8.55). total_build_minutes = (mean 189.0s / 60) × 167 READY = 526min (estimate). One outlier at 356s (dpl_6PpL8j5CqFnxBiwWkwdYj5aybokr, branch main — cache-create path).",
+    "error_deploy_summary": {
+      "agent_grok_library_guide_completion": 16,
+      "dependabot_major_group": 9,
+      "agent_codex_research_integrity_boundary": 3,
+      "agent_claude_analytics_store": 2,
+      "other_preview_branches": 12,
+      "note": "All ERROR deploys are on non-production (preview) branches. No main branch errors confirmed."
+    },
+    "notable_error_deploys": [
+      {
+        "branch": "agent/grok/library-guide-completion",
+        "count": 16,
+        "window": "1790863276580 – 1790864278830",
+        "note": "16 rapid-fire failures in ~17 minutes on Oct 1. Storm pattern — likely a build-breaking change pushed repeatedly without fixing the root cause."
+      },
+      {
+        "branch": "dependabot/npm_and_yarn/major-8ed4061cc6",
+        "count": 8,
+        "note": "Major group bump (24 packages) triggering build failures. Expected for a breaking major dependency bump."
+      },
+      {
+        "branch": "dependabot/npm_and_yarn/typescript-6.0.3",
+        "id": "dpl_S2WaAMRQJkZENwtWmGu7g2rCHaYk",
+        "count": 1,
+        "note": "TypeScript major bump (5→6) failing build. Separate from the group bump."
+      }
+    ]
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W40",
+    "prior_week_note": "No 2026-W40.json exists on main. A branch (observability/vercel-cost-2026-W40) was opened but its deploy was CANCELED and the PR was never merged. The branch commit message contains W40 metrics: count_total=100 (likely pagination-incomplete, same issue as W36), count_production=11, count_error=3, duration_p50=206s. These numbers are not reliable for delta calculation since the total was truncated at 1 page. Deltas set to baseline.",
+    "count_total_delta": "baseline",
+    "count_error_delta": "baseline",
+    "duration_p50_delta_seconds": "baseline",
+    "total_build_minutes_delta": "baseline"
+  },
+  "verdict": "RED",
+  "alerts": [
+    "count_error=42 (minimum confirmed) triggers RED (threshold ≥2). All errors are on preview/feature branches — no production (main) build failures. Two dominant clusters: agent/grok/library-guide-completion (16 rapid-fire failures in 17 minutes on ~Oct 1), and dependabot major group (9 failures, expected from breaking dependency bump). Neither represents an infrastructure regression, but the rate is elevated.",
+    "count_total=326 triggers RED (threshold >300). Highest confirmed total in this snapshot series (previous maximum on record was W35 at 230 deploys). The week saw 16 production merges, high agent-branch churn (multiple active agent sessions), and a dependabot major-version burst.",
+    "duration_p50=174s is GREEN — a 9s improvement vs W37's 192s (the last fully paginated week on record). The build-time gains from the audit period have held.",
+    "total_build_minutes≈526 is GREEN (threshold 1500). Despite the high deploy count, short build times keep total compute low.",
+    "agent/grok/library-guide-completion storm pattern: 16 consecutive ERROR builds in under 17 minutes (~1790863276–1790864278, Oct 1). This branch appears to have been in a rapid retry loop with a broken build. Consider adding a Vercel ignoreCommand or branch-level CI guard to prevent such bursts from consuming build minutes.",
+    "W40 snapshot not on main. The prior weekly run opened a PR (observability/vercel-cost-2026-W40) that was never merged. Deltas for this week are 'baseline'. Recommend merging or closing W40 PR before this snapshot to establish a continuous chain."
+  ]
+}

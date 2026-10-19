@@ -64,7 +64,7 @@ export default function VibeOSPreviewPage() {
           </p>
 
           <p className="text-base text-gray-400 max-w-2xl mx-auto mb-8">
-            From midnight studio sessions to 500+ released AI songs. This is the system behind every track - a framework for turning creative energy into music that actually ships.
+            Midnight studio sessions, then a released track. This is the system for turning creative energy into music that ships.
           </p>
 
           {/* Stats */}
@@ -73,19 +73,13 @@ export default function VibeOSPreviewPage() {
               <div className="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center">
                 <span className="text-orange-400">🎵</span>
               </div>
-              <span>Proven System</span>
+              <span>Music system</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center">
                 <span className="text-cyan-400">⏱️</span>
               </div>
               <span>10-min read</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
-                <span className="text-red-400">🔥</span>
-              </div>
-              <span>12K+ Songs Created</span>
             </div>
           </div>
 

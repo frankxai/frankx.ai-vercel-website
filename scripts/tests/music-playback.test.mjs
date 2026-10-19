@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { homepageFeaturedRelease } from '../../data/homepage-featured-release.ts'
-import { safeMediaUrl, spotifyAlbumEmbed, suggestTracks, routeMusicSuggestion, buildPlaybackCatalog, verifiedPlaybackUrl, withVerifiedStreams } from '../../lib/music-playback.ts'
+import { safeMediaUrl, spotifyAlbumEmbed, suggestTracks, routeMusicSuggestion, buildPlaybackCatalog, verifiedPlaybackUrl, withVerifiedStreams, queueNeighbor, isPlaceholderTitle, formatClock } from '../../lib/music-playback.ts'
 import { goldenTracks } from '../../data/hoffnung-golden-tracks.ts'
 
 test('Spotify accepts canonical album URLs only and media rejects active schemes or credentials', () => {
@@ -116,4 +116,48 @@ test('the /hoffnung golden frequencies player receives verified owned audio for 
   assert.match(readText('../../lib/music-playback-catalog.ts'), /withVerifiedStreams\(goldenTracks, registry\.tracks, verified\.tracks\)/)
   assert.match(readText('../../app/hoffnung/page.tsx'), /<GoldenFrequenciesPlayer tracks=\{getGoldenFrequencyTracks\(\)\} \/>/)
   assert.doesNotMatch(readText('../../components/hoffnung/GoldenFrequenciesPlayer.tsx'), /cdn1\.suno\.ai/)
+})
+
+test('MusicRuntime restores focus to disclosure element on collapse across full and chip modes', () => {
+  const readText = path => readFileSync(new URL(path, import.meta.url), 'utf8')
+  const runtime = readText('../../components/music/MusicRuntime.tsx')
+  assert.match(runtime, /const restoreFocusOnCollapseRef = useRef\(false\)/)
+  assert.match(runtime, /function collapse\(\) \{\s*restoreFocusOnCollapseRef\.current = true\s*setExpanded\(false\)/)
+  assert.match(runtime, /useLayoutEffect\(\(\) => \{\s*if \(typeof window === 'undefined'\) return\s*if \(!expanded && restoreFocusOnCollapseRef\.current\) \{\s*restoreFocusOnCollapseRef\.current = false\s*disclosureRef\.current\?\.focus\(\)/)
+  assert.match(runtime, /if \(expanded\) \{\s*collapse\(\)\s*\} else \{\s*setExpanded\(true\)/)
+  assert.match(runtime, /event\.key === 'Escape' && expanded[\s\S]*minimize\(\)/)
+})
+
+
+test('the dock queue wraps at both ends and starts from the first track when nothing is playing', () => {
+  const queue = [{ sunoId: 'a' }, { sunoId: 'b' }, { sunoId: 'c' }]
+  assert.equal(queueNeighbor(queue, 'a', 1)?.sunoId, 'b')
+  assert.equal(queueNeighbor(queue, 'c', 1)?.sunoId, 'a')
+  assert.equal(queueNeighbor(queue, 'a', -1)?.sunoId, 'c')
+  assert.equal(queueNeighbor(queue, undefined, 1)?.sunoId, 'a')
+  assert.equal(queueNeighbor(queue, 'gone', -1)?.sunoId, 'c')
+  assert.equal(queueNeighbor([], 'a', 1), undefined)
+  assert.equal(formatClock(65.9), '1:05')
+  assert.equal(formatClock(Number.NaN), '0:00')
+})
+
+test('named tracks lead the playable catalog and registry fallback titles sort last', () => {
+  assert.ok(isPlaceholderTitle('Track 57d126dd'))
+  assert.ok(!isPlaceholderTitle('All In'))
+  const readData = path => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'))
+  const inventory = readData('../../data/inventories/frankx/music.json')
+  const archive = readData('../../data/music-asset-registry.json')
+  const proof = readData('../../data/music-playback-sources.json')
+  const playable = buildPlaybackCatalog(inventory.tracks, archive.tracks, proof.tracks).filter(track => track.streamUrl)
+  const firstPlaceholder = playable.findIndex(track => isPlaceholderTitle(track.title))
+  if (firstPlaceholder >= 0) assert.ok(playable.slice(firstPlaceholder).every(track => isPlaceholderTitle(track.title)))
+  assert.ok(playable.filter(track => isPlaceholderTitle(track.title)).length <= 10)
+})
+
+test('MusicRuntime advances on track end only when autoplay-next is on, and never starts audio without a click', () => {
+  const runtime = readFileSync(new URL('../../components/music/MusicRuntime.tsx', import.meta.url), 'utf8')
+  assert.match(runtime, /onEnded=\{\(\) => \{[^}]*if \(autoNext && playable\.length > 1\) skip\(1, \{ expand: false \}\)/)
+  assert.match(runtime, /role="switch" aria-checked=\{autoNext\}/)
+  assert.doesNotMatch(runtime, /\bautoPlay\b/)
+  assert.doesNotMatch(runtime, /<audio[^>]*\bcontrols\b/)
 })

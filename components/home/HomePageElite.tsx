@@ -468,7 +468,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 
               <p className="max-w-2xl text-lg leading-8 text-white/60 md:text-xl">
                 Most AI advice is noise. Here are the working blueprints: personal Centers of
-                Excellence, agentic operating systems, and twelve thousand tracks of studio craft—built
+                Excellence and agentic operating systems—built
                 with your own keys on your own terms.
               </p>
 
@@ -560,8 +560,8 @@ function AuthorityBar() {
 const products = [
   {
     title: 'Sovereign Business Kits',
-    description: 'Turn-key modular starter kits (Micro-SaaS, Marketplace, Creator Hub) designed for builders to launch globally on their own terms.',
-    href: '/templates',
+    description: 'Modular starter-kit templates (Micro-SaaS, Marketplace, Creator Hub). Launch list open.',
+    href: '/waitlist',
     color: 'emerald' as const,
   },
   {
@@ -584,7 +584,7 @@ const products = [
   },
   {
     title: 'Music Lab',
-    description: 'An evolving music archive with Suno production workflows and genre-focused frequency field guides.',
+    description: 'Playable browser instruments (violin, piano, drums, and pads) with guided notes and tabs.',
     href: '/music-lab',
     color: 'orange' as const,
   },
@@ -1091,7 +1091,6 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> MIT-licensed</span>
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> Cross-AI portable</span>
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> SEO + JSON-LD per book</span>
-          <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> 3 commands, 1 schema</span>
         </motion.div>
       </div>
     </section>
@@ -1297,14 +1296,14 @@ function EmailCTA() {
 
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
               <Sparkles className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm text-emerald-400">Weekly Insights</span>
+              <span className="text-sm text-emerald-400">Field notes</span>
             </div>
 
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-2">
               Stay in the Signal Loop
             </h2>
             <p className="text-sm text-white/60 mb-8 max-w-xs mx-auto">
-              One focused transmission a week. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
+              Field notes from the workspace. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
             </p>
             <div className="max-w-sm mx-auto">
               <EmailSignup
@@ -1608,9 +1607,9 @@ export default function HomePageElite({
         {/* 7. Music Lab hub showcase */}
         <HubShowcase
           id="music-lab"
-          eyebrow="AI music production"
+          eyebrow="Browser instruments"
           title="Music Lab"
-          description="A working archive of AI songs, Suno prompt systems, production notes, and playable instruments—built from daily studio practice."
+          description="Playable browser instruments (violin, piano, drums, and pads) with guided notes and tabs, next to a working archive of AI songs and production notes."
           imageSrc={musicArtwork}
           imageAlt="Conceptual music studio with a grand piano, analog synthesizer, and amber light wave"
           links={[
