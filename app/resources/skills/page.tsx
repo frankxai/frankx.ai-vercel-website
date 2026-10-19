@@ -12,7 +12,6 @@ const skillCategories = [
   {
     id: 'soulbook',
     name: 'Soulbook Skills',
-    count: 25,
     icon: Heart,
     description: 'Life architecture, 7 pillars, transformation coaching',
     color: 'amber',
@@ -21,7 +20,6 @@ const skillCategories = [
   {
     id: 'technical',
     name: 'Technical Skills',
-    count: 10,
     icon: Code,
     description: 'MCP servers, Claude SDK, LangGraph, Oracle ADK',
     color: 'blue',
@@ -30,7 +28,6 @@ const skillCategories = [
   {
     id: 'creative',
     name: 'Creative Skills',
-    count: 7,
     icon: Music,
     description: 'Music production, content creation, book writing',
     color: 'purple',
@@ -39,7 +36,6 @@ const skillCategories = [
   {
     id: 'personal',
     name: 'Personal Mastery',
-    count: 4,
     icon: Brain,
     description: 'Philosophy, discipline, fitness, nutrition',
     color: 'emerald',
@@ -48,7 +44,6 @@ const skillCategories = [
   {
     id: 'business',
     name: 'Business Skills',
-    count: 2,
     icon: Briefcase,
     description: 'Oracle Cloud, product management',
     color: 'cyan',
@@ -92,8 +87,6 @@ export default function SkillsPage() {
     setTimeout(() => setCopiedSkill(null), 2000)
   }
 
-  const totalSkills = skillCategories.reduce((acc, cat) => acc + cat.count, 0)
-
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
       {/* Hero Section */}
@@ -126,7 +119,7 @@ export default function SkillsPage() {
             </h1>
 
             <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-400 leading-relaxed">
-              {totalSkills}+ specialized Claude Code skills for music production, content creation,
+              Specialized Claude Code skills for music production, content creation,
               life architecture, and technical development. Open source and ready to use.
             </p>
 
@@ -149,8 +142,8 @@ export default function SkillsPage() {
             {/* Quick Stats */}
             <div className="grid grid-cols-3 gap-4 max-w-xl mx-auto">
               {[
-                { label: 'Total Skills', value: `${totalSkills}+` },
-                { label: 'Categories', value: '6' },
+                { label: 'Format', value: 'SKILL.md' },
+                { label: 'Runs in', value: 'Claude Code' },
                 { label: 'Open Source', value: 'Yes' },
               ].map((stat) => (
                 <GlassmorphicCard key={stat.label} variant="default" border="subtle" className="p-4">
@@ -226,7 +219,6 @@ export default function SkillsPage() {
 
                     <div className="flex items-center justify-between mb-2">
                       <h3 className="text-lg font-semibold text-slate-200">{category.name}</h3>
-                      <span className="text-sm font-medium text-slate-500">{category.count} skills</span>
                     </div>
 
                     <p className="text-slate-400 text-sm mb-4">{category.description}</p>
