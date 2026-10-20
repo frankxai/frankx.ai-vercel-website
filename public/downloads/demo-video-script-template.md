@@ -2,7 +2,7 @@
 
 From the FrankX guide on recording demos: https://frankx.ai/guides/product-demo-video-guide
 
-Use this before you press record. A demo that is planned on one page records in one or two takes. A demo that is improvised usually takes six.
+Use this before you press record. Planning on one page lets you record and re-record each part on its own, instead of restarting the whole video.
 
 ---
 

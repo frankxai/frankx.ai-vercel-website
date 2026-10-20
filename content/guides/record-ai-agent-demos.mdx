@@ -42,6 +42,8 @@ faqs:
 
 Agent demos fail on video in ways a normal product demo does not. The model spends long stretches thinking, the second take follows a different path, and an API key scrolls past in the terminal while you talk. This guide is for AI architects, engineers and technical founders who need to show an agent doing real work, to a buyer, an investor or their own team, without faking it.
 
+Disclosure: links to Tella on this page are referral links. If you subscribe, I may earn a commission at no extra cost to you. It does not change the comparison.
+
 You will leave with a six-step recording protocol, a shot list for a Claude Code task driven over MCP, a secret-hygiene checklist, what Tella says its MCP server, Claude connector and Tella Agent do, and a rule for when a video is the wrong format. The smallest useful next move: pick one task your agent completes reliably, run it three times off camera, and keep the logs.
 
 ## Why agent demos fail on video
@@ -135,8 +137,10 @@ env -i HOME="$HOME" PATH="$PATH" TERM="$TERM" bash --noprofile --norc
 # then load only the demo-scoped variables this task needs
 ```
 
+  This clears inherited environment variables only. It does not hide files: the shell, and any agent it starts, can still read everything your user account can, including SSH keys, cloud credential files and `.env` files in other folders.
+
 - **Never print the environment on camera.** No `env`, no `printenv`, no `cat .env`, no config file that holds a token.
-- **Keep secret files out of the agent's reach.** An agent that can read a file can print it. Run the demo in a directory that holds no real credentials.
+- **Keep secret files out of the agent's reach.** An agent that can read a file can print it. Record inside a container or a separate OS user account that holds only demo-scoped credentials; a clean working directory alone does not stop an agent reading files elsewhere on disk.
 - **Check the terminal prompt and paths.** Usernames, hostnames, client names in folder paths and internal URLs all leak context.
 - **Use a separate browser profile.** Logged-in dashboards show keys, emails and billing. The free [demo video script template](/downloads/demo-video-script-template.md) has the full pre-recording checklist.
 - **Use fake customer data.** Seeded records with invented names, never a copy of production.
@@ -171,8 +175,6 @@ Tella Agent runs on credits. Per the pricing page, Pro includes 3,000 credits pe
 
 *Also from Tella's channel. Shows an editing process run through Claude; useful for planning which edits to hand to an agent and which to keep.*
 
-Disclosure: links to Tella on this page are referral links. If you subscribe, I may earn a commission at no extra cost to you. It does not change the comparison.
-
 Pricing, from the [Tella pricing page](https://www.tella.com/pricing), checked 20 October 2026: Pro from $13 per user per month billed annually ($26 billed monthly); Premium $19 per user per month billed annually ($39 billed monthly), adding a custom domain, branding removal, 60 FPS export and all-time analytics. There is no free plan; every account starts with a 7-day Pro trial with no card. If you want to try the protocol, [start the trial](/go/tella) and record one full agent run with the shot list above.
 
 <ArticleRecommendation affiliateId="tella" article="record-ai-agent-demos" title="Tella">
@@ -186,7 +188,7 @@ Record one agent task with the shot list above during the 7-day trial: commentar
 - **Tella Agent is in public beta** and credit-metered. Expect changes, and keep a manual edit path.
 - **Tella is a video tool.** Its share page carries call-to-action buttons; it does not produce click-through demos.
 - **Tella has no mobile app.** Mobile browsers record camera and microphone only, with no editing. Plan agent demos on a desktop.
-- **The review base is small.** G2 shows 5.0 from 2 reviews and Capterra 4.5 from 2; Product Hunt shows 4.8 from 38. Judge it on your own trial recording.
+- **The review base is small.** Tella's public review base is small: see [Product Hunt](https://www.producthunt.com/products/tella-1-0/reviews), [G2](https://www.g2.com/products/tella/reviews) and [Capterra](https://www.capterra.com/p/10013576/Tella/reviews/) for the current counts. Judge it on your own trial recording.
 
 ## When a video is the wrong format
 
