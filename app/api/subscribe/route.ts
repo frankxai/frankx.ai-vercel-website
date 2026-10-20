@@ -1,4 +1,5 @@
 import { createHash, createHmac, timingSafeEqual } from 'node:crypto'
+import { createNewsletterContact, updateConfirmedNewsletterPreferences } from '@/lib/newsletter/contacts'
 import { NextRequest, NextResponse } from 'next/server'
 import { musicPromptsEmail } from '@/lib/email-templates'
 import { welcomeEmail1 } from '@/lib/email-templates-welcome'
@@ -13,7 +14,7 @@ export const runtime = 'nodejs'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const PREFERENCES_SECRET = process.env.NEWSLETTER_PREFERENCES_SECRET
-const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
+const SEGMENT_ID = process.env.RESEND_SEGMENT_ID || ''
 const FROM_EMAIL = 'Frank <frank@mail.frankx.ai>'
 const PREFERENCE_TOKEN_TTL_MS = 30 * 60 * 1000
 
@@ -350,35 +351,32 @@ interface ContactBody {
   properties?: Record<string, string>
 }
 
-async function createContact(body: ContactBody) {
-  return fetch(`https://api.resend.com/audiences/${AUDIENCE_ID}/contacts`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${RESEND_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  })
+async function createContact(body: ContactBody, selectedTopicKeys: TopicKey[]) {
+  const selected = new Set(selectedTopicKeys)
+  return createNewsletterContact({
+    email: body.email,
+    firstName: body.first_name,
+    properties: body.properties,
+    segmentId: SEGMENT_ID,
+    newsletterTopicId: TOPICS.newsletter,
+    topics: Object.entries(TOPICS).map(([key, id]) => ({
+      id,
+      subscription: selected.has(key as TopicKey) ? 'opt_in' : 'opt_out',
+    })),
+  }, { apiKey: RESEND_API_KEY || '' })
 }
 
-async function updateContactTopics(email: string, selectedTopicKeys: Array<keyof typeof TOPICS>) {
+async function updateContactTopics(email: string, selectedTopicKeys: TopicKey[]) {
   const selected = new Set(selectedTopicKeys)
-  return fetch(
-    `https://api.resend.com/contacts/${encodeURIComponent(email)}/topics`,
-    {
-      method: 'PATCH',
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        topics: Object.entries(TOPICS).map(([key, id]) => ({
-          id,
-          subscription: selected.has(key as keyof typeof TOPICS) ? 'opt_in' : 'opt_out',
-        })),
-      }),
-    },
-  )
+  return updateConfirmedNewsletterPreferences({
+    email,
+    segmentId: SEGMENT_ID,
+    newsletterTopicId: TOPICS.newsletter,
+    topics: Object.entries(TOPICS).map(([key, id]) => ({
+      id,
+      subscription: selected.has(key as TopicKey) ? 'opt_in' : 'opt_out',
+    })),
+  }, { apiKey: RESEND_API_KEY || '' })
 }
 
 export async function POST(request: NextRequest) {
@@ -437,8 +435,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    if (!RESEND_API_KEY) {
-      console.error('RESEND_API_KEY not configured')
+    if (!RESEND_API_KEY || !SEGMENT_ID) {
+      console.error('Newsletter provider or Segment not configured')
       return NextResponse.json(
         { error: 'Email service not configured. Please try again later.' },
         { status: 500 },
@@ -476,8 +474,20 @@ export async function POST(request: NextRequest) {
       }
 
       const topicResponse = await updateContactTopics(email, tokenTopics).catch(() => null)
-      if (!topicResponse?.ok) {
-        console.error('Resend verified topic preference update failed', topicResponse?.status)
+      if (topicResponse?.kind === 'suppressed') {
+        return NextResponse.json(
+          { error: 'This address has a global email suppression. It was not reactivated.' },
+          { status: 409 },
+        )
+      }
+      if (topicResponse?.kind === 'pending') {
+        return NextResponse.json(
+          { error: 'Newsletter enrollment is temporarily unavailable. Your preferences were not changed.' },
+          { status: 503 },
+        )
+      }
+      if (topicResponse?.kind !== 'updated') {
+        console.error('Resend verified topic preference update failed', topicResponse?.response.status)
         return NextResponse.json(
           { error: 'The verified preferences could not be saved. Please try again.' },
           { status: 502 },
@@ -527,6 +537,10 @@ export async function POST(request: NextRequest) {
     // makeup are backed by a queryable segment, not only the alert emails.
     if (intention) properties.intention = intention
 
+    const configuredTopicKeys = Object.entries(TOPICS)
+      .filter(([, id]) => config.topics.includes(id))
+      .map(([key]) => key as TopicKey)
+
     const fullBody: ContactBody = {
       email,
       first_name: name || undefined,
@@ -534,18 +548,20 @@ export async function POST(request: NextRequest) {
       properties,
     }
 
-    let resendResponse = await createContact(fullBody)
+    let creation = await createContact(fullBody, configuredTopicKeys)
+    let resendResponse = creation.response
 
     // Resilience: if the audience/plan rejects custom properties (422), retry
     // once with the minimal payload so segmentation can never block a signup.
-    if (resendResponse.status === 422) {
+    if (creation.kind === 'provider-error' && resendResponse.status === 422) {
       console.warn('Resend rejected contact properties; retrying minimal payload')
       const { properties: _omit, ...minimal } = fullBody
       void _omit
-      resendResponse = await createContact(minimal)
+      creation = await createContact(minimal, configuredTopicKeys)
+      resendResponse = creation.response
     }
 
-    if (resendResponse.status === 409) {
+    if (creation.kind === 'existing') {
       return NextResponse.json({
         success: true,
         duplicate: true,
@@ -555,7 +571,7 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    if (!resendResponse.ok) {
+    if (creation.kind !== 'created') {
       const errorData = await resendResponse.json().catch(() => ({}))
       console.error('Resend API error:', resendResponse.status, errorData)
 
@@ -566,22 +582,6 @@ export async function POST(request: NextRequest) {
     }
 
     const data = await resendResponse.json().catch(() => ({}))
-
-    const configuredTopicKeys = Object.entries(TOPICS)
-      .filter(([, id]) => config.topics.includes(id))
-      .map(([key]) => key as keyof typeof TOPICS)
-    const topicResponse = await updateContactTopics(
-      email,
-      configuredTopicKeys,
-    ).catch(() => null)
-
-    if (!topicResponse?.ok) {
-      console.error('Resend topic opt-in failed:', topicResponse?.status)
-      return NextResponse.json(
-        { error: 'The subscription was created, but its topics could not be saved.' },
-        { status: 502 },
-      )
-    }
 
     let welcomeSent = false
     try {

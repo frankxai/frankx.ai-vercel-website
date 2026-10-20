@@ -1,10 +1,11 @@
+import { createNewsletterContact } from '@/lib/newsletter/contacts'
 import { NextRequest, NextResponse } from 'next/server'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-// Same Resend audience as app/api/subscribe/route.ts — the canonical list.
-const RESEND_AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
+// Shares the current Segment with the canonical subscription handler.
+const RESEND_SEGMENT_ID = process.env.RESEND_SEGMENT_ID || ''
 const GROWTH_CAPTURE_URL =
   process.env.GROWTH_CAPTURE_URL ??
   'https://gfrfcqyprekhazzugdkr.supabase.co/functions/v1/growth-capture'
@@ -121,13 +122,18 @@ async function subscribeWebhook(email: string) {
 async function subscribeResend(email: string) {
   const apiKey = process.env.RESEND_API_KEY
   if (!apiKey) return { ok: false, reason: 'Resend env missing' }
-  const res = await fetch(`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts`, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, unsubscribed: false }),
-  })
-  // 409 = already subscribed — success from the visitor's point of view
-  return { ok: res.ok || res.status === 409, status: res.status }
+  if (!RESEND_SEGMENT_ID) return { ok: false, reason: 'Segment env missing' }
+  const result = await createNewsletterContact({
+    email,
+    segmentId: RESEND_SEGMENT_ID,
+    newsletterTopicId: 'b613f6ff-9c56-4b4c-86df-9217843c5d78',
+    topics: [
+      { id: 'b613f6ff-9c56-4b4c-86df-9217843c5d78', subscription: 'opt_in' },
+      { id: '018a5159-10c8-4595-8ecc-63d7a2c6b442', subscription: 'opt_out' },
+      { id: '811064ed-7444-45db-9a2a-fd8c83a21053', subscription: 'opt_out' },
+    ],
+  }, { apiKey })
+  return { ok: result.kind === 'created' || result.kind === 'existing', duplicate: result.kind === 'existing', status: result.response.status }
 }
 
 export async function POST(request: NextRequest) {
@@ -179,7 +185,7 @@ export async function POST(request: NextRequest) {
     }
 
     const provider = (process.env.NEWSLETTER_PROVIDER || '').toLowerCase()
-    let outcome = { ok: true }
+    let outcome: { ok: boolean; duplicate?: boolean } = { ok: true }
     if (provider === 'convertkit') {
       const result = await subscribeConvertKit(email)
       if (!result.ok) outcome = { ok: false }
@@ -190,12 +196,16 @@ export async function POST(request: NextRequest) {
       const result = await subscribeWebhook(email)
       if (!result.ok) outcome = { ok: false }
     } else {
-      const result = await subscribeResend(email)
-      if (!result.ok) outcome = { ok: false }
+      outcome = await subscribeResend(email)
     }
 
     if (!outcome.ok) {
       return NextResponse.json({ error: 'Subscription failed' }, { status: 502 })
+    }
+
+    if (outcome.duplicate) {
+      if (isJsonClient) return NextResponse.json({ success: true, duplicate: true, updated: false, message: 'This email is already on file. Confirm your preferences to join or change topics.' })
+      return NextResponse.redirect(new URL('/newsletter/preferences', request.url), 303)
     }
 
     if (isJsonClient) {
