@@ -1,0 +1,207 @@
+---
+title: "How to demo an AI agent on video: a recording protocol"
+description: "How to demo an AI agent on video: freeze the task, cut the waits honestly, show the tool calls, keep keys off screen, and know when a written trace is better."
+date: "2026-10-20"
+updated: "2026-10-20"
+author: "Frank Riemer"
+category: "Demos & video"
+tags: ["tella", "ai-agents", "claude-code", "mcp", "product-demos"]
+keywords: ["how to demo an AI agent", "record AI agent demo video", "Claude Code demo video", "MCP agent demo", "hide API keys screen recording"]
+tldr: "Freeze the task so the run is repeatable, record the full run as one take and your commentary as separate clips, cut the waits with a visible label, keep the tool calls on screen, and record from a clean shell with demo-only keys you revoke afterwards. When the viewer must click, audit or trust reliability, an interactive demo, a written trace or eval results beat a video."
+decisions:
+  - audience: "AI architects"
+    call: "adopt"
+    because: "Tella publishes an MCP server and its changelog records a listing in Claude's connector directory on 6 August 2026. You can edit the demo from the same kind of agent workflow you are demoing."
+    source: "https://www.tella.com/mcp"
+  - audience: "Founders"
+    call: "adopt"
+    because: "Tella Pro starts at 13 dollars per user per month billed annually (26 dollars billed monthly), and recording plus normal editing are not credit-metered. Long agent runs cost nothing extra to record and trim."
+    source: "https://www.tella.com/pricing"
+  - audience: "Creators"
+    call: "wait"
+    because: "Tella Agent, the chat-based editor, entered public beta on 16 October 2026 and runs on monthly credits. Use transcript editing and Auto Cut for agent demos now and judge the Agent once it leaves beta."
+    source: "https://www.tella.com/docs/changelog"
+  - audience: "Sales and customer success"
+    call: "skip"
+    because: "Tella's own Loom comparison lists call-to-action buttons on the share page, with no click-through demo format. When a buyer needs to try the agent's output themselves, use an interactive demo tool."
+    source: "https://www.tella.com/alternatives/loom"
+faqs:
+  - question: "How do I demo an AI agent without long waits on screen?"
+    answer: "Stay quiet while the agent works, then remove that stretch in a transcript editor or with an auto-cut feature, and put a small on-screen label such as 'run cut from 3 minutes to 10 seconds'. Narrate what the agent is about to do before the wait and what it did after. Watch the cut back, because silence detection works on audio and cannot see whether the screen changed."
+  - question: "How do I hide API keys when screen recording?"
+    answer: "Keep real keys off the screen entirely: record from a fresh shell that only holds a demo-scoped key with low limits, keep secret files out of any folder the agent can read, and use a separate browser profile. Blur in the editor is a backup only, because the source recording still contains the key. If a real key appeared on screen, rotate it."
+  - question: "Can Claude edit videos in Tella?"
+    answer: "Tella lists an MCP server at tella.com/mcp, and its changelog records a listing in Claude's connector directory on 6 August 2026 and a ChatGPT app on 21 September 2026. Tella's own channel publishes videos of editing with Claude. Check the MCP page for the tools it currently exposes before you build a workflow around it."
+  - question: "Should an AI agent demo show the tool calls?"
+    answer: "Yes. The tool calls are where the agent's work is visible: what it read, what it changed, what it ran. Keep the terminal or trace view on screen, zoom on each tool call as it happens, and say in one sentence why the agent made that call."
+  - question: "Is it honest to edit an AI agent demo?"
+    answer: "Cutting dead time is fine if you say so on screen and in the description. Splicing parts of different runs together, hiding failed runs while implying reliability, or re-recording the middle of a run is where editing becomes misleading. State how many runs you made and which one you are showing."
+  - question: "When is an interactive demo or written trace better than a video?"
+    answer: "Use an interactive demo when the viewer needs to click through the product themselves, a written trace when engineers need to audit what the agent did, and eval results when the claim is about reliability across many runs. A video shows one run well; it cannot prove the next one."
+---
+
+Agent demos fail on video in ways a normal product demo does not. The model spends long stretches thinking, the second take follows a different path, and an API key scrolls past in the terminal while you talk. This guide is for AI architects, engineers and technical founders who need to show an agent doing real work, to a buyer, an investor or their own team, without faking it.
+
+You will leave with a six-step recording protocol, a shot list for a Claude Code task driven over MCP, a secret-hygiene checklist, what Tella says its MCP server, Claude connector and Tella Agent do, and a rule for when a video is the wrong format. The smallest useful next move: pick one task your agent completes reliably, run it three times off camera, and keep the logs.
+
+## Why agent demos fail on video
+
+| Failure | What the viewer sees | Fix in this protocol |
+|---|---|---|
+| Latency | Dead air while the model works | Narrate before the wait, cut the wait, label the cut |
+| Nondeterminism | Take two follows a different path, so clips from two takes do not match | Record the run as one take; re-record commentary separately |
+| Long runs | A real task takes minutes | Time compression with a visible label, or a sped-up full-run version |
+| Leaked secrets | Keys in env output, config files, URLs, logs or the agent's own output | Clean shell, demo-scoped keys, secrets outside the agent's reach |
+| Invisible work | The interesting part happens in tool calls nobody sees | Keep the trace on screen and zoom on each call |
+| Overclaiming | One good run reads as "it always works" | Say how many runs you made and which one this is |
+
+## The recording protocol
+
+### 1. Freeze the task
+
+Choose a task with an end state anyone can check: a failing test goes green, a pull request draft appears, a file changes in a specific way. Then pin everything you can:
+
+- **The repo:** a tagged commit in a demo repository, reset before every run.
+- **The data:** seeded fake data, the same every time.
+- **The prompt:** written down and pasted, never retyped from memory.
+- **The model and date:** noted for the description.
+
+Do not assume the same prompt gives the same run. Where your stack supports a fixed seed or replaying a cached response, use it. Otherwise run the task three times off camera, keep all three logs, and record the run you can explain. If none of the three is clean, the task is not ready for a demo.
+
+### 2. Record the run as one take, and commentary as clips
+
+Record in clips, with one exception. The agent run itself is one continuous take, because a nondeterministic run cannot be patched: re-recording the middle produces a different middle. Your opening, your explanations between steps and your closing can be separate clips that you re-record freely.
+
+In Tella this maps to multi-clip recording: one clip for each camera segment, one clip for the full run. Any recorder that saves separate files works the same way.
+
+### 3. Cut the waits, and say you cut them
+
+Narrate what the agent is about to do, then stay quiet while it works. A silent stretch is easy to remove: Tella's transcript editing removes filler words and silences, and its Auto Cut feature does the first pass for you. Watch every cut back. Silence removal works on the audio track, so it can cut a moment where the screen showed something important.
+
+Then label the cut on screen with a small text layer, for example "agent run: 3 min 10 s, shown in 10 s". Tella added text layers on 4 August 2026 and timelapse exports at 1.2x to 8x in December 2025, which suits a sped-up full-run version you can link as the unedited proof.
+
+### 4. Keep the trace on screen
+
+The agent's work lives in its tool calls. Use a layout with the terminal or trace view large and your camera small; Tella offers side-by-side and picture-in-picture layouts among more than 40. Raise the terminal font so the call names survive a phone screen. Tella's Auto Zoom adds zooms for you, with adaptive zooms as the default since 21 August 2026; check that each zoom lands on a tool call and set it by hand where it does not.
+
+For each call, say one sentence about why: "It read the failing test before touching any code." That sentence is the part a viewer remembers.
+
+### 5. Show before and after in the same frame
+
+Open on the before state: the failing test, the open issue, the empty folder. End on the after state, framed identically: the green test run, the diff, the drafted pull request. Same window size, same zoom, so the change is the only thing that moved.
+
+### 6. Disclose the edit
+
+In the video description, write the model, the date, how many runs you made, which run this is, and what you cut. One line covers it: "Run 2 of 3, recorded 20 October 2026, waits cut and labelled, full run linked below."
+
+## Worked example: a Claude Code task over MCP
+
+The task: in a demo repository, Claude Code reads a bug report from the issue tracker through an MCP server, fixes the bug, runs the test suite and drafts a pull request. The times below are planning targets for a task of this size; I have not measured them.
+
+**Before you press record**
+
+- Demo repo reset to a tagged commit, with one seeded issue in the tracker.
+- A fresh shell holding only the demo-scoped tokens this task needs.
+- Terminal font raised, prompt shortened to hide your username and hostname, notifications off.
+- The prompt text in a file, ready to paste.
+
+**Shot list**
+
+| # | On screen | What you say | Layout | Real time | In the cut |
+|---|---|---|---|---|---|
+| 1 | Your face | "This agent takes a bug report and returns a tested fix. Here is one run, start to finish." | Camera large | 15 s | 15 s |
+| 2 | Terminal: failing test (before) | "This test fails today. That is the bug in the issue." | Screen plus camera bubble | 20 s | 15 s |
+| 3 | Terminal: prompt pasted | "One instruction: fix the issue and open a draft PR." | Screen plus camera bubble | 20 s | 15 s |
+| 4 | Tool call: issue read over MCP, zoomed | "First it reads the issue through the tracker's MCP server." | Screen only, zoom on the call | 60 s | 20 s |
+| 5 | Tool calls: file reads, then the edit and diff | "It reads the test, then changes one function. Here is the diff." | Screen only, zoom on the diff | 90 s | 25 s |
+| 6 | Test run, with label "3 min, cut to 10 s" | Silent, then: "Tests pass." | Screen only | 180 s | 10 s |
+| 7 | Green tests and the draft PR (after) | "Green suite, draft PR, linked to the issue." | Screen plus camera bubble | 30 s | 20 s |
+| 8 | Your face | "One run of three. It did not touch the flaky integration test; that still needs a human. Full run in the description." | Camera large | 20 s | 20 s |
+
+Total: about 7 minutes 15 seconds of real time cut to about 2 minutes 20 seconds. Clips 1, 2, 3 and 8 can be re-recorded at will. Clips 4 to 7 come from one continuous take.
+
+Keep the closing line in shot 8. Naming one thing the agent did not do makes the rest of the demo more believable and sets the expectation viewers will hold you to.
+
+## Keep secrets off screen
+
+Treat everything visible during recording as published, including what appears for one frame.
+
+- **Use demo-scoped keys.** Create keys for the demo only, with the lowest limits and scopes that work, and revoke them after recording.
+- **Record from a clean shell.** Start a shell with a minimal environment, then add only what the demo needs. On macOS or Linux:
+
+```bash
+# start a shell with almost no inherited environment
+env -i HOME="$HOME" PATH="$PATH" TERM="$TERM" bash --noprofile --norc
+# then load only the demo-scoped variables this task needs
+```
+
+- **Never print the environment on camera.** No `env`, no `printenv`, no `cat .env`, no config file that holds a token.
+- **Keep secret files out of the agent's reach.** An agent that can read a file can print it. Run the demo in a directory that holds no real credentials.
+- **Check the terminal prompt and paths.** Usernames, hostnames, client names in folder paths and internal URLs all leak context.
+- **Use a separate browser profile.** Logged-in dashboards show keys, emails and billing. The free [demo video script template](/downloads/demo-video-script-template.md) has the full pre-recording checklist.
+- **Use fake customer data.** Seeded records with invented names, never a copy of production.
+- **Treat blur as a backup.** Tella added blur and highlighting in December 2025, and blur is useful for something you missed. But the original recording still holds whatever was on screen, and Tella offers raw recording export and viewer downloads. If a real secret appeared, rotate it.
+- **Control who can watch.** For internal or pre-launch demos, Tella supports password-protected videos and a toggle for search-engine indexing.
+
+<YouTubeEmbed id="GzS0XOWrlB0" title="Blur Sensitive Info + Highlighting [12 Days of Tella - Day 12]" />
+
+*Vendor video from Tella showing its blur and highlighting feature. Useful for the cleanup pass; the protocol above still assumes nothing secret reaches the screen.*
+
+## Tella's MCP server, Claude connector and Tella Agent
+
+For an agent builder this is the part of Tella that matters most, so here is exactly what Tella says, with dates from its [changelog](https://www.tella.com/docs/changelog). I have not tested these integrations for this guide and make no claim about results.
+
+| What | What Tella says | Date |
+|---|---|---|
+| MCP server | Tella published a public API, SDK, MCP server and Zapier integration; the MCP page is [tella.com/mcp](https://www.tella.com/mcp) | 18 December 2025 |
+| More MCP tools | API video upload and additional MCP tools | 13 May 2026 |
+| Claude connector | Listed in Claude's connector directory | 6 August 2026 |
+| ChatGPT app | Official ChatGPT app | 21 September 2026 |
+| Tella Agent | Chat-based AI editor, **public beta** | 16 October 2026 |
+
+How I would use this for agent demos: record with the protocol above, then hand the editing pass to an agent through the MCP server or the Claude connector, and review every edit yourself before sharing. Read the MCP page first for the tools it exposes today, since Tella has added tools since launch.
+
+Tella Agent runs on credits. Per the pricing page, Pro includes 3,000 credits per user per month and Premium 6,000, pooled across the workspace, reset monthly with no rollover. Free trials do not include credits. Recording and normal editing, including transcript editing and Auto Cut, are not credit-metered.
+
+<YouTubeEmbed id="cfNZc47oUXk" title="I Tested Tella MCP: AI Video Editing for Non-Engineers" />
+
+*Vendor video from Tella's own channel. Watch it to see the MCP editing workflow as Tella presents it; treat it as a vendor demonstration.*
+
+<YouTubeEmbed id="1w_H6uA3N-g" title="I Use Claude to Edit Videos: Here's My Exact Process" />
+
+*Also from Tella's channel. Shows an editing process run through Claude; useful for planning which edits to hand to an agent and which to keep.*
+
+Disclosure: links to Tella on this page are referral links. If you subscribe, I may earn a commission at no extra cost to you. It does not change the comparison.
+
+Pricing, from the [Tella pricing page](https://www.tella.com/pricing), checked 20 October 2026: Pro from $13 per user per month billed annually ($26 billed monthly); Premium $19 per user per month billed annually ($39 billed monthly), adding a custom domain, branding removal, 60 FPS export and all-time analytics. There is no free plan; every account starts with a 7-day Pro trial with no card. If you want to try the protocol, [start the trial](/go/tella) and record one full agent run with the shot list above.
+
+<ArticleRecommendation affiliateId="tella" article="record-ai-agent-demos" title="Tella">
+Record one agent task with the shot list above during the 7-day trial: commentary clips plus one continuous run. Cut the waits with transcript editing and check that every tool call stays readable.
+</ArticleRecommendation>
+
+## Honest limits
+
+- **One video proves one run.** This protocol makes a reliable agent easy to follow on screen. It does nothing for an agent that fails half its runs.
+- **Silence removal is audio-based.** It does not know what changed on screen. Watch every cut.
+- **Tella Agent is in public beta** and credit-metered. Expect changes, and keep a manual edit path.
+- **Tella is a video tool.** Its share page carries call-to-action buttons; it does not produce click-through demos.
+- **Tella has no mobile app.** Mobile browsers record camera and microphone only, with no editing. Plan agent demos on a desktop.
+- **The review base is small.** G2 shows 5.0 from 2 reviews and Capterra 4.5 from 2; Product Hunt shows 4.8 from 38. Judge it on your own trial recording.
+
+## When a video is the wrong format
+
+| Situation | Better format | Why |
+|---|---|---|
+| The buyer needs to click through the product | Interactive demo: Supademo, Arcade, Storylane or Navattic | The viewer drives; Supademo, Storylane and Navattic also list MCP or agent features on their pricing pages |
+| Engineers want to audit what the agent did | Written trace: the prompt, every tool call and output, the diff, the test log | Text can be searched, diffed and checked line by line |
+| The claim is reliability | Eval results across many runs, with the failure cases | A video shows one run; a pass rate over a stated number of runs supports the claim |
+| A step-by-step process document | Scribe for written guides, Guidde for narrated how-to video | Built for SOPs |
+| A quick internal update | An unedited recording sent the same day | Polish costs time your team does not need |
+
+For a technical audience, my pick is a two-minute video with the written trace linked in the description, so a viewer who wants to check the run can.
+
+## Where to go next
+
+- [Product demo video guide](/guides/product-demo-video-guide): script, record, edit and distribute any product demo, including video versus interactive demo.
+- [Tella guide](/guides/tella-guide): setup and editing workflow for the recorder used in this protocol.
+- [Async video for founders](/guides/async-video-for-founders): investor, team and customer updates, including real face versus AI avatar.
