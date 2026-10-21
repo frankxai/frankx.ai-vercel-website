@@ -1,0 +1,188 @@
+---
+title: "Voice prompting for AI architects: dictate agent briefs"
+description: "How to dictate Claude Code, Cursor and Codex briefs by voice: a six-part spoken structure, what to keep on the keyboard, and how to review before you send."
+date: "2026-10-20"
+lastUpdated: "2026-10-20"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["voice-typing", "wispr-flow", "claude-code", "prompt-engineering", "ai-agents"]
+image: "/images/blog/editorial/headers/voice-prompting-for-ai-architects-hero.webp"
+featured: false
+readingGoal: "Dictate a structured agent brief this week, review the transcript, and compare the result with your typed briefs."
+tldr: "Spoken briefs to coding agents carry more context than typed ones because talking costs less effort than typing. Structure each brief as role, goal, context, constraints, done criteria and verification. Keep file paths, identifiers, regex and exact numbers on the keyboard. Add repo names to your dictation dictionary, review every transcript before sending, and never dictate secrets into a cloud dictation tool."
+keywords: ["dictate prompts to claude code", "voice coding", "vibe coding with voice", "speech to text for developers", "dictate claude code prompts", "voice prompting ai agents", "wispr flow for developers"]
+canonical: "https://www.frankx.ai/blog/voice-prompting-for-ai-architects"
+faqSource: "body"
+---
+
+This page is for engineers and AI architects who brief coding agents all day: Claude Code, Cursor, Codex. The short version: spoken briefs carry more context than typed ones because talking costs almost nothing, so structure them, keep exact identifiers on the keyboard, and read the transcript before you press enter. The full tool setup lives in the [Wispr Flow guide](/guides/wispr-flow); this post is the prompting method.
+
+Start with one task. Pick the next agent brief you were going to type, dictate it with the template below instead, and compare what the agent does with it.
+
+## What did I notice when I started dictating agent briefs?
+
+I use Wispr Flow every day, and the place it changed my work most is the brief I hand to Claude Code agents.
+
+One example. I dictated a single `/goal` brief that asked the agent to act as CEO, CMO and CTO for frankx.ai, audit every blog article, separate internal content from public content, and then work through a plan. Typed, that would have been three lines. Spoken, it came out long and layered: why the audit mattered, what "internal" meant on this site, which pages I was worried about, what a good outcome looked like.
+
+That is the pattern I keep seeing. When I type, I compress, because every sentence costs effort. When I speak, I explain, because explaining is what speech is for. Agents do better with explanation. A common cause of a bad agent run is a brief that left out something the author knew and did not bother to write down.
+
+## Why do spoken briefs carry more context?
+
+Three reasons, all practical.
+
+**Typing cost shapes what you include.** A typed prompt gets edited down to the essentials you can remember at the keyboard. Speaking removes that cost, so the background reasons, the edge cases and the "by the way, don't touch the pricing page" notes survive.
+
+**Speech follows your reasoning order.** You naturally say why before what. That gives the agent the intent behind the task, which it needs when it hits a case your instructions did not cover.
+
+**You hear the gaps.** Saying "and when it's done, it should..." out loud forces you to finish the sentence. Typed briefs often stop before the done criteria.
+
+The cost is structure. A spoken ramble has the context and none of the order. The fix is a fixed shape you speak into.
+
+## How should a spoken agent brief be structured?
+
+Use six parts, in this order. Say the label out loud as you go; it gives the transcript headings and keeps you on track.
+
+1. **Role.** Who the agent is for this task. "Act as a senior Next.js engineer reviewing this repo for SEO regressions."
+2. **Goal.** The outcome in one or two sentences. What exists at the end that does not exist now.
+3. **Context.** Why the task exists, what you already know, what you tried, what the reader or user cares about. This is the section voice improves most.
+4. **Constraints.** What the agent must not do: files to leave alone, commands not to run, style rules, budget limits.
+5. **Done criteria.** Observable conditions. "Every post in content/blog has a description between 120 and 160 characters."
+6. **Verification.** How the agent proves it: which tests, which lint command, what to report back.
+
+Here is the template I recommend. Copy it into a snippet so you can see it while you talk, or into your dictation tool's snippet library so a short trigger phrase inserts it.
+
+```text
+ROLE: Act as [role] for [project]. You are responsible for [scope].
+
+GOAL: By the end of this session, [the concrete outcome].
+
+CONTEXT: This matters because [reason]. What I already know: [facts].
+What I tried: [attempts and results]. The person who will use this is
+[audience], and they care about [their concern].
+
+CONSTRAINTS: Do not [change, delete or run] [thing]. Keep [style rule].
+Ask me before [risky action]. Stay inside [directories].
+
+DONE WHEN: [observable condition 1]. [observable condition 2].
+[observable condition 3].
+
+VERIFY: Run [command]. Report [what to report]. List anything you
+could not finish and why.
+
+EXACT VALUES (type these by hand):
+- Paths:
+- Identifiers:
+- Commands:
+```
+
+The last block matters. Speak everything above it, then type the exact values underneath.
+
+## What should stay on the keyboard?
+
+Dictation is very good at English and unreliable at strings that only mean something character by character. Type these:
+
+- **File paths.** `app/blog/[slug]/page.tsx` spoken aloud comes back in creative forms.
+- **Identifiers.** Function names, component names, environment variable names, database columns.
+- **Regex and glob patterns.** One wrong character changes the match.
+- **Shell commands and flags.** Especially anything destructive.
+- **Exact numbers.** Version numbers, ports, limits, prices, line numbers.
+
+A useful habit: speak the description, type the reference. "Update the hero component so the headline wraps on mobile," then paste `components/home/Hero.tsx` on the next line.
+
+## How do I teach the dictation tool my repo vocabulary?
+
+Wispr Flow has a personal dictionary that learns names and jargon, and you can add entries yourself. Spend five minutes adding the words you say most often that a general model would mangle:
+
+- Repo and package names (`frankx.ai-vercel-website`, internal package names).
+- Tool names: Claude Code, Codex, Cursor, MCP, Vercel, Supabase, pnpm.
+- Product and component names you use in briefs.
+- Teammate names you reference in context.
+
+Then dictate a test paragraph that uses all of them and fix anything that came out wrong. Repeat after a week; the dictionary keeps learning from your corrections.
+
+<YouTubeEmbed id="02BXGNGhIUE" title="Wispr Flow Tutorial: Stop Typing, Start Talking to AI" structuredData={false} />
+
+Think Tutorial made the walkthrough above; watch the section where they dictate into an AI chat to see how cleanup handles filler words before the prompt is sent.
+
+## How do I turn a spoken ramble into a clean brief?
+
+Sometimes you will talk for two minutes and the result is all context with no order. Wispr Flow's Command Mode transforms selected text by voice. Select the ramble and say something like: "Restructure this into role, goal, context, constraints, done criteria and verification. Keep every fact. Do not add anything I did not say."
+
+That last sentence is the important one. Any rewrite step can introduce assumptions, so read the restructured version against what you meant. You can do the same restructuring in the agent itself ("before you start, restate this brief in six sections and wait for my confirmation"), which has the advantage that you see the agent's understanding before it acts.
+
+## Should I review the transcript before sending?
+
+Always. Dictation cleanup is good, and it still makes mistakes, and an agent will act on whatever it receives. A misheard "don't" is the expensive one.
+
+A quick review pass, under a minute:
+
+1. Read the constraints section first. Check every negative survived.
+2. Check names and numbers against the typed block.
+3. Check the done criteria are observable. "Make it better" is not a done criterion.
+4. Delete anything you said while thinking that you do not want the agent to act on.
+
+## What are the security rules for dictating into agents?
+
+Wispr Flow processes dictation in the cloud, so treat everything you say as text leaving your machine.
+
+- **Never dictate secrets.** API keys, passwords, tokens, connection strings, customer data. Paste references to environment variables instead.
+- **Turn on the model-training opt-out.** Wispr lets every plan opt out of model training at any time; Enterprise enforces it organisation-wide ([pricing and plan details](https://wisprflow.ai/pricing), checked 2026-10-20).
+- **Know what the vendor claims.** Wispr states it holds SOC 2 Type II and ISO 27001 certification and offers HIPAA support with a signed BAA on higher plans, per its [trust centre](https://trust.wispr.ai). Those are Wispr's claims; check them against your own requirements.
+- **Ask before using it on client or regulated code.** If your organisation needs audio to stay on the device, a local-model tool is the better fit. The [Wispr Flow vs Superwhisper vs MacWhisper vs Willow comparison](/blog/wispr-flow-vs-superwhisper-vs-macwhisper-vs-willow) covers which tools run on-device.
+
+Disclosure: the Wispr Flow links on this page are affiliate links. If you subscribe through them I may earn a commission at no extra cost to you.
+
+On cost: the free plan includes 2,000 words a week on desktop, and Pro is $15 per user per month, or $12 billed annually, for unlimited dictation, according to [Wispr's pricing page](https://wisprflow.ai/pricing) on 2026-10-20. A few long agent briefs a day will pass the free limit quickly, so run the trial week on real work to see where you land. [Try Wispr Flow](/go/wispr).
+
+<ArticleRecommendation affiliateId="wispr" article="voice-prompting-for-ai-architects" title="Wispr Flow">
+Dictate your next Claude Code brief using the six-part template, then compare the agent's first plan with the plan it produced from your last typed brief on a similar task.
+</ArticleRecommendation>
+
+## What protocol should I run this week?
+
+Five working days, one change per day.
+
+1. **Day 1: setup.** Install a dictation tool, turn on the training opt-out, and add ten repo and tool names to the dictionary.
+2. **Day 2: one brief.** Dictate one real agent brief using the template. Type the exact-values block. Review, then send.
+3. **Day 3: compare.** Take a task similar to one you briefed by typing last week. Dictate it. Compare how many clarifying questions the agent asked and how many corrections you made.
+4. **Day 4: restructure.** Ramble a brief with no structure, then use Command Mode or the agent to restructure it. Check nothing was invented.
+5. **Day 5: decide.** Keep voice for the briefs where it produced better runs. Keep typing for the rest.
+
+Track two numbers per brief: the agent's clarifying questions and your corrections after the first pass. Those tell you more than any speed figure. If you want to measure the speed side too, the [speaking vs typing speed post](/blog/speaking-vs-typing-speed) has a five-minute self-test.
+
+## Where does voice fit alongside Cursor, Codex and Claude Code?
+
+Dictation sits outside the agent, so it works the same in all three: a terminal, an editor chat panel, a web prompt box. The method above does not depend on the agent. What changes is how much context each one can use. Agents that read the repo themselves benefit most from the "context" and "done criteria" sections, because the code supplies the facts and your voice supplies the intent. If you are new to Claude Code, start with the [Claude Code getting started guide](/guides/claude-code-getting-started), and see the [Cursor vs Claude Code vs Windsurf comparison](/blog/cursor-vs-claude-code-vs-windsurf-2026) for the editor choice.
+
+Founders using the same tool for investor updates and team messages can read [voice typing for founders](/blog/voice-typing-for-founders); the [voice typing learning path](/learn/voice-typing) collects the whole cluster in order.
+
+## Frequently asked questions
+
+### Can I dictate prompts directly into Claude Code?
+
+Yes. System-wide dictation tools such as Wispr Flow type into whatever field has focus, including a terminal running Claude Code or the chat panel in Cursor. The agent receives plain text and cannot tell it was spoken.
+
+### What should I still type when voice prompting?
+
+Type file paths, function and variable names, regex, shell commands, version numbers and any exact value. Dictation tools guess at these and a wrong character changes the meaning of the instruction.
+
+### Is dictation safe to use with private code?
+
+Wispr Flow processes dictation in the cloud. Never dictate secrets, keys or customer data, turn on the model-training opt-out, and check Wispr's trust page or your security team before using it on regulated work.
+
+### How long should a spoken agent brief be?
+
+Long enough to cover role, goal, context, constraints, done criteria and verification. Spoken briefs often run several hundred words, which is fine as long as the done criteria and verification steps are explicit.
+
+### Does voice prompting work for vibe coding?
+
+It works well for the exploratory phase, where you describe behaviour and intent. Switch to typed, precise instructions once you are naming specific files, tests or values.
+
+### Which dictation tool should a developer pick?
+
+Wispr Flow suits cloud-based cleanup across every app; Superwhisper offers on-device models for people who want audio to stay local. The comparison post in this cluster covers the trade-offs.
+
+## Next step
+
+Dictate one brief today with the template, type the exact values, read it once, and send it. For installation, settings and dictionary setup, go to the [Wispr Flow guide](/guides/wispr-flow). For the tool decision, read the [comparison post](/blog/wispr-flow-vs-superwhisper-vs-macwhisper-vs-willow).
