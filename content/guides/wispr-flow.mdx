@@ -22,7 +22,7 @@ decisions:
   - audience: "CEOs rolling out to a team"
     call: "wait"
     because: "SSO, organisation-wide HIPAA enforcement and admin control over model training start on Growth; SCIM, audit logs and models never trained on your data are Enterprise. Run a pilot on Pro, then put the Trust Center documents through security review."
-    source: "https://trust.wispr.ai/"
+    source: "https://wisprflow.ai/pricing"
   - audience: "Writers who need offline or on-device processing"
     call: "skip"
     because: "Wispr Flow processes dictation in the cloud. If audio must stay on the machine, test Superwhisper's local models first."
@@ -46,7 +46,7 @@ _Plans, prices and security claims were checked against [wisprflow.ai/pricing](h
 
 Wispr Flow is a dictation app that turns speech into cleaned-up text in whatever app you are using: email, Slack, a doc, a terminal running Claude Code. This guide is for founders, AI architects, executives, creators and authors who write all day and want to know which part of that writing to move to voice. The smallest honest test: install the free plan, dictate one message type for a week, and compare the time to a sendable draft with your typed version.
 
-I use it every day, mostly to brief coding agents. My longest prompts are now spoken, and they carry far more context than I ever typed.
+I use it every day, mostly to brief coding agents. My longest prompts are now spoken, and they carry context I would not have typed.
 
 Disclosure: the Wispr Flow links on this page are affiliate links. If you subscribe through them I may earn a commission at no extra cost to you.
 
@@ -63,9 +63,9 @@ The parts that matter in daily use:
 - **Personal dictionary.** It learns names and jargon, and you can add terms yourself. Accuracy on your own vocabulary depends more on this list than on anything else.
 - **Snippets.** A spoken trigger expands into saved text, such as a scheduling link or a standard sign-off.
 - **Per-app styles.** Casual for chat, more formal for email, as you configure it.
-- **Command Mode.** Select text, speak an instruction ("make this three bullet points", "shorter"), and Wispr rewrites the selection. It works on the selected text; it does not read the email you are replying to.
+- **Command Mode.** Select text, speak an instruction ("make this three bullet points", "shorter"), and Wispr rewrites the selection. It works on the text you select.
 - **Languages.** More than 100, per the vendor.
-- **Notetaker.** Meeting and voice-memo notes on Mac and Windows, without a bot joining the call, with MCP access so the notes are usable from Claude or ChatGPT.
+- **Notetaker.** Meeting and voice-memo notes on Mac and Windows, without a bot joining the call. Wispr's pricing page says the notes can be used from Claude and ChatGPT through MCP.
 
 Wispr's own marketing says you will "talk 4x faster". Treat that as the vendor's claim. The research on speaking versus typing is narrower than the headlines, and the [speed article](/blog/speaking-vs-typing-speed) covers what it does and does not show.
 
@@ -83,15 +83,15 @@ The Wispr Flow team's own introduction shows the hotkey, the cleanup and the per
 4. **Fill the dictionary.** Add your name, your company, your product names, your team, and the tools you mention daily: Claude Code, Cursor, Supabase, Vercel, whatever your stack is. Ten minutes here saves corrections every day.
 5. **Set app styles.** Decide how formal email should be and how casual chat should be.
 6. **Create three snippets.** For example, your calendar link, your standard intro and your sign-off.
-7. **Check privacy settings.** Decide whether to opt out of model training and what stays on the device, before you dictate anything confidential.
+7. **Check privacy settings.** Decide whether to opt out of model training and check what context the app may read, before you dictate anything confidential.
 
-Independent tutorials cover the settings screens in more detail. Alec Wilcock's full guide is the most thorough one I found; pause after the dictionary section and fill in your own list.
+Independent tutorials cover the settings screens in more detail. Alec Wilcock's full guide covers the settings screens in detail; pause after the dictionary section and fill in your own list.
 
 <YouTubeEmbed id="fyifKHq8XaY" title="How to Use Wispr Flow - The Best Voice to Text App (FULL GUIDE)" structuredData={false} />
 
 ## How do I use it?
 
-Most of my dictation goes into Claude Code. A typical brief is spoken in one take: who the agent should act as, what the goal is, what already exists, what to leave alone, and how I will know it is done. One recent brief asked an agent to act as CEO, CMO and CTO for this site, audit every blog article, separate internal material from public content, and work through the plan in order. Typed, that would have been three lines. Spoken, it ran to several paragraphs of context the agent actually needed.
+Most of my dictation goes into Claude Code. A typical brief is spoken in one take: who the agent should act as, what the goal is, what already exists, what to leave alone, and how I will know it is done. Typed, a brief like that would be three lines. Spoken, it runs to several paragraphs of context the agent actually needs.
 
 That is the pattern I would teach first. Voice is cheap for context and expensive for precision. A spoken brief is long and layered because talking costs almost nothing; a typed brief is short because typing does. Agents do better with the long version.
 
@@ -145,7 +145,7 @@ As listed on [wisprflow.ai/pricing](https://wisprflow.ai/pricing) on 20 October 
 | Growth | $23 per user per month | $18 per user per month | SSO with SAML, organisation-wide HIPAA enforcement with a signed BAA, admin control over model training |
 | Enterprise | Custom | Custom | SCIM, audit logs and MDM, models never trained on your data, block dictation in chosen apps |
 
-Students and educators with an education email get 50% off Pro, and non-profits get a discounted rate, per the same page. Prices change; check the page before you buy.
+Students and educators with an education email get 50% off Pro, and non-profits get a discounted rate, per the FAQ on the same page. Prices change; check the page before you buy.
 
 My advice on the free plan: it is enough to run the one-week test below. If the test shows voice wins for at least one message type you send every day, Pro is worth it. If not, you have lost nothing.
 
@@ -157,16 +157,16 @@ Know three facts before you dictate anything sensitive.
 2. **Model training is opt-out.** Wispr says every plan can opt out at any time, Growth lets admins set it for the team, and Enterprise locks it off.
 3. **Certifications are vendor-stated.** Wispr lists SOC 2 Type II and ISO 27001, and HIPAA-ready dictation with a signed BAA. Your security team should read the documents on the [Trust Center](https://trust.wispr.ai/) rather than rely on a pricing page or this guide.
 
-Third-party reviewers have also pointed out that the context feature can capture what is on screen in the active window. Read the current privacy policy and settings to see what is collected on your plan.
+Context features in dictation apps can read what is on screen in the active window. Read Wispr's current privacy policy and settings to see what is collected on your plan.
 
-For client work under NDA, I opt out of training, keep secrets and identifiers on the keyboard, and do not dictate in shared spaces. If your policy says audio may not leave the device, Wispr Flow is the wrong tool; test an on-device option instead.
+For client work under NDA: opt out of training, keep secrets and identifiers on the keyboard, and do not dictate in shared spaces. If your policy says audio may not leave the device, Wispr Flow is the wrong tool; test an on-device option instead.
 
 ## Which alternatives should you consider?
 
 - **Superwhisper** runs Whisper and Parakeet models on your device, with optional cloud models. It suits privacy-first Mac users who will spend time on configuration. Listed at $8.49 a month, $84.99 a year or $249.99 lifetime.
-- **MacWhisper** is a Mac app for transcribing audio and video files. It does not type into other apps as you speak.
+- **MacWhisper** is a Mac app built mainly for transcribing audio and video files with local models. Check its current dictation features before ruling it out for live typing.
 - **Willow Voice** is the closest cloud alternative, with similar platforms and a free weekly word allowance.
-- **Built-in dictation** on macOS and Windows (Win + H) is free and private enough for many uses, without the AI cleanup or Command Mode.
+- **Built-in dictation** on macOS and Windows (Win + H) is free, with processing that depends on your OS settings, and has no AI cleanup or Command Mode.
 
 The full comparison, with processing location, platforms and listed prices, is in [Wispr Flow vs Superwhisper vs MacWhisper vs Willow](/blog/wispr-flow-vs-superwhisper-vs-macwhisper-vs-willow).
 
