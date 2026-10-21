@@ -13,6 +13,18 @@ const REQUIRED = [
   { file: '.github/workflows/contract-guard.yml', label: 'Contract Guard' },
 ]
 
+// The workflow must contain exactly one job and that job must carry the
+// required name. Matching any `name:` line would let a pull request rename the
+// real gate and add an unrelated job that keeps the old name, so the context
+// would still report while the gate behind it was gone.
+const requiredJobNameErrors = (workflow, label) => {
+  const jobs = workflow.split(/^jobs:\s*$/m)[1] ?? ''
+  const jobIds = [...jobs.matchAll(/^  ([A-Za-z0-9_-]+):\s*$/gm)].map((match) => match[1])
+  if (jobIds.length !== 1) return [`${label} must be the only job in its workflow, found ${jobIds.length}`]
+  const first = jobs.match(new RegExp(`^  ${jobIds[0]}:\\s*\\n    name: ${label}\\s*$`, 'm'))
+  return first ? [] : [`job "${jobIds[0]}" must be named "${label}"`]
+}
+
 // The trigger both workflows carried until 2026-10-21, trimmed to the entries
 // that matter here. Kept as a witness so the test reproduces the trap instead of
 // only asserting its absence.
@@ -54,7 +66,7 @@ for (const { file, label } of REQUIRED) {
     const workflow = await read(file)
 
     assert.deepEqual(requiredCheckAlwaysReportsErrors(workflow, label), [])
-    assert.match(workflow, new RegExp(`^    name: ${label}$`, 'm'), `${file} must keep job name "${label}"`)
+    assert.deepEqual(requiredJobNameErrors(workflow, label), [], `${file} must keep job name "${label}"`)
   })
 
   test(`${label} produces a result for a .nvmrc-only pull request and for a surface change`, async () => {
@@ -72,6 +84,19 @@ test('the retired path filter is the trap: it gave a .nvmrc-only pull request no
   assert.deepEqual(requiredCheckAlwaysReportsErrors(OLD_FILTERED_TRIGGER, 'Merge Gate'), [
     'Merge Gate is a required check and must report on every pull request: pull_request on main and staging, no paths or paths-ignore filter',
   ])
+})
+
+test('the job-name pin rejects a renamed gate and a decoy job that keeps the old name', () => {
+  const real = 'jobs:\n  merge-gate:\n    name: Merge Gate\n    runs-on: ubuntu-latest\n'
+  assert.deepEqual(requiredJobNameErrors(real, 'Merge Gate'), [])
+
+  const renamed = 'jobs:\n  merge-gate:\n    name: Merge Gate (lite)\n    runs-on: ubuntu-latest\n'
+  assert.notDeepEqual(requiredJobNameErrors(renamed, 'Merge Gate'), [])
+
+  const decoy =
+    'jobs:\n  merge-gate:\n    name: Merge Gate (lite)\n    runs-on: ubuntu-latest\n' +
+    '  placeholder:\n    name: Merge Gate\n    runs-on: ubuntu-latest\n    steps: []\n'
+  assert.notDeepEqual(requiredJobNameErrors(decoy, 'Merge Gate'), [])
 })
 
 test('the trigger pin rejects every way of bringing a filter or a gap back', () => {
