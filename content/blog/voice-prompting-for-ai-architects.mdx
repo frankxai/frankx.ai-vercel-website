@@ -12,19 +12,7 @@ readingGoal: "Dictate a structured agent brief this week, review the transcript,
 tldr: "Spoken briefs to coding agents carry more context than typed ones because talking costs less effort than typing. Structure each brief as role, goal, context, constraints, done criteria and verification. Keep file paths, identifiers, regex and exact numbers on the keyboard. Add repo names to your dictation dictionary, review every transcript before sending, and never dictate secrets into a cloud dictation tool."
 keywords: ["dictate prompts to claude code", "voice coding", "vibe coding with voice", "speech to text for developers", "dictate claude code prompts", "voice prompting ai agents", "wispr flow for developers"]
 canonical: "https://www.frankx.ai/blog/voice-prompting-for-ai-architects"
-faq:
-  - question: "Can I dictate prompts directly into Claude Code?"
-    answer: "Yes. System-wide dictation tools such as Wispr Flow type into whatever field has focus, including a terminal running Claude Code or the chat panel in Cursor. The agent receives plain text and cannot tell it was spoken."
-  - question: "What should I still type when voice prompting?"
-    answer: "Type file paths, function and variable names, regex, shell commands, version numbers and any exact value. Dictation tools guess at these and a wrong character changes the meaning of the instruction."
-  - question: "Is dictation safe to use with private code?"
-    answer: "Wispr Flow processes dictation in the cloud. Never dictate secrets, keys or customer data, turn on the model-training opt-out, and check Wispr's trust page or your security team before using it on regulated work."
-  - question: "How long should a spoken agent brief be?"
-    answer: "Long enough to cover role, goal, context, constraints, done criteria and verification. Spoken briefs often run several hundred words, which is fine as long as the done criteria and verification steps are explicit."
-  - question: "Does voice prompting work for vibe coding?"
-    answer: "It works well for the exploratory phase, where you describe behaviour and intent. Switch to typed, precise instructions once you are naming specific files, tests or values."
-  - question: "Which dictation tool should a developer pick?"
-    answer: "Wispr Flow suits cloud-based cleanup across every app; Superwhisper offers on-device models for people who want audio to stay local. The comparison post in this cluster covers the trade-offs."
+faqSource: "body"
 ---
 
 This page is for engineers and AI architects who brief coding agents all day: Claude Code, Cursor, Codex. The short version: spoken briefs carry more context than typed ones because talking costs almost nothing, so structure them, keep exact identifiers on the keyboard, and read the transcript before you press enter. The full tool setup lives in the [Wispr Flow guide](/guides/wispr-flow); this post is the prompting method.
@@ -168,6 +156,32 @@ Track two numbers per brief: the agent's clarifying questions and your correctio
 Dictation sits outside the agent, so it works the same in all three: a terminal, an editor chat panel, a web prompt box. The method above does not depend on the agent. What changes is how much context each one can use. Agents that read the repo themselves benefit most from the "context" and "done criteria" sections, because the code supplies the facts and your voice supplies the intent. If you are new to Claude Code, start with the [Claude Code getting started guide](/guides/claude-code-getting-started), and see the [Cursor vs Claude Code vs Windsurf comparison](/blog/cursor-vs-claude-code-vs-windsurf-2026) for the editor choice.
 
 Founders using the same tool for investor updates and team messages can read [voice typing for founders](/blog/voice-typing-for-founders); the [voice typing learning path](/learn/voice-typing) collects the whole cluster in order.
+
+## Frequently asked questions
+
+### Can I dictate prompts directly into Claude Code?
+
+Yes. System-wide dictation tools such as Wispr Flow type into whatever field has focus, including a terminal running Claude Code or the chat panel in Cursor. The agent receives plain text and cannot tell it was spoken.
+
+### What should I still type when voice prompting?
+
+Type file paths, function and variable names, regex, shell commands, version numbers and any exact value. Dictation tools guess at these and a wrong character changes the meaning of the instruction.
+
+### Is dictation safe to use with private code?
+
+Wispr Flow processes dictation in the cloud. Never dictate secrets, keys or customer data, turn on the model-training opt-out, and check Wispr's trust page or your security team before using it on regulated work.
+
+### How long should a spoken agent brief be?
+
+Long enough to cover role, goal, context, constraints, done criteria and verification. Spoken briefs often run several hundred words, which is fine as long as the done criteria and verification steps are explicit.
+
+### Does voice prompting work for vibe coding?
+
+It works well for the exploratory phase, where you describe behaviour and intent. Switch to typed, precise instructions once you are naming specific files, tests or values.
+
+### Which dictation tool should a developer pick?
+
+Wispr Flow suits cloud-based cleanup across every app; Superwhisper offers on-device models for people who want audio to stay local. The comparison post in this cluster covers the trade-offs.
 
 ## Next step
 
