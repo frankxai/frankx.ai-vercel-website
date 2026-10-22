@@ -1,17 +1,14 @@
 #!/usr/bin/env bash
 # Vercel ignoreCommand — exit 0 SKIPS the build, non-zero PROCEEDS.
-# Skips when (a) the triggering PR is a draft, or (b) only docs/internal/
-# research paths changed since the previous deploy.
-# Phase 3.5 of VERCEL-COST-MASSIVE-ACTION — cuts ~30-50% of preview-deploy spend
-# on docs-only commits without touching site behavior.
+# Preview policy (2026-10-21, estate Vercel build budget): previews are opt-in for
+# agent branches and need proof the PR is ready; bots and catch-up merges never build;
+# production is never skipped. Measured 2026-10-07..21: 77% of this project's build
+# minutes were non-main, and 41% of preview minutes were 'Merge branch main into ...'.
+# Opt in with [preview] in the commit message, or push the branch as preview/<name>.
+# After the gate, docs/internal-only changes are still skipped by the path diff below.
 #
-# IMPORTANT — fail safe to PROCEED: any unexpected condition (git error, missing
-# parent, env-var redeploy, etc.) returns non-zero so the build runs. Skipping a
-# build that should have run is a correctness bug (stale prod); building a build
-# that could have been skipped is just a small cost. Bias toward correctness.
-#
-# 2026-05-05 review hardened: handles VERCEL_GIT_PREVIOUS_SHA, env-var redeploys
-# (commit SHA == previous SHA), merge commits, shallow clones, git errors.
+# IMPORTANT — fail safe to PROCEED for production and unknown refs: skipping a build
+# that should have run is a correctness bug (stale prod); an extra build is only money.
 
 set +e  # Don't auto-abort on non-zero — we control exit codes explicitly.
 
@@ -36,72 +33,99 @@ if [ -n "$PREVIOUS_SHA" ] && [ "$CURRENT_SHA" = "$PREVIOUS_SHA" ]; then
   exit 1
 fi
 
-# 0a. Agents may push intermediate preview checkpoints without spending build
-#     minutes, including branch pushes made before a pull request exists.
-#     The final coherent commit MUST omit [agent-wip].
-#
-#     Subject line only. CLAUDE.md puts the marker in the commit subject, and
-#     scanning the whole body means any commit that merely *describes* the marker
-#     matches it. Measured 2026-09-08 on starlight-intelligence-web, which had
-#     been given a copy of this file: commit f0abfcb explained what [agent-wip]
-#     does, and deployment dpl_DFrAVq1r2rpZkTpQtiKgz9U4orcc was cancelled in 3.3
-#     seconds by this very check. A body scan fails toward NOT building, so the
-#     preview that would have verified the change never ran.
-COMMIT_SUBJECT="${VERCEL_GIT_COMMIT_MESSAGE:-}"
-if [ -z "$COMMIT_SUBJECT" ]; then
-  COMMIT_SUBJECT="$(git log -1 --format=%s HEAD 2>/dev/null)"
-fi
-COMMIT_SUBJECT="$(printf '%s\n' "$COMMIT_SUBJECT" | head -n 1)"
-if printf '%s' "$COMMIT_SUBJECT" | grep -Fq "[agent-wip]"; then
-  echo "[should-deploy] Explicit agent work-in-progress checkpoint — SKIPPING build."
-  exit 0
+REF="${VERCEL_GIT_COMMIT_REF:-}"
+MESSAGE="${VERCEL_GIT_COMMIT_MESSAGE:-}"
+SUBJECT="$(printf '%s\n' "$MESSAGE" | head -n 1)"
+
+# Unknown ref or main builds (production was handled above).
+if [ -z "$REF" ] || [ "$REF" = "main" ]; then
+  echo "[preview-gate] main/unknown ref — BUILDING."
+  exit 1
 fi
 
-# 0b. If the parent was an ignored checkpoint, force the first coherent commit
-#     to build before draft/path filters can skip it. Subject only, to match 0a:
-#     a body scan here errs toward building, so it is wasteful rather than
-#     dangerous, but two definitions of "is a checkpoint" is worse than either.
+# 1. Explicit opt-in beats every skip rule below.
+case "$REF" in
+  preview/*) echo "[preview-gate] preview/* branch — BUILDING."; exit 1 ;;
+esac
+case "$MESSAGE" in
+  *"[preview]"*) echo "[preview-gate] [preview] requested — BUILDING."; exit 1 ;;
+esac
+
+# 2. Bots and tooling branches never need a preview.
+case "$REF" in
+  dependabot/*|renovate/*|copilot/*|changeset-release/*|backup/*|worktree-*)
+    echo "[preview-gate] bot/tooling branch $REF — SKIPPING. Add [preview] to build."
+    exit 0 ;;
+esac
+
+# 3. Catching a branch up with main reviews nothing new (41% of one sibling
+#    project's preview minutes were exactly this). Subject line only.
+case "$SUBJECT" in
+  "Merge branch 'main'"*|"Merge remote-tracking branch 'origin/main'"*)
+    echo "[preview-gate] catch-up merge from main — SKIPPING. Add [preview] to build."
+    exit 0 ;;
+esac
+
+# 4. [agent-wip] in the subject line is an explicit checkpoint.
+case "$SUBJECT" in
+  *"[agent-wip]"*) echo "[preview-gate] [agent-wip] checkpoint — SKIPPING."; exit 0 ;;
+esac
+
+# 5. Draft / no-PR check through the public GitHub API (repo is public, no token).
+#    PR_STATE: ready | draft | none | unknown. Rate limits and network errors
+#    land on "unknown", never on a skip.
+PR_STATE="unknown"
+OWNER="${VERCEL_GIT_REPO_OWNER:-}"
+SLUG="${VERCEL_GIT_REPO_SLUG:-}"
+if [ -n "$OWNER" ] && [ -n "$SLUG" ]; then
+  if [ -n "${VERCEL_GIT_PULL_REQUEST_ID:-}" ]; then
+    PR_JSON="$(curl -sf --max-time 5 "https://api.github.com/repos/${OWNER}/${SLUG}/pulls/${VERCEL_GIT_PULL_REQUEST_ID}" 2>/dev/null)"
+    if [ -n "$PR_JSON" ]; then
+      if printf '%s' "$PR_JSON" | grep -q '"draft"[[:space:]]*:[[:space:]]*true'; then
+        PR_STATE="draft"
+      elif printf '%s' "$PR_JSON" | grep -q '"draft"[[:space:]]*:[[:space:]]*false'; then
+        PR_STATE="ready"
+      fi
+    fi
+  else
+    PR_JSON="$(curl -sf --max-time 5 "https://api.github.com/repos/${OWNER}/${SLUG}/pulls?head=${OWNER}:${REF}&state=open" 2>/dev/null)"
+    if [ -n "$PR_JSON" ]; then
+      CLEAN="$(printf '%s' "$PR_JSON" | tr -d '[:space:]')"
+      if [ "$CLEAN" = "[]" ]; then
+        PR_STATE="none"
+      elif printf '%s' "$PR_JSON" | grep -q '"draft"[[:space:]]*:[[:space:]]*false'; then
+        PR_STATE="ready"
+      elif printf '%s' "$PR_JSON" | grep -q '"draft"[[:space:]]*:[[:space:]]*true'; then
+        PR_STATE="draft"
+      fi
+    fi
+  fi
+fi
+
+case "$PR_STATE" in
+  draft) echo "[preview-gate] PR is a draft — SKIPPING. Add [preview] to build."; exit 0 ;;
+  none)  echo "[preview-gate] no open PR for $REF — SKIPPING. Add [preview] to build."; exit 0 ;;
+esac
+
+# 6. Agent branches need positive proof the PR is ready. "unknown" (API down,
+#    rate-limited) is not proof, so it skips; the opt-in above is the way through.
+case "$REF" in
+  agent/*|codex/*|grok/*|grok-bot/*|claude/*|jules/*|antigravity/*|hermes/*|gemini/*|v0/*|ccr-*)
+    if [ "$PR_STATE" != "ready" ]; then
+      echo "[preview-gate] agent branch $REF without a confirmed ready PR — SKIPPING. Add [preview] to build."
+      exit 0
+    fi ;;
+esac
+
+
+# The first coherent commit after an ignored [agent-wip] checkpoint builds before the
+# path diff can skip it: HEAD^ alone would miss the code the checkpoint carried.
 if git log -1 --format=%s HEAD^ 2>/dev/null | grep -Fq "[agent-wip]"; then
   echo "[should-deploy] Coherent checkpoint follows [agent-wip] — PROCEEDING."
   exit 1
 fi
 
-# 0c. Draft PR check — cheapest remaining skip, runs before path diff work.
-#    VERCEL_GIT_PULL_REQUEST_ID is only set for PR-linked preview builds
-#    (empty for production and non-PR previews), so this never touches
-#    production. Repo is public — unauthenticated GitHub API call, no token.
-#    Fail-safe to PROCEED: any curl/parse hiccup falls through to the
-#    existing path-diff logic below rather than risking a false skip.
-if [ -n "${VERCEL_GIT_PULL_REQUEST_ID:-}" ] && [ -n "${VERCEL_GIT_REPO_OWNER:-}" ] && [ -n "${VERCEL_GIT_REPO_SLUG:-}" ]; then
-  PR_JSON=$(curl -sf --max-time 5 \
-    "https://api.github.com/repos/${VERCEL_GIT_REPO_OWNER}/${VERCEL_GIT_REPO_SLUG}/pulls/${VERCEL_GIT_PULL_REQUEST_ID}" 2>/dev/null)
-  if [ -n "$PR_JSON" ] && echo "$PR_JSON" | grep -q '"draft"[[:space:]]*:[[:space:]]*true'; then
-    echo "[should-deploy] PR #${VERCEL_GIT_PULL_REQUEST_ID} is a draft — SKIPPING build."
-    exit 0
-  fi
-fi
-
-# 0d. Direct branch push check — when VERCEL_GIT_PULL_REQUEST_ID is unset.
-#     When agents or developers push commits to a feature branch before or without
-#     opening a pull request, Vercel initiates a preview build with no PR ID.
-#     Check if an open, non-draft PR exists for this branch. If no open PR exists,
-#     or if all open PRs for this branch are drafts, SKIP the preview build to avoid
-#     burning build minutes on intermediate, unreviewed work.
-if [ -z "${VERCEL_GIT_PULL_REQUEST_ID:-}" ] && [ -n "${VERCEL_GIT_COMMIT_REF:-}" ] && [ "${VERCEL_GIT_COMMIT_REF:-}" != "main" ] && [ -n "${VERCEL_GIT_REPO_OWNER:-}" ] && [ -n "${VERCEL_GIT_REPO_SLUG:-}" ]; then
-  OPEN_PR=$(curl -sf --max-time 5 \
-    "https://api.github.com/repos/${VERCEL_GIT_REPO_OWNER}/${VERCEL_GIT_REPO_SLUG}/pulls?head=${VERCEL_GIT_REPO_OWNER}:${VERCEL_GIT_COMMIT_REF}&state=open" 2>/dev/null)
-  if [ -n "$OPEN_PR" ]; then
-    CLEAN_PR=$(printf '%s' "$OPEN_PR" | tr -d '[:space:]')
-    if [ "$CLEAN_PR" = "[]" ]; then
-      echo "[should-deploy] No open PR for branch ${VERCEL_GIT_COMMIT_REF} — SKIPPING preview build."
-      exit 0
-    elif echo "$OPEN_PR" | grep -q '"draft"[[:space:]]*:[[:space:]]*true' && ! echo "$OPEN_PR" | grep -q '"draft"[[:space:]]*:[[:space:]]*false'; then
-      echo "[should-deploy] Open PR for branch ${VERCEL_GIT_COMMIT_REF} is a draft — SKIPPING preview build."
-      exit 0
-    fi
-  fi
-fi
-
+# Past the gate: this branch is allowed a preview. Skip it only if no rendered output changed.
 # 1. Pick a base SHA to diff against:
 #    - Prefer VERCEL_GIT_PREVIOUS_SHA (handles merge commits + multi-commit pushes correctly)
 #    - Fall back to HEAD^ only when Vercel did not supply a previous SHA.
@@ -158,46 +182,6 @@ RELEVANT_PATHS=(
   .eslintrc.json
   instrumentation.ts
 )
-
-# 1b. Preview whose branch differs from main in no way that changes rendered
-#     output. Measured 2026-09-01: with six harnesses working, "Merge branch
-#     'main' into agent/..." commits rebuilt previews that reviewed nothing —
-#     the branch had merely caught up to main, and production already built
-#     that content.
-#
-#     "Is this a merge from main" is the wrong question: once a feature branch
-#     lands, BOTH its parents are ancestors of main, so ancestry cannot tell the
-#     two merge directions apart after the fact. What matters for a preview is
-#     simpler — does this branch differ from main at all?
-#
-#     Vercel clones previews shallow and without a remote-tracking origin/main,
-#     so the ref this needs is normally absent. An earlier version of this check
-#     was conditioned on origin/main already resolving and therefore never fired.
-#     A depth-1 fetch is enough: `git diff A B -- paths` compares two trees
-#     directly and needs no merge base.
-#
-#     Fail-safe to PROCEED: a failed fetch, an absent ref, or a git error all
-#     fall through to the base-SHA diff below rather than risking a false skip.
-if [ -n "${VERCEL_GIT_COMMIT_REF:-}" ] && [ "${VERCEL_GIT_COMMIT_REF:-}" != "main" ]; then
-  MAIN_REF=""
-  if git rev-parse --verify -q origin/main >/dev/null 2>&1; then
-    MAIN_REF="origin/main"
-  elif command -v timeout >/dev/null 2>&1 \
-       && timeout 45 git fetch --no-tags --depth=1 origin main >/dev/null 2>&1; then
-    MAIN_REF="FETCH_HEAD"
-  elif ! command -v timeout >/dev/null 2>&1 \
-       && git fetch --no-tags --depth=1 origin main >/dev/null 2>&1; then
-    MAIN_REF="FETCH_HEAD"
-  fi
-
-  if [ -z "$MAIN_REF" ]; then
-    echo "[should-deploy] main not reachable for branch comparison — continuing to base-SHA diff."
-  elif git diff --quiet "$MAIN_REF" HEAD -- "${RELEVANT_PATHS[@]}" 2>/dev/null; then
-    echo "[should-deploy] Branch has no relevant diff against main ($MAIN_REF) — SKIPPING build."
-    echo "[should-deploy] Nothing to preview that production has not already built."
-    exit 0
-  fi
-fi
 
 # 2. Run the diff. Capture the exit code explicitly so we can distinguish:
 #    rc=0 → no diff → SKIP
