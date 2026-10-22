@@ -1,0 +1,21 @@
+A spoken agent brief should end with a block you type.
+
+Use voice for the context: why the task matters, what you tried, which tradeoff the agent needs to understand. Keep paths, identifiers, commands and exact limits on the keyboard.
+
+For the spoken part:
+Role → goal → context → constraints → done criteria → verification.
+
+Then add:
+
+EXACT VALUES
+Paths:
+Identifiers:
+Commands:
+Versions and limits:
+
+That last block gives you something precise to check against the transcript. A misheard negative can reverse a constraint. One character can change a path or a command.
+
+Try it on one real task. Compare the clarifying questions and corrections with a comparable task you briefed by typing. Keep the method where the handoff improves.
+
+The guide has a copyable six-part brief and the review checklist:
+https://www.frankx.ai/blog/voice-prompting-for-ai-architects?utm_source=linkedin&utm_medium=social&utm_campaign=voice-briefs&utm_content=blog-voice-prompting-for-ai-architects-linkedin-a

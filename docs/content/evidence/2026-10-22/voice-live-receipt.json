@@ -1,0 +1,132 @@
+{
+  "retrieved_at": "2026-10-22T08:18:19.966852+00:00",
+  "method": "HTTP/server HTML only; no browser or Google indexing verification",
+  "rows": [
+    {
+      "path": "/guides/wispr-flow",
+      "status": 200,
+      "url": "https://www.frankx.ai/guides/wispr-flow",
+      "canonical": [
+        "https://www.frankx.ai/guides/wispr-flow"
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "title": [
+        "Wispr Flow guide: voice typing for builders | FrankX"
+      ]
+    },
+    {
+      "path": "/learn/voice-typing",
+      "status": 200,
+      "url": "https://www.frankx.ai/learn/voice-typing",
+      "canonical": [
+        "https://www.frankx.ai/learn/voice-typing"
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "title": [
+        "Voice typing and spoken briefs \u2014 Free Learning Portal"
+      ]
+    },
+    {
+      "path": "/blog/voice-typing-for-founders",
+      "status": 200,
+      "url": "https://www.frankx.ai/blog/voice-typing-for-founders",
+      "canonical": [
+        "https://www.frankx.ai/blog/voice-typing-for-founders"
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "title": [
+        "Voice typing for founders: speak your inbox to zero | FrankX"
+      ]
+    },
+    {
+      "path": "/blog/voice-prompting-for-ai-architects",
+      "status": 200,
+      "url": "https://www.frankx.ai/blog/voice-prompting-for-ai-architects",
+      "canonical": [
+        "https://www.frankx.ai/blog/voice-prompting-for-ai-architects"
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "title": [
+        "Voice prompting for AI architects: dictate agent briefs | FrankX"
+      ]
+    },
+    {
+      "path": "/blog/voice-typing-for-ceos",
+      "status": 200,
+      "url": "https://www.frankx.ai/blog/voice-typing-for-ceos",
+      "canonical": [
+        "https://www.frankx.ai/blog/voice-typing-for-ceos"
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "title": [
+        "Voice typing for CEOs: delegate faster, with less loss | FrankX"
+      ]
+    },
+    {
+      "path": "/blog/voice-typing-for-creators",
+      "status": 200,
+      "url": "https://www.frankx.ai/blog/voice-typing-for-creators",
+      "canonical": [
+        "https://www.frankx.ai/blog/voice-typing-for-creators"
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "title": [
+        "Voice typing for creators: scripts, hooks and captions | FrankX"
+      ]
+    },
+    {
+      "path": "/blog/voice-writing-for-authors",
+      "status": 200,
+      "url": "https://www.frankx.ai/blog/voice-writing-for-authors",
+      "canonical": [
+        "https://www.frankx.ai/blog/voice-writing-for-authors"
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "title": [
+        "Voice writing for authors: dictate the draft, edit by hand | FrankX"
+      ]
+    },
+    {
+      "path": "/blog/wispr-flow-vs-superwhisper-vs-macwhisper-vs-willow",
+      "status": 200,
+      "url": "https://www.frankx.ai/blog/wispr-flow-vs-superwhisper-vs-macwhisper-vs-willow",
+      "canonical": [
+        "https://www.frankx.ai/blog/wispr-flow-vs-superwhisper-vs-macwhisper-vs-willow"
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "title": [
+        "Wispr Flow vs Superwhisper vs MacWhisper vs Willow | FrankX"
+      ]
+    },
+    {
+      "path": "/blog/speaking-vs-typing-speed",
+      "status": 200,
+      "url": "https://www.frankx.ai/blog/speaking-vs-typing-speed",
+      "canonical": [
+        "https://www.frankx.ai/blog/speaking-vs-typing-speed"
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "title": [
+        "Is speaking faster than typing? What the research shows | FrankX"
+      ]
+    }
+  ]
+}

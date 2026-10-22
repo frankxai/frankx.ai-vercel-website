@@ -1,0 +1,53 @@
+{
+  "verified_at": "2026-10-22T09:00:05.407Z",
+  "pieces_created_total": 15,
+  "repurpose_records_created": 2,
+  "tella_successor_updated_in_place": true,
+  "prior_pieces_preserved": 54,
+  "rows": [
+    {
+      "Title": "Design agent recovery around uncertain side effects",
+      "Lifecycle": "DRAFTED",
+      "Idempotency Key": "cnt_frankx_durable_recovery_20261022",
+      "Live URL": null,
+      "Source URL": "https://github.com/frankxai/frankx.ai-vercel-website/blob/7e22b0d42aac3cc032596d89ef49499ed38fd40d/content/blog/_drafts/durable-ai-agent-recovery.mdx",
+      "Evidence URL": "https://github.com/frankxai/frankx.ai-vercel-website/pull/1087",
+      "date:Published Date:start": null,
+      "url": "https://app.notion.com/40126ac2b7f681f3b8cbccb65b1a2cfc"
+    },
+    {
+      "Title": "GPT-6 Astra for founders: ChatGPT, Work and Codex",
+      "Lifecycle": "PUBLISHED",
+      "Idempotency Key": "cnt_frankx_gpt6_astra_founders_202609",
+      "Live URL": "https://www.frankx.ai/blog/gpt-6-astra-chatgpt-work-codex-founders",
+      "Source URL": "https://github.com/frankxai/frankx.ai-vercel-website/blob/e6e937290a75d6f6e3eff79436d6d9c5b44cf6b8/content/blog/gpt-6-astra-chatgpt-work-codex-founders.mdx",
+      "Evidence URL": "https://github.com/frankxai/frankx.ai-vercel-website/pull/1087",
+      "date:Published Date:start": null,
+      "url": "https://app.notion.com/40126ac2b7f68189a5aefb460ad49e59"
+    }
+  ],
+  "distribution": [
+    {
+      "title": "Voice briefs \u2014 newsletter review draft \u2014 2026-10-22",
+      "status": "Customize",
+      "state": "PREPARED_REVIEW_DRAFT",
+      "url": "https://app.notion.com/40126ac2b7f68178a015e51ea1932f2e",
+      "scheduled_at": null
+    },
+    {
+      "title": "Voice briefs \u2014 LinkedIn review draft \u2014 2026-10-22",
+      "status": "Customize",
+      "state": "PREPARED_REVIEW_DRAFT",
+      "url": "https://app.notion.com/40126ac2b7f68165b8f5c410ed6e00d7",
+      "scheduled_at": null
+    }
+  ],
+  "checks": {
+    "editorial_rows": true,
+    "only_durable_drafted": true,
+    "founder_still_published": true,
+    "no_invented_published_dates": true,
+    "distribution_two_prepared": true
+  },
+  "no_publication_or_send": true
+}

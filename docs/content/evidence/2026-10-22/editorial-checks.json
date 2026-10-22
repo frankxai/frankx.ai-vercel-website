@@ -1,0 +1,53 @@
+{
+  "source_base": "e6e937290a75d6f6e3eff79436d6d9c5b44cf6b8",
+  "reading_fix_local": "8f89b197",
+  "build": {
+    "command": "CI=1 pnpm run build",
+    "exit_code": 0,
+    "compiled_seconds": 30.1,
+    "static_pages": 1493,
+    "postbuild_passed": 4,
+    "earlier_environment_failures": [
+      "Sparse static source omissions resolved with full checkout",
+      "Interrupted cache directory replaced with fresh local build output",
+      "Concurrent build killed137; sequential retry passed"
+    ]
+  },
+  "merge_gate": {
+    "command": "pnpm run merge:gate",
+    "exit_code": 0,
+    "runtime": "Managed production server bound 127.0.0.1 supplied to existing link gate; default next dev failed uv_interface_addresses in this environment",
+    "link_pages": 15,
+    "unique_internal_urls": 492,
+    "critical_link_issues": 0,
+    "redirect_warnings": 5,
+    "portable_workflow_fixtures": 0,
+    "workflow_smoke": "SKIPPED: no .claude/workflows directory; not claimed as validation"
+  },
+  "lint": {
+    "exit_code": 0,
+    "errors": 0,
+    "existing_warnings": 8
+  },
+  "typecheck": "PASS standalone and in full build",
+  "strict_language": "PASS 2655 files; zero hits",
+  "source_index_tests": 3,
+  "new_export_tests": 2,
+  "durable_subprocess_tests": 3,
+  "independent_measurement_tests": 26,
+  "article_validator": "PASS as DRAFT",
+  "visual_validator": "PASS as DRAFT; not APPROVED",
+  "rendered_founder_refresh": {
+    "h1": 1,
+    "canonical": "https://www.frankx.ai/blog/gpt-6-astra-chatgpt-work-codex-founders",
+    "worksheet_link_present": true,
+    "new_section_present": true,
+    "Article_and_BreadcrumbList": true
+  },
+  "preview": "Not validated: repository skips drafts",
+  "browser_review": {
+    "production_wispr_desktop": "Read layout; followed AI architect article link and verified destination heading",
+    "mobile": "Not completed; runtime has no advertised viewport/emulation capability"
+  },
+  "publication": "HOLD issue905; no merge/publish/distribution performed"
+}

@@ -1,182 +1,25 @@
 ---
 name: content-strategy
-description: Strategic content planning with research integration and multi-agent ecosystem focus
+description: Evidence-led founder editorial strategy and bounded delivery
 triggers:
   - /content-strategy
   - /strategy
 ---
 
-# /content-strategy - Superintelligent Content Strategy
+# /content-strategy — Editorial decisions and delivery
 
-*Research-backed content planning for AI architect authority*
+Activate $frankx-content-intelligence and $improve-outcome-loop. Read current source, metric and publication contracts.
 
-## Activation
+Reconcile existing Notion commissions with brand-repository source, open PRs, production deployment and live routes. Preserve stable content IDs. Source inventory, published assets, indexed pages and measured outcomes are different states. Regenerate shadows only from their declared owners.
 
-You are the **Content Strategy Architect**, orchestrating FrankX's content ecosystem with research validation and strategic positioning.
+Build one query–intent–reader-job–canonical-URL–artifact–CTA map. Use real demand evidence where available; otherwise label the opportunity a hypothesis. Prioritize original value, founder relevance and commercial fit against effort, maintenance and duplication. Reuse qualified existing drafts before commissioning more.
 
-## The Strategy Framework
+Choose a proof wave of up to three canonical pieces. A comparison earns its place through evidence and a real decision; news earns its place when it changes what the reader should do. Keep adaptations attached to the canonical content identity.
 
-### Step 1: Audit Current State
+Use specialist research, measurement, engineering, editorial and visual/distribution lanes with one accountable integrator. Keep producers and independent reviewers distinct. Iterate observe → diagnose → implement → review → correct → verify → record learning.
 
-```bash
-# Check content inventory
-find content/blog -name "*.mdx" | wc -l
-find research -type f -name "*.md" | head -20
-```
+Publish no invented source links, first-person experience, metrics, partnerships or product availability. Recheck current primary-source releases and Google guidance. No universal word count, question-heading, FAQ or AI-file formula.
 
-Assess:
-- What content exists?
-- What research backs it?
-- What gaps exist?
-- What's dated (2025 → 2026)?
+Read the current weekly decision record linked by data/content-calendar.json. Treat dates and output targets as proposed until accepted and observed. Preserve the portfolio's creative range and current brand boundaries.
 
-### Step 2: Apply the Authority Filter
-
-For every content idea, ask:
-
-> "Does this establish Frank as a **practicing AI architect** or just a **commentator**?"
-
-**AUTHORITY CONTENT:**
-- Original frameworks (not just summaries)
-- Production patterns (not just tutorials)
-- Research-backed insights (not just opinions)
-- System design (not just tool reviews)
-
-**COMMODITY CONTENT (Avoid):**
-- Simple X vs Y comparisons
-- News summaries
-- Basic tutorials covered elsewhere
-- Opinion without evidence
-
-### Step 3: Content Pillars for AI Architects
-
-| Pillar | Focus | Example Topics |
-|--------|-------|----------------|
-| **Orchestration Patterns** | How agents coordinate | Handoff patterns, state management, error handling |
-| **Integration Architecture** | How systems connect | MCP protocol, cross-framework interop, API gateways |
-| **Production Patterns** | How to run at scale | Observability, cost optimization, security |
-| **Decision Frameworks** | How to choose | Framework selection, build vs buy, migration |
-| **Original Research** | What we discover | Benchmarks, case studies, market analysis |
-
-### Step 4: Research → Content Pipeline
-
-```
-RESEARCH BRIEF (500w)
-     ↓
-BLOG POST (2000w, links to brief)
-     ↓
-DEEP DIVE (4000w+, comprehensive)
-     ↓
-FRAMEWORK/GUIDE (forkable resource)
-```
-
-Every blog post should reference research:
-> "As our research on multi-agent patterns shows..." [link to /research/briefs/]
-
-### Step 5: Content Calendar Structure
-
-**Weekly Cadence:**
-| Day | Activity |
-|-----|----------|
-| Monday | Research scan (use /research) |
-| Tuesday | Draft article from research |
-| Wednesday | Polish + publish |
-| Thursday | Social distribution |
-| Friday | Research deep dive |
-
-**Monthly Themes:**
-- Week 1: Orchestration patterns
-- Week 2: Integration architecture
-- Week 3: Production patterns
-- Week 4: Original research / benchmarks
-
-## Strategic Content Types
-
-### 1. Research Briefs (frankx.ai/research/briefs/)
-- 500 words, validated claims with sources
-- Quick insights for AI citation
-- Foundation for longer content
-
-### 2. Architecture Guides (frankx.ai/blog/)
-- 2000-3000 words
-- Practical implementation focus
-- Links to research + AI Architecture Hub
-
-### 3. Deep Dives (frankx.ai/research/deep-dives/)
-- 4000+ words, comprehensive
-- Original analysis
-- Citable reference material
-
-### 4. Frameworks (frankx.ai/research/frameworks/)
-- Mental models you can fork
-- Visual diagrams
-- Decision trees
-
-## Multi-Agent Ecosystem Content Strategy
-
-Instead of simple comparisons, create **ecosystem coverage**:
-
-### The Ecosystem Map
-```
-┌─────────────────────────────────────────────────────────────┐
-│                 MULTI-AGENT ECOSYSTEM                        │
-├─────────────────────────────────────────────────────────────┤
-│ ORCHESTRATION     │ INTEGRATION      │ INFRASTRUCTURE       │
-│ • LangGraph       │ • MCP Protocol   │ • OCI GenAI          │
-│ • CrewAI          │ • A2A Protocol   │ • AWS Bedrock        │
-│ • AutoGen         │ • API Gateways   │ • Azure AI           │
-│ • OpenAI SDK      │ • Event Systems  │ • GCP Vertex         │
-├─────────────────────────────────────────────────────────────┤
-│ OBSERVABILITY     │ SECURITY         │ DATA LAYER           │
-│ • LangSmith       │ • Guardrails     │ • Vector DBs         │
-│ • Weights & Biases│ • RBAC           │ • Knowledge Graphs   │
-│ • Prometheus      │ • Audit Logs     │ • RAG Systems        │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### Content That Covers Connections
-- "How LangGraph + MCP + OCI Create Enterprise-Ready Agents"
-- "The Observability Stack for Production Multi-Agent Systems"
-- "Security Patterns Across Agent Frameworks"
-
-## Output: Strategic Content Plan
-
-Generate a 4-week content plan with:
-
-```markdown
-## Week [N]: [Theme]
-
-### Research
-- [ ] Brief: [title] - validates [claim]
-- [ ] Data: [what to gather]
-
-### Content
-- [ ] Article: [title]
-  - Pillar: [orchestration/integration/production/decision/research]
-  - Research backing: [brief link]
-  - Keywords: [targets]
-
-### Distribution
-- [ ] LinkedIn post
-- [ ] Twitter thread
-- [ ] Newsletter section
-```
-
-## Integration Points
-
-- **/research** - Daily intelligence operations
-- **/factory** - Publishing pipeline
-- **/starlight-architect** - Strategic decisions
-- **/superintelligence** - Deep thinking when needed
-
-## Quality Gates
-
-Before approving any content plan:
-- [ ] Does it establish authority (not just comment)?
-- [ ] Is it backed by research (not just opinion)?
-- [ ] Does it cover ecosystem (not just single tool)?
-- [ ] Does it help build systems (not just use tools)?
-
----
-
-*Strategic content builds authority. Research validates claims. Ecosystem coverage differentiates.*
+Deliver the current map, reconciled pipeline, selected commissions, actual validation/release evidence, staged distribution and one next observation. Continue independent work when a provider or approval lane is blocked.

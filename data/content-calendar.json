@@ -1,13 +1,281 @@
 {
   "version": "2.0",
-  "generatedAt": "2026-05-04T13:30:00Z",
+  "generatedAt": "2026-10-22T00:00:00+02:00",
   "owner": "frankx",
-  "regenerationPolicy": "Update on every Sunday Palace Review (W{n}). Sprint plan in docs/planning/2026-W{n}-sprint.md is the canonical source — this JSON is the machine-readable shadow.",
-  "forcingFunctions": [
+  "regenerationPolicy": "Notion Pieces owns commissions/status. This file projects the dated decision receipt in docs/content/content-proof-wave-2026-10-22.md; proposed work is not a publishing schedule.",
+  "deferredQueue": {
+    "rationale": "Sunday Palace Review 2026-05-03 explicitly defers these for \u22657 days. No guilt. Reopen post-Madrid week of 2026-06-02.",
+    "items": [
+      {
+        "id": "build-first-funnel",
+        "ref": "funnel/build-first-ai-agent-v1 branch",
+        "decision": "post-Madrid"
+      },
+      {
+        "id": "frankx-crlf-renormalize",
+        "files": 24,
+        "ref": "git add --renormalize . on FrankX",
+        "decision": "schedule when no parallel sessions active"
+      },
+      {
+        "id": "prod-stale-branches",
+        "count": 11,
+        "ref": "PROD-REPO-STATE-2026-05-04.md questions",
+        "decision": "frank-decides"
+      },
+      {
+        "id": "arcanea-flow-1524-deletions",
+        "decision": "commit OR force-freeze"
+      },
+      {
+        "id": "frankx-ship-gai-3.3GB",
+        "decision": "frank-deletes-by-hand"
+      },
+      {
+        "id": "arcanea-realm-v3-favicons",
+        "decision": "frank-confirms-intent"
+      },
+      {
+        "id": "arcanea-opencode-3188-divergence",
+        "decision": "deliberate-session-needed"
+      },
+      {
+        "id": "oh-my-arcanea-1492-divergence",
+        "decision": "deliberate-session-needed"
+      },
+      {
+        "id": "ops-deployed-dashboard",
+        "ref": "/ops on frankx.ai",
+        "decision": "spec-Friday-build-W23"
+      },
+      {
+        "id": "agent-harness-instrumentation",
+        "ref": "registry sync, version pinning, canonical-CI",
+        "decision": "Q3"
+      }
+    ]
+  },
+  "readyToShipBacklog": {
+    "rationale": "Drafted, polished, and ready. Awaiting decision-not-do.",
+    "items": [
+      {
+        "id": "social-2026-launch-pack",
+        "path": "content/2-ready-to-publish/social/",
+        "count": 26,
+        "campaigns": [
+          "acos-v10",
+          "golden-age-book",
+          "imagination",
+          "love-poetry",
+          "manifestation",
+          "self-development",
+          "spartan-mindset",
+          "frankx-intelligence-ecosystem"
+        ],
+        "blocker": "no scheduler \u2014 manual posting only this sprint"
+      },
+      {
+        "id": "aoi-second-wave",
+        "path": "content/blog/ + content/guides/ + app/research/series/",
+        "count": 13,
+        "blocker": "scheduled routine 2026-05-07 09:00Z owns this"
+      }
+    ]
+  },
+  "historicalWeeks": [
+    {
+      "week": "2026-W19",
+      "label": "May 4-10 \u2014 Inhabit, don't extend",
+      "theme": "Foundation hygiene + NLDigital readiness + Cowork bridge experiment",
+      "tone": "calm execution, no new operating systems, no design redesigns",
+      "sprintDoc": "docs/planning/2026-W19-sprint.md",
+      "days": [
+        {
+          "date": "2026-05-04",
+          "weekday": "Mon",
+          "actions": [
+            {
+              "type": "infra",
+              "what": "arcanea.ai git init + first commit",
+              "owner": "queen",
+              "status": "done"
+            },
+            {
+              "type": "infra",
+              "what": "Sibling repo nul-file cleanup (4 files)",
+              "owner": "queen",
+              "status": "done"
+            },
+            {
+              "type": "content-calendar",
+              "what": "Refresh data/content-calendar.json",
+              "owner": "queen",
+              "status": "done"
+            },
+            {
+              "type": "infra",
+              "what": "Sprint plan doc 2026-W19",
+              "owner": "queen",
+              "status": "done"
+            },
+            {
+              "type": "architecture",
+              "what": "/os \u2194 /acos/agents reconciliation",
+              "owner": "queen",
+              "status": "pending"
+            },
+            {
+              "type": "workshop-prep",
+              "what": "NLDigital readiness check",
+              "owner": "frank",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "date": "2026-05-05",
+          "weekday": "Tue",
+          "actions": [
+            {
+              "type": "git",
+              "what": "Push FrankX 9+ commits to origin/main",
+              "owner": "frank-ratifies",
+              "status": "pending"
+            },
+            {
+              "type": "git",
+              "what": "Arcanea feature/i18n-foundation merge decision",
+              "owner": "frank-ratifies",
+              "status": "pending"
+            },
+            {
+              "type": "social",
+              "what": "Manual LinkedIn post #1 from 26-file backlog",
+              "owner": "frank",
+              "status": "pending",
+              "candidates": [
+                "acos-v10",
+                "golden-age",
+                "frankx-intelligence-ecosystem"
+              ]
+            }
+          ]
+        },
+        {
+          "date": "2026-05-06",
+          "weekday": "Wed",
+          "actions": [
+            {
+              "type": "workshop-prep",
+              "what": "NLDigital final dress rehearsal",
+              "owner": "frank",
+              "status": "pending"
+            },
+            {
+              "type": "social",
+              "what": "Manual LinkedIn post #2",
+              "owner": "frank",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "date": "2026-05-07",
+          "weekday": "Thu",
+          "actions": [
+            {
+              "type": "autonomous",
+              "what": "AoI second-wave routine fires 09:00 Amsterdam",
+              "owner": "scheduled-agent",
+              "ref": "trig_01BYn4ComPZTJ15KLyFho6qg",
+              "status": "armed"
+            },
+            {
+              "type": "review",
+              "what": "Ratify or roll back routine output",
+              "owner": "frank",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "date": "2026-05-08",
+          "weekday": "Fri",
+          "actions": [
+            {
+              "type": "experiment",
+              "what": "Cowork\u2192repo bridge POC: export \u2192 .intake/cowork/ \u2192 /aco classify",
+              "owner": "frank",
+              "status": "pending"
+            },
+            {
+              "type": "social",
+              "what": "Manual LinkedIn post #3 \u2014 Cowork bridge writeup",
+              "owner": "frank",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "date": "2026-05-09",
+          "weekday": "Sat",
+          "actions": [
+            {
+              "type": "rest",
+              "what": "Rest day or Chronicle walk",
+              "owner": "frank",
+              "status": "open"
+            }
+          ]
+        },
+        {
+          "date": "2026-05-10",
+          "weekday": "Sun",
+          "actions": [
+            {
+              "type": "ritual",
+              "what": "/palace \u2014 W19 \u2192 W20 Sunday Palace Review",
+              "owner": "frank",
+              "status": "scheduled"
+            },
+            {
+              "type": "content-calendar",
+              "what": "Regenerate this file for W20",
+              "owner": "queen",
+              "status": "scheduled"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": "2026-W20",
+      "label": "May 11-17 \u2014 NLDigital prep crescendo",
+      "theme": "Workshop delivery readiness; held content on Madrid critical path",
+      "deferred": [
+        "Build First funnel promotion (post-Madrid)",
+        "Email newsletter cadence",
+        "Social scheduler decision",
+        "Watch OS shorts pipeline",
+        "Agent harness instrumentation"
+      ]
+    },
+    {
+      "week": "2026-W21",
+      "label": "May 18-24 \u2014 NLDigital delivers",
+      "milestone": "2026-05-19 NLDigital workshop"
+    },
+    {
+      "week": "2026-W22",
+      "label": "May 25-31 \u2014 Madrid delivers",
+      "milestone": "2026-05-27 Madrid workshop"
+    }
+  ],
+  "historicalForcingFunctions": [
     {
       "id": "thursday-routine-2026-05-07",
       "date": "2026-05-07T07:00:00Z",
-      "label": "Thu 09:00 Amsterdam — AoI second-wave routine",
+      "label": "Thu 09:00 Amsterdam \u2014 AoI second-wave routine",
       "type": "scheduled-agent",
       "ref": "trig_01BYn4ComPZTJ15KLyFho6qg",
       "model": "claude-sonnet-4-6",
@@ -35,7 +303,12 @@
       "type": "live-event",
       "tMinusFromToday": 15,
       "owner": "frank",
-      "deliverables": ["briefs", "run-of-show", "demo", "follow-up content kit"]
+      "deliverables": [
+        "briefs",
+        "run-of-show",
+        "demo",
+        "follow-up content kit"
+      ]
     },
     {
       "id": "madrid-workshop-2026-05-27",
@@ -44,125 +317,94 @@
       "type": "live-event",
       "tMinusFromToday": 23,
       "owner": "frank",
-      "deliverables": ["briefs", "run-of-show", "demo", "follow-up content kit"]
+      "deliverables": [
+        "briefs",
+        "run-of-show",
+        "demo",
+        "follow-up content kit"
+      ]
     }
   ],
+  "forcingFunctions": [],
+  "currentWeek": "2026-W43",
+  "sourceReceipt": "docs/content/content-proof-wave-2026-10-22.md",
   "weeks": [
     {
-      "week": "2026-W19",
-      "label": "May 4-10 — Inhabit, don't extend",
-      "theme": "Foundation hygiene + NLDigital readiness + Cowork bridge experiment",
-      "tone": "calm execution, no new operating systems, no design redesigns",
-      "sprintDoc": "docs/planning/2026-W19-sprint.md",
-      "days": [
+      "week": "2026-W43",
+      "label": "October 19\u201325",
+      "status": "proposed",
+      "theme": "Measurement truth, existing drafts and useful founder workflows",
+      "actions": [
         {
-          "date": "2026-05-04",
-          "weekday": "Mon",
-          "actions": [
-            { "type": "infra", "what": "arcanea.ai git init + first commit", "owner": "queen", "status": "done" },
-            { "type": "infra", "what": "Sibling repo nul-file cleanup (4 files)", "owner": "queen", "status": "done" },
-            { "type": "content-calendar", "what": "Refresh data/content-calendar.json", "owner": "queen", "status": "done" },
-            { "type": "infra", "what": "Sprint plan doc 2026-W19", "owner": "queen", "status": "done" },
-            { "type": "architecture", "what": "/os ↔ /acos/agents reconciliation", "owner": "queen", "status": "pending" },
-            { "type": "workshop-prep", "what": "NLDigital readiness check", "owner": "frank", "status": "pending" }
-          ]
+          "id": "measurement-truth",
+          "type": "repair",
+          "owner": "engineering",
+          "status": "draft",
+          "issue": 905,
+          "sourcePR": 1085,
+          "condition": "Provider baseline and delivered events remain unverified"
         },
         {
-          "date": "2026-05-05",
-          "weekday": "Tue",
-          "actions": [
-            { "type": "git", "what": "Push FrankX 9+ commits to origin/main", "owner": "frank-ratifies", "status": "pending" },
-            { "type": "git", "what": "Arcanea feature/i18n-foundation merge decision", "owner": "frank-ratifies", "status": "pending" },
-            { "type": "social", "what": "Manual LinkedIn post #1 from 26-file backlog", "owner": "frank", "status": "pending", "candidates": ["acos-v10", "golden-age", "frankx-intelligence-ecosystem"] }
-          ]
+          "id": "wispr-voice",
+          "type": "verify",
+          "status": "published_observed",
+          "publishedAt": "2026-10-21",
+          "sourceSha": "e6e937290a75d6f6e3eff79436d6d9c5b44cf6b8"
         },
         {
-          "date": "2026-05-06",
-          "weekday": "Wed",
-          "actions": [
-            { "type": "workshop-prep", "what": "NLDigital final dress rehearsal", "owner": "frank", "status": "pending" },
-            { "type": "social", "what": "Manual LinkedIn post #2", "owner": "frank", "status": "pending" }
-          ]
+          "id": "tella-cluster",
+          "type": "review",
+          "status": "draft",
+          "sourcePR": 1076,
+          "successorPR": 1084
         },
         {
-          "date": "2026-05-07",
-          "weekday": "Thu",
-          "actions": [
-            { "type": "autonomous", "what": "AoI second-wave routine fires 09:00 Amsterdam", "owner": "scheduled-agent", "ref": "trig_01BYn4ComPZTJ15KLyFho6qg", "status": "armed" },
-            { "type": "review", "what": "Ratify or roll back routine output", "owner": "frank", "status": "pending" }
-          ]
+          "id": "durable-recovery",
+          "type": "commission",
+          "status": "draft_hold",
+          "reason": "Offline experiment exists; vendor integration, visual review and preview remain unverified"
         },
         {
-          "date": "2026-05-08",
-          "weekday": "Fri",
-          "actions": [
-            { "type": "experiment", "what": "Cowork→repo bridge POC: export → .intake/cowork/ → /aco classify", "owner": "frank", "status": "pending" },
-            { "type": "social", "what": "Manual LinkedIn post #3 — Cowork bridge writeup", "owner": "frank", "status": "pending" }
-          ]
+          "id": "gpt-founder-refresh",
+          "type": "refresh",
+          "status": "draft"
         },
         {
-          "date": "2026-05-09",
-          "weekday": "Sat",
-          "actions": [{ "type": "rest", "what": "Rest day or Chronicle walk", "owner": "frank", "status": "open" }]
+          "id": "reading-export-repair",
+          "type": "repair",
+          "status": "draft",
+          "sourcePR": 1086
         },
         {
-          "date": "2026-05-10",
-          "weekday": "Sun",
-          "actions": [
-            { "type": "ritual", "what": "/palace — W19 → W20 Sunday Palace Review", "owner": "frank", "status": "scheduled" },
-            { "type": "content-calendar", "what": "Regenerate this file for W20", "owner": "queen", "status": "scheduled" }
-          ]
+          "id": "voice-distribution",
+          "type": "distribution",
+          "status": "review_draft",
+          "sourceContentId": "blog-voice-prompting-for-ai-architects",
+          "evidence": "docs/content/distribution/voice-briefs-2026-10-22/voice-distribution-evidence.md",
+          "condition": "Frank treatment/repetition/publication review; no sends authorized"
         }
       ]
     },
     {
-      "week": "2026-W20",
-      "label": "May 11-17 — NLDigital prep crescendo",
-      "theme": "Workshop delivery readiness; held content on Madrid critical path",
-      "deferred": ["Build First funnel promotion (post-Madrid)", "Email newsletter cadence", "Social scheduler decision", "Watch OS shorts pipeline", "Agent harness instrumentation"]
-    },
-    {
-      "week": "2026-W21",
-      "label": "May 18-24 — NLDigital delivers",
-      "milestone": "2026-05-19 NLDigital workshop"
-    },
-    {
-      "week": "2026-W22",
-      "label": "May 25-31 — Madrid delivers",
-      "milestone": "2026-05-27 Madrid workshop"
+      "week": "2026-W44",
+      "label": "October 26\u2013November 1",
+      "status": "proposed",
+      "theme": "Measure the first wave before expanding",
+      "actions": [
+        {
+          "id": "wispr-t-plus-7",
+          "type": "measurement",
+          "due": "2026-10-28",
+          "status": "planned",
+          "condition": "Readable settled provider data; otherwise record unavailable"
+        },
+        {
+          "id": "expand-or-repair",
+          "type": "decision",
+          "status": "planned",
+          "condition": "Use real engagement/useful-action evidence and remaining delivery defects"
+        }
+      ]
     }
-  ],
-  "deferredQueue": {
-    "rationale": "Sunday Palace Review 2026-05-03 explicitly defers these for ≥7 days. No guilt. Reopen post-Madrid week of 2026-06-02.",
-    "items": [
-      { "id": "build-first-funnel", "ref": "funnel/build-first-ai-agent-v1 branch", "decision": "post-Madrid" },
-      { "id": "frankx-crlf-renormalize", "files": 24, "ref": "git add --renormalize . on FrankX", "decision": "schedule when no parallel sessions active" },
-      { "id": "prod-stale-branches", "count": 11, "ref": "PROD-REPO-STATE-2026-05-04.md questions", "decision": "frank-decides" },
-      { "id": "arcanea-flow-1524-deletions", "decision": "commit OR force-freeze" },
-      { "id": "frankx-ship-gai-3.3GB", "decision": "frank-deletes-by-hand" },
-      { "id": "arcanea-realm-v3-favicons", "decision": "frank-confirms-intent" },
-      { "id": "arcanea-opencode-3188-divergence", "decision": "deliberate-session-needed" },
-      { "id": "oh-my-arcanea-1492-divergence", "decision": "deliberate-session-needed" },
-      { "id": "ops-deployed-dashboard", "ref": "/ops on frankx.ai", "decision": "spec-Friday-build-W23" },
-      { "id": "agent-harness-instrumentation", "ref": "registry sync, version pinning, canonical-CI", "decision": "Q3" }
-    ]
-  },
-  "readyToShipBacklog": {
-    "rationale": "Drafted, polished, and ready. Awaiting decision-not-do.",
-    "items": [
-      {
-        "id": "social-2026-launch-pack",
-        "path": "content/2-ready-to-publish/social/",
-        "count": 26,
-        "campaigns": ["acos-v10", "golden-age-book", "imagination", "love-poetry", "manifestation", "self-development", "spartan-mindset", "frankx-intelligence-ecosystem"],
-        "blocker": "no scheduler — manual posting only this sprint"
-      },
-      {
-        "id": "aoi-second-wave",
-        "path": "content/blog/ + content/guides/ + app/research/series/",
-        "count": 13,
-        "blocker": "scheduled routine 2026-05-07 09:00Z owns this"
-      }
-    ]
-  }
+  ]
 }

@@ -1,0 +1,92 @@
+---
+title: "Design agent recovery around uncertain side effects"
+description: "A local crash-and-restart experiment shows which calls can be reused, which can be retried, and which require reconciliation before an agent continues."
+date: "2026-10-22"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["durable-agents", "agent-harness", "codex", "reliability"]
+keywords: ["durable AI agents", "durable-harness", "AI agent crash recovery", "agent tool replay"]
+content_id: "cnt_frankx_durable_recovery_20261022"
+canonical: "https://www.frankx.ai/blog/durable-ai-agent-recovery"
+draft: true
+---
+
+A useful agent recovery policy distinguishes three states: a completed call with a recorded result, an interrupted call that is safe to repeat, and an interrupted action whose external effect must be checked. That distinction belongs in the application before an agent gets permission to publish, charge, provision or send.
+
+Consider a coding agent that prepares a release announcement. Its model call produces copy. A read checks the release status. A publishing action submits the approved announcement. A process failure between those steps is inconvenient. A failure after submission, before the result is recorded, creates a harder question: did the announcement already go out?
+
+Starting the session again does not answer that question.
+
+## What the new harness release supplies
+
+Vercel introduced `durable-harness` on 19 October 2026. Its announcement describes adapters for harnesses including Codex and Claude Code, backed by Workflow SDK machinery. Vercel says completed calls are read from a durable log, safe interrupted calls can run again, and other interrupted tools return an uncertain outcome for the model to inspect. [Read the vendor announcement](https://vercel.com/blog/making-every-harness-durable).
+
+That is a useful architectural boundary. Adoption still needs an experiment against the package, host and tools you intend to use.
+
+The experiment below is an offline Python teaching model built for this article candidate. It uses SQLite and subprocesses. It does not install Vercel's package, invoke an AI model, call an external publishing service or establish production reliability.
+
+## The result we can actually inspect
+
+The lab keeps two stores. One records the workflow's intent and outcome. The other stands in for a separate service and records which calls reached it. A subprocess exits abruptly at a selected boundary, and a new subprocess continues from the durable state.
+
+The three automated cases passed on 22 October 2026:
+
+| Interruption | Behavior after restart | Recorded executions |
+|---|---|---|
+| After the model result was committed | Reuse the recorded result | Model: 1 |
+| After a safe read reached the service, before its result was committed | Repeat the read | Model: 1; read: 2 |
+| After publishing reached the service, before its result was committed | Return uncertain; reconcile against the service; continue from the confirmed result | Publish: 1 |
+
+These are deterministic state-transition checks. Three passing cases support only the behaviors exercised by the code. They say nothing about model quality, cloud availability, concurrent workers or the probability of a failure.
+
+The important observation is the third row. The restart code cannot infer the external result from its own missing outcome record. It needs a way to inspect the action at the destination.
+
+## Reproduce the three recovery cases
+
+The [lab source and tests](https://github.com/frankxai/frankx.ai-vercel-website/tree/agent/codex/editorial-proof-wave-20261022/scripts/experiments/durable-recovery) use Python's standard library. From the reviewed repository checkout, run:
+
+```bash
+python3 scripts/experiments/durable-recovery/test_replay_lab.py
+```
+
+The test command creates a fresh temporary directory for each case and writes an `experiment-receipt.json` beside the test script. Expect three passing tests and no network calls. Inspect the trace and execution counts, then change one interruption point before applying the policy to your own system. The stores and simulated tool effects are local SQLite files; no real model call or external publication occurs.
+
+## Make every action answerable
+
+The application should assign an operation ID before it calls a tool. Record the tool name, relevant input identity, replay policy and intended result. After the call, attach the destination's receipt to that same operation.
+
+Use an external idempotency key when the destination supports one. Keep the key stable across retries for the same logical operation. Generating a new key on restart creates a new operation from the destination's perspective.
+
+When the destination provides neither idempotency nor a status lookup, uncertainty may require a human check. The runtime should preserve that state rather than return a plausible success or repeat the action because the task remains incomplete.
+
+The policy follows the effect:
+
+| Action | Recovery question |
+|---|---|
+| Read a public document | Can the input change, and does repeating the read affect the decision? |
+| Generate a draft | Is the completed output recorded, and can the rest of the task use it? |
+| Create a draft PR | Can the application find the existing PR by stable task identity? |
+| Send a message | Can the provider confirm the original submission without sending again? |
+| Change a paid resource | Can both resource state and billing effect be reconciled? |
+
+“Safe” is a property of an action under a specific contract. A lookup that is harmless to repeat can still return newer information. Decide whether the task needs a fresh read or a historical result, and record that decision.
+
+## Test the uncertain window deliberately
+
+Begin with one workflow and three failure points. Exit after a completed result is recorded. Exit after a repeatable read but before recording its outcome. Exit after an external write but before its acknowledgement is recorded.
+
+For each restart, inspect both stores. The workflow's log alone cannot prove how many effects occurred at the destination.
+
+Then extend the test for the actual system: concurrent workers, timeouts with delayed acknowledgements, tool cancellation, partial writes, revoked credentials and restoration after storage failure. Include a negative test where reconciliation cannot establish what happened. The expected result is an unresolved operation that remains visible.
+
+Our local model stores one sequential workflow in each test directory. It deliberately omits queues, leases, encryption, migrations, multi-tenant isolation and deployment behavior. Its source and receipt are available with the lab; a production implementation must satisfy its own stronger contract.
+
+## Price accepted work, including recovery
+
+A recovered session can save repeated computation and still consume engineering time. Measure completed useful work alongside model calls, runtime, retries and review minutes.
+
+Before an adoption trial, declare which workflow you will test, which failures you will inject and what a successful recovery means. Capture costs from actual provider receipts and record the human intervention required for uncertain actions. Keep vendor pricing assumptions separate from observed spend.
+
+For a founder, the practical decision is bounded: give a durable runtime one repeatable internal workflow, establish the effect ledger, and expand responsibility after its recovery evidence is credible. The first useful result is an interrupted task that reaches a verified outcome without losing track of what already happened.
+
+Related: [the architecture hub](/ai-architecture) and [the Vercel Ship decisions guide](/blog/vercel-ship-2026-builder-decisions).

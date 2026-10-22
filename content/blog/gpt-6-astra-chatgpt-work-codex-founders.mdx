@@ -2,7 +2,7 @@
 title: "GPT-6 Astra for founders: ChatGPT, Work and Codex"
 description: "Turn GPT-6 Astra into a useful founder workflow across ChatGPT, Work and Codex, with clear briefs, source checks, web design tests and reviewable handoffs."
 date: "2026-09-07"
-lastUpdated: "2026-09-07"
+lastUpdated: "2026-10-22"
 author: "FrankX"
 category: "Creator Systems"
 tags: ["gpt-6-astra", "chatgpt-work", "codex", "founder-systems", "ai-strategy"]
@@ -41,6 +41,26 @@ Work is designed around multi-step tasks and outputs you can inspect. Connected 
 Model selection depends on the client, plan, workspace and rollout. OpenAI's model guidance describes different controls across Work and Codex, including a Codex CLI model option. Check the surface you actually use before writing an operating procedure around a setting. [Model selection guidance](https://learn.chatgpt.com/docs/models).
 
 An API application is another system. It has its own billing, tool implementation and operational responsibilities. A ChatGPT subscription is not a production API budget.
+
+## Use an interactive answer when the reader needs to change an assumption
+
+OpenAI introduced Intelligent UI in ChatGPT on 7 October 2026, describing responses that can combine text with interactive elements. The announcement applies to Chat and explicitly says it does not change the models in Work or Codex. A useful commission follows: ask for an answer the reader can manipulate when the decision depends on changing inputs. [OpenAI's announcement](https://openai.com/index/gpt-6-for-everyone/).
+
+For example, a founder comparing two production workflows can ask for a calculator with inputs for model spend, runtime spend, review minutes and accepted outputs. The result should show cost per accepted output and preserve the assumptions beside it. Enter observed costs, and leave unknown inputs empty. A calculator that begins with invented usage figures only makes uncertainty look precise.
+
+```text
+Build an interactive comparison of these two workflows using the supplied records.
+Expose model cost, runtime cost, review minutes, review hourly cost and accepted outputs.
+Keep currency and observation window explicit.
+Show cost per accepted output only when all required inputs are known and accepted outputs exceed zero.
+Distinguish observed inputs from planning assumptions.
+Provide the formula and a text/table fallback.
+Do not infer pricing, savings or productivity gains from the interface.
+```
+
+Use the [cost-per-accepted-output worksheet](/downloads/founder-workflow-cost-worksheet.csv) to collect both workflows under the same observation window. It contains blank inputs and the formula; it is not a benchmark. Review the calculation using hand-worked cases, including an empty field and zero accepted outputs. Check keyboard operation and the phone layout. Then decide whether the interaction helps someone make the decision more accurately than a table would.
+
+This is a proposed application of Intelligent UI. It does not claim that a particular plan, client or connected workflow exposes every capability described in the launch announcement. Verify the actual surface before recording a tutorial around it.
 
 ## Commission a campaign around an actual decision
 

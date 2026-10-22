@@ -1,0 +1,17 @@
+{
+  "asset_id": "ast_frankx_founder_workflow_cost_worksheet",
+  "version_id": "ver_99963ac36d3cea85",
+  "rendition_id": "rnd_csv_99963ac36d3cea85",
+  "status": "draft",
+  "brand": "frankx",
+  "type": "text/csv",
+  "bytes": 655,
+  "sha256": "99963ac36d3cea856f34c89eac768b022f55df33e991287f3e63b10d50161d6d",
+  "source_path": "public/downloads/founder-workflow-cost-worksheet.csv",
+  "placement": "frankx.blog.gpt6-founder.cost-worksheet",
+  "rights_owner": "FrankX original artifact candidate",
+  "provenance": "Deterministic authored text worksheet; no user/customer data or generated values",
+  "publication": "Draft source; no production manifest approval",
+  "storage_decision": "Repository-managed text source/download follows existing public/downloads CSV pattern; no new media binary storage or provider activation",
+  "rollback": "Remove draft placement before merge; preserve published URL if later released"
+}

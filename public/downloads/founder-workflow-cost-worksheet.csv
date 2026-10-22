@@ -1,0 +1,7 @@
+workflow,observation_start,observation_end,currency,model_cost,runtime_cost,review_minutes,review_hourly_cost,accepted_outputs,input_status,notes
+current,,,,,,,,,unavailable,Enter observed values; mark any planning assumptions
+candidate,,,,,,,,,unavailable,Use the same observation window and acceptance criteria
+
+formula,"(model_cost + runtime_cost + (review_minutes / 60 * review_hourly_cost)) / accepted_outputs"
+rule,"Calculate only when all required numeric inputs are known and accepted_outputs > 0; keep unknown distinct from zero"
+boundary,"No vendor pricing, measured savings, or first-party Intelligent UI session is supplied by this worksheet"

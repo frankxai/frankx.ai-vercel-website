@@ -1,0 +1,226 @@
+{
+  "schema_version": "1.1.0",
+  "content_id": "cnt_frankx_durable_recovery_20261022",
+  "status": "DRAFT",
+  "authority": "DRAFT",
+  "brand": {
+    "brand_id": "frankx",
+    "domain": "frankx.ai",
+    "repository": "frankxai/frankx.ai-vercel-website",
+    "vercel_project": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+    "notion_record": "https://app.notion.com/40126ac2b7f681f3b8cbccb65b1a2cfc"
+  },
+  "brief": {
+    "working_title": "Design agent recovery around uncertain side effects",
+    "subject": "Recovery behavior at the boundary between durable outcome logs and external actions",
+    "origin": "A deterministic offline subprocess/SQLite experiment plus a current vendor release",
+    "thesis": "Recovery needs an explicit uncertain outcome and a destination lookup before replaying an external write.",
+    "reader": "Founder or AI architect choosing responsibility for a durable agent",
+    "reader_baseline": "A resumable session is enough to keep an agent working after a failure",
+    "reader_delta": "Can distinguish completed, retryable and externally uncertain operations and design the first recovery test",
+    "stakes": "Duplicate external actions and hidden human recovery work",
+    "strongest_objection": "An offline sequential teaching model does not validate a cloud harness integration",
+    "commercial_relationship": "none"
+  },
+  "content_graph": {
+    "cluster_id": "cluster_frankx_agent_reliability",
+    "canonical_url": "https://www.frankx.ai/blog/durable-ai-agent-recovery",
+    "existing_related_urls": [
+      "https://www.frankx.ai/blog/vercel-ship-2026-builder-decisions",
+      "https://www.frankx.ai/blog/vercel-ai-sdk-first-agent-stack"
+    ],
+    "internal_links": [
+      "/ai-architecture",
+      "/blog/vercel-ship-2026-builder-decisions"
+    ],
+    "entities": [
+      "durable-harness",
+      "Workflow SDK",
+      "Codex",
+      "Claude Code",
+      "SQLite",
+      "operation identity",
+      "reconciliation"
+    ]
+  },
+  "search": {
+    "primary_intent": "Decide and test how an agent should recover interrupted tool calls",
+    "query_set": [
+      "durable AI agents",
+      "AI agent crash recovery",
+      "durable-harness",
+      "agent tool replay"
+    ],
+    "serp_snapshot": {
+      "captured_at": "blocked",
+      "locale": "blocked",
+      "device": "blocked",
+      "dominant_intent": "blocked",
+      "information_gap": "Source-distinct local failure cases; external SERP positioning not validated"
+    },
+    "answer_units": [
+      "completed result reuse",
+      "safe interrupted read retry",
+      "uncertain external write reconciliation"
+    ],
+    "structured_data": [
+      "Article"
+    ],
+    "indexation": "index",
+    "crawler_policy_checked": false
+  },
+  "sources": [
+    {
+      "source_id": "src_vercel_release",
+      "title": "Making every harness durable",
+      "publisher": "Vercel",
+      "source_type": "vendor_primary",
+      "url": "https://vercel.com/blog/making-every-harness-durable",
+      "published_at": "2026-10-19",
+      "retrieved_at": "2026-10-22",
+      "limits": "Vendor claims, not independently run package integration; no copied figures or artwork."
+    },
+    {
+      "source_id": "src_local_lab",
+      "title": "Offline replay lab source and three subprocess tests",
+      "publisher": "FrankX candidate artifact",
+      "source_type": "first_party_experiment",
+      "repository_path": "scripts/experiments/durable-recovery/replay_lab.py; scripts/experiments/durable-recovery/test_replay_lab.py; content/research/briefs/durable-agent-recovery/experiment-receipt.json",
+      "retrieved_at": "2026-10-22",
+      "limits": "Python/SQLite teaching model; no model API, Vercel package, cloud host, queue or concurrency measurement."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c_vendor_release",
+      "text": "Vercel introduced durable-harness on 19 October 2026 with the documented adapter/log mechanism.",
+      "type": "fact",
+      "source_ids": [
+        "src_vercel_release"
+      ],
+      "support": "direct",
+      "as_of": "2026-10-22",
+      "freshness": "Recheck vendor API at release; rerun local test after code change",
+      "public_wording": "Vercel introduced durable-harness on 19 October 2026 with the documented adapter/log mechanism.",
+      "reviewer": "measurement_review: scoped source/experiment verification; release approval withheld"
+    },
+    {
+      "claim_id": "c_cached",
+      "text": "The local model reused one committed model result after abrupt subprocess exit.",
+      "type": "first_party",
+      "source_ids": [
+        "src_local_lab"
+      ],
+      "support": "direct",
+      "as_of": "2026-10-22",
+      "freshness": "Recheck vendor API at release; rerun local test after code change",
+      "public_wording": "The local model reused one committed model result after abrupt subprocess exit.",
+      "reviewer": "measurement_review: scoped source/experiment verification; release approval withheld"
+    },
+    {
+      "claim_id": "c_safe",
+      "text": "The local model repeated an interrupted safe read, producing two executions.",
+      "type": "first_party",
+      "source_ids": [
+        "src_local_lab"
+      ],
+      "support": "direct",
+      "as_of": "2026-10-22",
+      "freshness": "Recheck vendor API at release; rerun local test after code change",
+      "public_wording": "The local model repeated an interrupted safe read, producing two executions.",
+      "reviewer": "measurement_review: scoped source/experiment verification; release approval withheld"
+    },
+    {
+      "claim_id": "c_uncertain",
+      "text": "The local model refused to repeat the uncertain publish operation before checking the external effect store.",
+      "type": "first_party",
+      "source_ids": [
+        "src_local_lab"
+      ],
+      "support": "direct",
+      "as_of": "2026-10-22",
+      "freshness": "Recheck vendor API at release; rerun local test after code change",
+      "public_wording": "The local model refused to repeat the uncertain publish operation before checking the external effect store.",
+      "reviewer": "measurement_review: scoped source/experiment verification; release approval withheld"
+    },
+    {
+      "claim_id": "c_boundary",
+      "text": "An absent local outcome cannot alone establish whether an external action happened.",
+      "type": "inference",
+      "source_ids": [
+        "src_local_lab"
+      ],
+      "support": "derived",
+      "as_of": "2026-10-22",
+      "freshness": "Recheck vendor API at release; rerun local test after code change",
+      "public_wording": "An absent local outcome cannot alone establish whether an external action happened.",
+      "reviewer": "measurement_review: scoped source/experiment verification; release approval withheld"
+    }
+  ],
+  "article": {
+    "source_path": "content/blog/_drafts/durable-ai-agent-recovery.mdx",
+    "canonical_title": "Design agent recovery around uncertain side effects",
+    "description": "A local crash-and-restart experiment shows which calls can be reused, retried or reconciled.",
+    "author_id": "frank-riemer",
+    "published_at": null,
+    "modified_at": null
+  },
+  "visual_plan": {
+    "tier": "FLAGSHIP",
+    "reason": "Architecture decision and named-platform release; full visual contract required before promotion",
+    "status": "IN_PRODUCTION",
+    "visual_packet_ref": "docs/content/durable-agent-recovery-visual/visual-packet.json",
+    "competitive_snapshot_at": "blocked",
+    "character_mode": "NOT_APPLICABLE",
+    "character_exemption": "Proposed restrained exact state-transition diagrams; direction not yet independently accepted",
+    "canonical_character_refs": [],
+    "required_roles": [
+      "hero",
+      "architecture",
+      "comparison",
+      "workflow",
+      "og",
+      "mobile_native"
+    ]
+  },
+  "media": [],
+  "affiliates": [],
+  "distribution": [],
+  "reviews": [],
+  "publication": {
+    "branch": "agent/codex/editorial-proof-wave-20261022",
+    "pull_request": "https://github.com/frankxai/frankx.ai-vercel-website/pull/1087",
+    "preview_url": "blocked",
+    "live_url": "blocked",
+    "verified_at": null,
+    "rollback": "Candidate only: discard candidate; production untouched",
+    "source_sha": "7e22b0d42aac3cc032596d89ef49499ed38fd40d"
+  },
+  "measurement": {
+    "hypothesis": "A reproducible recovery artifact produces qualified implementation interest",
+    "primary_metric": "Eligible readers running the lab and accepting a useful result; currently unmeasured",
+    "guardrails": [
+      "No misleading vendor integration claims",
+      "No duplicate canonical reader job"
+    ],
+    "snapshots": [],
+    "freshness_review_at": "2026-10-29",
+    "freshness_triggers": [
+      "durable-harness API changes",
+      "implementation changes",
+      "new recovery failure case"
+    ]
+  },
+  "blocked": [
+    "Vendor package integration not run",
+    "Canonical overlap decision needs editor-integrator approval",
+    "Governed flagship visual packet and source assets not produced",
+    "Scoped technical source/experiment review passed; full commissioning/ICP/SEO/visual release review pending",
+    "Repository compilation and full build passed; exact-head mobile/desktop Vercel preview not run",
+    "Distribution uncommissioned and unapproved"
+  ],
+  "review_receipts": [
+    "docs/content/evidence/2026-10-22/authored-experiment-review.json",
+    "docs/content/evidence/2026-10-22/affected-review-receipt.json"
+  ]
+}

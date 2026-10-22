@@ -1,0 +1,27 @@
+{
+  "reviewed_source_sha256": "7684620da237096a0f98231e3cb2840d6f33e38dd0303adfdc7174a41f2ddb50",
+  "independent_tests": "3 unittest cases passed; 2 negative reconciliation checks passed",
+  "negative_reconciliation_checks": [
+    {
+      "external_matching_effects": 0,
+      "reconciliation_exit": 1,
+      "restart_exit": 3,
+      "publish_repeated": false
+    },
+    {
+      "external_matching_effects": 2,
+      "reconciliation_exit": 1,
+      "restart_exit": 3,
+      "publish_repeated": false
+    }
+  ],
+  "formula_check": {
+    "model_cost": 12,
+    "runtime_cost": 8,
+    "review_minutes": 30,
+    "review_hourly_cost": 100,
+    "accepted_outputs": 7,
+    "expected_cost_per_accepted_output": 10
+  },
+  "scope": "Offline teaching model only; no vendor integration/model/provider outcome verified"
+}

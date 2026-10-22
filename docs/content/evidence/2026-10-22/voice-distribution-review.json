@@ -1,0 +1,32 @@
+{
+  "review_type": "One independent reviewer applying editorial and ICP perspectives; not separate reviewers",
+  "verdict": "review_draft_ready",
+  "source_id": "blog-voice-prompting-for-ai-architects",
+  "source_path": "content/blog/voice-prompting-for-ai-architects.mdx",
+  "canonical_url": "https://www.frankx.ai/blog/voice-prompting-for-ai-architects",
+  "files": {
+    "voice-newsletter.candidate.md": {
+      "sha256": "7050cc4bfcad69d3095cf48b1d345d76763e1db4e7ba8fa20c85ac0586893a54"
+    },
+    "voice-linkedin.candidate.txt": {
+      "sha256": "a56c8a2800256d8c42f87e350576635f58a9b7a87b0d2099a3a629e5d2598556"
+    }
+  },
+  "findings": {
+    "factual_scope": "Six-part brief, typed exact strings, transcript constraint checks and one-task comparison supported by source; no new speed/reliability/conversion result",
+    "firsthand": "No new first-person experience or invented outcome",
+    "reader_job": "Founder using a coding agent can prepare and check one spoken brief",
+    "reader_reward": "Copyable brief structure plus exact-values block",
+    "CTA": "Useful one-task trial and source guide; no purchase promise",
+    "identity_attribution": "Canonical path matches source; source ID matches content-index; channel source/medium and distinct content UTMs valid",
+    "readability": "Newsletter has subject/preview and one focused letter; LinkedIn self-contained artifact, short paragraphs,990 characters"
+  },
+  "substantive_fixes": [],
+  "remaining_gates": [
+    "Founder treatment selection",
+    "Previous two posts /60-day repetition check",
+    "Founder publication approval",
+    "No send or scheduling performed"
+  ],
+  "record_update": "Distribution evidence may now record this one independent editorial/ICP-perspective review; READY_FOR_FRANK remains withheld by other gates"
+}

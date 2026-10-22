@@ -1,0 +1,12 @@
+flowchart TD
+  cli["CLI: start or restart run"]
+  runner["run: model → read → publish"]
+  log[("log.sqlite: intent and outcome")]
+  effect[("external.sqlite: simulated effects")]
+  operator["CLI reconcile: confirm exactly one effect"]
+  cli -->|"new process; same root directory"| runner
+  runner -->|"commit started before effect; done after result"| log
+  log -->|"reuse done; safe retries; other started calls become uncertain"| runner
+  runner -->|"insert one simulated effect per execution"| effect
+  operator -->|"query effects for call"| effect
+  operator -->|"if count = 1, mark done"| log

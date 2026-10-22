@@ -1,0 +1,74 @@
+{
+  "implementation": "offline Python SQLite teaching model; no model API, no Vercel package or cloud deployment",
+  "cases": [
+    {
+      "scenario": "completed model outcome, abrupt exit, restart",
+      "execution_counts": {
+        "model": 1,
+        "publish": 1,
+        "read": 1
+      },
+      "trace": [
+        [
+          "model",
+          "cached"
+        ],
+        [
+          "read",
+          "executed"
+        ],
+        [
+          "publish",
+          "executed"
+        ]
+      ]
+    },
+    {
+      "scenario": "read completed externally before log outcome, restart",
+      "execution_counts": {
+        "model": 1,
+        "publish": 1,
+        "read": 2
+      },
+      "trace": [
+        [
+          "model",
+          "cached"
+        ],
+        [
+          "read",
+          "executed"
+        ],
+        [
+          "publish",
+          "executed"
+        ]
+      ]
+    },
+    {
+      "scenario": "publish effect before outcome, refuse replay, reconcile, restart",
+      "execution_counts": {
+        "model": 1,
+        "publish": 1,
+        "read": 1
+      },
+      "trace_before_reconciliation": [
+        [
+          "model",
+          "cached"
+        ],
+        [
+          "read",
+          "cached"
+        ],
+        [
+          "publish",
+          "uncertain"
+        ]
+      ]
+    }
+  ],
+  "tests_run": 3,
+  "failures": 0,
+  "errors": 0
+}

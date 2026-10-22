@@ -1,0 +1,25 @@
+{
+  "measurement_sha": "9480e163",
+  "measurement_suite": {
+    "passed": 26,
+    "failed": 0,
+    "skipped": 0
+  },
+  "measurement_findings": {
+    "whitespace_metrics": "resolved",
+    "malformed_GA4_report_shape": "resolved",
+    "unqueried_realtime_pages": "resolved: null",
+    "displayed_period_and_request_order": "resolved; helper tests and callback wiring inspected"
+  },
+  "authored_findings": {
+    "durable_MDX": "compiled with @mdx-js/mdx and remark-gfm",
+    "ledger_paths": "all three resolve",
+    "source_and_instructions": "present; stdlib command, temporary stores, receipt and no-network limits explicit"
+  },
+  "scope_limits": [
+    "No production identity/event/provider verification",
+    "No mobile/desktop preview exercised",
+    "Full flagship visual and ICP review pending",
+    "Public branch source link requires pushed review branch"
+  ]
+}
