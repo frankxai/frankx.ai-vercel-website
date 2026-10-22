@@ -1,1 +1,29 @@
-{"schema_version":1,"generated_at":"2026-10-22T20:06:04.534Z","does_not_claim":["No partnership with, sponsorship by, or endorsement from any AI vendor or other company.","No income, earnings or revenue figures, and no promise of any.","No productivity multipliers or speed-up factors.","Token counts measure spend (usage), not output, quality or value.","Local log figures cover one machine only and are not whole-account usage."],"claims":[{"id":"CLM-0001","text":"Codex CLI wrote 72 session log files on one Windows machine between 2026-08-31 and 2026-10-22 (local logs only, not account-wide usage).","scope":"codex-cli-local","as_of":"2026-10-22","method":"node scripts/collect/codex-local.mjs <sessionsDir>; read /metrics/session_file_count from metrics/codex-local/<date>.json","source":"Codex CLI rollout logs (*.jsonl) under the Codex sessions folder on Frank's Windows machine"},{"id":"CLM-0002","text":"Codex CLI logged about 1.81 billion tokens on one Windows machine between 2026-08-31 and 2026-10-22, about 97% of input tokens being cache reads (local rollout logs only; tokens measure spend, not output).","scope":"codex-cli-local","as_of":"2026-10-22","method":"node scripts/collect/codex-local.mjs <sessionsDir>; read /metrics/tokens/total_tokens (per file, the last cumulative total_token_usage, summed across files)","source":"token_count events in Codex CLI rollout logs on Frank's Windows machine"}]}
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-22T20:42:44.015Z",
+  "does_not_claim": [
+    "No partnership with, sponsorship by, or endorsement from any AI vendor or other company.",
+    "No income, earnings or revenue figures, and no promise of any.",
+    "No productivity multipliers or speed-up factors.",
+    "Token counts measure spend (usage), not output, quality or value.",
+    "Local log figures cover one machine only and are not whole-account usage."
+  ],
+  "claims": [
+    {
+      "id": "CLM-0001",
+      "text": "Codex CLI wrote 74 session log files on one Windows machine between 2026-08-31 and 2026-10-22 (local logs only, not account-wide usage).",
+      "scope": "codex-cli-local",
+      "as_of": "2026-10-22",
+      "method": "node scripts/collect/codex-local.mjs <sessionsDir>; read /metrics/session_file_count from metrics/codex-local/<date>.json",
+      "source": "Codex CLI rollout logs (*.jsonl) under the Codex sessions folder on Frank's Windows machine"
+    },
+    {
+      "id": "CLM-0002",
+      "text": "Codex CLI logged about 1.85 billion tokens on one Windows machine between 2026-08-31 and 2026-10-22, about 97% of input tokens being cache reads (local rollout logs only; tokens measure spend, not output).",
+      "scope": "codex-cli-local",
+      "as_of": "2026-10-22",
+      "method": "node scripts/collect/codex-local.mjs <sessionsDir>; read /metrics/tokens/total_tokens (per file, the last cumulative total_token_usage, summed across files)",
+      "source": "token_count events in Codex CLI rollout logs on Frank's Windows machine"
+    }
+  ]
+}
