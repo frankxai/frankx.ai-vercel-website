@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "updatedAt": "2026-02-19T11:30:00Z",
-  "philosophy": "Hub & Spoke content topology: every pillar has one Hub article that links to all Spoke articles. Each article atomizes into 6 platform formats. Distribution follows a 1→10 multiplier.",
+  "updatedAt": "2026-10-22T00:00:00+02:00",
+  "philosophy": "Serve ambitious founders building with AI through distinct reader jobs, original useful artifacts and verified outcomes. Refresh an existing canonical owner before adding a URL. Distribution follows channel fit and available evidence.",
   "pillars": [
     {
       "id": "ai-architecture",
@@ -258,7 +258,11 @@
       "type": "weekly digest",
       "pillar": "all"
     },
-    "sunday": { "platform": "youtube", "type": "short", "pillar": "rotating" }
+    "sunday": {
+      "platform": "youtube",
+      "type": "short",
+      "pillar": "rotating"
+    }
   },
   "youtubeShorts": {
     "sources": [
@@ -299,10 +303,10 @@
         ]
       }
     ],
-    "tool": "Opus Pro (opus.pro) — AI-powered video clipping. Upload YouTube URL, auto-generates viral clips with captions.",
-    "workflow": "1. Upload video to Opus Pro → 2. Select top 3 clips → 3. Add FrankX watermark in Canva → 4. Upload to YouTube Shorts + X + LinkedIn"
+    "tool": "Opus Pro (opus.pro) \u2014 AI-powered video clipping. Upload YouTube URL, auto-generates viral clips with captions.",
+    "workflow": "1. Upload video to Opus Pro \u2192 2. Select top 3 clips \u2192 3. Add FrankX watermark in Canva \u2192 4. Upload to YouTube Shorts + X + LinkedIn"
   },
-  "metrics": {
+  "historicalMetrics": {
     "weeklyTargets": {
       "xPosts": 5,
       "linkedinPosts": 3,
@@ -315,5 +319,22 @@
     "socializedPosts": 3,
     "unsocializedPosts": 78,
     "coverage": "3.7%"
-  }
+  },
+  "legacyPillarsVerified": false,
+  "currentDecisionReceipt": "docs/content/content-proof-wave-2026-10-22.md",
+  "measurementState": "unavailable",
+  "currentCycle": {
+    "status": "proposed",
+    "week": "2026-W43",
+    "canonicalLimit": 3,
+    "priorities": [
+      "measurement-truth",
+      "wispr-activation",
+      "tella-review",
+      "durable-recovery-commission",
+      "gpt-founder-refresh"
+    ],
+    "publicationGate": "Current repo checks, independent reviews and founder/publication authority. No baseline or outcome is inferred."
+  },
+  "canonicalQueryMap": "docs/content/content-proof-wave-2026-10-22.md#query-and-reader-job-map"
 }

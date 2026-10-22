@@ -1,0 +1,15 @@
+flowchart TD
+  resume["Restart: inspect recorded call"]
+  done{"Recorded outcome is done?"}
+  cached["Reuse result; no new effect"]
+  safe{"Not started, or safe?"}
+  execute["Execute effect; commit result"]
+  uncertain["Started and never: uncertain; exit 3"]
+  reconcile["Reconcile only after external count = 1"]
+  resume --> done
+  done -->|"yes"| cached
+  done -->|"no"| safe
+  safe -->|"yes: execute"| execute
+  safe -->|"no: started and never"| uncertain
+  uncertain --> reconcile
+  reconcile -->|"mark done, restart"| resume

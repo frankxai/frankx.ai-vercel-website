@@ -1,0 +1,388 @@
+{
+  "schema_version": "1.0.0",
+  "packet_id": "vpk_frankx_durable_recovery_20261022",
+  "status": "DRAFT",
+  "tier": "FLAGSHIP",
+  "content_id": "cnt_frankx_durable_recovery_20261022",
+  "brand_id": "brd_frankx",
+  "created_at": "2026-10-22T08:48:08Z",
+  "thesis": "Persisted intent does not establish whether an external side effect completed.",
+  "reader": "Founder or engineer deciding replay and reconciliation policy for interrupted AI work.",
+  "primary_visual_job": "ARCHITECTURE",
+  "competitive_references": [
+    {
+      "reference_id": "ref_vercel",
+      "publisher": "Vercel",
+      "url": "https://vercel.com/blog/making-every-harness-durable",
+      "captured_at": "2026-10-22T08:48:08Z",
+      "first_read": "Failure comparison precedes durable log explanation. Text hierarchy only; visual first-read unverified.",
+      "principle_to_apply": "Show interruption before topology.",
+      "copy_boundary": "Do not copy graphics, composition or trade dress. No desktop/mobile visual capture.",
+      "capture_mode": "TEXT_DOCUMENT_ONLY",
+      "responsive_behavior": "NOT_OBSERVED"
+    },
+    {
+      "reference_id": "ref_anthropic",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/research/effective-harnesses-for-long-running-agents",
+      "captured_at": "2026-10-22T08:48:08Z",
+      "first_read": "Chapters separate environment management and continuation. Text hierarchy only; visual first-read unverified.",
+      "principle_to_apply": "Group by reader task.",
+      "copy_boundary": "Do not copy graphics, composition or trade dress. No desktop/mobile visual capture.",
+      "capture_mode": "TEXT_DOCUMENT_ONLY",
+      "responsive_behavior": "NOT_OBSERVED"
+    },
+    {
+      "reference_id": "ref_openai",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/introducing-agentkit/",
+      "captured_at": "2026-10-22T08:48:08Z",
+      "first_read": "Lifecycle update precedes workflow sections. Text hierarchy only; visual first-read unverified.",
+      "principle_to_apply": "Label source date and product readiness.",
+      "copy_boundary": "Do not copy graphics, composition or trade dress. No desktop/mobile visual capture.",
+      "capture_mode": "TEXT_DOCUMENT_ONLY",
+      "responsive_behavior": "NOT_OBSERVED"
+    },
+    {
+      "reference_id": "ref_supabase",
+      "publisher": "Supabase",
+      "url": "https://supabase.com/docs/guides/queues",
+      "captured_at": "2026-10-22T08:48:08Z",
+      "first_read": "Scoped feature statements link implementation references. Text hierarchy only; visual first-read unverified.",
+      "principle_to_apply": "Keep delivery scope beside the claim.",
+      "copy_boundary": "Do not copy graphics, composition or trade dress. No desktop/mobile visual capture.",
+      "capture_mode": "TEXT_DOCUMENT_ONLY",
+      "responsive_behavior": "NOT_OBSERVED"
+    }
+  ],
+  "directions": [
+    {
+      "direction_id": "dir_character_narrative",
+      "lens": "CHARACTER_NARRATIVE",
+      "status": "DRAFT",
+      "first_read": "Stopped handoff",
+      "concept": "An accountable human pauses a duplicate action while a second person checks the external receipt.",
+      "why_it_wins": "Shows accountability before abstraction.",
+      "source_refs": [
+        "ref_vercel",
+        "local_replay_lab",
+        "local_experiment_receipt"
+      ]
+    },
+    {
+      "direction_id": "dir_architecture_world",
+      "lens": "ARCHITECTURE_WORLD",
+      "status": "DRAFT",
+      "first_read": "Two ledgers, one gap",
+      "concept": "Two separate persistence planes show an external effect whose acknowledgement has not reached the execution log.",
+      "why_it_wins": "Best fit for explaining the missing atomic transaction.",
+      "source_refs": [
+        "ref_vercel",
+        "local_replay_lab",
+        "local_experiment_receipt"
+      ]
+    },
+    {
+      "direction_id": "dir_editorial_symbol",
+      "lens": "EDITORIAL_SYMBOL",
+      "status": "DRAFT",
+      "first_read": "Unsent receipt",
+      "concept": "A receipt has left the action tray but a retry stamp waits above an empty acknowledgement slot.",
+      "why_it_wins": "Single ambiguity reads at thumbnail size.",
+      "source_refs": [
+        "ref_vercel",
+        "local_replay_lab",
+        "local_experiment_receipt"
+      ]
+    }
+  ],
+  "architecture": {
+    "maturity": "EXACT",
+    "scope": "Exact only for the local offline teaching model, not vendor implementation.",
+    "source_refs": [
+      "scripts/experiments/durable-recovery/replay_lab.py",
+      "scripts/experiments/durable-recovery/test_replay_lab.py",
+      "content/research/briefs/durable-agent-recovery/experiment-receipt.json"
+    ],
+    "nodes": [
+      {
+        "node_id": "node_cli",
+        "label": "Start/restart CLI",
+        "type": "actor",
+        "source_refs": [
+          "scripts/experiments/durable-recovery/replay_lab.py"
+        ]
+      },
+      {
+        "node_id": "node_runner",
+        "label": "Sequential call runner",
+        "type": "process",
+        "source_refs": [
+          "scripts/experiments/durable-recovery/replay_lab.py"
+        ]
+      },
+      {
+        "node_id": "node_log",
+        "label": "log.sqlite calls: started/done/results",
+        "type": "state_store",
+        "source_refs": [
+          "scripts/experiments/durable-recovery/replay_lab.py"
+        ]
+      },
+      {
+        "node_id": "node_effects",
+        "label": "external.sqlite simulated effects",
+        "type": "separate_state_store",
+        "source_refs": [
+          "scripts/experiments/durable-recovery/replay_lab.py"
+        ]
+      },
+      {
+        "node_id": "node_reconcile",
+        "label": "Explicit CLI reconciliation",
+        "type": "operator_action",
+        "source_refs": [
+          "scripts/experiments/durable-recovery/replay_lab.py"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "edge_id": "edge_start",
+        "from": "node_cli",
+        "to": "node_runner",
+        "action": "Start new process with same root",
+        "failure_behavior": "No automatic queue or restart exists.",
+        "source_refs": [
+          "scripts/experiments/durable-recovery/replay_lab.py"
+        ]
+      },
+      {
+        "edge_id": "edge_intent",
+        "from": "node_runner",
+        "to": "node_log",
+        "action": "Commit intent before effect and outcome afterward",
+        "failure_behavior": "Exit17 after effect leaves started intent.",
+        "source_refs": [
+          "scripts/experiments/durable-recovery/replay_lab.py"
+        ]
+      },
+      {
+        "edge_id": "edge_effect",
+        "from": "node_runner",
+        "to": "node_effects",
+        "action": "Insert simulated effect per executed call",
+        "failure_behavior": "Separate file commits are not atomic with log.",
+        "source_refs": [
+          "scripts/experiments/durable-recovery/replay_lab.py"
+        ]
+      },
+      {
+        "edge_id": "edge_resume",
+        "from": "node_log",
+        "to": "node_runner",
+        "action": "Reuse done; retry safe; uncertain never",
+        "failure_behavior": "Never-policy started action stops with exit3.",
+        "source_refs": [
+          "scripts/experiments/durable-recovery/replay_lab.py"
+        ]
+      },
+      {
+        "edge_id": "edge_check",
+        "from": "node_reconcile",
+        "to": "node_effects",
+        "action": "Count effects for call",
+        "failure_behavior": "Any count other than1 raises error.",
+        "source_refs": [
+          "scripts/experiments/durable-recovery/replay_lab.py"
+        ]
+      },
+      {
+        "edge_id": "edge_confirm",
+        "from": "node_reconcile",
+        "to": "node_log",
+        "action": "Mark done after unique confirmation",
+        "failure_behavior": "No secured production authorization layer exists.",
+        "source_refs": [
+          "scripts/experiments/durable-recovery/replay_lab.py"
+        ]
+      }
+    ],
+    "trust_boundaries": [
+      {
+        "boundary_id": "boundary_local_process",
+        "label": "Ephemeral process; manual subprocess restart",
+        "node_ids": [
+          "node_cli",
+          "node_runner"
+        ]
+      },
+      {
+        "boundary_id": "boundary_separate_commits",
+        "label": "Two independent local SQLite commits, not a distributed trust zone",
+        "node_ids": [
+          "node_log",
+          "node_effects"
+        ]
+      }
+    ],
+    "scene_mapping": [
+      {
+        "scene_element": "Two ledgers",
+        "architecture_refs": [
+          "node_log",
+          "node_effects"
+        ]
+      },
+      {
+        "scene_element": "Gap after effect, before acknowledgement",
+        "architecture_refs": [
+          "edge_effect",
+          "edge_intent"
+        ]
+      },
+      {
+        "scene_element": "Held retry stamp",
+        "architecture_refs": [
+          "edge_resume",
+          "node_reconcile"
+        ]
+      }
+    ]
+  },
+  "character_policy": {
+    "mode": "NOT_APPLICABLE",
+    "exemption_reason": "Proposed diagram/material-metaphor exemption: exact processes and persistence states need no personified agent. Future crew narrative requires approved canonical sheets; none available in this lane."
+  },
+  "characters": [],
+  "brand_mark_policy": {
+    "mode": "NOT_REQUIRED",
+    "comparison_type": "CONCEPTUAL",
+    "reason": "Comparing local recovery states, not vendors. No third-party marks or relationship claims."
+  },
+  "brand_marks": [],
+  "deliverables": [
+    {
+      "deliverable_id": "del_durable_hero",
+      "role": "hero",
+      "asset_id": "ast_frankx_durable_hero",
+      "placement_id": "frankx.blog.durable-recovery.hero",
+      "format": "PLANNED",
+      "width": 1600,
+      "height": 900,
+      "generation_mode": "DETERMINISTIC",
+      "alt_text": "Local recovery model: persisted outcomes are reused; safe interrupted calls retry; uncertain writes require external reconciliation.",
+      "state": "PLANNED",
+      "mobile_strategy": "NOT_APPLICABLE",
+      "dimensions_status": "TARGET_NOT_RENDERED",
+      "version_id": "ver_durable_hero_draft1"
+    },
+    {
+      "deliverable_id": "del_durable_architecture",
+      "role": "architecture",
+      "asset_id": "ast_frankx_durable_architecture",
+      "placement_id": "frankx.blog.durable-recovery.architecture",
+      "format": "MERMAID_SOURCE_SPEC",
+      "width": 1200,
+      "height": 1200,
+      "generation_mode": "DETERMINISTIC",
+      "alt_text": "Local recovery model: persisted outcomes are reused; safe interrupted calls retry; uncertain writes require external reconciliation.",
+      "state": "SPEC_CREATED",
+      "mobile_strategy": "NOT_APPLICABLE",
+      "dimensions_status": "TARGET_NOT_RENDERED",
+      "version_id": "ver_durable_architecture_draft1"
+    },
+    {
+      "deliverable_id": "del_durable_comparison",
+      "role": "comparison",
+      "asset_id": "ast_frankx_durable_comparison",
+      "placement_id": "frankx.blog.durable-recovery.comparison",
+      "format": "PLANNED",
+      "width": 1200,
+      "height": 800,
+      "generation_mode": "DETERMINISTIC",
+      "alt_text": "Local recovery model: persisted outcomes are reused; safe interrupted calls retry; uncertain writes require external reconciliation.",
+      "state": "PLANNED",
+      "mobile_strategy": "NOT_APPLICABLE",
+      "dimensions_status": "TARGET_NOT_RENDERED",
+      "version_id": "ver_durable_comparison_draft1"
+    },
+    {
+      "deliverable_id": "del_durable_workflow",
+      "role": "workflow",
+      "asset_id": "ast_frankx_durable_workflow",
+      "placement_id": "frankx.blog.durable-recovery.workflow",
+      "format": "PLANNED",
+      "width": 1600,
+      "height": 900,
+      "generation_mode": "DETERMINISTIC",
+      "alt_text": "Local recovery model: persisted outcomes are reused; safe interrupted calls retry; uncertain writes require external reconciliation.",
+      "state": "PLANNED",
+      "mobile_strategy": "NOT_APPLICABLE",
+      "dimensions_status": "TARGET_NOT_RENDERED",
+      "version_id": "ver_durable_workflow_draft1"
+    },
+    {
+      "deliverable_id": "del_durable_og",
+      "role": "og",
+      "asset_id": "ast_frankx_durable_og",
+      "placement_id": "frankx.blog.durable-recovery.og",
+      "format": "PLANNED",
+      "width": 1200,
+      "height": 630,
+      "generation_mode": "DETERMINISTIC",
+      "alt_text": "Local recovery model: persisted outcomes are reused; safe interrupted calls retry; uncertain writes require external reconciliation.",
+      "state": "PLANNED",
+      "mobile_strategy": "NOT_APPLICABLE",
+      "dimensions_status": "TARGET_NOT_RENDERED",
+      "version_id": "ver_durable_og_draft1"
+    },
+    {
+      "deliverable_id": "del_durable_mobile_native",
+      "role": "mobile_native",
+      "asset_id": "ast_frankx_durable_mobile_native",
+      "placement_id": "frankx.blog.durable-recovery.mobile_native",
+      "format": "PLANNED",
+      "width": 1080,
+      "height": 1350,
+      "generation_mode": "DETERMINISTIC",
+      "alt_text": "Local recovery model: persisted outcomes are reused; safe interrupted calls retry; uncertain writes require external reconciliation.",
+      "state": "PLANNED",
+      "mobile_strategy": "ART_DIRECTED",
+      "dimensions_status": "TARGET_NOT_RENDERED",
+      "version_id": "ver_durable_mobile_native_draft1"
+    }
+  ],
+  "taste": {
+    "hard_gates": [],
+    "scores": [],
+    "weighted_total": null,
+    "verdict": "PENDING",
+    "selected_direction_id": null,
+    "producer_recommendation": "dir_architecture_world; not a selected or approved direction"
+  },
+  "reviews": [],
+  "blocked": [
+    "Current document benchmark read; real desktop/mobile header captures unavailable.",
+    "Canonical approved character references unavailable; exemption proposed only for exact diagram/material metaphor, not approved.",
+    "All six roles lack approved rendered renditions; architecture is source specification only.",
+    "No independent art, architecture, rights or responsive review recorded; no fabricated taste score.",
+    "No Vercel Blob binary write or Supabase metadata/approval write configured or attempted.",
+    "Canonical placement manifest, responsive/mobile/social render evidence, final rights metadata and approved checksum/dimensions unavailable.",
+    "Vendor runtime integration, real model costs and production persistence behavior untested; visual must remain scoped to local SQLite teaching model."
+  ],
+  "source_specifications": [
+    {
+      "path": "docs/content/durable-agent-recovery-visual/architecture.mmd",
+      "sha256": "aebe0b2a0d8ef5132537ac752c03e89c905e249f9b82007522b4f2940bf60d19",
+      "mime": "text/plain",
+      "status": "DRAFT_GIT_SPEC"
+    },
+    {
+      "path": "docs/content/durable-agent-recovery-visual/recovery-states.mmd",
+      "sha256": "03e9a5f4f037ed25ce57c9266c636f98148ecce72eadeba38ff1f646489bbd4f",
+      "mime": "text/plain",
+      "status": "DRAFT_GIT_SPEC"
+    }
+  ]
+}

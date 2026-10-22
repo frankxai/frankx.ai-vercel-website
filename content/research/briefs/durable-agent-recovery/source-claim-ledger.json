@@ -1,0 +1,90 @@
+{
+  "sources": [
+    {
+      "source_id": "src_vercel_release",
+      "title": "Making every harness durable",
+      "publisher": "Vercel",
+      "source_type": "vendor_primary",
+      "url": "https://vercel.com/blog/making-every-harness-durable",
+      "published_at": "2026-10-19",
+      "retrieved_at": "2026-10-22",
+      "limits": "Vendor claims, not independently run package integration; no copied figures or artwork."
+    },
+    {
+      "source_id": "src_local_lab",
+      "title": "Offline replay lab source and three subprocess tests",
+      "publisher": "FrankX candidate artifact",
+      "source_type": "first_party_experiment",
+      "repository_path": "scripts/experiments/durable-recovery/replay_lab.py; scripts/experiments/durable-recovery/test_replay_lab.py; content/research/briefs/durable-agent-recovery/experiment-receipt.json",
+      "retrieved_at": "2026-10-22",
+      "limits": "Python/SQLite teaching model; no model API, Vercel package, cloud host, queue or concurrency measurement."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c_vendor_release",
+      "text": "Vercel introduced durable-harness on 19 October 2026 with the documented adapter/log mechanism.",
+      "type": "fact",
+      "source_ids": [
+        "src_vercel_release"
+      ],
+      "support": "direct",
+      "as_of": "2026-10-22",
+      "freshness": "Recheck vendor API at release; rerun local test after code change",
+      "public_wording": "Vercel introduced durable-harness on 19 October 2026 with the documented adapter/log mechanism.",
+      "reviewer": "blocked"
+    },
+    {
+      "claim_id": "c_cached",
+      "text": "The local model reused one committed model result after abrupt subprocess exit.",
+      "type": "first_party",
+      "source_ids": [
+        "src_local_lab"
+      ],
+      "support": "direct",
+      "as_of": "2026-10-22",
+      "freshness": "Recheck vendor API at release; rerun local test after code change",
+      "public_wording": "The local model reused one committed model result after abrupt subprocess exit.",
+      "reviewer": "blocked"
+    },
+    {
+      "claim_id": "c_safe",
+      "text": "The local model repeated an interrupted safe read, producing two executions.",
+      "type": "first_party",
+      "source_ids": [
+        "src_local_lab"
+      ],
+      "support": "direct",
+      "as_of": "2026-10-22",
+      "freshness": "Recheck vendor API at release; rerun local test after code change",
+      "public_wording": "The local model repeated an interrupted safe read, producing two executions.",
+      "reviewer": "blocked"
+    },
+    {
+      "claim_id": "c_uncertain",
+      "text": "The local model refused to repeat the uncertain publish operation before checking the external effect store.",
+      "type": "first_party",
+      "source_ids": [
+        "src_local_lab"
+      ],
+      "support": "direct",
+      "as_of": "2026-10-22",
+      "freshness": "Recheck vendor API at release; rerun local test after code change",
+      "public_wording": "The local model refused to repeat the uncertain publish operation before checking the external effect store.",
+      "reviewer": "blocked"
+    },
+    {
+      "claim_id": "c_boundary",
+      "text": "An absent local outcome cannot alone establish whether an external action happened.",
+      "type": "inference",
+      "source_ids": [
+        "src_local_lab"
+      ],
+      "support": "derived",
+      "as_of": "2026-10-22",
+      "freshness": "Recheck vendor API at release; rerun local test after code change",
+      "public_wording": "An absent local outcome cannot alone establish whether an external action happened.",
+      "reviewer": "blocked"
+    }
+  ]
+}

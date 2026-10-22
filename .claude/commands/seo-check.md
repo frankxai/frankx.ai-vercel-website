@@ -1,92 +1,28 @@
-# /seo-check - Weekly SEO & Traffic Review
+# /seo-check — Search and measurement review
 
-Quick audit of SEO health and traffic performance.
+Use $frankx-content-intelligence and $improve-outcome-loop. Follow AGENTS.md and the current metric contract.
 
-## Execution Steps
+## Establish the evidence
+Resolve the production source and Vercel deployment. Read GSC/GA4 through an authorized provider connection. Record property/site, host scope, reporting timezone, retrieval time, settled window, coverage and unavailable states. Never use simulated traffic, scraped Google result counts or a placeholder dashboard as evidence.
 
-### Step 1: Check Site Indexing
-```bash
-# Check how many pages Google has indexed
-curl -s "https://www.google.com/search?q=site:frankx.ai" | grep -o "About [0-9,]* results" || echo "Check manually: site:frankx.ai"
-```
+When GSC Wizard reports subscription_required, stop retries and record the dependency. Do not purchase access. Missing data remains unavailable.
 
-### Step 2: Verify Sitemap
-```bash
-# Fetch and count sitemap URLs
-curl -s https://frankx.ai/sitemap.xml | grep -c "<url>" || echo "Sitemap check failed"
-```
+Compare the last settled 28 days with the preceding 28, then inspect page/query, branded/non-branded, device and country. Preserve property totals; do not sum privacy-filtered query rows into totals. Review verified downstream actions alongside discovery.
 
-### Step 3: Manual Checks (Open in Browser)
+## Inspect the website
+Read the live sitemap and robots output, response status, self-canonical, visible text, schema agreement, internal links, media and mobile behavior. Crawl readiness does not prove Google indexing; use URL Inspection for that claim.
 
-**Google Search Console:**
-- https://search.google.com/search-console/performance/search-analytics?resource_id=sc-domain:frankx.ai
+Recheck historical architecture canonical/duplicate findings before proposing repairs. Preserve existing working URLs.
 
-**Plausible Analytics:**
-- https://plausible.io/frankx.ai (or your dashboard URL)
+## Select one intervention
+Map query → intent → reader job → canonical URL → original artifact → useful next action. Prioritize current evidence and information gain. Label unmeasured opportunities as hypotheses.
 
-**AI Citation Check:**
-- Ask ChatGPT: "What is Agentic Creator OS?"
-- Ask Perplexity: "Who is FrankX AI?"
-- Search Google: "agentic creator os" - check AI Overview
+Question headings, summaries and FAQs are editorial choices. Google requires no special AI schema or llms.txt file. Do not promise FAQ rich results. Recheck official guidance and incidents:
+- https://developers.google.com/search/docs/fundamentals/ai-optimization-guide
+- https://developers.google.com/search/updates
+- https://status.search.google.com/
 
-### Step 4: Quick SEO Audit
+Inspect generative AI reporting/inclusion controls when available. Do not double-count AI impressions within Web totals.
 
-Check these for each new article:
-
-| Check | How |
-|-------|-----|
-| TL;DR in first 100 words | Read article intro |
-| Question-based H2s | Scan headings |
-| FAQ section | Scroll to bottom |
-| Internal links | Check for 3+ links to other content |
-| Meta description | View page source or use browser SEO extension |
-
-### Step 5: Content Performance Review
-
-**Top Performers (what's working):**
-- Which blog posts get the most traffic?
-- Which keywords drive the most clicks?
-- What's the avg. position for target keywords?
-
-**Opportunities (what to improve):**
-- Pages with high impressions but low CTR (improve titles)
-- Pages ranking #4-10 (push to top 3)
-- Keywords you're NOT ranking for yet
-
-## Output Template
-
-```markdown
-## SEO Check - [DATE]
-
-### Traffic Summary (Last 7 Days)
-- Visitors:
-- Pageviews:
-- Top Page:
-- Top Referrer:
-
-### Search Console (Last 28 Days)
-- Total Clicks:
-- Total Impressions:
-- Avg. CTR:
-- Avg. Position:
-
-### Top Keywords
-1. [keyword] - pos [X], [N] clicks
-2. [keyword] - pos [X], [N] clicks
-3. [keyword] - pos [X], [N] clicks
-
-### AI Citations Found
-- [ ] ChatGPT mentions FrankX
-- [ ] Perplexity cites content
-- [ ] Google AI Overview includes
-
-### Action Items
-- [ ] Optimize [page] for [keyword]
-- [ ] Add FAQ to [article]
-- [ ] Internal link from [high-traffic] to [new content]
-```
-
-## Related Commands
-- `/inventory-status` - Content inventory
-- `/factory` - Content publishing
-- `/log` - Session logging
+## Return
+Give actual observations, source/period, unknowns, one repair or experiment with owner, hypothesis, denominator, guardrails and next observation. Record T+0/7/28/90 checks. A successful fetch or READY deployment does not establish customer outcomes.

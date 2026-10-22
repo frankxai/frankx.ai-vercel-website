@@ -1,0 +1,106 @@
+{
+  "observed_at": "2026-10-22T08:19:06.956Z",
+  "repository": "frankxai/frankx.ai-vercel-website",
+  "main": {
+    "sha": "e6e937290a75d6f6e3eff79436d6d9c5b44cf6b8",
+    "tree": "3d9cd99e069cb11a8c017b1369ed370608d5fdfe",
+    "required_status_checks": [
+      "CI",
+      "Contract Guard",
+      "Media Guard",
+      "Merge Gate",
+      "design-contract / design-contract",
+      "Vercel",
+      "Surface Guard",
+      "Review Gate"
+    ]
+  },
+  "production": {
+    "deployment_id": "dpl_6Vfg7RN8vM2L5D6t3TqKTHXcGRGy",
+    "state": "READY",
+    "target": "production",
+    "source_sha": "e6e937290a75d6f6e3eff79436d6d9c5b44cf6b8",
+    "url": "https://www.frankx.ai"
+  },
+  "candidates": [
+    {
+      "number": 1076,
+      "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/1076",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "544983ecae0f506300567a1e1d908ec3582a53a7",
+      "mergeable": false,
+      "mergeable_state": "dirty"
+    },
+    {
+      "number": 978,
+      "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/978",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "2f8a3ce5c5ea40a73b6fccfb0ffcfc449d746382",
+      "mergeable": true,
+      "mergeable_state": "behind"
+    },
+    {
+      "number": 930,
+      "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/930",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "21fa98a314534e02782bbedace6c2b54dde637d6",
+      "mergeable": true,
+      "mergeable_state": "behind"
+    },
+    {
+      "number": 1028,
+      "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/1028",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "d816cd59ef755154d9315ad6e3970b499e93cf0f",
+      "mergeable": false,
+      "mergeable_state": "dirty"
+    },
+    {
+      "number": 968,
+      "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/968",
+      "state": "closed",
+      "draft": true,
+      "merged": false,
+      "head": "c5f442b0961afc7fcdc691c09aa59ed4f89bc172",
+      "mergeable": true,
+      "mergeable_state": "behind"
+    }
+  ],
+  "lab_dependency": {
+    "repository": "frankxai/starlight-intelligence-lab",
+    "pr": 5,
+    "state": "open",
+    "merged": false,
+    "head": "5702cb7826e3e8948ac80859ea2dfa332bc00a86"
+  },
+  "measurement": {
+    "issue": 905,
+    "state": "open",
+    "publication_gate": "Issue current body: Do not publish content until the baseline exists; Do not merge.",
+    "closed_candidate": {
+      "pr": 968,
+      "merged": false
+    },
+    "scoped_open_pr_search": "GA4 OR simulated OR measurement returned research PR 949 only; no dedicated repair established"
+  },
+  "notion_reconciliation": {
+    "created_then_read_back": 13,
+    "published_voice_assets": 9,
+    "draft_candidates": 4,
+    "existing_records_preserved": 54,
+    "source": "Existing Notion Pieces; stable idempotency keys; no indexing or distribution inferred"
+  },
+  "limits": [
+    "Snapshot not a live feed",
+    "HTTP200 or sitemap does not prove indexing",
+    "New repairs and Tella remain draft PRs"
+  ]
+}

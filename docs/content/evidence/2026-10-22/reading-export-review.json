@@ -1,0 +1,33 @@
+{
+  "source_sha": "5bd528bf6662ac79afde43080a19df006bf31599",
+  "verdict": "No substantive blocker in bounded known-resurfacing repair",
+  "tests": {
+    "public-reading-publication": {
+      "passed": 2,
+      "failed": 0
+    },
+    "editor-followup-drops": {
+      "passed": 12,
+      "failed": 0
+    },
+    "golden-age-and-about-claims": {
+      "passed": 3,
+      "failed": 0
+    },
+    "independent_cache_invalidation": "miss, hit, helper content change miss passed",
+    "independent_cleanup": "output-root containment and eligible-path collision preservation passed"
+  },
+  "inspection": [
+    "Both exporters use shared eligibility helper",
+    "Removal only targets exact counterparts of currently held source files",
+    "Generator marker required; unmarked/manual pages retained",
+    "No authored prose or source deletion",
+    "Helper participates in prebuild fingerprint"
+  ],
+  "limitations": [
+    "Known patterns only, not comprehensive publication/security policy",
+    "Existing exporters retain repository-wide scope and distinct legacy directory exclusions",
+    "Broader public-claims tests blocked by sparse omitted emails/public/pdf-templates",
+    "Production regeneration/build not independently attested"
+  ]
+}
