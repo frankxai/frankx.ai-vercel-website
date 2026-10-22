@@ -4,7 +4,7 @@
 # agent branches and need proof the PR is ready; bots and catch-up merges never build;
 # production is never skipped. Measured 2026-10-07..21: 77% of this project's build
 # minutes were non-main, and 41% of preview minutes were 'Merge branch main into ...'.
-# Opt in with [preview] in the commit message, or push the branch as preview/<name>.
+# Opt in with [preview] in the commit subject, or push the branch as preview/<name>.
 # After the gate, docs/internal-only changes are still skipped by the path diff below.
 #
 # IMPORTANT — fail safe to PROCEED for production and unknown refs: skipping a build
@@ -47,7 +47,10 @@ fi
 case "$REF" in
   preview/*) echo "[preview-gate] preview/* branch — BUILDING."; exit 1 ;;
 esac
-case "$MESSAGE" in
+# Subject line only: a commit body that merely describes the marker must not
+# opt in. Measured 2026-10-22: the commit introducing this gate explained
+# [preview] in its body and built itself on all three projects.
+case "$SUBJECT" in
   *"[preview]"*) echo "[preview-gate] [preview] requested — BUILDING."; exit 1 ;;
 esac
 
