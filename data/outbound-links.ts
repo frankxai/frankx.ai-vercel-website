@@ -20,6 +20,13 @@ export interface OutboundLink {
 
 export const outboundLinks: OutboundLink[] = [
   {
+    slug: 'tella',
+    destination: 'https://www.tella.com/',
+    label: 'Tella',
+    category: 'tool',
+    description: 'Official fallback. Issued referral destination lives only in data/affiliate/programs.json.',
+  },
+  {
     slug: 'higgsfield',
     destination: 'https://higgsfield.ai',
     label: 'Higgsfield',
