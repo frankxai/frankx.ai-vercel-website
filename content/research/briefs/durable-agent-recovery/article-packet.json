@@ -8,7 +8,7 @@
     "domain": "frankx.ai",
     "repository": "frankxai/frankx.ai-vercel-website",
     "vercel_project": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
-    "notion_record": "blocked"
+    "notion_record": "https://app.notion.com/40126ac2b7f681f3b8cbccb65b1a2cfc"
   },
   "brief": {
     "working_title": "Design agent recovery around uncertain side effects",
@@ -102,7 +102,7 @@
       "as_of": "2026-10-22",
       "freshness": "Recheck vendor API at release; rerun local test after code change",
       "public_wording": "Vercel introduced durable-harness on 19 October 2026 with the documented adapter/log mechanism.",
-      "reviewer": "blocked"
+      "reviewer": "measurement_review: scoped source/experiment verification; release approval withheld"
     },
     {
       "claim_id": "c_cached",
@@ -115,7 +115,7 @@
       "as_of": "2026-10-22",
       "freshness": "Recheck vendor API at release; rerun local test after code change",
       "public_wording": "The local model reused one committed model result after abrupt subprocess exit.",
-      "reviewer": "blocked"
+      "reviewer": "measurement_review: scoped source/experiment verification; release approval withheld"
     },
     {
       "claim_id": "c_safe",
@@ -128,7 +128,7 @@
       "as_of": "2026-10-22",
       "freshness": "Recheck vendor API at release; rerun local test after code change",
       "public_wording": "The local model repeated an interrupted safe read, producing two executions.",
-      "reviewer": "blocked"
+      "reviewer": "measurement_review: scoped source/experiment verification; release approval withheld"
     },
     {
       "claim_id": "c_uncertain",
@@ -141,7 +141,7 @@
       "as_of": "2026-10-22",
       "freshness": "Recheck vendor API at release; rerun local test after code change",
       "public_wording": "The local model refused to repeat the uncertain publish operation before checking the external effect store.",
-      "reviewer": "blocked"
+      "reviewer": "measurement_review: scoped source/experiment verification; release approval withheld"
     },
     {
       "claim_id": "c_boundary",
@@ -154,7 +154,7 @@
       "as_of": "2026-10-22",
       "freshness": "Recheck vendor API at release; rerun local test after code change",
       "public_wording": "An absent local outcome cannot alone establish whether an external action happened.",
-      "reviewer": "blocked"
+      "reviewer": "measurement_review: scoped source/experiment verification; release approval withheld"
     }
   ],
   "article": {
@@ -188,12 +188,13 @@
   "distribution": [],
   "reviews": [],
   "publication": {
-    "branch": "blocked",
-    "pull_request": "blocked",
+    "branch": "agent/codex/editorial-proof-wave-20261022",
+    "pull_request": "https://github.com/frankxai/frankx.ai-vercel-website/pull/1087",
     "preview_url": "blocked",
     "live_url": "blocked",
     "verified_at": null,
-    "rollback": "Candidate only: discard candidate; production untouched"
+    "rollback": "Candidate only: discard candidate; production untouched",
+    "source_sha": "7e22b0d42aac3cc032596d89ef49499ed38fd40d"
   },
   "measurement": {
     "hypothesis": "A reproducible recovery artifact produces qualified implementation interest",
@@ -214,8 +215,12 @@
     "Vendor package integration not run",
     "Canonical overlap decision needs editor-integrator approval",
     "Governed flagship visual packet and source assets not produced",
-    "Independent truth/editor/ICP/SEO/visual review pending",
-    "Repository compilation and mobile/desktop preview not run",
+    "Scoped technical source/experiment review passed; full commissioning/ICP/SEO/visual release review pending",
+    "Repository compilation and full build passed; exact-head mobile/desktop Vercel preview not run",
     "Distribution uncommissioned and unapproved"
+  ],
+  "review_receipts": [
+    "docs/content/evidence/2026-10-22/authored-experiment-review.json",
+    "docs/content/evidence/2026-10-22/affected-review-receipt.json"
   ]
 }

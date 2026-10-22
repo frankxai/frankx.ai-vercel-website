@@ -32,7 +32,7 @@
       "as_of": "2026-10-22",
       "freshness": "Recheck vendor API at release; rerun local test after code change",
       "public_wording": "Vercel introduced durable-harness on 19 October 2026 with the documented adapter/log mechanism.",
-      "reviewer": "blocked"
+      "reviewer": "measurement_review: scoped source/experiment verification; release approval withheld"
     },
     {
       "claim_id": "c_cached",
@@ -45,7 +45,7 @@
       "as_of": "2026-10-22",
       "freshness": "Recheck vendor API at release; rerun local test after code change",
       "public_wording": "The local model reused one committed model result after abrupt subprocess exit.",
-      "reviewer": "blocked"
+      "reviewer": "measurement_review: scoped source/experiment verification; release approval withheld"
     },
     {
       "claim_id": "c_safe",
@@ -58,7 +58,7 @@
       "as_of": "2026-10-22",
       "freshness": "Recheck vendor API at release; rerun local test after code change",
       "public_wording": "The local model repeated an interrupted safe read, producing two executions.",
-      "reviewer": "blocked"
+      "reviewer": "measurement_review: scoped source/experiment verification; release approval withheld"
     },
     {
       "claim_id": "c_uncertain",
@@ -71,7 +71,7 @@
       "as_of": "2026-10-22",
       "freshness": "Recheck vendor API at release; rerun local test after code change",
       "public_wording": "The local model refused to repeat the uncertain publish operation before checking the external effect store.",
-      "reviewer": "blocked"
+      "reviewer": "measurement_review: scoped source/experiment verification; release approval withheld"
     },
     {
       "claim_id": "c_boundary",
@@ -84,7 +84,7 @@
       "as_of": "2026-10-22",
       "freshness": "Recheck vendor API at release; rerun local test after code change",
       "public_wording": "An absent local outcome cannot alone establish whether an external action happened.",
-      "reviewer": "blocked"
+      "reviewer": "measurement_review: scoped source/experiment verification; release approval withheld"
     }
   ]
 }

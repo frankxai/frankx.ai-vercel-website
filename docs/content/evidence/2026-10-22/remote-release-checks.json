@@ -1,0 +1,190 @@
+{
+  "retrievedAt": "2026-10-22T08:57:52.945Z",
+  "remoteChecks": [
+    {
+      "lane": "tella",
+      "sha": "dc60846bfd39f95d23caa73af5487b0cd3e0ec8d",
+      "checks": [
+        {
+          "name": "Vercel Preview Comments",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Merge Gate",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Web Interface Guidelines (mechanical)",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Media Guard",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Contract Guard",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "surface-guard",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "review-gate",
+          "status": "completed",
+          "conclusion": "cancelled"
+        },
+        {
+          "name": "scan",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "error": false
+    },
+    {
+      "lane": "measurement",
+      "sha": "93336942340e92f1da85eeb9baec208cb1d80f45",
+      "checks": [
+        {
+          "name": "Vercel Preview Comments",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Contract Guard",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Web Interface Guidelines (mechanical)",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Merge Gate",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Media Guard",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "surface-guard",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "scan",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "review-gate",
+          "status": "completed",
+          "conclusion": "cancelled"
+        }
+      ],
+      "error": false
+    },
+    {
+      "lane": "export",
+      "sha": "1f174388a99a17c81d5a2f0f6dc3a23697290efb",
+      "checks": [
+        {
+          "name": "Vercel Preview Comments",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Web Interface Guidelines (mechanical)",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Merge Gate",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Media Guard",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Contract Guard",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "surface-guard",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "review-gate",
+          "status": "completed",
+          "conclusion": "cancelled"
+        },
+        {
+          "name": "scan",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "error": false
+    },
+    {
+      "lane": "editorial",
+      "sha": "7e22b0d42aac3cc032596d89ef49499ed38fd40d",
+      "checks": [
+        {
+          "name": "Vercel Preview Comments",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "scan",
+          "status": "in_progress",
+          "conclusion": null
+        }
+      ],
+      "error": false
+    }
+  ],
+  "envMetadata": {
+    "retrievedAt": "2026-10-22T08:57:40.383Z",
+    "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+    "decryptionRequested": false,
+    "status": "metadata_read_error",
+    "limits": "No verified variable inventory or provider IDs; no secret values requested",
+    "httpStatus": 403,
+    "reason": "Connection cannot list project environment variables",
+    "cliFallback": "Unavailable: vercel executable is not installed"
+  },
+  "productionUntouched": true,
+  "preview_policy": "scripts/should-deploy.sh intentionally skips draft PRs; Tella exact-head deployment dpl_CwuqRggtJv6SAVYcVyVjDRDbVY4R canceled by ignore step; do not bypass."
+}
