@@ -24,7 +24,7 @@
     "test:newsletter": "node --experimental-strip-types --test scripts/tests/submit-newsletter.test.mjs",
     "test:acos-install": "node --experimental-strip-types --test scripts/tests/acos-install-command.test.mjs",
     "test:privacy-analytics": "node --experimental-strip-types --test scripts/tests/privacy-analytics.test.mjs",
-    "test:build-integrity": "node --experimental-strip-types --test scripts/tests/build-integrity-contract.test.mjs scripts/tests/work-route-publication.test.mjs scripts/tests/managed-next-process.test.mjs scripts/tests/library-higher-consciousness-contract.test.mjs scripts/tests/library-prerender-contract.test.mjs scripts/tests/game-embed-security-contract.test.mjs scripts/tests/books-publication-gate-contract.test.mjs scripts/tests/guide-image-generator-security-contract.test.mjs scripts/tests/vercel-agent-wip-build-guard.test.mjs scripts/tests/capture-routes-contract.test.mjs scripts/tests/auth-logger-contract.test.mjs scripts/tests/llm-hub-pricing.test.mjs scripts/tests/editor-followup-drops.test.mjs",
+    "test:build-integrity": "node --experimental-strip-types --test scripts/tests/build-integrity-contract.test.mjs scripts/tests/work-route-publication.test.mjs scripts/tests/managed-next-process.test.mjs scripts/tests/library-higher-consciousness-contract.test.mjs scripts/tests/library-prerender-contract.test.mjs scripts/tests/game-embed-security-contract.test.mjs scripts/tests/books-publication-gate-contract.test.mjs scripts/tests/guide-image-generator-security-contract.test.mjs scripts/tests/vercel-agent-wip-build-guard.test.mjs scripts/tests/capture-routes-contract.test.mjs scripts/tests/auth-logger-contract.test.mjs scripts/tests/llm-hub-pricing.test.mjs scripts/tests/editor-followup-drops.test.mjs && npm run test:measurement-truth",
     "test:books-publication-gate": "node --test scripts/tests/books-publication-gate-contract.test.mjs",
     "test:agentdb-runtime": "node --test scripts/tests/agentdb-runtime.test.mjs",
     "test:build-artifact-integrity": "node --experimental-strip-types --test scripts/tests/build-artifact-integrity.test.mjs",
@@ -186,7 +186,8 @@
     "test:mcp:e2e": "node --test scripts/tests/mcp-endpoint.e2e.mjs",
     "research:publication:check": "node scripts/check-research-publication.mjs && node --test scripts/tests/research-publication-gate.test.mjs && node --experimental-strip-types --test scripts/tests/economy-atlas.test.mjs",
     "test:book-reader": "node --test scripts/tests/book-reader.test.mjs",
-    "test:book-chapter:rendered": "node --test scripts/tests/book-chapter-rendered.test.mjs"
+    "test:book-chapter:rendered": "node --test scripts/tests/book-chapter-rendered.test.mjs",
+    "test:measurement-truth": "node --test scripts/tests/measurement-truth.test.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

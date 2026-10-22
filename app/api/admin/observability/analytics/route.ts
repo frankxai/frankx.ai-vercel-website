@@ -1,58 +1,17 @@
-import { NextRequest, NextResponse } from 'next/server'
-import {
-  getGA4Overview,
-  getGA4TopPages,
-  getGA4TrafficSources,
-  getGA4Realtime,
-  getGA4PropertyId,
-} from '@/lib/observability/google-analytics'
+import { getGA4Overview, getGA4TopPages, getGA4TrafficSources, getGA4Realtime, getGA4PropertyId } from '@/lib/observability/google-analytics'
+import { boundedInteger, combinedStatus, measurementHttpStatus } from '@/lib/observability/measurement-result'
 
-export async function GET(request: NextRequest) {
-  try {
-    const searchParams = request.nextUrl.searchParams
-    const days = parseInt(searchParams.get('days') || '30', 10)
-    const view = searchParams.get('view') || 'all'
-
-    if (view === 'realtime') {
-      const realtime = await getGA4Realtime()
-      return NextResponse.json({ success: true, data: realtime })
-    }
-
-    if (view === 'pages') {
-      const topPages = await getGA4TopPages(days, 25)
-      return NextResponse.json({ success: true, data: topPages })
-    }
-
-    if (view === 'sources') {
-      const sources = await getGA4TrafficSources(days)
-      return NextResponse.json({ success: true, data: sources })
-    }
-
-    const [overview, topPages, sources, realtime] = await Promise.all([
-      getGA4Overview(days),
-      getGA4TopPages(days, 15),
-      getGA4TrafficSources(days),
-      getGA4Realtime(),
-    ])
-
-    return NextResponse.json({
-      success: true,
-      propertyId: getGA4PropertyId(),
-      data: {
-        overview,
-        topPages,
-        sources,
-        realtime,
-      },
-    })
-  } catch (error) {
-    console.error('[API /observability/analytics] Error:', error)
-    return NextResponse.json(
-      {
-        success: false,
-        error: error instanceof Error ? error.message : 'Unknown GA4 Analytics error',
-      },
-      { status: 500 }
-    )
+export async function GET(request: Request) {
+  const params = new URL(request.url).searchParams
+  const days = boundedInteger(params.get('days'), 30, 365)
+  const view = params.get('view') || 'all'
+  if (!['all', 'overview', 'pages', 'sources', 'realtime'].includes(view)) return Response.json({ success: false, error: 'Unknown analytics view.' }, { status: 400 })
+  const readers = { overview: () => getGA4Overview(days), pages: () => getGA4TopPages(days, 25), sources: () => getGA4TrafficSources(days), realtime: () => getGA4Realtime() }
+  if (view !== 'all') {
+    const entry = await readers[view as keyof typeof readers]()
+    return Response.json({ success: entry.status === 'ok', status: entry.status, data: entry }, { status: measurementHttpStatus(entry.status), headers: { 'Cache-Control': 'no-store' } })
   }
+  const [overview, topPages, sources, realtime] = await Promise.all([readers.overview(), readers.pages(), readers.sources(), readers.realtime()])
+  const status = combinedStatus([overview, topPages, sources, realtime])
+  return Response.json({ success: status === 'ok', status, propertyId: getGA4PropertyId(), data: { overview, topPages, sources, realtime } }, { status: measurementHttpStatus(status), headers: { 'Cache-Control': 'no-store' } })
 }

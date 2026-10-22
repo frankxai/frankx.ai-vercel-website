@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Link from 'next/link'
 import {
   Activity,
@@ -25,6 +25,8 @@ import {
   Zap,
 } from 'lucide-react'
 import type { ObservabilitySummary } from '@/lib/observability/observability-summary'
+import { createLatestRequest } from '@/lib/observability/latest-request'
+import type { MeasurementResult } from '@/lib/observability/measurement-result'
 import type { UrlInspectionResult } from '@/lib/observability/google-search-console'
 
 interface Props {
@@ -37,28 +39,40 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
   const [activeTab, setActiveTab] = useState<'seo' | 'traffic' | 'demand' | 'agents'>('seo')
   const [queryFilter, setQueryFilter] = useState('')
   const [copied, setCopied] = useState(false)
+  const [pendingPeriod, setPendingPeriod] = useState<number | null>(null)
+  const [requestError, setRequestError] = useState<string | null>(null)
+  const loadLatest = useRef(createLatestRequest())
 
   // URL inspection state
   const [inspectUrl, setInspectUrl] = useState('https://frankx.ai/blog/08-golden-age-of-intelligence')
   const [inspecting, setInspecting] = useState(false)
-  const [inspectionResult, setInspectionResult] = useState<UrlInspectionResult | null>(null)
+  const [inspectionResult, setInspectionResult] = useState<MeasurementResult<UrlInspectionResult> | null>(null)
 
-  const { traffic, seo, realtime, opportunities, demandCapture, credentialsStatus } = summary
+  const { credentialsStatus } = summary
+  const traffic = summary.traffic.data
+  const seo = summary.seo.data
+  const realtime = summary.realtime.data
+  const opportunities = seo?.opportunities ?? []
+  const demandCapture = summary.demandCapture.data
+  const dailyTrends = traffic?.dailyTrends ?? []
+  const fmt = (value: number | null | undefined) => value == null ? 'Unavailable' : value.toLocaleString()
+  const pct = (value: number | null | undefined) => value == null ? 'Unavailable' : `${(value * 100).toFixed(1)}%`
+  const inspection = inspectionResult?.data
 
-  // Handle period change
+  // Keep the displayed period tied to the displayed snapshot, including during failures.
   const handlePeriodChange = async (days: number) => {
-    setSelectedPeriod(days)
-    try {
+    setPendingPeriod(days)
+    setRequestError(null)
+    await loadLatest.current(async () => {
       const res = await fetch(`/api/admin/observability/summary?days=${days}`)
-      if (res.ok) {
-        const json = await res.json()
-        if (json.data) {
-          setSummary(json.data)
-        }
-      }
-    } catch (err) {
-      console.error('Failed to update period:', err)
-    }
+      const json = await res.json()
+      if (!json.data || json.data.periodDays !== days) throw new Error('Reporting window mismatch')
+      return json.data as ObservabilitySummary
+    }, {
+      commit: (next) => { setSummary(next); setSelectedPeriod(next.periodDays) },
+      fail: () => setRequestError('Could not load the requested window. The previous snapshot remains displayed.'),
+      settled: () => setPendingPeriod(null),
+    })
   }
 
   // Handle copy markdown brief
@@ -86,10 +100,8 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url: inspectUrl }),
       })
-      if (res.ok) {
-        const json = await res.json()
-        setInspectionResult(json.data)
-      }
+      const json = await res.json()
+      if (json.data) setInspectionResult(json.data)
     } catch (err) {
       console.error('Inspection failed:', err)
     } finally {
@@ -97,7 +109,7 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
     }
   }
 
-  const filteredQueries = (seo.topQueries || []).filter((q) =>
+  const filteredQueries = (seo?.topQueries ?? []).filter((q) =>
     q.query.toLowerCase().includes(queryFilter.toLowerCase())
   )
 
@@ -122,7 +134,7 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
               </h1>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-400">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Live Observatory
+                Provider status: {summary.status}
               </span>
             </div>
             <p className="mt-1.5 text-sm text-slate-400">
@@ -166,19 +178,31 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
             <span className="text-slate-400">Data Source:</span>
             {credentialsStatus.hasGoogleAuth ? (
               <span className="inline-flex items-center gap-1 text-emerald-400 font-medium">
-                <CheckCircle2 className="h-3.5 w-3.5" /> Live GCP Service Account ({credentialsStatus.authMethod})
+                <CheckCircle2 className="h-3.5 w-3.5" /> Credentials configured; provider results checked separately
               </span>
             ) : (
               <span className="inline-flex items-center gap-1 text-amber-400 font-medium">
-                <Lightbulb className="h-3.5 w-3.5" /> High-Fidelity Simulation Mode (Set GCP credentials to switch to live production)
+                <Lightbulb className="h-3.5 w-3.5" /> Measurement unavailable: Google read credentials are not configured
               </span>
             )}
           </div>
           <div className="flex items-center gap-4 text-slate-400">
-            <span>Property: <code className="text-slate-300">{credentialsStatus.ga4PropertyId}</code></span>
-            <span>Site: <code className="text-slate-300">{credentialsStatus.gscSiteUrl}</code></span>
+            <span>Property: <code className="text-slate-300">{credentialsStatus.ga4PropertyId ?? 'Not configured'}</code></span>
+            <span>Site: <code className="text-slate-300">{credentialsStatus.gscSiteUrl ?? 'Not configured'}</code></span>
           </div>
         </div>
+
+        <div className="mt-4 space-y-2 text-xs text-slate-300" role="status" aria-live="polite">
+          {[summary.traffic, summary.topPages, summary.trafficSources, summary.realtime, summary.seo, summary.demandCapture].map((entry, index) => (
+            <p key={index}>{entry.source.provider}: {entry.status}. {entry.issues.join(' ')} {entry.source.coverage}</p>
+          ))}
+        </div>
+
+        <p className="mt-3 text-xs text-slate-300" role="status" aria-live="polite">
+          Displayed window: {summary.periodDays} days. Snapshot: {summary.timestamp}.
+          {pendingPeriod != null ? ` Loading ${pendingPeriod} days…` : ''}
+          {requestError ? ` ${requestError}` : ''}
+        </p>
 
         {/* Primary KPI Ribbon (6 cards) */}
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
@@ -189,7 +213,7 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
               <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
             </div>
             <div className="mt-2 text-2xl font-bold text-white tracking-tight">
-              {realtime.activeUsersLast30Min}
+              {fmt(realtime?.activeUsersLast30Min)}
             </div>
             <span className="mt-1 block text-[11px] text-emerald-400/70">Visitors in last 30m</span>
           </div>
@@ -201,9 +225,9 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
               <Users className="h-3.5 w-3.5" />
             </div>
             <div className="mt-2 text-2xl font-bold text-white tracking-tight">
-              {traffic.totalUsers.toLocaleString()}
+              {fmt(traffic?.totalUsers)}
             </div>
-            <span className="mt-1 block text-[11px] text-cyan-400/70">{traffic.activeUsers.toLocaleString()} active</span>
+            <span className="mt-1 block text-[11px] text-cyan-400/70">{fmt(traffic?.activeUsers)} active</span>
           </div>
 
           {/* Pageviews */}
@@ -213,10 +237,10 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
               <Eye className="h-3.5 w-3.5" />
             </div>
             <div className="mt-2 text-2xl font-bold text-white tracking-tight">
-              {traffic.pageviews.toLocaleString()}
+              {fmt(traffic?.pageviews)}
             </div>
             <span className="mt-1 block text-[11px] text-slate-400">
-              {Math.round(traffic.pageviews / Math.max(1, traffic.totalUsers))} per visitor
+              {traffic?.totalUsers ? (traffic.pageviews / traffic.totalUsers).toFixed(1) : 'Unavailable'} per visitor
             </span>
           </div>
 
@@ -227,9 +251,9 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
               <Compass className="h-3.5 w-3.5" />
             </div>
             <div className="mt-2 text-2xl font-bold text-white tracking-tight">
-              {seo.totalClicks.toLocaleString()}
+              {fmt(seo?.totalClicks)}
             </div>
-            <span className="mt-1 block text-[11px] text-amber-400/70">GSC Verified</span>
+            <span className="mt-1 block text-[11px] text-amber-400/70">Search Console: {summary.seo.status}</span>
           </div>
 
           {/* Search Impressions & Avg Pos */}
@@ -239,10 +263,10 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
               <TrendingUp className="h-3.5 w-3.5" />
             </div>
             <div className="mt-2 text-2xl font-bold text-white tracking-tight">
-              {seo.totalImpressions.toLocaleString()}
+              {fmt(seo?.totalImpressions)}
             </div>
             <span className="mt-1 block text-[11px] text-violet-400/70">
-              {(seo.averageCtr * 100).toFixed(1)}% CTR · Pos {seo.averagePosition}
+              {pct(seo?.averageCtr)} CTR · Pos {fmt(seo?.averagePosition)}
             </span>
           </div>
 
@@ -253,7 +277,7 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
               <Zap className="h-3.5 w-3.5" />
             </div>
             <div className="mt-2 text-2xl font-bold text-white tracking-tight">
-              {demandCapture.waitlistCount}
+              {fmt(demandCapture?.waitlistCount)}
             </div>
             <span className="mt-1 block text-[11px] text-rose-400/70">Waitlist members</span>
           </div>
@@ -293,10 +317,10 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
             <div className="rounded-2xl border border-amber-500/20 bg-amber-500/[0.02] p-5">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400">
                 <Lightbulb className="h-4 w-4" />
-                <span>High-Leverage Keyword Opportunities (Striking Distance)</span>
+                <span>Keyword review candidates</span>
               </div>
               <p className="mt-1 text-xs text-slate-400">
-                Queries where FrankX is already ranking in positions 5–20 with high impression volume. Targeting these in new or refreshed content yields rapid traffic gains.
+                Candidates derived from returned query rows. Review intent, source coverage and competing pages before proposing an experiment.
               </p>
 
               <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -353,14 +377,14 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
                   <div className="flex items-center justify-between">
                     <span className="font-semibold text-white">Verdict:</span>
                     <span className="inline-flex items-center gap-1 text-emerald-400 font-bold">
-                      <CheckCircle2 className="h-3.5 w-3.5" /> {inspectionResult.verdict} ({inspectionResult.indexingState})
+                      <CheckCircle2 className="h-3.5 w-3.5" /> {inspection?.verdict ?? 'Unavailable'} ({inspection?.indexingState ?? inspectionResult.status})
                     </span>
                   </div>
                   <div className="mt-2 grid grid-cols-2 sm:grid-cols-4 gap-2 text-slate-400">
-                    <div>Robots.txt: <strong className="text-white">{inspectionResult.robotsTxtState || 'ALLOWED'}</strong></div>
-                    <div>Fetch: <strong className="text-white">{inspectionResult.pageFetchState || 'SUCCESSFUL'}</strong></div>
-                    <div>Mobile: <strong className="text-white">{inspectionResult.mobileUsabilityVerdict || 'PASS'}</strong></div>
-                    <div>Coverage: <strong className="text-white">{inspectionResult.coverageState || 'Submitted and indexed'}</strong></div>
+                    <div>Robots.txt: <strong className="text-white">{inspection?.robotsTxtState ?? 'Unavailable'}</strong></div>
+                    <div>Fetch: <strong className="text-white">{inspection?.pageFetchState ?? 'Unavailable'}</strong></div>
+                    <div>Mobile: <strong className="text-white">{inspection?.mobileUsabilityVerdict ?? 'Unavailable'}</strong></div>
+                    <div>Coverage: <strong className="text-white">{inspection?.coverageState ?? 'Unavailable'}</strong></div>
                   </div>
                 </div>
               )}
@@ -418,17 +442,17 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
               <div className="flex items-center justify-between pb-4">
                 <div>
                   <h3 className="text-sm font-semibold text-white">Daily Traffic Velocity</h3>
-                  <p className="text-xs text-slate-400">Unique visitors per day over the selected window.</p>
+                  <p className="text-xs text-slate-400">Daily users from the provider report; a person can appear on multiple days.</p>
                 </div>
                 <span className="text-xs text-cyan-400 font-mono">
-                  Avg {Math.round(traffic.totalUsers / Math.max(1, traffic.dailyTrends.length))} visitors / day
+                  Mean {dailyTrends.length ? (dailyTrends.reduce((sum, day) => sum + day.users, 0) / dailyTrends.length).toFixed(1) : 'Unavailable'} daily users
                 </span>
               </div>
 
               {/* Responsive Bar Chart */}
               <div className="flex h-36 items-end gap-1 sm:gap-2 pt-4 border-b border-white/10">
-                {traffic.dailyTrends.map((d, idx) => {
-                  const maxUsers = Math.max(...traffic.dailyTrends.map((t) => t.users), 1)
+                {dailyTrends.map((d, idx) => {
+                  const maxUsers = Math.max(...dailyTrends.map((t) => t.users), 1)
                   const heightPercent = Math.max(8, Math.round((d.users / maxUsers) * 100))
                   return (
                     <div key={idx} className="flex-1 flex flex-col items-center group relative">
@@ -444,8 +468,8 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
                 })}
               </div>
               <div className="flex justify-between pt-2 text-[10px] text-slate-500">
-                <span>{traffic.dailyTrends[0]?.date}</span>
-                <span>{traffic.dailyTrends[traffic.dailyTrends.length - 1]?.date}</span>
+                <span>{dailyTrends[0]?.date}</span>
+                <span>{dailyTrends[dailyTrends.length - 1]?.date}</span>
               </div>
             </div>
 
@@ -465,7 +489,7 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-white/5">
-                      {summary.topPages.slice(0, 8).map((page, i) => (
+                      {(summary.topPages.data ?? []).slice(0, 8).map((page, i) => (
                         <tr key={i} className="hover:bg-white/[0.02]">
                           <td className="py-2.5 font-mono text-cyan-300 truncate max-w-[200px]">
                             {page.path}
@@ -477,7 +501,7 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
                             {page.activeUsers.toLocaleString()}
                           </td>
                           <td className="py-2.5 text-right font-mono text-slate-400">
-                            {Math.floor(page.engagementTimeSeconds / 60)}m {page.engagementTimeSeconds % 60}s
+                            {page.engagementTimeSeconds == null ? 'Unavailable' : `${Math.round(page.engagementTimeSeconds)}s`}
                           </td>
                         </tr>
                       ))}
@@ -489,11 +513,11 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
               {/* Channels & AI Referral Traffic */}
               <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5">
                 <div className="flex items-center justify-between pb-3">
-                  <h3 className="text-sm font-semibold text-white">Acquisition Channels & AI Referrers</h3>
+                  <h3 className="text-sm font-semibold text-white">Acquisition sources and AI referrals</h3>
                   <span className="text-[11px] text-amber-400/90 font-medium">AEO / Search Radar</span>
                 </div>
                 <div className="space-y-3">
-                  {summary.trafficSources.map((source, i) => (
+                  {(summary.trafficSources.data ?? []).map((source, i) => (
                     <div key={i} className="space-y-1">
                       <div className="flex justify-between text-xs">
                         <span className="font-medium text-white flex items-center gap-1.5">
@@ -503,12 +527,12 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
                           {source.source}
                         </span>
                         <span className="text-slate-400 font-mono">
-                          {source.users.toLocaleString()} users ({source.percentage}%)
+                          {source.users.toLocaleString()} users · {source.sessions} sessions ({source.percentage == null ? 'Unavailable' : source.percentage.toFixed(1) + '%'} of returned sessions)
                         </span>
                       </div>
                       <div className="h-1.5 w-full rounded-full bg-white/[0.05]">
                         <div
-                          style={{ width: `${source.percentage}%` }}
+                          style={{ width: `${source.percentage ?? 0}%` }}
                           className={`h-full rounded-full ${
                             source.channelGroup === 'AI Chatbots'
                               ? 'bg-amber-400'
@@ -532,45 +556,22 @@ export function AnalyticsDashboardClient({ initialSummary }: Props) {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5">
                 <span className="text-xs text-slate-400 font-medium">Waitlist Members</span>
-                <div className="mt-2 text-3xl font-bold text-white">{demandCapture.waitlistCount}</div>
-                <span className="mt-1 block text-xs text-rose-400">Captured via demand-capture standard</span>
+                <div className="mt-2 text-3xl font-bold text-white">{fmt(demandCapture?.waitlistCount)}</div>
+                <span className="mt-1 block text-xs text-rose-400">Verified waitlist ledger required</span>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5">
                 <span className="text-xs text-slate-400 font-medium">Newsletter Audience</span>
-                <div className="mt-2 text-3xl font-bold text-white">{demandCapture.newsletterCount}</div>
-                <span className="mt-1 block text-xs text-emerald-400">Active subscribers</span>
+                <div className="mt-2 text-3xl font-bold text-white">{fmt(demandCapture?.newsletterCount)}</div>
+                <span className="mt-1 block text-xs text-emerald-400">Verified subscriber ledger required</span>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5">
                 <span className="text-xs text-slate-400 font-medium">Lead Magnet Deliveries</span>
-                <div className="mt-2 text-3xl font-bold text-white">{demandCapture.leadMagnetDownloads}</div>
-                <span className="mt-1 block text-xs text-cyan-400">Toolkits & blueprints downloaded</span>
+                <div className="mt-2 text-3xl font-bold text-white">{fmt(demandCapture?.leadMagnetDownloads)}</div>
+                <span className="mt-1 block text-xs text-cyan-400">Verified delivery ledger required</span>
               </div>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5">
-              <h3 className="text-sm font-semibold text-white">Waitlist-First Standard Compliance</h3>
-              <p className="mt-1 text-xs text-slate-400">
-                Rule check: Every unlaunched surface captures demand prior to checkout. Products tracked:
-              </p>
-              <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                <div className="rounded-xl border border-white/5 bg-white/[0.01] p-3">
-                  <div className="font-semibold text-white">Agentic Creator OS</div>
-                  <div className="text-slate-400 text-[11px] mt-0.5">Waitlist active · 284 would-pay leads</div>
-                </div>
-                <div className="rounded-xl border border-white/5 bg-white/[0.01] p-3">
-                  <div className="font-semibold text-white">Creative AI Toolkit</div>
-                  <div className="text-slate-400 text-[11px] mt-0.5">Live store active · 142 orders</div>
-                </div>
-                <div className="rounded-xl border border-white/5 bg-white/[0.01] p-3">
-                  <div className="font-semibold text-white">Vibe OS Music Producer</div>
-                  <div className="text-slate-400 text-[11px] mt-0.5">Waitlist active · 56 would-pay leads</div>
-                </div>
-                <div className="rounded-xl border border-white/5 bg-white/[0.01] p-3">
-                  <div className="font-semibold text-white">Enterprise AI CoE Guide</div>
-                  <div className="text-slate-400 text-[11px] mt-0.5">Lead magnet active · 198 downloads</div>
-                </div>
-              </div>
-            </div>
+            <p className="text-sm text-slate-300">Business outcomes are unavailable until verified lead, order and delivery records are connected. Pageviews do not establish demand or accepted delivery.</p>
           </div>
         )}
 
