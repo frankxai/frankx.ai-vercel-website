@@ -1,0 +1,55 @@
+{
+  "schema": "frankx.public-character-examples.v1",
+  "reviewed_on": "2026-10-23",
+  "scope": "Existing public website examples only. This file grants no new release or character identity approval.",
+  "assets": [
+    {
+      "key": "mini-frank.echo.piano",
+      "url": "/images/guides/mini-me/collection-01-01.svg",
+      "sha256": "924ab5a120ed09b7f4ad31769214fddba99c5ebbfc2292b17a6f471b80f9f4a4",
+      "bytes": 179500,
+      "role": "Echo piano scene; illustration with embedded branding, not a piano lesson",
+      "reuse_status": "needs-scene-review",
+      "identity_reference": false,
+      "source_page": "/guides/mini-me-storyboard",
+      "width": 1122,
+      "height": 1402
+    },
+    {
+      "key": "mini-frank.travel",
+      "url": "/images/guides/mini-me/collection-02-01.svg",
+      "sha256": "b4241c2d710d5d6adcd535ab73189569a048ee54a12ff8fa22cf72061c7b9699",
+      "bytes": 184782,
+      "role": "Travel illustration; existing guide example",
+      "reuse_status": "existing-public-example",
+      "identity_reference": false,
+      "source_page": "/guides/mini-me-storyboard",
+      "width": 941,
+      "height": 1672
+    },
+    {
+      "key": "mini-frank.debug-comic",
+      "url": "/images/guides/mini-me/collection-02-03.svg",
+      "sha256": "55061d82680b08fd0f5e149440879642faf839e356e494b34e4d73451946d787",
+      "bytes": 317482,
+      "role": "Debugging comic; existing guide example",
+      "reuse_status": "existing-public-example",
+      "identity_reference": false,
+      "source_page": "/guides/mini-me-storyboard",
+      "width": 941,
+      "height": 1672
+    },
+    {
+      "key": "mini-frank.echo.song-brief",
+      "url": "/images/guides/mini-me/collection-02-08.svg",
+      "sha256": "b2d13e57a1c3028ad193b3ae1f996f349bb033a438cc059ad29364c08aada99b",
+      "bytes": 169144,
+      "role": "Music production brief poster; not verified musical instruction",
+      "reuse_status": "needs-scene-review",
+      "identity_reference": false,
+      "source_page": "/guides/mini-me-storyboard",
+      "width": 1080,
+      "height": 1920
+    }
+  ]
+}

@@ -287,3 +287,7 @@ At handoff distinguish policy proposed, merged, loaded in this agent session and
 <!-- PRODUCT-OUTCOME-CONTRACT:END -->
 
 Current quality implementation: https://github.com/frankxai/frankx.ai-vercel-website/issues/706. Reconcile historical instructions against accepted current decisions before changing product scope.
+
+## Character media discovery
+
+Before reusing Mini Frank, Echo or companion imagery, read `docs/media/character-references.md`. Use `public/media/characters.json` only for existing public examples; identity sheets and release decisions remain in the existing private media workflow. Resolve keys with `node scripts/resolve-character-media.mjs <key>`; review-held scenes must not be used for new placements.
