@@ -201,13 +201,13 @@ test('a branch matching main is skipped even when origin/main is absent', (t) =>
   const { dir, git, commit } = remoteFixture(t)
   commit('app/page.tsx', 'export default function Page() {}\n')
   git('push', 'origin', 'main')
-  git('checkout', '-b', 'agent/claude/no-op')
+  git('checkout', '-b', 'feature/no-op')
   commit('docs/notes.md', 'internal only\n')
   // Vercel's clone has no remote-tracking main; the guard must fetch one.
   git('update-ref', '-d', 'refs/remotes/origin/main')
 
   const result = run(
-    { VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'agent/claude/no-op' },
+    { VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'feature/no-op' },
     dir,
   )
 
@@ -219,12 +219,12 @@ test('a branch that changes rendered output still builds', (t) => {
   const { dir, git, commit } = remoteFixture(t)
   commit('app/page.tsx', 'export default function Page() {}\n')
   git('push', 'origin', 'main')
-  git('checkout', '-b', 'agent/claude/real-change')
+  git('checkout', '-b', 'feature/real-change')
   commit('app/page.tsx', 'export default function Page() { return null }\n')
   git('update-ref', '-d', 'refs/remotes/origin/main')
 
   const result = run(
-    { VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'agent/claude/real-change' },
+    { VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'feature/real-change' },
     dir,
   )
 
@@ -239,7 +239,7 @@ test('an unreachable main falls through to the base-SHA diff instead of skipping
   git('remote', 'add', 'origin', 'file:///frankx/does/not/exist')
 
   const result = run(
-    { VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'agent/claude/offline' },
+    { VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'feature/offline' },
     dir,
   )
 
@@ -313,4 +313,99 @@ test('a parent that only describes the marker does not force a build', (t) => {
 
   assert.equal(result.status, 0, result.stdout + result.stderr)
   assert.match(result.stdout, /No relevant paths changed/)
+})
+
+// Bot and agent preview gate (chore/preview-build-gate). Production must build
+// exactly as before; previews on bot/agent branches skip unless opted in.
+// GitHub Actions CI is unaffected: it still runs on every one of these branches.
+test('preview gate: production on main always builds', () => {
+  const result = run({ VERCEL_ENV: 'production', VERCEL_GIT_COMMIT_REF: 'main', VERCEL_GIT_COMMIT_MESSAGE: 'feat: ship' })
+  assert.equal(result.status, 1, result.stdout + result.stderr)
+  assert.match(result.stdout, /Production deployment/)
+})
+
+test('preview gate: production builds even from a bot-looking ref', () => {
+  for (const ref of ['dependabot/npm_and_yarn/next-16', 'agent/codex/x', 'jules-16122521610008969658-a785b329']) {
+    const result = run({ VERCEL_ENV: 'production', VERCEL_GIT_COMMIT_REF: ref })
+    assert.equal(result.status, 1, ref + ': ' + result.stdout + result.stderr)
+    assert.match(result.stdout, /Production deployment/)
+  }
+})
+
+test('preview gate: a human feature branch preview still builds', (t) => {
+  const { dir, commit } = fixture(t)
+  commit('README.md', 'baseline\n')
+  commit('app/page.tsx', 'export default function Page() {}\n')
+  const result = run({ VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'feature/new-hero', VERCEL_GIT_COMMIT_MESSAGE: 'feat: new hero' }, dir)
+  assert.equal(result.status, 1, result.stdout + result.stderr)
+  assert.doesNotMatch(result.stdout, /Agent branch|Dependabot preview/)
+})
+
+test('preview gate: dependabot previews skip, even with [preview]', () => {
+  for (const msg of ['chore(deps): bump next', 'chore(deps): bump next [preview]']) {
+    const result = run({ VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'dependabot/npm_and_yarn/next-16.4.2', VERCEL_GIT_COMMIT_MESSAGE: msg })
+    assert.equal(result.status, 0, result.stdout + result.stderr)
+    assert.match(result.stdout, /Dependabot preview .* SKIPPING/)
+  }
+})
+
+test('preview gate: agent and bot branches skip without an opt-in', () => {
+  for (const ref of [
+    'agent/claude/wispr-flow-voice-guide',
+    'agent/codex/founder-story-20261016',
+    'grok/webdev/a11y-p1-20261014',
+    'claude/manifestation-hub-platform-st9e6x',
+    'codex/fix-contradictions-in-vibe-os-route',
+    'jules-16122521610008969658-a785b329',
+    'google-labs-jules-fix',
+    'ccr-cb0551ef-mlbwjk',
+    'auto-fix-1792404611033',
+  ]) {
+    const result = run({ VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: ref, VERCEL_GIT_COMMIT_MESSAGE: "Merge branch 'main' into " + ref })
+    assert.equal(result.status, 0, ref + ': ' + result.stdout + result.stderr)
+    assert.match(result.stdout, /without \[preview\] — SKIPPING/)
+  }
+})
+
+test('preview gate: an agent branch with [preview] builds', () => {
+  for (const msg of ['feat(home): new hero [preview]', 'feat(home): new hero\n\nNeeds a visual check. [preview]']) {
+    const result = run({ VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'agent/claude/new-hero', VERCEL_GIT_COMMIT_MESSAGE: msg })
+    assert.equal(result.status, 1, result.stdout + result.stderr)
+    assert.match(result.stdout, /opted in with \[preview\] — PROCEEDING/)
+  }
+})
+
+test('preview gate: preview/* and cto/* branches are never gated', (t) => {
+  const { dir, commit } = fixture(t)
+  commit('README.md', 'baseline\n')
+  commit('app/page.tsx', 'export default function Page() {}\n')
+  for (const ref of ['preview/new-hero', 'cto/pricing-review', 'preview/agent-run-1792404611033']) {
+    const result = run({ VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: ref, VERCEL_GIT_COMMIT_MESSAGE: 'feat: hero' }, dir)
+    assert.equal(result.status, 1, ref + ': ' + result.stdout + result.stderr)
+    assert.doesNotMatch(result.stdout, /Agent branch|Dependabot preview/)
+    assert.match(result.stdout, /Relevant changes detected/)
+  }
+})
+
+test('preview gate: a same-commit operator redeploy on an agent branch still builds', (t) => {
+  const { dir, commit } = fixture(t)
+  const sha = commit('README.md', 'baseline\n')
+  const result = run({ VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'agent/codex/x', VERCEL_GIT_COMMIT_SHA: sha, VERCEL_GIT_PREVIOUS_SHA: sha }, dir)
+  assert.equal(result.status, 1, result.stdout + result.stderr)
+  assert.match(result.stdout, /Manual redeploy/)
+})
+
+test('preview gate: an unset ref or non-preview env falls through to existing logic', (t) => {
+  const { dir, commit } = fixture(t)
+  commit('README.md', 'baseline\n')
+  commit('app/page.tsx', 'export default function Page() {}\n')
+  for (const env of [
+    { VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: '' },
+    { VERCEL_ENV: 'development', VERCEL_GIT_COMMIT_REF: 'agent/codex/x' },
+    { VERCEL_ENV: '', VERCEL_GIT_COMMIT_REF: 'dependabot/x' },
+  ]) {
+    const result = run({ ...env, VERCEL_GIT_COMMIT_MESSAGE: 'feat: x' }, dir)
+    assert.equal(result.status, 1, JSON.stringify(env) + ': ' + result.stdout + result.stderr)
+    assert.doesNotMatch(result.stdout, /Agent branch|Dependabot preview/)
+  }
 })
