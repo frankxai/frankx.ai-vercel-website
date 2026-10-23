@@ -63,10 +63,20 @@ async function handle(request: NextRequest, context: RouteContext): Promise<Resp
   const upstreamUrl = buildUpstreamUrl(params.slug, request);
 
   const accept = request.headers.get("accept");
-  const upstream = await fetch(upstreamUrl, {
-    headers: accept ? { accept } : undefined,
-    redirect: "follow",
-  });
+  let upstream: Response;
+  try {
+    upstream = await fetch(upstreamUrl, {
+      headers: accept ? { accept } : undefined,
+      redirect: "follow",
+      cache: "no-store",
+    });
+  } catch (error) {
+    console.error("[docs-proxy] upstream fetch failed", upstreamUrl, error);
+    return new NextResponse(
+      "Docs are temporarily unavailable upstream. Try again shortly.",
+      { status: 502, headers: { "content-type": "text/plain; charset=utf-8" } },
+    );
+  }
 
   const contentType = upstream.headers.get("content-type") ?? "";
   if (contentType.includes("text/html")) {
