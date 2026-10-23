@@ -264,7 +264,7 @@ Read these before drafting or editing any FrankX copy, post, script, email or pa
 1. **Stance:** `Starlight-Intelligence/starlight-design-intelligence` `brand-packs/frankx/POINT_OF_VIEW.md`. What FrankX believes about the AI era, who it speaks to, and the rules for AGI and superintelligence claims.
 2. **Voice:** the same pack's `BRAND.md`, `COPY.md` and `NARRATIVE.md`. How a sentence earns its place, and the required tests.
 3. **References:** `frankxai/content-os` `knowledge/voice-observatory/`. Read `pattern-grammar.md`, then `voices/frontier-lab-lane.md` or `voices/founder-teacher-lane.md`. These cards are research. Steal the mechanism, never the phrasing.
-4. **Estate standard:** `frankxai/starlight-agent-config` `core/policies/human-writing-standard.v1.md` and the humanizer skill.
+4. **Estate standard:** `Starlight-Intelligence/starlight-agent-config` `core/policies/human-writing-standard.v1.md` and the humanizer skill.
 
 On this machine the repos sit under `C:/Users/frank/starlight/repos/`. Elsewhere, fetch with `gh api repos/<owner>/<repo>/contents/<path> -H "Accept: application/vnd.github.raw"`. If a source cannot be read, say so and stop; do not draft from memory.
 
