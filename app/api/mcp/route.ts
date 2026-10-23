@@ -4,6 +4,8 @@ import { getClientIdentifier, mcpRatelimit } from '@/lib/ratelimit'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
+// POST answers in well under a second. Cap anything unexpected well below Vercel's 300s default.
+export const maxDuration = 60
 
 type JsonRpcMessage = { method?: unknown; params?: { arguments?: unknown } }
 
@@ -25,6 +27,23 @@ async function parsedBody(request: Request): Promise<unknown> {
     // Not JSON: let the transport produce its own parse error.
     return undefined
   }
+}
+
+// Stateless mode has no session to stream to or terminate, so GET (the SSE stream) and DELETE are refused.
+// The spec allows 405 here; clients then stay on POST. Without this, GET held a silent stream open until
+// Vercel killed it at 300s.
+function methodNotAllowed(): Response {
+  return new Response(
+    JSON.stringify({ jsonrpc: '2.0', error: { code: -32000, message: 'Method not allowed. This endpoint is stateless: use POST.' }, id: null }),
+    {
+      status: 405,
+      headers: {
+        allow: 'POST',
+        'content-type': 'application/json',
+        'cache-control': 'no-store',
+      },
+    },
+  )
 }
 
 // Stateless: every request gets its own server and transport, so nothing is held between calls.
@@ -57,4 +76,4 @@ async function handle(request: Request): Promise<Response> {
   return body === undefined ? transport.handleRequest(request) : transport.handleRequest(request, { parsedBody: body })
 }
 
-export { handle as DELETE, handle as GET, handle as POST }
+export { methodNotAllowed as DELETE, methodNotAllowed as GET, handle as POST }
