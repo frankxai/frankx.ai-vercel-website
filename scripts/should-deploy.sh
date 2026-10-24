@@ -36,6 +36,43 @@ if [ -n "$PREVIOUS_SHA" ] && [ "$CURRENT_SHA" = "$PREVIOUS_SHA" ]; then
   exit 1
 fi
 
+# 0-gate. Bot and agent preview gate (chore/preview-build-gate).
+#     Measured 2026-10-22 on this project: 32 of the last 39 preview builds that
+#     actually ran came from agent/*, grok/*, claude/*, codex/* and jules-*
+#     branches. GitHub Actions CI still runs on every one of those branches, so
+#     skipping the Vercel preview does not skip any quality check.
+#
+#     Preview only. Production returned above and can never reach this block;
+#     development and an unset VERCEL_ENV fall through unchanged.
+#       - preview/* and cto/* are explicit opt-in branches and are never gated.
+#       - dependabot/* previews always skip.
+#       - agent branches skip unless the commit message contains [preview].
+#     An empty or unrecognised ref falls through to the checks below, so any
+#     surprise defaults to the existing behaviour (and from there to BUILD).
+#     [[ ]] / case only — no subprocess here can fail and be mistaken for a skip.
+GATE_REF="${VERCEL_GIT_COMMIT_REF:-}"
+GATE_MSG="${VERCEL_GIT_COMMIT_MESSAGE:-}"
+if [ "${VERCEL_ENV:-}" = "preview" ] && [ -n "$GATE_REF" ]; then
+  GATE_BOT=""
+  case "$GATE_REF" in
+    preview/*|cto/*) GATE_BOT="" ;;
+    dependabot/*)
+      echo "[should-deploy] Dependabot preview (${GATE_REF}) — SKIPPING build. GitHub Actions CI still runs."
+      exit 0
+      ;;
+    agent/*|grok/*|claude/*|codex/*|jules*|google-labs-jules*|ccr-*) GATE_BOT="1" ;;
+    *) if [[ "$GATE_REF" =~ -[0-9]{10,}$ ]]; then GATE_BOT="1"; fi ;;
+  esac
+  if [ -n "$GATE_BOT" ]; then
+    if [[ "$GATE_MSG" == *"[preview]"* ]]; then
+      echo "[should-deploy] Agent branch ${GATE_REF} opted in with [preview] — PROCEEDING."
+      exit 1
+    fi
+    echo "[should-deploy] Agent branch ${GATE_REF} without [preview] — SKIPPING preview build. GitHub Actions CI still runs; add [preview] to a commit message or push preview/<name> to get a preview."
+    exit 0
+  fi
+fi
+
 # 0a. Agents may push intermediate preview checkpoints without spending build
 #     minutes, including branch pushes made before a pull request exists.
 #     The final coherent commit MUST omit [agent-wip].
