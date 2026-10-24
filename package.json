@@ -43,6 +43,8 @@
     "test:ship-guides": "node --experimental-strip-types --test scripts/tests/vercel-ship-guides-contract.test.mjs",
     "test:social-identity": "node --experimental-strip-types --test scripts/tests/social-identity-contract.test.mjs",
     "test:seo-title": "node --experimental-strip-types --test scripts/tests/seo-title-brand-suffix-contract.test.mjs",
+    "test:proof": "node --experimental-strip-types --test scripts/tests/proof-claims.test.mjs",
+    "test:proof:rendered": "node --test scripts/tests/proof-page-rendered.test.mjs",
     "test:core-qualities": "node --test scripts/tests/core-qualities-contract.test.mjs",
     "research:agentic-life:audit": "node scripts/audit-agentic-life-research.mjs",
     "research:agentic-life:receipt": "node scripts/audit-agentic-life-research.mjs --write",
