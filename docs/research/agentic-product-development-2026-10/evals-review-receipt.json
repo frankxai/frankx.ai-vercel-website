@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewedAt": "2026-10-09",
+  "reviewer": "primary_research",
+  "independence": "Reviewer did not author evals-draft.md or research-evals.json. Fresh primary source passages were retrieved and compared with the draft.",
+  "input": {
+    "path": "/workspace/scratch/dee1bde820f1/evals-draft.md",
+    "sha256": "50a945bf528022ca8efc5efbdb41802a4414aaff2361911e0beef22be06655e5"
+  },
+  "evidenceLedger": "/workspace/scratch/dee1bde820f1/research-evals.json",
+  "verdict": "pass-source-wording",
+  "summary": "No unsupported numerical statement or reversed update sequence found. The draft keeps study dates, denominators, task selection, self-report boundaries and proposed design separate. Source-ID mapping and rendered accessibility remain outside this receipt.",
+  "checkedClaims": [
+    {
+      "unit": "SWE-bench Verified",
+      "draftClaim": "Curated 500-task subset; February audit 59.4% of selected 138 tasks.",
+      "verdict": "supported",
+      "url": "https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/",
+      "ref": "turn39view3",
+      "locator": "Background and Too narrow and too wide tests; lines 65–74",
+      "scope": "Selection specifically: o3 did not consistently solve over 64 independent runs; the draft's shorter description preserves the non-random selection rule. Not 59.4% of all 500."
+    },
+    {
+      "unit": "SWE-Bench Pro July follow-up",
+      "draftClaim": "Approximately 30% estimated breaking issues in the 731-task public split; recommendation retracted.",
+      "verdict": "supported",
+      "url": "https://openai.com/index/separating-signal-from-noise-coding-evaluations/",
+      "ref": "turn41view0",
+      "locator": "Methodology and discussion; lines 36–64 and 70–75",
+      "scope": "286 screened potential issues; agent analysis found 200/731 and human campaign 249/731. Five engineers reviewed flagged tasks, not an exhaustive independent review of every public/private task."
+    },
+    {
+      "unit": "METR early-2025 RCT",
+      "draftClaim": "16 experienced developers, 246 familiar-repository tasks, 19% increased completion time.",
+      "verdict": "supported",
+      "url": "https://arxiv.org/html/2507.09089v1",
+      "ref": "turn36view0",
+      "locator": "Abstract; §2.2 and §2.3, lines 98–111 and 174–196",
+      "scope": "AI allowed/disallowed randomized; primarily Cursor Pro with Claude 3.5/3.7 Sonnet. Total implementation time self-reported pre/post PR review. No claim about October 2026 tools."
+    },
+    {
+      "unit": "METR February 2026 update",
+      "draftClaim": "Unreliable current signal; raw returning -18%, newly recruited -4%, both confidence intervals contain zero.",
+      "verdict": "supported",
+      "url": "https://metr.org/blog/2026-02-24-uplift-update/",
+      "ref": "turn41view1",
+      "locator": "Lines 38–41 and 48–64",
+      "scope": "Returning CI [-38%,+9%]; new CI [-15%,+9%]. Developer/task selection, reduced pay and concurrent-agent time measurement undermine interpretation. No replacement reliable causal speedup."
+    },
+    {
+      "unit": "METR May 2026 survey",
+      "draftClaim": "349 technical workers; self-reported median work-value change 1.4–2x; approximately 2% emailed response rate.",
+      "verdict": "supported",
+      "url": "https://metr.org/blog/2026-05-11-ai-usage-survey/",
+      "ref": "turn41view2",
+      "locator": "Summary lines 37–52; methodology/sampling lines 82–93",
+      "scope": "Convenience sample; wording-dependent median, counterfactual self-report. Work value differs from speed. The draft correctly avoids causal interpretation."
+    },
+    {
+      "unit": "GAIA",
+      "draftClaim": "466 assistant questions; normalized short-answer matching; excludes uploads/posts/bookings.",
+      "verdict": "supported",
+      "url": "https://arxiv.org/html/2311.12983v1",
+      "ref": "turn39view0",
+      "locator": "§§3.2–3.3 and §6",
+      "scope": "Quasi-exact match with type-dependent normalization, not outcome/trajectory or write-action evaluation."
+    },
+    {
+      "unit": "OSWorld 1.0",
+      "draftClaim": "369 tasks, or 361 with eight Google Drive tasks excluded due to network dependence.",
+      "verdict": "supported",
+      "url": "https://osworld-v1.xlang.ai/",
+      "ref": "turn36view2",
+      "locator": "Benchmark setup; Important Notice: Google Drive Tasks (2025-07-28)",
+      "scope": "Explicitly accepted by maintainer. Action budget and runs must accompany scores; draft quotes no current model score."
+    },
+    {
+      "unit": "tau-bench",
+      "draftClaim": "pass@k means at least one success; pass^k means every trial succeeds; final-state reward can overlook missed confirmation.",
+      "verdict": "supported",
+      "url": "https://arxiv.org/html/2406.12045v1",
+      "ref": "turn39view1",
+      "locator": "§3 Reward and Pass^k metric",
+      "scope": "These are probabilities averaged across tasks under k independent trials. Original reward also checks necessary response outputs, not database state alone. Draft's high-level description does not contradict this."
+    },
+    {
+      "unit": "AgentBench",
+      "draftClaim": "Invalid actions, malformed outputs and exhausted budgets inform proposed failure diagnosis.",
+      "verdict": "supported-with-explicit-proposal",
+      "url": "https://arxiv.org/html/2308.03688v3",
+      "ref": "turn39view2",
+      "locator": "Appendix J.1.2, lines 1705–1726",
+      "scope": "Taxonomy also has Context Limit Exceeded and Completed; Completed is irrespective of end outcome. Premature completion is a proposed additional diagnosis, not claimed to be one of AgentBench's five categories."
+    },
+    {
+      "unit": "ProgramBench",
+      "draftClaim": "Reconstruct complete programs from binary/documentation with no source or internet; primary score requires all behavioral tests.",
+      "verdict": "supported",
+      "url": "https://programbench.com/",
+      "ref": "turn36view1",
+      "locator": "About ProgramBench; cleanroom/cheating; leaderboard scoring FAQ; updated Sep 28, 2026",
+      "scope": "Finite hidden behavioral tests do not prove universal equivalence. Average test pass rate and almost-resolved are auxiliary diagnostics; draft correctly distinguishes them."
+    },
+    {
+      "unit": "OSWorld 2.0",
+      "draftClaim": "108 end-to-end workflows; diagnostic not comprehensive coverage, stochastic/task-mix dependence.",
+      "verdict": "supported",
+      "url": "https://arxiv.org/html/2606.29537v1",
+      "ref": "turn36view3",
+      "locator": "Abstract; §2.1; Table 2; §6 and conclusion",
+      "scope": "No imported model ranking. The live HTML includes evolving/model-version detail, so any future model percentages require pinned release/configuration reconciliation."
+    }
+  ],
+  "requiredCorrections": [],
+  "optionalRefinements": [
+    {
+      "location": "Choose the unit of completion / tau-bench paragraph",
+      "suggestion": "For maximum precision, describe the reward as matching final database state and required response outputs, and define pass@k/pass^k as estimated probabilities over independent trials.",
+      "reason": "The current concise text is accurate at its stated level; this adds the complete scoring unit."
+    },
+    {
+      "location": "ProgramBench paragraph",
+      "suggestion": "Add 'against its finite hidden test suite' after 'all behavioral tests' if readers may interpret fully resolved as proof for every possible input.",
+      "reason": "Maintainer explicitly states behavioral tests cannot cover all inputs."
+    }
+  ],
+  "citationAndRights": {
+    "factualParagraphs": "All material empirical claims have adjacent numbered primary-source references.",
+    "wordBudget": "Approximate paraphrase counts by source remain below 200 words in this draft; no direct quotations beyond ordinary metric/benchmark names.",
+    "media": "No remote documentary media is embedded in this Markdown draft; asset rights approval cannot be inferred if media is added later."
+  },
+  "analysisBoundary": {
+    "confirmed": "Product release contract, accounting formula and proposed recovery/adversarial tests are presented as FrankX proposals; no new measured benchmark run is claimed.",
+    "formula": "Cost per accepted outcome is a proposed accounting metric. Draft explicitly states denominator zero gives no useful unit cost."
+  },
+  "promotionConditions": [
+    "Bind references to canonical validated source records and preserve dates/locators",
+    "Retain the selected-audit scope and July retraction when summarizing for hub cards",
+    "Keep model rankings out until versioned configurations are independently reconciled",
+    "A separate production lane must verify rendered page and links"
+  ]
+}

@@ -70,20 +70,20 @@ const phases = [
       'Record a metric only when the cited source supports its scope and date',
       'Separate observed facts, source claims, and FrankX interpretation',
       'Identify methodology limitations in cited research',
-      'Seek two independent sources for consequential claims; label single-source evidence plainly',
+      'Use sources suited to the claim: specifications for documented behavior, empirical studies for measured outcomes',
     ],
   },
   {
     number: '03',
-    title: 'Validation & Rating',
+    title: 'Claim and method review',
     icon: ShieldCheck,
     duration: 'Per claim',
     description:
-      'The target standard is to rate consequential quantitative claims by source quality, recency, and corroboration. Older briefs remain provisional until that review is complete.',
+      'Review the exact wording, source locator, workload, version and method. A source count does not establish confidence or replication. Older briefs remain held until publication review is complete.',
     details: [
-      'Target high confidence: two or more independent, directly relevant sources',
-      'Medium confidence: one authoritative source or a documented expert consensus',
-      'Low confidence: vendor-sourced or weakly corroborated data — label it',
+      'Inspect selection criteria, denominators, evaluator validity and contrary evidence',
+      'Separate a provider specification, a vendor result, a preprint and an independently replicated finding',
+      'Record product availability, preview status and unresolved limitations',
       'Exclude or rewrite claims whose scope, date, or provenance cannot be verified',
     ],
   },
@@ -98,7 +98,7 @@ const phases = [
       'Use TechArticle or FAQPage JSON-LD only when the visible page warrants it',
       'Use question-based headings when they help a reader navigate the evidence',
       'Link related domains without implying evidentiary support between them',
-      'Update lastUpdated timestamps only when a human review actually occurs',
+      'Keep source-access dates separate from human review and actual publication dates',
     ],
   },
 ]
@@ -114,7 +114,7 @@ const qualityPrinciples = [
     icon: GitBranch,
     title: 'Cross-Reference Everything',
     description:
-      'Two independent sources are the target for high-confidence claims. Single-source evidence should be marked, not quietly upgraded.',
+      'A directly relevant specification can establish documented behavior. Replication requires distinct empirical studies and independent organizations; repeated citations cannot provide it.',
   },
   {
     icon: Shield,
@@ -131,13 +131,13 @@ const qualityPrinciples = [
 ]
 
 const sourceTypes = [
-  { type: 'Industry Reports', examples: 'Gartner, McKinsey, Forrester, IDC', weight: 'High' },
-  { type: 'Academic Research', examples: 'ArXiv, NeurIPS, ICML, ACL proceedings', weight: 'High' },
-  { type: 'Developer Surveys', examples: 'JetBrains, Stack Overflow, GitHub Octoverse', weight: 'High' },
-  { type: 'Regulatory Filings', examples: 'EU AI Act, FDA clearances, SEC filings', weight: 'High' },
-  { type: 'Vendor Documentation', examples: 'Official docs, benchmarks, changelogs', weight: 'Medium' },
-  { type: 'Press Coverage', examples: 'TechCrunch, The Information, Reuters', weight: 'Medium' },
-  { type: 'Community Signals', examples: 'GitHub stars, HN discussions, Reddit threads', weight: 'Low — directional only' },
+  { type: 'Industry reports', examples: 'Market definitions, samples and estimates', check: 'Methods, incentives and denominator' },
+  { type: 'Empirical research', examples: 'Trials, observational studies and preprints', check: 'Design, population, uncertainty and replication' },
+  { type: 'Developer surveys', examples: 'Reported experiences and usage patterns', check: 'Recruitment, response bias and self-report limits' },
+  { type: 'Official specifications', examples: 'Protocols, APIs, SDKs and release notes', check: 'Version, availability and documented boundaries' },
+  { type: 'Provider evaluations', examples: 'Benchmarks and engineering experiments', check: 'Task quality, harness, contamination and independent checks' },
+  { type: 'Secondary coverage', examples: 'Reporting and expert commentary', check: 'Find the underlying primary publication' },
+  { type: 'Community signals', examples: 'Repository activity and discussion', check: 'Discovery leads, not proof of capability' },
 ]
 
 // JSON-LD structured data — safe because data is from our own static domain registry
@@ -157,7 +157,7 @@ const methodologyLd = JSON.stringify({
     name: 'FrankX',
     url: 'https://www.frankx.ai',
   },
-  dateModified: '2026-09-29',
+  dateModified: '2026-10-09',
   mainEntityOfPage: 'https://www.frankx.ai/research/methodology',
   breadcrumb: {
     '@type': 'BreadcrumbList',
@@ -329,38 +329,28 @@ export default function MethodologyPage() {
         <section className="py-12 md:py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold text-white mb-2">
-              Source Hierarchy
+              Match the source to the claim
             </h2>
             <p className="text-white/50 mb-8">
-              Not all sources are weighted equally. Our evidence hierarchy prioritizes independent, primary research.
+              A source category is not a confidence score. Check whether its method can support the particular claim, then record its limits.
             </p>
 
             <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden">
-              <div className="grid grid-cols-[1fr_2fr_auto] gap-4 px-5 py-3 border-b border-white/[0.06] text-xs font-semibold text-white/50 uppercase tracking-wider">
+              <div className="grid grid-cols-1 sm:grid-cols-[1fr_1.5fr_1.5fr] gap-4 px-5 py-3 border-b border-white/[0.06] text-xs font-semibold text-white/50 uppercase tracking-wider">
                 <span>Source Type</span>
                 <span>Examples</span>
-                <span>Weight</span>
+                <span>Review question</span>
               </div>
               {sourceTypes.map((source, i) => (
                 <div
                   key={source.type}
-                  className={`grid grid-cols-[1fr_2fr_auto] gap-4 px-5 py-3.5 ${
+                  className={`grid grid-cols-1 sm:grid-cols-[1fr_1.5fr_1.5fr] gap-4 px-5 py-3.5 ${
                     i < sourceTypes.length - 1 ? 'border-b border-white/[0.04]' : ''
                   }`}
                 >
                   <span className="text-sm font-medium text-white">{source.type}</span>
                   <span className="text-sm text-white/65">{source.examples}</span>
-                  <span
-                    className={`text-xs font-medium px-2 py-0.5 rounded-full h-fit ${
-                      source.weight === 'High'
-                        ? 'bg-emerald-500/10 text-emerald-400'
-                        : source.weight === 'Medium'
-                        ? 'bg-amber-500/10 text-amber-400'
-                        : 'bg-white/[0.06] text-white/65'
-                    }`}
-                  >
-                    {source.weight}
-                  </span>
+                  <span className="text-sm leading-6 text-white/70">{source.check}</span>
                 </div>
               ))}
             </div>

@@ -2,6 +2,7 @@ import ResearchHubLead from "./research-hub-lead";
 import ResearchHubClient from "./research-hub-client";
 import { researchHubFaqs as hubFaqs } from "@/lib/research/hubs";
 import ResearchModelWatch from "./research-model-watch";
+import ResearchDossierIndex from './research-dossier-index';
 
 // JSON-LD is built from the static hub FAQ registry — not request input.
 const faqLd = JSON.stringify({
@@ -43,6 +44,7 @@ export default function ResearchPage() {
           </>
         }
       >
+        <ResearchDossierIndex />
         <ResearchHubLead />
       </ResearchHubClient>
     </>

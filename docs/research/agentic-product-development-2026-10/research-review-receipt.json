@@ -1,0 +1,271 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewedAt": "2026-10-09",
+  "reviewer": "primary_research",
+  "independence": "Reviewer researched primary sources but did not author or edit either article draft. This receipt reviews wording and media policy; it does not approve production execution or grant publication authority.",
+  "input": {
+    "path": "/workspace/scratch/dee1bde820f1/dossiers-draft.json",
+    "sha256": "1d56f7d040b56ee8676334c92f60f0e9998b8ae8ac161a12f81bda73d43418e0",
+    "articles": [
+      "agentic-product-development",
+      "coding-agents-full-stack"
+    ]
+  },
+  "evidenceLedger": "/workspace/scratch/dee1bde820f1/research-sources.json",
+  "verdict": "conditional-pass",
+  "summary": "No invented experiment, universal vendor ranking, productivity guarantee or numerical claim was found. Current service access and data-handling boundaries are substantially accurate. Apply the precise corrections below and complete media notices/accessibility before marking the final content reviewed.",
+  "scope": {
+    "checked": "All paragraphs and tables in both drafts against the primary ledger; fresh official Anthropic harness/managed architecture, ADK graph language header, OpenAI audit and METR updates; official asset source and license records.",
+    "notChecked": [
+      "Source alias-to-ID mapping, which the root owns",
+      "Rendered implementation, keyboard behavior or actual media playback",
+      "Production or deployment state",
+      "A legal determination of fair use for unlicensed graphics"
+    ]
+  },
+  "findings": [
+    {
+      "id": "ADK-language-scope",
+      "severity": "medium",
+      "required": true,
+      "path": "[0].sections[1].table.rows[3].cells[1]",
+      "original": "Agent composition and orchestration; current ADK 2.0 docs emphasize graph and dynamic workflows in Python and Go.",
+      "issue": "The graph page now explicitly supports TypeScript v2.0.0 as well as Python and Go. The prebuilt-template replacement notice names Python/Go; applying that narrow notice to current graph support leaves an incomplete capability map.",
+      "replacement": "Agent composition and orchestration; graph workflows are documented for Python, TypeScript and Go v2.0.0, alongside dynamic orchestration and prebuilt patterns.",
+      "source": {
+        "url": "https://adk.dev/graphs/",
+        "ref": "turn41view3",
+        "locator": "Supported in ADK header, lines 299–317"
+      }
+    },
+    {
+      "id": "workflow-tool-durability",
+      "severity": "medium",
+      "required": true,
+      "path": "[0].sections[1].table.rows[5].cells[1]",
+      "original": "Application-facing agent abstractions and durable orchestration integration.",
+      "issue": "The generic statement is supported, but the product-level interpretation must retain the boundary: WorkflowAgent tools become durable steps only when their implementation is marked use step; unmarked tools run in-memory.",
+      "replacement": "Application-facing agent abstractions; WorkflowAgent persists orchestration, while tool operations require the use step directive for durable execution.",
+      "source": {
+        "url": "https://ai-sdk.dev/docs/agents/workflow-agent",
+        "ref": "turn22view2",
+        "locator": "Tool execution / durable steps"
+      }
+    },
+    {
+      "id": "workflow-budget",
+      "severity": "low",
+      "required": false,
+      "path": "[0].sections[1].table.rows[5].cells[2]",
+      "issue": "A useful current operational qualification is that WorkflowAgent.stream() is unbounded by default unless stopWhen is provided; generate() defaults to 20 steps.",
+      "replacement": "Set an explicit stop condition and budget; keep streaming UI, resumable work and external side effects as distinct concerns.",
+      "source": {
+        "url": "https://ai-sdk.dev/docs/agents/workflow-agent",
+        "ref": "turn22view2",
+        "locator": "Stopping conditions"
+      }
+    },
+    {
+      "id": "puppeteer-modal-scope",
+      "severity": "medium",
+      "required": true,
+      "path": "[1].sections[2].paragraphs[1].text",
+      "originalFragment": "Its browser tools also missed some native modal behavior.",
+      "issue": "The source names a specific tool and limitation: Claude could not see browser-native alert modals through the Puppeteer MCP tool. It does not establish a limitation of all browser tools.",
+      "replacementFragment": "In that setup, Claude could not see browser-native alert modals through Puppeteer MCP.",
+      "source": {
+        "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+        "ref": "turn32view0",
+        "locator": "Testing features, line 72"
+      }
+    },
+    {
+      "id": "deep-agents-planning",
+      "severity": "low",
+      "required": false,
+      "path": "[0].sections[1].table.rows[4].cells[1]",
+      "issue": "Planning is a supported but optional component in current Deep Agents; shell execution also requires a sandbox backend. The draft does not claim shell by default, so this is a precision improvement.",
+      "replacement": "Persisted graph execution plus a higher-level harness with filesystem context, subagents and optional planning and skills.",
+      "source": {
+        "url": "https://docs.langchain.com/oss/python/deepagents/overview",
+        "ref": "turn3view6",
+        "locator": "Core capabilities / Optional planning and skills / Virtual filesystem access"
+      }
+    },
+    {
+      "id": "documented-inference-labels",
+      "severity": "low",
+      "required": false,
+      "paths": [
+        "[0].sections[0].paragraphs[2]",
+        "[0].sections[1].paragraphs[2]",
+        "[0].sections[2].paragraphs[1]",
+        "[0].sections[2].paragraphs[3]",
+        "[0].sections[3].paragraphs[2]",
+        "[1].sections[0].paragraphs[1]"
+      ],
+      "issue": "Several documented paragraphs combine a sourced first sentence with FrankX architectural advice. The advice is generally clear in prose, but one paragraph-level label can suggest the vendor documented the recommendation.",
+      "recommendation": "Split the sourced fact and recommendation into documented and analysis paragraphs, or explicitly introduce the recommendation as the FrankX implication. Do not bind vendor sources to a claim they did not make.",
+      "source": {
+        "url": "https://github.com/frankxai/agentic-creator-os/blob/main/docs/content-intelligence.md",
+        "locator": "Claim ledger / State inference and forecast explicitly; local contract line 74"
+      }
+    }
+  ],
+  "boundariesConfirmed": [
+    {
+      "claim": "OpenAI Agents API is beta and documents US-only residency and no ZDR, including self-hosted sandbox execution.",
+      "sources": [
+        "https://developers.openai.com/api/docs/guides/agents-api/overview",
+        "https://developers.openai.com/api/docs/guides/agents-api/quickstart"
+      ],
+      "scope": "Managed session and model data are not made local by self-hosting execution."
+    },
+    {
+      "claim": "Claude Managed Agents is beta, with additional research-preview gates for selected capabilities.",
+      "source": "https://platform.claude.com/docs/en/managed-agents/overview",
+      "scope": "Do not imply every feature is generally available; exact gated examples are MCP tunnels and dreaming."
+    },
+    {
+      "claim": "Managed Agents stores recoverable session history outside the disposable harness and keeps service-managed credential tokens outside sandbox execution.",
+      "source": "https://www.anthropic.com/engineering/managed-agents",
+      "ref": "turn32view1",
+      "scope": "This describes Anthropic's architecture; customer-injected secrets still need their own permission policy."
+    },
+    {
+      "claim": "LangGraph checkpoint persistence does not prove exactly-once external consequences.",
+      "sources": [
+        "https://docs.langchain.com/oss/python/langgraph/checkpointers",
+        "https://docs.langchain.com/oss/python/langgraph/functional-api"
+      ],
+      "scope": "Resumption replays code around recorded task results; interrupted tasks may run again, so external effects need idempotency/reconciliation."
+    },
+    {
+      "claim": "MCP 2026-07-28 removes the core initialize/initialized handshake and transport session ID while applications may preserve their own explicit state.",
+      "source": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+      "ref": "turn35view2",
+      "scope": "Pin protocol versions and distinguish core lifecycle from application state."
+    },
+    {
+      "claim": "The 19% METR slowdown belongs to early-2025 tools, 16 experienced developers and 246 familiar-repository tasks.",
+      "sources": [
+        "https://arxiv.org/html/2507.09089v1",
+        "https://metr.org/blog/2026-02-24-uplift-update/",
+        "https://metr.org/blog/2026-05-11-ai-usage-survey/"
+      ],
+      "refs": [
+        "turn36view0",
+        "turn41view1",
+        "turn41view2"
+      ],
+      "scope": "Later raw estimates and self-reported value are not replacement causal estimates."
+    }
+  ],
+  "mediaReview": [
+    {
+      "id": "openai-managed-architecture",
+      "provenance": "verified",
+      "url": "https://developers.openai.com/images/api/agents-api/overview-1.webp",
+      "rightsVerdict": "link-only-pending-license-or-recorded-editorial-basis",
+      "issue": "First-party asset provenance is verified; no explicit reproduction/public-display license was established. Loading a remote original instead of copying it does not itself settle rights.",
+      "requiredAction": "Use an attributed source link or original FrankX diagram of the documented architecture unless an asset-specific license, permission or recorded editorial rights basis is verified.",
+      "width": 1400,
+      "height": 552
+    },
+    {
+      "id": "google-adk-graph-workflow",
+      "provenance": "verified",
+      "url": "https://adk.dev/assets/workflow-design.svg",
+      "rightsVerdict": "permitted-with-license-and-notices",
+      "basis": {
+        "repoFile": "https://github.com/google/adk-docs/blob/main/docs/assets/workflow-design.svg",
+        "repoCommitSeen": "12712d00d48712998f15a2a9d8bd26d708b727a3",
+        "license": "Apache-2.0",
+        "licenseUrl": "https://github.com/google/adk-docs/blob/main/LICENSE",
+        "ref": "turn29view0"
+      },
+      "limitations": "Repository asset membership and Apache license were verified; no asset exception appeared in the rendered file record. Preserve license copy/notice obligations and avoid implying Google endorsement.",
+      "requiredAction": "Caption Google ADK, Graph-based flight upgrade agent, with documentation and license links; retain notices if redistributing."
+    },
+    {
+      "id": "google-adk-template-topologies",
+      "provenance": "verified",
+      "url": "https://adk.dev/assets/template_workflows.svg",
+      "rightsVerdict": "permitted-with-license-and-notices",
+      "basis": {
+        "repoFile": "https://github.com/google/adk-docs/blob/main/docs/assets/template_workflows.svg",
+        "repoCommitSeen": "12712d00d48712998f15a2a9d8bd26d708b727a3",
+        "license": "Apache-2.0",
+        "licenseUrl": "https://github.com/google/adk-docs/blob/main/LICENSE"
+      },
+      "requiredAction": "Caption this as prebuilt sequential/loop/parallel patterns; it is not a graphic of the new graph API. Prefer the graph-based flight upgrade figure for current ADK 2.0 coverage."
+    },
+    {
+      "id": "mcp-stateless-core-demo",
+      "provenance": "verified",
+      "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/stateless-core-demo.mp4",
+      "rightsVerdict": "permitted-with-attribution-license-notice",
+      "basis": {
+        "repoFile": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/blog/content/posts/2026-07-28-spec-ga/stateless-core-demo.mp4",
+        "repoLicense": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/LICENSE",
+        "license": "CC-BY-4.0 documentation excluding specifications",
+        "ref": "turn43view0",
+        "locator": "Documentation licensing statement, lines 619 and 941–947",
+        "secondaryBasis": "Official blog footer refers to LF Projects terms; terms apply to project websites and default site content to CC-BY-4.0 unless superseded. Repository documentation license supplies the specific basis."
+      },
+      "requiredAction": "Credit MCP maintainers and the source article, link CC BY 4.0 and indicate if changed. Use the original remote media.",
+      "width": 1280,
+      "height": 454,
+      "audioStatus": "Not independently inspected; original official HTML uses muted playback. Do not claim the file has no audio until playback/media inspection confirms it."
+    },
+    {
+      "id": "langchain-managed-deep-agents-video",
+      "provenance": "verified-official-embedded-player",
+      "videoId": "yi-XZnAVFJg",
+      "rightsVerdict": "official-publisher-embed",
+      "sourceUrl": "https://www.langchain.com/blog/managed-deep-agents-is-now-in-public-beta",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/yi-XZnAVFJg",
+      "channelUrl": "https://www.youtube.com/channel/UCC-lyoTfSrcJzA1ab3APAgw",
+      "requiredAction": "Use a normal official YouTube embed; do not download/reupload. Preserve publisher/title/source, use click-to-load without autoplay and a watch-on-YouTube fallback."
+    }
+  ],
+  "accessibilityPlan": {
+    "status": "requirements-defined-not-rendered-tested",
+    "images": [
+      "Contextual alt text plus source/publisher figure caption",
+      "Text description of the mechanism near complex diagrams; image alt alone need not reproduce every node",
+      "Reserve width/height or aspect ratio to avoid layout shifts",
+      "Keep remote image URLs explicit and allowlisted; standard img markup and a source link fallback"
+    ],
+    "nativeVideo": [
+      "controls, preload=none, playsInline; no autoplay or forced loop",
+      "Accessible title and a nearby explanatory text alternative describing the demonstrated protocol transition",
+      "If audio conveys information, provide synchronized captions; if silent, retain a text alternative for meaningful visual content",
+      "Use width/height/aspect ratio and show a source link on playback failure"
+    ],
+    "youtube": [
+      "Keyboard-operable click-to-load button with clear accessible name and visible focus",
+      "Do not mount third-party iframe until user activation",
+      "Use an iframe title and the official privacy-enhanced embed URL",
+      "No autoplay; preserve captions/player controls and provide a watch link"
+    ],
+    "verifyBeforePublication": [
+      "Keyboard activation and focus behavior",
+      "Media playback and fallback links",
+      "Narrow viewport diagram legibility",
+      "Actual audio/caption availability",
+      "License/notice caption visibility"
+    ]
+  },
+  "copyrightSummary": {
+    "directQuotes": "No long verbatim quotations found.",
+    "sourceDerivedWordBudget": "Longest repeatedly used source, Anthropic's long-running harness article, contributes approximately 145 paraphrased words across these two drafts; within the source's 200-word summarization budget. Recalculate if additional excerpts or captions are added."
+  },
+  "promotionConditions": [
+    "Apply required wording corrections",
+    "Map source aliases to canonical validated sources and adjacent locators",
+    "Exclude or resolve the OpenAI unlicensed image",
+    "Add verified license notices and accessible media alternatives",
+    "Root or separate production lane must verify the rendered final candidate"
+  ]
+}
