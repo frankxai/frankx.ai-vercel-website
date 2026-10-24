@@ -407,7 +407,7 @@ export default function ProductsPage() {
 
                         {product.highlights.length > 0 && (
                           <div className="mb-6 border-t border-white/5 pt-4">
-                            <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 mb-2.5">
+                            <p className="text-[11px] font-semibold tracking-wider text-slate-400 mb-2.5">
                               Core deliverables
                             </p>
                             <ul className="space-y-2">
@@ -614,7 +614,7 @@ export default function ProductsPage() {
 
                           {/* Title and Summary */}
                           <div className="mb-4 flex-1">
-                            <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-slate-500 block mb-1">
+                            <span className="text-[11px] font-medium tracking-[0.08em] text-slate-400 block mb-1">
                               {product.category}
                             </span>
                             <h3 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors duration-200 mb-2">
@@ -628,7 +628,7 @@ export default function ProductsPage() {
                           {/* Deliverables / Transformation Highlights (truthful, only rendered when present) */}
                           {product.highlights.length > 0 && (
                             <div className="mb-6 border-t border-white/5 pt-4">
-                              <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 mb-2.5">
+                              <p className="text-[11px] font-semibold tracking-wider text-slate-400 mb-2.5">
                                 Core deliverables
                               </p>
                               <ul className="space-y-2">
