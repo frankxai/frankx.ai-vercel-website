@@ -129,7 +129,7 @@ export default function PillarShowcase() {
                     {pillar.keywords.slice(0, 3).map((keyword) => (
                       <span
                         key={keyword}
-                        className="px-2 py-0.5 rounded-md text-[11px] bg-white/[0.04] text-white/40"
+                        className="px-2 py-0.5 rounded-md text-[11px] bg-white/[0.04] text-white/60"
                       >
                         {keyword}
                       </span>
@@ -156,7 +156,7 @@ export default function PillarShowcase() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 1 }}
-          className="text-center mt-6 text-sm text-white/40 italic"
+          className="text-center mt-6 text-sm text-white/60 italic"
         >
           Each pillar strengthens the next — awareness reveals identity, identity shapes emotions,
           emotions deepen relationships, and creation circles back to awareness.
