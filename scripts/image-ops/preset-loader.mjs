@@ -14,9 +14,32 @@ export async function loadPresets(presetsPath = DEFAULT_PRESETS_PATH) {
   return data
 }
 
+const STYLE_ALIASES = {
+  standard: 'community/editorial-flat',
+  minimalist: 'community/bauhaus-minimal',
+  photorealistic: 'community/photoreal-cinema',
+  realistic: 'community/photoreal-cinema',
+  '3d': 'frankx/3d-isometric',
+  '3d-isometric': 'frankx/3d-isometric',
+  technical: 'frankx/da-vinci-technical',
+  davinci: 'frankx/da-vinci-technical',
+  'da-vinci-technical': 'frankx/da-vinci-technical',
+  sketch: 'community/blueprint-technical',
+  futuristic: 'frankx/focused-futuristic',
+  'focused-futuristic': 'frankx/focused-futuristic',
+  vintage: 'community/lithograph-vintage',
+  cartoon: 'community/comic-edu',
+  glassmorphic: 'community/glassmorphic',
+  premium: 'community/premium',
+  'premium-gradient': 'frankx/premium-gradient',
+  'business-professional': 'frankx/business-professional',
+  'coe-blueprint': 'frankx/coe-blueprint',
+}
+
 export async function getPreset(key, presetsPath) {
   const data = await loadPresets(presetsPath)
-  const preset = data.presets.find((p) => p.key === key)
+  const resolvedKey = STYLE_ALIASES[key] || key
+  const preset = data.presets.find((p) => p.key === resolvedKey || p.key === key)
   if (!preset) {
     const known = data.presets.map((p) => p.key).join(', ')
     throw new Error(`Unknown preset "${key}". Known: ${known}`)

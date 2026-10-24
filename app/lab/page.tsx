@@ -20,22 +20,22 @@ export const metadata: Metadata = {
 const tools = [
   {
     id: 'infogenius',
-    name: 'InfoGenius',
-    tagline: 'Research → 4K infographic in 60 seconds',
+    name: 'InfoGenius v5.2',
+    tagline: 'Research → 4K infographic + motion + TTS',
     description:
-      'Drop a topic. FRANK-Ω researches it with Google Search grounding, builds a precision prompt, and renders a cinematic 4K visual. 8 styles, 4 audience levels, video + narration included.',
-    href: 'https://aistudio.google.com/apps/bundled/info_genius',
-    hrefLabel: 'Open in AI Studio',
-    externalHref: true,
+      'Drop a topic. FRANK-Ω researches it with live web grounding, builds a v5.2 precision prompt, and renders a cinematic 2K/4K visual. 10 styles (including 3D Glassmorphic & Luxury Brand), 4 audience tiers, BYOK Gemini or OpenRouter.',
+    href: '/infogenius#studio',
+    hrefLabel: 'Launch Studio Workbench',
+    externalHref: false,
     status: 'Live' as const,
     statusColor: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
     color: 'violet' as const,
     icon: '🎨',
-    keyRequired: 'Google AI API key',
+    keyRequired: 'Free Prompt Architect · BYOK Gemini/OpenRouter for 4K',
     stats: [
-      { n: '8', label: 'Visual styles' },
+      { n: '10', label: 'v5.2 Styles' },
       { n: '4K', label: 'Resolution' },
-      { n: '<60s', label: 'Research to image' },
+      { n: 'BYOK', label: 'Gemini / OpenRouter' },
     ],
   },
   {

@@ -1661,5 +1661,81 @@
       "methods": ["consulting", "gated"],
       "requiresEmail": true
     }
+  },
+  {
+    "id": "infogenius-pro",
+    "slug": "infogenius-pro",
+    "name": "InfoGenius — Visual Knowledge OS",
+    "category": "Creator Systems",
+    "badge": "VISUAL INTELLIGENCE v5.2",
+    "headline": "Turn Technical Research & Articles Into 2K/4K Grounded Visuals",
+    "subheadline": "Google Search grounded research, 18 luxury & architectural style presets, Article-to-5-Slide Carousel Decomposer, custom brand builder, plus local CLI & MCP Server.",
+    "promise": "Never ship a wall of text again. Go from topic or Markdown article to verified 2K/4K diagrams, Veo 3.1 animations, and Kore TTS narrations in one pipeline.",
+    "summary": "The complete InfoGenius v5.2 visual synthesis system: live BYOK Web Studio, Model Context Protocol (MCP) server for Claude Code & Cursor, local CLI with Infisical + OpenRouter support, and 18 curated style presets.",
+    "transformation": [
+      "Ground every diagram in real-time Google Search or OpenRouter :online citations before a single pixel is rendered",
+      "Decompose any Markdown/MDX article into a cohesive 5-slide visual pack (Hero Thesis, Architecture, Data Flow, Benchmarks, Blueprint)",
+      "Design and export custom brand style packs (.preset.json) with exact hex palettes, material physics, and anti-slop guardrails",
+      "Run locally via CLI (scripts/infogenius.mjs) or inside Claude Code / Cursor via the 3-tool InfoGenius v5.2 MCP server"
+    ],
+    "socialProof": {
+      "stats": [
+        { "number": "18", "label": "Brand & v5.2 Presets" },
+        { "number": "2K/4K", "label": "Grounded Resolution" },
+        { "number": "3 Tools", "label": "MCP Server Included" },
+        { "number": "Zero-Orphan", "label": "Provenance Sidecars" }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 49,
+      "primaryPriceDisplay": "Free Web Studio · $49 Pro Pack",
+      "currency": "USD",
+      "ctaPrimary": "Launch Interactive Studio",
+      "ctaPrimaryHref": "/infogenius#studio",
+      "ctaPrimaryTracking": "infogenius-pro-studio",
+      "ctaSecondary": "Join Pro Pack Waitlist",
+      "ctaSecondaryHref": "/waitlist?intent=infogenius-pro",
+      "guarantee": {
+        "label": "Sovereign BYOK Architecture",
+        "description": "Use the Prompt Architect & 5-Slide Decomposer free forever, or plug in your own Gemini / OpenRouter key with zero platform markup."
+      },
+      "note": "Pro Pack includes the standalone MCP Server, CLI batch runner, and 18-preset JSON library."
+    },
+    "modules": [
+      {
+        "title": "InfoGenius v5.2 Interactive Web Studio",
+        "description": "3-tab workbench on frankx.ai/infogenius: Single Topic Infographic Studio, Article-to-5-Slide Pack Decomposer, and Custom Brand Style Pack Builder."
+      },
+      {
+        "title": "MCP Server for Claude Code, Cursor & Windsurf",
+        "description": "Exposes generate_infographic, animate_infographic (Veo 3.1), and narrate_infographic (Kore TTS) directly to your coding agents."
+      },
+      {
+        "title": "18 Curated Brand & Visual Presets",
+        "description": "Includes 3D Glassmorphic, Editorial Luxury, Da Vinci Technical, Sovereign Mesh, Neural Cosmos, Liquid Starlight, and 12 more."
+      },
+      {
+        "title": "Infisical + OpenRouter + Gemini CLI Engine",
+        "description": "3-tier credential resolver supporting Infisical vault sync, Google AI Studio direct keys, and OpenRouter :online fallback."
+      }
+    ],
+    "bonuses": [
+      {
+        "title": "Zero-Orphan Provenance & LiquidGlassZoom MDX Snippets",
+        "description": "Automatic .vis.provenance.json sidecar generation and drop-in Next.js MDX component snippets."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can I use InfoGenius Studio right now for free?",
+        "answer": "Yes. The Prompt Architect, Article-to-5-Slide Decomposer, and Custom Brand Style Builder on /infogenius#studio work immediately with zero API key. Add your own Gemini or OpenRouter key to render 2K/4K images in the browser."
+      },
+      {
+        "question": "Which AI providers are supported?",
+        "answer": "Both Google AI Studio (GEMINI_API_KEY) and OpenRouter (OPENROUTER_API_KEY) are supported in the Web Studio and local CLI, plus automatic Infisical secret lookup."
+      }
+    ],
+    "analyticsId": "infogenius-pro"
   }
 ]
