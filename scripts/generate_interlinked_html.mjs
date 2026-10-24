@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { selectPublicReadingFiles, pruneHeldReadingExports } from './lib/public-reading-publication.mjs';
 
 // Try to load marked if available; fall back to minimal converter
 let marked = null;
@@ -246,7 +247,9 @@ function walk(dir, list = []) {
   return list;
 }
 
-const files = walk(ROOT).sort((a, b) => a.localeCompare(b));
+const { eligible: files, held } = selectPublicReadingFiles(walk(ROOT).sort((a, b) => a.localeCompare(b)), ROOT);
+const removed = pruneHeldReadingExports(held, files, OUTPUT_DIRS, outPathFor);
+console.log(`Held ${held.length} documents from reading exports; removed ${removed} stale generated pages.`);
 console.log(`Found ${files.length} files to process.`);
 
 // Build link list relative to each output root
