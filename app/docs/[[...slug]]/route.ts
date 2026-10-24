@@ -19,6 +19,14 @@ import { NextRequest, NextResponse } from "next/server";
 //   2. "/frankx/..." internal links   -> "/docs/..."
 //   3. "/llms.mdx/frankx/..." and "/llms-index/frankx" feed links -> absolute
 //
+// Known platform-side limitation: the upstream build's webpack runtime
+// requests route chunks from its own /_next/ public path. Literal asset
+// references in HTML and flight payloads are rewritten below, but fetched
+// JavaScript is not, so dynamically loaded chunks still resolve against
+// frankx.ai/_next/. This is resolved upstream — by serving docs at the
+// domain root (docs.frankx.ai) or by an absolute assetPrefix on the
+// docs-platform deployment — not by rewriting JavaScript here.
+//
 // Replacements match references immediately preceded by a quote (optionally
 // JSON-escaped). That excludes absolute URLs (https://.../_next/...) and
 // composite paths like /og/frankx/... (preceded by a letter or slash, not a
@@ -70,10 +78,14 @@ function buildUpstreamUrl(slug: string[] | undefined, request: NextRequest): URL
     slug.length >= 2 &&
     (slug[0] === "llms.mdx" || slug[0] === "llms-full.mdx" || slug[0] === "og")
   ) {
-    // platform-owned feed/og paths pass through as-is
-    path = `/${encodeSegments(slug)}`;
+    // Platform-owned feed/og paths pass through with the brand segment
+    // FORCED to frankx — frankx.ai serves exactly one brand, matching the
+    // search and bare-feed branches. A foreign brand in the URL
+    // (/docs/llms.mdx/akamoto/..., /docs/og/gencreator/...) must never
+    // publish another brand's content or metadata under frankx.ai.
+    path = `/${slug[0]}/frankx${slug.length > 2 ? `/${encodeSegments(slug.slice(2))}` : ""}`;
   } else if (slug.length === 2 && slug[0] === "llms-index") {
-    path = `/${encodeSegments(slug)}`;
+    path = "/llms-index/frankx";
   } else if (slug.length === 1 && slug[0] === "llms.txt") {
     // bare feeds resolve to the frankx-scoped feeds, like on every brand host
     path = "/llms-index/frankx";
@@ -153,6 +165,27 @@ function isMarkdownPreferred(request: NextRequest): boolean {
   return html === null || markdown > html;
 }
 
+// Route prefixes owned by the platform — feeds, search and OG images are
+// markdown/JSON/binary by construction. Markdown negotiation applies to
+// document routes only (bare /docs, page slugs, brand-prefixed pages); a
+// dedicated feed must never be re-targeted to a page path because of an
+// Accept header.
+const NON_DOCUMENT_PREFIXES = new Set([
+  "api",
+  "llms.mdx",
+  "llms-full.mdx",
+  "llms-index",
+  "llms.txt",
+  "llms-full.txt",
+  "og",
+]);
+
+function isDocumentRoute(slug: string[] | undefined): boolean {
+  if (!slug || slug.length === 0) return true; // bare /docs -> intro
+  if (slug[0] === "frankx") return true; // brand-prefixed page form
+  return !NON_DOCUMENT_PREFIXES.has(slug[0]);
+}
+
 function forwardHeaders(upstream: Response): Headers {
   const headers = new Headers();
   const contentType = upstream.headers.get("content-type");
@@ -179,13 +212,10 @@ async function handle(request: NextRequest, context: RouteContext): Promise<Resp
   }
 
   const mdSuffix = slug?.[slug.length - 1]?.endsWith(".md") ?? false;
-  const skipNegotiation =
-    !slug ||
-    mdSuffix ||
-    slug[0] === "api" ||
-    slug[0] === "llms.mdx" ||
-    slug[0] === "llms-full.mdx";
-  if (!skipNegotiation && isMarkdownPreferred(request)) {
+  // .md-suffixed requests are already markdown and map through
+  // buildUpstreamUrl's own suffix branch; negotiation duplicates that and
+  // would double-suffix the path.
+  if (isDocumentRoute(slug) && !mdSuffix && isMarkdownPreferred(request)) {
     let body = pageSlug(slug);
     if (body.length === 0) body = ["intro"];
     upstreamUrl = new URL(
@@ -195,12 +225,28 @@ async function handle(request: NextRequest, context: RouteContext): Promise<Resp
   }
 
   try {
-    const upstream = await fetch(upstreamUrl, {
-      headers: buildUpstreamHeaders(request),
-      redirect: "follow",
-      cache: "no-store",
-      signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS),
-    });
+    // The timeout budget bounds upstream connect + response start only.
+    // Once headers arrive the timer is released: a streamed body such as
+    // /llms-full.mdx/frankx may legitimately take longer than the budget to
+    // finish transferring, and aborting after the client already received a
+    // committed 200 would silently truncate the stream (the surrounding
+    // catch could not replace a response that has already begun).
+    const upstreamController = new AbortController();
+    const timeoutTimer = setTimeout(
+      () => upstreamController.abort(),
+      UPSTREAM_TIMEOUT_MS,
+    );
+    let upstream: Response;
+    try {
+      upstream = await fetch(upstreamUrl, {
+        headers: buildUpstreamHeaders(request),
+        redirect: "follow",
+        cache: "no-store",
+        signal: upstreamController.signal,
+      });
+    } finally {
+      clearTimeout(timeoutTimer);
+    }
 
     const contentType = upstream.headers.get("content-type") ?? "";
     if (contentType.includes("text/html") || contentType.startsWith("text/x-component")) {
