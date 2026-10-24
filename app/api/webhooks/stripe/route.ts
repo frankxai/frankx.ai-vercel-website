@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { generateProductEmailData } from '@/lib/delivery'
 import { purchaseConfirmationEmail } from '@/lib/email-templates'
+import { products } from '@/lib/products'
+import { productFromCheckoutMetadata, productFulfillmentConfigured, stripePriceForProduct, stripeExpectedLiveMode } from '@/lib/product-fulfillment'
 
 // Lazy initialization — Stripe SDK throws at module load if STRIPE_SECRET_KEY
 // is missing, breaking `next build` in environments without the env var
@@ -18,7 +20,6 @@ function getStripe(): Stripe {
 }
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
-const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID || '4d2e913e-6903-4dd4-8749-c02cdb844331'
 
 async function sendEmailViaResend(to: string, subject: string, html: string) {
   const res = await fetch('https://api.resend.com/emails', {
@@ -34,23 +35,8 @@ async function sendEmailViaResend(to: string, subject: string, html: string) {
       html,
     }),
   })
+  if (!res.ok) throw new Error('Product email delivery failed')
   return res.json()
-}
-
-async function addToResendAudience(email: string, name: string) {
-  await fetch(`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${RESEND_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email,
-      first_name: name.split(' ')[0],
-      last_name: name.split(' ').slice(1).join(' ') || undefined,
-      unsubscribed: false,
-    }),
-  })
 }
 
 export async function POST(request: Request) {
@@ -76,19 +62,47 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
   }
 
-  if (event.type === 'checkout.session.completed') {
+  if (event.type === 'checkout.session.completed' || event.type === 'checkout.session.async_payment_succeeded') {
+    const expectedLiveMode = stripeExpectedLiveMode(process.env)
+    if (expectedLiveMode === undefined) return NextResponse.json({ error: 'Payment mode is not configured' }, { status: 503 })
+    if (event.livemode !== expectedLiveMode) return NextResponse.json({ error: 'Payment mode does not match environment' }, { status: 422 })
+    if (!expectedLiveMode) return NextResponse.json({ received: true, testMode: true })
     const session = event.data.object as Stripe.Checkout.Session
+    if (session.payment_status !== 'paid') return NextResponse.json({ received: true })
 
     const customerEmail = session.customer_details?.email || session.customer_email
     const customerName = session.customer_details?.name || 'Customer'
 
     if (!customerEmail) {
       console.error('[Stripe] No customer email in session:', session.id)
-      return NextResponse.json({ received: true })
+      return NextResponse.json({ error: 'Product delivery recipient missing' }, { status: 422 })
     }
 
     // Extract product slug from metadata (set during checkout session creation)
-    const productSlug = session.metadata?.productSlug || session.metadata?.product_slug
+    const product = productFromCheckoutMetadata(products, session.metadata)
+    if (!product) return NextResponse.json({ error: 'Product identity is not configured' }, { status: 422 })
+    const priceId = stripePriceForProduct(product.id, process.env)
+    if (!priceId || !productFulfillmentConfigured(product, 'stripe', process.env)) {
+      return NextResponse.json({ error: 'Product delivery is not configured' }, { status: 503 })
+    }
+    const currency = product.offer.currency.toLowerCase()
+    if (session.mode !== 'payment' || session.currency !== currency || !(session.amount_total && session.amount_total > 0)) {
+      return NextResponse.json({ error: 'Payment does not match product' }, { status: 422 })
+    }
+    // Metadata names the product; authoritative line items prove which Price was charged.
+    // Reject bundles, quantities, currency mismatches and unavailable provider reads.
+    let lineItems: Stripe.ApiList<Stripe.LineItem>
+    try {
+      lineItems = await getStripe().checkout.sessions.listLineItems(session.id, { limit: 2 })
+    } catch {
+      return NextResponse.json({ error: 'Payment verification unavailable' }, { status: 502 })
+    }
+    const lineItem = lineItems.data[0]
+    if (lineItems.has_more || lineItems.data.length !== 1 || lineItem.quantity !== 1 || lineItem.price?.id !== priceId
+      || lineItem.currency !== currency || lineItem.price.currency !== currency || !(lineItem.amount_total > 0)) {
+      return NextResponse.json({ error: 'Payment does not match product' }, { status: 422 })
+    }
+    const productSlug = product.id
 
     if (productSlug) {
       const emailData = generateProductEmailData(
@@ -97,7 +111,8 @@ export async function POST(request: Request) {
         customerEmail
       )
 
-      if (emailData && RESEND_API_KEY) {
+      if (!emailData || !RESEND_API_KEY) return NextResponse.json({ error: 'Product delivery is not configured' }, { status: 503 })
+      {
         const email = purchaseConfirmationEmail({
           customerName: emailData.customerName,
           productName: emailData.productName,
@@ -105,13 +120,12 @@ export async function POST(request: Request) {
           receiptUrl: undefined,
         })
 
-        await sendEmailViaResend(customerEmail, email.subject, email.html)
+        try {
+          await sendEmailViaResend(customerEmail, email.subject, email.html)
+        } catch {
+          return NextResponse.json({ error: 'Product email delivery failed' }, { status: 502 })
+        }
       }
-    }
-
-    // Add customer to Resend audience
-    if (RESEND_API_KEY) {
-      await addToResendAudience(customerEmail, customerName)
     }
 
     console.log('[Stripe] Checkout completed:', {

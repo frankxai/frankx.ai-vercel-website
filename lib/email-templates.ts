@@ -1,5 +1,6 @@
 import { socialLinks } from '@/lib/social-links'
 import { buildUnsubscribeUrl, SITE_URL } from '@/lib/email-config'
+import { PRODUCT_DOWNLOAD_TTL_SECONDS } from '@/lib/product-fulfillment'
 
 /**
  * Email Template System v2.0 for FrankX.AI
@@ -459,27 +460,46 @@ export function musicPromptsEmail(data: {
 
 // ─── Template 6: Purchase Confirmation ────────────────────────────
 
+function escapePurchaseHtml(value: string): string {
+  return String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]!)
+}
+
+function purchaseHttpsUrl(value: string | undefined): string | undefined {
+  if (typeof value !== 'string' || !value || [...value].some(char => char.charCodeAt(0) <= 32 || char.charCodeAt(0) === 127)) return undefined
+  try {
+    const url = new URL(value)
+    return url.protocol === 'https:' && !url.username && !url.password ? url.href : undefined
+  } catch {
+    return undefined
+  }
+}
+
 export function purchaseConfirmationEmail(data: {
   customerName: string
   productName: string
   downloadLinks: Array<{ name: string; url: string }>
   receiptUrl?: string
 }): EmailTemplate {
-  const downloadRows = data.downloadLinks.map(link => `
+  const receiptUrl = purchaseHttpsUrl(data.receiptUrl)
+  const downloadRows = data.downloadLinks.map(link => {
+    const url = purchaseHttpsUrl(link.url)
+    if (!url) throw new Error('Invalid product download URL')
+    return `
             <tr>
               <td style="padding: 12px 0; border-bottom: 1px solid #1E293B;">
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                   <tr>
-                    <td style="font-size: 15px; font-weight: 600; color: #E2E8F0; padding-right: 12px;">${link.name}</td>
+                    <td style="font-size: 15px; font-weight: 600; color: #E2E8F0; padding-right: 12px;">${escapePurchaseHtml(link.name)}</td>
                     <td align="right" style="white-space: nowrap;">
-                      <a href="${link.url}" style="display: inline-block; padding: 8px 16px; background-color: #7C3AED; color: white; text-decoration: none; border-radius: 8px; font-size: 13px; font-weight: 600;">
+                      <a href="${escapePurchaseHtml(url)}" style="display: inline-block; padding: 8px 16px; background-color: #7C3AED; color: white; text-decoration: none; border-radius: 8px; font-size: 13px; font-weight: 600;">
                         Download
                       </a>
                     </td>
                   </tr>
                 </table>
               </td>
-            </tr>`).join('')
+            </tr>`
+  }).join('')
 
   const content = `
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #1E293B; border-top: 3px solid #7C3AED; border-radius: 12px;">
@@ -487,15 +507,15 @@ export function purchaseConfirmationEmail(data: {
         <td class="content-pad" style="padding: 24px 20px;">
 
           <h1 class="h1" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 700; color: white; margin: 0 0 16px 0; line-height: 1.3;">
-            Your purchase is ready, ${data.customerName}.
+            Your purchase is ready, ${escapePurchaseHtml(data.customerName)}.
           </h1>
 
           <p style="font-size: 16px; color: #CBD5E1; line-height: 1.6; margin: 0 0 8px 0;">
-            Thank you for purchasing <strong style="color: white;">${data.productName}</strong>.
+            Thank you for purchasing <strong style="color: white;">${escapePurchaseHtml(data.productName)}</strong>.
           </p>
 
           <p style="font-size: 15px; color: #94a3b8; line-height: 1.6; margin: 0 0 24px 0;">
-            Your files are ready to download. Links below are valid for 7 days.
+            Your files are ready to download. Links below are valid for ${PRODUCT_DOWNLOAD_TTL_SECONDS / 3600} hours.
           </p>
 
           <!-- Download links -->
@@ -510,9 +530,9 @@ export function purchaseConfirmationEmail(data: {
             </tr>
           </table>
 
-          ${data.receiptUrl ? `
+          ${receiptUrl ? `
           <p style="font-size: 13px; color: #64748b; margin: 0;">
-            <a href="${data.receiptUrl}" style="color: #22d3ee; text-decoration: none;">View your receipt</a>
+            <a href="${escapePurchaseHtml(receiptUrl)}" style="color: #22d3ee; text-decoration: none;">View your receipt</a>
           </p>
           ` : ''}
 
@@ -522,8 +542,8 @@ export function purchaseConfirmationEmail(data: {
   `
 
   return {
-    subject: `Your ${data.productName} is ready to download`,
-    html: emailWrapper(content, `Your ${data.productName} purchase is complete. Download your files now.`)
+    subject: `Your ${data.productName.replace(/[\r\n]/g, ' ')} is ready to download`,
+    html: emailWrapper(content, `Your ${escapePurchaseHtml(data.productName)} purchase is complete. Download your files now.`)
   }
 }
 
