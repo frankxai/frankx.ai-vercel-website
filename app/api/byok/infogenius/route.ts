@@ -239,7 +239,7 @@ async function runGroundedResearch({
   audienceObj: { label: string; density: string; instruction: string }
   aspectRatio: string
   apiKey: string
-  provider: 'google' | 'openrouter'
+  provider: 'google' | 'openrouter' | 'vercel'
 }) {
   const orientation =
     aspectRatio === '9:16'
@@ -283,8 +283,13 @@ VIDEO_PROMPT:
   let text = ''
   const searchResults: Array<{ title: string; url: string }> = []
 
-  if (provider === 'openrouter') {
-    const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+  if (provider === 'openrouter' || provider === 'vercel') {
+    const isVercel = provider === 'vercel'
+    const endpoint = isVercel
+      ? 'https://ai-gateway.vercel.sh/v1/chat/completions'
+      : 'https://openrouter.ai/api/v1/chat/completions'
+    const researchModel = isVercel ? 'perplexity/sonar-pro' : 'google/gemini-2.5-flash:online'
+    const res = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -293,17 +298,24 @@ VIDEO_PROMPT:
         'X-Title': 'FrankX InfoGenius v5.2',
       },
       body: JSON.stringify({
-        model: 'google/gemini-2.5-flash:online',
+        model: researchModel,
         messages: [{ role: 'user', content: researchPrompt }],
       }),
     })
     if (!res.ok) {
       const errText = await res.text()
-      throw new Error(`OpenRouter research error (${res.status}): ${errText.slice(0, 300)}`)
+      throw new Error(
+        `${isVercel ? 'Vercel AI Gateway' : 'OpenRouter'} research error (${res.status}): ${errText.slice(0, 300)}`
+      )
     }
     const data = await res.json()
     const msg = data.choices?.[0]?.message
     text = typeof msg?.content === 'string' ? msg.content : ''
+    for (const c of data.citations || []) {
+      if (typeof c === 'string') {
+        searchResults.push({ title: c, url: c })
+      }
+    }
     for (const ann of msg?.annotations || []) {
       if (ann?.url_citation?.url) {
         searchResults.push({
@@ -404,10 +416,12 @@ export async function POST(req: NextRequest) {
 
     const audienceObj = AUDIENCES_V5[audience] || AUDIENCES_V5.college
     const userKey = req.headers.get('X-User-API-Key')?.trim() || ''
-    const provider: 'google' | 'openrouter' =
-      requestedProvider === 'openrouter' || userKey.startsWith('sk-or-')
-        ? 'openrouter'
-        : 'google'
+    const provider: 'google' | 'openrouter' | 'vercel' =
+      requestedProvider === 'vercel' || userKey.startsWith('vck_')
+        ? 'vercel'
+        : requestedProvider === 'openrouter' || userKey.startsWith('sk-or-')
+          ? 'openrouter'
+          : 'google'
 
     // Action 0: Decompose Article / Markdown into a 5-Slide Visual Carousel & Diagram Pack
     if (action === 'decompose-article') {
@@ -537,8 +551,12 @@ ARTICLE TEXT:
 ${rawArticle.slice(0, 6000)}`
 
           let rawJsonText = ''
-          if (provider === 'openrouter') {
-            const r = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+          if (provider === 'openrouter' || provider === 'vercel') {
+            const endpoint =
+              provider === 'vercel'
+                ? 'https://ai-gateway.vercel.sh/v1/chat/completions'
+                : 'https://openrouter.ai/api/v1/chat/completions'
+            const r = await fetch(endpoint, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -789,9 +807,13 @@ ${rawArticle.slice(0, 6000)}`
     let imageDataUrl: string | null = null
     let usedImageModel = ''
 
-    if (provider === 'openrouter') {
+    if (provider === 'openrouter' || provider === 'vercel') {
+      const isVercel = provider === 'vercel'
       usedImageModel = 'google/gemini-2.5-flash-image-preview'
-      const imgRes = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      const endpoint = isVercel
+        ? 'https://ai-gateway.vercel.sh/v1/chat/completions'
+        : 'https://openrouter.ai/api/v1/chat/completions'
+      const imgRes = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -808,7 +830,9 @@ ${rawArticle.slice(0, 6000)}`
       })
       if (!imgRes.ok) {
         const errText = await imgRes.text()
-        throw new Error(`OpenRouter image error (${imgRes.status}): ${errText.slice(0, 300)}`)
+        throw new Error(
+          `${isVercel ? 'Vercel AI Gateway' : 'OpenRouter'} image error (${imgRes.status}): ${errText.slice(0, 300)}`
+        )
       }
       const imgData = await imgRes.json()
       const msg = imgData.choices?.[0]?.message

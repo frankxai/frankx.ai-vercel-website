@@ -56,17 +56,22 @@ test('composeInfographicPrompt passes the 80/20 design-thinking gate', () => {
   assert.match(prompt, /TITLE: Render "SOVEREIGN SWARM"/)
 })
 
-test('resolveProviderCredentials auto-detects OpenRouter vs Google explicit keys', () => {
+test('resolveProviderCredentials auto-detects Vercel AI Gateway, OpenRouter, and Google explicit keys', () => {
+  const vCred = resolveProviderCredentials({ explicitKey: 'vck_test_vercel_gateway_token' })
+  assert.equal(vCred.provider, 'vercel')
+
   const orCred = resolveProviderCredentials({ explicitKey: 'sk-or-v1-test-token' })
   assert.equal(orCred.provider, 'openrouter')
 
   const gCred = resolveProviderCredentials({ explicitKey: 'test-google-token' })
   assert.equal(gCred.provider, 'google')
   assert.ok(MODELS.openrouterResearch.includes(':online'))
+  assert.equal(MODELS.vercelGatewayResearch, 'perplexity/sonar-pro')
 })
 
 test('Platform route /api/byok/infogenius and InfoGeniusStudioWorkbench exist and contain no hardcoded keys', () => {
   const routePath = path.join(repoRoot, 'app', 'api', 'byok', 'infogenius', 'route.ts')
+  const polarRoutePath = path.join(repoRoot, 'app', 'api', 'checkout', 'polar', 'route.ts')
   const workbenchPath = path.join(
     repoRoot,
     'components',
@@ -74,18 +79,22 @@ test('Platform route /api/byok/infogenius and InfoGeniusStudioWorkbench exist an
     'InfoGeniusStudioWorkbench.tsx'
   )
   assert.ok(existsSync(routePath))
+  assert.ok(existsSync(polarRoutePath))
   assert.ok(existsSync(workbenchPath))
 
   const routeSource = readFileSync(routePath, 'utf8')
+  const polarSource = readFileSync(polarRoutePath, 'utf8')
   const workbenchSource = readFileSync(workbenchPath, 'utf8')
 
   assert.doesNotMatch(routeSource, /AIza[0-9A-Za-z_-]{20,}/)
   assert.doesNotMatch(workbenchSource, /AIza[0-9A-Za-z_-]{20,}/)
   assert.match(routeSource, /google\/gemini-2\.5-flash:online/)
+  assert.match(routeSource, /ai-gateway\.vercel\.sh/)
   assert.match(routeSource, /gemini-2\.5-flash-preview-tts/)
   assert.match(routeSource, /decompose-article/)
   assert.match(workbenchSource, /Article \/ Markdown → 5-Slide Pack/)
   assert.match(workbenchSource, /Custom Brand Style Builder/)
+  assert.match(polarSource, /POLAR_PRODUCT_INFOGENIUS_PRO/)
 })
 
 test('InfoGenius Pro Pack SKU is staged in products.json and waitlist-intents.ts', () => {

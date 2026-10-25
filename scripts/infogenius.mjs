@@ -29,6 +29,7 @@ import {
   AUDIENCES_V5,
   loadApiKey,
   loadOpenRouterKey,
+  loadVercelGatewayKey,
   resolveProviderCredentials,
   researchTopicForPrompt,
   composeInfographicPrompt,
@@ -125,7 +126,7 @@ Options:
   --aspect <ratio>         16:9 | 1:1 | 9:16 [default: 16:9]
   --size <res>             1K | 2K | 4K [default: 2K]
   --model, -m <model>      nbpro (Nano Banana Pro) | nb2 (Nano Banana 2) [default: nbpro]
-  --provider, -p <prov>    auto | google | openrouter [default: auto]
+  --provider, -p <prov>    auto | google | vercel | openrouter [default: auto]
   --label, -l <title>      Optional prominent header title on the infographic
   --fact "<fact>"          Provide explicit fact (repeatable; merges with or replaces research)
   --animate                Also generate a 7s 720p motion video via Veo 3.1 (.mp4)
@@ -300,11 +301,14 @@ async function main() {
 
   if (args.syncInfisical) {
     const gCred = loadApiKey({ allowInfisical: true });
+    const vCred = loadVercelGatewayKey({ allowInfisical: true });
     const oCred = loadOpenRouterKey({ allowInfisical: true });
     const envTarget = resolve('C:/Users/frank/.starlight/.env');
     const lines = ['# Starlight Estate Shared Environment (Synced via --sync-infisical)'];
     if (gCred.key) lines.push(`GEMINI_API_KEY=${gCred.key}`);
     else lines.push('GEMINI_API_KEY=<paste-fresh-aistudio-key-here>');
+    if (vCred.key) lines.push(`AI_GATEWAY_API_KEY=${vCred.key}`);
+    else lines.push('AI_GATEWAY_API_KEY=<paste-vercel-ai-gateway-vck-key-here>');
     if (oCred.key) lines.push(`OPENROUTER_API_KEY=${oCred.key}`);
     else lines.push('OPENROUTER_API_KEY=<paste-openrouter-key-here>');
     writeFileSync(envTarget, lines.join('\n') + '\n');
@@ -314,6 +318,8 @@ async function main() {
           synced: envTarget,
           geminiFound: Boolean(gCred.key),
           geminiSource: gCred.source,
+          vercelGatewayFound: Boolean(vCred.key),
+          vercelGatewaySource: vCred.source,
           openrouterFound: Boolean(oCred.key),
           openrouterSource: oCred.source,
         },

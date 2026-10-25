@@ -35,6 +35,10 @@ const CATALOG: Record<string, { name: string; status: string }> = {
     name: 'The Book of Light — Deluxe Master Edition (with Lossless Ambient Stems)',
     status: 'pre-stage (not for sale)',
   },
+  'infogenius-pro': {
+    name: 'InfoGenius — Visual Knowledge OS (MCP Server + CLI + 18 Brand Presets)',
+    status: 'pre-stage (not for sale)',
+  },
 };
 
 // Explicit map rather than a derived string: an unmapped or misspelled id
@@ -44,6 +48,7 @@ const PRODUCT_ID_ENV_KEYS: Record<string, string> = {
   'prompt-matrix-pro-bundle': 'POLAR_PRODUCT_PROMPT_MATRIX_BUNDLE',
   'book-of-light-digital': 'POLAR_PRODUCT_BOOK_OF_LIGHT_DIGITAL',
   'book-of-light-deluxe': 'POLAR_PRODUCT_BOOK_OF_LIGHT_DELUXE',
+  'infogenius-pro': 'POLAR_PRODUCT_INFOGENIUS_PRO',
 };
 
 const EMAIL_SHAPE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

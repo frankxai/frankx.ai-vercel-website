@@ -461,11 +461,13 @@ export default function InfoGeniusStudioWorkbench() {
     URL.revokeObjectURL(url)
   }
 
-  const detectedProvider = apiKey.trim().startsWith('sk-or-')
-    ? 'OpenRouter (:online + Nano Banana)'
-    : apiKey.trim()
-      ? 'Google Gemini Direct (Search + 4K + TTS)'
-      : 'Zero-Key Prompt Architect (Free)'
+  const detectedProvider = apiKey.trim().startsWith('vck_')
+    ? 'Vercel AI Gateway (Sonar Pro + Nano Banana)'
+    : apiKey.trim().startsWith('sk-or-')
+      ? 'OpenRouter (:online + Nano Banana)'
+      : apiKey.trim()
+        ? 'Google Gemini Direct (Search + 4K + TTS)'
+        : 'Zero-Key Prompt Architect (Free)'
 
   return (
     <div id="studio" className="rounded-3xl border border-white/10 bg-[#0d111a]/90 backdrop-blur-xl p-6 md:p-10 shadow-2xl">
@@ -555,7 +557,7 @@ export default function InfoGeniusStudioWorkbench() {
                 Client-Side BYOK Vault (Stored only in your browser)
               </div>
               <p className="text-xs text-white/60">
-                Paste a <strong>Google AI Studio Key</strong> (supports Google Search grounding, 4K Nano Banana Pro, and Kore TTS) or an <strong>OpenRouter Key</strong> (<code>sk-or-v1-...</code>, auto-routes to <code>gemini-2.5-flash:online</code> + image gen).
+                Paste a <strong>Google AI Studio Key</strong> (Search grounding + 4K Nano Banana Pro + Kore TTS), a <strong>Vercel AI Gateway Key</strong> (<code>vck_...</code>, zero-markup unified Vercel billing), or an <strong>OpenRouter Key</strong> (<code>sk-or-v1-...</code>).
               </p>
             </div>
             <a
@@ -572,7 +574,7 @@ export default function InfoGeniusStudioWorkbench() {
               type="password"
               value={apiKey}
               onChange={(e) => handleSaveKey(e.target.value)}
-              placeholder="Paste GEMINI_API_KEY or OPENROUTER_API_KEY (sk-or-v1-...)"
+              placeholder="Paste GEMINI_API_KEY, AI_GATEWAY_API_KEY (vck_...), or OPENROUTER_API_KEY (sk-or-...)"
               className="flex-1 rounded-xl border border-white/15 bg-black/50 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:border-teal-400 focus:outline-none font-mono"
             />
             {apiKey && (

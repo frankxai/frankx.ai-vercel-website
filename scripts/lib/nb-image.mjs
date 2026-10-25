@@ -32,6 +32,9 @@ export const MODELS = {
   tts:      'gemini-2.5-flash-preview-tts',       // Gemini TTS narration
   openrouterResearch: 'google/gemini-2.5-flash:online', // OpenRouter web-grounded research
   openrouterImage: 'google/gemini-2.5-flash-image-preview', // OpenRouter Nano Banana image gen
+  vercelGatewayResearch: 'perplexity/sonar-pro', // Vercel AI Gateway grounded web research
+  vercelGatewayFallbackResearch: 'google/gemini-2.5-flash', // Vercel AI Gateway Gemini research
+  vercelGatewayImage: 'google/gemini-2.5-flash-image-preview', // Vercel AI Gateway Gemini image gen
 };
 
 // Fallback chain: try nb2 → nbpro → nb1 if a model rejects the call.
@@ -109,6 +112,7 @@ export const AUDIENCES_V5 = {
 
 const ENV_KEY_NAMES = ['GEMINI_API_KEY', 'GOOGLE_GENERATIVE_AI_API_KEY', 'GOOGLE_API_KEY'];
 const OPENROUTER_KEY_NAMES = ['OPENROUTER_API_KEY'];
+const VERCEL_GATEWAY_KEY_NAMES = ['AI_GATEWAY_API_KEY', 'VERCEL_AI_GATEWAY_KEY', 'VERCEL_OIDC_TOKEN'];
 const INFISICAL_PROJECT_ID = process.env.STARLIGHT_INFISICAL_PROJECT_ID || '6e39a7d9-be07-4f58-babb-0cf650321feb';
 const INFISICAL_ENV = process.env.STARLIGHT_INFISICAL_ENV || 'dev';
 
@@ -225,14 +229,39 @@ export function loadOpenRouterKey({ allowInfisical = true } = {}) {
   return { key: null, source: null, provider: null };
 }
 
+export function loadVercelGatewayKey({ allowInfisical = true } = {}) {
+  for (const name of VERCEL_GATEWAY_KEY_NAMES) {
+    const v = process.env[name]?.trim();
+    if (v && !v.startsWith('<') && !v.startsWith('your-')) {
+      return { key: v, source: `process.env.${name}`, provider: 'vercel' };
+    }
+  }
+  for (const f of ENV_FILE_CANDIDATES) {
+    const k = readEnvValue(f, VERCEL_GATEWAY_KEY_NAMES);
+    if (k) return { key: k, source: f, provider: 'vercel' };
+  }
+  if (allowInfisical) {
+    for (const name of ['AI_GATEWAY_API_KEY', 'VERCEL_AI_GATEWAY_KEY']) {
+      const ik = readInfisicalSecret(name);
+      if (ik) return { key: ik, source: `infisical:${INFISICAL_ENV}/${name}`, provider: 'vercel' };
+    }
+  }
+  return { key: null, source: null, provider: null };
+}
+
 export function resolveProviderCredentials({ preferredProvider = 'auto', explicitKey } = {}) {
   if (explicitKey) {
     const isOr = explicitKey.startsWith('sk-or-');
+    const isVercel = explicitKey.startsWith('vck_') || preferredProvider === 'vercel';
     return {
-      provider: isOr ? 'openrouter' : 'google',
+      provider: isVercel ? 'vercel' : isOr ? 'openrouter' : 'google',
       key: explicitKey,
       source: 'explicit',
     };
+  }
+  if (preferredProvider === 'vercel') {
+    const vCred = loadVercelGatewayKey();
+    if (vCred.key) return vCred;
   }
   if (preferredProvider === 'openrouter') {
     const orCred = loadOpenRouterKey();
@@ -240,6 +269,9 @@ export function resolveProviderCredentials({ preferredProvider = 'auto', explici
   }
   const googleCred = loadApiKey();
   if (googleCred.key) return googleCred;
+
+  const vCred = loadVercelGatewayKey();
+  if (vCred.key) return vCred;
 
   const orCred = loadOpenRouterKey();
   if (orCred.key) return orCred;
@@ -393,10 +425,22 @@ VIDEO_PROMPT:
   const searchResults = [];
   let usedModel = '';
 
-  if (cred.provider === 'openrouter') {
-    usedModel = model || process.env.INFOGENIUS_OPENROUTER_RESEARCH_MODEL || MODELS.openrouterResearch;
-    if (verbose) console.error(`→ [RESEARCH/OpenRouter] Grounding "${topic}" via ${usedModel} (key: ${cred.source})...`);
-    const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+  if (cred.provider === 'openrouter' || cred.provider === 'vercel') {
+    const isVercel = cred.provider === 'vercel';
+    usedModel =
+      model ||
+      (isVercel
+        ? process.env.INFOGENIUS_VERCEL_RESEARCH_MODEL || MODELS.vercelGatewayResearch
+        : process.env.INFOGENIUS_OPENROUTER_RESEARCH_MODEL || MODELS.openrouterResearch);
+    const endpoint = isVercel
+      ? 'https://ai-gateway.vercel.sh/v1/chat/completions'
+      : 'https://openrouter.ai/api/v1/chat/completions';
+    if (verbose) {
+      console.error(
+        `→ [RESEARCH/${isVercel ? 'Vercel-AI-Gateway' : 'OpenRouter'}] Grounding "${topic}" via ${usedModel} (key: ${cred.source})...`
+      );
+    }
+    const res = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -411,11 +455,16 @@ VIDEO_PROMPT:
     });
     const rawText = await res.text();
     if (!res.ok) {
-      throw new Error(`researchTopicForPrompt (OpenRouter) failed (${res.status}): ${rawText.slice(0, 500)}`);
+      throw new Error(`researchTopicForPrompt (${cred.provider}) failed (${res.status}): ${rawText.slice(0, 500)}`);
     }
     const data = JSON.parse(rawText);
     const msg = data.choices?.[0]?.message;
     text = typeof msg?.content === 'string' ? msg.content : '';
+    for (const c of data.citations || []) {
+      if (typeof c === 'string') {
+        searchResults.push({ title: c, url: c });
+      }
+    }
     for (const ann of msg?.annotations || []) {
       const citation = ann?.url_citation;
       if (citation?.url) {
@@ -533,8 +582,8 @@ async function callGemini({ apiKey, model, prompt, aspectRatio, imageSize }) {
   }
 }
 
-async function callOpenRouterImage({ apiKey, model, prompt, aspectRatio }) {
-  const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+async function callOpenRouterImage({ apiKey, model, prompt, aspectRatio, endpoint = 'https://openrouter.ai/api/v1/chat/completions' }) {
+  const res = await fetch(endpoint, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -603,12 +652,20 @@ export async function generateImage(opts) {
   let inline = null;
   let chosenModel = null;
 
-  if (cred.provider === 'openrouter') {
-    const orModel = model.includes('/') ? model : MODELS.openrouterImage;
-    if (verbose) console.error(`→ [OpenRouter] trying: ${orModel}`);
-    const r = await callOpenRouterImage({ apiKey: cred.key, model: orModel, prompt, aspectRatio });
+  if (cred.provider === 'openrouter' || cred.provider === 'vercel') {
+    const isVercel = cred.provider === 'vercel';
+    const orModel = model.includes('/')
+      ? model
+      : isVercel
+      ? MODELS.vercelGatewayImage
+      : MODELS.openrouterImage;
+    const endpoint = isVercel
+      ? 'https://ai-gateway.vercel.sh/v1/chat/completions'
+      : 'https://openrouter.ai/api/v1/chat/completions';
+    if (verbose) console.error(`→ [${isVercel ? 'Vercel-AI-Gateway' : 'OpenRouter'}] trying: ${orModel}`);
+    const r = await callOpenRouterImage({ apiKey: cred.key, model: orModel, prompt, aspectRatio, endpoint });
     if (!r.ok) {
-      throw new Error(`generateImage (OpenRouter) failed (${r.status}): ${r.error}`);
+      throw new Error(`generateImage (${cred.provider}) failed (${r.status}): ${r.error}`);
     }
     const msg = r.data?.choices?.[0]?.message;
     const dataUrl =
