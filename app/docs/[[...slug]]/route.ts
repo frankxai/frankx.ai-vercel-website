@@ -1,4 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import {
+  DOCS_ORIGIN,
+  buildDocsUpstreamUrl,
+  markdownNegotiatedDocsUrl,
+  nextAllowedDocsUrl,
+} from "@/lib/docs-proxy";
 
 // Docs proxy — serves the frankx docs under frankx.ai/docs.
 //
@@ -11,7 +17,8 @@ import { NextRequest, NextResponse } from "next/server";
 // /llms-index/frankx, llms-full.txt -> /llms-full.mdx/frankx, .md suffix and
 // Accept: text/markdown negotiation -> /llms.mdx/.../content.md, and the
 // platform's own brand-prefixed paths (/docs/frankx/...) pass through without
-// being prefixed twice.
+// being prefixed twice. Dot segments and any resolved URL outside the frankx
+// prefix are rejected in lib/docs-proxy.ts before the fetch.
 //
 // Rewrites cover three root-relative reference classes found in the upstream
 // HTML and flight payloads:
@@ -41,8 +48,6 @@ import { NextRequest, NextResponse } from "next/server";
 // Note: the docs-platform has no in-page search UI — search is API-only — so
 // only the docs API surface is exposed here.
 
-const DOCS_ORIGIN = "https://docs-platform-nine.vercel.app";
-
 const UPSTREAM_REQUEST_HEADERS = [
   "accept",
   "rsc",
@@ -55,66 +60,7 @@ const UPSTREAM_TIMEOUT_MS = 20_000;
 
 type RouteContext = { params: Promise<{ slug?: string[] }> };
 
-function encodeSegments(segments: string[]): string {
-  return segments.map(encodeURIComponent).join("/");
-}
-
-function pageSlug(slug: string[] | undefined): string[] {
-  // accept the platform's own brand-prefixed form (/docs/frankx/intro)
-  // instead of double-prefixing it
-  if (slug && slug.length > 0 && slug[0] === "frankx") return slug.slice(1);
-  return slug ?? [];
-}
-
-function buildUpstreamUrl(slug: string[] | undefined, request: NextRequest): URL {
-  let path: string;
-  if (!slug || slug.length === 0) {
-    path = "/frankx/intro";
-  } else if (slug[0] === "api" && slug[1] === "search") {
-    // search API: brand rides as an explicit query param below; extra
-    // segments are ignored, the query carries the request
-    path = "/api/search";
-  } else if (
-    slug.length >= 2 &&
-    (slug[0] === "llms.mdx" || slug[0] === "llms-full.mdx" || slug[0] === "og")
-  ) {
-    // Platform-owned feed/og paths pass through with the brand segment
-    // FORCED to frankx — frankx.ai serves exactly one brand, matching the
-    // search and bare-feed branches. A foreign brand in the URL
-    // (/docs/llms.mdx/akamoto/..., /docs/og/gencreator/...) must never
-    // publish another brand's content or metadata under frankx.ai.
-    path = `/${slug[0]}/frankx${slug.length > 2 ? `/${encodeSegments(slug.slice(2))}` : ""}`;
-  } else if (slug.length === 2 && slug[0] === "llms-index") {
-    path = "/llms-index/frankx";
-  } else if (slug.length === 1 && slug[0] === "llms.txt") {
-    // bare feeds resolve to the frankx-scoped feeds, like on every brand host
-    path = "/llms-index/frankx";
-  } else if (slug.length === 1 && slug[0] === "llms-full.txt") {
-    path = "/llms-full.mdx/frankx";
-  } else {
-    const body = pageSlug(slug);
-    if (body.length === 0) {
-      path = "/frankx/intro";
-    } else if (body[body.length - 1].endsWith(".md")) {
-      // .md suffix negotiation: the platform exposes page markdown only under
-      // /llms.mdx/<brand>/.../content.md (its own suffix handling runs on
-      // brand hosts, not on the deployment origin this proxy fetches).
-      const page = body.map((s) => s.replace(/\.md$/, "")).join("/");
-      path = `/llms.mdx/frankx/${page}/content.md`;
-    } else {
-      path = `/frankx/${encodeSegments(body)}`;
-    }
-  }
-
-  const upstream = new URL(path, DOCS_ORIGIN);
-  request.nextUrl.searchParams.forEach((value, key) => {
-    upstream.searchParams.set(key, value);
-  });
-  if (slug?.[0] === "api" && slug[1] === "search") {
-    upstream.searchParams.set("brand", "frankx");
-  }
-  return upstream;
-}
+const UPSTREAM_REDIRECT_HOPS = 3;
 
 function buildUpstreamHeaders(request: NextRequest): Headers {
   const headers = new Headers();
@@ -202,26 +148,20 @@ async function handle(request: NextRequest, context: RouteContext): Promise<Resp
   const slug = params.slug;
   let upstreamUrl: URL;
   try {
-    upstreamUrl = buildUpstreamUrl(slug, request);
+    upstreamUrl = buildDocsUpstreamUrl(slug, request.nextUrl.searchParams);
+    const mdSuffix = slug?.[slug.length - 1]?.endsWith(".md") ?? false;
+    // .md-suffixed requests are already markdown and map through
+    // buildDocsUpstreamUrl's own suffix branch; negotiation duplicates that and
+    // would double-suffix the path.
+    if (isDocumentRoute(slug) && !mdSuffix && isMarkdownPreferred(request)) {
+      upstreamUrl = markdownNegotiatedDocsUrl(slug);
+    }
   } catch (error) {
     console.error("[docs-proxy] failed to build upstream URL", slug, error);
     return new NextResponse("Bad request.", {
       status: 400,
       headers: { "content-type": "text/plain; charset=utf-8" },
     });
-  }
-
-  const mdSuffix = slug?.[slug.length - 1]?.endsWith(".md") ?? false;
-  // .md-suffixed requests are already markdown and map through
-  // buildUpstreamUrl's own suffix branch; negotiation duplicates that and
-  // would double-suffix the path.
-  if (isDocumentRoute(slug) && !mdSuffix && isMarkdownPreferred(request)) {
-    let body = pageSlug(slug);
-    if (body.length === 0) body = ["intro"];
-    upstreamUrl = new URL(
-      `/llms.mdx/frankx/${encodeSegments(body)}/content.md`,
-      DOCS_ORIGIN,
-    );
   }
 
   try {
@@ -236,16 +176,31 @@ async function handle(request: NextRequest, context: RouteContext): Promise<Resp
       () => upstreamController.abort(),
       UPSTREAM_TIMEOUT_MS,
     );
-    let upstream: Response;
+    let upstream: Response | undefined;
     try {
-      upstream = await fetch(upstreamUrl, {
-        headers: buildUpstreamHeaders(request),
-        redirect: "follow",
-        cache: "no-store",
-        signal: upstreamController.signal,
-      });
+      const headers = buildUpstreamHeaders(request);
+      // Follow same-origin redirects by hand. redirect:"follow" would accept
+      // a 308/302 onto another brand or host after the prefix check passed.
+      for (let hop = 0; hop < UPSTREAM_REDIRECT_HOPS; hop++) {
+        upstream = await fetch(upstreamUrl, {
+          headers,
+          redirect: "manual",
+          cache: "no-store",
+          signal: upstreamController.signal,
+        });
+        if (upstream.status < 300 || upstream.status >= 400) break;
+        const location = upstream.headers.get("location");
+        await upstream.body?.cancel();
+        if (!location || hop === UPSTREAM_REDIRECT_HOPS - 1) {
+          throw new Error("upstream redirect was not a frankx docs path");
+        }
+        upstreamUrl = nextAllowedDocsUrl(upstreamUrl, location);
+      }
     } finally {
       clearTimeout(timeoutTimer);
+    }
+    if (!upstream) {
+      throw new Error("upstream fetch did not start");
     }
 
     const contentType = upstream.headers.get("content-type") ?? "";
