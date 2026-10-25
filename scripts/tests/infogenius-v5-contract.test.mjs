@@ -66,12 +66,14 @@ test('resolveProviderCredentials auto-detects Vercel AI Gateway, OpenRouter, and
   const gCred = resolveProviderCredentials({ explicitKey: 'test-google-token' })
   assert.equal(gCred.provider, 'google')
   assert.ok(MODELS.openrouterResearch.includes(':online'))
-  assert.equal(MODELS.vercelGatewayResearch, 'perplexity/sonar-pro')
+  assert.equal(MODELS.vercelGatewayResearch, 'perplexity/sonar')
 })
 
-test('Platform route /api/byok/infogenius and InfoGeniusStudioWorkbench exist and contain no hardcoded keys', () => {
+test('Platform route /api/byok/infogenius, Multi-Tenant Credit Engine, Polar Webhook, and InfoGeniusStudioWorkbench exist and contain no hardcoded keys', () => {
   const routePath = path.join(repoRoot, 'app', 'api', 'byok', 'infogenius', 'route.ts')
   const polarRoutePath = path.join(repoRoot, 'app', 'api', 'checkout', 'polar', 'route.ts')
+  const polarWebhookPath = path.join(repoRoot, 'app', 'api', 'webhooks', 'polar', 'route.ts')
+  const tenantCreditsPath = path.join(repoRoot, 'lib', 'infogenius', 'tenant-credits.ts')
   const workbenchPath = path.join(
     repoRoot,
     'components',
@@ -80,10 +82,14 @@ test('Platform route /api/byok/infogenius and InfoGeniusStudioWorkbench exist an
   )
   assert.ok(existsSync(routePath))
   assert.ok(existsSync(polarRoutePath))
+  assert.ok(existsSync(polarWebhookPath))
+  assert.ok(existsSync(tenantCreditsPath))
   assert.ok(existsSync(workbenchPath))
 
   const routeSource = readFileSync(routePath, 'utf8')
   const polarSource = readFileSync(polarRoutePath, 'utf8')
+  const webhookSource = readFileSync(polarWebhookPath, 'utf8')
+  const creditsSource = readFileSync(tenantCreditsPath, 'utf8')
   const workbenchSource = readFileSync(workbenchPath, 'utf8')
 
   assert.doesNotMatch(routeSource, /AIza[0-9A-Za-z_-]{20,}/)
@@ -92,9 +98,57 @@ test('Platform route /api/byok/infogenius and InfoGeniusStudioWorkbench exist an
   assert.match(routeSource, /ai-gateway\.vercel\.sh/)
   assert.match(routeSource, /gemini-2\.5-flash-preview-tts/)
   assert.match(routeSource, /decompose-article/)
+  assert.match(routeSource, /consumeTenantCredits/)
+  assert.match(creditsSource, /UPSTASH_REDIS_REST_URL/)
+  assert.match(creditsSource, /infogenius-credits-100/)
+  assert.match(creditsSource, /infogenius-team-1000/)
+  assert.match(webhookSource, /POLAR_WEBHOOK_SECRET/)
+  assert.match(webhookSource, /creditTenantWallet/)
   assert.match(workbenchSource, /Article \/ Markdown → 5-Slide Pack/)
   assert.match(workbenchSource, /Custom Brand Style Builder/)
+  assert.match(workbenchSource, /Multi-Tenant Workspace Credit Wallet/)
   assert.match(polarSource, /POLAR_PRODUCT_INFOGENIUS_PRO/)
+  assert.match(polarSource, /POLAR_PRODUCT_INFOGENIUS_CREDITS_100/)
+  assert.match(polarSource, /POLAR_PRODUCT_INFOGENIUS_TEAM_1000/)
+})
+
+test('Portable plugin package and live Vercel AI Gateway 2K infographic + provenance sidecar exist', () => {
+  const pluginJsonPath = path.join(
+    repoRoot,
+    'plugins',
+    'infogenius-visual-os',
+    '.claude-plugin',
+    'plugin.json'
+  )
+  const mcpJsonPath = path.join(repoRoot, 'plugins', 'infogenius-visual-os', '.mcp.json')
+  const skillMdPath = path.join(
+    repoRoot,
+    'plugins',
+    'infogenius-visual-os',
+    'skills',
+    'infogenius-v5',
+    'SKILL.md'
+  )
+  assert.ok(existsSync(pluginJsonPath))
+  assert.ok(existsSync(mcpJsonPath))
+  assert.ok(existsSync(skillMdPath))
+
+  const livePngPath = path.join(
+    repoRoot,
+    'public',
+    'images',
+    'blog',
+    'generated',
+    'infogenius-glassmorphic-sovereign-multi-tenant-ai-gateway.png'
+  )
+  const liveProvenancePath = `${livePngPath}.vis.provenance.json`
+  assert.ok(existsSync(livePngPath))
+  assert.ok(existsSync(liveProvenancePath))
+
+  const prov = JSON.parse(readFileSync(liveProvenancePath, 'utf8'))
+  assert.equal(prov.research.model, 'perplexity/sonar')
+  assert.equal(prov.image.model, 'google/gemini-3-pro-image')
+  assert.equal(prov.style, 'community/glassmorphic')
 })
 
 test('InfoGenius Pro Pack SKU is staged in products.json and waitlist-intents.ts', () => {

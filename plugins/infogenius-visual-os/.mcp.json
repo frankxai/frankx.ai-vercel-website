@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "infogenius-visual-os": {
+      "command": "node",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/../../scripts/infogenius.mjs",
+        "--mcp"
+      ],
+      "env": {
+        "AI_GATEWAY_API_KEY": "${AI_GATEWAY_API_KEY}",
+        "VERCEL_OIDC_TOKEN": "${VERCEL_OIDC_TOKEN}",
+        "GEMINI_API_KEY": "${GEMINI_API_KEY}",
+        "OPENROUTER_API_KEY": "${OPENROUTER_API_KEY}"
+      }
+    }
+  }
+}

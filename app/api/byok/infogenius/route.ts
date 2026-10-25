@@ -1,6 +1,85 @@
+import { existsSync, readFileSync } from 'node:fs'
 import { NextRequest } from 'next/server'
+import {
+  CREDIT_COSTS,
+  CREDIT_PACK_CATALOG,
+  appendTenantGalleryItem,
+  consumeTenantCredits,
+  getTenantWallet,
+  sanitizeTenantId,
+  saveTenantBrandPreset,
+} from '@/lib/infogenius/tenant-credits'
 
 export const maxDuration = 120
+
+function isExpiredJwt(val: string): boolean {
+  if (!val || !val.startsWith('eyJ')) return false
+  const parts = val.split('.')
+  if (parts.length !== 3) return false
+  try {
+    const payload = JSON.parse(Buffer.from(parts[1], 'base64url').toString('utf8'))
+    if (typeof payload.exp === 'number' && payload.exp * 1000 < Date.now() + 60_000) {
+      return true
+    }
+  } catch {
+    return false
+  }
+  return false
+}
+
+function resolveManagedServerCredential(): {
+  key: string
+  provider: 'vercel' | 'google' | 'openrouter'
+} {
+  const gatewayKey =
+    process.env.AI_GATEWAY_API_KEY?.trim() ||
+    process.env.VERCEL_AI_GATEWAY_KEY?.trim() ||
+    process.env.VERCEL_OIDC_TOKEN?.trim()
+  if (gatewayKey && !isExpiredJwt(gatewayKey)) {
+    return { key: gatewayKey, provider: 'vercel' }
+  }
+  const geminiKey =
+    process.env.GEMINI_API_KEY?.trim() || process.env.GOOGLE_GENERATIVE_AI_API_KEY?.trim()
+  if (geminiKey && !geminiKey.startsWith('AQ.Ab8')) {
+    return { key: geminiKey, provider: 'google' }
+  }
+  const orKey = process.env.OPENROUTER_API_KEY?.trim()
+  if (orKey) {
+    return { key: orKey, provider: 'openrouter' }
+  }
+  try {
+    const localVercelEnv = 'C:/Users/frank/.starlight/.env.vercel'
+    if (existsSync(localVercelEnv)) {
+      const raw = readFileSync(localVercelEnv, 'utf8')
+      const m = raw.match(/^VERCEL_OIDC_TOKEN=(.+)$/m)
+      if (m) {
+        const token = m[1].trim().replace(/^["']|["']$/g, '')
+        if (token && !isExpiredJwt(token)) {
+          return { key: token, provider: 'vercel' }
+        }
+      }
+    }
+  } catch {
+    // ignore local file lookup in cloud
+  }
+  return { key: '', provider: 'vercel' }
+}
+
+export async function GET(req: NextRequest) {
+  const tenantId = sanitizeTenantId(
+    req.nextUrl.searchParams.get('tenantId') || req.headers.get('X-Tenant-Id')
+  )
+  const wallet = await getTenantWallet(tenantId)
+  const managed = resolveManagedServerCredential()
+  return Response.json({
+    success: true,
+    wallet,
+    creditCosts: CREDIT_COSTS,
+    creditPacks: CREDIT_PACK_CATALOG,
+    managedGatewayActive: Boolean(managed.key),
+    managedProvider: managed.provider,
+  })
+}
 
 interface StyleDefinition {
   key: string
@@ -288,7 +367,7 @@ VIDEO_PROMPT:
     const endpoint = isVercel
       ? 'https://ai-gateway.vercel.sh/v1/chat/completions'
       : 'https://openrouter.ai/api/v1/chat/completions'
-    const researchModel = isVercel ? 'perplexity/sonar-pro' : 'google/gemini-2.5-flash:online'
+    const researchModel = isVercel ? 'perplexity/sonar' : 'google/gemini-2.5-flash:online'
     const res = await fetch(endpoint, {
       method: 'POST',
       headers: {
@@ -398,8 +477,10 @@ export async function POST(req: NextRequest) {
       label = '',
       customFacts = [],
       provider: requestedProvider = 'auto',
+      tenantId: rawTenantId = '',
     } = body
 
+    const tenantId = sanitizeTenantId(rawTenantId || req.headers.get('X-Tenant-Id'))
     const baseStyleObj = STYLES_V5[style] || STYLES_V5.glassmorphic
     const styleObj: StyleDefinition = customStyleInstruction
       ? {
@@ -416,12 +497,31 @@ export async function POST(req: NextRequest) {
 
     const audienceObj = AUDIENCES_V5[audience] || AUDIENCES_V5.college
     const userKey = req.headers.get('X-User-API-Key')?.trim() || ''
-    const provider: 'google' | 'openrouter' | 'vercel' =
-      requestedProvider === 'vercel' || userKey.startsWith('vck_')
+    const managedCred = resolveManagedServerCredential()
+    const usingManagedCredits = !userKey && Boolean(managedCred.key)
+    const activeKey = userKey || managedCred.key
+    const provider: 'google' | 'openrouter' | 'vercel' = userKey
+      ? requestedProvider === 'vercel' || userKey.startsWith('vck_')
         ? 'vercel'
         : requestedProvider === 'openrouter' || userKey.startsWith('sk-or-')
           ? 'openrouter'
           : 'google'
+      : managedCred.provider
+
+    // Action: Save Custom Brand Style Preset to Multi-Tenant Vault
+    if (action === 'save-brand-preset') {
+      const updatedWallet = await saveTenantBrandPreset(tenantId, {
+        key: styleObj.key,
+        name: styleObj.name,
+        palette: styleObj.palette,
+        instruction: styleObj.instruction,
+        updatedAt: new Date().toISOString(),
+      })
+      return Response.json({
+        success: true,
+        wallet: updatedWallet,
+      })
+    }
 
     // Action 0: Decompose Article / Markdown into a 5-Slide Visual Carousel & Diagram Pack
     if (action === 'decompose-article') {
@@ -740,13 +840,13 @@ ${rawArticle.slice(0, 6000)}`
       grounded: false,
     }
 
-    if (userKey) {
+    if (userKey || (action === 'generate' && usingManagedCredits)) {
       const liveResearch = await runGroundedResearch({
         topic: cleanTopic,
         styleObj,
         audienceObj,
         aspectRatio,
-        apiKey: userKey,
+        apiKey: activeKey,
         provider,
       })
       research = {
@@ -776,6 +876,7 @@ ${rawArticle.slice(0, 6000)}`
 
     // If action === 'architect', return the research + precision prompt + CLI/MDX snippets immediately
     if (action === 'architect') {
+      const wallet = await getTenantWallet(tenantId)
       return Response.json({
         success: true,
         mode: userKey ? 'grounded-architect' : 'instant-architect',
@@ -790,18 +891,37 @@ ${rawArticle.slice(0, 6000)}`
         videoPrompt: research.videoPrompt,
         cliCommand,
         mdxSnippet,
+        wallet,
       })
     }
 
-    // Action === 'generate': requires userKey
-    if (!userKey) {
+    // Action === 'generate': requires either BYOK userKey OR Managed Credits
+    if (!activeKey) {
       return Response.json(
         {
           error:
-            'API key required to render 2K/4K pixels. Paste your Google Gemini or OpenRouter key, or use "Architect Prompt" mode for free.',
+            'API key or Managed Credit Wallet required to render 2K/4K pixels. Paste your Gemini / Vercel AI Gateway / OpenRouter key, or top up Workspace Credits.',
         },
         { status: 401 }
       )
+    }
+
+    const creditCost = imageSize === '4K' ? CREDIT_COSTS.infographic4K : CREDIT_COSTS.infographic2K
+    let activeWallet = await getTenantWallet(tenantId)
+
+    if (usingManagedCredits) {
+      const charge = await consumeTenantCredits(
+        tenantId,
+        creditCost,
+        `${imageSize} Infographic (${cleanTopic.slice(0, 32)})`
+      )
+      if (!charge.ok) {
+        return Response.json(
+          { error: charge.error, wallet: charge.wallet, refusal: 'insufficient_credits' },
+          { status: 402 }
+        )
+      }
+      activeWallet = charge.wallet
     }
 
     let imageDataUrl: string | null = null
@@ -809,7 +929,7 @@ ${rawArticle.slice(0, 6000)}`
 
     if (provider === 'openrouter' || provider === 'vercel') {
       const isVercel = provider === 'vercel'
-      usedImageModel = 'google/gemini-2.5-flash-image-preview'
+      usedImageModel = isVercel ? 'google/gemini-3-pro-image' : 'google/gemini-2.5-flash-image-preview'
       const endpoint = isVercel
         ? 'https://ai-gateway.vercel.sh/v1/chat/completions'
         : 'https://openrouter.ai/api/v1/chat/completions'
@@ -817,7 +937,7 @@ ${rawArticle.slice(0, 6000)}`
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${userKey}`,
+          Authorization: `Bearer ${activeKey}`,
           'HTTP-Referer': 'https://frankx.ai/infogenius',
           'X-Title': 'FrankX InfoGenius v5.2',
         },
@@ -850,7 +970,7 @@ ${rawArticle.slice(0, 6000)}`
       let lastErr = ''
       for (const m of modelsToTry) {
         const imgRes = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${userKey}`,
+          `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${activeKey}`,
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -886,10 +1006,26 @@ ${rawArticle.slice(0, 6000)}`
       }
     }
 
+    if (imageDataUrl) {
+      activeWallet = await appendTenantGalleryItem(tenantId, {
+        id: `ig_${Date.now()}`,
+        topic: cleanTopic,
+        style: styleObj.key,
+        aspectRatio,
+        imageSize,
+        imageUrl: publicSrc,
+        createdAt: new Date().toISOString(),
+        creditsSpent: usingManagedCredits ? creditCost : 0,
+      })
+    }
+
     const provenance = {
       schemaVersion: '5.2.0',
       generator: 'frankx-infogenius-web-studio',
       createdAt: new Date().toISOString(),
+      tenantId,
+      billingMode: usingManagedCredits ? 'managed-credits' : 'byok',
+      creditsSpent: usingManagedCredits ? creditCost : 0,
       topic: cleanTopic,
       style: styleObj.key,
       styleName: styleObj.name,
@@ -907,7 +1043,7 @@ ${rawArticle.slice(0, 6000)}`
 
     return Response.json({
       success: true,
-      mode: 'full-generation',
+      mode: usingManagedCredits ? 'managed-credit-generation' : 'byok-generation',
       provider,
       imageModel: usedImageModel,
       imageDataUrl,
@@ -922,6 +1058,7 @@ ${rawArticle.slice(0, 6000)}`
       cliCommand,
       mdxSnippet,
       provenance,
+      wallet: activeWallet,
     })
   } catch (error) {
     return Response.json(

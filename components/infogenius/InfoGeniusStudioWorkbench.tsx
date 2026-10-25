@@ -116,10 +116,40 @@ Modern multi-agent systems fail when every agent shares a single unverified cont
 - 100% of visual and code outputs emit verifiable receipts into the central scoreboard.`
 
 const STORAGE_KEY = 'frankx_infogenius_byok_key'
+const TENANT_STORAGE_KEY = 'frankx_infogenius_tenant_id_v1'
+
+interface TenantWalletSummary {
+  tenantId: string
+  creditsRemaining: number
+  totalCreditsPurchased: number
+  totalCreditsUsed: number
+  plan: string
+  brandPresetsCount?: number
+  galleryCount?: number
+  recentGallery?: Array<{
+    id: string
+    topic: string
+    style: string
+    aspectRatio: string
+    imageSize: string
+    createdAt: string
+  }>
+}
+
+interface CreditPackItem {
+  sku: string
+  name: string
+  credits: number
+  priceUsd: number
+  planUpgrade: string
+  badge: string
+  description: string
+}
 
 interface StudioResult {
   mode: string
   provider: string
+  billingMode?: string
   imageModel?: string
   imageDataUrl?: string | null
   topic: string
@@ -141,6 +171,12 @@ interface StudioResult {
   videoPrompt: string
   cliCommand: string
   mdxSnippet: string
+  wallet?: {
+    tenantId: string
+    creditsRemaining: number
+    creditsDeducted?: number
+    plan: string
+  }
   provenance?: Record<string, unknown>
 }
 
@@ -195,6 +231,11 @@ export default function InfoGeniusStudioWorkbench() {
 
   const [apiKey, setApiKey] = useState('')
   const [showKeyInput, setShowKeyInput] = useState(false)
+  const [tenantId, setTenantId] = useState('demo-public-workspace')
+  const [wallet, setWallet] = useState<TenantWalletSummary | null>(null)
+  const [managedGatewayActive, setManagedGatewayActive] = useState(false)
+  const [creditPackCatalog, setCreditPackCatalog] = useState<CreditPackItem[]>([])
+  const [showCreditsDrawer, setShowCreditsDrawer] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [loadingStage, setLoadingStage] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -205,13 +246,45 @@ export default function InfoGeniusStudioWorkbench() {
   const [isNarrating, setIsNarrating] = useState(false)
   const [copiedTab, setCopiedTab] = useState<string | null>(null)
 
+  const refreshWallet = async (targetTenantId: string) => {
+    try {
+      const res = await fetch(
+        `/api/byok/infogenius?tenantId=${encodeURIComponent(targetTenantId)}`,
+        { cache: 'no-store' }
+      )
+      if (!res.ok) return
+      const data = await res.json()
+      if (data.wallet) setWallet(data.wallet)
+      if (typeof data.managedGatewayActive === 'boolean') {
+        setManagedGatewayActive(data.managedGatewayActive)
+      }
+      if (Array.isArray(data.creditPackCatalog)) {
+        setCreditPackCatalog(data.creditPackCatalog)
+      }
+    } catch {
+      // ignore network error on initial load
+    }
+  }
+
   useEffect(() => {
+    let initialTenant = 'demo-public-workspace'
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY)
       if (saved) setApiKey(saved)
+      const savedTenant = window.localStorage.getItem(TENANT_STORAGE_KEY)
+      if (savedTenant) {
+        initialTenant = savedTenant
+        setTenantId(savedTenant)
+      } else {
+        const generated = `ws-${Math.random().toString(36).slice(2, 9)}`
+        window.localStorage.setItem(TENANT_STORAGE_KEY, generated)
+        initialTenant = generated
+        setTenantId(generated)
+      }
     } catch {
       // ignore storage errors
     }
+    void refreshWallet(initialTenant)
   }, [])
 
   const handleSaveKey = (val: string) => {
@@ -222,6 +295,17 @@ export default function InfoGeniusStudioWorkbench() {
     } catch {
       // ignore
     }
+  }
+
+  const handleTenantChange = (nextTenant: string) => {
+    const clean = nextTenant.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 64) || 'demo-public-workspace'
+    setTenantId(clean)
+    try {
+      window.localStorage.setItem(TENANT_STORAGE_KEY, clean)
+    } catch {
+      // ignore
+    }
+    void refreshWallet(clean)
   }
 
   const copyText = async (key: string, value: string) => {
@@ -242,6 +326,9 @@ export default function InfoGeniusStudioWorkbench() {
     `${brandTextHex} typography`,
   ]
 
+  const canRenderWithManagedCredits =
+    managedGatewayActive && (wallet?.creditsRemaining ?? 0) >= (imageSize === '4K' ? 8 : 5)
+
   const runAction = async (action: 'architect' | 'generate') => {
     if (!topic.trim() || isLoading) return
     setIsLoading(true)
@@ -250,13 +337,16 @@ export default function InfoGeniusStudioWorkbench() {
     setLoadingStage(
       action === 'generate'
         ? 'Grounding topic via live web search & rendering infographic...'
-        : apiKey.trim()
+        : apiKey.trim() || managedGatewayActive
           ? 'Grounding topic via live web search & synthesizing v5.2 prompt...'
           : 'Synthesizing InfoGenius v5.2 Master Visual Prompt & CLI bundle...'
     )
 
     try {
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' }
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+        'X-Tenant-Id': tenantId,
+      }
       if (apiKey.trim()) headers['X-User-API-Key'] = apiKey.trim()
 
       const res = await fetch('/api/byok/infogenius', {
@@ -264,6 +354,7 @@ export default function InfoGeniusStudioWorkbench() {
         headers,
         body: JSON.stringify({
           action,
+          tenantId,
           topic: topic.trim(),
           style: useCustomBrand ? brandKey : style,
           customStyleName: useCustomBrand ? brandName : undefined,
@@ -278,9 +369,32 @@ export default function InfoGeniusStudioWorkbench() {
 
       const data = await res.json()
       if (!res.ok) {
+        if (data.wallet) {
+          setWallet((prev) =>
+            prev ? { ...prev, creditsRemaining: data.wallet.creditsRemaining } : prev
+          )
+          setShowCreditsDrawer(true)
+        }
         throw new Error(data.error || 'Request failed')
       }
       setResult(data)
+      if (data.wallet) {
+        setWallet((prev) =>
+          prev
+            ? {
+                ...prev,
+                creditsRemaining: data.wallet.creditsRemaining,
+                plan: data.wallet.plan || prev.plan,
+              }
+            : {
+                tenantId: data.wallet.tenantId,
+                creditsRemaining: data.wallet.creditsRemaining,
+                totalCreditsPurchased: 15,
+                totalCreditsUsed: 0,
+                plan: data.wallet.plan || 'starter-trial',
+              }
+        )
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong')
     } finally {
@@ -294,13 +408,16 @@ export default function InfoGeniusStudioWorkbench() {
     setIsLoading(true)
     setError(null)
     setLoadingStage(
-      apiKey.trim()
-        ? 'Decomposing article into 5 architectural visuals via Gemini...'
+      apiKey.trim() || managedGatewayActive
+        ? 'Decomposing article into 5 architectural visuals via AI Gateway...'
         : 'Decomposing markdown into 5-part Visual Carousel & Diagram Pack...'
     )
 
     try {
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' }
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+        'X-Tenant-Id': tenantId,
+      }
       if (apiKey.trim()) headers['X-User-API-Key'] = apiKey.trim()
 
       const res = await fetch('/api/byok/infogenius', {
@@ -308,6 +425,7 @@ export default function InfoGeniusStudioWorkbench() {
         headers,
         body: JSON.stringify({
           action: 'decompose-article',
+          tenantId,
           articleText: articleText.trim(),
           style: useCustomBrand ? brandKey : style,
           customStyleName: useCustomBrand ? brandName : undefined,
@@ -332,9 +450,11 @@ export default function InfoGeniusStudioWorkbench() {
 
   const renderSingleSlide = async (slideIndex: number) => {
     if (!packResult) return
-    if (!apiKey.trim()) {
-      setShowKeyInput(true)
-      setError('Connect your Google Gemini or OpenRouter key in the BYOK drawer to render slide pixels.')
+    if (!apiKey.trim() && !canRenderWithManagedCredits) {
+      setShowCreditsDrawer(true)
+      setError(
+        'Top up Workspace Credits or connect a BYOK key (Gemini / Vercel AI Gateway / OpenRouter) to render slide pixels.'
+      )
       return
     }
 
@@ -345,14 +465,18 @@ export default function InfoGeniusStudioWorkbench() {
     setError(null)
 
     try {
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+        'X-Tenant-Id': tenantId,
+      }
+      if (apiKey.trim()) headers['X-User-API-Key'] = apiKey.trim()
+
       const res = await fetch('/api/byok/infogenius', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-User-API-Key': apiKey.trim(),
-        },
+        headers,
         body: JSON.stringify({
           action: 'generate',
+          tenantId,
           topic: targetSlide.title,
           customFacts: targetSlide.facts,
           style: useCustomBrand ? brandKey : style,
@@ -368,6 +492,12 @@ export default function InfoGeniusStudioWorkbench() {
 
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Failed to render slide')
+
+      if (data.wallet) {
+        setWallet((prev) =>
+          prev ? { ...prev, creditsRemaining: data.wallet.creditsRemaining } : prev
+        )
+      }
 
       const nextSlides = [...packResult.slides]
       nextSlides[slideIndex] = {
@@ -462,12 +592,14 @@ export default function InfoGeniusStudioWorkbench() {
   }
 
   const detectedProvider = apiKey.trim().startsWith('vck_')
-    ? 'Vercel AI Gateway (Sonar Pro + Nano Banana)'
+    ? 'Vercel AI Gateway (Sonar + Nano Banana)'
     : apiKey.trim().startsWith('sk-or-')
       ? 'OpenRouter (:online + Nano Banana)'
       : apiKey.trim()
         ? 'Google Gemini Direct (Search + 4K + TTS)'
-        : 'Zero-Key Prompt Architect (Free)'
+        : managedGatewayActive
+          ? `Managed Vercel AI Gateway (${wallet?.creditsRemaining ?? 15} Credits)`
+          : 'Zero-Key Prompt Architect (Free)'
 
   return (
     <div id="studio" className="rounded-3xl border border-white/10 bg-[#0d111a]/90 backdrop-blur-xl p-6 md:p-10 shadow-2xl">
@@ -486,7 +618,19 @@ export default function InfoGeniusStudioWorkbench() {
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2.5">
+          <button
+            type="button"
+            onClick={() => setShowCreditsDrawer(!showCreditsDrawer)}
+            className="inline-flex items-center gap-2 rounded-xl border border-amber-400/40 bg-amber-500/10 hover:bg-amber-500/20 px-3.5 py-2.5 text-xs font-bold text-amber-200 transition-all"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+            <span>{wallet ? `${wallet.creditsRemaining} Credits` : '15 Trial Credits'}</span>
+            <span className="rounded-md bg-amber-400/20 px-1.5 py-0.5 text-[10px] uppercase tracking-wider">
+              {wallet?.plan || 'starter'}
+            </span>
+          </button>
+
           <button
             type="button"
             onClick={() => setShowKeyInput(!showKeyInput)}
@@ -497,10 +641,92 @@ export default function InfoGeniusStudioWorkbench() {
             }`}
           >
             <Key className="w-3.5 h-3.5" />
-            {apiKey.trim() ? `BYOK Active (${detectedProvider.split(' ')[0]})` : 'Connect Gemini / OpenRouter Key'}
+            {apiKey.trim() ? `BYOK Active (${detectedProvider.split(' ')[0]})` : 'BYOK Key (Optional)'}
           </button>
         </div>
       </div>
+
+      {/* Multi-Tenant Workspace Credits & Top-Up Drawer */}
+      {showCreditsDrawer && (
+        <div className="mt-6 rounded-2xl border border-amber-400/30 bg-amber-500/[0.06] p-5 space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <div className="text-xs font-bold uppercase tracking-wider text-amber-300">
+                Multi-Tenant Workspace Credit Wallet (Managed Vercel AI Gateway)
+              </div>
+              <p className="text-xs text-white/60 mt-0.5">
+                Every workspace starts with <strong>15 free trial credits</strong> (3 full 2K infographics). Top up credits below or connect your own BYOK key for unlimited self-billed rendering.
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] font-semibold text-white/50">Workspace ID:</span>
+              <input
+                type="text"
+                value={tenantId}
+                onChange={(e) => handleTenantChange(e.target.value)}
+                className="rounded-lg border border-white/15 bg-black/50 px-2.5 py-1 text-xs font-mono text-amber-200 w-44"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {(creditPackCatalog.length > 0
+              ? creditPackCatalog
+              : [
+                  {
+                    sku: 'infogenius-credits-100',
+                    name: 'InfoGenius 100 Credit Pack',
+                    credits: 100,
+                    priceUsd: 19,
+                    planUpgrade: 'creator-pack',
+                    badge: '20 × 2K Visuals',
+                    description: '100 Managed Vercel AI Gateway credits for 20 grounded 2K infographics.',
+                  },
+                  {
+                    sku: 'infogenius-pro',
+                    name: 'InfoGenius Pro OS + 350 Credits',
+                    credits: 350,
+                    priceUsd: 49,
+                    planUpgrade: 'pro-os',
+                    badge: 'Most Popular · 70 × 2K Visuals',
+                    description: '350 Managed credits + full Claude Code / Cursor MCP Plugin & 18 Brand Presets.',
+                  },
+                  {
+                    sku: 'infogenius-team-1000',
+                    name: 'InfoGenius Agency Team + 1,000 Credits',
+                    credits: 1000,
+                    priceUsd: 129,
+                    planUpgrade: 'team-agency',
+                    badge: '200 × 2K Visuals · Multi-Seat',
+                    description: '1,000 Managed credits + Custom Brand Style Vault for content teams.',
+                  },
+                ]
+            ).map((pack) => (
+              <div
+                key={pack.sku}
+                className="rounded-xl border border-white/10 bg-black/50 p-4 flex flex-col justify-between gap-3"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-300">
+                      {pack.badge}
+                    </span>
+                    <span className="text-sm font-black text-white">${pack.priceUsd}</span>
+                  </div>
+                  <div className="text-xs font-bold text-white mt-1">{pack.name}</div>
+                  <p className="text-[11px] text-white/55 mt-1 leading-relaxed">{pack.description}</p>
+                </div>
+                <a
+                  href={`/waitlist?intent=infogenius-pro&sku=${encodeURIComponent(pack.sku)}&tenantId=${encodeURIComponent(tenantId)}`}
+                  className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 px-3 py-2 text-xs font-bold text-slate-950 transition-all"
+                >
+                  Top Up +{pack.credits} Credits (${pack.priceUsd})
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Mode Switcher Tabs */}
       <div className="mt-6 flex flex-wrap gap-2 border-b border-white/10 pb-4">
@@ -907,9 +1133,11 @@ export default function InfoGeniusStudioWorkbench() {
                   type="button"
                   disabled={isLoading}
                   onClick={() => {
-                    if (!apiKey.trim()) {
-                      setShowKeyInput(true)
-                      setError('Connect a Google Gemini or OpenRouter key above to render live 2K/4K images, or click "Architect Prompt & CLI (Free)".')
+                    if (!apiKey.trim() && !canRenderWithManagedCredits) {
+                      setShowCreditsDrawer(true)
+                      setError(
+                        'Top up Workspace Credits above or connect a BYOK key (Gemini / Vercel AI Gateway / OpenRouter) to render live 2K/4K images.'
+                      )
                       return
                     }
                     runAction('generate')
@@ -917,7 +1145,8 @@ export default function InfoGeniusStudioWorkbench() {
                   className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-teal-500 hover:from-violet-500 hover:to-teal-400 px-7 py-3 text-xs font-bold text-white shadow-lg shadow-violet-600/25 transition-all disabled:opacity-50"
                 >
                   {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-                  Research &amp; Render {imageSize} Infographic
+                  Research &amp; Render {imageSize} Infographic{' '}
+                  {apiKey.trim() ? '(BYOK)' : `(${imageSize === '4K' ? 8 : 5} Credits)`}
                 </button>
               </div>
             ) : (

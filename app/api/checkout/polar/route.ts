@@ -35,8 +35,16 @@ const CATALOG: Record<string, { name: string; status: string }> = {
     name: 'The Book of Light — Deluxe Master Edition (with Lossless Ambient Stems)',
     status: 'pre-stage (not for sale)',
   },
+  'infogenius-credits-100': {
+    name: 'InfoGenius Starter Credit Pack (100 Credits)',
+    status: 'pre-stage (not for sale)',
+  },
   'infogenius-pro': {
-    name: 'InfoGenius — Visual Knowledge OS (MCP Server + CLI + 18 Brand Presets)',
+    name: 'InfoGenius — Visual Knowledge OS (350 Credits + MCP Server + CLI + 18 Brand Presets)',
+    status: 'pre-stage (not for sale)',
+  },
+  'infogenius-team-1000': {
+    name: 'InfoGenius Team Studio Pack (1,000 Credits + Custom Brand Vault)',
     status: 'pre-stage (not for sale)',
   },
 };
@@ -48,7 +56,9 @@ const PRODUCT_ID_ENV_KEYS: Record<string, string> = {
   'prompt-matrix-pro-bundle': 'POLAR_PRODUCT_PROMPT_MATRIX_BUNDLE',
   'book-of-light-digital': 'POLAR_PRODUCT_BOOK_OF_LIGHT_DIGITAL',
   'book-of-light-deluxe': 'POLAR_PRODUCT_BOOK_OF_LIGHT_DELUXE',
+  'infogenius-credits-100': 'POLAR_PRODUCT_INFOGENIUS_CREDITS_100',
   'infogenius-pro': 'POLAR_PRODUCT_INFOGENIUS_PRO',
+  'infogenius-team-1000': 'POLAR_PRODUCT_INFOGENIUS_TEAM_1000',
 };
 
 const EMAIL_SHAPE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

@@ -32,9 +32,9 @@ export const MODELS = {
   tts:      'gemini-2.5-flash-preview-tts',       // Gemini TTS narration
   openrouterResearch: 'google/gemini-2.5-flash:online', // OpenRouter web-grounded research
   openrouterImage: 'google/gemini-2.5-flash-image-preview', // OpenRouter Nano Banana image gen
-  vercelGatewayResearch: 'perplexity/sonar-pro', // Vercel AI Gateway grounded web research
+  vercelGatewayResearch: 'perplexity/sonar',      // Vercel AI Gateway grounded web research (verified 200 OK)
   vercelGatewayFallbackResearch: 'google/gemini-2.5-flash', // Vercel AI Gateway Gemini research
-  vercelGatewayImage: 'google/gemini-2.5-flash-image-preview', // Vercel AI Gateway Gemini image gen
+  vercelGatewayImage: 'google/gemini-3-pro-image', // Vercel AI Gateway Nano Banana Pro image gen (verified 200 OK)
 };
 
 // Fallback chain: try nb2 → nbpro → nb1 if a model rejects the call.
@@ -121,6 +121,8 @@ const ENV_FILE_CANDIDATES = [
   resolve(process.cwd(), '.env'),
   resolve(homedir(), '.starlight', '.env'),
   resolve('C:/Users/frank/.starlight/.env'),
+  resolve('C:/Users/frank/.starlight/.env.vercel'),
+  resolve('C:/Users/frank/.starlight/.env.vercel.preview'),
   resolve('C:/Users/frank/starlight/.env'),
   resolve('C:/Users/frank/starlight/repos/frankx.ai-vercel-website/.env.local'),
   resolve('C:/Users/frank/starlight/repos/FrankX/.env.local'),
@@ -159,6 +161,21 @@ function readInfisicalSecret(secretName) {
   }
 }
 
+function isExpiredJwt(val) {
+  if (!val || typeof val !== 'string' || !val.startsWith('eyJ')) return false;
+  const parts = val.split('.');
+  if (parts.length !== 3) return false;
+  try {
+    const payload = JSON.parse(Buffer.from(parts[1], 'base64url').toString('utf8'));
+    if (typeof payload.exp === 'number' && payload.exp * 1000 < Date.now() + 60_000) {
+      return true;
+    }
+  } catch {
+    return false;
+  }
+  return false;
+}
+
 function readEnvValue(file, names) {
   if (!existsSync(file)) return null;
   let content;
@@ -170,7 +187,7 @@ function readEnvValue(file, names) {
       const servers = cfg.mcpServers || {};
       for (const server of Object.values(servers)) {
         const env = server.env || {};
-        for (const name of names) if (env[name]) return env[name];
+        for (const name of names) if (env[name] && !isExpiredJwt(env[name])) return env[name];
       }
     } catch { /* fall through */ }
   }
@@ -180,7 +197,7 @@ function readEnvValue(file, names) {
     const m = content.match(re);
     if (m) {
       const val = m[1].trim().replace(/^["']|["']$/g, '');
-      if (val && !val.startsWith('<') && !val.startsWith('your-')) return val;
+      if (val && !val.startsWith('<') && !val.startsWith('your-') && !isExpiredJwt(val)) return val;
     }
   }
   return null;
@@ -229,10 +246,10 @@ export function loadOpenRouterKey({ allowInfisical = true } = {}) {
   return { key: null, source: null, provider: null };
 }
 
-export function loadVercelGatewayKey({ allowInfisical = true } = {}) {
+export function loadVercelGatewayKey({ allowInfisical = true, allowVercelCli = true } = {}) {
   for (const name of VERCEL_GATEWAY_KEY_NAMES) {
     const v = process.env[name]?.trim();
-    if (v && !v.startsWith('<') && !v.startsWith('your-')) {
+    if (v && !v.startsWith('<') && !v.startsWith('your-') && !isExpiredJwt(v)) {
       return { key: v, source: `process.env.${name}`, provider: 'vercel' };
     }
   }
@@ -244,6 +261,20 @@ export function loadVercelGatewayKey({ allowInfisical = true } = {}) {
     for (const name of ['AI_GATEWAY_API_KEY', 'VERCEL_AI_GATEWAY_KEY']) {
       const ik = readInfisicalSecret(name);
       if (ik) return { key: ik, source: `infisical:${INFISICAL_ENV}/${name}`, provider: 'vercel' };
+    }
+  }
+  if (allowVercelCli && process.env.INFOGENIUS_DISABLE_VERCEL_CLI !== '1') {
+    try {
+      const targetEnv = resolve('C:/Users/frank/.starlight/.env.vercel');
+      execFileSync('vercel', ['env', 'pull', targetEnv, '--yes'], {
+        cwd: resolve('C:/Users/frank/starlight/repos/frankx.ai-vercel-website'),
+        stdio: ['ignore', 'ignore', 'ignore'],
+        timeout: 12000,
+      });
+      const k = readEnvValue(targetEnv, VERCEL_GATEWAY_KEY_NAMES);
+      if (k) return { key: k, source: `${targetEnv} (vercel-cli-oidc)`, provider: 'vercel' };
+    } catch {
+      // ignore if vercel cli unavailable
     }
   }
   return { key: null, source: null, provider: null };

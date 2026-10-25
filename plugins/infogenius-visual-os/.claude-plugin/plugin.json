@@ -1,0 +1,24 @@
+{
+  "name": "infogenius-visual-os",
+  "version": "5.2.0",
+  "description": "InfoGenius v5.2 Visual Knowledge OS — Research-Grounded 2K/4K Infographic, 5-Slide Carousel Decomposer, Veo 3.1 Motion & Kore TTS Plugin for Claude Code, Cursor, and Antigravity.",
+  "author": {
+    "name": "FrankX AI Systems",
+    "url": "https://frankx.ai/infogenius"
+  },
+  "homepage": "https://frankx.ai/infogenius",
+  "repository": "https://github.com/frankxai/arcanea-infogenius",
+  "license": "MIT",
+  "keywords": [
+    "infographic",
+    "visual-intelligence",
+    "vercel-ai-gateway",
+    "gemini-3-pro-image",
+    "veo-3-1",
+    "mcp",
+    "claude-code-plugin"
+  ],
+  "skills": [
+    "./skills/infogenius-v5"
+  ]
+}
