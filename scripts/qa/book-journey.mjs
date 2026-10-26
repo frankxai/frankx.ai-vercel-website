@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto'
 import { execFileSync, spawn } from 'node:child_process'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
+import { createJourneyClickHelpers } from './book-journey-click.mjs'
 import { runHiggsfieldReader } from './higgsfield-reader-journey.mjs'
 
 // CI owns a disposable browser and production server. Interactive local browser
@@ -75,22 +76,7 @@ try {
     await page.setViewport({ width: size.width, height: size.height, deviceScaleFactor: 1, isMobile: size.name.startsWith('mobile'), hasTouch: size.name.startsWith('mobile') })
     await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: size.reducedMotion ? 'reduce' : 'no-preference' }])
 
-    // waitForFunction re-checks from inside the page (requestAnimationFrame or timers), and those never run while
-    // setJavaScriptEnabled(false) is in effect. A smooth-scrolling fragment jump is still moving at the first check,
-    // so no-JavaScript position checks poll from Node instead, with the same condition and a bounded budget.
-    // A check passes only once the condition holds and scrollY is unchanged since the previous check, so a smooth
-    // scroll that is still in flight never counts as landed.
-    async function pollInPage(measure, arg, description, attempts = 50, intervalMs = 100) {
-      let last
-      let previous
-      for (let attempt = 1; attempt <= attempts; attempt++) {
-        last = await page.evaluate(measure, arg)
-        if (last.ok && previous?.scrollY === last.scrollY) return last
-        previous = last
-        await new Promise(resolveWait => setTimeout(resolveWait, intervalMs))
-      }
-      throw new Error(`${description}; not reached after ${attempts} checks ${intervalMs}ms apart, last measured ${JSON.stringify(last)}`)
-    }
+    const { pollInPage, clickTarget } = createJourneyClickHelpers({ page, size })
 
     async function phase(action) {
       manifest.currentAction = { viewport: size.name, action, at: new Date().toISOString() }
@@ -143,7 +129,7 @@ try {
           assert.equal(await page.$eval(contents, element => element.open), false, 'Escape closes contents')
           assert.equal(await page.$eval(summary, element => document.activeElement === element), true, 'Escape restores summary focus')
           await page.keyboard.press('Enter')
-        } else await page.click(summary)
+        } else await clickTarget(summary)
       }
       const link = `${contents} a`
       const target = await page.$eval(link, element => ({ id: decodeURIComponent(element.hash.slice(1)), height: element.getBoundingClientRect().height }))
@@ -154,7 +140,7 @@ try {
         assert.notEqual(focus.style, 'none', 'Contents keyboard focus is visible')
         assert.ok(focus.width >= 2, 'Contents focus outline is visible')
         await page.keyboard.press('Enter')
-      } else await page.click(link)
+      } else await clickTarget(link)
       await page.waitForFunction(id => decodeURIComponent(location.hash.slice(1)) === id, {}, target.id)
       await pollInPage(id => {
         const heading = document.getElementById(id)
@@ -215,16 +201,7 @@ try {
     async function follow(selector, path) {
       // Match the reader content, not hidden desktop/mobile navigation copies.
       selector = `#main ${selector}`
-      await page.waitForSelector(selector, { visible: true })
-      await page.$eval(selector, element => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
-      const target = await page.$eval(selector, element => {
-        const bounds = element.getBoundingClientRect()
-        const hit = document.elementFromPoint(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2)
-        return { reachable: hit === element || element.contains(hit), obstructedBy: hit?.closest('a,button,nav,header')?.outerHTML.slice(0, 500) }
-      })
-      assert.ok(target.reachable, `${selector}: pointer target is obstructed by ${target.obstructedBy}`)
-      if (size.name.startsWith('mobile')) await page.tap(selector)
-      else await page.click(selector)
+      await clickTarget(selector, { scroll: true, tapOnMobile: true })
       await page.waitForFunction(expected => location.pathname === expected, {}, path)
     }
 
@@ -279,8 +256,8 @@ try {
         return { clear: target.bottom <= player.top - 8, reachable: hit === element || element.contains(hit), height: target.height }
       })
       assert.ok(clearance.clear && clearance.reachable && clearance.height >= 44, 'Scroll-to-top stays reachable above the music player')
-      await page.click(toTop)
-      await page.waitForFunction(() => scrollY <= 1)
+      await clickTarget(toTop, { scroll: false })
+      await pollInPage(() => ({ ok: scrollY <= 1, scrollY }), undefined, 'Scroll-to-top must settle at the top of the page')
       manifest.checks.push({ viewport: size.name, result: 'passed', scrollToTopActivation: true, ...clearance })
       await follow(`a[href="${firstPath}"]`, firstPath)
       await page.waitForFunction(title => [...document.querySelectorAll('h1')].some(heading => heading.textContent.trim() === title), {}, firstChapter.title)
@@ -299,14 +276,13 @@ try {
       await readability(footnoteFixture.book, footnoteFixture.chapter)
       const noteLink = '.book-reader-content .footnote-ref a'
       const noteId = await page.$eval(noteLink, element => element.hash.slice(1))
-      await page.$eval(noteLink, element => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
-      await page.click(noteLink)
+      await clickTarget(noteLink)
       await page.waitForFunction(id => location.hash.slice(1) === id, {}, noteId)
       await page.waitForFunction(id => document.getElementById(id).getBoundingClientRect().top >= 0 && document.getElementById(id).getBoundingClientRect().bottom <= innerHeight, {}, noteId)
       const backLink = `.book-reader-content [id="${noteId}"] .footnote-back`
       const referenceId = await page.$eval(backLink, element => element.hash.slice(1))
       await capture('footnotes', backLink)
-      await page.click(backLink)
+      await clickTarget(backLink)
       await page.waitForFunction(id => location.hash.slice(1) === id, {}, referenceId)
       assert.ok(await page.$(`[id="${referenceId}"]`), 'Footnote return target exists')
       await page.waitForFunction(id => {
