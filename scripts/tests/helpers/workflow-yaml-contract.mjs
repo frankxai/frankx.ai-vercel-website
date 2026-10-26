@@ -114,7 +114,10 @@ const canonicalCiTriggerLines = [
   "    branches: [main, staging]"
 ];
 
-export function ciAlwaysReportingErrors(workflow) {
+// Shared by every required check whose trigger block is pinned. `label` only
+// names the workflow in messages; the CI strings are asserted verbatim by
+// existing tests, so ciAlwaysReportingErrors must keep producing them.
+function triggerBlockErrors(workflow, label, canonicalLines, mismatch) {
   const structuralLines = withoutBlockScalarContent(workflow)
     .split(/\r?\n/)
     .map(stripYamlComment)
@@ -133,21 +136,51 @@ export function ciAlwaysReportingErrors(workflow) {
     new Set(topLevelKeys).size !== topLevelKeys.length ||
     topLevelKeys.filter(key => key === "on").length !== 1
   ) {
-    return ["CI must use unique canonical plain top-level mapping keys"];
+    return [`${label} must use unique canonical plain top-level mapping keys`];
   }
 
   const onBlock = topLevelMappingBlock(workflow, "on");
-  if (!onBlock) return ["CI must contain one canonical top-level on mapping"];
+  if (!onBlock) return [`${label} must contain one canonical top-level on mapping`];
 
   const semanticLines = onBlock
     .split(/\r?\n/)
     .map(stripYamlComment)
     .filter(line => line.trim() !== "");
 
-  return semanticLines.length === canonicalCiTriggerLines.length &&
-    semanticLines.every((line, index) => line === canonicalCiTriggerLines[index])
+  return semanticLines.length === canonicalLines.length &&
+    semanticLines.every((line, index) => line === canonicalLines[index])
     ? []
-    : [
-      "CI required-check triggers must cover relevant main pushes and all reviewable pull requests"
-    ];
+    : [mismatch];
+}
+
+export function ciAlwaysReportingErrors(workflow) {
+  return triggerBlockErrors(
+    workflow,
+    "CI",
+    canonicalCiTriggerLines,
+    "CI required-check triggers must cover relevant main pushes and all reviewable pull requests"
+  );
+}
+
+// Merge Gate and Contract Guard are required status checks. A paths or
+// paths-ignore filter leaves every pull request that misses it without a result
+// for the check, and GitHub blocks that pull request for good. The filter was
+// extended seven times and a .nvmrc-only pull request (#1029) still missed it,
+// so the trigger is pinned to exactly this block: adding a filter, dropping
+// 'edited' (a retarget would keep a stale SHA-scoped verdict) or dropping a base
+// branch fails the contract.
+const canonicalAlwaysReportingPullRequestLines = [
+  "on:",
+  "  pull_request:",
+  "    types: [opened, synchronize, reopened, edited, ready_for_review]",
+  "    branches: [main, staging]"
+];
+
+export function requiredCheckAlwaysReportsErrors(workflow, label) {
+  return triggerBlockErrors(
+    workflow,
+    label,
+    canonicalAlwaysReportingPullRequestLines,
+    `${label} is a required check and must report on every pull request: pull_request on main and staging, no paths or paths-ignore filter`
+  );
 }

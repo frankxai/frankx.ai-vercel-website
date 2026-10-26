@@ -26,69 +26,25 @@ on:
     # already listened for it; this did not.
     types: [opened, synchronize, reopened, edited, ready_for_review]
     branches: [main, staging]
-    paths:
-      - 'app/**'
-      - 'components/**'
-      - 'content/**'
-      - 'lib/**'
-      - 'data/**'
-      - 'public/**'
-      - 'scripts/**'
-      - 'types/**'
-      # workflow-validate.mjs reads .claude/workflows and resolves agentType
-      # against .claude/agents. Without these, a pull request touching only a
-      # workflow or a referenced agent skips this job — the validation step
-      # would be unable to protect its own inputs.
-      - '.claude/workflows/**'
-      - '.claude/agents/**'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-      - 'pnpm-workspace.yaml'
-      # Required-check trap: a required status check with a paths filter blocks
-      # every pull request that misses the filter, because the check stays
-      # expected and never reports. next.config.mjs hit that on 2026-08-14, and
-      # its redirects and headers are exactly what the link checks cover.
-      - 'next.config.mjs'
-      # Third trap: workflow-only PRs never report this required check.
-      # Cover the whole .github tree so GitOps PRs remain mergeable.
-      - '.github/**'
-      # Fourth trap: a CLAUDE.md-only PR (#612) never reports Contract Guard
-      # or Merge Gate, so GitHub stays BLOCKED. Cover agent-contract docs.
-      - 'CLAUDE.md'
-      - 'AGENTS.md'
-      - 'docs/**'
-      # Fifth trap: BRANCH_AUDIT.md at the repo root (#618). '*' does not match
-      # a slash, so this is root-level markdown only — README.md, CLAUDE.md,
-      # BRANCH_AUDIT.md — and not '**/*.md'.
-      #
-      # Appending the path is the correct fix, and #620 is the evidence. That
-      # pull request tried three times to avoid a fifth append and each attempt
-      # opened a production-gate bypass on the branch that deploys frankx.ai:
-      # an external reporter (defeated by SHA-global commit statuses and the
-      # 3,000-entry Files API cap), the same reporter on a workflow_run trigger
-      # (which cannot report a required context scoped to the pull request), and
-      # deleting the filter so this job judged its own scope from a script
-      # (which for a pull_request trigger comes from the MERGE REF the pull
-      # request controls, so a branch could make this gate skip every step and
-      # still report SUCCESS).
-      #
-      # The filter is load-bearing precisely because it fails CLOSED: an
-      # unmatched pull request is stuck, which is visible and annoying. Every
-      # mechanism that converts "did not run" into "succeeded" fails OPEN, which
-      # is invisible. When the next unreachable file class appears, add its path
-      # to this list. Do not build a reporter. See contract-guard.yml for the
-      # long form.
-      - '*.md'
-      # Sixth trap: a pull request that only deletes a root ESLint config
-      # (eslint.config.mjs) matched no path above, so this required check was
-      # expected and never reported. Lint configuration belongs here on merit:
-      # it decides which rules the guarded surfaces are held to.
-      - 'eslint.config.*'
-      # Seventh trap: .agents, .claude, or skills-lock.json only PRs (#716)
-      # never report Contract Guard or Merge Gate, leaving PRs blocked.
-      - '.agents/**'
-      - '.claude/**'
-      - 'skills-lock.json'
+    # No `paths:` filter, and none may be added. This job is a required status
+    # check: a pull request that matches no path never gets a result for it, and
+    # GitHub blocks that pull request indefinitely. The filter was patched seven
+    # times, one file class per patch (next.config.mjs, the lockfile, .github/**,
+    # CLAUDE.md and docs, root *.md, eslint.config.*, .agents and .claude), and an
+    # eighth class, a .nvmrc-only pull request (#1029), blocked the same way.
+    #
+    # Scoping the work inside the job from a diff is not the fix. #620 tried it and
+    # found that every mechanism turning "did not run" into "succeeded" fails
+    # open: a new file class would pass having inspected nothing, where today it
+    # is merely stuck. So the job always runs and always judges the whole pull
+    # request. Measured 2026-10-21: of the last 120 pull requests one (#1029)
+    # missed the old filter, so dropping it costs almost nothing.
+    #
+    # scripts/tests/required-checks-always-report-contract.test.mjs pins this
+    # trigger block and the job name.
+    #
+    # Merge Gate runs every step on every pull request: 20 minute timeout, about
+    # 100 seconds when the pnpm cache is warm.
 
 concurrency:
   group: merge-gate-${{ github.ref }}
