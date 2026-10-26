@@ -149,6 +149,24 @@ test('Portable plugin package and live Vercel AI Gateway 2K infographic + proven
   assert.equal(prov.research.model, 'perplexity/sonar')
   assert.equal(prov.image.model, 'google/gemini-3-pro-image')
   assert.equal(prov.style, 'community/glassmorphic')
+
+  const luxuryPngPath = path.join(
+    repoRoot,
+    'public',
+    'images',
+    'blog',
+    'generated',
+    'infogenius-premium-agentic-creator-os-6-layer.png'
+  )
+  assert.ok(existsSync(luxuryPngPath))
+  assert.ok(existsSync(`${luxuryPngPath}.vis.provenance.json`))
+
+  const pagePath = path.join(repoRoot, 'app', 'infogenius', 'page.tsx')
+  const pageSource = readFileSync(pagePath, 'utf8')
+  assert.match(pageSource, /End-to-End Workflows/)
+  assert.match(pageSource, /Offer · Cost · Value · Outputs/)
+  assert.match(pageSource, /\$0\.70 per 2K Infographic/)
+  assert.match(pageSource, /infogenius-premium-agentic-creator-os-6-layer\.png/)
 })
 
 test('InfoGenius Pro Pack SKU is staged in products.json and waitlist-intents.ts', () => {

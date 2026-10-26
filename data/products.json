@@ -1680,16 +1680,16 @@
     ],
     "socialProof": {
       "stats": [
-        { "number": "18", "label": "Brand & v5.2 Presets" },
-        { "number": "2K/4K", "label": "Grounded Resolution" },
-        { "number": "3 Tools", "label": "MCP Server Included" },
-        { "number": "Zero-Orphan", "label": "Provenance Sidecars" }
+        { "number": "350 Credits", "label": "70 × 2K Visuals Included" },
+        { "number": "$0.70", "label": "Per 2K Grounded Infographic" },
+        { "number": "18 Presets", "label": "v5.2 & Brand Styles" },
+        { "number": "6 Tools", "label": "Claude Code & Cursor MCP" }
       ],
       "quotes": []
     },
     "offer": {
       "primaryPrice": 49,
-      "primaryPriceDisplay": "Free Web Studio · $49 Pro Pack",
+      "primaryPriceDisplay": "15 Free Credits · $49 Pro OS (350 Credits)",
       "currency": "USD",
       "ctaPrimary": "Launch Interactive Studio",
       "ctaPrimaryHref": "/infogenius#studio",
@@ -1697,10 +1697,10 @@
       "ctaSecondary": "Join Pro Pack Waitlist",
       "ctaSecondaryHref": "/waitlist?intent=infogenius-pro",
       "guarantee": {
-        "label": "Sovereign BYOK Architecture",
-        "description": "Use the Prompt Architect & 5-Slide Decomposer free forever, or plug in your own Gemini / OpenRouter key with zero platform markup."
+        "label": "Multi-Tenant Credits + Sovereign BYOK Architecture",
+        "description": "Every workspace starts with 15 free Managed Credits (3 × 2K infographics). Pro OS adds 350 Managed Credits ($0.70/visual) plus unlimited zero-markup BYOK via Vercel AI Gateway, Google Gemini, or OpenRouter."
       },
-      "note": "Pro Pack includes the standalone MCP Server, CLI batch runner, and 18-preset JSON library."
+      "note": "Also available: 100-Credit Pack ($19) and Agency Team 1,000-Credit Pack ($129) inside /infogenius#pricing."
     },
     "modules": [
       {

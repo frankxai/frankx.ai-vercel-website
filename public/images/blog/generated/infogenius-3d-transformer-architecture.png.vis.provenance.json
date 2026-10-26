@@ -1,0 +1,49 @@
+{
+  "topic": "How transformer architecture powers modern AI large language models",
+  "style": "3d",
+  "audience": "expert",
+  "research": {
+    "facts": [
+      "The self-attention mechanism, central to Transformer operations, exhibits O(n²d) computational complexity for matrix multiplications (QKᵀV) and O(n² + nd) memory complexity, where 'n' is the input sequence length and 'd' is the embedding dimension. This quadratic dependency on sequence length often constitutes a primary bottleneck for processing context windows exceeding tens of thousands of tokens in modern LLMs.",
+      "State-of-the-art Large Language Models (LLMs) are architecturally scaled by stacking dozens to nearly a hundred decoder-only Transformer blocks; for instance, GPT-3's largest variant uses 96 layers, and many 2025 open-source models in the 30B-70B parameter range commonly feature 60-80 layers. Each block operates on contextual embeddings, typically with a hidden dimension (d_model) ranging from 512 to 1024, sometimes utilizing sparse hidden dimensions for efficiency.",
+      "Multi-Head Attention enhances the model's capacity by concurrently executing 8 to 64 parallel self-attention operations, or \"heads\". Each head independently projects the input embeddings into a lower-dimensional subspace (d_k = d_v = d_model / h) to capture diverse types of relationships (e.g., syntactic, semantic, long-range dependencies) before concatenating and linearly transforming their outputs.",
+      "Positional encodings, such as sinusoidal functions or Rotary Positional Embeddings (RoPE), are deterministically or relatively added element-wise to token embeddings, providing explicit sequence order information. This is critical for Transformers, which process input tokens in parallel, allowing them to differentiate sequences with identical tokens but different order (e.g., \"man bites dog\" vs. \"dog bites man\").",
+      "Modern generative LLMs predominantly leverage a decoder-only Transformer architecture, which employs a causal (masked) multi-head self-attention mechanism. This design ensures that each token's prediction is based solely on preceding tokens in the sequence, enabling autoregressive text generation vital for tasks like creative writing and chatbot responses."
+    ],
+    "visuals": [
+      "**Decoder-Only Transformer Block Schematic:** A detailed block diagram illustrating the sequential flow within a single decoder-only Transformer layer, from masked Multi-Head Self-Attention, followed by Add & Normalize (residual connection + layer normalization), then a Feed-Forward Network, and another Add & Normalize. Annotate input embedding dimensions, projection dimensions (Q, K, V), and intermediate FFN dimensions (e.g., 4 * d_model).",
+      "**Multi-Head Attention Data Flow Breakdown:** An intricate diagram showing the parallel computation across 'h' attention heads. Illustrate the input embedding being linearly projected into Q, K, V matrices, then split into 'h' independent (Qᵢ, Kᵢ, Vᵢ) sets. Show the scaled dot-product attention occurring within each head, followed by concatenation of head outputs and a final linear projection to restore the original dimensionality.",
+      "**Token Embedding with Positional Encoding Superposition:** A vector representation of an input sequence, depicting each token's embedding vector. Visually overlay or combine a distinct positional encoding vector with each token embedding to demonstrate the element-wise addition, emphasizing how sequential information is integrated without altering vector dimensionality. Include a small inset showing a sinusoidal wave pattern or a rotational mechanism to represent typical encoding methods."
+    ],
+    "labels": [
+      "Masked Multi-Head Self-Attention",
+      "Positional Embedding",
+      "Layer Normalization & Residual Connection",
+      "Feed-Forward Network (FFN)"
+    ],
+    "sources": [
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEvYe-UT-ICqXctU7AtCXMcOa7GxRzHRKs1W7n9gjZrg2BEAAdnOJPF2_6ejuImekoBx6--KQT79U5qMMgeenQRaq-BDDmJObpgi4WoUfcC2uH1TJg8piofJzM7vhCx2zsFNA-_woL62bkbl0c2p68ykMIhoVU71cp3rzzwUWK7dSSZzm1JW5WkyqpUK7QV3eiVG8faL5WtPhfvf7TUgfUETCv-qhw4F2I3_W8=",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGW8RE-RNWFHEt3wZibKlLf0xrh8Vltm9NgtD4ZQ1YWbUwXBMZg9M2-gux47CehZgeeSWGvO7HBfX26oeAm_g9c4-fdYaI0idvLdzOoMLzg4itaO0uE1e9VrkZcSfiLxwrP3kBXmPaamOyG51aeiUju1i522c5cFASyMFVIPn-LguFY53z3V5k29Y4UNK1CwOhujYU=",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEG_kXGwvFJgx0M2txATZR5wHrH-zPgmajCVJcpfkBO10FBwUJHFotCo15AIwOew9T0WmYYSKry_lXIN8LAkPEcAbJRHgl_WvdeHnikN1LoLhI9VLZI10KCX18MVrOY5vnnoXJUWzeVp3NFOZpnYKrgq9s8TZy255rRsoFfTEcSn6_pIGQa_vrGK9f3sklbOrU5erQj9nvynsR8PVPWdxT0OmlOxoKpLduS8LzryPcNOn-0eQB-DpavUT_3orNx2nDfbjLFjH6nIQ==",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHWsSiaBg9M3kosnGSsV0EyyiuKETEfLnwLbpzaIx_9v8eskeXX4w2H29t0Q-LZh6xpjxiBgRMbzqd0TP59lasao0la4B9yDvOAlP3C7Z-Q10DH8VsEbMArY7Qp",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGrCtC-VjAY4Ye0-veRbSYfdeTxhdcdF2GX17u-Gl0ovTkBUKRTWgoVM1JXB9-ciWRbbYhSfwoBTTMzv-HKh7uWRfXRGwGZQMDSogB3bJvPeZfZ64qPkteRhCdXNwgUf8jXDMsYPMjAK1jaLNzQrSriCNmSScOti7p7Bf-by1P_KKQ9cH4VoK501JXLVqr1bZ-lccuFzwn17c1bMwOtL5eQSg==",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGsMUJKfnoBpLpyIAZyA36CsTLbRhr425IlpCIFA4GvPDkluRUWsRAv34zh7bpyrcL0Borc3Uo1jY50hGTU8gGutT9qzJ_oY6yrACVI_UpHjTjBzPJGpzQPIYXYtH9X9rFjsMhomHNUMMXpieebwN8BxhLNIIZnL7J6W8G4L-dX4QapVg6uzKL08xNFZXvCEfa8BMC99FexHNmb6AKy8vfwhQsZLhFhSAogvB9KxHiImg==",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGFC9MBkmoWDTLkqPO2aSQ7XmYqqhKP1kQXxOxW7_lx9BHg2GUbGqB0iawSKajVRX6JRziUKq-B47OuanQueOPMkaXR5XEgEh1NwjmiSCO3QAgv1KHGh8f-6iQDm8ykXN9ob6oS64mNw54zLY6wAMHvn36WOoFUsKSzXFccVaxrcTbOd5kdUERsWmbCb_Q_VG0zLkY1azA=",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-UrCoRgP77MT8qK_vKX6_rcUP9EfIJfVBpswSllpnnaUhQ7b6qkS1uc58DREBh36z2sCz-2O2LvKrUJihVSFZGrMeoNemeEshrWrug5XirkoO2HFIFrIubv7zVO3paGjX_eMPlw==",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEH1vsHq2ON3h7F9PKdPedrZyxh0ZFGlNd06qLfoQh_jTndu_qP_uudYutXkILuYa34fuz3FW1d6ZcZUCc0N_Q4-AD05Ok2PjiX117Yn8MTrt5TkMa6zBfYpw_ePvdR",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFtSWO0L4x9mleHS3-91dsYH39bUHPnES1XUkWKB6kip_8HjpBrgsoX02h1_ZYHyd-UUJOhqLLTUUV-vxjTyrg8zl4CwjO3R6RsEgn-HlR-3Aj7ffGlZWq9HiNgHUQcUS0CghsDbvDo3BJlK03jJemC1TxwE66Ji-PaFAm55V8=",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFzv5NNRE8j0scfkd6o7eHxkb8aNyX4mDZhNRFj0_R3WJgliiz8Ohot39WBXu-1GShlGQ9vLgzDTwn1RFgT7jC2jNFXcqXfAXR4x6tOENxETf7f1rs416vxcmIgYuG7ys8LbrBubko7N08nSU8ylm-wAkUKpxy4T8Rfdw7H",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFEaCYrgEGPWR10VfLfJ9FZwarmVASJGLFZj1yVHeW_eBhMv5h0FDzIXpBS_iY5aCePTv2THPo79CNPaOWkiSjnYYMFSgUPUntBLODez9zSLRTHxtoQdIq5K_ytjHjVs8uneYXkhd18n1BryVVGTTF4OJbla3TG0hLwz6_IZzt2VF0=",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGVxaFHOC-DaGt-aFIUQoASW4FO9lJSa_0TgpxZPq_C1WDKiOHIMH0BzJ_gb9GY-auYuCNO4M1ZissO78cGpnXWuuxIuZKWFSjXxWQxnjAQOYFH9dkdyu4hP8W8D4x9o-BAIvVN5xZC096sUV90221k8ICFADKYhwVnvtd8wjXO1npM9eAdxRWK8Q==",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHFQ4IASNioSzgpKfZskMgjT6YHHHkjZo7bW2pzqqBuANEUstECH0J1F6vIoaAGbdWNmuxBbSo126CMOEPPnrWbc-YJUUh0x7BrssCwVPQeLphGPmqLX39WH5UTr7zYn3OqnuzvRfl51DdvJDXYyIJQqr5DOw==",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEHhFPE9ovnD1eWLGZF1TZCz9UOafoA8Fzqb9lhl6xYqP3W3ToxOuGAFnv_TnzHi121PCbdGywZvjR2oLib8qD-V8Cv8m_QFejA5XJUBq2LHzc-6_95ND7MLKNT76f_7IxhH_93kSpfq2i5FsEMq1lBnKt7NgdyY4pBqO4O4e0x0JjSqS9hVQ8=",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE8QYSHavbbH61lGkZzqe5Mx_wYScHTv5DUnJR4ND1XlvoXGf83GoxJ2olG0nQFL4Zx3hxnGZhx4WcD8r2YKhZ8QurRwRcfm8r38KOTZGQS1unuwjP7ebRL6nIyDS86o-aLvzCX8IjjHUQ7hQ1BPCEI2zLXzlVo9K_RI6z5EOrt8qvRYaCmUriclwFwWLcmZ4wTCNcp6jm9xrlaOg==",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGz0HN3zDT_o5E6-EP7Stj-VXkOEOZ2TGAUwp0K3E1W_rNys97xhGeVbwkBrIAPxwI-ouUCopXySsC3B7I0v0e8tFyBzd9EC7e517q50iGKfLWEw9Vg3gQO0bGOIwjRWaOgGms_AgbGbi8=",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEPiJVTrx2X4J7SeRmeK9hdYqtDdo53s9JU7CxHjr7mNKaV1uyOMWVBiE3oZWKDFZfZo0WuaQieUw4D14SamFHPETx91MuMXvoaXTs5IQ9Tw_WusrOWF73BA1YrdF8YpohHoEpRg7N1JVYCx8Th7EfpwE4OzuHqdoTafyXcwbKMeXccZzflON52NND9Z9jRPXDjUDZP",
+      "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEdk7YlkTC_bUhrZ17va9ta4AYHXLblMJ1Me61tyGBs8uuc1oTdz4nn3ax08GGa65HQzG4aQYuqr63uiMmhY2sfriDwyMBcREXPxrzzYJz9SHhdmbgk5bnx8J3Ek-fKw9SSC6t4ImU="
+    ]
+  },
+  "promptLength": 4631,
+  "imageSize": 1045980,
+  "timestamp": "2026-02-05T01:25:20.157Z"
+}

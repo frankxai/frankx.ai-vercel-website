@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "5.1.0",
+  "generator": "infogenius-cli-v5.1",
+  "createdAt": "2026-10-26T00:41:40.665Z",
+  "topic": "Agentic Creator OS: 6-Layer Closed-Loop Operating Model",
+  "style": "community/premium",
+  "styleName": "Luxury Brand Visual",
+  "audience": "expert",
+  "aspectRatio": "16:9",
+  "imageSize": "2K",
+  "image": {
+    "path": "C:\\Users\\frank\\starlight\\repos\\frankx.ai-vercel-website\\public\\images\\blog\\generated\\infogenius-premium-agentic-creator-os-6-layer.png",
+    "model": "google/gemini-3-pro-image",
+    "mimeType": "image/png",
+    "bytes": 1554675
+  },
+  "video": null,
+  "audio": null,
+  "research": {
+    "model": "perplexity/sonar",
+    "facts": [
+      "Adobe’s 2025 global Creators’ Toolkit survey found 86% of creators actively use creative generative AI; leading uses were editing/enhancement (55%), asset generation (52%), and ideation (48%).[1",
+      "In that survey, creators’ leading desired agentic-AI use cases were automating repetitive tasks (51%), brainstorming ideas (50%), and surfacing performance insights (44%); respondents emphasized retaining human creative control.[1",
+      "NIST’s AI Risk Management Framework organizes risk work around **Govern, Map, Measure, Manage**; it calls for defined human-oversight roles, documented limits, evaluation, and production monitoring.[7][8",
+      "NIST identifies generative-AI risks including confabulation, privacy, harmful bias, information integrity, and human–AI configuration; it recommends context-appropriate oversight, review, tracking, and documentation.[4][6",
+      "The six-layer model below is an **operating-model synthesis**, not a standardized published framework: **Sense → Strategize → Create → Orchestrate → Approve & Publish → Learn & Optimize**. Close the loop by routing performance signals back into audience, strategy, and workflow decisions.[1][7"
+    ],
+    "visualElements": [
+      "Central faceted crystal labeled **AGENTIC CREATOR OS**; six thin orbital glass plates form a clockwise loop, each with an input/output micro-annotation.",
+      "Layer cards: **1 Sense** (audience, trends, first-party signals) → **2 Strategize** (brief, goals, constraints) → **3 Create** (multimodal generation, edit, asset variants) → **4 Orchestrate** (agents, tools, workflow state) → **5 Approve & Publish** (human gate, rights/brand checks, channel delivery) → **6 Learn & Optimize** (engagement, conversion, experiments).",
+      "A distinct gold **human decision gate** between orchestration and publishing; teal return thread from analytics to Sense/Strategize, with a small label **closed-loop feedback**.",
+      "Fine-print system rail: **Context / Memory • Models / Tools • Policies / Permissions • Evaluation / Telemetry**; annotate stage outputs as **signals → brief → assets → release candidate → published version → performance data**."
+    ],
+    "labels": [
+      "**SENSE → STRATEGIZE → CREATE → ORCHESTRATE → APPROVE & PUBLISH → LEARN & OPTIMIZE**",
+      "**Human authority: approve, revise, reject**",
+      "**Guardrails: provenance • rights • privacy • brand • platform policy**",
+      "**Measure: quality • time-to-publish • engagement • conversion • error/rework rate**"
+    ],
+    "context": "An agentic creator operating system connects audience intelligence, creative production, workflow automation, human approval, and performance learning into one governed process—not a collection of disconnected AI tools. The viewer should understand both the operational loop and its control boundary: agents can coordinate research, generation, and repetitive execution, while people retain authority over creative direction and publication; measurement then informs the next brief. The six layers are a practical synthesis, while the adoption and risk-management figures above come from Adobe’s 2025 survey and NIST guidance.[1][4][7]",
+    "sources": [],
+    "searchResults": []
+  },
+  "prompts": {
+    "imagePrompt": "## CONCEPT\nCreate a 16:9 educational infographic about: Agentic Creator OS: 6-Layer Closed-Loop Operating Model\n\nVISUAL STYLE: Luxury tech-brand visual. Apple meets Dior meets DeepMind. Dark void background (#0b0e14). One striking crystal/glass focal element at center with dramatic volumetric lighting. Data and labels on frosted glass cards orbiting the focal point. Thin luminous teal (#7fffd4) connection threads forming constellation pattern. Gold (#ffd700) warm accent highlights. Ultra-clean typography in thin modern serif. 50%+ negative space. Materials: crystal, glass, titanium, light. NEVER clay, plastic, HUD, or clutter. 8K detail.\nBRAND PALETTE: #0b0e14 dark void, #7fffd4 teal thread, #ffd700 warm gold, #e2e8f0 titanium\nCOMPOSITION: One central crystal/glass focal sculpture with orbiting frosted data cards and 50%+ negative space.\n\nAUDIENCE: Target: Industry Expert. Technical blueprint. Extremely dense detail, precise annotations, industry-standard notation, maximum information per pixel.\n\nKNOWLEDGE TO VISUALIZE (these are researched facts — each must be represented visually):\n- Adobe’s 2025 global Creators’ Toolkit survey found 86% of creators actively use creative generative AI; leading uses were editing/enhancement (55%), asset generation (52%), and ideation (48%).[1\n- In that survey, creators’ leading desired agentic-AI use cases were automating repetitive tasks (51%), brainstorming ideas (50%), and surfacing performance insights (44%); respondents emphasized retaining human creative control.[1\n- NIST’s AI Risk Management Framework organizes risk work around **Govern, Map, Measure, Manage**; it calls for defined human-oversight roles, documented limits, evaluation, and production monitoring.[7][8\n- NIST identifies generative-AI risks including confabulation, privacy, harmful bias, information integrity, and human–AI configuration; it recommends context-appropriate oversight, review, tracking, and documentation.[4][6\n- The six-layer model below is an **operating-model synthesis**, not a standardized published framework: **Sense → Strategize → Create → Orchestrate → Approve & Publish → Learn & Optimize**. Close the loop by routing performance signals back into audience, strategy, and workflow decisions.[1][7\n\nVISUAL ELEMENTS TO INCLUDE:\n- Central faceted crystal labeled **AGENTIC CREATOR OS**; six thin orbital glass plates form a clockwise loop, each with an input/output micro-annotation.\n- Layer cards: **1 Sense** (audience, trends, first-party signals) → **2 Strategize** (brief, goals, constraints) → **3 Create** (multimodal generation, edit, asset variants) → **4 Orchestrate** (agents, tools, workflow state) → **5 Approve & Publish** (human gate, rights/brand checks, channel delivery) → **6 Learn & Optimize** (engagement, conversion, experiments).\n- A distinct gold **human decision gate** between orchestration and publishing; teal return thread from analytics to Sense/Strategize, with a small label **closed-loop feedback**.\n- Fine-print system rail: **Context / Memory • Models / Tools • Policies / Permissions • Evaluation / Telemetry**; annotate stage outputs as **signals → brief → assets → release candidate → published version → performance data**.\n\nREQUIRED LABELS AND TEXT (render clearly and legibly):\n\"**SENSE → STRATEGIZE → CREATE → ORCHESTRATE → APPROVE & PUBLISH → LEARN & OPTIMIZE**\", \"**Human authority: approve, revise, reject**\", \"**Guardrails: provenance • rights • privacy • brand • platform policy**\", \"**Measure: quality • time-to-publish • engagement • conversion • error/rework rate**\"\n\nCOMPOSITION:\n- Clear visual hierarchy — most important information largest and most prominent\n- Logical flow — viewer's eye should follow the information in order\n- All text must be perfectly spelled, large enough to read, with high contrast\n- Include directional arrows or flow indicators where relationships exist\n- White space between sections for clarity\n- Professional color coding to distinguish different categories of information\n\nQUALITY: Render at maximum quality. Sharp detail, no artifacts. Every label must be perfectly legible. This is an educational tool, not decoration — clarity and accuracy matter above all.",
+    "videoPrompt": "7-second 16:9 luxury-tech motion sequence on a dark void (#0b0e14). Begin with a single suspended crystal sculpture, sharply lit with restrained volumetric rays. Six frosted-glass cards emerge in sequence around it—SENSE, STRATEGIZE, CREATE, ORCHESTRATE, APPROVE & PUBLISH, LEARN & OPTIMIZE—connected by hairline teal threads that complete a clockwise loop. At the approval card, a warm gold pulse pauses the flow; a subtle human-authority marker confirms approval, then the thread resumes toward publishing. A stream of fine performance points travels back from LEARN & OPTIMIZE to SENSE, closing the loop. Use titanium typography (#e2e8f0), gold accents (#ffd700), precise annotations, crystalline reflections, slow camera push, elegant parallax, and generous negative space; no clutter, HUD graphics, plastic or clay materials."
+  }
+}

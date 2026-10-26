@@ -841,21 +841,25 @@ ${rawArticle.slice(0, 6000)}`
     }
 
     if (userKey || (action === 'generate' && usingManagedCredits)) {
-      const liveResearch = await runGroundedResearch({
-        topic: cleanTopic,
-        styleObj,
-        audienceObj,
-        aspectRatio,
-        apiKey: activeKey,
-        provider,
-      })
-      research = {
-        ...liveResearch,
-        facts:
-          Array.isArray(customFacts) && customFacts.length > 0
-            ? [...customFacts, ...liveResearch.facts]
-            : liveResearch.facts,
-        grounded: true,
+      try {
+        const liveResearch = await runGroundedResearch({
+          topic: cleanTopic,
+          styleObj,
+          audienceObj,
+          aspectRatio,
+          apiKey: activeKey,
+          provider,
+        })
+        research = {
+          ...liveResearch,
+          facts:
+            Array.isArray(customFacts) && customFacts.length > 0
+              ? [...customFacts, ...liveResearch.facts]
+              : liveResearch.facts,
+          grounded: true,
+        }
+      } catch {
+        // Fallback to structured architectural facts if upstream search grounding is rate-limited
       }
     }
 
@@ -909,19 +913,15 @@ ${rawArticle.slice(0, 6000)}`
     const creditCost = imageSize === '4K' ? CREDIT_COSTS.infographic4K : CREDIT_COSTS.infographic2K
     let activeWallet = await getTenantWallet(tenantId)
 
-    if (usingManagedCredits) {
-      const charge = await consumeTenantCredits(
-        tenantId,
-        creditCost,
-        `${imageSize} Infographic (${cleanTopic.slice(0, 32)})`
+    if (usingManagedCredits && activeWallet.creditsRemaining < creditCost) {
+      return Response.json(
+        {
+          error: `Insufficient credits (${activeWallet.creditsRemaining} remaining, ${creditCost} required). Purchase a credit pack or connect a BYOK API key.`,
+          wallet: activeWallet,
+          refusal: 'insufficient_credits',
+        },
+        { status: 402 }
       )
-      if (!charge.ok) {
-        return Response.json(
-          { error: charge.error, wallet: charge.wallet, refusal: 'insufficient_credits' },
-          { status: 402 }
-        )
-      }
-      activeWallet = charge.wallet
     }
 
     let imageDataUrl: string | null = null
@@ -1007,6 +1007,14 @@ ${rawArticle.slice(0, 6000)}`
     }
 
     if (imageDataUrl) {
+      if (usingManagedCredits) {
+        const charge = await consumeTenantCredits(
+          tenantId,
+          creditCost,
+          `${imageSize} Infographic (${cleanTopic.slice(0, 32)})`
+        )
+        if (charge.ok) activeWallet = charge.wallet
+      }
       activeWallet = await appendTenantGalleryItem(tenantId, {
         id: `ig_${Date.now()}`,
         topic: cleanTopic,

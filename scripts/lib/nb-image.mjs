@@ -266,11 +266,16 @@ export function loadVercelGatewayKey({ allowInfisical = true, allowVercelCli = t
   if (allowVercelCli && process.env.INFOGENIUS_DISABLE_VERCEL_CLI !== '1') {
     try {
       const targetEnv = resolve('C:/Users/frank/.starlight/.env.vercel');
-      execFileSync('vercel', ['env', 'pull', targetEnv, '--yes'], {
-        cwd: resolve('C:/Users/frank/starlight/repos/frankx.ai-vercel-website'),
-        stdio: ['ignore', 'ignore', 'ignore'],
-        timeout: 12000,
-      });
+      execFileSync(
+        process.platform === 'win32' ? 'vercel.cmd' : 'vercel',
+        ['env', 'pull', targetEnv, '--yes'],
+        {
+          cwd: resolve('C:/Users/frank/starlight/repos/frankx.ai-vercel-website'),
+          stdio: ['ignore', 'ignore', 'ignore'],
+          timeout: 15000,
+          shell: process.platform === 'win32',
+        }
+      );
       const k = readEnvValue(targetEnv, VERCEL_GATEWAY_KEY_NAMES);
       if (k) return { key: k, source: `${targetEnv} (vercel-cli-oidc)`, provider: 'vercel' };
     } catch {
