@@ -107,7 +107,9 @@
       "Build a repeatable daily ritual that ships consistently without burnout"
     ],
     "socialProof": {
-      "stats": [],
+      "stats": [
+
+      ],
       "quotes": []
     },
     "offer": {
@@ -403,7 +405,7 @@
       },
       {
         "question": "How much time should we expect to invest?",
-        "answer": "Plan for a 90-day rollout with weekly story sprints. Teams typically spend 4\u20136 hours per week implementing and reviewing."
+        "answer": "Plan for a 90-day rollout with weekly story sprints. Teams typically spend 4–6 hours per week implementing and reviewing."
       }
     ],
     "analyticsId": "creation-chronicles"
@@ -659,7 +661,7 @@
           "name": "ACOS Product Guide v2",
           "format": "pdf",
           "blobKey": "products/agentic-creator-os/ACOS-Product-Guide-v2.pdf",
-          "description": "The complete ACOS product guide \u2014 23 pages"
+          "description": "The complete ACOS product guide — 23 pages"
         },
         {
           "name": "ACOS Quickstart Guide",
@@ -747,7 +749,7 @@
       {
         "title": "Genre Quick-Start Cards",
         "value": "$12",
-        "description": "Printable cards for the top 5 prompts in each genre\u2014perfect for studio sessions."
+        "description": "Printable cards for the top 5 prompts in each genre—perfect for studio sessions."
       },
       {
         "title": "Monthly Prompt Updates",
@@ -770,7 +772,7 @@
       },
       {
         "question": "How is this different from Vibe OS?",
-        "answer": "The Prompt Library is just the prompts. Vibe OS includes the full production system\u2014workflows, emotion mapping, and release playbooks. This is the quick-start option."
+        "answer": "The Prompt Library is just the prompts. Vibe OS includes the full production system—workflows, emotion mapping, and release playbooks. This is the quick-start option."
       }
     ],
     "analyticsId": "suno-prompt-library",
@@ -812,10 +814,10 @@
     "promise": "Stop building UI from scratch. Get 30 polished components plus an AI system that creates new ones matching your design system.",
     "summary": "A premium component library combining hand-crafted Next.js + Tailwind components with an agentic AI layer that generates custom variants on demand.",
     "transformation": [
-      "Drop 30 production-ready components into any Next.js project \u2014 PremiumCard, AuroraGradient, ShimmerButton, and more",
+      "Drop 30 production-ready components into any Next.js project — PremiumCard, AuroraGradient, ShimmerButton, and more",
       "Use the included Claude Code skill to generate new components that match the Aurora design language",
       "Ship polished UIs in hours instead of weeks with pre-built dark/light mode, responsive layouts, and micro-interactions",
-      "Customize everything with documented design tokens \u2014 colors, spacing, animations, glass levels"
+      "Customize everything with documented design tokens — colors, spacing, animations, glass levels"
     ],
     "socialProof": {
       "stats": [
@@ -850,7 +852,7 @@
       },
       {
         "title": "Animation Systems",
-        "description": "MorphingBackground, SplitTextReveal, Marquee, ParallaxContainer, StaggerContainer \u2014 all with prefers-reduced-motion support."
+        "description": "MorphingBackground, SplitTextReveal, Marquee, ParallaxContainer, StaggerContainer — all with prefers-reduced-motion support."
       },
       {
         "title": "AI Generation Skill",
@@ -865,7 +867,7 @@
       {
         "title": "6 Page Templates",
         "value": "$29",
-        "description": "Landing page, dashboard, pricing, blog, portfolio, and 404 \u2014 all built with Aurora components."
+        "description": "Landing page, dashboard, pricing, blog, portfolio, and 404 — all built with Aurora components."
       },
       {
         "title": "Figma Design Tokens",
@@ -876,11 +878,11 @@
     "faq": [
       {
         "question": "What tech stack does this require?",
-        "answer": "Next.js 14+, React 18+, Tailwind CSS 3+, and TypeScript. Components use zero external animation libraries \u2014 pure CSS + React."
+        "answer": "Next.js 14+, React 18+, Tailwind CSS 3+, and TypeScript. Components use zero external animation libraries — pure CSS + React."
       },
       {
         "question": "What makes this different from shadcn/ui?",
-        "answer": "Aurora UI Kit is a design-forward layer that sits on top of shadcn. While shadcn gives you unstyled primitives, Aurora gives you the visual polish \u2014 glassmorphism, gradients, micro-interactions, and the AI skill to generate more."
+        "answer": "Aurora UI Kit is a design-forward layer that sits on top of shadcn. While shadcn gives you unstyled primitives, Aurora gives you the visual polish — glassmorphism, gradients, micro-interactions, and the AI skill to generate more."
       },
       {
         "question": "How does the AI generation skill work?",
@@ -920,13 +922,13 @@
     "category": "Design + AI",
     "badge": "AGENTIC",
     "headline": "Your AI-Powered Content Production System",
-    "subheadline": "A complete Next.js content platform with built-in AI writing assistance, SEO optimization, social distribution automation, and analytics. Not a template \u2014 a system.",
+    "subheadline": "A complete Next.js content platform with built-in AI writing assistance, SEO optimization, social distribution automation, and analytics. Not a template — a system.",
     "promise": "Go from idea to published, SEO-optimized, socially distributed content in under 30 minutes. Every single time.",
     "summary": "Production-ready content management system combining a premium blog platform with agentic AI capabilities for writing, SEO, and distribution.",
     "transformation": [
       "Publish SEO-optimized articles with AI-assisted writing that maintains your voice and style",
       "Auto-generate social media posts for every article across Twitter/X, LinkedIn, and newsletter formats",
-      "Track content performance with built-in analytics dashboard \u2014 pageviews, time on page, conversion events",
+      "Track content performance with built-in analytics dashboard — pageviews, time on page, conversion events",
       "Use Claude Code skills to run your entire content pipeline from the terminal: research, write, optimize, publish"
     ],
     "socialProof": {
@@ -997,7 +999,7 @@
     "faq": [
       {
         "question": "Is this a WordPress alternative?",
-        "answer": "Yes, but faster. Built on Next.js with static generation, so pages load instantly. No database required \u2014 content lives in MDX files in your repo."
+        "answer": "Yes, but faster. Built on Next.js with static generation, so pages load instantly. No database required — content lives in MDX files in your repo."
       },
       {
         "question": "Do I need Claude Code to use this?",
@@ -1103,7 +1105,7 @@
     "category": "Books",
     "badge": "FREE PDF",
     "headline": "Verses That Move the Soul",
-    "subheadline": "Rumi, Rilke, Goethe, Vietnamese love poetry, and original verse \u2014 spanning centuries, cultures, and languages.",
+    "subheadline": "Rumi, Rilke, Goethe, Vietnamese love poetry, and original verse — spanning centuries, cultures, and languages.",
     "promise": "A curated collection of the world's most beautiful love poetry, woven with original work.",
     "summary": "Five chapters of poetry from Rumi to Rilke, from German Romanticism to Vietnamese lyricism, concluding with original poems written from lived experience.",
     "transformation": [],
@@ -1209,7 +1211,7 @@
     "category": "Books",
     "badge": "FREE PDF",
     "headline": "Seven Pillars of a Complete Life",
-    "subheadline": "Energy, Mind, Soul, Craft, Capital, Circle, and Legacy \u2014 a systematic approach to building every dimension of your life.",
+    "subheadline": "Energy, Mind, Soul, Craft, Capital, Circle, and Legacy — a systematic approach to building every dimension of your life.",
     "promise": "Not theory. Routines that work. Seven pillars, each with actionable protocols.",
     "summary": "Seven chapters mapping the complete self-development framework: from morning protocols and mental clarity to financial architecture and legacy thinking.",
     "transformation": [],
@@ -1263,7 +1265,7 @@
     "badge": "FREE PDF",
     "headline": "Unlocking the Power of the Mind",
     "subheadline": "Your imagination is the most powerful technology you possess. This book teaches you how to wield it.",
-    "promise": "Creative visualization, mental models, and the architecture of thought \u2014 applied neuroscience for builders.",
+    "promise": "Creative visualization, mental models, and the architecture of thought — applied neuroscience for builders.",
     "summary": "Five chapters on the inner theater, creative visualization protocols, essential mental models, the architect's eye, and reaching beyond the visible.",
     "transformation": [],
     "socialProof": {
@@ -1502,7 +1504,7 @@
     },
     "offer": {
       "primaryPrice": 97,
-      "primaryPriceDisplay": "\u20ac97",
+      "primaryPriceDisplay": "€97",
       "currency": "EUR",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=starter-kit",
@@ -1577,7 +1579,7 @@
     },
     "offer": {
       "primaryPrice": 497,
-      "primaryPriceDisplay": "\u20ac497",
+      "primaryPriceDisplay": "€497",
       "currency": "EUR",
       "ctaPrimary": "Join the Launch List",
       "ctaPrimaryHref": "/waitlist?intent=command-center",
@@ -1648,7 +1650,7 @@
     },
     "offer": {
       "primaryPrice": 2997,
-      "primaryPriceDisplay": "\u20ac2,997/qtr",
+      "primaryPriceDisplay": "€2,997/qtr",
       "currency": "EUR",
       "ctaPrimary": "Apply for Membership",
       "ctaPrimaryHref": "/founders-circle/apply",
