@@ -181,9 +181,18 @@ export default function ProductsPage() {
         const description = p.summary ?? p.promise ?? p.description ?? ''
         const category = p.category || 'General'
 
+        const allTiersWaitlist =
+          Array.isArray(p.pricing?.tiers) &&
+          p.pricing.tiers.length > 0 &&
+          p.pricing.tiers.every((tier: { ctaHref?: string }) =>
+            Boolean(tier?.ctaHref?.startsWith('/waitlist'))
+          )
+
         const isWaitlist = Boolean(
           p.offer?.ctaPrimary?.toLowerCase().includes('waitlist') ||
-          p.cta?.label?.toLowerCase().includes('waitlist')
+          p.offer?.ctaPrimaryHref?.startsWith('/waitlist') ||
+          p.cta?.label?.toLowerCase().includes('waitlist') ||
+          allTiersWaitlist
         )
 
         // Truthful transformation highlights — no invented engineering claims for books
