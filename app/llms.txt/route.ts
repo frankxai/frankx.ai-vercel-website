@@ -106,6 +106,11 @@ ${libraryLinks}
 - [Canva MCP implementation guide](${SITE_URL}/guides/canva-mcp-for-founders): Setup, approval boundaries, and the FrankX agent graph
 - [Canva agent-readable brief](${SITE_URL}/canva/llms.txt): Concise claims, relationship disclosure, key pages, and first-party sources
 
+## Voice-first operations
+- [Wispr Flow guide](${SITE_URL}/guides/wispr-flow): Setup, spoken-brief protocol, pricing checked against the vendor page, privacy controls and role-specific workflows; contains affiliate links, disclosed on the page
+- [Voice typing learning path](${SITE_URL}/learn/voice-typing): Curated tutorials and the official Wispr Flow walkthrough
+- [Wispr Flow vs Superwhisper vs MacWhisper vs Willow](${SITE_URL}/blog/wispr-flow-vs-superwhisper-vs-macwhisper-vs-willow): Processing location, platforms, listed pricing and which reader each tool fits
+
 ## Research Hub
 - [Research Index](${SITE_URL}/research): All research domains
 - [Research Sources](${SITE_URL}/research/sources): How research is sourced
@@ -141,7 +146,14 @@ ${blogLinks}
 ${journalLinks}
 
 ## Agent access
+- [Developer notes](${SITE_URL}/developers): FrankX developer hub. MCP architecture and how the public tools fit together.
+- [Public API catalog](${SITE_URL}/api/v1): JSON list of the public read routes, with authentication notes and example requests.
+- [OpenAPI](${SITE_URL}/openapi.json): OpenAPI 3.1 document, application/vnd.oai.openapi+json;version=3.1.
+- [API catalog (RFC 9727)](${SITE_URL}/.well-known/api-catalog): Linkset (application/linkset+json) of those same reads.
+- Unknown /api paths return application/problem+json (RFC 9457). The code is api_route_not_found. The resolution points at the RFC 9727 catalog.
 - [MCP endpoint](${SITE_URL}/api/mcp): Read-only Model Context Protocol server (Streamable HTTP, no key). Tools: frankx_search_site, frankx_get_article, frankx_list_products. Anonymous POST is limited to 30 requests per minute per address; a 429 means wait and retry. Claude Code: \`claude mcp add --transport http frankx ${SITE_URL}/api/mcp\`
+- [MCP server card](${SITE_URL}/api/mcp/server-card): application/mcp-server-card+json. It names the transport. Tools stay on the live server.
+- [AI catalog (SEP-2127)](${SITE_URL}/.well-known/ai-catalog.json): Domain discovery entry pointing at that server card.
 - [Markdown export](${SITE_URL}/api/md?path=/blog/agentic-ai-roadmap-2025): Any article as plain markdown; replace the path with /blog/<slug>
 
 ## Optional

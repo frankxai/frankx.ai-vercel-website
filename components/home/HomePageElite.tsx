@@ -95,7 +95,7 @@ function AuroraBackground() {
         className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full"
         style={{
           background: 'radial-gradient(circle, rgba(16, 185, 129, 0.06) 0%, transparent 70%)',
-          filter: 'blur(128px)',
+          willChange: 'transform',
         }}
         animate={
           shouldReduceMotion
@@ -110,7 +110,7 @@ function AuroraBackground() {
         className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full"
         style={{
           background: 'radial-gradient(circle, rgba(6, 182, 212, 0.04) 0%, transparent 70%)',
-          filter: 'blur(128px)',
+          willChange: 'transform',
         }}
         animate={
           shouldReduceMotion
@@ -606,7 +606,7 @@ function ProductsTools() {
           viewport={{ once: true }}
           className="text-center mb-12 md:mb-16"
         >
-          <p className="mb-4 text-xs font-medium tracking-[0.1em] text-emerald-400/50">
+          <p className="mb-4 text-xs font-medium tracking-[0.1em] text-emerald-300/80">
             Products & Tools
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">

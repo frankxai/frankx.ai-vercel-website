@@ -2,10 +2,10 @@
   "schema_version": "starlight.editorial_contract.v1",
   "brand_id": "frankx",
   "source": {
-    "repository": "frankxai/starlight-design-intelligence",
-    "ref": "50ae34c7ac06e6c083f277ca96c3bde8f0a39b43",
+    "repository": "Starlight-Intelligence/starlight-design-intelligence",
+    "ref": "851a11be31a0640df64baabcf2b1fc1afb9ce849",
     "profile": "brand-packs/frankx/COPY.md",
-    "profile_sha256": "9a55412e7b343a45c5edb7a679ef58fe8e7427f3b3ea0959d89d196cef9b4e27"
+    "profile_sha256": "ad44b7b54aa949d23c81e83aa648ec3ec0d83dcac3a0cc19fd12df71b4f127bb"
   },
   "content_roots": [
     "app",
