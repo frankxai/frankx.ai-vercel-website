@@ -194,11 +194,12 @@ Multiple harnesses (Claude, Codex, Gemini, Grok, Cursor, Cline) may work this re
 
 ### Research authority boundaries
 
-- `research/sacred-texts/` is the current canonical home for historical sacred-source witnesses, original-language texts, provenance, and rights records used by the contemplative rails.
+- `research/sacred-texts/` owns FrankX research evidence, source excerpts, translation notes, provenance, and rights records used by the contemplative rails. It is not Starlight worldview canon.
 - `research/sacred-texts/collections/sacred-visions/` is a FrankX editorial collection, not a repository and not Arcanea canon.
-- `content/rails/` owns FrankX essays and public contemplative surfaces; `docs/rails/` owns their roadmap and editorial policy.
+- `content/rails/` owns FrankX essays and public contemplative surfaces; `docs/rails/` owns their roadmap and editorial policy. These essays are FrankX interpretations, not religious authority, Starlight canon, or scientific consensus.
 - `research-intelligence-os` and `research-intelligence-systems` provide reusable research methods; they do not own this corpus.
 - The planned `reality-intelligence-system` does not exist yet. Its roadmap is for portable framework extraction, not silent reassignment of FrankX prose or source ownership.
+- `frankxai/starlight-canon` owns Starlight worldview ontology, Sacred Horizons, Witnesses, practices, and original Starlight texts. FrankX may publish interpretations but cannot redefine that canon.
 - `arcanean-library` is fiction-only. Never place historical religious texts, real-world theology, documentary evidence, or modern scholarship there.
 - Before moving this material, update the portfolio placement record and preserve source, translation, interpretation, and new composition as separate layers.
 
@@ -256,6 +257,17 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
+## FrankX voice sources
+
+Read these before drafting or editing any FrankX copy, post, script, email or page. Earlier voice notes in this repo yield to them.
+
+1. **Stance:** `Starlight-Intelligence/starlight-design-intelligence` `brand-packs/frankx/POINT_OF_VIEW.md`. What FrankX believes about the AI era, who it speaks to, and the rules for AGI and superintelligence claims.
+2. **Voice:** the same pack's `BRAND.md`, `COPY.md` and `NARRATIVE.md`. How a sentence earns its place, and the required tests.
+3. **References:** `frankxai/content-os` `knowledge/voice-observatory/`. Read `pattern-grammar.md`, then `voices/frontier-lab-lane.md` or `voices/founder-teacher-lane.md`. These cards are research. Steal the mechanism, never the phrasing.
+4. **Estate standard:** `Starlight-Intelligence/starlight-agent-config` `core/policies/human-writing-standard.v1.md` and the humanizer skill.
+
+On this machine the repos sit under `C:/Users/frank/starlight/repos/`. Elsewhere, fetch with `gh api repos/<owner>/<repo>/contents/<path> -H "Accept: application/vnd.github.raw"`. If a source cannot be read, say so and stop; do not draft from memory.
+
 <!-- STARLIGHT-EDITORIAL:START -->
 ## Editorial contract
 
@@ -267,7 +279,7 @@ Brand: **FrankX** (`frankx`)
 - Keep public labels in sentence case.
 - Run the changed-copy editorial audit before release.
 
-Pinned source: https://github.com/frankxai/starlight-design-intelligence/blob/50ae34c7ac06e6c083f277ca96c3bde8f0a39b43/brand-packs/frankx/COPY.md
+Pinned source: https://github.com/Starlight-Intelligence/starlight-design-intelligence/blob/851a11be31a0640df64baabcf2b1fc1afb9ce849/brand-packs/frankx/COPY.md
 <!-- STARLIGHT-EDITORIAL:END -->
 
 

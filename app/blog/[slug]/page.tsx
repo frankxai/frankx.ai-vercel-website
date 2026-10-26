@@ -150,6 +150,8 @@ export default async function BlogPostPage({
       <JsonLd type="Article" data={articleSchema} />
       {post.slug === 'vercel-ship-2026-builder-decisions' && post.content ? (
         <BodyFaqSchema source={post.content} id="blog-faq-vercel-ship-2026" />
+      ) : post.faqSource === 'body' && post.content ? (
+        <BodyFaqSchema source={post.content} id={`blog-faq-${post.slug}`} />
       ) : null}
 
       {/* Aurora Background Effect */}

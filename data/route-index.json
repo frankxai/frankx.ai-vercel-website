@@ -1,17 +1,17 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1055,
-    "aliases": 59,
+    "total": 1069,
+    "aliases": 61,
     "byType": {
       "core": 24,
-      "section": 446,
+      "section": 447,
       "community": 17,
       "tool": 75,
       "static": 15,
-      "blog": 269,
+      "blog": 277,
       "research": 23,
-      "guide": 34,
+      "guide": 39,
       "library": 88,
       "newsletter": 1,
       "os": 11,
@@ -3782,6 +3782,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/speaking-vs-typing-speed",
+      "title": "Is speaking faster than typing? What the research shows",
+      "description": "What the Stanford speech study and the 136 million keystroke study actually measured, why sendable-text speed differs, and a five-minute test to run yourself.",
+      "tags": [
+        "voice-typing",
+        "speech-to-text",
+        "productivity",
+        "research",
+        "wispr-flow"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/stanford-cs329z-engineering-ai-agents",
       "title": "Stanford CS329Z: The AI Agent Engineering Roadmap",
       "description": "A fact-checked architect’s roadmap to Stanford CS329Z: agent loops, compound systems, evaluation, safety and production adoption.",
@@ -4217,6 +4230,18 @@
       "type": "blog"
     },
     {
+      "href": "/blog/vercel-ship-2026-builder-decisions",
+      "title": "Vercel Ship 2026 decisions for people who ship agents",
+      "description": "Which Ship 2026 primitives to adopt, wait on, or skip, with the runtime guide and a decision matrix a builder can use on the page.",
+      "tags": [
+        "vercel",
+        "agent-stack",
+        "founders",
+        "ai-architecture"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/vibe-os-creative-soul",
       "title": "Vibe OS: Engineering Neuro-State with the RPM Model",
       "description": "Stop treating AI audio like a slot machine. Use the RPM Model to engineer the biological state of your users. Here is specific code for your prompt strategy.",
@@ -4261,6 +4286,71 @@
       "type": "blog"
     },
     {
+      "href": "/blog/voice-prompting-for-ai-architects",
+      "title": "Voice prompting for AI architects: dictate agent briefs",
+      "description": "How to dictate Claude Code, Cursor and Codex briefs by voice: a six-part spoken structure, what to keep on the keyboard, and how to review before you send.",
+      "tags": [
+        "voice-typing",
+        "wispr-flow",
+        "claude-code",
+        "prompt-engineering",
+        "ai-agents"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/voice-typing-for-ceos",
+      "title": "Voice typing for CEOs: delegate faster, with less loss",
+      "description": "How CEOs can dictate delegation memos, board narratives and 1:1 notes, run a voice-memo to owner loop, and roll out Wispr Flow with the right controls.",
+      "tags": [
+        "voice-typing",
+        "wispr-flow",
+        "leadership",
+        "delegation",
+        "team-rollout"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/voice-typing-for-creators",
+      "title": "Voice typing for creators: scripts, hooks and captions",
+      "description": "A voice typing workflow for content creators: dictate YouTube scripts, hooks, captions and newsletter drafts, capture ideas on mobile, and keep your own voice.",
+      "tags": [
+        "voice-typing",
+        "wispr-flow",
+        "content-creation",
+        "creator-workflows",
+        "youtube"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/voice-typing-for-founders",
+      "title": "Voice typing for founders: speak your inbox to zero",
+      "description": "A 7-day voice-first protocol for founders: dictate investor updates, async decisions, customer follow-ups and hiring notes, and know where dictation fails.",
+      "tags": [
+        "voice-typing",
+        "wispr-flow",
+        "founders",
+        "productivity",
+        "async-communication"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/voice-writing-for-authors",
+      "title": "Voice writing for authors: dictate the draft, edit by hand",
+      "description": "How authors can dictate a book: draft chapters by voice, keep a dictionary of character and place names, talk each scene, then revise by keyboard and AI.",
+      "tags": [
+        "voice-typing",
+        "wispr-flow",
+        "writing",
+        "book-writing",
+        "dictation"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/what-is-a-gencreator",
       "title": "What Is a GenCreator? The New Breed of AI-Native Creator",
       "description": "GenCreators use AI as a creative force multiplier. 12 principles, soul.md, daily shipping — the complete framework for the AI-native creator.",
@@ -4291,6 +4381,19 @@
         "intelligence-dispatches",
         "ai-systems",
         "production"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/wispr-flow-vs-superwhisper-vs-macwhisper-vs-willow",
+      "title": "Wispr Flow vs Superwhisper vs MacWhisper vs Willow",
+      "description": "Compare four dictation apps by where audio is processed, platforms, live dictation versus file transcription, AI cleanup and listed October 2026 prices.",
+      "tags": [
+        "voice-typing",
+        "wispr-flow",
+        "dictation",
+        "speech-to-text",
+        "ai-tools"
       ],
       "type": "blog"
     },
@@ -6200,6 +6303,67 @@
         "Midjourney",
         "Suno",
         "Productivity"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/vercel",
+      "title": "Vercel for builders",
+      "description": "The FrankX reading path for Vercel: the Ship 2026 recap, the AI SDK, and the pages that still say public beta. Every door cites a Vercel page.",
+      "tags": [
+        "vercel",
+        "ai-sdk",
+        "founders",
+        "saas"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/vercel-agent-runtime-decisions",
+      "title": "Vercel agent runtimes: Python, Daemons, Drives",
+      "description": "Choose Python, Daemons, Drives, Services, and Connect events on Vercel. Four audiences each get one adopt, wait, or skip call tied to a primary page.",
+      "tags": [
+        "vercel",
+        "python",
+        "daemons",
+        "agent-runtime"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/vercel-ai-sdk",
+      "title": "Vercel AI SDK for builders",
+      "description": "One TypeScript API for models, tools, structured output, and streaming, plus the Gateway and the Python SDK that is still public beta. Every claim cites a Vercel page.",
+      "tags": [
+        "vercel",
+        "ai-sdk",
+        "ai-gateway",
+        "founders"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/vercel-ship-2026-recap",
+      "title": "Vercel Ship 2026: a sourced recap for builders",
+      "description": "What Vercel Ship 2026 put on the platform, which skills are generally available or public beta, and which recording to watch. Every claim cites a Vercel page.",
+      "tags": [
+        "vercel",
+        "agent-stack",
+        "founders",
+        "saas"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/wispr-flow",
+      "title": "Wispr Flow guide: voice typing for builders",
+      "description": "Set up Wispr Flow, dictate agent briefs and daily messages, and decide which work to speak and which to type. Pricing and privacy checked October 2026.",
+      "tags": [
+        "wispr-flow",
+        "voice-typing",
+        "speech-to-text",
+        "dictation",
+        "ai-prompting"
       ],
       "type": "guide"
     },
@@ -8863,7 +9027,7 @@
     },
     {
       "href": "/products/5-suno-prompts",
-      "title": "5 Prompts That Made My Best Suno Tracks",
+      "title": "5 Suno Prompts",
       "tags": [
         "suno",
         "prompts"
@@ -9038,7 +9202,7 @@
     {
       "href": "/products/golden-age",
       "title": "The Golden Age of Creators",
-      "description": "How the creator economy crossed $250 billion and the barriers to creative expression evaporated. The definitive guide to building in the golden age.",
+      "description": "The definitive guide to building in the golden age.",
       "tags": [
         "book",
         "creator-economy",
@@ -9608,6 +9772,16 @@
         "systems"
       ],
       "type": "section"
+    },
+    {
+      "href": "/research/economy",
+      "title": "Economy",
+      "tags": [
+        "research",
+        "economy"
+      ],
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/research/hubs/agentic-products",
@@ -10674,9 +10848,11 @@
     "/books/fable/chapter-17-epilogue-from-the-workbench": "/books/fable/27-close-the-fable-neither-would-claim",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
     "/downloads/ana-ai-business-kit": "/allies/ana-cancino",
+    "/guide": "/guides",
     "/guide/agentic-obsidian-second-brain": "/guides/agentic-obsidian-second-brain",
     "/guide/obsidian-mcp-agent-skills": "/guides/agentic-obsidian-second-brain",
     "/guide/starlight-second-brain": "/guides/agentic-obsidian-second-brain",
+    "/guide/wispr-flow": "/guides/wispr-flow",
     "/guides/starlight-second-brain": "/guides/agentic-obsidian-second-brain",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",
