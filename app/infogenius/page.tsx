@@ -6,16 +6,63 @@ import { GlowCard } from '@/components/ui/glow-card'
 import InfoGeniusStudioWorkbench from '@/components/infogenius/InfoGeniusStudioWorkbench'
 
 export const metadata: Metadata = {
-  title: 'InfoGenius v5.2 — Visual Knowledge OS & Multi-Tenant Studio | FrankX.AI',
+  title: 'InfoGenius v5.3 — Multi-Brand Visual Knowledge OS & MCP Studio | FrankX.AI',
   description:
-    'Turn any topic, architecture, or Markdown article into web-grounded 2K/4K infographics, 5-slide executive carousels, Veo 3.1 motion loops, and Kore TTS narration via Vercel AI Gateway, Google Gemini, or OpenRouter.',
+    'Turn any topic, architecture, or Markdown article into web-grounded 2K/4K infographics, Vector SVG Blueprints, 5-slide executive carousels, and 2-Speaker Dialogue TTS across FrankX, Starlight (SIP), GenCreator, and Arcanea.',
   openGraph: {
-    title: 'InfoGenius v5.2 — Visual Knowledge OS | FrankX.AI',
+    title: 'InfoGenius v5.3 — Multi-Brand Visual Knowledge OS | FrankX.AI',
     description:
-      'Web-grounded 2K/4K infographics, 5-slide Markdown carousels, Custom Brand Style Builder, and Claude Code / Cursor MCP Plugin.',
+      '4 Sovereign Brand Worlds, Vector SVG Blueprints + Code-Overlay HUD, 2-Speaker Dialogue TTS, and OpenAPI 3.1 + MCP Server.',
     images: [{ url: '/images/blog/generated/infogenius-glassmorphic-sovereign-multi-tenant-ai-gateway.png' }],
   },
 }
+
+const brandWorldsMatrix = [
+  {
+    id: 'frankx',
+    brand: 'FrankX AI Architect',
+    badge: 'Enterprise & Cloud Architecture',
+    palette: '#0B1221 · #00B4D8 · #C5A059',
+    buyers: 'CTOs, Principal Architects, Cloud & Enterprise Engineering Teams',
+    whyPay:
+      'Replaces 4-hour Lucidchart/Visio sessions with instant Da Vinci blueprints, 3D isometric cloud topologies, and SVG vector schematics with verified citations.',
+    presets: ['frankx/da-vinci-technical', 'frankx/3d-isometric', 'community/glassmorphic'],
+    accent: 'border-cyan-400/40 bg-cyan-500/10 text-cyan-200',
+  },
+  {
+    id: 'starlight',
+    brand: 'Starlight Sovereign (SIP)',
+    badge: 'Agent Fleets · MCP · Memory Vaults',
+    palette: '#07090E · #7C3AED · #14B8A6',
+    buyers: 'AI Startup Founders, Multi-Agent Infrastructure Builders, DevTools Teams',
+    whyPay:
+      'Visualizes invisible agent topologies, MCP tool meshes, and 6-Vault semantic memory flows for GitHub READMEs, investor decks, and SIP-attested docs.',
+    presets: ['starlight/neural-cosmos', 'starlight/cyber-observability', 'starlight/sovereign-mesh'],
+    accent: 'border-violet-400/40 bg-violet-500/10 text-violet-200',
+  },
+  {
+    id: 'gencreator',
+    brand: 'GenCreator Edition',
+    badge: 'Territory B · Editorial & CoE',
+    palette: '#0F1319 · #60A5FA · #D97706',
+    buyers: 'Technical Newsletter Operators, Content Studios, Developer Relations Teams',
+    whyPay:
+      'Turns every Markdown article or research thread into a 5-slide LinkedIn/X carousel pack and magazine-grade editorial spreads in under 60 seconds.',
+    presets: ['gencreator/territory-b-editorial', 'gencreator/coe-blueprint', 'gencreator/source-to-edition'],
+    accent: 'border-amber-400/40 bg-amber-500/10 text-amber-200',
+  },
+  {
+    id: 'arcanea',
+    brand: 'Arcanea Canon',
+    badge: 'Mythic Sci-Fi · Worldbuilding & Lore',
+    palette: '#0A0D18 · #7FFFD4 · #FFD700',
+    buyers: 'Worldbuilders, Game Studios, Fiction Authors, RPG & Lore Creators',
+    whyPay:
+      'Renders canon-locked Ten Gates sacred geometry, illuminated obsidian-and-gold lore scrolls, and faction codices without generic fantasy AI slop.',
+    presets: ['arcanea/sacred-geometry', 'arcanea/illuminated-lore-scroll', 'community/vintage'],
+    accent: 'border-emerald-400/40 bg-emerald-500/10 text-emerald-200',
+  },
+]
 
 const capabilities = [
   {
@@ -24,9 +71,14 @@ const capabilities = [
     body: 'Every visual starts with live Perplexity Sonar or Google Search grounding — extracting 4–5 cited facts before a single pixel is rendered.',
   },
   {
+    icon: '🧬',
+    title: 'Vector SVG Blueprint + Code-Overlay HUD',
+    body: 'Every generation emits both a 2K/4K raster infographic AND a deterministic 1200×675 Vector SVG Blueprint + interactive citation HUD with zero spelling errors.',
+  },
+  {
     icon: '🎨',
-    title: '10 v5.2 Styles + 18 Brand Presets',
-    body: 'From 3D Frosted Glassmorphism and Luxury Editorial to FrankX Da Vinci Blueprints and Custom Brand DNA (.preset.json).',
+    title: '4 Brand Worlds · 26 Canonical Presets',
+    body: 'Switch seamlessly between FrankX AI Architect, Starlight Sovereign (SIP), GenCreator Territory B, and Arcanea Canon — or lock your own .preset.json.',
   },
   {
     icon: '📑',
@@ -34,19 +86,14 @@ const capabilities = [
     body: 'Paste any blog post, whitepaper, or GitHub README and decompose it into a 5-slide executive visual pack (Hook, Problem, Architecture, Proof, Action).',
   },
   {
-    icon: '📐',
-    title: '2K & 4K Multi-Format Output',
-    body: '16:9 blog heroes and keynote decks, 1:1 LinkedIn/X carousels, and 9:16 vertical stories with crisp, spelled typography.',
-  },
-  {
-    icon: '🔊',
-    title: 'Veo 3.1 Motion + Kore TTS Audio',
-    body: 'Turn static infographics into 7-second cinematic motion loops and 24kHz spoken executive briefings in one command.',
+    icon: '🎙️',
+    title: 'Solo + 2-Speaker Dialogue TTS (Kore × Fenrir)',
+    body: 'Generate either a solo executive audio briefing (Kore) or a 2-host technical podcast dialogue (Architect Kore × Strategist Fenrir) in 24kHz WAV.',
   },
   {
     icon: '🔌',
-    title: 'Claude Code & Cursor MCP Plugin',
-    body: 'Install plugins/infogenius-visual-os to trigger /infogenius inside Claude Code, Cursor, Codex, and Antigravity with Zero-Orphan provenance.',
+    title: 'MCP Server + OpenAPI 3.1 + Vercel Gateway',
+    body: 'Mount InfoGenius in Claude Code, Cursor, and Antigravity over MCP, or call POST /api/byok/infogenius with automatic Vercel AI Gateway model failover.',
   },
 ]
 
@@ -374,6 +421,69 @@ export default function InfoGeniusPage() {
       <section className="py-16 px-6 border-t border-white/10 bg-gradient-to-b from-violet-950/15 to-transparent">
         <div className="max-w-6xl mx-auto">
           <InfoGeniusStudioWorkbench />
+        </div>
+      </section>
+
+      {/* ── 4 SOVEREIGN BRAND WORLDS & WHY TEAMS PAY ── */}
+      <section id="brand-worlds" className="py-20 px-6 border-t border-white/10 bg-[#07090e]">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-teal-400">
+                Multi-Brand Visual Substrate
+              </span>
+              <h2 className="text-3xl md:text-4xl font-black text-white mt-2">
+                Four Sovereign Brand Worlds. One Visual Engine.
+              </h2>
+              <p className="text-white/55 mt-2 max-w-2xl text-sm leading-relaxed">
+                Each brand world in the Starlight Estate has its own buyer persona, color physics,
+                and anti-slop guardrails — available in one click inside the Studio, CLI, REST API,
+                and MCP Server.
+              </p>
+            </div>
+            <a
+              href="/api/byok/infogenius?format=openapi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-400/35 bg-emerald-500/10 hover:bg-emerald-500/20 px-4 py-2 text-xs font-bold text-emerald-200"
+            >
+              Inspect OpenAPI 3.1 + MCP Contract ↗
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {brandWorldsMatrix.map((bw) => (
+              <div
+                key={bw.id}
+                className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 flex flex-col justify-between space-y-4"
+              >
+                <div className="space-y-3">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className={`rounded-full border px-3 py-1 text-[11px] font-bold ${bw.accent}`}>
+                      {bw.badge}
+                    </span>
+                    <span className="text-[11px] font-mono text-white/45">{bw.palette}</span>
+                  </div>
+                  <h3 className="text-xl font-black text-white">{bw.brand}</h3>
+                  <div className="text-xs font-semibold text-teal-300">
+                    Target Buyers: <span className="text-white/80 font-normal">{bw.buyers}</span>
+                  </div>
+                  <p className="text-xs text-white/65 leading-relaxed">{bw.whyPay}</p>
+                </div>
+
+                <div className="pt-3 border-t border-white/10 flex flex-wrap gap-1.5">
+                  {bw.presets.map((preset) => (
+                    <span
+                      key={preset}
+                      className="rounded-lg border border-white/10 bg-black/50 px-2.5 py-1 text-[10px] font-mono text-white/70"
+                    >
+                      --style {preset}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

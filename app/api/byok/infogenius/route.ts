@@ -66,11 +66,127 @@ function resolveManagedServerCredential(): {
 }
 
 export async function GET(req: NextRequest) {
+  const format = req.nextUrl.searchParams.get('format')
   const tenantId = sanitizeTenantId(
     req.nextUrl.searchParams.get('tenantId') || req.headers.get('X-Tenant-Id')
   )
   const wallet = await getTenantWallet(tenantId)
   const managed = resolveManagedServerCredential()
+
+  const discovery = {
+    version: '5.3.0',
+    protocol: 'SIP-Visual-Knowledge-OS',
+    openapiUrl: '/api/byok/infogenius?format=openapi',
+    brandWorlds: [
+      {
+        id: 'frankx',
+        name: 'FrankX AI Architect',
+        buyerPersona: 'CTOs, AI Architects, Solution Engineers & Technical Founders',
+        signatureStyles: ['glassmorphic', 'premium', 'da-vinci-technical', '3d-isometric'],
+      },
+      {
+        id: 'starlight',
+        name: 'Starlight Sovereign (SIP)',
+        buyerPersona: 'Multi-Agent Fleet Operators, MCP Developers & Sovereign AI Teams',
+        signatureStyles: [
+          'neural-cosmos',
+          'cyber-observability',
+          'liquid-starlight',
+          'sovereign-mesh',
+        ],
+      },
+      {
+        id: 'gencreator',
+        name: 'GenCreator Publishing OS',
+        buyerPersona: 'Newsletter Operators, Content Studios, Executive Ghostwriters & Educators',
+        signatureStyles: ['territory-b-editorial', 'coe-blueprint', 'source-to-edition'],
+      },
+      {
+        id: 'arcanea',
+        name: 'Arcanea Universe & Academy',
+        buyerPersona: 'Worldbuilders, Creative Directors, Game Studios & Lore Architects',
+        signatureStyles: ['sacred-geometry', 'illuminated-lore-scroll'],
+      },
+    ],
+    actions: ['architect', 'generate', 'decompose-article', 'narrate', 'save-brand-preset'],
+    gatewayRouting: {
+      researchChain: ['perplexity/sonar', 'google/gemini-2.5-flash', 'openai/gpt-4.1-mini'],
+      imageChain: [
+        'google/gemini-3-pro-image',
+        'gemini-3-pro-image-preview',
+        'gemini-3.1-flash-image-preview',
+      ],
+      ttsModes: ['solo (Kore)', 'dialogue (MultiSpeakerVoiceConfig: Kore + Fenrir)'],
+      vectorOutput: 'Interactive SVG Architecture Blueprint + HUD Code-Overlay',
+    },
+    mcpTools: [
+      'generate_infographic',
+      'decompose_article_carousel',
+      'narrate_executive_dialogue',
+      'animate_infographic_veo',
+      'research_topic_grounded',
+      'list_brand_presets',
+    ],
+  }
+
+  if (format === 'openapi') {
+    return Response.json({
+      openapi: '3.1.0',
+      info: {
+        title: 'InfoGenius v5.3 Visual Knowledge OS API',
+        version: '5.3.0',
+        description:
+          'Multi-tenant grounded visual synthesis API & MCP backend across FrankX, Starlight, GenCreator, and Arcanea brand worlds.',
+      },
+      servers: [{ url: 'https://www.frankx.ai' }, { url: 'https://infogenius-three.vercel.app' }],
+      paths: {
+        '/api/byok/infogenius': {
+          get: {
+            summary: 'Inspect tenant credit wallet, brand worlds, and MCP/Gateway capabilities',
+            parameters: [
+              { name: 'tenantId', in: 'query', schema: { type: 'string' } },
+              { name: 'format', in: 'query', schema: { type: 'string', enum: ['json', 'openapi'] } },
+            ],
+          },
+          post: {
+            summary:
+              'Execute grounded research, 2K/4K image synthesis, SVG blueprint generation, 5-slide decomposition, or 2-speaker TTS narration',
+            requestBody: {
+              required: true,
+              content: {
+                'application/json': {
+                  schema: {
+                    type: 'object',
+                    properties: {
+                      action: {
+                        type: 'string',
+                        enum: [
+                          'architect',
+                          'generate',
+                          'decompose-article',
+                          'narrate',
+                          'save-brand-preset',
+                        ],
+                      },
+                      topic: { type: 'string' },
+                      articleText: { type: 'string' },
+                      style: { type: 'string', enum: Object.keys(STYLES_V5) },
+                      audience: { type: 'string', enum: Object.keys(AUDIENCES_V5) },
+                      aspectRatio: { type: 'string', enum: ['16:9', '1:1', '9:16'] },
+                      imageSize: { type: 'string', enum: ['1K', '2K', '4K'] },
+                      narrationMode: { type: 'string', enum: ['solo', 'dialogue'] },
+                      tenantId: { type: 'string' },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    })
+  }
+
   return Response.json({
     success: true,
     wallet,
@@ -78,6 +194,7 @@ export async function GET(req: NextRequest) {
     creditPacks: CREDIT_PACK_CATALOG,
     managedGatewayActive: Boolean(managed.key),
     managedProvider: managed.provider,
+    discovery,
   })
 }
 
@@ -85,6 +202,7 @@ interface StyleDefinition {
   key: string
   name: string
   tag: string
+  brandWorld: 'frankx' | 'starlight' | 'gencreator' | 'arcanea' | 'community'
   instruction: string
   palette: string[]
 }
@@ -93,7 +211,8 @@ const STYLES_V5: Record<string, StyleDefinition> = {
   glassmorphic: {
     key: 'glassmorphic',
     name: 'Premium 3D Glassmorphism',
-    tag: 'v5.2 Flagship',
+    tag: 'v5.3 Flagship',
+    brandWorld: 'frankx',
     instruction:
       'Premium 3D Glassmorphic Infographic. Dark void background (#0b0e14). All information displayed on frosted translucent glass panels floating at different depths. Key concepts rendered as 3D crystal/glass nodes connected by thin luminous teal (#7fffd4) threads. Dramatic directional spotlight from upper-left creating teal rim lighting on all glass surfaces. Gold (#ffd700) accents on highlights. Clean white sans-serif labels on every element. Maximum 3 accent colors. Professional data visualization meets luxury 3D rendering. NOT flat, NOT HUD overlay, NOT cyberpunk, NOT clay. Ultra-high detail, studio quality.',
     palette: ['#0b0e14', '#7fffd4', '#ffd700', '#ffffff'],
@@ -101,7 +220,8 @@ const STYLES_V5: Record<string, StyleDefinition> = {
   premium: {
     key: 'premium',
     name: 'Luxury Brand Visual',
-    tag: 'v5.2 Flagship',
+    tag: 'v5.3 Flagship',
+    brandWorld: 'frankx',
     instruction:
       'Luxury tech-brand visual. Apple meets Dior meets DeepMind. Dark void background (#0b0e14). One striking crystal/glass focal element at center with dramatic volumetric lighting. Data and labels on frosted glass cards orbiting the focal point. Thin luminous teal (#7fffd4) connection threads forming constellation pattern. Gold (#ffd700) warm accent highlights. Ultra-clean typography in thin modern serif. 50%+ negative space. Materials: crystal, glass, titanium, light. NEVER clay, plastic, HUD, or clutter. 8K detail.',
     palette: ['#0b0e14', '#7fffd4', '#ffd700', '#e2e8f0'],
@@ -110,30 +230,106 @@ const STYLES_V5: Record<string, StyleDefinition> = {
     key: 'da-vinci-technical',
     name: 'Da Vinci Technical',
     tag: 'FrankX Signature',
+    brandWorld: 'frankx',
     instruction:
-      'Leonardo da Vinci notebook style on dark obsidian parchment (#0a0f1c), warm sepia and gold ink sketches (#f59e0b, #fbbf24) with cyan callout lines (#06b6d4), technical diagrams,exploded views, and crisp architectural annotations.',
-    palette: ['#0a0f1c', '#f59e0b', '#fbbf24', '#06b6d4'],
+      'Leonardo da Vinci notebook style on dark obsidian parchment (#0a0f1c), warm sepia and gold ink sketches (#f59e0b, #fbbf24) with cyan callout lines (#06b6d4), technical diagrams, exploded views, and crisp architectural annotations in Inter and JetBrains Mono.',
+    palette: ['#0a0f1c', '#f59e0b', '#06b6d4', '#f8fafc'],
   },
   '3d-isometric': {
     key: '3d-isometric',
     name: '3D Isometric Studio',
     tag: 'FrankX Signature',
+    brandWorld: 'frankx',
     instruction:
       'Clean isometric 3D blocks on deep obsidian (#0a0f1c), modern glassmorphic UI layers, soft studio lighting, emerald (#10b981) and cyan (#06b6d4) accents, clearly separated and labeled system modules.',
     palette: ['#0a0f1c', '#10b981', '#06b6d4', '#f8fafc'],
   },
+  'neural-cosmos': {
+    key: 'neural-cosmos',
+    name: 'Starlight Neural Cosmos',
+    tag: 'Starlight SIP',
+    brandWorld: 'starlight',
+    instruction:
+      'Starlight Intelligence Systems Neural Cosmos Infographic. Deep navy void background (#050B14). Six semantic memory vaults rendered as luminous crystalline astrolabe nodes connected by precision cyber-cyan (#00E5FF) and frontier-violet (#8B5CF6) optical conduits. Key human governance gates highlighted in warm Starlight Gold (#FCD34D). Crisp Instrument Sans and IBM Plex Mono typography.',
+    palette: ['#050b14', '#00e5ff', '#fcd34d', '#ffffff'],
+  },
+  'cyber-observability': {
+    key: 'cyber-observability',
+    name: 'Starlight Cyber Observability',
+    tag: 'Starlight Operator',
+    brandWorld: 'starlight',
+    instruction:
+      'Starlight Operator Observability Schematic. Deep obsidian-navy background (#050B14) with precision telemetry grid. Maker and Independent Verifier execution lanes displayed as structured frosted operator panels with emerald (#10B981) pass badges, cyber cyan (#00E5FF) data streams, and starlight gold (#FCD34D) human approval gates.',
+    palette: ['#050b14', '#00e5ff', '#10b981', '#fcd34d'],
+  },
+  'liquid-starlight': {
+    key: 'liquid-starlight',
+    name: 'Liquid Starlight Horizon',
+    tag: 'Starlight Horizon',
+    brandWorld: 'starlight',
+    instruction:
+      'Liquid Starlight Horizon Visual. Deep cosmos background (#050B14) with sculptural refractive liquid-crystal conduits carrying luminous aquamarine (#7FFFD4) and warm starlight gold (#FCD34D) light streams. Frosted glass callout plates with crisp white Instrument Sans labels.',
+    palette: ['#050b14', '#7fffd4', '#fcd34d', '#ffffff'],
+  },
+  'sovereign-mesh': {
+    key: 'sovereign-mesh',
+    name: 'Starlight Sovereign Mesh',
+    tag: 'Starlight Protocol',
+    brandWorld: 'starlight',
+    instruction:
+      'Starlight Sovereign Agent Mesh Blueprint. Isometric multi-node network on deep navy (#050B14) showing isolated agent worktrees, central Memory Gateway, and SIP cryptographic attestation locks in cyan (#00E5FF) and gold (#FCD34D).',
+    palette: ['#050b14', '#00e5ff', '#fcd34d', '#e2e8f0'],
+  },
+  'territory-b-editorial': {
+    key: 'territory-b-editorial',
+    name: 'Territory B Editorial Print',
+    tag: 'GenCreator Flagship',
+    brandWorld: 'gencreator',
+    instruction:
+      'GenCreator Territory B Editorial Print Infographic. Warm archival paper background (#FBF9F5) with ultra-crisp deep carbon ink (#221F1B) hairline Swiss grid, technical diagrams, and Instrument Serif + Instrument Sans editorial typography. Single selective Spot Red (#C8322A) accent used for edition numbers, verification stamps, and focal flow. Stripe Press meets Monocle aesthetic.',
+    palette: ['#fbf9f5', '#c8322a', '#221f1b', '#221f1b'],
+  },
   'coe-blueprint': {
     key: 'coe-blueprint',
-    name: 'GenCreator CoE Blueprint',
-    tag: 'Enterprise Architecture',
+    name: 'GenCreator 6-Pillar CoE',
+    tag: 'GenCreator Enterprise',
+    brandWorld: 'gencreator',
     instruction:
       'Enterprise AI Center of Excellence schematic. Six-pillar architecture layout on dark navy (#0a0f1c), crisp vector swimlanes, emerald (#10b981), cyan (#06b6d4), and violet (#8b5cf6) subsystem badges, governance gates, and telemetry callouts.',
-    palette: ['#0a0f1c', '#10b981', '#06b6d4', '#8b5cf6'],
+    palette: ['#0a0f1c', '#10b981', '#06b6d4', '#f8fafc'],
+  },
+  'source-to-edition': {
+    key: 'source-to-edition',
+    name: 'Source-to-Edition Workflow',
+    tag: 'GenCreator Pipeline',
+    brandWorld: 'gencreator',
+    instruction:
+      'GenCreator Source-to-Edition Workflow Diagram. Warm editorial paper (#FBF9F5) and deep ink (#221F1B) with Spot Red (#C8322A) pipeline connectors and emerald (#10B981) verification checkmarks.',
+    palette: ['#fbf9f5', '#c8322a', '#10b981', '#221f1b'],
+  },
+  'sacred-geometry': {
+    key: 'sacred-geometry',
+    name: 'Arcanea Sacred Geometry',
+    tag: 'Arcanea Canon',
+    brandWorld: 'arcanea',
+    instruction:
+      'Arcanea Sacred Geometry Codex Infographic. Deep cosmic void background (#0B0E14). Golden-ratio astrolabe rings and sacred geometric polyhedra in luminous Arcanean Gold (#FFD700) and Atlantean Teal (#00BCD4) with aquamarine (#7FFFD4) harmonic nodes. Clean Geist and Instrument Serif labels.',
+    palette: ['#0b0e14', '#00bcd4', '#ffd700', '#ffffff'],
+  },
+  'illuminated-lore-scroll': {
+    key: 'illuminated-lore-scroll',
+    name: 'Arcanea Illuminated Codex',
+    tag: 'Arcanea Lore',
+    brandWorld: 'arcanea',
+    instruction:
+      'Arcanea Illuminated Codex Scroll. Dark obsidian vellum background (#0B0E14) framed with intricate gold-leaf (#FFD700) geometric filigree and Atlantean teal (#00BCD4) crystal inlays. Crisp parchment-white (#F4ECE1) serif annotations.',
+    palette: ['#0b0e14', '#ffd700', '#00bcd4', '#f4ece1'],
   },
   standard: {
     key: 'standard',
     name: 'Scientific Illustration',
     tag: 'Editorial',
+    brandWorld: 'community',
     instruction:
       'High-quality digital scientific illustration. Clean, modern, highly detailed. Professional color palette. Clear visual hierarchy with labeled components.',
     palette: ['#0f172a', '#38bdf8', '#22c55e', '#f8fafc'],
@@ -142,6 +338,7 @@ const STYLES_V5: Record<string, StyleDefinition> = {
     key: 'minimalist',
     name: 'Bauhaus Minimalist',
     tag: 'Swiss Grid',
+    brandWorld: 'community',
     instruction:
       'Bauhaus Minimalist. Flat vector art, limited color palette (2-3 colors), reliance on negative space and simple geometric shapes. Information conveyed through spatial relationships.',
     palette: ['#111111', '#e63946', '#f4a261', '#f1faee'],
@@ -150,6 +347,7 @@ const STYLES_V5: Record<string, StyleDefinition> = {
     key: 'photorealistic',
     name: 'Photorealistic Composite',
     tag: '8K Optical',
+    brandWorld: 'community',
     instruction:
       'Photorealistic Composite. Cinematic lighting, 8K resolution, Hasselblad 50mm f/2.8 depth of field, highly detailed textures with precision callout overlays.',
     palette: ['#090d16', '#38bdf8', '#f59e0b', '#ffffff'],
@@ -158,6 +356,7 @@ const STYLES_V5: Record<string, StyleDefinition> = {
     key: 'futuristic',
     name: 'Focused Futuristic HUD',
     tag: 'Telemetry',
+    brandWorld: 'community',
     instruction:
       'Restrained Tech HUD. Glowing cyan and emerald data lines on dark obsidian background, holographic data visualization, 3D wireframes. Data panels and readouts integrated cleanly.',
     palette: ['#050811', '#00f5d4', '#7b2cbf', '#e0fbfc'],
@@ -166,10 +365,149 @@ const STYLES_V5: Record<string, StyleDefinition> = {
     key: 'vintage',
     name: 'Scientific Lithograph',
     tag: '19th Century',
+    brandWorld: 'community',
     instruction:
       '19th Century Scientific Lithograph. Engraving style, sepia tones, textured paper background, fine hatch lines. Detailed labels in period-appropriate typography.',
     palette: ['#2b2118', '#8c6239', '#c69c6d', '#f4ece1'],
   },
+}
+
+function resolveStyleDefinition(rawStyle: string): StyleDefinition {
+  const clean = String(rawStyle || 'glassmorphic').trim()
+  if (STYLES_V5[clean]) return STYLES_V5[clean]
+  const stripped = clean.includes('/') ? clean.split('/').pop() || clean : clean
+  if (STYLES_V5[stripped]) return STYLES_V5[stripped]
+  return STYLES_V5.glassmorphic
+}
+
+function escapeXml(unsafe: string): string {
+  return String(unsafe || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
+function wrapSvgText(text: string, maxCharsPerLine = 42, maxLines = 3): string[] {
+  const words = String(text || '').trim().split(/\s+/)
+  const lines: string[] = []
+  let current = ''
+  for (const word of words) {
+    if ((current + ' ' + word).trim().length <= maxCharsPerLine) {
+      current = (current + ' ' + word).trim()
+    } else {
+      if (current) lines.push(current)
+      current = word
+      if (lines.length >= maxLines - 1) break
+    }
+  }
+  if (current && lines.length < maxLines) {
+    const remainingWords = words.slice(lines.join(' ').split(/\s+/).filter(Boolean).length)
+    const tail = remainingWords.join(' ')
+    lines.push(tail.length > maxCharsPerLine ? tail.slice(0, maxCharsPerLine - 1) + '…' : tail)
+  }
+  return lines.length > 0 ? lines : ['Verified architecture point']
+}
+
+function buildInteractiveSvgBlueprint({
+  topic,
+  styleObj,
+  audienceObj,
+  facts,
+  labels,
+  sources,
+}: {
+  topic: string
+  styleObj: StyleDefinition
+  audienceObj: { label: string; density: string }
+  facts: string[]
+  labels: string[]
+  sources: string[]
+}): string {
+  const bgHex = (styleObj.palette[0] || '#0b0e14').split(' ')[0]
+  const isLightPaper = bgHex.toLowerCase() === '#fbf9f5' || bgHex.toLowerCase() === '#ffffff'
+  const primaryHex = (styleObj.palette[1] || '#7fffd4').split(' ')[0]
+  const secondaryHex = (styleObj.palette[2] || '#ffd700').split(' ')[0]
+  const textHex = isLightPaper ? '#221f1b' : '#f8fafc'
+  const mutedHex = isLightPaper ? '#57534e' : '#94a3b8'
+  const cardFill = isLightPaper ? '#ffffff' : '#111622'
+  const cardStroke = isLightPaper ? '#d6d3cd' : primaryHex
+
+  const nodePositions = [
+    { x: 60, y: 150 },
+    { x: 740, y: 150 },
+    { x: 60, y: 410 },
+    { x: 740, y: 410 },
+  ]
+
+  const cardsSvg = nodePositions
+    .map((pos, idx) => {
+      const factText = facts[idx] || facts[0] || `Key structural mechanism ${idx + 1} for ${topic}`
+      const labelText = labels[idx] || `Node 0${idx + 1}`
+      const wrapped = wrapSvgText(factText, 44, 3)
+      const tspans = wrapped
+        .map(
+          (line, lIdx) =>
+            `<tspan x="${pos.x + 24}" dy="${lIdx === 0 ? 0 : 22}">${escapeXml(line)}</tspan>`
+        )
+        .join('')
+      const anchorX = idx % 2 === 0 ? pos.x + 400 : pos.x
+      const anchorY = pos.y + 85
+      return `
+      <line x1="600" y1="345" x2="${anchorX}" y2="${anchorY}" stroke="${primaryHex}" stroke-width="2" stroke-dasharray="6 4" opacity="0.65" />
+      <circle cx="${anchorX}" cy="${anchorY}" r="5" fill="${secondaryHex}" />
+      <g>
+        <rect x="${pos.x}" y="${pos.y}" width="400" height="175" rx="18" fill="${cardFill}" fill-opacity="${isLightPaper ? '0.96' : '0.88'}" stroke="${cardStroke}" stroke-width="1.5" stroke-opacity="0.55" />
+        <rect x="${pos.x + 20}" y="${pos.y + 18}" width="46" height="24" rx="6" fill="${primaryHex}" fill-opacity="0.18" />
+        <text x="${pos.x + 43}" y="${pos.y + 35}" text-anchor="middle" fill="${primaryHex}" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700">0${idx + 1}</text>
+        <text x="${pos.x + 78}" y="${pos.y + 35}" fill="${secondaryHex}" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700">${escapeXml(labelText.slice(0, 32))}</text>
+        <text x="${pos.x + 24}" y="${pos.y + 74}" fill="${textHex}" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="500">${tspans}</text>
+      </g>`
+    })
+    .join('\n')
+
+  const titleLines = wrapSvgText(topic, 30, 2)
+  const centerTitleSvg = titleLines
+    .map(
+      (line, idx) =>
+        `<tspan x="600" dy="${idx === 0 ? 0 : 22}">${escapeXml(line)}</tspan>`
+    )
+    .join('')
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="${primaryHex}" stop-opacity="${isLightPaper ? '0.12' : '0.28'}" />
+      <stop offset="100%" stop-color="${bgHex}" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="675" fill="${bgHex}" />
+  <circle cx="600" cy="345" r="290" fill="url(#coreGlow)" />
+  <g stroke="${isLightPaper ? '#e5e0d8' : '#1e293b'}" stroke-width="1" opacity="0.45">
+    <line x1="0" y1="110" x2="1200" y2="110" />
+    <line x1="0" y1="615" x2="1200" y2="615" />
+    <line x1="600" y1="110" x2="600" y2="615" stroke-dasharray="4 6" />
+  </g>
+  <!-- Header Bar -->
+  <rect x="60" y="34" width="190" height="30" rx="15" fill="${primaryHex}" fill-opacity="0.15" stroke="${primaryHex}" stroke-width="1" stroke-opacity="0.5" />
+  <text x="155" y="54" text-anchor="middle" fill="${primaryHex}" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">${escapeXml(styleObj.brandWorld.toUpperCase())} · VECTOR HUD</text>
+  <text x="270" y="55" fill="${textHex}" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="800">${escapeXml(topic.slice(0, 58))}</text>
+  <text x="1140" y="54" text-anchor="end" fill="${mutedHex}" font-family="JetBrains Mono, monospace" font-size="12">${escapeXml(styleObj.name)} · ${escapeXml(audienceObj.label)}</text>
+  <!-- 4 Knowledge Cards -->
+  ${cardsSvg}
+  <!-- Central Core Node -->
+  <g>
+    <circle cx="600" cy="345" r="102" fill="${cardFill}" stroke="${primaryHex}" stroke-width="2.5" />
+    <circle cx="600" cy="345" r="90" fill="none" stroke="${secondaryHex}" stroke-width="1" stroke-dasharray="4 4" opacity="0.7" />
+    <text x="600" y="315" text-anchor="middle" fill="${secondaryHex}" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" letter-spacing="1.5">CORE ARCHITECTURE</text>
+    <text x="600" y="344" text-anchor="middle" fill="${textHex}" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="800">${centerTitleSvg}</text>
+    <text x="600" y="392" text-anchor="middle" fill="${primaryHex}" font-family="JetBrains Mono, monospace" font-size="10">${sources.length > 0 ? `${sources.length} Web Citations` : 'Verified Blueprint'}</text>
+  </g>
+  <!-- Footer Provenance -->
+  <text x="60" y="648" fill="${mutedHex}" font-family="JetBrains Mono, monospace" font-size="11">Built on SIP · InfoGenius v5.3 Code-Overlay &amp; Vector Blueprint · Zero-Slop Exact Typography</text>
+  <text x="1140" y="648" text-anchor="end" fill="${primaryHex}" font-family="JetBrains Mono, monospace" font-size="11">frankx.ai/infogenius</text>
+</svg>`
 }
 
 const AUDIENCES_V5: Record<
@@ -379,6 +717,15 @@ VIDEO_PROMPT:
       body: JSON.stringify({
         model: researchModel,
         messages: [{ role: 'user', content: researchPrompt }],
+        ...(isVercel
+          ? {
+              providerOptions: {
+                gateway: {
+                  models: ['google/gemini-2.5-flash', 'openai/gpt-4.1-mini'],
+                },
+              },
+            }
+          : {}),
       }),
     })
     if (!res.ok) {
@@ -476,17 +823,20 @@ export async function POST(req: NextRequest) {
       imageSize = '2K',
       label = '',
       customFacts = [],
+      narrationMode = 'solo',
       provider: requestedProvider = 'auto',
       tenantId: rawTenantId = '',
     } = body
 
+    const requestStartMs = Date.now()
     const tenantId = sanitizeTenantId(rawTenantId || req.headers.get('X-Tenant-Id'))
-    const baseStyleObj = STYLES_V5[style] || STYLES_V5.glassmorphic
+    const baseStyleObj = resolveStyleDefinition(style)
     const styleObj: StyleDefinition = customStyleInstruction
       ? {
           key: style || 'custom-brand',
           name: customStyleName || 'Custom Brand Style',
           tag: 'Custom Brand DNA',
+          brandWorld: baseStyleObj.brandWorld || 'frankx',
           instruction: String(customStyleInstruction),
           palette:
             Array.isArray(customPalette) && customPalette.length > 0
@@ -766,21 +1116,68 @@ ${rawArticle.slice(0, 6000)}`
       .replace(/^-+|-+$/g, '')
       .slice(0, 50)
 
-    // Action 1: Narrate facts via Gemini TTS
+    // Action 1: Narrate facts via Gemini TTS (Solo Kore OR 2-Speaker MultiSpeakerVoiceConfig Kore + Fenrir)
     if (action === 'narrate') {
-      if (!userKey) {
+      const ttsKey =
+        userKey && !userKey.startsWith('sk-or-') && !userKey.startsWith('vck_')
+          ? userKey
+          : process.env.GEMINI_API_KEY?.trim() ||
+            process.env.GOOGLE_GENERATIVE_AI_API_KEY?.trim() ||
+            ''
+      if (!ttsKey) {
         return Response.json(
-          { error: 'Google Gemini API key required for Kore TTS narration.' },
+          {
+            error:
+              'Google Gemini API key required for Kore / Multi-Speaker TTS narration. Paste your Google AI Studio key in the BYOK drawer.',
+          },
           { status: 401 }
         )
       }
-      const factsToRead: string[] = Array.isArray(customFacts) && customFacts.length > 0
-        ? customFacts
-        : [`Overview of ${cleanTopic}`]
-      const narrationPrompt = `Read the following facts clearly and professionally: ${factsToRead.join('. ')}`
+      const factsToRead: string[] =
+        Array.isArray(customFacts) && customFacts.length > 0
+          ? customFacts
+          : [`Overview of ${cleanTopic}`]
+
+      const isDialogue = narrationMode === 'dialogue'
+      const dialogueScript = factsToRead
+        .map((fact, idx) =>
+          idx % 2 === 0
+            ? `Architect: Point ${idx + 1} on ${cleanTopic}. ${fact}`
+            : `Strategist: And here is why that matters in production: ${fact}`
+        )
+        .join('\n')
+
+      const narrationPrompt = isDialogue
+        ? `Synthesize a crisp, high-intellect executive architecture briefing between Architect and Strategist:\n${dialogueScript}`
+        : `Read the following facts clearly and professionally: ${factsToRead.join('. ')}`
+
+      const speechConfig = isDialogue
+        ? {
+            multiSpeakerVoiceConfig: {
+              speakerVoiceConfigs: [
+                {
+                  speaker: 'Architect',
+                  voiceConfig: {
+                    prebuiltVoiceConfig: { voiceName: 'Kore' },
+                  },
+                },
+                {
+                  speaker: 'Strategist',
+                  voiceConfig: {
+                    prebuiltVoiceConfig: { voiceName: 'Fenrir' },
+                  },
+                },
+              ],
+            },
+          }
+        : {
+            voiceConfig: {
+              prebuiltVoiceConfig: { voiceName: 'Kore' },
+            },
+          }
 
       const ttsRes = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${userKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${ttsKey}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -788,11 +1185,7 @@ ${rawArticle.slice(0, 6000)}`
             contents: [{ role: 'user', parts: [{ text: narrationPrompt }] }],
             generationConfig: {
               responseModalities: ['AUDIO'],
-              speechConfig: {
-                voiceConfig: {
-                  prebuiltVoiceConfig: { voiceName: 'Kore' },
-                },
-              },
+              speechConfig,
             },
           }),
         }
@@ -812,7 +1205,9 @@ ${rawArticle.slice(0, 6000)}`
       return Response.json({
         success: true,
         audioDataUrl: `data:audio/wav;base64,${wavBuf.toString('base64')}`,
-        voice: 'Kore',
+        voice: isDialogue ? 'Kore (Architect) × Fenrir (Strategist)' : 'Kore',
+        narrationMode: isDialogue ? 'dialogue' : 'solo',
+        transcript: isDialogue ? dialogueScript : factsToRead.join(' '),
       })
     }
 
@@ -877,8 +1272,16 @@ ${rawArticle.slice(0, 6000)}`
     const cliCommand = `npm run infogenius -- "${cleanTopic.replace(/"/g, '\\"')}" --style ${styleObj.key} --audience ${audience} --aspect ${aspectRatio} --size ${imageSize}`
     const publicSrc = `/images/blog/generated/infogenius-${styleObj.key}-${slug}.png`
     const mdxSnippet = `<LiquidGlassZoom\n  src="${publicSrc}"\n  alt="${cleanTopic} — ${styleObj.name} Infographic"\n  caption="${cleanTopic}"\n/>`
+    const svgBlueprint = buildInteractiveSvgBlueprint({
+      topic: cleanTopic,
+      styleObj,
+      audienceObj,
+      facts: research.facts,
+      labels: research.labels,
+      sources: research.sources,
+    })
 
-    // If action === 'architect', return the research + precision prompt + CLI/MDX snippets immediately
+    // If action === 'architect', return the research + precision prompt + SVG blueprint + CLI/MDX snippets immediately
     if (action === 'architect') {
       const wallet = await getTenantWallet(tenantId)
       return Response.json({
@@ -893,6 +1296,7 @@ ${rawArticle.slice(0, 6000)}`
         research,
         imagePrompt,
         videoPrompt: research.videoPrompt,
+        svgBlueprint,
         cliCommand,
         mdxSnippet,
         wallet,
@@ -1027,14 +1431,26 @@ ${rawArticle.slice(0, 6000)}`
       })
     }
 
+    const gatewayTelemetry = {
+      durationMs: Date.now() - requestStartMs,
+      routedProvider: provider,
+      imageModel: usedImageModel,
+      researchGrounded: research.grounded,
+      fallbackChain:
+        provider === 'vercel'
+          ? ['google/gemini-3-pro-image', 'google/gemini-2.5-flash-image-preview']
+          : ['gemini-3-pro-image-preview', 'gemini-3.1-flash-image-preview', 'gemini-2.5-flash-image'],
+    }
+
     const provenance = {
-      schemaVersion: '5.2.0',
+      schemaVersion: '5.3.0',
       generator: 'frankx-infogenius-web-studio',
       createdAt: new Date().toISOString(),
       tenantId,
       billingMode: usingManagedCredits ? 'managed-credits' : 'byok',
       creditsSpent: usingManagedCredits ? creditCost : 0,
       topic: cleanTopic,
+      brandWorld: styleObj.brandWorld,
       style: styleObj.key,
       styleName: styleObj.name,
       audience,
@@ -1042,6 +1458,7 @@ ${rawArticle.slice(0, 6000)}`
       imageSize,
       provider,
       imageModel: usedImageModel,
+      gatewayTelemetry,
       research,
       prompts: {
         imagePrompt,
@@ -1055,6 +1472,8 @@ ${rawArticle.slice(0, 6000)}`
       provider,
       imageModel: usedImageModel,
       imageDataUrl,
+      svgBlueprint,
+      gatewayTelemetry,
       topic: cleanTopic,
       style: styleObj,
       audience: audienceObj,

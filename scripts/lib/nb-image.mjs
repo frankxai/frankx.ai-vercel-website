@@ -83,6 +83,50 @@ export const STYLES_V5 = {
     name: 'Luxury Brand Visual',
     instruction: 'Luxury tech-brand visual. Apple meets Dior meets DeepMind. Dark void background (#0b0e14). One striking crystal/glass focal element at center with dramatic volumetric lighting. Data and labels on frosted glass cards orbiting the focal point. Thin luminous teal (#7fffd4) connection threads forming constellation pattern. Gold (#ffd700) warm accent highlights. Ultra-clean typography in thin modern serif. 50%+ negative space. Materials: crystal, glass, titanium, light. NEVER clay, plastic, HUD, or clutter. 8K detail.',
   },
+  'da-vinci-technical': {
+    name: 'FrankX Da Vinci Technical',
+    instruction: 'Leonardo da Vinci notebook style on dark obsidian parchment (#0a0f1c), warm sepia and gold ink sketches (#f59e0b, #fbbf24) with cyan callout lines (#06b6d4), technical diagrams, exploded views, and crisp architectural annotations.',
+  },
+  '3d-isometric': {
+    name: 'FrankX 3D Isometric Studio',
+    instruction: 'Clean isometric 3D blocks on deep obsidian (#0a0f1c), modern glassmorphic UI layers, soft studio lighting, emerald (#10b981) and cyan (#06b6d4) accents, clearly separated and labeled system modules.',
+  },
+  'coe-blueprint': {
+    name: 'GenCreator 6-Pillar CoE Blueprint',
+    instruction: 'Enterprise AI Center of Excellence schematic. Six-pillar architecture layout on dark navy (#0a0f1c), crisp vector swimlanes, emerald (#10b981), cyan (#06b6d4), and violet (#8b5cf6) subsystem badges, governance gates, and telemetry callouts.',
+  },
+  'neural-cosmos': {
+    name: 'Starlight Neural Cosmos',
+    instruction: 'Starlight Intelligence Systems Neural Cosmos Infographic. Deep navy void background (#050B14). Crystalline astrolabe nodes connected by cyber-cyan (#00E5FF) and frontier-violet (#8B5CF6) optical conduits. Key human governance gates in warm Starlight Gold (#FCD34D). Crisp Instrument Sans and IBM Plex Mono typography.',
+  },
+  'cyber-observability': {
+    name: 'Starlight Cyber Observability',
+    instruction: 'Starlight Operator Observability Schematic. Deep obsidian-navy background (#050B14) with precision telemetry grid. Structured frosted operator panels with emerald (#10B981) pass badges, cyber cyan (#00E5FF) data streams, and starlight gold (#FCD34D) human approval gates.',
+  },
+  'liquid-starlight': {
+    name: 'Liquid Starlight Horizon',
+    instruction: 'Liquid Starlight Horizon Visual. Deep cosmos background (#050B14) with sculptural refractive liquid-crystal conduits carrying luminous aquamarine (#7FFFD4) and warm starlight gold (#FCD34D) light streams. Frosted glass callout plates with 50% breathing room.',
+  },
+  'sovereign-mesh': {
+    name: 'Starlight Sovereign Mesh',
+    instruction: 'Starlight Sovereign Agent Mesh Blueprint. Isometric multi-node network on deep navy (#050B14) showing isolated agent worktrees, central Memory Gateway, and SIP cryptographic attestation locks in cyan (#00E5FF) and gold (#FCD34D).',
+  },
+  'territory-b-editorial': {
+    name: 'GenCreator Territory B Editorial',
+    instruction: 'GenCreator Territory B Editorial Print Infographic. Warm archival paper background (#FBF9F5) with ultra-crisp deep carbon ink (#221F1B) hairline Swiss grid, technical diagrams, and Instrument Serif + Instrument Sans editorial typography. Single selective Spot Red (#C8322A) accent for edition stamps and focal flow.',
+  },
+  'source-to-edition': {
+    name: 'GenCreator Source-to-Edition',
+    instruction: 'GenCreator Source-to-Edition Workflow Diagram. Warm editorial paper (#FBF9F5) and deep ink (#221F1B) with Spot Red (#C8322A) pipeline connectors and emerald (#10B981) verification checkmarks.',
+  },
+  'sacred-geometry': {
+    name: 'Arcanea Sacred Geometry',
+    instruction: 'Arcanea Sacred Geometry Codex Infographic. Deep cosmic void background (#0B0E14). Golden-ratio astrolabe rings and sacred geometric polyhedra in luminous Arcanean Gold (#FFD700) and Atlantean Teal (#00BCD4) with aquamarine (#7FFFD4) harmonic nodes.',
+  },
+  'illuminated-lore-scroll': {
+    name: 'Arcanea Illuminated Codex',
+    instruction: 'Arcanea Illuminated Codex Scroll. Dark obsidian vellum background (#0B0E14) framed with intricate gold-leaf (#FFD700) geometric filigree and Atlantean teal (#00BCD4) crystal inlays. Crisp parchment-white (#F4ECE1) serif annotations.',
+  },
 };
 
 export const AUDIENCES_V5 = {

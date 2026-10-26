@@ -14,17 +14,20 @@ import { getPreset, loadPresets } from '../image-ops/preset-loader.mjs'
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..')
 
-test('InfoGenius v5.2 exports all 10 styles including glassmorphic and premium', () => {
+test('InfoGenius v5.3 exports all 21 styles across Universal, FrankX, Starlight, GenCreator, and Arcanea', () => {
   const keys = Object.keys(STYLES_V5)
-  assert.equal(keys.length, 10)
+  assert.equal(keys.length, 21)
   assert.ok(STYLES_V5.glassmorphic.instruction.includes('#0b0e14'))
   assert.ok(STYLES_V5.premium.instruction.includes('Apple meets Dior meets DeepMind'))
+  assert.ok(STYLES_V5['neural-cosmos'].instruction.includes('#00E5FF'))
+  assert.ok(STYLES_V5['territory-b-editorial'].instruction.includes('Territory B'))
+  assert.ok(STYLES_V5['sacred-geometry'].instruction.includes('Arcanean Gold'))
   assert.equal(Object.keys(AUDIENCES_V5).length, 4)
 })
 
-test('Preset library v2026-04-25 resolves v5.2 shorthand aliases and brand presets', async () => {
+test('Preset library v2026-10-26 resolves v5.3 shorthand aliases and all 4 Sovereign Brand World presets', async () => {
   const data = await loadPresets()
-  assert.ok(data.presets.length >= 18)
+  assert.ok(data.presets.length >= 26)
 
   const glass = await getPreset('glassmorphic')
   assert.equal(glass.key, 'community/glassmorphic')
@@ -34,6 +37,15 @@ test('Preset library v2026-04-25 resolves v5.2 shorthand aliases and brand prese
 
   const davinci = await getPreset('davinci')
   assert.equal(davinci.key, 'frankx/da-vinci-technical')
+
+  const starlight = await getPreset('starlight/neural-cosmos')
+  assert.equal(starlight.key, 'starlight/neural-cosmos')
+
+  const gencreator = await getPreset('gencreator/territory-b-editorial')
+  assert.equal(gencreator.key, 'gencreator/territory-b-editorial')
+
+  const arcanea = await getPreset('arcanea/sacred-geometry')
+  assert.equal(arcanea.key, 'arcanea/sacred-geometry')
 })
 
 test('composeInfographicPrompt passes the 80/20 design-thinking gate', () => {
@@ -97,6 +109,9 @@ test('Platform route /api/byok/infogenius, Multi-Tenant Credit Engine, Polar Web
   assert.match(routeSource, /google\/gemini-2\.5-flash:online/)
   assert.match(routeSource, /ai-gateway\.vercel\.sh/)
   assert.match(routeSource, /gemini-2\.5-flash-preview-tts/)
+  assert.match(routeSource, /multiSpeakerVoiceConfig/)
+  assert.match(routeSource, /buildInteractiveSvgBlueprint/)
+  assert.match(routeSource, /openapi: '3\.1\.0'/)
   assert.match(routeSource, /decompose-article/)
   assert.match(routeSource, /consumeTenantCredits/)
   assert.match(creditsSource, /UPSTASH_REDIS_REST_URL/)
@@ -106,7 +121,10 @@ test('Platform route /api/byok/infogenius, Multi-Tenant Credit Engine, Polar Web
   assert.match(webhookSource, /creditTenantWallet/)
   assert.match(workbenchSource, /Article \/ Markdown → 5-Slide Pack/)
   assert.match(workbenchSource, /Custom Brand Style Builder/)
+  assert.match(workbenchSource, /MCP, API &amp; Gateway Hub/)
   assert.match(workbenchSource, /Multi-Tenant Workspace Credit Wallet/)
+  assert.match(workbenchSource, /2-Host Dialogue \(Kore × Fenrir\)/)
+  assert.match(workbenchSource, /Vector SVG Blueprint/)
   assert.match(polarSource, /POLAR_PRODUCT_INFOGENIUS_PRO/)
   assert.match(polarSource, /POLAR_PRODUCT_INFOGENIUS_CREDITS_100/)
   assert.match(polarSource, /POLAR_PRODUCT_INFOGENIUS_TEAM_1000/)

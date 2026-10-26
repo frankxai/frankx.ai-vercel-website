@@ -24,78 +24,278 @@ interface StyleOption {
   key: string
   label: string
   tag: string
+  brandWorld: 'frankx' | 'starlight' | 'gencreator' | 'arcanea' | 'community'
   accent: string
 }
+
+interface BrandWorldLens {
+  id: 'all' | 'frankx' | 'starlight' | 'gencreator' | 'arcanea'
+  name: string
+  subtitle: string
+  buyerValue: string
+  defaultStyle: string
+  tokens: {
+    key: string
+    displayName: string
+    voidHex: string
+    primaryHex: string
+    secondaryHex: string
+    textHex: string
+    material: string
+    negative: string
+  }
+  sampleTopics: string[]
+}
+
+const BRAND_WORLDS: BrandWorldLens[] = [
+  {
+    id: 'all',
+    name: 'All 4 Brand Worlds',
+    subtitle: '16 Signature Presets · Unified Estate OS',
+    buyerValue:
+      'Switch between FrankX Executive Architecture, Starlight Sovereign Protocol, GenCreator Territory B Print, and Arcanea Lore Canon.',
+    defaultStyle: 'glassmorphic',
+    tokens: {
+      key: 'custom/sovereign-glass',
+      displayName: 'Sovereign Crystal & Gold',
+      voidHex: '#0b0e14',
+      primaryHex: '#7fffd4',
+      secondaryHex: '#ffd700',
+      textHex: '#ffffff',
+      material:
+        'Frosted translucent crystal cards floating at multiple depths with directional upper-left rim lighting and luminous connection threads',
+      negative:
+        'NEVER flat clipart, NEVER neon cyberpunk clutter, NEVER plastic clay, NEVER illegible text',
+    },
+    sampleTopics: [
+      'Sovereign AI Swarm Architecture & Verification Gates',
+      'Model Context Protocol (MCP) Server Topology',
+      'Agentic Creator OS: 6-Layer Closed-Loop Operating Model',
+      'Zero-Knowledge Proofs & Verifiable AI Compute',
+    ],
+  },
+  {
+    id: 'frankx',
+    name: 'FrankX Architect',
+    subtitle: 'Executive AI Architecture · Inter + JetBrains Mono',
+    buyerValue:
+      'Why CTOs & AI Architects pay: Turns cloud architectures, RFCs, and system benchmarks into boardroom-grade 2K/4K diagrams in 18s.',
+    defaultStyle: 'da-vinci-technical',
+    tokens: {
+      key: 'frankx/executive-obsidian',
+      displayName: 'FrankX Obsidian & Emerald Tech',
+      voidHex: '#0a0f1c',
+      primaryHex: '#10b981',
+      secondaryHex: '#06b6d4',
+      textHex: '#f8fafc',
+      material:
+        'Deep obsidian architectural slate (#0a0f1c) with precision isometric modules, emerald (#10b981) and cyan (#06b6d4) telemetry lines, and warm amber (#f59e0b) focal callouts',
+      negative:
+        'NEVER cartoon illustrations, NEVER generic corporate stock icons, NEVER unreadable micro-labels',
+    },
+    sampleTopics: [
+      'Enterprise Multi-Tenant Vercel AI Gateway & Failover Topology',
+      'Transformer KV-Cache & FlashAttention-3 Compute Pipeline',
+      'Oracle AI Center of Excellence: 6-Pillar Governance Architecture',
+      'Sovereign Agentic Coding Harness: Maker vs Independent Verifier',
+    ],
+  },
+  {
+    id: 'starlight',
+    name: 'Starlight Sovereign (SIP)',
+    subtitle: 'Protocol & Swarm Telemetry · Instrument Sans + IBM Plex Mono',
+    buyerValue:
+      'Why AI Engineering Teams pay: Gives Claude Code, Cursor & Codex agents an MCP visual substrate with cryptographic .vis.provenance.json receipts.',
+    defaultStyle: 'neural-cosmos',
+    tokens: {
+      key: 'starlight/neural-cosmos',
+      displayName: 'Starlight Neural Cosmos (SIP)',
+      voidHex: '#050b14',
+      primaryHex: '#00e5ff',
+      secondaryHex: '#fcd34d',
+      textHex: '#ffffff',
+      material:
+        'Deep navy void (#050B14) with 6 crystalline semantic vault nodes connected by cyber-cyan (#00E5FF) optical conduits and Starlight Gold (#FCD34D) human approval gates',
+      negative:
+        'NEVER chaotic sci-fi game HUDs, NEVER unverified claims, NEVER missing provenance attribution',
+    },
+    sampleTopics: [
+      'Starlight Intelligence Protocol (SIP): 6 Semantic Memory Vaults',
+      'Autonomous Loop Contract: Maker, Independent Verifier & Human Gate',
+      'Multi-Harness Agent Mesh: Claude Code, Codex, Gemini & Hermes',
+      'Event-Sourced SQLite FTS5 Hybrid Memory Consolidation Pipeline',
+    ],
+  },
+  {
+    id: 'gencreator',
+    name: 'GenCreator Edition',
+    subtitle: 'Territory B Editorial Print · Instrument Serif + Sans',
+    buyerValue:
+      'Why Newsletter & Content Teams pay: Converts 1 Markdown article into a 5-Slide LinkedIn Carousel, Territory B print diagram, and 2-Speaker Podcast.',
+    defaultStyle: 'territory-b-editorial',
+    tokens: {
+      key: 'gencreator/territory-b-editorial',
+      displayName: 'GenCreator Territory B (Paper & Spot Red)',
+      voidHex: '#fbf9f5',
+      primaryHex: '#c8322a',
+      secondaryHex: '#221f1b',
+      textHex: '#221f1b',
+      material:
+        'Warm archival paper (#FBF9F5) with deep carbon ink (#221F1B) hairline Swiss grid, Instrument Serif headers, and a single selective Spot Red (#C8322A) edition stamp',
+      negative:
+        'NEVER dark-mode neon gradients, NEVER more than one accent color, NEVER decorative filler',
+    },
+    sampleTopics: [
+      'Source-to-Edition Workflow: Voice Memo to Published Multi-Format Pack',
+      'GenCreator 6-Pillar Personal AI Center of Excellence',
+      'The 6-Layer Closed-Loop Creator Operating System',
+      'High-Velocity Newsletter & LinkedIn Carousel Production Engine',
+    ],
+  },
+  {
+    id: 'arcanea',
+    name: 'Arcanea Canon',
+    subtitle: 'Sacred Geometry & Lore Codex · Geist + Instrument Serif',
+    buyerValue:
+      'Why Worldbuilders & Creative Studios pay: Renders canon-locked sacred geometry, Ten Gates harmonic maps, and illuminated guardian tomes.',
+    defaultStyle: 'sacred-geometry',
+    tokens: {
+      key: 'arcanea/sacred-geometry',
+      displayName: 'Arcanea Atlantean Teal & Sacred Gold',
+      voidHex: '#0b0e14',
+      primaryHex: '#00bcd4',
+      secondaryHex: '#ffd700',
+      textHex: '#f4ece1',
+      material:
+        'Cosmic void vellum (#0B0E14) with golden-ratio astrolabe rings in Arcanean Gold (#FFD700), Atlantean Teal (#00BCD4) crystal inlays, and aquamarine (#7FFFD4) harmonic nodes',
+      negative:
+        'NEVER generic cartoon fantasy, NEVER off-canon neon pink, NEVER blurry runic text',
+    },
+    sampleTopics: [
+      'The Ten Gates of Arcanea: Harmonic Frequencies & Guardian Topology',
+      'Scientific Magic Engine: Elemental Resonance & World-Graph Physics',
+      'Starbound Crew Vessel Blueprint: Void-Drive & Astral Navigation',
+      'Academy Curriculum: From Apprentice to Luminor Synthesis',
+    ],
+  },
+]
 
 const STYLE_OPTIONS: StyleOption[] = [
   {
     key: 'glassmorphic',
     label: '3D Glassmorphic',
-    tag: 'v5.2 Flagship · Crystal & Teal',
+    tag: 'v5.3 Flagship · Crystal & Teal',
+    brandWorld: 'frankx',
     accent: 'border-teal-400/40 bg-teal-500/10 text-teal-200',
   },
   {
     key: 'premium',
     label: 'Luxury Brand Visual',
-    tag: 'v5.2 Flagship · Apple × DeepMind',
+    tag: 'v5.3 Flagship · Apple × DeepMind',
+    brandWorld: 'frankx',
     accent: 'border-amber-400/40 bg-amber-500/10 text-amber-200',
   },
   {
     key: 'da-vinci-technical',
     label: 'Da Vinci Technical',
     tag: 'FrankX Signature · Blueprint',
+    brandWorld: 'frankx',
     accent: 'border-orange-400/40 bg-orange-500/10 text-orange-200',
   },
   {
     key: '3d-isometric',
     label: '3D Isometric Studio',
     tag: 'FrankX Signature · Modular',
+    brandWorld: 'frankx',
     accent: 'border-emerald-400/40 bg-emerald-500/10 text-emerald-200',
   },
   {
+    key: 'neural-cosmos',
+    label: 'Neural Cosmos',
+    tag: 'Starlight SIP · 6 Vaults',
+    brandWorld: 'starlight',
+    accent: 'border-cyan-400/40 bg-cyan-500/10 text-cyan-200',
+  },
+  {
+    key: 'cyber-observability',
+    label: 'Cyber Observability',
+    tag: 'Starlight Operator · Telemetry',
+    brandWorld: 'starlight',
+    accent: 'border-sky-400/40 bg-sky-500/10 text-sky-200',
+  },
+  {
+    key: 'liquid-starlight',
+    label: 'Liquid Starlight',
+    tag: 'Starlight Horizon · Refractive',
+    brandWorld: 'starlight',
+    accent: 'border-teal-300/40 bg-teal-400/10 text-teal-100',
+  },
+  {
+    key: 'sovereign-mesh',
+    label: 'Sovereign Mesh',
+    tag: 'Starlight Multi-Harness DAG',
+    brandWorld: 'starlight',
+    accent: 'border-indigo-400/40 bg-indigo-500/10 text-indigo-200',
+  },
+  {
+    key: 'territory-b-editorial',
+    label: 'Territory B Editorial',
+    tag: 'GenCreator Print · Paper & Red',
+    brandWorld: 'gencreator',
+    accent: 'border-rose-400/40 bg-rose-500/10 text-rose-200',
+  },
+  {
     key: 'coe-blueprint',
-    label: 'GenCreator CoE',
-    tag: '6-Pillar Enterprise Architecture',
+    label: 'GenCreator 6-Pillar CoE',
+    tag: 'Enterprise CoE Architecture',
+    brandWorld: 'gencreator',
     accent: 'border-violet-400/40 bg-violet-500/10 text-violet-200',
+  },
+  {
+    key: 'source-to-edition',
+    label: 'Source-to-Edition',
+    tag: 'GenCreator Content Factory',
+    brandWorld: 'gencreator',
+    accent: 'border-amber-400/40 bg-amber-500/10 text-amber-200',
+  },
+  {
+    key: 'sacred-geometry',
+    label: 'Sacred Geometry',
+    tag: 'Arcanea Canon · Ten Gates',
+    brandWorld: 'arcanea',
+    accent: 'border-yellow-400/40 bg-yellow-500/10 text-yellow-200',
+  },
+  {
+    key: 'illuminated-lore-scroll',
+    label: 'Illuminated Codex',
+    tag: 'Arcanea Obsidian & Gold Vellum',
+    brandWorld: 'arcanea',
+    accent: 'border-amber-300/40 bg-amber-400/10 text-amber-100',
   },
   {
     key: 'standard',
     label: 'Scientific Illustration',
     tag: 'Clean Editorial',
+    brandWorld: 'community',
     accent: 'border-cyan-400/40 bg-cyan-500/10 text-cyan-200',
   },
   {
     key: 'minimalist',
     label: 'Bauhaus Minimal',
     tag: 'Swiss Vector Grid',
+    brandWorld: 'community',
     accent: 'border-white/30 bg-white/10 text-white',
-  },
-  {
-    key: 'photorealistic',
-    label: 'Photorealistic 8K',
-    tag: 'Hasselblad 50mm Optical',
-    accent: 'border-blue-400/40 bg-blue-500/10 text-blue-200',
   },
   {
     key: 'futuristic',
     label: 'Focused Futuristic',
     tag: 'Restrained Telemetry HUD',
+    brandWorld: 'community',
     accent: 'border-purple-400/40 bg-purple-500/10 text-purple-200',
-  },
-  {
-    key: 'vintage',
-    label: 'Scientific Lithograph',
-    tag: '19th Century Engraving',
-    accent: 'border-yellow-500/40 bg-yellow-500/10 text-yellow-200',
   },
 ]
 
-const SAMPLE_TOPICS = [
-  'Sovereign AI Swarm Architecture & Verification Gates',
-  'Model Context Protocol (MCP) Server Topology',
-  'Agentic Creator OS: 6-Layer Closed-Loop Operating Model',
-  'Zero-Knowledge Proofs & Verifiable AI Compute',
-]
+const SAMPLE_TOPICS = BRAND_WORLDS[0].sampleTopics
 
 const SAMPLE_ARTICLE = `# Sovereign AI Agent Swarms: The 6-Layer Operating Architecture
 
@@ -152,8 +352,16 @@ interface StudioResult {
   billingMode?: string
   imageModel?: string
   imageDataUrl?: string | null
+  svgBlueprint?: string
+  gatewayTelemetry?: {
+    durationMs?: number
+    routedProvider?: string
+    imageModel?: string
+    researchGrounded?: boolean
+    fallbackChain?: string[]
+  }
   topic: string
-  style: { key: string; name: string; tag: string }
+  style: { key: string; name: string; tag: string; brandWorld?: string }
   audience: { label: string; density: string }
   aspectRatio: string
   imageSize: string
@@ -204,7 +412,10 @@ interface DecomposedPackResult {
 }
 
 export default function InfoGeniusStudioWorkbench() {
-  const [activeTab, setActiveTab] = useState<'single' | 'decompose' | 'brand'>('single')
+  const [activeTab, setActiveTab] = useState<'single' | 'decompose' | 'brand' | 'mcp'>('single')
+  const [selectedBrandWorld, setSelectedBrandWorld] = useState<
+    'all' | 'frankx' | 'starlight' | 'gencreator' | 'arcanea'
+  >('all')
 
   const [topic, setTopic] = useState(SAMPLE_TOPICS[0])
   const [articleText, setArticleText] = useState(SAMPLE_ARTICLE)
@@ -213,6 +424,11 @@ export default function InfoGeniusStudioWorkbench() {
   const [aspectRatio, setAspectRatio] = useState<'16:9' | '1:1' | '9:16'>('16:9')
   const [imageSize, setImageSize] = useState<'1K' | '2K' | '4K'>('2K')
   const [label, setLabel] = useState('')
+  const [narrationMode, setNarrationMode] = useState<'solo' | 'dialogue'>('dialogue')
+  const [canvasView, setCanvasView] = useState<'hud' | 'raster' | 'svg'>('hud')
+  const [activeFactIndex, setActiveFactIndex] = useState<number>(0)
+  const [narrationVoiceLabel, setNarrationVoiceLabel] = useState<string>('')
+  const [narrationTranscript, setNarrationTranscript] = useState<string>('')
 
   // Custom Brand DNA state (Tab 3)
   const [useCustomBrand, setUseCustomBrand] = useState(false)
@@ -228,6 +444,32 @@ export default function InfoGeniusStudioWorkbench() {
   const [brandNegative, setBrandNegative] = useState(
     'NEVER flat clipart, NEVER neon cyberpunk clutter, NEVER plastic clay, NEVER illegible text'
   )
+
+  const handleSelectBrandWorld = (
+    worldId: 'all' | 'frankx' | 'starlight' | 'gencreator' | 'arcanea'
+  ) => {
+    setSelectedBrandWorld(worldId)
+    const found = BRAND_WORLDS.find((w) => w.id === worldId) || BRAND_WORLDS[0]
+    setStyle(found.defaultStyle)
+    setTopic(found.sampleTopics[0])
+    setBrandKey(found.tokens.key)
+    setBrandName(found.tokens.displayName)
+    setBrandVoidHex(found.tokens.voidHex)
+    setBrandPrimaryHex(found.tokens.primaryHex)
+    setBrandSecondaryHex(found.tokens.secondaryHex)
+    setBrandTextHex(found.tokens.textHex)
+    setBrandMaterial(found.tokens.material)
+    setBrandNegative(found.tokens.negative)
+  }
+
+  const currentBrandLens =
+    BRAND_WORLDS.find((w) => w.id === selectedBrandWorld) || BRAND_WORLDS[0]
+  const visibleStyleOptions =
+    selectedBrandWorld === 'all'
+      ? STYLE_OPTIONS
+      : STYLE_OPTIONS.filter(
+          (s) => s.brandWorld === selectedBrandWorld || s.key === 'glassmorphic'
+        )
 
   const [apiKey, setApiKey] = useState('')
   const [showKeyInput, setShowKeyInput] = useState(false)
@@ -514,31 +756,38 @@ export default function InfoGeniusStudioWorkbench() {
     }
   }
 
-  const handleNarrate = async () => {
+  const handleNarrate = async (modeOverride?: 'solo' | 'dialogue') => {
     if (!result || isNarrating) return
-    if (!apiKey.trim() || apiKey.trim().startsWith('sk-or-')) {
-      setError('Spoken Kore TTS narration requires a Google Gemini API key in the BYOK drawer.')
-      setShowKeyInput(true)
-      return
-    }
+    const modeToUse = modeOverride || narrationMode
     setIsNarrating(true)
     setError(null)
     try {
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+        'X-Tenant-Id': tenantId,
+      }
+      if (apiKey.trim()) headers['X-User-API-Key'] = apiKey.trim()
+
       const res = await fetch('/api/byok/infogenius', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-User-API-Key': apiKey.trim(),
-        },
+        headers,
         body: JSON.stringify({
           action: 'narrate',
           topic: result.topic,
           customFacts: result.research.facts,
+          narrationMode: modeToUse,
         }),
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'TTS failed')
+      if (!res.ok) {
+        if (res.status === 401) setShowKeyInput(true)
+        throw new Error(data.error || 'TTS failed')
+      }
       setAudioDataUrl(data.audioDataUrl)
+      setNarrationVoiceLabel(
+        data.voice || (modeToUse === 'dialogue' ? 'Kore × Fenrir' : 'Kore')
+      )
+      setNarrationTranscript(data.transcript || '')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Narration failed')
     } finally {
@@ -546,10 +795,21 @@ export default function InfoGeniusStudioWorkbench() {
     }
   }
 
+  const downloadSvgBlueprint = () => {
+    if (!result?.svgBlueprint) return
+    const blob = new Blob([result.svgBlueprint], { type: 'image/svg+xml;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `infogenius-${result.style.key}-blueprint.svg`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
   const downloadProvenance = () => {
     if (!result) return
     const payload = result.provenance || {
-      schemaVersion: '5.2.0',
+      schemaVersion: '5.3.0',
       topic: result.topic,
       style: result.style.key,
       audience: result.audience.label,
@@ -591,30 +851,81 @@ export default function InfoGeniusStudioWorkbench() {
     URL.revokeObjectURL(url)
   }
 
+  const mcpConfigJson = JSON.stringify(
+    {
+      mcpServers: {
+        'infogenius-visual-os': {
+          command: 'node',
+          args: ['scripts/infogenius.mjs', '--mcp'],
+          env: {
+            INFOGENIUS_TENANT_ID: tenantId,
+            AI_GATEWAY_API_KEY: '${AI_GATEWAY_API_KEY}',
+            GEMINI_API_KEY: '${GEMINI_API_KEY}',
+          },
+        },
+      },
+    },
+    null,
+    2
+  )
+
+  const curlApiSnippet = `curl -X POST https://www.frankx.ai/api/byok/infogenius \\
+  -H "Content-Type: application/json" \\
+  -H "X-Tenant-Id: ${tenantId}" \\
+  -d '{
+    "action": "generate",
+    "topic": "${topic.replace(/"/g, '\\"')}",
+    "style": "${useCustomBrand ? brandKey : style}",
+    "audience": "${audience}",
+    "aspectRatio": "${aspectRatio}",
+    "imageSize": "${imageSize}"
+  }'`
+
+  const vercelAiSdkSnippet = `import { generateText } from 'ai';
+
+// Call InfoGenius v5.3 Multi-Tenant Visual OS or Vercel AI Gateway directly
+const res = await fetch('https://www.frankx.ai/api/byok/infogenius', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-Tenant-Id': '${tenantId}',
+  },
+  body: JSON.stringify({
+    action: 'architect', // or 'generate' (5 credits) / 'decompose-article' (3 credits)
+    topic: '${topic.replace(/'/g, "\\'")}',
+    style: '${useCustomBrand ? brandKey : style}',
+    audience: '${audience}',
+  }),
+});
+const { imageDataUrl, svgBlueprint, research, provenance } = await res.json();`
+
   const detectedProvider = apiKey.trim().startsWith('vck_')
     ? 'Vercel AI Gateway (Sonar + Nano Banana)'
     : apiKey.trim().startsWith('sk-or-')
       ? 'OpenRouter (:online + Nano Banana)'
       : apiKey.trim()
-        ? 'Google Gemini Direct (Search + 4K + TTS)'
+        ? 'Google Gemini Direct (Search + 4K + MultiSpeaker TTS)'
         : managedGatewayActive
           ? `Managed Vercel AI Gateway (${wallet?.creditsRemaining ?? 15} Credits)`
-          : 'Zero-Key Prompt Architect (Free)'
+          : 'Zero-Key Prompt & Vector SVG Architect (Free)'
 
   return (
-    <div id="studio" className="rounded-3xl border border-white/10 bg-[#0d111a]/90 backdrop-blur-xl p-6 md:p-10 shadow-2xl">
+    <div
+      id="studio"
+      className="rounded-3xl border border-white/10 bg-[#0d111a]/90 backdrop-blur-xl p-5 sm:p-6 md:p-10 shadow-2xl pb-20 md:pb-10"
+    >
       {/* Header Bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10">
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/30 bg-teal-400/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-teal-300">
             <Sparkles className="w-3.5 h-3.5" />
-            InfoGenius v5.2 Visual Knowledge OS
+            InfoGenius v5.3 · 4-Brand Visual Knowledge OS
           </div>
           <h3 className="text-2xl md:text-3xl font-black text-white mt-2">
-            Research → Visual Knowledge Architect
+            Research → 2K/4K Visuals, Vector SVG &amp; Executive Audio
           </h3>
           <p className="text-sm text-white/50 mt-1">
-            Single Topic Studio, Article-to-5-Slide Carousel Decomposer, and Custom Brand DNA Builder.
+            Unified across FrankX, Starlight (SIP), GenCreator Territory B, and Arcanea — in the browser, REST API, or Claude Code &amp; Cursor MCP.
           </p>
         </div>
 
@@ -622,7 +933,7 @@ export default function InfoGeniusStudioWorkbench() {
           <button
             type="button"
             onClick={() => setShowCreditsDrawer(!showCreditsDrawer)}
-            className="inline-flex items-center gap-2 rounded-xl border border-amber-400/40 bg-amber-500/10 hover:bg-amber-500/20 px-3.5 py-2.5 text-xs font-bold text-amber-200 transition-all"
+            className="min-h-[44px] inline-flex items-center gap-2 rounded-xl border border-amber-400/40 bg-amber-500/10 hover:bg-amber-500/20 px-3.5 py-2.5 text-xs font-bold text-amber-200 transition-all"
           >
             <Sparkles className="w-3.5 h-3.5 text-amber-300" />
             <span>{wallet ? `${wallet.creditsRemaining} Credits` : '15 Trial Credits'}</span>
@@ -634,7 +945,7 @@ export default function InfoGeniusStudioWorkbench() {
           <button
             type="button"
             onClick={() => setShowKeyInput(!showKeyInput)}
-            className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-xs font-semibold transition-all ${
+            className={`min-h-[44px] inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-xs font-semibold transition-all ${
               apiKey.trim()
                 ? 'border-emerald-400/40 bg-emerald-500/10 text-emerald-200'
                 : 'border-white/15 bg-white/5 text-white/70 hover:text-white hover:border-white/30'
@@ -643,6 +954,40 @@ export default function InfoGeniusStudioWorkbench() {
             <Key className="w-3.5 h-3.5" />
             {apiKey.trim() ? `BYOK Active (${detectedProvider.split(' ')[0]})` : 'BYOK Key (Optional)'}
           </button>
+        </div>
+      </div>
+
+      {/* 4 Sovereign Brand World Lens Selector */}
+      <div className="mt-6 rounded-2xl border border-white/10 bg-black/40 p-4 space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-teal-300">
+            Brand World Lens &amp; Token Identity:
+          </span>
+          <span className="text-[11px] text-white/50 font-mono">
+            {currentBrandLens.subtitle}
+          </span>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {BRAND_WORLDS.map((world) => {
+            const isSelected = selectedBrandWorld === world.id
+            return (
+              <button
+                key={world.id}
+                type="button"
+                onClick={() => handleSelectBrandWorld(world.id)}
+                className={`min-h-[40px] rounded-xl px-3.5 py-2 text-xs font-bold transition-all border ${
+                  isSelected
+                    ? 'border-teal-400 bg-teal-500/20 text-white shadow-md shadow-teal-500/10'
+                    : 'border-white/10 bg-white/[0.03] text-white/65 hover:text-white hover:border-white/25'
+                }`}
+              >
+                {world.name}
+              </button>
+            )
+          })}
+        </div>
+        <div className="text-xs text-amber-200/90 bg-amber-500/[0.07] border border-amber-400/20 rounded-xl px-3.5 py-2">
+          {currentBrandLens.buyerValue}
         </div>
       </div>
 
@@ -771,6 +1116,18 @@ export default function InfoGeniusStudioWorkbench() {
             </span>
           )}
         </button>
+        <button
+          type="button"
+          onClick={() => setActiveTab('mcp')}
+          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all ${
+            activeTab === 'mcp'
+              ? 'bg-emerald-500/20 border border-emerald-400/50 text-emerald-200'
+              : 'bg-white/[0.03] border border-white/10 text-white/60 hover:text-white'
+          }`}
+        >
+          <Code2 className="w-3.5 h-3.5" />
+          4. MCP, API &amp; Gateway Hub
+        </button>
       </div>
 
       {/* Optional BYOK Drawer */}
@@ -783,7 +1140,7 @@ export default function InfoGeniusStudioWorkbench() {
                 Client-Side BYOK Vault (Stored only in your browser)
               </div>
               <p className="text-xs text-white/60">
-                Paste a <strong>Google AI Studio Key</strong> (Search grounding + 4K Nano Banana Pro + Kore TTS), a <strong>Vercel AI Gateway Key</strong> (<code>vck_...</code>, zero-markup unified Vercel billing), or an <strong>OpenRouter Key</strong> (<code>sk-or-v1-...</code>).
+                Paste a <strong>Google AI Studio Key</strong> (Search grounding + 4K Nano Banana Pro + Kore/Fenrir TTS), a <strong>Vercel AI Gateway Key</strong> (<code>vck_...</code>, zero-markup unified Vercel billing + automatic model failover), or an <strong>OpenRouter Key</strong> (<code>sk-or-v1-...</code>).
               </p>
             </div>
             <a
@@ -812,6 +1169,121 @@ export default function InfoGeniusStudioWorkbench() {
                 Clear
               </button>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* TAB 4: MCP, REST API & VERCEL AI GATEWAY HUB */}
+      {activeTab === 'mcp' && (
+        <div className="mt-6 space-y-6">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-emerald-300">
+                Agent-Native Visual Intelligence Substrate
+              </span>
+              <h4 className="text-lg font-bold text-white mt-0.5">
+                Mount InfoGenius v5.3 in Claude Code, Cursor, Antigravity, or Next.js Apps
+              </h4>
+              <p className="text-xs text-white/55 mt-1">
+                Every snippet below is pre-configured with your active Brand World (<strong>{currentBrandLens.name}</strong>) and style preset (<code>{style}</code>).
+              </p>
+            </div>
+            <a
+              href="/api/byok/infogenius?format=openapi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-400/40 bg-emerald-500/10 hover:bg-emerald-500/20 px-4 py-2 text-xs font-bold text-emerald-200"
+            >
+              <Globe className="w-3.5 h-3.5" />
+              OpenAPI 3.1 Spec (JSON)
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            {/* Card 1: MCP Config */}
+            <div className="rounded-2xl border border-white/10 bg-black/45 p-5 flex flex-col justify-between space-y-4">
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="text-xs font-bold uppercase tracking-wider text-teal-300">
+                    1. Local &amp; Fleet MCP Server
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => copyText('mcp-json', mcpConfigJson)}
+                    className="inline-flex items-center gap-1 rounded-lg border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-white hover:bg-white/10"
+                  >
+                    {copiedTab === 'mcp-json' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                    {copiedTab === 'mcp-json' ? 'Copied' : 'Copy .mcp.json'}
+                  </button>
+                </div>
+                <p className="text-xs text-white/55 mb-3">
+                  Exposes <code>infogenius_architect</code>, <code>infogenius_generate</code>, and <code>infogenius_presets</code> over stdio for Claude Code, Cursor, Codex, and Antigravity.
+                </p>
+                <pre className="rounded-xl bg-black/75 border border-white/10 p-3 text-[11px] font-mono text-teal-200 overflow-x-auto max-h-56">
+                  {mcpConfigJson}
+                </pre>
+              </div>
+              <div className="text-[11px] text-white/45">
+                Zero external dependencies · Works with Infisical or BYOK env vars.
+              </div>
+            </div>
+
+            {/* Card 2: Vercel AI SDK v6 + Gateway */}
+            <div className="rounded-2xl border border-white/10 bg-black/45 p-5 flex flex-col justify-between space-y-4">
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="text-xs font-bold uppercase tracking-wider text-violet-300">
+                    2. Vercel AI SDK v6 + Gateway Failover
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => copyText('ai-sdk', vercelAiSdkSnippet)}
+                    className="inline-flex items-center gap-1 rounded-lg border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-white hover:bg-white/10"
+                  >
+                    {copiedTab === 'ai-sdk' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                    {copiedTab === 'ai-sdk' ? 'Copied' : 'Copy TypeScript'}
+                  </button>
+                </div>
+                <p className="text-xs text-white/55 mb-3">
+                  Uses Vercel AI Gateway (<code>vck_...</code>) with automatic model-to-model failover and unified token billing.
+                </p>
+                <pre className="rounded-xl bg-black/75 border border-white/10 p-3 text-[11px] font-mono text-violet-200 overflow-x-auto max-h-56">
+                  {vercelAiSdkSnippet}
+                </pre>
+              </div>
+              <div className="text-[11px] text-white/45">
+                Zero markup on BYOK · Built-in edge caching &amp; spend observability.
+              </div>
+            </div>
+
+            {/* Card 3: REST API cURL */}
+            <div className="rounded-2xl border border-white/10 bg-black/45 p-5 flex flex-col justify-between space-y-4">
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="text-xs font-bold uppercase tracking-wider text-amber-300">
+                    3. Multi-Tenant REST API (cURL)
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => copyText('curl-api', curlApiSnippet)}
+                    className="inline-flex items-center gap-1 rounded-lg border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-white hover:bg-white/10"
+                  >
+                    {copiedTab === 'curl-api' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                    {copiedTab === 'curl-api' ? 'Copied' : 'Copy cURL'}
+                  </button>
+                </div>
+                <p className="text-xs text-white/55 mb-3">
+                  Call <code>POST /api/byok/infogenius</code> from any CI pipeline, GitHub Action, or agent swarm. Returns image, SVG blueprint, and <code>.vis.provenance.json</code>.
+                </p>
+                <pre className="rounded-xl bg-black/75 border border-white/10 p-3 text-[11px] font-mono text-amber-200 overflow-x-auto max-h-56">
+                  {curlApiSnippet}
+                </pre>
+              </div>
+              <div className="text-[11px] text-white/45">
+                Supports <code>architect</code>, <code>generate</code>, <code>decompose-article</code>, and <code>narrate</code>.
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -950,12 +1422,12 @@ export default function InfoGeniusStudioWorkbench() {
       )}
 
       {/* TAB 1 & TAB 2 SHARED CONTROLS */}
-      {activeTab !== 'brand' && (
+      {(activeTab === 'single' || activeTab === 'decompose') && (
         <>
           {activeTab === 'single' ? (
             <div className="mt-6 space-y-3">
               <label className="block text-xs font-semibold uppercase tracking-wider text-white/60">
-                1. Topic, System, or Concept to Visualize
+                1. Topic, System, or Concept to Visualize ({currentBrandLens.name})
               </label>
               <div className="relative flex items-center">
                 <Search className="w-5 h-5 text-white/40 absolute left-4 pointer-events-none" />
@@ -968,7 +1440,7 @@ export default function InfoGeniusStudioWorkbench() {
                 />
               </div>
               <div className="flex flex-wrap gap-2 pt-1">
-                {SAMPLE_TOPICS.map((sample) => (
+                {currentBrandLens.sampleTopics.map((sample) => (
                   <button
                     key={sample}
                     type="button"
@@ -1010,22 +1482,36 @@ export default function InfoGeniusStudioWorkbench() {
 
           {/* Style Grid */}
           <div className="mt-6 space-y-3">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-center justify-between gap-2">
               <label className="block text-xs font-semibold uppercase tracking-wider text-white/60">
-                2. Visual Presentation Style {useCustomBrand ? `(Custom Brand Override: ${brandName})` : '(10 v5.2 Presets)'}
+                2. Visual Presentation Style{' '}
+                {useCustomBrand
+                  ? `(Custom Brand Override: ${brandName})`
+                  : showAllStyles
+                    ? '(All 16 Estate & Community Presets)'
+                    : `(${currentBrandLens.name} + Universal Presets)`}
               </label>
-              {useCustomBrand && (
+              <div className="flex items-center gap-3">
                 <button
                   type="button"
-                  onClick={() => setUseCustomBrand(false)}
-                  className="text-xs text-amber-300 hover:underline"
+                  onClick={() => setShowAllStyles((v) => !v)}
+                  className="text-xs text-teal-300 hover:underline"
                 >
-                  Switch back to standard v5.2 styles
+                  {showAllStyles ? `Filter to ${currentBrandLens.shortLabel} Styles` : 'Show All 16 Styles'}
                 </button>
-              )}
+                {useCustomBrand && (
+                  <button
+                    type="button"
+                    onClick={() => setUseCustomBrand(false)}
+                    className="text-xs text-amber-300 hover:underline"
+                  >
+                    Disable Custom Override
+                  </button>
+                )}
+              </div>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
-              {STYLE_OPTIONS.map((opt) => {
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
+              {visibleStyleOptions.map((opt) => {
                 const active = !useCustomBrand && style === opt.key
                 return (
                   <button
@@ -1041,7 +1527,12 @@ export default function InfoGeniusStudioWorkbench() {
                         : 'border-white/10 bg-white/[0.02] text-white/70 hover:bg-white/[0.05] hover:border-white/20'
                     }`}
                   >
-                    <div className="text-xs font-bold text-white">{opt.label}</div>
+                    <div className="flex items-center justify-between gap-1">
+                      <span className="text-xs font-bold text-white truncate">{opt.label}</span>
+                      <span className="text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-white/50 shrink-0">
+                        {opt.brand === 'universal' ? 'v5.3' : opt.brand}
+                      </span>
+                    </div>
                     <div className="text-[11px] opacity-70 mt-0.5 truncate">{opt.tag}</div>
                   </button>
                 )
@@ -1126,7 +1617,7 @@ export default function InfoGeniusStudioWorkbench() {
                   className="inline-flex items-center gap-2 rounded-full border border-teal-400/40 bg-teal-500/10 hover:bg-teal-500/20 px-6 py-3 text-xs font-bold text-teal-200 transition-all disabled:opacity-50"
                 >
                   {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Terminal className="w-4 h-4" />}
-                  {apiKey.trim() ? 'Research & Architect Prompt' : 'Architect Prompt & CLI (Free)'}
+                  {apiKey.trim() ? 'Research & Architect SVG + Prompt' : 'Architect SVG Blueprint & CLI (Free)'}
                 </button>
 
                 <button
@@ -1271,33 +1762,107 @@ export default function InfoGeniusStudioWorkbench() {
       {/* TAB 1 RESULTS: SINGLE VISUAL DRAWER */}
       {activeTab === 'single' && result && (
         <div className="mt-8 space-y-6 pt-8 border-t border-white/10">
-          {result.imageDataUrl && (
-            <div className="space-y-4">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                  <h4 className="text-sm font-bold text-white">
-                    Rendered {result.imageSize} Infographic ({result.style.name})
-                  </h4>
+          {/* Visual Canvas Toolbar: Raster + HUD Overlay + Vector SVG Blueprint + 2-Speaker TTS */}
+          <div className="space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                <h4 className="text-sm font-bold text-white">
+                  {result.imageDataUrl
+                    ? `Rendered ${result.imageSize} Visual + Vector SVG (${result.style.name})`
+                    : `Interactive Vector SVG Blueprint (${result.style.name})`}
+                </h4>
+
+                {/* Canvas View Switcher */}
+                <div className="inline-flex rounded-xl border border-white/15 bg-black/60 p-1 ml-1">
+                  {result.imageDataUrl && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => setCanvasView('hud')}
+                        className={`rounded-lg px-2.5 py-1 text-[11px] font-bold transition-all ${
+                          canvasView === 'hud'
+                            ? 'bg-teal-500/25 text-teal-200 border border-teal-400/40'
+                            : 'text-white/55 hover:text-white'
+                        }`}
+                      >
+                        {result.imageSize} + HUD Overlay
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setCanvasView('raster')}
+                        className={`rounded-lg px-2.5 py-1 text-[11px] font-bold transition-all ${
+                          canvasView === 'raster'
+                            ? 'bg-violet-500/25 text-violet-200 border border-violet-400/40'
+                            : 'text-white/55 hover:text-white'
+                        }`}
+                      >
+                        Pure {result.imageSize} Raster
+                      </button>
+                    </>
+                  )}
+                  {result.svgBlueprint && (
+                    <button
+                      type="button"
+                      onClick={() => setCanvasView('svg')}
+                      className={`rounded-lg px-2.5 py-1 text-[11px] font-bold transition-all ${
+                        canvasView === 'svg' || !result.imageDataUrl
+                          ? 'bg-amber-500/25 text-amber-200 border border-amber-400/40'
+                          : 'text-white/55 hover:text-white'
+                      }`}
+                    >
+                      Vector SVG Blueprint
+                    </button>
+                  )}
                 </div>
-                <div className="flex flex-wrap gap-2">
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleNarrate('solo')}
+                  disabled={isNarrating}
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 px-3 py-2 text-xs font-semibold text-white"
+                >
+                  {isNarrating && narrationMode === 'solo' ? (
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  ) : (
+                    <Volume2 className="w-3.5 h-3.5 text-teal-300" />
+                  )}
+                  Solo TTS (Kore)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleNarrate('dialogue')}
+                  disabled={isNarrating}
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-violet-400/35 bg-violet-500/10 hover:bg-violet-500/20 px-3 py-2 text-xs font-semibold text-violet-200"
+                >
+                  {isNarrating && narrationMode === 'dialogue' ? (
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  ) : (
+                    <Radio className="w-3.5 h-3.5 text-violet-300" />
+                  )}
+                  2-Host Dialogue (Kore × Fenrir)
+                </button>
+                {result.svgBlueprint && (
                   <button
                     type="button"
-                    onClick={handleNarrate}
-                    disabled={isNarrating}
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 px-3.5 py-2 text-xs font-semibold text-white"
+                    onClick={downloadSvgBlueprint}
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-amber-400/35 bg-amber-500/10 hover:bg-amber-500/20 px-3 py-2 text-xs font-semibold text-amber-200"
                   >
-                    {isNarrating ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Volume2 className="w-3.5 h-3.5 text-teal-300" />}
-                    Narrate Facts (Kore TTS)
+                    <Download className="w-3.5 h-3.5" />
+                    .svg Vector
                   </button>
-                  <button
-                    type="button"
-                    onClick={downloadProvenance}
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 px-3.5 py-2 text-xs font-semibold text-white"
-                  >
-                    <FileJson className="w-3.5 h-3.5 text-amber-300" />
-                    .vis.provenance.json
-                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={downloadProvenance}
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 px-3 py-2 text-xs font-semibold text-white"
+                >
+                  <FileJson className="w-3.5 h-3.5 text-amber-300" />
+                  .vis.provenance.json
+                </button>
+                {result.imageDataUrl && (
                   <a
                     href={result.imageDataUrl}
                     download={`infogenius-${result.style.key}.png`}
@@ -1306,28 +1871,93 @@ export default function InfoGeniusStudioWorkbench() {
                     <Download className="w-3.5 h-3.5" />
                     Download PNG
                   </a>
-                </div>
+                )}
               </div>
+            </div>
 
-              {audioDataUrl && (
-                <div className="rounded-xl border border-teal-500/30 bg-teal-500/10 p-3 flex items-center justify-between gap-4">
+            {audioDataUrl && (
+              <div className="rounded-xl border border-teal-500/30 bg-teal-500/10 p-4 space-y-2.5">
+                <div className="flex flex-wrap items-center justify-between gap-4">
                   <span className="text-xs font-semibold text-teal-200">
-                    Gemini 2.5 Flash TTS Narration (Voice: Kore)
+                    {narrationMode === 'dialogue'
+                      ? 'Gemini 2.5 Flash Multi-Speaker Executive Dialogue (Architect: Kore × Strategist: Fenrir)'
+                      : 'Gemini 2.5 Flash TTS Solo Briefing (Voice: Kore)'}
                   </span>
                   <audio controls src={audioDataUrl} className="h-8" />
                 </div>
-              )}
+                {narrationTranscript && (
+                  <pre className="rounded-lg bg-black/50 border border-white/10 p-3 text-[11px] font-mono text-white/75 whitespace-pre-wrap">
+                    {narrationTranscript}
+                  </pre>
+                )}
+              </div>
+            )}
 
-              <div className="overflow-hidden rounded-2xl border border-white/15 bg-black/60">
+            {/* Canvas Viewport: Raster + Interactive Code-Overlay HUD OR Vector SVG Blueprint */}
+            {result.imageDataUrl && canvasView !== 'svg' ? (
+              <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-black/60 group">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={result.imageDataUrl}
                   alt={result.topic}
                   className="w-full h-auto object-contain max-h-[680px] mx-auto"
                 />
+
+                {/* Anti-Slop Interactive Code-Overlay HUD */}
+                {canvasView === 'hud' && (
+                  <div className="p-4 bg-gradient-to-t from-black/95 via-black/80 to-transparent border-t border-white/10">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-teal-300">
+                        Anti-Slop Code-Overlay HUD · Exact Typography &amp; Verified Citations
+                      </span>
+                      <span className="text-[10px] font-mono text-white/45">
+                        Click a node to inspect grounded evidence
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+                      {result.research.facts.slice(0, 4).map((fact, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => setActiveHudFactIndex(activeHudFactIndex === idx ? null : idx)}
+                          className={`text-left rounded-xl border p-2.5 transition-all ${
+                            activeHudFactIndex === idx
+                              ? 'border-teal-400/60 bg-teal-500/20 text-white'
+                              : 'border-white/10 bg-black/70 text-white/75 hover:border-white/25'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between text-[10px] font-mono text-teal-300 mb-1">
+                            <span>NODE 0{idx + 1}</span>
+                            <span>{result.research.grounded ? 'VERIFIED' : 'STRUCTURED'}</span>
+                          </div>
+                          <p className="text-[11px] leading-snug line-clamp-2">{fact}</p>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
-          )}
+            ) : (
+              result.svgBlueprint && (
+                <div className="overflow-hidden rounded-2xl border border-amber-400/30 bg-black/70 p-3">
+                  <div className="flex items-center justify-between px-2 pb-2 text-[11px] text-amber-200/80 font-mono">
+                    <span>Deterministic Vector SVG Blueprint (Zero-Spelling-Error Code Layer · 1200×675)</span>
+                    <button
+                      type="button"
+                      onClick={downloadSvgBlueprint}
+                      className="text-amber-300 hover:underline font-sans font-semibold"
+                    >
+                      Download .svg →
+                    </button>
+                  </div>
+                  <div
+                    className="w-full overflow-hidden rounded-xl border border-white/10"
+                    dangerouslySetInnerHTML={{ __html: result.svgBlueprint }}
+                  />
+                </div>
+              )
+            )}
+          </div>
 
           {/* Grounded Facts + Citations */}
           <div className="grid lg:grid-cols-2 gap-6">
@@ -1415,7 +2045,7 @@ export default function InfoGeniusStudioWorkbench() {
           <div className="rounded-2xl border border-white/10 bg-black/40 p-5">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-bold uppercase tracking-wider text-white/70">
-                Synthesized InfoGenius v5.2 Master Visual Prompt
+                Synthesized InfoGenius v5.3 Master Visual Prompt
               </span>
               <div className="flex items-center gap-3">
                 <button
@@ -1441,6 +2071,50 @@ export default function InfoGeniusStudioWorkbench() {
           </div>
         </div>
       )}
+
+      {/* Sticky Mobile Bottom Dock for Thumb-Zone Navigation */}
+      <div className="md:hidden fixed bottom-3 left-3 right-3 z-40 rounded-2xl border border-white/15 bg-slate-950/95 backdrop-blur-xl p-1.5 shadow-2xl grid grid-cols-4 gap-1">
+        <button
+          type="button"
+          onClick={() => setActiveTab('single')}
+          className={`flex flex-col items-center justify-center rounded-xl py-2 text-[10px] font-bold ${
+            activeTab === 'single' ? 'bg-teal-500/20 text-teal-200' : 'text-white/55'
+          }`}
+        >
+          <Sparkles className="w-3.5 h-3.5 mb-0.5" />
+          Single
+        </button>
+        <button
+          type="button"
+          onClick={() => setActiveTab('decompose')}
+          className={`flex flex-col items-center justify-center rounded-xl py-2 text-[10px] font-bold ${
+            activeTab === 'decompose' ? 'bg-violet-500/20 text-violet-200' : 'text-white/55'
+          }`}
+        >
+          <FileText className="w-3.5 h-3.5 mb-0.5" />
+          5-Slide
+        </button>
+        <button
+          type="button"
+          onClick={() => setActiveTab('brand')}
+          className={`flex flex-col items-center justify-center rounded-xl py-2 text-[10px] font-bold ${
+            activeTab === 'brand' ? 'bg-amber-500/20 text-amber-200' : 'text-white/55'
+          }`}
+        >
+          <Palette className="w-3.5 h-3.5 mb-0.5" />
+          Brand
+        </button>
+        <button
+          type="button"
+          onClick={() => setActiveTab('mcp')}
+          className={`flex flex-col items-center justify-center rounded-xl py-2 text-[10px] font-bold ${
+            activeTab === 'mcp' ? 'bg-emerald-500/20 text-emerald-200' : 'text-white/55'
+          }`}
+        >
+          <Code2 className="w-3.5 h-3.5 mb-0.5" />
+          MCP/API
+        </button>
+      </div>
     </div>
   )
 }
