@@ -1,7 +1,11 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import test from 'node:test'
-import { requiredCheckAlwaysReportsErrors } from './helpers/workflow-yaml-contract.mjs'
+import {
+  requiredCheckAlwaysReportsErrors,
+  stripYamlComment,
+  topLevelMappingBlock,
+} from './helpers/workflow-yaml-contract.mjs'
 
 const read = (path) => readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
 
@@ -18,9 +22,16 @@ const REQUIRED = [
 // real gate and add an unrelated job that keeps the old name, so the context
 // would still report while the gate behind it was gone.
 const requiredJobNameErrors = (workflow, label) => {
-  const jobs = workflow.split(/^jobs:\s*$/m)[1] ?? ''
-  const jobIds = [...jobs.matchAll(/^  ([A-Za-z0-9_-]+):\s*$/gm)].map((match) => match[1])
-  if (jobIds.length !== 1) return [`${label} must be the only job in its workflow, found ${jobIds.length}`]
+  const jobs = topLevelMappingBlock(workflow, 'jobs') ?? ''
+  const jobLines = jobs
+    .split(/\r?\n/)
+    .slice(1)
+    .map(stripYamlComment)
+    .filter((line) => line.match(/^\s*/)[0].length === 2 && line.trim() !== '')
+  const jobIds = jobLines.map((line) => line.match(/^  ([A-Za-z0-9_-]+):\s*$/)?.[1])
+  if (jobLines.length !== 1 || !jobIds[0]) {
+    return [`${label} must be the only job in its workflow, found ${jobLines.length}`]
+  }
   const first = jobs.match(new RegExp(`^  ${jobIds[0]}:\\s*\\n    name: ${label}\\s*$`, 'm'))
   return first ? [] : [`job "${jobIds[0]}" must be named "${label}"`]
 }
@@ -97,6 +108,11 @@ test('the job-name pin rejects a renamed gate and a decoy job that keeps the old
     'jobs:\n  merge-gate:\n    name: Merge Gate (lite)\n    runs-on: ubuntu-latest\n' +
     '  placeholder:\n    name: Merge Gate\n    runs-on: ubuntu-latest\n    steps: []\n'
   assert.notDeepEqual(requiredJobNameErrors(decoy, 'Merge Gate'), [])
+
+  const quotedRealAndDecoy =
+    "jobs:\n  'merge-gate':\n    name: Merge Gate (lite)\n    runs-on: ubuntu-latest\n" +
+    '  placeholder:\n    name: Merge Gate\n    runs-on: ubuntu-latest\n    steps: []\n'
+  assert.notDeepEqual(requiredJobNameErrors(quotedRealAndDecoy, 'Merge Gate'), [])
 })
 
 test('the trigger pin rejects every way of bringing a filter or a gap back', () => {
