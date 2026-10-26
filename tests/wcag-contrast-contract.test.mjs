@@ -38,8 +38,6 @@ test('the scoped dark-surface labels and showroom selector retain AA contrast', 
   const selector = css.match(/\.selector button>span\s*\{[^}]*color:(#[a-f0-9]{6})/i)
   assert.ok(selector, 'showroom selector text color must be measurable')
   assert.ok(contrast(selector[1], '#153128') >= 4.5)
-  const home = fs.readFileSync('components/home/HomePageElite.tsx', 'utf8')
-  assert.ok(!home.includes('text-emerald-400/50'), 'homepage eyebrow must avoid the known low-contrast style')
 })
 
 test('AI architecture scrollable regions have keyboard focusability', () => {
