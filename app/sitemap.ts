@@ -1,4 +1,6 @@
 import { MetadataRoute } from 'next'
+import { isExcludedFromSitemap } from '../lib/sitemap-exclusions.mjs'
+import nextConfig from '../next.config.mjs'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -120,7 +122,7 @@ function getRouteIndexRoutes(): Array<{ href: string; type: string; sitemap?: bo
   }
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const currentDate = new Date().toISOString()
 
   // Core pages (highest priority)
@@ -872,5 +874,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   }
 
-  return entries
+  const redirects = await nextConfig.redirects()
+  const redirectSources = redirects.map((r) => r.source)
+
+  return entries.filter(entry => {
+    const pathname = entry.url.replace(BASE_URL, '').replace(/\/$/, '') || '/'
+    return !isExcludedFromSitemap(pathname, redirectSources)
+  })
 }
