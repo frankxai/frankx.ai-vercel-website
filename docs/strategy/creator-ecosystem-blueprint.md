@@ -153,4 +153,4 @@ The Sovereign Creator Architecture (SCA) conforms directly to the protocol speci
 ---
 
 _Built on SIP — Starlight Intelligence Protocol v1.1.0_  
-_Reality Architect Vertical · Starlight Holding BV · MIT License_
+_Reality Architect Vertical · Starlight Intelligence (eenmanszaak) · MIT License_

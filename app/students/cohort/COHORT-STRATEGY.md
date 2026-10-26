@@ -223,7 +223,7 @@ This must be genuinely excellent. If students feel used for content, the cohort 
 | Value                      | Mechanism                                                            | Timeline    |
 | -------------------------- | -------------------------------------------------------------------- | ----------- |
 | **Content amplification**  | 44 students posting about the cohort = 44 organic marketing channels | Immediate   |
-| **Talent pipeline**        | Best performers are first hires for Arcanea Labs BV                  | 1-3 months  |
+| **Talent pipeline**        | Best performers are first hires for Starlight Intelligence (eenmanszaak)                  | 1-3 months  |
 | **Social proof**           | "Frank mentored me and I shipped X" testimonials                     | 4-6 weeks   |
 | **Community nucleus**      | Cohort graduates become founding GenCreator community members        | Ongoing     |
 | **Video content**          | Demo Day recordings = YouTube content, highlight reels               | Week 4+     |
@@ -380,7 +380,7 @@ Cohort Graduate
   --> Active in Discord (stays engaged)
       --> Refers Frank to their employer (consulting lead)
       --> Becomes Track Lead for Batch 2 (scales Frank's time)
-      --> Joins Arcanea Labs BV as contractor/employee (talent)
+      --> Joins Starlight Intelligence (eenmanszaak) as contractor/employee (talent)
       --> Creates content that references Frank (brand growth)
 ```
 
@@ -526,7 +526,7 @@ Menu Creator is absorbed into GenCreator as a sub-blueprint:
 2027 Q1:  Batch 4 (200 students, paid tiers, guest mentors)
 2027 Q2:  GenCreator Conference (alumni + community + sponsors)
 2027+:    GenCreator becomes a recognized brand in AI education
-          Arcanea Labs BV hires from alumni pool
+          Starlight Intelligence (eenmanszaak) hires from alumni pool
           Corporate training arm (companies pay for team cohorts)
 ```
 
