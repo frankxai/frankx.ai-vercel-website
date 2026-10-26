@@ -172,7 +172,7 @@ export const qualities: Quality[] = [
     evidence: [
       {
         title: 'Meaning as an Operating System',
-        href: '/research/meaning-os',
+        href: '/research/series/architecture-of-intelligence',
         note: 'The source-led research program on relevance realization, coherence, and AI architecture.',
         kind: 'Research',
       },
