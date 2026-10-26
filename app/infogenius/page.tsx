@@ -16,11 +16,16 @@ export const metadata: Metadata = {
   },
 }
 
+// InfoGenius is a GenCreator product (registry: product_infogenius); this page
+// is the FrankX showcase and links out to the product rather than hosting it.
+const INFOGENIUS_APP_URL = 'https://infogenius-three.vercel.app'
+const INFOGENIUS_REPO_URL = 'https://github.com/frankxai/infogenius'
+
 const capabilities = [
   {
     icon: '⚡',
     title: 'Research Grounded',
-    body: 'Every visual starts with real-time web research. No hallucinations — just facts rendered beautifully.',
+    body: 'Every visual starts with a live web search, and the sources it used are listed beside the result so you can check them.',
   },
   {
     icon: '🎨',
@@ -40,7 +45,7 @@ const capabilities = [
   {
     icon: '🧠',
     title: 'Pro Reasoning',
-    body: 'Gemini 3 Pro with high-thinking mode. The same model that designed itself.',
+    body: 'Gemini 3 Pro with high thinking plans the research and writes the image prompt.',
   },
   {
     icon: '🔁',
@@ -79,7 +84,7 @@ const pipeline = [
   {
     step: '04',
     title: 'Image rendered at 4K',
-    detail: 'Gemini 3 Pro Image. AAA quality. Ready for blog, social, course, or presentation.',
+    detail: 'Gemini 3 Pro Image at 1K, 2K or 4K, sized for a blog, a social post, a course or a slide.',
   },
 ]
 
@@ -101,7 +106,7 @@ export default function InfoGeniusPage() {
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[0.95] mb-6">
                 Hello.
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-300">
+                <span className="text-violet-300">
                   I turn knowledge
                 </span>
                 <br />
@@ -114,19 +119,23 @@ export default function InfoGeniusPage() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <Link
-                  href="/lab"
+                <a
+                  href={INFOGENIUS_APP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-violet-600 hover:bg-violet-500 px-7 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_30px_rgba(139,92,246,0.5)]"
                 >
-                  Try InfoGenius
-                  <span className="text-base">→</span>
-                </Link>
-                <Link
-                  href="/blog"
+                  Try it free
+                  <span className="text-base" aria-hidden="true">→</span>
+                </a>
+                <a
+                  href={INFOGENIUS_REPO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-white/70 hover:text-white hover:border-white/30 transition-all duration-200"
                 >
-                  See Examples
-                </Link>
+                  Skill and source on GitHub
+                </a>
               </div>
 
               {/* Stats row */}
@@ -134,7 +143,7 @@ export default function InfoGeniusPage() {
                 {[
                   { n: '8', label: 'Visual styles' },
                   { n: '4K', label: 'Output quality' },
-                  { n: '<60s', label: 'Research to image' },
+                  { n: 'BYOK', label: 'Runs on your own key' },
                 ].map((s) => (
                   <div key={s.label}>
                     <div className="text-2xl font-black text-white">{s.n}</div>
@@ -168,10 +177,10 @@ export default function InfoGeniusPage() {
                 {/* Floating status badge */}
                 <div className="absolute top-8 -right-4 z-20 rounded-2xl border border-emerald-500/30 bg-black/70 backdrop-blur-md px-4 py-3">
                   <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-xs font-semibold text-emerald-400">Online</span>
+                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                    <span className="text-xs font-semibold text-emerald-400">Free</span>
                   </div>
-                  <div className="text-xs text-white/50 mt-1">Ready to generate</div>
+                  <div className="text-xs text-white/50 mt-1">Bring your own key</div>
                 </div>
               </div>
             </div>
@@ -216,7 +225,7 @@ export default function InfoGeniusPage() {
               What FRANK-Ω does.
             </h2>
             <p className="text-white/50 mt-3 max-w-xl">
-              Six systems running in parallel every time you drop a topic.
+              What happens each time you give it a topic.
             </p>
           </div>
 
@@ -397,13 +406,15 @@ export default function InfoGeniusPage() {
               FRANK-Ω doesn't care — he just builds it.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Link
-                href="/lab"
+              <a
+                href={INFOGENIUS_APP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-violet-600 hover:bg-violet-500 px-8 py-4 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_40px_rgba(139,92,246,0.5)]"
               >
                 Start generating
-                <span>→</span>
-              </Link>
+                <span aria-hidden="true">→</span>
+              </a>
               <Link
                 href="/agents"
                 className="inline-flex items-center gap-2 rounded-full border border-white/15 px-8 py-4 text-sm font-semibold text-white/70 hover:text-white hover:border-white/30 transition-all duration-200"
