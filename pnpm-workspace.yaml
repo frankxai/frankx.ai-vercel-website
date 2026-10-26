@@ -10,13 +10,15 @@ overrides:
   'ip-address': '^10.4.0'
   'nanoid': '^3.3.18'
   'postcss': '^8.5.26'
-  'undici@6': '6.28.1'
-  'jsdom@28.1.0>undici': '7.29.1'
+  'undici@6': '6.29.1'
+  'jsdom@28.1.0>undici': '7.30.1'
   # Advisory floors added 2026-09-03 (#647). Every value is bounded to the
   # package's current major; a major selector such as js-yaml@3 is used where
   # two majors coexist so each line only touches its own major.
   # 2026-10-21: brace-expansion, dompurify floors raised and @grpc/grpc-js@1 added
   # for the advisories fixed in 1.1.21 / 2.1.7 / 3.4.16 / 1.14.5.
+  # 2026-10-26: undici 6.29.1 / 7.30.1, body-parser 2.4.0 and zod 4.6.6 floors for their
+  # published advisories; zod@4 is a major selector so zod 3 consumers are untouched.
   '@babel/core': '^7.29.6'
   '@grpc/grpc-js@1': '^1.14.5'
   '@hono/node-server@1': '^1.19.15'
@@ -25,7 +27,7 @@ overrides:
   '@tiptap/pm': '^3.31.0'
   '@ai-sdk/provider-utils@4': '^4.0.33'
   'adm-zip': '^0.6.1'
-  'body-parser': '^2.3.0'
+  'body-parser': '^2.4.0'
   'brace-expansion@1': '^1.1.21'
   'brace-expansion@2': '^2.1.7'
   'brace-expansion@5': '^5.0.9'
@@ -38,6 +40,7 @@ overrides:
   'qs': '^6.16.0'
   'sharp': '^0.35.3'
   'ws': '^8.21.0'
+  'zod@4': '^4.6.6'
 
 allowBuilds:
   'agentdb@3.0.0-alpha.20': false

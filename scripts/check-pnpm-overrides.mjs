@@ -95,8 +95,8 @@ if (declared && locked) {
 // undici@6 because @ai-sdk/provider-utils also depends on undici 6, outside
 // @vercel/blob, and the parent-scoped pin never reached it.
 const REQUIRED_PINS = {
-  'undici@6': '6.28.1',
-  'jsdom@28.1.0>undici': '7.29.1',
+  'undici@6': '6.29.1',
+  'jsdom@28.1.0>undici': '7.30.1',
 };
 for (const [key, value] of Object.entries(REQUIRED_PINS)) {
   if (declared?.get(key) !== value) {
