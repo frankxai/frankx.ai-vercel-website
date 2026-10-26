@@ -24,6 +24,7 @@ import {
 import { trackEvent } from '@/lib/analytics'
 import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 import rawProducts from '@/data/products.json'
+import { WAITLIST_INTENTS } from '@/lib/diagnostic/waitlist-intents'
 
 interface NormalizedProduct {
   id: string
@@ -42,6 +43,7 @@ interface NormalizedProduct {
   icon: typeof Cpu
   isFree: boolean
   isWaitlist: boolean
+  isLaunchList: boolean
   featured: boolean
   href: string
   primaryCtaHref: string
@@ -143,6 +145,9 @@ const CATEGORY_MAPPINGS: Record<string, string[]> = {
   ],
 }
 
+// Shown instead of a price while a product is on its launch list.
+const NOT_PRICED_LABEL = 'Not priced yet'
+
 const FLAGSHIP_IDS = ['agentic-creator-os', 'vibe-os', 'creators-soulbook']
 
 function resolveProductColor(category: string, price: number): GlowColor {
@@ -181,7 +186,12 @@ export default function ProductsPage() {
         const description = p.summary ?? p.promise ?? p.description ?? ''
         const category = p.category || 'General'
 
+        // A paid product whose checkout is not open yet points at its launch list, never at a purchase verb.
+        const launchListIntent =
+          p.offer?.checkoutOpen === false && WAITLIST_INTENTS[p.slug] ? p.slug : null
+
         const isWaitlist = Boolean(
+          launchListIntent ||
           p.offer?.ctaPrimary?.toLowerCase().includes('waitlist') ||
           p.cta?.label?.toLowerCase().includes('waitlist')
         )
@@ -192,7 +202,9 @@ export default function ProductsPage() {
             ? p.transformation.slice(0, 3)
             : []
 
-        const primaryCtaHref = isWaitlist
+        const primaryCtaHref = launchListIntent
+          ? `/waitlist?intent=${launchListIntent}`
+          : isWaitlist
           ? (p.offer?.ctaPrimaryHref ?? `/waitlist?intent=${p.slug}`)
           : (price === 0
               ? (p.offer?.ctaPrimaryHref ?? p.cta?.href ?? `/products/${p.slug}`)
@@ -214,7 +226,7 @@ export default function ProductsPage() {
           category,
           badge: p.badge,
           price,
-          priceDisplay,
+          priceDisplay: launchListIntent ? NOT_PRICED_LABEL : priceDisplay,
           currency,
           originalPrice: p.offer?.originalPrice,
           highlights,
@@ -222,6 +234,7 @@ export default function ProductsPage() {
           icon: resolveProductIcon(category, p.id),
           isFree: price === 0,
           isWaitlist,
+          isLaunchList: Boolean(launchListIntent),
           featured: FLAGSHIP_IDS.includes(p.id) || p.featured === true || price >= 147,
           href: `/products/${p.slug}`,
           primaryCtaHref,
@@ -296,14 +309,19 @@ export default function ProductsPage() {
           description: product.headline || product.description,
           url: `https://www.frankx.ai/products/${product.slug}`,
           sku: product.id,
-          offers: {
-            '@type': 'Offer',
-            price: product.price,
-            priceCurrency: product.currency,
-            availability: product.isWaitlist
-              ? 'https://schema.org/PreOrder'
-              : 'https://schema.org/InStock',
-          },
+          // A launch-list product has no price yet, so it carries no Offer.
+          ...(product.isLaunchList
+            ? {}
+            : {
+                offers: {
+                  '@type': 'Offer',
+                  price: product.price,
+                  priceCurrency: product.currency,
+                  availability: product.isWaitlist
+                    ? 'https://schema.org/PreOrder'
+                    : 'https://schema.org/InStock',
+                },
+              }),
         },
       })),
     }
@@ -453,7 +471,7 @@ export default function ProductsPage() {
                               }
                               className="min-h-[44px] flex items-center justify-center rounded-xl bg-emerald-500 px-4 py-2.5 text-xs font-semibold text-black hover:bg-emerald-400 shadow-[0_0_15px_-3px_rgba(16,185,129,0.3)] transition-[background-color,box-shadow] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50"
                             >
-                              <span>{product.isWaitlist ? 'Join waitlist' : 'Acquire'}</span>
+                              <span>{product.isLaunchList ? 'Join the launch list' : product.isWaitlist ? 'Join waitlist' : 'Acquire'}</span>
                             </Link>
                           ) : (
                             <Link
@@ -679,7 +697,7 @@ export default function ProductsPage() {
                                     : 'bg-emerald-500 text-black hover:bg-emerald-400 shadow-[0_0_15px_-3px_rgba(16,185,129,0.3)] focus-visible:ring-emerald-500/50'
                                 }`}
                               >
-                                <span>{product.isWaitlist ? 'Join waitlist' : 'Acquire'}</span>
+                                <span>{product.isLaunchList ? 'Join the launch list' : product.isWaitlist ? 'Join waitlist' : 'Acquire'}</span>
                               </Link>
                             ) : (
                               <Link

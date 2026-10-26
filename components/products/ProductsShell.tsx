@@ -398,7 +398,7 @@ export default function ProductsShell() {
 
                         {/* Content */}
                         <div className="flex-1">
-                          <p className="mb-1 text-xs font-medium uppercase tracking-[0.15em] text-slate-500">
+                          <p className="mb-1 text-xs font-medium uppercase tracking-[0.15em] text-slate-400">
                             {product.tagline}
                           </p>
                           <h3 className="mb-3 text-2xl font-bold text-white">{product.name}</h3>
@@ -639,7 +639,7 @@ export default function ProductsShell() {
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
-                <p className="text-[11px] text-slate-500">
+                <p className="text-[11px] text-slate-400">
                   Or{' '}
                   <Link
                     href="/newsletter"

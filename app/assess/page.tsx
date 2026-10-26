@@ -539,7 +539,7 @@ function DetailReport({ results }: { results: AssessmentResults }) {
                   >
                     <div>
                       <div className="text-sm font-medium text-white">{rec.title}</div>
-                      <div className="text-xs text-white/40">{rec.description}</div>
+                      <div className="text-xs text-white/60">{rec.description}</div>
                     </div>
                     <ArrowRight className="h-4 w-4 text-white/30" />
                   </a>
@@ -694,7 +694,7 @@ export default function AssessPage() {
                         </div>
                         <div>
                           <div className="text-sm font-medium text-white">{meta.label}</div>
-                          <div className="text-xs text-white/40">{count} questions</div>
+                          <div className="text-xs text-white/60">{count} questions</div>
                         </div>
                       </div>
                     </GlowCard>
@@ -817,12 +817,12 @@ export default function AssessPage() {
               <button
                 onClick={handleBack}
                 disabled={currentIndex === 0}
-                className="flex items-center gap-1.5 text-sm text-white/40 transition-colors hover:text-white/70 disabled:opacity-30 disabled:hover:text-white/40"
+                className="flex items-center gap-1.5 text-sm text-white/60 transition-colors hover:text-white/70 disabled:opacity-30 disabled:hover:text-white/40"
               >
                 <ArrowLeft className="h-4 w-4" />
                 Previous
               </button>
-              <span className="text-xs text-white/30">
+              <span className="text-xs text-white/60">
                 {categoryMeta[currentQuestion.category].label} /{' '}
                 {currentIndex + 1} of {totalQuestions}
               </span>
@@ -908,7 +908,7 @@ export default function AssessPage() {
                       <div className="space-y-2">
                         <CategoryBadge category={rec.category} />
                         <h4 className="text-sm font-semibold text-white">{rec.title}</h4>
-                        <p className="text-xs text-white/40 leading-relaxed">{rec.description}</p>
+                        <p className="text-xs text-white/60 leading-relaxed">{rec.description}</p>
                       </div>
                     </GlowCard>
                   )
@@ -956,7 +956,7 @@ export default function AssessPage() {
 
               <button
                 onClick={handleRetake}
-                className="text-sm text-white/40 transition-colors hover:text-white/70"
+                className="text-sm text-white/60 transition-colors hover:text-white/80"
               >
                 Retake Assessment
               </button>
