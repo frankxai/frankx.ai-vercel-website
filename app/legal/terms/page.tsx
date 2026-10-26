@@ -12,7 +12,7 @@ export default function TermsPage() {
       <p className="text-zinc-500 text-sm mb-8">Effective: June 27, 2026 &bull; Last updated: June 27, 2026</p>
 
       <Section title="1. Introduction">
-        <p>These Terms of Service (&ldquo;Terms&rdquo;) govern your use of the website frankx.ai and all products and services offered by Arcanea Labs BV (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;), registered in Amsterdam, Netherlands.</p>
+        <p>These Terms of Service (&ldquo;Terms&rdquo;) govern your use of the website frankx.ai and all products and services offered by Frank Riemer (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;), a Dutch eenmanszaak trading as FrankX, based in Amsterdam, Netherlands and registered with the Dutch Chamber of Commerce (KvK) under number 42186809.</p>
         <p>By accessing our website or purchasing our products, you agree to these Terms. If you do not agree, please do not use our services.</p>
       </Section>
 
@@ -61,8 +61,8 @@ export default function TermsPage() {
       </Section>
 
       <Section title="7. Intellectual Property">
-        <p>All content on frankx.ai, including text, images, code, designs, music, and digital products, is the intellectual property of Arcanea Labs BV or its licensors and is protected by copyright, trademark, and other intellectual property laws.</p>
-        <p>The trademarks FrankX, Arcanea, and GenCreator are owned by Arcanea Labs BV.</p>
+        <p>All content on frankx.ai, including text, images, code, designs, music, and digital products, is the intellectual property of Frank Riemer or its licensors and is protected by copyright, trademark, and other intellectual property laws.</p>
+        <p>The names FrankX, Arcanea, and GenCreator are brands of Frank Riemer.</p>
       </Section>
 
       <Section title="8. AI, Scraping, And Training Restrictions">
