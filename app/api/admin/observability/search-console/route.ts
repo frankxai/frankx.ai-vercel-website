@@ -1,30 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server'
-import {
-  getSearchPerformance,
-  getSearchConsoleSiteUrl,
-} from '@/lib/observability/google-search-console'
+import { getSearchPerformance } from '@/lib/observability/google-search-console'
+import { boundedInteger, measurementHttpStatus } from '@/lib/observability/measurement-result'
 
-export async function GET(request: NextRequest) {
-  try {
-    const searchParams = request.nextUrl.searchParams
-    const days = parseInt(searchParams.get('days') || '28', 10)
-    const rowLimit = parseInt(searchParams.get('limit') || '50', 10)
-
-    const gscData = await getSearchPerformance({ days, rowLimit })
-
-    return NextResponse.json({
-      success: true,
-      data: gscData,
-      siteUrl: getSearchConsoleSiteUrl(),
-    })
-  } catch (error) {
-    console.error('[API /observability/search-console] Error:', error)
-    return NextResponse.json(
-      {
-        success: false,
-        error: error instanceof Error ? error.message : 'Unknown Search Console error',
-      },
-      { status: 500 }
-    )
-  }
+export async function GET(request: Request) {
+  const params = new URL(request.url).searchParams
+  const entry = await getSearchPerformance({ days: boundedInteger(params.get('days'), 28, 365), rowLimit: boundedInteger(params.get('limit'), 50, 25000) })
+  return Response.json({ success: entry.status === 'ok', status: entry.status, data: entry }, { status: measurementHttpStatus(entry.status), headers: { 'Cache-Control': 'no-store' } })
 }

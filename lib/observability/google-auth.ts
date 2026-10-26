@@ -92,16 +92,16 @@ function base64url(data: string | Buffer): string {
 /**
  * Obtains an OAuth2 bearer access token using native Node crypto RS256 JWT assertion.
  */
-export async function getGoogleAccessToken(scopes: string[]): Promise<string | null> {
+export async function getGoogleAuthResult(scopes: string[]): Promise<{ status: 'ok' | 'not_configured' | 'unauthorized' | 'upstream_error'; token: string | null }> {
   const credentials = getServiceAccountCredentials()
-  if (!credentials) return null
+  if (!credentials) return { status: 'not_configured', token: null }
 
   const scopesKey = scopes.slice().sort().join(' ')
   const now = Math.floor(Date.now() / 1000)
 
   // Use cached token if still valid for at least 5 minutes
   if (cachedToken && cachedToken.scopesKey === scopesKey && cachedToken.expiresAt > now + 300) {
-    return cachedToken.accessToken
+    return { status: 'ok', token: cachedToken.accessToken }
   }
 
   try {
@@ -132,6 +132,8 @@ export async function getGoogleAccessToken(scopes: string[]): Promise<string | n
     const jwt = `${signatureInput}.${encodedSignature}`
 
     const res = await fetch('https://oauth2.googleapis.com/token', {
+      signal: AbortSignal.timeout(15000),
+      cache: 'no-store',
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -143,21 +145,24 @@ export async function getGoogleAccessToken(scopes: string[]): Promise<string | n
     })
 
     if (!res.ok) {
-      const errorText = await res.text()
-      console.error('[GoogleAuth] Token exchange failed:', res.status, errorText)
-      return null
+      return { status: res.status === 400 || res.status === 401 || res.status === 403 ? 'unauthorized' : 'upstream_error', token: null }
     }
 
     const data = (await res.json()) as { access_token: string; expires_in: number }
+    if (typeof data.access_token !== 'string' || !data.access_token) return { status: 'upstream_error', token: null }
     cachedToken = {
       accessToken: data.access_token,
       expiresAt: now + (data.expires_in || 3600),
       scopesKey,
     }
 
-    return data.access_token
+    return { status: 'ok', token: data.access_token }
   } catch (err) {
-    console.error('[GoogleAuth] Error generating token:', err)
-    return null
+    return { status: 'upstream_error', token: null }
   }
+}
+
+/** Compatibility helper for callers that only need a bearer token. */
+export async function getGoogleAccessToken(scopes: string[]): Promise<string | null> {
+  return (await getGoogleAuthResult(scopes)).token
 }
