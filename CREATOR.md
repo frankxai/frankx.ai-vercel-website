@@ -1,7 +1,7 @@
 <!-- STARLIGHT-EDITORIAL:START -->
 # FrankX voice
 
-Pinned source: https://github.com/frankxai/starlight-design-intelligence/blob/50ae34c7ac06e6c083f277ca96c3bde8f0a39b43/brand-packs/frankx/COPY.md
+Pinned source: https://github.com/Starlight-Intelligence/starlight-design-intelligence/blob/851a11be31a0640df64baabcf2b1fc1afb9ce849/brand-packs/frankx/COPY.md
 
 # FrankX Editorial Language
 
@@ -62,6 +62,7 @@ keep the deletion.
 
 - “The infrastructure already exists.”
 - “A sovereign agent fleet.”
+- “This is not presentationware.”
 - Rhetorical contrast formulas built as “X, not Y.”
 - “Tool intelligence,” “operating-role routes,” and other invented labels that hide a simple action.
 - “Unlock,” “reimagine,” “elevate,” or “transform” without a measurable object.

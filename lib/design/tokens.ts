@@ -192,13 +192,14 @@ export const radius = {
 // =============================================================================
 
 export const gradients = {
-  brand:     'bg-gradient-to-r from-[#ab47c7] to-[#43bfe3]',
-  brandDiag: 'bg-gradient-to-br from-[#ab47c7] via-[#7c3aed] to-[#43bfe3]',
+  // brand = Tech spectrum (emerald -> cyan). The purple-to-blue diagonal is banned.
+  brand:     'bg-gradient-to-r from-[#10b981] to-[#06b6d4]',
+  brandDiag: 'bg-gradient-to-br from-[#10b981] to-[#06b6d4]',
   emerald:   'bg-gradient-to-r from-[#10b981] to-[#06b6d4]',
   gold:      'bg-gradient-to-r from-[#f59e0b] to-[#f97316]',
   arcanea:   'bg-gradient-to-br from-[#1e0a3c] via-[#7c3aed] to-[#ab47c7]',
   text: {
-    brand:   'bg-gradient-to-r from-[#ab47c7] to-[#43bfe3] bg-clip-text text-transparent',
+    brand:   'bg-gradient-to-r from-[#10b981] to-[#06b6d4] bg-clip-text text-transparent',
     emerald: 'bg-gradient-to-r from-[#10b981] to-[#34d399] bg-clip-text text-transparent',
     gold:    'bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] bg-clip-text text-transparent',
     cyan:    'bg-gradient-to-r from-[#43bfe3] to-[#38bdf8] bg-clip-text text-transparent',
