@@ -874,7 +874,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   }
 
-  const redirects = await nextConfig.redirects()
+  const redirects = nextConfig.redirects ? await nextConfig.redirects() : []
   const redirectSources = redirects.map((r) => r.source)
 
   return entries.filter(entry => {
