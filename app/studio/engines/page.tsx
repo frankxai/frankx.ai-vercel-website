@@ -1,3 +1,4 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, Image as ImageIcon, Film, Layers, Zap, Terminal } from 'lucide-react'
@@ -14,19 +15,21 @@ import {
 export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
-  title: 'Generation Engines — Pick Your Stack, Wire It in Minutes | FrankX',
+  title: 'Generation Engines — Pick Your Stack, Wire It in Minutes',
   description:
     'The curated menu of image and video engines behind GenCreator OS — InfoGenius/Nano Banana, Higgsfield, fal.ai, GPT Image 2, and the frontier video models. What each is best for, what it costs, and the exact command to install it.',
-  alternates: { canonical: 'https://frankx.ai/studio/engines' },
+  alternates: { canonical: `${siteConfig.url}/studio/engines` },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Generation Engines — Pick Your Stack, Wire It in Minutes',
     description:
       'The curated menu of image and video engines behind GenCreator OS. Best-for, cost, and the exact install command for each.',
-    url: 'https://frankx.ai/studio/engines',
+    url: `${siteConfig.url}/studio/engines`,
     siteName: 'FrankX',
     type: 'website',
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary_large_image',
     title: 'Generation Engines — Pick Your Stack, Wire It in Minutes',
     description: 'The curated menu of engines behind GenCreator OS, with install commands.',
@@ -39,11 +42,11 @@ const articleSchema = {
   headline: 'Generation Engines — the GenCreator OS engine registry',
   description:
     'A typed registry (lib/gen/backends.ts) of every image and video generation engine GenCreator OS can call, with tier, cost, best-for, and install steps for each.',
-  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
-  publisher: { '@type': 'Organization', name: 'FrankX', url: 'https://frankx.ai' },
+  author: { '@type': 'Person', name: 'Frank Riemer', url: siteConfig.url },
+  publisher: { '@type': 'Organization', name: 'FrankX', url: siteConfig.url },
   datePublished: GEN_SHIPPED,
   dateModified: GEN_SHIPPED,
-  mainEntityOfPage: 'https://frankx.ai/studio/engines',
+  mainEntityOfPage: `${siteConfig.url}/studio/engines`,
   inLanguage: 'en',
   keywords:
     'AI image generation, AI video generation, Higgsfield, Nano Banana, fal.ai, GPT Image, Sora, Veo, Kling, MCP, GenCreator OS',

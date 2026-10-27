@@ -1,3 +1,4 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, Check, X, Palette } from 'lucide-react'
@@ -6,19 +7,21 @@ import { aestheticLanes, GEN_VERSION, GEN_SHIPPED, type AestheticLane } from '@/
 export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
-  title: 'Aesthetic Lanes — Premium Taste, Made Plural | FrankX',
+  title: 'Aesthetic Lanes — Premium Taste, Made Plural',
   description:
     'Six first-class art directions behind GenCreator OS — liquid glass, anime, editorial, cinematic, noir-tech, studio-organic. Each a complete premium standard with its own references, palette, refusal list, and quality bar the gate enforces.',
-  alternates: { canonical: 'https://frankx.ai/studio/lanes' },
+  alternates: { canonical: `${siteConfig.url}/studio/lanes` },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Aesthetic Lanes — Premium Taste, Made Plural',
     description:
       'Six first-class art directions, each with its own references, palette, refusals, and quality bar.',
-    url: 'https://frankx.ai/studio/lanes',
+    url: `${siteConfig.url}/studio/lanes`,
     siteName: 'FrankX',
     type: 'website',
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary_large_image',
     title: 'Aesthetic Lanes — Premium Taste, Made Plural',
     description: 'Six first-class art directions, each a complete premium standard.',
@@ -31,11 +34,11 @@ const articleSchema = {
   headline: 'Aesthetic Lanes — the GenCreator OS multi-lane taste substrate',
   description:
     'A typed substrate (lib/gen/lanes.ts) where each aesthetic lane — liquid glass, anime, editorial, cinematic, noir-tech, studio-organic — is a complete art direction with references, palette, prompt fragments, refusal list, and a quality bar the visual-creation gate enforces.',
-  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
-  publisher: { '@type': 'Organization', name: 'FrankX', url: 'https://frankx.ai' },
+  author: { '@type': 'Person', name: 'Frank Riemer', url: siteConfig.url },
+  publisher: { '@type': 'Organization', name: 'FrankX', url: siteConfig.url },
   datePublished: GEN_SHIPPED,
   dateModified: GEN_SHIPPED,
-  mainEntityOfPage: 'https://frankx.ai/studio/lanes',
+  mainEntityOfPage: `${siteConfig.url}/studio/lanes`,
   inLanguage: 'en',
   keywords:
     'aesthetic, art direction, liquid glass, anime, editorial, cinematic, design system, taste, AI image generation',
