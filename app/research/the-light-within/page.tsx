@@ -1,9 +1,10 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'The Light Within: Visualization, Breath, and the Brain — Research | FrankX',
+  title: 'The Light Within: Visualization, Breath, and the Brain — Research',
   description:
     'What the contemplative traditions called the inner light, and what neuroscience can and cannot confirm about visualization, breathwork, coherence, and gamma states. Evidence-graded research on Robbins priming, SOMA breath, and Dispenza-style meditation — and why inner attention goes load-bearing in the AI era.',
   keywords: [
@@ -17,14 +18,15 @@ export const metadata: Metadata = {
     'heart rate variability breathing',
   ],
   alternates: {
-    canonical: 'https://frankx.ai/research/the-light-within',
+    canonical: `${siteConfig.url}/research/the-light-within`,
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'The Light Within: Visualization, Breath, and the Brain',
     description:
       'What the traditions called the inner light, and what the brain science can actually confirm about visualization, breath, coherence, and gamma states.',
     type: 'article',
-    url: 'https://frankx.ai/research/the-light-within',
+    url: `${siteConfig.url}/research/the-light-within`,
   },
 }
 
@@ -365,19 +367,19 @@ function ResearchSchema() {
     '@graph': [
       {
         '@type': 'Article',
-        '@id': 'https://frankx.ai/research/the-light-within#article',
+        '@id': `${siteConfig.url}/research/the-light-within#article`,
         headline: 'The Light Within: Visualization, Breath, and the Brain',
         description:
           'Evidence-graded research on the inner light of the contemplative traditions and what neuroscience confirms about visualization, breathwork, coherence, and gamma states.',
         author: {
           '@type': 'Person',
           name: 'Frank Riemer',
-          url: 'https://frankx.ai',
+          url: siteConfig.url,
           jobTitle: 'AI Architect',
         },
         datePublished: '2026-06-22',
         dateModified: '2026-06-22',
-        mainEntityOfPage: 'https://frankx.ai/research/the-light-within',
+        mainEntityOfPage: `${siteConfig.url}/research/the-light-within`,
         about: [
           'Visualization',
           'Breathwork',
@@ -390,7 +392,7 @@ function ResearchSchema() {
       },
       {
         '@type': 'FAQPage',
-        '@id': 'https://frankx.ai/research/the-light-within#faq',
+        '@id': `${siteConfig.url}/research/the-light-within#faq`,
         mainEntity: FAQ.map((f) => ({
           '@type': 'Question',
           name: f.question,

@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 import {
   ArrowDownToLine,
@@ -17,7 +18,7 @@ import {
 import { GutJourneyDemo } from '@/components/alba/GutJourneyDemo'
 import { TrackedLink } from '@/components/analytics/TrackedLink'
 
-const PAGE_URL = 'https://frankx.ai/share/alba-health'
+const PAGE_URL = `${siteConfig.url}/share/alba-health`
 const OPEN_CORE_URL =
   'https://github.com/frankxai/health-intelligence-system/tree/main/verticals/gut-intelligence-system'
 const BRIEF_URL = '/downloads/alba-gut-intelligence-partner-brief.docx'
