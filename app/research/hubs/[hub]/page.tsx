@@ -1,3 +1,4 @@
+import { defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -21,6 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `https://www.frankx.ai/research/hubs/${entry.slug}`,
     },
     openGraph: {
+      images: defaultOpenGraphImages,
       title: `${entry.title} Research | FrankX`,
       description: entry.description,
       url: `https://www.frankx.ai/research/hubs/${entry.slug}`,

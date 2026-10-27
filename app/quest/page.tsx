@@ -1,5 +1,6 @@
 'use client'
 
+import { siteConfig } from '@/lib/seo'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -101,8 +102,8 @@ export default function QuestPage() {
           name: 'The Beautiful Mind Quest',
           description:
             'A 30-day arc of daily dares: AI learning, one prompt a day, the mechanics of belief, attention, and imagination — and one good thing for the world each day.',
-          url: 'https://frankx.ai/quest',
-          isPartOf: { '@type': 'WebSite', name: 'FrankX.AI', url: 'https://frankx.ai' },
+          url: `${siteConfig.url}/quest`,
+          isPartOf: { '@type': 'WebSite', name: 'FrankX.AI', url: siteConfig.url },
         }}
       />
       <FAQPageJsonLd faqs={questFaqs} />

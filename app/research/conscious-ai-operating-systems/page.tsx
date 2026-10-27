@@ -1,20 +1,22 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Conscious AI Operating Systems — Research | FrankX',
+  title: 'Conscious AI Operating Systems — Research',
   description:
     'Research into sovereign AI architectures that integrate biometrics, persistent memory, and ethical guardrails across all interactions.',
   alternates: {
-    canonical: 'https://frankx.ai/research/conscious-ai-operating-systems',
+    canonical: `${siteConfig.url}/research/conscious-ai-operating-systems`,
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Conscious AI Operating Systems — Research',
     description:
       'Research into sovereign AI architectures that integrate biometrics, persistent memory, and ethical guardrails.',
     type: 'article',
-    url: 'https://frankx.ai/research/conscious-ai-operating-systems',
+    url: `${siteConfig.url}/research/conscious-ai-operating-systems`,
   },
 }
 

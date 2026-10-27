@@ -1,3 +1,4 @@
+import { defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import { AgenticLifeObservatory } from '@/components/research/AgenticLifeObservatory'
 import { agenticLifeMarketRegistry } from '@/lib/research/agentic-life-market'
@@ -18,12 +19,14 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://www.frankx.ai/research/agentic-life-observatory' },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Agentic Life Observatory | FrankX Research',
     description: '29 systems mapped across context, composition, sovereignty, verifiability, and multi-domain fit.',
     type: 'article',
     url: 'https://www.frankx.ai/research/agentic-life-observatory',
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary_large_image',
     title: 'Agentic Life Observatory | FrankX Research',
     description: 'A living evidence-linked market map for agentic life infrastructure.',
