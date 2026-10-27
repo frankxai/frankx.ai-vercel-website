@@ -20,19 +20,15 @@ import {
 } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
 import { GlowCard } from '@/components/ui/glow-card'
+import { WaitlistForm } from '@/lib/demand-capture/WaitlistForm'
+import './waitlist.css'
 
 // ── Data ──
 
+const OPERATOR_LAB_ID = 'starlight-academy-operator-lab'
+const FIRST_LAB_URL = 'https://starlightintelligence.academy/academy'
+
 const communitySpaces = [
-  {
-    icon: Crown,
-    title: 'Inner Circle',
-    description: 'Exclusive access for premium members with direct mentorship, live labs, and priority support.',
-    color: '#AB47C7',
-    gradient: 'from-[#AB47C7] to-[#8B5CF6]',
-    badge: 'Premium',
-    href: '/inner-circle',
-  },
   {
     icon: MessageCircle,
     title: 'Discussion Spaces',
@@ -185,6 +181,39 @@ export default function CommunityPage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </motion.div>
+          </motion.div>
+        </motion.section>
+
+        {/* Operator lab waitlist */}
+        <motion.section
+          id="operator-lab"
+          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          variants={containerVariants}
+        >
+          <motion.div
+            className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 md:p-10"
+            variants={itemVariants}
+          >
+            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Join the Starlight operator lab waitlist</h2>
+            <p className="mb-8 text-lg leading-relaxed text-slate-400">
+              A small group of people who already use AI for real work, each building one workflow they can
+              trust. Join the list and you will hear first when seats open, and you can{' '}
+              <a
+                href={FIRST_LAB_URL}
+                className="text-[#43BFE3] underline decoration-[#43BFE3]/40 underline-offset-4 hover:decoration-[#43BFE3]"
+              >
+                try the first lab free today
+              </a>
+              .
+            </p>
+            <WaitlistForm
+              productId={OPERATOR_LAB_ID}
+              productName="the Starlight operator lab"
+              placeholder="you@example.com"
+            />
           </motion.div>
         </motion.section>
 
