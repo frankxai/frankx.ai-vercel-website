@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Intelligence Map | FrankX AI Creator Ecosystem Architecture',
   description:
     'The complete architecture of an AI-powered creator ecosystem. Explore 100+ repos, 47 workflows, 500+ skills, and the full technology stack behind frankx.ai.',
