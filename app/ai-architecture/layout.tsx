@@ -7,6 +7,7 @@ import { createMetadata } from '@/lib/seo'
 // live on the hub's own page.tsx, not here — those catalog pages are not articles.
 // The root layout applies a `%s | FrankX` title template, so titles omit the suffix.
 export const metadata = createMetadata({
+  canonical: './',
   title: 'AI Architecture: The Field Guide to Production Agent Systems',
   description:
     'How to structure a system that calls a language model: the seven planes, choosing between workflow and agent, the 2026-07-28 MCP revision, the OWASP GenAI LLM Top 10 2026, and where these systems actually break.',

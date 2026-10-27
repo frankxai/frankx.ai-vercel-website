@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: "Mias Katzenwelt | Aleas virtuelles Kätzchen | FrankX",
   description:
     'Eine magische Katzenwelt für Alea — mit virtuellem Kätzchen Mia, Katzenwissen, Spielen und Geschichten. Von Onkel Frank.',
