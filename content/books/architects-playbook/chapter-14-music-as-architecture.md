@@ -15,7 +15,7 @@ This chapter is not about music. It is about what repeated music experiments tea
 
 ## I. The Laboratory
 
-Every Suno session is an experiment. You write a prompt. The model interprets it. You hear the result. You adjust. You iterate. Through repeated sessions, patterns emerge that no documentation can teach because the documentation describes the model's design, not its behavior.
+Every Suno session is an experiment. You write a prompt. The model interprets it. You hear the result. You adjust. You iterate. Repeated sessions help you compare documented behavior with the outputs you hear.
 
 Here is what I learned:
 

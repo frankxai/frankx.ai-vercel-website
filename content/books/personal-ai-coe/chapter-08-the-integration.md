@@ -98,7 +98,7 @@ Ethics: brand rules instead of compliance programs.
 
 The architecture is the same. The cost is 1:5000. The output, measured per person, is comparable.
 
-This is not a prediction about the future. This is a description of how I work today. The system described in this book is the system that produced this book. The Personal AI CoE is not a theory — it is the infrastructure behind 17 books, 90+ articles, AI music, and a platform serving students, professors, researchers, and doctors.
+I use the Personal AI CoE approach to organize writing, AI music and platform development. The preceding chapters describe that working method. Test it on a bounded project and evaluate the result against your own baseline.
 
 The enterprise pays millions for this architecture. You are reading it for free. The question is not whether it works — the evidence is in your hands. The question is whether you will build it.
 

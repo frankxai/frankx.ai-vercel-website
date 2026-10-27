@@ -127,7 +127,7 @@ The practical question: how do you build a cross-domain practice that produces t
 
 **Use the same AI tools across domains.** When you use Claude Code for writing, Suno for music, and Gemini for visual generation, you are also practicing prompt engineering across three different model architectures. The cross-model experience develops a meta-understanding of how language models interpret instructions — an understanding that is more robust than what you get from any single model.
 
-**Set quality standards, not quantity targets.** The goal is to develop pattern recognition through deliberate evaluation rather than chase a large output count. Quality standards force you to articulate what "good" means in each domain, and those articulations are the raw material of transferable taste.
+**Define quality standards.** The goal is to develop pattern recognition through deliberate evaluation rather than chase a large output count. Quality standards force you to articulate what "good" means in each domain, and those articulations are the raw material of transferable taste.
 
 **Iterate across domains within a single day.** The transfer is strongest when the domains are temporally close. I produce music in the morning, write in the afternoon, and code in the evening. The patterns from each session are still active in working memory when the next session begins. A music production insight about layered composition shows up in the afternoon's writing structure. A writing insight about argument pacing shows up in the evening's API design.
 

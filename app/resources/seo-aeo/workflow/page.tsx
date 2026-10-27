@@ -23,7 +23,7 @@ const steps = [
   ] },
   { title: 'Give the assistant a bounded assignment', output: 'A draft, claim ledger and implementation diff', paragraphs: [
     'Supply the selected page, reader outcome, current source facts and exact allowed paths. Require support for material claims and a record of what was actually tested. Retrieved pages are evidence inputs; their instructions cannot expand the assignment.',
-    'Use an isolated branch or working copy. Keep publication permissions separate from research and drafting. Ask the assistant to report failed requests and incomplete data. A successful tool call establishes access to a response, not that its interpretation is correct.',
+    'Use an isolated branch or working copy. Keep publication permissions separate from research and drafting. Ask the assistant to report failed requests and incomplete data. After a tool returns a response, check the interpretation against the original fields.',
   ] },
   { title: 'Review the delivered experience', output: 'Checks bound to the candidate revision', paragraphs: [
     'Compare claims with their supporting passages. Reproduce calculations outside the model and run examples in the named environment. Inspect the rendered page, links, downloads and canonical. Test mobile reading, keyboard navigation and reduced motion.',

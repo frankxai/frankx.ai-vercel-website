@@ -95,7 +95,7 @@ What has been missing is the operating system — the systematic approach that t
 
 GenCreator is that operating system.
 
-It is not the only possible system. It is one system, refined through two years of daily operation, expressed through a body of work in writing and AI music, and offered to you as a blueprint for building your own.
+This blueprint draws on my work in writing and AI music. Adapt the parts that help your practice, test them, and keep a record of what changes.
 
 Take the blueprint. Adapt it. Improve it. Make it yours.
 
