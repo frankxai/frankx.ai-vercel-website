@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import { getPublishedIssues } from '@/lib/newsletter-issues'
 
 export const dynamic = 'force-dynamic'
@@ -16,7 +17,7 @@ export async function GET() {
 
   const items = issues
     .map((issue) => {
-      const url = `https://frankx.ai/newsletter/archive/${issue.slug}`
+      const url = `${siteConfig.url}/newsletter/archive/${issue.slug}`
       return [
         '<item>',
         `<title>${escapeXml(issue.subject)}</title>`,
@@ -29,7 +30,7 @@ export async function GET() {
     })
     .join('')
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>FrankX Newsletter</title><link>https://frankx.ai/newsletter</link><description>Weekly AI operating notes from FrankX.</description>${items}</channel></rss>`
+  const xml = `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>FrankX Newsletter</title><link>${siteConfig.url}/newsletter</link><description>Weekly AI operating notes from FrankX.</description>${items}</channel></rss>`
 
   return new Response(xml, {
     headers: {
