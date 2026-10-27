@@ -3,6 +3,9 @@ import { getPublishedIssues } from '@/lib/newsletter-issues'
 
 export const dynamic = 'force-dynamic'
 
+// GUIDs keep the origin they were first published under. Moving them to www would make feed readers show every old item as new.
+const LEGACY_GUID_ORIGIN = 'https://frankx.ai'
+
 function escapeXml(value: string): string {
   return value
     .replace(/&/g, '&amp;')
@@ -22,7 +25,7 @@ export async function GET() {
         '<item>',
         `<title>${escapeXml(issue.subject)}</title>`,
         `<link>${url}</link>`,
-        `<guid>${url}</guid>`,
+        `<guid>${LEGACY_GUID_ORIGIN}/newsletter/archive/${issue.slug}</guid>`,
         `<pubDate>${new Date(issue.date).toUTCString()}</pubDate>`,
         `<description>${escapeXml(issue.preview || issue.theme)}</description>`,
         '</item>',
