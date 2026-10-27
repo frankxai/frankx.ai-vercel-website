@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import {
   workflowCategories,
@@ -33,7 +33,7 @@ export default function N8nPage() {
         data={{
           name: 'n8n Automation Templates — FrankX',
           description: `${workflowSummary.total} production n8n workflows powering the FrankX automation empire.`,
-          url: 'https://frankx.ai/n8n',
+          url: `${siteConfig.url}/n8n`,
         }}
       />
 
