@@ -3,6 +3,7 @@ import { createMetadata, siteConfig } from '@/lib/seo'
 import { ldJson } from '@/lib/seo/jsonld'
 
 const pageMetadata = createMetadata({
+  canonical: './',
   title: 'GenCreator Soul — 7 Dimensions & Your soul.md Operating File',
   description:
     'The 7 dimensions of a complete GenCreator: Energy, Mind, Craft, Voice, Capital, Circle, Legacy. Build your personal soul.md — the operating file that defines who you are.',

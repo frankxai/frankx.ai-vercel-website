@@ -4,6 +4,7 @@ import { createMetadata, siteConfig } from '@/lib/seo'
 import { ldJson } from '@/lib/seo/jsonld'
 
 const pageMetadata = createMetadata({
+  canonical: './',
   title: "Creator's Blueprints — 12 Actionable Frameworks for Generative Creators",
   description:
     'Actionable blueprints for specific creative workflows. Content atomization, music production, product launches, SEO clusters, automation — copy, customize, execute.',
