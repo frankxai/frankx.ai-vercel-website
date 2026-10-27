@@ -52,8 +52,11 @@ test('canonical page and both requested aliases render the same public studio', 
   assert.match(canonicalRoute, /<TallinnStudioPage/)
   assert.match(shortAliasRoute, /<TallinnStudioPage/)
   assert.match(longAliasRoute, /<TallinnStudioPage/)
-  assert.match(shortAliasRoute, /canonical: 'https:\/\/frankx\.ai\/experiences\/tallinn-2026'/)
-  assert.match(longAliasRoute, /canonical: 'https:\/\/frankx\.ai\/experiences\/tallinn-2026'/)
+  // The origin comes from siteConfig.url (https://www.frankx.ai), the single source for canonicals.
+  assert.match(shortAliasRoute, /canonical: `\$\{siteConfig\.url\}\/experiences\/tallinn-2026`/)
+  assert.match(longAliasRoute, /canonical: `\$\{siteConfig\.url\}\/experiences\/tallinn-2026`/)
+  assert.doesNotMatch(shortAliasRoute, /https:\/\/frankx\.ai/)
+  assert.doesNotMatch(longAliasRoute, /https:\/\/frankx\.ai/)
   assert.match(shortAliasRoute, /noindex: true/)
   assert.match(longAliasRoute, /noindex: true/)
   assert.doesNotMatch(canonicalRoute, /noindex/)
@@ -177,7 +180,8 @@ test('format routes preserve legacy URLs through safe public aliases', () => {
   assert.match(registry, /TALLINN_LEGACY_FORMAT_ALIASES/)
   assert.match(formatRoute, /generateStaticParams/)
   assert.match(formatRoute, /TALLINN_PUBLIC_ROUTE_SLUGS/)
-  assert.match(formatRoute, /canonical: `https:\/\/frankx\.ai\/experiences\/tallinn-2026\/\$\{format\.slug\}`/)
+  assert.match(formatRoute, /canonical: `\$\{siteConfig\.url\}\/experiences\/tallinn-2026\/\$\{format\.slug\}`/)
+  assert.doesNotMatch(formatRoute, /https:\/\/frankx\.ai/)
 })
 
 test('motion-sensitive glow behavior and print isolation remain safe', () => {
