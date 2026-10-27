@@ -165,6 +165,21 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
+      - name: Search resources and brief journey
+        run: node scripts/qa/search-journey.mjs
+        timeout-minutes: 8
+        env:
+          REVIEWED_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Save search journey evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: search-journey-${{ github.sha }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/search-journey
+          if-no-files-found: ignore
+          retention-days: 14
+
       - name: GenCreator rendered metadata
         if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: pnpm run test:gencreator-metadata:rendered

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "frankx.search-evidence.example.v1",
+  "fixture": "blank_template_not_observed_data",
+  "evidenceId": null,
+  "website": null,
+  "sourceType": null,
+  "allowedSourceTypes": ["first_party", "provider_estimate", "page_observation", "hypothesis"],
+  "provider": null,
+  "reportOrUrl": null,
+  "retrievedAt": null,
+  "dataPeriod": { "start": null, "end": null },
+  "market": { "country": null, "language": null, "device": null },
+  "parametersWithoutSecrets": {},
+  "coverage": "unknown",
+  "metrics": { "impressions": null, "clicks": null, "estimatedVolume": null },
+  "rawSnapshot": null,
+  "sha256": null,
+  "actualCost": null,
+  "redistributionRights": "unverified_keep_private",
+  "claims": [],
+  "review": { "reviewer": null, "revision": null, "status": "not_reviewed" }
+}
