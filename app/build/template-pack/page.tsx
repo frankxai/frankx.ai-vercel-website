@@ -14,10 +14,10 @@ import {
 } from 'lucide-react'
 
 import { GlowCard } from '@/components/ui/glow-card'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { MEET_AND_GROW_URL } from '@/lib/cta-links'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 const CANONICAL_PATH = '/build/template-pack'
 
 // Gumroad / Stripe link — wired in v1 follow-up. The CTA gracefully falls

@@ -1,3 +1,4 @@
+import { defaultOpenGraphImages } from '@/lib/seo'
 import { Metadata } from 'next';
 import { Playfair_Display, Inter } from 'next/font/google';
 
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
   description:
     'Six books on love, discipline, creativity, self-development, imagination, and manifestation. Read free online or download as PDF.',
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'The FrankX Library',
     description: 'Six books. One voice. No filler.',
     type: 'website',
