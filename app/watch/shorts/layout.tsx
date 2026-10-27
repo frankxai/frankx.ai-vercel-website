@@ -1,4 +1,4 @@
-import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -15,7 +15,6 @@ export const metadata: Metadata = {
     'FrankX watch shorts',
   ],
   openGraph: {
-    images: defaultOpenGraphImages,
     title: 'AI Shorts — 60-Second High-Signal Insights | FrankX',
     description:
       'Vertical Shorts curated by an AI Architect. Fast signal, zero filler, paired with commentary.',

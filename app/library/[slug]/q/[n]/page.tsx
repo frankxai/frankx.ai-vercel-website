@@ -1,4 +1,4 @@
-import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
+import { siteConfig } from '@/lib/seo'
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
@@ -34,7 +34,6 @@ export async function generateMetadata({
     description,
     alternates: { canonical: url },
     openGraph: {
-      images: defaultOpenGraphImages,
       title: `${credit} — ${review.title}`,
       description: quote.text,
       type: 'article',
@@ -44,7 +43,6 @@ export async function generateMetadata({
       // The opengraph-image.tsx in this folder is auto-picked up by Next.js
     },
     twitter: {
-      images: defaultTwitterImages,
       card: 'summary_large_image',
       title: `${credit} — ${review.title}`,
       description: quote.text,
