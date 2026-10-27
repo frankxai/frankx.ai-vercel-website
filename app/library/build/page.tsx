@@ -1,15 +1,16 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Check, Github, Layers, BookOpen, Sparkles, Building2, Wrench } from 'lucide-react';
 import { EmailSignup } from '@/components/email-signup';
 import { bookReviews } from '@/data/book-reviews';
 
-const SITE_URL = 'https://frankx.ai';
+const SITE_URL = siteConfig.url;
 const PAGE_URL = `${SITE_URL}/library/build`;
 const REPO_URL = 'https://github.com/frankxai/library-os';
 
 export const metadata: Metadata = {
-  title: 'Build Your Library — The Open-Source Library OS | FrankX',
+  title: 'Build Your Library — The Open-Source Library OS',
   description:
     'Turn every book you read into a permanent, SEO-indexed deep-dive on your own website. Free open-source repo, paid tiers from €27 starter kits to done-for-you authority sites.',
   keywords: [
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Build Your Library — Open-Source Library OS',
     description:
       'Every book you read becomes a permanent asset on your own website. Free repo + paid tiers up to done-for-you authority libraries.',
@@ -34,6 +36,7 @@ export const metadata: Metadata = {
     siteName: 'FrankX',
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary_large_image',
     title: 'Build Your Library — Library OS',
     description: 'Permanent book deep-dives on your own domain. Free + paid.',

@@ -1,5 +1,6 @@
 'use client'
 
+import { siteConfig } from '@/lib/seo'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -166,7 +167,7 @@ export default function LearnPage() {
         '@type': 'LearningResource',
         name: path.title,
         description: path.description,
-        url: `https://frankx.ai/learn/${path.slug}`,
+        url: `${siteConfig.url}/learn/${path.slug}`,
         provider: { '@type': 'Organization', name: 'FrankX.AI' },
         educationalLevel: path.difficulty === 'beginner' ? 'Beginner' : path.difficulty === 'intermediate' ? 'Intermediate' : 'Advanced',
         ...(path.videos.length > 0
