@@ -12,11 +12,12 @@
  * Portable: pass SITE_URL via parameter; no FrankX-specific imports.
  */
 
+import { siteConfig } from '@/lib/seo'
 import type { RailEntry, CanonPage, RailQuote, RailFaq, HubSlug } from './types';
 import { hubUrl } from './types';
 import { hubs } from '@/data/rails/hubs';
 
-const SITE = 'https://frankx.ai';
+const SITE = siteConfig.url;
 
 function hubLabel(slug: HubSlug): string {
   return hubs[slug].displayTitle;

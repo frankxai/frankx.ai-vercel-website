@@ -6,16 +6,17 @@
  * for LLM discovery patterns.
  */
 
+import { siteConfig } from '@/lib/seo'
 import type { FAQItem, HowToStep } from '@/components/seo/JsonLd'
 import { socialLinks } from '@/lib/social-links'
 
 // Site-wide constants for consistent schema data
 export const SITE_CONFIG = {
   name: 'FrankX.AI',
-  url: 'https://frankx.ai',
+  url: siteConfig.url,
   author: {
     name: 'Frank Riemer',
-    url: 'https://frankx.ai/about',
+    url: `${siteConfig.url}/about`,
     jobTitle: 'AI Architect & Creator',
     sameAs: [
       socialLinks.linkedin,
@@ -25,7 +26,7 @@ export const SITE_CONFIG = {
   },
   organization: {
     name: 'FrankX.AI',
-    logo: 'https://frankx.ai/logo.png',
+    logo: `${siteConfig.url}/logo.png`,
     description: 'Empowering creators with AI-first tools and strategies',
   },
 }

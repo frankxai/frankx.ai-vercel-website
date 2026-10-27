@@ -4,11 +4,12 @@
  * appears in its canonical hub's feed AND in every cross-tagged hub's feed.
  */
 
+import { siteConfig } from '@/lib/seo'
 import type { RailEntry, HubSlug } from './types';
 import { hubUrl } from './types';
 import { hubs } from '@/data/rails/hubs';
 
-const SITE = 'https://frankx.ai';
+const SITE = siteConfig.url;
 
 function escapeXml(s: string): string {
   return s
