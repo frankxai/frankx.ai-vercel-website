@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -44,13 +45,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title,
     description,
     openGraph: {
+      images: defaultOpenGraphImages,
       title,
       description,
       type: 'website',
-      url: `https://frankx.ai/ecosystems/${city}`,
+      url: `${siteConfig.url}/ecosystems/${city}`,
     },
     alternates: {
-      canonical: `https://frankx.ai/ecosystems/${city}`,
+      canonical: `${siteConfig.url}/ecosystems/${city}`,
     },
   }
 }
@@ -61,7 +63,7 @@ function SchemaOrgJsonLd({ data }: { data: EcosystemData }) {
     '@type': 'ItemPage',
     name: `The ${data.city} Founder Ecosystem`,
     description: `A field-tested coworking and workspace guide for the ${data.city} startup community.`,
-    url: `https://frankx.ai/ecosystems/${data.city.toLowerCase().replace(/ & /g, '-')}`,
+    url: `${siteConfig.url}/ecosystems/${data.city.toLowerCase().replace(/ & /g, '-')}`,
     mainEntity: {
       '@type': 'ItemList',
       name: `${data.city} Workspaces`,
