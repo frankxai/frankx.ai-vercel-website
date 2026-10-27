@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'For AI Architects — Enterprise Patterns & Multi-Agent Systems | FrankX.AI',
   description:
     'Production AI architecture patterns from enterprise experience. Multi-agent systems, RAG architectures, agentic workflows, and enterprise deployment guides. 75+ skills, 38 agents in open-source ACOS.',

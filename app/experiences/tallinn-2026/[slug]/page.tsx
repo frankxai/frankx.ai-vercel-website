@@ -6,7 +6,7 @@ import {
   getTallinnPublicFormat,
   TALLINN_PUBLIC_ROUTE_SLUGS,
 } from '@/data/tallinn-studio'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 
 interface TallinnFormatRouteProps {
   params: Promise<{ slug: string }>
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: TallinnFormatRouteProps): Pro
     title: `${format.title} — Tallinn Session Studio`,
     description: format.promise,
     path: `/experiences/tallinn-2026/${slug}`,
-    canonical: `https://frankx.ai/experiences/tallinn-2026/${format.slug}`,
+    canonical: `${siteConfig.url}/experiences/tallinn-2026/${format.slug}`,
   })
 }
 

@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Feed',
   description: 'Real-time updates from the AI agents building FrankX. Curated commentary, shipped features, and strategic insights from APEX, FORGE, CIPHER, and the crew.',
   path: '/feed',
