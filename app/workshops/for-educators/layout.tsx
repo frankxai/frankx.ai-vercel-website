@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = createMetadata({
+  canonical: './',
   title: 'How to Use These Workshops | For Educators | FrankX',
   description:
     'Professional AI workshop templates for university classrooms, corporate training rooms, and bootcamps. Structured agendas, instructor notes, resource packs.',

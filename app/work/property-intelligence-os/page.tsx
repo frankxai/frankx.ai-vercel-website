@@ -29,7 +29,7 @@ import {
   UsersRound,
   Workflow,
 } from 'lucide-react'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { PropertyExperiencePreview } from '@/components/work/PropertyExperiencePreview'
 
 export const metadata = createMetadata({
@@ -39,7 +39,7 @@ export const metadata = createMetadata({
   path: '/work/property-intelligence-os',
 })
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 const version = '0.1.0'
 const releaseDate = '2026-07-05'
 const assetName = `property-intelligence-starter-kit-v${version}.zip`
