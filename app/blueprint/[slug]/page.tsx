@@ -36,6 +36,8 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: `${blueprint.title} | AI Architecture Blueprint`,
     description: blueprint.metaDescription || blueprint.subtitle,
+    // /ai-architecture/[slug] renders the same blueprint; that route is the one search should keep.
+    alternates: { canonical: `/ai-architecture/${slug}` },
   }
 }
 

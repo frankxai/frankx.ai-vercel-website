@@ -460,7 +460,7 @@ export default function AIAssessmentPage() {
                 <span className="inline-block px-3 py-1 bg-cyan-500/20 text-cyan-300 text-sm font-medium rounded-full mb-4 capitalize">
                   {currentQ.category}
                 </span>
-                <h2 className="text-2xl font-semibold text-white mb-6">{currentQ.question}</h2>
+                <h1 className="text-2xl font-semibold text-white mb-6">{currentQ.question}</h1>
               </div>
 
               <div className="space-y-3">
