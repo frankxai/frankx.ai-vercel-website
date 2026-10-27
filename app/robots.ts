@@ -33,6 +33,13 @@ export default function robots(): MetadataRoute.Robots {
         disallow: commonDisallows,
       },
       {
+        // Search indexing and user-directed retrieval are distinct from training.
+        // Keep the existing training policy below unchanged.
+        userAgent: ['OAI-SearchBot', 'Claude-SearchBot', 'Claude-User'],
+        allow: ['/', ...publicReads],
+        disallow: commonDisallows,
+      },
+      {
         userAgent: [
           'GPTBot',
           'ChatGPT-User',
