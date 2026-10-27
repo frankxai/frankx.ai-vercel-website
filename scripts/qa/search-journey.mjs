@@ -4,6 +4,7 @@ import { execFileSync, spawn } from 'node:child_process'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import puppeteer from 'puppeteer'
+import { enumerateRoutes } from '../../lib/route-enumeration.mjs'
 
 assert.equal(process.env.GITHUB_ACTIONS, 'true', 'Use the connected browser for local interactive QA; this disposable runner belongs to CI.')
 const origin = 'http://127.0.0.1:4328'
@@ -17,6 +18,7 @@ server.stdout.on('data', x => logs.push(x.toString()))
 server.stderr.on('data', x => logs.push(x.toString()))
 let browser
 const routes = ['/resources/seo-aeo', '/resources/seo-aeo/workflow', '/resources/seo-aeo/semrush-mcp', '/blog/seo-aeo-optimization-acos', '/blog/aeo-knowledge-graph-2026', '/blog/aeo-playbook-get-cited-by-ai-2026']
+const catalog = enumerateRoutes()
 const pause = ms => new Promise(done => setTimeout(done, ms))
 try {
   const deadline = Date.now() + 60000
@@ -56,6 +58,7 @@ try {
       await page.evaluate(() => document.fonts.ready)
       const state = await page.evaluate(() => ({
         title: document.title,
+        description: document.querySelector('meta[name=description]')?.content,
         canonical: document.querySelector('link[rel=canonical]')?.href,
         width: innerWidth, scrollWidth: document.documentElement.scrollWidth,
         headings: document.querySelectorAll('h1').length,
@@ -65,7 +68,12 @@ try {
       assert.equal(state.canonical, 'https://www.frankx.ai' + path, `${path}: child canonical`)
       assert.equal(state.headings, 1, `${path}: one page heading`)
       assert.ok(state.scrollWidth <= state.width + 1, `${path}: horizontal reflow`)
-      if (path.includes('/blog/')) await page.waitForFunction(() => document.body.textContent.includes('Correction, 27 October 2026'))
+      if (path.includes('/blog/')) {
+        await page.waitForFunction(() => document.body.textContent.includes('Correction, 27 October 2026'))
+        const indexed = catalog.find(entry => entry.href === path)
+        assert.equal(indexed?.title, state.heading.trim(), `${path}: discovery title matches corrected article`)
+        assert.equal(indexed?.description, state.description, `${path}: discovery description matches corrected article`)
+      }
       const bytes = await page.screenshot({ fullPage: true })
       const name = `${path.slice(1).replaceAll('/', '-')}-${width}.png`
       await writeFile(resolve(output, name), bytes)

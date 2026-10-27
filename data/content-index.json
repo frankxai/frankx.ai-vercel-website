@@ -518,11 +518,11 @@
     {
       "id": "blog-seo-aeo-optimization-acos",
       "type": "blog",
-      "title": "SEO & AEO Optimization with ACOS: Rank in Search and AI Engines",
+      "title": "SEO and AEO with ACOS: an evidence-led content workflow",
       "slug": "seo-aeo-optimization-acos",
       "href": "/blog/seo-aeo-optimization-acos",
       "publishedAt": "2026-01-27",
-      "category": "Content Strategy",
+      "category": "Creator Systems",
       "tags": [
         "seo",
         "aeo",
@@ -531,12 +531,13 @@
         "marketing"
       ],
       "featured": false,
-      "image": "/images/blog/seo-aeo-optimization-hero.png",
-      "description": "Master search and AI engine optimization with ACOS. Question-based structure, FAQ schemas, AI citation optimization, and the /factory pipeline for publish-ready content.",
-      "streams": ["creation-chronicles"],
+      "description": "Plan and review search content with AI assistants. Preserve sources, check claims, and measure website outcomes without promising AI citations.",
+      "streams": [
+        "creation-chronicles"
+      ],
       "metrics": {
-        "wordCount": 1821,
-        "readTime": 8
+        "wordCount": 609,
+        "readTime": 4
       },
       "crossLinks": []
     },
