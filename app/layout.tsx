@@ -17,6 +17,7 @@ import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
+import WebMCP from '@/components/WebMCP'
 
 
 import { PrivacySafeAnalytics } from "@/components/analytics/PrivacySafeAnalytics"
@@ -195,6 +196,7 @@ export default function RootLayout({
             </div>
             <NavigationMega />
             <CommandPaletteProvider />
+            <WebMCP />
             <div id="main" tabIndex={-1} className="relative z-10 min-h-screen overflow-x-hidden outline-none">
               {children}
             </div>
