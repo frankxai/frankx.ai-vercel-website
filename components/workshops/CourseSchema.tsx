@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { Workshop } from '@/data/workshops'
 
 export interface CourseSchemaProps {
@@ -21,11 +22,11 @@ export function CourseSchema({ workshop, url }: CourseSchemaProps) {
     '@type': 'Course',
     name: workshop.title,
     description: workshop.overview,
-    url: url ?? `https://frankx.ai/workshops/${workshop.slug}`,
+    url: url ?? `${siteConfig.url}/workshops/${workshop.slug}`,
     provider: {
       '@type': 'Person',
       name: 'Frank Riemer',
-      url: 'https://frankx.ai',
+      url: siteConfig.url,
       jobTitle: 'AI Architect',
     },
     educationalLevel: workshop.difficulty,

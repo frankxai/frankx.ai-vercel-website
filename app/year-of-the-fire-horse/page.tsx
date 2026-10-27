@@ -1,5 +1,6 @@
 'use client'
 
+import { siteConfig } from '@/lib/seo'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -38,7 +39,7 @@ function ShareButton() {
   const [copied, setCopied] = useState(false)
 
   async function handleShare() {
-    const url = 'https://frankx.ai/year-of-the-fire-horse'
+    const url = `${siteConfig.url}/year-of-the-fire-horse`
     const title = 'Year of the Fire Horse 2026'
 
     if (typeof navigator !== 'undefined' && navigator.share) {

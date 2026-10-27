@@ -1,3 +1,4 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, Lora } from 'next/font/google'
 import './fire-horse.css'
@@ -19,20 +20,22 @@ const lora = Lora({
 })
 
 export const metadata: Metadata = {
-  title: 'Year of the Fire Horse 2026 — Poetry, Wisdom & Vision | FrankX.ai',
+  title: 'Year of the Fire Horse 2026 — Poetry, Wisdom & Vision',
   description:
     'The Fire Horse returns after 60 years. A Ring of Fire eclipse on Chinese New Year. Proverbs, Rumi, Thich Nhat Hanh, lucky foods, and 9 principles for 2026.',
   alternates: {
-    canonical: 'https://frankx.ai/year-of-the-fire-horse',
+    canonical: './',
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Year of the Fire Horse 2026 — Poetry, Wisdom & Vision',
     description:
       'The Fire Horse returns after 60 years on the same day as a Ring of Fire eclipse. Cultural wisdom, poetry, and principles for the year ahead.',
     type: 'article',
-    url: 'https://frankx.ai/year-of-the-fire-horse',
+    url: `${siteConfig.url}/year-of-the-fire-horse`,
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary_large_image',
     title: 'Year of the Fire Horse 2026',
     description:

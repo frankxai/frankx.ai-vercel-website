@@ -1,3 +1,4 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, Mic, Video, Music, FileText, MonitorPlay, Utensils, Plane, Layers } from 'lucide-react'
@@ -62,10 +63,10 @@ export function ProducerPlaceholderPage({ producerId, exampleSentence, primaryCt
     '@type': 'TechArticle',
     headline: `${producer.label} Producer — FrankX Studio`,
     description: producer.description,
-    author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
-    publisher: { '@type': 'Organization', name: 'FrankX', url: 'https://frankx.ai' },
+    author: { '@type': 'Person', name: 'Frank Riemer', url: siteConfig.url },
+    publisher: { '@type': 'Organization', name: 'FrankX', url: siteConfig.url },
     datePublished: '2026-05-13',
-    mainEntityOfPage: `https://frankx.ai${producer.studioRoute}`,
+    mainEntityOfPage: `${siteConfig.url}${producer.studioRoute}`,
     inLanguage: 'en',
   }
 
@@ -251,15 +252,17 @@ export function makeProducerMetadata(producerId: ProducerMeta['id']): Metadata {
   return {
     title: `${title} | FrankX`,
     description: producer.description,
-    alternates: { canonical: `https://frankx.ai${producer.studioRoute}` },
+    alternates: { canonical: `${siteConfig.url}${producer.studioRoute}` },
     openGraph: {
+      images: defaultOpenGraphImages,
       title,
       description: producer.description,
-      url: `https://frankx.ai${producer.studioRoute}`,
+      url: `${siteConfig.url}${producer.studioRoute}`,
       siteName: 'FrankX',
       type: 'website',
     },
     twitter: {
+      images: defaultTwitterImages,
       card: 'summary_large_image',
       title,
       description: producer.description,
