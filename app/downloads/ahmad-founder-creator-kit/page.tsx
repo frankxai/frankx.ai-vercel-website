@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Ahmad Founder Creator Kit | FrankX.AI",
+  title: "Ahmad Founder Creator Kit",
   description:
     "Download the Ahmad Founder Creator Kit: Trinity AI offer map, OpenClaw local lab guide, agent swarm roles, media loops, academy and podcast system, startup roadmap, and privacy boundaries.",
   robots: { index: false, follow: true, nocache: true },

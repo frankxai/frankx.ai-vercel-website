@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ArrowLeft, CheckCircle2, Download, ExternalLink, ShieldCheck } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Health Intelligence System Download | FrankX.AI',
+  title: 'Health Intelligence System Download',
   description:
     'Download the Health Intelligence System package and agent pack for private health operations, clinician handoffs, prompt packs, and cancer-prep workflows.',
 }
