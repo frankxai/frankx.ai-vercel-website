@@ -1,12 +1,14 @@
+import { defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Prompt Hub — Every prompt evaluated, attributed, lab-tagged, red-teamed | FrankX',
+  title: 'Prompt Hub — Every prompt evaluated, attributed, lab-tagged, red-teamed',
   description:
     'The FrankX Prompt Hub: a 13-agent team that designs, optimizes, evaluates, and red-teams elite prompts across Claude, GPT, Gemini, and open-source models. Plus a Psyche Cartographer for IFS-based introspection. Open source.',
   alternates: { canonical: 'https://www.frankx.ai/prompts' },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Prompt Hub — FrankX',
     description:
       'Every prompt evaluated, attributed, lab-tagged, red-teamed. Designed by a 13-agent team. Open source.',

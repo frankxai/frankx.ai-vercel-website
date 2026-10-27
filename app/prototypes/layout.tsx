@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Prototypes | Work-in-Progress AI Projects | FrankX',
   description: 'Early-stage prototypes and proof-of-concepts. See what\'s being built before it ships — AI tools, interfaces, and creative experiments.',
   path: '/prototypes',

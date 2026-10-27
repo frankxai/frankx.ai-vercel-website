@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Prompts · Psyche — IFS, psychometrics, contemplative inquiry | FrankX',
+  title: 'Prompts · Psyche — IFS, psychometrics, contemplative inquiry',
   description:
     'Map yourself through curated prompts: IFS parts mapping, Big Five / Schwartz Values / Attachment instruments, Socratic / Stoic / Jungian voice modes. Maps only — never unburdens. Crisis routing built in.',
   alternates: { canonical: 'https://www.frankx.ai/prompts/psyche' },
