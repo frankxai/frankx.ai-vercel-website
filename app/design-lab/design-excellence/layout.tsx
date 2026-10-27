@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Design Excellence — Principles, Standards & Systems | FrankX.AI',
   description:
     'The FrankX design system: glassmorphism, dark-first color palette, typography scale, spacing grid, and component quality standards. Interactive reference.',

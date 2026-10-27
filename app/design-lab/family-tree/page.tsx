@@ -22,7 +22,7 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Family Tree Design Lab | FrankX',
+  title: 'Family Tree Design Lab',
   description:
     '15 premium family tree visualizations exploring every approach — from pure CSS to WebGPU, D3 physics to GSAP cinema.',
   robots: { index: false, follow: false },
