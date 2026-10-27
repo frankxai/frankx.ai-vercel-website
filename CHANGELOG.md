@@ -8,12 +8,16 @@ Technical release notes are generated from merged pull requests when a semantic-
 
 ### Added
 
+- SEO and AEO resource hub, a research-to-implementation workflow, a documented Semrush MCP setup guide, and editable evidence templates.
+
 - Five focused Higgsfield workshops, free production worksheets, and attributed official teaching media.
 
 - A canonical, evidence-backed changelog with durable release-note pages, RSS discovery, structured data, and sitemap coverage.
 - Draft-first GitHub release automation and categorized generated release notes.
 
 ### Fixed
+
+- Unsupported schema, citation and search-replacement claims in three existing AEO guides; retained their URLs and added correction notices.
 
 - Higgsfield guide hero, unsupported performance claims and unverified learning-portal videos; issued referrals now resolve through the central affiliate registry.
 

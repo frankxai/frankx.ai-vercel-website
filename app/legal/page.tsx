@@ -63,10 +63,10 @@ export default function LegalPage() {
           <section className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03]">
             <h2 className="text-2xl font-semibold mb-4">Business Information</h2>
             <div className="space-y-3 text-white/70">
-              <p><strong className="text-white">Legal Entity:</strong> Arcanea Labs BV</p>
+              <p><strong className="text-white">Legal Entity:</strong> Frank Riemer (eenmanszaak)</p>
               <p><strong className="text-white">Trading as:</strong> FrankX / frankx.ai</p>
               <p><strong className="text-white">Location:</strong> Amsterdam, Netherlands</p>
-              <p><strong className="text-white">KvK:</strong> <span className="text-amber-400/70 italic">Registration pending</span></p>
+              <p><strong className="text-white">KvK:</strong> 42186809</p>
               <p><strong className="text-white">Contact:</strong>{' '}
                 <a href="mailto:frank@frankx.ai" className="text-emerald-400 hover:text-emerald-300">
                   frank@frankx.ai
@@ -112,7 +112,7 @@ export default function LegalPage() {
           <section className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03]">
             <h2 className="text-2xl font-semibold mb-4">Copyright</h2>
             <p className="text-white/70 text-sm leading-relaxed">
-              &copy; {new Date().getFullYear()} Arcanea Labs BV, trading as FrankX. All rights reserved.
+              &copy; {new Date().getFullYear()} Frank Riemer, trading as FrankX. All rights reserved.
               Unauthorized reproduction, distribution, or modification of any content
               on this website is strictly prohibited without written consent.
             </p>
