@@ -311,8 +311,8 @@
     "offer": {
       "primaryPrice": 497,
       "currency": "USD",
-      "ctaPrimary": "Explore the Framework",
-      "ctaPrimaryHref": "/creation-chronicles",
+      "ctaPrimary": "Join waitlist",
+      "ctaPrimaryHref": "/waitlist?intent=creation-chronicles",
       "ctaPrimaryTracking": "creation-chronicles-primary",
       "ctaSecondary": "Preview Free Resources",
       "ctaSecondaryHref": "/resources"

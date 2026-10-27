@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy — FrankX',
-  description: 'How Arcanea Labs BV handles your personal data. GDPR-compliant privacy policy.',
+  description: 'How Frank Riemer, trading as FrankX, handles your personal data. GDPR-compliant privacy policy.',
 }
 
 export default function PrivacyPage() {
@@ -12,11 +12,11 @@ export default function PrivacyPage() {
       <p className="text-zinc-500 text-sm mb-8">Effective: [DATE] &bull; Last updated: March 2026</p>
 
       <Section title="1. Who We Are">
-        <p>Arcanea Labs BV (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;), trading as FrankX, is the data controller responsible for your personal data.</p>
+        <p>Frank Riemer (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;), a Dutch eenmanszaak trading as FrankX, is the data controller responsible for your personal data.</p>
         <InfoTable rows={[
-          ['Company', 'Arcanea Labs BV'],
+          ['Business', 'Frank Riemer (eenmanszaak), trading as FrankX'],
           ['Address', 'Amsterdam, Netherlands'],
-          ['KvK', '[PENDING]'],
+          ['KvK', '42186809'],
           ['Email', 'privacy@frankx.ai'],
           ['DPO', 'Frank Riemer'],
         ]} />

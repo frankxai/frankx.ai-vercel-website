@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Imprint — FrankX',
-  description: 'Legal information and company details for Arcanea Labs BV, trading as FrankX.',
+  description: 'Legal information and business details for Frank Riemer (eenmanszaak), trading as FrankX.',
 }
 
 export default function ImprintPage() {
@@ -13,15 +13,16 @@ export default function ImprintPage() {
 
       <section className="space-y-6">
         <div>
-          <h2 className="text-xl font-semibold text-zinc-200">Company Information</h2>
+          <h2 className="text-xl font-semibold text-zinc-200">Business Information</h2>
           <table className="w-full text-sm mt-3">
             <tbody className="divide-y divide-zinc-800">
-              <Row label="Legal name" value="Arcanea Labs BV" />
+              <Row label="Legal name" value="Frank Riemer" />
+              <Row label="Legal form" value="Eenmanszaak (sole proprietorship)" />
               <Row label="Trading as" value="FrankX / frankx.ai" />
-              <Row label="Registered office" value="Amsterdam, Netherlands" />
-              <Row label="KvK number" value="[PENDING — update after registration]" pending />
+              <Row label="Business address" value="Amsterdam, Netherlands" />
+              <Row label="KvK number" value="42186809" />
               <Row label="BTW-id" value="[PENDING — update after registration]" pending />
-              <Row label="Director (DGA)" value="Frank Riemer" />
+              <Row label="Owner" value="Frank Riemer" />
             </tbody>
           </table>
         </div>

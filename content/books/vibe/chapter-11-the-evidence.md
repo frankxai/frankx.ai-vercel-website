@@ -27,7 +27,7 @@ What the system produced in 18 months:
 
 The evidence matters not because the volume is impressive — volume without quality is noise. The evidence matters because the volume was produced by one person, working evenings and weekends alongside a demanding full-time role, without burnout. The system is sustainable. Sustainable volume at maintained quality is the signature output of the Vibe Architecture.
 
-**Music:** 12,000+ AI-generated songs. Using Suno as the production tool and the same prompt engineering discipline described in the Architect's Playbook. Genre range: neoclassical, pop, electronic, orchestral, vocal, dance, tech house. Each track demonstrating a different facet of human-AI creative collaboration.
+**Music:** AI-generated music. Using Suno as the production tool and the same prompt engineering discipline described in the Architect's Playbook. Genre range: neoclassical, pop, electronic, orchestral, vocal, dance, tech house. Each track demonstrating a different facet of human-AI creative collaboration.
 
 **Platform:** frankx.ai — serving students, professors, researchers, and doctors. 90+ blog articles. Research hub with auto-rendering domains. Interactive tools (AI readiness assessment, career pathfinder, ecosystem map). Professional ecosystem pages for four audience segments.
 

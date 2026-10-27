@@ -1,10 +1,10 @@
 {
   "schema_version": "starlight.design_contract.v1",
   "repository": "frankxai/frankx.ai-vercel-website",
-  "kernel_commit_sha": "80830c60040967956580c761772469664c44dd55",
+  "kernel_commit_sha": "cbc5091ce58d21947ae70bfffcd80c9e53ee1967",
   "brand": {
     "id": "frankx",
-    "pack_sha256": "e2473302f44b3c756c9a26f3bce85e82d2d3b4b72e45045c0c44832dddab98f2"
+    "pack_sha256": "3784450eddcb80335bdcac7b63146ef09173af3e22a67d467a60fe3fe2ab4e01"
   },
   "surfaces": [
     {

@@ -1,179 +1,65 @@
 ---
-title: "How to Get Cited by ChatGPT and Perplexity: The AEO Playbook for 2026"
-description: "Answer Engine Optimization is how you become the source AI quotes. The on-page and off-page playbook to get cited by ChatGPT, Perplexity, and Gemini — with a checklist and the tools that track it."
+title: "How to evaluate AI citations: an AEO playbook for your website"
+description: "Improve useful website content and measure sampled citations across AI answer tools. Includes an evidence checklist and a repeatable observation method."
 date: "2026-06-07"
-lastUpdated: "2026-08-18"
+lastUpdated: "2026-10-27"
 author: "FrankX"
 category: "Intelligence Dispatches"
 tags: ["AEO", "AI Search", "SEO", "ChatGPT", "Perplexity"]
 image: "/images/blog/aeo-playbook-get-cited-by-ai-2026-hero-v8.jpg"
 featured: false
-readingGoal: "Leave able to restructure a page so ChatGPT, Perplexity, and Gemini cite it — and to measure whether it worked."
-tldr: "is a quotable, self-contained answer in the first 100 words. - Every H2 is a question, phrased the way someone would ask an answer engine. - It ships Article and FAQPage schema (declared in the frontmatter, rendered in the page). - It uses comparison tables for SEO-vs-AEO and."
-keywords: ["answer engine optimization", "how to get cited by ChatGPT", "AEO playbook 2026", "Perplexity citations", "AI search visibility"]
+readingGoal: "Design a repeatable AI citation observation and choose a justified page improvement."
+tldr: "Choose relevant questions, record the engine and search settings, repeat observations, and distinguish a citation from a recommendation or visit. Improve the underlying page using evidence, then report what changed and what remains uncertain."
+keywords: ["answer engine optimization", "AI citations", "ChatGPT citations", "AEO measurement", "AI search visibility"]
 ---
-**Premium Visual: Citation Flow in Motion**
+When an answer tool cites your page, you have evidence that the response named the page as a source. To learn anything beyond that, you need the question, environment and repeated observations.
 
-<video src="/videos/blog/aeo-playbook-citation-flow.mp4" controls className="w-full rounded-3xl border border-white/10 my-6" />
-*Subtle cinematic visualization of knowledge graph citations flowing to AI answers.*
+This playbook gives you a way to investigate visibility without treating one screenshot as a general result. It also connects that investigation to work a reader can benefit from on your website.
 
-**TL;DR — Answer Engine Optimization (AEO) is the practice of structuring content so AI answer engines quote it as a source. The wins are mechanical: give a clean direct answer in the first 50 words, write question-based headings, mark up FAQ and Article schema, use comparison tables, and earn mentions across the web. Track it with tools like Profound, Peec AI, AIclicks, or Otterly. This post is built to the same spec it describes.**
+**Correction, 27 October 2026:** the earlier version included unsupported uplift percentages, platform-wide retrieval claims and formulaic citation advice. Those claims have been removed. No citation improvement or traffic result is claimed for this revision.
 
-Search changed. People used to type a query, scan ten blue links, and click. Now they ask ChatGPT a question and read one answer. Perplexity hands back a synthesized paragraph with five footnotes. Google's AI Overview answers above the fold. The click is optional, and often it never happens.
+## Decide what you are measuring
 
-That shift breaks the old scoreboard. Ranking #1 means little if the AI summarizes the page and the user never visits. The new goal is to be the source the AI cites — the footnote, the named brand, the quoted sentence. That is what AEO optimizes for.
+A citation links to a source. A mention names a brand. A recommendation proposes an option. A referral records a visit when attribution survives the journey. These events can occur independently.
 
-This is a playbook, not a theory piece. Every section maps to something you change on the page or off it. There is a checklist at the end.
+Choose the event that matches the decision you need to make. For an educational guide, a source citation may be useful evidence of discoverability. For a software product, a recommendation and a successful user task may matter more commercially.
 
-## What is AEO and how is it different from SEO?
+Do not combine these events into a single visibility score without documenting the definition and weights. That score is your model of the observations.
 
-AEO — Answer Engine Optimization — is the practice of structuring content so AI answer engines (ChatGPT, Perplexity, Gemini, Copilot, Google AI Overviews) select it, quote it, and credit it as a source.
+## Build a small, stable question panel
 
-SEO optimizes for a ranking position on a results page. AEO optimizes for inclusion in a generated answer. The mechanics overlap — both reward authority, structure, and freshness — but the target is different. SEO wants the click. AEO wants the citation.
+Select questions your intended readers actually ask. Keep branded and unbranded questions separate. Include the context needed for a meaningful answer, such as market, budget or deployment environment.
 
-You will also see **GEO** (Generative Engine Optimization) used interchangeably. The distinction is mostly academic. GEO tends to describe the broader goal of showing up in generative output; AEO describes the tactical work of being the answer. Treat them as the same discipline with different emphasis.
+Record the exact wording, engine, date, model when exposed, search setting, language and capture method. Repeat each question across multiple observations and dates. Note unavailable or failed runs rather than quietly excluding them.
 
-| Dimension | SEO | AEO |
-|---|---|---|
-| Target | Ranking position | Citation inside an answer |
-| Unit of value | The click | The mention or footnote |
-| Optimizes for | Crawlers + ranking signals | Retrieval + extraction by an LLM |
-| Wins with | Keywords, backlinks, page speed | Clean direct answers, schema, entity clarity, authority |
-| Measured by | Rank, organic traffic | Share of voice in AI answers, citation count |
-| Content shape | Long, comprehensive | Extractable, structured, question-led |
+Report counts with denominators. Three citations in five observations describes that sample; it does not estimate every user's experience. A provider's API response can differ from its consumer interface, so keep those observation methods separate.
 
-The good news: AEO is additive. You do not abandon SEO. A page that ranks well is already indexed, already crawled, already trusted — that is the raw material answer engines pull from. AEO is the layer that makes a ranked page quotable.
+## Inspect the cited material
 
-## How do ChatGPT, Perplexity, and Gemini actually pick what to cite?
+Ask whether a citation supports the sentence next to it. Record the destination URL and the relevant passage. Sometimes a source is included without supporting the conclusion a reader might infer.
 
-They do not all work the same way, and the differences change your tactics.
+Check competitor sources to understand what job they perform. A primary specification, an original test and a purchasing comparison are different kinds of contribution. Use that distinction to identify what you can add from your own work.
 
-**Perplexity** runs a live web retrieval on every query. It searches, pulls a handful of sources, and synthesizes. New content can surface in Perplexity citations within hours of being indexed. This rewards freshness and clean structure — Perplexity is reading your page right now, not a months-old training snapshot.
+## Improve the page for its actual reader
 
-**ChatGPT** has a static training base between model updates, but its retrieval layer (Bing-powered) pulls live results for current or commercial queries. So you have two paths: be common enough across the open web that the base model "knows" you, and be cleanly indexed so the retrieval layer can surface you on demand.
+Give the page a clear purpose, accurate examples and sources next to consequential claims. Make it readable on a phone and navigable by keyboard. Test installation steps and keep failures visible in the troubleshooting section.
 
-**Gemini and Google AI Overviews** lean on Google's index and its existing ranking signals, with heavy weight on structured data and E-E-A-T. If you already do real SEO, you are most of the way there.
+Use headings, tables, definitions and summaries where they make the material easier to use. There is no verified universal template that guarantees citation across providers. Google's [current guidance](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide) does not require a special AI writing style or markup.
 
-Across all three, the same signals keep deciding who gets quoted:
+For Google specifically, [Search Console's generative AI reporting](https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports) provides a separate observation path. Check the dimensions available for your property. Those reports do not describe visibility in every other answer tool.
 
-- **A clean, direct answer.** The model wants a sentence it can lift. Bury the answer under three paragraphs of preamble and it picks a competitor who led with it.
-- **Structured data.** Schema markup is how a machine confirms what a page is and who wrote it. Pages with proper schema have a measurably higher chance of being selected — one analysis found a 2.5x higher rate of appearing in AI answers, and a 73% lift in AI Overview selection. The engines read schema to verify E-E-A-T signals before they trust a source.
-- **Extractable format.** Tables, numbered lists, FAQ blocks, and clear headings give the model pre-chunked pieces it can quote without rewriting.
-- **Entity clarity.** The model needs to know exactly what you are talking about — the product, person, or concept — without ambiguity. Name things plainly. Link them.
-- **Authority and corroboration.** If five trusted sites describe you the same way, the model treats that as fact. One unsupported claim on your own site is not enough.
-- **Freshness.** A recent date and updated facts win, especially on Perplexity.
+## Keep an experiment record
 
-## How do you get cited by ChatGPT? The on-page playbook
+Before editing, name the page, hypothesis, primary measure, comparison method and observation window. Record what else is changing. For comparable page groups, a holdout may make the interpretation stronger; small or dissimilar groups will limit the conclusion.
 
-This is the work you control directly. Six moves, in priority order.
+Store the edited revision alongside the measurement log. Record indexing and reporting delays. Publish negative and inconclusive results with the same method as positive ones.
 
-**1. Lead with a direct answer.** Put a 40–60 word answer to the page's core question in the first 100 words. No throat-clearing. The bolded TL;DR at the top of this post is the pattern — a self-contained answer the model can quote verbatim. If someone read only that paragraph, they would have the answer.
+A useful result can be that a claim became better supported or a reader completed the workflow more reliably. Search movement is a separate result that must be observed.
 
-**2. Make every H2 a question.** People ask questions; answer engines match questions. Phrase headings the way a user would type into ChatGPT — "How do you get cited by ChatGPT?" not "Citation Optimization." Each H2 becomes a retrievable unit, and the answer should sit in the first sentence or two below it.
+## Choose tools after defining the observation
 
-**3. Add schema markup.** At minimum, `Article` and `FAQPage`. Article schema confirms author, publish date, and topic. FAQPage schema turns your Q&A into machine-readable pairs the engines pull directly. If you sell products, add `Product` and `Review`. This is the single highest-leverage technical move — it is the verification layer the engines read first.
+Use first-party reports for the site's own available search performance. Use demand providers for market estimates. Use crawlers to inspect page content. A dedicated AI visibility provider can collect a panel, but its engine coverage and score definitions still need review.
 
-**4. Use comparison tables.** When content compares options — tools, plans, approaches — a table is the most quotable format that exists. Answer engines lift tables into responses almost verbatim because the structure is already done. The SEO-vs-AEO table above exists partly to be quoted.
+Compare providers on the same task and include cost, failed requests and human review time. A large feature list does not tell you whether the resulting decision is better.
 
-**5. Build a real FAQ section.** Five or more genuine questions with direct, complete answers. Each answer should stand alone — assume it gets pulled out of context. Mark it up with FAQPage schema so the pairing is explicit.
-
-**6. Nail entity clarity.** Name the exact thing on first reference. Link concepts to canonical pages. Keep your descriptions of yourself consistent everywhere — the model is trying to resolve "who is this" and inconsistency makes you a weaker entity. If you want the full toolkit that sits behind this, the [AI superpowers stack](/blog/best-ai-superpowers-stack-2026) covers the workflow layer.
-
-## What about the off-page side — does being mentioned elsewhere matter?
-
-It matters more than most people expect. On-page structure makes you quotable; off-page presence makes you trusted. The engines corroborate.
-
-**Get mentioned, not just linked.** A plain text mention of your brand alongside an accurate description teaches the model an association — even without a hyperlink. Coverage, interviews, roundups, and guest pieces all feed this. The unit of value is the consistent description across many sites.
-
-**Reddit, forums, and community answers carry weight.** ChatGPT and Perplexity both lean on community discussion as a signal of real-world relevance. A useful, non-spammy answer on Reddit or a niche forum can become a cited source. Do not astroturf — the value is in being genuinely helpful where your audience already asks.
-
-**Structured citations and directories.** Wikipedia, well-maintained industry directories, and reputable databases are heavily weighted because they are trusted entities. Being accurately listed in the right ones strengthens your entity.
-
-**Be consistent across the web.** Same name, same title, same one-line description everywhere. When the open web agrees on who you are, the model stops hedging and starts stating it as fact.
-
-The pattern: on-page work earns the quote, off-page work earns the trust that makes the quote happen.
-
-## Which tools track AI visibility — and which is worth paying for?
-
-You cannot improve what you cannot see. These tools query the answer engines on your behalf, track how often you are mentioned, and show share of voice against competitors. Honest pricing notes below; several run affiliate or partner programs, so treat any "best tool" list (including the sources at the bottom of this post) as directional, not gospel.
-
-| Tool | Best for | Engines tracked | Entry price |
-|---|---|---|---|
-| **Profound** | Enterprise, broadest coverage, SOC 2 | 10+ (ChatGPT, Perplexity, Gemini, Copilot) | Custom / higher tier |
-| **Peec AI** | Global, multilingual, per-country depth | Up to 10 incl. Claude, Grok, AI Mode | Mid-tier |
-| **AIclicks** | Agencies, prompt-level tracking | Multi-engine, 50+ languages | ~$39–79/mo |
-| **Otterly** | Solo / small team, testing the channel | ChatGPT, Perplexity, Google AI | ~$29/mo |
-
-Start cheap. Otterly at roughly $29/month is enough to learn whether this channel matters for you before committing. If it does, AIclicks adds prompt-level and competitor tracking at a reasonable price, and Profound is the enterprise dashboard once you need full coverage and compliance. None of these are required to do the work — they tell you whether the work landed.
-
-If you are running frontier-model research alongside this, the [cheapest frontier model access guide](/blog/cheapest-frontier-model-access-2026) pairs well, and the [Perplexity workflow breakdown](/blog/ultimate-perplexity-workflow-2026) shows the engine you are optimizing for from the inside.
-
-## How is this post itself an example of the playbook?
-
-Fair question — claims about AEO are cheap. This page is built to the spec it describes:
-
-- The bolded **TL;DR** is a quotable, self-contained answer in the first 100 words.
-- **Every H2 is a question**, phrased the way someone would ask an answer engine.
-- It ships `Article` and `FAQPage` schema (declared in the frontmatter, rendered in the page).
-- It uses **comparison tables** for SEO-vs-AEO and for the tracking tools.
-- It has a real **FAQ section** with standalone answers.
-- It names entities plainly and links related, on-topic pages — no padding.
-- It carries a recent date and current facts.
-
-If the playbook works, this post should start showing up as a citation. That is the test.
-
-## What is the fastest path to your first AI citation? The checklist
-
-Run this on one important page first. Prove it, then scale.
-
-- [ ] Lead with a 40–60 word direct answer in the first 100 words
-- [ ] Rewrite every H2 as a question
-- [ ] Put the answer in the first sentence under each H2
-- [ ] Add `Article` schema (author, date, topic)
-- [ ] Add `FAQPage` schema to a 5+ question FAQ
-- [ ] Convert at least one comparison into a table
-- [ ] Make every list and answer self-contained (assume it gets extracted)
-- [ ] State key entities plainly; link to canonical pages
-- [ ] Add or refresh the publish date with current facts
-- [ ] Secure 2–3 accurate mentions off-site (community, directory, coverage)
-- [ ] Pick one tracking tool and set a baseline before you change anything
-
-Do the on-page items in an afternoon. The off-page work and the tracking run for weeks. Measure share of voice before and after — that is the only honest scoreboard.
-
-AEO is not a trick. It is the discipline of being so clearly the best answer, in so machine-readable a form, that the AI has no reason to quote anyone else. Build that, and the citations follow. If you want the broader system this sits inside, [GenCreator](https://gencreator.ai) is where the content engine lives.
-
-
----
-
-### Evolve Your Creative Workflow: Build Your CoE
-
-If you are ready to stop chasing individual tools and start building a compounding system, explore the **[GenCreator Platform](https://gencreator.ai)**. 
-
-GenCreator adapts the six-pillar AI Center of Excellence (CoE) pattern into a practical operating system for solo builders and creators. Turn your tool stack into an automated personal engine.
-
-👉 **[Start building your personal AI CoE at GenCreator.ai](https://gencreator.ai)**
-
-
-## FAQ
-
-**Is AEO replacing SEO?**
-No. AEO sits on top of SEO. The engines pull from indexed, ranked content, so strong SEO is the raw material. AEO is the structuring layer that makes a ranked page quotable. Do both; do not abandon one for the other.
-
-**How long until I see AI citations after optimizing a page?**
-On Perplexity, hours to days — it retrieves live and reindexes fast. On ChatGPT's retrieval layer, days to weeks after the page is indexed. For citations baked into a model's training base, it can take a full model update cycle. Track with a tool so you know which path moved.
-
-**Do I really need schema markup to get cited?**
-You can get cited without it, but schema materially raises your odds. Analyses show pages with proper structured data appear in AI answers at a meaningfully higher rate. `Article` and `FAQPage` are the two to start with — they are the verification layer the engines read first.
-
-**Which matters more for getting cited — on-page structure or off-page mentions?**
-Both, for different reasons. On-page structure earns the quote by making your answer extractable. Off-page mentions earn the trust that makes the engine willing to quote you. A perfectly structured page nobody references stays invisible; a widely referenced page with no structure is hard to extract. You need both.
-
-**What is the cheapest way to start tracking AI visibility?**
-Otterly at around $29/month covers ChatGPT, Perplexity, and Google AI well enough to learn whether the channel matters for you. Set a baseline, optimize one page, and watch share of voice. Upgrade to AIclicks or Profound only once you have proof the channel is worth scaling.
-
-**Does AEO work for small sites, or only big brands?**
-It works for small sites — arguably better. Answer engines reward the clearest answer to a specific question, not the biggest domain. A focused page that answers one question precisely can out-cite a sprawling enterprise page that buries the answer. Specificity beats size.
-
----
-
-_Sources consulted: [aiclicks.io](https://aiclicks.io/blog/best-aeo-tracking-tools), [Contently](https://contently.com/2026/04/29/top-10-tools-answer-engine-optimization-aeo-2026/), [SE Ranking](https://visible.seranking.com/blog/best-answer-engine-optimization-tools-2026/), [Leapd](https://www.leapd.ai/blog/ai-visibility/how-chatgpt-google-ai-overviews-and-perplexity-source-information-in-2026), [Stackmatix](https://www.stackmatix.com/blog/structured-data-ai-search), [Discovered Labs](https://discoveredlabs.com/blog/chatgpt-claude-perplexity-and-google-ai-overviews-how-each-platform-cites-sources-differently)._
+Download the [evidence templates](/resources/seo-aeo#downloads), then follow the [complete workflow](/resources/seo-aeo/workflow). Keep your first experiment small enough that another person can inspect every claim and repeat its method.

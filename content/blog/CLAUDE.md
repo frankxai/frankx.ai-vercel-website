@@ -38,5 +38,5 @@
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
 | #4343 | 1:19 AM | 🔵 | "Props to the Builders of This Era": Gratitude-Centered, Ecosystem-Honoring Content Framework (Published 2026-02-17) | ~540 |
-| #4341 | " | 🔵 | Golden Age of Intelligence Flagship Article: 15,000-Word Strategic Operating System for Agentic Marketing | ~632 |
+| #4341 | " | 🔵 | Golden Age of Intelligence Flagship Article: Strategic Operating System for Agentic Marketing | ~632 |
 </claude-mem-context>
