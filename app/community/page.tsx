@@ -167,11 +167,11 @@ export default function CommunityPage() {
 
             <motion.div className="flex flex-wrap justify-center gap-4" variants={itemVariants}>
               <Link
-                href="/inner-circle"
+                href="#operator-lab"
                 className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-8 py-4 font-semibold text-white shadow-lg shadow-[#AB47C7]/30 transition-all hover:-translate-y-0.5"
               >
                 <Crown className="h-4 w-4" />
-                Join Inner Circle
+                Join the operator lab waitlist
               </Link>
               <Link
                 href="/blog"
