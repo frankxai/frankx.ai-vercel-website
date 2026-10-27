@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'InfoGenius — FRANK-Ω | FrankX.AI',
     description:
-      'Superintelligent. Direct. Results in seconds. FRANK-Ω transforms complex topics into cinematic visual knowledge.',
+      'Name a topic. FRANK-Ω researches it, cites the sources and renders the visual on your own Gemini key.',
     images: [{ url: '/images/mascot/frank-omega-v1.png' }],
   },
 }
@@ -29,7 +29,7 @@ const capabilities = [
   },
   {
     icon: '🎨',
-    title: '8 Visual Styles',
+    title: 'Styles and brand packs',
     body: 'From 3D isometric to vintage lithograph to cyberpunk HUD. Match the medium to the message.',
   },
   {
@@ -45,24 +45,24 @@ const capabilities = [
   {
     icon: '🧠',
     title: 'Pro Reasoning',
-    body: 'Gemini 3 Pro with high thinking plans the research and writes the image prompt.',
+    body: 'Gemini 3 Pro with Google Search runs the research and writes the image prompt.',
   },
   {
     icon: '🔁',
-    title: 'Instant Iterations',
-    body: '"Make it more technical." "Switch to minimal." Refine in seconds, not hours.',
+    title: 'Quick iterations',
+    body: '"Make it more technical." "Switch to minimal." Change the level or style and run it again.',
   },
 ]
 
 const styles = [
-  { label: 'Standard', tag: 'Scientific', color: 'from-blue-500/20 to-cyan-500/20' },
+  { label: 'Modern Science', tag: 'Textbook', color: 'from-blue-500/20 to-cyan-500/20' },
   { label: 'Minimalist', tag: 'Bauhaus', color: 'from-white/10 to-white/5' },
-  { label: 'Photorealistic', tag: 'Cinematic', color: 'from-amber-500/20 to-orange-500/20' },
-  { label: '3D Isometric', tag: 'Claymorphic', color: 'from-emerald-500/20 to-teal-500/20' },
-  { label: 'Technical', tag: 'Blueprint', color: 'from-slate-500/20 to-zinc-500/20' },
+  { label: 'Realistic', tag: 'Photographic', color: 'from-amber-500/20 to-orange-500/20' },
+  { label: '3D Render', tag: 'Studio light', color: 'from-emerald-500/20 to-teal-500/20' },
+  { label: 'Da Vinci Blueprint', tag: 'Engineering', color: 'from-slate-500/20 to-zinc-500/20' },
   { label: 'Futuristic', tag: 'Cyberpunk HUD', color: 'from-violet-500/20 to-purple-500/20' },
   { label: 'Vintage', tag: '19th Century', color: 'from-yellow-700/20 to-amber-800/20' },
-  { label: 'Cartoon', tag: 'Educational', color: 'from-pink-500/20 to-rose-500/20' },
+  { label: 'Da Vinci Sketch', tag: 'Notebook', color: 'from-pink-500/20 to-rose-500/20' },
 ]
 
 const pipeline = [
@@ -73,7 +73,7 @@ const pipeline = [
   },
   {
     step: '02',
-    title: 'Research happens in seconds',
+    title: 'Research comes first',
     detail: 'Web-grounded fact extraction. 3–5 key data points that will anchor the visual.',
   },
   {
@@ -83,7 +83,7 @@ const pipeline = [
   },
   {
     step: '04',
-    title: 'Image rendered at 4K',
+    title: 'Image rendered at your size',
     detail: 'Gemini 3 Pro Image at 1K, 2K or 4K, sized for a blog, a social post, a course or a slide.',
   },
 ]
@@ -114,8 +114,8 @@ export default function InfoGeniusPage() {
               </h1>
 
               <p className="text-xl text-white/50 leading-relaxed mb-10 max-w-lg">
-                Give me a topic. I research it, build the prompt, and render a 4K infographic
-                in seconds. Research-grounded. Audience-calibrated. No filler.
+                Give me a topic. I research it, build the prompt, and render the infographic
+                with its sources listed. Research-grounded. Audience-calibrated. No filler.
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -141,8 +141,8 @@ export default function InfoGeniusPage() {
               {/* Stats row */}
               <div className="flex gap-8 mt-12 pt-12 border-t border-white/8">
                 {[
-                  { n: '8', label: 'Visual styles' },
-                  { n: '4K', label: 'Output quality' },
+                  { n: '4', label: 'Brand style packs' },
+                  { n: '1K-4K', label: 'Output sizes' },
                   { n: 'BYOK', label: 'Runs on your own key' },
                 ].map((s) => (
                   <div key={s.label}>
@@ -280,7 +280,7 @@ export default function InfoGeniusPage() {
               Styles
             </span>
             <h2 className="text-4xl font-black text-white mt-3">
-              Eight ways to see it.
+              Some of the styles.
             </h2>
             <p className="text-white/50 mt-3 max-w-xl">
               Tell FRANK-Ω the aesthetic. He handles the rest.
@@ -376,7 +376,7 @@ export default function InfoGeniusPage() {
           </div>
 
           <p className="text-center text-white/30 text-sm mt-8">
-            Generated with InfoGenius · Gemini 3 Pro Image · 4K
+            Generated with InfoGenius · Gemini 3 Pro Image
           </p>
         </div>
       </section>
