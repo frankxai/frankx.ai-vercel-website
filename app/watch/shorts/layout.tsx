@@ -1,7 +1,8 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'AI Shorts — 60-Second High-Signal Insights | FrankX',
+  title: 'AI Shorts — 60-Second High-Signal Insights',
   description:
     'Curated vertical shorts on AI, peak performance, and the craft of building. Fast signal, zero filler — each Short is paired with Frank\u2019s commentary on why it matters to builders and creators.',
   keywords: [
@@ -14,14 +15,15 @@ export const metadata: Metadata = {
     'FrankX watch shorts',
   ],
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'AI Shorts — 60-Second High-Signal Insights | FrankX',
     description:
       'Vertical Shorts curated by an AI Architect. Fast signal, zero filler, paired with commentary.',
     type: 'website',
-    url: 'https://frankx.ai/watch/shorts',
+    url: `${siteConfig.url}/watch/shorts`,
   },
   alternates: {
-    canonical: 'https://frankx.ai/watch/shorts',
+    canonical: './',
   },
 }
 

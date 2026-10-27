@@ -1,6 +1,7 @@
+import { siteConfig } from '@/lib/seo'
 import { getShorts } from '@/lib/video'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 function escapeXml(str: string): string {
   return str
