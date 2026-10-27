@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { DigitalViolin } from '@/components/music-lab/violin/DigitalViolin'
@@ -18,7 +19,7 @@ export default async function DigitalViolinPage({
     name: 'FrankX Digital Violin',
     applicationCategory: 'MusicApplication',
     operatingSystem: 'Web browser',
-    url: 'https://frankx.ai/music-lab/violin',
+    url: `${siteConfig.url}/music-lab/violin`,
     description: 'A browser violin with four strings, first-position fingering, guided notes, continuous bow expression, and local performance replay.',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
   }
