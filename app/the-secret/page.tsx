@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import BookPage from '@/components/manifestation/BookPage'
 import { theSecret, experiments } from '@/data/manifestation'
 
@@ -39,8 +39,8 @@ export default function TheSecretPage() {
           name: 'The Secret, Read Honestly',
           description:
             'A grounded review of The Secret and the Law of Attraction: what works, what to ignore, and the real mechanisms underneath.',
-          url: 'https://frankx.ai/the-secret',
-          isPartOf: { '@type': 'WebSite', name: 'FrankX.AI', url: 'https://frankx.ai' },
+          url: `${siteConfig.url}/the-secret`,
+          isPartOf: { '@type': 'WebSite', name: 'FrankX.AI', url: siteConfig.url },
         }}
       />
       <FAQPageJsonLd faqs={faqs} />

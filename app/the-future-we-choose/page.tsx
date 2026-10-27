@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -5,11 +6,12 @@ export const metadata: Metadata = {
   title: "The Future We Choose",
   description:
     "Frank Riemer’s founder position on personal superintelligence, human capability, intelligence sovereignty, and the Starlight portfolio.",
-  alternates: { canonical: "https://frankx.ai/the-future-we-choose" },
+  alternates: { canonical: `${siteConfig.url}/the-future-we-choose` },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: "The Future We Choose",
     description: "Superintelligence should not make humanity a spectator.",
-    url: "https://frankx.ai/the-future-we-choose",
+    url: `${siteConfig.url}/the-future-we-choose`,
     type: "article",
   },
 };
@@ -55,14 +57,14 @@ export default function FutureWeChoosePage() {
     author: {
       "@type": "Person",
       name: "Frank Riemer",
-      url: "https://frankx.ai",
+      url: siteConfig.url,
     },
     publisher: {
       "@type": "Organization",
       name: "FrankX",
-      url: "https://frankx.ai",
+      url: siteConfig.url,
     },
-    mainEntityOfPage: "https://frankx.ai/the-future-we-choose",
+    mainEntityOfPage: `${siteConfig.url}/the-future-we-choose`,
   };
   return (
     <main className="min-h-screen bg-void text-slate-100">
