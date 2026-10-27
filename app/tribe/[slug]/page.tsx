@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!person) {
     return {
-      title: 'Private dedication — FrankX',
+      title: 'Private dedication',
       robots: { index: false, follow: false },
     }
   }
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: `${person.name} — Private dedication`,
       description: person.shortGift,
       type: 'website',
-      url: `https://frankx.ai/tribe/${person.slug}`,
+      url: `${siteConfig.url}/tribe/${person.slug}`,
       siteName: 'FrankX',
       images: [
         {

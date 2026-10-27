@@ -1,13 +1,14 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { travelJourneys, getJourneysByMonth } from '@/data/travel-journeys'
 import TravelPlanner, { type PlannerJourney } from '@/components/travel/TravelPlanner'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 const TRAVEL_URL = `${SITE_URL}/travel`
 
 export const metadata: Metadata = {
-  title: 'Travel | Work-and-Travel Routes for Digital Nomads | FrankX',
+  title: 'Travel | Work-and-Travel Routes for Digital Nomads',
   description:
     'Seven curated work-and-travel routes for the rest of 2026 — one city per month, each timed to a real festival or art event, with the work setup, museums, hidden corners, and beautiful experiences worth the flight.',
   keywords: [
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: TRAVEL_URL },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Travel | Work-and-Travel Routes for the Rest of 2026',
     description:
       'One city a month, timed to the event worth being there for. Work setup, art, hidden corners, and the beautiful stuff — through Frank’s lens.',
@@ -30,6 +32,7 @@ export const metadata: Metadata = {
     siteName: 'FrankX',
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary_large_image',
     title: 'Travel | Work-and-Travel Routes for the Rest of 2026',
     description: 'One city a month, timed to the event worth being there for.',
