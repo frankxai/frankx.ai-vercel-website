@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { SCHEMA_SAME_AS, SOCIAL_META } from '@/lib/social-links'
 
 /**
@@ -34,18 +34,18 @@ export const metadata: Metadata = createMetadata({
 export const linksPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
-  '@id': 'https://frankx.ai/links',
+  '@id': `${siteConfig.url}/links`,
   mainEntity: {
     '@type': 'Person',
-    '@id': 'https://frankx.ai/#person',
+    '@id': `${siteConfig.url}/#person`,
     name: 'Frank X. Riemer',
     alternateName: 'FrankX',
     description:
       'Musician-technologist building AI systems that amplify human creativity. Founder of FrankX.AI, creator of Vibe OS and Agentic Creator OS.',
-    url: 'https://frankx.ai',
+    url: siteConfig.url,
     image: {
       '@type': 'ImageObject',
-      url: 'https://frankx.ai/images/profile/frank-x-riemer.jpg',
+      url: `${siteConfig.url}/images/profile/frank-x-riemer.jpg`,
       width: 400,
       height: 400,
       caption: 'Frank X. Riemer - AI Architect and Music Creator',
@@ -91,13 +91,13 @@ export const linksPageSchema = {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://frankx.ai',
+        item: siteConfig.url,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Links',
-        item: 'https://frankx.ai/links',
+        item: `${siteConfig.url}/links`,
       },
     ],
   },

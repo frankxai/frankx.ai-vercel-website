@@ -1,9 +1,10 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { bookReviews } from '@/data/book-reviews';
 import type { BookReview, BookQuote } from '@/app/books/types';
 
-const SITE_URL = 'https://frankx.ai';
+const SITE_URL = siteConfig.url;
 
 export const metadata: Metadata = {
   title: 'Quotes — Every Passage I Marked | FrankX Library',
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/library/quotes` },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Quotes — Every Passage I Marked | FrankX Library',
     description:
       'Source-marked excerpts from the FrankX Library. Each passage links back to its book.',

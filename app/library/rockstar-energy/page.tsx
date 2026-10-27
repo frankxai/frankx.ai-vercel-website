@@ -1,9 +1,10 @@
+import { siteConfig } from '@/lib/seo'
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getReviewBySlug } from '@/data/book-reviews';
 
-const SITE_URL = 'https://frankx.ai';
+const SITE_URL = siteConfig.url;
 const PAGE_URL = `${SITE_URL}/library/rockstar-energy`;
 
 const STUDY_QUESTION =

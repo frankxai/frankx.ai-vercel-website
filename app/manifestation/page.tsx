@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { hubFaqs } from '@/data/manifestation'
 import ManifestationClient from './ManifestationClient'
 
@@ -29,8 +29,8 @@ export default function ManifestationPage() {
           name: 'Manifestation, Honestly — The Reality Architect Hub',
           description:
             'A grounded approach to manifestation and the Law of Attraction: keep the real mechanisms, drop the cosmology, set state with self-made music, and use AI to render and ship the vision.',
-          url: 'https://frankx.ai/manifestation',
-          isPartOf: { '@type': 'WebSite', name: 'FrankX.AI', url: 'https://frankx.ai' },
+          url: `${siteConfig.url}/manifestation`,
+          isPartOf: { '@type': 'WebSite', name: 'FrankX.AI', url: siteConfig.url },
         }}
       />
       <FAQPageJsonLd faqs={hubFaqs} />

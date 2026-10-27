@@ -1,3 +1,4 @@
+import { defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -34,6 +35,7 @@ export async function generateMetadata({
     keywords: cmp.keywords,
     alternates: { canonical: `https://www.frankx.ai/llm-hub/compare/${slug}` },
     openGraph: {
+      images: defaultOpenGraphImages,
       title: `${cmp.title} — which to use in 2026`,
       description: cmp.description,
       url: `https://www.frankx.ai/llm-hub/compare/${slug}`,
