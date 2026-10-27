@@ -5,7 +5,7 @@
 
 ---
 
-Here is the complete technology stack that powers frankx.ai — a platform with 250+ production pages, 90+ articles, 15 books, 12,000+ songs, an education ecosystem serving four professional audiences, and an open-source operating system with seventy-five skills.
+Here is the complete technology stack that powers frankx.ai — a platform with 250+ production pages, 90+ articles, 15 books, AI music, an education ecosystem serving four professional audiences, and an open-source operating system with seventy-five skills.
 
 The monthly cost is fifty dollars.
 
@@ -37,7 +37,7 @@ AI LAYER
 │   └── MCP — 21 server connections
 │
 ├── Suno (subscription)
-│   └── Music generation — 12,000+ tracks
+│   └── Music generation — AI-generated tracks
 │
 └── Nano Banana MCP (pay-per-use)
     └── Gemini 3 Pro Image — book covers, hero images

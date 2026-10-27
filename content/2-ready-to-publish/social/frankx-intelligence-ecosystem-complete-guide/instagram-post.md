@@ -28,7 +28,7 @@ learning_applied:
 
 91/100 intelligence score.
 109 synced memories. 59 trajectories.
-12,000+ AI songs. 70+ articles.
+AI music. 70+ articles.
 
 The difference between a toolbox and an ecosystem: compounding returns.
 

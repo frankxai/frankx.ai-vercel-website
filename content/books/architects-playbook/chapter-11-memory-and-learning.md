@@ -39,7 +39,7 @@ Here is the actual structure of my primary CLAUDE.md memory:
 ## Brand Positioning
 Frank = Top Creator. Top AI Architect. Humble.
 - AI Architect & Creator
-- 12,000+ AI songs, music production, generative art
+- AI music production, generative art
 - Title: "AI Architect"
 
 ## Agent Profiles
@@ -332,7 +332,7 @@ The learning layer is the most valuable and the slowest to build. It contains th
 ```
 memory/ (topic detail files):
 ├── n8n-automation-stack.md → lessons from 25 workflow iterations
-├── music-production.md → insights from 12,000 song generations
+├── music-production.md → insights from music-generation sessions
 ├── performance-intelligence.md → WSL memory management patterns
 └── weekend-session-mar-21-22.md → architecture decisions from intense build session
 
