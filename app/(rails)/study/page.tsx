@@ -9,6 +9,7 @@
  * can navigate to his own work without typing six different URLs.
  */
 
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Script from 'next/script';
@@ -21,10 +22,10 @@ import { HUB_ORDER, hubUrl } from '@/lib/rails/types';
 import { breadcrumbSchema } from '@/lib/rails/schema';
 import { traditionLabels } from '@/data/rails/traditions';
 
-const SITE = 'https://frankx.ai';
+const SITE = siteConfig.url;
 
 export const metadata: Metadata = {
-  title: 'Study — Notes & Canon | FrankX',
+  title: 'Study — Notes & Canon',
   description:
     'Quiet hub for the contemplative rails — Notes on God / Reality / Consciousness / Faith — plus the canonical thinkers cited across them.',
   alternates: { canonical: `${SITE}/study` },
