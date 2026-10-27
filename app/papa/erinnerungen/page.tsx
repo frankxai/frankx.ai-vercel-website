@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft, Heart, MessageCircle, Mail } from 'lucide-react'
@@ -16,9 +17,9 @@ export default function ErinnerungenPage() {
     <PapaShell lang="de">
       <BreadcrumbJsonLd
         items={[
-          { name: 'Frankx', url: 'https://frankx.ai/' },
-          { name: 'Papa', url: 'https://frankx.ai/papa' },
-          { name: 'Erinnerungen', url: 'https://frankx.ai/papa/erinnerungen' },
+          { name: 'Frankx', url: `${siteConfig.url}/` },
+          { name: 'Papa', url: `${siteConfig.url}/papa` },
+          { name: 'Erinnerungen', url: `${siteConfig.url}/papa/erinnerungen` },
         ]}
       />
 
