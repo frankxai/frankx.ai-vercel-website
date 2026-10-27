@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Dashboard | Progress, Goals & Recommendations | FrankX',
   description:
     'Track your learning progress, goals, achievements, and recent activity, with personalized recommendations across FrankX courses, tools, and community.',

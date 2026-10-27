@@ -26,11 +26,11 @@ const dancingScript = Dancing_Script({
 })
 
 export const metadata: Metadata = {
-  title: 'Lob der Liebe — Gedichte & Meditationen | FrankX.ai',
+  title: 'Lob der Liebe — Gedichte & Meditationen',
   description:
     'Eine kuratierte Sammlung von Liebesgedichten, literarischen Passagen und Meditationen von Rilke, Goethe, Hesse, Bachmann, Celan und mehr.',
   alternates: {
-    canonical: 'https://frankx.ai/de/valentines-day',
+    canonical: './',
     languages: {
       en: '/valentines-day',
       de: '/de/valentines-day',
