@@ -34,6 +34,9 @@ configuration. No new font is introduced. Inspect computed styles and actual
 rendering in the candidate evidence; inherited loading/licensing is unchanged.
 No automatic animation is added. Native details, focus and form state provide
 interaction. The form has no persistence, model request or field-value analytics.
+The server-rendered fieldset stays disabled until hydration completes, preventing
+native form submission from exposing evidence in a query when JavaScript fails.
+The no-JavaScript alternative is the directly downloadable brief.
 
 ## Scope and value
 

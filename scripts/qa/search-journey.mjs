@@ -26,6 +26,24 @@ try {
     await pause(500)
   }
   browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] })
+  const fallbackContext = await browser.createBrowserContext()
+  const fallbackPage = await fallbackContext.newPage()
+  await fallbackPage.setJavaScriptEnabled(false)
+  await fallbackPage.goto(origin + routes[0], { waitUntil: 'networkidle2' })
+  assert.ok(await fallbackPage.$eval('#prepare-brief fieldset', element => element.disabled), 'SSR form fails closed without JavaScript')
+  assert.ok(await fallbackPage.$$eval('#prepare-brief input, #prepare-brief textarea, #prepare-brief button[type=submit]', elements => elements.length > 5 && elements.every(element => element.matches(':disabled'))), 'No named field or submit control is active without JavaScript')
+  assert.ok(await fallbackPage.$('noscript a[href="/downloads/seo-aeo/content-brief.md"]'), 'Offline template remains available')
+  const fallbackRequests = []
+  fallbackPage.on('request', request => fallbackRequests.push(request.url()))
+  await fallbackPage.click('#search-evidence')
+  await fallbackPage.keyboard.type('search-fixture-secret-marker')
+  await fallbackPage.keyboard.press('Enter')
+  await fallbackPage.click('#prepare-brief button[type=submit]')
+  assert.equal(await fallbackPage.$eval('#search-evidence', element => element.value), '', 'Disabled controls reject ordinary input')
+  assert.equal(fallbackPage.url(), origin + routes[0], 'Disabled form cannot navigate')
+  assert.ok(fallbackRequests.every(url => !url.includes('search-fixture-secret-marker')), 'No-JavaScript interaction sends no evidence')
+  manifest.checks.push({ noJavaScript: 'disabled form and downloadable alternative verified' })
+  await fallbackContext.close()
   for (const width of [1440, 390]) {
     const context = await browser.createBrowserContext()
     const page = await context.newPage()
@@ -78,7 +96,7 @@ try {
     const client = await page.createCDPSession()
     const downloadPath = resolve(output, `downloads-${width}`)
     await mkdir(downloadPath, { recursive: true })
-    await client.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath })
+    await client.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath, browserContextId: context.id })
     async function clickButton(label) {
       for (const button of await page.$$('button')) {
         if ((await button.evaluate(element => element.textContent)).trim() === label) { await button.click(); return }

@@ -1,10 +1,15 @@
 'use client'
 
-import { useRef, useState, type FormEvent } from 'react'
+import { useRef, useState, useSyncExternalStore, type FormEvent } from 'react'
 import { Copy, Download, FileText } from 'lucide-react'
 import { trackEvent } from '@/lib/analytics'
 
+const subscribe = () => () => {}
+const clientReady = () => true
+const serverReady = () => false
+
 export default function EvidenceBrief() {
+  const ready = useSyncExternalStore(subscribe, clientReady, serverReady)
   const [brief, setBrief] = useState('')
   const [status, setStatus] = useState('')
   const output = useRef<HTMLTextAreaElement>(null)
@@ -51,7 +56,10 @@ export default function EvidenceBrief() {
       <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300">Your website</p>
       <h2 id="prepare-brief-title" className="mt-3 text-3xl font-semibold tracking-tight">Give your assistant a better starting point.</h2>
       <p className="mt-4 max-w-2xl leading-7 text-slate-300">Prepare a brief from the evidence you already have. This form runs in your browser and does not send field values to a server. Clear the form when you finish.</p>
-      <form onSubmit={generate} onReset={() => { setBrief(''); setStatus('Brief and fields cleared.') }} className="mt-8 space-y-5">
+      <noscript><p className="mt-4 leading-7 text-slate-300">The brief builder needs JavaScript. Use the <a href="/downloads/seo-aeo/content-brief.md" className="underline underline-offset-4">downloadable brief</a> to work offline.</p></noscript>
+      <form onSubmit={generate} onReset={() => { setBrief(''); setStatus('Brief and fields cleared.') }} className="mt-8">
+        <fieldset disabled={!ready} className="space-y-5">
+          <legend className="sr-only">Prepare a website improvement brief</legend>
         <div className="grid gap-5 md:grid-cols-2">
           <label htmlFor="search-page" className="block text-sm font-medium text-slate-200">Page URL
             <input id="search-page" name="page" type="url" required maxLength={2048} placeholder="https://your-site.com/guide" className={fieldClass} />
@@ -73,6 +81,7 @@ export default function EvidenceBrief() {
           <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-300 px-6 py-3 text-sm font-semibold text-[#0a0a0b] hover:bg-emerald-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"><FileText aria-hidden="true" size={18} />Prepare the brief</button>
           <button type="reset" className={buttonClass}>Clear</button>
         </div>
+        </fieldset>
       </form>
       {brief && (
         <div className="mt-8">
