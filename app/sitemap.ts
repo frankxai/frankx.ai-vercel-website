@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { isExcludedFromSitemap } from '../lib/sitemap-exclusions.mjs'
+import { aliasSources, isExcludedFromSitemap, literalRedirectSources } from '../lib/sitemap-exclusions.mjs'
 import nextConfig from '../next.config.mjs'
 import fs from 'fs'
 import path from 'path'
@@ -117,6 +117,17 @@ function getRouteIndexRoutes(): Array<{ href: string; type: string; sitemap?: bo
     const routeIndexPath = path.join(process.cwd(), 'data', 'route-index.json')
     const raw = JSON.parse(fs.readFileSync(routeIndexPath, 'utf8'))
     return Array.isArray(raw.routes) ? raw.routes : []
+  } catch {
+    return []
+  }
+}
+
+// next.config.mjs locates this file through import.meta.url, which moves once the route is bundled, so read it
+// from the project root as well. A missing or unreadable file means no alias redirects exist to exclude.
+function getRedirectAliasSources(): string[] {
+  try {
+    const aliasPath = path.join(process.cwd(), 'data', 'redirect-aliases.json')
+    return aliasSources(JSON.parse(fs.readFileSync(aliasPath, 'utf8')))
   } catch {
     return []
   }
@@ -875,7 +886,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   const redirects = nextConfig.redirects ? await nextConfig.redirects() : []
-  const redirectSources = redirects.map((r) => r.source)
+  const redirectSources = new Set([...literalRedirectSources(redirects), ...getRedirectAliasSources()])
 
   return entries.filter(entry => {
     const pathname = entry.url.replace(BASE_URL, '').replace(/\/$/, '') || '/'
