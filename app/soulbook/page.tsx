@@ -1,5 +1,6 @@
 'use client'
 
+import { siteConfig } from '@/lib/seo'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import SoulbookHero from '@/components/soulbook/SoulbookHero'
@@ -12,7 +13,7 @@ import { philosophyStatements } from '@/lib/soulbook/soulbook-data'
 
 const websiteSchema = {
   name: 'Soulbook',
-  url: 'https://frankx.ai/soulbook',
+  url: `${siteConfig.url}/soulbook`,
   description: 'A transformative journey through 7 pillars of conscious living.',
 }
 
