@@ -17,7 +17,7 @@ import {
 
 import { GlowCard } from '@/components/ui/glow-card'
 import { EmailSignup } from '@/components/email-signup'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import {
   getAllBuilds,
   isDayNumberStale,
@@ -26,7 +26,7 @@ import {
   type BuildStatus,
 } from '@/lib/builds'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 const CANONICAL_PATH = '/agentic-builder-lab'
 
 export const metadata = createMetadata({
