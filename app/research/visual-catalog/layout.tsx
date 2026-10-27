@@ -2,7 +2,7 @@ import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
   title: "Visual Registry and Prompt Catalog",
-  description: "The single source of truth for website image assets, with attributed agent creations, documented prompts, and brand alignment checks.",
+  description: "Browse the image assets used across frankx.ai, with the style, creator and prompt details the catalog holds for each.",
   path: "/research/visual-catalog",
 })
 
