@@ -92,7 +92,7 @@ Every piece of content I produce — blog posts, book chapters, email templates,
 
 These provide *what* the AI knows about a specific field. SEO patterns. Suno prompt engineering. Next.js best practices. Oracle Cloud architecture. Each domain skill is a concentrated knowledge base for one area.
 
-The best domain skills are written from experience, not from documentation. My `suno-ai-mastery` skill does not contain Suno's official documentation — it contains what I learned from producing twelve thousand tracks. Which prompts work for which genres. Which modifiers produce which sonic characteristics. Which combinations of tags create unexpected and useful results. This experiential knowledge is what makes the skill valuable. Anyone can copy documentation. No one can copy experience.
+The best domain skills are written from experience, not from documentation. My `suno-ai-mastery` skill does not contain Suno's official documentation — it contains what I learned from producing AI-generated tracks. Which prompts work for which genres. Which modifiers produce which sonic characteristics. Which combinations of tags create unexpected and useful results. This experiential knowledge is what makes the skill valuable. Anyone can copy documentation. No one can copy experience.
 
 ### Category 3: Process Skills
 

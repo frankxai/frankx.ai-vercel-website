@@ -9,7 +9,7 @@ My Oracle laptop runs a VPN tunnel to OCI. My personal machine has Vercel, Railw
 
 This is the reality of serious AI architecture in 2026. There is no single cloud that wins. There is only the right tool for the right workload at the right cost. Enterprise architects have known this for a decade. The question is whether individual builders — the solo developers, the creators, the one-person studios — will figure it out before they either overpay by consolidating everything on one premium platform, or underbuild by refusing to use anything beyond free tiers.
 
-My actual monthly cloud spend for frankx.ai — a site with 250+ pages, 12,000+ songs indexed, active users, email automation, and agentic workflows running in the background — is under forty dollars. The compute that would cost an enterprise fifty thousand dollars a month runs for me at a price comparable to a dinner out. The difference is architecture: knowing which cloud to use for what, and designing the system so you can swap any piece without burning the rest down.
+My actual monthly cloud spend for frankx.ai — a site with 250+ pages, an indexed music catalog, active users, email automation, and agentic workflows running in the background — is under forty dollars. The compute that would cost an enterprise fifty thousand dollars a month runs for me at a price comparable to a dinner out. The difference is architecture: knowing which cloud to use for what, and designing the system so you can swap any piece without burning the rest down.
 
 ---
 

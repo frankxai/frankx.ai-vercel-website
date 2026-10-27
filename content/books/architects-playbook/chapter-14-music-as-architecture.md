@@ -5,17 +5,17 @@
 
 ---
 
-Twelve thousand songs.
+A sustained AI music practice.
 
-That number sounds like either an exaggeration or an obsession. It is neither. It is the output of a systematic practice applied daily for over a year, using Suno AI as both a creative instrument and a laboratory for understanding how artificial intelligence interprets human intent.
+Using Suno AI as a creative instrument also creates a laboratory for understanding how artificial intelligence interprets human intent. The useful evidence is in the sessions and the decisions made while listening.
 
-This chapter is not about music. It is about what twelve thousand experiments teach you about AI — lessons that transfer directly to code generation, content creation, and every other domain where you collaborate with a model.
+This chapter is not about music. It is about what repeated music experiments teach you about AI — lessons that transfer directly to code generation, content creation, and every other domain where you collaborate with a model.
 
 ---
 
 ## I. The Laboratory
 
-Every Suno session is an experiment. You write a prompt. The model interprets it. You hear the result. You adjust. You iterate. Over twelve thousand repetitions, patterns emerge that no documentation can teach because the documentation describes the model's design, not its behavior.
+Every Suno session is an experiment. You write a prompt. The model interprets it. You hear the result. You adjust. You iterate. Through repeated sessions, patterns emerge that no documentation can teach because the documentation describes the model's design, not its behavior.
 
 Here is what I learned:
 
@@ -57,7 +57,7 @@ The single most transferable skill from music production to every other AI domai
 
 Music is architecture. A song has structure — verse, chorus, bridge — the way a building has structure: foundation, walls, roof. A production has layers — drums, bass, harmony, melody, vocals — the way a software system has layers: database, API, business logic, presentation, interaction.
 
-Producing twelve thousand songs taught me to think in layers. What is the foundation of this piece? What carries the harmonic weight? What provides the rhythmic framework? What sits on top? These questions transfer directly to system design:
+Producing AI music taught me to think in layers. What is the foundation of this piece? What carries the harmonic weight? What provides the rhythmic framework? What sits on top? These questions transfer directly to system design:
 
 What is the data layer? What carries the business logic? What provides the API framework? What is the user-facing presentation?
 
@@ -73,7 +73,7 @@ If you are an AI architect reading this book, you might wonder why there is a ch
 
 An architect who only writes code has one set of intuitions about how AI interprets prompts. An architect who also produces music, writes books, designs interfaces, and creates visual art has five sets of intuitions. Each domain teaches something different about the relationship between human intent and AI output.
 
-Twelve thousand songs did not make me a musician. They made me a better architect. They taught me about specificity, genre fluency, pattern recognition, iterative refinement, and the layered composition of complex systems.
+A sustained AI music practice taught me about specificity, genre fluency, pattern recognition, iterative refinement, and the layered composition of complex systems. Those lessons also inform my architecture work.
 
 The intelligence layer amplifies every domain you bring to it. The more domains you bring, the more it amplifies.
 
