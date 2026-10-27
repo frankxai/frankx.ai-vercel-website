@@ -20,7 +20,7 @@ export async function generateMetadata(
   const workshop = getWorkshopBySlug(slug)
   if (!workshop) {
     return {
-      title: 'Workshop not found',
+      title: 'Workshop not found · FrankX',
       robots: { index: false },
     }
   }

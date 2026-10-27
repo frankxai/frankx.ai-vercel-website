@@ -3,14 +3,14 @@ import {
   isTallinnAmplifierRole,
   TallinnStudioPage,
 } from '@/components/tallinn-experience/TallinnStudioPage'
-import { createMetadata, siteConfig } from '@/lib/seo'
+import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
   title: 'Tallinn Session Studio — Independent companion concept',
   description:
     'An independent FrankX session studio for people gathering in Tallinn during Mindvalley U 2026.',
   path: '/experiences/mindvalley-university-tallinn-2026',
-  canonical: `${siteConfig.url}/experiences/tallinn-2026`,
+  canonical: 'https://frankx.ai/experiences/tallinn-2026',
   noindex: true,
 })
 
