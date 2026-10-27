@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import Script from 'next/script'
@@ -24,7 +25,7 @@ import {
  */
 
 export const metadata: Metadata = {
-  title: 'Documentation | Agentic Creator OS | FrankX.ai',
+  title: 'Documentation | Agentic Creator OS',
   description: 'Complete documentation for Agentic Creator OS - the operating system for Golden Age Creators. Learn how to use 62 skills, 9 agents, and orchestrated workflows with Claude Code.',
   keywords: [
     'agentic creator os documentation',
@@ -37,13 +38,14 @@ export const metadata: Metadata = {
     'claude code tutorial'
   ],
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Agentic Creator OS Documentation',
     description: 'Complete guide to building your personal AI operating system with 62 skills, 9 agents, and MCP integrations.',
-    url: 'https://frankx.ai/products/agentic-creator-os/docs',
+    url: `${siteConfig.url}/products/agentic-creator-os/docs`,
     type: 'website'
   },
   alternates: {
-    canonical: 'https://frankx.ai/products/agentic-creator-os/docs'
+    canonical: `${siteConfig.url}/products/agentic-creator-os/docs`
   }
 }
 
@@ -138,12 +140,12 @@ const articleSchema = {
   author: {
     '@type': 'Person',
     name: 'Frank X. Riemer',
-    url: 'https://frankx.ai'
+    url: siteConfig.url
   },
   publisher: {
     '@type': 'Organization',
     name: 'FrankX.ai',
-    url: 'https://frankx.ai'
+    url: siteConfig.url
   },
   datePublished: '2026-01-21',
   dateModified: '2026-01-21',

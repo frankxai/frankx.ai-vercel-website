@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 import { planInitiatives } from '@/lib/plan/initiatives'
 
@@ -6,7 +7,7 @@ const activeCount = planInitiatives.filter(i => i.status === 'in-progress').leng
 const totalTasks = planInitiatives.reduce((sum, i) => sum + i.tasks.length, 0)
 
 export const metadata: Metadata = {
-  title: 'The Plan | FrankX.AI',
+  title: 'The Plan',
   description: `${initiativeCount} initiatives across content, product, distribution, technical, and creative tracks. See what we're building, why, and how AI agents collaborate with human direction — in real-time.`,
   keywords: [
     'build in public',
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     title: 'The Plan | FrankX.AI',
     description: `${initiativeCount} initiatives. ${activeCount} active. Full transparency on what we're building and how AI agents help execute.`,
     type: 'website',
-    url: 'https://frankx.ai/plan',
+    url: `${siteConfig.url}/plan`,
     images: [
       {
         url: '/images/brand/og-template.png',
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     images: ['/images/brand/og-template.png'],
   },
   alternates: {
-    canonical: 'https://frankx.ai/plan',
+    canonical: './',
   },
 }
 
@@ -49,17 +50,17 @@ const websiteLd = JSON.stringify({
   '@type': 'WebPage',
   name: 'The Plan',
   description: `Public roadmap with ${initiativeCount} initiatives across 5 tracks. AI-human collaboration in real-time.`,
-  url: 'https://frankx.ai/plan',
+  url: `${siteConfig.url}/plan`,
   author: {
     '@type': 'Person',
     name: 'Frank Riemer',
-    url: 'https://frankx.ai',
+    url: siteConfig.url,
     jobTitle: 'AI Architect',
   },
   publisher: {
     '@type': 'Organization',
     name: 'FrankX',
-    url: 'https://frankx.ai',
+    url: siteConfig.url,
   },
   breadcrumb: {
     '@type': 'BreadcrumbList',
@@ -68,13 +69,13 @@ const websiteLd = JSON.stringify({
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://frankx.ai',
+        item: siteConfig.url,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'The Plan',
-        item: 'https://frankx.ai/plan',
+        item: `${siteConfig.url}/plan`,
       },
     ],
   },
