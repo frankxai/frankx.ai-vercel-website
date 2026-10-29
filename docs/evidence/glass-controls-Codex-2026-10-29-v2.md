@@ -12,3 +12,7 @@ No local browser or server was started. The native connected-browser inventory f
 Sources: React accessibility-ID guidance at https://react.dev/reference/react/useId and Puppeteer page API at https://pptr.dev/api/puppeteer.page. Source contracts, rendered behavior, visual inspection, independent review, merge, deployment readiness and public source binding retain separate evidence states. None of the planned checks is reported as passed before execution.
 
 Owning issue: https://github.com/frankxai/frankx.ai-vercel-website/issues/706. Selected/read: Emil design engineering and the repository web-release gate. Applied: native focus, preference fallbacks and interruption-safe color transitions. Verified so far: source contracts and syntax only. Production and rendered acceptance remain pending.
+
+## First hosted browser result
+
+Run 40884760712 passes typecheck, lint, strict language, build, existing reader/search journeys and the five applied-source checks. The new desktop no-preference input case passes and produces a capture. Its reduced-motion case fails because app/globals.css sets universal `transition-duration: 0.01ms !important`, overriding the component's normal-priority `transition: none`. The component fallback is strengthened to `transition-duration: 0s !important`; the rendered zero-duration assertion remains unchanged. Earlier failed evidence is retained in the run artifact. Full rerun and final acceptance remain pending.

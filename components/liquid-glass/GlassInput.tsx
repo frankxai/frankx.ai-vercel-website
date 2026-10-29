@@ -160,6 +160,7 @@ export function GlassInput({
         @media (prefers-reduced-motion: reduce) {
           .glass-input {
             transition: none;
+            transition-duration: 0s !important;
           }
         }
 
