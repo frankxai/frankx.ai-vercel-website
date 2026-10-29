@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react'
 
 import { INTENTS, INTENT_LABEL, type Intent } from '@/lib/intake-types'
+import { buildPartnershipBrief, PARTNERSHIP_BUDGETS, PARTNERSHIP_KINDS } from '@/lib/partnership-brief'
+import { trackEvent } from '@/lib/analytics'
 
 const INITIAL_INTENT: Intent = 'general'
 
@@ -43,9 +45,11 @@ function handleIntentKeyDown(
 interface Props {
   /** Pre-select an intent (e.g. when linked from /build with ?intent=sprint). */
   defaultIntent?: Intent
+  /** Structured brief on the existing partnership hub; general contact is unchanged. */
+  partnershipBrief?: boolean
 }
 
-export function ContactForm({ defaultIntent = INITIAL_INTENT }: Props) {
+export function ContactForm({ defaultIntent = INITIAL_INTENT, partnershipBrief = false }: Props) {
   const [intent, setIntent] = useState<Intent>(defaultIntent)
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>(
     'idle',
@@ -55,33 +59,52 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT }: Props) {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    if (status === 'submitting') return
     setStatus('submitting')
     setError(null)
 
     const form = e.currentTarget
     const data = new FormData(form)
+    let message = String(data.get('message') || '')
+    try {
+      if (partnershipBrief) message = buildPartnershipBrief(data)
+    } catch (err) {
+      setStatus('error')
+      setError(err instanceof Error ? err.message : 'Please check the brief.')
+      return
+    }
     const payload = {
-      intent,
+      intent: partnershipBrief ? 'partnership' : intent,
       name: String(data.get('name') || ''),
       email: String(data.get('email') || ''),
       company: String(data.get('company') || ''),
-      message: String(data.get('message') || ''),
+      message,
       website: String(data.get('website') || ''), // honeypot
       // 'use client' + form submit handler → window is always defined here.
-      source: window.location.pathname,
+      source: partnershipBrief ? '/partnerships#architecture-brief' : window.location.pathname,
       consent: data.get('consent') === 'on',
     }
 
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 15_000)
     try {
       const res = await fetch('/api/intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
+        signal: controller.signal,
       })
       const json = await res.json().catch(() => ({}))
       if (res.ok && json.ok) {
         setStatus('done')
         setAckSent(Boolean(json.ackSent))
+        if (partnershipBrief && !payload.website) {
+          try {
+            trackEvent('partnership_brief_received', { surface: 'partnerships', source: 'architecture-brief' })
+          } catch {
+            // Measurement cannot turn accepted delivery into a failed submission.
+          }
+        }
         form.reset()
       } else {
         setStatus('error')
@@ -89,7 +112,9 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT }: Props) {
       }
     } catch {
       setStatus('error')
-      setError('Network error. Please try again or email frank@frankx.ai.')
+      setError('Delivery could not be confirmed. Your draft is still here. You can retry or email frank@frankx.ai; mention a possible duplicate when retrying.')
+    } finally {
+      clearTimeout(timeout)
     }
   }
 
@@ -106,7 +131,7 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT }: Props) {
           {ackSent
             ? 'Your message reached Frank directly, and a confirmation just hit your inbox.'
             : 'Your message reached Frank directly.'}{' '}
-          A real reply follows within 1–2 working days.
+          {partnershipBrief ? 'Frank will review the brief before agreeing scope or a delivery date.' : 'A real reply follows within 1–2 working days.'}
         </p>
         <button
           type="button"
@@ -125,7 +150,7 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT }: Props) {
           exposed to assistive tech as a real radiogroup: aria-pressed models
           independent toggles (any subset could be true), which is the wrong
           semantics for "pick exactly one". */}
-      <fieldset>
+      {!partnershipBrief && <fieldset>
         <legend className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
           What's this about?
         </legend>
@@ -154,7 +179,40 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT }: Props) {
             </button>
           ))}
         </div>
-      </fieldset>
+      </fieldset>}
+
+      {partnershipBrief && (
+        <fieldset className="space-y-5">
+          <legend className="mb-3 text-sm font-semibold text-white">Your architecture brief</legend>
+          <div>
+            <label htmlFor="briefKind" className="mb-1.5 block text-sm font-medium text-slate-300">What would you like to propose?</label>
+            <select id="briefKind" name="briefKind" required className="w-full rounded-lg border border-white/20 bg-[#171915] px-4 py-3 text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">
+              {Object.entries(PARTNERSHIP_KINDS).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="productUrl" className="mb-1.5 block text-sm font-medium text-slate-300">Product or documentation URL</label>
+            <input id="productUrl" name="productUrl" type="url" required maxLength={300} placeholder="https://" className="w-full rounded-lg border border-white/20 bg-white/[0.03] px-4 py-3 text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300" />
+          </div>
+          <div>
+            <label htmlFor="audience" className="mb-1.5 block text-sm font-medium text-slate-300">Who should be able to use the result?</label>
+            <input id="audience" name="audience" required maxLength={200} className="w-full rounded-lg border border-white/20 bg-white/[0.03] px-4 py-3 text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300" />
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label htmlFor="budget" className="mb-1.5 block text-sm font-medium text-slate-300">Budget range</label>
+              <select id="budget" name="budget" required defaultValue="" className="w-full rounded-lg border border-white/20 bg-[#171915] px-4 py-3 text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">
+                <option value="" disabled>Select a range</option>
+                {PARTNERSHIP_BUDGETS.map(value => <option key={value} value={value}>{value}</option>)}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="preferredDate" className="mb-1.5 block text-sm font-medium text-slate-300">Preferred date (optional)</label>
+              <input id="preferredDate" name="preferredDate" type="date" className="w-full rounded-lg border border-white/20 bg-[#171915] px-4 py-3 text-sm text-white [color-scheme:dark] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300" />
+            </div>
+          </div>
+        </fieldset>
+      )}
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
@@ -206,17 +264,18 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT }: Props) {
 
       <div>
         <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-slate-300">
-          Message
+          {partnershipBrief ? 'Task and useful result' : 'Message'}
         </label>
         <textarea
           id="message"
           name="message"
           required
-          maxLength={4000}
+          maxLength={partnershipBrief ? 2000 : 4000}
           rows={5}
           className="w-full resize-y rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:border-cyan-300/50 focus:outline-none focus:ring-1 focus:ring-cyan-300/50"
-          placeholder="What are you building, and where can Frank help?"
+          placeholder={partnershipBrief ? 'What should someone accomplish with your product? Include the current setup and the result they should be able to reproduce.' : 'What are you building, and where can Frank help?'}
         />
+        {partnershipBrief && <p className="mt-2 text-xs leading-5 text-slate-400">Up to 2,000 characters. Keep credentials and private customer data out of the brief. Sending a brief starts a conversation; scope and fees are agreed separately.</p>}
       </div>
 
       {/* Honeypot — hidden from humans, catches bots */}
@@ -235,6 +294,7 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT }: Props) {
         <span>
           I consent to FrankX storing this message to respond. No marketing without
           opt-in.
+          {' '}<a href="/privacy" className="underline underline-offset-4">Privacy policy</a>
         </span>
       </label>
 
@@ -259,7 +319,7 @@ export function ContactForm({ defaultIntent = INITIAL_INTENT }: Props) {
           </>
         ) : (
           <>
-            Send to Frank
+            {partnershipBrief ? 'Send the brief' : 'Send to Frank'}
             <ArrowRight className="h-4 w-4" />
           </>
         )}
