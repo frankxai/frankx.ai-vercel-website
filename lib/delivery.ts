@@ -3,7 +3,8 @@
  * Handles digital product delivery via email and access codes
  */
 
-import { getProductById } from './products'
+import { getProductById, products } from './products'
+import { createProductDownloadUrl } from './product-fulfillment'
 
 // Product delivery configuration
 export interface DeliveryConfig {
@@ -138,14 +139,14 @@ export function generateAccessCode(productId: string): string {
 }
 
 /**
- * Get product download URL (stored in /public/products/)
+ * Mint a file-scoped, expiring bearer link after a verified purchase callback.
+ * This protects the handler; legacy public Blob objects remain public.
  */
-export function getProductDownloadUrl(filename: string): string {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.frankx.ai'
-  // Files would be stored in a protected location or CDN
-  // For now, using a signed URL pattern
-  const token = generateAccessCode('download')
-  return `${baseUrl}/api/download/${filename}?token=${token}`
+export function getProductDownloadUrl(productId: string, blobKey: string): string {
+  return createProductDownloadUrl(products, productId, blobKey, {
+    secret: process.env.PRODUCT_DOWNLOAD_SECRET,
+    origin: process.env.NEXT_PUBLIC_SITE_URL,
+  })
 }
 
 /**
@@ -179,14 +180,20 @@ export function generateProductEmailData(
   const product = getProductById(productId)
   const config = getDeliveryConfig(productId)
 
-  if (!product || !config) {
+  if (!product || !(product.offer?.primaryPrice > 0) || !product.delivery?.files?.length) {
     return null
   }
 
-  const downloadLinks = (config.files || []).map((file) => ({
-    name: file.replace('.pdf', '').replace(/-/g, ' '),
-    url: getProductDownloadUrl(file),
-  }))
+  let downloadLinks: Array<{ name: string; url: string }>
+  try {
+    // The catalog owns file identity; legacy display filenames are not Blob keys.
+    downloadLinks = product.delivery.files.map(file => ({
+      name: file.name,
+      url: getProductDownloadUrl(product.id, file.blobKey),
+    }))
+  } catch {
+    return null
+  }
 
   return {
     customerName,
@@ -194,8 +201,8 @@ export function generateProductEmailData(
     productName: product.name,
     productId,
     downloadLinks,
-    accessCode: config.deliveryType === 'access-code' ? generateAccessCode(productId) : undefined,
-    bonusContent: config.accessCategories,
+    accessCode: config?.deliveryType === 'access-code' ? generateAccessCode(productId) : undefined,
+    bonusContent: config?.accessCategories,
   }
 }
 

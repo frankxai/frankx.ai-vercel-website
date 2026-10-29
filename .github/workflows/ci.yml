@@ -102,6 +102,9 @@ jobs:
       - name: Type Check
         run: pnpm run type-check
 
+      - name: Checkout and purchased fulfillment
+        run: pnpm run test:checkout-sku
+
       - name: Changelog contract
         run: pnpm run test:changelog-release
 

@@ -2,10 +2,10 @@ import { NextResponse } from 'next/server'
 import { verifyWebhookSignature, type LemonSqueezyWebhookEvent } from '@/lib/lemon-squeezy'
 import { generateProductEmailData } from '@/lib/delivery'
 import { purchaseConfirmationEmail } from '@/lib/email-templates'
-import { getClientOrDefault } from '@/lib/clients'
+import { products } from '@/lib/products'
+import { productForLemonVariant, productFulfillmentConfigured, lemonExpectedTestMode } from '@/lib/product-fulfillment'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
-const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID || '4d2e913e-6903-4dd4-8749-c02cdb844331'
 
 async function sendEmailViaResend(to: string, subject: string, html: string) {
   const res = await fetch('https://api.resend.com/emails', {
@@ -21,23 +21,8 @@ async function sendEmailViaResend(to: string, subject: string, html: string) {
       html,
     }),
   })
+  if (!res.ok) throw new Error('Product email delivery failed')
   return res.json()
-}
-
-async function addToResendAudience(email: string, name: string, topics: string[]) {
-  await fetch(`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${RESEND_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email,
-      first_name: name.split(' ')[0],
-      last_name: name.split(' ').slice(1).join(' ') || undefined,
-      unsubscribed: false,
-    }),
-  })
 }
 
 export async function POST(request: Request) {
@@ -48,29 +33,45 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
   }
 
-  const event: LemonSqueezyWebhookEvent = JSON.parse(body)
-  const eventName = event.meta.event_name
+  let event: LemonSqueezyWebhookEvent
+  try {
+    event = JSON.parse(body)
+  } catch {
+    return NextResponse.json({ error: 'Invalid event' }, { status: 400 })
+  }
+  const eventName = event?.meta?.event_name
+  if (typeof eventName !== 'string') return NextResponse.json({ error: 'Invalid event' }, { status: 400 })
 
   switch (eventName) {
     case 'order_created': {
+      if (!event.data?.attributes?.first_order_item || typeof event.data.attributes.user_email !== 'string' || !event.data.attributes.user_email) {
+        return NextResponse.json({ error: 'Invalid order' }, { status: 400 })
+      }
       const { user_email, user_name, first_order_item } = event.data.attributes
       const productName = first_order_item.product_name
-      const productSlug = productName.toLowerCase().replace(/\s+/g, '-')
+      if (event.data.attributes.status !== 'paid') return NextResponse.json({ received: true })
+      // Bind the authenticated provider variant to an existing canonical catalog ID.
+      // Display titles and caller-supplied checkout custom_data grant no product access.
+      const product = productForLemonVariant(products, first_order_item.variant_id, process.env)
+      if (!product) return NextResponse.json({ error: 'Product variant is not configured' }, { status: 422 })
 
-      // Extract client context from custom_data (set during checkout)
-      const clientId = event.meta.custom_data?.clientId || 'frankx'
-      const client = getClientOrDefault(clientId)
-
-      // Use client-specific audience if configured
-      const audienceId = client.commerce.resendAudienceId || RESEND_AUDIENCE_ID
+      const expectedTestMode = lemonExpectedTestMode(process.env)
+      if (expectedTestMode === undefined) return NextResponse.json({ error: 'Payment mode is not configured' }, { status: 503 })
+      if (event.data.attributes.test_mode !== expectedTestMode || first_order_item.test_mode !== expectedTestMode) {
+        return NextResponse.json({ error: 'Payment mode does not match environment' }, { status: 422 })
+      }
+      // Sandbox callbacks validate isolation but never mint real files or send mail.
+      if (expectedTestMode) return NextResponse.json({ received: true, testMode: true })
+      if (!productFulfillmentConfigured(product, 'lemon', process.env)) return NextResponse.json({ error: 'Product delivery is not configured' }, { status: 503 })
 
       const emailData = generateProductEmailData(
-        productSlug,
+        product.id,
         user_name || 'Customer',
         user_email
       )
 
-      if (emailData && RESEND_API_KEY) {
+      if (!emailData || !RESEND_API_KEY) return NextResponse.json({ error: 'Product delivery is not configured' }, { status: 503 })
+      {
         const email = purchaseConfirmationEmail({
           customerName: emailData.customerName,
           productName: emailData.productName,
@@ -78,18 +79,15 @@ export async function POST(request: Request) {
           receiptUrl: event.data.attributes.urls?.receipt,
         })
 
-        await sendEmailViaResend(user_email, email.subject, email.html)
-      }
-
-      // Add customer to appropriate Resend audience
-      if (RESEND_API_KEY) {
-        await addToResendAudience(user_email, user_name || 'Customer', ['product-updates'])
+        try {
+          await sendEmailViaResend(user_email, email.subject, email.html)
+        } catch {
+          return NextResponse.json({ error: 'Product email delivery failed' }, { status: 502 })
+        }
       }
 
       console.log('[Lemon Squeezy] Order fulfilled:', {
         orderId: event.data.id,
-        clientId: client.id,
-        artist: client.artistName,
         product: productName,
         email: user_email,
         total: event.data.attributes.total_formatted,
@@ -100,16 +98,7 @@ export async function POST(request: Request) {
     }
 
     case 'subscription_created': {
-      const { user_email, user_name } = event.data.attributes
-
-      if (RESEND_API_KEY) {
-        await addToResendAudience(user_email, user_name || 'Subscriber', ['product-updates'])
-      }
-
-      console.log('[Lemon Squeezy] Subscription created:', {
-        id: event.data.id,
-        email: user_email,
-      })
+      // A purchase or subscription is not consent to join a marketing audience.
       break
     }
 

@@ -50,11 +50,13 @@ export interface LemonSqueezyWebhookEvent {
         variant_id: number
         product_name: string
         variant_name: string
+        test_mode: boolean
       }
       total: number
       total_formatted: string
       currency: string
       status: string
+      test_mode: boolean
       urls: {
         receipt: string
       }
