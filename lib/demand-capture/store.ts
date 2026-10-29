@@ -32,13 +32,39 @@ async function kv(command: unknown[]): Promise<unknown> {
   return (await res.json()).result
 }
 
+// One script so Redis runs the read, increment and write as a single step: two overlapping
+// requests for the same email could otherwise both miss the HGET and both increment the count.
+const CLAIM_POSITION = `
+local existing = redis.call('HGET', KEYS[1], ARGV[1])
+if existing then return existing end
+local position = redis.call('INCR', KEYS[2])
+redis.call('HSET', KEYS[1], ARGV[1], position)
+return position`
+
 /** Email is the identity, so a re-submit updates in place instead of double-counting. */
 export async function claimPosition(productId: string, email: string): Promise<number> {
-  const existing = await kv(['hget', key(productId, 'positions'), email])
-  if (existing) return Number(existing)
-  const position = Number(await kv(['incr', key(productId, 'count')]))
-  await kv(['hset', key(productId, 'positions'), email, String(position)])
-  return position
+  const position = await kv(['eval', CLAIM_POSITION, '2', key(productId, 'positions'), key(productId, 'count'), email])
+  return Number(position)
+}
+
+/**
+ * The second form step and later re-submits only carry answers. Keep the first-touch facts
+ * (where they came from, when, their position) and let new answers fill or replace old ones,
+ * so a skipped field never erases an answer given earlier.
+ */
+export function mergeSignal(existing: DemandSignal | null, incoming: DemandSignal): DemandSignal {
+  if (!existing) return incoming
+  const answers = Object.fromEntries(
+    (['name', 'role', 'pain', 'urgency', 'priceBand', 'alternative'] as const)
+      .filter((field) => incoming[field] !== undefined)
+      .map((field) => [field, incoming[field]]),
+  )
+  return { ...existing, ...answers, position: existing.position, consent: true }
+}
+
+export async function getSignal(productId: string, email: string): Promise<DemandSignal | null> {
+  const raw = await kv(['hget', key(productId, 'signals'), email])
+  return raw ? (JSON.parse(String(raw)) as DemandSignal) : null
 }
 
 export async function getCount(productId: string): Promise<number> {
@@ -47,7 +73,8 @@ export async function getCount(productId: string): Promise<number> {
 }
 
 export async function saveSignal(signal: DemandSignal): Promise<void> {
-  await kv(['hset', key(signal.productId, 'signals'), signal.email, JSON.stringify(signal)])
+  const merged = mergeSignal(await getSignal(signal.productId, signal.email), signal)
+  await kv(['hset', key(signal.productId, 'signals'), signal.email, JSON.stringify(merged)])
 }
 
 export async function allSignals(productId: string): Promise<DemandSignal[]> {
