@@ -11,6 +11,7 @@ import {
 import type { Partner } from "@/content/partnerships/types";
 import { MEET_AND_GROW_URL } from "@/lib/cta-links";
 import { createMetadata, siteConfig } from "@/lib/seo";
+import { ContactForm } from "@/components/contact/ContactForm";
 
 export const metadata = createMetadata({
   title: "Partnerships and Applied Work",
@@ -142,12 +143,10 @@ export default function PartnershipsHubPage() {
                   />
                 </Link>
                 <Link
-                  href={MEET_AND_GROW_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#architecture-brief"
                   className="inline-flex min-h-12 items-center justify-center gap-2 border border-[#171915]/30 px-6 py-3.5 text-sm font-semibold text-[#171915] hover:border-[#171915] hover:bg-[#ebe3d4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2157d5]"
                 >
-                  Open a conversation
+                  Propose a reference build
                   <ArrowUpRight className="h-4 w-4" aria-hidden />
                 </Link>
               </div>
@@ -283,6 +282,21 @@ export default function PartnershipsHubPage() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="architecture-brief" aria-labelledby="architecture-brief-heading" className="scroll-mt-24 border-y border-[#171915]/15 px-5 py-20 sm:px-8 sm:py-24 lg:px-12">
+        <div className="mx-auto grid max-w-[1380px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <div>
+            <p className="text-sm font-semibold text-[#2157d5]">Architecture partnerships</p>
+            <h2 id="architecture-brief-heading" className="mt-4 text-4xl font-medium leading-tight tracking-[-0.04em]">Give builders a useful way to try your product.</h2>
+            <p className="mt-6 text-base leading-7 text-[#555950]">Propose a task for an MCP server, developer tool or workflow platform. We can scope a working example, a guide someone else can follow, and a recorded walkthrough.</p>
+            <p className="mt-4 text-base leading-7 text-[#555950]">Tell me who the result serves and what they should accomplish. I will review the fit before we agree the deliverables, fees and publication plan.</p>
+            <p className="mt-4 text-sm leading-6 text-[#555950]">Paid collaborations are identified beside the work. Technical conclusions follow the evidence. You can also suggest a product for an independent guide.</p>
+          </div>
+          <div className="rounded-[2rem] bg-[#171915] p-6 text-white sm:p-8">
+            <ContactForm defaultIntent="partnership" partnershipBrief />
           </div>
         </div>
       </section>
