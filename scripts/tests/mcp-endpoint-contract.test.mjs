@@ -275,3 +275,10 @@ test('stateless GET and DELETE answer 405 at once instead of holding a stream op
   }
   assert.match(route, /export const maxDuration = 60/)
 })
+
+test('OPTIONS advertises only the POST-only contract', async () => {
+  const { OPTIONS } = await import('../../app/api/mcp/route.ts')
+  const response = await OPTIONS(new Request('https://www.frankx.ai/api/mcp', { method: 'OPTIONS' }))
+  assert.equal(response.status, 204)
+  assert.equal(response.headers.get('allow'), 'POST, OPTIONS')
+})
