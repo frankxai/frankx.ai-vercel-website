@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { getPortalPartner, getAllPortalSlugs } from '@/content/portal'
 import { toRecommendationGroups, validateRecommendations } from '@/lib/portal/recommend'
 import { PortalHero } from '@/components/portal/PortalHero'
@@ -12,7 +12,7 @@ import { CompoundingBand } from '@/components/portal/CompoundingBand'
 import { TeamBand } from '@/components/portal/TeamBand'
 import { PortalCrossLinks } from '@/components/portal/PortalCrossLinks'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 export function generateStaticParams() {
   return getAllPortalSlugs().map((slug) => ({ slug }))

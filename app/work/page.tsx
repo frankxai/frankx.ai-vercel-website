@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import {
   listLiveSubstrate,
   listLiveWhitelabelOrCreator,
@@ -16,7 +16,7 @@ export const metadata = createMetadata({
   path: '/work',
 })
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 export default function WorkHubPage() {
   const liveSubstrate = listLiveSubstrate()

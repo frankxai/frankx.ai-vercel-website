@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'The Golden Age of Creators | FrankX.AI',
+  title: 'The Golden Age of Creators',
   description: 'A transformative book about the democratization of creative capability and distribution in the age of AI.',
   openGraph: {
     title: 'The Golden Age of Creators',

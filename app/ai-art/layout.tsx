@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'AI Art Gallery | Generative Visual Art | FrankX',
   description: 'AI-generated visual art gallery. Explore generative art created with Midjourney, DALL-E, and other AI image tools.',
   path: '/ai-art',

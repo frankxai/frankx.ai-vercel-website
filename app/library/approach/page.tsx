@@ -1,12 +1,13 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { bookReviews } from '@/data/book-reviews';
 
-const SITE_URL = 'https://frankx.ai';
+const SITE_URL = siteConfig.url;
 const REPO_URL = 'https://github.com/frankxai/library-os';
 
 export const metadata: Metadata = {
-  title: 'The Library OS — How I Turn Every Book Into a Permanent Asset | FrankX',
+  title: 'The Library OS — How I Turn Every Book Into a Permanent Asset',
   description:
     'The open-source Library Intelligence System. Capture privately, mark evidence, distil selectively, and publish the approved projection of every book you read on your own website. Works with Claude, ChatGPT, Codex, Gemini, or by hand.',
   keywords: [
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/library/approach` },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'The Library OS — The Open-Source Library Intelligence System',
     description:
       'Capture, extract, enrich, and publish every book you read into a permanent deep-dive on your own website.',

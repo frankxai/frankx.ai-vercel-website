@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
@@ -25,8 +26,9 @@ export const metadata: Metadata = {
   title: 'Business Architecture — From Expertise to Recurring Value',
   description:
     'The FrankX public operating model: verified customer-facing brands, explicit recurring-value experiments, and a measurable path from natural advantage to scalable impact.',
-  alternates: { canonical: 'https://frankx.ai/business-plan' },
+  alternates: { canonical: `${siteConfig.url}/business-plan` },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'The FrankX Business Architecture',
     description:
       'How the portfolio turns distinct advantage into owned assets, repeat customer value, and measurable impact.',
@@ -106,11 +108,11 @@ function BusinessSchema() {
     name: 'The FrankX Business Architecture',
     description:
       'The public operating model for FrankX, GenCreator, Agentic Income, Starlight Intelligence System, and Arcanea.',
-    url: 'https://frankx.ai/business-plan',
+    url: `${siteConfig.url}/business-plan`,
     author: {
       '@type': 'Person',
       name: 'Frank Riemer',
-      url: 'https://frankx.ai',
+      url: siteConfig.url,
       jobTitle: 'AI Architect',
     },
   }

@@ -1,3 +1,4 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Script from 'next/script'
@@ -10,11 +11,11 @@ import {
 } from '@/data/experiments'
 import { CircleCheck, CircleDot, CircleSlash, Clock, ExternalLink } from 'lucide-react'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 const PAGE_URL = `${SITE_URL}/experiments`
 
 export const metadata: Metadata = {
-  title: 'Experiments | Hypothesis-Driven Research Artifacts | FrankX',
+  title: 'Experiments | Hypothesis-Driven Research Artifacts',
   description:
     'Pre-registered, reproducible research artifacts on agentic systems, content engineering, and personal AI. Every claim falsifiable; every experiment citable.',
   keywords: [
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'FrankX Experiments — Hypothesis-Driven Research',
     description:
       'Pre-registered research artifacts on agentic systems. Reproducible. Citable. Honest about negative results.',
@@ -36,6 +38,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary_large_image',
     title: 'FrankX Experiments',
     description:

@@ -14,7 +14,7 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'AI Computer Field Guide | FrankX',
+  title: 'AI Computer Field Guide',
   description:
     'A founder and creator guide to RTX 5090 workstations, cloud GPU rental, AI mini PCs, DGX Spark, and private AI factory setups.',
   alternates: {

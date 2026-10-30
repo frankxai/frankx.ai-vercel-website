@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ArrowLeft, Mail } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Unsubscribe — FrankX',
+  title: 'Unsubscribe',
   description: 'Manage your subscription to FrankX content streams. Unsubscribe from all email or adjust topic preferences.',
   robots: { index: false, follow: false },
 }

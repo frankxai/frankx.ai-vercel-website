@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'ACOS — The Operating System for Generative Creators | 75+ Skills, 38 Agents',
   description: 'Open-source AI operating system for Claude Code. 75+ auto-activating skills, 38 specialized agents, 35+ commands. Free to clone. Premium support available.',
   path: '/acos',

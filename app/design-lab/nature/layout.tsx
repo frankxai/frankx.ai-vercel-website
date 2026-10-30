@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Nature × Technology Design System — Digital Garden Aesthetic | FrankX.AI',
   description:
     'A premium design philosophy merging organic intelligence with dark technology. Bioluminescent networks, crystal gardens, neural forests — 10 concept images and complete design guidelines for nature-inspired tech interfaces.',

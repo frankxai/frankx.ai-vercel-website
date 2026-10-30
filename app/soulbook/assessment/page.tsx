@@ -455,9 +455,9 @@ export default function AssessmentPage() {
           >
             <InteractiveCard glowColor="yellow" intensity="medium">
               <GlassmorphicCard variant="premium" gradient="aurora" border="subtle" className="p-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
+                <h1 className="text-2xl md:text-3xl font-bold text-white mb-8">
                   {question.question}
-                </h2>
+                </h1>
 
                 <div className="space-y-4">
                   {question.options.map((option, idx) => (

@@ -1,8 +1,9 @@
+import { defaultOpenGraphImages } from '@/lib/seo'
 import { Metadata } from 'next'
 import PresenceClient from './PresenceClient'
 
 export const metadata: Metadata = {
-  title: 'Full Presence Activation — FrankX',
+  title: 'Full Presence Activation',
   description:
     'A guided practice for arriving fully in this moment. 8 sensory gates inspired by Buddhist mindfulness, Taoist flow, and Eckhart Tolle. Integrated with ACOS as the entry ritual before every creative session.',
   keywords: [
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
     'buddhist six sense bases',
   ],
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Full Presence Activation — Arrive before you create',
     description:
       '8 sensory gates. 5 depth levels. The ritual that changes what you create from.',

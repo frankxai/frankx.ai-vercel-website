@@ -1,3 +1,4 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { designExperiments, getExperimentBySlug, experimentCategoryConfig } from '@/lib/design-lab/experiments'
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     : experiment.subtitle
 
   return {
-    title: `${experiment.title} | Design Lab | FrankX.AI`,
+    title: `${experiment.title} | Design Lab`,
     description,
     keywords: [
       experiment.title.toLowerCase(),
@@ -34,18 +35,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       'design benchmark',
     ],
     openGraph: {
+      images: defaultOpenGraphImages,
       title: `${experiment.title} | Design Lab`,
       description,
       type: 'article',
-      url: `https://frankx.ai/design-lab/${experiment.slug}`,
+      url: `${siteConfig.url}/design-lab/${experiment.slug}`,
     },
     twitter: {
+      images: defaultTwitterImages,
       card: 'summary_large_image',
       title: `${experiment.title} | Design Lab`,
       description,
     },
     alternates: {
-      canonical: `https://frankx.ai/design-lab/${experiment.slug}`,
+      canonical: `${siteConfig.url}/design-lab/${experiment.slug}`,
     },
   }
 }
@@ -64,25 +67,25 @@ export default async function Page({ params }: PageProps) {
     '@type': 'WebPage',
     name: experiment.title,
     description: experiment.subtitle,
-    url: `https://frankx.ai/design-lab/${experiment.slug}`,
+    url: `${siteConfig.url}/design-lab/${experiment.slug}`,
     author: {
       '@type': 'Person',
       name: 'Frank Riemer',
-      url: 'https://frankx.ai',
+      url: siteConfig.url,
       jobTitle: 'AI Architect',
     },
     publisher: {
       '@type': 'Organization',
       name: 'FrankX',
-      url: 'https://frankx.ai',
+      url: siteConfig.url,
     },
     dateModified: experiment.lastUpdated,
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai' },
-        { '@type': 'ListItem', position: 2, name: 'Design Lab', item: 'https://frankx.ai/design-lab' },
-        { '@type': 'ListItem', position: 3, name: experiment.title, item: `https://frankx.ai/design-lab/${experiment.slug}` },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
+        { '@type': 'ListItem', position: 2, name: 'Design Lab', item: `${siteConfig.url}/design-lab` },
+        { '@type': 'ListItem', position: 3, name: experiment.title, item: `${siteConfig.url}/design-lab/${experiment.slug}` },
       ],
     },
   })

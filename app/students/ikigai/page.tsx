@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import { redirect } from 'next/navigation'
 import type { Metadata } from 'next'
 
@@ -6,7 +7,7 @@ export const metadata: Metadata = {
   description:
     'The Ikigai workshop has been upgraded into the full Ikigai & Branding Workshop with a guided coach, purpose statement synthesis, and brand bridge.',
   alternates: {
-    canonical: 'https://frankx.ai/workshops/ikigai-branding',
+    canonical: `${siteConfig.url}/workshops/ikigai-branding`,
   },
   robots: {
     index: false,

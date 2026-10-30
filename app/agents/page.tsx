@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import Link from 'next/link'
 import Script from 'next/script'
 import type { Metadata } from 'next'
@@ -7,13 +8,14 @@ import { ArrowRight, Github, CheckCircle2 } from 'lucide-react'
 import { InstallCommand } from '@/components/agents/install-command'
 
 export const metadata: Metadata = {
-  title: 'Agents · Explore the catalog and ACOS source | FrankX',
+  title: 'Agents · Explore the catalog and ACOS source',
   description: 'Explore the ACOS catalog and set up the public source installer. Standalone pillar packs are not available yet.',
-  alternates: { canonical: 'https://frankx.ai/agents' },
+  alternates: { canonical: `${siteConfig.url}/agents` },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Agents · ACOS catalog and public source',
     description: 'Public ACOS source is available; standalone packs are pre-launch.',
-    url: 'https://frankx.ai/agents',
+    url: `${siteConfig.url}/agents`,
     siteName: 'FrankX',
     type: 'website',
   },
@@ -70,23 +72,23 @@ export default function AgentsPage() {
     '@graph': [
       {
         '@type': 'CollectionPage',
-        '@id': 'https://frankx.ai/agents#page',
+        '@id': `${siteConfig.url}/agents#page`,
         name: 'Agents · ACOS catalog and public source',
         description: 'The ACOS catalog and the public source installer. Standalone packs are pre-launch.',
-        url: 'https://frankx.ai/agents',
-        isPartOf: { '@type': 'WebSite', name: 'FrankX', url: 'https://frankx.ai' },
+        url: `${siteConfig.url}/agents`,
+        isPartOf: { '@type': 'WebSite', name: 'FrankX', url: siteConfig.url },
         hasPart: PILLARS.map((p) => ({
           '@type': 'Collection',
           name: `${p.title} Pack`,
           description: p.tagline,
-          url: `https://frankx.ai/agents/packs/${p.id}`,
+          url: `${siteConfig.url}/agents/packs/${p.id}`,
         })),
       },
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'FrankX', item: 'https://frankx.ai' },
-          { '@type': 'ListItem', position: 2, name: 'Agents', item: 'https://frankx.ai/agents' },
+          { '@type': 'ListItem', position: 1, name: 'FrankX', item: siteConfig.url },
+          { '@type': 'ListItem', position: 2, name: 'Agents', item: `${siteConfig.url}/agents` },
         ],
       },
     ],

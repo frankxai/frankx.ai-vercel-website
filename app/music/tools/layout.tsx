@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Music Tools & Apps | Best Digital Tools for Musicians | FrankX',
   description:
     'Curated collection of the best apps, tools, and platforms for musicians. From practice apps to AI composition, DAWs to theory trainers.',

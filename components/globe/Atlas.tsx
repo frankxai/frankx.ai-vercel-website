@@ -67,7 +67,7 @@ export default function Atlas({
   const placeCountRef = useRef<HTMLSpanElement>(null)
   const placesHeadRef = useRef<HTMLSpanElement>(null)
   const hintRef = useRef<HTMLDivElement>(null)
-  const brandRef = useRef<HTMLDivElement>(null)
+  const brandRef = useRef<HTMLHeadingElement>(null)
   const plateRef = useRef<HTMLDivElement>(null)
   const showAllRef = useRef<HTMLInputElement>(null)
   const langGroupRef = useRef<HTMLDivElement>(null)
@@ -197,9 +197,9 @@ export default function Atlas({
       </div>
 
       <div className="bar">
-        <div ref={brandRef} className="brand">
+        <h1 ref={brandRef} className="brand">
           Atlas <em>— Explore the World</em>
-        </div>
+        </h1>
         <div ref={plateRef} className="plate">Plate I</div>
       </div>
 

@@ -5,6 +5,7 @@
  *
  * No client-side data fetching. Small client island only for copy buttons.
  */
+import { defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -38,10 +39,11 @@ export async function generateMetadata(props: { params: Params }): Promise<Metad
   }
   const fm = pattern.frontmatter
   return {
-    title: `${fm.title} — Prompt Library | FrankX`,
+    title: `${fm.title} — Prompt Library`,
     description: fm.description,
     alternates: { canonical: `https://www.frankx.ai/prompt-library/${fm.id}` },
     openGraph: {
+      images: defaultOpenGraphImages,
       title: `${fm.title} — FrankX Prompt Library`,
       description: fm.description,
       url: `https://www.frankx.ai/prompt-library/${fm.id}`,

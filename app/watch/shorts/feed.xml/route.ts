@@ -1,6 +1,9 @@
+import { siteConfig } from '@/lib/seo'
 import { getShorts } from '@/lib/video'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
+// GUIDs keep the origin they were first published under. Moving them to www would make feed readers show every old item as new.
+const LEGACY_GUID_ORIGIN = 'https://frankx.ai'
 
 function escapeXml(str: string): string {
   return str
@@ -37,7 +40,7 @@ export async function GET() {
       return `    <item>
       <title>${escapeXml(s.title)}</title>
       <link>${detailUrl}</link>
-      <guid isPermaLink="true">${detailUrl}</guid>
+      <guid isPermaLink="true">${LEGACY_GUID_ORIGIN}/watch/shorts/${s.id}</guid>
       <description>${description}</description>
       <pubDate>${pubDate}</pubDate>
       <category>${escapeXml(s.category)}</category>

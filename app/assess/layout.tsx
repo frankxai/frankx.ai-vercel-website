@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'AI Readiness Assessment | FrankX',
   description:
     'Evaluate your AI readiness across strategy, tools, skills, and implementation. Get personalized recommendations and a clear roadmap for your AI journey.',

@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft, Mail, MessageCircle, PenLine } from 'lucide-react'
@@ -17,9 +18,9 @@ export default function MitmachenPage() {
     <PapaShell lang="de">
       <BreadcrumbJsonLd
         items={[
-          { name: 'Frankx', url: 'https://frankx.ai/' },
-          { name: 'Papa', url: 'https://frankx.ai/papa' },
-          { name: 'Mitmachen', url: 'https://frankx.ai/papa/mitmachen' },
+          { name: 'Frankx', url: `${siteConfig.url}/` },
+          { name: 'Papa', url: `${siteConfig.url}/papa` },
+          { name: 'Mitmachen', url: `${siteConfig.url}/papa/mitmachen` },
         ]}
       />
 

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import MentalModelsView from '@/components/mental-models/MentalModelsView'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = createMetadata({
@@ -25,7 +25,7 @@ export const metadata: Metadata = createMetadata({
 
 const mentalModelsSchema = {
   name: 'The 8 Sovereign Mental Models & Peak Performance OS',
-  url: 'https://frankx.ai/mental-models',
+  url: `${siteConfig.url}/mental-models`,
   description:
     'Master the cognitive frameworks and peak performance operating protocols for sovereign creators and AI architects.',
   about: [

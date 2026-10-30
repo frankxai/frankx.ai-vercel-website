@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -15,17 +16,18 @@ export const metadata: Metadata = {
   description:
     'Ein Sohn-Archiv für Witali Riemer. Wolgadeutsche Wurzeln, Pavlovka bis Seesen, und das Erbe, das er weitergegeben hat — auf Deutsch, Englisch, und Russisch.',
   alternates: {
-    canonical: 'https://frankx.ai/papa',
+    canonical: `${siteConfig.url}/papa`,
     languages: {
-      de: 'https://frankx.ai/papa',
-      en: 'https://frankx.ai/papa/en',
+      de: `${siteConfig.url}/papa`,
+      en: `${siteConfig.url}/papa/en`,
     },
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Papa — Witali Riemer (1969–2018)',
     description:
       'Ein Sohn-Archiv für Witali Riemer und das Erbe, das er weitergegeben hat.',
-    url: 'https://frankx.ai/papa',
+    url: `${siteConfig.url}/papa`,
     type: 'profile',
     locale: 'de_DE',
   },
@@ -37,9 +39,9 @@ export default function PapaHomePage() {
       <PersonWitaliJsonLd />
       <BreadcrumbJsonLd
         items={[
-          { name: 'Frankx', url: 'https://frankx.ai/' },
-          { name: 'Familie', url: 'https://frankx.ai/familie' },
-          { name: 'Papa', url: 'https://frankx.ai/papa' },
+          { name: 'Frankx', url: `${siteConfig.url}/` },
+          { name: 'Familie', url: `${siteConfig.url}/familie` },
+          { name: 'Papa', url: `${siteConfig.url}/papa` },
         ]}
       />
 

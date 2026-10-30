@@ -1,3 +1,4 @@
+import { defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import TrinityAllianceClient from './TrinityAllianceClient'
 
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
     'Two sovereign architectures. One shared infrastructure. A strategic alliance between Arcanea BV and Trinity AI.',
   robots: { index: false, follow: false },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Arcanea × Trinity AI — Strategic Alliance',
     description:
       'Two sovereign architectures. One shared infrastructure.',

@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import Link from 'next/link'
 import Image from 'next/image'
 import Script from 'next/script'
@@ -112,21 +113,21 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'WebPage',
-      '@id': 'https://frankx.ai/starlight-intelligence-system/',
+      '@id': `${siteConfig.url}/starlight-intelligence-system/`,
       name: 'Starlight Intelligence System',
       description:
         'Free, open substrate for organizing scattered expertise into a second brain you own. 9-layer intelligence architecture, markdown-first, MIT licensed.',
-      url: 'https://frankx.ai/starlight-intelligence-system/',
-      isPartOf: { '@id': 'https://frankx.ai/#website' },
+      url: `${siteConfig.url}/starlight-intelligence-system/`,
+      isPartOf: { '@id': `${siteConfig.url}/#website` },
       breadcrumb: {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai' },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
           {
             '@type': 'ListItem',
             position: 2,
             name: 'Starlight Intelligence System',
-            item: 'https://frankx.ai/starlight-intelligence-system/',
+            item: `${siteConfig.url}/starlight-intelligence-system/`,
           },
         ],
       },

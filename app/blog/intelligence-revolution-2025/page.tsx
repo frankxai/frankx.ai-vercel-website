@@ -1,11 +1,13 @@
+import { defaultOpenGraphImages } from '@/lib/seo'
 import { ArrowLeft, ArrowRight, BookOpen, Brain, CheckCircle2, Clock, Share, Users } from 'lucide-react'
 import Link from 'next/link'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'The Intelligence Revolution Playbook 2025 | FrankX.AI',
+  title: 'The Intelligence Revolution Playbook 2025',
   description: 'A systems-first guide to orchestrating conscious AI across products, teams, and experiences. Transform your organization for the intelligence age.',
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'The Intelligence Revolution Playbook 2025',
     description: 'A systems-first guide to orchestrating conscious AI across products, teams, and experiences.',
     type: 'article',

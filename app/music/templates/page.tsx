@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { CopyButton } from '@/components/prompt-library/CopyButton'
 
-const PAGE_URL = 'https://frankx.ai/music/templates'
+const PAGE_URL = `${siteConfig.url}/music/templates`
 
 export const metadata = createMetadata({
   title: 'Free Suno Prompt Templates — 9 Starting Points | FrankX',
@@ -102,11 +102,11 @@ const jsonLd = {
       name: 'Free Suno Prompt Templates',
       description:
         'Nine free, copy-paste Suno style prompts with defined tempo, key, and instrumentation.',
-      isPartOf: { '@id': 'https://frankx.ai/#website' },
+      isPartOf: { '@id': `${siteConfig.url}/#website` },
       author: {
         '@type': 'Person',
         name: 'Frank Riemer',
-        url: 'https://frankx.ai',
+        url: siteConfig.url,
         jobTitle: 'AI Architect',
       },
     },
@@ -123,8 +123,8 @@ const jsonLd = {
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai' },
-        { '@type': 'ListItem', position: 2, name: 'Music', item: 'https://frankx.ai/music' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
+        { '@type': 'ListItem', position: 2, name: 'Music', item: `${siteConfig.url}/music` },
         { '@type': 'ListItem', position: 3, name: 'Templates', item: PAGE_URL },
       ],
     },

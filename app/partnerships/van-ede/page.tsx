@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowUpRight, Check } from 'lucide-react'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import {
   MotionSection,
   MotionItem,
@@ -427,7 +427,7 @@ export default function VanEdeProposalPage() {
                 +31 6 27 21 50 26
               </a>
               <a
-                href="https://frankx.ai"
+                href={siteConfig.url}
                 className="hover:text-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-400/60 rounded"
               >
                 frankx.ai

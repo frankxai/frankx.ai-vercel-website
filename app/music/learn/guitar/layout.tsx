@@ -1,6 +1,7 @@
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
+  canonical: './',
   title: "Learn Guitar | Beginner Chords, Practice & Resources | FrankX",
   description:
     "A free beginner guitar guide to open chords, strumming, practice structure, first songs, external resources, and responsible AI tool use.",

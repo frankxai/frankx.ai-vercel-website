@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
@@ -91,11 +92,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${osModule.name} — FrankX OS`,
     description: `${osModule.oneLine} ${osModule.description}`,
     openGraph: {
+      images: defaultOpenGraphImages,
       title: `${osModule.name} — FrankX OS`,
       description: osModule.oneLine,
       type: 'article',
     },
-    alternates: { canonical: `https://frankx.ai/os/${osModule.slug}` },
+    alternates: { canonical: `${siteConfig.url}/os/${osModule.slug}` },
   }
 }
 
@@ -105,25 +107,25 @@ function Schema({ module }: { module: OSModule }) {
     '@graph': [
       {
         '@type': 'SoftwareApplication',
-        '@id': `https://frankx.ai/os/${module.slug}#app`,
+        '@id': `${siteConfig.url}/os/${module.slug}#app`,
         name: module.name,
         applicationCategory: 'BusinessApplication',
         operatingSystem: 'Cross-platform',
         description: module.description,
-        url: `https://frankx.ai/os/${module.slug}`,
+        url: `${siteConfig.url}/os/${module.slug}`,
         author: {
           '@type': 'Person',
           name: 'Frank Riemer',
-          url: 'https://frankx.ai',
+          url: siteConfig.url,
           jobTitle: 'AI Architect',
         },
       },
       {
         '@type': 'BreadcrumbList',
-        '@id': `https://frankx.ai/os/${module.slug}#breadcrumb`,
+        '@id': `${siteConfig.url}/os/${module.slug}#breadcrumb`,
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'FrankX OS', item: 'https://frankx.ai/os' },
-          { '@type': 'ListItem', position: 2, name: module.name, item: `https://frankx.ai/os/${module.slug}` },
+          { '@type': 'ListItem', position: 1, name: 'FrankX OS', item: `${siteConfig.url}/os` },
+          { '@type': 'ListItem', position: 2, name: module.name, item: `${siteConfig.url}/os/${module.slug}` },
         ],
       },
     ],

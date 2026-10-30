@@ -1,3 +1,4 @@
+import { defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
@@ -5,12 +6,12 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 const REPO = "https://github.com/frankxai/starlight-gravity-engine";
 
 export const metadata: Metadata = {
-  title:
-    "The Starlight Gravity Engine: Human and Agentic Engineering for a Life People Want to Join | FrankX",
+  title: "The Starlight Gravity Engine: Human and Agentic Engineering for a Life People Want to Join",
   description:
     "The next personal operating system will not merely manage tasks. It will compound the ideas, relationships, rooms and opportunities surrounding a human.",
   alternates: { canonical: "/journal/starlight-gravity-engine" },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: "The Starlight Gravity Engine",
     description:
       "The next personal operating system will not merely manage tasks. It will compound the ideas, relationships, rooms and opportunities surrounding a human.",

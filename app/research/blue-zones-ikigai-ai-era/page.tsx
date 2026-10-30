@@ -1,20 +1,22 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Blue Zones, Ikigai, and the AI Era — Research | FrankX',
+  title: 'Blue Zones, Ikigai, and the AI Era — Research',
   description:
     'What 110-year-olds in Okinawa understand about meaning that AI is now forcing the rest of us to learn. Research on Blue Zones, ikigai origins, the 2014 Western Venn, and why ikigai becomes load-bearing when machines do the work.',
   alternates: {
-    canonical: 'https://frankx.ai/research/blue-zones-ikigai-ai-era',
+    canonical: `${siteConfig.url}/research/blue-zones-ikigai-ai-era`,
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Blue Zones, Ikigai, and the AI Era',
     description:
       'What 110-year-olds in Okinawa understand about meaning that AI is now forcing the rest of us to learn.',
     type: 'article',
-    url: 'https://frankx.ai/research/blue-zones-ikigai-ai-era',
+    url: `${siteConfig.url}/research/blue-zones-ikigai-ai-era`,
   },
 }
 
@@ -216,24 +218,24 @@ function ResearchSchema() {
     '@graph': [
       {
         '@type': 'Article',
-        '@id': 'https://frankx.ai/research/blue-zones-ikigai-ai-era#article',
+        '@id': `${siteConfig.url}/research/blue-zones-ikigai-ai-era#article`,
         headline: 'Blue Zones, Ikigai, and the AI Era',
         description:
           'Research on Blue Zones, the origins of ikigai, the 2014 Western Venn, and why ikigai becomes load-bearing in the AI era.',
         author: {
           '@type': 'Person',
           name: 'Frank Riemer',
-          url: 'https://frankx.ai',
+          url: siteConfig.url,
           jobTitle: 'AI Architect',
         },
         datePublished: '2026-05-18',
         dateModified: '2026-05-18',
-        mainEntityOfPage: 'https://frankx.ai/research/blue-zones-ikigai-ai-era',
+        mainEntityOfPage: `${siteConfig.url}/research/blue-zones-ikigai-ai-era`,
         about: ['Ikigai', 'Blue Zones', 'Longevity research', 'Meaning in the AI era', 'Okinawan culture'],
       },
       {
         '@type': 'FAQPage',
-        '@id': 'https://frankx.ai/research/blue-zones-ikigai-ai-era#faq',
+        '@id': `${siteConfig.url}/research/blue-zones-ikigai-ai-era#faq`,
         mainEntity: FAQ.map((f) => ({
           '@type': 'Question',
           name: f.question,

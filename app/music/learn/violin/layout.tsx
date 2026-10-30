@@ -1,6 +1,7 @@
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
+  canonical: './',
   title: "Learn Violin | German-First Beginner Practice | FrankX",
   description:
     "A free German-first violin orientation with curated external teachers, first pieces, and family-supported practice prompts.",

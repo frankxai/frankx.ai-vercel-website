@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Oracle AI World Showcase | Enterprise AI Architecture',
   description:
     'Explore Oracle AI capabilities through interactive architecture diagrams. See how enterprise AI transforms unstructured signals into actionable business insights. Insurance, RAG, and CX solutions.',

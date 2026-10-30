@@ -4,11 +4,14 @@
  * appears in its canonical hub's feed AND in every cross-tagged hub's feed.
  */
 
+import { siteConfig } from '@/lib/seo'
 import type { RailEntry, HubSlug } from './types';
 import { hubUrl } from './types';
 import { hubs } from '@/data/rails/hubs';
 
-const SITE = 'https://frankx.ai';
+const SITE = siteConfig.url;
+// GUIDs keep the origin they were first published under. Moving them to www would make feed readers show every old item as new.
+const LEGACY_GUID_ORIGIN = 'https://frankx.ai';
 
 function escapeXml(s: string): string {
   return s
@@ -43,7 +46,7 @@ export function generateRailRss(entries: RailEntry[], scope: HubSlug | 'all'): s
       return `  <item>
     <title>${escapeXml(e.title)}</title>
     <link>${url}</link>
-    <guid isPermaLink="true">${url}</guid>
+    <guid isPermaLink="true">${LEGACY_GUID_ORIGIN}${hubUrl(e.hub)}/${e.slug}</guid>
     <pubDate>${new Date(e.datePublished).toUTCString()}</pubDate>
 ${cats}
     <description>${escapeXml(e.description)}</description>

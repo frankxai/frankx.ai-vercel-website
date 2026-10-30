@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,9 +9,9 @@ import styles from './studio.module.css'
 export const metadata: Metadata = {
   title: 'Joei’s story studio | Friends of FrankX',
   description: 'A personal invitation from Frank: a proposed storytelling crew, printable products and creative workflows for Joei Chan.',
-  alternates: { canonical: 'https://frankx.ai/friends/joei' },
+  alternates: { canonical: `${siteConfig.url}/friends/joei` },
   robots: { index: false, follow: false },
-  openGraph: { title: 'A little story studio for Joei', description: 'A creative proposal from Frank, with original robot characters and hands-on story experiments.', url: 'https://frankx.ai/friends/joei', images: ['/images/friends/joei/crew-sheet.webp'] },
+  openGraph: { title: 'A little story studio for Joei', description: 'A creative proposal from Frank, with original robot characters and hands-on story experiments.', url: `${siteConfig.url}/friends/joei`, images: ['/images/friends/joei/crew-sheet.webp'] },
 }
 
 const crew = [

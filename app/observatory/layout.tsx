@@ -1,3 +1,4 @@
+import { defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -5,12 +6,14 @@ export const metadata: Metadata = {
   description:
     'An interactive map of the Agentic Creator OS: specialized agents, skills, commands, workflows, and the IAM capability matrix that governs them.',
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Agent Observatory — The Agentic Creator OS Fleet',
     description:
       'Explore the Agentic Creator OS fleet — agents, skills, commands, workflows, and IAM scoping in one interactive graph.',
     type: 'website',
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary_large_image',
     title: 'Agent Observatory — The Agentic Creator OS Fleet',
     description: 'An interactive map of the agent fleet and the system that orchestrates it.',

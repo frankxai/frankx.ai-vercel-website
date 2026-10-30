@@ -1,3 +1,4 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
@@ -12,7 +13,7 @@ import {
   Sparkles
 } from 'lucide-react'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 export const metadata: Metadata = {
   title: 'Witali Riemer — The Silent Builder',
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
     canonical: `${SITE_URL}/witali`,
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Witali Riemer — The Silent Builder',
     description:
       'The story of a father who arrived with little the system recognized and built a family foundation anyway.',
@@ -29,6 +31,7 @@ export const metadata: Metadata = {
     type: 'article',
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary',
     title: 'Witali Riemer — The Silent Builder',
     description:

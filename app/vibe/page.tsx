@@ -16,7 +16,7 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  title: 'Vibe OS — Multi-Agent Music Creation & AI Orchestration | FrankX.AI',
+  title: 'Vibe OS — Multi-Agent Music Creation & AI Orchestration',
   description:
     'AI agents for Suno music production, multi-LLM creative workflows, and Arcanea Cloud worldbuilding. Free tier. No credit card.',
   keywords: [

@@ -1,6 +1,6 @@
 import AgenticLifeOsShell from '@/components/agentic-life-os/AgenticLifeOsShell'
 import { agenticLifeOsPublicScan, offerPackages } from '@/data/agentic-life-os-atlas'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 
 export const metadata = createMetadata({
   title: 'Agentic Life OS - FrankX',
@@ -25,13 +25,13 @@ function AgenticLifeOsSchema() {
     name: 'Agentic Life OS',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web, Git, local agent workstations',
-    url: 'https://frankx.ai/agentic-life-os',
+    url: `${siteConfig.url}/agentic-life-os`,
     description:
       'A proof-producing command system for founder work: decide the highest-leverage move, execute with bounded agents, preserve evidence, and convert results into offers and assets.',
     author: {
       '@type': 'Person',
       name: 'Frank Riemer',
-      url: 'https://frankx.ai',
+      url: siteConfig.url,
       jobTitle: 'AI Architect',
     },
     offers: offerPackages.map((offer) => ({
@@ -39,7 +39,7 @@ function AgenticLifeOsSchema() {
       name: offer.name,
       description: offer.promise,
       category: offer.status,
-      url: new URL(offer.href, 'https://frankx.ai/agentic-life-os').toString(),
+      url: new URL(offer.href, `${siteConfig.url}/agentic-life-os`).toString(),
     })),
     additionalProperty: [
       {

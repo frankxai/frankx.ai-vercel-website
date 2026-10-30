@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
@@ -6,7 +7,7 @@ import { bookReviews, getReviewBySlug, getAllReviewSlugs } from '@/data/book-rev
 import { booksRegistry } from '@/app/books/lib/books-registry';
 import { QuoteShareToolbar } from '@/components/share/QuoteShareToolbar';
 
-const SITE_URL = 'https://frankx.ai';
+const SITE_URL = siteConfig.url;
 
 // Quote share pages are rendered on demand — 373 individual quote URLs don't need
 // to be pre-built at deploy time. dynamicParams=true (the default) handles them.

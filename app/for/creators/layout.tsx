@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'For Creators — AI Music, Prompts & Tools | FrankX.AI',
   description:
     'Build with AI: Suno workflows, prompt templates, and the open-source ACOS toolkit. Tutorials and tools for generative creators, free to start.',

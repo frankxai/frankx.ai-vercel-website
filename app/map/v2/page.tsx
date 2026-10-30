@@ -431,7 +431,7 @@ export default function MapV2Page() {
           <div className="flex gap-2.5 items-start">
             <Info className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
             <div>
-              <h3 className="text-xs font-semibold text-white mb-1 uppercase tracking-wide">Interactive Strategic Map</h3>
+              <h1 className="text-xs font-semibold text-white mb-1 uppercase tracking-wide">Interactive Strategic Map</h1>
               <p className="text-[11px] text-white/50 leading-relaxed">
                 Left-click and drag the background canvas to pan. Use Zoom controls to inspect clusters. Click any node to load full metadata, clone statements, and repository stats.
               </p>

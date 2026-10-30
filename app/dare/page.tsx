@@ -1,5 +1,6 @@
 'use client'
 
+import { siteConfig } from '@/lib/seo'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -105,8 +106,8 @@ export default function DarePage() {
           name: 'Daily Dare — The Beautiful Mind Quest',
           description:
             'A 4-part daily challenge: stretch your mind with AI, run a prompt, train one principle of how the mind works, and do one good thing for the world.',
-          url: 'https://frankx.ai/dare',
-          isPartOf: { '@type': 'WebSite', name: 'FrankX.AI', url: 'https://frankx.ai' },
+          url: `${siteConfig.url}/dare`,
+          isPartOf: { '@type': 'WebSite', name: 'FrankX.AI', url: siteConfig.url },
         }}
       />
 

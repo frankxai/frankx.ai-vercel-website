@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = createMetadata({
+  canonical: './',
   title: 'Build Your Personal AI Center of Excellence | FrankX',
   description:
     'The enterprise 6-pillar CoE framework Frank ships to Oracle clients, scaled to one person. 90 minutes. Leave with your AI operating system running.',

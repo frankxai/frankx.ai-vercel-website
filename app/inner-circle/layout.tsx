@@ -1,8 +1,9 @@
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import { INNER_CIRCLE_FAQS } from '@/lib/inner-circle-faqs'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Inner Circle | FrankX',
   description:
     'Frank&apos;s premium community for builders shipping with AI. The vault, live labs, prompt packs, and direct access. Waitlist open — June 1 2026 launch.',
@@ -11,31 +12,31 @@ export const metadata = createMetadata({
 
 const organizationSchema = {
   '@type': 'Organization',
-  '@id': 'https://frankx.ai/inner-circle#org',
+  '@id': `${siteConfig.url}/inner-circle#org`,
   name: 'FrankX Inner Circle',
-  url: 'https://frankx.ai/inner-circle',
+  url: `${siteConfig.url}/inner-circle`,
   description:
     'Premium community for AI architects, creators, and builders. Personal AI Center of Excellence framework, live labs, and direct mentorship.',
   founder: {
     '@type': 'Person',
     name: 'Frank Riemer',
     jobTitle: 'AI Architect',
-    url: 'https://frankx.ai',
+    url: siteConfig.url,
   },
   parentOrganization: {
     '@type': 'Organization',
     name: 'FrankX',
-    url: 'https://frankx.ai',
+    url: siteConfig.url,
   },
 }
 
 const serviceSchema = {
   '@type': 'Service',
-  '@id': 'https://frankx.ai/inner-circle#service',
+  '@id': `${siteConfig.url}/inner-circle#service`,
   name: 'FrankX Inner Circle Membership',
   description:
     'Private community access including weekly labs, content vault, prompt packs, dedicated agent builds, and direct support.',
-  provider: { '@id': 'https://frankx.ai/inner-circle#org' },
+  provider: { '@id': `${siteConfig.url}/inner-circle#org` },
   areaServed: 'Worldwide',
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
@@ -109,7 +110,7 @@ const serviceSchema = {
 
 const faqSchema = {
   '@type': 'FAQPage',
-  '@id': 'https://frankx.ai/inner-circle#faq',
+  '@id': `${siteConfig.url}/inner-circle#faq`,
   mainEntity: INNER_CIRCLE_FAQS.map((faq) => ({
     '@type': 'Question',
     name: faq.question,
@@ -123,8 +124,8 @@ const faqSchema = {
 const breadcrumbSchema = {
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai' },
-    { '@type': 'ListItem', position: 2, name: 'Inner Circle', item: 'https://frankx.ai/inner-circle' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
+    { '@type': 'ListItem', position: 2, name: 'Inner Circle', item: `${siteConfig.url}/inner-circle` },
   ],
 }
 

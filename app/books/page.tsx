@@ -1,3 +1,4 @@
+import { defaultOpenGraphImages } from '@/lib/seo'
 import Link from 'next/link';
 import Image from 'next/image';
 import { getPublishedBooks } from './lib/books-registry';
@@ -5,10 +6,11 @@ import { getThemeClasses } from './lib/theme-classes';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Books | FrankX',
+  title: 'Books',
   description:
     'Books on love, discipline, creativity, imagination, and a new illustrated family library. Read free online or download selected editions.',
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'The FrankX Library',
     description: 'Six books. One voice. No filler.',
     type: 'website',

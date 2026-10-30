@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
@@ -36,17 +37,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${doc.title} | Agentic Creator OS Documentation | FrankX.ai`,
+    title: `${doc.title} | Agentic Creator OS Documentation`,
     description: doc.description,
     keywords: doc.keywords,
     openGraph: {
+      images: defaultOpenGraphImages,
       title: `${doc.title} - Agentic Creator OS`,
       description: doc.description,
-      url: `https://frankx.ai/products/agentic-creator-os/docs/${slug}`,
+      url: `${siteConfig.url}/products/agentic-creator-os/docs/${slug}`,
       type: 'article'
     },
     alternates: {
-      canonical: `https://frankx.ai/products/agentic-creator-os/docs/${slug}`
+      canonical: `${siteConfig.url}/products/agentic-creator-os/docs/${slug}`
     }
   }
 }

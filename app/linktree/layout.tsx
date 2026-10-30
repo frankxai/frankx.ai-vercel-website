@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { SCHEMA_SAME_AS } from '@/lib/social-links'
 import Script from 'next/script'
 
 export const metadata: Metadata = createMetadata({
+  canonical: './',
   title: 'Frank X. Riemer | AI Architect & Creator - All Links',
   description:
     'Connect with Frank X. Riemer, an AI architect. Public songs, field notes, products, and the library.',
@@ -24,15 +25,15 @@ export const metadata: Metadata = createMetadata({
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
-  '@id': 'https://frankx.ai/linktree',
+  '@id': `${siteConfig.url}/linktree`,
   mainEntity: {
     '@type': 'Person',
-    '@id': 'https://frankx.ai/#person',
+    '@id': `${siteConfig.url}/#person`,
     name: 'Frank X. Riemer',
     alternateName: 'FrankX',
     description:
       'AI architect. Public songs, field notes, and practical AI systems.',
-    url: 'https://frankx.ai',
+    url: siteConfig.url,
     sameAs: SCHEMA_SAME_AS,
     jobTitle: 'AI Architect',
   },

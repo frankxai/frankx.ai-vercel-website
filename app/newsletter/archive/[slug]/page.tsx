@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Calendar, Clock, ArrowLeft, ArrowRight } from 'lucide-react'
 import { MDXContent } from '@/components/blog/MDXContent'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { getAllIssues, getIssue, getPublishedIssues } from '@/lib/newsletter-issues'
 import JsonLd from '@/components/seo/JsonLd'
 
@@ -70,17 +70,17 @@ export default async function NewsletterIssuePage({
     description: issue.preview,
     datePublished: issue.date,
     author: { '@type': 'Person', name: issue.author || 'Frank Riemer' },
-    publisher: { '@type': 'Organization', name: 'FrankX', url: 'https://frankx.ai' },
-    mainEntityOfPage: `https://frankx.ai/newsletter/archive/${issue.slug}`,
+    publisher: { '@type': 'Organization', name: 'FrankX', url: siteConfig.url },
+    mainEntityOfPage: `${siteConfig.url}/newsletter/archive/${issue.slug}`,
   }
 
   const breadcrumbSchema = {
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai' },
-      { '@type': 'ListItem', position: 2, name: 'Newsletter', item: 'https://frankx.ai/newsletter' },
-      { '@type': 'ListItem', position: 3, name: 'Archive', item: 'https://frankx.ai/newsletter/archive' },
-      { '@type': 'ListItem', position: 4, name: `Issue ${issue.issue}`, item: `https://frankx.ai/newsletter/archive/${issue.slug}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
+      { '@type': 'ListItem', position: 2, name: 'Newsletter', item: `${siteConfig.url}/newsletter` },
+      { '@type': 'ListItem', position: 3, name: 'Archive', item: `${siteConfig.url}/newsletter/archive` },
+      { '@type': 'ListItem', position: 4, name: `Issue ${issue.issue}`, item: `${siteConfig.url}/newsletter/archive/${issue.slug}` },
     ],
   }
 

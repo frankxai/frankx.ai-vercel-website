@@ -1,6 +1,7 @@
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
+  canonical: './',
   title: "How to Read Sheet Music | Free Notation Guide | FrankX",
   description:
     "Learn how to read sheet music from scratch. Visual guide covering the staff, clefs, note values, time signatures, key signatures, dynamics, and common symbols.",

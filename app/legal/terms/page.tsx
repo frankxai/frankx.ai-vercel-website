@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service — FrankX',
+  title: 'Terms of Service',
   description: 'Terms and conditions for using FrankX products and services.',
 }
 

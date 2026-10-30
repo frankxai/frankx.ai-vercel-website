@@ -1,5 +1,6 @@
 'use client'
 
+import { siteConfig } from '@/lib/seo'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -58,7 +59,7 @@ function ShareButton() {
   const [copied, setCopied] = useState(false)
 
   async function handleShare() {
-    const url = 'https://frankx.ai/valentines-day'
+    const url = `${siteConfig.url}/valentines-day`
     const title = 'In Praise of Love — Poems & Passages for Today'
 
     if (typeof navigator !== 'undefined' && navigator.share) {

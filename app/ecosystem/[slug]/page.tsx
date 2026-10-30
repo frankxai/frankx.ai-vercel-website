@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
@@ -22,11 +23,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `${entry.name} — FrankX Ecosystem`,
     description: entry.summary,
     openGraph: {
+      images: defaultOpenGraphImages,
       title: `${entry.name} — FrankX Ecosystem`,
       description: entry.summary,
       type: 'website',
     },
-    alternates: { canonical: `https://frankx.ai/ecosystem/${entry.slug}` },
+    alternates: { canonical: `${siteConfig.url}/ecosystem/${entry.slug}` },
   }
 }
 
@@ -74,13 +76,13 @@ function EntrySchema({ entry }: { entry: EcosystemEntry }) {
     '@type': 'WebPage',
     name: entry.name,
     description: entry.summary,
-    url: `https://frankx.ai/ecosystem/${entry.slug}`,
+    url: `${siteConfig.url}/ecosystem/${entry.slug}`,
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai' },
-        { '@type': 'ListItem', position: 2, name: 'Ecosystem', item: 'https://frankx.ai/ecosystem' },
-        { '@type': 'ListItem', position: 3, name: entry.name, item: `https://frankx.ai/ecosystem/${entry.slug}` },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
+        { '@type': 'ListItem', position: 2, name: 'Ecosystem', item: `${siteConfig.url}/ecosystem` },
+        { '@type': 'ListItem', position: 3, name: entry.name, item: `${siteConfig.url}/ecosystem/${entry.slug}` },
       ],
     },
   }

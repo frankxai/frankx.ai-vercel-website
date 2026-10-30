@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Invest with AI | Platforms, Research Tools & Prompts | FrankX',
   description:
     'Use AI to invest smarter. The platforms I use (Revolut, eToro, Crypto.com), research tools (Perplexity, Claude), and investment prompts that give you an edge.',

@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import DownloadsClient from './DownloadsClient'
 
 export const metadata: Metadata = {
-  title: 'Free Downloads | FrankX.AI',
+  title: 'Free Downloads',
   description: 'Download free guides, frameworks, books, and software resources for AI-powered creators.',
 }
 
