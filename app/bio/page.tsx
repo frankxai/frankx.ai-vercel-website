@@ -13,6 +13,7 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import JsonLd from '@/components/seo/JsonLd';
+import { buildFrankPerson } from '@/lib/frank-person';
 import CopyableBio from './CopyableBio';
 
 // ─── Bio source-of-truth ────────────────────────────────────────────────
@@ -142,31 +143,7 @@ export default function BioPage() {
     <>
       <JsonLd
         type="Person"
-        data={{
-          name: 'Frank Riemer',
-          alternateName: 'FrankX',
-          jobTitle: 'AI Architect',
-          description: ONE_LINE,
-          url: `${siteConfig.url}/bio`,
-          image: `${siteConfig.url}/images/portraits/frank-presenting-oracle-2025.jpg`,
-          sameAs: [
-            socialLinks.linkedin,
-            socialLinks.github,
-            socialLinks.suno,
-            socialLinks.youtube,
-            socialLinks.instagram,
-          ],
-          knowsAbout: [
-            'Artificial Intelligence',
-            'Enterprise AI Architecture',
-            'Generative AI',
-            'AI Music Production',
-            'Agentic Systems',
-            'Personal AI Center of Excellence',
-          ],
-          birthPlace: { '@type': 'Place', name: 'Volga German diaspora' },
-          homeLocation: { '@type': 'Place', name: 'Amsterdam, Netherlands' },
-        }}
+        data={buildFrankPerson(siteConfig.url)}
       />
 
       <main id="main" className="relative min-h-screen bg-[#0a0a0b] text-white">

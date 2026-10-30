@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2, Mail, Music, Network, Sparkles } from 'lucide
 
 import JsonLd from '@/components/seo/JsonLd'
 import { createMetadata, siteConfig } from '@/lib/seo'
-import { socialLinks } from '@/lib/social-links'
+import { buildFrankPerson } from '@/lib/frank-person'
 
 export const metadata = createMetadata({
   title: 'Frank Riemer | AI Architect and Creator Behind FrankX',
@@ -57,30 +57,7 @@ const pillars = [
 
 const siteUrl = siteConfig.url
 
-const personSchema = {
-  name: 'Frank Riemer',
-  url: `${siteUrl}/frank-riemer`,
-  image: `${siteUrl}/images/portraits/frank-presenting-oracle-2025.jpg`,
-  jobTitle: 'AI Architect and Creator',
-  brand: {
-    '@type': 'Brand',
-    name: 'FrankX',
-    url: siteUrl,
-  },
-  alumniOf: {
-    '@type': 'Organization',
-    name: 'Oracle',
-  },
-  sameAs: [socialLinks.linkedin, socialLinks.github, socialLinks.suno, socialLinks.twitter],
-  knowsAbout: [
-    'AI architecture',
-    'agentic workflows',
-    'AI music creation',
-    'personal AI operating systems',
-    'creator systems',
-    'attention and recovery systems',
-  ],
-}
+const personSchema = buildFrankPerson(siteUrl)
 
 export default function FrankRiemerPage() {
   return (
@@ -206,7 +183,15 @@ export default function FrankRiemerPage() {
         </div>
       </section>
 
-      <JsonLd type="Person" data={personSchema} id="frank-riemer-person" />
+      <JsonLd
+        data={{
+          '@type': 'ProfilePage',
+          '@id': `${siteUrl}/frank-riemer#page`,
+          url: personSchema.url,
+          mainEntity: personSchema,
+        }}
+        id="frank-riemer-profile"
+      />
     </main>
   )
 }
