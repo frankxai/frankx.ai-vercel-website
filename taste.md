@@ -192,7 +192,7 @@ We write *with* AI; we don't *publish* AI. The taste rules:
 
 - **Read it aloud.** If a sentence sounds like a model, rewrite.
 - **No filler verbs.** "Helps", "enables", "allows", "empowers" usually mark a sentence that hasn't found its real verb. Find the real one.
-- **Concrete over abstract.** "12,000 songs" beats "extensive musical output". "Oracle EMEA AI Center of Excellence" beats "enterprise AI experience".
+- **Concrete over abstract.** "The published music catalog" beats "extensive musical output". "Oracle EMEA AI Center of Excellence" beats "enterprise AI experience".
 - **First person when first person is the truth.** "I built this" is stronger than "We built this" when one person built it.
 - **One idea per paragraph.** If a paragraph turns a corner, it's two paragraphs.
 
