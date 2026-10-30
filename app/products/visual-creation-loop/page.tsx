@@ -2,6 +2,7 @@ import Script from 'next/script'
 import { notFound } from 'next/navigation'
 
 import products from '@/data/products.json'
+import { checkoutHrefFor } from '@/lib/commerce/sku-buy-flags'
 import { waitlistBonuses } from '@/lib/products/waitlist-public'
 import { comingSoonProductStructuredData, createMetadata } from '@/lib/seo'
 import type { ProductRecord } from '@/types/products'
@@ -28,6 +29,7 @@ export default function VisualCreationLoopPage() {
   if (!product) {
     notFound()
   }
+  const checkoutHref = checkoutHrefFor(product)
 
   const productId = product.analyticsId ?? product.id
   const structuredData = comingSoonProductStructuredData(
@@ -48,6 +50,7 @@ export default function VisualCreationLoopPage() {
       {/* Main Content */}
       <div className="relative z-10">
         <ProductHero 
+          checkoutHref={checkoutHref}
           productId={productId}
           badge={product.badge}
           title={product.name}
@@ -56,6 +59,7 @@ export default function VisualCreationLoopPage() {
         />
 
         <OfferStack 
+          checkoutHref={checkoutHref}
           productId={productId}
           modules={product.modules}
           bonuses={waitlistBonuses(product.bonuses)}

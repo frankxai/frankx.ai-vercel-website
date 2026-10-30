@@ -1,7 +1,7 @@
 "use client"
 
 import Link from 'next/link'
-import { Sparkles, Mail } from 'lucide-react'
+import { ArrowRight, Sparkles, Mail } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 
@@ -15,14 +15,36 @@ interface FinalCTAProps {
   primaryLabel: string
   primaryHref: string
   primaryTracking?: string
+  /** Set only when the product's buy flag is on (lib/commerce/sku-buy-flags.ts). */
+  checkoutHref?: string | null
 }
 
 function isExternal(href: string) {
   return href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')
 }
 
-export default function FinalCTA({ productId, title, description, primaryLabel, primaryHref, primaryTracking }: FinalCTAProps) {
+export default function FinalCTA({ productId, title, description, primaryLabel, primaryHref, primaryTracking, checkoutHref }: FinalCTAProps) {
   const waitlistHref = `/waitlist?intent=${productId}`
+  if (checkoutHref) {
+    return (
+      <section className="bg-gradient-to-r from-cyan-950/30 via-[#02030b] to-blue-950/30 py-20">
+        <div className="mx-auto max-w-3xl px-6 text-center text-white">
+          <h2 className="text-3xl font-bold sm:text-4xl">{title}</h2>
+          <p className="mt-4 text-base text-white/70 sm:text-lg">{description}</p>
+          <Link
+            href={checkoutHref}
+            onClick={() =>
+              trackEvent('product_cta_click', { productId, location: 'final', target: 'checkout', href: checkoutHref, label: 'buy-now' })
+            }
+            className="mt-10 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_45px_rgba(56,189,248,0.4)] transition hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transform-none"
+          >
+            Buy now
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </Link>
+        </div>
+      </section>
+    )
+  }
   const handleClick = () => {
     trackEvent('product_cta_click', {
       productId,

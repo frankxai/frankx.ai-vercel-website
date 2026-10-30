@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { checkoutHrefFor } from '@/lib/commerce/sku-buy-flags'
 import { getProductBySlug } from '@/lib/products'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
@@ -89,6 +90,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     (LIVE_FREE_CTA_SLUGS.has(product.slug) && legacyPrice === 0 && legacyCta?.href
       ? { label: 'Read Online', href: legacyCta.href }
       : null)
+  // Priced products stay on the waitlist until their flag in
+  // lib/commerce/sku-buy-flags.ts is switched on.
+  const checkoutHref = liveFreeCta ? null : checkoutHrefFor(product)
+  const priceDisplay = offer?.primaryPriceDisplay
 
   const productSchema = {
     name,
@@ -176,6 +181,16 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 >
                   {liveFreeCta.label}
                 </Link>
+              ) : checkoutHref ? (
+                <>
+                  {priceDisplay && <p className="text-3xl font-bold text-white">{priceDisplay}</p>}
+                  <Link
+                    href={checkoutHref}
+                    className="mt-8 flex min-h-14 w-full items-center justify-center rounded-xl bg-white px-8 py-4 text-base font-semibold text-[#0a0a0b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  >
+                    Buy now
+                  </Link>
+                </>
               ) : (
                 <>
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-200">Coming soon</p>

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Script from 'next/script'
 import products from '@/data/products.json'
+import { checkoutHrefFor } from '@/lib/commerce/sku-buy-flags'
 import { waitlistBonuses } from '@/lib/products/waitlist-public'
 import { comingSoonProductStructuredData, createMetadata } from '@/lib/seo'
 import ProductHero from '@/components/products/ProductHero'
@@ -33,6 +34,7 @@ export const metadata = createMetadata({
 const structuredData = comingSoonProductStructuredData(product.name, product.promise)
 
 export default function CreativeAIToolkitPage() {
+  const checkoutHref = checkoutHrefFor(product)
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-slate-100">
       <div className="relative mb-8 overflow-hidden rounded-2xl">
@@ -47,6 +49,7 @@ export default function CreativeAIToolkitPage() {
       </div>
 
       <ProductHero
+        checkoutHref={checkoutHref}
         productId={product.analyticsId ?? product.id}
         badge={product.badge}
         title={product.headline}
@@ -59,6 +62,7 @@ export default function CreativeAIToolkitPage() {
       <ProofRail stats={product.socialProof.stats} quotes={product.socialProof.quotes} />
 
       <OfferStack
+        checkoutHref={checkoutHref}
         productId={product.analyticsId ?? product.id}
         modules={product.modules}
         bonuses={waitlistBonuses(product.bonuses)}
@@ -86,6 +90,7 @@ export default function CreativeAIToolkitPage() {
       </section>
 
       <FinalCTA
+        checkoutHref={checkoutHref}
         productId={product.analyticsId ?? product.id}
         title="Join the Intelligence Revolution"
         description="Install the operating system that thousands of creators and teams trust to orchestrate AI with soul and precision."

@@ -187,6 +187,10 @@ jobs:
         if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: pnpm run test:gencreator-metadata:rendered
 
+      - name: Product page to checkout gate (rendered)
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: pnpm run test:checkout-gate:rendered
+
       - name: Glass input keyboard, touch and motion journey
         run: node scripts/qa/glass-input-journey.mjs
         timeout-minutes: 6

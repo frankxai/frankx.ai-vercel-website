@@ -6,6 +6,7 @@ import OfferStack from '@/components/products/OfferStack'
 import ProductHero from '@/components/products/ProductHero'
 import ProofRail from '@/components/products/ProofRail'
 import TransformationList from '@/components/products/TransformationList'
+import { checkoutHrefFor } from '@/lib/commerce/sku-buy-flags'
 import { waitlistBonuses } from '@/lib/products/waitlist-public'
 import { comingSoonProductStructuredData, createMetadata } from '@/lib/seo'
 import type { ProductRecord } from '@/types/products'
@@ -32,11 +33,13 @@ export const metadata = createMetadata({
 const structuredData = comingSoonProductStructuredData(product.name, product.promise)
 
 export default function CreationChroniclesPage() {
+  const checkoutHref = checkoutHrefFor(product)
   const productId = product.analyticsId ?? product.id
 
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-slate-100">
       <ProductHero
+        checkoutHref={checkoutHref}
         productId={productId}
         badge={product.badge}
         title={product.headline}
@@ -49,6 +52,7 @@ export default function CreationChroniclesPage() {
       <ProofRail stats={product.socialProof.stats} quotes={product.socialProof.quotes} />
 
       <OfferStack
+        checkoutHref={checkoutHref}
         productId={productId}
         modules={product.modules}
         bonuses={waitlistBonuses(product.bonuses)}
@@ -71,6 +75,7 @@ export default function CreationChroniclesPage() {
       </section>
 
       <FinalCTA
+        checkoutHref={checkoutHref}
         productId={productId}
         title="Author the Next Chapter"
         description="Give your audience a narrative they never want to leave and the systems to keep it flowing."

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from 'next/link'
-import { Shield, Sparkles, Mail } from 'lucide-react'
+import { ArrowRight, Shield, Sparkles, Mail } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 import type { ProductOffer } from '@/types/products'
@@ -16,13 +16,15 @@ interface ProductHeroProps {
   subtitle: string
   promise: string
   offer?: ProductOffer
+  /** Set only when the product's buy flag is on (lib/commerce/sku-buy-flags.ts). */
+  checkoutHref?: string | null
 }
 
 function isExternal(href: string) {
   return href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('https://') || href.startsWith('tel:')
 }
 
-export default function ProductHero({ productId, badge, title, subtitle, promise, offer }: ProductHeroProps) {
+export default function ProductHero({ productId, badge, title, subtitle, promise, offer, checkoutHref }: ProductHeroProps) {
   const waitlistHref = `/waitlist?intent=${productId}`
   const handleClick = (target: 'primary' | 'secondary') => {
     const href = COMING_SOON_MODE
@@ -52,12 +54,12 @@ export default function ProductHero({ productId, badge, title, subtitle, promise
       <div className="absolute top-10 right-1/4 h-72 w-72 rounded-full bg-violet-500/[0.08] blur-[128px] pointer-events-none" aria-hidden />
       <div className="absolute bottom-0 left-1/3 h-48 w-64 rounded-full bg-cyan-400/[0.06] blur-[100px] pointer-events-none" aria-hidden />
       <div className="relative mx-auto max-w-5xl px-6 pb-16 pt-24 text-center text-slate-100">
-        {COMING_SOON_MODE ? (
+        {COMING_SOON_MODE && !checkoutHref ? (
           <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-amber-100">
             <Sparkles className="h-4 w-4" />
             Coming Soon
           </div>
-        ) : badge ? (
+        ) : badge && !(checkoutHref && /coming soon/i.test(badge)) ? (
           <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/40 bg-cyan-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-cyan-100">
             <Shield className="h-4 w-4" />
             {badge}
@@ -73,7 +75,18 @@ export default function ProductHero({ productId, badge, title, subtitle, promise
           {promise}
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
-          {COMING_SOON_MODE ? (
+          {checkoutHref ? (
+            <Link
+              href={checkoutHref}
+              onClick={() =>
+                trackEvent('product_cta_click', { productId, location: 'hero', target: 'checkout', href: checkoutHref, label: 'buy-now' })
+              }
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_50px_rgba(45,212,191,0.35)] transition hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transform-none"
+            >
+              Buy now
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          ) : COMING_SOON_MODE ? (
             <Link
               href={waitlistHref}
               onClick={() => handleClick('primary')}
