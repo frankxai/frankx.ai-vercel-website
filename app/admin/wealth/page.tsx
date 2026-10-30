@@ -1,12 +1,57 @@
 import type { Metadata } from 'next'
-import wealthData from '@/data/wealth-ops.json'
 
 export const metadata: Metadata = {
   title: 'Wealth Intelligence — Admin | FrankX',
   robots: { index: false, follow: false },
 }
 
+export const dynamic = 'force-dynamic'
+
+interface WealthData {
+  netWorth: { current: number; history: { date: string; amount: number }[] }
+  fireTarget: { annualExpenses: number; multiple: number; target: number; currentProgress: number; progressPercent: number }
+  propertyTargets: {
+    id: string
+    type: string
+    targetArea: string
+    budgetRange: { min: number; max: number }
+    targetTimeline: string
+    status: string
+    notes: string
+  }[]
+  propertyWatchlist: { area: string; avgPriceM2: number; trend: string }[]
+  taxStrategy: Record<string, string>
+  income: Record<string, number | string | null>
+  expenses: { monthly: Record<string, number | null> }
+}
+
+// This repository is public, so personal financial data is never committed. It is read per request
+// from a server-only environment variable holding the JSON the /wealth-ops command maintains.
+function readWealthData(): WealthData | null {
+  const raw = process.env.WEALTH_OPS_JSON
+  if (!raw) return null
+  try {
+    return JSON.parse(raw) as WealthData
+  } catch {
+    return null
+  }
+}
+
 export default function WealthDashboardPage() {
+  const wealthData = readWealthData()
+  if (!wealthData) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0f] text-white p-6 md:p-10">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-3xl font-bold mb-4">Wealth Intelligence</h1>
+          <p className="text-zinc-400">
+            Wealth data is not configured. Set the server-only <code>WEALTH_OPS_JSON</code> environment variable
+            to the JSON maintained by the /wealth-ops command. It is no longer read from the repository.
+          </p>
+        </div>
+      </div>
+    )
+  }
   const { netWorth, fireTarget, propertyTargets, propertyWatchlist, taxStrategy, income, expenses } = wealthData
 
   return (
