@@ -47,9 +47,9 @@ on:
 # security controls. Keep pull_request always-reporting; a required check with
 # PR paths/paths-ignore can leave unmatched pull requests permanently blocked.
 
-# PR events keep their own group even after merge, when github.ref can be main.
+# Event namespaces keep main separate even from closed PRs using an older workflow.
 concurrency:
-  group: ci-${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || github.ref }}
+  group: ci-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 permissions:

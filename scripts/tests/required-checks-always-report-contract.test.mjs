@@ -254,3 +254,24 @@ test('CI supersedes the same PR while keeping distinct PRs and main in separate 
   assert.notEqual(first.group, other.group)
   assert.notEqual(first.group, main.group)
 })
+
+test('new main runs are isolated from closed PR edits still using a historical workflow', async () => {
+  const workflow = await read('.github/workflows/ci.yml')
+  const main = ciDecision(
+    workflow,
+    ciEvent({ event_name: 'push', ref: 'refs/heads/main', event: {} }),
+  )
+  // Closed pull refs may retain the old workflow after the fix reaches main.
+  const historical = workflow.replace(/^  group:.*$/m, '  group: ci-${{ github.ref }}')
+  const historicalClosedPR = ciDecision(
+    historical,
+    ciEvent({
+      ref: 'refs/heads/main',
+      event: {
+        action: 'edited',
+        pull_request: { number: 1088, state: 'closed', draft: false, merged: true },
+      },
+    }),
+  )
+  assert.notEqual(main.group, historicalClosedPR.group)
+})
