@@ -3,7 +3,9 @@ import { ArchitectureShowroom } from '@/components/ai-architecture/ArchitectureS
 import RunItCta from '@/components/ai-architecture/RunItCta'
 import { PillarGuide, pillarFaqs } from '@/components/ai-architecture/pillar/PillarGuide'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
+import { buildFrankPerson } from '@/lib/frank-person'
+import Link from 'next/link'
 
 const CANONICAL = 'https://www.frankx.ai/ai-architecture'
 const GUIDE_COMMIT = 'dfd96760debe7424655932f6ad5857a3c82f14b3'
@@ -36,8 +38,22 @@ const CONTENTS = [
 ]
 
 export default function AIArchitecturePage() {
+  const author = buildFrankPerson(siteConfig.url)
+
   return (
     <main>
+      <JsonLd
+        type="CollectionPage"
+        id="ai-architecture-page"
+        data={{
+          '@id': `${CANONICAL}#page`,
+          url: CANONICAL,
+          name: 'AI architecture',
+          author: { '@id': author['@id'] },
+          about: { '@type': 'DefinedTerm', name: 'AI architecture' },
+          isPartOf: { '@id': `${siteConfig.url}/#website` },
+        }}
+      />
       <JsonLd
         type="BreadcrumbList"
         id="ai-architecture-breadcrumbs"
@@ -84,6 +100,17 @@ export default function AIArchitecturePage() {
             >
               Final-book reviews remain open.
             </a>
+          </p>
+          <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-400">
+            By{' '}
+            <Link href="/frank-riemer" className="text-emerald-300 underline underline-offset-4">
+              Frank Riemer, AI Architect
+            </Link>
+            . For speaking topics and contact details, read the{' '}
+            <Link href="/media-kit" className="text-emerald-300 underline underline-offset-4">
+              media kit
+            </Link>
+            .
           </p>
         </div>
       </nav>
