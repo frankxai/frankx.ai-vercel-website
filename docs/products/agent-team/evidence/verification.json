@@ -1,0 +1,47 @@
+{
+  "kind": "maker-verification",
+  "baseRevision": "4d802cc10a903a73f583ff92688131f399730b37",
+  "package": {
+    "version": "0.1.0-beta.1",
+    "sha256": "7a6966420c988089cb3140fb765448ddd26eabad9cb84440eac36c8d5cb7d64d",
+    "bytes": 49798
+  },
+  "checks": {
+    "typeCheck": "passed",
+    "lint": "passed; 11 warnings outside changed files",
+    "strictLanguage": "passed; 0 hits",
+    "build": "passed, including postbuild checks",
+    "checkoutTests": "6 passed (including existing SKU contract)",
+    "package": "fresh extraction and SHA-256 verified",
+    "guideDOM": "export/copy/labels/inert input/links passed; simulation only",
+    "localProductionHTTP": {
+      "/products/agent-team": 200,
+      "/checkout/agent-team": 200,
+      "/downloads/frankx-agent-team-sample.md": 200,
+      "/agent-team": 200
+    },
+    "download": "sample response bytes match committed source",
+    "checkout": "closed; no buy link"
+  },
+  "pending": [
+    "rendered candidate desktop/mobile/keyboard verification",
+    "independent review",
+    "ChatGPT and Claude product-interface runs",
+    "five real users",
+    "recorded setup video",
+    "seller/VAT/refund/withdrawal verification",
+    "merchant payment and native file delivery",
+    "customer commercial outcomes"
+  ],
+  "humanUsabilityRuns": 0,
+  "commercialOutcomes": "unknown; no successful account read or purchase in this session",
+  "toolLimitations": [
+    "Stripe account discovery stalled twice and was interrupted",
+    "Cloud Browser could not reach workspace loopback; used local production HTTP plus DOM simulation instead"
+  ],
+  "notes": [
+    "pnpm 11.25.0 performed frozen-lockfile installation; pnpm 10.28.0 later confirmed available. No lockfile change.",
+    "No production deployment, payment, email, refund, marketing enrollment or user recruitment performed.",
+    "Build regenerated Next.js AGENTS heading and route index; unrelated regenerated vault/youtube changes removed."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "version": "0.1.0-beta.1",
+  "status": "evaluation",
+  "merchant": "lemon-squeezy",
+  "checkoutUrl": null,
+  "packageSha256": null,
+  "evidence": {
+    "hostCompatibility": null,
+    "fiveUserAcceptance": null,
+    "setupVideo": null,
+    "sellerTaxAndTerms": null,
+    "checkoutReceiptAndDownload": null,
+    "failedPaymentAndRefund": null,
+    "independentReview": null,
+    "ownerReleaseApproval": null
+  }
+}

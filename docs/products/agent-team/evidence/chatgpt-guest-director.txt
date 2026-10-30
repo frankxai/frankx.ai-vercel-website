@@ -1,0 +1,202 @@
+Instructions received. I’ll operate as a staged workflow, beginning with the Director only. I’ll use supplied evidence, distinguish facts from hypotheses, and stop at each approval gate.
+
+Director — Brief v1
+Ready for human decision
+
+Business: Mara, freelance brand designer serving solo consultants.
+
+1. Weekly goal
+
+Create one useful LinkedIn post that demonstrates how a homepage diagnosis works and connects naturally to Mara’s existing Homepage Clarity Review.
+
+Time available: 120 minutes.
+
+2. Audience and problem
+
+Audience: Solo consultants.
+
+Problem: Their homepage may not make it immediately clear who they help, what service they provide, or what visitors should do next.
+
+Working hypothesis: Some consultants may benefit from an outside perspective on homepage clarity. This is not yet validated market research.
+
+3. Existing offer
+
+Homepage Clarity Review — €180
+
+One homepage reviewed.
+
+Annotated homepage PDF.
+
+20-minute recorded walkthrough.
+
+Delivery within five working days.
+
+Excludes implementation, logo design and ongoing consulting.
+
+Source: S1, fictional offer sheet, Scope section, 2026-10-29.
+
+4. Channel and desired action
+
+Channel: LinkedIn.
+
+Desired action: Invite readers to reply and request the offer scope.
+
+Tone: Warm, direct and useful.
+
+CTA: No invented booking link or pressure tactics.
+
+5. Available evidence
+
+ID
+
+	
+
+Evidence
+
+	
+
+Permitted use
+
+
+
+
+S1
+
+	
+
+Offer sheet
+
+	
+
+Offer terms and price
+
+
+
+
+S2
+
+	
+
+Personal process note
+
+	
+
+Description of Mara's review method
+
+
+
+
+S3
+
+	
+
+Founder hunch
+
+	
+
+Not usable as a factual claim
+
+S2 establishes that Mara reads the opening screen without scrolling and checks audience, service and next action.
+
+Excluded claim: "This could double enquiries." No measurement or customer evidence supports it.
+
+6. Constraints
+
+No revenue or conversion promises.
+
+No invented testimonials or customer results.
+
+No unsupported market-demand claims.
+
+No expansion beyond the existing offer.
+
+No autonomous publishing.
+
+Keep the post practical rather than aggressively promotional.
+
+7. Success check
+
+The weekly deliverable succeeds if:
+
+One LinkedIn post is completed.
+
+It offers a genuinely useful homepage diagnostic insight.
+
+It accurately describes the existing €180 offer.
+
+It includes the reply-based CTA.
+
+It is ready for human review, not automatically published.
+
+8. Weekly task plan
+
+Task
+
+	
+
+Estimated time
+
+
+
+
+Choose the homepage clarity problem and outline the post
+
+	
+
+25 min
+
+
+
+
+Draft the post, offer paragraph and CTA
+
+	
+
+55 min
+
+
+
+
+Check claims, edit and prepare final copy
+
+	
+
+40 min
+
+
+
+
+Total
+
+	
+
+120 min
+
+9. Out of scope
+
+Creating a new product.
+
+Changing the existing price.
+
+Designing a sales funnel.
+
+Building a booking page.
+
+Claiming measurable business outcomes.
+
+Publishing or scheduling content.
+
+10. Missing facts
+
+No blocking facts for this initial brief. Research will need to distinguish Mara's personal process from externally verifiable claims about homepage effectiveness.
+
+Decision gate
+Director complete
+
+Version: Director Brief v1
+Status: Ready for human decision
+Next command: APPROVE BRIEF v1
+
+Handoff: The Researcher may investigate the homepage clarity problem and relevant supporting evidence only after the brief is explicitly approved and you issue RUN RESEARCHER.
+
+You can correct any part of this brief before approving it.
