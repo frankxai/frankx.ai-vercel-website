@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 };
 
 const keyTakeaways = [
-  "AI transformation requires systems thinking, not just tool adoption",
+  "AI transformation requires systems thinking, beyond tool adoption",
   "Conscious AI principles ensure technology serves human values",
   "Strategic implementation creates competitive advantages that scale",
   "Leadership alignment is critical for successful AI initiatives",
@@ -185,7 +185,7 @@ export default function IntelligenceRevolutionPlaybook() {
                 <p className="text-white/80 leading-relaxed mb-6">
                   We are witnessing the most significant technological
                   transformation since the internet. Artificial Intelligence is
-                  not just another tool to add to your stack—it's a fundamental
+                  more than another tool to add to your stack—it's a fundamental
                   shift in how work gets done, decisions get made, and value
                   gets created.
                 </p>
