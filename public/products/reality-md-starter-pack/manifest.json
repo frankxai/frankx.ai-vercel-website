@@ -1,0 +1,31 @@
+{
+  "id": "reality-md-starter-pack",
+  "name": "reality.md Starter Pack",
+  "version": "1.0.0",
+  "priceUsd": 1,
+  "license": "MIT",
+  "attestation": "Built on SIP",
+  "generatedAt": "2026-10-18T23:45:00Z",
+  "files": [
+    {
+      "name": "README.md",
+      "bytes": 4276,
+      "sha256": "87fb138f7821df7c07c6a6d3485f59495cc624a1636239bc8c9da62e0210f114"
+    },
+    {
+      "name": "reality.template.md",
+      "bytes": 5436,
+      "sha256": "d81773e675e9a478f813ef36edea867f3259974d010e039a1e81706be98e28c4"
+    },
+    {
+      "name": "AGENTS.starter.md",
+      "bytes": 3356,
+      "sha256": "a5d5de1ddae280f5a997f38c0ffa02ec9ef7587f0ed759f095ea2b2b8d18a7d7"
+    },
+    {
+      "name": "5-invariants-checklist.md",
+      "bytes": 2274,
+      "sha256": "e48b60f50ea12f582dcb095f6f3a6b7c607e59a3e391469875e3b991edb08b13"
+    }
+  ]
+}
