@@ -29,7 +29,7 @@ Here is how the enterprise framework translates to individual use.
 
 **Personal version:** A single markdown file — your master plan — that defines what you are building, what AI tools you are using, and what outcomes you are tracking. Cost: $0. Time to create: one afternoon.
 
-My strategy document lives at `docs/MASTER_PLAN.md`. It tracks 244 production pages, 90+ blog posts, 14 books, 12,000+ songs, and every active initiative across my creative practice. It is updated weekly. It takes fifteen minutes to review and five minutes to update.
+My strategy document lives at `docs/MASTER_PLAN.md`. It tracks 244 production pages, 90+ blog posts, 14 books, AI music, and every active initiative across my creative practice. It is updated weekly. It takes fifteen minutes to review and five minutes to update.
 
 The enterprise spends six months building a strategy. You can build yours in a day.
 
@@ -97,6 +97,6 @@ The Personal AI CoE changes this. It gives you the same structural advantage tha
 
 The enterprise pays consultants to design this. You are reading it for free.
 
-This book is the playbook. Each chapter takes one component of the Personal AI CoE and shows you how to build it — with specific tools, real configurations, and examples from a system that produces 90+ articles, 14 books, 12,000+ songs, and an education platform serving students, professors, researchers, and doctors.
+This book is the playbook. Each chapter takes one component of the Personal AI CoE and shows you how to build it — with specific tools, real configurations, and examples from a system that produces 90+ articles, 14 books, AI music, and an education platform serving students, professors, researchers, and doctors.
 
 Not theory. Architecture. Let's build.

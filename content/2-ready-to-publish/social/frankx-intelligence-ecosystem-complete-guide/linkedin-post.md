@@ -33,7 +33,7 @@ I spent the last year building something I couldn't find anywhere else.
 
 Not another AI tool. Not another prompt library. A complete intelligence ecosystem — five interconnected systems that compound with every use.
 
-The result: 12,000+ AI songs, 70+ blog articles, a full-stack website, and enterprise consulting deliverables. One person. No team.
+The result: AI music, 70+ blog articles, a full-stack website, and enterprise consulting deliverables. One person. No team.
 
 Here's the architecture that makes it possible.
 

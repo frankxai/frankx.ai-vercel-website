@@ -25,7 +25,7 @@ Most "find your niche" advice stops at passion. Do what you love. Follow your cu
 
 The universe does not provide. Markets provide. And markets respond to specific knowledge — Naval Ravikant's term for expertise that cannot be easily replicated because it emerges from your unique combination of experience, obsession, and practice.
 
-My specific knowledge sits at the intersection of three domains: enterprise AI architecture (from my work at Oracle), creative AI production (from producing 12,000+ songs and 17 books), and systems thinking (from building an open-source agent operating system). No one else occupies this exact intersection. That is not because I am special — it is because intersections are inherently unique. Your intersection is equally unique. The strategy challenge is identifying it and mapping it to demand.
+My specific knowledge sits at the intersection of three domains: enterprise AI architecture (from my work at Oracle), creative AI production (from producing AI music and 17 books), and systems thinking (from building an open-source agent operating system). The strategy challenge is identifying where that combination can serve a specific audience and checking it against actual demand. Your own experience can provide a starting hypothesis for the same exercise.
 
 The Content-Market Fit Matrix is a 2x2 grid:
 
@@ -77,7 +77,7 @@ List your active projects and their current status. Not aspirations — active b
 
 - frankx.ai: 250+ pages, 90+ articles, 17 books (production website)
 - ACOS: 38 agents, 75+ skills, 40+ commands (open-source agent OS)
-- Music catalog: 12,000+ tracks across genres (creative practice)
+- Music catalog: AI-generated tracks across genres (creative practice)
 - Product line: 5 digital products, coaching program (revenue)
 - GenCreator book: chapters in progress (current priority)
 
@@ -234,7 +234,7 @@ Here is a condensed version of my actual strategy document, to show what this lo
 ## What am I building?
 - frankx.ai: 250+ pages, 90+ articles, 17 books — shipping GenCreator book
 - ACOS v10.2: 38 agents, 75+ skills — stable, maintenance mode
-- Music: 12,000+ tracks — daily creation, album curation in progress
+- Music: AI-generated tracks — daily creation, album curation in progress
 - Products: 5 live (ACOS, SoulBook, Vibe OS, GenCreator OS, 5 Suno Prompts)
 - Coaching: application page live, waitlist building
 
