@@ -6,6 +6,8 @@ import { getProductBySlug } from '@/lib/products'
 import { isConfigured, buildDirectCheckoutUrl } from '@/lib/lemon-squeezy'
 import { createMetadata } from '@/lib/seo'
 import type { ProductRecord } from '@/types/products'
+import agentTeamRelease from '@/data/agent-team-release.json'
+import { getAgentTeamCheckoutUrl } from '@/lib/agent-team-commerce'
 
 /**
  * Gate (b) of the triple gate: only slugs listed here can ever render a live
@@ -33,6 +35,7 @@ type Offer = ProductRecord['offer'] | undefined
  */
 function getLiveCheckoutUrl(slug: string, offer: Offer): string | null {
   if (!offer || offer.primaryPrice <= 0) return null
+  if (slug === 'agent-team') return getAgentTeamCheckoutUrl(agentTeamRelease)
   const envKey = PRODUCT_VARIANT_ENV_KEYS[slug]
   if (!envKey) return null
   const variantId = process.env[envKey]
@@ -132,17 +135,18 @@ export default async function CheckoutPage({ params }: { params: Promise<{ slug:
             <div className="mt-8 flex items-start gap-3 rounded-xl border border-white/[0.08] bg-white/[0.03] p-4">
               <Clock className="mt-0.5 h-5 w-5 shrink-0 text-cyan-400" />
               <p className="text-sm leading-relaxed text-slate-300">
-                Direct checkout for this product is not open yet. Join the launch
-                list and you will get an email the day it opens.
+                {slug === 'agent-team'
+                  ? 'Checkout is closed while the toolkit, compatibility and purchase-to-delivery path are tested. No payment is being taken.'
+                  : 'Direct checkout for this product is not open yet. Join the launch list and you will get an email the day it opens.'}
               </p>
             </div>
 
             <div className="mt-8 space-y-3">
               <Link
-                href={`/waitlist?intent=${product.slug}`}
+                href={slug === 'agent-team' ? '/products/agent-team#example' : `/waitlist?intent=${product.slug}`}
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-white/10 px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-white/15"
               >
-                Join the Launch List
+                {slug === 'agent-team' ? 'Inspect the worked example' : 'Join the Launch List'}
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link

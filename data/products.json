@@ -2339,5 +2339,65 @@
       ],
       "requiresEmail": false
     }
+  },
+  {
+    "id": "frankx-agent-team",
+    "slug": "agent-team",
+    "name": "FrankX Agent Team",
+    "category": "Founder toolkit",
+    "badge": "Evaluation candidate",
+    "headline": "Turn one business brief into a reviewed content and offer package.",
+    "subheadline": "Five roles, one manual workflow, your own AI account.",
+    "promise": "Inspect the brief, sources, draft and review before deciding what to publish.",
+    "summary": "A portable toolkit with five role cards, context intake, one complete workflow and three fictional worked examples. Human usability, host compatibility, setup video and paid delivery are pending.",
+    "transformation": [
+      "Write a brief around an existing offer",
+      "Keep claims attached to evidence",
+      "Save a reviewed draft and weekly plan"
+    ],
+    "socialProof": {
+      "stats": [],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 49,
+      "primaryPriceDisplay": "€49 proposed · one-time",
+      "currency": "EUR",
+      "ctaPrimary": "Inspect the toolkit",
+      "ctaPrimaryHref": "/products/agent-team",
+      "note": "Pricing hypothesis. Checkout is closed. Consumer tax-inclusive pricing must be verified before sale."
+    },
+    "modules": [
+      {
+        "title": "Five role cards",
+        "description": "Director, Researcher, Strategist, Creator and Reviewer."
+      },
+      {
+        "title": "One complete workflow",
+        "description": "Brief, sources, angle, draft, review and human approval."
+      },
+      {
+        "title": "Three worked examples",
+        "description": "Fictional designer, workshop and template-maker briefs with visible corrections."
+      },
+      {
+        "title": "Portable files",
+        "description": "Offline HTML guide, editable Markdown and a context export form."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Does it run autonomously?",
+        "answer": "No. You paste instructions into your own chat account and direct each stage. No connectors or automatic posting are included."
+      },
+      {
+        "question": "Can I buy it now?",
+        "answer": "No. The package is an evaluation candidate. Paid checkout and fulfillment have not been verified."
+      },
+      {
+        "question": "Which AI accounts have been tested?",
+        "answer": "ChatGPT and Claude are intended hosts. Product-interface testing in both is pending; no plan or model is certified yet."
+      }
+    ]
   }
 ]

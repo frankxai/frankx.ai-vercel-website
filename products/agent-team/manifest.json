@@ -1,0 +1,29 @@
+{
+  "product": "FrankX Agent Team",
+  "version": "0.1.0-beta.1",
+  "status": "evaluation-candidate",
+  "roles": [
+    "Director",
+    "Researcher",
+    "Strategist",
+    "Creator",
+    "Reviewer"
+  ],
+  "priceHypothesis": {
+    "amount": 49,
+    "currency": "EUR",
+    "billing": "one-time",
+    "validated": false
+  },
+  "hostValidation": {
+    "ChatGPT": "pending",
+    "Claude": "pending"
+  },
+  "humanUsability": {
+    "observed": 0,
+    "required": 5
+  },
+  "setupVideo": "not-recorded",
+  "checkout": "closed",
+  "fulfillment": "unverified"
+}

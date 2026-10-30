@@ -1,11 +1,11 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1072,
+    "total": 1073,
     "aliases": 61,
     "byType": {
       "core": 24,
-      "section": 447,
+      "section": 448,
       "community": 17,
       "tool": 75,
       "static": 15,
@@ -9044,6 +9044,17 @@
         "pro"
       ],
       "type": "product"
+    },
+    {
+      "href": "/products/agent-team",
+      "title": "Agent Team",
+      "tags": [
+        "products",
+        "agent",
+        "team"
+      ],
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/products/agentic-content-engine",
