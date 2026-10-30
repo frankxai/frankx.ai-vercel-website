@@ -74,34 +74,40 @@ case "$SUBJECT" in
   *"[agent-wip]"*) echo "[preview-gate] [agent-wip] checkpoint — SKIPPING."; exit 0 ;;
 esac
 
-# 5. Draft / no-PR check through the public GitHub API (repo is public, no token).
-#    PR_STATE: ready | draft | none | unknown. Rate limits and network errors
-#    land on "unknown", never on a skip.
+# 5. Only a successful, structurally valid GitHub response establishes PR readiness.
+#    The public lookup has no credentials. API failures remain unknown.
 PR_STATE="unknown"
 OWNER="${VERCEL_GIT_REPO_OWNER:-}"
 SLUG="${VERCEL_GIT_REPO_SLUG:-}"
 if [ -n "$OWNER" ] && [ -n "$SLUG" ]; then
+  MODE="list"
   if [ -n "${VERCEL_GIT_PULL_REQUEST_ID:-}" ]; then
-    PR_JSON="$(curl -sf --max-time 5 "https://api.github.com/repos/${OWNER}/${SLUG}/pulls/${VERCEL_GIT_PULL_REQUEST_ID}" 2>/dev/null)"
-    if [ -n "$PR_JSON" ]; then
-      if printf '%s' "$PR_JSON" | grep -q '"draft"[[:space:]]*:[[:space:]]*true'; then
-        PR_STATE="draft"
-      elif printf '%s' "$PR_JSON" | grep -q '"draft"[[:space:]]*:[[:space:]]*false'; then
-        PR_STATE="ready"
-      fi
-    fi
+    MODE="single"
+    URL="https://api.github.com/repos/${OWNER}/${SLUG}/pulls/${VERCEL_GIT_PULL_REQUEST_ID}"
+    PR_JSON="$(curl -sf --max-time 5 "$URL" 2>/dev/null)"
+    CURL_RC=$?
   else
-    PR_JSON="$(curl -sf --max-time 5 "https://api.github.com/repos/${OWNER}/${SLUG}/pulls?head=${OWNER}:${REF}&state=open" 2>/dev/null)"
-    if [ -n "$PR_JSON" ]; then
-      CLEAN="$(printf '%s' "$PR_JSON" | tr -d '[:space:]')"
-      if [ "$CLEAN" = "[]" ]; then
-        PR_STATE="none"
-      elif printf '%s' "$PR_JSON" | grep -q '"draft"[[:space:]]*:[[:space:]]*false'; then
-        PR_STATE="ready"
-      elif printf '%s' "$PR_JSON" | grep -q '"draft"[[:space:]]*:[[:space:]]*true'; then
-        PR_STATE="draft"
-      fi
-    fi
+    PR_JSON="$(curl -sfG --max-time 5 --data-urlencode "head=${OWNER}:${REF}" --data-urlencode "state=open" "https://api.github.com/repos/${OWNER}/${SLUG}/pulls" 2>/dev/null)"
+    CURL_RC=$?
+  fi
+  if [ "$CURL_RC" -eq 0 ]; then
+    PR_STATE="$(printf '%s' "$PR_JSON" | node -e '
+      let state = "unknown";
+      try {
+        const value = JSON.parse(require("node:fs").readFileSync(0, "utf8"));
+        const list = process.argv[1] === "list";
+        const valid = (pr) => pr && typeof pr === "object" && !Array.isArray(pr) && pr.state === "open" && typeof pr.draft === "boolean";
+        if (list && Array.isArray(value) && value.length === 0) state = "none";
+        else {
+          const rows = list ? value : [value];
+          if (Array.isArray(rows) && rows.length && rows.every(valid)) {
+            state = rows.some((pr) => !pr.draft) ? "ready" : "draft";
+          }
+        }
+      } catch {}
+      process.stdout.write(state);
+    ' "$MODE" 2>/dev/null)"
+    PR_STATE="${PR_STATE:-unknown}"
   fi
 fi
 
@@ -185,6 +191,46 @@ RELEVANT_PATHS=(
   .eslintrc.json
   instrumentation.ts
 )
+
+# 1b. Preview whose branch differs from main in no way that changes rendered
+#     output. Measured 2026-09-01: with six harnesses working, "Merge branch
+#     'main' into agent/..." commits rebuilt previews that reviewed nothing —
+#     the branch had merely caught up to main, and production already built
+#     that content.
+#
+#     "Is this a merge from main" is the wrong question: once a feature branch
+#     lands, BOTH its parents are ancestors of main, so ancestry cannot tell the
+#     two merge directions apart after the fact. What matters for a preview is
+#     simpler — does this branch differ from main at all?
+#
+#     Vercel clones previews shallow and without a remote-tracking origin/main,
+#     so the ref this needs is normally absent. An earlier version of this check
+#     was conditioned on origin/main already resolving and therefore never fired.
+#     A depth-1 fetch is enough: `git diff A B -- paths` compares two trees
+#     directly and needs no merge base.
+#
+#     Fail-safe to PROCEED: a failed fetch, an absent ref, or a git error all
+#     fall through to the base-SHA diff below rather than risking a false skip.
+if [ -n "${VERCEL_GIT_COMMIT_REF:-}" ] && [ "${VERCEL_GIT_COMMIT_REF:-}" != "main" ]; then
+  MAIN_REF=""
+  if git rev-parse --verify -q origin/main >/dev/null 2>&1; then
+    MAIN_REF="origin/main"
+  elif command -v timeout >/dev/null 2>&1 \
+       && timeout 45 git fetch --no-tags --depth=1 origin main >/dev/null 2>&1; then
+    MAIN_REF="FETCH_HEAD"
+  elif ! command -v timeout >/dev/null 2>&1 \
+       && git fetch --no-tags --depth=1 origin main >/dev/null 2>&1; then
+    MAIN_REF="FETCH_HEAD"
+  fi
+
+  if [ -z "$MAIN_REF" ]; then
+    echo "[should-deploy] main not reachable for branch comparison — continuing to base-SHA diff."
+  elif git diff --quiet "$MAIN_REF" HEAD -- "${RELEVANT_PATHS[@]}" 2>/dev/null; then
+    echo "[should-deploy] Branch has no relevant diff against main ($MAIN_REF) — SKIPPING build."
+    echo "[should-deploy] Nothing to preview that production has not already built."
+    exit 0
+  fi
+fi
 
 # 2. Run the diff. Capture the exit code explicitly so we can distinguish:
 #    rc=0 → no diff → SKIP
