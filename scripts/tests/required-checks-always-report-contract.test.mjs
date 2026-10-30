@@ -171,7 +171,10 @@ const ciDecision = (workflow, github) => {
   assert.ok(group, 'CI must declare its concurrency group')
   assert.ok(condition, 'CI must declare its job admission')
   const context = {
-    github,
+    github: {
+      ...github,
+      event: { ...github.event, pull_request: github.event.pull_request ?? {} },
+    },
     format: (pattern, ...args) => pattern.replace(/\{(\d+)\}/g, (_, i) => String(args[Number(i)])),
   }
   const evaluate = (expression) => runInNewContext(expression, context, { timeout: 100 })
