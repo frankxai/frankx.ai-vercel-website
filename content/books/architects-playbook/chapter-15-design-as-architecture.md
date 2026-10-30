@@ -37,7 +37,7 @@ Now ask an experienced designer to build a dashboard. They will ask: Who is look
 
 The taste gap is the distance between "competent" and "purposeful." AI closes the gap between "nothing" and "competent." A human with taste closes the gap between "competent" and "purposeful." The engineer who develops design taste becomes the person who can direct AI to produce purposeful design — and that is a far more valuable skill than being able to hand-code CSS.
 
-**How taste develops.** Taste is not innate. It is pattern recognition trained by exposure and deliberate evaluation. The same way twelve thousand songs trained my ear to evaluate music in seconds (Chapter 14), deliberate exposure to well-designed interfaces trains the eye to evaluate UI quality.
+**How taste develops.** Taste is not innate. It is pattern recognition trained by exposure and deliberate evaluation. The same way AI music trained my ear to evaluate music in seconds (Chapter 14), deliberate exposure to well-designed interfaces trains the eye to evaluate UI quality.
 
 The practice: Spend fifteen minutes a day looking at award-winning websites — Awwwards, Httpster, SiteInspire, Minimal Gallery. Do not just browse. Evaluate. Ask yourself: Why does this work? What is the hierarchy? Where does my eye go first? How does the typography create rhythm? What is the spacing system? What would happen if I changed the background color? This deliberate evaluation, repeated daily, builds the pattern recognition that separates someone who can use design tools from someone who can design.
 

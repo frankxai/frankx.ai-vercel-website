@@ -17,7 +17,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
             <a href="/legal/refund" className="hover:text-zinc-300 transition-colors">Refund Policy</a>
           </div>
           <p className="mt-4 text-xs text-zinc-600">
-            Arcanea Labs BV &bull; Amsterdam, Netherlands &bull; KvK: [PENDING] &bull; BTW: [PENDING]
+            Frank Riemer (eenmanszaak), trading as FrankX &bull; Amsterdam, Netherlands &bull; KvK: 42186809 &bull; BTW: [PENDING]
           </p>
         </footer>
       </div>

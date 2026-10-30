@@ -73,7 +73,7 @@ When I publish a blog post titled "How I Built a Personal AI CoE for $50/month,"
 
 Self-promotion substitutes assertion for evidence. Building in public provides the evidence and lets readers draw their own conclusions. Readers who draw their own conclusions trust those conclusions far more than conclusions they are told to reach.
 
-The discipline of building in public is to resist the impulse to editorialize your own work. Let the framework speak. Let the configurations demonstrate. Let the outputs — 12,000+ songs, 90+ published articles, 250 pages of working documentation — make the case that something here is worth paying attention to.
+The discipline of building in public is to resist the impulse to editorialize your own work. Let the framework speak. Let the configurations demonstrate. Let the outputs — AI music, 90+ published articles, 250 pages of working documentation — make the case that something here is worth paying attention to.
 
 ---
 

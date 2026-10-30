@@ -1,0 +1,32 @@
+name: Search context evidence
+on:
+  push:
+    branches: ['agent/codex/search-intelligence-20261027']
+    paths: ['scripts/qa/search-context.mjs', '.github/workflows/search-context-evidence.yml']
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Install isolated browser package
+        run: npm install --prefix "$RUNNER_TEMP/search-browser" --ignore-scripts --no-package-lock puppeteer@24.43.0
+      - name: Install browser binary
+        run: node "$RUNNER_TEMP/search-browser/node_modules/puppeteer/lib/cjs/puppeteer/node/cli.js" browsers install chrome
+      - name: Capture existing host context
+        run: node scripts/qa/search-context.mjs
+        env:
+          SEARCH_BROWSER_MODULE: ${{ runner.temp }}/search-browser/node_modules/puppeteer/lib/esm/puppeteer/puppeteer.js
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: search-context
+          path: ${{ runner.temp }}/search-context
+          if-no-files-found: error

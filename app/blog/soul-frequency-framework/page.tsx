@@ -1,77 +1,145 @@
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Clock, Heart, Share, Sparkles, Users } from 'lucide-react'
-import Link from 'next/link'
-import { Metadata } from 'next'
+import {
+  ArrowLeft,
+  ArrowRight,
+  BookOpen,
+  CheckCircle2,
+  Clock,
+  Heart,
+  Share,
+  Sparkles,
+  Users,
+} from "lucide-react";
+import Link from "next/link";
+import { Metadata } from "next";
+import JsonLd from "@/components/seo/JsonLd";
+import { siteConfig } from "@/lib/seo";
+import { socialLinks } from "@/lib/social-links";
 
 export const metadata: Metadata = {
-  title: 'Soul Frequency Framework | FrankX.AI',
-  description: 'Map the creative signature AI should amplify across your brand, family, and leadership. A conscious approach to AI that honors human values and creativity.',
+  title: "Soul Frequency Framework | FrankX.AI",
+  description:
+    "Map the creative signature AI should amplify across your brand, family, and leadership. A conscious approach to AI that honors human values and creativity.",
   openGraph: {
-    title: 'Soul Frequency Framework',
-    description: 'Map the creative signature AI should amplify across your brand, family, and leadership.',
-    type: 'article',
-    publishedTime: '2024-08-20T00:00:00.000Z',
+    title: "Soul Frequency Framework",
+    description:
+      "Map the creative signature AI should amplify across your brand, family, and leadership.",
+    type: "article",
+    publishedTime: "2024-08-20T00:00:00.000Z",
   },
-}
+};
 
 const frameworkElements = [
   {
-    title: 'Core Values Identification',
-    description: 'Discover the fundamental values that drive your creative and business decisions.',
+    title: "Core Values Identification",
+    description:
+      "Discover the fundamental values that drive your creative and business decisions.",
     steps: [
-      'Values archaeology: Uncover authentic drivers',
-      'Priority mapping: Rank values by importance',
-      'Conflict resolution: Address competing values',
-      'Integration planning: Embed values in AI workflows'
-    ]
+      "Values archaeology: Uncover authentic drivers",
+      "Priority mapping: Rank values by importance",
+      "Conflict resolution: Address competing values",
+      "Integration planning: Embed values in AI workflows",
+    ],
   },
   {
-    title: 'Creative Signature Mapping',
-    description: 'Define the unique creative elements that make your work distinctly yours.',
+    title: "Creative Signature Mapping",
+    description:
+      "Define the unique creative elements that make your work distinctly yours.",
     steps: [
-      'Style analysis: Identify recurring patterns',
-      'Voice development: Articulate your unique perspective',
-      'Aesthetic preferences: Map visual and auditory choices',
-      'Narrative threads: Recognize consistent themes'
-    ]
+      "Style analysis: Identify recurring patterns",
+      "Voice development: Articulate your unique perspective",
+      "Aesthetic preferences: Map visual and auditory choices",
+      "Narrative threads: Recognize consistent themes",
+    ],
   },
   {
-    title: 'AI Amplification Strategy',
-    description: 'Design AI systems that enhance rather than replace your creative essence.',
+    title: "AI Amplification Strategy",
+    description:
+      "Design AI systems that enhance rather than replace your creative essence.",
     steps: [
-      'Augmentation goals: Define AI enhancement objectives',
-      'Boundary setting: Establish AI usage guidelines',
-      'Quality metrics: Create evaluation criteria',
-      'Feedback loops: Build continuous improvement systems'
-    ]
-  }
-]
+      "Augmentation goals: Define AI enhancement objectives",
+      "Boundary setting: Establish AI usage guidelines",
+      "Quality metrics: Create evaluation criteria",
+      "Feedback loops: Build continuous improvement systems",
+    ],
+  },
+];
 
 const applications = [
   {
-    context: 'Personal Branding',
-    example: 'A consultant uses the framework to ensure AI-generated content maintains their authentic voice while scaling their thought leadership.',
-    results: 'More consistent publishing while preserving a recognizable voice and review standard'
+    context: "Personal Branding",
+    example:
+      "A consultant uses the framework to ensure AI-generated content maintains their authentic voice while scaling their thought leadership.",
+    results:
+      "More consistent publishing while preserving a recognizable voice and review standard",
   },
   {
-    context: 'Family Guidance',
-    example: 'Parents apply the framework to teach children how to use AI tools in alignment with family values and educational goals.',
-    results: 'Children develop healthy AI relationships with clear boundaries and creative confidence'
+    context: "Family Guidance",
+    example:
+      "Parents apply the framework to teach children how to use AI tools in alignment with family values and educational goals.",
+    results:
+      "Children develop healthy AI relationships with clear boundaries and creative confidence",
   },
   {
-    context: 'Enterprise Leadership',
-    example: 'An executive team implements the framework to ensure AI initiatives reflect company culture and strategic priorities.',
-    results: 'Clearer adoption conversations because values, boundaries, and operating rules are explicit'
-  }
-]
+    context: "Enterprise Leadership",
+    example:
+      "An executive team implements the framework to ensure AI initiatives reflect company culture and strategic priorities.",
+    results:
+      "Clearer adoption conversations because values, boundaries, and operating rules are explicit",
+  },
+];
 
 export default function SoulFrequencyFramework() {
+  const articleSchema = {
+    headline: "Soul Frequency Framework",
+    description:
+      "Map the creative signature AI should amplify across your brand, family, and leadership. A conscious approach to AI that honors human values and creativity.",
+    image: [`${siteConfig.url}${siteConfig.ogImage}`],
+    author: {
+      "@type": "Person",
+      name: "Frank Riemer",
+      url: siteConfig.url,
+      jobTitle: "AI Architect",
+      description:
+        "Former Oracle AI architect and independent FrankX builder focused on agentic AI systems and creator operating systems.",
+      alumniOf: {
+        "@type": "Organization",
+        name: "Oracle",
+      },
+      sameAs: [
+        socialLinks.x,
+        socialLinks.linkedin,
+        socialLinks.github,
+        socialLinks.youtube,
+        socialLinks.instagram,
+      ],
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteConfig.url}${siteConfig.ogImage}`,
+      },
+    },
+    datePublished: "2024-08-20T00:00:00.000Z",
+    dateModified: "2024-08-20T00:00:00.000Z",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${siteConfig.url}/blog/soul-frequency-framework`,
+    },
+  };
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-<main className="px-6 pt-28 pb-20">
+      <JsonLd type="Article" data={articleSchema} />
+      <main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-4xl space-y-12">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-white/60">
-            <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+            <Link href="/blog" className="hover:text-white transition-colors">
+              Blog
+            </Link>
             <ArrowRight className="w-4 h-4" />
             <span>Soul Frequency Framework</span>
           </nav>
@@ -87,8 +155,9 @@ export default function SoulFrequencyFramework() {
                 Soul Frequency Framework
               </h1>
               <p className="text-xl text-white/70 leading-relaxed">
-                Map the creative signature AI should amplify across your brand, family, and leadership.
-                A conscious approach to AI that honors human values and creativity.
+                Map the creative signature AI should amplify across your brand,
+                family, and leadership. A conscious approach to AI that honors
+                human values and creativity.
               </p>
             </div>
 
@@ -114,45 +183,57 @@ export default function SoulFrequencyFramework() {
           <section className="prose prose-invert prose-lg max-w-none">
             <div className="space-y-6">
               <p className="text-white/80 leading-relaxed">
-                In the rush to adopt AI tools, many creators and leaders lose sight of what makes their work
-                authentically theirs. The Soul Frequency Framework offers a different approach—one that ensures
-                AI amplifies your unique creative signature rather than diluting it.
+                In the rush to adopt AI tools, many creators and leaders lose
+                sight of what makes their work authentically theirs. The Soul
+                Frequency Framework offers a different approach—one that ensures
+                AI amplifies your unique creative signature rather than diluting
+                it.
               </p>
-
             </div>
           </section>
 
           {/* The Problem */}
           <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-red-500/5 via-slate-900 to-slate-950 p-8">
-            <h2 className="text-2xl font-bold text-white mb-4">The Creative Dilution Problem</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">
+              The Creative Dilution Problem
+            </h2>
             <p className="text-white/70 mb-6">
-              Most AI implementations focus on efficiency and output volume, often at the expense of creative
-              authenticity. This leads to homogenized content that lacks the unique voice and perspective
+              Most AI implementations focus on efficiency and output volume,
+              often at the expense of creative authenticity. This leads to
+              homogenized content that lacks the unique voice and perspective
               that audiences connect with.
             </p>
-
           </section>
 
           {/* Framework Components */}
           <section className="space-y-8">
             <div className="text-center space-y-4">
-              <h2 className="text-3xl font-bold text-white">The Framework Components</h2>
+              <h2 className="text-3xl font-bold text-white">
+                The Framework Components
+              </h2>
               <p className="text-xl text-white/70 max-w-2xl mx-auto">
-                Three core elements that help you map and preserve your creative signature
-                while scaling with AI assistance.
+                Three core elements that help you map and preserve your creative
+                signature while scaling with AI assistance.
               </p>
             </div>
 
             <div className="space-y-8">
               {frameworkElements.map((element, index) => (
-                <article key={element.title} className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+                <article
+                  key={element.title}
+                  className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur"
+                >
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center text-purple-300 font-bold">
                       {index + 1}
                     </div>
-                    <h3 className="text-2xl font-semibold text-white">{element.title}</h3>
+                    <h3 className="text-2xl font-semibold text-white">
+                      {element.title}
+                    </h3>
                   </div>
-                  <p className="text-white/70 mb-6 leading-relaxed">{element.description}</p>
+                  <p className="text-white/70 mb-6 leading-relaxed">
+                    {element.description}
+                  </p>
                   <div className="grid gap-3 sm:grid-cols-2">
                     {element.steps.map((step) => (
                       <div key={step} className="flex items-start gap-3">
@@ -169,22 +250,34 @@ export default function SoulFrequencyFramework() {
           {/* Real-World Applications */}
           <section className="space-y-8">
             <div className="text-center space-y-4">
-              <h2 className="text-3xl font-bold text-white">Real-World Applications</h2>
+              <h2 className="text-3xl font-bold text-white">
+                Real-World Applications
+              </h2>
               <p className="text-xl text-white/70 max-w-2xl mx-auto">
-                See how the Soul Frequency Framework has been applied across different contexts
-                to maintain authenticity while scaling with AI.
+                See how the Soul Frequency Framework has been applied across
+                different contexts to maintain authenticity while scaling with
+                AI.
               </p>
             </div>
 
             <div className="grid gap-8 lg:grid-cols-3">
               {applications.map((application) => (
-                <article key={application.context} className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-                  <h3 className="text-xl font-semibold text-white mb-4">{application.context}</h3>
-                  <p className="text-white/70 text-sm mb-4 leading-relaxed">{application.example}</p>
+                <article
+                  key={application.context}
+                  className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur"
+                >
+                  <h3 className="text-xl font-semibold text-white mb-4">
+                    {application.context}
+                  </h3>
+                  <p className="text-white/70 text-sm mb-4 leading-relaxed">
+                    {application.example}
+                  </p>
                   <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-3">
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
-                      <span className="text-emerald-200 text-sm">{application.results}</span>
+                      <span className="text-emerald-200 text-sm">
+                        {application.results}
+                      </span>
                     </div>
                   </div>
                 </article>
@@ -204,8 +297,13 @@ export default function SoulFrequencyFramework() {
                   1
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white mb-1">Complete the Soul Frequency Assessment</h3>
-                  <p className="text-white/70 text-sm">Take our comprehensive assessment to map your creative signature and identify core values.</p>
+                  <h3 className="font-semibold text-white mb-1">
+                    Complete the Soul Frequency Assessment
+                  </h3>
+                  <p className="text-white/70 text-sm">
+                    Take our comprehensive assessment to map your creative
+                    signature and identify core values.
+                  </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -213,8 +311,13 @@ export default function SoulFrequencyFramework() {
                   2
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white mb-1">Design Your AI Guidelines</h3>
-                  <p className="text-white/70 text-sm">Create specific prompts and boundaries that ensure AI outputs align with your creative signature.</p>
+                  <h3 className="font-semibold text-white mb-1">
+                    Design Your AI Guidelines
+                  </h3>
+                  <p className="text-white/70 text-sm">
+                    Create specific prompts and boundaries that ensure AI
+                    outputs align with your creative signature.
+                  </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -222,8 +325,13 @@ export default function SoulFrequencyFramework() {
                   3
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white mb-1">Implement and Iterate</h3>
-                  <p className="text-white/70 text-sm">Test your framework with small projects and refine based on feedback and results.</p>
+                  <h3 className="font-semibold text-white mb-1">
+                    Implement and Iterate
+                  </h3>
+                  <p className="text-white/70 text-sm">
+                    Test your framework with small projects and refine based on
+                    feedback and results.
+                  </p>
                 </div>
               </div>
             </div>
@@ -231,9 +339,12 @@ export default function SoulFrequencyFramework() {
 
           {/* CTA Section */}
           <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-purple-500/5 via-slate-900 to-slate-950 p-8 text-center">
-            <h2 className="text-2xl font-bold text-white mb-4">Ready to Map Your Soul Frequency?</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">
+              Ready to Map Your Soul Frequency?
+            </h2>
             <p className="text-white/70 mb-6 max-w-2xl mx-auto">
-              Take the assessment and get your personalized creative signature report with AI implementation guidelines.
+              Take the assessment and get your personalized creative signature
+              report with AI implementation guidelines.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -271,6 +382,6 @@ export default function SoulFrequencyFramework() {
           </nav>
         </div>
       </main>
-</div>
-  )
+    </div>
+  );
 }

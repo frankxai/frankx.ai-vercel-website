@@ -88,7 +88,7 @@ This is not a hypothetical. This is my actual weekly output: 2 articles, 3 book 
 
 The compound creator builds a moat that competitors cannot cross — not because it is technologically sophisticated, but because it requires time.
 
-**The content moat.** 260 articles, 23 books, 12,000 songs. A competitor who starts today cannot reach this library for years. Each piece of content is a building block in a structure that took time to construct. Time is the one resource that cannot be purchased, automated, or shortcut.
+**The content moat.** 260 articles, 23 books, AI music. A competitor who starts today cannot reach this library for years. Each piece of content is a building block in a structure that took time to construct. Time is the one resource that cannot be purchased, automated, or shortcut.
 
 **The reputation moat.** Five years of consistent publishing creates a reputation that one viral moment cannot replicate. The reputation says: this person ships. This person has done the work. This person can be trusted because the evidence of their competence is publicly verifiable.
 

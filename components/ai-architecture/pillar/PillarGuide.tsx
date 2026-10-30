@@ -200,7 +200,7 @@ export function PillarGuide() {
           is not how capable the model is — it is whether you can enumerate the path in advance.
         </Answer>
 
-        <div className="mt-8 overflow-x-auto">
+        <div tabIndex={0} role="region" aria-label="Workflow and agent shape comparison" className="mt-8 overflow-x-auto">
           <table className="w-full min-w-[46rem] border-collapse text-left text-sm">
             <thead>
               <tr className="border-b border-white/10">
@@ -279,7 +279,7 @@ export function PillarGuide() {
           can join the same trace as the request that caused it.
         </p>
 
-        <p className="mt-6 text-sm text-slate-500">
+        <p className="mt-6 text-sm text-slate-400">
           Source:{' '}
           <Source href="https://modelcontextprotocol.io/specification/2026-07-28/changelog">
             MCP specification 2026-07-28, Key Changes
@@ -333,7 +333,7 @@ export function PillarGuide() {
           decided by what you put in the window in the first place.
         </p>
 
-        <p className="mt-6 text-sm text-slate-500">
+        <p className="mt-6 text-sm text-slate-400">
           Source:{' '}
           <Source href="https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/">
             OWASP GenAI LLM Top 10 2026
@@ -366,19 +366,19 @@ export function PillarGuide() {
               <h3 className="font-semibold text-white">{mode.name}</h3>
               <dl className="mt-4 grid gap-4 sm:grid-cols-3">
                 <div>
-                  <dt className="font-mono text-[11px] uppercase tracking-wider text-slate-500">
+                  <dt className="font-mono text-[11px] tracking-wider text-slate-400">
                     Looks like
                   </dt>
                   <dd className="mt-1.5 text-sm leading-6 text-slate-400">{mode.looksLike}</dd>
                 </div>
                 <div>
-                  <dt className="font-mono text-[11px] uppercase tracking-wider text-slate-500">
+                  <dt className="font-mono text-[11px] tracking-wider text-slate-400">
                     Actual cause
                   </dt>
                   <dd className="mt-1.5 text-sm leading-6 text-slate-400">{mode.actualCause}</dd>
                 </div>
                 <div>
-                  <dt className="font-mono text-[11px] uppercase tracking-wider text-emerald-300/70">
+                  <dt className="font-mono text-[11px] tracking-wider text-emerald-300/80">
                     What fixes it
                   </dt>
                   <dd className="mt-1.5 text-sm leading-6 text-slate-300">{mode.fix}</dd>
@@ -443,7 +443,7 @@ export function PillarGuide() {
           ))}
         </div>
 
-        <p className="mt-10 text-sm leading-6 text-slate-500">
+        <p className="mt-10 text-sm leading-6 text-slate-400">
           Specifications cited on this page were read end to end on {SOURCES_VERIFIED_ON}. Where a
           claim is our position rather than a sourced fact, it says so in the sentence. Where a
           widely repeated number could not be traced to a primary source, it has been left out
