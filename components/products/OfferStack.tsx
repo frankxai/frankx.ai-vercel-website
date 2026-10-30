@@ -1,7 +1,7 @@
 "use client"
 
 import Link from 'next/link'
-import { Sparkles, Mail } from 'lucide-react'
+import { ArrowRight, Sparkles, Mail } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 import type { ProductBonus, ProductModule, ProductOffer, ProductPricingTier } from '@/types/products'
@@ -15,13 +15,15 @@ interface OfferStackProps {
   modules: ProductModule[]
   bonuses?: ProductBonus[]
   pricingTiers?: ProductPricingTier[]
+  /** Set only when the product's buy flag is on (lib/commerce/sku-buy-flags.ts). */
+  checkoutHref?: string | null
 }
 
 function isExternal(href: string) {
   return href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')
 }
 
-export default function OfferStack({ productId, offer, modules, bonuses, pricingTiers }: OfferStackProps) {
+export default function OfferStack({ productId, offer, modules, bonuses, pricingTiers, checkoutHref }: OfferStackProps) {
   const waitlistHref = `/waitlist?intent=${productId}`
   const handleClick = (target: 'primary' | 'secondary' | string, href: string, label?: string) => {
     trackEvent('product_cta_click', {
@@ -72,7 +74,21 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
         </div>
         <div className="flex w-full flex-1 flex-col justify-center">
           <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-8 text-center text-white shadow-[0_20px_60px_rgba(8,15,33,0.55)]">
-            {COMING_SOON_MODE ? (
+            {checkoutHref ? (
+              <>
+                {offer?.primaryPriceDisplay && (
+                  <div className="text-4xl font-bold text-white">{offer.primaryPriceDisplay}</div>
+                )}
+                <Link
+                  href={checkoutHref}
+                  onClick={() => handleClick('checkout', checkoutHref, 'buy-now')}
+                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_55px_rgba(45,212,191,0.35)] transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(56,189,248,0.45)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transform-none"
+                >
+                  Buy now
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </Link>
+              </>
+            ) : COMING_SOON_MODE ? (
               <>
                 {/* Coming Soon Mode */}
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium mb-4">

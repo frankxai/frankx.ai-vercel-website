@@ -22,6 +22,7 @@ import {
 } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
+import { checkoutHrefFor } from '@/lib/commerce/sku-buy-flags'
 import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 import rawProducts from '@/data/products.json'
 
@@ -188,7 +189,9 @@ export default function ProductsPage() {
             Boolean(tier?.ctaHref?.startsWith('/waitlist'))
           )
 
-        const isWaitlist = Boolean(
+        // A switched-on buy flag (lib/commerce/sku-buy-flags.ts) overrides the catalog's waitlist CTA.
+        const checkoutHref = checkoutHrefFor(p)
+        const isWaitlist = !checkoutHref && Boolean(
           p.offer?.ctaPrimary?.toLowerCase().includes('waitlist') ||
           p.offer?.ctaPrimaryHref?.startsWith('/waitlist') ||
           p.cta?.label?.toLowerCase().includes('waitlist') ||
@@ -201,7 +204,9 @@ export default function ProductsPage() {
             ? p.transformation.slice(0, 3)
             : []
 
-        const primaryCtaHref = isWaitlist
+        const primaryCtaHref = checkoutHref
+          ? checkoutHref
+          : isWaitlist
           ? (p.offer?.ctaPrimaryHref ?? `/waitlist?intent=${p.slug}`)
           : (price === 0
               ? (p.offer?.ctaPrimaryHref ?? p.cta?.href ?? `/products/${p.slug}`)
@@ -209,8 +214,9 @@ export default function ProductsPage() {
                   ? p.offer.ctaPrimaryHref
                   : `/checkout/${p.slug}`))
 
-        const primaryCtaLabel =
-          p.offer?.ctaPrimary ??
+        const primaryCtaLabel = checkoutHref
+          ? 'Buy now'
+          : p.offer?.ctaPrimary ??
           p.cta?.label ??
           (isWaitlist ? 'Join waitlist' : price === 0 ? 'Free access' : 'Acquire')
 

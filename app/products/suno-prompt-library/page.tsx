@@ -6,6 +6,7 @@ import OfferStack from '@/components/products/OfferStack'
 import ProductHero from '@/components/products/ProductHero'
 import ProofRail from '@/components/products/ProofRail'
 import TransformationList from '@/components/products/TransformationList'
+import { checkoutHrefFor } from '@/lib/commerce/sku-buy-flags'
 import { waitlistBonuses } from '@/lib/products/waitlist-public'
 import { comingSoonProductStructuredData, createMetadata } from '@/lib/seo'
 import type { ProductRecord } from '@/types/products'
@@ -33,11 +34,13 @@ export const metadata = createMetadata({
 const structuredData = comingSoonProductStructuredData(product.name, product.promise)
 
 export default function SunoPromptLibraryPage() {
+  const checkoutHref = checkoutHrefFor(product)
   const productId = product.analyticsId ?? product.id
 
   return (
     <div className="min-h-screen bg-void text-slate-100">
       <ProductHero
+        checkoutHref={checkoutHref}
         productId={productId}
         badge={product.badge}
         title={product.headline}
@@ -50,6 +53,7 @@ export default function SunoPromptLibraryPage() {
       <ProofRail stats={product.socialProof.stats} quotes={product.socialProof.quotes} />
 
       <OfferStack
+        checkoutHref={checkoutHref}
         productId={productId}
         modules={product.modules}
         bonuses={waitlistBonuses(product.bonuses)}
@@ -99,6 +103,7 @@ export default function SunoPromptLibraryPage() {
       </section>
 
       <FinalCTA
+        checkoutHref={checkoutHref}
         productId={productId}
         title="Ready to Skip the Prompt Guessing Game?"
         description="Get 100+ battle-tested prompts and start making better music today."

@@ -4,6 +4,7 @@ import { ArrowRight, ShieldCheck, Clock } from 'lucide-react'
 
 import { getProductBySlug } from '@/lib/products'
 import { isConfigured, buildDirectCheckoutUrl } from '@/lib/lemon-squeezy'
+import { isBuyEnabled } from '@/lib/commerce/sku-buy-flags'
 import { createMetadata } from '@/lib/seo'
 import type { ProductRecord } from '@/types/products'
 
@@ -73,7 +74,8 @@ export default async function CheckoutPage({ params }: { params: Promise<{ slug:
   const priceDisplay =
     offer?.primaryPriceDisplay || (offer && offer.primaryPrice === 0 ? 'Free' : undefined)
   const isPaid = Boolean(offer && offer.primaryPrice > 0)
-  const checkoutUrl = getLiveCheckoutUrl(product.slug, offer)
+  // The per-SKU buy flag sits in front of the provider gate: off means waitlist.
+  const checkoutUrl = isBuyEnabled(product.id) ? getLiveCheckoutUrl(product.slug, offer) : null
   const productHref = `/products/${product.slug}`
 
   return (

@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+import { isBuyEnabled } from '@/lib/commerce/sku-buy-flags'
+
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
 
 // Product price mapping — add Stripe Price IDs when configured.
@@ -91,18 +93,27 @@ const PRODUCTS: Record<string, { name: string; priceId: string; amount: number }
 
 export async function POST(request: NextRequest) {
   try {
-    if (!STRIPE_SECRET_KEY) {
-      return NextResponse.json(
-        { error: 'Payment system is being configured. Please try again soon.' },
-        { status: 503 }
-      )
-    }
-
     const { productId, email } = await request.json()
 
     const product = PRODUCTS[productId]
     if (!product) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 })
+    }
+
+    // Per-SKU buy flag (lib/commerce/sku-buy-flags.ts). Off by default, so a
+    // configured Stripe key alone never opens checkout for a product.
+    if (!isBuyEnabled(productId)) {
+      return NextResponse.json(
+        { error: 'Checkout is not open for this product', refusal: 'checkout_gated' },
+        { status: 503 }
+      )
+    }
+
+    if (!STRIPE_SECRET_KEY) {
+      return NextResponse.json(
+        { error: 'Payment system is being configured. Please try again soon.' },
+        { status: 503 }
+      )
     }
 
     // Create Stripe Checkout Session via API
