@@ -1,0 +1,357 @@
+diff --git a/app/design-lab/collective/CollectiveGallery.tsx b/app/design-lab/collective/CollectiveGallery.tsx
+new file mode 100644
+--- /dev/null
++++ b/app/design-lab/collective/CollectiveGallery.tsx
+@@ -0,0 +1,72 @@
++'use client'
++
++import { useRef, useState } from 'react'
++import Image from 'next/image'
++import Link from 'next/link'
++import type { PublicRendition } from '@/lib/media/collective-policy.mjs'
++import { ScrollScene } from '@/components/motion/ScrollScene'
++import styles from './collective.module.css'
++
++type Study = { slug: string; key: string; title: string; category: string; copy: string; image: PublicRendition }
++export default function CollectiveGallery({assets}: {assets: Study[]}) {
++  const [filter, setFilter] = useState('All')
++  const [selected, setSelected] = useState<Study | null>(null)
++  const dialog = useRef<HTMLDialogElement>(null)
++  const filters = ['All', ...new Set(assets.map(asset => asset.category))]
++  const visible = filter === 'All' ? assets : assets.filter(asset => asset.category === filter)
++  const hero = assets.find(asset => asset.slug === 'bridge') ?? assets[0]
++  function inspect(study: Study) { setSelected(study); dialog.current?.showModal() }
++  return (
++    <main className={styles.root}>
++      <div className={styles.top}><Link href="/design-lab">Back to Design Lab</Link><span>FrankX / Character studies</span></div>
++      <header className={styles.intro}>
++        <p className={styles.kicker}>The collective workshop</p>
++        <h1>Give the work<br />a <em>living world.</em></h1>
++        <p>Frank, the studio companions, and a new cast of makers. Each scene gives them a job, an object, and a reason to work together.</p>
++        <a className={styles.primary} href="#studies">Explore the studies <span aria-hidden="true">↗</span></a>
++      </header>
++      {hero && <ScrollScene pin={false} start="top bottom" end="bottom top" scrub={0.6}
++        className={styles.hero}
++        timeline={(timeline, root) => {
++          const art = root.querySelector('[data-collective-art]')
++          if (art) timeline.fromTo(art, {yPercent: -2}, {yPercent: 2, ease: 'none'})
++        }}>
++        <div data-collective-art>
++          <Image src={hero.image.url} alt={hero.image.alt} width={hero.image.width} height={hero.image.height}
++            sizes="(max-width: 768px) 100vw, 1200px" priority className={styles.art} />
++        </div>
++        <p className={styles.caption}>Original scene study. The characters are visual interpretations.</p>
++      </ScrollScene>}
++      <section id="studies" className={styles.studies} aria-labelledby="studies-title">
++        <div className={styles.sectionHeading}><h2 id="studies-title">A different kind of company.</h2><p>Build. Make. Discover. Keep.</p></div>
++        <div className={styles.filters} role="group" aria-label="Filter studies">
++          {filters.map(label => <button key={label} type="button" aria-pressed={filter === label}
++            onClick={() => setFilter(label)}>{label}</button>)}
++        </div>
++        <p className={styles.result} role="status" aria-live="polite">{visible.length} {visible.length === 1 ? 'study' : 'studies'}</p>
++        {!assets.length && <p className={styles.empty}>The artwork is in private review. Approved studies will appear here when they are ready.</p>}
++        <div className={styles.grid}>
++          {visible.map((study, i) => <article key={study.slug} className={i === 0 && filter === 'All' ? styles.feature : ''}>
++            <button type="button" className={styles.imageButton} onClick={() => inspect(study)} aria-label={'Inspect ' + study.title}>
++              <Image src={study.image.url} alt={study.image.alt} width={study.image.width} height={study.image.height}
++                sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" className={styles.art} />
++            </button>
++            <div className={styles.studyCopy}><span>{study.category}</span><h3>{study.title}</h3><p>{study.copy}</p>
++              <button className={styles.textButton} type="button" onClick={() => inspect(study)}>Inspect the study <span aria-hidden="true">↗</span></button></div>
++          </article>)}
++        </div>
++      </section>
++      <section className={styles.method}><h2>The character has a job.</h2><p>Its shape should explain how it works. Its action should change something you can see. The resulting artifact should still matter when the illustration is gone.</p>
++        <Link href="/ai-architecture">Inspect the systems behind the work ↗</Link>
++      </section>
++      <dialog ref={dialog} className={styles.dialog} aria-labelledby="study-title" onClose={() => setSelected(null)}>
++        <div className={styles.dialogBar}><p>Study details</p><button autoFocus type="button" aria-label="Close study" onClick={() => dialog.current?.close()}>Close ×</button></div>
++        {selected && <><Image src={selected.image.url} alt={selected.image.alt} width={selected.image.width} height={selected.image.height}
++          sizes="90vw" className={styles.art} /><div className={styles.dialogCopy}><h2 id="study-title">{selected.title}</h2><p>{selected.copy}</p>
++          <dl><dt>Asset</dt><dd>{selected.image.asset_id}</dd><dt>Version</dt><dd>{selected.image.version_id}</dd></dl>
++          <p>Original character interpretation. This scene does not establish a connected agent or runtime.</p></div></>}
++      </dialog>
++    </main>
++  )
++}
++
+diff --git a/app/design-lab/collective/collective.module.css b/app/design-lab/collective/collective.module.css
+new file mode 100644
+--- /dev/null
++++ b/app/design-lab/collective/collective.module.css
+@@ -0,0 +1,2 @@
++.root{background:#0a0a0b;color:#f5f5f0;min-height:100vh;padding:100px max(24px,calc((100vw - 1200px)/2)) 100px}.root a{color:inherit;text-underline-offset:5px}.root :is(button,a):focus-visible{outline:3px solid #6ee7b7;outline-offset:5px}.top{display:flex;justify-content:space-between;gap:24px;font-size:14px;color:#bbbdbb}.intro{padding:88px 0 58px;max-width:830px}.kicker{font-size:15px;color:#6ee7b7;margin:0 0 28px}.intro h1{font-size:clamp(48px,7vw,92px);line-height:1.02;letter-spacing:-.055em;font-weight:600;margin:0 0 28px}.intro em{font-style:normal;color:#99dfc4}.intro>p:not(.kicker){max-width:610px;font-size:20px;line-height:1.65;color:#bfc3bf}.primary{display:inline-flex;gap:42px;align-items:center;background:#a5e9ce;color:#101a15!important;border-radius:999px;padding:17px 26px;text-decoration:none;font-weight:600;margin-top:24px;min-height:48px}.hero{border-radius:24px;overflow:hidden;position:relative;background:#171d19}.art{display:block;width:100%;height:auto}.caption{position:relative;background:#151a16;margin:0;padding:16px 22px;color:#c7d0c7;font-size:13px}.studies{padding-top:100px;scroll-margin-top:80px}.sectionHeading{display:flex;justify-content:space-between;align-items:baseline;gap:24px}.sectionHeading h2,.method h2{font-size:clamp(30px,4vw,48px);letter-spacing:-.035em;font-weight:500;margin:0 0 25px}.sectionHeading p{color:#a9b1a9}.filters{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}.filters button{border:1px solid #3b433c;border-radius:999px;background:transparent;color:#c4cbc4;min-height:44px;padding:9px 20px;font:inherit;cursor:pointer}.filters button[aria-pressed=true]{background:#c5ebd7;color:#12221b;border-color:#c5ebd7}.result{color:#a7b0a7;font-size:14px;min-height:24px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:62px 28px}.grid article{min-width:0}.feature{grid-column:1/-1;display:grid;grid-template-columns:1.6fr 1fr;gap:32px;align-items:center}.imageButton{display:block;width:100%;padding:0;border:0;border-radius:20px;overflow:hidden;background:#151915;cursor:zoom-in}.imageButton img{transition:transform 240ms ease}.imageButton:hover img{transform:scale(1.015)}.studyCopy{padding:22px 3px}.studyCopy>span{font-size:14px;color:#8bc9aa}.studyCopy h3{font-size:28px;font-weight:500;letter-spacing:-.025em;margin:14px 0}.studyCopy p{font-size:17px;line-height:1.6;color:#aeb8ae;max-width:44ch}.textButton{background:none;border:0;color:#d9f5e5;font:inherit;font-weight:500;min-height:44px;padding:8px 0;cursor:pointer}.method{border-top:1px solid #313a32;margin-top:110px;padding-top:64px;max-width:800px}.method p{font-size:22px;line-height:1.65;color:#b6bfb6}.method a{display:inline-block;margin-top:16px;min-height:44px}.empty{padding:30px 0;color:#c6cfc6}.dialog{width:min(1100px,calc(100vw - 40px));max-height:90dvh;padding:0;border:1px solid #465246;border-radius:20px;background:#101511;color:#eff4ef;overflow:auto}.dialog::backdrop{background:#000c;backdrop-filter:blur(8px)}.dialogBar{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;background:#111812;padding:12px 24px}.dialogBar button{min-height:44px;padding:9px 14px;background:#243128;color:#f1f7f2;border:1px solid #526958;border-radius:999px;cursor:pointer;font:inherit}.dialogCopy{padding:26px}.dialogCopy h2{font-size:30px}.dialogCopy p{line-height:1.7}.dialogCopy dl{font-size:13px;overflow-wrap:anywhere}.dialogCopy dt{color:#9dab9d;margin-top:14px}.dialogCopy dd{margin:4px 0 0}.root button{touch-action:manipulation}@media(max-width:760px){.root{padding:92px 22px 72px}.top span{display:none}.intro{padding:50px 0 36px}.intro>p:not(.kicker){font-size:18px}.hero{border-radius:16px}.studies{padding-top:65px}.sectionHeading{display:block}.grid{grid-template-columns:1fr;gap:38px}.feature{grid-column:auto;display:block}.studyCopy h3{font-size:26px}.method{margin-top:65px;padding-top:40px}.method p{font-size:19px}.dialog{width:calc(100vw - 24px)}.dialogCopy{padding:20px}.caption{font-size:12px}}@media(prefers-reduced-motion:reduce){.root *{scroll-behavior:auto!important;transition:none!important;animation:none!important}.imageButton:hover img{transform:none}}
++
+diff --git a/app/design-lab/collective/page.tsx b/app/design-lab/collective/page.tsx
+new file mode 100644
+--- /dev/null
++++ b/app/design-lab/collective/page.tsx
+@@ -0,0 +1,29 @@
++import type { Metadata } from 'next'
++import { notFound } from 'next/navigation'
++import manifest from '@/data/media/collective-approved.json'
++import { publicPlacements } from '@/lib/media/collective-policy.mjs'
++import CollectiveGallery from './CollectiveGallery'
++
++export const metadata: Metadata = {
++  title: 'The collective workshop | FrankX',
++  description: 'Original character studies about building, making and keeping useful work.',
++  robots: { index: false, follow: false },
++}
++const stories = [
++  { slug: 'cast', key: 'cast', title: 'The model garden', category: 'Cast', copy: 'Seven original candidates, each with a different way of working.' },
++  { slug: 'bridge', key: 'build', title: 'A bridge made together', category: 'Build', copy: 'Frank and Brio repair the crossing. Sprout brings the seedlings through.' },
++  { slug: 'film-room', key: 'create', title: 'The moving-image workshop', category: 'Create', copy: 'Pico shapes the waves. Reel frames the shot. Omni gathers the sequence.' },
++  { slug: 'field-kit', key: 'mobile', title: 'The pocket expedition', category: 'Discover', copy: 'A shared discovery becomes something to carry home.' },
++  { slug: 'living-archive', key: 'library', title: 'The living archive', category: 'Learn', copy: 'A found image gets a place in the collection.' },
++]
++export default function CollectivePage() {
++  const approved = publicPlacements(manifest)
++  const assets = stories.flatMap(story => {
++    const image = approved['frankx.design-lab.collective.' + story.key]
++    return image ? [{...story, image}] : []
++  })
++  // noindex is not privacy. A public render sees approved imagery only.
++  if (!assets.length && process.env.NODE_ENV === 'production') notFound()
++  return <CollectiveGallery assets={assets} />
++}
++
+diff --git a/data/media/collective-approved.json b/data/media/collective-approved.json
+new file mode 100644
+--- /dev/null
++++ b/data/media/collective-approved.json
+@@ -0,0 +1,4 @@
++{
++  "schema_version": 1,
++  "placements": {}
++}
+diff --git a/lib/media/collective-policy.d.mts b/lib/media/collective-policy.d.mts
+new file mode 100644
+--- /dev/null
++++ b/lib/media/collective-policy.d.mts
+@@ -0,0 +1,11 @@
++export type PublicRendition = {
++  asset_id: string; version_id: string; url: string; width: number; height: number;
++  alt: string; sha256: string; status: 'published'; access: 'public';
++  rights_cleared: true; third_party_characters: false;
++  approval: { source: 'control-plane-export'; actor: string; at: string; evidence_uri: string; web_sha256: string };
++}
++export const PUBLIC_BLOB_HOST: string
++export function canPublish(asset: unknown): boolean
++export function isPublicRendition(value: unknown): value is PublicRendition
++export function publicPlacements(manifest: unknown): Record<string, PublicRendition>
++
+diff --git a/lib/media/collective-policy.mjs b/lib/media/collective-policy.mjs
+new file mode 100644
+--- /dev/null
++++ b/lib/media/collective-policy.mjs
+@@ -0,0 +1,44 @@
++// Central public-delivery policy. Private records are never input to the page.
++export const PUBLIC_BLOB_HOST = 'vbmwpibfe0yzx3fd.public.blob.vercel-storage.com'
++const checksum = /^[a-f0-9]{64}$/
++const key = /^[a-z0-9_.-]+$/
++export function canPublish(asset) {
++  const approval = asset?.approval
++  return Boolean(asset && asset.status === 'approved' &&
++    asset.rights?.public_approved === true &&
++    asset.rights?.status === 'cleared' &&
++    asset.rights?.third_party_characters === false &&
++    checksum.test(asset.web?.sha256 ?? '') &&
++    approval?.source === 'control-plane-export' &&
++    typeof approval.actor === 'string' && approval.actor.trim() &&
++    typeof approval.evidence_uri === 'string' && /^https:\/\//.test(approval.evidence_uri) &&
++    Number.isFinite(Date.parse(approval.at)) &&
++    approval.web_sha256 === asset.web.sha256)
++}
++export function isPublicRendition(value) {
++  if (!value || typeof value !== 'object') return false
++  let url
++  try { url = new URL(value.url) } catch { return false }
++  return value.status === 'published' && value.access === 'public' &&
++    value.rights_cleared === true && value.third_party_characters === false &&
++    value.approval?.source === 'control-plane-export' &&
++    typeof value.approval.actor === 'string' && Boolean(value.approval.actor.trim()) &&
++    /^https:\/\//.test(value.approval.evidence_uri ?? '') &&
++    Number.isFinite(Date.parse(value.approval.at)) &&
++    value.approval.web_sha256 === value.sha256 &&
++    url.protocol === 'https:' && url.hostname === PUBLIC_BLOB_HOST &&
++    !url.username && !url.password && !url.search && !url.hash &&
++    checksum.test(value.sha256 ?? '') && url.pathname.includes(value.sha256) &&
++    typeof value.asset_id === 'string' && key.test(value.asset_id) &&
++    typeof value.version_id === 'string' && key.test(value.version_id) &&
++    typeof value.alt === 'string' && value.alt.trim().length > 0 &&
++    Number.isInteger(value.width) && value.width > 0 &&
++    Number.isInteger(value.height) && value.height > 0
++}
++export function publicPlacements(manifest) {
++  if (manifest?.schema_version !== 1 || !manifest.placements ||
++      typeof manifest.placements !== 'object' || Array.isArray(manifest.placements)) return {}
++  return Object.fromEntries(Object.entries(manifest.placements)
++    .filter(([placement, value]) => key.test(placement) && isPublicRendition(value)))
++}
++
+diff --git a/scripts/media/collective-policy.test.mjs b/scripts/media/collective-policy.test.mjs
+new file mode 100644
+--- /dev/null
++++ b/scripts/media/collective-policy.test.mjs
+@@ -0,0 +1,59 @@
++import test from 'node:test'
++import assert from 'node:assert/strict'
++import {mkdtemp, writeFile, symlink, rm} from 'node:fs/promises'
++import {tmpdir} from 'node:os'
++import {join} from 'node:path'
++import {createHash} from 'node:crypto'
++import {canPublish, publicPlacements, PUBLIC_BLOB_HOST} from '../../lib/media/collective-policy.mjs'
++import {verifiedFile, plan} from './publish-collective.mjs'
++const hash = 'a'.repeat(64)
++const approval = {source:'control-plane-export', actor:'named-reviewer', at:'2026-10-30T12:00:00Z',
++  evidence_uri:'https://review.example/receipt', web_sha256:hash}
++const asset = () => ({asset_id:'ast_example',version_id:'ver_example',status:'approved',
++  rights:{public_approved:true,status:'cleared',third_party_characters:false},approval:{...approval},
++  web:{sha256:hash}})
++const rendition = () => ({asset_id:'ast_example',version_id:'ver_example',status:'published',
++  access:'public',rights_cleared:true,third_party_characters:false,approval:{...approval},
++  url:'https://' + PUBLIC_BLOB_HOST + '/frankx/ast_example/ver_example/web/' + hash + '.webp',
++  sha256:hash,width:1672,height:941,alt:'A source-backed original scene.'})
++test('a draft or guest character cannot be promoted; approval binds exact web bytes', () => {
++  assert.equal(canPublish(asset()),true)
++  for(const change of [
++    {status:'review'}, {approval:null}, {approval:{...approval,web_sha256:'b'.repeat(64)}},
++    {rights:{public_approved:true,status:'cleared',third_party_characters:true}},
++    {rights:{public_approved:true,status:'pending',third_party_characters:false}}
++  ]) assert.equal(canPublish({...asset(),...change}),false)
++})
++test('render selection rejects private, stale, revoked, signed and foreign URLs', () => {
++  assert.equal(Object.keys(publicPlacements({schema_version:1,placements:{hero:rendition()}})).length,1)
++  for(const change of [
++    {access:'private'}, {status:'superseded'}, {rights_cleared:false},
++    {url:'https://untrusted.example/' + hash + '.webp'},
++    {url:rendition().url+'?token=private'}, {approval:{...approval,web_sha256:'b'.repeat(64)}},
++    {alt:''}, {width:0}, {third_party_characters:true},
++    {url:rendition().url.replace(hash,'unversioned')}
++  ]) assert.deepEqual(publicPlacements({schema_version:1,placements:{hero:{...rendition(),...change}}}),{})
++  assert.deepEqual(publicPlacements({schema_version:2,placements:{hero:rendition()}}),{})
++  assert.deepEqual(publicPlacements(null),{})
++})
++test('ingest verifies bytes and rejects escape paths and disguised images', async () => {
++  const root=await mkdtemp(join(tmpdir(),'collective-test-'))
++  try {
++    const bytes=Buffer.from([137,80,78,71,13,10,26,10,1,2,3,4])
++    await writeFile(join(root,'image.png'),bytes)
++    const file={path:'image.png',bytes:bytes.length,mime:'image/png',sha256:createHash('sha256').update(bytes).digest('hex')}
++    assert.deepEqual(await verifiedFile(root,file),bytes)
++    await assert.rejects(verifiedFile(root,{...file,sha256:'b'.repeat(64)}),/checksum/)
++    await assert.rejects(verifiedFile(root,{...file,mime:'image/webp'}),/MIME/)
++    await writeFile(join(root,'fake.webp'),'this is not an image')
++    const fake=Buffer.from('this is not an image')
++    await assert.rejects(verifiedFile(root,{path:'fake.webp',bytes:fake.length,mime:'image/webp',sha256:createHash('sha256').update(fake).digest('hex')}),/MIME/)
++    await symlink('/etc/hosts',join(root,'escape.png'))
++    await assert.rejects(verifiedFile(root,{...file,path:'escape.png'}),/escapes/)
++    const a={...asset(),web:file,master:file,placements:['test.hero']}
++    assert.equal((await plan({schema_version:1,assets:[a]},root,'plan')).length,1)
++    await assert.rejects(plan({schema_version:1,assets:[a,a]},root,'plan'),/duplicate/)
++    await assert.rejects(plan({schema_version:1,assets:[a]},root,'public'),/approval/)
++  } finally {await rm(root,{recursive:true,force:true})}
++})
++
+diff --git a/scripts/media/publish-collective.mjs b/scripts/media/publish-collective.mjs
+new file mode 100644
+--- /dev/null
++++ b/scripts/media/publish-collective.mjs
+@@ -0,0 +1,96 @@
++import { readFile, writeFile, rename, realpath } from 'node:fs/promises'
++import { resolve, relative, isAbsolute, dirname } from 'node:path'
++import { fileURLToPath } from 'node:url'
++import { createHash } from 'node:crypto'
++import { canPublish, isPublicRendition, PUBLIC_BLOB_HOST } from '../../lib/media/collective-policy.mjs'
++
++export async function verifiedFile(root, file) {
++  if (!file || typeof file.path !== 'string' || !Number.isSafeInteger(file.bytes) ||
++      file.bytes < 1 || file.bytes > 32 * 1024 * 1024) throw new Error('Invalid file record')
++  const base = await realpath(root)
++  const path = await realpath(resolve(base, file.path))
++  const rel = relative(base, path)
++  if (rel.startsWith('..') || isAbsolute(rel)) throw new Error('File escapes the packet')
++  const bytes = await readFile(path)
++  const digest = createHash('sha256').update(bytes).digest('hex')
++  if (digest !== file.sha256 || bytes.length !== file.bytes) throw new Error('Byte/checksum mismatch: ' + file.path)
++  const webp = bytes.subarray(0, 4).toString() === 'RIFF' && bytes.subarray(8, 12).toString() === 'WEBP'
++  const png = bytes.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10]))
++  if (!(file.mime === 'image/webp' && webp) && !(file.mime === 'image/png' && png)) throw new Error('MIME signature mismatch')
++  return bytes
++}
++export async function plan(packet, root, mode = 'plan') {
++  if (packet?.schema_version !== 1 || !Array.isArray(packet.assets) || packet.assets.length > 50) throw new Error('Invalid packet')
++  const ids = new Set()
++  const items = []
++  for (const asset of packet.assets) {
++    if (!/^[a-z0-9_]+$/.test(asset.asset_id ?? '') || !/^[a-z0-9_]+$/.test(asset.version_id ?? '') ||
++        ids.has(asset.asset_id)) throw new Error('Invalid or duplicate identity')
++    ids.add(asset.asset_id)
++    const file = mode === 'private' ? asset.master : asset.web
++    await verifiedFile(root, file)
++    if (mode === 'public' && !canPublish(asset)) throw new Error('No source-bound public approval: ' + asset.asset_id)
++    if (!Array.isArray(asset.placements) || !asset.placements.length ||
++        asset.placements.some(p => typeof p !== 'string' || !/^[a-z0-9_.-]+$/.test(p))) throw new Error('Invalid placement')
++    items.push({asset, file, key: ['frankx', asset.asset_id, asset.version_id,
++      mode === 'private' ? 'master' : 'web', file.sha256 + (file.mime === 'image/png' ? '.png' : '.webp')].join('/')})
++  }
++  return items
++}
++async function main() {
++  const args = process.argv.slice(2)
++  const root = resolve(args.find(v => !v.startsWith('--')) ?? '.')
++  const mode = args.includes('--publish') ? 'public' : args.includes('--upload-private') ? 'private' : 'plan'
++  const packet = JSON.parse(await readFile(resolve(root, 'asset-register.json'), 'utf8'))
++  // Validate the complete batch before the first remote write.
++  const items = await plan(packet, root, mode)
++  if (mode === 'plan') {
++    console.log(JSON.stringify({mode, assets: items.length, bytes: items.reduce((n, x) => n + x.file.bytes, 0),
++      publishable: items.filter(x => canPublish(x.asset)).length, writes: 0}, null, 2))
++    return
++  }
++  const token = process.env[mode === 'private' ? 'BLOB_PRIVATE_READ_WRITE_TOKEN' : 'BLOB_READ_WRITE_TOKEN']
++  if (!token) throw new Error('Missing authorized ' + mode + ' Blob publisher credential')
++  const {put} = await import('@vercel/blob')
++  const target = resolve(root, 'implementation/data/media/collective-approved.json')
++  const existing = JSON.parse(await readFile(target, 'utf8'))
++  if (existing.schema_version !== 1 || typeof existing.placements !== 'object' || !existing.placements) throw new Error('Invalid existing manifest')
++  const placements = {...existing.placements}
++  const journalPath = resolve(root, 'upload-journal.json')
++  let journal = []
++  try { journal = JSON.parse(await readFile(journalPath, 'utf8')) } catch (e) { if (e.code !== 'ENOENT') throw e }
++  for (const item of items) {
++    const prior = journal.find(row => row.key === item.key && row.mode === mode)
++    let uploaded = prior
++    if (!uploaded) {
++      const bytes = await verifiedFile(root, item.file)
++      const blob = await put(item.key, bytes, {access: mode, token, addRandomSuffix: false,
++        allowOverwrite: false, contentType: item.file.mime, cacheControlMaxAge: 31536000})
++      uploaded = {mode, key: item.key, url: blob.url, asset_id: item.asset.asset_id, sha256: item.file.sha256}
++      journal.push(uploaded)
++      await writeFile(journalPath, JSON.stringify(journal, null, 2) + '\n', {mode: 0o600})
++    }
++    if (mode === 'public') {
++      const url = new URL(uploaded.url)
++      if (uploaded.sha256 !== item.file.sha256 || url.pathname !== '/' + item.key) throw new Error('Cached receipt does not match the selected immutable object')
++      if (url.hostname !== PUBLIC_BLOB_HOST) throw new Error('Unexpected public store; placement promotion stopped')
++      const rendition = {
++        asset_id: item.asset.asset_id, version_id: item.asset.version_id, url: uploaded.url,
++        width: item.file.width, height: item.file.height, alt: item.asset.alt,
++        sha256: item.file.sha256, status: 'published', access: 'public',
++        rights_cleared: true, third_party_characters: false, approval: item.asset.approval
++      }
++      if (!isPublicRendition(rendition)) throw new Error('Invalid final rendition; placement promotion stopped')
++      for (const placement of item.asset.placements) placements[placement] = rendition
++    }
++  }
++  if (mode === 'public') {
++    const tmp = target + '.tmp'
++    await writeFile(tmp, JSON.stringify({schema_version:1, placements}, null, 2) + '\n')
++    await rename(tmp, target)
++  }
++  console.log(JSON.stringify({mode, uploaded: items.length, manifest_updated: mode === 'public'}))
++}
++if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url))
++  main().catch(error => { console.error(error.message); process.exitCode = 1 })
++
