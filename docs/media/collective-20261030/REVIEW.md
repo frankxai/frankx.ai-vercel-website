@@ -17,7 +17,7 @@ Independent policy mutation checks confirmed that review/private records are omi
 
 The publisher's approval object is a metadata contract, not authentication of a control-plane export. An authorized operator must verify the live authority/evidence before supplying a cleared export. This package does not implement the metadata database or an approval API and does not authorize an agent to self-approve.
 
-The cached upload journal is now bound to immutable object path and checksum, and final entries pass the same complete rendition validator before manifest promotion. This was a producer correction after independent review; do not claim a second independent run of the corrected upload integration.
+The cached upload journal is now bound to immutable object path and checksum, and final entries pass the same complete rendition validator before manifest promotion. The corrected journal path/checksum/final-validator branch was independently reinspected. Live upload integration remains untested.
 
-No independent browser, Blob integration, full-repository CI, audience-recognition or production test was performed. Native review gallery interaction/rendering remains a verification task. Broaden the next artistic wave into cooler technical and night environments; several current scenes share warm planted stone and timber grammar.
+A final source review found the standalone html scroll container missed the reduced-motion override; the override is now included. No independent browser, Blob integration, full-repository CI, audience-recognition or production test was performed. Native review gallery interaction/rendering remains a verification task. Broaden the next artistic wave into cooler technical and night environments; several current scenes share warm planted stone and timber grammar.
 

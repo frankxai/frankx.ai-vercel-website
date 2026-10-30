@@ -2,10 +2,10 @@ diff --git a/app/design-lab/collective/CollectiveGallery.tsx b/app/design-lab/co
 new file mode 100644
 --- /dev/null
 +++ b/app/design-lab/collective/CollectiveGallery.tsx
-@@ -0,0 +1,72 @@
+@@ -0,0 +1,75 @@
 +'use client'
 +
-+import { useRef, useState } from 'react'
++import { useEffect, useRef, useState } from 'react'
 +import Image from 'next/image'
 +import Link from 'next/link'
 +import type { PublicRendition } from '@/lib/media/collective-policy.mjs'
@@ -20,7 +20,10 @@ new file mode 100644
 +  const filters = ['All', ...new Set(assets.map(asset => asset.category))]
 +  const visible = filter === 'All' ? assets : assets.filter(asset => asset.category === filter)
 +  const hero = assets.find(asset => asset.slug === 'bridge') ?? assets[0]
-+  function inspect(study: Study) { setSelected(study); dialog.current?.showModal() }
++  useEffect(() => {
++    if (selected && dialog.current && !dialog.current.open) dialog.current.showModal()
++  }, [selected])
++  function inspect(study: Study) { setSelected(study) }
 +  return (
 +    <main className={styles.root}>
 +      <div className={styles.top}><Link href="/design-lab">Back to Design Lab</Link><span>FrankX / Character studies</span></div>
