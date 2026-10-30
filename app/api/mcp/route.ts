@@ -76,4 +76,9 @@ async function handle(request: Request): Promise<Response> {
   return body === undefined ? transport.handleRequest(request) : transport.handleRequest(request, { parsedBody: body })
 }
 
-export { methodNotAllowed as DELETE, methodNotAllowed as GET, handle as POST }
+// Next.js would otherwise build Allow from every exported handler and advertise GET and DELETE.
+function options(): Response {
+  return new Response(null, { status: 204, headers: { allow: 'POST, OPTIONS', 'cache-control': 'no-store' } })
+}
+
+export { methodNotAllowed as DELETE, methodNotAllowed as GET, options as OPTIONS, handle as POST }
