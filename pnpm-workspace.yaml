@@ -5,6 +5,11 @@
 # package.json form silently reverted @opentelemetry/propagator-jaeger to 2.7.1
 # and reintroduced postcss 8.5.23. scripts/check-pnpm-overrides.mjs guards this.
 overrides:
+  # Mature pins restore frozen-install compliance with the existing 3-day
+  # cooldown (2026-10-09). Revisit on the next reviewed dependency refresh.
+  'baseline-browser-mapping': '2.11.27'
+  'caniuse-lite': '1.0.30001814'
+  'express@5': '5.2.1'
   '@opentelemetry/propagator-jaeger': '^2.9.0'
   'hono': '^4.13.1'
   'ip-address': '^10.4.0'

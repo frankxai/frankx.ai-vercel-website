@@ -1,0 +1,468 @@
+{
+  "schemaVersion": "1.1.0",
+  "reviewedAt": "2026-10-09",
+  "reviewer": "hub_audit",
+  "verdict": "final-source-code-review-pass-remote-validation-pending",
+  "authority": "Read-only independent review of website implementation; no production publication attestation, no website edits or remote writes.",
+  "independence": "Did not author website implementation or product/coding article draft. Authored original evals-draft.md, so this receipt independently reviews renderer, mapping, publication controls and product/coding scope, but is not an independent truth approval of the eval prose.",
+  "inputs": [
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/lib/research/dossier-policy.mjs",
+      "sha256": "dc784e1ee486ebce2388a0ea81a237bae3f27bbbaaa26bdba432990334180d1b",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/lib/research/dossiers.ts",
+      "sha256": "dd00469c9e5b956c50e6d7ac7064e34e97e2522989be6d1647d41824b18d01c4",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/components/research/ResearchDossier.tsx",
+      "sha256": "7c67b3fc3ec0e74ba0104b30a4f3bb2bcc3fd426a8708b4def510dcf0fccaf86",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/components/research/OfficialVideo.tsx",
+      "sha256": "63b5d5d10ddd504dbfd114e3dbf8f6a6dc75e9c8626a97fa7fd9edbcf61e7023",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/app/research/[slug]/page.tsx",
+      "sha256": "326879fdf5c0c4956153d0d91c99e2d6ec35958ffce0919d486e70443b6daa65",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/app/research/research-dossier-index.tsx",
+      "sha256": "ad92a5366ab5c9f4338e1495433cb42ad47122959416b21b2408807bf2dde25c",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/app/research/page.tsx",
+      "sha256": "3a42164f991dcebba99e3a3aabedd381c1f8ce4a21a500d953f36f6c82cab74f",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/app/research/visual-catalog/layout.tsx",
+      "sha256": "2f0c89fc48f55b819325feccf63b1e34dc219b42cd4582edab64531976338d4e",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/app/research/methodology/page.tsx",
+      "sha256": "c8c56f0504ba1c9da09f1bfa5b3e89cc84ab3662a4067f93827ecb5a46ed232d",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/app/research/series/architecture-of-intelligence/page.tsx",
+      "sha256": "4eb3a79c4f9ac36e6e067c159e315eea20484dc1990878cf4362841e312c49a5",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/lib/research/hubs.ts",
+      "sha256": "b294902bfe0c527752978bdfd9ffd0583919e72360b2715a648b3c4cd7dc780a",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/data/research/dossier-candidates.json",
+      "sha256": "ed7730de51cc2c5eb2686242b1ca359eebcc1daa81e905bb2ed1191283ed5f28",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/next.config.mjs",
+      "sha256": "4ebec566d2995c37377ab57d908837cbbf5739b3ccc0d757ccf6430c8a230711",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/scripts/check-research-dossiers.mjs",
+      "sha256": "b997dae363093e7d5f47c36eb131356b91c6ccc033a8a0068f4ab81ec707637c",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/scripts/tests/research-dossiers.test.mjs",
+      "sha256": "330a10520bb1e3d6f4d32e222d68f34eb69055e79e1f33ac827a689c305af7df",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/package.json",
+      "sha256": "ec9cfbbc3e593c11ea31238c2dafa806c3b1d98b77cce3c70ba3028173cf9e2d",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/pnpm-workspace.yaml",
+      "sha256": "29b03fa7771799d0fe3e72caaceadb3ce3171a46dcc6f798337150b810156c25",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/pnpm-lock.yaml",
+      "sha256": "b62e309fd38f378d8747ffa68fcafb1e6603d3ae9615e033477c67aecd58a920",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/scripts/generate_feed.mjs",
+      "sha256": "69837dd70f546ee99783e9321e88ec5fbf3d6ae25e97cd90fb7dea678ba0aa23",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/app/rss.xml/route.ts",
+      "sha256": "46aaae946a4d82f19b41d13c43f8eb28c32e58807eed7a4a42a7c53b0fb857e1",
+      "scope": "source/configuration review"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/docs/research/agentic-product-development-2026-10/legacy-rss.xml",
+      "sha256": "09df5d85aaf6c430010e8de40273640497685b75834ce3ab035ff5434a57252d",
+      "scope": "receipt or preservation context"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/docs/research/agentic-product-development-2026-10/research-packet.json",
+      "sha256": "0ab556efd3d101ad25b4186bd26fa486252d7e1ec0a3a2b8a4a18b9dd778046e",
+      "scope": "receipt or preservation context"
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/docs/research/agentic-product-development-2026-10/README.md",
+      "sha256": "8b60a61d4a0bccb8721917c68ed8075fea640b5ef03c5046e39d7383d8dae3cc",
+      "scope": "receipt or preservation context"
+    }
+  ],
+  "productionHold": {
+    "policy": "VERCEL_ENV must equal preview, otherwise NODE_ENV must equal development when VERCEL_ENV is unset. Production classification wins over development NODE_ENV.",
+    "registryReviewedClaimCount": 0,
+    "publicationAuthorityGranted": false,
+    "candidateIndexProduction": "returns null",
+    "candidatePageProduction": "getReviewDossier returns undefined; existing held topic route remains"
+  },
+  "sourceMapping": [
+    {
+      "slug": "agentic-product-development",
+      "reviewStatus": "editorial-candidate",
+      "sourceCount": 23,
+      "sourceIds": [
+        "a2a-mcp-comparison",
+        "a2a-specification",
+        "acos-contract",
+        "acos-workflow",
+        "agent-skills-format",
+        "anthropic-agent-sdk",
+        "anthropic-managed-agents",
+        "cloudflare-agent-fibers",
+        "cloudflare-agents",
+        "effective-agents",
+        "google-adk-graphs",
+        "langchain-deep-agents",
+        "langchain-managed-beta",
+        "langchain-managed-deep-agents",
+        "langgraph-persistence",
+        "long-running-harness",
+        "managed-architecture",
+        "mcp-2026-release",
+        "openai-agents-api",
+        "openai-codex-sdk",
+        "swe-pro-audit-2026",
+        "vercel-workflow-agent",
+        "vercel-workflow-ai"
+      ],
+      "mediaIds": [
+        "a2a-mcp-boundary",
+        "google-adk-graph-workflow",
+        "langchain-managed-deep-agents-video",
+        "mcp-stateless-core-demo",
+        "openai-managed-architecture"
+      ],
+      "unknownSourceIds": [],
+      "uniqueDomIds": true,
+      "related": [
+        {
+          "slug": "coding-agents-full-stack",
+          "reason": "Inspect the coding loop, context handover and verification boundary."
+        },
+        {
+          "slug": "agentic-evals-swe-bench-trajectories",
+          "reason": "Design a workload evaluation before expanding autonomy."
+        },
+        {
+          "slug": "human-in-the-loop-governance",
+          "reason": "Research agenda: policy, approvals and escalation."
+        },
+        {
+          "slug": "agentic-memory-architectures",
+          "reason": "Research agenda: durable state, retrieval and forgetting."
+        },
+        {
+          "slug": "mcp-ecosystem-tool-calling",
+          "reason": "Research agenda: tool contracts and protocol migration."
+        }
+      ],
+      "bindingSha256": "7f01dc883c3db3cfa881fccaa7b6eb41c014a4f21db4846c1afcfb330ff82a7e",
+      "bindingDefinition": "UTF-8 JSON, sorted keys, compact separators, ensure_ascii=false; object holds final dossier plus source and media records sorted by ID.",
+      "truthReviewScope": "Renderer/citation integrity; independent product/coding evaluation scope and three runtime primary rechecks listed in this receipt. Eval prose authored by this reviewer requires a different truth reviewer."
+    },
+    {
+      "slug": "coding-agents-full-stack",
+      "reviewStatus": "editorial-candidate",
+      "sourceCount": 9,
+      "sourceIds": [
+        "anthropic-agent-sdk",
+        "langgraph-persistence",
+        "long-running-harness",
+        "managed-architecture",
+        "metr-rct-2025",
+        "metr-survey-2026",
+        "metr-update-2026",
+        "openai-agents-api",
+        "openai-codex-sdk"
+      ],
+      "mediaIds": [
+        "openai-managed-architecture"
+      ],
+      "unknownSourceIds": [],
+      "uniqueDomIds": true,
+      "related": [
+        {
+          "slug": "agentic-product-development",
+          "reason": "Place coding inside the complete product lifecycle."
+        },
+        {
+          "slug": "agentic-evals-swe-bench-trajectories",
+          "reason": "Audit the task, score and measurement protocol."
+        },
+        {
+          "slug": "context-engineering-long-context",
+          "reason": "Research agenda: what context to retain and retrieve."
+        },
+        {
+          "slug": "agent-sovereignty-sandboxing-security",
+          "reason": "Research agenda: isolate generated code and credentials."
+        }
+      ],
+      "bindingSha256": "5d7b9f1aa8a866efacd4bc3917d8bd7777947e1256c4becf3718d61ab37b3958",
+      "bindingDefinition": "UTF-8 JSON, sorted keys, compact separators, ensure_ascii=false; object holds final dossier plus source and media records sorted by ID.",
+      "truthReviewScope": "Renderer/citation integrity; independent product/coding evaluation scope and three runtime primary rechecks listed in this receipt. Eval prose authored by this reviewer requires a different truth reviewer."
+    },
+    {
+      "slug": "agentic-evals-swe-bench-trajectories",
+      "reviewStatus": "editorial-candidate",
+      "sourceCount": 12,
+      "sourceIds": [
+        "agentbench",
+        "gaia",
+        "metr-rct-2025",
+        "metr-survey-2026",
+        "metr-update-2026",
+        "osworld-v1",
+        "osworld-v2",
+        "programbench",
+        "swe-maintainers",
+        "swe-pro-audit-2026",
+        "swe-verified-audit-2026",
+        "tau-bench"
+      ],
+      "mediaIds": [],
+      "unknownSourceIds": [],
+      "uniqueDomIds": true,
+      "related": [
+        {
+          "slug": "agentic-product-development",
+          "reason": "Turn evaluation into a product acceptance contract."
+        },
+        {
+          "slug": "coding-agents-full-stack",
+          "reason": "Inspect the coding harness, review and release boundary."
+        },
+        {
+          "slug": "methodology",
+          "reason": "Read how sources, corrections and limits are handled."
+        }
+      ],
+      "bindingSha256": "324bb63c9855b4116e090e4a0b16fb71e24d0d97e9f4fdf97b0babe255e57122",
+      "bindingDefinition": "UTF-8 JSON, sorted keys, compact separators, ensure_ascii=false; object holds final dossier plus source and media records sorted by ID.",
+      "truthReviewScope": "Renderer/citation integrity; independent product/coding evaluation scope and three runtime primary rechecks listed in this receipt. Eval prose authored by this reviewer requires a different truth reviewer."
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "id": "privacy-enhanced-youtube-csp",
+      "location": "next.config.mjs:46; components/research/OfficialVideo.tsx:11",
+      "issue": "Preview player embed host initially absent from frame-src",
+      "resolution": "Exact www.youtube-nocookie.com added; code verified. Activated runtime playback remains to inspect."
+    },
+    {
+      "id": "eval-crosslink-slug",
+      "location": "data/research/dossier-candidates.json",
+      "issue": "Eval candidate slug differed from existing topic and product/coding related target",
+      "resolution": "Candidate now agentic-evals-swe-bench-trajectories; existing URLs preserved; all three candidate dossiers connect."
+    },
+    {
+      "id": "proposal-provenance-label",
+      "location": "data/research/dossier-candidates.json",
+      "issue": "Three eval architectural recommendations labelled primary-source documentation",
+      "resolution": "benchmark-quality-p3, sustained-execution-p2 and evaluation-contract-p2 now analysis with citations retained."
+    },
+    {
+      "id": "unlicensed-openai-graphic",
+      "location": "data/research/dossier-candidates.json; components/research/ResearchDossier.tsx:30",
+      "resolution": "Graphic type link; no remote reproduction claimed. Others preserve official publisher/source/license notices."
+    },
+    {
+      "id": "reported-measurement-label",
+      "location": "components/research/ResearchDossier.tsx:8",
+      "resolution": "External study metrics render Reported study, not FrankX measurement."
+    },
+    {
+      "id": "consent-panel-narrow-screen",
+      "location": "components/research/OfficialVideo.tsx:8-19",
+      "resolution": "Pre-activation panel now content-sized with min-h-[15rem]; only loaded iframe retains aspect-video. Responsive visual evidence remains pending."
+    },
+    {
+      "id": "source-publication-dates",
+      "location": "components/research/ResearchDossier.tsx:93",
+      "resolution": "Published date renders when supplied, separately from checked/access date."
+    },
+    {
+      "id": "persistent-candidate-check",
+      "location": "package.json:76,104-105,188-189",
+      "resolution": "Candidate checker wired to prebuild and candidate tests to both merge gates."
+    },
+    {
+      "id": "generic-link-report-scope",
+      "resolution": "Parent restored/excluded generic generated reports; final execution evidence belongs in separate log/release receipt."
+    }
+  ],
+  "primaryRechecks": [
+    {
+      "claim": "WorkflowAgent tool operations require use step for durable execution; unmarked execute functions run in memory.",
+      "url": "https://ai-sdk.dev/docs/agents/workflow-agent",
+      "locator": "Tools as Workflow Steps, lines333-360",
+      "ref": "turn45view0",
+      "verdict": "supported"
+    },
+    {
+      "claim": "Cloudflare fibers preserve explicitly stashed snapshots; original JavaScript closure cannot automatically replay after eviction.",
+      "url": "https://developers.cloudflare.com/agents/runtime/execution/durable-execution/",
+      "locator": "Retained recovery lines457-475; Recovery lines530-532",
+      "ref": "turn46view0",
+      "verdict": "supported"
+    },
+    {
+      "claim": "Codex SDK source supports app-server relationship in capability table.",
+      "url": "https://learn.chatgpt.com/docs/codex-sdk",
+      "locator": "lines930; Python library lines973-984",
+      "ref": "turn46view2",
+      "verdict": "supported"
+    }
+  ],
+  "checks": [
+    {
+      "command": "node --test scripts/tests/research-dossiers.test.mjs scripts/tests/research-publication-gate.test.mjs",
+      "result": "15/15 pass on final source",
+      "runner": "independent reviewer"
+    },
+    {
+      "command": "node scripts/check-research-dossiers.mjs",
+      "result": "3held dossiers; source/media bindings valid",
+      "runner": "independent reviewer"
+    },
+    {
+      "command": "node scripts/check-research-publication.mjs",
+      "result": "0reviewed claims; generated grades clear",
+      "runner": "independent reviewer"
+    },
+    {
+      "command": "node scripts/check-pnpm-overrides.mjs",
+      "result": "30overrides declared and present in lockfile",
+      "runner": "independent reviewer"
+    },
+    {
+      "command": "node scripts/generate_feed.mjs",
+      "result": "Successful skip; app route owns RSS; no file mutation",
+      "runner": "independent reviewer"
+    },
+    {
+      "command": "git diff --check",
+      "result": "pass",
+      "runner": "independent reviewer"
+    },
+    {
+      "command": "node --test acos/test/research-packet.test.mjs",
+      "result": "14/14pass at local15aa53c, including normalized reviewer identity and observed-date precision checks",
+      "runner": "independent reviewer"
+    },
+    {
+      "command": "node acos/scripts/validate-research-packet.mjs website/docs/research/agentic-product-development-2026-10/research-packet.json",
+      "result": "valid:true,errors:[]",
+      "runner": "independent reviewer"
+    }
+  ],
+  "remainingActions": [
+    {
+      "severity": "runtime-review",
+      "location": "final remote preview",
+      "action": "Bind deployment/source revision to the final frozen code/data hashes; capture375/768/1440screenshots."
+    },
+    {
+      "severity": "runtime-review",
+      "location": "components/research/OfficialVideo.tsx and ResearchDossier.tsx",
+      "action": "Check keyboard navigation/focus, table scrolling, citation/section anchors, consent activation, actual embedded/native video playback and narrow/zoom output. No iframe loads before activation in independently inspected saved HTML."
+    }
+  ],
+  "limitations": [
+    "No website edits, publication attestation or remote writes by this reviewer.",
+    "This is final-source implementation and scoped content review; not independent truth approval of eval prose authored by this reviewer.",
+    "Full builds and production-server checks were performed by parent; exact-final-source remote build/source binding and visual/interaction verification remain pending.",
+    "No legal attestation or independent security audit of dependency versions supplied.",
+    "Input hashes and per-dossier bindings freeze inspected source. Any subsequent material change needs scope-aware re-review."
+  ],
+  "reviewStage": "final-frozen-source-before-remote-visual-proof",
+  "finalAcosProvenance": {
+    "commit": "05d68aeef6cfd9caaf3234d464a12279bc5c6bbe",
+    "observed": "Both exact hosted contract/workflow URLs successfully fetched through GitHub connector and read. Candidate source URL/version records point to this commit.",
+    "urls": [
+      "https://github.com/frankxai/agentic-creator-os/blob/05d68aeef6cfd9caaf3234d464a12279bc5c6bbe/docs/content-intelligence.md",
+      "https://github.com/frankxai/agentic-creator-os/blob/05d68aeef6cfd9caaf3234d464a12279bc5c6bbe/workflows/content/research-to-article.yaml"
+    ]
+  },
+  "finalAdditionalScope": {
+    "methodology": "Source-fit and review questions replace generic high/medium/low source weights. No source-count confidence or replication formula remains in changed sections.",
+    "rss": "Original public/rss.xml is byte-identical to archived docs/research/agentic-product-development-2026-10/legacy-rss.xml. Public duplicate removed. Existing app/rss.xml/route.ts still owns /rss.xml. Generator exits successfully without static emission when route exists.",
+    "dependencyPins": "Three additional transitive overrides reviewed. Existing minimumReleaseAge:4320 is unchanged; override guard passes30declared overrides. This is not an independent package-release-date or security audit.",
+    "candidatePacket": "ACOS research-packet validator returns valid:true,errors:[]; packet remains statusHOLD,authorityPREVIEW. Structural validity is not human truth/publication acceptance."
+  },
+  "independentlyInspectedEarlierSSRArtifacts": [
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/.next/server/app/research/agentic-product-development.html",
+      "sha256": "f1bf650170126b2905cc0972b8948ef5f2673e08c314bc6bd725c7fd7a01205b",
+      "canonical": "https://www.frankx.ai/research/agentic-product-development",
+      "robots": "noindex, follow",
+      "iframeCountBeforeActivation": 0,
+      "missingFragmentTargets": [],
+      "renderedSourceAnchors": 23,
+      "embeddedAcosSourcePins": [
+        "87a70635dfbb1b8d8af1192d70c26cfe3e6122d6"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/.next/server/app/research/coding-agents-full-stack.html",
+      "sha256": "a0182366e97c41256161a04f6c098b519c441889c2366770c922ea2eaa01e970",
+      "canonical": "https://www.frankx.ai/research/coding-agents-full-stack",
+      "robots": "noindex, follow",
+      "iframeCountBeforeActivation": 0,
+      "missingFragmentTargets": [],
+      "renderedSourceAnchors": 9,
+      "embeddedAcosSourcePins": []
+    },
+    {
+      "path": "/workspace/scratch/dee1bde820f1/website/.next/server/app/research/agentic-evals-swe-bench-trajectories.html",
+      "sha256": "2a237f3317ce8ad99f7cb9c9c7045db70d20c32b3d3e264df9aef17c435d706e",
+      "canonical": "https://www.frankx.ai/research/agentic-evals-swe-bench-trajectories",
+      "robots": "noindex, follow",
+      "iframeCountBeforeActivation": 0,
+      "missingFragmentTargets": [],
+      "renderedSourceAnchors": 12,
+      "embeddedAcosSourcePins": []
+    }
+  ],
+  "earlierBuildBoundary": "Saved preview HTML embeds earlier ACOS87a70635dfbb1b8d8af1192d70c26cfe3e6122d6, not frozen05d68ae source pin. These artifact checks establish inspected output properties, not an exact-final-source build/deployment attestation. Final remote preview must rebuild/bind frozen source.",
+  "parentExecutionEvidenceReviewed": {
+    "path": "/workspace/scratch/dee1bde820f1/production-links-check.log",
+    "sha256": "d1c00bfd65d00973e046433ed42dcdfa178a102fd9d27baa62f04988cb0d6c6b",
+    "observedSummary": "15pages,468unique internalURLs,0HTTP404,0othererrors,2redirects.",
+    "scope": "Log independently read; execution performed by parent. It does not establish all104research pages individually rendered or a remote deployed source revision."
+  }
+}
