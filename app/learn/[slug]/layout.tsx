@@ -1,14 +1,15 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import { learningPaths } from '@/data/learning-paths'
 import { createMetadata } from '@/lib/seo'
 
 // Server layout that gives each /learn/[slug] portal its OWN metadata.
 //
-// The page itself is a client component (`'use client'`) for the interactive
-// video players + motion, so it can't export generateMetadata. Without this
-// layout every portal inherited app/learn/layout.tsx verbatim — identical
+// The server page resolves one portal before passing it to interactive video
+// players. This layout keeps metadata beside the shared route contract.
+// Without this layout every portal inherited app/learn/layout.tsx verbatim — identical
 // <title>, description, AND a canonical pointing at /learn — which told Google
-// to consolidate all 8 portal pages into the listing and drop the details.
+// to consolidate portal pages into the listing and drop the details.
 // This restores unique title / description / canonical / OG per portal.
 
 // Only the portals in data/learning-paths.ts exist. Any other slug (for example
@@ -37,13 +38,7 @@ export async function generateMetadata({
   const { slug } = await params
   const path = learningPaths.find((p) => p.slug === slug)
 
-  if (!path) {
-    return createMetadata({
-      title: 'Learning Portal | FrankX',
-      description: 'Curated, free learning portals for the AI platforms that matter.',
-      path: `/learn/${slug}`,
-    })
-  }
+  if (!path) notFound()
 
   // Portal-specific OG image from the first curated video's YouTube thumbnail.
   const ogImage = path.videos[0]
