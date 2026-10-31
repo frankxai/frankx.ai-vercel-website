@@ -1,4 +1,7 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import { auth } from '@/lib/auth'
+import { isWealthAdmin, parseWealthData } from '@/lib/wealth-data'
 
 export const metadata: Metadata = {
   title: 'Wealth Intelligence — Admin | FrankX',
@@ -7,38 +10,10 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic'
 
-interface WealthData {
-  netWorth: { current: number; history: { date: string; amount: number }[] }
-  fireTarget: { annualExpenses: number; multiple: number; target: number; currentProgress: number; progressPercent: number }
-  propertyTargets: {
-    id: string
-    type: string
-    targetArea: string
-    budgetRange: { min: number; max: number }
-    targetTimeline: string
-    status: string
-    notes: string
-  }[]
-  propertyWatchlist: { area: string; avgPriceM2: number; trend: string }[]
-  taxStrategy: Record<string, string>
-  income: Record<string, number | string | null>
-  expenses: { monthly: Record<string, number | null> }
-}
-
-// This repository is public, so personal financial data is never committed. It is read per request
-// from a server-only environment variable holding the JSON the /wealth-ops command maintains.
-function readWealthData(): WealthData | null {
-  const raw = process.env.WEALTH_OPS_JSON
-  if (!raw) return null
-  try {
-    return JSON.parse(raw) as WealthData
-  } catch {
-    return null
-  }
-}
-
-export default function WealthDashboardPage() {
-  const wealthData = readWealthData()
+export default async function WealthDashboardPage() {
+  // Recheck at the data boundary even if proxy routing changes or is bypassed.
+  if (!isWealthAdmin(await auth(), process.env.ADMIN_EMAIL)) notFound()
+  const wealthData = parseWealthData(process.env.WEALTH_OPS_JSON)
   if (!wealthData) {
     return (
       <div className="min-h-screen bg-[#0a0a0f] text-white p-6 md:p-10">
@@ -59,7 +34,7 @@ export default function WealthDashboardPage() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse motion-reduce:animate-none" />
           <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
             Wealth Intelligence
           </h1>
@@ -85,7 +60,7 @@ export default function WealthDashboardPage() {
           </div>
           <div className="h-3 bg-zinc-800 rounded-full overflow-hidden mb-3">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all"
+              className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400"
               style={{ width: `${Math.max(fireTarget.progressPercent, 1)}%` }}
             />
           </div>
