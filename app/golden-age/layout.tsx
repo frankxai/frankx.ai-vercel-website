@@ -1,18 +1,29 @@
 import { Metadata } from 'next';
-import { Playfair_Display, Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+const playfair = localFont({
+  src: [
+    { path: '../../public/fonts/brand/PlayfairDisplay-Variable.woff2', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/brand/PlayfairDisplay-Variable.woff2', weight: '500', style: 'normal' },
+    { path: '../../public/fonts/brand/PlayfairDisplay-Variable.woff2', weight: '600', style: 'normal' },
+    { path: '../../public/fonts/brand/PlayfairDisplay-Variable.woff2', weight: '700', style: 'normal' },
+  ],
   variable: '--font-playfair',
   display: 'swap',
+  adjustFontFallback: 'Times New Roman',
 });
 
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+const inter = localFont({
+  src: [
+    { path: '../../public/fonts/brand/Inter-Variable.woff2', weight: '300', style: 'normal' },
+    { path: '../../public/fonts/brand/Inter-Variable.woff2', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/brand/Inter-Variable.woff2', weight: '500', style: 'normal' },
+    { path: '../../public/fonts/brand/Inter-Variable.woff2', weight: '600', style: 'normal' },
+    { path: '../../public/fonts/brand/Inter-Variable.woff2', weight: '700', style: 'normal' },
+  ],
   variable: '--font-inter',
   display: 'swap',
+  adjustFontFallback: 'Arial',
 });
 
 export const metadata: Metadata = {

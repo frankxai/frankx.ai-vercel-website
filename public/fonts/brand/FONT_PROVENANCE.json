@@ -1,0 +1,1144 @@
+{
+  "schemaVersion": 1,
+  "sourceRevision": "6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+  "assets": [
+    {
+      "path": "Inter-Variable.ttf",
+      "officialDownloadUrl": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/inter/Inter[opsz,wght].ttf",
+      "sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+      "bytes": 876576,
+      "family": "Inter",
+      "version": "Google Fonts repository revision 6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+      "weights": "100-900",
+      "style": "normal",
+      "axes": "opsz,wght",
+      "subset": "latin,latin-ext,vietnamese",
+      "licensePath": "OFL-inter.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/inter/OFL.txt",
+      "delivery": {
+        "path": "Inter-Variable.woff2",
+        "bytes": 350460,
+        "sha256": "13b4cddc57045d40b411008e61588c8f81aa0bd72fe884624831a0ff9c4d159a",
+        "sourceInputSha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+      }
+    },
+    {
+      "path": "Poppins-SemiBold.ttf",
+      "officialDownloadUrl": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/poppins/Poppins-SemiBold.ttf",
+      "sha256": "d3bf1bdaf0550e83da9ac0b1d1d9fe6db086835a83aa28578e609a394b9a0286",
+      "bytes": 157312,
+      "family": "Poppins",
+      "version": "Google Fonts repository revision 6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+      "weights": "600",
+      "style": "normal",
+      "axes": null,
+      "subset": "latin,latin-ext,devanagari",
+      "licensePath": "OFL-poppins.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/poppins/OFL.txt",
+      "delivery": {
+        "path": "Poppins-SemiBold.woff2",
+        "bytes": 51500,
+        "sha256": "9757d1991bdbe8a4fc58ef4e1a6180cb36045e402003a3013024522622a8df2a",
+        "sourceInputSha256": "d3bf1bdaf0550e83da9ac0b1d1d9fe6db086835a83aa28578e609a394b9a0286"
+      }
+    },
+    {
+      "path": "Poppins-Bold.ttf",
+      "officialDownloadUrl": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/poppins/Poppins-Bold.ttf",
+      "sha256": "983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c",
+      "bytes": 155996,
+      "family": "Poppins",
+      "version": "Google Fonts repository revision 6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+      "weights": "700",
+      "style": "normal",
+      "axes": null,
+      "subset": "latin,latin-ext,devanagari",
+      "licensePath": "OFL-poppins.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/poppins/OFL.txt",
+      "delivery": {
+        "path": "Poppins-Bold.woff2",
+        "bytes": 51024,
+        "sha256": "8cb425dd6e6315b7512b680abaaba07bbfcab0e235ae035e9ddde71a656cfb8d",
+        "sourceInputSha256": "983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c"
+      }
+    },
+    {
+      "path": "Poppins-ExtraBold.ttf",
+      "officialDownloadUrl": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/poppins/Poppins-ExtraBold.ttf",
+      "sha256": "f2ab17c1a63a0ecc12c2461848fc8a469395e3cd2d641803e889c643d9f958e1",
+      "bytes": 154836,
+      "family": "Poppins",
+      "version": "Google Fonts repository revision 6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+      "weights": "800",
+      "style": "normal",
+      "axes": null,
+      "subset": "latin,latin-ext,devanagari",
+      "licensePath": "OFL-poppins.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/poppins/OFL.txt",
+      "delivery": {
+        "path": "Poppins-ExtraBold.woff2",
+        "bytes": 50996,
+        "sha256": "81546293f0603f3eff05072c8a095d38220eaefa4d3bb5fd3bdb9f6c5ff949d7",
+        "sourceInputSha256": "f2ab17c1a63a0ecc12c2461848fc8a469395e3cd2d641803e889c643d9f958e1"
+      }
+    },
+    {
+      "path": "PlayfairDisplay-Variable.ttf",
+      "officialDownloadUrl": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/playfairdisplay/PlayfairDisplay[wght].ttf",
+      "sha256": "c40f2293766a503bc70cce9e512ef844a4ccb7cbcde792fe2ea31d191917d8d6",
+      "bytes": 300724,
+      "family": "Playfair Display",
+      "version": "Google Fonts repository revision 6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+      "weights": "400-900",
+      "style": "normal",
+      "axes": "wght",
+      "subset": "latin,latin-ext,cyrillic,vietnamese",
+      "licensePath": "OFL-playfairdisplay.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/playfairdisplay/OFL.txt",
+      "delivery": {
+        "path": "PlayfairDisplay-Variable.woff2",
+        "bytes": 106440,
+        "sha256": "4297e9ec39f1b8157623d048fb99eab03c90e482669599e8fc662ee178994c49",
+        "sourceInputSha256": "c40f2293766a503bc70cce9e512ef844a4ccb7cbcde792fe2ea31d191917d8d6"
+      }
+    },
+    {
+      "path": "PlayfairDisplay-Italic-Variable.ttf",
+      "officialDownloadUrl": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/playfairdisplay/PlayfairDisplay-Italic[wght].ttf",
+      "sha256": "a5e26dc5e2e77fb2803a0bf02fd4f81ee136ec8dea863ccdb0c59a263b21378b",
+      "bytes": 278688,
+      "family": "Playfair Display",
+      "version": "Google Fonts repository revision 6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+      "weights": "400-900",
+      "style": "italic",
+      "axes": "wght",
+      "subset": "latin,latin-ext,cyrillic,vietnamese",
+      "licensePath": "OFL-playfairdisplay.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/playfairdisplay/OFL.txt",
+      "delivery": {
+        "path": "PlayfairDisplay-Italic-Variable.woff2",
+        "bytes": 103728,
+        "sha256": "07dd1cb3a11ed07a7d706e25b64b1a1a46c0ab1bbd53f7e4b5dff9052fc6dd26",
+        "sourceInputSha256": "a5e26dc5e2e77fb2803a0bf02fd4f81ee136ec8dea863ccdb0c59a263b21378b"
+      }
+    },
+    {
+      "path": "JetBrainsMono-Variable.ttf",
+      "officialDownloadUrl": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/jetbrainsmono/JetBrainsMono[wght].ttf",
+      "sha256": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda",
+      "bytes": 187208,
+      "family": "JetBrains Mono",
+      "version": "Google Fonts repository revision 6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+      "weights": "100-800",
+      "style": "normal",
+      "axes": "wght",
+      "subset": "latin,latin-ext,cyrillic,greek",
+      "licensePath": "OFL-jetbrainsmono.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/jetbrainsmono/OFL.txt",
+      "delivery": {
+        "path": "JetBrainsMono-Variable.woff2",
+        "bytes": 71736,
+        "sha256": "7b7f3419196f675a973d30cb70078749120caddea86c8547ebf54a8db2ca13af",
+        "sourceInputSha256": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+      }
+    },
+    {
+      "path": "CormorantGaramond-Variable.ttf",
+      "officialDownloadUrl": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/cormorantgaramond/CormorantGaramond[wght].ttf",
+      "sha256": "b20b7d9626dd956b2c5e558692ad328b1f19e3275e2782db4fa07670d83f35e0",
+      "bytes": 1195560,
+      "family": "Cormorant Garamond",
+      "version": "Google Fonts repository revision 6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+      "weights": "300-700",
+      "style": "normal",
+      "axes": "wght",
+      "subset": "latin,latin-ext,cyrillic,vietnamese",
+      "licensePath": "OFL-cormorantgaramond.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/cormorantgaramond/OFL.txt",
+      "delivery": {
+        "path": "CormorantGaramond-Variable.woff2",
+        "bytes": 209428,
+        "sha256": "1c7136dcfe2ba0c22bd2e4ab48467813cb6dd7b5728a73920dd9eb6452b8a558",
+        "sourceInputSha256": "b20b7d9626dd956b2c5e558692ad328b1f19e3275e2782db4fa07670d83f35e0"
+      }
+    },
+    {
+      "path": "CormorantGaramond-Italic-Variable.ttf",
+      "officialDownloadUrl": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/cormorantgaramond/CormorantGaramond-Italic[wght].ttf",
+      "sha256": "0f48ea6abb2084537854f7174c470991a463b13036309e3b50a81511611c530d",
+      "bytes": 715644,
+      "family": "Cormorant Garamond",
+      "version": "Google Fonts repository revision 6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+      "weights": "300-700",
+      "style": "italic",
+      "axes": "wght",
+      "subset": "latin,latin-ext,cyrillic,vietnamese",
+      "licensePath": "OFL-cormorantgaramond.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/cormorantgaramond/OFL.txt",
+      "delivery": {
+        "path": "CormorantGaramond-Italic-Variable.woff2",
+        "bytes": 143644,
+        "sha256": "b25fd6a66314122257980ac9fd0fa56c2cfb73970b09acdce214e1b18fb2f51d",
+        "sourceInputSha256": "0f48ea6abb2084537854f7174c470991a463b13036309e3b50a81511611c530d"
+      }
+    },
+    {
+      "path": "Lora-Variable.ttf",
+      "officialDownloadUrl": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/lora/Lora[wght].ttf",
+      "sha256": "822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7",
+      "bytes": 212196,
+      "family": "Lora",
+      "version": "Google Fonts repository revision 6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+      "weights": "400-700",
+      "style": "normal",
+      "axes": "wght",
+      "subset": "latin,latin-ext,cyrillic,vietnamese",
+      "licensePath": "OFL-lora.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/lora/OFL.txt",
+      "delivery": {
+        "path": "Lora-Variable.woff2",
+        "bytes": 85096,
+        "sha256": "7c514f026f03de1b0fc344c0c0f0df141fcf16b6f9ab672db191908ba740dab6",
+        "sourceInputSha256": "822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7"
+      }
+    },
+    {
+      "path": "Lora-Italic-Variable.ttf",
+      "officialDownloadUrl": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/lora/Lora-Italic[wght].ttf",
+      "sha256": "22d8d8854b53807aa664ca34f2031a9ed57a1d0dea296b8b96cdd3aad937a2b3",
+      "bytes": 221232,
+      "family": "Lora",
+      "version": "Google Fonts repository revision 6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+      "weights": "400-700",
+      "style": "italic",
+      "axes": "wght",
+      "subset": "latin,latin-ext,cyrillic,vietnamese",
+      "licensePath": "OFL-lora.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/lora/OFL.txt",
+      "delivery": {
+        "path": "Lora-Italic-Variable.woff2",
+        "bytes": 91636,
+        "sha256": "6cda7d220aebc862d9de3cdbd6e5068b64477aca6f284dbb1ca6e00114744faf",
+        "sourceInputSha256": "22d8d8854b53807aa664ca34f2031a9ed57a1d0dea296b8b96cdd3aad937a2b3"
+      }
+    },
+    {
+      "path": "DancingScript-Variable.ttf",
+      "officialDownloadUrl": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/dancingscript/DancingScript[wght].ttf",
+      "sha256": "21808625578fe8d8cd10cb684be546dca077b27cd03a53a2f1ec11dc743c924c",
+      "bytes": 133636,
+      "family": "Dancing Script",
+      "version": "Google Fonts repository revision 6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+      "weights": "400-700",
+      "style": "normal",
+      "axes": "wght",
+      "subset": "latin,latin-ext,vietnamese",
+      "licensePath": "OFL-dancingscript.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/dancingscript/OFL.txt",
+      "delivery": {
+        "path": "DancingScript-Variable.woff2",
+        "bytes": 59856,
+        "sha256": "7641e43dcbe5ba3217a3f12080621a041978249b8a6dacaf3d7ff10a7517f8e9",
+        "sourceInputSha256": "21808625578fe8d8cd10cb684be546dca077b27cd03a53a2f1ec11dc743c924c"
+      }
+    },
+    {
+      "path": "EBGaramond-Variable.ttf",
+      "officialDownloadUrl": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/ebgaramond/EBGaramond[wght].ttf",
+      "sha256": "ef9512f92f6d579e5dc75af59a5a4b1b8b47d2eda89e00b954d44520e5369027",
+      "bytes": 851176,
+      "family": "EB Garamond",
+      "version": "Google Fonts repository revision 6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+      "weights": "400-800",
+      "style": "normal",
+      "axes": "wght",
+      "subset": "latin,latin-ext,cyrillic,vietnamese",
+      "licensePath": "OFL-ebgaramond.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/ebgaramond/OFL.txt",
+      "delivery": {
+        "path": "EBGaramond-Variable.woff2",
+        "bytes": 296792,
+        "sha256": "f58f6c6a927aa64e80e6deffce5583cf6c850859fea2dbc870b11f75c44c49a8",
+        "sourceInputSha256": "ef9512f92f6d579e5dc75af59a5a4b1b8b47d2eda89e00b954d44520e5369027"
+      }
+    },
+    {
+      "path": "EBGaramond-Italic-Variable.ttf",
+      "officialDownloadUrl": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/ebgaramond/EBGaramond-Italic[wght].ttf",
+      "sha256": "bba2c4499c93c9612b90b9825d32b07da52fce2fe57562a1eb6b833553f93c4e",
+      "bytes": 754468,
+      "family": "EB Garamond",
+      "version": "Google Fonts repository revision 6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+      "weights": "400-800",
+      "style": "italic",
+      "axes": "wght",
+      "subset": "latin,latin-ext,cyrillic,vietnamese",
+      "licensePath": "OFL-ebgaramond.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/ebgaramond/OFL.txt",
+      "delivery": {
+        "path": "EBGaramond-Italic-Variable.woff2",
+        "bytes": 285864,
+        "sha256": "1b373df84f0c3abc942be4366f01a0c262faeab43a5e0383d097ad44dd47a54c",
+        "sourceInputSha256": "bba2c4499c93c9612b90b9825d32b07da52fce2fe57562a1eb6b833553f93c4e"
+      }
+    },
+    {
+      "path": "DMSerifDisplay-Regular.ttf",
+      "officialDownloadUrl": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/dmserifdisplay/DMSerifDisplay-Regular.ttf",
+      "sha256": "8cc3643535edf039aa5d95440a8542735e9197e4f4b8d9303e980fefbf5ab616",
+      "bytes": 76580,
+      "family": "DM Serif Display",
+      "version": "Google Fonts repository revision 6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+      "weights": "400",
+      "style": "normal",
+      "axes": null,
+      "subset": "latin,latin-ext",
+      "licensePath": "OFL-dmserifdisplay.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/dmserifdisplay/OFL.txt",
+      "delivery": {
+        "path": "DMSerifDisplay-Regular.woff2",
+        "bytes": 32024,
+        "sha256": "7e6679d41e35437090560e0367e6546f10b71c5792fa168b177e302cf009b66c",
+        "sourceInputSha256": "8cc3643535edf039aa5d95440a8542735e9197e4f4b8d9303e980fefbf5ab616"
+      }
+    },
+    {
+      "path": "Outfit-Variable.ttf",
+      "officialDownloadUrl": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/outfit/Outfit[wght].ttf",
+      "sha256": "fc7287273e66929776e2ba54f144fe699080bec29f61bf649d70d871468aeade",
+      "bytes": 110884,
+      "family": "Outfit",
+      "version": "Google Fonts repository revision 6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec",
+      "weights": "100-900",
+      "style": "normal",
+      "axes": "wght",
+      "subset": "latin,latin-ext",
+      "licensePath": "OFL-outfit.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/outfit/OFL.txt",
+      "delivery": {
+        "path": "Outfit-Variable.woff2",
+        "bytes": 45100,
+        "sha256": "ed629d88c2db8ace1b3ac85fbf1fe0223d7272defaa817d1955100101966f0fb",
+        "sourceInputSha256": "fc7287273e66929776e2ba54f144fe699080bec29f61bf649d70d871468aeade"
+      }
+    }
+  ],
+  "baselineSourceCommit": "1cd70d1825e2767a5ab3d6e917081bca32e0e729",
+  "baselineNextVersion": "16.4.1",
+  "usageProfiles": [
+    {
+      "routeFile": "app/layout.tsx",
+      "name": "inter",
+      "family": "Inter",
+      "sources": [
+        {
+          "path": "../public/fonts/brand/Inter-Variable.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "path": "../public/fonts/brand/Inter-Variable.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "path": "../public/fonts/brand/Inter-Variable.woff2",
+          "weight": "500",
+          "style": "normal"
+        },
+        {
+          "path": "../public/fonts/brand/Inter-Variable.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "path": "../public/fonts/brand/Inter-Variable.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "variable": "--font-inter",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Arial",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/layout.tsx",
+      "name": "poppins",
+      "family": "Poppins",
+      "sources": [
+        {
+          "path": "../public/fonts/brand/Poppins-SemiBold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "path": "../public/fonts/brand/Poppins-Bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "path": "../public/fonts/brand/Poppins-ExtraBold.woff2",
+          "weight": "800",
+          "style": "normal"
+        }
+      ],
+      "variable": "--font-poppins",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Arial",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/layout.tsx",
+      "name": "playfair",
+      "family": "Playfair Display",
+      "sources": [
+        {
+          "path": "../public/fonts/brand/PlayfairDisplay-Variable.woff2",
+          "weight": "400 900",
+          "style": "normal"
+        },
+        {
+          "path": "../public/fonts/brand/PlayfairDisplay-Italic-Variable.woff2",
+          "weight": "400 900",
+          "style": "italic"
+        }
+      ],
+      "variable": "--font-serif",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Times New Roman",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/layout.tsx",
+      "name": "jetbrains",
+      "family": "JetBrains Mono",
+      "sources": [
+        {
+          "path": "../public/fonts/brand/JetBrainsMono-Variable.woff2",
+          "weight": "100 800",
+          "style": "normal"
+        }
+      ],
+      "variable": "--font-mono",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Arial",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/layout.tsx",
+      "name": "sourceSerif",
+      "family": "Playfair Display",
+      "sources": [
+        {
+          "path": "../public/fonts/brand/PlayfairDisplay-Variable.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "path": "../public/fonts/brand/PlayfairDisplay-Variable.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "path": "../public/fonts/brand/PlayfairDisplay-Variable.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "path": "../public/fonts/brand/PlayfairDisplay-Italic-Variable.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "path": "../public/fonts/brand/PlayfairDisplay-Italic-Variable.woff2",
+          "weight": "600",
+          "style": "italic"
+        },
+        {
+          "path": "../public/fonts/brand/PlayfairDisplay-Italic-Variable.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "variable": "--font-serif-editorial",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Times New Roman",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/books/layout.tsx",
+      "name": "playfair",
+      "family": "Playfair Display",
+      "sources": [
+        {
+          "path": "../../public/fonts/brand/PlayfairDisplay-Variable.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/PlayfairDisplay-Variable.woff2",
+          "weight": "500",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/PlayfairDisplay-Variable.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/PlayfairDisplay-Variable.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "variable": "--font-playfair",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Times New Roman",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/books/layout.tsx",
+      "name": "inter",
+      "family": "Inter",
+      "sources": [
+        {
+          "path": "../../public/fonts/brand/Inter-Variable.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/Inter-Variable.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/Inter-Variable.woff2",
+          "weight": "500",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/Inter-Variable.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/Inter-Variable.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "variable": "--font-inter",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Arial",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/golden-age/layout.tsx",
+      "name": "playfair",
+      "family": "Playfair Display",
+      "sources": [
+        {
+          "path": "../../public/fonts/brand/PlayfairDisplay-Variable.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/PlayfairDisplay-Variable.woff2",
+          "weight": "500",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/PlayfairDisplay-Variable.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/PlayfairDisplay-Variable.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "variable": "--font-playfair",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Times New Roman",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/golden-age/layout.tsx",
+      "name": "inter",
+      "family": "Inter",
+      "sources": [
+        {
+          "path": "../../public/fonts/brand/Inter-Variable.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/Inter-Variable.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/Inter-Variable.woff2",
+          "weight": "500",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/Inter-Variable.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/Inter-Variable.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "variable": "--font-inter",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Arial",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/de/valentines-day/layout.tsx",
+      "name": "cormorant",
+      "family": "Cormorant Garamond",
+      "sources": [
+        {
+          "path": "../../../public/fonts/brand/CormorantGaramond-Variable.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "path": "../../../public/fonts/brand/CormorantGaramond-Variable.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "path": "../../../public/fonts/brand/CormorantGaramond-Variable.woff2",
+          "weight": "500",
+          "style": "normal"
+        },
+        {
+          "path": "../../../public/fonts/brand/CormorantGaramond-Variable.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "path": "../../../public/fonts/brand/CormorantGaramond-Variable.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "path": "../../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2",
+          "weight": "300",
+          "style": "italic"
+        },
+        {
+          "path": "../../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "path": "../../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2",
+          "weight": "500",
+          "style": "italic"
+        },
+        {
+          "path": "../../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2",
+          "weight": "600",
+          "style": "italic"
+        },
+        {
+          "path": "../../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "variable": "--font-display",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Times New Roman",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/de/valentines-day/layout.tsx",
+      "name": "lora",
+      "family": "Lora",
+      "sources": [
+        {
+          "path": "../../../public/fonts/brand/Lora-Variable.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "path": "../../../public/fonts/brand/Lora-Variable.woff2",
+          "weight": "500",
+          "style": "normal"
+        },
+        {
+          "path": "../../../public/fonts/brand/Lora-Variable.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "path": "../../../public/fonts/brand/Lora-Variable.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "path": "../../../public/fonts/brand/Lora-Italic-Variable.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "path": "../../../public/fonts/brand/Lora-Italic-Variable.woff2",
+          "weight": "500",
+          "style": "italic"
+        },
+        {
+          "path": "../../../public/fonts/brand/Lora-Italic-Variable.woff2",
+          "weight": "600",
+          "style": "italic"
+        },
+        {
+          "path": "../../../public/fonts/brand/Lora-Italic-Variable.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "variable": "--font-body-serif",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Times New Roman",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/de/valentines-day/layout.tsx",
+      "name": "dancingScript",
+      "family": "Dancing Script",
+      "sources": [
+        {
+          "path": "../../../public/fonts/brand/DancingScript-Variable.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "path": "../../../public/fonts/brand/DancingScript-Variable.woff2",
+          "weight": "500",
+          "style": "normal"
+        },
+        {
+          "path": "../../../public/fonts/brand/DancingScript-Variable.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "path": "../../../public/fonts/brand/DancingScript-Variable.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "variable": "--font-cursive",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Arial",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/valentines-day/layout.tsx",
+      "name": "cormorant",
+      "family": "Cormorant Garamond",
+      "sources": [
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Variable.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Variable.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Variable.woff2",
+          "weight": "500",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Variable.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Variable.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2",
+          "weight": "300",
+          "style": "italic"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2",
+          "weight": "500",
+          "style": "italic"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2",
+          "weight": "600",
+          "style": "italic"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "variable": "--font-display",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Times New Roman",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/valentines-day/layout.tsx",
+      "name": "lora",
+      "family": "Lora",
+      "sources": [
+        {
+          "path": "../../public/fonts/brand/Lora-Variable.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/Lora-Variable.woff2",
+          "weight": "500",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/Lora-Variable.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/Lora-Variable.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/Lora-Italic-Variable.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "path": "../../public/fonts/brand/Lora-Italic-Variable.woff2",
+          "weight": "500",
+          "style": "italic"
+        },
+        {
+          "path": "../../public/fonts/brand/Lora-Italic-Variable.woff2",
+          "weight": "600",
+          "style": "italic"
+        },
+        {
+          "path": "../../public/fonts/brand/Lora-Italic-Variable.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "variable": "--font-body-serif",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Times New Roman",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/valentines-day/layout.tsx",
+      "name": "dancingScript",
+      "family": "Dancing Script",
+      "sources": [
+        {
+          "path": "../../public/fonts/brand/DancingScript-Variable.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/DancingScript-Variable.woff2",
+          "weight": "500",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/DancingScript-Variable.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/DancingScript-Variable.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "variable": "--font-cursive",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Arial",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/hoffnung/layout.tsx",
+      "name": "garamond",
+      "family": "EB Garamond",
+      "sources": [
+        {
+          "path": "../../public/fonts/brand/EBGaramond-Variable.woff2",
+          "weight": "400 800",
+          "style": "normal"
+        }
+      ],
+      "variable": "--font-garamond",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Times New Roman",
+      "originalSubsets": [
+        "latin",
+        "latin-ext"
+      ]
+    },
+    {
+      "routeFile": "app/hoffnung/layout.tsx",
+      "name": "lora",
+      "family": "Lora",
+      "sources": [
+        {
+          "path": "../../public/fonts/brand/Lora-Variable.woff2",
+          "weight": "400 700",
+          "style": "normal"
+        }
+      ],
+      "variable": "--font-lora",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Times New Roman",
+      "originalSubsets": [
+        "latin",
+        "latin-ext"
+      ]
+    },
+    {
+      "routeFile": "app/vibe/page.tsx",
+      "name": "dmSerif",
+      "family": "DM Serif Display",
+      "sources": [
+        {
+          "path": "../../public/fonts/brand/DMSerifDisplay-Regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "variable": "--font-dm-serif",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Times New Roman",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/vibe/page.tsx",
+      "name": "outfit",
+      "family": "Outfit",
+      "sources": [
+        {
+          "path": "../../public/fonts/brand/Outfit-Variable.woff2",
+          "weight": "100 900",
+          "style": "normal"
+        }
+      ],
+      "variable": "--font-outfit",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Arial",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/year-of-the-fire-horse/layout.tsx",
+      "name": "cormorant",
+      "family": "Cormorant Garamond",
+      "sources": [
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Variable.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Variable.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Variable.woff2",
+          "weight": "500",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Variable.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Variable.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2",
+          "weight": "300",
+          "style": "italic"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2",
+          "weight": "500",
+          "style": "italic"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2",
+          "weight": "600",
+          "style": "italic"
+        },
+        {
+          "path": "../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "variable": "--font-display",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Times New Roman",
+      "originalSubsets": [
+        "latin"
+      ]
+    },
+    {
+      "routeFile": "app/year-of-the-fire-horse/layout.tsx",
+      "name": "lora",
+      "family": "Lora",
+      "sources": [
+        {
+          "path": "../../public/fonts/brand/Lora-Variable.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/Lora-Variable.woff2",
+          "weight": "500",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/Lora-Variable.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/Lora-Variable.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "path": "../../public/fonts/brand/Lora-Italic-Variable.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "path": "../../public/fonts/brand/Lora-Italic-Variable.woff2",
+          "weight": "500",
+          "style": "italic"
+        },
+        {
+          "path": "../../public/fonts/brand/Lora-Italic-Variable.woff2",
+          "weight": "600",
+          "style": "italic"
+        },
+        {
+          "path": "../../public/fonts/brand/Lora-Italic-Variable.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "variable": "--font-body-serif",
+      "display": "swap",
+      "preload": true,
+      "fallbackFont": "Times New Roman",
+      "originalSubsets": [
+        "latin"
+      ]
+    }
+  ],
+  "licenseTextNormalization": "LF line endings and trailing horizontal whitespace only; license wording and copyright retained",
+  "renderingReview": "Fallback families retained; metrics are recalculated from pinned files. Visual, CLS and transfer-size checks remain required.",
+  "generator": {
+    "path": "scripts/generate-brand-fonts.py",
+    "fontToolsVersion": "4.68.0",
+    "brotliVersion": "1.2.1",
+    "settings": {
+      "flavor": "woff2",
+      "recalcTimestamp": false,
+      "reorderTables": false,
+      "subsetting": false
+    }
+  }
+}

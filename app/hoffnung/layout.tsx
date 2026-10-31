@@ -1,16 +1,22 @@
-import { EB_Garamond, Lora } from 'next/font/google'
+import localFont from 'next/font/local'
 import type { Metadata } from 'next'
 
-const garamond = EB_Garamond({
-  subsets: ['latin', 'latin-ext'],
+const garamond = localFont({
+  src: [
+    { path: '../../public/fonts/brand/EBGaramond-Variable.woff2', weight: '400 800', style: 'normal' },
+  ],
   variable: '--font-garamond',
   display: 'swap',
+  adjustFontFallback: 'Times New Roman',
 })
 
-const lora = Lora({
-  subsets: ['latin', 'latin-ext'],
+const lora = localFont({
+  src: [
+    { path: '../../public/fonts/brand/Lora-Variable.woff2', weight: '400 700', style: 'normal' },
+  ],
   variable: '--font-lora',
   display: 'swap',
+  adjustFontFallback: 'Times New Roman',
 })
 
 export const metadata: Metadata = {

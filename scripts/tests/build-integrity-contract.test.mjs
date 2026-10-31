@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import test from 'node:test'
+import './local-font-contract.test.mjs'
 import ts from 'typescript'
 import { ciAlwaysReportingErrors } from './helpers/workflow-yaml-contract.mjs'
 

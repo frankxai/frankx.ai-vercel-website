@@ -1,18 +1,23 @@
 import { Metadata } from 'next'
-import { DM_Serif_Display, Outfit } from 'next/font/google'
+import localFont from 'next/font/local'
 import VibeOSContent from './VibeOSContent'
 
-const dmSerif = DM_Serif_Display({
-  weight: ['400'],
-  subsets: ['latin'],
+const dmSerif = localFont({
+  src: [
+    { path: '../../public/fonts/brand/DMSerifDisplay-Regular.woff2', weight: '400', style: 'normal' },
+  ],
   variable: '--font-dm-serif',
   display: 'swap',
+  adjustFontFallback: 'Times New Roman',
 })
 
-const outfit = Outfit({
-  subsets: ['latin'],
+const outfit = localFont({
+  src: [
+    { path: '../../public/fonts/brand/Outfit-Variable.woff2', weight: '100 900', style: 'normal' },
+  ],
   variable: '--font-outfit',
   display: 'swap',
+  adjustFontFallback: 'Arial',
 })
 
 export const metadata: Metadata = {

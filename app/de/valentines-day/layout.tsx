@@ -1,28 +1,51 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, Lora, Dancing_Script } from 'next/font/google'
+import localFont from 'next/font/local'
 import '../../valentines-day/valentines.css'
 
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
+const cormorant = localFont({
+  src: [
+    { path: '../../../public/fonts/brand/CormorantGaramond-Variable.woff2', weight: '300', style: 'normal' },
+    { path: '../../../public/fonts/brand/CormorantGaramond-Variable.woff2', weight: '400', style: 'normal' },
+    { path: '../../../public/fonts/brand/CormorantGaramond-Variable.woff2', weight: '500', style: 'normal' },
+    { path: '../../../public/fonts/brand/CormorantGaramond-Variable.woff2', weight: '600', style: 'normal' },
+    { path: '../../../public/fonts/brand/CormorantGaramond-Variable.woff2', weight: '700', style: 'normal' },
+    { path: '../../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2', weight: '300', style: 'italic' },
+    { path: '../../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2', weight: '400', style: 'italic' },
+    { path: '../../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2', weight: '500', style: 'italic' },
+    { path: '../../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2', weight: '600', style: 'italic' },
+    { path: '../../../public/fonts/brand/CormorantGaramond-Italic-Variable.woff2', weight: '700', style: 'italic' },
+  ],
   variable: '--font-display',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
+  adjustFontFallback: 'Times New Roman',
 })
 
-const lora = Lora({
-  subsets: ['latin'],
+const lora = localFont({
+  src: [
+    { path: '../../../public/fonts/brand/Lora-Variable.woff2', weight: '400', style: 'normal' },
+    { path: '../../../public/fonts/brand/Lora-Variable.woff2', weight: '500', style: 'normal' },
+    { path: '../../../public/fonts/brand/Lora-Variable.woff2', weight: '600', style: 'normal' },
+    { path: '../../../public/fonts/brand/Lora-Variable.woff2', weight: '700', style: 'normal' },
+    { path: '../../../public/fonts/brand/Lora-Italic-Variable.woff2', weight: '400', style: 'italic' },
+    { path: '../../../public/fonts/brand/Lora-Italic-Variable.woff2', weight: '500', style: 'italic' },
+    { path: '../../../public/fonts/brand/Lora-Italic-Variable.woff2', weight: '600', style: 'italic' },
+    { path: '../../../public/fonts/brand/Lora-Italic-Variable.woff2', weight: '700', style: 'italic' },
+  ],
   variable: '--font-body-serif',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
+  adjustFontFallback: 'Times New Roman',
 })
 
-const dancingScript = Dancing_Script({
-  subsets: ['latin'],
+const dancingScript = localFont({
+  src: [
+    { path: '../../../public/fonts/brand/DancingScript-Variable.woff2', weight: '400', style: 'normal' },
+    { path: '../../../public/fonts/brand/DancingScript-Variable.woff2', weight: '500', style: 'normal' },
+    { path: '../../../public/fonts/brand/DancingScript-Variable.woff2', weight: '600', style: 'normal' },
+    { path: '../../../public/fonts/brand/DancingScript-Variable.woff2', weight: '700', style: 'normal' },
+  ],
   variable: '--font-cursive',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  adjustFontFallback: 'Arial',
 })
 
 export const metadata: Metadata = {

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Poppins, Playfair_Display, JetBrains_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 import './qa-overlay-clearance.css'
 import Script from 'next/script'
@@ -31,43 +31,65 @@ const aisSchemaGraph = (() => {
 })()
 
 // Inter as primary sans-serif (geometric, variable weight, screen-optimized)
-const inter = Inter({
-  subsets: ['latin'],
+const inter = localFont({
+  src: [
+    { path: '../public/fonts/brand/Inter-Variable.woff2', weight: '300', style: 'normal' },
+    { path: '../public/fonts/brand/Inter-Variable.woff2', weight: '400', style: 'normal' },
+    { path: '../public/fonts/brand/Inter-Variable.woff2', weight: '500', style: 'normal' },
+    { path: '../public/fonts/brand/Inter-Variable.woff2', weight: '600', style: 'normal' },
+    { path: '../public/fonts/brand/Inter-Variable.woff2', weight: '700', style: 'normal' },
+  ],
   variable: '--font-inter',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
+  adjustFontFallback: 'Arial',
 })
 
 // Poppins for display headings (≥18px only per brand guidelines)
-const poppins = Poppins({
-  subsets: ['latin'],
+const poppins = localFont({
+  src: [
+    { path: '../public/fonts/brand/Poppins-SemiBold.woff2', weight: '600', style: 'normal' },
+    { path: '../public/fonts/brand/Poppins-Bold.woff2', weight: '700', style: 'normal' },
+    { path: '../public/fonts/brand/Poppins-ExtraBold.woff2', weight: '800', style: 'normal' },
+  ],
   variable: '--font-poppins',
   display: 'swap',
-  weight: ['600', '700', '800'],
+  adjustFontFallback: 'Arial',
 })
 
 // Playfair Display for editorial touches (italic quotes only per brand)
-const playfair = Playfair_Display({
-  subsets: ['latin'],
+const playfair = localFont({
+  src: [
+    { path: '../public/fonts/brand/PlayfairDisplay-Variable.woff2', weight: '400 900', style: 'normal' },
+    { path: '../public/fonts/brand/PlayfairDisplay-Italic-Variable.woff2', weight: '400 900', style: 'italic' },
+  ],
   variable: '--font-serif',
   display: 'swap',
-  style: ['normal', 'italic'],
+  adjustFontFallback: 'Times New Roman',
 })
 
 // JetBrains Mono for code/technical elements
-const jetbrains = JetBrains_Mono({
-  subsets: ['latin'],
+const jetbrains = localFont({
+  src: [
+    { path: '../public/fonts/brand/JetBrainsMono-Variable.woff2', weight: '100 800', style: 'normal' },
+  ],
   variable: '--font-mono',
   display: 'swap',
+  adjustFontFallback: 'Arial',
 })
 
 // Playfair Display for editorial/serif register (fallback from Source Serif 4 due to Google Fonts 404s)
-const sourceSerif = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  style: ['normal', 'italic'],
+const sourceSerif = localFont({
+  src: [
+    { path: '../public/fonts/brand/PlayfairDisplay-Variable.woff2', weight: '400', style: 'normal' },
+    { path: '../public/fonts/brand/PlayfairDisplay-Variable.woff2', weight: '600', style: 'normal' },
+    { path: '../public/fonts/brand/PlayfairDisplay-Variable.woff2', weight: '700', style: 'normal' },
+    { path: '../public/fonts/brand/PlayfairDisplay-Italic-Variable.woff2', weight: '400', style: 'italic' },
+    { path: '../public/fonts/brand/PlayfairDisplay-Italic-Variable.woff2', weight: '600', style: 'italic' },
+    { path: '../public/fonts/brand/PlayfairDisplay-Italic-Variable.woff2', weight: '700', style: 'italic' },
+  ],
   variable: '--font-serif-editorial',
   display: 'swap',
+  adjustFontFallback: 'Times New Roman',
 })
 
 export const metadata: Metadata = {
