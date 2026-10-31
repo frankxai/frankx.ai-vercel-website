@@ -1,0 +1,48 @@
+{
+  "week": "2026-W44",
+  "generatedAt": "2026-10-26T07:10:43Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-10-19T07:10:57Z",
+  "windowEnd": "2026-10-26T07:10:57Z",
+  "paginationNote": "list_deployments returned 1 page of 100 deploys (limit=100). Pagination next=1792428734145 (2026-10-19T16:52:14Z) is within the window; ~9.67h of the window tail (2026-10-19T07:10 to T16:52) is not covered by this fetch. Estimated true count_total: ~106-110. Compared to W43 which required 4 pages of 100 (400 raw rows), deploy volume dropped significantly this week.",
+  "metrics": {
+    "count_total": 100,
+    "count_total_note": "Page 1 only; estimated true total ~106-110 (GREEN <200). Significant drop from W43=372.",
+    "count_production": 16,
+    "count_preview": 84,
+    "count_skipped": 46,
+    "count_error": 1,
+    "count_ready": 50,
+    "duration_p50_seconds": null,
+    "duration_p95_seconds": null,
+    "duration_max_seconds": null,
+    "total_build_minutes": null,
+    "duration_method": "unavailable",
+    "duration_note": "list_deployments response does not include readyAt or buildingAt fields. The consecutive-created-timestamps proxy is unreliable — many branches run concurrently (inter-trigger gaps as low as 8s). Precise timing requires individual get_deployment calls. Prior baseline: W43 p50=168s, p95=274s; W42 p50=169s, p95=205s. No regression evidence without sampling.",
+    "error_deploys": [
+      {
+        "id": "dpl_819ZFgDf7qYR9WQxZvw7W1Ub6hfL",
+        "url": "frankx-ai-vercel-website-58qqtzzaf-starlight-intelligence.vercel.app",
+        "created": "2026-10-26T03:52:16Z",
+        "target": "production",
+        "commit_ref": "main",
+        "note": "Production deploy ERROR — same commit SHA as the subsequent READY production deploy dpl_AoSrE1C6. Failed first attempt; second attempt succeeded. Not an active outage."
+      }
+    ]
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W43",
+    "duration_p50_seconds": "unavailable",
+    "count_total": "-272",
+    "total_build_minutes": "unavailable"
+  },
+  "verdict": "YELLOW",
+  "alerts": [
+    "count_error=1 (YELLOW threshold). One production deploy failed on main at 2026-10-26T03:52Z (dpl_819ZFgDf7qYR9WQxZvw7W1Ub6hfL) — same commit SHA retried and succeeded. Not an active production outage.",
+    "count_total=100 (page 1 of ~2; estimated true total ~106-110). Significant drop from W43=372 deploys (-272 delta). Likely reflects reduced automation branch activity this week.",
+    "Duration metrics unavailable this run: list_deployments API response does not include readyAt/buildingAt fields. Prior baseline: p50=168s (W43), p95=274s (W43). No regression evidence without per-deployment sampling.",
+    "count_production=16 (vs 55 in W43, -39). Significant drop in production merge activity — likely reflects consolidation after W43's intensive agent/grok branch session.",
+    "count_skipped=46 (46% of page-1 total). CANCELED rate remains high — rapid successive pushes on automation branches continuing."
+  ]
+}
