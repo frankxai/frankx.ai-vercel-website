@@ -63,6 +63,7 @@ The site combines enterprise-grade AI architecture (multi-agent orchestration, M
 - [Meaning](${SITE_URL}/qualities/meaning): Relevance, purpose, and coherence as the compass
 - [Connection](${SITE_URL}/qualities/connection): Trust, belonging, and collective capability as the multiplier
 - [Media Kit](${SITE_URL}/media-kit): Press bio, story angles, speaking topics, proof points, boundaries, and contact
+- [Character image examples](${SITE_URL}/media/characters.json): Existing public Mini Frank examples with file hashes and reuse review status; not identity sheets or a release approval
 
 ## Founder Path
 Founder Stack → Foundry or Founder's Circle → Human Layer and Signal Loop.
