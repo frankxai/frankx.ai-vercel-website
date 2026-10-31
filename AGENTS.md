@@ -106,7 +106,7 @@ and it is never able to overrule a gate. Anything irreversible goes to Frank.
 
 **Repo:** `frankxai/frankx.ai-vercel-website` (public)
 **This repo IS production.** Vercel's native git integration deploys this repo's `main` branch to https://frankx.ai on every push. There is no separate "production repo" — this is it.
-**Stack (verified from `package.json`):** Next.js 16.1 (App Router) · React 18.3 · TypeScript 5.7 (strict) · Tailwind CSS 3.4 · Vercel (Edge Functions, ISR) · pnpm
+**Stack (verified from `package.json`):** Next.js 16.4 (App Router) · React 19.3 · TypeScript 5.7 (strict) · Tailwind CSS 3.4 · Vercel (Edge Functions, ISR) · pnpm
 
 This file is the canonical brief for any AI agent (Claude Code, Codex, Gemini, Grok, Cursor, OpenCode, etc.) entering this repo. Read it before assuming anything about deploy mechanics, branch protocol, or repo identity.
 
