@@ -1,12 +1,32 @@
 import type { Metadata } from 'next'
-import wealthData from '@/data/wealth-ops.json'
+import { notFound } from 'next/navigation'
+import { auth } from '@/lib/auth'
+import { isWealthAdmin, parseWealthData } from '@/lib/wealth-data'
 
 export const metadata: Metadata = {
   title: 'Wealth Intelligence — Admin | FrankX',
   robots: { index: false, follow: false },
 }
 
-export default function WealthDashboardPage() {
+export const dynamic = 'force-dynamic'
+
+export default async function WealthDashboardPage() {
+  // Recheck at the data boundary even if proxy routing changes or is bypassed.
+  if (!isWealthAdmin(await auth(), process.env.ADMIN_EMAIL)) notFound()
+  const wealthData = parseWealthData(process.env.WEALTH_OPS_JSON)
+  if (!wealthData) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0f] text-white p-6 md:p-10">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-3xl font-bold mb-4">Wealth Intelligence</h1>
+          <p className="text-zinc-400">
+            Wealth data is not configured. Set the server-only <code>WEALTH_OPS_JSON</code> environment variable
+            to the JSON maintained by the /wealth-ops command. It is no longer read from the repository.
+          </p>
+        </div>
+      </div>
+    )
+  }
   const { netWorth, fireTarget, propertyTargets, propertyWatchlist, taxStrategy, income, expenses } = wealthData
 
   return (
@@ -14,8 +34,8 @@ export default function WealthDashboardPage() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+          <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse motion-reduce:animate-none" />
+          <h1 className="text-3xl font-bold text-emerald-400">
             Wealth Intelligence
           </h1>
         </div>
@@ -40,7 +60,7 @@ export default function WealthDashboardPage() {
           </div>
           <div className="h-3 bg-zinc-800 rounded-full overflow-hidden mb-3">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all"
+              className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400"
               style={{ width: `${Math.max(fireTarget.progressPercent, 1)}%` }}
             />
           </div>
