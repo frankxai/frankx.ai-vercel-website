@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
+import { createRequire } from 'node:module'
 import { readFile, stat } from 'node:fs/promises'
 import test from 'node:test'
 import ts from 'typescript'
@@ -168,4 +169,66 @@ test('route-local literals preserve baseline variants, variables and preload sco
       assert.equal(options.adjustFontFallback, profile.fallbackFont)
     }
   }
+})
+
+
+let activeFacesPromise
+async function activeFontFaces() {
+  const decoderModule = createRequire(import.meta.url)('next/dist/compiled/@next/font/dist/fontkit').default
+  const decode = decoderModule.default || decoderModule
+  const faces = new Map()
+  for (const file of new Set(manifest.usageProfiles.map(profile => profile.routeFile))) {
+    const route = new URL(`../../${file}`, import.meta.url)
+    const declarations = fontDeclarations(await readFile(route, 'utf8'), file)
+    for (const options of declarations.values()) {
+      for (const input of options.src) {
+        const actual = new URL(input.path, route)
+        if (faces.has(actual.href)) continue
+        const asset = manifest.assets.find(item => item.delivery.path === actual.pathname.split('/').at(-1))
+        assert.ok(asset, `${file}: unregistered active font ${input.path}`)
+        faces.set(actual.href, {
+          asset,
+          source: decode(await readFile(new URL(asset.path, root))),
+          delivery: decode(await readFile(actual)),
+        })
+      }
+    }
+  }
+  return [...faces.values()]
+}
+
+function shapingSignature(font, text, features) {
+  const run = font.layout(text, features)
+  return {
+    glyphs: run.glyphs.map(glyph => ({ width: glyph.advanceWidth, outline: glyph.path.commands })),
+    positions: run.positions,
+  }
+}
+
+test('active route font files retain source inventory, metadata and typography identity', async () => {
+  const faces = await (activeFacesPromise ??= activeFontFaces())
+  assert.ok(faces.length > 0, 'no active route font files were checked')
+  for (const { asset, source, delivery } of faces) {
+    assert.deepEqual(delivery.name.records, source.name.records, `${asset.path}: embedded provenance changed`)
+    for (const field of ['characterSet', 'familyName', 'subfamilyName', 'postscriptName', 'unitsPerEm', 'ascent', 'descent', 'lineGap', 'variationAxes', 'availableFeatures']) {
+      assert.deepEqual(delivery[field], source[field], `${asset.path}: ${field} changed`)
+    }
+  }
+})
+
+test('active route font files preserve meaningful optional-feature shaping', async () => {
+  const faces = await (activeFacesPromise ??= activeFontFaces())
+  const families = new Set(['Inter', 'JetBrains Mono', 'Playfair Display', 'EB Garamond', 'Cormorant Garamond'])
+  const samples = [['tnum', '0123456789'], ['smcp', 'Abcdefghijk'], ['onum', '0123456789'], ['ss01', 'Il1O0aeg'], ['zero', '0O']]
+  let exercised = 0
+  for (const { asset, source, delivery } of faces) {
+    if (!families.has(asset.family)) continue
+    for (const [feature, text] of samples) {
+      if (!source.availableFeatures.includes(feature)) continue
+      const original = shapingSignature(source, text, [feature])
+      if (JSON.stringify(original) !== JSON.stringify(shapingSignature(source, text, []))) exercised++
+      assert.deepEqual(shapingSignature(delivery, text, [feature]), original, `${asset.path}: ${feature} changed rendered glyphs or positioning`)
+    }
+  }
+  assert.ok(exercised > 0, 'optional-feature fixtures must exercise a real change from default shaping')
 })
