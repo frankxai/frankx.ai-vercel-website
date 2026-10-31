@@ -219,3 +219,7 @@ v0.html
 .claude/settings.local.json
 .claude/ci/estate-guard/last-scan.json
 .claude/skills/**/__pycache__/
+
+# Personal financial data. This repository is public; never commit these.
+data/wealth-ops.json
+data/bv-ops.json

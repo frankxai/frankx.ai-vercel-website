@@ -292,8 +292,12 @@ test('CI always reports and runs the dependency boundary and AgentDB runtime con
   )
   assert.equal(
     packageJson.scripts.postbuild,
-    'npm run test:build-artifact-integrity && npm run test:vault-metadata:rendered',
-    'every production build must verify the emitted prerender manifest',
+    'npm run test:build-artifact-integrity && npm run test:vault-metadata:rendered && npm run test:wealth-privacy:rendered',
+    'every production build must verify emitted artifacts, route metadata and private-data authorization',
+  )
+  assert.equal(
+    packageJson.scripts['test:wealth-privacy:rendered'],
+    'node scripts/qa/wealth-privacy-journey.mjs',
   )
 })
 
