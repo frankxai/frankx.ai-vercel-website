@@ -1,0 +1,232 @@
+---
+content_id: "cnt_frankx_tella_guide_202610"
+title: "How to use Tella: the 2026 guide for founders and creators"
+description: "A practical Tella guide: setup, the clip method, a one-pass edit, sharing and analytics, plus playbooks for founders, CEOs, creators, AI architects and writers."
+date: "2026-10-20"
+updated: "2026-10-22"
+author: "Frank Riemer"
+category: "Demos & video"
+tags: ["tella", "screen-recording", "product-demos", "async-video", "creator-tools"]
+keywords: ["how to use tella", "tella tutorial", "tella screen recorder", "tella for founders", "tella mcp"]
+tldr: "Tella records screen and camera on Mac, Windows and the browser, then gives you a transcript editor, automatic zooms and layouts, and a share page with analytics. Pro is $13 per user per month billed annually, or $26 billed monthly; there is no free plan, only a 7-day trial. It is the right default for polished demos, tutorials and updates you will reuse, and the wrong tool if you need a phone app or a free forever plan."
+decisions:
+  - audience: "Founders"
+    call: "adopt"
+    because: "One tool covers the launch demo, the investor update and the sales follow-up, and Pro costs $13 per user per month on annual billing ($26 on monthly billing). Start the 7-day trial with one 90-second demo before you pay."
+    source: "https://www.tella.com/pricing"
+  - audience: "CEOs"
+    call: "adopt"
+    because: "Recorded weekly updates replace a status meeting, and Premium adds a custom domain, branding removal and all-time analytics. Enterprise adds SSO, SCIM and a SOC 2 Type II report for security review."
+    source: "https://www.tella.com/pricing"
+  - audience: "Creators"
+    call: "adopt"
+    because: "Clip-based recording, transcript editing, captions in 106 languages and 4K export suit tutorials and course lessons you update over time. Direct publishing to social platforms shipped on 30 September 2026."
+    source: "https://www.tella.com/docs/changelog"
+  - audience: "AI architects"
+    call: "wait"
+    because: "The MCP server and Claude connector are live, but Tella Agent, the chat-driven editor, entered public beta on 16 October 2026. Use MCP for search and edits you review, and wait before wiring the Agent into an unattended workflow."
+    source: "https://www.tella.com/docs/changelog"
+  - audience: "Writers and educators"
+    call: "adopt"
+    because: "Recording yourself over slides or a document, with a teleprompter and editable captions, is the core use case. Tella runs an education program; check the terms on its education page."
+    source: "https://www.tella.com/for-education"
+  - audience: "Sales and customer success"
+    call: "wait"
+    because: "Desktop reps get share pages, CTA buttons and view analytics. If your team records from phones, Tella has no iOS or Android app and mobile browsers record camera only, so test the field workflow first."
+    source: "https://www.tella.com/help/faq/use-tella-on-mobile"
+faqs:
+  - question: "Is Tella free?"
+    answer: "No. Tella has no free plan. Every new workspace gets a 7-day trial of Pro with no credit card. After the trial, recording, editing and exporting lock until you subscribe; existing videos stay viewable. Pro is $13 per user per month billed annually, or $26 billed monthly, as of 20 October 2026."
+  - question: "Does Tella work on Windows?"
+    answer: "Yes. Tella has a Windows app, a Mac app, a Chrome extension and a browser recorder. Tella describes 4K native recording on the Mac app; check the Windows app notes if 4K capture on Windows matters to you."
+  - question: "Is there a Tella mobile app?"
+    answer: "No. Tella has no iOS or Android app. On a phone browser you can record camera and microphone in Quick mode, without screen capture or editing. If your team records from phones, Loom has mobile apps."
+  - question: "What are Tella credits used for?"
+    answer: "Credits pay for Tella Agent, the chat-driven editor. Pro includes 3,000 credits per user per month and Premium 6,000. Recording and normal editing do not use credits. Monthly credits reset and do not roll over; purchased top-ups do not expire."
+  - question: "Can I use Tella with Claude or ChatGPT?"
+    answer: "Yes. Tella runs an MCP server, has been listed in Claude's connector directory since August 2026, and launched an official ChatGPT app on 21 September 2026. Treat edits made through an AI assistant as drafts and review the cut before you publish."
+  - question: "Is Tella better than Loom?"
+    answer: "For polished demos, tutorials and videos you reuse, Tella gives you more editing and presentation control, and transcript editing is part of its Pro plan. Loom puts transcript editing and filler-word removal in Business + AI, at $20 per user per month billed annually or $24 billed monthly. For quick internal messages, mobile recording or a free plan, Loom is the better fit. The full comparison is at frankx.ai/guides/tella-vs-loom."
+---
+
+When you explain the same product or decision repeatedly, a recorded walkthrough gives people something they can review before arranging another meeting. Tella is the tool I recommend for that job when the video has to look considered: a demo on your landing page, a lesson in your course, an update to investors.
+
+This guide takes you from an empty account to a published, measured video. Use the setup checklist, record in clips so a mistake costs you one clip, follow a single editing sequence, and share with analytics. Then you get a playbook for your role. The smallest honest next step is the 7-day trial and one 90-second video, scripted with the [free demo script template](/downloads/demo-video-script-template.md).
+
+Disclosure: links to Tella on this page are referral links. If you subscribe, I may earn a commission at no extra cost to you. It does not change the comparison.
+
+## What Tella is, in one minute
+
+Tella calls itself "the all-in-one screen recorder". In practice it does three jobs in one place:
+
+1. **Record** your screen, your camera, or both, from the Mac app, the Windows app, a Chrome extension or the browser.
+2. **Edit** by text: delete words in the transcript and the video follows. Automatic cuts, zooms and layout changes do the work a video editor used to do.
+3. **Share** through a hosted page with your branding, call-to-action buttons and viewer analytics, or export an MP4 up to 4K.
+
+That combination is what separates it from a quick-capture tool like Loom and from a Mac-only polish tool like Screen Studio. It sits between them: more control than Loom, more distribution than Screen Studio.
+
+| Use Tella when | Use something else when |
+|---|---|
+| The video will be watched by customers, investors or students | It is a 30-second internal reply nobody will rewatch (Loom, Cap) |
+| You will reuse or update it | You need to record from a phone (Loom has iOS and Android apps) |
+| You care how the screen looks: zooms, layouts, backgrounds | The viewer should click through the product themselves (Arcade, Supademo, Storylane) |
+| You want to know who watched and where they dropped off | You need a free forever plan (Loom Starter, Cap for personal use) |
+| You work on Windows and want automatic zooms | You need SCORM packages for an LMS (Camtasia) |
+
+The alternatives are covered properly in [Tella alternatives](/guides/tella-alternatives) and [Tella vs Loom](/guides/tella-vs-loom).
+
+## What it costs
+
+As checked on [Tella's pricing page](https://www.tella.com/pricing) on 20 October 2026: Pro is $13 per user per month billed annually or $26 billed monthly, with unlimited videos, 4K export, captions in 106 languages and 30 days of analytics. Premium is $19 or $39 and adds a custom domain, branding removal, 60 FPS export and all-time analytics. Enterprise is custom, with SSO, SCIM and a SOC 2 Type II report.
+
+There is no free plan. You get 7 days of Pro without a card. Credits only pay for Tella Agent, the chat-based editor; recording and normal editing never touch them. [Tella's affiliate page](https://www.tella.com/affiliate-program) says new paying users who arrive through a partner link get 20% off their first three months; I could not see the discount on the landing page, so check it at checkout.
+
+The cost per seat, the monthly-billing question and how credits work are in [Tella pricing](/guides/tella-pricing).
+
+## Set up Tella before the first recording
+
+Do this once and every later video is faster.
+
+### 1. Pick your recorder
+
+| Recorder | Choose it when |
+|---|---|
+| Mac app | You want the sharpest capture; Tella describes 4K native recording on macOS |
+| Windows app | You are on Windows and want the desktop experience, including speaker notes |
+| Chrome extension | You record browser-based products and want to start from the tab |
+| Web recorder | You are on a borrowed machine or want zero installs |
+
+Start with the desktop app for your operating system. Keep the extension for quick browser captures.
+
+### 2. Set your defaults before the first recording
+
+- **Camera and microphone.** Pick the external mic if you have one. Record five seconds and listen back.
+- **Background.** Choose one brand-colour or subtle background and keep it for every video. Consistency makes a library look intentional.
+- **Layout.** Pick a default: screen with a small camera bubble works for most demos. You can switch per clip later.
+- **Branding.** Add your logo watermark and colours. On Premium, connect a custom domain so share links carry your brand.
+- **Teleprompter.** Paste your script into speaker notes. Reading near the lens keeps your eyes on the viewer.
+
+### 3. Prepare the screen
+
+Turn off notifications, use a clean browser profile, load a demo account with realistic data, and set the browser zoom to 110 to 125 percent so text survives a small player. These four steps prevent most re-records.
+
+<YouTubeEmbed id="1UiHFp5Qm1g" title="How to Record Your First Tella Video (Web App)" />
+
+*Tella's own first-video walkthrough. Watch it once before your first recording; it is short and current.*
+
+## Record in clips
+
+The habit that makes Tella fast is recording each part of the video as its own clip. You record the intro, stop, record the first step, stop, and so on. A stumble costs you one clip. When the product changes next month, you re-record one clip and keep the rest.
+
+Here is a 90-second product demo broken into clips. The full structure, with a blank version you can fill in, is in the [script template](/downloads/demo-video-script-template.md).
+
+| Clip | Layout | What you say | Seconds |
+|---|---|---|---|
+| 1. Problem | Camera large | "If your team rebuilds the Monday report by hand, this is the 90 seconds that removes it." | 10 |
+| 2. Context | Screen with camera bubble | "This is the dashboard your account managers open every Monday." | 10 |
+| 3. The job | Screen with camera bubble | Connect the data source, pick the template, schedule it. | 50 |
+| 4. Proof | Screen only, zoomed on the result | "That report now arrives at 8:00 every Monday. Nobody touched it." | 10 |
+| 5. Next step | Camera large | "The link below starts a trial with your own data." | 10 |
+
+Three rules while recording:
+
+- **Say the clip's sentence before you click.** Narrating after the click makes viewers wait.
+- **Move the mouse slowly and on purpose.** Auto Zoom follows your clicks; frantic movement gives frantic zooms.
+- **Pause for a breath between sentences.** Clean gaps make the transcript easier to cut.
+
+## Edit in one pass
+
+Tella's editing is built around the transcript. Treat it as a fixed sequence. My planning target for a 90-second video is 10 to 15 minutes of editing; time your first few videos and adjust.
+
+1. **Cut by text.** Read the transcript and delete false starts and repeated sentences. Use filler-word and silence removal, then read it once more; automatic removal occasionally clips a word you meant.
+2. **Run Auto Cut and check it.** Auto Cut trims dead air between sentences. Watch the joins at normal speed.
+3. **Check the zooms.** Auto Zoom adds zooms where you clicked; since August 2026 the zooms adapt by default. Remove any zoom that lands on nothing important and add one on the proof moment.
+4. **Set layouts per clip.** Camera large for the opening and the ask, screen with bubble while explaining, screen only for detail. Auto Layouts can propose this; accept or override.
+5. **Clean the audio.** Studio Voice removes noise and echo. Use the lowest strength that fixes the problem; heavy settings sound processed.
+6. **Captions.** Turn them on and correct names and product terms. Many viewers watch muted.
+7. **Thumbnail and title.** The first frame should show the result. The title says what the viewer gets.
+
+<YouTubeEmbed id="Agy9JuPa2lU" title="How to Edit Your First Video" />
+
+*Tella's official editing walkthrough: trims, cuts, zooms, layouts and backgrounds in the current editor.*
+
+## Share, embed and measure
+
+Where a video goes decides how you finish it.
+
+| Destination | How to publish from Tella | What to check |
+|---|---|---|
+| Landing page | Embed the player | It plays muted with captions; the first frame shows the result |
+| Sales email | Share link with a CTA button | The CTA points at one next step: a calendar link or a trial |
+| Investor or board update | Password-protected share link | Analytics on, so you know who watched |
+| Course or help centre | Embed, or export MP4 to your platform | Chapters are on for anything over 3 minutes |
+| YouTube, LinkedIn, X, TikTok | Direct publishing (added 30 September 2026) or export | Aspect ratio per platform; Tella supports portrait and square layouts |
+
+Analytics show views, watch time and where viewers drop off. Read the drop-off chart after the first ten views. If most people leave in the first ten seconds, the opening clip is the problem, and you can re-record just that clip. Pro keeps 30 days of analytics history; Premium keeps all of it.
+
+<ArticleRecommendation affiliateId="tella" article="tella-guide" title="Tella">
+Start the 7-day Pro trial, record the five-clip demo above with your own product, and share it with one real customer before deciding on a plan.
+</ArticleRecommendation>
+
+## Playbooks by role
+
+The same tool, used differently. Each playbook names the video, its length and where it goes.
+
+### Founders
+
+Your highest-value videos are the product demo on the homepage, a 2-minute investor update and a personal follow-up after sales calls. Record the demo with the five-clip structure above and re-record only the clip that changes when the product does. For sales follow-ups, open with the prospect's own words from the call and show only the part they asked about. The full method is in the [product demo video guide](/guides/product-demo-video-guide) and [async video for founders](/guides/async-video-for-founders).
+
+### CEOs
+
+Replace one weekly status meeting with a 3-minute recorded update: three numbers, one win, one problem, one decision you need and by when. Keep the camera large; people want to see you. Use a password-protected link for anything sensitive and check who watched before the next leadership meeting. When a message carries weight (layoffs, a reorg, a funding round), a recorded video from you beats an avatar or a memo. [Async video for founders](/guides/async-video-for-founders) covers the cadence and the scripts.
+
+### Creators
+
+Record lessons and tutorials as clips grouped into chapters, so a product update means re-recording one chapter. Use one background and one layout preset across a series; viewers notice consistency before they notice production values. Export 4K for YouTube, turn on captions for every video, and use the share page for free previews that lead to your paid course. See [how to record a course or tutorial](/guides/record-a-course-or-tutorial).
+
+### AI architects
+
+Agent demos fail on video for predictable reasons: long model waits, nondeterministic output and secrets visible in terminals. Record the run once, then use Auto Cut and transcript editing to remove the waiting without hiding what the agent did. Blur environment variables and tokens before you share anything. Tella also connects to the tools you already use: it runs an [MCP server](https://www.tella.com/mcp), has been in Claude's connector directory since August 2026 and launched a ChatGPT app in September. Tella Agent, which edits from a chat, entered public beta on 16 October 2026, so review every cut it proposes. The full protocol is in [how to record AI agent demos](/guides/record-ai-agent-demos).
+
+<YouTubeEmbed id="cfNZc47oUXk" title="I Tested Tella MCP: AI Video Editing for Non-Engineers" />
+
+*From Tella's own channel: what editing through the MCP server looks like in practice. It is a vendor video: useful for seeing the workflow, and you should judge the results yourself.*
+
+### Writers and educators
+
+You already have the script: your article, newsletter or lecture notes. Paste the key points into the teleprompter, record yourself over slides or the document, one section per clip, and keep each lesson between 5 and 12 minutes. Correct the captions; they double as an accessible transcript you can publish under the video. [How to record a course or tutorial](/guides/record-a-course-or-tutorial) walks through slides in Google Slides, PowerPoint and Keynote.
+
+### Sales and customer success
+
+Personal video works when it is specific. Record a 60 to 120 second follow-up per prospect, show their use case, and end with one CTA button. For onboarding, make one video per task ("Invite your team") and link the next task at the end. Check the mobile question first: Tella has no phone app, so it suits reps who work from a laptop.
+
+## Where Tella is the wrong tool
+
+Honest limits, so you do not buy the wrong thing:
+
+- **You need a free plan.** Tella has none. Loom Starter and Cap's personal-use plan are free.
+- **You record from your phone.** No iOS or Android app. Loom has both.
+- **You are on a Mac and only want the polished screen look, without hosting or analytics.** Screen Studio is built for exactly that and costs $9 a month on annual billing.
+- **The viewer should click through the product themselves.** Interactive demo tools like Arcade, Supademo or Storylane let prospects explore the product themselves.
+- **You need SCORM packages for a corporate LMS.** Camtasia exports SCORM and quizzes.
+- **You record multi-person podcasts.** Riverside records each guest locally on separate tracks.
+
+Tella's public review base is small: see [Product Hunt](https://www.producthunt.com/products/tella-1-0/reviews), [G2](https://www.g2.com/products/tella/reviews) and [Capterra](https://www.capterra.com/p/10013576/Tella/reviews/) for the current counts. Judge it on your own trial.
+
+## The setup I recommend for a small team
+
+If you run a small company or a creator business, this is how I would set Tella up:
+
+1. **One workspace, one brand kit.** Logo, colours, one background, one default layout.
+2. **Three saved structures.** A 90-second demo, a 3-minute update and a 5 to 12 minute lesson, each built from the [script template](/downloads/demo-video-script-template.md).
+3. **One recording block a week.** Thirty minutes, notifications off, clips for every video you need that week.
+4. **One review rule.** Watch every video once muted and once at 1.5x before sharing.
+5. **One metric.** Drop-off in the first ten seconds. Fix the opening clip until it holds.
+
+That is the whole system. The tool matters less than recording every week.
+
+## Where to go next
+
+- [Tella pricing](/guides/tella-pricing): seats, trial, credits and monthly billing
+- [Tella vs Loom](/guides/tella-vs-loom): which one for which job
+- [How to make a product demo video](/guides/product-demo-video-guide): the full script-to-publish method
