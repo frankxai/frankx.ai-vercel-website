@@ -1,6 +1,8 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
+import { execFileSync } from 'node:child_process'
+import { fileURLToPath } from 'node:url'
 import { isWealthAdmin, parseWealthData } from '../../lib/wealth-data.ts'
 
 // Synthetic fixture; never load the historical personal financial records.
@@ -47,4 +49,11 @@ test('page authorizes before reading financial configuration and stays dynamic',
   assert.ok(source.indexOf('isWealthAdmin(await auth()') < source.indexOf('parseWealthData(process.env.WEALTH_OPS_JSON)'))
   assert.match(source, /export const dynamic = 'force-dynamic'/)
   assert.doesNotMatch(source, /import .*wealth-ops\.json/)
+})
+test('private financial records stay untracked and ignored', () => {
+  const cwd = fileURLToPath(new URL('../../', import.meta.url))
+  const paths = ['data/wealth-ops.json', 'data/bv-ops.json']
+  assert.equal(execFileSync('git', ['ls-files', '--', ...paths], { cwd, encoding: 'utf8' }).trim(), '')
+  const ignored = execFileSync('git', ['check-ignore', '--no-index', '--', ...paths], { cwd, encoding: 'utf8' })
+  assert.deepEqual(ignored.trim().split(/\r?\n/).sort(), [...paths].sort())
 })
