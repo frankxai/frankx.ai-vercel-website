@@ -25,6 +25,7 @@ const INPUT_DIRS = [
 
 // Generator scripts themselves are inputs — if a generator changes, re-run.
 const INPUT_FILES_GLOB = [
+  'scripts/lib/public-reading-publication.mjs',
   'scripts/generate_interlinked_html.mjs',
   'scripts/generate_feed.mjs',
   'scripts/generate_search_index.mjs',
