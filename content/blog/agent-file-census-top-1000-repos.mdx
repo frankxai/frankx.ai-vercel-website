@@ -1,0 +1,147 @@
+---
+title: "What 1,000 top repos tell their coding agents"
+description: "A census of AGENTS.md and CLAUDE.md across the 1,000 most-starred GitHub repos: who has one, how long they are, and what they say."
+date: "2026-10-08"
+lastUpdated: "2026-10-08"
+author: "FrankX"
+category: "AI Engineering"
+tags: ["Claude Code", "AGENTS.md", "Coding Agents", "Research"]
+image: "/images/blog/agent-file-census/presence.svg"
+coverAlt: "Bar chart: 39.4% of the 1,000 most-starred GitHub repositories have an agent instruction file; AGENTS.md 30.9%, CLAUDE.md 20.7%"
+tldr: "39% of the top 1,000 GitHub repos ship an agent instruction file. AGENTS.md leads CLAUDE.md 31% to 21%, and where both exist CLAUDE.md is usually a short pointer. The median file is 106 lines; mine was 2.5 times the 90th percentile."
+keywords: ["agents.md", "claude.md", "coding agents", "claude code", "codex", "repository instructions", "census"]
+---
+
+# What 1,000 top repos tell their coding agents
+
+Most coding agents read a Markdown file at the start of a session. Codex and several others read `AGENTS.md`. Claude Code reads `CLAUDE.md`, and its documentation says that since v2.1.277 it reads `AGENTS.md` as well when there is no `CLAUDE.md`. Gemini CLI has `GEMINI.md`, Copilot has `.github/copilot-instructions.md`, Cursor has a `.cursor/` folder.
+
+I wanted to know what people actually put in these files. On 7 October 2026 I measured the 1,000 most-starred public repositories on GitHub: one root listing each, every agent file downloaded and checked against its git blob hash, counted with regular expressions, no model in the loop. The code, the manifest and the per-file numbers are public. A second reviewer went through the first draft and found thirteen problems, so some numbers here differ from the ones I posted internally the day before.
+
+## Key takeaways
+
+- **394 of 1,000 repos (39.4%)** have at least one of thirteen agent-instruction surfaces at the root. In the top 100 it is 50%.
+- **AGENTS.md is the most common file** at 309 repos (30.9%). CLAUDE.md is at 207 (20.7%), copilot-instructions.md at 78, Cursor rules at 50, GEMINI.md at 16.
+- **Where both files exist, CLAUDE.md is usually short.** Of 168 repos with both, 61 contain exactly `@AGENTS.md`, 51 are six lines or fewer naming AGENTS.md, 7 are identical copies, 47 hold two longer, different bodies.
+- **The median AGENTS.md is 106 lines, roughly 1,800 tokens.** 44% exceed 2,000 tokens. The largest is roughly 17,000.
+- **My own root file is 15,000 tokens.** It would be the fifth largest in the top 1,000.
+
+## How many repos have an agent file?
+
+![Horizontal bar chart of agent instruction file presence in the top 1,000 repos](/images/blog/agent-file-census/presence.svg)
+
+| Surface (name present at the root) | Repos | Share |
+|---|---:|---:|
+| AGENTS.md | 309 | 30.9% |
+| CLAUDE.md | 207 | 20.7% |
+| `.claude/` directory | 153 | 15.3% |
+| `.github/copilot-instructions.md` | 78 | 7.8% |
+| `.cursor/` or `.cursorrules` | 50 | 5.0% |
+| GEMINI.md | 16 | 1.6% |
+| Any of the thirteen surfaces counted | 394 | 39.4% |
+
+This counts names, not content. A `.claude/` directory might hold settings and no instructions. The full list of thirteen is in the lab note.
+
+Presence tracks stars and language. The top 100 are at 50%, ranks 101 to 500 at 43.5%, ranks 501 to 1,000 at 34%. TypeScript repos lead at 65% (172 repos), then Go at 54%, Rust at 51%, Python at 37%, JavaScript at 32%. Repos GitHub lists with no primary language sit at 6%.
+
+Among the top 100 with a file: React, VS Code, Flutter, Ollama, n8n, AutoGPT, freeCodeCamp, Firecrawl, and the agent tools themselves (OpenClaw, Hermes Agent, OpenCode, Superpowers).
+
+## Why is the median CLAUDE.md four lines long?
+
+Because in the biggest repos it points somewhere else. 168 of the top 1,000 have both `AGENTS.md` and `CLAUDE.md`.
+
+| In those 168, CLAUDE.md is | Repos |
+|---|---:|
+| exactly `@AGENTS.md` | 61 |
+| six lines or fewer, naming AGENTS.md without the import syntax | 51 |
+| identical to AGENTS.md | 7 |
+| six lines or fewer, something else | 2 |
+| longer and different from AGENTS.md | 47 |
+
+Goose, Ansible and Alibaba's open-code-review write `@AGENTS.md`, which is Claude Code's import syntax, so Claude loads the other file inline. Ansible adds two more lines, a personal file under `~/.claude/` and a `CLAUDE.local.md` for uncommitted notes. Airflow, Spark and Ant Design write the bare word `AGENTS.md`, a hint to the reader rather than an import. Whether a tool honours the bare form is up to the tool.
+
+My reading: most large repos keep one instruction file and treat the vendor files as thin adapters. If Claude Code's documented behaviour holds, even the adapter is now optional for Claude users. The 47 repos with two different bodies, and the 39 with only a `CLAUDE.md`, are the ones with a decision to make.
+
+## What do the files actually say?
+
+Among the 309 top-1,000 `AGENTS.md` files, measured by regular expression. Read these as "contains text that looks like", not "verified". I hand-checked the first two markers on 50 files each; details below the table.
+
+| Marker | Share |
+|---|---:|
+| A build, test or lint invocation such as `npm test`, `pytest`, `cargo test`, `make <target>`, `./script.sh` | 66% |
+| Any mention of commits, pull requests or PRs | 79% |
+| The word test or testing | 84% |
+| Secrets, API keys, credentials or `.env` | 30% |
+| `SKILL.md` or a `/skills/` path | 28% |
+| Worktree | 18% |
+| MCP | 17% |
+| Subagent | 7% |
+
+On the labelling: the first version of the command regex matched "make a widening request" and "ESLint" used as a noun, so 18 of 25 hits were real. After fixing it, 21 of 25 are, and five commands it had missed (`zig build`, `./build.py`, `ansible-test`, a shell script, `./gradlew`) are caught. The commit marker went the other way: its hits were almost all real, but 10 of 25 files it skipped contained commit rules in other words, such as "never commit without asking" or a `Signed-off-by` requirement. So that row now counts any mention of commits or PRs, and says so. The remaining markers are unchecked; give every share about ten points either way.
+
+The most common section headings are "Commands" (12%), "Testing" (10.4%), "Project overview" (9.4%), "Architecture" (8.1%) and "Code style" (7.4%). The sample file in the agents.md README has three headings, dev environment tips, testing instructions and PR instructions, and the top 1,000 cluster around those same three subjects.
+
+Counting only prose lines, the median file has 13 lines per 100 that contain never, always, must, do not or avoid. The 90th percentile has 30. Above that you are writing a rulebook.
+
+## How long should the file be?
+
+![Range chart of approximate token length for three groups of agent files](/images/blog/agent-file-census/size.svg)
+
+| Top-1,000 AGENTS.md | p10 | median | p90 | max |
+|---|---:|---:|---:|---:|
+| Lines | 11 | 106 | 348 | 1,018 |
+| Approx. tokens (characters / 4) | 111 | 1,769 | 6,193 | 17,224 |
+
+The token column is an estimate, not a tokenizer. The five largest by that estimate are netdata (17.2k), career-ops (17.1k), oh-my-openagent (16.3k), OmniRoute (15.9k) and Mole (15.1k). The longest by lines is browser-use at 1,018. One file is empty.
+
+To see the long tail, I pulled a second sample of 945 `AGENTS.md` and 920 `CLAUDE.md` files from GitHub code search. That sample follows the search ranking and says nothing about how many repos have a file, but it shows shape. The medians are shorter (73 and 91 lines). And 36% of the `CLAUDE.md` files contain the sentence Claude Code's `/init` command writes, "This file provides guidance to Claude Code". The marker means the file was generated; it does not say whether anyone edited it afterwards. Their top headings are "Architecture" (31%), "Project overview" (22%) and "Commands" (19%), which is the `/init` outline. The generator shapes the genre.
+
+## What happened when I ran this on my own repos?
+
+I turned the percentiles into a small lint and pointed it at my own files.
+
+```
+starlight/AGENTS.md            ~15,193 tokens  warn  long: p90 is 6,193, median 1,769
+~/.claude/CLAUDE.md             ~5,556 tokens  ok
+frankx.ai-vercel-website        ~3,592 tokens  info  AGENTS.md, CLAUDE.md and GEMINI.md all differ
+```
+
+My root instruction file would be the fifth largest in the top 1,000. It grew the way these files grow: every incident added a rule and nobody removed one. The first version of the lint also flagged my global `CLAUDE.md` as rule-dense. It was counting code blocks. Measured on prose only, the file passes, which is a small example of why the second reviewer matters.
+
+## What I am doing with this
+
+1. **The lint.** `agentfile-lint` reports size against the census, missing command markers, rule density, `/init` markers, differences between sibling instruction files, token-shaped strings and hidden Unicode. Zero dependencies, thresholds adjustable. Only the last two are errors; the rest are information.
+2. **The numbers upstream.** An issue to the agents.md project with the presence figures and the pointer breakdown, which their README does not mention.
+3. **A re-run against the same files.** Every downloaded body was checked against the blob hash GitHub reported when it was listed. 2,395 of 2,397 matched; the two that did not were stale search-index entries, re-fetched by hash. The next snapshot keeps this one beside it.
+
+The honest limit, which the reviewer put better than I did: this measures what people write, not what works. The experiment that would change how you write your file is a before/after, consolidating instructions into one file across several repos and measuring failed runs. That is the next one.
+
+If you maintain these files across several repos and want them measured against this census, drift and size called out per file, I am collecting interest. No price yet; the waitlist asks what you would expect to pay, which is how the price gets set.
+
+[Join the agent-file audit waitlist](/waitlist?intent=agentfile-audit)
+
+## FAQ
+
+### Does Claude Code read AGENTS.md without a CLAUDE.md?
+
+Its memory documentation says yes, since v2.1.277, when no `CLAUDE.md` or `CLAUDE.local.md` exists in the working directory or above it, and that with both present it reads `CLAUDE.md` only unless you set the instruction-files option to load both. I did not test the loading behaviour; the `@AGENTS.md` pointer is the pattern the top 1,000 use.
+
+### Is 39% a measure of all GitHub?
+
+No. It is the 1,000 most-starred public repos on one day, root files only, counted by filename. GitHub code search reported about 554,000 root `AGENTS.md` files and 569,000 `CLAUDE.md` files on 8 October, and about 4,000 more of each the day before; that count includes forks and templates and is not comparable.
+
+### How were tokens counted?
+
+Characters divided by four. No tokenizer was run, so treat the token columns as a scale.
+
+### Why is the second sample not used for adoption numbers?
+
+GitHub code search returns at most 1,000 results in best-match order. Whatever the index ranks first is over-represented. It is useful for the shape of files, not for how many repos have one.
+
+### Can I reproduce the census?
+
+Yes. The collector, analyzer and verifier are Node scripts with no dependencies beyond a logged-in `gh`. The manifest lists every repo, path and blob hash, and every body in the analysis matches its hash, so the exact files can be re-fetched through the git blobs API. Raw bodies are not redistributed because they are other people's files under their own licences.
+
+### Does a longer file make the agent worse?
+
+This census does not test that. It measures what people write, not what works.
