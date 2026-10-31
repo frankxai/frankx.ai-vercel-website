@@ -35,7 +35,7 @@ export default async function WealthDashboardPage() {
         {/* Header */}
         <div className="flex items-center gap-3 mb-2">
           <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse motion-reduce:animate-none" />
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold text-emerald-400">
             Wealth Intelligence
           </h1>
         </div>
