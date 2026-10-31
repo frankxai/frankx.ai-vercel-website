@@ -1,16 +1,16 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getPublishedBooks } from './lib/books-registry';
+import { getPublishedBooks, publishedBookCount } from './lib/books-registry';
 import { getThemeClasses } from './lib/theme-classes';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Books | FrankX',
   description:
-    'Books on love, discipline, creativity, imagination, and a new illustrated family library. Read free online or download selected editions.',
+    `${publishedBookCount} published books on love, discipline, creativity, imagination, and an illustrated family library. Read free online or download selected editions.`,
   openGraph: {
-    title: 'The FrankX Library',
-    description: 'Six books. One voice. No filler.',
+    title: 'The FrankX library',
+    description: `${publishedBookCount} published books. One voice. Free to read online.`,
     type: 'website',
   },
 };
@@ -28,16 +28,16 @@ export default function BooksHubPage() {
 
         <div className="relative max-w-6xl mx-auto px-6 pt-24 pb-16 sm:pt-32 sm:pb-20">
           <div className="text-center max-w-3xl mx-auto">
-            <p className="text-sm uppercase tracking-[0.3em] text-white/30 mb-6">
-              The Library
+            <p className="text-sm font-medium tracking-wide text-white/40 mb-6">
+              The library
             </p>
             <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold leading-[0.95] mb-6">
               <span className="bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">
-                Six Books.
+                {books.length} books.
               </span>
               <br />
               <span className="bg-gradient-to-r from-rose-300 via-amber-200 to-violet-300 bg-clip-text text-transparent">
-                One Voice.
+                One voice.
               </span>
             </h1>
             <p className="text-lg sm:text-xl text-white/40 max-w-xl mx-auto leading-relaxed">
@@ -65,7 +65,7 @@ export default function BooksHubPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#12100c] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[#12100c]" />
           </div>
           <div className="relative flex flex-col justify-center p-7 sm:p-10 lg:p-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-300/75">
+            <p className="text-xs font-semibold tracking-wide text-amber-300/75">
               New · Family storybooks
             </p>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-[-0.035em] text-white sm:text-4xl">
@@ -82,7 +82,7 @@ export default function BooksHubPage() {
                   →
                 </span>
               </span>
-              <span className="rounded-full border border-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-stone-400">
+              <span className="rounded-full border border-white/10 px-3 py-2 text-xs font-semibold tracking-wide text-stone-400">
                 English · Deutsch
               </span>
             </div>
@@ -138,7 +138,7 @@ export default function BooksHubPage() {
                         ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/20'
                         : 'bg-amber-500/20 text-amber-300 border border-amber-400/20'
                     }`}>
-                      {book.status === 'published' ? 'Published' : 'In Progress'}
+                      {book.status === 'published' ? 'Published' : 'In progress'}
                     </span>
                   </div>
                 </div>
@@ -175,7 +175,7 @@ export default function BooksHubPage() {
       <section className="max-w-4xl mx-auto px-6 pb-24">
         <div className="relative p-8 sm:p-12 rounded-2xl border border-white/[0.08] bg-white/[0.03] text-center">
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-3">
-            Curated Reading
+            Curated reading
           </h2>
           <p className="text-white/40 mb-8 max-w-lg mx-auto">
             Book reviews, key insights, and curated recommendations from the books that shaped these books.
@@ -184,7 +184,7 @@ export default function BooksHubPage() {
             href="/library"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/10 text-white/70 hover:text-white hover:border-white/20 transition-all text-sm"
           >
-            Browse the Library
+            Browse the library
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
           </Link>
         </div>
