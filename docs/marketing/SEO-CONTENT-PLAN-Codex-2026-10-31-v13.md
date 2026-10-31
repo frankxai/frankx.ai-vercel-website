@@ -4,6 +4,8 @@ Author: Codex. Private/local planning candidate; proposed dates are not a schedu
 
 ## Audience and voice
 
+The manuscript in this packet covers frontier model selection. It supports the founder-agent-team story or a separately reviewed refresh of existing model coverage. The November skills brief uses the preserved Superpowers/Claude Code skills manuscript from the earlier editorial packet; do not publish the model-selection manuscript as the skills article.
+
 Direct founder experience; practical ambition, clear decisions and useful examples.
 
 Audience job: Creators and builders choosing a practical AI workflow
