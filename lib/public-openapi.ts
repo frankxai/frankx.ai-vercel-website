@@ -281,20 +281,15 @@ export const publicOpenApi = {
       get: {
         operationId: 'openMcpSession',
         tags: ['mcp'],
-        summary: 'Open the MCP stream',
+        summary: 'Not supported: the MCP server is stateless',
         description:
-          'Opens the stateless MCP session when Accept includes text/event-stream. The body is an event stream. A GET without that media type returns 406 JSON-RPC. No API key is required. Tool calls go to POST.',
+          'This endpoint is stateless and has no event stream. Every GET and DELETE returns 405 with Allow: POST and a JSON-RPC error. Send tool calls to POST.',
         responses: {
-          '200': {
-            description: 'Server-sent events keepalive for the streamable HTTP session.',
-            content: {
-              'text/event-stream': {
-                schema: { type: 'string' },
-              },
+          '405': {
+            description: 'Method not allowed. Use POST.',
+            headers: {
+              Allow: { description: 'Always POST.', schema: { type: 'string', const: 'POST' } },
             },
-          },
-          '406': {
-            description: 'The client did not accept text/event-stream.',
             content: {
               'application/json': {
                 schema: { $ref: '#/components/schemas/McpNotAcceptable' },

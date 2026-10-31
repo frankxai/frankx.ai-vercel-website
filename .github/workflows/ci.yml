@@ -47,9 +47,9 @@ on:
 # security controls. Keep pull_request always-reporting; a required check with
 # PR paths/paths-ignore can leave unmatched pull requests permanently blocked.
 
-# Cancel superseded runs on rapid pushes to the same ref
+# Event namespaces keep main separate even from closed PRs using an older workflow.
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ci-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -61,7 +61,7 @@ env:
 jobs:
   ci:
     name: CI
-    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
+    if: github.event_name != 'pull_request' || (github.event.pull_request.state == 'open' && github.event.pull_request.draft == false)
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -101,6 +101,9 @@ jobs:
 
       - name: Type Check
         run: pnpm run type-check
+
+      - name: Glass input source contracts
+        run: node --test scripts/tests/glass-control-accessibility.test.mjs
 
       - name: Changelog contract
         run: pnpm run test:changelog-release
@@ -183,3 +186,28 @@ jobs:
       - name: GenCreator rendered metadata
         if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: pnpm run test:gencreator-metadata:rendered
+
+      - name: Glass input keyboard, touch and motion journey
+        run: node scripts/qa/glass-input-journey.mjs
+        timeout-minutes: 6
+        env:
+          REVIEWED_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Glass input production journey
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: node scripts/qa/glass-input-journey.mjs
+        timeout-minutes: 6
+        env:
+          GLASS_QA_ORIGIN: https://www.frankx.ai
+          REVIEWED_HEAD_SHA: ${{ github.sha }}
+
+      - name: Save glass input evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: glass-input-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/glass-input-journey
+            ${{ runner.temp }}/glass-input-production
+          if-no-files-found: ignore
+          retention-days: 14
