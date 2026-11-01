@@ -8,6 +8,10 @@ thinking: false
 **Strategy Doc**: `/docs/SEO_MARKETING_STRATEGY.md`
 **Content Strategy**: `/docs/CONTENT_STRATEGY.md`
 
+## Research budget and evidence
+
+Read `docs/strategy/search-research-budget.md` before research. Reuse saved evidence and first-party exports; unknown balance, tariff or authorized allowance means zero paid requests. Share one aggregate budget across clients. Never simulate performance metrics or turn missing data into zero. Keep raw vendor/account evidence private and publish through the existing content review path.
+
 ## SEO Architecture Overview
 
 ### Core Pillars (from KNOWLEDGE_BASE.md)
