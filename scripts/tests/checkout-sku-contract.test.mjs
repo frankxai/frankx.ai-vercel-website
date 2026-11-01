@@ -57,24 +57,42 @@ test('every CheckoutButton productId resolves to a SKU the checkout route knows'
 })
 
 /**
- * The Stripe route must fail closed: a product opens for checkout only through
- * a reviewed status edit, never because STRIPE_SECRET_KEY appeared in the
- * environment. Before this gate, setting the key alone would have sold every
- * product in the map, including ones still on a waitlist.
+ * The Stripe route must fail closed. These cases call the real gate the route
+ * uses (lib/checkout-gate.ts), so inverting or dropping a condition there fails
+ * here: a status-text grep could not catch that (Grok review on PR #1146).
  */
-test('stripe checkout gates every product on a reviewed for-sale status before calling Stripe', () => {
+const { stripeCheckoutGate } = await import('../../lib/checkout-gate.ts')
+
+const KEY = 'sk_test_x'
+const closed = { status: 'pre-stage (not for sale)', priceId: 'price_x' }
+const open = { status: 'for sale', priceId: 'price_x' }
+
+test('a configured key and price do not open a product that is not for sale', () => {
+  const gate = stripeCheckoutGate(closed, KEY)
+  assert.equal(gate.ok, false)
+  assert.equal(gate.refusal, 'checkout_gated')
+})
+
+test('a for-sale product without a key or price stays closed', () => {
+  assert.equal(stripeCheckoutGate(open, undefined).refusal, 'checkout_unconfigured')
+  assert.equal(stripeCheckoutGate(open, '  ').refusal, 'checkout_unconfigured')
+  assert.equal(stripeCheckoutGate({ ...open, priceId: '' }, KEY).refusal, 'checkout_unconfigured')
+})
+
+test('checkout opens only with for-sale status, key and price', () => {
+  assert.deepEqual(stripeCheckoutGate(open, KEY), { ok: true, secretKey: KEY, priceId: 'price_x' })
+})
+
+test('every product in the Stripe route ships closed and the route calls the gate before Stripe', () => {
   const source = readFileSync(join(ROOT, 'app/api/checkout/route.ts'), 'utf8')
   const map = source.slice(source.indexOf('const PRODUCTS'), source.indexOf('export async function POST'))
   const entries = [...map.matchAll(/^\s*'([^']+)':\s*\{([\s\S]*?)^\s*\},/gm)]
   assert.ok(entries.length > 0, 'could not parse PRODUCTS entries')
-
-  const missing = entries.filter(([, , body]) => !/\bstatus:/.test(body)).map(([, id]) => id)
-  assert.deepEqual(missing, [], `PRODUCTS entries without a status: ${missing.join(', ')}`)
+  const open = entries.filter(([, , body]) => !/status:\s*NOT_FOR_SALE/.test(body)).map(([, id]) => id)
+  assert.deepEqual(open, [], `products not shipped closed (opening one needs a reviewed PR that also updates this test): ${open.join(', ')}`)
 
   const post = source.slice(source.indexOf('export async function POST'))
-  const gate = post.indexOf('checkout_gated')
-  const stripeCall = post.indexOf('api.stripe.com')
-  assert.ok(gate > 0, 'POST handler has no checkout_gated refusal')
-  assert.ok(stripeCall > gate, 'status gate must run before the Stripe API call')
-  assert.match(post, /priceId\.trim\(\)/, 'POST must refuse an empty priceId before calling Stripe')
+  assert.ok(post.indexOf('stripeCheckoutGate(') > 0, 'POST does not call stripeCheckoutGate')
+  assert.ok(post.indexOf('api.stripe.com') > post.indexOf('stripeCheckoutGate('), 'gate must run before the Stripe API call')
+  assert.match(post, /gate\.priceId/, 'Stripe must receive the gated price id')
 })

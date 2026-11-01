@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { stripeCheckoutGate } from '@/lib/checkout-gate'
 
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
 
@@ -6,11 +7,8 @@ const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
 // Keys must match a real `id` in data/products.json so the webhook
 // (app/api/webhooks/stripe/route.ts) can resolve delivery via
 // lib/delivery.ts's getProductById()/getDeliveryConfig().
-// A product is purchasable only when its status starts with "for sale". Flipping
-// a status is a deliberate go-live edit reviewed in a PR, never an env change:
-// setting STRIPE_SECRET_KEY alone must not open checkout (waitlist-first rule,
-// AGENTS.md §5c). Same gate shape as app/api/checkout/polar/route.ts.
-const PURCHASABLE_STATUS_PREFIX = 'for sale'
+// Every product ships closed. Opening one is a status edit in a reviewed PR;
+// lib/checkout-gate.ts enforces it before Stripe is called.
 const NOT_FOR_SALE = 'pre-stage (not for sale)'
 
 const PRODUCTS: Record<string, { name: string; priceId: string; amount: number; status: string }> = {
@@ -121,18 +119,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 })
     }
 
-    if (!product.status.trim().toLowerCase().startsWith(PURCHASABLE_STATUS_PREFIX)) {
-      return NextResponse.json(
-        { error: 'Checkout is not open for this product', refusal: 'checkout_gated' },
-        { status: 503 }
-      )
-    }
-
-    if (!STRIPE_SECRET_KEY || !product.priceId.trim()) {
-      return NextResponse.json(
-        { error: 'Checkout is not configured for this product', refusal: 'checkout_unconfigured' },
-        { status: 503 }
-      )
+    const gate = stripeCheckoutGate(product, STRIPE_SECRET_KEY)
+    if (!gate.ok) {
+      return NextResponse.json({ error: gate.error, refusal: gate.refusal }, { status: gate.status })
     }
 
     // Create Stripe Checkout Session via API
@@ -140,7 +129,7 @@ export async function POST(request: NextRequest) {
     params.append('mode', 'payment')
     params.append('success_url', `${request.nextUrl.origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`)
     params.append('cancel_url', `${request.nextUrl.origin}/checkout/cancel`)
-    params.append('line_items[0][price]', product.priceId)
+    params.append('line_items[0][price]', gate.priceId)
     params.append('line_items[0][quantity]', '1')
     params.append('metadata[productSlug]', productId)
     if (email) {
@@ -155,7 +144,7 @@ export async function POST(request: NextRequest) {
     const response = await fetch('https://api.stripe.com/v1/checkout/sessions', {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${STRIPE_SECRET_KEY}`,
+        Authorization: `Bearer ${gate.secretKey}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: params.toString(),
