@@ -55,3 +55,26 @@ test('every CheckoutButton productId resolves to a SKU the checkout route knows'
     `checkout SKU(s) absent from the route PRODUCTS map (${[...skus].join(', ')}):\n  ${offenders.join('\n  ')}`
   )
 })
+
+/**
+ * The Stripe route must fail closed: a product opens for checkout only through
+ * a reviewed status edit, never because STRIPE_SECRET_KEY appeared in the
+ * environment. Before this gate, setting the key alone would have sold every
+ * product in the map, including ones still on a waitlist.
+ */
+test('stripe checkout gates every product on a reviewed for-sale status before calling Stripe', () => {
+  const source = readFileSync(join(ROOT, 'app/api/checkout/route.ts'), 'utf8')
+  const map = source.slice(source.indexOf('const PRODUCTS'), source.indexOf('export async function POST'))
+  const entries = [...map.matchAll(/^\s*'([^']+)':\s*\{([\s\S]*?)^\s*\},/gm)]
+  assert.ok(entries.length > 0, 'could not parse PRODUCTS entries')
+
+  const missing = entries.filter(([, , body]) => !/\bstatus:/.test(body)).map(([, id]) => id)
+  assert.deepEqual(missing, [], `PRODUCTS entries without a status: ${missing.join(', ')}`)
+
+  const post = source.slice(source.indexOf('export async function POST'))
+  const gate = post.indexOf('checkout_gated')
+  const stripeCall = post.indexOf('api.stripe.com')
+  assert.ok(gate > 0, 'POST handler has no checkout_gated refusal')
+  assert.ok(stripeCall > gate, 'status gate must run before the Stripe API call')
+  assert.match(post, /priceId\.trim\(\)/, 'POST must refuse an empty priceId before calling Stripe')
+})
