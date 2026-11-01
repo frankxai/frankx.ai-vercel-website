@@ -41,7 +41,7 @@ jobs:
           gh api "repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha }}" \
             -f state=pending -f context="Surface Guard" -f description="Evaluating protected surfaces" \
             -f target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
