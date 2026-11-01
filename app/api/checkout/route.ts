@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { stripeCheckoutGate } from '@/lib/checkout-gate'
 
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
 
@@ -6,98 +7,111 @@ const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
 // Keys must match a real `id` in data/products.json so the webhook
 // (app/api/webhooks/stripe/route.ts) can resolve delivery via
 // lib/delivery.ts's getProductById()/getDeliveryConfig().
-const PRODUCTS: Record<string, { name: string; priceId: string; amount: number }> = {
+// Every product ships closed. Opening one is a status edit in a reviewed PR;
+// lib/checkout-gate.ts enforces it before Stripe is called.
+const NOT_FOR_SALE = 'pre-stage (not for sale)'
+
+const PRODUCTS: Record<string, { name: string; priceId: string; amount: number; status: string }> = {
   'creative-ai-toolkit': {
     name: 'Creative AI Toolkit',
     priceId: process.env.STRIPE_PRICE_TOOLKIT || '',
     amount: 4700,
+    status: NOT_FOR_SALE,
   },
   'agentic-creator-os': {
     name: 'ACOS Creator Kit',
     priceId: process.env.STRIPE_PRICE_ACOS || '',
     amount: 4700,
+    status: NOT_FOR_SALE,
   },
   'suno-prompt-library': {
     name: 'Suno Prompt Pack',
     priceId: process.env.STRIPE_PRICE_SUNO || '',
     amount: 2900,
+    status: NOT_FOR_SALE,
   },
   'system-architect-starter-kit': {
     name: 'System Architect Starter Kit',
     priceId: process.env.STRIPE_PRICE_SYSTEM_ARCHITECT || '',
     amount: 9700,
+    status: NOT_FOR_SALE,
   },
   'visual-creation-loop': {
     name: 'Visual Creation Loop',
     priceId: process.env.STRIPE_PRICE_VISUAL_LOOP || '',
     amount: 14700,
+    status: NOT_FOR_SALE,
   },
   'income-architecture-blueprint': {
     name: 'Income Architecture Blueprint',
     priceId: process.env.STRIPE_PRICE_INCOME_ARCH || '',
     amount: 6700,
+    status: NOT_FOR_SALE,
   },
   'dpi-field-kit': {
     name: 'DPI Field Kit: Wealth Substrate Pro',
     priceId: process.env.STRIPE_PRICE_DPI_KIT || '',
     amount: 9700,
+    status: NOT_FOR_SALE,
   },
   'agent-fleet-pro': {
     name: 'Agent Fleet Pro',
     priceId: process.env.STRIPE_PRICE_FLEET_PRO || '',
     amount: 14700,
+    status: NOT_FOR_SALE,
   },
   'memory-palace-os': {
     name: 'The Sovereign Memory Palace OS',
     priceId: process.env.STRIPE_PRICE_MEMORY_PALACE || '',
     amount: 9700,
+    status: NOT_FOR_SALE,
   },
   'agentic-media-machine': {
     name: 'The Agentic Media Machine',
     priceId: process.env.STRIPE_PRICE_MEDIA_MACHINE || '',
     amount: 9700,
+    status: NOT_FOR_SALE,
   },
   'agentic-content-engine': {
     name: 'Agentic Content Engine',
     priceId: process.env.STRIPE_PRICE_AGENTIC_CONTENT || '',
     amount: 9700,
+    status: NOT_FOR_SALE,
   },
   'starlight-operator-pack': {
     name: 'Starlight Operator Field Kit',
     priceId: process.env.STRIPE_PRICE_OPERATOR_PACK || '',
     amount: 9700,
+    status: NOT_FOR_SALE,
   },
   'aurora-ui-kit': {
     name: 'Aurora UI Kit',
     priceId: process.env.STRIPE_PRICE_AURORA || '',
     amount: 1900,
+    status: NOT_FOR_SALE,
   },
   'founders-circle-guild': {
     name: 'Founders Circle Guild',
     priceId: process.env.STRIPE_PRICE_FOUNDERS_GUILD || '',
     amount: 299700,
+    status: NOT_FOR_SALE,
   },
   'creation-chronicles': {
     name: 'Creation Chronicles',
     priceId: process.env.STRIPE_PRICE_CHRONICLES || '',
     amount: 49700,
+    status: NOT_FOR_SALE,
   },
   'command-center-template': {
     name: 'The Command Center Template',
     priceId: process.env.STRIPE_PRICE_COMMAND_CENTER || '',
     amount: 49700,
+    status: NOT_FOR_SALE,
   },
 }
 
 export async function POST(request: NextRequest) {
   try {
-    if (!STRIPE_SECRET_KEY) {
-      return NextResponse.json(
-        { error: 'Payment system is being configured. Please try again soon.' },
-        { status: 503 }
-      )
-    }
-
     const { productId, email } = await request.json()
 
     const product = PRODUCTS[productId]
@@ -105,12 +119,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 })
     }
 
+    const gate = stripeCheckoutGate(product, STRIPE_SECRET_KEY)
+    if (!gate.ok) {
+      return NextResponse.json({ error: gate.error, refusal: gate.refusal }, { status: gate.status })
+    }
+
     // Create Stripe Checkout Session via API
     const params = new URLSearchParams()
     params.append('mode', 'payment')
     params.append('success_url', `${request.nextUrl.origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`)
     params.append('cancel_url', `${request.nextUrl.origin}/checkout/cancel`)
-    params.append('line_items[0][price]', product.priceId)
+    params.append('line_items[0][price]', gate.priceId)
     params.append('line_items[0][quantity]', '1')
     params.append('metadata[productSlug]', productId)
     if (email) {
@@ -125,7 +144,7 @@ export async function POST(request: NextRequest) {
     const response = await fetch('https://api.stripe.com/v1/checkout/sessions', {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${STRIPE_SECRET_KEY}`,
+        Authorization: `Bearer ${gate.secretKey}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: params.toString(),
