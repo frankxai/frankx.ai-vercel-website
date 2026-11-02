@@ -262,6 +262,13 @@
   ],
   "platformSurfaces": [
     {
+      "id": "seo-aeo",
+      "label": "SEO and AEO playbooks",
+      "kind": "internal",
+      "url": "/resources/seo-aeo",
+      "status": "needs-verification"
+    },
+    {
       "id": "research",
       "label": "Research",
       "kind": "internal",

@@ -82,7 +82,7 @@ Matt Shumer was right about that, even if 80 million people read his essay throu
 
 I'll tell you what I've built on the intelligence layer in the past year.
 
-Ninety articles. Twelve thousand songs. An open-source operating system with seventy-five skills and thirty-eight agents. A research hub tracking seventeen domains with forty-two validated sources. A portfolio of seven books. An education platform with interactive tools for students, professors, researchers, and doctors. A music lab with production workflows across eight genres. A complete creator business framework with assessment tools, community architecture, and a curriculum.
+Ninety articles. A sustained AI music practice. An open-source operating system with seventy-five skills and thirty-eight agents. A research hub tracking seventeen domains with forty-two validated sources. A portfolio of seven books. An education platform with interactive tools for students, professors, researchers, and doctors. A music lab with production workflows across eight genres. A complete creator business framework with assessment tools, community architecture, and a curriculum.
 
 I did not build any of this alone. I built it with the intelligence layer.
 

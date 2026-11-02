@@ -37,7 +37,7 @@ You are living in the aftermath of this shift, further along than I am. I envy y
 
 I learned that quantity produces quality. Not the other way around.
 
-I did not produce twelve thousand songs because I am talented. I produced twelve thousand songs because I showed up daily with AI tools and created. The first hundred were terrible. The next thousand were mediocre. Somewhere around song four thousand, something shifted — not in the AI, but in my ear. I had developed taste through volume. I could hear what worked before it was finished. I could shape a prompt not from theory but from the accumulated intuition of thousands of iterations.
+A daily AI music practice creates repeated opportunities to listen, compare and revise. The useful part is learning to hear why an output works and applying that judgment to the next prompt. A claimed generation count cannot establish that learning; the work and the choices need to be inspectable.
 
 The same pattern held for writing. The first articles were stiff. The fiftieth was competent. The hundredth was mine — in a voice I could not have designed in advance but could only discover through the act of writing repeatedly until the voice found itself.
 

@@ -25,6 +25,7 @@ const WORKFLOW_DIR = '.github/workflows'
  * an empty exemption is how the drift above became invisible in the first place.
  */
 const EXEMPT = new Map([
+  ['test:blog-schema', 'Small unit test handled locally'],
   [
     'links:check:ci',
     'boots a dev server; merge:gate:ci already excludes it and merge-gate.yml runs links:check:static instead',
