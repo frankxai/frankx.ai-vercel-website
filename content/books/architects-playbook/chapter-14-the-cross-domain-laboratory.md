@@ -5,7 +5,7 @@
 
 ---
 
-Twelve thousand songs. Seven premium book covers. A production website with 250+ pages. Fifteen books totaling 145,000 words. An education platform. A research hub across seventeen domains. Seventy-five automation skills.
+A sustained AI music practice. Seven premium book covers. A production website with 250+ pages. Fifteen books totaling 145,000 words. An education platform. A research hub across seventeen domains. Seventy-five automation skills.
 
 This is not a portfolio. It is a laboratory.
 
@@ -15,9 +15,9 @@ This chapter makes the case that cross-domain practice is not a hobby. It is the
 
 ---
 
-## I. The Music Laboratory: 12,000 Experiments
+## I. The Music Laboratory
 
-Suno AI turns a text prompt into a finished song in ninety seconds. That sounds trivial until you realize what happens when you do it twelve thousand times.
+Suno AI turns a text prompt into a generated song. Repeating that process with deliberate listening creates opportunities to compare outputs and revise the next prompt.
 
 The first hundred songs were bad. Not bad the way a first draft is bad — bad the way a prototype is bad. They proved the mechanism worked. They produced output. The output was generic, predictable, and indistinguishable from what anyone else with Suno access could produce.
 
@@ -47,7 +47,7 @@ After producing thousands of songs, I could not look at a system architecture di
 
 This cross-mapping is not metaphorical. It is structural. Both systems use layered composition where each layer has a defined role, a relationship to adjacent layers, and independence from non-adjacent layers. Understanding this pattern in music made me a faster, more intuitive architect in software. The lessons were already learned. They just needed translation.
 
-**Taste development at scale.** Twelve thousand songs trained my ear in a way that a hundred never could. I can now hear in the first four seconds whether a generation will be a keeper. The evaluation is not conscious analysis — it is pattern recognition trained by volume. The ratio of keepers to generations has improved from roughly 1-in-20 to 1-in-4 over the course of a year. My prompts got better because my taste got better, and my taste got better because I exposed myself to thousands of outputs and forced myself to articulate why each one worked or failed.
+**Taste development at scale.** A sustained AI music practice trained my ear through repeated listening and revision. I can now hear in the first four seconds whether a generation will be a keeper. The evaluation is not conscious analysis — it is pattern recognition trained by volume. The ratio of keepers to generations has improved from roughly 1-in-20 to 1-in-4 over the course of a year. My prompts got better because my taste got better, and my taste got better because I exposed myself to thousands of outputs and forced myself to articulate why each one worked or failed.
 
 This is the taste development loop: produce, evaluate, articulate, refine, produce again. It operates identically in every creative domain. The person who has generated a thousand images can evaluate an image in seconds. The person who has written a hundred essays can evaluate a paragraph in a glance. The person who has reviewed a thousand code diffs can spot a bug before reading the line. Taste is pattern recognition trained by volume, and it transfers across domains because the meta-pattern — rapid evaluation against internalized quality standards — is universal.
 
@@ -109,7 +109,7 @@ Why does practice in one domain accelerate mastery in another? The mechanism is 
 
 **Channel 1: Pattern library expansion.** Every domain teaches patterns that have structural analogs in other domains. Layered composition in music maps to layered architecture in software. Compositional hierarchy in visual design maps to information architecture in UX. Argument structure in writing maps to function decomposition in code. Each domain adds patterns to your library, and patterns from one domain become available as analogies — and often as direct templates — in every other domain.
 
-**Channel 2: Evaluation skill transfer.** The ability to rapidly evaluate quality — to look at an output and know in seconds whether it meets the standard — trains in any domain and transfers to all domains. This is taste. Taste is domain-specific in its criteria but domain-general in its mechanism. The mechanism is: exposure to large quantities of output, forced articulation of what works and what fails, and internalization of quality standards that eventually operate below conscious analysis. Twelve thousand songs trained my evaluation speed. That speed now operates when I review code, assess a page layout, or read a paragraph.
+**Channel 2: Evaluation skill transfer.** The ability to rapidly evaluate quality — to look at an output and know in seconds whether it meets the standard — trains in any domain and transfers to all domains. This is taste. Taste is domain-specific in its criteria but domain-general in its mechanism. The mechanism is: exposure to large quantities of output, forced articulation of what works and what fails, and internalization of quality standards that eventually operate below conscious analysis. A sustained AI music practice trained my evaluation speed. That speed now operates when I review code, assess a page layout, or read a paragraph.
 
 **Channel 3: Meta-skill development.** Beyond specific patterns and evaluation ability, cross-domain practice develops meta-skills: iteration discipline, prompt engineering intuition, feedback loop optimization, the ability to hold a complex multi-layered composition in working memory. These meta-skills are fully domain-general. The person who has learned to iterate systematically in music — generate, evaluate, refine, generate — applies that same iteration discipline in every domain, without needing to relearn the habit.
 
@@ -127,7 +127,7 @@ The practical question: how do you build a cross-domain practice that produces t
 
 **Use the same AI tools across domains.** When you use Claude Code for writing, Suno for music, and Gemini for visual generation, you are also practicing prompt engineering across three different model architectures. The cross-model experience develops a meta-understanding of how language models interpret instructions — an understanding that is more robust than what you get from any single model.
 
-**Set quality standards, not quantity targets.** The goal is not to produce twelve thousand songs. The goal is to develop the pattern recognition that twelve thousand evaluations produce. Quality standards force you to articulate what "good" means in each domain, and those articulations are the raw material of transferable taste.
+**Define quality standards.** The goal is to develop pattern recognition through deliberate evaluation rather than chase a large output count. Quality standards force you to articulate what "good" means in each domain, and those articulations are the raw material of transferable taste.
 
 **Iterate across domains within a single day.** The transfer is strongest when the domains are temporally close. I produce music in the morning, write in the afternoon, and code in the evening. The patterns from each session are still active in working memory when the next session begins. A music production insight about layered composition shows up in the afternoon's writing structure. A writing insight about argument pacing shows up in the evening's API design.
 

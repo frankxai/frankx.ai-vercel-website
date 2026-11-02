@@ -1,64 +1,125 @@
-import { ArrowLeft, ArrowRight, BookOpen, Brain, CheckCircle2, Clock, Share, Users } from 'lucide-react'
-import Link from 'next/link'
-import { Metadata } from 'next'
+import {
+  ArrowLeft,
+  ArrowRight,
+  BookOpen,
+  Brain,
+  CheckCircle2,
+  Clock,
+  Share,
+  Users,
+} from "lucide-react";
+import Link from "next/link";
+import { Metadata } from "next";
+import JsonLd from "@/components/seo/JsonLd";
+import { siteConfig } from "@/lib/seo";
+import { socialLinks } from "@/lib/social-links";
 
 export const metadata: Metadata = {
-  title: 'The Intelligence Revolution Playbook 2025 | FrankX.AI',
-  description: 'A systems-first guide to orchestrating conscious AI across products, teams, and experiences. Transform your organization for the intelligence age.',
+  title: "The Intelligence Revolution Playbook 2025 | FrankX.AI",
+  description:
+    "A systems-first guide to orchestrating conscious AI across products, teams, and experiences. Transform your organization for the intelligence age.",
   openGraph: {
-    title: 'The Intelligence Revolution Playbook 2025',
-    description: 'A systems-first guide to orchestrating conscious AI across products, teams, and experiences.',
-    type: 'article',
-    publishedTime: '2025-09-16T00:00:00.000Z',
+    title: "The Intelligence Revolution Playbook 2025",
+    description:
+      "A systems-first guide to orchestrating conscious AI across products, teams, and experiences.",
+    type: "article",
+    publishedTime: "2025-09-16T00:00:00.000Z",
   },
-}
+};
 
 const keyTakeaways = [
-  'AI transformation requires systems thinking, not just tool adoption',
-  'Conscious AI principles ensure technology serves human values',
-  'Strategic implementation creates competitive advantages that scale',
-  'Leadership alignment is critical for successful AI initiatives',
-  'Measurement frameworks drive continuous improvement and ROI'
-]
+  "AI transformation requires systems thinking, beyond tool adoption",
+  "Conscious AI principles ensure technology serves human values",
+  "Strategic implementation creates competitive advantages that scale",
+  "Leadership alignment is critical for successful AI initiatives",
+  "Measurement frameworks drive continuous improvement and ROI",
+];
 
 const sections = [
   {
-    title: 'The Current State of AI Adoption',
-    content: 'Most organizations are approaching AI adoption tactically rather than strategically. While individual teams experiment with ChatGPT and AI tools, leadership lacks a coherent vision for how these technologies will transform their business model, operations, and competitive positioning.',
+    title: "The Current State of AI Adoption",
+    content:
+      "Most organizations are approaching AI adoption tactically rather than strategically. While individual teams experiment with ChatGPT and AI tools, leadership lacks a coherent vision for how these technologies will transform their business model, operations, and competitive positioning.",
     insights: [
-      'Many organizations have scattered AI experiments but no clear operating model',
-      'Pilots stall when ownership, data boundaries, and review gates are undefined',
-      'Strategic AI implementations perform better when they connect use cases to governance and measurement'
-    ]
+      "Many organizations have scattered AI experiments but no clear operating model",
+      "Pilots stall when ownership, data boundaries, and review gates are undefined",
+      "Strategic AI implementations perform better when they connect use cases to governance and measurement",
+    ],
   },
   {
-    title: 'The Conscious AI Framework',
-    content: 'Conscious AI represents a paradigm shift from "AI for efficiency" to "AI for human flourishing." This approach ensures that intelligent systems amplify human creativity, decision-making, and values rather than replacing or undermining them.',
+    title: "The Conscious AI Framework",
+    content:
+      'Conscious AI represents a paradigm shift from "AI for efficiency" to "AI for human flourishing." This approach ensures that intelligent systems amplify human creativity, decision-making, and values rather than replacing or undermining them.',
     insights: [
-      'Human-centered design principles guide all AI implementations',
-      'Transparency and explainability are built into every system',
-      'Continuous feedback loops ensure AI serves intended outcomes'
-    ]
+      "Human-centered design principles guide all AI implementations",
+      "Transparency and explainability are built into every system",
+      "Continuous feedback loops ensure AI serves intended outcomes",
+    ],
   },
   {
-    title: 'Strategic Implementation Roadmap',
-    content: 'Success in the intelligence age requires a systematic approach to AI integration. This begins with leadership education, continues through pilot programs, and scales to organization-wide transformation.',
+    title: "Strategic Implementation Roadmap",
+    content:
+      "Success in the intelligence age requires a systematic approach to AI integration. This begins with leadership education, continues through pilot programs, and scales to organization-wide transformation.",
     insights: [
-      'Start with high-impact, low-risk use cases',
-      'Build internal AI literacy before external implementations',
-      'Create feedback mechanisms for continuous optimization'
-    ]
-  }
-]
+      "Start with high-impact, low-risk use cases",
+      "Build internal AI literacy before external implementations",
+      "Create feedback mechanisms for continuous optimization",
+    ],
+  },
+];
 
 export default function IntelligenceRevolutionPlaybook() {
+  const articleSchema = {
+    headline: "The Intelligence Revolution Playbook 2025",
+    description:
+      "A systems-first guide to orchestrating conscious AI across products, teams, and experiences. Transform your organization for the intelligence age.",
+    image: [`${siteConfig.url}${siteConfig.ogImage}`],
+    author: {
+      "@type": "Person",
+      name: "Frank Riemer",
+      url: siteConfig.url,
+      jobTitle: "AI Architect",
+      description:
+        "Former Oracle AI architect and independent FrankX builder focused on agentic AI systems and creator operating systems.",
+      alumniOf: {
+        "@type": "Organization",
+        name: "Oracle",
+      },
+      sameAs: [
+        socialLinks.x,
+        socialLinks.linkedin,
+        socialLinks.github,
+        socialLinks.youtube,
+        socialLinks.instagram,
+      ],
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteConfig.url}${siteConfig.ogImage}`,
+      },
+    },
+    datePublished: "2025-09-16T00:00:00.000Z",
+    dateModified: "2025-09-16T00:00:00.000Z",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${siteConfig.url}/blog/intelligence-revolution-2025`,
+    },
+  };
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-<main className="px-6 pt-28 pb-20">
+      <JsonLd type="Article" data={articleSchema} />
+      <main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-4xl space-y-12">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-white/60">
-            <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+            <Link href="/blog" className="hover:text-white transition-colors">
+              Blog
+            </Link>
             <ArrowRight className="w-4 h-4" />
             <span>The Intelligence Revolution Playbook</span>
           </nav>
@@ -74,8 +135,9 @@ export default function IntelligenceRevolutionPlaybook() {
                 The Intelligence Revolution Playbook 2025
               </h1>
               <p className="text-xl text-white/70 leading-relaxed">
-                A systems-first guide to orchestrating conscious AI across products, teams, and experiences.
-                Transform your organization for the intelligence age.
+                A systems-first guide to orchestrating conscious AI across
+                products, teams, and experiences. Transform your organization
+                for the intelligence age.
               </p>
             </div>
 
@@ -117,26 +179,38 @@ export default function IntelligenceRevolutionPlaybook() {
           <article className="prose prose-invert prose-lg max-w-none">
             <div className="space-y-12">
               <section>
-                <h2 className="text-3xl font-bold text-white mb-6">The Intelligence Age is Here</h2>
+                <h2 className="text-3xl font-bold text-white mb-6">
+                  The Intelligence Age is Here
+                </h2>
                 <p className="text-white/80 leading-relaxed mb-6">
-                  We are witnessing the most significant technological transformation since the internet.
-                  Artificial Intelligence is not just another tool to add to your stack—it's a fundamental
-                  shift in how work gets done, decisions get made, and value gets created.
+                  We are witnessing the most significant technological
+                  transformation since the internet. Artificial Intelligence is
+                  more than another tool to add to your stack—it's a fundamental
+                  shift in how work gets done, decisions get made, and value
+                  gets created.
                 </p>
                 <p className="text-white/80 leading-relaxed mb-6">
-                  The organizations that will thrive in the next decade are those that approach AI strategically,
-                  with clear frameworks, conscious implementation, and systematic measurement. This isn't about
-                  replacing humans with machines—it's about creating intelligent systems that amplify human
-                  capability and creativity.
+                  The organizations that will thrive in the next decade are
+                  those that approach AI strategically, with clear frameworks,
+                  conscious implementation, and systematic measurement. This
+                  isn't about replacing humans with machines—it's about creating
+                  intelligent systems that amplify human capability and
+                  creativity.
                 </p>
               </section>
 
               {sections.map((section, index) => (
                 <section key={section.title} className="space-y-6">
-                  <h2 className="text-3xl font-bold text-white">{section.title}</h2>
-                  <p className="text-white/80 leading-relaxed">{section.content}</p>
+                  <h2 className="text-3xl font-bold text-white">
+                    {section.title}
+                  </h2>
+                  <p className="text-white/80 leading-relaxed">
+                    {section.content}
+                  </p>
                   <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                    <h3 className="text-lg font-semibold text-white mb-4">Key Insights:</h3>
+                    <h3 className="text-lg font-semibold text-white mb-4">
+                      Key Insights:
+                    </h3>
                     <ul className="space-y-2">
                       {section.insights.map((insight) => (
                         <li key={insight} className="flex items-start gap-3">
@@ -150,20 +224,26 @@ export default function IntelligenceRevolutionPlaybook() {
               ))}
 
               <section>
-                <h2 className="text-3xl font-bold text-white mb-6">The Path Forward</h2>
+                <h2 className="text-3xl font-bold text-white mb-6">
+                  The Path Forward
+                </h2>
                 <p className="text-white/80 leading-relaxed mb-6">
-                  The intelligence revolution is not a future event—it's happening now. Organizations that
-                  develop systematic approaches to AI implementation will create sustainable competitive
-                  advantages. Those that approach it tactically will find themselves constantly playing catch-up.
+                  The intelligence revolution is not a future event—it's
+                  happening now. Organizations that develop systematic
+                  approaches to AI implementation will create sustainable
+                  competitive advantages. Those that approach it tactically will
+                  find themselves constantly playing catch-up.
                 </p>
                 <p className="text-white/80 leading-relaxed mb-6">
-                  The playbook for success combines strategic vision with practical implementation, conscious
-                  principles with measurable outcomes. It requires leadership commitment, team alignment, and
-                  continuous learning.
+                  The playbook for success combines strategic vision with
+                  practical implementation, conscious principles with measurable
+                  outcomes. It requires leadership commitment, team alignment,
+                  and continuous learning.
                 </p>
                 <p className="text-white/80 leading-relaxed">
-                  The question isn't whether AI will transform your industry—it's whether you'll lead that
-                  transformation or be disrupted by it.
+                  The question isn't whether AI will transform your
+                  industry—it's whether you'll lead that transformation or be
+                  disrupted by it.
                 </p>
               </section>
             </div>
@@ -171,9 +251,12 @@ export default function IntelligenceRevolutionPlaybook() {
 
           {/* CTA Section */}
           <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-cyan-500/5 via-slate-900 to-slate-950 p-8 text-center">
-            <h2 className="text-2xl font-bold text-white mb-4">Ready to Implement Your AI Strategy?</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">
+              Ready to Implement Your AI Strategy?
+            </h2>
             <p className="text-white/70 mb-6 max-w-2xl mx-auto">
-              Transform your organization with proven frameworks and systematic implementation approaches.
+              Transform your organization with proven frameworks and systematic
+              implementation approaches.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -211,6 +294,6 @@ export default function IntelligenceRevolutionPlaybook() {
           </nav>
         </div>
       </main>
-</div>
-  )
+    </div>
+  );
 }

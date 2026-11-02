@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1069,
+    "total": 1072,
     "aliases": 61,
     "byType": {
       "core": 24,
@@ -11,7 +11,7 @@
       "static": 15,
       "blog": 277,
       "research": 23,
-      "guide": 39,
+      "guide": 42,
       "library": 88,
       "newsletter": 1,
       "os": 11,
@@ -976,19 +976,20 @@
     },
     {
       "href": "/blog/aeo-knowledge-graph-2026",
-      "title": "The 2026 AEO Knowledge Graph: From SEO to Entity-First Authority",
-      "description": "Discover why Answer Engine Optimization (AEO) and Knowledge Graphs have replaced traditional SEO in 2026, and how to build topical authority clusters.",
+      "title": "AEO knowledge graphs: connect your content and preserve the evidence",
+      "description": "Use a content graph to manage page relationships, sources and updates. Understand its limits for SEO and AI search visibility.",
       "tags": [
-        "intelligence-dispatches",
-        "ai-systems",
-        "production"
+        "seo",
+        "aeo",
+        "knowledge graphs",
+        "content strategy"
       ],
       "type": "blog"
     },
     {
       "href": "/blog/aeo-playbook-get-cited-by-ai-2026",
-      "title": "How to Get Cited by ChatGPT and Perplexity: The AEO Playbook for 2026",
-      "description": "Answer Engine Optimization is how you become the source AI quotes. The on-page and off-page playbook to get cited by ChatGPT, Perplexity, and Gemini — with a checklist and the tools that track it.",
+      "title": "How to evaluate AI citations: an AEO playbook for your website",
+      "description": "Improve useful website content and measure sampled citations across AI answer tools. Includes an evidence checklist and a repeatable observation method.",
       "tags": [
         "AEO",
         "AI Search",
@@ -3651,8 +3652,8 @@
     },
     {
       "href": "/blog/seo-aeo-optimization-acos",
-      "title": "SEO & AEO Optimization with ACOS: Rank in Search and AI Engines",
-      "description": "Master search and AI engine optimization with ACOS. Question-based structure, FAQ schemas, AI citation optimization, and the /factory pipeline for publish-ready content.",
+      "title": "SEO and AEO with ACOS: an evidence-led content workflow",
+      "description": "Plan and review search content with AI assistants. Preserve sources, check claims, and measure website outcomes without promising AI citations.",
       "tags": [
         "seo",
         "aeo",
@@ -9913,6 +9914,37 @@
         "stack"
       ],
       "type": "section"
+    },
+    {
+      "href": "/resources/seo-aeo",
+      "title": "SEO and AEO playbooks",
+      "tags": [
+        "seo",
+        "aeo",
+        "search",
+        "content strategy"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/resources/seo-aeo/semrush-mcp",
+      "title": "Semrush MCP setup and research prompt",
+      "tags": [
+        "semrush",
+        "mcp",
+        "keyword research"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/resources/seo-aeo/workflow",
+      "title": "AI SEO workflow from evidence to website change",
+      "tags": [
+        "seo",
+        "ai",
+        "content brief"
+      ],
+      "type": "guide"
     },
     {
       "href": "/resources/skills",

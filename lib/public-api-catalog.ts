@@ -70,7 +70,7 @@ export const publicApiCatalog = {
       method: 'GET',
       path: '/api/mcp',
       description:
-        'Opens the stateless MCP session when Accept includes text/event-stream. The body is an event stream. A GET without that media type returns 406 JSON-RPC. No API key is required. The server card is https://www.frankx.ai/api/mcp/server-card.',
+        'The MCP server is stateless, so GET and DELETE always return 405 with Allow: POST. There is no event stream. Send tool calls to POST. The server card is https://www.frankx.ai/api/mcp/server-card.',
       example: `${SITE}/api/mcp`,
     },
     {

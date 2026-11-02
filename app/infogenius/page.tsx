@@ -11,20 +11,25 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'InfoGenius — FRANK-Ω | FrankX.AI',
     description:
-      'Superintelligent. Direct. Results in seconds. FRANK-Ω transforms complex topics into cinematic visual knowledge.',
+      'Name a topic. FRANK-Ω researches it, cites the sources and renders the visual on your own Gemini key.',
     images: [{ url: '/images/mascot/frank-omega-v1.png' }],
   },
 }
+
+// InfoGenius is a GenCreator product (registry: product_infogenius); this page
+// is the FrankX showcase and links out to the product rather than hosting it.
+const INFOGENIUS_APP_URL = 'https://infogenius-three.vercel.app'
+const INFOGENIUS_REPO_URL = 'https://github.com/frankxai/infogenius'
 
 const capabilities = [
   {
     icon: '⚡',
     title: 'Research Grounded',
-    body: 'Every visual starts with real-time web research. No hallucinations — just facts rendered beautifully.',
+    body: 'Every visual starts with a live web search, and the sources it used are listed beside the result so you can check them.',
   },
   {
     icon: '🎨',
-    title: '8 Visual Styles',
+    title: 'Styles and brand packs',
     body: 'From 3D isometric to vintage lithograph to cyberpunk HUD. Match the medium to the message.',
   },
   {
@@ -40,24 +45,24 @@ const capabilities = [
   {
     icon: '🧠',
     title: 'Pro Reasoning',
-    body: 'Gemini 3 Pro with high-thinking mode. The same model that designed itself.',
+    body: 'Gemini 3 Pro with Google Search runs the research and writes the image prompt.',
   },
   {
     icon: '🔁',
-    title: 'Instant Iterations',
-    body: '"Make it more technical." "Switch to minimal." Refine in seconds, not hours.',
+    title: 'Quick iterations',
+    body: '"Make it more technical." "Switch to minimal." Change the level or style and run it again.',
   },
 ]
 
 const styles = [
-  { label: 'Standard', tag: 'Scientific', color: 'from-blue-500/20 to-cyan-500/20' },
+  { label: 'Modern Science', tag: 'Textbook', color: 'from-blue-500/20 to-cyan-500/20' },
   { label: 'Minimalist', tag: 'Bauhaus', color: 'from-white/10 to-white/5' },
-  { label: 'Photorealistic', tag: 'Cinematic', color: 'from-amber-500/20 to-orange-500/20' },
-  { label: '3D Isometric', tag: 'Claymorphic', color: 'from-emerald-500/20 to-teal-500/20' },
-  { label: 'Technical', tag: 'Blueprint', color: 'from-slate-500/20 to-zinc-500/20' },
+  { label: 'Realistic', tag: 'Photographic', color: 'from-amber-500/20 to-orange-500/20' },
+  { label: '3D Render', tag: 'Studio light', color: 'from-emerald-500/20 to-teal-500/20' },
+  { label: 'Da Vinci Blueprint', tag: 'Engineering', color: 'from-slate-500/20 to-zinc-500/20' },
   { label: 'Futuristic', tag: 'Cyberpunk HUD', color: 'from-violet-500/20 to-purple-500/20' },
   { label: 'Vintage', tag: '19th Century', color: 'from-yellow-700/20 to-amber-800/20' },
-  { label: 'Cartoon', tag: 'Educational', color: 'from-pink-500/20 to-rose-500/20' },
+  { label: 'Da Vinci Sketch', tag: 'Notebook', color: 'from-pink-500/20 to-rose-500/20' },
 ]
 
 const pipeline = [
@@ -68,7 +73,7 @@ const pipeline = [
   },
   {
     step: '02',
-    title: 'Research happens in seconds',
+    title: 'Research comes first',
     detail: 'Web-grounded fact extraction. 3–5 key data points that will anchor the visual.',
   },
   {
@@ -78,8 +83,8 @@ const pipeline = [
   },
   {
     step: '04',
-    title: 'Image rendered at 4K',
-    detail: 'Gemini 3 Pro Image. AAA quality. Ready for blog, social, course, or presentation.',
+    title: 'Image rendered at your size',
+    detail: 'Gemini 3 Pro Image at 1K, 2K or 4K, sized for a blog, a social post, a course or a slide.',
   },
 ]
 
@@ -101,7 +106,7 @@ export default function InfoGeniusPage() {
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[0.95] mb-6">
                 Hello.
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-300">
+                <span className="text-violet-300">
                   I turn knowledge
                 </span>
                 <br />
@@ -109,32 +114,36 @@ export default function InfoGeniusPage() {
               </h1>
 
               <p className="text-xl text-white/50 leading-relaxed mb-10 max-w-lg">
-                Give me a topic. I research it, build the prompt, and render a 4K infographic
-                in seconds. Research-grounded. Audience-calibrated. No filler.
+                Give me a topic. I research it, build the prompt, and render the infographic
+                with its sources listed. Research-grounded. Audience-calibrated. No filler.
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <Link
-                  href="/lab"
+                <a
+                  href={INFOGENIUS_APP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-violet-600 hover:bg-violet-500 px-7 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_30px_rgba(139,92,246,0.5)]"
                 >
-                  Try InfoGenius
-                  <span className="text-base">→</span>
-                </Link>
-                <Link
-                  href="/blog"
+                  Try it free
+                  <span className="text-base" aria-hidden="true">→</span>
+                </a>
+                <a
+                  href={INFOGENIUS_REPO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-white/70 hover:text-white hover:border-white/30 transition-all duration-200"
                 >
-                  See Examples
-                </Link>
+                  Skill and source on GitHub
+                </a>
               </div>
 
               {/* Stats row */}
               <div className="flex gap-8 mt-12 pt-12 border-t border-white/8">
                 {[
-                  { n: '8', label: 'Visual styles' },
-                  { n: '4K', label: 'Output quality' },
-                  { n: '<60s', label: 'Research to image' },
+                  { n: '4', label: 'Brand style packs' },
+                  { n: '1K-4K', label: 'Output sizes' },
+                  { n: 'BYOK', label: 'Runs on your own key' },
                 ].map((s) => (
                   <div key={s.label}>
                     <div className="text-2xl font-black text-white">{s.n}</div>
@@ -168,10 +177,10 @@ export default function InfoGeniusPage() {
                 {/* Floating status badge */}
                 <div className="absolute top-8 -right-4 z-20 rounded-2xl border border-emerald-500/30 bg-black/70 backdrop-blur-md px-4 py-3">
                   <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-xs font-semibold text-emerald-400">Online</span>
+                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                    <span className="text-xs font-semibold text-emerald-400">Free</span>
                   </div>
-                  <div className="text-xs text-white/50 mt-1">Ready to generate</div>
+                  <div className="text-xs text-white/50 mt-1">Bring your own key</div>
                 </div>
               </div>
             </div>
@@ -216,7 +225,7 @@ export default function InfoGeniusPage() {
               What FRANK-Ω does.
             </h2>
             <p className="text-white/50 mt-3 max-w-xl">
-              Six systems running in parallel every time you drop a topic.
+              What happens each time you give it a topic.
             </p>
           </div>
 
@@ -271,7 +280,7 @@ export default function InfoGeniusPage() {
               Styles
             </span>
             <h2 className="text-4xl font-black text-white mt-3">
-              Eight ways to see it.
+              Some of the styles.
             </h2>
             <p className="text-white/50 mt-3 max-w-xl">
               Tell FRANK-Ω the aesthetic. He handles the rest.
@@ -367,7 +376,7 @@ export default function InfoGeniusPage() {
           </div>
 
           <p className="text-center text-white/30 text-sm mt-8">
-            Generated with InfoGenius · Gemini 3 Pro Image · 4K
+            Generated with InfoGenius · Gemini 3 Pro Image
           </p>
         </div>
       </section>
@@ -397,13 +406,15 @@ export default function InfoGeniusPage() {
               FRANK-Ω doesn't care — he just builds it.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Link
-                href="/lab"
+              <a
+                href={INFOGENIUS_APP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-violet-600 hover:bg-violet-500 px-8 py-4 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_40px_rgba(139,92,246,0.5)]"
               >
                 Start generating
-                <span>→</span>
-              </Link>
+                <span aria-hidden="true">→</span>
+              </a>
               <Link
                 href="/agents"
                 className="inline-flex items-center gap-2 rounded-full border border-white/15 px-8 py-4 text-sm font-semibold text-white/70 hover:text-white hover:border-white/30 transition-all duration-200"

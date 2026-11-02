@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { getToken } from 'next-auth/jwt'
-import { wantsMarkdownNotFound } from '@/lib/agent-not-found'
+import { routeOwnsMarkdown, wantsMarkdownNotFound } from '@/lib/agent-not-found'
 
 // Pages that have a /de/ version available
 const deAvailablePages = ['/valentines-day']
@@ -27,8 +27,11 @@ export async function proxy(request: NextRequest) {
   }
 
   // ─── 1b. Accept: text/markdown negotiation ────────────────
+  // Unknown URLs only. /docs negotiates markdown in its own route handler;
+  // rewriting it here answers "page not found" for a document that exists.
   if (
     pathname !== '/' &&
+    !routeOwnsMarkdown(pathname) &&
     (request.method === 'GET' || request.method === 'HEAD') &&
     wantsMarkdownNotFound(request.headers.get('accept'))
   ) {
