@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, BookOpen, Check, X, Sparkles } from 'lucide-react'
+import { trackEvent } from '@/lib/analytics'
 import { SectionHeading, ExperimentList } from '@/components/manifestation/shared'
 import type { BookPrinciple, Experiment } from '@/data/manifestation'
 
@@ -19,6 +20,8 @@ export interface BookPageProps {
   whatToIgnore?: string[]
   experiments: Experiment[]
   experimentsIntro: string
+  /** Optional link to the fuller Library OS deep-dive for the same book. */
+  libraryUrl?: string
 }
 
 export default function BookPage(props: BookPageProps) {
@@ -49,6 +52,15 @@ export default function BookPage(props: BookPageProps) {
         <div className="rounded-3xl border border-amber-500/20 bg-gradient-to-br from-amber-500/[0.05] to-transparent p-8">
           <p className="text-[11px] tracking-[0.2em] uppercase text-amber-300/70 mb-3">My honest take</p>
           <p className="text-lg text-white/70 leading-relaxed">{props.honestTake}</p>
+          {props.libraryUrl && (
+            <Link
+              href={props.libraryUrl}
+              onClick={() => trackEvent('manifestation_book_library_click', { url: props.libraryUrl })}
+              className="inline-flex items-center gap-1.5 mt-5 text-sm text-violet-300/90 hover:text-violet-200 transition-colors"
+            >
+              Read the full deep-dive in the Library <ArrowRight className="w-4 h-4" />
+            </Link>
+          )}
         </div>
       </section>
 
