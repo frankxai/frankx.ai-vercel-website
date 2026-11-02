@@ -49,11 +49,11 @@ export default function VibeOSModules({ productId, modules, offer }: VibeOSModul
                 What&apos;s Inside
               </span>
               <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
-                Everything You Need to{' '}
-                <span className="text-gradient-tech">Ship Music</span>
+                Four Modules Built Around{' '}
+                <span className="text-gradient-tech">Your Focus Cycles</span>
               </h2>
               <p className="mt-4 text-white/60">
-                A complete system, not just a prompt pack. Every module builds on the last.
+                Each module pairs a daily energy observation habit with a scheduling workflow in the public guide.
               </p>
             </motion.div>
 
@@ -197,6 +197,13 @@ export default function VibeOSModules({ productId, modules, offer }: VibeOSModul
                       className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.15em] text-white shadow-[0_20px_60px_rgba(6,182,212,0.35)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(6,182,212,0.45)]"
                     >
                       {offer.ctaPrimary}
+                    </Link>
+                    <Link
+                      href={offer.ctaSecondaryHref || waitlistHref}
+                      className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-medium text-white/80 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white"
+                    >
+                      <Mail className="h-4 w-4" />
+                      {offer.ctaSecondary || 'Join web app waitlist'}
                     </Link>
 
                     {/* Guarantee */}
