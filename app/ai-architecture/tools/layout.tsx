@@ -1,11 +1,22 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: "Architecture Tools",
-  description: "Curated third-party resources for AI development. FrankX.ai is not affiliated with these companies.",
-  path: "/ai-architecture/tools",
+  title: 'AI Architecture Tools — Frameworks, Vector Stores & Cloud Stack',
+  description:
+    'Curated AI engineering tools across model workbenches, orchestration frameworks, vector databases, observability, and cloud deployment.',
+  path: '/ai-architecture/tools',
+  keywords: [
+    'ai architecture tools',
+    'ai orchestration frameworks',
+    'vector databases comparison',
+    'ai observability tools',
+  ],
 })
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function AIArchitectureToolsLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return children
 }
