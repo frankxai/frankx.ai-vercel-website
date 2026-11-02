@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import { learningPaths, featuredCreators, type LearningPath, type VideoResource } from '@/data/learning-paths'
 import JsonLd from '@/components/seo/JsonLd'
+import { siteConfig } from '@/lib/seo'
 
 const iconMap: Record<string, React.ComponentType<{className?: string}>> = {
   brain: Brain,
