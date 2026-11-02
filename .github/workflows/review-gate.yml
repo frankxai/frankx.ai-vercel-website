@@ -22,8 +22,11 @@ on:
 permissions:
   contents: read
 
+# Comment events that the job's `if` will skip (no /gate) get their own group. Concurrency is evaluated before the
+# job `if`, so sharing one group let every bot comment (Vercel preview, Codex) cancel an in-flight pull_request run
+# and then skip itself, leaving the head with no "Review Gate" status at all.
 concurrency:
-  group: review-gate-${{ github.event.pull_request.number || github.event.issue.number }}
+  group: review-gate-${{ github.event.pull_request.number || github.event.issue.number }}-${{ ((github.event_name == 'issue_comment' || github.event_name == 'pull_request_review_comment') && !contains(github.event.comment.body, '/gate')) && 'ignored' || 'evaluate' }}
   cancel-in-progress: true
 
 jobs:
