@@ -2,8 +2,19 @@ import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
   canonical: './',
-  title: 'Skills | AI Agent Capabilities & Skill Library | FrankX',
-  description: 'Browse 75+ AI agent skills across architecture, music production, content creation, and more. The complete ACOS skill library.',
+  title: 'Claude Code Skills & Agent Skill Library — SKILL.md Hub',
+  description:
+    'Install, build, and evaluate Claude Code skills using the open SKILL.md format. Compare skills, plugins, subagents, slash commands, and MCP servers across production harnesses.',
+  keywords: [
+    'claude code skills',
+    'claude skills',
+    'SKILL.md',
+    'agent skills',
+    'claude code plugins vs skills',
+    'claude skills library',
+    'codex skills',
+    'gemini cli skills',
+  ],
   path: '/skills',
 })
 
