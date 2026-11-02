@@ -1,0 +1,2 @@
+$ node scripts/audit-ai-slop.mjs --strict
+✓ ai-slop audit: 2665 files scanned, 0 hits

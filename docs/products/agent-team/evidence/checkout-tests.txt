@@ -1,0 +1,18 @@
+(node:14) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file://<repo>/lib/agent-team-commerce.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to <repo>/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ candidate cannot open checkout even with an injected URL or configured environment (1.431631ms)
+✔ every absent acceptance receipt closes checkout (0.488006ms)
+✔ unsafe URLs, variant IDs and corrupted package identity cannot open checkout (0.533684ms)
+✔ complete synthetic fixture can resolve its hosted URL; this is not payment proof (0.297633ms)
+✔ product identity has one registry entry and no competing Stripe or Polar SKU (1.164333ms)
+✔ every CheckoutButton productId resolves to a SKU the checkout route knows (72.205916ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 182.747859
