@@ -1,0 +1,15 @@
+import type { Metadata } from "next";
+import catalog from "@/docs/media/collective-20261030/companion-collection.v2.json";
+import CompanionStudio from "./CompanionStudio";
+
+export const metadata: Metadata = {
+  title: "Companion studio | FrankX",
+  description:
+    "Inspect the companion collection and prepare a placement brief for a website or story.",
+  robots: { index: false, follow: false },
+  alternates: { canonical: "/design-lab/collective" },
+};
+
+export default function CompanionPage() {
+  return <CompanionStudio catalog={catalog} />;
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "created_on": "2026-10-30",
+  "reference_revision": "2026-10-09.4",
+  "status": "new_proposals_not_canon",
+  "candidates": [
+    {
+      "entity_id": "candidate.facet",
+      "name": "Facet",
+      "status": "proposal",
+      "inspiration": "Gemini / optical comparison metaphor",
+      "anchors": "Two offset smoked-glass wings, silver seed body, two articulated legs",
+      "action": "Separate two useful paths",
+      "limit": "No official mascot claim",
+      "model_binding": null,
+      "harness_binding": null,
+      "public_approval": null
+    },
+    {
+      "entity_id": "candidate.pico",
+      "name": "Pico",
+      "status": "proposal",
+      "inspiration": "Nano Banana / image making metaphor",
+      "anchors": "Yellow ceramic crescent, charcoal feet, precise gloved hands",
+      "action": "Trim a paper wave",
+      "limit": "Original candidate; no Google visual-identity imitation",
+      "model_binding": null,
+      "harness_binding": null,
+      "public_approval": null
+    },
+    {
+      "entity_id": "candidate.omni",
+      "name": "Omni",
+      "status": "proposal",
+      "inspiration": "Multimodal idea; exact vendor/model intentionally unbound",
+      "anchors": "Coral/ivory cuttlefish, proposed six manipulators and editing spool",
+      "action": "Gather image, sound and motion",
+      "limit": "Limb continuity requires a turnaround",
+      "model_binding": null,
+      "harness_binding": null,
+      "public_approval": null
+    },
+    {
+      "entity_id": "candidate.reel",
+      "name": "Reel",
+      "status": "proposal",
+      "inspiration": "Veo / moving image metaphor",
+      "anchors": "Charcoal camera-heron, long legs, copper wings and green lens",
+      "action": "Frame the model stage",
+      "limit": "Original candidate; no capability claim",
+      "model_binding": null,
+      "harness_binding": null,
+      "public_approval": null
+    },
+    {
+      "entity_id": "candidate.sprout",
+      "name": "Sprout",
+      "status": "proposal",
+      "inspiration": "Genie / world-building metaphor",
+      "anchors": "Small four-legged tortoise with a living transparent shell",
+      "action": "Make a passage or carry a growing thing",
+      "limit": "New candidate, not renamed Moss or an Arcanea Guardian",
+      "model_binding": null,
+      "harness_binding": null,
+      "public_approval": null
+    },
+    {
+      "entity_id": "candidate.lune",
+      "name": "Lune",
+      "status": "proposal",
+      "inspiration": "Kimi / long-context metaphor",
+      "anchors": "Indigo felt moon-moth, long soft wings, two arms and two feet",
+      "action": "Keep ordered cards and brace a case",
+      "limit": "Appearance remains candidate; no verified model binding",
+      "model_binding": null,
+      "harness_binding": null,
+      "public_approval": null
+    },
+    {
+      "entity_id": "candidate.pelago",
+      "name": "Pelago",
+      "status": "proposal",
+      "inspiration": "DeepSeek / deep-research metaphor",
+      "anchors": "Cobalt porcelain whale, ivory belly, two flippers and tail",
+      "action": "Bring a found stone to the shared object",
+      "limit": "Original candidate; not official DeepSeek artwork",
+      "model_binding": null,
+      "harness_binding": null,
+      "public_approval": null
+    }
+  ]
+}
