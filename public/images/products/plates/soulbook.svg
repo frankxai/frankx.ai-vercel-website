@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-labelledby="title-soulbook desc-soulbook">
-  <title id="title-soulbook">The Creator's Soulbook schematic plate</title>
-  <desc id="desc-soulbook">Technical deliverable diagram for The Creator's Soulbook (EDITORIAL FOLIO).</desc>
+  <title id="title-soulbook">The Creator&apos;s Soulbook schematic plate</title>
+  <desc id="desc-soulbook">Technical deliverable diagram for The Creator&apos;s Soulbook (EDITORIAL FOLIO).</desc>
   <defs>
     <linearGradient id="bg-soulbook" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0A0B0F" />
@@ -22,7 +22,7 @@
 
   <!-- Top Telemetry Header -->
   <text x="36" y="42" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600" letter-spacing="1.6">EDITORIAL FOLIO</text>
-  <text x="36" y="68" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.4">The Creator's Soulbook</text>
+  <text x="36" y="68" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.4">The Creator&apos;s Soulbook</text>
 
   <rect x="476" y="26" width="128" height="28" rx="14" fill="rgba(226, 232, 240, 0.12)" stroke="rgba(226, 232, 240, 0.30)" />
   <text x="540" y="44" text-anchor="middle" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">Free download</text>
@@ -40,9 +40,9 @@
       <text x="214" y="44" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5" letter-spacing="1.4">CHAPTER ARCHITECTURE</text>
       <text x="214" y="74" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" font-weight="600">I. The 7 Pillars Framework</text>
       <line x1="214" y1="88" x2="536" y2="88" stroke="rgba(255,255,255,0.07)" />
-      <text x="214" y="112" fill="#E2E8F0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" font-weight="600">II. Three Life Book Perspec…</text>
+      <text x="214" y="112" fill="#E2E8F0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" font-weight="600">II. Three Life Book…</text>
       <line x1="214" y1="126" x2="536" y2="126" stroke="rgba(255,255,255,0.07)" />
-      <text x="214" y="150" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" font-weight="600">III. AI Coaching Prompt Libr…</text>
+      <text x="214" y="150" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" font-weight="600">III. AI Coaching Prompt…</text>
     </g>
   
 

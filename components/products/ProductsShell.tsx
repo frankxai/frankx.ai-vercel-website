@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
   Sparkles,
@@ -52,7 +52,7 @@ function ProductsBackground() {
       <div
         className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(139,92,246,0.03) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(16,185,129,0.03) 0%, transparent 70%)',
           filter: 'blur(128px)',
         }}
       />
@@ -114,7 +114,7 @@ const products = [
       'Five curated prompt bundles for specific genres: electronic, hip-hop, ambient, cinematic, and lo-fi.',
     status: 'early-access',
     href: '/products/suno-prompt-library',
-    color: 'violet',
+    color: 'emerald',
     highlights: [
       'Prompts across 5 genres',
       'Tempo and mood notes for each genre',
@@ -141,7 +141,7 @@ const products = [
     id: 'creation-chronicles',
     icon: BookOpen,
     name: 'Creation Chronicles',
-    tagline: 'Strategic Storytelling OS',
+    tagline: 'Editorial storytelling system',
     description:
       'Story frameworks, editorial calendars, and prompt stacks to build authority.',
     status: 'early-access',
@@ -157,12 +157,12 @@ const products = [
     id: 'generative-creator-os',
     icon: Cpu,
     name: 'Generative Creator OS',
-    tagline: 'Multi-modal AI Studio',
+    tagline: 'Multi-modal studio pipeline',
     description:
       'Multi-modal templates, prompts, and guardrails for a reliable studio system.',
     status: 'early-access',
     href: '/newsletter?ref=generative-creator-os-early-access',
-    color: 'violet',
+    color: 'cyan',
     highlights: [
       'Multi-modal asset generation pipelines',
       'Brand intelligence and compliance system',
@@ -173,12 +173,12 @@ const products = [
     id: 'agentic-creator-os',
     icon: Building2,
     name: 'Agentic Creator OS',
-    tagline: 'Developer AI Mastery',
+    tagline: 'Developer harness workflows',
     description:
       'Agentic playbooks, prompt stacks, and governance checklists for builders.',
     status: 'early-access',
     href: '/newsletter?ref=agentic-creator-os-early-access',
-    color: 'rose',
+    color: 'emerald',
     highlights: [
       'Claude Code and Cursor mastery systems',
       'Agentic workflow and automation patterns',
@@ -240,50 +240,66 @@ function EarlyAccessModal({
   isOpen: boolean
   onClose: () => void
 }) {
+  const shouldReduceMotion = useReducedMotion()
+
+  useEffect(() => {
+    if (!isOpen) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [isOpen, onClose])
+
   if (!isOpen) return null
+  const titleId = `early-access-title-${product.id}`
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
+      initial={shouldReduceMotion ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      exit={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
       onClick={onClose}
     >
       <motion.div
-        initial={{ scale: 0.95, opacity: 0 }}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        initial={shouldReduceMotion ? false : { scale: 0.96, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.95, opacity: 0 }}
+        exit={shouldReduceMotion ? { opacity: 1 } : { scale: 0.96, opacity: 0 }}
+        transition={{ duration: shouldReduceMotion ? 0 : 0.16 }}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-md rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/90 via-slate-900/80 to-slate-900/70 p-8 backdrop-blur-xl"
+        className="relative w-full max-w-md rounded-2xl border border-white/10 bg-[#121318] p-8"
       >
         {/* Close button */}
         <button
           type="button"
           onClick={onClose}
           aria-label="Close modal"
-          className="absolute right-4 top-4 rounded-lg bg-white/5 p-2 hover:bg-white/10 transition-colors focus-visible:outline-2 focus-visible:outline-violet-400 focus-visible:outline-offset-2"
+          className="absolute right-3 top-3 flex h-11 w-11 items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
         >
-          <X aria-hidden="true" className="h-5 w-5 text-slate-400" />
+          <X aria-hidden="true" className="h-5 w-5 text-slate-300" />
         </button>
 
         {/* Header */}
-        <div className="mb-6">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-medium mb-3">
+        <div className="mb-6 pr-10">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 text-xs font-medium mb-3">
             <Sparkles className="w-3.5 h-3.5" />
-            Early Access
+            Early access
           </span>
-          <h3 className="text-2xl font-bold text-white mb-2">{product.name}</h3>
+          <h3 id={titleId} className="text-2xl font-bold text-white mb-2">{product.name}</h3>
           <p className="text-sm text-slate-400">{product.tagline}</p>
         </div>
 
         {/* CTA */}
         <div className="space-y-4">
           <p className="text-sm text-slate-400">
-            This product is in development. Join the early access list to get:
+            This kit is in final packaging. Join the launch list to receive:
           </p>
           <ul className="space-y-2">
-            {['Priority launch access', 'Exclusive early pricing', 'Behind-the-scenes updates'].map(
+            {['Release notification when live', 'Inspectable file manifest notes', 'Build changelog updates'].map(
               (item) => (
                 <li key={item} className="flex items-center gap-2 text-sm text-slate-300">
                   <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0" />
@@ -295,7 +311,7 @@ function EarlyAccessModal({
 
           <EmailSignup
             compact
-            buttonText="Join Early Access"
+            buttonText="Join launch list"
             listType="courses-waitlist"
           />
         </div>
@@ -306,6 +322,7 @@ function EarlyAccessModal({
 
 export default function ProductsShell() {
   const [openModal, setOpenModal] = useState<string | null>(null)
+  const shouldReduceMotion = useReducedMotion()
 
   return (
     <>
@@ -327,36 +344,36 @@ export default function ProductsShell() {
           </div>
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.2 }}
               className="mb-8 flex items-center gap-4"
             >
-              <Image src="/images/mascot/mascot-v17-negative-space-mark.png" alt="Axi" width={48} height={48} className="rounded-xl" sizes="48px" style={{ boxShadow: '0 0 20px -6px rgba(139,92,246,0.3)' }} />
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400">
+              <Image src="/images/mascot/mascot-v17-negative-space-mark.png" alt="Axi" width={48} height={48} className="rounded-xl" sizes="48px" style={{ boxShadow: '0 0 20px -6px rgba(16,185,129,0.28)' }} />
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-400">
                 <Package className="h-5 w-5" />
               </div>
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
-                Digital Products
+              <span className="font-mono text-xs font-medium tracking-[0.08em] text-slate-400">
+                Digital products
               </span>
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.2, delay: shouldReduceMotion ? 0 : 0.05 }}
               className="mb-6 max-w-4xl font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white"
             >
               Systems I use.
-              <span className="mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400">
+              <span className="mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-cyan-300">
                 Packaged for you.
               </span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.2, delay: shouldReduceMotion ? 0 : 0.1 }}
               className="max-w-2xl text-[17px] sm:text-xl leading-relaxed text-slate-300/90"
             >
               Concrete frameworks, prompt templates, and checklists drawn from active studio
@@ -377,17 +394,17 @@ export default function ProductsShell() {
                 return (
                   <motion.div
                     key={product.id}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                    transition={{ duration: shouldReduceMotion ? 0 : 0.2, delay: shouldReduceMotion ? 0 : 0.04 * index }}
                     className={product.featured ? 'md:col-span-2 lg:col-span-1' : ''}
                   >
-                    <GlowCard color={product.color as GlowColor} className={`p-8 h-full flex flex-col ${isActive ? 'cursor-pointer hover:-translate-y-1' : ''}`}>
+                    <GlowCard color={product.color as GlowColor} className={`p-8 h-full flex flex-col motion-reduce:transition-none ${isActive ? 'cursor-pointer hover:-translate-y-1 motion-reduce:hover:translate-y-0' : ''}`}>
                         {/* Featured badge */}
                         {product.featured && (
                           <div className="absolute right-6 top-6">
                             <span className="rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-medium text-emerald-400">
-                              Available Now
+                              Available now
                             </span>
                           </div>
                         )}
@@ -403,7 +420,7 @@ export default function ProductsShell() {
 
                         {/* Content */}
                         <div className="flex-1">
-                          <p className="mb-1 text-xs font-medium uppercase tracking-[0.15em] text-slate-500">
+                          <p className="mb-1 font-mono text-xs font-medium tracking-[0.06em] text-slate-400">
                             {product.tagline}
                           </p>
                           <h3 className="mb-3 text-2xl font-bold text-white">{product.name}</h3>
@@ -436,7 +453,7 @@ export default function ProductsShell() {
                             ) : (
                               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
                                 <Sparkles className="w-3.5 h-3.5" />
-                                Early Access
+                                Early access
                               </span>
                             )}
                           </div>
@@ -480,7 +497,7 @@ export default function ProductsShell() {
               {[
                 { icon: Sparkles, label: 'Inspectable file trees', color: 'text-amber-400' },
                 { icon: Zap, label: 'Launch list updates', color: 'text-cyan-400' },
-                { icon: Users, label: 'Builder notes', color: 'text-violet-400' },
+                { icon: Users, label: 'Builder notes', color: 'text-emerald-400' },
                 { icon: Star, label: 'Field-tested workflows', color: 'text-emerald-400' },
               ].map((badge, i) => (
                 <motion.div
@@ -534,13 +551,12 @@ export default function ProductsShell() {
                   title: 'Revision changelogs',
                   description: 'As models and tools change, kits document updated prompt syntax and verification steps.',
                   icon: Star,
-                  color: 'violet',
+                  color: 'cyan',
                 },
               ].map((item, i) => {
                 const colorClasses: Record<string, string> = {
                   emerald: 'bg-emerald-500/10 text-emerald-400',
                   cyan: 'bg-cyan-500/10 text-cyan-400',
-                  violet: 'bg-violet-500/10 text-violet-400',
                 }
 
                 return (
@@ -607,13 +623,13 @@ export default function ProductsShell() {
               className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-10 backdrop-blur-xl"
             >
               {/* Decorative gradient */}
-              <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-violet-500/20 to-cyan-500/20 blur-3xl" />
+              <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-emerald-500/15 to-cyan-500/15 blur-3xl" />
 
               <div className="relative flex flex-col items-center gap-8 text-center">
                 <div className="max-w-2xl">
                   <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-medium mb-6">
                     <CheckCircle2 className="w-4 h-4" />
-                    Ready to Create
+                    Ready to explore
                   </span>
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">
                     Start building with our systems today

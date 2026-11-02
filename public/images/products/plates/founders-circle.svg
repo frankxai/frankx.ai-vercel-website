@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-labelledby="title-founders-circle desc-founders-circle">
-  <title id="title-founders-circle">Founder's Circle Guild schematic plate</title>
-  <desc id="desc-founders-circle">Technical deliverable diagram for Founder's Circle Guild (CATALOG &amp; LEDGER OPS).</desc>
+  <title id="title-founders-circle">Founder&apos;s Circle Guild schematic plate</title>
+  <desc id="desc-founders-circle">Technical deliverable diagram for Founder&apos;s Circle Guild (CATALOG &amp; LEDGER OPS).</desc>
   <defs>
     <linearGradient id="bg-founders-circle" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0A0B0F" />
@@ -22,13 +22,13 @@
 
   <!-- Top Telemetry Header -->
   <text x="36" y="42" fill="#F59E0B" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600" letter-spacing="1.6">CATALOG &amp; LEDGER OPS</text>
-  <text x="36" y="68" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.4">Founder's Circle Guild</text>
+  <text x="36" y="68" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.4">Founder&apos;s Circle Guild</text>
 
   <rect x="476" y="26" width="128" height="28" rx="14" fill="rgba(245, 158, 11, 0.14)" stroke="rgba(245, 158, 11, 0.34)" />
   <text x="540" y="44" text-anchor="middle" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">Advisory guild</text>
 
   
-      <!-- Ledger & Gate Readiness Matrix -->
+      <!-- Ledger and Gate Readiness Matrix -->
       <g transform="translate(36, 98)">
         <rect x="0" y="0" width="568" height="190" rx="14" fill="#0D1017" stroke="rgba(255,255,255,0.08)" />
         
@@ -58,7 +58,7 @@
         <text x="528" y="110" text-anchor="end" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">AUDITED</text>
         <line x1="38" y1="122" x2="528" y2="122" stroke="rgba(255,255,255,0.06)" />
         <text x="38" y="142" fill="#FBBF24" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" font-weight="600">LEDGER_ROW_02</text>
-        <text x="156" y="142" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5">Emergency Support &amp; Sla…</text>
+        <text x="156" y="142" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5">Emergency Support &amp;…</text>
         <text x="528" y="142" text-anchor="end" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">LOCAL SQLITE</text>
       </g>
     

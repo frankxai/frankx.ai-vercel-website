@@ -65,10 +65,23 @@ test('every product in data/products.json has mechanism-first copy, sentence-cas
     const svg = fs.readFileSync(platePath, 'utf8')
     assert.match(svg, /viewBox="0 0 640 360"/, `${p.slug}: SVG plate must use 640x360 16:9 viewBox`)
     assert.match(svg, /<title id="title-/, `${p.slug}: SVG plate must include accessible <title>`)
+    assert.equal(
+      /&(?!(?:amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);)/.test(svg),
+      false,
+      `${p.slug}: SVG plate contains an unescaped XML ampersand (&)`,
+    )
   }
 
   const arcanea = products.find((p) => p.id === 'arcanea-mythic-codex')
   assert.equal(arcanea?.brand, 'arcanea', 'arcanea-mythic-codex must carry brand="arcanea"')
+})
+
+test('products index enforces launch-list waitlist routing, application routing, and PreOrder JSON-LD gating', () => {
+  const indexPage = fs.readFileSync(path.join(root, 'app/products/(index)/page.tsx'), 'utf8')
+  assert.match(indexPage, /launch list/i, 'products index must recognize "Join the Launch List" as waitlist')
+  assert.match(indexPage, /isApplication/, 'products index must preserve application CTAs rather than /checkout fallback')
+  assert.match(indexPage, /LIVE_PUBLIC_SLUGS/, 'products index must gate InStock JSON-LD behind LIVE_PUBLIC_SLUGS')
+  assert.equal(indexPage.includes('—'), false, 'products index must contain zero em-dashes')
 })
 
 test('ProductFileInspector and ProductsShell enforce accessible hit targets, tablist semantics, and zero em-dashes', () => {

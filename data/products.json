@@ -7,8 +7,8 @@
     "badge": "Free download",
     "headline": "Write the Book Your Soul Came Here to Write",
     "subheadline": "A complete life operating system with 7 pillars, 3 life book frameworks, and AI-powered coaching prompts. Free Obsidian vault included.",
-    "promise": "Design, track, and transform every dimension of your life with a framework built for creators, artists, and visionaries.",
-    "summary": "Your personal collection of Life Books offering different lenses for transformation. Includes complete Obsidian vault, AI prompt library, and reflection templates.",
+    "promise": "Structure, track, and refine every dimension of your life with a Markdown vault built for creators, writers, and builders.",
+    "summary": "Your personal collection of Life Books offering three structured lenses for reflection. Includes complete Obsidian vault, prompt library, and weekly review templates.",
     "transformation": [
       "Map all 7 life pillars (Energy, Mind, Soul, Craft, Capital, Circle, Legacy) with structured reflection exercises",
       "Choose your transformation lens: Life Symphony (for artists), Golden Path (for seekers), or 7 Pillars (for builders)",
@@ -98,8 +98,8 @@
     "badge": "Creator toolkit",
     "headline": "Replace AI Panic with Proven Workflows",
     "subheadline": "Prompts and automation recipes for storytelling, marketing, content and operations.",
-    "promise": "Go from AI overwhelm to a trusted daily ritual. One week to measurable creative velocity.",
-    "summary": "Structured prompts, workflow templates, and daily rituals that turn AI into your creative co-pilot, not a distraction.",
+    "promise": "Move from scattered prompt notes to a repeatable daily workflow within one week.",
+    "summary": "Structured prompts, workflow templates, and daily rituals that keep AI work focused on finished creative output.",
     "transformation": [
       "Use prompts across storytelling, marketing, content and operations.",
       "Spend your working hours on the thinking, since the mechanical steps already come templated",
@@ -251,15 +251,15 @@
       },
       {
         "question": "How is this different from other productivity tools?",
-        "answer": "Vibe OS focuses specifically on creative work patterns and energy management. It's designed for creators, not corporate knowledge workers."
+        "answer": "Vibe OS focuses specifically on creative work patterns, session state, and energy management for independent creators and studio builders."
       },
       {
         "question": "Do I need technical skills to use it?",
-        "answer": "No. Vibe OS is built for creators, not engineers. If you can use Notion or a spreadsheet, you can use Vibe OS."
+        "answer": "No. Vibe OS uses plain Markdown templates and browser tools. If you can use Notion or a spreadsheet, you can run Vibe OS."
       },
       {
         "question": "Will there be a paid version?",
-        "answer": "Maybe someday, but the core Vibe OS will always be free. Any future premium features would be add-ons, not requirements."
+        "answer": "The core Vibe OS guide and session templates remain free. Any future studio packs ship as standalone optional add-ons."
       }
     ],
     "analyticsId": "vibe-os",
@@ -285,8 +285,8 @@
     "category": "Story Systems",
     "badge": "Story studio",
     "headline": "Build Authority Through Consistent, Compelling Stories",
-    "subheadline": "From fragmented content to a unified narrative system that grows your audience 3x and converts readers into paying customers every month.",
-    "promise": "A storytelling operating system that turns your voice into a revenue engine. Clear strategy. Repeatable production. Measurable growth.",
+    "subheadline": "Turn scattered essays, notes, and drafts into a structured narrative system with weekly publishing cadence and clear reader pathways.",
+    "promise": "A storytelling operating system pairing editorial architecture, repeatable drafting checklists, and multi-channel distribution.",
     "summary": "Strategic frameworks, AI-assisted workflows, and distribution rituals that ship stories consistently and build real authority.",
     "transformation": [
       "Replace scattered messaging with a core narrative arc that runs through every piece you ship (essays, videos, social)",
@@ -388,7 +388,7 @@
           "Custom workflow development",
           "Quarterly narrative summits"
         ],
-        "ctaLabel": "Transform Your Brand",
+        "ctaLabel": "Request enterprise scope",
         "ctaHref": "mailto:frank@frankx.ai?subject=Creation%20Chronicles%20Enterprise"
       }
     ],
@@ -403,7 +403,7 @@
       },
       {
         "question": "How much time should we expect to invest?",
-        "answer": "Plan for a 90-day rollout with weekly story sprints. Teams typically spend 4–6 hours per week implementing and reviewing."
+        "answer": "Plan for a 90-day rollout with weekly story sprints. Teams typically spend 4 to 6 hours per week implementing and reviewing."
       }
     ],
     "analyticsId": "creation-chronicles"
@@ -551,7 +551,7 @@
     "transformation": [
       "Clarify exactly who you're creating for and what offer maps to your unique strengths (1-week sprint)",
       "Design your complete idea-to-monetized-release pipeline with automations that handle the boring stuff",
-      "Establish weekly rituals and dashboard checkpoints so you know momentum is compounding (not just hoping)",
+      "Establish weekly rituals and dashboard checkpoints so you can track shipping velocity with concrete artifacts",
       "Ship one live release during the cohort with peer feedback, analytics, and your first real revenue signal"
     ],
     "socialProof": {
@@ -919,9 +919,9 @@
     "name": "Agentic Content Engine",
     "category": "Design + AI",
     "badge": "Content kit",
-    "headline": "Your AI-Powered Content Production System",
-    "subheadline": "A complete Next.js content platform with built-in AI writing assistance, SEO optimization, social distribution automation, and analytics. Not a template, a system.",
-    "promise": "Go from idea to published, SEO-optimized, socially distributed content in under 30 minutes. Every single time.",
+    "headline": "Next.js MDX Content and Editorial Pipeline",
+    "subheadline": "A Next.js content platform with structured AI drafting prompts, metadata checks, social formatting scripts, and analytics.",
+    "promise": "Move from research brief to formatted, metadata-checked MDX draft and social queue in a single structured pass.",
     "summary": "Production-ready content management system combining a premium blog platform with agentic AI capabilities for writing, SEO, and distribution.",
     "transformation": [
       "Publish SEO-optimized articles with AI-assisted writing that maintains your voice and style",
@@ -1237,7 +1237,7 @@
     "badge": "Free PDF",
     "headline": "Seven Pillars of a Complete Life",
     "subheadline": "Energy, Mind, Soul, Craft, Capital, Circle, and Legacy: a systematic approach to building every dimension of your life.",
-    "promise": "Not theory. Routines that work. Seven pillars, each with actionable protocols.",
+    "promise": "Grounded daily routines across seven pillars, each paired with written exercises and review checklists.",
     "summary": "Seven chapters mapping the complete self-development framework: from morning protocols and mental clarity to financial architecture and legacy thinking.",
     "transformation": [],
     "socialProof": {
@@ -1297,8 +1297,8 @@
     "name": "Imagination",
     "category": "Books",
     "badge": "Free PDF",
-    "headline": "Unlocking the Power of the Mind",
-    "subheadline": "Your imagination is the most powerful technology you possess. This book teaches you how to wield it.",
+    "headline": "Mental Models and Creative Visualization for Builders",
+    "subheadline": "Structured exercises in mental simulation, first-principles framing, and creative synthesis.",
     "promise": "Creative visualization, mental models, and the architecture of thought: applied neuroscience for builders.",
     "summary": "Five chapters on the inner theater, creative visualization protocols, essential mental models, the architect's eye, and reaching beyond the visible.",
     "transformation": [],
@@ -1360,8 +1360,8 @@
     "category": "Books",
     "badge": "Free PDF",
     "headline": "The Architecture of Reality",
-    "subheadline": "Not wishful thinking. The grounded, psychological approach to turning thought into reality.",
-    "promise": "Strip away the mysticism. What remains is a framework for building the reality you want.",
+    "subheadline": "A grounded psychological framework for attention, deliberate habits, and evidence-logged action.",
+    "promise": "Practical chapters on selective attention, cognitive framing, habit loops, and written evidence logs.",
     "summary": "Five chapters on the psychology of reality construction: RAS programming, thought blueprints, frequency management, aligned action, and the evidence journal.",
     "transformation": [],
     "socialProof": {

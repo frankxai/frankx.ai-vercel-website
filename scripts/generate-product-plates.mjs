@@ -76,12 +76,16 @@ function esc(str) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
 }
 
 function trunc(str, max) {
   const s = String(str ?? '').trim()
   if (s.length <= max) return s
-  return s.slice(0, max - 1).trimEnd() + '…'
+  const slice = s.slice(0, max - 1)
+  const lastSpace = slice.lastIndexOf(' ')
+  const clean = lastSpace >= Math.floor(max * 0.5) ? slice.slice(0, lastSpace) : slice
+  return clean.replace(/[,:;.\-–—/]+$/, '').trimEnd() + '…'
 }
 
 function hashSeed(str) {
@@ -100,42 +104,42 @@ function renderMotif(lane, modules, seed, theme) {
 
   if (lane === 'systems') {
     return `
-      <!-- Directed Agent & Protocol Mesh -->
+      <!-- Directed Agent and Protocol Mesh -->
       <g transform="translate(36, 98)">
         <rect x="0" y="0" width="568" height="190" rx="14" fill="#0D1017" stroke="rgba(255,255,255,0.08)" />
-        <line x1="184" y1="54" x2="256" y2="54" stroke="${theme.accent}" stroke-width="1.5" stroke-dasharray="4 3" />
-        <line x1="184" y1="136" x2="256" y2="95" stroke="${theme.accent}" stroke-width="1.2" opacity="0.65" />
-        <line x1="392" y1="74" x2="432" y2="74" stroke="${theme.secondary}" stroke-width="1.5" />
-        <line x1="392" y1="120" x2="432" y2="120" stroke="${theme.secondary}" stroke-width="1.2" opacity="0.65" />
+        <line x1="184" y1="54" x2="252" y2="54" stroke="${theme.accent}" stroke-width="1.5" stroke-dasharray="4 3" />
+        <line x1="184" y1="136" x2="252" y2="95" stroke="${theme.accent}" stroke-width="1.2" opacity="0.65" />
+        <line x1="384" y1="74" x2="420" y2="74" stroke="${theme.secondary}" stroke-width="1.5" />
+        <line x1="384" y1="120" x2="420" y2="120" stroke="${theme.secondary}" stroke-width="1.2" opacity="0.65" />
 
         <rect x="20" y="28" width="164" height="52" rx="10" fill="#121722" stroke="${theme.accentBorder}" />
         <circle cx="38" cy="54" r="4.5" fill="${theme.accent}" />
-        <text x="52" y="50" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11" font-weight="600">${esc(m0)}</text>
+        <text x="52" y="50" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">${esc(trunc(m0, 20))}</text>
         <text x="52" y="66" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">INPUT CONTRACT · MD/JSON</text>
 
         <rect x="20" y="108" width="164" height="52" rx="10" fill="#121722" stroke="rgba(255,255,255,0.12)" />
         <circle cx="38" cy="134" r="4.5" fill="${theme.secondary}" />
-        <text x="52" y="130" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11" font-weight="600">${esc(m1)}</text>
+        <text x="52" y="130" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">${esc(trunc(m1, 20))}</text>
         <text x="52" y="146" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">EXECUTION HARNESS</text>
 
-        <rect x="256" y="34" width="136" height="122" rx="12" fill="${theme.accentSoft}" stroke="${theme.accentBorder}" />
-        <text x="324" y="64" text-anchor="middle" fill="${theme.accent}" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" letter-spacing="1.4">ROUTER BUS</text>
-        <line x1="274" y1="78" x2="374" y2="78" stroke="${theme.accentBorder}" />
-        <text x="324" y="100" text-anchor="middle" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="600">Scoped Lane</text>
-        <text x="324" y="118" text-anchor="middle" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">ISOLATED WORKTREE</text>
-        <text x="324" y="138" text-anchor="middle" fill="${theme.secondary}" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">RECEIPT VERIFIED</text>
+        <rect x="252" y="34" width="132" height="122" rx="12" fill="${theme.accentSoft}" stroke="${theme.accentBorder}" />
+        <text x="318" y="64" text-anchor="middle" fill="${theme.accent}" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" letter-spacing="1.4">ROUTER BUS</text>
+        <line x1="270" y1="78" x2="366" y2="78" stroke="${theme.accentBorder}" />
+        <text x="318" y="100" text-anchor="middle" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="600">Scoped Lane</text>
+        <text x="318" y="118" text-anchor="middle" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">ISOLATED WORKTREE</text>
+        <text x="318" y="138" text-anchor="middle" fill="${theme.secondary}" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">RECEIPT VERIFIED</text>
 
-        <rect x="432" y="46" width="116" height="98" rx="10" fill="#121722" stroke="rgba(255,255,255,0.14)" />
-        <text x="490" y="74" text-anchor="middle" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">${esc(trunc(m2, 15))}</text>
-        <rect x="450" y="88" width="80" height="20" rx="5" fill="rgba(56,189,248,0.12)" stroke="${theme.accentBorder}" />
-        <text x="490" y="102" text-anchor="middle" fill="${theme.accent}" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">GATE PASS</text>
-        <text x="490" y="128" text-anchor="middle" fill="#64748B" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">SHA-256</text>
+        <rect x="420" y="46" width="128" height="98" rx="10" fill="#121722" stroke="rgba(255,255,255,0.14)" />
+        <text x="484" y="74" text-anchor="middle" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" font-weight="600">${esc(trunc(m2, 18))}</text>
+        <rect x="444" y="88" width="80" height="20" rx="5" fill="rgba(56,189,248,0.12)" stroke="${theme.accentBorder}" />
+        <text x="484" y="102" text-anchor="middle" fill="${theme.accent}" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">GATE PASS</text>
+        <text x="484" y="128" text-anchor="middle" fill="#64748B" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">SHA-256</text>
       </g>
     `
   }
 
   if (lane === 'creative') {
-    const bars = Array.from({ length: 24 }, (_, idx) => {
+    const bars = Array.from({ length: 22 }, (_, idx) => {
       const h = 24 + ((seed + idx * 37) % 78)
       const y = 122 - h / 2
       const x = 26 + idx * 14
@@ -144,22 +148,22 @@ function renderMotif(lane, modules, seed, theme) {
     }).join('')
 
     return `
-      <!-- Studio Signal & Stem Architecture -->
+      <!-- Studio Signal and Stem Architecture -->
       <g transform="translate(36, 98)">
         <rect x="0" y="0" width="568" height="190" rx="14" fill="#0D1017" stroke="rgba(255,255,255,0.08)" />
         <text x="26" y="30" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5" letter-spacing="1.2">SIGNAL SPECTRUM · REFERENCE LOCKED</text>
         ${bars}
-        <rect x="382" y="22" width="166" height="44" rx="9" fill="#121820" stroke="${theme.accentBorder}" />
-        <text x="396" y="41" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">01 · ${esc(trunc(m0, 18))}</text>
-        <text x="396" y="56" fill="${theme.accent}" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">TOKEN SPEC</text>
+        <rect x="356" y="22" width="192" height="44" rx="9" fill="#121820" stroke="${theme.accentBorder}" />
+        <text x="370" y="41" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" font-weight="600">01 · ${esc(trunc(m0, 22))}</text>
+        <text x="370" y="56" fill="${theme.accent}" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">TOKEN SPEC</text>
 
-        <rect x="382" y="74" width="166" height="44" rx="9" fill="#121820" stroke="rgba(255,255,255,0.12)" />
-        <text x="396" y="93" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">02 · ${esc(trunc(m1, 18))}</text>
-        <text x="396" y="108" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">WORKFLOW LOOP</text>
+        <rect x="356" y="74" width="192" height="44" rx="9" fill="#121820" stroke="rgba(255,255,255,0.12)" />
+        <text x="370" y="93" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" font-weight="600">02 · ${esc(trunc(m1, 22))}</text>
+        <text x="370" y="108" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">WORKFLOW LOOP</text>
 
-        <rect x="382" y="126" width="166" height="44" rx="9" fill="#121820" stroke="rgba(255,255,255,0.12)" />
-        <text x="396" y="145" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">03 · ${esc(trunc(m2, 18))}</text>
-        <text x="396" y="160" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">QA RUBRIC</text>
+        <rect x="356" y="126" width="192" height="44" rx="9" fill="#121820" stroke="rgba(255,255,255,0.12)" />
+        <text x="370" y="145" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" font-weight="600">03 · ${esc(trunc(m2, 22))}</text>
+        <text x="370" y="160" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">QA RUBRIC</text>
       </g>
     `
   }
@@ -179,7 +183,7 @@ function renderMotif(lane, modules, seed, theme) {
       .join('')
 
     return `
-      <!-- Ledger & Gate Readiness Matrix -->
+      <!-- Ledger and Gate Readiness Matrix -->
       <g transform="translate(36, 98)">
         <rect x="0" y="0" width="568" height="190" rx="14" fill="#0D1017" stroke="rgba(255,255,255,0.08)" />
         ${gateBoxes}

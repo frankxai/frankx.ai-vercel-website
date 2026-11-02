@@ -28,7 +28,7 @@
   <text x="540" y="44" text-anchor="middle" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">Free guide</text>
 
   
-      <!-- Ledger & Gate Readiness Matrix -->
+      <!-- Ledger and Gate Readiness Matrix -->
       <g transform="translate(36, 98)">
         <rect x="0" y="0" width="568" height="190" rx="14" fill="#0D1017" stroke="rgba(255,255,255,0.08)" />
         
@@ -58,7 +58,7 @@
         <text x="528" y="110" text-anchor="end" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">AUDITED</text>
         <line x1="38" y1="122" x2="528" y2="122" stroke="rgba(255,255,255,0.06)" />
         <text x="38" y="142" fill="#FBBF24" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" font-weight="600">LEDGER_ROW_02</text>
-        <text x="156" y="142" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5">4-Factor Product Fit Sc…</text>
+        <text x="156" y="142" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5">4-Factor Product Fit…</text>
         <text x="528" y="142" text-anchor="end" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">LOCAL SQLITE</text>
       </g>
     
