@@ -74,14 +74,19 @@ function ProductsBackground() {
 const products = [
   {
     id: 'vibe-os',
-    icon: Music,
+    icon: Zap,
     name: 'Vibe OS',
-    tagline: '',
-    description: '',
+    tagline: 'Creative state management',
+    description:
+      'A practical system and public guide for tracking creative energy cycles, matching deep work to focus windows, and shipping without burnout. Public guide open now; web app in development.',
     status: 'active',
     href: '/products/vibe-os',
     color: 'emerald',
-    highlights: [],
+    highlights: [
+      'Public guide open now with energy-state and workflow templates',
+      'Match deep build sessions to your natural focus windows',
+      'Web app in development — join the waitlist for release notes',
+    ],
     featured: true,
   },
   {
