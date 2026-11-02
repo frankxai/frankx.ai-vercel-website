@@ -37,7 +37,7 @@
     "test:tallinn-experience": "node --test scripts/tests/tallinn-experience-foundry-contract.test.mjs",
     "test:ai-architecture": "node scripts/check-ai-architecture-contract.mjs && node --experimental-strip-types --test scripts/tests/ai-architect-report-export.test.mjs",
     "test:email-safety": "node --test scripts/tests/email-send-surface-contract.test.mjs scripts/tests/waitlist-intent.test.mjs scripts/tests/subscribe-vault-waitlist.test.mjs scripts/tests/download-consent-contract.test.mjs",
-    "test:checkout-sku": "node --test scripts/tests/checkout-sku-contract.test.mjs",
+    "test:checkout-sku": "node --experimental-strip-types --test scripts/tests/checkout-sku-contract.test.mjs",
     "test:auction-bid": "node --test scripts/tests/auction-bid-route-contract.test.mjs scripts/tests/shop-auction-label.test.mjs",
     "test:agentic-life-research": "node --test scripts/tests/agentic-life-research-contract.test.mjs",
     "test:alba-gut": "node --test scripts/tests/alba-gut-intelligence-contract.test.mjs",
