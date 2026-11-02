@@ -1,11 +1,22 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: "Interactive Prototypes",
-  description: "Try AI architecture patterns with your own API keys (BYOK).",
-  path: "/ai-architecture/prototypes",
+  title: 'AI Architecture Prototypes — Interactive Sandboxes',
+  description:
+    'Interactive AI architecture prototypes and BYOK sandboxes for multi-model chat, retrieval-augmented generation, and multi-agent task handoffs.',
+  path: '/ai-architecture/prototypes',
+  keywords: [
+    'ai architecture prototypes',
+    'ai agent sandbox',
+    'rag playground',
+    'multi-model chat playground',
+  ],
 })
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function AIArchitecturePrototypesLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return children
 }
