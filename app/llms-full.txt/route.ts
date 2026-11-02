@@ -1,8 +1,11 @@
 import { getAllBlogPosts } from '@/lib/blog'
+import { getAllGuides } from '@/lib/guides'
+import prototypesData from '@/data/ai-architecture/prototypes.json'
 import { bookReviews } from '@/data/book-reviews'
 import { osModules } from '@/data/os-modules'
 import { researchDomains } from '@/lib/research/domains'
 import { siteConfig } from '@/lib/seo'
+import type { ArchitecturePrototype } from '@/types/ai-architecture'
 
 const SITE_URL = siteConfig.url
 
@@ -13,6 +16,30 @@ const SITE_URL = siteConfig.url
  */
 export async function GET() {
   const allPosts = getAllBlogPosts()
+  const allGuides = getAllGuides()
+  const blueprints = prototypesData as ArchitecturePrototype[]
+
+  const guidesSection = allGuides
+    .map(
+      (g) => `### ${g.title}
+${SITE_URL}/guides/${g.slug}
+${g.category || 'Guide'} · ${g.updated || g.date}
+
+${g.description}
+`
+    )
+    .join('\n')
+
+  const blueprintsSection = blueprints
+    .map(
+      (b) => `### ${b.title}
+${SITE_URL}/ai-architecture/${b.slug}
+Category: ${b.category} · Difficulty: ${b.difficulty}
+
+${b.metaDescription || b.subtitle}
+`
+    )
+    .join('\n')
 
   const blogSection = allPosts
     .map((p) => {
@@ -93,6 +120,23 @@ The site combines enterprise-grade AI architecture (multi-agent orchestration, M
 - [Connection](${SITE_URL}/qualities/connection): Trust, belonging, and collective capability as the multiplier
 - [Media Kit](${SITE_URL}/media-kit): Press bio, story angles, speaking topics, public proof, editorial boundaries, and contact
 
+## Claude Code, Agent Skills & Implementation Guides
+
+- [Claude Code & Agent Skills Hub](${SITE_URL}/skills): Reusable SKILL.md modules, skill builder, and agent installation workflows
+- [Skills Catalog](${SITE_URL}/resources/skills): Curated agent skills across coding, content, research, and operations
+- [Guides Index](${SITE_URL}/guides): All published implementation guides
+- [Claude Skills Library (GitHub)](https://github.com/frankxai/claude-skills-library): Modular SKILL.md definitions and evaluation harnesses
+
+${guidesSection}
+
+## AI Architecture & Blueprints
+
+- [AI Architecture Hub](${SITE_URL}/ai-architecture): Reference architectures, cost estimators, and governance patterns
+- [Blueprints Index](${SITE_URL}/ai-architecture/blueprints): Interactive architecture specifications
+- [Multi-Cloud Comparison](${SITE_URL}/ai-architecture/multi-cloud-comparison): AWS Bedrock, Azure AI Foundry, Google Vertex AI, and OCI GenAI
+
+${blueprintsSection}
+
 ## Founder Path
 Founder Stack → Foundry or Founder's Circle → Human Layer and Signal Loop.
 - [Founder Stack](${SITE_URL}/founder-stack): Diagnose the current constraint across State, Signal, Systems, Scale, and Stewardship
@@ -101,7 +145,7 @@ Founder Stack → Foundry or Founder's Circle → Human Layer and Signal Loop.
 - [Human Layer](${SITE_URL}/human-layer): Evidence-aware founder statecraft governed by established, emerging, experiential, and symbolic lenses
 - [Signal Loop](${SITE_URL}/newsletter): Main founder letter, with additional editorial lanes available through the newsletter hub
 - [Start Here](${SITE_URL}/start): Founder-led entry spine for new visitors
-- [Peak State Systems](${SITE_URL}/peak-performance): Evidence-led attention, energy, recovery, environment, and review loops; educational, not medical advice
+- [Peak State Systems](${SITE_URL}/peak-performance): Evidence-led attention, energy, recovery, environment, and review loops; educational, see page disclosures
 - [Build with Me](${SITE_URL}/build): Product ladder: see /build; prices on each product page.
 - [Coaching](${SITE_URL}/coaching): 1:1 advisory across AI architecture, creator strategy, music production
 - [Work With Me](${SITE_URL}/work-with-me): Studio engagements
@@ -151,13 +195,16 @@ ${blogSection}
 
 ## API Surfaces (for agentic interaction)
 
-- [/api/og](${SITE_URL}/api/og): Dynamic OG image generation
-- [/api/subscribe](${SITE_URL}/api/subscribe): Newsletter signup endpoint
-- [/api/coaching-apply](${SITE_URL}/api/coaching-apply): Coaching application form
-- [/api/cohort/apply](${SITE_URL}/api/cohort/apply): Cohort application form
+- [/api/mcp](${SITE_URL}/api/mcp): Read-only Model Context Protocol server (Streamable HTTP)
+- [/api/mcp/server-card](${SITE_URL}/api/mcp/server-card): MCP server card metadata
+- [/api/v1](${SITE_URL}/api/v1): Public JSON read catalog
+- [/openapi.json](${SITE_URL}/openapi.json): OpenAPI 3.1 specification
+- [/.well-known/ai-catalog.json](${SITE_URL}/.well-known/ai-catalog.json): SEP-2127 AI catalog discovery
 
 ## Open Source Repositories
 
+- [Claude Skills Library](https://github.com/frankxai/claude-skills-library): Modular SKILL.md definitions and evaluation harnesses
+- [MCP Doctor](https://github.com/frankxai/mcp-doctor): Diagnostic CLI for MCP server setups
 - [Library OS](https://github.com/frankxai/library-os): MIT-licensed book intelligence system
 - [Starlight Intelligence System](https://github.com/frankxai/Starlight-Intelligence-System): MIT-licensed substrate (memory palace, IS layers, voice operator)
 - [GitHub profile](https://github.com/frankxai): All public repos
