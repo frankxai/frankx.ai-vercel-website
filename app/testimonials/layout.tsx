@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Testimonials | What Builders Say About FrankX | FrankX',
   description: 'Hear from AI architects, creators, and developers who use FrankX tools and systems. Real results from real builders.',
   path: '/testimonials',

@@ -11,14 +11,15 @@ import {
 import Link from "next/link";
 import { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
-import { siteConfig } from "@/lib/seo";
+import { defaultOpenGraphImages, siteConfig } from "@/lib/seo";
 import { socialLinks } from "@/lib/social-links";
 
 export const metadata: Metadata = {
-  title: "The Intelligence Revolution Playbook 2025 | FrankX.AI",
+  title: "The Intelligence Revolution Playbook 2025",
   description:
     "A systems-first guide to orchestrating conscious AI across products, teams, and experiences. Transform your organization for the intelligence age.",
   openGraph: {
+    images: defaultOpenGraphImages,
     title: "The Intelligence Revolution Playbook 2025",
     description:
       "A systems-first guide to orchestrating conscious AI across products, teams, and experiences.",

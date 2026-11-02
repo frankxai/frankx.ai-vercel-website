@@ -1,5 +1,6 @@
 'use client'
 
+import { siteConfig } from '@/lib/seo'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -61,7 +62,7 @@ function TeilenButton() {
   const [copied, setCopied] = useState(false)
 
   async function handleShare() {
-    const url = 'https://frankx.ai/de/valentines-day'
+    const url = `${siteConfig.url}/de/valentines-day`
     const title = 'Lob der Liebe — Gedichte & Meditationen'
 
     if (typeof navigator !== 'undefined' && navigator.share) {

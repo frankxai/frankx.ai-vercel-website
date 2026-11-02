@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import Link from 'next/link'
 import Script from 'next/script'
 import { notFound } from 'next/navigation'
@@ -66,13 +67,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const p = PILLARS.find((x) => x.id === pillar)
   if (!p) return { title: 'Pack not found' }
   return {
-    title: `${p.title} Pack · ${p.specialists.length} agents for ${p.tagline.toLowerCase()} | FrankX`,
+    title: `${p.title} Pack · ${p.specialists.length} agents for ${p.tagline.toLowerCase()}`,
     description: `Explore the planned ${p.title} pack and join the waitlist for standalone access. ${p.tagline}`,
-    alternates: { canonical: `https://frankx.ai/agents/packs/${p.id}` },
+    alternates: { canonical: `${siteConfig.url}/agents/packs/${p.id}` },
     openGraph: {
+      images: defaultOpenGraphImages,
       title: `${p.title} Pack · FrankX ACOS`,
       description: p.tagline,
-      url: `https://frankx.ai/agents/packs/${p.id}`,
+      url: `${siteConfig.url}/agents/packs/${p.id}`,
       siteName: 'FrankX',
       type: 'website',
     },
@@ -121,10 +123,10 @@ export default async function PackPage({ params }: PageProps) {
     '@graph': [
       {
         '@type': 'Product',
-        '@id': `https://frankx.ai/agents/packs/${p.id}#product`,
+        '@id': `${siteConfig.url}/agents/packs/${p.id}#product`,
         name: `${p.title} Pack`,
         description: `${p.specialists.length}-agent pack: ${p.tagline}`,
-        url: `https://frankx.ai/agents/packs/${p.id}`,
+        url: `${siteConfig.url}/agents/packs/${p.id}`,
         category: 'Software / AI Agents',
         offers: {
           '@type': 'Offer',
@@ -138,9 +140,9 @@ export default async function PackPage({ params }: PageProps) {
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'FrankX', item: 'https://frankx.ai' },
-          { '@type': 'ListItem', position: 2, name: 'Agents', item: 'https://frankx.ai/agents' },
-          { '@type': 'ListItem', position: 3, name: `${p.title} Pack`, item: `https://frankx.ai/agents/packs/${p.id}` },
+          { '@type': 'ListItem', position: 1, name: 'FrankX', item: siteConfig.url },
+          { '@type': 'ListItem', position: 2, name: 'Agents', item: `${siteConfig.url}/agents` },
+          { '@type': 'ListItem', position: 3, name: `${p.title} Pack`, item: `${siteConfig.url}/agents/packs/${p.id}` },
         ],
       },
     ],

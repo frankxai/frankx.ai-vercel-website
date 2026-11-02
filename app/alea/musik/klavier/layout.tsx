@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: "Klavier Lernen | Aleas Musikschule | FrankX",
   description: 'Klavier lernen Schritt für Schritt mit deutschen YouTube-Lehrern, kostenlosen Noten und Übe-Tipps.',
   path: '/alea/musik/klavier',

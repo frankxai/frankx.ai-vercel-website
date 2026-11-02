@@ -1,3 +1,4 @@
+import { defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { ArrowRight, ArrowUpRight, Check, ExternalLink, ShieldCheck } from 'lucide-react'
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
     'Live v0 interface studies, an open creator-business starter, and the workflow that turns visual prototypes into evidence-backed products.',
   alternates: { canonical: '/v0' },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Product Foundry | FrankX',
     description:
       'Live v0 interface studies, an open creator-business starter, and the workflow that turns visual prototypes into evidence-backed products.',

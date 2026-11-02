@@ -17,7 +17,7 @@ import Image from 'next/image'
  */
 
 export const metadata: Metadata = {
-  title: 'Scan to open the Ikigai & Branding Workshop · FrankX',
+  title: 'Scan to open the Ikigai & Branding Workshop',
   description:
     'QR code presentation surface for the Ikigai & Branding workshop. Scan to open frankx.ai/workshops/ikigai-branding.',
   alternates: { canonical: '/go/qr/ikigai-branding' },

@@ -1,3 +1,4 @@
+import { defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -16,11 +17,12 @@ import {
 const REPO = "https://github.com/frankxai/starlight-gravity-engine";
 
 export const metadata: Metadata = {
-  title: "Starlight Gravity Engine — Engineer Your Gravity | FrankX",
+  title: "Starlight Gravity Engine — Engineer Your Gravity",
   description:
     "A local-first, human-and-agentic operating system that turns meaningful encounters into shared intelligence, useful artifacts, trusted relationships, and rooms people want to return to. Built on SIP.",
   alternates: { canonical: "/starlight/gravity" },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: "Starlight Gravity Engine — Engineer Your Gravity",
     description:
       "Human engineering creates gravity. Agentic engineering makes it compound. Gravity = Direction × Signal × Contribution × Convening × Reliability.",

@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { ArrowLeft, Download } from 'lucide-react'
 import QRCode from 'qrcode'
 
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 
-const TARGET_URL = 'https://frankx.ai/connect'
+const TARGET_URL = `${siteConfig.url}/connect`
 
 export const dynamic = 'force-static'
 

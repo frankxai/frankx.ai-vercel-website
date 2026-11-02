@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -15,17 +16,18 @@ export const metadata: Metadata = {
   description:
     'Witali Riemer, geboren 8.9.1969 in Pavlovka Kasachstan, gestorben 9.7.2018 in Seesen Deutschland. Wolgadeutsche Wurzeln, der Spätaussiedler-Bogen und das Leben, das daraus wurde.',
   alternates: {
-    canonical: 'https://frankx.ai/papa/leben',
+    canonical: `${siteConfig.url}/papa/leben`,
     languages: {
-      de: 'https://frankx.ai/papa/leben',
-      en: 'https://frankx.ai/papa/en/life',
+      de: `${siteConfig.url}/papa/leben`,
+      en: `${siteConfig.url}/papa/en/life`,
     },
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Sein Leben — Pavlovka bis Seesen',
     description:
       'Witali Riemer (1969–2018). Wolgadeutsche Wurzeln, Pavlovka, Spätaussiedler, Seesen.',
-    url: 'https://frankx.ai/papa/leben',
+    url: `${siteConfig.url}/papa/leben`,
     type: 'article',
     locale: 'de_DE',
   },
@@ -38,14 +40,14 @@ export default function LebenPage() {
       <ArticleJsonLd
         title="Sein Leben — Pavlovka bis Seesen"
         description="Witali Riemer, 1969-2018. Wolgadeutsche Wurzeln, der Spätaussiedler-Bogen, Seesen."
-        url="https://frankx.ai/papa/leben"
+        url={`${siteConfig.url}/papa/leben`}
         inLanguage="de"
       />
       <BreadcrumbJsonLd
         items={[
-          { name: 'Frankx', url: 'https://frankx.ai/' },
-          { name: 'Papa', url: 'https://frankx.ai/papa' },
-          { name: 'Sein Leben', url: 'https://frankx.ai/papa/leben' },
+          { name: 'Frankx', url: `${siteConfig.url}/` },
+          { name: 'Papa', url: `${siteConfig.url}/papa` },
+          { name: 'Sein Leben', url: `${siteConfig.url}/papa/leben` },
         ]}
       />
 
