@@ -7,6 +7,16 @@ const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
 // (app/api/webhooks/stripe/route.ts) can resolve delivery via
 // lib/delivery.ts's getProductById()/getDeliveryConfig().
 const PRODUCTS: Record<string, { name: string; priceId: string; amount: number }> = {
+  'reality-md-starter-pack': {
+    name: 'reality.md Starter Pack',
+    priceId: process.env.STRIPE_PRICE_REALITY_MD || '',
+    amount: 100,
+  },
+  'suno-power-pack-25': {
+    name: '25 Suno Power Prompts Pack',
+    priceId: process.env.STRIPE_PRICE_SUNO_25 || '',
+    amount: 700,
+  },
   'creative-ai-toolkit': {
     name: 'Creative AI Toolkit',
     priceId: process.env.STRIPE_PRICE_TOOLKIT || '',
@@ -20,7 +30,7 @@ const PRODUCTS: Record<string, { name: string; priceId: string; amount: number }
   'suno-prompt-library': {
     name: 'Suno Prompt Pack',
     priceId: process.env.STRIPE_PRICE_SUNO || '',
-    amount: 2900,
+    amount: 2700,
   },
   'system-architect-starter-kit': {
     name: 'System Architect Starter Kit',

@@ -11,7 +11,16 @@ export const metadata: Metadata = {
 
 // GitHub + Vercel data fetched server-side (no client API keys needed)
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN
-const REPOS = ['frankxai/FrankX', 'frankxai/frankx.ai-vercel-website', 'frankxai/arcanea']
+const REPOS = [
+  'frankxai/Starlight-Intelligence-System',
+  'frankxai/frankx.ai-vercel-website',
+  'frankxai/arcanea-ai-app',
+  'frankxai/agentic-ops',
+  'frankxai/agentic-ops-hub',
+  'Starlight-Intelligence/starlight-command-center',
+  'frankxai/starlight-estate',
+  'frankxai/claude-skills-library',
+]
 
 interface GHPullRequest {
   number: number
@@ -63,33 +72,31 @@ async function fetchGitHub(path: string) {
 }
 
 async function getPRs(): Promise<GHPullRequest[]> {
-  const all: GHPullRequest[] = []
-  for (const repo of REPOS) {
-    const prs = await fetchGitHub(`repos/${repo}/pulls?state=open&per_page=10&sort=updated`)
-    if (prs) {
-      for (const pr of prs) {
-        all.push({ ...pr, repo: repo.split('/')[1] })
-      }
-    }
-  }
-  return all.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
+  const results = await Promise.all(
+    REPOS.map(async (repo) => {
+      const prs = await fetchGitHub(`repos/${repo}/pulls?state=open&per_page=10&sort=updated`)
+      if (!prs || !Array.isArray(prs)) return []
+      return prs.map((pr: GHPullRequest) => ({ ...pr, repo: repo.split('/')[1] }))
+    })
+  )
+  return results
+    .flat()
+    .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
 }
 
 async function getAgentIssues(): Promise<GHIssue[]> {
-  const all: GHIssue[] = []
-  for (const repo of REPOS) {
-    const issues = await fetchGitHub(
-      `repos/${repo}/issues?state=open&labels=ao/builder:claude-code,ao/builder:gemini-cli,ao/builder:codex-cli&per_page=20`
-    )
-    if (issues) {
-      for (const issue of issues) {
-        if (!issue.pull_request) {
-          all.push({ ...issue, repo: repo.split('/')[1] })
-        }
-      }
-    }
-  }
-  return all
+  const results = await Promise.all(
+    REPOS.map(async (repo) => {
+      const issues = await fetchGitHub(
+        `repos/${repo}/issues?state=open&labels=ao/builder:claude-code,ao/builder:gemini-cli,ao/builder:codex-cli&per_page=20`
+      )
+      if (!issues || !Array.isArray(issues)) return []
+      return issues
+        .filter((issue: GHIssue & { pull_request?: unknown }) => !issue.pull_request)
+        .map((issue: GHIssue) => ({ ...issue, repo: repo.split('/')[1] }))
+    })
+  )
+  return results.flat()
 }
 
 async function getRecentDeploys(): Promise<VercelDeploy[]> {

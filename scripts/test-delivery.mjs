@@ -36,7 +36,13 @@ register(
 const { generateProductEmailData } = await import(pathToFileURL(resolve(ROOT, 'lib/delivery.ts')).href)
 
 // Must match the PRODUCTS map keys in app/api/checkout/route.ts exactly.
-const CHECKOUT_SLUGS = ['creative-ai-toolkit', 'agentic-creator-os', 'suno-prompt-library']
+const CHECKOUT_SLUGS = [
+  'reality-md-starter-pack',
+  'suno-power-pack-25',
+  'creative-ai-toolkit',
+  'agentic-creator-os',
+  'suno-prompt-library',
+]
 
 test('every checkout slug resolves to a non-null delivery email payload', () => {
   for (const slug of CHECKOUT_SLUGS) {
@@ -72,7 +78,75 @@ test('payload carries through the customer name and email unchanged', () => {
   assert.equal(data.customerEmail, 'ada@example.com')
 })
 
+import { readFileSync, existsSync } from 'node:fs'
+import { createHash } from 'node:crypto'
+
 test('an unknown slug resolves to null (no silent fallback delivery)', () => {
   const data = generateProductEmailData('not-a-real-product', 'Test Buyer', 'buyer@example.com')
   assert.equal(data, null)
 })
+
+test('$1 reality-md-starter-pack bundle files exist and match manifest.json SHA-256 & byte counts', () => {
+  const bundleDir = resolve(ROOT, 'public/products/reality-md-starter-pack')
+  const manifestPath = resolve(bundleDir, 'manifest.json')
+  assert.ok(existsSync(manifestPath), 'expected manifest.json in reality-md-starter-pack')
+  const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'))
+  assert.equal(manifest.version, '1.0.0')
+  const expectedFiles = [
+    'README.md',
+    'reality.template.md',
+    'AGENTS.starter.md',
+    '5-invariants-checklist.md',
+  ]
+  for (const name of expectedFiles) {
+    const filePath = resolve(bundleDir, name)
+    assert.ok(existsSync(filePath), `expected ${name} to exist in reality-md-starter-pack`)
+    const buf = readFileSync(filePath)
+    const entry = manifest.files.find((f) => f.name === name)
+    assert.ok(entry, `expected ${name} in manifest.json`)
+    assert.equal(buf.length, entry.bytes, `byte size mismatch for ${name}`)
+    const sha256 = createHash('sha256').update(buf).digest('hex')
+    assert.equal(sha256, entry.sha256, `sha256 mismatch for ${name}`)
+  }
+})
+
+test('$7 suno-power-pack-25 bundle has 25 prompts across 5 categories with complete metatags', () => {
+  const bundleDir = resolve(ROOT, 'public/products/suno-power-pack-25')
+  for (const file of ['README.md', 'suno-v4-25-prompts.json', 'suno-v4-25-prompts.md', 'commercial-release-checklist.md']) {
+    assert.ok(existsSync(resolve(bundleDir, file)), `expected ${file} in suno-power-pack-25`)
+  }
+  const pack = JSON.parse(readFileSync(resolve(bundleDir, 'suno-v4-25-prompts.json'), 'utf8'))
+  assert.equal(pack.prompts.length, 25, 'expected exactly 25 prompts')
+  assert.equal(pack.categories.length, 5, 'expected 5 categories')
+  const requiredTags = ['[Intro', '[Verse', '[Chorus', '[Bridge', '[Drop', '[Outro']
+  for (const p of pack.prompts) {
+    assert.ok(p.bpm > 0, `expected BPM for ${p.id}`)
+    assert.ok(p.keySignature.length > 0, `expected keySignature for ${p.id}`)
+    assert.ok(p.excludeStyles.length > 0, `expected excludeStyles for ${p.id}`)
+    for (const tag of requiredTags) {
+      assert.ok(p.structurePrompt.includes(tag), `expected ${tag}] metatag in prompt ${p.id}`)
+    }
+  }
+})
+
+test('/ops Mission Control tracks all 8 flagship repos, 10 orgs, 5 corporate pillars, and $1/$7 bundles', () => {
+  const opsPage = readFileSync(resolve(ROOT, 'app/ops/page.tsx'), 'utf8')
+  const opsClient = readFileSync(resolve(ROOT, 'app/ops/OpsClient.tsx'), 'utf8')
+  const expectedRepos = [
+    'frankxai/Starlight-Intelligence-System',
+    'frankxai/frankx.ai-vercel-website',
+    'frankxai/arcanea-ai-app',
+    'frankxai/agentic-ops',
+    'frankxai/agentic-ops-hub',
+    'Starlight-Intelligence/starlight-command-center',
+    'frankxai/starlight-estate',
+    'frankxai/claude-skills-library',
+  ]
+  for (const repo of expectedRepos) {
+    assert.ok(opsPage.includes(repo), `expected ${repo} in app/ops/page.tsx REPOS`)
+  }
+  assert.ok(opsClient.includes('Queen 8h Swarm & 10-Org Federation'), 'expected Queen 8h Swarm section in OpsClient.tsx')
+  assert.ok(opsClient.includes('/products/reality-md-starter-pack/reality.template.md'), 'expected $1 bundle link in OpsClient.tsx')
+  assert.ok(opsClient.includes('/products/suno-power-pack-25/suno-v4-25-prompts.md'), 'expected $7 bundle link in OpsClient.tsx')
+})
+
