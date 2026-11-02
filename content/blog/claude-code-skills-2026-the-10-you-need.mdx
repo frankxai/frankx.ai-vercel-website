@@ -2,6 +2,7 @@
 title: "Claude Code Skills 2026: The 10 You Actually Need"
 description: "Most skill libraries are noise. These 10 skills changed how I ship code, content, and products — with install commands and real examples."
 date: "2026-03-21"
+lastUpdated: "2026-11-02"
 author: "FrankX"
 category: "Creator Systems"
 tags: ["Claude Code", "Skills", "ACOS", "AI Development", "Productivity"]
@@ -10,8 +11,10 @@ featured: false
 keywords:
   [
     "claude code skills",
+    "claude skills",
     "best claude code skills 2026",
-    "acos skills",
+    "SKILL.md",
+    "claude code plugins vs skills",
     "agent skills claude",
     "npx skills add",
   ]
@@ -36,19 +39,20 @@ schema: ["Article", "FAQPage"]
 
 ## What Skills Are
 
-Skills are folders with a `SKILL.md` file that Claude loads as context rules. Not plugins. Not extensions. Context.
+Skills are folders containing a `SKILL.md` file with YAML frontmatter (`name` and `description`) plus markdown operational rules and optional helper scripts. Claude preloads the short YAML description at startup and reads the full `SKILL.md` body when your prompt matches the task.
 
 The `vercel-react-best-practices` skill contains 40+ rules about React inside Vercel — avoiding unnecessary `useEffect`, preferring Server Components, structuring data fetching. Claude reads those rules and applies them as constraints.
 
-## Skills vs Commands vs Agents
+## Skills vs Plugins vs Commands vs Subagents
 
-| Primitive   | What It Is               | When It Activates                | Best For                    |
-| ----------- | ------------------------ | -------------------------------- | --------------------------- |
-| **Skill**   | Context rules            | Auto (keyword match) or globally | Standards, domain knowledge |
-| **Command** | Slash workflow           | On demand (`/command`)           | Repeatable tasks            |
-| **Agent**   | Persona + skills + tools | Configured profile               | Multi-step work             |
+| Primitive   | What It Is                                   | When It Activates                | Best For                                    |
+| ----------- | -------------------------------------------- | -------------------------------- | ------------------------------------------- |
+| **Skill**   | `SKILL.md` folder + optional `scripts/`      | Auto (description match)         | Domain standards, checklists, architecture  |
+| **Plugin**  | Versioned bundle (`/plugin install`)         | Installed across repos / IDEs    | Sharing skills, hooks, commands, and MCP    |
+| **Command** | Slash workflow (`.claude/commands/*.md`)     | On demand (`/command`)           | Deterministic operator tasks                |
+| **Subagent**| Isolated context profile (`.claude/agents/`) | Delegated multi-step work        | Parallel research and independent verification |
 
-Skills are the foundation. Commands invoke skills. Agents are built on both.
+Skills hold the reusable standards. Slash commands invoke repeatable workflows. Plugins distribute everything across VS Code, JetBrains, and CLI setups — see [Claude Code plugins vs skills](/guides/claude-code-plugins-vs-skills) and the interactive [Skills Hub](/skills).
 
 ## The 10 Essential Skills
 
@@ -134,7 +138,15 @@ triggers:
 - Passive constructions when active is available.
 ```
 
-Full skill-building guide: [Building Custom Skills for ACOS](/blog/building-custom-skills-acos).
+Full skill-building guide: [Building Custom Skills for ACOS](/blog/building-custom-skills-acos) and starter repository configs in the [Claude Code templates starter kit](/guides/claude-code-templates-starter-kit).
+
+## Evaluating Skills Before Global Install
+
+A prose skill earns its keep only when you verify both trigger accuracy and output compliance. Before adding any skill globally:
+
+1. **Test positive and negative triggers** — Confirm the YAML `description` fires on target tasks without hijacking unrelated prompts.
+2. **Pair prose with deterministic scripts** — Put link checks, schema checks, and AST checks inside `scripts/` so Node or Python executes exact assertions.
+3. **Install from audited MIT sources** — Browse the 114-skill open catalog in [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library) or generate your own `SKILL.md` in the [Skill Builder](/skills/builder).
 
 ## The ACOS Layer
 
