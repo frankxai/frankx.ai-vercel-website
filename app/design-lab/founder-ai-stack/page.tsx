@@ -9,11 +9,12 @@ import { MDXContent } from '@/components/blog/MDXContent'
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: 'My founder AI stack: from a mobile brief to a verified release',
+  title: 'My founder AI stack: how I assign work and check the result',
   description: 'How I combine ChatGPT Work, Claude, Gemini, Grok, and OpenCode, with repository examples, honest model attribution, and a method for judging useful output.',
   robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
   alternates: { canonical: null },
-  openGraph: { title: 'My founder AI stack: from a mobile brief to a verified release', description: 'How I combine ChatGPT Work, Claude, Gemini, Grok, and OpenCode, with repository examples, honest model attribution, and a method for judging useful output.', type: 'website' },
+  openGraph: { title: 'My founder AI stack: how I assign work and check the result', description: 'How I combine ChatGPT Work, Claude, Gemini, Grok, and OpenCode, with repository examples, honest model attribution, and a method for judging useful output.', type: 'website' },
+  twitter: { card: 'summary', title: 'My founder AI stack: how I assign work and check the result', description: 'A draft founder field note with source-linked examples and calibrated model attribution.', images: [] },
 }
 
 export default async function FounderAiStackReadingProof() {
@@ -32,7 +33,7 @@ export default async function FounderAiStackReadingProof() {
   }).format(new Date('2026-11-02T12:00:00Z'))
 
   return (
-    <main id="main" className="min-h-screen bg-[#0a0a0b] px-4 pb-32 pt-28 text-white sm:px-6 lg:px-8">
+    <main id="article-reading-proof" className="min-h-screen bg-[#0a0a0b] px-4 pb-32 pt-28 text-white sm:px-6 lg:px-8">
       <article aria-labelledby="article-title" className="mx-auto max-w-3xl min-w-0">
         <header className="mb-10 space-y-5">
           <p className="text-sm font-medium text-emerald-300">Draft for review · {observedDate}</p>
@@ -57,3 +58,4 @@ export default async function FounderAiStackReadingProof() {
     </main>
   )
 }
+

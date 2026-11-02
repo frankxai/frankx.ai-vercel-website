@@ -11,7 +11,7 @@
     "notion_record": "blocked"
   },
   "brief": {
-    "working_title": "My founder AI stack: from a mobile brief to a verified release",
+    "working_title": "My founder AI stack: how I assign work and check the result",
     "subject": "First-party multi-application founder workflow",
     "origin": "Owner account plus bounded repository reporting and rechecked selected evidence",
     "thesis": "Judge applications by handoffs and accepted outcomes, with source-level attribution.",
@@ -84,7 +84,7 @@
     },
     {
       "source_id": "E2",
-      "title": "Build Starlight’s mobile mission workspace with portable drafts and editable copies",
+      "title": "Build Starlight\u2019s mobile mission workspace with portable drafts and editable copies",
       "publisher": "frankxai/starlightintelligence.ai",
       "source_type": "repository_pr",
       "url": "https://github.com/frankxai/starlightintelligence.ai/pull/249",
@@ -136,7 +136,7 @@
     },
     {
       "source_id": "E6",
-      "title": "🛡️ Sentinel: [HIGH] Fix timing attack in CRON_SECRET verification",
+      "title": "\ud83d\udee1\ufe0f Sentinel: [HIGH] Fix timing attack in CRON_SECRET verification",
       "publisher": "frankxai/gencreator.ai",
       "source_type": "repository_pr",
       "url": "https://github.com/frankxai/gencreator.ai/pull/312",
@@ -149,7 +149,7 @@
     },
     {
       "source_id": "E7",
-      "title": "🛡️ Sentinel: [CRITICAL] Fix timing attack vulnerability in `CRON_SECRET` verification",
+      "title": "\ud83d\udee1\ufe0f Sentinel: [CRITICAL] Fix timing attack vulnerability in `CRON_SECRET` verification",
       "publisher": "frankxai/gencreator.ai",
       "source_type": "repository_pr",
       "url": "https://github.com/frankxai/gencreator.ai/pull/315",
@@ -456,7 +456,7 @@
   ],
   "article": {
     "source_path": "content/blog/_drafts/founder-ai-stack-mobile-to-production.mdx",
-    "canonical_title": "My founder AI stack: from a mobile brief to a verified release",
+    "canonical_title": "My founder AI stack: how I assign work and check the result",
     "description": "First-party multi-application founder workflow with concrete repository evidence and calibrated attribution.",
     "author_id": "frank-riemer",
     "published_at": null,
@@ -486,7 +486,7 @@
   "reviews": [],
   "publication": {
     "branch": "agent/codex/founder-ai-stack-review-20261102",
-    "pull_request": "blocked",
+    "pull_request": "https://github.com/frankxai/frankx.ai-vercel-website/pull/1153",
     "preview_url": "blocked",
     "live_url": "blocked",
     "verified_at": null,
@@ -509,16 +509,25 @@
   "blocked": [
     "Independent different-provider article review has not run",
     "Final flagship media packet and rights/visual review pending",
-    "Full repository typecheck/lint/build unavailable in scratch; hosted preview build pending",
     "Physical-device/browser-engine/performance checks pending",
-    "No production publication authorized by this preview task"
+    "No production publication authorized by this preview task",
+    "Corrected hosted build and final rendered checks pending at this commit",
+    "Local full-repository lint/typecheck/build not run; initial hosted build passed",
+    "Narrow-screen browser validation pending; available browser API has no viewport resize control"
   ],
   "scope": {
     "base_sha": "ffd466b45b38072d49cbf075673133a4166537be",
     "preview_route": "/design-lab/founder-ai-stack",
-    "viewport_check_route": "/design-lab/founder-ai-stack/check",
     "source_of_review": "Exact Library draft libfile_ac7f143b11288191976f7a02b6c0fe9b read this turn",
     "original_verdict": "revise",
-    "revised_text_verdict": "accept_within_scoped_self_review"
+    "revised_text_verdict": "accept_within_scoped_self_review",
+    "source_sha256": "ff287af5aec3aac8b96bbbb22d62429805e92ee9c378bc949f5430db58367e1d",
+    "initial_build_commit": "3879239d0860624d0e6762424f97698c6398d85a",
+    "initial_preview_url": "https://frankx-ai-vercel-website-4goq8n2wh-starlight-intelligence.vercel.app/design-lab/founder-ai-stack",
+    "initial_render_findings": [
+      "Duplicate main ID",
+      "Inherited Twitter metadata",
+      "Width iframe blocked by existing frame policy"
+    ]
   }
 }
