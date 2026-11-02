@@ -70,7 +70,7 @@ Source audit follows the current Vercel Web Interface Guidelines, with repositor
 
 Semantic main/article/header/footer, one h1, existing MDX tables, keyboard-focus styling on introduced links and narrow-screen padding are present. No new motion, image, form or client runtime is added.
 
-Initial native Vercel build passed compilation, TypeScript and static generation. The actual preview was opened in the browser through the connector's existing expiring share link. The initial desktop screenshot and DOM inspection found one h1, two well-contained tables and no horizontal document overflow. They also revealed a duplicate main ID and inherited Design Lab Twitter metadata. This revision gives the article a unique ID, overrides Twitter metadata, shortens a formula line, tightens the headline, and removes a first-person verification statement that was not supplied by the owner. The corrected build and final keyboard/rendered checks remain pending at this commit.
+Initial native Vercel build passed compilation, TypeScript and static generation. The actual preview was opened in the browser through the connector's existing expiring share link. The initial desktop screenshot and DOM inspection found one h1, two well-contained tables and no horizontal document overflow. They also revealed a duplicate main ID and inherited Design Lab Twitter metadata. This revision gives the article a unique ID, overrides Twitter metadata, shortens a formula line, tightens the headline, and removes a first-person verification statement that was not supplied by the owner. The corrected build and final checks are recorded below. This receipt updates documentation only; the deployed article and page source remain at the inspected revision.
 
 ## Release state
 
@@ -82,3 +82,27 @@ Expected proof path: /design-lab/founder-ai-stack.
 Narrow-screen checks remain pending; no width-check route is shipped.
 Rollback: leave this isolated draft PR unmerged. There is no production mutation to reverse.
 
+## Final rendered design review and QA receipt
+
+Candidate: 532a8e239bdc0edaf96964569dbf411a773b2917.
+Deployment: dpl_CDL3tfcwQRfNm96E3VAYcU1zN1Cb, READY, preview environment.
+Observed: 2 November 2026, approximately 15:47–15:50 UTC.
+URL: https://frankx-ai-vercel-website-5d0d72wqh-starlight-intelligence.vercel.app/design-lab/founder-ai-stack.
+
+Design verdict: accept for the inspected desktop reading proof. Publication acceptance remains blocked on the unobserved and independent-review lanes below.
+Functional verdict: accept for the exercised reading, keyboard, refresh and return-navigation journeys in this desktop Chromium session.
+
+- Task and hierarchy: one article h1, eight ordered h2 sections, clear draft label, author, deck and reading-proof notice. The headline now matches the evidence available.
+- System coherence: existing FrankX dark surface and article typography retained; article column 768px, body 17px with 30.6px line height. Both tables fit their 768px regions. No new theme or shared UI change.
+- Accessibility observed: one main ID; Tab reaches the skip link and Enter focuses the main target. Subsequent Tab reaches a named source link with a visible browser focus outline, then the labeled table region with a visible emerald focus ring. Heading order is coherent. Formal screen-reader and WCAG conformance audits were not performed.
+- Source links: all 18 article source links retain their expected HTTPS destinations, including the exact review-comment fragment. They have readable names and use normal same-tab navigation. Their existence does not clear every referenced product journey.
+- Responsive observation: actual browser viewport 1363×936 CSS pixels, document width 1348px including scrollbar behavior, article width 768px; no horizontal document overflow. This is a desktop result only. The iframe width fixture was removed because existing frame protection blocks it; the browser API provides no viewport-resize control. Phone and tablet behavior remain unverified.
+- Interaction states: the return link reaches Design Lab; browser Back restores the exact article; refresh retains the revised content. No new form, checkout or mutation is introduced. No article-specific animation or image is present; reduced-motion behavior of the wider site was not exercised.
+- Console/network scope: inspected recent warnings/errors show browser-extension metadata failures and historical Vercel sign-in/FedCM messages, with no candidate-origin error observed in that captured set. Authenticated route fetch returns HTTP 200. A full failed-request waterfall and runtime-log investigation were not performed.
+- Metadata/publication: revised title and Twitter title confirmed; both robots directives say noindex/nofollow; no canonical URL is emitted. The proposed /blog/founder-ai-stack-mobile-to-production route returns HTTP 404. Publication remains DRAFT.
+- Media/provenance: screenshot is a browser capture of this deployment, not a generated product image. No hero or finished flagship media packet was produced.
+- Verification: native Vercel compile, TypeScript, static generation and deployment completed. GitHub design-contract, editorial-contract, surface-guard, scan and review-gate completed successfully. General CI, Merge Gate, Media Guard, Contract Guard and mechanical Web Interface Guidelines jobs were skipped for the draft; skipped is not passed and review-gate success is not independent approval.
+
+Prioritized corrections completed: remove duplicate main ID; override inherited social title; remove the blocked width fixture while preserving frame security. The narrower headline and research-pilot wording also avoid claims beyond the record.
+
+Untested boundaries: phone/tablet, physical-device behavior, alternate browser engines, full screen-reader audit, reduced-motion preference, measured performance, full runtime/network inspection, independent different-provider editorial review and finished flagship visual acceptance. No production release is claimed.

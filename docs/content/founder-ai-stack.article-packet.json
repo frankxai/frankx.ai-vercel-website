@@ -316,6 +316,22 @@
       "source_type": "owner_statement",
       "repository_path": "docs/content/founder-ai-stack-review-20261102.md#owner-brief",
       "retrieved_at": "2026-11-02"
+    },
+    {
+      "source_id": "S9",
+      "title": "Claude Fable",
+      "url": "https://www.anthropic.com/claude/fable",
+      "publisher": "Anthropic",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-11-02"
+    },
+    {
+      "source_id": "S9_PLAN",
+      "title": "Fable models on your plan",
+      "url": "https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan",
+      "publisher": "Anthropic",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-11-02"
     }
   ],
   "claims": [
@@ -483,14 +499,35 @@
   "media": [],
   "affiliates": [],
   "distribution": [],
-  "reviews": [],
+  "reviews": [
+    {
+      "lane": "commissioning_editor",
+      "verdict": "pass",
+      "reason": "Revised prose accepted within scoped self-review only; independent provider and founder publication approval remain pending.",
+      "source_sha256": "ff287af5aec3aac8b96bbbb22d62429805e92ee9c378bc949f5430db58367e1d"
+    },
+    {
+      "lane": "art_critic",
+      "verdict": "blocked",
+      "reason": "Inspected desktop reading proof is acceptable; phone/tablet and finished flagship media/visual acceptance remain pending.",
+      "source_revision": "532a8e239bdc0edaf96964569dbf411a773b2917",
+      "viewport": "1363x936 Chromium"
+    },
+    {
+      "lane": "production_verifier",
+      "verdict": "blocked",
+      "reason": "Exercised reading, keyboard, return and refresh journeys pass; full responsive, runtime/network, screen-reader and reduced-motion acceptance remain pending."
+    }
+  ],
   "publication": {
     "branch": "agent/codex/founder-ai-stack-review-20261102",
     "pull_request": "https://github.com/frankxai/frankx.ai-vercel-website/pull/1153",
-    "preview_url": "blocked",
+    "preview_url": "https://frankx-ai-vercel-website-5d0d72wqh-starlight-intelligence.vercel.app/design-lab/founder-ai-stack",
     "live_url": "blocked",
-    "verified_at": null,
-    "rollback": "Remove this isolated draft branch; no production source or alias is changed"
+    "verified_at": "2026-11-02T15:50:00Z",
+    "rollback": "Remove this isolated draft branch; no production source or alias is changed",
+    "deployment_id": "dpl_CDL3tfcwQRfNm96E3VAYcU1zN1Cb",
+    "deployed_source_sha": "532a8e239bdc0edaf96964569dbf411a773b2917"
   },
   "measurement": {
     "hypothesis": "Source-linked operating examples lead to qualified builder engagement",
@@ -511,9 +548,9 @@
     "Final flagship media packet and rights/visual review pending",
     "Physical-device/browser-engine/performance checks pending",
     "No production publication authorized by this preview task",
-    "Corrected hosted build and final rendered checks pending at this commit",
     "Local full-repository lint/typecheck/build not run; initial hosted build passed",
-    "Narrow-screen browser validation pending; available browser API has no viewport resize control"
+    "Narrow-screen browser validation pending; available browser API has no viewport resize control",
+    "Full network/runtime, screen-reader and reduced-motion audits not performed"
   ],
   "scope": {
     "base_sha": "ffd466b45b38072d49cbf075673133a4166537be",
