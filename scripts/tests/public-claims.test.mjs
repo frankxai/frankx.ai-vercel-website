@@ -282,7 +282,10 @@ test('Vibe OS featured product card, JSON-LD list metadata, and CTAs stay aligne
   assert.equal(listData.includes('Suno Music Mastery'), false)
   assert.ok(listData.includes("tagline: 'Creative state management'"))
   assert.ok(shell.includes("tagline: 'Creative state management'"))
-  assert.ok(shell.includes('Public guide open now with energy-state and workflow templates'))
+  assert.ok(shell.includes('Public guide open now with daily check-in and scheduling instructions'))
+  assert.equal(shell.includes('workflow templates'), false)
+  assert.ok(modules.includes('Four modules built around'))
+  assert.ok(modules.includes('your focus cycles'))
 
   assert.equal(hero.includes('Watch Overview'), false)
   assert.equal(modules.includes('Ship Music'), false)

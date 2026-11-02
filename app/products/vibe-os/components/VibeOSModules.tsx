@@ -49,8 +49,8 @@ export default function VibeOSModules({ productId, modules, offer }: VibeOSModul
                 What&apos;s Inside
               </span>
               <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
-                Four Modules Built Around{' '}
-                <span className="text-gradient-tech">Your Focus Cycles</span>
+                Four modules built around{' '}
+                <span className="text-gradient-tech">your focus cycles</span>
               </h2>
               <p className="mt-4 text-white/60">
                 Each module pairs a daily energy observation habit with a scheduling workflow in the public guide.

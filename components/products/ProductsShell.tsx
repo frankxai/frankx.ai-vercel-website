@@ -83,7 +83,7 @@ const products = [
     href: '/products/vibe-os',
     color: 'emerald',
     highlights: [
-      'Public guide open now with energy-state and workflow templates',
+      'Public guide open now with daily check-in and scheduling instructions',
       'Match deep build sessions to your natural focus windows',
       'Web app in development — join the waitlist for release notes',
     ],
