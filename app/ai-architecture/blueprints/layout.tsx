@@ -1,11 +1,23 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: "Architecture Blueprints",
-  description: "Diagrams, implementation guides, and cost estimates for AI architecture blueprints.",
-  path: "/ai-architecture/blueprints",
+  title: 'AI Architecture Blueprints — Production Reference Designs',
+  description:
+    'Interactive AI architecture blueprints for multi-agent orchestration, enterprise RAG, LLM gateways, MCP tool servers, and cloud cost estimation.',
+  path: '/ai-architecture/blueprints',
+  keywords: [
+    'ai architecture blueprints',
+    'enterprise rag architecture',
+    'multi-agent orchestration blueprint',
+    'llm gateway architecture',
+    'mcp server architecture',
+  ],
 })
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function AIArchitectureBlueprintsLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return children
 }
