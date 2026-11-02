@@ -4,13 +4,16 @@ import { Metadata } from 'next'
 import { PILLARS, pillarCounts } from '@/data/acos/agents'
 import { ArrowRight, CircleDashed, Hammer, CircleCheck } from 'lucide-react'
 
+const catalogCounts = pillarCounts()
+const pillarCount = PILLARS.length
+
 export const metadata: Metadata = {
-  title: '99 Agents — The Complete Creator OS | ACOS',
-  description: 'Every agent, skill, and command in the ACOS Creator OS — organized into 11 pillars × 9 specialists = 99 agents. Open source, MIT licensed.',
+  title: `${catalogCounts.total} agents — The complete Creator OS | ACOS`,
+  description: `Every agent, skill, and command in the ACOS Creator OS — organized into ${pillarCount} pillars (${catalogCounts.total} specialist slots). Open source, MIT licensed.`,
   alternates: { canonical: 'https://frankx.ai/acos/agents' },
   openGraph: {
-    title: '99 Agents — The Complete Creator OS',
-    description: 'The full specialist catalog inside ACOS. Shipped, in-progress, and planned.',
+    title: `${catalogCounts.total} agents — The complete Creator OS`,
+    description: 'The specialist catalog inside ACOS. Shipped, in-progress, and planned.',
     url: 'https://frankx.ai/acos/agents',
     siteName: 'FrankX',
     type: 'website',
@@ -64,7 +67,7 @@ const ACCENT_RINGS: Record<string, string> = {
 }
 
 export default function ACOSAgentsPage() {
-  const counts = pillarCounts()
+  const counts = catalogCounts
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -72,8 +75,8 @@ export default function ACOSAgentsPage() {
       {
         '@type': 'CollectionPage',
         '@id': 'https://frankx.ai/acos/agents#page',
-        name: '99 Agents — The Complete Creator OS',
-        description: 'Full catalog of ACOS agents, skills, and commands organized into 11 pillars.',
+        name: `${counts.total} agents — The complete Creator OS`,
+        description: `Full catalog of ACOS agents, skills, and commands organized into ${pillarCount} pillars.`,
         url: 'https://frankx.ai/acos/agents',
         isPartOf: {
           '@type': 'WebSite',
@@ -111,7 +114,7 @@ export default function ACOSAgentsPage() {
           {
             '@type': 'ListItem',
             position: 3,
-            name: '99-agent catalog',
+            name: 'Agent catalog',
             item: 'https://frankx.ai/acos/agents',
           },
         ],
@@ -149,19 +152,19 @@ export default function ACOSAgentsPage() {
                 </Link>
               </li>
               <li aria-hidden="true" className="text-slate-600">/</li>
-              <li className="text-slate-300" aria-current="page">99-agent catalog</li>
+              <li className="text-slate-300" aria-current="page">Agent catalog</li>
             </ol>
           </nav>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-purple-400/30 bg-purple-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-purple-200">
-            99 Agents · Open Source
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-purple-400/30 bg-purple-500/10 px-4 py-2 text-xs font-semibold tracking-wide text-purple-200">
+            {counts.total} agents · Open source
           </div>
           <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
             <span className="bg-gradient-to-r from-white via-purple-100 to-cyan-100 bg-clip-text text-transparent">
-              99 agents for a complete Creator OS.
+              {counts.total} agents for a complete Creator OS.
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-300 sm:text-xl">
-            Eleven pillars. Nine specialists per pillar. Every agent, skill, and command Frank
+            {pillarCount} pillars. {counts.shipped} shipped and {counts.inProgress} in-progress specialists. Every agent, skill, and command Frank
             uses to build frankx.ai — open-sourced and organized so you can run the same stack.
           </p>
 
@@ -203,11 +206,11 @@ export default function ACOSAgentsPage() {
                   href={`#${p.id}`}
                   className={`rounded-xl border border-white/10 bg-gradient-to-br ${ACCENT_GRADIENTS[p.accent]} px-3 py-4 text-left transition hover:border-white/20`}
                 >
-                  <div className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                  <div className="text-[10px] font-semibold tracking-wide text-slate-400">
                     Pillar {String(p.number).padStart(2, '0')}
                   </div>
                   <div className="mt-1 text-sm font-semibold text-white">{p.title}</div>
-                  <div className="mt-2 text-xs text-slate-400">{s}/9 shipped</div>
+                  <div className="mt-2 text-xs text-slate-400">{s}/{p.specialists.length} shipped</div>
                 </a>
               )
             })}
@@ -220,7 +223,7 @@ export default function ACOSAgentsPage() {
         {PILLARS.map((p) => (
           <article key={p.id} id={p.id} className="scroll-mt-20">
             <header className={`relative rounded-2xl border border-white/10 bg-gradient-to-br ${ACCENT_GRADIENTS[p.accent]} p-8`}>
-              <div className="text-xs font-semibold uppercase tracking-widest text-slate-400">
+              <div className="text-xs font-semibold tracking-wide text-slate-400">
                 Pillar {String(p.number).padStart(2, '0')}
               </div>
               <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
@@ -251,14 +254,14 @@ export default function ACOSAgentsPage() {
                         )}
                       </div>
                       <span
-                        className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${className}`}
+                        className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-semibold tracking-wide ${className}`}
                       >
                         <Icon className="h-3 w-3" />
                         {label}
                       </span>
                     </div>
                     <p className="mt-3 text-sm leading-relaxed text-slate-300">{s.one_liner}</p>
-                    <div className="mt-3 text-[10px] font-semibold uppercase tracking-widest text-slate-500">
+                    <div className="mt-3 text-[10px] font-semibold tracking-wide text-slate-500">
                       {s.kind}
                     </div>
                   </div>
@@ -303,7 +306,7 @@ function StatTile({ value, label, accent }: { value: number; label: string; acce
   return (
     <div className={`rounded-2xl border border-white/10 bg-gradient-to-br ${accent} p-5 text-center`}>
       <div className="text-3xl font-bold text-white sm:text-4xl">{value}</div>
-      <div className="mt-1 text-xs font-semibold uppercase tracking-widest text-slate-400">
+      <div className="mt-1 text-xs font-semibold tracking-wide text-slate-400">
         {label}
       </div>
     </div>

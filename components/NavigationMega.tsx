@@ -45,9 +45,13 @@ import {
 import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
 import { trackEvent } from '@/lib/analytics'
 import { resolveNavigationGroups } from '@/lib/navigation-groups'
+import { publishedBookCount } from '@/app/books/lib/books-registry'
+import { libraryBooks } from '@/lib/library-catalog'
 
 import { cn } from '@/lib/utils'
 import MobileNavOverlay from '@/components/MobileNavOverlay'
+
+const libraryBookCount = libraryBooks.length
 
 // Five doors. Music is its own door because the catalog is primary work, not a
 // sub-item of Create — #409 demoted it and that was never Frank's call.
@@ -100,7 +104,7 @@ const navigation = {
       },
       { name: 'Blueprints', href: '/gencreator/blueprints', icon: Map, description: '12 actionable frameworks',
       },
-      { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: '130+ curated prompts',
+      { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: 'Evaluated prompts from frankxai/prompt-library',
       },
       { name: 'Creation Chronicles', href: '/creation-chronicles', icon: Scroll, description: 'Behind the build',
       },
@@ -122,9 +126,9 @@ const navigation = {
       },
       { name: 'Guides', href: '/guides', icon: BookOpen, description: 'In-depth tutorials',
       },
-      { name: "Frank's Books", href: '/books', icon: BookOpen, description: '23 books, 411K+ words',
+      { name: "Frank's Books", href: '/books', icon: BookOpen, description: `${publishedBookCount} published books, free online`,
       },
-      { name: 'Library', href: '/library', icon: Layers, description: 'Book deep-dives · open-source Library OS',
+      { name: 'Library', href: '/library', icon: Layers, description: `${libraryBookCount} book deep-dives · open-source Library OS`,
       },
       { name: 'AI Assessment', href: '/ai-assessment', icon: Target, description: 'Find your level',
       },
@@ -134,7 +138,7 @@ const navigation = {
       },
       { name: 'Watch', href: '/watch', icon: Play, description: 'Curated video library',
       },
-      { name: 'AI Shorts', href: '/watch/shorts', icon: Zap, description: 'NEW · 60-second high-signal insights',
+      { name: 'AI Shorts', href: '/watch/shorts', icon: Zap, description: 'New · 60-second high-signal insights',
       },
     ],
   },
@@ -150,7 +154,7 @@ const navigation = {
     items: [
       { name: 'Architecture Hub', href: '/ai-architecture', icon: Network, description: 'Central hub for AI builders',
       },
-      { name: 'Blueprints', href: '/ai-architecture/blueprints', icon: Layers, description: 'Diagrams & guides (FREE)',
+      { name: 'Blueprints', href: '/ai-architecture/blueprints', icon: Layers, description: 'Diagrams & guides (free)',
       },
       { name: 'Prototypes', href: '/ai-architecture/prototypes', icon: Terminal, description: 'Try with your API keys',
       },

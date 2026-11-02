@@ -1,8 +1,9 @@
 import { createMetadata } from '@/lib/seo'
+import { ACOS_REPO_SNAPSHOT } from '@/data/acos/agents'
 
 export const metadata = createMetadata({
-  title: 'ACOS — The Operating System for Generative Creators | 75+ Skills, 38 Agents',
-  description: 'Open-source AI operating system for Claude Code. 75+ auto-activating skills, 38 specialized agents, 35+ commands. Free to clone. Premium support available.',
+  title: `ACOS — The operating system for generative creators | ${ACOS_REPO_SNAPSHOT.skills} skills, ${ACOS_REPO_SNAPSHOT.agents} agents`,
+  description: `Open-source AI operating system for Claude Code (${ACOS_REPO_SNAPSHOT.repo}/${ACOS_REPO_SNAPSHOT.sourcePath}, verified ${ACOS_REPO_SNAPSHOT.verifiedOn}): ${ACOS_REPO_SNAPSHOT.skills} skill modules, ${ACOS_REPO_SNAPSHOT.agents} agent profiles, and ${ACOS_REPO_SNAPSHOT.commands} slash commands.`,
   path: '/acos',
   keywords: [
     'agentic creator os',

@@ -19,14 +19,14 @@ import { getLivePatterns } from '@/lib/prompt-hub/fetch-library'
 import type { Category, Lane, Pattern } from '@/lib/prompt-hub/types'
 
 export const metadata: Metadata = {
-  title: 'Prompt Library — 130+ patterns evaluated, attributed, lab-tagged | FrankX',
+  title: 'Prompt library — evaluated, attributed, lab-tagged patterns | FrankX',
   description:
-    'Live OSS prompt corpus. Every pattern in the frankxai/prompt-library repo, ranked, attributed, and lab-tagged. Filter by Claude / GPT / Gemini / OSS lane, by category, or search across titles.',
+    'Live open-source prompt corpus. Every pattern in the frankxai/prompt-library repo, ranked, attributed, and lab-tagged. Filter by Claude, GPT, Gemini, or OSS lane, by category, or search across titles.',
   alternates: { canonical: 'https://www.frankx.ai/prompt-library' },
   openGraph: {
-    title: 'Prompt Library — FrankX',
+    title: 'Prompt library — FrankX',
     description:
-      'Every pattern in the frankxai/prompt-library corpus, ranked, attributed, lab-tagged, red-teamed. Open source.',
+      'Every pattern in the frankxai/prompt-library corpus, ranked, attributed, lab-tagged, and red-teamed. Open source.',
     url: 'https://www.frankx.ai/prompt-library',
     type: 'website',
   },
@@ -116,12 +116,12 @@ export default async function PromptLibraryPage(props: {
       <article className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         {/* Header */}
         <header className="mb-12">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400/80">
+          <p className="mb-4 text-xs font-semibold tracking-wide text-emerald-400/80">
             Live corpus · {snapshot.patterns.length}{' '}
             {snapshot.patterns.length === 1 ? 'pattern' : 'patterns'} · cached 1h
           </p>
           <h1 className="mb-6 text-4xl font-semibold tracking-tight text-white md:text-5xl">
-            The Prompt Library
+            The prompt library
           </h1>
           <p className="max-w-3xl text-lg leading-relaxed text-slate-300">
             Every pattern in the{' '}
@@ -137,7 +137,7 @@ export default async function PromptLibraryPage(props: {
           <p className="mt-3 text-sm text-slate-500">
             Last refreshed: {formatTimestamp(snapshot.fetchedAt)} ·{' '}
             <Link href="/prompts" className="text-emerald-400 hover:text-emerald-300">
-              How the Hub works →
+              How the hub works →
             </Link>
           </p>
 
@@ -297,7 +297,7 @@ function Badge({
 }) {
   return (
     <span
-      className={`inline-flex items-center rounded-md border px-2 py-0.5 font-mono text-[11px] uppercase tracking-wider ${className}`}
+      className={`inline-flex items-center rounded-md border px-2 py-0.5 font-mono text-[11px] tracking-wide ${className}`}
     >
       {children}
     </span>
@@ -357,7 +357,7 @@ function EvalBar({ pattern }: { pattern: Pattern }) {
   const ev = pattern.frontmatter.eval
   if (!ev) {
     return (
-      <p className="text-[11px] uppercase tracking-wider text-slate-600">
+      <p className="text-[11px] tracking-wide text-slate-600">
         Not yet evaluated
       </p>
     )
@@ -365,7 +365,7 @@ function EvalBar({ pattern }: { pattern: Pattern }) {
   const pct = Math.max(0, Math.min(100, (ev.score / 5) * 100))
   return (
     <div>
-      <div className="mb-1 flex items-center justify-between text-[11px] uppercase tracking-wider">
+      <div className="mb-1 flex items-center justify-between text-[11px] tracking-wide">
         <span className="text-slate-500">Eval score</span>
         <span className="font-mono text-emerald-300">{ev.score.toFixed(1)} / 5</span>
       </div>
@@ -395,7 +395,7 @@ function FilterRow<T extends string>({
 }) {
   return (
     <div>
-      <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+      <div className="mb-2 text-xs font-semibold tracking-wide text-slate-500">
         {label}
       </div>
       <div className="flex flex-wrap gap-2">
@@ -443,7 +443,7 @@ function SearchForm({
       <div className="flex-1">
         <label
           htmlFor="prompt-search"
-          className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-500"
+          className="mb-2 block text-xs font-semibold tracking-wide text-slate-500"
         >
           Search
         </label>

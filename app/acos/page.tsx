@@ -16,6 +16,7 @@ import {
 } from 'lucide-react'
 import PremiumButton from '@/components/ui/PremiumButton'
 import { GlowCard } from '@/components/ui/glow-card'
+import { ACOS_REPO_SNAPSHOT, PILLARS } from '@/data/acos/agents'
 
 /* ──────────────────────────────────────────────
    CHECKOUT — both tiers are waitlist, on purpose.
@@ -34,25 +35,27 @@ const CHECKOUT = {
   pro: '/newsletter?ref=acos-pro-system',
 }
 
+const pillarCount = PILLARS.length
+
 const stats = [
-  { label: 'Skills', value: '35+', icon: Sparkles, color: 'from-cyan-500 to-blue-500' },
-  { label: 'Agents', value: '99', icon: Users, color: 'from-purple-500 to-violet-500' },
-  { label: 'Commands', value: '117+', icon: Command, color: 'from-amber-500 to-orange-500' },
-  { label: 'Pillars', value: '11', icon: Layers, color: 'from-emerald-500 to-teal-500' },
+  { label: 'Skill modules', value: String(ACOS_REPO_SNAPSHOT.skills), icon: Sparkles, color: 'from-cyan-500 to-blue-500' },
+  { label: 'Agent profiles', value: String(ACOS_REPO_SNAPSHOT.agents), icon: Users, color: 'from-purple-500 to-violet-500' },
+  { label: 'Slash commands', value: String(ACOS_REPO_SNAPSHOT.commands), icon: Command, color: 'from-amber-500 to-orange-500' },
+  { label: 'Pillars', value: String(pillarCount), icon: Layers, color: 'from-emerald-500 to-teal-500' },
 ]
 
 
 const tiers = [
   {
-    name: 'Open Source',
+    name: 'Open source',
     price: 'Free',
-    priceNote: 'MIT License',
+    priceNote: 'MIT license',
     description: 'The full ACOS system. Clone it, use it, modify it.',
     features: [
-      '35+ creator commands',
-      '75+ auto-activating skills',
-      '38 specialized agents',
-      '8 orchestrated workflows',
+      `${ACOS_REPO_SNAPSHOT.commands} top-level slash commands`,
+      `${ACOS_REPO_SNAPSHOT.skills} non-empty skill modules`,
+      `${ACOS_REPO_SNAPSHOT.agents} specialist agent profiles`,
+      `${ACOS_REPO_SNAPSHOT.activationRules} activation rules`,
       'MCP server integrations',
       'Self-learning trajectory system',
       'Community GitHub issues',
@@ -63,37 +66,37 @@ const tiers = [
     featured: false,
   },
   {
-    name: 'Creator Kit',
+    name: 'Creator kit',
     price: '$47',
     priceNote: 'One-time',
-    description: 'Everything open-source + premium templates, video walkthroughs, and direct support.',
+    description: 'Everything open-source plus templates, video walkthroughs, and direct support.',
     features: [
-      'Everything in Open Source',
+      'Everything in Open source',
       'Video quickstart guide (45 min)',
-      'Premium template library (20+)',
+      'Template library (20+)',
       'Curated skill pack presets',
       'Priority email support',
       'Private Discord community',
     ],
-    cta: 'Join Waitlist',
+    cta: 'Join waitlist',
     ctaHref: CHECKOUT.starter,
     variant: 'primary' as const,
     featured: true,
   },
   {
-    name: 'Pro System',
+    name: 'Pro system',
     price: '$197',
     priceNote: 'One-time',
-    description: 'Full ACOS mastery. Guided setup, custom configurations, quarterly updates, and 1:1 support.',
+    description: 'Guided setup, custom configurations, quarterly updates, and 1:1 support.',
     features: [
-      'Everything in Creator Kit',
+      'Everything in Creator kit',
       'Full setup walkthrough (2hr)',
       'Custom agent configuration guide',
       'Quarterly skill pack updates',
       'Priority GitHub issue resolution',
       '1:1 async support (30 days)',
     ],
-    cta: 'Join Waitlist',
+    cta: 'Join waitlist',
     ctaHref: CHECKOUT.pro,
     variant: 'luxury' as const,
     featured: false,
@@ -103,11 +106,11 @@ const tiers = [
 const faq = [
   {
     q: 'What exactly is ACOS?',
-    a: 'ACOS (Agentic Creator Operating System) is a configuration layer for Claude Code that turns it into a full creative production environment. It adds 35+ commands, 75+ skills, and 38 agents that auto-activate based on what you\'re working on. Think of it as an operating system that sits on top of Claude Code.',
+    a: `ACOS (Agentic Creator Operating System) is a configuration layer for Claude Code that turns it into a creative production environment. Per ${ACOS_REPO_SNAPSHOT.repo}/${ACOS_REPO_SNAPSHOT.sourcePath} (verified ${ACOS_REPO_SNAPSHOT.verifiedOn}), it includes ${ACOS_REPO_SNAPSHOT.commands} slash commands, ${ACOS_REPO_SNAPSHOT.skills} skill modules, and ${ACOS_REPO_SNAPSHOT.agents} agent profiles that activate based on what you are working on.`,
   },
   {
     q: 'Is the open-source version the full product?',
-    a: 'Yes. The MIT-licensed version on GitHub contains the complete ACOS system — every command, skill, agent, and workflow. The paid tiers add premium templates, video guides, direct support, and custom configuration help. The code itself is 100% free.',
+    a: 'Yes. The MIT-licensed version on GitHub contains the complete ACOS system — every command, skill, agent, and workflow. The paid tiers add templates, video guides, direct support, and custom configuration help. The code itself is 100% free.',
   },
   {
     q: 'Do I need Claude Code to use ACOS?',
@@ -119,11 +122,11 @@ const faq = [
   },
   {
     q: 'What\'s different about the paid tiers?',
-    a: 'The paid tiers provide guided setup (video walkthroughs), premium templates (20+ pre-built content patterns), curated presets, and direct support from the creator. The Pro tier adds quarterly skill pack updates, custom agent configuration, and 1:1 async support for 30 days.',
+    a: 'The paid tiers provide guided setup (video walkthroughs), templates (20+ pre-built content patterns), curated presets, and direct support from the creator. The Pro tier adds quarterly skill pack updates, custom agent configuration, and 1:1 async support for 30 days.',
   },
   {
     q: 'Can I customize the agents and skills?',
-    a: 'Absolutely. Every agent is a markdown file, every skill is a configuration. You can edit, add, or remove any component. The Pro tier includes a custom agent configuration guide that teaches you how to build agents tailored to your workflow.',
+    a: 'Every agent is a markdown file, every skill is a configuration. You can edit, add, or remove any component. The Pro tier includes a custom agent configuration guide that teaches you how to build agents tailored to your workflow.',
   },
 ]
 
@@ -133,7 +136,7 @@ const structuredData = {
   name: 'Agentic Creator OS (ACOS)',
   applicationCategory: 'DeveloperApplication',
   operatingSystem: 'Cross-platform (Claude Code)',
-  description: 'The Operating System for Generative Creators. 75+ skills, 38 agents, 35+ commands for Claude Code.',
+  description: `The operating system for generative creators (${ACOS_REPO_SNAPSHOT.repo}/${ACOS_REPO_SNAPSHOT.sourcePath}, verified ${ACOS_REPO_SNAPSHOT.verifiedOn}): ${ACOS_REPO_SNAPSHOT.skills} skill modules, ${ACOS_REPO_SNAPSHOT.agents} agent profiles, and ${ACOS_REPO_SNAPSHOT.commands} slash commands for Claude Code.`,
   // Only the free tier is available today. The paid tiers are marked PreOrder
   // because both CTAs are a waitlist — without it this markup tells search
   // engines a $47 and a $197 product are in stock and buyable, and neither is.
@@ -188,9 +191,9 @@ export default function ACOSPage() {
         <div className="relative mx-auto max-w-5xl px-6 text-center">
           <div className="mb-6 flex flex-col items-center gap-4">
             <FrankOmega variant="pixar-blue" size="md" glow />
-            <div className="inline-flex items-center gap-2 rounded-full border border-purple-400/30 bg-purple-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-purple-200">
+            <div className="inline-flex items-center gap-2 rounded-full border border-purple-400/30 bg-purple-500/10 px-4 py-2 text-xs font-semibold tracking-wide text-purple-200">
               <Terminal className="h-4 w-4" />
-              Open Source
+              Open source
             </div>
           </div>
           <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
@@ -201,11 +204,14 @@ export default function ACOSPage() {
           <p className="mt-6 text-lg text-white/60 sm:text-xl md:text-2xl">
             The operating system for generative creators.
             <br className="hidden sm:block" />
-            99 agents. 35+ skills. 117+ commands. 11 pillars. One entry point.
+            {ACOS_REPO_SNAPSHOT.agents} agent profiles. {ACOS_REPO_SNAPSHOT.skills} skill modules. {ACOS_REPO_SNAPSHOT.commands} slash commands. {pillarCount} pillars. One entry point.
+          </p>
+          <p className="mt-2 font-mono text-xs text-white/40">
+            Source: {ACOS_REPO_SNAPSHOT.repo}/{ACOS_REPO_SNAPSHOT.sourcePath} @ {ACOS_REPO_SNAPSHOT.commit} (verified {ACOS_REPO_SNAPSHOT.verifiedOn})
           </p>
 
           <div className="mt-4 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-2 text-xs text-emerald-200">
-            <span className="font-semibold uppercase tracking-widest">New</span>
+            <span className="font-semibold tracking-wide">New</span>
             <span>Install individual pillar packs at</span>
             <Link href="/agents" className="font-mono font-semibold underline decoration-dotted underline-offset-2 hover:text-emerald-100">
               /agents
@@ -225,7 +231,7 @@ export default function ACOSPage() {
               <p><span className="text-emerald-400">$</span> claude</p>
               <p className="text-purple-400">/acos</p>
               <p className="mt-2 text-cyan-300">
-                ACOS v10.2 loaded. 75 skills active. 38 agents ready.
+                ACOS loaded. {ACOS_REPO_SNAPSHOT.skills} skill modules active. {ACOS_REPO_SNAPSHOT.agents} agent profiles ready.
               </p>
               <p className="text-white/40">
                 Agentic Creator OS loaded. What would you like to create today?
@@ -293,7 +299,7 @@ export default function ACOSPage() {
             </div>
             {/* Right: Text explanation */}
             <div>
-              <span className="text-xs font-mono uppercase tracking-[0.3em] text-purple-400/70">Architecture</span>
+              <span className="text-xs font-mono tracking-wide text-purple-400/70">Architecture</span>
               <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
                 Four layers.<br />All auto-activating.
               </h2>
@@ -302,10 +308,10 @@ export default function ACOSPage() {
               </p>
               <div className="mt-8 space-y-4">
                 {[
-                  { icon: Sparkles, label: 'Skills (75+)', desc: 'Domain knowledge modules — SEO, TypeScript, music production, architecture — loaded by context detection.', color: 'text-cyan-400', border: 'border-cyan-500/20' },
-                  { icon: Command, label: 'Commands (35+)', desc: 'Slash workflows that chain multi-step operations. One trigger, full pipeline.', color: 'text-purple-400', border: 'border-purple-500/20' },
-                  { icon: Users, label: 'Agents (38)', desc: 'Specialized AI personas — editors, producers, architects — each with distinct expertise.', color: 'text-emerald-400', border: 'border-emerald-500/20' },
-                  { icon: Layers, label: 'Safety Hooks (5)', desc: 'Circuit breaker, audit trail, IAM, self-modify gate, quality gate — autonomous protection.', color: 'text-amber-400', border: 'border-amber-500/20' },
+                  { icon: Sparkles, label: `Skills (${ACOS_REPO_SNAPSHOT.skills})`, desc: 'Domain knowledge modules — SEO, TypeScript, music production, architecture — loaded by context detection.', color: 'text-cyan-400', border: 'border-cyan-500/20' },
+                  { icon: Command, label: `Commands (${ACOS_REPO_SNAPSHOT.commands})`, desc: 'Slash workflows that chain multi-step operations. One trigger, full pipeline.', color: 'text-purple-400', border: 'border-purple-500/20' },
+                  { icon: Users, label: `Agents (${ACOS_REPO_SNAPSHOT.agents})`, desc: 'Specialized AI personas — editors, producers, architects — each with distinct expertise.', color: 'text-emerald-400', border: 'border-emerald-500/20' },
+                  { icon: Layers, label: `Safety hooks (${ACOS_REPO_SNAPSHOT.safetyHooks})`, desc: 'Circuit breaker, audit trail, IAM, self-modify gate, quality gate — autonomous protection.', color: 'text-amber-400', border: 'border-amber-500/20' },
                 ].map((layer) => (
                   <div key={layer.label} className={`flex items-start gap-4 rounded-xl border ${layer.border} bg-white/[0.02] p-4`}>
                     <layer.icon className={`mt-0.5 h-5 w-5 shrink-0 ${layer.color}`} />
@@ -327,7 +333,7 @@ export default function ACOSPage() {
           <div className="grid items-center gap-12 lg:grid-cols-2">
             {/* Left: Text */}
             <div className="order-2 lg:order-1">
-              <span className="text-xs font-mono uppercase tracking-[0.3em] text-cyan-400/70">Smart Router</span>
+              <span className="text-xs font-mono tracking-wide text-cyan-400/70">Smart router</span>
               <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
                 One command.<br />Infinite routes.
               </h2>
@@ -366,7 +372,7 @@ export default function ACOSPage() {
       <section className="py-24">
         <div className="mx-auto max-w-5xl px-6">
           <div className="text-center">
-            <span className="text-xs font-mono uppercase tracking-[0.3em] text-emerald-400/70">Intelligence</span>
+            <span className="text-xs font-mono tracking-wide text-emerald-400/70">Intelligence</span>
             <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
               Gets smarter every session.
             </h2>
@@ -379,10 +385,10 @@ export default function ACOSPage() {
             {/* Steps */}
             <div className="grid grid-cols-2 gap-4">
               {[
-                { step: '01', title: 'Session Start', desc: 'Creates a trajectory record when you begin working.', color: 'text-blue-400', bg: 'bg-blue-500/10' },
-                { step: '02', title: 'Track Operations', desc: 'Monitors tool sequences, file changes, and success/failure outcomes.', color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
-                { step: '03', title: 'Extract Patterns', desc: 'Identifies winning tool combinations and multi-step workflows.', color: 'text-purple-400', bg: 'bg-purple-500/10' },
-                { step: '04', title: 'Apply Intelligence', desc: 'Injects learned patterns as context for similar future tasks.', color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+                { step: '01', title: 'Session start', desc: 'Creates a trajectory record when you begin working.', color: 'text-blue-400', bg: 'bg-blue-500/10' },
+                { step: '02', title: 'Track operations', desc: 'Monitors tool sequences, file changes, and success/failure outcomes.', color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+                { step: '03', title: 'Extract patterns', desc: 'Identifies winning tool combinations and multi-step workflows.', color: 'text-purple-400', bg: 'bg-purple-500/10' },
+                { step: '04', title: 'Apply intelligence', desc: 'Injects learned patterns as context for similar future tasks.', color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
               ].map((s) => (
                 <div key={s.step} className={`rounded-2xl border border-white/[0.06] ${s.bg} p-5`}>
                   <div className={`text-2xl font-black ${s.color} opacity-40`}>{s.step}</div>
@@ -409,7 +415,7 @@ export default function ACOSPage() {
       <section className="border-y border-white/[0.08] bg-white/[0.02] py-20">
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
-            35+ Commands Across Every Domain
+            {ACOS_REPO_SNAPSHOT.commands} commands across every domain
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-white/50">
             Each command is a reusable workflow. One trigger, full pipeline.
@@ -422,7 +428,7 @@ export default function ACOSPage() {
               { category: 'System', commands: ['/acos', '/inventory-status', '/mcp-status', '/publish', '/review-content'], color: 'text-emerald-400' },
             ].map((group) => (
               <div key={group.category}>
-                <h3 className={`mb-3 text-sm font-semibold uppercase tracking-[0.3em] ${group.color}`}>
+                <h3 className={`mb-3 text-sm font-semibold tracking-wide ${group.color}`}>
                   {group.category}
                 </h3>
                 <div className="space-y-1.5 font-mono text-sm">
@@ -442,10 +448,10 @@ export default function ACOSPage() {
       <section id="pricing" className="py-20">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
-            Choose Your Path
+            Choose your path
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-white/50">
-            The code is free. Premium adds guides, templates, support, and direct access.
+            The code is free. Paid tiers add guides, templates, support, and direct access.
           </p>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {tiers.map((tier) => (
@@ -458,11 +464,11 @@ export default function ACOSPage() {
                 }`}
               >
                 {tier.featured && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-white">
-                    Start Here
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 px-4 py-1 text-xs font-semibold tracking-wide text-white">
+                    Start here
                   </div>
                 )}
-                <div className="text-xs font-semibold uppercase tracking-[0.3em] text-white/50">
+                <div className="text-xs font-semibold tracking-wide text-white/50">
                   {tier.name}
                 </div>
                 <div className="mt-4 flex items-baseline gap-2">
@@ -484,7 +490,7 @@ export default function ACOSPage() {
                       href={tier.ctaHref}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:-translate-y-0.5 ${
+                      className={`flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold tracking-wide text-white transition hover:-translate-y-0.5 ${
                         tier.featured
                           ? 'bg-gradient-to-r from-purple-500 to-cyan-500 shadow-[0_16px_50px_rgba(161,72,221,0.35)]'
                           : tier.variant === 'luxury'
@@ -492,13 +498,13 @@ export default function ACOSPage() {
                             : 'border border-white/20 bg-white/[0.05] hover:bg-white/[0.08]'
                       }`}
                     >
-                      {tier.name === 'Open Source' && <Github className="h-4 w-4" />}
+                      {tier.name === 'Open source' && <Github className="h-4 w-4" />}
                       {tier.cta}
                     </a>
                   ) : (
                     <Link
                       href={tier.ctaHref}
-                      className="flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.05] px-6 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:-translate-y-0.5 hover:bg-white/[0.08]"
+                      className="flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.05] px-6 py-4 text-sm font-semibold tracking-wide text-white transition hover:-translate-y-0.5 hover:bg-white/[0.08]"
                     >
                       {tier.cta}
                     </Link>
@@ -508,7 +514,7 @@ export default function ACOSPage() {
             ))}
           </div>
           <p className="mt-8 text-center text-sm text-white/30">
-            Need enterprise-level customization?{' '}
+            Need team customization?{' '}
             <a href="mailto:frank@frankx.ai?subject=ACOS%20Enterprise" className="text-purple-300 underline-offset-4 hover:underline">
               Contact for custom pricing
             </a>
@@ -519,7 +525,7 @@ export default function ACOSPage() {
       {/* ─── FAQ ─── */}
       <section className="border-t border-white/[0.08] bg-white/[0.03] py-20">
         <div className="mx-auto max-w-3xl px-6">
-          <h2 className="text-center text-3xl font-bold text-white">Frequently Asked Questions</h2>
+          <h2 className="text-center text-3xl font-bold text-white">Frequently asked questions</h2>
           <div className="mt-10 space-y-4">
             {faq.map((item) => (
               <details
@@ -540,7 +546,7 @@ export default function ACOSPage() {
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="text-3xl font-bold text-white sm:text-4xl">
-            Start Building with the Agentic Creator OS
+            Start building with the Agentic Creator OS
           </h2>
           <p className="mt-4 text-lg text-white/50">
             Clone the repo. Type /acos. Create something.
