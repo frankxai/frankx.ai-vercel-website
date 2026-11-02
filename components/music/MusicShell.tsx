@@ -42,160 +42,152 @@ const musicStats = getMusicStats()
 
 const stats = [
   { value: String(musicStats.followers), label: 'Followers' },
-  { value: String(musicStats.totalPlays), label: 'Total Plays' },
+  { value: String(musicStats.totalPlays), label: 'Total plays' },
   { value: String(musicStats.albums), label: 'Albums' },
 ]
 
 const visualStoryFrames = [
   {
-    title: 'Music as Consciousness Technology',
+    title: 'Music as consciousness technology',
     detail: 'Core narrative visual that anchors the emotional positioning of the catalog.',
     image: '/images/blog/music-as-consciousness-technology-hero-v3-pro.png',
     href: '/blog/music-as-consciousness-technology',
-    tag: 'Website Hero Narrative',
+    tag: 'Website hero narrative',
   },
   {
-    title: 'State-Change Music Science',
-    detail: 'Research-backed diagram for educational trust and conversion on long-form content.',
+    title: 'State-change music science',
+    detail: 'Research-backed diagram for educational trust and long-form reading.',
     image: '/images/blog/science-of-state-change-music-hero.png',
     href: '/blog/science-of-state-change-music',
-    tag: 'Info Asset',
+    tag: 'Research guide',
   },
   {
-    title: 'Suno Production Workflow',
+    title: 'Suno production workflow',
     detail: 'Step-based visual architecture for tutorials, workshops, and creator onboarding.',
     image: '/images/blog/suno-music-workflow-hero.png',
     href: '/blog/suno-music-production-workflow',
-    tag: 'Workflow Asset',
+    tag: 'Workflow guide',
   },
 ]
 
 const swarmPods = [
   {
-    name: 'Visual Narrative Swarm',
+    name: 'Visual narrative workflow',
     icon: LayoutPanelTop,
     focus: 'Website visuals and landing composition',
-    owns: ['Hero images', 'Section visuals', 'Infographic refreshes'],
-    outputsPerWeek: '3-5 visuals',
+    owns: ['Hero images', 'Section visuals', 'Diagram refreshes'],
+    outputsPerWeek: '3–5 visuals',
   },
   {
-    name: 'Catalog Intelligence Swarm',
+    name: 'Catalog intelligence workflow',
     icon: AudioWaveform,
     focus: 'Track performance and packaging decisions',
     owns: ['Top track rotations', 'Album previews', 'Release candidate scoring'],
     outputsPerWeek: '2 release packets',
   },
   {
-    name: 'Marketplace Packaging Swarm',
+    name: 'Marketplace packaging workflow',
     icon: ShoppingBag,
     focus: 'Storefront-ready product and artwork bundles',
-    owns: ['Cover variants', 'Playlist thumbnails', 'Product mockups'],
-    outputsPerWeek: '4 product drops',
+    owns: ['Cover variants', 'Playlist thumbnails', 'Release mockups'],
+    outputsPerWeek: '4 release drops',
   },
   {
-    name: 'Public Platform Swarm',
+    name: 'Public platform workflow',
     icon: Megaphone,
-    focus: 'Channel-native media and posting cadence',
+    focus: 'Channel-native media and publishing cadence',
     owns: ['Short video covers', 'Carousel snippets', 'Thread visuals'],
-    outputsPerWeek: '14-21 posts',
+    outputsPerWeek: 'Weekly channel cadence',
   },
   {
-    name: 'Performance Steering Swarm',
+    name: 'Performance review workflow',
     icon: BarChart3,
-    focus: 'Measurement, attribution, and optimization loops',
-    owns: ['Weekly dashboards', 'A/B directives', 'Reallocation decisions'],
-    outputsPerWeek: '1 strategy report',
+    focus: 'Measurement, attribution, and catalog review loops',
+    owns: ['Weekly review notes', 'Arrangement comparisons', 'Catalog curation'],
+    outputsPerWeek: '1 strategy review',
   },
 ]
 
 const channelMatrix = [
   {
     channel: 'Website (frankx.ai/music)',
-    objective: 'Position authority and convert to deeper ecosystem paths',
-    assets: ['Cinematic hero visual', 'Interactive track embeds', 'Storyframe panels'],
-    swarm: 'Visual Narrative Swarm',
+    objective: 'Share the catalog and connect listeners to learning and practice routes',
+    assets: ['Featured track player', 'Interactive track embeds', 'Editorial guides'],
+    swarm: 'Visual narrative workflow',
   },
   {
-    channel: 'Suno + Music Marketplaces',
-    objective: 'Increase discovery and package winning tracks for sales',
-    assets: ['Cover variants', 'Playlist art', 'Track release packets'],
-    swarm: 'Catalog Intelligence + Marketplace Packaging',
+    channel: 'Suno and music platforms',
+    objective: 'Increase discovery and organize tracks into coherent playlists',
+    assets: ['Cover variants', 'Playlist art', 'Track release notes'],
+    swarm: 'Catalog intelligence and packaging',
   },
   {
-    channel: 'YouTube / Shorts / Reels / TikTok',
+    channel: 'YouTube, Shorts, Reels, and TikTok',
     objective: 'Turn each track into multi-format discovery media',
-    assets: ['Vertical visualizers', 'Hook clips', 'Behind-the-build snippets'],
-    swarm: 'Public Platform Swarm',
+    assets: ['Vertical visualizers', 'Hook clips', 'Behind-the-build notes'],
+    swarm: 'Public platform workflow',
   },
   {
-    channel: 'LinkedIn / X / Newsletter',
-    objective: 'Translate music into thought leadership and trust',
-    assets: ['Infographic carousels', 'Process threads', 'Weekly intelligence drops'],
-    swarm: 'Public Platform + Performance Steering',
+    channel: 'LinkedIn, X, and newsletter',
+    objective: 'Share arrangement notes, prompt patterns, and studio lessons',
+    assets: ['Architecture carousels', 'Process threads', 'Weekly studio dispatches'],
+    swarm: 'Public platform and review workflow',
   },
 ]
 
 const revenuePaths = [
   {
-    title: 'Streaming Expansion',
+    title: 'Streaming distribution',
     icon: Orbit,
-    summary: 'Promote winners into full distribution pipelines and playlist ecosystems.',
-    actions: ['Score tracks weekly', 'Package metadata + cover sets', 'Push batch releases'],
+    summary: 'Promote standout tracks into full distribution pipelines and playlist collections.',
+    actions: ['Review tracks weekly', 'Package metadata and cover sets', 'Publish curated releases'],
   },
   {
-    title: 'Direct Digital Products',
+    title: 'Direct digital releases',
     icon: ShoppingBag,
-    summary: 'Sell curated packs: focus music, cinematic bundles, creator background sets.',
-    actions: ['Bundle by use-case', 'Build product pages', 'Attach visual proof assets'],
+    summary: 'Offer curated prompt templates, focus music collections, and creator stem bundles.',
+    actions: ['Group by listening state', 'Document prompt structures', 'Include clear usage notes'],
   },
   {
-    title: 'Creator Licensing',
+    title: 'Creator licensing',
     icon: Clapperboard,
-    summary: 'Offer clean licensing lanes for creators, podcasters, and video teams.',
-    actions: ['Create licensing tiers', 'Publish usage terms', 'Ship pre-cleared packs'],
+    summary: 'Provide clear licensing terms for creators, podcasters, and video teams.',
+    actions: ['Define licensing tiers', 'Publish usage terms', 'Maintain pre-cleared collections'],
   },
 ]
 
-const infoGeniusPromptQueue = [
+const studioPracticeRoutes = [
   {
-    asset: 'Music Revenue Flywheel Diagram',
-    style: '3d',
-    audience: 'college',
-    ratio: '16:9',
-    previewImage: '/images/music/infogenius/music-revenue-flywheel-v1.png',
-    status: 'Using existing image (replace with InfoGenius output when ready)',
-    prompt:
-      'Create a 16:9 Dark Premium 3D infographic showing a music revenue flywheel: discovery content -> track release -> marketplace packaging -> licensing/product sales -> audience growth -> next release. Use navy background, chrome connectors, cyan highlights, and clear labels.',
+    title: 'Suno prompt templates',
+    href: '/music/templates',
+    cta: 'Open prompt templates',
+    tags: ['Nine style templates', 'Tempo, key, and instruments', 'Free to copy'],
+    summary:
+      'Copy nine starting-point prompts with explicit tempo, key, mode, and instrumentation for deep focus, progressive house, orchestral scores, and ambient study.',
   },
   {
-    asset: 'Platform Content Atomization Map',
-    style: 'technical',
-    audience: 'expert',
-    ratio: '16:9',
-    previewImage: '/images/music/infogenius/platform-content-atomization-v1.png',
-    status: 'Using existing image (replace with InfoGenius output when ready)',
-    prompt:
-      'Create a technical systems map of one track being atomized into website hero, Suno cover, YouTube short, Instagram reel, LinkedIn carousel, and X thread visual. Include arrows, timing layers, and role tags for each swarm.',
+    title: 'Interactive music lab',
+    href: '/music-lab',
+    cta: 'Open the music lab',
+    tags: ['Browser instruments', 'Violin, piano, guitar, and drums', 'No account required'],
+    summary:
+      'Play digital violin, concert piano, guided guitar tabs, and drum pads directly in the browser to test melodies and chord voicings before a studio session.',
   },
   {
-    asset: 'Sub-Agent Swarm Topology',
-    style: 'futuristic',
-    audience: 'college',
-    ratio: '16:9',
-    previewImage: '/images/music/infogenius/sub-agent-swarm-topology-v1.png',
-    status: 'Using existing image (replace with InfoGenius output when ready)',
-    prompt:
-      'Create a cyberpunk HUD architecture diagram with 5 swarms: Visual Narrative, Catalog Intelligence, Marketplace Packaging, Public Platform, and Performance Steering. Show orchestration node, memory bus, and KPI feedback loop.',
+    title: 'Self-paced music learning map',
+    href: '/music/learn',
+    cta: 'Explore learning paths',
+    tags: ['Eight study paths', 'Theory to production', 'English and German'],
+    summary:
+      'Follow self-paced guides across music theory, sight reading, piano, violin, guitar, orchestration, production, and the acoustic science of sound.',
   },
   {
-    asset: 'Music Catalog Universe Poster',
-    style: 'photorealistic',
-    audience: 'highschool',
-    ratio: '3:4',
-    previewImage: '/images/music/infogenius/music-catalog-universe-poster-v1.png',
-    status: 'Using existing image (replace with InfoGenius output when ready)',
-    prompt:
-      'Create a cinematic poster of a digital music universe with genre constellations, waveform rivers, and album planets. Include subtle labels for meditation, cinematic, tech house, and hip hop clusters.',
+    title: 'Song brainstorm and tool directory',
+    href: '/music/brainstorm',
+    cta: 'Open the brainstorm workspace',
+    tags: ['Arrangement hooks', 'Custom style and lyrics', 'Vetted tool guide'],
+    summary:
+      'Work through genre combinations, custom style prompts, and verse-to-chorus lyric arcs, or browse the practice and production tool directory at /music/tools.',
   },
 ]
 
@@ -263,25 +255,24 @@ function HeroSection() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-8">
               <Music2 className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm font-medium text-emerald-300">AI Music Architecture</span>
+              <span className="text-sm font-medium text-emerald-300">AI music architecture</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
-              <span className="text-white">Architecting Music</span>
+              <span className="text-white">Architecting music</span>
               <br />
               <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
-                for AI Worlds
+                for AI worlds
               </span>
             </h1>
 
             <p className="text-[17px] leading-relaxed text-white/80 mb-3 max-w-xl">
-              Architecting the future of AI, creation, and digital worlds through music.
+              Original tracks, prompt templates, browser instruments, and studio notes.
             </p>
 
             <p className="text-[17px] leading-relaxed text-white/60 mb-8 max-w-lg">
-              Songs made with Suno. From meditation-inspired soundscapes to orchestral epics
-              to tech house and hip hop. This page now runs as a visual operating system: narrative assets,
-              swarm-owned media pipelines, and platform-ready sales paths.
+              Songs made with Suno, spanning meditation soundscapes, orchestral arrangements,
+              tech house, and hip hop, paired with the prompts, practice tools, and workflows behind them.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -292,7 +283,7 @@ function HeroSection() {
                 className="group inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 <Play className="w-5 h-5" />
-                Full Catalog on Suno
+                Full catalog on Suno
                 <ExternalLink className="w-4 h-4" />
               </a>
               <Link
@@ -300,14 +291,14 @@ function HeroSection() {
                 className="inline-flex items-center gap-3 border border-white/20 text-white px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 <Sparkles className="w-4 h-4" />
-                Brainstorm Ideas
+                Brainstorm ideas
               </Link>
               <Link
-                href="/infogenius"
+                href="/music/templates"
                 className="inline-flex items-center gap-3 border border-violet-500/40 text-violet-200 px-7 py-4 rounded-full font-semibold transition-all hover:bg-violet-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 <Radar className="w-4 h-4" />
-                Generate Visuals with InfoGenius
+                Open prompt templates
               </Link>
             </div>
           </motion.div>
@@ -320,7 +311,7 @@ function HeroSection() {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-emerald-500/20 via-cyan-500/10 to-violet-500/10 blur-3xl opacity-50" />
               <div className="relative bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-3xl p-4 overflow-hidden">
-                <p className="text-xs uppercase tracking-[0.2em] text-emerald-400/80 mb-3 px-2">Now Playing</p>
+                <p className="text-xs font-medium tracking-wide text-emerald-400/80 mb-3 px-2">Now playing</p>
                 {heroTrack?.sunoId && (
                   <iframe
                     src={`https://suno.com/embed/${heroTrack.sunoId}`}
@@ -354,11 +345,11 @@ function VisualStoryframesSection() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-cyan-300/80 mb-4">Visual Narrative System</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Make the Music Universe Visible</h2>
+          <p className="text-xs font-medium tracking-wide text-cyan-300/80 mb-4">Visual narrative system</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Make the music universe visible</h2>
           <p className="text-[17px] leading-relaxed text-white/60 max-w-3xl">
-            Every major narrative gets a visual anchor. These assets are designed for homepage storytelling,
-            educational trust, and cross-platform repurposing.
+            Every major narrative gets a visual anchor. These essays and guides document the arrangement patterns,
+            acoustic research, and production workflows behind the catalog.
           </p>
         </motion.div>
 
@@ -383,7 +374,7 @@ function VisualStoryframesSection() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                    <span className="absolute top-3 left-3 text-[11px] uppercase tracking-[0.16em] px-3 py-1.5 rounded-full bg-black/60 border border-white/20 text-white/80">
+                    <span className="absolute top-3 left-3 text-[11px] font-medium px-3 py-1.5 rounded-full bg-black/60 border border-white/20 text-white/80">
                       {frame.tag}
                     </span>
                   </div>
@@ -443,7 +434,7 @@ function FeaturedTracksSection() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Top Tracks</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Top tracks</h2>
           <p className="text-[17px] leading-relaxed text-white/60">Most played tracks from the catalog</p>
         </motion.div>
 
@@ -510,11 +501,10 @@ function SwarmOperatingModelSection() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-violet-300/80 mb-4">Agentically Steered</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Sub-Agent Swarms and Asset Ownership</h2>
+          <p className="text-xs font-medium tracking-wide text-violet-300/80 mb-4">Studio workflow</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Studio workflows and asset ownership</h2>
           <p className="text-[17px] leading-relaxed text-white/60 max-w-3xl">
-            Each swarm owns a clear output lane so visual content, distribution, and monetization run as one
-            coordinated operating system.
+            Each workflow lane owns a clear responsibility so visual storytelling, catalog curation, and release packaging stay coordinated.
           </p>
         </motion.div>
 
@@ -542,7 +532,7 @@ function SwarmOperatingModelSection() {
                     </li>
                   ))}
                 </ul>
-                <p className="text-[11px] text-emerald-300/90 uppercase tracking-[0.14em]">{swarm.outputsPerWeek}</p>
+                <p className="text-[11px] font-medium text-emerald-300/90">{swarm.outputsPerWeek}</p>
               </motion.article>
             )
           })}
@@ -565,7 +555,7 @@ function SwarmOperatingModelSection() {
                   <p key={asset} className="text-sm text-white/45">• {asset}</p>
                 ))}
               </div>
-              <p className="text-xs uppercase tracking-[0.18em] text-cyan-300/85">Owner: {row.swarm}</p>
+              <p className="text-xs font-medium text-cyan-300/85">Owner: {row.swarm}</p>
             </motion.article>
           ))}
         </div>
@@ -575,10 +565,10 @@ function SwarmOperatingModelSection() {
 }
 
 // ============================================================================
-// INFOGENIUS VISUAL QUEUE
+// STUDIO PRACTICE & TEMPLATES ROUTES
 // ============================================================================
 
-function InfoGeniusQueueSection() {
+function StudioPracticeRoutesSection() {
   return (
     <section className="py-20 lg:py-28 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-6">
@@ -588,52 +578,44 @@ function InfoGeniusQueueSection() {
           viewport={{ once: true }}
           className="mb-10"
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-emerald-300/80 mb-4">InfoGenius Prompt Queue</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Ready-to-Generate Visual Assets</h2>
+          <p className="text-xs font-medium tracking-wide text-emerald-300/80 mb-4">Practice, templates, and studio tools</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Explore the music studio routes</h2>
           <p className="text-[17px] leading-relaxed text-white/60 max-w-3xl">
-            Production-ready prompts for the InfoGenius pipeline. These assets power website visuals,
-            marketplace packaging, and public-platform media.
+            Open the prompt templates, playable browser instruments, self-paced learning paths, and arrangement workspace that sit behind the catalog.
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-4">
-          {infoGeniusPromptQueue.map((item, i) => (
+          {studioPracticeRoutes.map((item, i) => (
             <motion.article
-              key={item.asset}
+              key={item.href}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.04] p-5"
+              className="flex flex-col justify-between rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.04] p-6"
             >
-              <div className="relative mb-4 overflow-hidden rounded-xl border border-white/10 aspect-[16/9]">
-                <Image
-                  src={item.previewImage}
-                  alt={item.asset}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <span className="absolute left-3 bottom-3 text-[10px] uppercase tracking-[0.14em] px-2.5 py-1 rounded-full bg-black/60 border border-white/20 text-white/75">
-                  Placeholder Visual
-                </span>
+              <div>
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  {item.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2.5 py-1 rounded-full text-xs font-medium bg-black/50 border border-white/15 text-white/75"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h3 className="text-lg text-white font-semibold mb-2">{item.title}</h3>
+                <p className="text-sm text-white/60 leading-relaxed mb-5">{item.summary}</p>
               </div>
-
-              <div className="flex flex-wrap items-center gap-2 mb-3">
-                <span className="px-2.5 py-1 rounded-full text-[11px] uppercase tracking-[0.14em] bg-black/50 border border-white/15 text-white/70">
-                  {item.style}
-                </span>
-                <span className="px-2.5 py-1 rounded-full text-[11px] uppercase tracking-[0.14em] bg-black/50 border border-white/15 text-white/70">
-                  {item.audience}
-                </span>
-                <span className="px-2.5 py-1 rounded-full text-[11px] uppercase tracking-[0.14em] bg-black/50 border border-white/15 text-white/70">
-                  {item.ratio}
-                </span>
-              </div>
-              <h3 className="text-white font-semibold mb-3">{item.asset}</h3>
-              <p className="text-xs text-amber-300/85 mb-3">{item.status}</p>
-              <p className="text-sm text-white/55 leading-relaxed">{item.prompt}</p>
+              <Link
+                href={item.href}
+                className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-300 hover:text-emerald-200 transition-colors"
+              >
+                <span>{item.cta}</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </motion.article>
           ))}
         </div>
@@ -656,11 +638,10 @@ function RevenuePathsSection() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-amber-300/80 mb-4">Music Sales Possibilities</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Monetization Lanes, Steered by Agents</h2>
+          <p className="text-xs font-medium tracking-wide text-amber-300/80 mb-4">Catalog pathways</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4">Distribution and licensing pathways</h2>
           <p className="text-[17px] leading-relaxed text-white/60 max-w-3xl">
-            Keep revenue diversified: streaming, direct products, and licensing. Each lane gets a
-            dedicated asset system and feedback loop.
+            Keep catalog distribution clear across streaming, direct releases, and creator licensing.
           </p>
         </motion.div>
 
@@ -850,8 +831,8 @@ function CTASection() {
             Build the next wave of AI music media.
           </h2>
           <p className="text-[17px] leading-relaxed text-white/60 mb-8 max-w-2xl mx-auto">
-            Use the same system here: generate visuals with InfoGenius, orchestrate swarms by channel,
-            and turn tracks into a durable catalog business.
+            Start from tested style prompts, practice on browser instruments in the music lab,
+            or follow the self-paced learning paths.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
@@ -860,7 +841,7 @@ function CTASection() {
               className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               <Sparkles className="w-5 h-5" />
-              Brainstorm New Ideas
+              Brainstorm new ideas
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
@@ -868,14 +849,14 @@ function CTASection() {
               className="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               <BookOpen className="w-4 h-4" />
-              Learn AI Music Creation
+              Open the music lab
             </Link>
             <Link
-              href="/infogenius"
+              href="/music/learn"
               className="inline-flex items-center gap-3 border border-violet-500/40 text-violet-200 px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-violet-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
               <Radar className="w-4 h-4" />
-              Open InfoGenius
+              Explore music learning
             </Link>
           </div>
         </motion.div>
@@ -899,7 +880,7 @@ export default function MusicShell() {
         <VisualStoryframesSection />
         <FeaturedTracksSection />
         <SwarmOperatingModelSection />
-        <InfoGeniusQueueSection />
+        <StudioPracticeRoutesSection />
         <RevenuePathsSection />
         <AlbumsSection />
         <CTASection />
