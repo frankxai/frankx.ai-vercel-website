@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-labelledby="title-creative-ai-toolkit desc-creative-ai-toolkit">
+  <title id="title-creative-ai-toolkit">The Creative AI Toolkit schematic plate</title>
+  <desc id="desc-creative-ai-toolkit">Technical deliverable diagram for The Creative AI Toolkit (CREATIVE STUDIO).</desc>
+  <defs>
+    <linearGradient id="bg-creative-ai-toolkit" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A0B0F" />
+      <stop offset="100%" stop-color="#10141D" />
+    </linearGradient>
+    <radialGradient id="glow-creative-ai-toolkit" cx="82%" cy="18%" r="60%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid-creative-ai-toolkit" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(255,255,255,0.028)" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="640" height="360" rx="20" fill="url(#bg-creative-ai-toolkit)" />
+  <rect width="640" height="360" rx="20" fill="url(#grid-creative-ai-toolkit)" />
+  <rect width="640" height="360" rx="20" fill="url(#glow-creative-ai-toolkit)" />
+  <rect x="0.75" y="0.75" width="638.5" height="358.5" rx="19.25" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1.5" />
+
+  <!-- Top Telemetry Header -->
+  <text x="36" y="42" fill="#10B981" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600" letter-spacing="1.6">CREATIVE STUDIO</text>
+  <text x="36" y="68" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.4">The Creative AI Toolkit</text>
+
+  <rect x="476" y="26" width="128" height="28" rx="14" fill="rgba(16, 185, 129, 0.14)" stroke="rgba(16, 185, 129, 0.34)" />
+  <text x="540" y="44" text-anchor="middle" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">Creator toolkit</text>
+
+  
+      <!-- Studio Signal & Stem Architecture -->
+      <g transform="translate(36, 98)">
+        <rect x="0" y="0" width="568" height="190" rx="14" fill="#0D1017" stroke="rgba(255,255,255,0.08)" />
+        <text x="26" y="30" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5" letter-spacing="1.2">SIGNAL SPECTRUM · REFERENCE LOCKED</text>
+        <rect x="26" y="89.0" width="8" height="66" rx="3" fill="#10B981" opacity="0.92" /><rect x="40" y="109.5" width="8" height="25" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="54" y="91.0" width="8" height="62" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="68" y="72.5" width="8" height="99" rx="3" fill="#10B981" opacity="0.92" /><rect x="82" y="93.0" width="8" height="58" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="96" y="74.5" width="8" height="95" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="110" y="95.0" width="8" height="54" rx="3" fill="#10B981" opacity="0.92" /><rect x="124" y="76.5" width="8" height="91" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="138" y="97.0" width="8" height="50" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="152" y="78.5" width="8" height="87" rx="3" fill="#10B981" opacity="0.92" /><rect x="166" y="99.0" width="8" height="46" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="180" y="80.5" width="8" height="83" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="194" y="101.0" width="8" height="42" rx="3" fill="#10B981" opacity="0.92" /><rect x="208" y="82.5" width="8" height="79" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="222" y="103.0" width="8" height="38" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="236" y="84.5" width="8" height="75" rx="3" fill="#10B981" opacity="0.92" /><rect x="250" y="105.0" width="8" height="34" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="264" y="86.5" width="8" height="71" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="278" y="107.0" width="8" height="30" rx="3" fill="#10B981" opacity="0.92" /><rect x="292" y="88.5" width="8" height="67" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="306" y="109.0" width="8" height="26" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="320" y="90.5" width="8" height="63" rx="3" fill="#10B981" opacity="0.92" /><rect x="334" y="72.0" width="8" height="100" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="348" y="92.5" width="8" height="59" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" />
+        <rect x="382" y="22" width="166" height="44" rx="9" fill="#121820" stroke="rgba(16, 185, 129, 0.34)" />
+        <text x="396" y="41" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">01 · Creative Intellig…</text>
+        <text x="396" y="56" fill="#10B981" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">TOKEN SPEC</text>
+
+        <rect x="382" y="74" width="166" height="44" rx="9" fill="#121820" stroke="rgba(255,255,255,0.12)" />
+        <text x="396" y="93" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">02 · Workflow Automati…</text>
+        <text x="396" y="108" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">WORKFLOW LOOP</text>
+
+        <rect x="382" y="126" width="166" height="44" rx="9" fill="#121820" stroke="rgba(255,255,255,0.12)" />
+        <text x="396" y="145" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">03 · Multi-Agent Playb…</text>
+        <text x="396" y="160" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">QA RUBRIC</text>
+      </g>
+    
+
+  <!-- Bottom Inspectable Footer -->
+  <text x="36" y="324" fill="#64748B" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" letter-spacing="1.1">SKU // CREATIVE-AI-TOOLKIT</text>
+  <text x="604" y="324" text-anchor="end" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10">INSPECTABLE MANIFEST · 16:9</text>
+</svg>

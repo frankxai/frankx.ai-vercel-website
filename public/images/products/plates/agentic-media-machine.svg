@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-labelledby="title-agentic-media-machine desc-agentic-media-machine">
+  <title id="title-agentic-media-machine">The Agentic Media Machine schematic plate</title>
+  <desc id="desc-agentic-media-machine">Technical deliverable diagram for The Agentic Media Machine (CREATIVE STUDIO).</desc>
+  <defs>
+    <linearGradient id="bg-agentic-media-machine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A0B0F" />
+      <stop offset="100%" stop-color="#10141D" />
+    </linearGradient>
+    <radialGradient id="glow-agentic-media-machine" cx="82%" cy="18%" r="60%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid-agentic-media-machine" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(255,255,255,0.028)" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="640" height="360" rx="20" fill="url(#bg-agentic-media-machine)" />
+  <rect width="640" height="360" rx="20" fill="url(#grid-agentic-media-machine)" />
+  <rect width="640" height="360" rx="20" fill="url(#glow-agentic-media-machine)" />
+  <rect x="0.75" y="0.75" width="638.5" height="358.5" rx="19.25" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1.5" />
+
+  <!-- Top Telemetry Header -->
+  <text x="36" y="42" fill="#10B981" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600" letter-spacing="1.6">CREATIVE STUDIO</text>
+  <text x="36" y="68" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.4">The Agentic Media Machine</text>
+
+  <rect x="476" y="26" width="128" height="28" rx="14" fill="rgba(16, 185, 129, 0.14)" stroke="rgba(16, 185, 129, 0.34)" />
+  <text x="540" y="44" text-anchor="middle" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">Architecture kit</text>
+
+  
+      <!-- Studio Signal & Stem Architecture -->
+      <g transform="translate(36, 98)">
+        <rect x="0" y="0" width="568" height="190" rx="14" fill="#0D1017" stroke="rgba(255,255,255,0.08)" />
+        <text x="26" y="30" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5" letter-spacing="1.2">SIGNAL SPECTRUM · REFERENCE LOCKED</text>
+        <rect x="26" y="80.5" width="8" height="83" rx="3" fill="#10B981" opacity="0.92" /><rect x="40" y="101.0" width="8" height="42" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="54" y="82.5" width="8" height="79" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="68" y="103.0" width="8" height="38" rx="3" fill="#10B981" opacity="0.92" /><rect x="82" y="84.5" width="8" height="75" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="96" y="105.0" width="8" height="34" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="110" y="86.5" width="8" height="71" rx="3" fill="#10B981" opacity="0.92" /><rect x="124" y="107.0" width="8" height="30" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="138" y="88.5" width="8" height="67" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="152" y="109.0" width="8" height="26" rx="3" fill="#10B981" opacity="0.92" /><rect x="166" y="90.5" width="8" height="63" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="180" y="72.0" width="8" height="100" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="194" y="92.5" width="8" height="59" rx="3" fill="#10B981" opacity="0.92" /><rect x="208" y="74.0" width="8" height="96" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="222" y="94.5" width="8" height="55" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="236" y="76.0" width="8" height="92" rx="3" fill="#10B981" opacity="0.92" /><rect x="250" y="96.5" width="8" height="51" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="264" y="78.0" width="8" height="88" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="278" y="98.5" width="8" height="47" rx="3" fill="#10B981" opacity="0.92" /><rect x="292" y="80.0" width="8" height="84" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="306" y="100.5" width="8" height="43" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="320" y="82.0" width="8" height="80" rx="3" fill="#10B981" opacity="0.92" /><rect x="334" y="102.5" width="8" height="39" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="348" y="84.0" width="8" height="76" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" />
+        <rect x="382" y="22" width="166" height="44" rx="9" fill="#121820" stroke="rgba(16, 185, 129, 0.34)" />
+        <text x="396" y="41" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">01 · Transcript-to-Bri…</text>
+        <text x="396" y="56" fill="#10B981" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">TOKEN SPEC</text>
+
+        <rect x="382" y="74" width="166" height="44" rx="9" fill="#121820" stroke="rgba(255,255,255,0.12)" />
+        <text x="396" y="93" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">02 · Multi-Channel Dra…</text>
+        <text x="396" y="108" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">WORKFLOW LOOP</text>
+
+        <rect x="382" y="126" width="166" height="44" rx="9" fill="#121820" stroke="rgba(255,255,255,0.12)" />
+        <text x="396" y="145" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">03 · Editorial Voice &amp;…</text>
+        <text x="396" y="160" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">QA RUBRIC</text>
+      </g>
+    
+
+  <!-- Bottom Inspectable Footer -->
+  <text x="36" y="324" fill="#64748B" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" letter-spacing="1.1">SKU // AGENTIC-MEDIA-MACHINE</text>
+  <text x="604" y="324" text-anchor="end" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10">INSPECTABLE MANIFEST · 16:9</text>
+</svg>

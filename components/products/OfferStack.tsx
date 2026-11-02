@@ -1,9 +1,12 @@
 "use client"
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { Sparkles, Mail } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
+import { getPreviewManifest } from '@/lib/products/preview-manifests'
+import ProductFileInspector from '@/components/products/ProductFileInspector'
 import type { ProductBonus, ProductModule, ProductOffer, ProductPricingTier } from '@/types/products'
 
 // Global coming soon mode - set to true to hide all pricing
@@ -36,12 +39,13 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
   const secondaryHref = offer?.ctaSecondaryHref
   const secondaryLabel = offer?.ctaSecondary
   const secondaryTracking = offer?.ctaSecondaryTracking
+  const manifest = getPreviewManifest(productId)
 
   return (
     <section className="bg-[#0a0a0b] py-20">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 lg:flex-row">
         <div className="flex-1 space-y-6">
-          <h2 className="text-3xl font-semibold text-white">What You Receive</h2>
+          <h2 className="text-3xl font-semibold text-white">What you receive</h2>
           <div className="grid gap-4">
             {modules.map((module) => (
               <div
@@ -55,7 +59,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
           </div>
           {bonuses && bonuses.length > 0 && (
             <div className="mt-8">
-              <h3 className="text-xl font-semibold text-cyan-200">Bonuses</h3>
+              <h3 className="text-xl font-semibold text-cyan-200">Included extras</h3>
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 {bonuses.map((bonus) => (
                   <div key={bonus.title} className="rounded-2xl border border-cyan-500/30 bg-cyan-500/10 p-5 text-white">
@@ -72,6 +76,18 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
         </div>
         <div className="flex w-full flex-1 flex-col justify-center">
           <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-8 text-center text-white shadow-[0_20px_60px_rgba(8,15,33,0.55)]">
+            {manifest ? (
+              <div className="mb-6 overflow-hidden rounded-2xl border border-white/10 bg-[#07090e]">
+                <Image
+                  src={manifest.plateSvg}
+                  alt={`${manifest.name} technical schematic plate`}
+                  width={640}
+                  height={360}
+                  unoptimized
+                  className="aspect-video h-auto w-full object-cover"
+                />
+              </div>
+            ) : null}
             {COMING_SOON_MODE ? (
               <>
                 {/* Coming Soon Mode */}
@@ -180,6 +196,12 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
           </div>
         </div>
       </div>
+
+      {manifest ? (
+        <div className="mx-auto max-w-6xl px-6">
+          <ProductFileInspector manifest={manifest} />
+        </div>
+      ) : null}
 
       {pricingTiers && pricingTiers.length > 0 && !COMING_SOON_MODE ? (
         <div className="mx-auto mt-12 max-w-6xl px-6">

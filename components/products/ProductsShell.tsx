@@ -26,7 +26,7 @@ import { EmailSignup } from '@/components/email-signup'
 import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 import { productsFaq } from '@/components/products/products-data'
 
-// Product characters removed — mascot-first strategy (Feb 21)
+// Product characters removed: mascot-first strategy (Feb 21)
 
 // Premium background
 function ProductsBackground() {
@@ -34,7 +34,7 @@ function ProductsBackground() {
     <div className="fixed inset-0 -z-10 overflow-hidden">
       <div className="absolute inset-0" style={{ backgroundColor: '#0a0a0b' }} />
 
-      {/* Static gradient orbs — no animation, ambient depth only */}
+      {/* Static gradient orbs: no animation, ambient depth only */}
       <div
         className="absolute -right-60 top-40 h-[600px] w-[600px] rounded-full"
         style={{
@@ -76,35 +76,40 @@ const products = [
     id: 'vibe-os',
     icon: Music,
     name: 'Vibe OS',
-    tagline: '',
-    description: '',
+    tagline: 'AI music session guide',
+    description:
+      'Structured Suno session guide covering genre anchors, section tags, and iteration checklists you can inspect free.',
     status: 'active',
     href: '/products/vibe-os',
     color: 'emerald',
-    highlights: [],
+    highlights: [
+      'Genre, tempo, and vocal texture prompt templates',
+      'Section-by-section lyric and arrangement iteration pass',
+      'Session tracking sheet for keeper takes and stems',
+    ],
     featured: true,
   },
   {
     id: 'creators-soulbook',
     icon: BookOpen,
     name: 'The Creator\'s Soulbook',
-    tagline: 'Life Architecture OS',
+    tagline: 'Life architecture OS',
     description:
-      'Life operating system with 7 pillars, frameworks, and AI coaching prompts. Complete Obsidian vault included.',
+      'Life operating system with 7 pillars, frameworks, and guided reflection prompts. Complete Obsidian vault included.',
     status: 'early-access',
     href: '/soulbook',
     color: 'cyan',
     highlights: [
       '7 Life Pillars framework with reflection exercises',
-      '3 transformational perspectives (Life Symphony, Golden Path, 7 Pillars)',
-      '25+ AI coaching prompts + ready-to-use Obsidian vault',
+      '3 perspectives (Life Symphony, Golden Path, 7 Pillars)',
+      'Guided reflection prompts + ready-to-use Obsidian vault',
     ],
   },
   {
     id: 'suno-prompts-bundle',
     icon: Sparkles,
     name: '5 Suno Prompt Bundles',
-    tagline: 'Genre-Specific Music Generation',
+    tagline: 'Genre-specific prompt templates',
     description:
       'Five curated prompt bundles for specific genres: electronic, hip-hop, ambient, cinematic, and lo-fi.',
     status: 'early-access',
@@ -112,23 +117,23 @@ const products = [
     color: 'violet',
     highlights: [
       'Prompts across 5 genres',
-      'Emotion and tempo mapping for each genre',
-      'Production tips and remixing guides',
+      'Tempo and mood notes for each genre',
+      'Arrangement tips and remixing guides',
     ],
   },
   {
     id: 'creative-ai-toolkit',
     icon: Sparkles,
     name: 'Creative AI Toolkit',
-    tagline: 'Prompt library + workflow rituals',
+    tagline: 'Prompt library and workflow rituals',
     description:
       'A digital kit with prompts, templates, and rollout rituals for consistent output.',
     status: 'early-access',
     href: '/newsletter?ref=creative-ai-toolkit-early-access',
     color: 'amber',
     highlights: [
-      '100+ validated prompts across storytelling, marketing, and operations',
-      '12 ready-to-deploy workflow automations',
+      'Curated prompts across storytelling, marketing, and operations',
+      '12 workflow templates for weekly publishing',
       '30/60/90 day implementation roadmaps',
     ],
   },
@@ -308,7 +313,7 @@ export default function ProductsShell() {
       <div className="relative min-h-screen">
         {/* Hero Section */}
         <section className="relative pt-28 pb-20 lg:pt-36 lg:pb-24">
-          {/* Axi — mascot accent */}
+          {/* Axi: mascot accent */}
           <div className="pointer-events-none absolute right-0 top-16 hidden w-56 opacity-15 lg:block xl:w-72">
             <Image
               src="/images/mascot/mascot-v05-techno-beast-standing.png"
@@ -354,8 +359,8 @@ export default function ProductsShell() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="max-w-2xl text-[17px] sm:text-xl leading-relaxed text-slate-300/90"
             >
-              The exact frameworks, prompts, and workflows I use in my own creative practice
-              and enterprise work. No theory — just what actually works.
+              Concrete frameworks, prompt templates, and checklists drawn from active studio
+              and engineering projects, ready to inspect before you commit.
             </motion.p>
           </div>
         </section>
@@ -441,18 +446,19 @@ export default function ProductsShell() {
                               onClick={() =>
                                 trackEvent('product_card_click', { productId: product.id })
                               }
-                              className="flex items-center gap-2 text-slate-400 transition-colors hover:text-white"
+                              className="inline-flex min-h-11 items-center gap-2 rounded-lg px-2 text-slate-400 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                             >
                               <span className="text-sm font-medium">Explore</span>
                               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                             </Link>
                           ) : (
                             <button
+                              type="button"
                               onClick={() => {
                                 setOpenModal(product.id)
                                 trackEvent('early_access_click', { productId: product.id })
                               }}
-                              className="flex items-center gap-2 text-slate-400 transition-colors hover:text-white"
+                              className="inline-flex min-h-11 items-center gap-2 rounded-lg px-2 text-slate-400 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
                             >
                               <span className="text-sm font-medium">Join</span>
                               <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -472,10 +478,10 @@ export default function ProductsShell() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="flex flex-wrap justify-center gap-6 md:gap-10">
               {[
-                { icon: Sparkles, label: 'Early Access Benefits', color: 'text-amber-400' },
-                { icon: Zap, label: 'Priority Launch Access', color: 'text-cyan-400' },
-                { icon: Users, label: 'Exclusive Community', color: 'text-violet-400' },
-                { icon: Star, label: 'Battle-Tested Systems', color: 'text-emerald-400' },
+                { icon: Sparkles, label: 'Inspectable file trees', color: 'text-amber-400' },
+                { icon: Zap, label: 'Launch list updates', color: 'text-cyan-400' },
+                { icon: Users, label: 'Builder notes', color: 'text-violet-400' },
+                { icon: Star, label: 'Field-tested workflows', color: 'text-emerald-400' },
               ].map((badge, i) => (
                 <motion.div
                   key={badge.label}
@@ -503,30 +509,30 @@ export default function ProductsShell() {
               className="text-center mb-12"
             >
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-2">
-                What You Get
+                What you get
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
-                Real systems, not theory
+                Documented templates and checklists
               </h2>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
-                  title: 'Battle-Tested Prompts',
-                  description: 'Every prompt has been used in real projects. No theoretical examples—just what actually works in production.',
+                  title: 'Field-tested prompts',
+                  description: 'Structured prompt files with clear variables, genre or task anchors, and iteration notes.',
                   icon: Sparkles,
                   color: 'emerald',
                 },
                 {
-                  title: 'Workflow Templates',
-                  description: 'Complete workflows you can adapt. From ideation to publishing, every step is documented and replicable.',
+                  title: 'Workflow templates',
+                  description: 'Complete workflows you can adapt. From capture to publishing, every step is documented and repeatable.',
                   icon: Zap,
                   color: 'cyan',
                 },
                 {
-                  title: 'Continuous Updates',
-                  description: 'AI tools evolve fast. Your purchase includes all future updates as I refine and expand these systems.',
+                  title: 'Revision changelogs',
+                  description: 'As models and tools change, kits document updated prompt syntax and verification steps.',
                   icon: Star,
                   color: 'violet',
                 },

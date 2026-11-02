@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-labelledby="title-5-suno-prompts desc-5-suno-prompts">
+  <title id="title-5-suno-prompts">5 Suno Prompts schematic plate</title>
+  <desc id="desc-5-suno-prompts">Technical deliverable diagram for 5 Suno Prompts (CREATIVE STUDIO).</desc>
+  <defs>
+    <linearGradient id="bg-5-suno-prompts" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A0B0F" />
+      <stop offset="100%" stop-color="#10141D" />
+    </linearGradient>
+    <radialGradient id="glow-5-suno-prompts" cx="82%" cy="18%" r="60%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid-5-suno-prompts" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(255,255,255,0.028)" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="640" height="360" rx="20" fill="url(#bg-5-suno-prompts)" />
+  <rect width="640" height="360" rx="20" fill="url(#grid-5-suno-prompts)" />
+  <rect width="640" height="360" rx="20" fill="url(#glow-5-suno-prompts)" />
+  <rect x="0.75" y="0.75" width="638.5" height="358.5" rx="19.25" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1.5" />
+
+  <!-- Top Telemetry Header -->
+  <text x="36" y="42" fill="#10B981" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600" letter-spacing="1.6">CREATIVE STUDIO</text>
+  <text x="36" y="68" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.4">5 Suno Prompts</text>
+
+  <rect x="476" y="26" width="128" height="28" rx="14" fill="rgba(16, 185, 129, 0.14)" stroke="rgba(16, 185, 129, 0.34)" />
+  <text x="540" y="44" text-anchor="middle" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">Coming soon</text>
+
+  
+      <!-- Studio Signal & Stem Architecture -->
+      <g transform="translate(36, 98)">
+        <rect x="0" y="0" width="568" height="190" rx="14" fill="#0D1017" stroke="rgba(255,255,255,0.08)" />
+        <text x="26" y="30" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5" letter-spacing="1.2">SIGNAL SPECTRUM · REFERENCE LOCKED</text>
+        <rect x="26" y="82.0" width="8" height="80" rx="3" fill="#10B981" opacity="0.92" /><rect x="40" y="102.5" width="8" height="39" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="54" y="84.0" width="8" height="76" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="68" y="104.5" width="8" height="35" rx="3" fill="#10B981" opacity="0.92" /><rect x="82" y="86.0" width="8" height="72" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="96" y="106.5" width="8" height="31" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="110" y="88.0" width="8" height="68" rx="3" fill="#10B981" opacity="0.92" /><rect x="124" y="108.5" width="8" height="27" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="138" y="90.0" width="8" height="64" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="152" y="71.5" width="8" height="101" rx="3" fill="#10B981" opacity="0.92" /><rect x="166" y="92.0" width="8" height="60" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="180" y="73.5" width="8" height="97" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="194" y="94.0" width="8" height="56" rx="3" fill="#10B981" opacity="0.92" /><rect x="208" y="75.5" width="8" height="93" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="222" y="96.0" width="8" height="52" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="236" y="77.5" width="8" height="89" rx="3" fill="#10B981" opacity="0.92" /><rect x="250" y="98.0" width="8" height="48" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="264" y="79.5" width="8" height="85" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="278" y="100.0" width="8" height="44" rx="3" fill="#10B981" opacity="0.92" /><rect x="292" y="81.5" width="8" height="81" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="306" y="102.0" width="8" height="40" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="320" y="83.5" width="8" height="77" rx="3" fill="#10B981" opacity="0.92" /><rect x="334" y="104.0" width="8" height="36" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="348" y="85.5" width="8" height="73" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" />
+        <rect x="382" y="22" width="166" height="44" rx="9" fill="#121820" stroke="rgba(16, 185, 129, 0.34)" />
+        <text x="396" y="41" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">01 · Five Annotated Su…</text>
+        <text x="396" y="56" fill="#10B981" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">TOKEN SPEC</text>
+
+        <rect x="382" y="74" width="166" height="44" rx="9" fill="#121820" stroke="rgba(255,255,255,0.12)" />
+        <text x="396" y="93" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">02 · Keyword &amp; Variati…</text>
+        <text x="396" y="108" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">WORKFLOW LOOP</text>
+
+        <rect x="382" y="126" width="166" height="44" rx="9" fill="#121820" stroke="rgba(255,255,255,0.12)" />
+        <text x="396" y="145" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">03 · Verification Gate</text>
+        <text x="396" y="160" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">QA RUBRIC</text>
+      </g>
+    
+
+  <!-- Bottom Inspectable Footer -->
+  <text x="36" y="324" fill="#64748B" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" letter-spacing="1.1">SKU // 5-SUNO-PROMPTS</text>
+  <text x="604" y="324" text-anchor="end" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10">INSPECTABLE MANIFEST · 16:9</text>
+</svg>

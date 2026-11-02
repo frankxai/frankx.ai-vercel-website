@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -393,6 +394,16 @@ export default function ProductsPage() {
                         color={product.color}
                         className="group flex flex-col h-full p-7 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.02] hover:border-emerald-500/40 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1"
                       >
+                        <div className="mb-5 overflow-hidden rounded-xl border border-white/10 bg-[#07090e]">
+                          <Image
+                            src={`/images/products/plates/${product.slug}.svg`}
+                            alt={`${product.name} schematic plate`}
+                            width={640}
+                            height={360}
+                            unoptimized
+                            className="aspect-video h-auto w-full object-cover"
+                          />
+                        </div>
                         <div className="mb-5 flex items-start justify-between gap-3">
                           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                             <Icon className="h-6 w-6" />
