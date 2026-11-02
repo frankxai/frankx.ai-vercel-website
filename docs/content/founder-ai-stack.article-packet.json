@@ -1,0 +1,524 @@
+{
+  "schema_version": "1.1.0",
+  "content_id": "cnt_frankx_founder_ai_stack_20261102",
+  "status": "DRAFT",
+  "authority": "PREVIEW",
+  "brand": {
+    "brand_id": "frankx",
+    "domain": "frankx.ai",
+    "repository": "frankxai/frankx.ai-vercel-website",
+    "vercel_project": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+    "notion_record": "blocked"
+  },
+  "brief": {
+    "working_title": "My founder AI stack: from a mobile brief to a verified release",
+    "subject": "First-party multi-application founder workflow",
+    "origin": "Owner account plus bounded repository reporting and rechecked selected evidence",
+    "thesis": "Judge applications by handoffs and accepted outcomes, with source-level attribution.",
+    "reader": "Founders already using several AI applications",
+    "reader_baseline": "Already understands subscriptions and coding agents",
+    "reader_delta": "Can assign applications, preserve contribution evidence and compare total cost per accepted outcome",
+    "stakes": "Review effort, overlapping work, unsupported attribution and release confidence",
+    "strongest_objection": "Task selection and tooling differences prevent a universal model ranking",
+    "commercial_relationship": "none"
+  },
+  "content_graph": {
+    "cluster_id": "cluster_frankx_founder_ai_operations",
+    "canonical_url": "blocked",
+    "proposed_canonical_url": "https://www.frankx.ai/blog/founder-ai-stack-mobile-to-production",
+    "existing_related_urls": [
+      "https://www.frankx.ai/blog/chatgpt-vs-claude-vs-gemini-2026"
+    ],
+    "internal_links": [],
+    "entities": [
+      "ChatGPT Work",
+      "Codex",
+      "Claude Code",
+      "Claude Opus 5.5",
+      "Gemini Deep Research",
+      "Google Antigravity",
+      "Grok",
+      "OpenCode",
+      "GitHub",
+      "Vercel"
+    ]
+  },
+  "search": {
+    "primary_intent": "Build a useful multi-application founder AI workflow",
+    "query_set": [
+      "founder AI stack",
+      "ChatGPT Claude Gemini workflow",
+      "AI model attribution"
+    ],
+    "serp_snapshot": {
+      "captured_at": "blocked",
+      "locale": "blocked",
+      "device": "blocked",
+      "dominant_intent": "blocked",
+      "information_gap": "blocked"
+    },
+    "answer_units": [
+      "Application responsibility matrix",
+      "Attribution evidence levels",
+      "Defined-period cost per accepted outcome"
+    ],
+    "structured_data": [
+      "Article"
+    ],
+    "indexation": "noindex",
+    "crawler_policy_checked": false
+  },
+  "sources": [
+    {
+      "source_id": "E1",
+      "title": "fix(workers): give the agent plane its own D1 and KV",
+      "publisher": "frankxai/starlightintelligence.ai",
+      "source_type": "repository_pr",
+      "url": "https://github.com/frankxai/starlightintelligence.ai/pull/246",
+      "retrieved_at": "2026-11-02",
+      "head_sha": "93f820e71367d9b8383784f93df4deb512b72ef8",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "source_updated_at": "2026-11-01T23:01:45Z"
+    },
+    {
+      "source_id": "E2",
+      "title": "Build Starlight’s mobile mission workspace with portable drafts and editable copies",
+      "publisher": "frankxai/starlightintelligence.ai",
+      "source_type": "repository_pr",
+      "url": "https://github.com/frankxai/starlightintelligence.ai/pull/249",
+      "retrieved_at": "2026-11-02",
+      "head_sha": "9877a55525ca3b759981f32ecc3d2a4519fabc5c",
+      "state": "open",
+      "merged": false,
+      "draft": false,
+      "source_updated_at": "2026-11-02T06:52:10Z"
+    },
+    {
+      "source_id": "E3",
+      "title": "[contract-change] fix(checkout): fail closed on Stripe until a product is marked for sale",
+      "publisher": "frankxai/frankx.ai-vercel-website",
+      "source_type": "repository_pr",
+      "url": "https://github.com/frankxai/frankx.ai-vercel-website/pull/1146",
+      "retrieved_at": "2026-11-02",
+      "head_sha": "af3941b091a2860cc88ba36e2b77fd7dc23bb035",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "source_updated_at": "2026-11-02T13:51:49Z"
+    },
+    {
+      "source_id": "E4",
+      "title": "Integrate current mission authority and homepage repairs with Nexus",
+      "publisher": "frankxai/starlightintelligence.ai",
+      "source_type": "repository_pr",
+      "url": "https://github.com/frankxai/starlightintelligence.ai/pull/243",
+      "retrieved_at": "2026-11-02",
+      "head_sha": "aae069496acc1ab185b0515c744a8ff3f5f5c9bb",
+      "state": "open",
+      "merged": false,
+      "draft": false,
+      "source_updated_at": "2026-11-02T06:19:56Z"
+    },
+    {
+      "source_id": "E5",
+      "title": "feat(context): govern research recall and inspect portable evidence packets",
+      "publisher": "frankxai/starlight-memory",
+      "source_type": "repository_pr",
+      "url": "https://github.com/frankxai/starlight-memory/pull/48",
+      "retrieved_at": "2026-11-02",
+      "head_sha": "f77682b2cce4e3e546d7366227e4fb481c256ee7",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "source_updated_at": "2026-11-02T06:31:41Z"
+    },
+    {
+      "source_id": "E6",
+      "title": "🛡️ Sentinel: [HIGH] Fix timing attack in CRON_SECRET verification",
+      "publisher": "frankxai/gencreator.ai",
+      "source_type": "repository_pr",
+      "url": "https://github.com/frankxai/gencreator.ai/pull/312",
+      "retrieved_at": "2026-11-02",
+      "head_sha": "cd441cf4037e6a04e06613374d5e9cf7bd83247b",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "source_updated_at": "2026-11-02T13:07:32Z"
+    },
+    {
+      "source_id": "E7",
+      "title": "🛡️ Sentinel: [CRITICAL] Fix timing attack vulnerability in `CRON_SECRET` verification",
+      "publisher": "frankxai/gencreator.ai",
+      "source_type": "repository_pr",
+      "url": "https://github.com/frankxai/gencreator.ai/pull/315",
+      "retrieved_at": "2026-11-02",
+      "head_sha": "eed4bb73804fe9947a6a0a1a557d7a779bfec495",
+      "state": "closed",
+      "merged": false,
+      "draft": false,
+      "source_updated_at": "2026-11-02T13:09:16Z"
+    },
+    {
+      "source_id": "E8",
+      "title": "Record reviewed estate cleanup decisions and open security follow-ups",
+      "publisher": "frankxai/agentic-ops-hub",
+      "source_type": "repository_pr",
+      "url": "https://github.com/frankxai/agentic-ops-hub/pull/423",
+      "retrieved_at": "2026-11-02",
+      "head_sha": "5cd2d9c6c3161f370c1641de8ede2902b0e47d09",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "source_updated_at": "2026-11-02T15:14:56Z"
+    },
+    {
+      "source_id": "E9",
+      "title": "feat(ops-guard): let the memory vault sync commit data on main",
+      "publisher": "Starlight-Intelligence/starlight-agent-config",
+      "source_type": "repository_pr",
+      "url": "https://github.com/Starlight-Intelligence/starlight-agent-config/pull/142",
+      "retrieved_at": "2026-11-02",
+      "head_sha": "3a61ed1838ed977c6691cb70308521ebc745054d",
+      "state": "closed",
+      "merged": false,
+      "draft": false,
+      "source_updated_at": "2026-11-01T22:37:59Z"
+    },
+    {
+      "source_id": "E10",
+      "title": "Bind native PR review models and refresh resource admission",
+      "publisher": "frankxai/agentic-ops",
+      "source_type": "repository_pr",
+      "url": "https://github.com/frankxai/agentic-ops/pull/157",
+      "retrieved_at": "2026-11-02",
+      "head_sha": "875d64ec2dde8f68aaa79d857223cda2d0a4b482",
+      "state": "open",
+      "merged": false,
+      "draft": false,
+      "source_updated_at": "2026-10-12T13:34:51Z"
+    },
+    {
+      "source_id": "E11",
+      "title": "feat: research knowledge layer (Drive + estate docs to Cloudflare AI Search, Worker, MCP for Claude and Codex)",
+      "publisher": "frankxai/research-intelligence-os",
+      "source_type": "repository_pr",
+      "url": "https://github.com/frankxai/research-intelligence-os/pull/7",
+      "retrieved_at": "2026-11-02",
+      "head_sha": "5d8dbdfe90612d06f09888a1c5d120d4f1a643a2",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "source_updated_at": "2026-11-02T04:46:24Z"
+    },
+    {
+      "source_id": "E12",
+      "title": "Connect Drive, Notion and Linear roadmap projections with Gemini feedback",
+      "publisher": "frankxai/agentic-ops",
+      "source_type": "repository_pr",
+      "url": "https://github.com/frankxai/agentic-ops/pull/418",
+      "retrieved_at": "2026-11-02",
+      "head_sha": "522c343c2c2edd6a3bf88c5abb09f4c49b5411ae",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "source_updated_at": "2026-11-02T06:10:37Z"
+    },
+    {
+      "source_id": "E13",
+      "title": "Preserve source evidence across Growth planning, native handoffs and project recovery",
+      "publisher": "frankxai/gencreator.ai",
+      "source_type": "repository_pr",
+      "url": "https://github.com/frankxai/gencreator.ai/pull/305",
+      "retrieved_at": "2026-11-02",
+      "head_sha": "bf6baeee0f5e19eddcd82b2f37589ecef33f78b3",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "source_updated_at": "2026-11-02T00:02:11Z"
+    },
+    {
+      "source_id": "E15",
+      "title": "Harness arena: Claude Code vs Codex vs OpenCode+omo on Multi-agent Ops (staged, dry run only)",
+      "publisher": "frankxai/starlight-evals",
+      "source_type": "repository_pr",
+      "url": "https://github.com/frankxai/starlight-evals/pull/32",
+      "retrieved_at": "2026-11-02",
+      "head_sha": "664140fada3105379984f0edc77b36344e031e04",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "source_updated_at": "2026-10-30T14:42:54Z"
+    },
+    {
+      "source_id": "E318",
+      "title": "Related Jules proposal",
+      "publisher": "frankxai/gencreator.ai",
+      "source_type": "repository_pr",
+      "url": "https://github.com/frankxai/gencreator.ai/pull/318",
+      "retrieved_at": "2026-11-02",
+      "state": "closed",
+      "merged": false
+    },
+    {
+      "source_id": "E1_COMMIT",
+      "title": "Infrastructure isolation commit credit",
+      "publisher": "frankxai/starlightintelligence.ai",
+      "source_type": "repository_commit",
+      "url": "https://github.com/frankxai/starlightintelligence.ai/commit/4d4fce77635f6555d4152f68fca005f8fc3a85fe",
+      "retrieved_at": "2026-11-02"
+    },
+    {
+      "source_id": "S1",
+      "title": "ChatGPT Work",
+      "url": "https://learn.chatgpt.com/docs/get-started-with-work",
+      "publisher": "learn.chatgpt.com",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-11-02"
+    },
+    {
+      "source_id": "S2",
+      "title": "ChatGPT plugins",
+      "url": "https://learn.chatgpt.com/docs/plugins",
+      "publisher": "learn.chatgpt.com",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-11-02"
+    },
+    {
+      "source_id": "S4",
+      "title": "Gemini 4 Argon",
+      "url": "https://ai.google.dev/gemini-api/docs/models/gemini-4-argon",
+      "publisher": "ai.google.dev",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-11-02"
+    },
+    {
+      "source_id": "S5",
+      "title": "Antigravity artifacts",
+      "url": "https://antigravity.google/docs/artifacts",
+      "publisher": "antigravity.google",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-11-02"
+    },
+    {
+      "source_id": "S7",
+      "title": "OpenCode product FAQ",
+      "url": "https://opencode.ai/",
+      "publisher": "opencode.ai",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-11-02"
+    },
+    {
+      "source_id": "OWNER",
+      "title": "Owner's first-party workflow preferences",
+      "publisher": "Frank Riemer",
+      "source_type": "owner_statement",
+      "repository_path": "docs/content/founder-ai-stack-review-20261102.md#owner-brief",
+      "retrieved_at": "2026-11-02"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "C01",
+      "text": "Frank uses Work for coordination and prefers Claude/Opus for demanding engineering",
+      "type": "first_party",
+      "source_ids": [
+        "OWNER"
+      ],
+      "support": "direct",
+      "as_of": "2026-11-02",
+      "freshness": "Recheck at publication or source revision change",
+      "public_wording": "Frank uses Work for coordination and prefers Claude/Opus for demanding engineering",
+      "reviewer": "Self-review with source retrieval; independent review pending"
+    },
+    {
+      "claim_id": "C02",
+      "text": "Commit 4d4fce7 explicitly credits Claude Opus 5.5",
+      "type": "fact",
+      "source_ids": [
+        "E1_COMMIT"
+      ],
+      "support": "direct",
+      "as_of": "2026-11-02",
+      "freshness": "Recheck at publication or source revision change",
+      "public_wording": "Commit 4d4fce7 explicitly credits Claude Opus 5.5",
+      "reviewer": "Self-review with source retrieval; independent review pending"
+    },
+    {
+      "claim_id": "C03",
+      "text": "FrankX PR1146 is merged at this observation",
+      "type": "fact",
+      "source_ids": [
+        "E3"
+      ],
+      "support": "direct",
+      "as_of": "2026-11-02",
+      "freshness": "Recheck at publication or source revision change",
+      "public_wording": "FrankX PR1146 is merged at this observation",
+      "reviewer": "Self-review with source retrieval; independent review pending"
+    },
+    {
+      "claim_id": "C04",
+      "text": "Branch names alone do not establish model authorship",
+      "type": "opinion",
+      "source_ids": [],
+      "support": "contextual",
+      "as_of": "2026-11-02",
+      "freshness": "Recheck at publication or source revision change",
+      "public_wording": "Branch names alone do not establish model authorship",
+      "reviewer": "Self-review with source retrieval; independent review pending"
+    },
+    {
+      "claim_id": "C05",
+      "text": "Research PR7 reports a six-document pilot, not independently replayed here",
+      "type": "fact",
+      "source_ids": [
+        "E11"
+      ],
+      "support": "direct",
+      "as_of": "2026-11-02",
+      "freshness": "Recheck at publication or source revision change",
+      "public_wording": "Research PR7 reports a six-document pilot, not independently replayed here",
+      "reviewer": "Self-review with source retrieval; independent review pending"
+    },
+    {
+      "claim_id": "C06",
+      "text": "Jules PR312 is merged; PR315 and318 are closed unmerged",
+      "type": "fact",
+      "source_ids": [
+        "E6",
+        "E7",
+        "E318"
+      ],
+      "support": "direct",
+      "as_of": "2026-11-02",
+      "freshness": "Recheck at publication or source revision change",
+      "public_wording": "Jules PR312 is merged; PR315 and318 are closed unmerged",
+      "reviewer": "Self-review with source retrieval; independent review pending"
+    },
+    {
+      "claim_id": "C07",
+      "text": "Review and integration deserve reserved capacity based on these examples",
+      "type": "inference",
+      "source_ids": [
+        "E4",
+        "E13",
+        "E6",
+        "E7"
+      ],
+      "support": "contextual",
+      "as_of": "2026-11-02",
+      "freshness": "Recheck at publication or source revision change",
+      "public_wording": "Review and integration deserve reserved capacity based on these examples",
+      "reviewer": "Self-review with source retrieval; independent review pending"
+    },
+    {
+      "claim_id": "C08",
+      "text": "The harness arena records dry-run status rather than measured comparative results",
+      "type": "fact",
+      "source_ids": [
+        "E15"
+      ],
+      "support": "direct",
+      "as_of": "2026-11-02",
+      "freshness": "Recheck at publication or source revision change",
+      "public_wording": "The harness arena records dry-run status rather than measured comparative results",
+      "reviewer": "Self-review with source retrieval; independent review pending"
+    },
+    {
+      "claim_id": "C09",
+      "text": "OpenCode offers free software/free-model options and connecting providers may cost",
+      "type": "fact",
+      "source_ids": [
+        "S7"
+      ],
+      "support": "direct",
+      "as_of": "2026-11-02",
+      "freshness": "Recheck at publication or source revision change",
+      "public_wording": "OpenCode offers free software/free-model options and connecting providers may cost",
+      "reviewer": "Self-review with source retrieval; independent review pending"
+    },
+    {
+      "claim_id": "C10",
+      "text": "Work and plugin availability varies by surface and workspace",
+      "type": "fact",
+      "source_ids": [
+        "S1",
+        "S2"
+      ],
+      "support": "direct",
+      "as_of": "2026-11-02",
+      "freshness": "Recheck at publication or source revision change",
+      "public_wording": "Work and plugin availability varies by surface and workspace",
+      "reviewer": "Self-review with source retrieval; independent review pending"
+    }
+  ],
+  "article": {
+    "source_path": "content/blog/_drafts/founder-ai-stack-mobile-to-production.mdx",
+    "canonical_title": "My founder AI stack: from a mobile brief to a verified release",
+    "description": "First-party multi-application founder workflow with concrete repository evidence and calibrated attribution.",
+    "author_id": "frank-riemer",
+    "published_at": null,
+    "modified_at": "2026-11-02"
+  },
+  "visual_plan": {
+    "tier": "FLAGSHIP",
+    "reason": "Named-platform founder thesis; this work creates a text reading proof only. Full flagship art remains a separate pending release requirement.",
+    "status": "PLANNED",
+    "visual_packet_ref": "blocked",
+    "competitive_snapshot_at": "blocked",
+    "character_mode": "CREW_REQUIRED",
+    "character_exemption": null,
+    "canonical_character_refs": [],
+    "required_roles": [
+      "hero",
+      "architecture",
+      "comparison",
+      "workflow",
+      "og",
+      "mobile_native"
+    ]
+  },
+  "media": [],
+  "affiliates": [],
+  "distribution": [],
+  "reviews": [],
+  "publication": {
+    "branch": "agent/codex/founder-ai-stack-review-20261102",
+    "pull_request": "blocked",
+    "preview_url": "blocked",
+    "live_url": "blocked",
+    "verified_at": null,
+    "rollback": "Remove this isolated draft branch; no production source or alias is changed"
+  },
+  "measurement": {
+    "hypothesis": "Source-linked operating examples lead to qualified builder engagement",
+    "primary_metric": "Qualified follow-through after actual publication",
+    "guardrails": [
+      "No invented attribution",
+      "No multiplier or income claims"
+    ],
+    "snapshots": [],
+    "freshness_review_at": "Before publication",
+    "freshness_triggers": [
+      "PR status/head changes",
+      "Official product capability changes"
+    ]
+  },
+  "blocked": [
+    "Independent different-provider article review has not run",
+    "Final flagship media packet and rights/visual review pending",
+    "Full repository typecheck/lint/build unavailable in scratch; hosted preview build pending",
+    "Physical-device/browser-engine/performance checks pending",
+    "No production publication authorized by this preview task"
+  ],
+  "scope": {
+    "base_sha": "ffd466b45b38072d49cbf075673133a4166537be",
+    "preview_route": "/design-lab/founder-ai-stack",
+    "viewport_check_route": "/design-lab/founder-ai-stack/check",
+    "source_of_review": "Exact Library draft libfile_ac7f143b11288191976f7a02b6c0fe9b read this turn",
+    "original_verdict": "revise",
+    "revised_text_verdict": "accept_within_scoped_self_review"
+  }
+}

@@ -1,0 +1,156 @@
+---
+title: 'My founder AI stack: from a mobile brief to a verified release'
+description: 'How I combine ChatGPT Work, Claude, Gemini, Grok, and OpenCode, with repository examples, honest model attribution, and a method for judging useful output.'
+date: '2026-11-02'
+lastUpdated: '2026-11-02'
+author: Frank Riemer
+category: Founder field notes
+tags:
+  - AI workflows
+  - ChatGPT
+  - Claude
+  - Gemini
+  - Engineering
+published: false
+content_id: cnt_frankx_founder_ai_stack_20261102
+readingGoal: 'Assign each application a job, preserve model attribution, and compare the cost of accepted work.'
+schema:
+  - Article
+---
+
+I use ChatGPT Work to coordinate much of my everyday work, often from my phone. I can bring connected applications into a conversation, ask for a useful result, and come back to a document, a repository change, or a preview I can inspect.
+
+Claude remains my preferred environment for difficult engineering, with Opus central to that work. I also value Gemini Deep Research and Antigravity. Fable gets selected problems where I want to test whether the extra capability changes the result.
+
+For another founder, the useful question is how these applications work together. My repositories offer some concrete examples: a merged change that explicitly credits Opus, delegated maintenance that produced overlapping fixes, and substantial product candidates still waiting for release acceptance.
+
+Those examples have changed what I want from the stack. I want each handoff to preserve the source, the decision, and the evidence needed to judge the result.
+
+## Start work where the context is easiest to reach
+
+ChatGPT Work has become a useful coordination surface for me because the request can span applications. I can discuss a repository alongside a document or deployment, then ask for a result with a clear completion condition.
+
+OpenAI documents Work around files, plugins, and approved tools. Supported plugins operate across web, desktop, and mobile, with availability depending on the surface and workspace. Work that needs a connected computer still depends on that computer being available. [Work documentation](https://learn.chatgpt.com/docs/get-started-with-work) and [plugin documentation](https://learn.chatgpt.com/docs/plugins) describe those boundaries.
+
+The phone changes where I can make decisions. The engineering still runs in an environment with the files, permissions, and tools it needs.
+
+That distinction matters in our own Starlight mobile work. The [mission workspace candidate](https://github.com/frankxai/starlightintelligence.ai/pull/249) adds portable briefs, working copies, and a focused way to inspect missions and files. Its record includes browser checks and a preview, while leaving physical-device installation and live provider acceptance unfinished. The useful product direction is a small screen that exposes the right decision at the right moment.
+
+## Give each application a job
+
+This is the division I recommend for my current workflow. The engineering preferences are personal judgments; the repository examples below are narrower evidence.
+
+| Application | Work I would assign |
+| --- | --- |
+| ChatGPT Work | Coordination across connected applications, briefs, synthesis, and reviewable documents |
+| Codex | Repository investigation, implementation, integration, and technical verification |
+| Claude Code with Opus | Demanding engineering and sustained architectural work |
+| Claude with Fable | Selected difficult investigations with an explicit reason to escalate |
+| Gemini Deep Research | Broad investigation that produces a dated, source-linked research packet |
+| Antigravity | Project work organized around plans, code changes, and walkthroughs |
+| Grok | A separate perspective for critique, review, and source-based investigation |
+| OpenCode | Coding through supported hosted or local models, including available free options |
+| GitHub and Vercel | Versioned changes, review history, and deployment evidence |
+
+Antigravity is an agent environment. Gemini 4 Argon is a model. Keeping those choices separate makes the comparison more useful: I can judge the model's contribution and the environment's ability to expose the work. Google's [Argon documentation](https://ai.google.dev/gemini-api/docs/models/gemini-4-argon) and [Antigravity artifact documentation](https://antigravity.google/docs/artifacts) describe different parts of that stack.
+
+My preference for ChatGPT in everyday coordination also says little about the engineering ceiling of Codex. A product family can support several responsibilities through different interfaces.
+
+## What one Opus credit establishes
+
+The clearest model-specific example in the inspected work is a Starlight infrastructure change. The [merged commit](https://github.com/frankxai/starlightintelligence.ai/commit/4d4fce77635f6555d4152f68fca005f8fc3a85fe) explicitly credits **Claude Opus 5.5**. The change separates the agent plane's database and configuration resources from stores used by an existing worker.
+
+That is useful evidence because the contribution is concrete and the source is inspectable. The trailer is a declared credit. It does not establish the model served for every inference, the authorship of every line, or the deployment of every related worker.
+
+A [FrankX checkout-gating change](https://github.com/frankxai/frankx.ai-vercel-website/pull/1146) illustrates another level of attribution. The PR identifies Claude Code and records its regression check. Its merge is now confirmed. The inspected PR alone does not identify the exact model behind every edit.
+
+For Nexus, the mobile workspace, and the context-packet work, I can inspect implementation records and release boundaries. A Codex-named branch by itself does not establish authorship. I would need a contribution record or session evidence before assigning a specific model to those changes.
+
+The article you are reading therefore makes no model win-rate claim. The available evidence is better suited to explaining decisions and failure modes.
+
+## Keep tool attribution separate from model attribution
+
+A GitHub account can contain work from several tools. A coding application can select several models. A reviewer can use a different provider from the implementer.
+
+I want our records to preserve those distinctions:
+
+| Record | What it supports |
+| --- | --- |
+| A tool footer or session reference | A declaration that the tool contributed |
+| A model-specific commit trailer | An explicit credit to that model |
+| A requested-model launch field | The model the caller asked for |
+| Served-model metadata | The model the runtime reports for that call |
+| A branch name or writing style | A lead to investigate |
+
+Our [review-routing proposal](https://github.com/frankxai/agentic-ops/pull/157) already separates the requested model from an unproven served model. At the review snapshot it remained open.
+
+The next useful extension is a contribution receipt attached to the existing mission and PR. It should bind the source revision, contribution role, tool, declared provider, requested model, and observed served model when available. Verification and deployment records should point to the same revision.
+
+Unknown fields should remain empty. Filling them from a branch name would make the records easier to read and harder to trust.
+
+## Research needs a destination
+
+Gemini Deep Research gives research its own place in my workflow. I want the output to reach the person or coding environment that can use it.
+
+A useful research handoff includes the question, dated original sources, material observations, competing interpretations, and the decision under consideration. Generated synthesis needs to remain distinguishable from the evidence it summarizes.
+
+The [research-corpus draft](https://github.com/frankxai/research-intelligence-os/pull/7) reports a small pilot over six indexed documents and connections for coding environments. I have not independently replayed that pilot for this article. It also records unfinished bulk export and integration work, so it cannot support a claim that the whole knowledge estate is connected.
+
+A separate [roadmap bridge](https://github.com/frankxai/agentic-ops/pull/418) prepares source-linked planning material for Gemini feedback. Its record leaves a fresh end-to-end Gemini round trip untested.
+
+These are useful pieces to connect. The next test is one complete passage from research to an accepted decision, a bounded implementation, and an observed result. A collection of generated reports would not answer whether that passage works.
+
+## Parallel work needs someone to close it
+
+Delegated maintenance shows both the benefit and the cost of producing work in parallel.
+
+[GenCreator PR 312](https://github.com/frankxai/gencreator.ai/pull/312) identifies a Jules task and is merged. Related proposals [315](https://github.com/frankxai/gencreator.ai/pull/315) and [318](https://github.com/frankxai/gencreator.ai/pull/318) are closed without merging. The history makes the overlapping work visible.
+
+Meanwhile, the [Nexus integration](https://github.com/frankxai/starlightintelligence.ai/pull/243) and [GenCreator Studio candidate](https://github.com/frankxai/gencreator.ai/pull/305) record substantial implementation and verification while retaining release holds. Their checks are evidence about defined tests. They do not establish customer acceptance.
+
+My inference from these examples is that review and integration deserve capacity of their own. I have not measured a portfolio-wide throughput bottleneck.
+
+For the next bounded change, I would name one owner and reserve a reviewer before starting another overlapping implementation. Competing approaches can still be useful, provided they are deliberate experiments with a common acceptance condition.
+
+The [configuration review discussion](https://github.com/Starlight-Intelligence/starlight-agent-config/pull/142#issuecomment-6406701115) records Grok initially blocking a change, followed by revisions and passing reviews. A separate structured Codex review also appears in that discussion. These are repository-recorded reviews; the private Grok execution was not independently replayed here.
+
+That is the kind of challenge I want: a finding that changes the work. A second provider can add perspective, but it can share the first provider's mistaken premise. The reviewer needs complete context and a way to make the criticism testable.
+
+## Count the whole cost of a useful result
+
+OpenCode is free software and offers free-model options. Its [official FAQ](https://opencode.ai/) also explains that connecting other providers can introduce costs.
+
+I would account separately for subscription capacity, included credits where applicable, metered inference, hosting, CI, and the time spent reviewing and repairing output. Each subscription needs to justify the work assigned to it.
+
+For a defined period and a comparable class of work, my proposed measure is:
+
+```text
+Cost per accepted outcome =
+  (allocated subscription cost
+   + metered inference cost
+   + execution infrastructure cost
+   + review and rework hours × chosen hourly value)
+  ÷ accepted outcome count
+```
+
+Use one currency throughout. State the allocation method and the hourly value. When no outcomes were accepted, the ratio is undefined. Report the costs and the zero count separately.
+
+I would compare deployed repairs with deployed repairs, or accepted research decisions with accepted research decisions. Combining unrelated outputs into one denominator would hide which part of the stack earns its cost.
+
+The [Claude Code, Codex, and OpenCode arena](https://github.com/frankxai/starlight-evals/pull/32) is still a staged experiment according to its record. It reports dry-run status and unresolved execution dependencies. There is no comparative performance result to publish from it yet.
+
+A credible next run should keep the task, starting revision, context, acceptance conditions, and budget steady. It should record reviewer effort and failed attempts alongside the successful output.
+
+## Make the next handoff easier to inspect
+
+What interests me about this stack is the range of work a small team can attempt. Research can inform engineering. Engineering can give creators a better workspace. The resulting artifacts can become examples another builder can learn from.
+
+Our next improvement should demonstrate that connection on one task. I would keep the source, the decision, the implementation, and the acceptance result together, then show where human judgment changed the outcome.
+
+You can test the same idea on your next change. Write its acceptance condition before choosing a model. Give the implementer and reviewer the same source revision. Record what the reviewer rejected, the time spent repairing it, and what finally reached the user.
+
+That record will tell you more about your AI stack than how much of each subscription you managed to consume.
+
+---
+
+*Reporting snapshot: 2 November 2026. The initial reporting pass sampled 213 recent PR records across 53 repositories and ten connected account scopes. Selected PRs, commits, discussions, and deployment records received deeper inspection. PR-reported tests were not rerun for this article; no measured productivity multiplier, model win rate, subscription spend, or customer outcome is claimed.*
