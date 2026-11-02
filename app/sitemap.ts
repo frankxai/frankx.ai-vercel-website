@@ -44,6 +44,7 @@ function getBlogEntries(): { slug: string; date: string }[] {
         try {
           const content = fs.readFileSync(path.join(blogDir, file), 'utf8')
           const { data } = matter(content)
+          if (data.draft === true || data.noindex === true) return null
           return { slug, date: data.lastUpdated || data.date || '' }
         } catch {
           return { slug, date: '' }
@@ -55,16 +56,23 @@ function getBlogEntries(): { slug: string; date: string }[] {
   }
 }
 
-// Get all guide slugs from content/guides directory
+// Get all guide slugs from content/guides directory (published & indexable only)
 function getGuideSlugs(): string[] {
   const guidesDir = path.join(process.cwd(), 'content/guides')
   try {
     const files = fs.readdirSync(guidesDir)
-    const slugs = new Set(
-      files
-        .filter(file => file.endsWith('.mdx'))
-        .map(file => getSlugFromFilename(file))
-    )
+    const slugs = new Set<string>()
+    for (const file of files) {
+      if (!file.endsWith('.mdx')) continue
+      try {
+        const content = fs.readFileSync(path.join(guidesDir, file), 'utf8')
+        const { data } = matter(content)
+        if (data.draft === true || data.noindex === true) continue
+      } catch {
+        // Keep slug if frontmatter read fails unexpectedly
+      }
+      slugs.add(getSlugFromFilename(file))
+    }
     return Array.from(slugs)
   } catch {
     return []
