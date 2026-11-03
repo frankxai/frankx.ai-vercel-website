@@ -2052,7 +2052,7 @@
     "faq": [
       {
         "question": "Which coding harnesses are supported?",
-        "answer": "Works with Claude Code, Codex CLI, Gemini CLI / Antigravity, OpenCode, and Cursor via standard git worktrees."
+        "answer": "Works with Claude Code, Codex CLI, Gemini CLI and Antigravity, OpenCode, and Cursor via standard git worktrees."
       },
       {
         "question": "Does it require a proprietary cloud orchestrator?",

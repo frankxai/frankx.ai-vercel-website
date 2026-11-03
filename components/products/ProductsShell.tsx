@@ -188,14 +188,6 @@ const products = [
 ]
 
 const colorMap = {
-  violet: {
-    bg: 'bg-white/[0.03]',
-    border: 'border-white/[0.08] hover:border-violet-500/30',
-    icon: 'bg-violet-500/10 text-violet-400',
-    accent: 'text-violet-400',
-    button: 'bg-violet-600 hover:bg-violet-500',
-    glow: 'group-hover:shadow-lg group-hover:shadow-violet-500/10',
-  },
   emerald: {
     bg: 'bg-white/[0.03]',
     border: 'border-white/[0.08] hover:border-emerald-500/30',
@@ -502,10 +494,10 @@ export default function ProductsShell() {
               ].map((badge, i) => (
                 <motion.div
                   key={badge.label}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ duration: shouldReduceMotion ? 0 : 0.2, delay: shouldReduceMotion ? 0 : i * 0.1 }}
                   className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10"
                 >
                   <badge.icon className={`w-4 h-4 ${badge.color}`} />
@@ -520,12 +512,13 @@ export default function ProductsShell() {
         <section className="py-16 border-t border-white/5">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.25 }}
               className="text-center mb-12"
             >
-              <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-2">
+              <p className="font-mono text-xs font-medium tracking-[0.08em] text-emerald-400/80 mb-2">
                 What you get
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
@@ -562,10 +555,10 @@ export default function ProductsShell() {
                 return (
                   <motion.div
                     key={item.title}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
+                    transition={{ duration: shouldReduceMotion ? 0 : 0.25, delay: shouldReduceMotion ? 0 : i * 0.1 }}
                     className="p-6 rounded-3xl"
                   >
                     <div className={`w-12 h-12 rounded-xl ${colorClasses[item.color]} flex items-center justify-center mb-4`}>
@@ -584,9 +577,10 @@ export default function ProductsShell() {
         <section className="py-16 border-t border-white/5">
           <div className="mx-auto max-w-4xl px-6">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.25 }}
               className="text-center mb-12"
             >
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white">
@@ -598,10 +592,10 @@ export default function ProductsShell() {
               {productsFaq.map((faq, i) => (
                 <motion.div
                   key={faq.q}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
+                  transition={{ duration: shouldReduceMotion ? 0 : 0.2, delay: shouldReduceMotion ? 0 : i * 0.05 }}
                   className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm"
                 >
                   <h3 className="text-base font-semibold text-white mb-2">{faq.q}</h3>
@@ -616,10 +610,10 @@ export default function ProductsShell() {
         <section className="py-16 pb-24">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.35 }}
               className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-10 backdrop-blur-xl"
             >
               {/* Decorative gradient */}

@@ -97,8 +97,8 @@ const BESPOKE_OVERRIDES: Record<
         kind: 'pdf',
         sizeLabel: '1.4 MB',
         summary: 'Core session architecture covering genre tags, arrangement cues, and lyric pacing.',
-        excerpt: `CHAPTER 01 · PROMPT ARCHITECTURE
-[Genre anchor] + [Instrumentation] + [Tempo / groove] + [Vocal texture]
+        excerpt: `Chapter 01 · Prompt Architecture
+[Genre anchor] + [Instrumentation] + [Tempo and groove] + [Vocal texture]
 
 1. Anchor one primary sonic era before adding secondary flourishes.
 2. Separate verse restraint from chorus lift using explicit section headers.
@@ -232,11 +232,11 @@ const BESPOKE_OVERRIDES: Record<
         kind: 'sql',
         sizeLabel: '5 KB',
         summary: 'Local SQLite tables for offer gates, webhook receipts, and weekly margin snapshots.',
-        excerpt: `CREATE TABLE IF NOT EXISTS offer_gates (
-  slug TEXT PRIMARY KEY,
-  gate_stage TEXT NOT NULL CHECK (gate_stage IN ('G1','G2','G3','G4','G5')),
-  checksum_verified INTEGER NOT NULL DEFAULT 0,
-  updated_at TEXT NOT NULL
+        excerpt: `create table if not exists offer_gates (
+  slug text primary key,
+  gate_stage text not null check (gate_stage in ('G1','G2','G3','G4','G5')),
+  checksum_verified integer not null default 0,
+  updated_at text not null
 );`,
       },
       {
