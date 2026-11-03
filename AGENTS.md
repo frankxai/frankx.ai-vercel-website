@@ -298,3 +298,20 @@ At handoff distinguish policy proposed, merged, loaded in this agent session and
 <!-- PRODUCT-OUTCOME-CONTRACT:END -->
 
 Current quality implementation: https://github.com/frankxai/frankx.ai-vercel-website/issues/706. Reconcile historical instructions against accepted current decisions before changing product scope.
+
+## Founder journal
+
+`/journal` is the dated first-person Markdown stream; `/blog` is researched
+editorial. Follow `docs/founder-journal.md` and the reusable
+`.claude/commands/founder-journal.md` capture instructions. Never put original
+voice/text notes, private references or review reasons in this public repository,
+PRs, logs or analytics. Export only reviewed public-safe prose with
+`published: false`; a draft PR is still readable on GitHub. `--private` in the
+old scaffold is retired. Capture retries must preserve identity and original
+bytes. No CMS, hero image, research quota or recurring inference is required.
+
+Never infer permission to publish from a capture request, editorial clearance,
+passing tests, preview or this contract. Frank must explicitly approve the
+exact publication revision and merge. Never self-post his approval or enable
+auto-merge. Run `pnpm journal:check` and `pnpm test:journal`; verify deployed
+index, detail, RSS, sitemap and canonical against the accepted Vercel source SHA.

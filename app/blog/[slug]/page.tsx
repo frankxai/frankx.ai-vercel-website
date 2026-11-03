@@ -6,6 +6,7 @@ import { Calendar, Clock, FileText, Tag } from 'lucide-react'
 import { MDXContent } from '@/components/blog/MDXContent'
 import TableOfContents from '@/components/blog/TableOfContents'
 import RelatedResearch from '@/components/blog/RelatedResearch'
+import { RelatedJournalNotes } from '@/components/journal/RelatedJournalNotes'
 import BlogFooterCTA from '@/components/blog/BlogFooterCTA'
 import Recommendations from '@/components/recommendations/Recommendations'
 import { InlineLeadMagnet } from '@/components/conversion/InlineLeadMagnet'
@@ -338,6 +339,7 @@ export default async function BlogPostPage({
               )}
 
               <RelatedResearch blogSlug={slug} />
+              <RelatedJournalNotes articleSlug={slug} />
               <RelatedQualities href={`/blog/${post.slug}`} />
 
               {/* Axi article footer accent */}

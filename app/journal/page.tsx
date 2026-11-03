@@ -14,13 +14,13 @@ import {
 
 const SITE_URL = siteConfig.url
 
-// Revalidate hourly so a newly committed entry appears without a redeploy.
+// Files change through a deployment. ISR does not sync a Git repository.
 export const revalidate = 3600
 
 export const metadata: Metadata = createMetadata({
-  title: 'Journal — Daily Notes from the Build',
+  title: 'Founder journal',
   description:
-    'Short, dated notes from Frank Riemer: what got built, what broke, what changed. The unedited counterpart to the long-form articles on the blog.',
+    'First-person notes from Frank Riemer on building with AI, creative practice and the human side of being a founder.',
   keywords: [
     'frankx journal',
     'daily notes',
@@ -30,6 +30,11 @@ export const metadata: Metadata = createMetadata({
   ],
   path: '/journal',
 })
+metadata.alternates = {
+  ...metadata.alternates,
+  types: { 'application/rss+xml': `${SITE_URL}/journal/feed.xml` },
+}
+metadata.authors = [{ name: 'Frank Riemer', url: `${SITE_URL}/about` }]
 
 const KIND_ICON: Record<JournalKind, typeof PenLine> = {
   daily: PenLine,
@@ -75,7 +80,7 @@ export default function JournalPage() {
         : `${formatJournalDate(oldest, 'short')} — ${formatJournalDate(newest, 'short')}`
 
   return (
-    <main className="min-h-screen bg-void text-white">
+    <main id="main" className="min-h-screen bg-void text-white">
       <JournalJsonLd entryCount={entries.length} />
 
       <section className="border-b border-white/10">
@@ -97,12 +102,12 @@ export default function JournalPage() {
           </div>
 
           <h1 className="mt-7 text-balance text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl">
-            Daily notes, in public.
+            Notes from a founder.
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/60">
-            Short entries written as the work happens: what got built, what broke, what
-            changed my mind. No hero images, no editing pass, no conclusion required.
+            What I am building, what I am learning, and what life around the work
+            feels like. Short, first-person notes, lightly edited before I share them.
           </p>
 
           {/* Dateline: what a journal opens with — how much there is and how far back. */}

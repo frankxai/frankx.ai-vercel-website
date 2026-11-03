@@ -3,6 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import readingTime from 'reading-time'
 import { cache } from 'react'
+import { isPublicJournalData, journalHubs, journalArticleSlugs, type JournalHub } from './journal-policy.ts'
 
 /**
  * The public journal at /journal — short, dated entries.
@@ -10,27 +11,26 @@ import { cache } from 'react'
  * This is deliberately NOT the blog. /blog holds researched articles with
  * heroes, FAQ schema, and SEO intent; the journal holds daily notes and short
  * observations that are worth publishing but not worth producing. Reads
- * markdown from content/journal/ so a committed file is a published entry —
- * no code change. Mirrors the gray-matter pattern in lib/blog.ts and lib/mvu.ts
+ * markdown from content/journal/. Explicit publication is required.
+ * Mirrors the gray-matter pattern in lib/blog.ts and lib/mvu.ts
  * rather than inventing a third content system.
  *
- * Frontmatter contract (all optional except title + date):
+ * Frontmatter contract (title/date plus explicit publication/visibility required to publish):
  *   title:      string
  *   date:       YYYY-MM-DD
  *   kind:       'daily' | 'note' | 'log'      (default 'daily')
  *   summary:    one-line teaser for the index
  *   tags:       string[]
- *   visibility: 'public' | 'private'          (default 'public')
- *   published:  boolean                       (default true)
+ *   visibility: 'public' | 'private'          (default 'private', fail closed)
+ *   published:  boolean                       (default false)
+ *   topicHubs:  keys from JOURNAL_HUBS
+ *   relatedArticles: canonical blog slugs
  *
  * Files whose name starts with `_` are skipped (that is where _TEMPLATE.md
  * lives), as are entries that are unpublished or private.
  *
- * `visibility: private` is the whole private-journal mechanism: the entry stays
- * in the repo and in Frank's editor, and is excluded from every public surface
- * — the index, its own URL, the sitemap, and the RSS feed. It is not access
- * control. A private entry committed to a public repo is still readable on
- * GitHub; it just is not published to frankx.ai.
+ * Never store private notes here: this repository is public. The capture CLI
+ * preserves originals outside Git and only exports reviewed, public-safe drafts.
  */
 
 const journalDirectory = path.join(process.cwd(), 'content/journal')
@@ -72,6 +72,8 @@ export interface JournalEntry {
   tags: string[]
   visibility: JournalVisibility
   published: boolean
+  topicHubs: JournalHub[]
+  relatedArticles: string[]
   readingTime: string
   /** Plain-text opening of the entry, so the index can be read without clicking. */
   excerpt: string
@@ -150,8 +152,10 @@ function buildEntry(slug: string, data: Record<string, unknown>, content: string
     kind: JOURNAL_KINDS.includes(kind) ? kind : 'daily',
     summary: String(data.summary ?? ''),
     tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
-    visibility: data.visibility === 'private' ? 'private' : 'public',
-    published: data.published !== false,
+    visibility: data.visibility === 'public' ? 'public' : 'private',
+    published: data.published === true,
+    topicHubs: journalHubs(data.topicHubs),
+    relatedArticles: journalArticleSlugs(data.relatedArticles),
     readingTime: readingTime(content).text,
     excerpt: buildExcerpt(content),
     content,
@@ -192,7 +196,7 @@ function readAll(): JournalEntry[] {
 }
 
 function isPublic(entry: JournalEntry): boolean {
-  return entry.published && entry.visibility === 'public'
+  return isPublicJournalData({ ...entry })
 }
 
 /** Public entries only — what the live site shows. Newest first. */

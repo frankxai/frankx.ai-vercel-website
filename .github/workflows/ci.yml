@@ -114,6 +114,15 @@ jobs:
       - name: Language refusal gate
         run: pnpm run ai-slop:audit:strict
 
+      - name: Founder journal safety and capture tests
+        run: pnpm run journal:check && pnpm run test:journal
+
+      - name: Founder journal publication approval
+        run: node scripts/check-journal-approval.mjs
+        env:
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+          GH_READ_TOKEN: ${{ github.token }}
+
       - name: Sacred-texts corpus
         run: pnpm run validate:sacred-texts
 

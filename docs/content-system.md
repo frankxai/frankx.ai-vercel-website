@@ -45,3 +45,10 @@ The components are server-compatible and safe to import from server or client pa
 3. Do not expose direct paid checkout links until delivery, pricing, refund policy, and checkout identifiers are verified.
 4. Keep copy grounded. Avoid fake metrics, private Oracle implications, and generic AI marketing language.
 5. If a new route is added, update `lib/route-enumeration.mjs` and `data/site-links.json`.
+
+## Founder journal
+
+`/journal` reads `content/journal/*.md` through `lib/journal.ts`. Keep personal
+notes separate from researched blog articles. Follow [the capture and publication
+contract](founder-journal.md); originals stay private, exported Markdown starts
+unpublished, and publication requires Frank's explicit approval.
