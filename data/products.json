@@ -1453,9 +1453,9 @@
     "pillar": "creator",
     "name": "The Golden Age of Creators",
     "headline": "Turn Creative Judgment and AI Agents into Durable Works",
-    "subheadline": "Nine chapters on solo studio leverage, taste calibration, and weekly publishing cadence.",
-    "promise": "Read the full book in your browser or download the typeset PDF directly with zero email gate.",
-    "summary": "A practical treatise on solo studio leverage, editorial taste gates, and compounding output alongside coding and media agents.",
+    "subheadline": "Three published web chapters on creative calling, agent orchestration, and first gestures, paired with the registered PDF edition.",
+    "promise": "Read the three published chapters in your browser at /books/golden-age or download the registered PDF directly with zero email gate.",
+    "summary": "A treatise on solo studio leverage, editorial taste gates, and compounding output alongside coding and media agents, with three chapters published online and a direct PDF download.",
     "transformation": [
       "Structure a solo studio rhythm around taste review, research depth, and weekly shipping",
       "Separate human creative direction from repeatable agent drafting and verification tasks",
@@ -1463,22 +1463,22 @@
     ],
     "modules": [
       {
-        "title": "Part I · Studio Leverage & Taste",
-        "description": "Why personal judgment becomes the scarce bottleneck when generation cost drops toward zero."
+        "title": "Chapter 1 · When Creation Calls",
+        "description": "18-minute web chapter examining creative direction and the question beneath durable studio work."
       },
       {
-        "title": "Part II · The Creator Operating Rhythm",
-        "description": "Daily capture, synthesis vaults, and editorial gates that keep output sharp across mediums."
+        "title": "Chapter 2 · The Orchestration Age",
+        "description": "14-minute web chapter on moving from isolated prompts to conducting specialized AI agents."
       },
       {
-        "title": "Part III · Compounding Digital Works",
-        "description": "Packaging essays, music, templates, and code into a coherent body of work."
+        "title": "Chapter 3 · The First Gesture",
+        "description": "15-minute web chapter on turning initial intent into a concrete, published work."
       }
     ],
     "faq": [
       {
         "question": "Do I need to enter my email to read or download the PDF?",
-        "answer": "No. Both the web reader at /books/golden-age and the direct PDF download open without an email form."
+        "answer": "No. Both the three-chapter web reader at /books/golden-age and the registered PDF download open without an email form."
       },
       {
         "question": "Who is this book written for?",

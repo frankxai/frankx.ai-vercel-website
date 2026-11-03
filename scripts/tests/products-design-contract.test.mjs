@@ -108,4 +108,25 @@ test('ProductFileInspector and ProductsShell enforce accessible hit targets, tab
 
   const shell = fs.readFileSync(path.join(root, 'components/products/ProductsShell.tsx'), 'utf8')
   assert.equal(shell.includes("tagline: ''"), false, 'ProductsShell Vibe OS tagline must not be empty')
+
+  const vibeOsPage = fs.readFileSync(path.join(root, 'app/products/vibe-os/page.tsx'), 'utf8')
+  assert.match(vibeOsPage, /ProductFileInspector/, 'vibe-os static route must mount ProductFileInspector')
+
+  const manifests = fs.readFileSync(path.join(root, 'lib/products/preview-manifests.ts'), 'utf8')
+  assert.match(manifests, /verified-delivery/)
+  assert.match(manifests, /planned-outline/)
+  assert.equal(
+    manifests.includes('reading-companion.md'),
+    false,
+    'preview-manifests must not fabricate reading-companion.md files',
+  )
+
+  const products = JSON.parse(fs.readFileSync(path.join(root, 'data/products.json'), 'utf8'))
+  const goldenAge = products.find((p) => p.slug === 'golden-age')
+  assert.equal(
+    goldenAge.subheadline.includes('Nine chapters'),
+    false,
+    'golden-age must match the three published chapters in booksRegistry',
+  )
+  assert.equal(goldenAge.modules.length, 3, 'golden-age must list its 3 published reader chapters')
 })

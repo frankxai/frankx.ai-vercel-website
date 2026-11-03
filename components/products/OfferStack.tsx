@@ -97,7 +97,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">Join the launch list</h3>
                 <p className="text-sm text-white/60 mb-6">
-                  Inspect the package manifest below and request a release note when this kit opens.
+                  Review the planned module outline below and join the launch list for release updates.
                 </p>
                 <Link
                   href={waitlistHref}

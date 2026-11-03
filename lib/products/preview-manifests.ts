@@ -1,10 +1,12 @@
 import rawProducts from '@/data/products.json'
+import { booksRegistry } from '@/app/books/lib/books-registry'
 
 export type ProductLane = 'systems' | 'creative' | 'wealth' | 'books'
+export type PreviewEvidenceKind = 'verified-delivery' | 'planned-outline'
 
 export interface InspectableFileEntry {
   path: string
-  kind: 'markdown' | 'json' | 'sql' | 'typescript' | 'pdf'
+  kind: 'markdown' | 'pdf' | 'route' | 'outline'
   sizeLabel: string
   summary: string
   excerpt: string
@@ -15,6 +17,7 @@ export interface ProductPreviewManifest {
   slug: string
   name: string
   lane: ProductLane
+  evidenceKind: PreviewEvidenceKind
   plateSvg: string
   archiveName: string
   deliveryStatusLabel: string
@@ -23,17 +26,25 @@ export interface ProductPreviewManifest {
   files: InspectableFileEntry[]
 }
 
-const LIVE_DIRECT_SLUGS = new Set([
-  'vibe-os',
-  'soulbook',
+const VERIFIED_BOOK_SLUGS = new Set([
   'love-and-poetry',
   'spartan-mindset',
   'self-development',
   'imagination',
   'manifestation',
   'golden-age',
-  'reality-architect-os',
 ])
+
+const LIVE_DIRECT_SLUGS = new Set([
+  'vibe-os',
+  'soulbook',
+  'reality-architect-os',
+  ...VERIFIED_BOOK_SLUGS,
+])
+
+function normalizePunctuation(text: string): string {
+  return text.replace(/\s*\u2014\s*/g, ' - ')
+}
 
 function classifyLane(id: string, category: string): ProductLane {
   const key = id.toLowerCase()
@@ -67,78 +78,31 @@ function classifyLane(id: string, category: string): ProductLane {
   return 'systems'
 }
 
-function slugifySegment(title: string, idx: number): string {
-  const clean = title
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .slice(0, 32)
-  const prefix = String(idx + 1).padStart(2, '0')
-  return `${prefix}-${clean || 'module'}`
-}
-
-const BESPOKE_OVERRIDES: Record<
+const BESPOKE_BOUNDARIES: Record<
   string,
-  Partial<Pick<ProductPreviewManifest, 'archiveName' | 'buyIf' | 'skipIf' | 'files'>>
+  Pick<ProductPreviewManifest, 'buyIf' | 'skipIf'>
 > = {
   'vibe-os': {
-    archiveName: 'vibe-os-guide-pack/',
     buyIf: [
       'You want a practical system for tracking creative energy cycles and matching deep work to focus windows.',
-      'You want an inspectable public guide and daily check-in schedule you can open right away at zero cost.',
+      'You want an inspectable public web guide you can read right away at zero cost.',
     ],
     skipIf: [
-      'You are looking for a hosted SaaS project manager with team billing seats today (the web app is in development).',
+      'You are looking for a hosted SaaS dashboard with team billing seats today (the web app is still in development).',
       'You want an automated calendar bot rather than a personal focus-window workflow.',
-    ],
-    files: [
-      {
-        path: 'docs/daily-checkin-guide.md',
-        kind: 'markdown',
-        sizeLabel: '8 KB',
-        summary: 'Public guide covering daily energy check-ins, focus-window mapping, and recovery boundaries.',
-        excerpt: `# Daily Creative State Check-In
-1. Score current cognitive clarity, physical energy, and creative momentum (1-5).
-2. Route high-clarity windows to architecture or writing; route low-energy blocks to maintenance.
-3. Close the block with one written next-action line so tomorrow starts without friction.`,
-      },
-      {
-        path: 'workflows/focus-cycle-schedule.md',
-        kind: 'markdown',
-        sizeLabel: '6 KB',
-        summary: 'Four-module rhythm aligning deep build blocks, review passes, and rest.',
-        excerpt: `# Focus Cycle Pass
-- [ ] Block 1 (90 min): Single-artifact creation with notifications muted
-- [ ] Block 2 (30 min): Verification pass and state log update
-- [ ] Recovery window: Step away before context switching to admin tasks`,
-      },
-      {
-        path: 'templates/state-log.json',
-        kind: 'json',
-        sizeLabel: '4 KB',
-        summary: 'Structured log template for tracking focus windows and weekly creative output.',
-        excerpt: `{
-  "date": "2026-11-03",
-  "energyState": "high-focus",
-  "primaryWindow": "08:30-10:30",
-  "shippedArtifact": "products-design-contract"
-}`,
-      },
     ],
   },
   'creators-soulbook': {
-    archiveName: 'creators-soulbook-vault/',
     buyIf: [
-      'You want a structured weekly reflection framework across energy, craft, relationships, and direction.',
-      'You use Markdown or Obsidian and prefer plain-text templates you own locally.',
+      'You want a structured reflection framework across energy, mind, soul, craft, capital, circle, and legacy.',
+      'You prefer a browser-local vault and printable framework pages with zero account wall.',
     ],
     skipIf: [
-      'You want a hosted SaaS habit tracker with mobile push notifications.',
+      'You want a cloud-synced mobile habit tracker with push notifications.',
       'You only need code or API automation scripts with zero personal planning.',
     ],
   },
   'agentic-creator-os': {
-    archiveName: 'agentic-creator-os/',
     buyIf: [
       'You work inside Claude Code, Codex, or Cursor and want structured skills, memory files, and review gates.',
       'You want clear separation between agent drafting and human editorial or deployment decisions.',
@@ -149,213 +113,264 @@ const BESPOKE_OVERRIDES: Record<
     ],
   },
   'visual-creation-loop': {
-    archiveName: 'visual-creation-loop-v1/',
     buyIf: [
       'You ship dark-mode product pages, essays, or social visuals and want consistent palette and composition rules.',
-      'You want deterministic SVG schematic scripts alongside structured image-generation prompts.',
+      'You want deterministic SVG schematic patterns alongside structured visual review criteria.',
     ],
     skipIf: [
       'You need character rigging or 3D game asset pipelines in Blender or Unreal.',
       'You prefer generic stock photo packs over reference-locked brand systems.',
     ],
-    files: [
-      {
-        path: 'tokens/brand-visual-lock.json',
-        kind: 'json',
-        sizeLabel: '8 KB',
-        summary: 'Reference-locked hex tokens, lighting rules, and negative prompt constraints.',
-        excerpt: `{
-  "canvas": "#0A0A0B",
-  "elevated": "#111318",
-  "hairline": "rgba(255, 255, 255, 0.08)",
-  "primaryAccent": "#38BDF8",
-  "negativeConstraints": [
-    "floating neon brains",
-    "unreadable raster text labels",
-    "oversaturated magenta-cyan fog"
-  ]
-}`,
-      },
-      {
-        path: 'scripts/generate-schematic-plate.mjs',
-        kind: 'typescript',
-        sizeLabel: '11 KB',
-        summary: 'Deterministic 640x360 vector plate builder for product cards and architecture callouts.',
-        excerpt: `export function buildPlateHeader({ lane, title, sku }) {
-  return [
-    \`<svg viewBox="0 0 640 360" width="640" height="360" role="img">\`,
-    \`  <text x="36" y="42">\${lane}</text>\`,
-    \`  <text x="36" y="68">\${title}</text>\`,
-    \`  <text x="36" y="324">SKU // \${sku}</text>\`,
-    \`</svg>\`
-  ].join('\\n')
-}`,
-      },
-      {
-        path: 'rubrics/visual-critic-30pt.md',
-        kind: 'markdown',
-        sizeLabel: '7 KB',
-        summary: 'Six-criterion scoring gate run before any hero image or diagram ships.',
-        excerpt: `# 30-Point Visual QA Gate (Release floor: 26/30)
-1. Reference fidelity (0-5): Matches locked palette and surface material
-2. Hierarchy & focal point (0-5): Clear primary subject at thumbnail scale
-3. Typography & overlay sharpness (0-5): Crisp vector or HTML labels only`,
-      },
-    ],
   },
   'agent-fleet-pro': {
-    archiveName: 'agent-fleet-pro-v1/',
     buyIf: [
       'You run multiple coding agents across a codebase and want git worktree isolation plus file-path leases.',
       'You want an independent verifier pass and secret-scan gate before branches open draft PRs.',
     ],
     skipIf: [
       'You work solo in a single editor tab and rarely run background tasks.',
-      'You want a hosted multi-tenant cloud dashboard rather than git-native CLI scripts.',
+      'You want a hosted multi-tenant cloud dashboard rather than git-native CLI workflows.',
     ],
   },
   'dpi-field-kit': {
-    archiveName: 'dpi-field-kit-v1/',
     buyIf: [
-      'You operate digital products and want a local SQLite + JSONL ledger tracking G1-G5 offer readiness and margin.',
-      'You prefer auditable local scripts over connecting financial credentials to third-party analytics apps.',
+      'You operate digital products and want a local ledger pattern for tracking offer readiness and margin.',
+      'You prefer auditable local workflows over connecting financial credentials to third-party analytics apps.',
     ],
     skipIf: [
-      'You have not scoped your first digital product or service offer yet (start with the free Capability Audit).',
-      'You need statutory tax filing software rather than an operator catalog ledger.',
-    ],
-    files: [
-      {
-        path: 'schema/ledger.sql',
-        kind: 'sql',
-        sizeLabel: '5 KB',
-        summary: 'Local SQLite tables for offer gates, webhook receipts, and weekly margin snapshots.',
-        excerpt: `create table if not exists offer_gates (
-  slug text primary key,
-  gate_stage text not null check (gate_stage in ('G1','G2','G3','G4','G5')),
-  checksum_verified integer not null default 0,
-  updated_at text not null
-);`,
-      },
-      {
-        path: 'scripts/audit-readiness.mjs',
-        kind: 'typescript',
-        sizeLabel: '9 KB',
-        summary: 'CLI verifier checking manifest files, pricing disclosures, and link status codes.',
-        excerpt: `export function checkGateG3(offer) {
-  const missing = []
-  if (!offer.manifestFiles?.length) missing.push('manifestFiles')
-  if (!offer.skipIfBoundary?.length) missing.push('skipIfBoundary')
-  return { pass: missing.length === 0, missing }
-}`,
-      },
-      {
-        path: 'runbooks/friday-ledger-review.md',
-        kind: 'markdown',
-        sizeLabel: '6 KB',
-        summary: '15-minute weekly review checklist covering refunds, support load, and next actions.',
-        excerpt: `# Friday 15-Minute Catalog Review
-1. Ingest latest webhook receipt JSONL entries into local SQLite.
-2. Flag any offer with unresolved delivery errors or stale documentation.
-3. Pick one bottleneck to resolve in next week's build block.`,
-      },
+      'You have not scoped your first digital product or service offer yet (start with the Capability Audit waitlist).',
+      'You need statutory tax filing software rather than an offer readiness framework.',
     ],
   },
 }
 
-function buildDefaultFiles(p: any, lane: ProductLane): InspectableFileEntry[] {
-  const modules: Array<{ title: string; description: string }> = Array.isArray(p.modules)
-    ? p.modules
-    : []
-  const transformations: string[] = Array.isArray(p.transformation) ? p.transformation : []
-  const name = p.name ?? p.title ?? p.slug
+function buildVerifiedBookEntries(p: any): InspectableFileEntry[] {
+  const name = normalizePunctuation(String(p.name ?? p.title ?? p.slug))
+  const book = booksRegistry.find((b) => b.slug === p.slug)
+  const publishedChapters = (book?.chapters ?? []).filter((ch) => ch.published)
+  const blobFile = p.delivery?.files?.[0]
 
-  if (lane === 'books') {
-    const blobFile = p.delivery?.files?.[0]
-    const pdfName = blobFile?.blobKey?.split('/').pop() ?? `${p.slug}.pdf`
-    const pdfSize = blobFile?.size ?? '1.1 MB'
+  const entries: InspectableFileEntry[] = []
+
+  if (blobFile?.blobKey) {
+    entries.push({
+      path: blobFile.blobKey,
+      kind: 'pdf',
+      sizeLabel: blobFile.size ?? 'Registered PDF',
+      summary: normalizePunctuation(
+        `Registered public PDF edition served directly via /api/download?product=${p.slug} with zero email gate.`,
+      ),
+      excerpt: [
+        `Registered edition: ${name}`,
+        `Direct download route: /api/download?product=${p.slug}`,
+        `Web reader route: /books/${p.slug}`,
+        ...(blobFile.size ? [`Registered file size: ${blobFile.size}`] : []),
+        '',
+        `Published web chapters (${publishedChapters.length}):`,
+        ...publishedChapters.map((ch) =>
+          normalizePunctuation(
+            `  ${String(ch.number).padStart(2, '0')}. ${ch.title} (${ch.readingTime}) - ${ch.description}`,
+          ),
+        ),
+      ].join('\n'),
+    })
+  }
+
+  for (const ch of publishedChapters) {
+    const lines = [
+      `Chapter ${ch.number}: ${normalizePunctuation(ch.title)}`,
+      `Route: /books/${p.slug}/${ch.slug}`,
+      `Reading time: ${ch.readingTime}`,
+      '',
+      normalizePunctuation(ch.description),
+    ]
+    if (ch.epigraph?.text) {
+      lines.push(
+        '',
+        `"${normalizePunctuation(ch.epigraph.text)}"`,
+        `  - ${normalizePunctuation(ch.epigraph.author)}`,
+      )
+    }
+    entries.push({
+      path: `/books/${p.slug}/${ch.slug}`,
+      kind: 'markdown',
+      sizeLabel: ch.readingTime,
+      summary: normalizePunctuation(ch.description),
+      excerpt: lines.join('\n'),
+    })
+  }
+
+  return entries
+}
+
+function buildVerifiedDirectEntries(p: any): InspectableFileEntry[] {
+  if (VERIFIED_BOOK_SLUGS.has(p.slug)) {
+    return buildVerifiedBookEntries(p)
+  }
+
+  if (p.slug === 'vibe-os') {
     return [
       {
-        path: pdfName,
-        kind: 'pdf',
-        sizeLabel: pdfSize,
-        summary: p.summary ?? p.description ?? `Complete typeset PDF edition of ${name}.`,
+        path: '/products/vibe-os/docs#quick-start',
+        kind: 'route',
+        sizeLabel: 'Live guide',
+        summary:
+          'Four-step public quick-start guide for logging creative energy (1-5) and matching work blocks to peak hours.',
         excerpt: [
-          `EDITION · ${name}`,
-          `FORMAT  · Typeset PDF + browser reader (/books/${p.slug})`,
+          '# Vibe OS Documentation - Quick Start',
+          'Route: /products/vibe-os/docs',
           '',
-          'INCLUDED ARCS:',
-          ...(modules.length > 0
-            ? modules.map((m, idx) => `  0${idx + 1}. ${m.title}: ${m.description}`)
-            : ['  01. Opening premise and core mental models', '  02. Practice rituals and field notes']),
+          '1. Write down the first check-in (a downloadable dashboard is not published yet; start with the energy number and the work in front of you).',
+          '2. Log your first energy check-in (1-5) 3-4 times throughout the day.',
+          '3. Review your patterns after 1 week to identify peak creative hours.',
+          '4. Schedule deep creative work during peak hours and admin tasks during lower-energy windows.',
         ].join('\n'),
       },
       {
-        path: `notes/${p.slug}-reading-companion.md`,
-        kind: 'markdown',
-        sizeLabel: '5 KB',
-        summary: 'Key questions and reflection prompts distilled from the chapters.',
+        path: '/products/vibe-os/docs#core-concepts',
+        kind: 'route',
+        sizeLabel: 'Live guide',
+        summary:
+          'Reference notes on creative states, 1-5 energy tracking, and task-to-state schedule alignment.',
         excerpt: [
-          `# ${name} · Reflection Prompts`,
+          '# Core Concepts (/products/vibe-os/docs)',
           '',
-          ...(transformations.length > 0
-            ? transformations.map((t, i) => `${i + 1}. ${t}`)
-            : ['1. Identify one principle from this edition to apply in this week\'s studio block.']),
+          '- Creative States: Combination of energy level, focus quality, and mental mode.',
+          '- Energy Tracking: Daily 1-5 check-ins that surface natural productivity cycles.',
+          '- Workflow Optimization: Matching high-energy peaks to creation and low-energy blocks to maintenance.',
+        ].join('\n'),
+      },
+      {
+        path: '/waitlist?intent=vibe-os',
+        kind: 'outline',
+        sizeLabel: 'Waitlist',
+        summary:
+          'Optional launch-list signup for the interactive Vibe OS web application while it remains in development.',
+        excerpt: [
+          'Interactive web app status: In development (not yet downloadable).',
+          'Public documentation status: Live today at /products/vibe-os/docs with zero email requirement.',
+          'Waitlist route: /waitlist?intent=vibe-os',
         ].join('\n'),
       },
     ]
   }
 
-  const modEntries: InspectableFileEntry[] = modules.slice(0, 3).map((m, idx) => {
-    const seg = slugifySegment(m.title, idx)
-    const isConfig = idx === 1 && lane !== 'creative'
-    const ext = isConfig ? 'json' : 'md'
-    const folder = idx === 0 ? 'architecture' : idx === 1 ? 'workflows' : 'verification'
-    return {
-      path: `${folder}/${seg}.${ext}`,
-      kind: isConfig ? 'json' : 'markdown',
-      sizeLabel: `${6 + idx * 3} KB`,
-      summary: m.description,
-      excerpt: isConfig
-        ? JSON.stringify(
-            {
-              product: p.slug,
-              module: m.title,
-              purpose: m.description,
-              verificationRequired: true,
-            },
-            null,
-            2,
-          )
-        : [
-            `# ${m.title}`,
-            '',
-            m.description,
-            '',
-            '## Operational checklist',
-            ...(transformations.slice(0, 2).map((t) => `- [ ] ${t}`)),
-          ].join('\n'),
-    }
-  })
+  if (p.slug === 'soulbook') {
+    return [
+      {
+        path: '/soulbook/vault',
+        kind: 'route',
+        sizeLabel: 'Live route',
+        summary:
+          'Interactive browser-local vault for logging journal entries, goals, streaks, and scores across the 7 Pillars.',
+        excerpt: [
+          '# Soulbook Interactive Vault (/soulbook/vault)',
+          '',
+          'Browser-local workspace (stored in localStorage with zero account wall):',
+          '- 7 Pillars progress scores: Energy, Mind, Soul, Craft, Capital, Circle, Legacy',
+          '- Guided pillar journal entries and active goal tracking',
+          '- Streak tracking across daily reflection sessions',
+        ].join('\n'),
+      },
+      {
+        path: '/soulbook/framework',
+        kind: 'route',
+        sizeLabel: 'Live route',
+        summary:
+          'Printable reference page covering the 7 Pillars architecture and weekly review questions.',
+        excerpt: [
+          '# Soulbook 7 Pillars Framework (/soulbook/framework)',
+          '',
+          '- Full breakdown of Energy, Mind, Soul, Craft, Capital, Circle, and Legacy',
+          '- Print-ready browser layout via PrintButton component',
+          '- Companion perspectives at /soulbook/life-symphony and /soulbook/golden-path',
+        ].join('\n'),
+      },
+      {
+        path: '/soulbook/assessment',
+        kind: 'route',
+        sizeLabel: 'Live route',
+        summary:
+          'Interactive self-assessment mapping current strengths and neglected pillars.',
+        excerpt: [
+          '# Soulbook Pillar Assessment (/soulbook/assessment)',
+          '',
+          '- Score each of the 7 Pillars in your browser',
+          '- Identify your highest-leverage focus pillar for the current week',
+        ].join('\n'),
+      },
+    ]
+  }
 
+  // reality-architect-os
+  const modules: Array<{ title: string; description: string }> = Array.isArray(p.modules)
+    ? p.modules
+    : []
   return [
     {
-      path: 'PRODUCT.md',
-      kind: 'markdown',
-      sizeLabel: '4 KB',
-      summary: `Scope, setup prerequisites, and delivery verification for ${name}.`,
+      path: 'https://github.com/frankxai/realityarchitect',
+      kind: 'route',
+      sizeLabel: 'Public repo',
+      summary: normalizePunctuation(
+        p.summary ?? 'Public GitHub starter repository for the reality.md memory spec and local CLI wrappers.',
+      ),
       excerpt: [
-        `# ${name}`,
-        `SKU: ${p.slug} · Category: ${p.category ?? 'Digital System'}`,
+        `Repository: ${p.offer?.ctaPrimaryHref ?? 'https://github.com/frankxai/realityarchitect'}`,
+        'Access: Public GitHub repository (fork or clone directly)',
         '',
-        p.promise ?? p.headline ?? name,
-        '',
-        '## Outcomes',
-        ...(transformations.slice(0, 3).map((t) => `- ${t}`)),
+        'Declared repository modules:',
+        ...modules.map((m, idx) =>
+          normalizePunctuation(`  0${idx + 1}. ${m.title}: ${m.description}`),
+        ),
       ].join('\n'),
     },
-    ...modEntries,
   ]
+}
+
+function buildPlannedOutlineEntries(p: any): InspectableFileEntry[] {
+  const modules: Array<{ title: string; description: string }> = Array.isArray(p.modules)
+    ? p.modules
+    : []
+  const transformations: string[] = Array.isArray(p.transformation) ? p.transformation : []
+  const name = normalizePunctuation(String(p.name ?? p.title ?? p.slug))
+
+  const overviewEntry: InspectableFileEntry = {
+    path: `Overview · ${name}`,
+    kind: 'outline',
+    sizeLabel: 'Planned scope',
+    summary: normalizePunctuation(
+      `Illustrative scope summary for ${name}. Downloadable package files are not published yet; join the launch list for release updates.`,
+    ),
+    excerpt: [
+      `Planned product: ${name}`,
+      'Release state: Waitlist preview (not yet packaged for download or checkout)',
+      `Waitlist route: ${p.id === 'founders-circle-guild' ? '/founder-application' : `/waitlist?intent=${p.slug}`}`,
+      '',
+      normalizePunctuation(String(p.promise ?? p.headline ?? name)),
+      ...(transformations.length > 0
+        ? [
+            '',
+            'Target outcomes under review:',
+            ...transformations.map((t) => `- ${normalizePunctuation(t)}`),
+          ]
+        : []),
+    ].join('\n'),
+  }
+
+  const moduleEntries: InspectableFileEntry[] = modules.map((m, idx) => ({
+    path: `Module ${String(idx + 1).padStart(2, '0')} · ${normalizePunctuation(m.title)}`,
+    kind: 'outline',
+    sizeLabel: 'Planned module',
+    summary: normalizePunctuation(m.description),
+    excerpt: [
+      `Planned module ${String(idx + 1).padStart(2, '0')}: ${normalizePunctuation(m.title)}`,
+      'Status: Illustrative module outline (final file layout subject to pre-release verification)',
+      '',
+      normalizePunctuation(m.description),
+    ].join('\n'),
+  }))
+
+  return [overviewEntry, ...moduleEntries]
 }
 
 function buildDefaultBoundaries(p: any, lane: ProductLane): { buyIf: string[]; skipIf: string[] } {
@@ -363,7 +378,7 @@ function buildDefaultBoundaries(p: any, lane: ProductLane): { buyIf: string[]; s
   if (lane === 'books') {
     return {
       buyIf: [
-        `You want a focused, distraction-free PDF or web edition of ${p.name ?? p.title}.`,
+        `You want a focused, distraction-free PDF or web edition of ${normalizePunctuation(String(p.name ?? p.title))}.`,
         'You value reflective essays and structured mental models you can revisit offline.',
       ],
       skipIf: [
@@ -377,12 +392,12 @@ function buildDefaultBoundaries(p: any, lane: ProductLane): { buyIf: string[]; s
       buyIf: [
         'You want sober, numerate frameworks showing setup hours, maintenance load, and readiness gates.',
         isFree
-          ? 'You want a structured diagnostic reference before committing build hours to a new offer.'
-          : 'You already ship technical or creative work and want clean local tracking and packaging templates.',
+          ? 'You want to preview the planned diagnostic scope before committing build hours to a new offer.'
+          : 'You already ship technical or creative work and want to follow the planned local tracking templates.',
       ],
       skipIf: [
         'You are looking for effortless earnings claims or hands-off financial schemes.',
-        'You prefer opaque SaaS dashboards over local markdown, JSON, and SQLite files.',
+        'You need an immediately downloadable software archive today rather than a launch-list preview.',
       ],
     }
   }
@@ -390,11 +405,11 @@ function buildDefaultBoundaries(p: any, lane: ProductLane): { buyIf: string[]; s
     return {
       buyIf: [
         'You want repeatable studio workflows, prompt structures, and quality checklists for creative output.',
-        'You prefer inspectable templates you can adapt to your own brand voice and aesthetic.',
+        'You want to review the planned module scope and join the launch list for release notice.',
       ],
       skipIf: [
         'You want one-click unreviewed content generation with zero human taste direction.',
-        'You do not work with AI audio, visual, or editorial tools in your current projects.',
+        'You need an immediately downloadable pack today rather than a planned release.',
       ],
     }
   }
@@ -404,31 +419,51 @@ function buildDefaultBoundaries(p: any, lane: ProductLane): { buyIf: string[]; s
       'You value explicit verification gates and clear file boundaries over black-box automation.',
     ],
     skipIf: [
-      'You want a hosted no-code SaaS subscription rather than local repository files.',
-      'You prefer not to run Node, CLI scripts, or markdown workflows on your own machine.',
+      'You want a hosted no-code SaaS subscription rather than local workflow specifications.',
+      'You need an immediately downloadable archive today rather than joining the launch list.',
     ],
   }
 }
 
 export const PRODUCT_PREVIEW_MANIFESTS: Record<string, ProductPreviewManifest> = Object.fromEntries(
   (rawProducts as any[]).flatMap((p) => {
-    const name = p.name ?? p.title ?? p.slug
+    const name = normalizePunctuation(String(p.name ?? p.title ?? p.slug))
     const lane = classifyLane(p.id, p.category ?? '')
-    const override = BESPOKE_OVERRIDES[p.id] ?? {}
+    const bespoke = BESPOKE_BOUNDARIES[p.id]
     const defaults = buildDefaultBoundaries(p, lane)
     const isDirect = LIVE_DIRECT_SLUGS.has(p.slug)
+    const evidenceKind: PreviewEvidenceKind = isDirect ? 'verified-delivery' : 'planned-outline'
+
+    const archiveName = isDirect
+      ? VERIFIED_BOOK_SLUGS.has(p.slug)
+        ? `/books/${p.slug}`
+        : p.slug === 'vibe-os'
+          ? '/products/vibe-os/docs'
+          : p.slug === 'soulbook'
+            ? '/soulbook'
+            : 'github.com/frankxai/realityarchitect'
+      : 'Planned module outline'
+
+    const deliveryStatusLabel = isDirect
+      ? VERIFIED_BOOK_SLUGS.has(p.slug)
+        ? 'Public reader + PDF live'
+        : 'Public access live'
+      : p.id === 'founders-circle-guild'
+        ? 'Application cohort · Planned scope'
+        : 'Planned outline · Waitlist open'
 
     const manifest: ProductPreviewManifest = {
       productId: p.id,
       slug: p.slug,
       name,
       lane,
+      evidenceKind,
       plateSvg: `/images/products/plates/${p.slug}.svg`,
-      archiveName: override.archiveName ?? `${p.slug}-pack/`,
-      deliveryStatusLabel: isDirect ? 'Public access live' : 'Preview · Waitlist open',
-      buyIf: override.buyIf ?? defaults.buyIf,
-      skipIf: override.skipIf ?? defaults.skipIf,
-      files: override.files ?? buildDefaultFiles(p, lane),
+      archiveName,
+      deliveryStatusLabel,
+      buyIf: bespoke?.buyIf ?? defaults.buyIf,
+      skipIf: bespoke?.skipIf ?? defaults.skipIf,
+      files: isDirect ? buildVerifiedDirectEntries(p) : buildPlannedOutlineEntries(p),
     }
 
     return [

@@ -14,10 +14,10 @@ Never average unrelated aesthetics across a single page. Every product surface l
    - Primary canvas: `#0A0A0B` obsidian void.
    - Elevated card surface: `#111318` or `rgba(255, 255, 255, 0.03)` with `1px solid rgba(255, 255, 255, 0.08)` hairlines (`hover:border-white/20`).
    - Typography pairing: tight display sans (`-0.025em` to `-0.035em` tracking) paired with monospace metadata (`tabular-nums`, file paths, kilobyte sizes, SKU identifiers).
-2. **Pre-purchase inspection (`Cycle` Two-Pane `618b2107` + `Select & Preview Template` Flow `1694`):**
-   - Every product detail page and waitlist stack renders an interactive two-pane **File Tree Inspector** (`ProductFileInspector.tsx`).
-   - Left rail (`38%` desktop width): accessible `role="tablist"` file tree showing exact archive paths and file sizes (`44px` minimum height targets, `ArrowUp`/`ArrowDown`/`Home`/`End` keyboard navigation).
-   - Right pane (`62%` desktop width): line-numbered monospace excerpt of the selected markdown, JSON, SQL, TypeScript, or PDF chapter outline, paired with a copy-manifest button and explicit **Good fit if** / **Skip this if** decision boundaries.
+2. **Pre-purchase and waitlist inspection (`Cycle` Two-Pane `618b2107` + `Select & Preview Template` Flow `1694`):**
+   - Every catalog product detail page (`data/products.json` routes served via `[slug]/page.tsx`, `OfferStack.tsx`, and `vibe-os/page.tsx`) renders an interactive two-pane **Product File Inspector** (`ProductFileInspector.tsx`).
+   - **Verified live deliveries (`evidenceKind: 'verified-delivery'`):** Left rail (`38%` desktop width) shows verified public routes, published reader chapters (`booksRegistry`), and registered public PDFs (`BookDownloadGate.tsx` / `delivery.files`) with `44px` minimum height targets and `ArrowUp`/`ArrowDown`/`Home`/`End` keyboard navigation.
+   - **Waitlisted / coming-soon entries (`evidenceKind: 'planned-outline'`):** Unpackaged waitlist products render an explicitly labeled **Planned module outline (illustrative preview)** derived from declared `modules` without invented file paths or unsupported byte sizes, paired with **Good fit if** / **Skip this if** decision boundaries.
 3. **Lead magnet preview discipline (`Mural` PDF capture `aca74dc4` + `Polaroid` diagnostic Flow `9471`):**
    - Free books and starter guides show concrete chapter/module breakdowns and real excerpts before any click or waitlist capture.
    - Waitlist items clearly state `Coming soon` and route to `/waitlist?intent=:slug` without implying live checkout stock or instant paid fulfillment.

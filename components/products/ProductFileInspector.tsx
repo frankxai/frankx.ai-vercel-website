@@ -1,14 +1,21 @@
 'use client'
 
 import { useRef, useState, type KeyboardEvent } from 'react'
-import { Check, Copy, FileCode2, FileJson, FileText, FolderTree, ShieldAlert, CheckCircle2 } from 'lucide-react'
+import {
+  Check,
+  Copy,
+  FileText,
+  FolderTree,
+  Globe,
+  ListChecks,
+  ShieldAlert,
+  CheckCircle2,
+} from 'lucide-react'
 import type { InspectableFileEntry, ProductPreviewManifest } from '@/lib/products/preview-manifests'
 
 function FileKindIcon({ kind }: { kind: InspectableFileEntry['kind'] }) {
-  if (kind === 'json') return <FileJson className="h-4 w-4 shrink-0 text-amber-300" aria-hidden="true" />
-  if (kind === 'typescript' || kind === 'sql') {
-    return <FileCode2 className="h-4 w-4 shrink-0 text-cyan-300" aria-hidden="true" />
-  }
+  if (kind === 'route') return <Globe className="h-4 w-4 shrink-0 text-cyan-300" aria-hidden="true" />
+  if (kind === 'outline') return <ListChecks className="h-4 w-4 shrink-0 text-amber-300" aria-hidden="true" />
   return <FileText className="h-4 w-4 shrink-0 text-emerald-300" aria-hidden="true" />
 }
 
@@ -19,6 +26,8 @@ export default function ProductFileInspector({ manifest }: { manifest: ProductPr
 
   const activeFile = manifest.files[selectedIndex] ?? manifest.files[0]
   if (!activeFile) return null
+
+  const isVerified = manifest.evidenceKind === 'verified-delivery'
 
   const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     const count = manifest.files.length
@@ -43,9 +52,12 @@ export default function ProductFileInspector({ manifest }: { manifest: ProductPr
   }
 
   const handleCopyTree = async () => {
+    const header = isVerified
+      ? `${manifest.name} (${manifest.archiveName})`
+      : `${manifest.name} - Planned module outline (not yet packaged)`
     const treeText = [
-      manifest.archiveName,
-      ...manifest.files.map((f) => `  ├── ${f.path} (${f.sizeLabel})`),
+      header,
+      ...manifest.files.map((f) => `  - ${f.path} [${f.sizeLabel}]`),
     ].join('\n')
     try {
       await navigator.clipboard.writeText(treeText)
@@ -66,26 +78,43 @@ export default function ProductFileInspector({ manifest }: { manifest: ProductPr
     >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-300">
-            Inspect before you commit
+          <p className="font-mono text-xs tracking-[0.14em] text-cyan-300">
+            {isVerified ? 'Verified public contents' : 'Planned scope preview'}
           </p>
           <h2
             id={`inspector-heading-${manifest.slug}`}
             className="mt-1 text-2xl font-semibold tracking-tight text-white sm:text-3xl"
           >
-            Package file tree and real excerpts
+            {isVerified
+              ? 'Published chapters, routes, and registered files'
+              : 'Planned module outline (illustrative preview)'}
           </h2>
           <p className="mt-1 text-sm text-slate-400">
-            Browse the representative files, schemas, and checklists inside{' '}
-            <code className="rounded bg-white/[0.06] px-1.5 py-0.5 font-mono text-xs text-slate-200">
-              {manifest.archiveName}
-            </code>
-            .
+            {isVerified ? (
+              <>
+                Inspect the live routes, published chapters, and registered files served from{' '}
+                <code className="rounded bg-white/[0.06] px-1.5 py-0.5 font-mono text-xs text-slate-200">
+                  {manifest.archiveName}
+                </code>
+                .
+              </>
+            ) : (
+              <>
+                This item is on the launch list and does not have a downloadable file archive yet.
+                Entries below summarize the planned module scope under review.
+              </>
+            )}
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 font-mono text-xs text-slate-300">
+        <div className="flex flex-wrap items-center gap-3">
+          <span
+            className={`rounded-full border px-3 py-1.5 font-mono text-xs ${
+              isVerified
+                ? 'border-emerald-500/25 bg-emerald-500/[0.08] text-emerald-200'
+                : 'border-amber-500/25 bg-amber-500/[0.08] text-amber-200'
+            }`}
+          >
             {manifest.deliveryStatusLabel}
           </span>
           <button
@@ -96,12 +125,12 @@ export default function ProductFileInspector({ manifest }: { manifest: ProductPr
             {copied ? (
               <>
                 <Check className="h-3.5 w-3.5 text-emerald-400" aria-hidden="true" />
-                <span>Copied tree</span>
+                <span>{isVerified ? 'Copied contents' : 'Copied outline'}</span>
               </>
             ) : (
               <>
                 <Copy className="h-3.5 w-3.5 text-slate-400" aria-hidden="true" />
-                <span>Copy file tree</span>
+                <span>{isVerified ? 'Copy contents list' : 'Copy planned outline'}</span>
               </>
             )}
           </button>
@@ -111,7 +140,7 @@ export default function ProductFileInspector({ manifest }: { manifest: ProductPr
       {/* Two-Pane Workbench (Cycle 618b2107 + Flow 1694 pattern) */}
       <div className="overflow-hidden rounded-2xl border border-white/[0.09] bg-[#0d1017] shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
         <div className="grid lg:grid-cols-12">
-          {/* Left File Tree Rail */}
+          {/* Left Inspector Rail */}
           <div className="border-b border-white/[0.08] bg-[#0b0d13] p-4 lg:col-span-5 lg:border-b-0 lg:border-r">
             <div className="mb-3 flex items-center justify-between px-2">
               <span className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-slate-300">
@@ -125,7 +154,7 @@ export default function ProductFileInspector({ manifest }: { manifest: ProductPr
 
             <div
               role="tablist"
-              aria-label={`${manifest.name} inspectable files`}
+              aria-label={`${manifest.name} ${isVerified ? 'verified contents' : 'planned module outline'}`}
               aria-orientation="vertical"
               className="space-y-1.5"
             >
@@ -166,7 +195,7 @@ export default function ProductFileInspector({ manifest }: { manifest: ProductPr
             </div>
           </div>
 
-          {/* Right Excerpt Preview Pane */}
+          {/* Right Preview Pane */}
           <div
             id={`file-panel-${manifest.slug}-${selectedIndex}`}
             role="tabpanel"
@@ -178,7 +207,7 @@ export default function ProductFileInspector({ manifest }: { manifest: ProductPr
                 <span className="font-mono text-xs font-semibold text-slate-200">
                   {activeFile.path}
                 </span>
-                <span className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 font-mono text-[11px] uppercase text-slate-400">
+                <span className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 font-mono text-[11px] text-slate-400">
                   {activeFile.kind} · {activeFile.sizeLabel}
                 </span>
               </div>
