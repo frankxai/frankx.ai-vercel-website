@@ -1,3 +1,4 @@
+import { defaultOpenGraphImages } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { getClientById, getAllClients, type Client } from '@/lib/clients'
@@ -34,6 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${client.artistName} — Music | FrankX Music Service`,
     description: `Listen to AI-generated music by ${client.artistName}. ${client.branding.tagline}`,
     openGraph: {
+      images: defaultOpenGraphImages,
       title: `${client.artistName} — Music`,
       description: `Listen to AI-generated music by ${client.artistName}.`,
     },

@@ -33,9 +33,15 @@ function resolveAbsoluteUrl(primary: string | undefined, fallback?: string) {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const guide = getGuide(slug)
-  if (!guide) return { title: 'Guide Not Found' }
-  const fallbackImage = `/api/og?title=${encodeURIComponent(guide.title)}&subtitle=${encodeURIComponent(guide.description)}`
-  const ogImage = resolveAbsoluteUrl(guide.image, fallbackImage) ?? `${SITE_URL}/api/og`
+  if (!guide) {
+    return createMetadata({
+      title: 'Guide Not Found',
+      description: 'The requested FrankX implementation guide could not be located.',
+      path: `/guides/${slug}`,
+      noindex: true,
+    })
+  }
+  const ogImage = resolveAbsoluteUrl(guide.image, siteConfig.ogImage) ?? `${SITE_URL}${siteConfig.ogImage}`
   return createMetadata({
     title: guide.title,
     description: guide.description,

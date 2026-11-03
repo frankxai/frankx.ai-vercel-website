@@ -12,14 +12,15 @@ import {
 import Link from "next/link";
 import { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
-import { siteConfig } from "@/lib/seo";
+import { defaultOpenGraphImages, siteConfig } from "@/lib/seo";
 import { socialLinks } from "@/lib/social-links";
 
 export const metadata: Metadata = {
-  title: "Soul Frequency Framework | FrankX.AI",
+  title: "Soul Frequency Framework",
   description:
     "Map the creative signature AI should amplify across your brand, family, and leadership. A conscious approach to AI that honors human values and creativity.",
   openGraph: {
+    images: defaultOpenGraphImages,
     title: "Soul Frequency Framework",
     description:
       "Map the creative signature AI should amplify across your brand, family, and leadership.",

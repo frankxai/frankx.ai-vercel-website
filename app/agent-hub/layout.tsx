@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -13,12 +14,13 @@ export const metadata: Metadata = {
     'mcp native frameworks',
     'agentic ai stack 2026',
   ],
-  alternates: { canonical: 'https://frankx.ai/agent-hub' },
+  alternates: { canonical: './' },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Agent Hub 2026 — Agent Platforms and Frameworks, Compared Honestly',
     description:
       'The decision layer over agent platforms and frameworks. Every claim carries its evidence grade, because scaffold choice moves agentic results by up to 30 points on identical models.',
-    url: 'https://frankx.ai/agent-hub',
+    url: `${siteConfig.url}/agent-hub`,
     type: 'website',
   },
 }

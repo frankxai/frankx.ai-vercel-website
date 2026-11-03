@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1072,
+    "total": 1077,
     "aliases": 61,
     "byType": {
       "core": 24,
@@ -9,9 +9,9 @@
       "community": 17,
       "tool": 75,
       "static": 15,
-      "blog": 277,
+      "blog": 278,
       "research": 23,
-      "guide": 42,
+      "guide": 46,
       "library": 88,
       "newsletter": 1,
       "os": 11,
@@ -2906,6 +2906,19 @@
         "benchmarks",
         "ai-2026",
         "anthropic"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/llm-gateway-architecture-guide",
+      "title": "LLM Gateway Architecture Guide: Routing, Failover & Cost Control (2026)",
+      "description": "How to design and select a production LLM gateway across LiteLLM, Cloudflare AI Gateway, Kong, Portkey, and Helicone — with fallback configs, spend caps, and OpenTelemetry spans.",
+      "tags": [
+        "llm-gateway",
+        "ai-architecture",
+        "observability",
+        "cost-control",
+        "multi-model"
       ],
       "type": "blog"
     },
@@ -5919,6 +5932,21 @@
       "type": "guide"
     },
     {
+      "href": "/guides/ai-agent-ready-website-checklist",
+      "title": "How to Check if a Website Is AI-Agent Ready (8-Step Technical Audit)",
+      "description": "Run an 8-command curl and schema checklist to verify whether ChatGPT Search, Claude, Perplexity, and MCP agents can crawl, cite, and query your website.",
+      "tags": [
+        "aeo",
+        "geo",
+        "seo",
+        "llms-txt",
+        "mcp",
+        "json-ld",
+        "web-architecture"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/ai-operating-systems-workshop",
       "title": "Build an AI operating system: the workshop curriculum",
       "description": "Twelve lessons, working offline labs and a capstone for agents, MCP, memory, studio delivery, founder operations and family ownership.",
@@ -5973,7 +6001,7 @@
     {
       "href": "/guides/claude-anthropic-guide",
       "title": "Claude AI Guide for Creators",
-      "description": "Master Anthropic's Claude for creative writing, content strategy, coding assistance, and building AI-powered workflows that amplify your creative output",
+      "description": "Use Claude for writing, coding, and research synthesis with practical prompts, project workflows, and links to current Anthropic feature and plan guidance.",
       "tags": [
         "ai",
         "claude",
@@ -5998,6 +6026,33 @@
       "type": "guide"
     },
     {
+      "href": "/guides/claude-code-plugins-vs-skills",
+      "title": "Claude Code Plugins vs Skills: Marketplace, JetBrains & Cross-Harness Guide",
+      "description": "When to write a standalone SKILL.md folder versus packaging a Claude Code plugin — covering the plugin marketplace, VS Code & JetBrains IDEs, and Codex CLI interoperability.",
+      "tags": [
+        "claude-code",
+        "plugins",
+        "skills",
+        "jetbrains",
+        "codex",
+        "agent-engineering"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/claude-code-templates-starter-kit",
+      "title": "Claude Code Templates & Starter Kit (CLAUDE.md, Skills, Settings & Hooks)",
+      "description": "Copy-paste Claude Code templates for production repositories: CLAUDE.md, .claude/settings.json, SKILL.md, slash commands, subagents, and pre-tool hooks.",
+      "tags": [
+        "claude-code",
+        "templates",
+        "skills",
+        "devops",
+        "agent-engineering"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/community-platform-for-creators",
       "title": "Circle vs Custom Community App: The 2026 Creator Guide",
       "description": "Compare 71 community platforms for creators: Circle, branded apps, official MCP, AI integrations, custom builds, ownership, pricing, and exit risk.",
@@ -6011,8 +6066,8 @@
     },
     {
       "href": "/guides/elevenlabs-voice-guide",
-      "title": "ElevenLabs Voice AI Guide for Creators",
-      "description": "Master ElevenLabs for professional voiceovers, podcast production, voice cloning, and building audio content at scale without recording equipment",
+      "title": "ElevenLabs Voice AI Guide for Creators (2026 Pricing, Cloning & API)",
+      "description": "Practical ElevenLabs guide for YouTube voiceovers, podcasts, voice cloning, and low-latency API automation — with Starter vs Creator credit math.",
       "tags": [
         "ai",
         "elevenlabs",
@@ -6190,6 +6245,20 @@
       "type": "guide"
     },
     {
+      "href": "/guides/mcp-servers-claude-code-business",
+      "title": "Best MCP Servers for Claude Code, Sales & Marketing Workflows (2026)",
+      "description": "Curated production MCP servers for Claude Code engineering, analytics, CRM, and publishing workflows — with .mcp.json configs, security scopes, and token-budget discipline.",
+      "tags": [
+        "mcp",
+        "claude-code",
+        "sales",
+        "marketing",
+        "automation",
+        "ai-architecture"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/midjourney-guide",
       "title": "Midjourney Guide for Creators",
       "description": "Master Midjourney for stunning visuals, brand imagery, content graphics, and developing a consistent visual identity powered by AI image generation",
@@ -6231,14 +6300,13 @@
     {
       "href": "/guides/openai-chatgpt-guide",
       "title": "OpenAI ChatGPT Guide for Creators",
-      "description": "Master ChatGPT and OpenAI tools for content creation, brainstorming, automation, and building AI-powered workflows with the world's most popular AI assistant",
+      "description": "Use ChatGPT for writing, research, images, and repeatable creator workflows, with practical prompts and links to current OpenAI feature and plan details.",
       "tags": [
         "ai",
         "chatgpt",
         "openai",
         "guide",
         "tutorial",
-        "gpt-4",
         "content-creation"
       ],
       "type": "guide"

@@ -1,7 +1,7 @@
 import Script from 'next/script'
 
 import products from '@/data/products.json'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import type { ProductRecord } from '@/types/products'
 
 // Premium Vibe OS Components
@@ -41,7 +41,7 @@ const structuredData = {
   '@type': 'SoftwareApplication',
   name: product.name,
   description: product.promise,
-  image: 'https://frankx.ai/images/products/vibe-os-hero.jpg',
+  image: `${siteConfig.url}/images/products/vibe-os-hero.jpg`,
   applicationCategory: 'ProductivityApplication',
   operatingSystem: 'Web',
   brand: {

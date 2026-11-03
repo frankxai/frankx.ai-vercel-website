@@ -1,8 +1,9 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import StudioClient from './StudioClient'
 
 export const metadata: Metadata = {
-  title: 'AI Architecture Studio — FrankX',
+  title: 'AI Architecture Studio',
   description:
     'AI Architecture Studio. I architect systems, coach builders, and create what doesn\'t exist yet.',
   keywords: [
@@ -16,12 +17,14 @@ export const metadata: Metadata = {
     'AI coaching',
   ],
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'AI Architecture Studio — FrankX',
     description: 'AI Architecture Studio. I architect systems, coach builders, and create what doesn\'t exist yet.',
-    url: 'https://frankx.ai/work-with-me',
+    url: `${siteConfig.url}/work-with-me`,
     type: 'website',
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary_large_image',
     title: 'AI Architecture Studio — FrankX',
     description: 'AI Architecture Studio. I architect systems, coach builders, and create what doesn\'t exist yet.',

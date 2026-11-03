@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'ACOS v11 Video Intelligence Roadmap | FrankX Product Development',
   description: 'Complete product roadmap for ACOS v11 Video Intelligence System. 4-phase rollout, tool analysis, cost projections, ROI models, and content pipeline architecture.',
   path: '/product-development/acos-v11',

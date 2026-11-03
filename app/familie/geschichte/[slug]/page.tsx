@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getGeschichteThema, getAllGeschichteSlugs } from '@/lib/familie/geschichte-themen'
@@ -28,6 +29,7 @@ export async function generateMetadata({
       : { index: false, follow: false },
     ...(isPublic && {
       openGraph: {
+        images: defaultOpenGraphImages,
         title: thema.titel,
         description: thema.kurzfassung,
         type: 'article',
@@ -60,12 +62,12 @@ export default async function Page({
         author: {
           '@type': 'Person',
           name: 'Frank Riemer',
-          url: 'https://frankx.ai/about',
+          url: `${siteConfig.url}/about`,
         },
         publisher: {
           '@type': 'Organization',
           name: 'FrankX.AI',
-          url: 'https://frankx.ai',
+          url: siteConfig.url,
         },
         ...(thema.faq.length > 0 && {
           mainEntity: thema.faq.map((f) => ({

@@ -6,13 +6,14 @@
  * Frank" links. The rails do not flow back into funnels.
  */
 
+import { siteConfig } from '@/lib/seo'
 import Link from 'next/link';
 import type { RailEntry, HubSlug } from '@/lib/rails/types';
 import { hubUrl } from '@/lib/rails/types';
 import { hubs } from '@/data/rails/hubs';
 import { CiteEntry } from './CiteEntry';
 
-const SITE = 'https://frankx.ai';
+const SITE = siteConfig.url;
 
 export function RailEntryFooter({ entry }: { entry: RailEntry }) {
   return (

@@ -17,7 +17,7 @@ export async function generateMetadata({
   if (!collection) return {}
 
   return {
-    title: `${collection.name} — ArcaneaVault | FrankX`,
+    title: `${collection.name} — ArcaneaVault`,
     description: collection.description,
     openGraph: {
       title: `${collection.name} — ArcaneaVault`,

@@ -1,6 +1,7 @@
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
+  canonical: './',
   title: "Learn Piano | German-First Beginner Practice | FrankX",
   description:
     "A free German-first piano starter with an interactive keyboard, curated external teachers, first songs, and family-supported practice prompts.",

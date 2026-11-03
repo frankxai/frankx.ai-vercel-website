@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Community | AI Architects & Creators Network | FrankX',
   description: 'Join a community of AI architects, builders, and creators. Share knowledge, get feedback, and collaborate on agentic AI and creative systems.',
   path: '/community',
