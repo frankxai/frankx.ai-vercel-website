@@ -74,18 +74,18 @@ function ProductsBackground() {
 const products = [
   {
     id: 'vibe-os',
-    icon: Music,
+    icon: Zap,
     name: 'Vibe OS',
-    tagline: 'AI music session guide',
+    tagline: 'Creative state management',
     description:
-      'Structured Suno session guide covering genre anchors, section tags, and iteration checklists you can inspect free.',
+      'A practical system and public guide for tracking creative energy cycles, matching deep work to focus windows, and shipping without burnout. Public guide open now; web app in development.',
     status: 'active',
     href: '/products/vibe-os',
     color: 'emerald',
     highlights: [
-      'Genre, tempo, and vocal texture prompt templates',
-      'Section-by-section lyric and arrangement iteration pass',
-      'Session tracking sheet for keeper takes and stems',
+      'Public guide open now with daily check-in and scheduling instructions',
+      'Match deep build sessions to your natural focus windows',
+      'Web app in development: join the waitlist for release notes',
     ],
     featured: true,
   },
@@ -133,8 +133,8 @@ const products = [
     color: 'amber',
     highlights: [
       'Curated prompts across storytelling, marketing, and operations',
-      '12 workflow templates for weekly publishing',
-      '30/60/90 day implementation roadmaps',
+      'Structured checklists for weekly publishing',
+      'Phased 30, 60, and 90-day implementation roadmaps',
     ],
   },
   {

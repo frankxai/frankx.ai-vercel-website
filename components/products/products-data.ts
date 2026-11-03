@@ -13,7 +13,7 @@ export const productsListItemData: ProductListItem[] = [
   {
     id: 'vibe-os',
     name: 'Vibe OS',
-    tagline: 'AI music session guide',
+    tagline: 'Creative state management',
     href: '/products/vibe-os',
     status: 'active',
   },

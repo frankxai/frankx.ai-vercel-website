@@ -203,14 +203,14 @@
       "primaryPrice": 0,
       "primaryPriceDisplay": "Free",
       "currency": "USD",
-      "ctaPrimary": "Start Using Vibe OS",
-      "ctaPrimaryHref": "/products/vibe-os/app",
-      "ctaPrimaryTracking": "vibe-os-free-access",
-      "ctaSecondary": "View Documentation",
-      "ctaSecondaryHref": "/products/vibe-os/docs",
-      "ctaSecondaryTracking": "vibe-os-docs",
+      "ctaPrimary": "Read the public guide",
+      "ctaPrimaryHref": "/products/vibe-os/docs",
+      "ctaPrimaryTracking": "vibe-os-docs-primary",
+      "ctaSecondary": "Join web app waitlist",
+      "ctaSecondaryHref": "/waitlist?intent=vibe-os",
+      "ctaSecondaryTracking": "vibe-os-waitlist",
       "guarantee": {
-        "label": "Open source",
+        "label": "Public guide",
         "description": "Vibe OS is free. The web app is still in development."
       }
     },

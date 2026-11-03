@@ -84,46 +84,44 @@ const BESPOKE_OVERRIDES: Record<
   'vibe-os': {
     archiveName: 'vibe-os-guide-pack/',
     buyIf: [
-      'You make music with Suno and want repeatable prompt structure instead of random slot-machine generations.',
-      'You want an inspectable PDF guide and session checklist you can open right away at zero cost.',
+      'You want a practical system for tracking creative energy cycles and matching deep work to focus windows.',
+      'You want an inspectable public guide and daily check-in schedule you can open right away at zero cost.',
     ],
     skipIf: [
-      'You are looking for traditional DAW mixing plugins or acoustic studio hardware tutorials.',
-      'You want an automated streaming distributor rather than a creative session workflow.',
+      'You are looking for a hosted SaaS project manager with team billing seats today (the web app is in development).',
+      'You want an automated calendar bot rather than a personal focus-window workflow.',
     ],
     files: [
       {
-        path: 'Vibe-OS-Guide.pdf',
-        kind: 'pdf',
-        sizeLabel: '1.4 MB',
-        summary: 'Core session architecture covering genre tags, arrangement cues, and lyric pacing.',
-        excerpt: `Chapter 01 · Prompt Architecture
-[Genre anchor] + [Instrumentation] + [Tempo and groove] + [Vocal texture]
-
-1. Anchor one primary sonic era before adding secondary flourishes.
-2. Separate verse restraint from chorus lift using explicit section headers.
-3. Log every keeper generation seed and prompt diff in your session sheet.`,
+        path: 'docs/daily-checkin-guide.md',
+        kind: 'markdown',
+        sizeLabel: '8 KB',
+        summary: 'Public guide covering daily energy check-ins, focus-window mapping, and recovery boundaries.',
+        excerpt: `# Daily Creative State Check-In
+1. Score current cognitive clarity, physical energy, and creative momentum (1-5).
+2. Route high-clarity windows to architecture or writing; route low-energy blocks to maintenance.
+3. Close the block with one written next-action line so tomorrow starts without friction.`,
       },
       {
-        path: 'workflows/session-iteration-checklist.md',
+        path: 'workflows/focus-cycle-schedule.md',
         kind: 'markdown',
         sizeLabel: '6 KB',
-        summary: 'Step-by-step pass from initial 30-second motif check to final stem selection.',
-        excerpt: `# Studio Iteration Pass
-- [ ] Pass 1: Lock tempo, key feel, and vocal timbre on an 8-bar test lyric
-- [ ] Pass 2: Structure [Intro], [Verse 1], [Chorus], and [Bridge] syllable counts
-- [ ] Pass 3: Audition transitions on headphones and studio monitors before export`,
+        summary: 'Four-module rhythm aligning deep build blocks, review passes, and rest.',
+        excerpt: `# Focus Cycle Pass
+- [ ] Block 1 (90 min): Single-artifact creation with notifications muted
+- [ ] Block 2 (30 min): Verification pass and state log update
+- [ ] Recovery window: Step away before context switching to admin tasks`,
       },
       {
-        path: 'templates/prompt-log.json',
+        path: 'templates/state-log.json',
         kind: 'json',
         sizeLabel: '4 KB',
-        summary: 'Structured log template for tracking prompt revisions and keeper takes.',
+        summary: 'Structured log template for tracking focus windows and weekly creative output.',
         excerpt: `{
-  "trackWorkingTitle": "Midnight Circuit",
-  "stylePrompt": "analog synthwave, warm bassline, crisp snare, intimate alto vocal",
-  "sectionTags": ["[Intro]", "[Verse]", "[Chorus]", "[Outro]"],
-  "keeperTake": "v3-extended"
+  "date": "2026-11-03",
+  "energyState": "high-focus",
+  "primaryWindow": "08:30-10:30",
+  "shippedArtifact": "products-design-contract"
 }`,
       },
     ],
