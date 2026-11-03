@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { OpsClient } from './OpsClient'
 
 export const metadata: Metadata = {
-  title: 'Ops — Agent Mission Control | FrankX',
+  title: 'Ops — Agent Mission Control',
   description:
     'Real-time mission control for autonomous coding agents across FrankX and Arcanea repos.',
   robots: { index: false, follow: false },

@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Arcanea Compose — Email Design System | FrankX.AI',
   description:
     'The "Oasis of Calm" email design system: 13 templates, 5 accent palettes, monochrome dark typography-driven design for premium newsletter experiences.',

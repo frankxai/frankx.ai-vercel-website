@@ -1,3 +1,4 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -8,7 +9,7 @@ import {
 } from '@/data/travel-journeys'
 import type { TravelJourney, TravelExperience, TravelEvent } from '@/data/travel-journeys'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 export function generateStaticParams() {
   return getAllJourneySlugs().map((slug) => ({ slug }))
@@ -46,6 +47,7 @@ export async function generateMetadata({
     authors: [{ name: 'Frank' }],
     alternates: { canonical },
     openGraph: {
+      images: defaultOpenGraphImages,
       title: `${j.city} in ${j.month.split(' ')[0]} — ${j.subtitle}`,
       description,
       type: 'article',
@@ -54,6 +56,7 @@ export async function generateMetadata({
       authors: ['Frank'],
     },
     twitter: {
+      images: defaultTwitterImages,
       card: 'summary_large_image',
       title: `${j.city} in ${j.month.split(' ')[0]} | FrankX Travel`,
       description,

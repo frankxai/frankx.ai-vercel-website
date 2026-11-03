@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Music | AI-Generated Tracks & Production',
   description: 'Explore AI-generated tracks across genres. From cinematic orchestral to electronic, hip-hop, and experimental music created with AI tools.',
   path: '/music',

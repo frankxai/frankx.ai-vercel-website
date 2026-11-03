@@ -1,3 +1,4 @@
+import { defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import { domainSources } from '@/lib/research/sources'
 
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
     'research bibliography',
   ],
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'FrankX Research Source Browser',
     description:
       'Reviewed sources will appear after publication review.',
@@ -26,12 +28,13 @@ export const metadata: Metadata = {
     url: 'https://www.frankx.ai/research/sources',
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary',
     title: 'FrankX Research Source Browser',
     description: 'Reviewed sources will appear after publication review.',
   },
   alternates: {
-    canonical: 'https://www.frankx.ai/research/sources',
+    canonical: './',
   },
 }
 

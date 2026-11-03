@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     images: ['/images/brand/frankx-public-workspace-og-1200x630.png'],
   },
   alternates: {
-    canonical: 'https://www.frankx.ai/research',
+    canonical: './',
     types: {
       'application/rss+xml': 'https://www.frankx.ai/research/feed',
     },
