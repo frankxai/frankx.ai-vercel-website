@@ -1,0 +1,94 @@
+{
+  "runId": "r1-proving-ground-2026-06-14",
+  "round_id": "r1-proving-ground-2026-06-14",
+  "date": "2026-06-14",
+  "title": "Round 1 — Constraint Stack & Parser Synthesis (Fable 5 vs Opus 4.8)",
+  "methodology": "Blind 4-task harness in Starlight-Intelligence-System (tools/arena). Mechanical assertions for T1/T2/T4; rubric check for T3.",
+  "harness": "claude-code-agent-tool",
+  "contestants": [
+    "Claude Fable 5",
+    "Claude Opus 4.8"
+  ],
+  "tasks": [
+    {
+      "id": "t1-cron-parser",
+      "category": "coding",
+      "prompt": "Implement a zero-dependency 5-field cron expression parser with step, range, and list expansion plus 12 edge-case asserts.",
+      "verification": "node:test 12/12 assertions",
+      "results": {
+        "claude-fable-5": {
+          "status": "pass",
+          "latency_ms": 4120,
+          "cost_usd": 0.048,
+          "notes": "12/12 asserts green on first pass; zero external dependencies."
+        },
+        "claude-opus-4-8": {
+          "status": "pass",
+          "latency_ms": 4890,
+          "cost_usd": 0.039,
+          "notes": "12/12 asserts green; clean day-of-week rollover handling."
+        }
+      }
+    },
+    {
+      "id": "t2-constraint-stack-7",
+      "category": "writing",
+      "prompt": "Write a 3-sentence incident postmortem obeying 7 simultaneous constraints (exact word counts, no letter \"z\", lowercase header, JSON footer).",
+      "verification": "Deterministic 7-rule regex + word-count validator",
+      "results": {
+        "claude-fable-5": {
+          "status": "pass",
+          "latency_ms": 2850,
+          "cost_usd": 0.031,
+          "notes": "Held all 7/7 constraints cleanly without leaking reasoning preamble."
+        },
+        "claude-opus-4-8": {
+          "status": "partial",
+          "latency_ms": 3640,
+          "cost_usd": 0.028,
+          "notes": "Passed 6/7 rules; sentence 2 missed exact word cap by 2 words."
+        }
+      }
+    },
+    {
+      "id": "t3-vault-contradiction-audit",
+      "category": "governance",
+      "prompt": "Identify the latent contradiction between two memory vault entries and propose a non-destructive reconciliation receipt.",
+      "verification": "Rubric check: contradiction named + non-destructive resolution",
+      "results": {
+        "claude-fable-5": {
+          "status": "pass",
+          "latency_ms": 3400,
+          "cost_usd": 0.042,
+          "notes": "Pinpointed temporal half-life conflict and emitted append-only superseding atom."
+        },
+        "claude-opus-4-8": {
+          "status": "pass",
+          "latency_ms": 3910,
+          "cost_usd": 0.034,
+          "notes": "Strong causal explanation of why both entries appeared valid in isolation."
+        }
+      }
+    },
+    {
+      "id": "t4-sqlite-fts5-migration",
+      "category": "coding",
+      "prompt": "Write an idempotent SQLite FTS5 virtual table trigger sync script that survives duplicate JSONL replay.",
+      "verification": "SQLite in-memory replay test (3x duplicate batch)",
+      "results": {
+        "claude-fable-5": {
+          "status": "pass",
+          "latency_ms": 4510,
+          "cost_usd": 0.052,
+          "notes": "Idempotent content-hash guard passed 3x replay with zero row inflation."
+        },
+        "claude-opus-4-8": {
+          "status": "pass",
+          "latency_ms": 5120,
+          "cost_usd": 0.041,
+          "notes": "Passed 3x replay using ON CONFLICT DO NOTHING + FTS rebuild trigger."
+        }
+      }
+    }
+  ]
+}

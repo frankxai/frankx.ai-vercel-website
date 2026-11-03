@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420">
+  <rect width="800" height="420" rx="20" fill="#09090b" stroke="#1e293b" stroke-width="2"/>
+  <rect x="28" y="28" width="744" height="364" rx="14" fill="#0f172a" stroke="#38bdf8" stroke-opacity="0.35" stroke-width="1.5"/>
+  <text x="56" y="72" fill="#38bdf8" font-family="monospace" font-size="13" letter-spacing="1.5">GOOGLE DEEPMIND · FLAGSHIP DOSSIER · VERIFIED 2026-10-14</text>
+  <text x="56" y="114" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="30" font-weight="700">Gemini 4 Argon (gemini-4-argon)</text>
+  <text x="56" y="148" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="16">1,048,576 context · 65,536 default output (1M continuation) · Text / Vision / Audio / Video / PDF</text>
+
+  <rect x="56" y="176" width="210" height="84" rx="10" fill="#09090b" stroke="#334155"/>
+  <text x="74" y="204" fill="#94a3b8" font-family="monospace" font-size="12">INPUT / OUTPUT (1M)</text>
+  <text x="74" y="238" fill="#38bdf8" font-family="monospace" font-size="24" font-weight="700">$2.00 / $10.00</text>
+
+  <rect x="286" y="176" width="210" height="84" rx="10" fill="#09090b" stroke="#334155"/>
+  <text x="304" y="204" fill="#94a3b8" font-family="monospace" font-size="12">CACHED INPUT (95% OFF)</text>
+  <text x="304" y="238" fill="#34d399" font-family="monospace" font-size="24" font-weight="700">$0.10 / 1M</text>
+
+  <rect x="516" y="176" width="228" height="84" rx="10" fill="#09090b" stroke="#334155"/>
+  <text x="534" y="204" fill="#94a3b8" font-family="monospace" font-size="12">ARENA ROUND 6 RECEIPT</text>
+  <text x="534" y="238" fill="#34d399" font-family="monospace" font-size="24" font-weight="700">5 / 5 PASS</text>
+
+  <text x="56" y="302" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="15" font-weight="600">Routing Verdict:</text>
+  <text x="56" y="328" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="14">Primary pick for 1M multimodal repository + video/UI synthesis. Set thinking=high on governance gates.</text>
+  <text x="56" y="364" fill="#64748b" font-family="monospace" font-size="12">Receipt: /research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json</text>
+</svg>
