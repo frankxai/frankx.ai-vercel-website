@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = createMetadata({
+  canonical: './',
   title: 'Ikigai + AI Content Studio | FrankX',
   description:
     'Facilitator-led workshop that picks up where the self-serve Ikigai wizard stops. Map purpose, distill positioning, ship your first AI-augmented brand asset in one session.',

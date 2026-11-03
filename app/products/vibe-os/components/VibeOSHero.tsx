@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Sparkles, Mail, Play, Waves } from 'lucide-react'
+import { Sparkles, Mail, Waves } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 import type { ProductRecord } from '@/types/products'
@@ -17,13 +17,14 @@ interface VibeOSHeroProps {
 
 export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
   const waitlistHref = `/waitlist?intent=${productId}`
+  const secondaryHref = product.offer.ctaSecondaryHref || waitlistHref
   const handleCTAClick = (target: 'primary' | 'secondary') => {
     trackEvent('product_cta_click', {
       productId,
       location: 'hero',
       target,
-      href: target === 'primary' ? waitlistHref : product.offer.ctaSecondaryHref,
-      label: target === 'primary' ? 'join-waitlist' : product.offer.ctaSecondaryTracking
+      href: target === 'primary' ? (COMING_SOON_MODE ? waitlistHref : product.offer.ctaPrimaryHref) : secondaryHref,
+      label: target === 'primary' ? (COMING_SOON_MODE ? 'join-waitlist' : product.offer.ctaPrimaryTracking) : (product.offer.ctaSecondaryTracking || 'join-waitlist')
     })
   }
 
@@ -150,13 +151,14 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
             </Link>
           )}
 
-          <button
+          <Link
+            href={secondaryHref}
             onClick={() => handleCTAClick('secondary')}
             className="group inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-6 py-4 text-sm font-medium text-white/80 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
           >
-            <Play className="h-4 w-4" />
-            Watch Overview
-          </button>
+            <Mail className="h-4 w-4" />
+            {product.offer.ctaSecondary || 'Join web app waitlist'}
+          </Link>
         </motion.div>
 
         {/* Trust Indicator */}

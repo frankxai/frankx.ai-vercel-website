@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import AuroraGradient from '@/components/ui/AuroraGradient'
 
 export const metadata: Metadata = {
-  title: 'Design System | FrankX',
+  title: 'Design System',
   description: 'FrankX Brand System v2.0 — Colors, typography, glassmorphism, spacing, gradients, and component patterns.',
 }
 

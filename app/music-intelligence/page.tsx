@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { ArrowRight, ExternalLink, Github } from 'lucide-react'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import ecosystem from '@/data/music-intelligence-ecosystem.json'
 
-const PAGE_URL = 'https://frankx.ai/music-intelligence'
+const PAGE_URL = `${siteConfig.url}/music-intelligence`
 
 export const metadata = createMetadata({
   title: 'Music Intelligence System — Research, Agents & Tools for AI-Era Music | FrankX',
@@ -60,11 +60,11 @@ const jsonLd = {
       name: 'Music Intelligence System',
       description:
         'An open, interconnected system for AI-era music creation — research, agents, tools, and education.',
-      isPartOf: { '@id': 'https://frankx.ai/#website' },
+      isPartOf: { '@id': `${siteConfig.url}/#website` },
       author: {
         '@type': 'Person',
         name: 'Frank Riemer',
-        url: 'https://frankx.ai',
+        url: siteConfig.url,
         jobTitle: 'AI Architect',
       },
     },
@@ -76,13 +76,13 @@ const jsonLd = {
         '@type': 'ListItem',
         position: index + 1,
         name: system.name,
-        url: system.external ? system.href : `https://frankx.ai${system.href}`,
+        url: system.external ? system.href : `${siteConfig.url}${system.href}`,
       })),
     },
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
         { '@type': 'ListItem', position: 2, name: 'Music Intelligence', item: PAGE_URL },
       ],
     },

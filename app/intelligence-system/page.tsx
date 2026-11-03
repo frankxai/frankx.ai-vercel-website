@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
@@ -31,15 +32,15 @@ const SIS_REPO = 'https://github.com/frankxai/Starlight-Intelligence-System'
 const LIBRARY_OS_REPO = 'https://github.com/frankxai/library-os'
 
 export const metadata: Metadata = {
-  title: 'Investment Intelligence System — The Kata for Personal Capital Stewardship | FrankX',
+  title: 'Investment Intelligence System — The Kata for Personal Capital Stewardship',
   description:
     'A markdown-first, MIT-licensed substrate that turns any AI assistant or code agent — Claude Cowork, ChatGPT, Claude Code, Gemini CLI, OpenCode — into a sophisticated decision-support engine for personal wealth management. Multi-agent debate team, retrospective learning loop, mandatory human-gate. Not a trading bot.',
-  alternates: { canonical: 'https://frankx.ai/intelligence-system' },
+  alternates: { canonical: `${siteConfig.url}/intelligence-system` },
   openGraph: {
     title: 'Investment Intelligence System — The Kata for Personal Capital Stewardship',
     description:
       'Decision-support and discipline-imposition substrate for personal wealth management. Open source. MIT.',
-    url: 'https://frankx.ai/intelligence-system',
+    url: `${siteConfig.url}/intelligence-system`,
     siteName: 'FrankX',
     type: 'website',
     // Using /hero-intelligence-atlas.png as themed stand-in until the
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
     // See public/images/intelligence-system/hero.spec.md for the prompt.
     images: [
       {
-        url: 'https://frankx.ai/hero-intelligence-atlas.png',
+        url: `${siteConfig.url}/hero-intelligence-atlas.png`,
         width: 1200,
         height: 630,
         alt: 'Investment Intelligence System — the kata for personal capital stewardship',
@@ -59,7 +60,7 @@ export const metadata: Metadata = {
     title: 'Investment Intelligence System — The Kata for Personal Capital Stewardship',
     description:
       'Decision-support and discipline-imposition substrate for personal wealth management. Open source. MIT.',
-    images: ['https://frankx.ai/hero-intelligence-atlas.png'],
+    images: [`${siteConfig.url}/hero-intelligence-atlas.png`],
   },
 }
 
@@ -143,11 +144,11 @@ const articleSchema = {
   headline: 'Investment Intelligence System — The Kata for Personal Capital Stewardship',
   description:
     'A markdown-first, MIT-licensed substrate that turns any code agent into a sophisticated decision-support engine for personal wealth management.',
-  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
-  publisher: { '@type': 'Organization', name: 'FrankX', url: 'https://frankx.ai' },
+  author: { '@type': 'Person', name: 'Frank Riemer', url: siteConfig.url },
+  publisher: { '@type': 'Organization', name: 'FrankX', url: siteConfig.url },
   datePublished: '2026-05-06',
   dateModified: '2026-05-07',
-  mainEntityOfPage: 'https://frankx.ai/intelligence-system',
+  mainEntityOfPage: `${siteConfig.url}/intelligence-system`,
   inLanguage: 'en',
   keywords: 'wealth management, decision support, multi-agent, AI architect, MIT open source, personal finance, Box 3, BV, DCA discipline',
 }
