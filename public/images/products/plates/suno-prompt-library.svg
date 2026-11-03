@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-labelledby="title-suno-prompt-library desc-suno-prompt-library">
+  <title id="title-suno-prompt-library">Suno Prompt Library Pack schematic plate</title>
+  <desc id="desc-suno-prompt-library">Technical deliverable diagram for Suno Prompt Library Pack (CREATIVE STUDIO).</desc>
+  <defs>
+    <linearGradient id="bg-suno-prompt-library" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A0B0F" />
+      <stop offset="100%" stop-color="#10141D" />
+    </linearGradient>
+    <radialGradient id="glow-suno-prompt-library" cx="82%" cy="18%" r="60%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid-suno-prompt-library" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(255,255,255,0.028)" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="640" height="360" rx="20" fill="url(#bg-suno-prompt-library)" />
+  <rect width="640" height="360" rx="20" fill="url(#grid-suno-prompt-library)" />
+  <rect width="640" height="360" rx="20" fill="url(#glow-suno-prompt-library)" />
+  <rect x="0.75" y="0.75" width="638.5" height="358.5" rx="19.25" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1.5" />
+
+  <!-- Top Telemetry Header -->
+  <text x="36" y="42" fill="#10B981" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600" letter-spacing="1.6">CREATIVE STUDIO</text>
+  <text x="36" y="68" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.4">Suno Prompt Library Pack</text>
+
+  <rect x="476" y="26" width="128" height="28" rx="14" fill="rgba(16, 185, 129, 0.14)" stroke="rgba(16, 185, 129, 0.34)" />
+  <text x="540" y="44" text-anchor="middle" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">Coming soon</text>
+
+  
+      <!-- Studio Signal and Stem Architecture -->
+      <g transform="translate(36, 98)">
+        <rect x="0" y="0" width="568" height="190" rx="14" fill="#0D1017" stroke="rgba(255,255,255,0.08)" />
+        <text x="26" y="30" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5" letter-spacing="1.2">SIGNAL SPECTRUM · REFERENCE LOCKED</text>
+        <rect x="26" y="83.5" width="8" height="77" rx="3" fill="#10B981" opacity="0.92" /><rect x="40" y="104.0" width="8" height="36" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="54" y="85.5" width="8" height="73" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="68" y="106.0" width="8" height="32" rx="3" fill="#10B981" opacity="0.92" /><rect x="82" y="87.5" width="8" height="69" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="96" y="108.0" width="8" height="28" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="110" y="89.5" width="8" height="65" rx="3" fill="#10B981" opacity="0.92" /><rect x="124" y="110.0" width="8" height="24" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="138" y="91.5" width="8" height="61" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="152" y="73.0" width="8" height="98" rx="3" fill="#10B981" opacity="0.92" /><rect x="166" y="93.5" width="8" height="57" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="180" y="75.0" width="8" height="94" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="194" y="95.5" width="8" height="53" rx="3" fill="#10B981" opacity="0.92" /><rect x="208" y="77.0" width="8" height="90" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="222" y="97.5" width="8" height="49" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="236" y="79.0" width="8" height="86" rx="3" fill="#10B981" opacity="0.92" /><rect x="250" y="99.5" width="8" height="45" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="264" y="81.0" width="8" height="82" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="278" y="101.5" width="8" height="41" rx="3" fill="#10B981" opacity="0.92" /><rect x="292" y="83.0" width="8" height="78" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="306" y="103.5" width="8" height="37" rx="3" fill="rgba(255,255,255,0.16)" opacity="0.55" /><rect x="320" y="85.0" width="8" height="74" rx="3" fill="#10B981" opacity="0.92" />
+        <rect x="356" y="22" width="192" height="44" rx="9" fill="#121820" stroke="rgba(16, 185, 129, 0.34)" />
+        <text x="370" y="41" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" font-weight="600">01 · Electronic &amp; EDM Pack</text>
+        <text x="370" y="56" fill="#10B981" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">TOKEN SPEC</text>
+
+        <rect x="356" y="74" width="192" height="44" rx="9" fill="#121820" stroke="rgba(255,255,255,0.12)" />
+        <text x="370" y="93" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" font-weight="600">02 · Hip-Hop &amp; R&amp;B Pack</text>
+        <text x="370" y="108" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">WORKFLOW LOOP</text>
+
+        <rect x="356" y="126" width="192" height="44" rx="9" fill="#121820" stroke="rgba(255,255,255,0.12)" />
+        <text x="370" y="145" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" font-weight="600">03 · Cinematic &amp; Ambient…</text>
+        <text x="370" y="160" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">QA RUBRIC</text>
+      </g>
+    
+
+  <!-- Bottom Inspectable Footer -->
+  <text x="36" y="324" fill="#64748B" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" letter-spacing="1.1">SKU // SUNO-PROMPT-LIBRARY</text>
+  <text x="604" y="324" text-anchor="end" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10">INSPECTABLE MANIFEST · 16:9</text>
+</svg>

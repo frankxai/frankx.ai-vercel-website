@@ -91,6 +91,7 @@ export type ProductRecord = {
   id: string
   slug: string
   name: string
+  brand?: string
   badge?: string
   category?: string
   headline: string
