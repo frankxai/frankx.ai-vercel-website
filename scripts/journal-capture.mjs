@@ -68,6 +68,11 @@ export async function capture({ directory, source, id, date = journalDay(), repo
   const key = safeId(id || `${date}-${digest.slice(0,20)}`)
   const record = path.join(vault, key)
   await fs.mkdir(record, { recursive: true, mode: 0o700 })
+  // A pre-existing capture-key symlink must never redirect original bytes
+  // into a public checkout (or any other directory outside this private vault).
+  if ((await fs.lstat(record)).isSymbolicLink() || await fs.realpath(record) !== record) {
+    throw new Error('Capture records cannot be symlinks.')
+  }
   // This hash and the original filename never leave the private vault.
   await immutable(path.join(record, 'original'), bytes)
   let state

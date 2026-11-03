@@ -34,8 +34,9 @@ async function run() {
   const files = await paginate(`pulls/${pr.number}/files`)
   let needsApproval = false
   for (const file of files) {
-    if (!/^content\/journal\/(?!_).*\.mdx?$/.test(file.filename) || file.status === 'removed') continue
-    const result = await api(`contents/${file.filename}?ref=${pr.head.sha}`)
+    if (!/^content\/journal\/(?!_).*\.mdx?$/.test(file.filename)) continue
+    const revision = file.status === 'removed' ? pr.base.sha : pr.head.sha
+    const result = await api(`contents/${file.filename}?ref=${revision}`)
     const { data } = matter(Buffer.from(result.content, 'base64').toString('utf8'))
     if (data.published === true) needsApproval = true
   }

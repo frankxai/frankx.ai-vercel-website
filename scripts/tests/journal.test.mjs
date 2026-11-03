@@ -71,6 +71,14 @@ test('capture refuses raw notes already inside the public repository', async t =
   await assert.rejects(capture({ ...f, source }), /outside the public/)
 })
 
+test('a capture-key symlink cannot redirect original bytes into a public directory', async t => {
+  const f = await fixture(t)
+  await privateDirectory(f.directory, f.repo)
+  await fs.symlink(f.repo, path.join(f.directory, 'malicious-key'))
+  await assert.rejects(capture({ ...f, id: 'malicious-key' }), /symlinks/)
+  await assert.rejects(fs.access(path.join(f.repo, 'original')))
+})
+
 test('review gate binds privacy and attribution decisions to exact draft bytes', async t => {
   const f = await fixture(t)
   const result = await capture({ ...f, date: '2026-11-03' })
