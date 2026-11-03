@@ -4,11 +4,11 @@
     "slug": "soulbook",
     "name": "The Creator's Soulbook",
     "category": "Life Architecture",
-    "badge": "FREE DOWNLOAD",
+    "badge": "Free download",
     "headline": "Write the Book Your Soul Came Here to Write",
     "subheadline": "A complete life operating system with 7 pillars, 3 life book frameworks, and AI-powered coaching prompts. Free Obsidian vault included.",
-    "promise": "Design, track, and transform every dimension of your life with a framework built for creators, artists, and visionaries.",
-    "summary": "Your personal collection of Life Books offering different lenses for transformation. Includes complete Obsidian vault, AI prompt library, and reflection templates.",
+    "promise": "Structure, track, and refine every dimension of your life with a Markdown vault built for creators, writers, and builders.",
+    "summary": "Your personal collection of Life Books offering three structured lenses for reflection. Includes complete Obsidian vault, prompt library, and weekly review templates.",
     "transformation": [
       "Map all 7 life pillars (Energy, Mind, Soul, Craft, Capital, Circle, Legacy) with structured reflection exercises",
       "Choose your transformation lens: Life Symphony (for artists), Golden Path (for seekers), or 7 Pillars (for builders)",
@@ -95,11 +95,11 @@
     "slug": "creative-ai-toolkit",
     "name": "The Creative AI Toolkit",
     "category": "Creative Intelligence",
-    "badge": "CREATORS SHIPPING",
+    "badge": "Creator toolkit",
     "headline": "Replace AI Panic with Proven Workflows",
     "subheadline": "Prompts and automation recipes for storytelling, marketing, content and operations.",
-    "promise": "Go from AI overwhelm to a trusted daily ritual. One week to measurable creative velocity.",
-    "summary": "Structured prompts, workflow templates, and daily rituals that turn AI into your creative co-pilot, not a distraction.",
+    "promise": "Move from scattered prompt notes to a repeatable daily workflow within one week.",
+    "summary": "Structured prompts, workflow templates, and daily rituals that keep AI work focused on finished creative output.",
     "transformation": [
       "Use prompts across storytelling, marketing, content and operations.",
       "Spend your working hours on the thinking, since the mechanical steps already come templated",
@@ -107,9 +107,7 @@
       "Build a repeatable daily ritual that ships consistently without burnout"
     ],
     "socialProof": {
-      "stats": [
-
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
@@ -177,7 +175,7 @@
     "slug": "vibe-os",
     "name": "Vibe OS: Creative State Management",
     "category": "Creator Tools",
-    "badge": "FREE TOOL",
+    "badge": "Free guide",
     "headline": "Manage Your Creative Energy and Focus Like a Pro",
     "subheadline": "Track your creative states, optimize your energy cycles, and build sustainable workflows. A practical system for creators who ship consistently.",
     "promise": "Stop fighting your energy. Start working with your natural creative rhythms.",
@@ -253,15 +251,15 @@
       },
       {
         "question": "How is this different from other productivity tools?",
-        "answer": "Vibe OS focuses specifically on creative work patterns and energy management. It's designed for creators, not corporate knowledge workers."
+        "answer": "Vibe OS focuses specifically on creative work patterns, session state, and energy management for independent creators and studio builders."
       },
       {
         "question": "Do I need technical skills to use it?",
-        "answer": "No. Vibe OS is built for creators, not engineers. If you can use Notion or a spreadsheet, you can use Vibe OS."
+        "answer": "No. Vibe OS uses plain Markdown templates and browser tools. If you can use Notion or a spreadsheet, you can run Vibe OS."
       },
       {
         "question": "Will there be a paid version?",
-        "answer": "Maybe someday, but the core Vibe OS will always be free. Any future premium features would be add-ons, not requirements."
+        "answer": "The core Vibe OS guide and session templates remain free. Any future studio packs ship as standalone optional add-ons."
       }
     ],
     "analyticsId": "vibe-os",
@@ -285,10 +283,10 @@
     "slug": "creation-chronicles",
     "name": "Creation Chronicles",
     "category": "Story Systems",
-    "badge": "STORYTELLER-POETS",
+    "badge": "Story studio",
     "headline": "Build Authority Through Consistent, Compelling Stories",
-    "subheadline": "From fragmented content to a unified narrative system that grows your audience 3x and converts readers into paying customers every month.",
-    "promise": "A storytelling operating system that turns your voice into a revenue engine. Clear strategy. Repeatable production. Measurable growth.",
+    "subheadline": "Turn scattered essays, notes, and drafts into a structured narrative system with weekly publishing cadence and clear reader pathways.",
+    "promise": "A storytelling operating system pairing editorial architecture, repeatable drafting checklists, and multi-channel distribution.",
     "summary": "Strategic frameworks, AI-assisted workflows, and distribution rituals that ship stories consistently and build real authority.",
     "transformation": [
       "Replace scattered messaging with a core narrative arc that runs through every piece you ship (essays, videos, social)",
@@ -390,7 +388,7 @@
           "Custom workflow development",
           "Quarterly narrative summits"
         ],
-        "ctaLabel": "Transform Your Brand",
+        "ctaLabel": "Request enterprise scope",
         "ctaHref": "mailto:frank@frankx.ai?subject=Creation%20Chronicles%20Enterprise"
       }
     ],
@@ -405,7 +403,7 @@
       },
       {
         "question": "How much time should we expect to invest?",
-        "answer": "Plan for a 90-day rollout with weekly story sprints. Teams typically spend 4–6 hours per week implementing and reviewing."
+        "answer": "Plan for a 90-day rollout with weekly story sprints. Teams typically spend 4 to 6 hours per week implementing and reviewing."
       }
     ],
     "analyticsId": "creation-chronicles"
@@ -415,7 +413,7 @@
     "slug": "generative-creator-os",
     "name": "Creator Studio OS",
     "category": "Creator Systems",
-    "badge": "CREATOR ARCHITECTS",
+    "badge": "Studio cohort",
     "headline": "Multiply Your Output. Protect Your Voice. Keep Creative Control.",
     "subheadline": "Custom-built multi-modal studio that automates versioning, distribution, and QA while you stay in the director's chair. 2-week sprint to full deployment.",
     "promise": "Go from 1-2 pieces per month to 3-4 per week. All channels. Same voice. Your standards.",
@@ -517,7 +515,7 @@
       },
       {
         "question": "How fast will we see impact?",
-        "answer": "Most sprints unlock a new publishing rhythm within 30 days. We track output velocity and sentiment so you can see progress."
+        "answer": "Most sprints establish a steady weekly publishing rhythm within 30 days. We track output velocity and sentiment so you can see progress."
       },
       {
         "question": "Do you train us on the tools?",
@@ -545,15 +543,15 @@
     "slug": "agentic-creator-os",
     "name": "Creator Lab OS",
     "category": "Creator Systems",
-    "badge": "GUIDED COHORT",
+    "badge": "Guided cohort",
     "headline": "30-Day Lab to Ship Your Repeatable Launch Machine",
     "subheadline": "Co-designed coaching + build sessions for your creator operating system.",
-    "promise": "Build the system that turns creative chaos into predictable weekly shipping. Momentum, clarity, revenue\u2014measured from day 1.",
+    "promise": "Build the system that turns creative chaos into predictable weekly shipping. Momentum, clarity, and output, measured weekly.",
     "summary": "Live cohort lab where you co-architect rituals, automations, and accountability that keep your practice consistently shipping.",
     "transformation": [
       "Clarify exactly who you're creating for and what offer maps to your unique strengths (1-week sprint)",
       "Design your complete idea-to-monetized-release pipeline with automations that handle the boring stuff",
-      "Establish weekly rituals and dashboard checkpoints so you know momentum is compounding (not just hoping)",
+      "Establish weekly rituals and dashboard checkpoints so you can track shipping velocity with concrete artifacts",
       "Ship one live release during the cohort with peer feedback, analytics, and your first real revenue signal"
     ],
     "socialProof": {
@@ -661,7 +659,7 @@
           "name": "ACOS Product Guide v2",
           "format": "pdf",
           "blobKey": "products/agentic-creator-os/ACOS-Product-Guide-v2.pdf",
-          "description": "The complete ACOS product guide — 23 pages"
+          "description": "The complete ACOS product guide · 23 pages"
         },
         {
           "name": "ACOS Quickstart Guide",
@@ -697,7 +695,7 @@
     "transformation": [
       "Suno prompts organized by genre, mood and energy, each with notes on why it works.",
       "Find the perfect prompt in seconds with genre, mood, and energy filters (no more scrolling through chaos)",
-      "Learn prompt patterns that unlock specific sounds (the 'why' behind each prompt so you can create your own)",
+      "Learn prompt structures that shape specific sounds (the 'why' behind each prompt so you can write your own)",
       "Get bonus prompt modifiers for tempo, instrumentation, and vocal styles that stack with any base prompt"
     ],
     "socialProof": {
@@ -749,7 +747,7 @@
       {
         "title": "Genre Quick-Start Cards",
         "value": "$12",
-        "description": "Printable cards for the top 5 prompts in each genre—perfect for studio sessions."
+        "description": "Printable reference cards for the top 5 prompts in each genre, formatted for studio sessions."
       },
       {
         "title": "Monthly Prompt Updates",
@@ -772,7 +770,7 @@
       },
       {
         "question": "How is this different from Vibe OS?",
-        "answer": "The Prompt Library is just the prompts. Vibe OS includes the full production system—workflows, emotion mapping, and release playbooks. This is the quick-start option."
+        "answer": "The Prompt Library focuses on genre prompt templates. Vibe OS covers the wider session workflow: prompt structure, arrangement iteration, and release checklists."
       }
     ],
     "analyticsId": "suno-prompt-library",
@@ -808,16 +806,16 @@
     "slug": "aurora-ui-kit",
     "name": "Aurora UI Kit",
     "category": "Design + AI",
-    "badge": "NEW",
+    "badge": "Component kit",
     "headline": "30 Premium Components with AI Generation Built In",
     "subheadline": "Production-ready Next.js components with glassmorphism, animations, and a Claude Code skill that generates new components in the same design language on demand.",
     "promise": "Stop building UI from scratch. Get 30 polished components plus an AI system that creates new ones matching your design system.",
     "summary": "A premium component library combining hand-crafted Next.js + Tailwind components with an agentic AI layer that generates custom variants on demand.",
     "transformation": [
-      "Drop 30 production-ready components into any Next.js project — PremiumCard, AuroraGradient, ShimmerButton, and more",
+      "Drop 30 production-ready components into any Next.js project: PremiumCard, AuroraGradient, ShimmerButton, and more",
       "Use the included Claude Code skill to generate new components that match the Aurora design language",
       "Ship polished UIs in hours instead of weeks with pre-built dark/light mode, responsive layouts, and micro-interactions",
-      "Customize everything with documented design tokens — colors, spacing, animations, glass levels"
+      "Customize everything with documented design tokens: colors, spacing, animations, glass levels"
     ],
     "socialProof": {
       "stats": [
@@ -852,7 +850,7 @@
       },
       {
         "title": "Animation Systems",
-        "description": "MorphingBackground, SplitTextReveal, Marquee, ParallaxContainer, StaggerContainer — all with prefers-reduced-motion support."
+        "description": "MorphingBackground, SplitTextReveal, Marquee, ParallaxContainer, StaggerContainer · all with prefers-reduced-motion support."
       },
       {
         "title": "AI Generation Skill",
@@ -867,7 +865,7 @@
       {
         "title": "6 Page Templates",
         "value": "$29",
-        "description": "Landing page, dashboard, pricing, blog, portfolio, and 404 — all built with Aurora components."
+        "description": "Landing page, dashboard, pricing, blog, portfolio, and 404, all built with Aurora components."
       },
       {
         "title": "Figma Design Tokens",
@@ -878,11 +876,11 @@
     "faq": [
       {
         "question": "What tech stack does this require?",
-        "answer": "Next.js 14+, React 18+, Tailwind CSS 3+, and TypeScript. Components use zero external animation libraries — pure CSS + React."
+        "answer": "Next.js 14+, React 18+, Tailwind CSS 3+, and TypeScript. Components use zero external animation libraries, pure CSS + React."
       },
       {
         "question": "What makes this different from shadcn/ui?",
-        "answer": "Aurora UI Kit is a design-forward layer that sits on top of shadcn. While shadcn gives you unstyled primitives, Aurora gives you the visual polish — glassmorphism, gradients, micro-interactions, and the AI skill to generate more."
+        "answer": "Aurora UI Kit is a design-forward layer that sits on top of shadcn. While shadcn gives you unstyled primitives, Aurora gives you the visual polish, glassmorphism, gradients, micro-interactions, and the AI skill to generate more."
       },
       {
         "question": "How does the AI generation skill work?",
@@ -920,15 +918,15 @@
     "slug": "agentic-content-engine",
     "name": "Agentic Content Engine",
     "category": "Design + AI",
-    "badge": "AGENTIC",
-    "headline": "Your AI-Powered Content Production System",
-    "subheadline": "A complete Next.js content platform with built-in AI writing assistance, SEO optimization, social distribution automation, and analytics. Not a template — a system.",
-    "promise": "Go from idea to published, SEO-optimized, socially distributed content in under 30 minutes. Every single time.",
+    "badge": "Content kit",
+    "headline": "Next.js MDX Content and Editorial Pipeline",
+    "subheadline": "A Next.js content platform with structured AI drafting prompts, metadata checks, social formatting scripts, and analytics.",
+    "promise": "Move from research brief to formatted, metadata-checked MDX draft and social queue in a single structured pass.",
     "summary": "Production-ready content management system combining a premium blog platform with agentic AI capabilities for writing, SEO, and distribution.",
     "transformation": [
       "Publish SEO-optimized articles with AI-assisted writing that maintains your voice and style",
       "Auto-generate social media posts for every article across Twitter/X, LinkedIn, and newsletter formats",
-      "Track content performance with built-in analytics dashboard — pageviews, time on page, conversion events",
+      "Track content performance with built-in analytics dashboard: pageviews, time on page, conversion events",
       "Use Claude Code skills to run your entire content pipeline from the terminal: research, write, optimize, publish"
     ],
     "socialProof": {
@@ -999,7 +997,7 @@
     "faq": [
       {
         "question": "Is this a WordPress alternative?",
-        "answer": "Yes, but faster. Built on Next.js with static generation, so pages load instantly. No database required — content lives in MDX files in your repo."
+        "answer": "Yes, but faster. Built on Next.js with static generation, so pages load instantly. No database required, content lives in MDX files in your repo."
       },
       {
         "question": "Do I need Claude Code to use this?",
@@ -1077,7 +1075,16 @@
       "ctaSecondary": "Full Prompt Library",
       "ctaSecondaryHref": "/products/suno-prompt-library"
     },
-    "modules": [],
+    "modules": [
+      {
+        "title": "Five Annotated Suno Prompts",
+        "description": "Exact style strings and structure notes showing why each arrangement holds together."
+      },
+      {
+        "title": "Keyword & Variation Cheat Sheet",
+        "description": "Genre fusion cues, vocal texture modifiers, and common prompt pitfalls to avoid."
+      }
+    ],
     "faq": [
       {
         "question": "Do these prompts work with Suno v4?",
@@ -1103,9 +1110,9 @@
     "slug": "love-and-poetry",
     "name": "Love & Poetry",
     "category": "Books",
-    "badge": "FREE PDF",
+    "badge": "Free PDF",
     "headline": "Verses That Move the Soul",
-    "subheadline": "Rumi, Rilke, Goethe, Vietnamese love poetry, and original verse — spanning centuries, cultures, and languages.",
+    "subheadline": "Rumi, Rilke, Goethe, Vietnamese love poetry, and original verse, spanning centuries, cultures, and languages.",
     "promise": "A curated collection of the world's most beautiful love poetry, woven with original work.",
     "summary": "Five chapters of poetry from Rumi to Rilke, from German Romanticism to Vietnamese lyricism, concluding with original poems written from lived experience.",
     "transformation": [],
@@ -1130,7 +1137,16 @@
       "ctaPrimaryHref": "/books/love-and-poetry",
       "ctaPrimaryTracking": "book-love-poetry-read"
     },
-    "modules": [],
+    "modules": [
+      {
+        "title": "Chapters I to III · Classical & Romantic Lyricism",
+        "description": "Selected verses and commentary spanning Rumi, Goethe, Rilke, and German Romanticism."
+      },
+      {
+        "title": "Chapters IV to V · Vietnamese Verse & Original Poems",
+        "description": "Cross-cultural love poetry paired with original poems written from lived experience."
+      }
+    ],
     "analyticsId": "book-love-and-poetry",
     "delivery": {
       "methods": [
@@ -1156,7 +1172,7 @@
     "slug": "spartan-mindset",
     "name": "Spartan Mindset",
     "category": "Books",
-    "badge": "FREE PDF",
+    "badge": "Free PDF",
     "headline": "The Discipline of One More",
     "subheadline": "A manual for the relentless. Discipline, training, and the philosophy of pushing past limits.",
     "promise": "Every chapter is a rep you didn't think you had. Gym discipline as life philosophy.",
@@ -1183,7 +1199,16 @@
       "ctaPrimaryHref": "/books/spartan-mindset",
       "ctaPrimaryTracking": "book-spartan-read"
     },
-    "modules": [],
+    "modules": [
+      {
+        "title": "Part I · Iron Discipline & Voluntary Hardship",
+        "description": "Training principles, physical conditioning, and the compound effect of one extra rep."
+      },
+      {
+        "title": "Part II · Composure Under Pressure",
+        "description": "Mental models for keeping focus when schedules tighten and comfort disappears."
+      }
+    ],
     "analyticsId": "book-spartan-mindset",
     "delivery": {
       "methods": [
@@ -1209,10 +1234,10 @@
     "slug": "self-development",
     "name": "The Art of Self-Development",
     "category": "Books",
-    "badge": "FREE PDF",
+    "badge": "Free PDF",
     "headline": "Seven Pillars of a Complete Life",
-    "subheadline": "Energy, Mind, Soul, Craft, Capital, Circle, and Legacy — a systematic approach to building every dimension of your life.",
-    "promise": "Not theory. Routines that work. Seven pillars, each with actionable protocols.",
+    "subheadline": "Energy, Mind, Soul, Craft, Capital, Circle, and Legacy: a systematic approach to building every dimension of your life.",
+    "promise": "Grounded daily routines across seven pillars, each paired with written exercises and review checklists.",
     "summary": "Seven chapters mapping the complete self-development framework: from morning protocols and mental clarity to financial architecture and legacy thinking.",
     "transformation": [],
     "socialProof": {
@@ -1236,7 +1261,16 @@
       "ctaPrimaryHref": "/books/self-development",
       "ctaPrimaryTracking": "book-selfdev-read"
     },
-    "modules": [],
+    "modules": [
+      {
+        "title": "Pillars I to IV · Energy, Mind, Soul, and Craft",
+        "description": "Daily morning protocols, attention hygiene, reflective practice, and deliberate skill building."
+      },
+      {
+        "title": "Pillars V to VII · Capital, Circle, and Legacy",
+        "description": "Personal financial structure, high-trust relationships, and long-horizon contribution."
+      }
+    ],
     "analyticsId": "book-self-development",
     "delivery": {
       "methods": [
@@ -1262,10 +1296,10 @@
     "slug": "imagination",
     "name": "Imagination",
     "category": "Books",
-    "badge": "FREE PDF",
-    "headline": "Unlocking the Power of the Mind",
-    "subheadline": "Your imagination is the most powerful technology you possess. This book teaches you how to wield it.",
-    "promise": "Creative visualization, mental models, and the architecture of thought — applied neuroscience for builders.",
+    "badge": "Free PDF",
+    "headline": "Mental Models and Creative Visualization for Builders",
+    "subheadline": "Structured exercises in mental simulation, first-principles framing, and creative synthesis.",
+    "promise": "Creative visualization, mental models, and the architecture of thought: applied neuroscience for builders.",
     "summary": "Five chapters on the inner theater, creative visualization protocols, essential mental models, the architect's eye, and reaching beyond the visible.",
     "transformation": [],
     "socialProof": {
@@ -1289,7 +1323,16 @@
       "ctaPrimaryHref": "/books/imagination",
       "ctaPrimaryTracking": "book-imagination-read"
     },
-    "modules": [],
+    "modules": [
+      {
+        "title": "Chapters I to III · The Inner Theater & Mental Models",
+        "description": "Structured visualization exercises and spatial thinking tools for creators and engineers."
+      },
+      {
+        "title": "Chapters IV to V · The Architect Eye",
+        "description": "Translating internal concepts into concrete sketches, prototypes, and written specifications."
+      }
+    ],
     "analyticsId": "book-imagination",
     "delivery": {
       "methods": [
@@ -1315,10 +1358,10 @@
     "slug": "manifestation",
     "name": "Manifestation",
     "category": "Books",
-    "badge": "FREE PDF",
+    "badge": "Free PDF",
     "headline": "The Architecture of Reality",
-    "subheadline": "Not wishful thinking. The grounded, psychological approach to turning thought into reality.",
-    "promise": "Strip away the mysticism. What remains is a framework for building the reality you want.",
+    "subheadline": "A grounded psychological framework for attention, deliberate habits, and evidence-logged action.",
+    "promise": "Practical chapters on selective attention, cognitive framing, habit loops, and written evidence logs.",
     "summary": "Five chapters on the psychology of reality construction: RAS programming, thought blueprints, frequency management, aligned action, and the evidence journal.",
     "transformation": [],
     "socialProof": {
@@ -1342,7 +1385,16 @@
       "ctaPrimaryHref": "/books/manifestation",
       "ctaPrimaryTracking": "book-manifestation-read"
     },
-    "modules": [],
+    "modules": [
+      {
+        "title": "Chapters I to III · Attention Filtering & Blueprints",
+        "description": "Cognitive framing, reticular attention cues, and written goal specifications."
+      },
+      {
+        "title": "Chapters IV to V · Aligned Execution & Evidence Logs",
+        "description": "Daily action tracking and weekly review journals that turn intention into finished work."
+      }
+    ],
     "analyticsId": "book-manifestation",
     "delivery": {
       "methods": [
@@ -1367,9 +1419,9 @@
     "id": "golden-age-book",
     "slug": "golden-age",
     "title": "The Golden Age of Creators",
-    "description": "The definitive guide to building in the golden age.",
+    "description": "Field manual for independent builders turning creative judgment and AI agents into durable digital works.",
     "category": "book",
-    "badge": "FREE PDF",
+    "badge": "Free PDF",
     "image": "/images/golden-age/golden-age-hero-council-v2.png",
     "price": 0,
     "status": "published",
@@ -1398,14 +1450,48 @@
       "ai",
       "golden-age"
     ],
-    "pillar": "creator"
+    "pillar": "creator",
+    "name": "The Golden Age of Creators",
+    "headline": "Turn Creative Judgment and AI Agents into Durable Works",
+    "subheadline": "Three published web chapters on creative calling, agent orchestration, and first gestures, paired with the registered PDF edition.",
+    "promise": "Read the three published chapters in your browser at /books/golden-age or download the registered PDF directly with zero email gate.",
+    "summary": "A treatise on solo studio leverage, editorial taste gates, and compounding output alongside coding and media agents, with three chapters published online and a direct PDF download.",
+    "transformation": [
+      "Structure a solo studio rhythm around taste review, research depth, and weekly shipping",
+      "Separate human creative direction from repeatable agent drafting and verification tasks",
+      "Build a durable library of essays, audio, and software artifacts you own end to end"
+    ],
+    "modules": [
+      {
+        "title": "Chapter 1 · When Creation Calls",
+        "description": "18-minute web chapter examining creative direction and the question beneath durable studio work."
+      },
+      {
+        "title": "Chapter 2 · The Orchestration Age",
+        "description": "14-minute web chapter on moving from isolated prompts to conducting specialized AI agents."
+      },
+      {
+        "title": "Chapter 3 · The First Gesture",
+        "description": "15-minute web chapter on turning initial intent into a concrete, published work."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Do I need to enter my email to read or download the PDF?",
+        "answer": "No. Both the three-chapter web reader at /books/golden-age and the registered PDF download open without an email form."
+      },
+      {
+        "question": "Who is this book written for?",
+        "answer": "Independent writers, musicians, designers, and software builders shaping a multi-disciplinary creative practice."
+      }
+    ]
   },
   {
     "id": "reality-architect-os",
     "slug": "reality-architect-os",
     "name": "Reality Architect OS",
     "category": "Creator Systems",
-    "badge": "FREE / OSS",
+    "badge": "Open source",
     "headline": "Own Your Creator Systems Locally",
     "subheadline": "The forkable public codebase featuring the reality.md memory standard, starter agent templates, and sanitized skill packs.",
     "promise": "De-risk your creative business by shifting from third-party SaaS dependency to local, sovereign creator intelligence.",
@@ -1475,7 +1561,7 @@
     "slug": "starter-kit",
     "name": "System Architect Starter Kit",
     "category": "Creator Systems",
-    "badge": "STARTER KIT",
+    "badge": "Starter kit",
     "headline": "Pre-Built Workflow Automations for Fast Shipping",
     "subheadline": "A premium bundle of ready-to-import n8n pipelines, Content Ops swarms, and ElevenLabs voice scripts.",
     "promise": "Automate the repetitive overhead of content preparation, audio transcription, and cross-platform formatting in under 30 minutes.",
@@ -1550,7 +1636,7 @@
     "slug": "command-center-template",
     "name": "The Command Center Template",
     "category": "Creator Systems",
-    "badge": "CORE TEMPLATE",
+    "badge": "Core template",
     "headline": "The Ultimate Visual Dashboard for Your Swarm",
     "subheadline": "A premium Next.js 16 Glassmorphism dashboard app shell + the 5-move Architect's Loop video curriculum.",
     "promise": "Consolidate your local DPI ledger, Stripe webhook streams, content ops backlog, and HaaStA validation queues into one premium UI.",
@@ -1625,7 +1711,7 @@
     "slug": "founders-circle",
     "name": "Founder's Circle Guild",
     "category": "Creator Systems",
-    "badge": "HIGH TICKET",
+    "badge": "Advisory guild",
     "headline": "Elite Swarm Engineering & Strategic Partnership",
     "subheadline": "Cohort coaching, custom multi-agent architecture designs, and exclusive access to Frank's private master vaults.",
     "promise": "Co-engineer custom personal agent swarms and automate complex cross-repo deployments alongside an experienced AI Architect.",
@@ -1633,7 +1719,7 @@
     "transformation": [
       "Architect custom LangGraph/ACOS workflows tailored to your specific audience size and platform",
       "Verify system safety with expert security audits and custom gate validations",
-      "Receive 1:1 operational consulting sessions to optimize your G3-G5 passive income ladders"
+      "Receive 1:1 operational architecture reviews to refine your G3-G5 digital product and licensing catalog"
     ],
     "socialProof": {
       "stats": [
@@ -1688,15 +1774,15 @@
     "slug": "visual-creation-loop",
     "name": "Visual Creation Loop",
     "category": "Creative Intelligence",
-    "badge": "SOVEREIGN RELEASE",
-    "headline": "Visual Creation Loop",
-    "subheadline": "Ship high-coherence, brand-aligned visual assets consistently without breaking your brand or credit budget.",
-    "promise": "Ship high-coherence, brand-aligned visual assets consistently without breaking your brand or credit budget.",
-    "summary": "Visual Creation Loop provides a substrate for builders in the frankx ecosystem.",
+    "badge": "Architecture kit",
+    "headline": "Reference-Locked Visual Prompts, Style Tokens, and Critic Gates",
+    "subheadline": "Ship brand-coherent hero plates, diagrams, and social frames without burning image credits on guesswork.",
+    "promise": "Lock palette, camera geometry, negative constraints, and 30-point visual QA rubrics before generating a frame.",
+    "summary": "An inspectable visual art-direction kit pairing JSON style tokens, vector SVG diagram templates, and automated anti-slop critic checklists.",
     "transformation": [
-      "Deploy Visual Creation Loop",
-      "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Direct integration with FrankX & Starlight estate toolchains"
+      "Lock one reference aesthetic per surface with explicit hex tokens, lighting direction, and negative prompts",
+      "Generate crisp vector SVG technical schematics for architecture diagrams and UI callouts",
+      "Score every visual draft against a 30-point craft rubric before publishing to web or social feeds"
     ],
     "socialProof": {
       "stats": [],
@@ -1712,19 +1798,28 @@
     },
     "modules": [
       {
-        "title": "Core Architecture Blueprint",
-        "description": "Implementation files for Core Architecture Blueprint."
+        "title": "Brand Style Token Packs",
+        "description": "Structured JSON palette, camera, surface material, and negative-prompt specs for dark-mode product brands."
       },
       {
-        "title": "Runnable Operational Scaffold",
-        "description": "Implementation files for Runnable Operational Scaffold."
+        "title": "SVG Schematic Plate Generator",
+        "description": "Deterministic Node scripts that render 16:9 vector topology and telemetry plates with zero raster text blur."
       },
       {
-        "title": "Quickstart Verification Runbook",
-        "description": "Implementation files for Quickstart Verification Runbook."
+        "title": "30-Point Visual Critic Rubric",
+        "description": "Pre-publish evaluation checklist catching generic neon gradients, unreadable labels, and composition drift."
       }
     ],
-    "faq": [],
+    "faq": [
+      {
+        "question": "Which image and design tools work with this kit?",
+        "answer": "Prompts and token specs work across Gemini image generation, Midjourney, Flux, and local SVG/HTML pipelines."
+      },
+      {
+        "question": "Why combine SVG code plates with generative imagery?",
+        "answer": "Generative models excel at rich textures and scenes, while SVG code guarantees sharp typography, metrics, and diagrams."
+      }
+    ],
     "analyticsId": "visual-creation-loop",
     "delivery": {
       "methods": [
@@ -1739,15 +1834,15 @@
     "slug": "stream-atlas",
     "name": "The 12-Stream Atlas: Honest Stream Engineering",
     "category": "Passive Systems",
-    "badge": "FREE ACCESS",
-    "headline": "The 12-Stream Atlas: Honest Stream Engineering",
-    "subheadline": "Every automated income stream mapped with mathematical honesty: maintenance hours, latency-to-cash, capital required, and kill criteria.",
-    "promise": "Every automated income stream mapped with mathematical honesty: maintenance hours, latency-to-cash, capital required, and kill criteria.",
-    "summary": "The 12-Stream Atlas: Honest Stream Engineering provides a substrate for builders in the agentic-passive-income ecosystem.",
+    "badge": "Free guide",
+    "headline": "Twelve Digital Revenue Models Scored by Setup Hours, Capital, and Maintenance",
+    "subheadline": "Compare digital templates, skill packs, sponsorships, licensing, and advisory offers on one honest scorecard.",
+    "promise": "Inspect upfront build hours, weekly maintenance load, margin profile, and kill criteria across twelve creator business models.",
+    "summary": "A numerate comparison guide mapping twelve digital revenue models by build effort, distribution dependency, and ongoing support cost.",
     "transformation": [
-      "Deploy The 12-Stream Atlas: Honest Stream Engineering",
-      "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Direct integration with FrankX & Starlight estate toolchains"
+      "Compare twelve creator and software revenue lanes across setup hours, margin, and support burden",
+      "Eliminate mismatched business models early using explicit Audience, Hours, and Proof filters",
+      "Select one primary monetization lane for the next 90 days with clear validation checkpoints"
     ],
     "socialProof": {
       "stats": [],
@@ -1763,19 +1858,28 @@
     },
     "modules": [
       {
-        "title": "Core Architecture Blueprint",
-        "description": "Implementation files for Core Architecture Blueprint."
+        "title": "12-Model Comparison Matrix",
+        "description": "Side-by-side table scoring build hours, cash latency, audience threshold, and weekly maintenance."
       },
       {
-        "title": "Runnable Operational Scaffold",
-        "description": "Implementation files for Runnable Operational Scaffold."
+        "title": "Kill-Criteria Worksheets",
+        "description": "Decision thresholds showing when to double down on an offer and when to sunset a stalled experiment."
       },
       {
-        "title": "Quickstart Verification Runbook",
-        "description": "Implementation files for Quickstart Verification Runbook."
+        "title": "90-Day Sequencing Playbook",
+        "description": "Recommended order of operations from productized skill packs to recurring continuity libraries."
       }
     ],
-    "faq": [],
+    "faq": [
+      {
+        "question": "Does this guide promise automated earnings?",
+        "answer": "No. Every model lists real build hours, maintenance overhead, and failure modes so you can plan soberly."
+      },
+      {
+        "question": "How is this delivered?",
+        "answer": "Join the launch list to receive the markdown and PDF atlas when the current revision closes review."
+      }
+    ],
     "analyticsId": "12-stream-atlas",
     "delivery": {
       "methods": [
@@ -1789,15 +1893,15 @@
     "slug": "income-blueprint",
     "name": "Income Architecture Blueprint",
     "category": "Active Income",
-    "badge": "SOVEREIGN RELEASE",
-    "headline": "Income Architecture Blueprint",
-    "subheadline": "Build active agentic cash flow: from high-ticket skills to productized services and autonomous systems.",
-    "promise": "Build active agentic cash flow: from high-ticket skills to productized services and autonomous systems.",
-    "summary": "Income Architecture Blueprint provides a substrate for builders in the agentic-income ecosystem.",
+    "badge": "Architecture kit",
+    "headline": "Offer Ladder Design from Free Diagnostic to Focused Skill Packs",
+    "subheadline": "Map your technical workflows into a clean four-stage product ladder with transparent file previews and delivery gates.",
+    "promise": "Design an honest offer sequence connecting a free diagnostic tool, a single-problem skill pack, and a scoped advisory sprint.",
+    "summary": "An operational blueprint for technical creators structuring pricing tiers, pre-purchase file inspection, and webhook fulfillment.",
     "transformation": [
-      "Deploy Income Architecture Blueprint",
-      "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Direct integration with FrankX & Starlight estate toolchains"
+      "Map one repeatable technical workflow into a free diagnostic entry point and a paid implementation pack",
+      "Write mechanism-first product pages with inspectable file manifests and clear skip-if boundaries",
+      "Wire clean webhook delivery receipts and post-checkout onboarding checklists without SaaS bloat"
     ],
     "socialProof": {
       "stats": [],
@@ -1813,19 +1917,28 @@
     },
     "modules": [
       {
-        "title": "Core Architecture Blueprint",
-        "description": "Implementation files for Core Architecture Blueprint."
+        "title": "Four-Stage Offer Ladder Spec",
+        "description": "Pricing architecture, buyer-fit boundaries, and upgrade bridges from entry lead magnet to flagship kit."
       },
       {
-        "title": "Runnable Operational Scaffold",
-        "description": "Implementation files for Runnable Operational Scaffold."
+        "title": "Inspect-Before-You-Buy Page Templates",
+        "description": "Copy structures and file-manifest schemas that show buyers exact deliverables before checkout."
       },
       {
-        "title": "Quickstart Verification Runbook",
-        "description": "Implementation files for Quickstart Verification Runbook."
+        "title": "Fulfillment & Receipt Runbook",
+        "description": "Webhook verification, download token scoping, and onboarding email sequences."
       }
     ],
-    "faq": [],
+    "faq": [
+      {
+        "question": "Who gets the most value from this blueprint?",
+        "answer": "Engineers, designers, and solo founders turning real internal workflows into documented digital products."
+      },
+      {
+        "question": "Does it require a large existing audience?",
+        "answer": "No. The blueprint starts with narrow, high-intent diagnostic tools and search-indexed technical documentation."
+      }
+    ],
     "analyticsId": "income-architecture-blueprint",
     "delivery": {
       "methods": [
@@ -1840,15 +1953,15 @@
     "slug": "dpi-field-kit",
     "name": "DPI Field Kit: Wealth Substrate Pro",
     "category": "Sovereign Substrate",
-    "badge": "SOVEREIGN RELEASE",
-    "headline": "DPI Field Kit: Wealth Substrate Pro",
-    "subheadline": "Income decoupled from hours. Local SQLite ledger, Gate G1-G5 progression auditor, and SIP attestation generator.",
-    "promise": "Income decoupled from hours. Local SQLite ledger, Gate G1-G5 progression auditor, and SIP attestation generator.",
-    "summary": "DPI Field Kit: Wealth Substrate Pro provides a substrate for builders in the dpi ecosystem.",
+    "badge": "Architecture kit",
+    "headline": "Local SQLite Revenue Ledger, Offer Health Gates, and Weekly Review Scripts",
+    "subheadline": "Track product catalog health, fulfillment receipts, and G1-G5 offer readiness in a local-first SQLite and JSONL toolkit.",
+    "promise": "Keep an auditable local ledger of digital product releases, webhook receipts, refund rates, and weekly margin reviews.",
+    "summary": "A local-first operations kit with SQLite schemas, JSONL event append scripts, and G1-G5 offer readiness checklists.",
     "transformation": [
-      "Deploy DPI Field Kit: Wealth Substrate Pro",
-      "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Direct integration with FrankX & Starlight estate toolchains"
+      "Initialize a local SQLite and JSONL ledger recording product releases, checkout receipts, and cost baselines",
+      "Audit each digital offer against five operational readiness gates from initial spec to verified delivery",
+      "Run a 15-minute Friday CLI review summarizing net margin, support load, and catalog bottlenecks"
     ],
     "socialProof": {
       "stats": [],
@@ -1864,19 +1977,28 @@
     },
     "modules": [
       {
-        "title": "Core Architecture Blueprint",
-        "description": "Implementation files for Core Architecture Blueprint."
+        "title": "Local Ledger Schema & CLI",
+        "description": "Append-only JSONL log paired with SQLite views for clean product and channel attribution."
       },
       {
-        "title": "Runnable Operational Scaffold",
-        "description": "Implementation files for Runnable Operational Scaffold."
+        "title": "G1-G5 Readiness Gate Auditor",
+        "description": "Deterministic scripts checking documentation, file checksums, pricing disclosures, and delivery links."
       },
       {
-        "title": "Quickstart Verification Runbook",
-        "description": "Implementation files for Quickstart Verification Runbook."
+        "title": "Weekly Operator Review Ritual",
+        "description": "Markdown report generator surfacing catalog health and next-week build priorities."
       }
     ],
-    "faq": [],
+    "faq": [
+      {
+        "question": "Does this connect to external bank accounts automatically?",
+        "answer": "No. It ingests exported CSVs or webhook JSONL logs locally so credentials stay out of third-party dashboards."
+      },
+      {
+        "question": "What runtime is required?",
+        "answer": "Node.js 20+ and SQLite3 on macOS, Linux, or Windows."
+      }
+    ],
     "analyticsId": "dpi-field-kit",
     "delivery": {
       "methods": [
@@ -1891,15 +2013,15 @@
     "slug": "agent-fleet-pro",
     "name": "Agent Fleet Pro: Turnkey Multi-Agent Mesh",
     "category": "Agentic Architecture",
-    "badge": "SOVEREIGN RELEASE",
-    "headline": "Agent Fleet Pro: Turnkey Multi-Agent Mesh",
-    "subheadline": "Scaffold a multi-agent operational fleet with Sentinel daemons and hybrid memory.",
-    "promise": "Scaffold a multi-agent operational fleet with Sentinel daemons and hybrid memory.",
-    "summary": "Agent Fleet Pro: Turnkey Multi-Agent Mesh is a kit for builders in the acos ecosystem.",
+    "badge": "Architecture kit",
+    "headline": "Multi-Harness Worktree Leases, Role Constitutions, and Verification Gates",
+    "subheadline": "Coordinate coding and research agents across isolated git worktrees without branch collisions or unreviewed merges.",
+    "promise": "Run maker and independent-verifier agents in parallel using explicit file-path leases, pre-commit secret scans, and draft PR gates.",
+    "summary": "An engineering harness pack containing git worktree lease scripts, five role constitutions, loop contracts, and CI verification templates.",
     "transformation": [
-      "Deploy Agent Fleet Pro: Turnkey Multi-Agent Mesh",
-      "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Direct integration with FrankX & Starlight estate toolchains"
+      "Enforce isolated git worktrees and file-scope leases so parallel agents never overwrite each other",
+      "Separate maker implementation from independent-verifier review with explicit exit receipts",
+      "Block secret leaks and out-of-scope edits automatically via pre-commit hooks and path linters"
     ],
     "socialProof": {
       "stats": [],
@@ -1915,19 +2037,28 @@
     },
     "modules": [
       {
-        "title": "Core Architecture Blueprint",
-        "description": "Implementation files for Core Architecture Blueprint."
+        "title": "Worktree & Lease Coordinator",
+        "description": "CLI utilities for claiming file scopes, inspecting active agent lanes, and expiring stale leases."
       },
       {
-        "title": "Runnable Operational Scaffold",
-        "description": "Implementation files for Runnable Operational Scaffold."
+        "title": "Maker + Verifier Constitutions",
+        "description": "Markdown system prompts and JSON schemas for orchestrator, builder, researcher, and critic roles."
       },
       {
-        "title": "Quickstart Verification Runbook",
-        "description": "Implementation files for Quickstart Verification Runbook."
+        "title": "Pre-Commit Security & Scope Gate",
+        "description": "Shell and Node hooks enforcing gitleaks checks, branch naming rules, and test pass receipts."
       }
     ],
-    "faq": [],
+    "faq": [
+      {
+        "question": "Which coding harnesses are supported?",
+        "answer": "Works with Claude Code, Codex CLI, Gemini CLI and Antigravity, OpenCode, and Cursor via standard git worktrees."
+      },
+      {
+        "question": "Does it require a proprietary cloud orchestrator?",
+        "answer": "No. Coordination runs through local JSONL leases, git branches, and standard GitHub draft pull requests."
+      }
+    ],
     "analyticsId": "agent-fleet-pro",
     "delivery": {
       "methods": [
@@ -1942,15 +2073,15 @@
     "slug": "memory-palace-os",
     "name": "The Sovereign Memory Palace OS",
     "category": "Knowledge Architecture",
-    "badge": "SOVEREIGN RELEASE",
-    "headline": "The Sovereign Memory Palace OS",
-    "subheadline": "Convert passive note storage into an active, self-indexing intelligence palace connected directly to your coding agents.",
-    "promise": "Convert passive note storage into an active, self-indexing intelligence palace connected directly to your coding agents.",
-    "summary": "The Sovereign Memory Palace OS provides a substrate for builders in the second-brain ecosystem.",
+    "badge": "Architecture kit",
+    "headline": "Append-Only JSONL Vaults and SQLite FTS5 Search for Coding Agents",
+    "subheadline": "Turn scattered session notes into six typed semantic vaults queryable by local CLI and MCP tools.",
+    "promise": "Give every new agent session fast full-text recall over past architectural decisions, confirmed patterns, and operational lessons.",
+    "summary": "A local-first knowledge architecture combining markdown and JSONL vaults with SQLite FTS5 indexing and MCP retrieval tools.",
     "transformation": [
-      "Deploy The Sovereign Memory Palace OS",
-      "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Direct integration with FrankX & Starlight estate toolchains"
+      "Organize project knowledge into six typed vaults covering strategy, architecture, voice, operations, lessons, and roadmap",
+      "Index markdown and JSONL entries locally with SQLite FTS5 for sub-second keyword and tag recall",
+      "Expose read and append tools over stdio MCP so coding agents cite prior decisions before editing code"
     ],
     "socialProof": {
       "stats": [],
@@ -1966,19 +2097,28 @@
     },
     "modules": [
       {
-        "title": "Core Architecture Blueprint",
-        "description": "Implementation files for Core Architecture Blueprint."
+        "title": "Six-Vault Directory Scaffold",
+        "description": "Typed JSONL and markdown schemas with confidence scores, timestamps, and contradiction flags."
       },
       {
-        "title": "Runnable Operational Scaffold",
-        "description": "Implementation files for Runnable Operational Scaffold."
+        "title": "SQLite FTS5 Hybrid Indexer",
+        "description": "Zero-cloud indexing script rebuilding searchable tables from append-only vault files."
       },
       {
-        "title": "Quickstart Verification Runbook",
-        "description": "Implementation files for Quickstart Verification Runbook."
+        "title": "MCP Recall Server Starter",
+        "description": "Lightweight Node stdio server exposing vault search and session-close capture to any MCP client."
       }
     ],
-    "faq": [],
+    "faq": [
+      {
+        "question": "Where is my memory data stored?",
+        "answer": "100% locally in plain JSONL, Markdown, and a rebuildable SQLite index file inside your own repository."
+      },
+      {
+        "question": "Can I sync the vaults across machines?",
+        "answer": "Yes. Append-only JSONL logs sync cleanly through Git or Syncthing without binary database merge conflicts."
+      }
+    ],
     "analyticsId": "memory-palace-os",
     "delivery": {
       "methods": [
@@ -1993,15 +2133,15 @@
     "slug": "agentic-media-machine",
     "name": "The Agentic Media Machine",
     "category": "Content Architecture",
-    "badge": "SOVEREIGN RELEASE",
-    "headline": "The Agentic Media Machine",
-    "subheadline": "Convert single raw voice or text captures into multi-platform attested distribution assets autonomously with zero AI slop.",
-    "promise": "Convert single raw voice or text captures into multi-platform attested distribution assets autonomously with zero AI slop.",
-    "summary": "The Agentic Media Machine provides a substrate for builders in the creator-intelligence ecosystem.",
+    "badge": "Architecture kit",
+    "headline": "Voice-Memo-to-Article, Social Thread, and Newsletter Packaging Pipeline",
+    "subheadline": "Convert one technical demo or voice memo into fact-checked markdown essays, social drafts, and SVG diagrams.",
+    "promise": "Run a four-stage editorial pipeline from raw transcript to voice-linted drafts queued for human review before publishing.",
+    "summary": "A content operations kit with transcript structuring prompts, voice-lint scripts, social thread formatters, and human approval queues.",
     "transformation": [
-      "Deploy The Agentic Media Machine",
-      "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Direct integration with FrankX & Starlight estate toolchains"
+      "Ingest raw screen recordings or voice transcripts into structured markdown briefs with source citations",
+      "Generate channel-native drafts for blog MDX, X threads, LinkedIn posts, and email dispatches",
+      "Gate every draft through automated banned-phrase, em-dash, and claim-verification linters before staging"
     ],
     "socialProof": {
       "stats": [],
@@ -2017,19 +2157,28 @@
     },
     "modules": [
       {
-        "title": "Core Architecture Blueprint",
-        "description": "Implementation files for Core Architecture Blueprint."
+        "title": "Transcript-to-Brief Extractor",
+        "description": "Prompt chains and scripts extracting thesis, mechanisms, code snippets, and quotable lines."
       },
       {
-        "title": "Runnable Operational Scaffold",
-        "description": "Implementation files for Runnable Operational Scaffold."
+        "title": "Multi-Channel Draft Formatter",
+        "description": "Templates producing MDX articles, concise social threads, and plain-spoken newsletter issues."
       },
       {
-        "title": "Quickstart Verification Runbook",
-        "description": "Implementation files for Quickstart Verification Runbook."
+        "title": "Editorial Voice & Claims Gate",
+        "description": "Automated Node linter catching AI cliches, unverified numbers, and punctuation tics prior to review."
       }
     ],
-    "faq": [],
+    "faq": [
+      {
+        "question": "Does this auto-post to social accounts without review?",
+        "answer": "No. Drafts land in a local markdown staging queue so a human editor approves every external post."
+      },
+      {
+        "question": "Can I customize the voice rules for my own brand?",
+        "answer": "Yes. Banned phrases, sentence-length targets, and tone examples live in a single editable rules file."
+      }
+    ],
     "analyticsId": "agentic-media-machine",
     "delivery": {
       "methods": [
@@ -2044,15 +2193,15 @@
     "slug": "mythic-codex",
     "name": "The Arcanea Mythic Codex",
     "category": "Creative Intelligence",
-    "badge": "FREE ACCESS",
-    "headline": "The Arcanea Mythic Codex",
-    "subheadline": "Sovereign reference manual for generative worldbuilding, radiant shader design, and mythic lore consistency.",
-    "promise": "Sovereign reference manual for generative worldbuilding, radiant shader design, and mythic lore consistency.",
-    "summary": "The Arcanea Mythic Codex provides a substrate for builders in the arcanea ecosystem.",
+    "badge": "Free guide",
+    "headline": "Worldbuilding Bible, Character Sheets, and Lore Consistency Schemas",
+    "subheadline": "Structured canon tables, twelve-field character templates, and visual prompt grammars for fantasy universe creators.",
+    "promise": "Keep factions, timelines, magic rules, and character designs coherent across prose, games, and illustration passes.",
+    "summary": "Arcanea worldbuilding reference pack with canon lock schemas, character forge templates, and scene art-direction guides.",
     "transformation": [
-      "Deploy The Arcanea Mythic Codex",
-      "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Direct integration with FrankX & Starlight estate toolchains"
+      "Structure world rules, factions, and timelines inside version-controlled canon markdown files",
+      "Create consistent characters using a twelve-field psychological and visual attribute template",
+      "Check new chapters and visual prompts against locked canon invariants before publication"
     ],
     "socialProof": {
       "stats": [],
@@ -2068,41 +2217,47 @@
     },
     "modules": [
       {
-        "title": "Core Architecture Blueprint",
-        "description": "Implementation files for Core Architecture Blueprint."
+        "title": "Canon Lock Specification",
+        "description": "Markdown and YAML schemas separating immutable world laws from expandable story arcs."
       },
       {
-        "title": "Runnable Operational Scaffold",
-        "description": "Implementation files for Runnable Operational Scaffold."
+        "title": "12-Field Character Forge",
+        "description": "Structured character sheets covering lineage, motive, flaw, voice cadence, and visual silhouette."
       },
       {
-        "title": "Quickstart Verification Runbook",
-        "description": "Implementation files for Quickstart Verification Runbook."
+        "title": "Scene Art-Direction Grammar",
+        "description": "Lighting, architecture, and palette rules for cohesive chapter illustrations."
       }
     ],
-    "faq": [],
+    "faq": [
+      {
+        "question": "Which brand publishes this codex?",
+        "answer": "This codex belongs to the Arcanea creative universe and is maintained separately from FrankX engineering kits."
+      }
+    ],
     "analyticsId": "arcanea-mythic-codex",
     "delivery": {
       "methods": [
         "download"
       ],
       "requiresEmail": true
-    }
+    },
+    "brand": "arcanea"
   },
   {
     "id": "anti-slop-content-matrix",
     "slug": "anti-slop-matrix",
     "name": "The Anti-Slop Content Matrix",
     "category": "Content Architecture",
-    "badge": "FREE ACCESS",
-    "headline": "The Anti-Slop Content Matrix",
-    "subheadline": "50 banned AI cliches, negative prompt tokens, and empirical craft filters for sovereign content teams.",
-    "promise": "50 banned AI cliches, negative prompt tokens, and empirical craft filters for sovereign content teams.",
-    "summary": "The Anti-Slop Content Matrix provides a substrate for builders in the gencreator ecosystem.",
+    "badge": "Free guide",
+    "headline": "Editorial Filter Rules, Banned Phrase Tables, and Rewrite Specimens",
+    "subheadline": "Strip generated filler, rhetorical contrast tics, and vague prestige verbs out of your product pages and essays.",
+    "promise": "Audit markdown and JSON copy against fifty concrete anti-patterns with before-and-after rewrites you can drop into CI.",
+    "summary": "A free editorial reference sheet listing high-frequency AI writing tells, negative prompt rules, and plain-spoken replacements.",
     "transformation": [
-      "Deploy The Anti-Slop Content Matrix",
-      "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Direct integration with FrankX & Starlight estate toolchains"
+      "Spot and remove rhetorical contrast formulas, inflated adjectives, and empty throat-clearing openers",
+      "Replace abstract claims with concrete mechanisms, file counts, and verifiable outcomes",
+      "Wire regex and AST checks into your pull-request workflow so slop never reaches production"
     ],
     "socialProof": {
       "stats": [],
@@ -2118,19 +2273,28 @@
     },
     "modules": [
       {
-        "title": "Core Architecture Blueprint",
-        "description": "Implementation files for Core Architecture Blueprint."
+        "title": "50-Pattern Slop Taxonomy",
+        "description": "Categorized table of lexical, structural, and punctuation tells with plain-English fixes."
       },
       {
-        "title": "Runnable Operational Scaffold",
-        "description": "Implementation files for Runnable Operational Scaffold."
+        "title": "Before-and-After Specimen Bank",
+        "description": "Twenty real hero headlines, CTAs, and product blurbs rewritten for technical clarity."
       },
       {
-        "title": "Quickstart Verification Runbook",
-        "description": "Implementation files for Quickstart Verification Runbook."
+        "title": "Starter Regex Rule List",
+        "description": "Copy-pasteable pattern rules ready for Node, Python, or GitHub Actions copy checks."
       }
     ],
-    "faq": [],
+    "faq": [
+      {
+        "question": "Can I use these rules with any LLM?",
+        "answer": "Yes. Include the rules in your system prompt and run the deterministic check script on generated markdown."
+      },
+      {
+        "question": "Is this guide free?",
+        "answer": "Yes. Join the launch list to get notified as soon as the standalone PDF and JSON rule pack ship."
+      }
+    ],
     "analyticsId": "anti-slop-content-matrix",
     "delivery": {
       "methods": [
@@ -2144,15 +2308,15 @@
     "slug": "capability-audit",
     "name": "The Capability-to-Cash Inventory Audit",
     "category": "Active Income",
-    "badge": "FREE ACCESS",
-    "headline": "The Capability-to-Cash Inventory Audit",
-    "subheadline": "Spartan, numerate self-audit protocol for converting technical skills into non-linear income streams.",
-    "promise": "Spartan, numerate self-audit protocol for converting technical skills into non-linear income streams.",
-    "summary": "The Capability-to-Cash Inventory Audit provides a substrate for builders in the agentic-income ecosystem.",
+    "badge": "Free guide",
+    "headline": "Score Your Engineering and Creative Skills for Digital Product Fit",
+    "subheadline": "A 30-minute self-audit scoring your repeatable workflows by buyer urgency, packaging speed, and maintenance cost.",
+    "promise": "Rank your existing scripts, templates, and domain playbooks to pick one shippable digital product without scope creep.",
+    "summary": "A structured worksheet and scoring rubric that turns scattered consulting know-how into a prioritized digital product backlog.",
     "transformation": [
-      "Deploy The Capability-to-Cash Inventory Audit",
-      "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Direct integration with FrankX & Starlight estate toolchains"
+      "Inventory the scripts, checklists, and frameworks you already use in client or studio work",
+      "Score each candidate on buyer pain, proof clarity, support burden, and weekend shippability",
+      "Leave with one scoped v1 product spec, file tree outline, and skip-if buyer boundary"
     ],
     "socialProof": {
       "stats": [],
@@ -2168,19 +2332,28 @@
     },
     "modules": [
       {
-        "title": "Core Architecture Blueprint",
-        "description": "Implementation files for Core Architecture Blueprint."
+        "title": "Workflow Inventory Grid",
+        "description": "Prompted audit surfacing hidden internal tools, prompts, and SOPs worth packaging."
       },
       {
-        "title": "Runnable Operational Scaffold",
-        "description": "Implementation files for Runnable Operational Scaffold."
+        "title": "4-Factor Product Fit Scorecard",
+        "description": "Weighted rubric ranking candidates on urgency, proof, delivery simplicity, and maintenance."
       },
       {
-        "title": "Quickstart Verification Runbook",
-        "description": "Implementation files for Quickstart Verification Runbook."
+        "title": "One-Page v1 Spec Sheet",
+        "description": "Template locking headline, target buyer, archive file tree, and launch checklist."
       }
     ],
-    "faq": [],
+    "faq": [
+      {
+        "question": "How long does the audit take to complete?",
+        "answer": "Roughly 30 minutes with a single markdown worksheet or spreadsheet."
+      },
+      {
+        "question": "What is the output at the end of the worksheet?",
+        "answer": "One ranked product candidate with a concrete archive file list ready to build."
+      }
+    ],
     "analyticsId": "capability-to-cash-audit",
     "delivery": {
       "methods": [
@@ -2194,15 +2367,15 @@
     "slug": "stream-taxonomy",
     "name": "The DPI Stream Taxonomy & Progression Map",
     "category": "Sovereign Substrate",
-    "badge": "FREE ACCESS",
-    "headline": "The DPI Stream Taxonomy & Progression Map",
-    "subheadline": "Mathematical reference manual for decoupling income from hours across five progression gates.",
-    "promise": "Mathematical reference manual for decoupling income from hours across five progression gates.",
-    "summary": "The DPI Stream Taxonomy & Progression Map provides a substrate for builders in the dpi ecosystem.",
+    "badge": "Free guide",
+    "headline": "Five-Gate Readiness Framework for Digital Product Operations",
+    "subheadline": "Define clear exit criteria from initial problem validation (G1) through automated delivery and verification (G5).",
+    "promise": "Evaluate every digital product or recurring library against five objective engineering and fulfillment gates.",
+    "summary": "A technical reference manual defining Gates G1 through G5 for scoping, packaging, verifying, and operating digital products.",
     "transformation": [
-      "Deploy The DPI Stream Taxonomy & Progression Map",
-      "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Direct integration with FrankX & Starlight estate toolchains"
+      "Classify every offer in your catalog by its true operational maturity from G1 draft to G5 verified",
+      "Prevent premature checkout launches by requiring checksum, link, and disclosure receipts at Gate G3",
+      "Standardize weekly catalog maintenance with lightweight health metrics and rollback rules"
     ],
     "socialProof": {
       "stats": [],
@@ -2218,19 +2391,24 @@
     },
     "modules": [
       {
-        "title": "Core Architecture Blueprint",
-        "description": "Implementation files for Core Architecture Blueprint."
+        "title": "G1-G5 Gate Specification",
+        "description": "Exact entry criteria, required artifacts, and exit receipts for each maturity stage."
       },
       {
-        "title": "Runnable Operational Scaffold",
-        "description": "Implementation files for Runnable Operational Scaffold."
+        "title": "Catalog Classification Ledger",
+        "description": "JSON schema for tracking product status, pricing gates, and verification dates."
       },
       {
-        "title": "Quickstart Verification Runbook",
-        "description": "Implementation files for Quickstart Verification Runbook."
+        "title": "Failure-Mode Decision Tree",
+        "description": "Diagnostic steps when conversion, refund rate, or maintenance hours drift out of bounds."
       }
     ],
-    "faq": [],
+    "faq": [
+      {
+        "question": "How does this relate to the DPI Field Kit?",
+        "answer": "The Taxonomy defines the open G1-G5 specification and scoring rules; the Field Kit provides the runnable SQLite and CLI implementation."
+      }
+    ],
     "analyticsId": "dpi-stream-taxonomy",
     "delivery": {
       "methods": [
@@ -2244,15 +2422,15 @@
     "slug": "starlight-spec",
     "name": "Starlight Intelligence Protocol (SIP v1.1.1) Spec",
     "category": "Systems Engineering",
-    "badge": "FREE ACCESS",
-    "headline": "Starlight Intelligence Protocol (SIP v1.1.1) Spec",
-    "subheadline": "Open protocol standard for sovereign multi-agent meshes, hybrid event memory, and cryptographic attestations.",
-    "promise": "Open protocol standard for sovereign multi-agent meshes, hybrid event memory, and cryptographic attestations.",
-    "summary": "Starlight Intelligence Protocol (SIP v1.1.1) Spec provides a substrate for builders in the starlight ecosystem.",
+    "badge": "Free guide",
+    "headline": "Open Specification for Portable Agent Instructions, Vaults, and Receipts",
+    "subheadline": "Vendor-neutral file contracts for AGENTS.md, append-only memory vaults, loop budgets, and build attestations.",
+    "promise": "Keep your agent constitutions, skills, and memory portable across Claude, Codex, Gemini, and local open-weight runtimes.",
+    "summary": "The open Starlight Intelligence Protocol (SIP) reference specification covering repo profiles, memory schemas, and run receipts.",
     "transformation": [
-      "Deploy Starlight Intelligence Protocol (SIP v1.1.1) Spec",
-      "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Direct integration with FrankX & Starlight estate toolchains"
+      "Adopt a single AGENTS.md and repo-profile contract readable across multiple CLI coding harnesses",
+      "Structure portable JSONL memory logs with provenance hashes and privacy-tag boundaries",
+      "Emit machine-verifiable run receipts recording scope, test exit codes, and human approval gates"
     ],
     "socialProof": {
       "stats": [],
@@ -2268,19 +2446,24 @@
     },
     "modules": [
       {
-        "title": "Core Architecture Blueprint",
-        "description": "Implementation files for Core Architecture Blueprint."
+        "title": "Layer 1 · File & Repo Contracts",
+        "description": "Standard layout for AGENTS.md, .agent-harness.json, and deterministic skill metadata."
       },
       {
-        "title": "Runnable Operational Scaffold",
-        "description": "Implementation files for Runnable Operational Scaffold."
+        "title": "Layer 2 · Memory & Vault Schema",
+        "description": "Event-sourced JSONL record format with confidence decay and contradiction links."
       },
       {
-        "title": "Quickstart Verification Runbook",
-        "description": "Implementation files for Quickstart Verification Runbook."
+        "title": "Layer 3 · Loop Budgets & Receipts",
+        "description": "Contract format for maker-verifier loops, spend fail-safes, and terminal verification receipts."
       }
     ],
-    "faq": [],
+    "faq": [
+      {
+        "question": "Does adopting SIP lock me into a hosted service?",
+        "answer": "No. SIP is a plain-file convention built on Markdown, JSON, and Git so your repository remains sovereign."
+      }
+    ],
     "analyticsId": "starlight-protocol-spec",
     "delivery": {
       "methods": [
@@ -2294,15 +2477,15 @@
     "slug": "starlight-operator-pack",
     "name": "Starlight Operator Field Kit & Council Harness",
     "category": "Systems Engineering",
-    "badge": "SOVEREIGN RELEASE",
-    "headline": "Starlight Operator Field Kit & Council Harness",
-    "subheadline": "Production orchestration harness, sentinel monitoring daemons, and council dispatch scripts for operators.",
-    "promise": "Production orchestration harness, sentinel monitoring daemons, and council dispatch scripts for operators.",
-    "summary": "Starlight Operator Field Kit & Council Harness provides a substrate for builders in the starlight ecosystem.",
+    "badge": "Architecture kit",
+    "headline": "Dispatcher Queues, Loop Contracts, and Health Heartbeats for Agent Teams",
+    "subheadline": "Operate scheduled and on-demand agent runs with explicit iteration budgets, verifier gates, and health alerts.",
+    "promise": "Stand up a disciplined local control plane with inbox/running/archive queues, run logs, and human-gated promotion scripts.",
+    "summary": "An operator field kit packaging file-based dispatcher queues, `.loop` contract templates, heartbeat monitors, and session handovers.",
     "transformation": [
-      "Deploy Starlight Operator Field Kit & Council Harness",
-      "Eliminate brittle manual glue code with sovereign autonomous architecture",
-      "Direct integration with FrankX & Starlight estate toolchains"
+      "Route scoped tasks through file-based inbox, running, report, and archive queues with zero message-broker overhead",
+      "Enforce iteration caps, no-progress stops, and independent verifier checks on every recurring loop",
+      "Write clean cross-session handovers and health snapshots so any harness can resume work in under two minutes"
     ],
     "socialProof": {
       "stats": [],
@@ -2318,19 +2501,28 @@
     },
     "modules": [
       {
-        "title": "Core Architecture Blueprint",
-        "description": "Implementation files for Core Architecture Blueprint."
+        "title": "File-Based Dispatcher Queue",
+        "description": "Atomic task-claim scripts, status schemas, and dead-letter recovery routines."
       },
       {
-        "title": "Runnable Operational Scaffold",
-        "description": "Implementation files for Runnable Operational Scaffold."
+        "title": "Loop Contract Templates",
+        "description": "Ready-to-edit LOOP, WORKER, VERIFIER, and GATE markdown contracts with JSONL run logging."
       },
       {
-        "title": "Quickstart Verification Runbook",
-        "description": "Implementation files for Quickstart Verification Runbook."
+        "title": "Heartbeat & Handover CLI",
+        "description": "Health-check scripts and structured session ledger templates for multi-agent continuity."
       }
     ],
-    "faq": [],
+    "faq": [
+      {
+        "question": "Are scheduled tasks enabled automatically on install?",
+        "answer": "No. All cron and task-scheduler scripts ship staged and off by default until explicitly enabled by the operator."
+      },
+      {
+        "question": "How does this differ from Agent Fleet Pro?",
+        "answer": "Agent Fleet Pro focuses on parallel git worktree coding; Starlight Operator Pack adds recurring loop contracts, queues, and health telemetry."
+      }
+    ],
     "analyticsId": "starlight-operator-pack",
     "delivery": {
       "methods": [
