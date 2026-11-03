@@ -1,7 +1,8 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'AI Operations Research Hub | FrankX.AI',
+  title: 'AI Operations Research Hub',
   description: 'The definitive knowledge base for AI Operations. Production-ready LLM infrastructure, OCI AI Accelerator Packs, memory systems, multi-agent orchestration, and the path to AGI.',
   keywords: [
     'AI Ops',
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     title: 'AI Operations Research Hub | FrankX.AI',
     description: 'Production-ready AI infrastructure patterns, OCI AI Accelerator Packs, and the path to AGI. Built for enterprise deployment.',
     type: 'website',
-    url: 'https://frankx.ai/ai-ops',
+    url: `${siteConfig.url}/ai-ops`,
     images: [
       {
         url: '/research/ai-ops/images/ai-ops-hero-banner.png',
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     images: ['/research/ai-ops/images/ai-ops-hero-banner.png'],
   },
   alternates: {
-    canonical: 'https://frankx.ai/ai-ops',
+    canonical: './',
   },
 }
 

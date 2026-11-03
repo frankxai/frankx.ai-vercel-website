@@ -5,7 +5,7 @@ import AuroraGradient from '@/components/ui/AuroraGradient'
 import { GlowCard } from '@/components/ui/glow-card'
 
 export const metadata: Metadata = {
-  title: 'InfoGenius — FRANK-Ω | FrankX.AI',
+  title: 'InfoGenius — FRANK-Ω',
   description:
     'Meet FRANK-Ω — the superintelligent AI droid that turns raw knowledge into precision visuals. Research-grounded infographic generation powered by FrankX AI.',
   openGraph: {
