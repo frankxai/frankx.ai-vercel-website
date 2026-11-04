@@ -5,7 +5,9 @@ Review state: implementation and hosted verification in progress.
 Source: PR 1162, starting head 585cef502b5b7170fa18cb318d1359c2b8ac09ce; issue 1161.
 Root AGENTS.md read, SHA-256 583C7DF2A00769DEFBE4052ABFFCA456C348A5170B59304421C75781190CCB64.
 
-The remaining repair moves Puppeteer to 25.16.0 and Mermaid CLI to its compatible 12.2.0 release. Puppeteer's maintained browser installer replaces the vulnerable extract-zip/basic-ftp dependency paths. Existing browser journeys remain required. Lifecycle scripts remain denied, including the new exact Puppeteer version; browsers are still installed explicitly in CI.
+The remaining repair moves Puppeteer to 25.16.0 and Mermaid CLI to its compatible 12.0.0 release. Puppeteer's maintained browser installer replaces the vulnerable extract-zip/basic-ftp dependency paths. Existing browser journeys remain required. Lifecycle scripts remain denied, including the new exact Puppeteer version; browsers are still installed explicitly in CI.
+
+Preparation run 41753565510 rejected Mermaid CLI 12.2.0 because it was younger than the existing three-day supply-chain cooldown. The candidate now selects mature 12.0.0, which declares Puppeteer 25 support. The cooldown was preserved; no release-age exemption was added.
 
 Three template manifests move from Zod 3 to patched Zod 4.6.7. Both single-argument record schemas in the governance starter gain explicit string-key schemas. The templates join the existing pnpm workspace so one committed lockfile can reproduce all four installations and the dependency audit can include them. CI runs both existing template test suites and the MCP template build.
 

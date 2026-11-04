@@ -270,7 +270,7 @@
   "devDependencies": {
     "@google/design.md": "^0.4.0",
     "@gsap/react": "^2.1.2",
-    "@mermaid-js/mermaid-cli": "12.2.0",
+    "@mermaid-js/mermaid-cli": "12.0.0",
     "@modelcontextprotocol/sdk": "^1.32.2",
     "@nivo/sunburst": "^0.99.0",
     "@terrastruct/d2": "^0.1.33",
