@@ -176,6 +176,10 @@ jobs:
       - name: Request-time book chapters (no jsdom in the chapter function)
         run: pnpm run test:book-chapter:rendered
 
+      - name: Private ops production authorization
+        run: node scripts/qa/ops-authorization.mjs
+        timeout-minutes: 2
+
       - name: Install the reader QA browser
         # The GitHub-hosted Ubuntu image already provides Chrome's OS libraries.
         # Download the Puppeteer-pinned binary as the runner user; --install-deps
