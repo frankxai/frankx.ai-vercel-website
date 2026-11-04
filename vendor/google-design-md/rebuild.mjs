@@ -48,7 +48,6 @@ try {
   const manifest = json(join(cli, 'package.json'));
   manifest.version = '0.4.0-starlight.1';
   manifest.dependencies.zod = '4.6.7';
-  manifest.packageManager = 'pnpm@10.28.0';
   manifest.files = ['dist', 'LICENSE', 'NOTICE'];
   delete manifest.scripts;
   delete manifest.publishConfig;
