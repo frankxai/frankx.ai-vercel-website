@@ -150,7 +150,7 @@ const streamCapsSchema = z.object({
 
 // Non-strict: swarm.example.json carries extra keys (coordinator, workers, …)
 // that a caps reader ignores.
-const capsFileSchema = z.object({ streams: z.record(streamCapsSchema) });
+const capsFileSchema = z.object({ streams: z.record(z.string(), streamCapsSchema) });
 
 /**
  * A SpendCheck backed by a local caps file. The file is re-read on every check

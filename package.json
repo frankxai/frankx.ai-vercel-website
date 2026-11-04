@@ -177,7 +177,7 @@
     "test:blog-schema": "node --experimental-strip-types --test scripts/tests/blog-schema.test.mjs",
     "test:contract-guard": "node scripts/check-contract-guard.mjs",
     "test:media-guard": "node --test scripts/tests/media-guard.contract.mjs",
-    "test:companion-selection": "node --test scripts/media/companion-selection.test.mjs && tsc -p tsconfig.companion.json --noEmit",
+    "test:companion-selection": "node --test scripts/media/companion-selection.test.mjs scripts/media/companion-studio.test.mjs && tsc -p tsconfig.companion.json --noEmit",
     "test:syntax": "node scripts/check-test-syntax.mjs",
     "test:noopener": "node --test scripts/tests/visual-catalog-noopener.test.mjs scripts/tests/ikigai-speaker-noopener.test.mjs scripts/tests/ikigai-return-noopener.test.mjs scripts/tests/skills-library-url.test.mjs scripts/tests/content-studio-noopener.test.mjs",
     "test:glow-button": "node --test scripts/tests/glow-button-behavior.test.mjs",
@@ -269,9 +269,9 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@google/design.md": "^0.4.0",
+    "@google/design.md": "file:vendor/google-design-md/package",
     "@gsap/react": "^2.1.2",
-    "@mermaid-js/mermaid-cli": "^11.17.0",
+    "@mermaid-js/mermaid-cli": "12.0.0",
     "@modelcontextprotocol/sdk": "^1.32.2",
     "@nivo/sunburst": "^0.99.0",
     "@terrastruct/d2": "^0.1.33",
@@ -291,7 +291,7 @@
     "eslint-config-next": "^16.4.3",
     "gsap": "^3.14.2",
     "lint-staged": "^16.2.7",
-    "puppeteer": "^24.35.0",
+    "puppeteer": "25.16.0",
     "styled-jsx": "^5.1.7",
     "svgo": "^4.0.2",
     "typescript": "^5.7.2"

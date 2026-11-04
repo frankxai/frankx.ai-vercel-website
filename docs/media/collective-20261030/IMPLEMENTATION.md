@@ -41,7 +41,19 @@ The source widths bound placement size: a 1672px wide image supports roughly 836
 
 Run `npm run test:companion-selection` (or the equivalent pnpm script). The existing CI job runs this after lint; no new runner/job, install step, permission or draft behavior is added. This explicitly checks the route because the repository's broad TypeScript/lint configuration excludes Design Lab.
 
-Seven behavioral tests cover old-format recovery, context bounds, unknown/duplicate/stale pins, forged approvals, rendition mismatches and altered image payloads. The exact real sixteen-image bundle was also verified. Keep browser behavior, full repository build and deployment evidence separate from those checks. The accompanying implementation receipt records their actual outcomes.
+Ten tests cover old-format recovery, context bounds, unknown/duplicate/stale pins, forged approvals, rendition mismatches, altered image payloads, deployment-context inclusion and keyboard focus after removing a selected card. The focus cases render the actual client component in the sanitizer's pinned DOM environment; native dialog open/close is simulated, so they do not establish browser behavior. The exact real sixteen-image bundle was also verified. Keep browser behavior, full repository build and deployment evidence separate from those checks. The accompanying implementation receipt records their actual outcomes.
+
+### 4 November integration
+
+The candidate integrates main `7ba367b4a81ba1250fbc0122d01d9d673108438f`. Its production deployment hold, security changes, frozen dependency tree and draft CI admission remain unchanged.
+
+Vercel skipped the earlier preview intentionally: the PR was a draft without the existing `[preview]` commit-subject opt-in. A separate deployment-context defect was found before requesting another preview: `.vercelignore` excluded the imported catalog. Its ancestor rules now retain only `companion-collection.v2.json`; sibling review documents, patches and arbitrary new assets remain excluded. The new regression failed on the previous rules and passes with the exception.
+
+Keyboard removal in the selected-only grid now returns focus to its persistent filter. Removing a card from its inspection dialog keeps focus inside the modal; closing falls back to the same filter when the original trigger has disappeared. Both component regressions failed on the previous implementation and pass after the fix.
+
+The repository-pinned pnpm 10.28.0 frozen install completed without changing lifecycle permissions or the lockfile. The earlier pnpm 11 failure does not describe that pinned install. Repository type-check, lint (eleven existing warnings), strict language audit and 171 build-integrity tests passed. Sparse-checkout integrity failures were resolved by materializing the tracked strategy and game-embed fixtures. A first feature wrapper returned 139 after its ten tests passed; rerunning the complete feature command and scoped type-check passed.
+
+The local production build was attempted with the supported `CI=1` prebuild mode. It stopped on six Google Fonts fetch errors, before completing compilation. That remains a failed local build; framework/font configuration was not changed to suppress it. The existing production hold stays in force, and preview/build/browser evidence is required separately.
 
 Canonical publishing still follows the existing Vercel-first media policy. This route does not infer approval, publish binaries or change production placements. The old publisher patch is historical source only: it must not be applied over this route or treated as an authenticated approval service. Publication needs an authorized ingest/publisher, current release records, reviewed target renditions and a verified deployment through the owning repository.
 

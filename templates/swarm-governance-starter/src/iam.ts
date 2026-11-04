@@ -36,7 +36,7 @@ const profileSchema = z.object({
 
 const iamSchema = z.object({
   version: z.string(),
-  profiles: z.record(profileSchema),
+  profiles: z.record(z.string(), profileSchema),
   globalDeny: z
     .object({ paths: z.array(z.string()).default([]) })
     .default({ paths: [] }),

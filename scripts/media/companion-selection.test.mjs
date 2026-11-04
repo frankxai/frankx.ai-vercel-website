@@ -1,12 +1,62 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
+import { spawnSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import {
   COLLECTION_ID,
   importSelection,
   exportPlacementBrief,
   verifyReviewBundle,
 } from "../../lib/media/companion-selection.mjs";
+
+test("the deployment retains its catalog while excluding review documents", () => {
+  const root = fileURLToPath(new URL("../../", import.meta.url));
+  const fixture = mkdtempSync(join(tmpdir(), "frankx-companion-ignore-"));
+  const catalogPath =
+    "docs/media/collective-20261030/companion-collection.v2.json";
+  const excluded = [
+    "docs/media/collective-20261030/README.md",
+    "docs/media/collective-20261030/REVIEW.md",
+    "docs/media/collective-20261030/integration.patch",
+    "docs/media/collective-20261030/unknown.json",
+    "docs/media/collective-20261030/assets/private.webp",
+    "docs/media/another-collection/private-notes.md",
+    "docs/architecture/private-notes.md",
+  ];
+  // Vercel uses gitignore semantics. Exercise ancestor traversal as well as the
+  // final exception: a negation inside an excluded directory is insufficient.
+  try {
+    writeFileSync(
+      join(fixture, ".gitignore"),
+      readFileSync(join(root, ".vercelignore")),
+    );
+    writeFileSync(join(fixture, ".global-ignore"), "");
+    assert.equal(spawnSync("git", ["init", "--quiet", fixture]).status, 0);
+    const result = spawnSync(
+      "git",
+      [
+        "-c",
+        `core.excludesFile=${join(fixture, ".global-ignore")}`,
+        "check-ignore",
+        "--no-index",
+        "--stdin",
+      ],
+      {
+        cwd: fixture,
+        input: [catalogPath, ...excluded].join("\n") + "\n",
+        encoding: "utf8",
+      },
+    );
+    assert.equal(result.status, 0, result.stderr);
+    assert.deepEqual(result.stdout.trim().split("\n"), excluded);
+  } finally {
+    rmSync(fixture, { recursive: true, force: true });
+  }
+});
 
 const bytes = Buffer.from(
   "UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA",

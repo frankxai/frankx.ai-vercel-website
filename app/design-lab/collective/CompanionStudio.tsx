@@ -86,6 +86,9 @@ export default function CompanionStudio({ catalog }: { catalog: Catalog }) {
   const bundleInput = useRef<HTMLInputElement>(null),
     briefInput = useRef<HTMLInputElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
+  const selectedFilter = useRef<HTMLButtonElement>(null);
+  const dialogTrigger = useRef<HTMLButtonElement | null>(null);
+  const restoreSelectionFocus = useRef(false);
   const imageUrls = useRef<string[]>([]);
   const operation = useRef(0);
   useEffect(() => {
@@ -106,6 +109,12 @@ export default function CompanionStudio({ catalog }: { catalog: Catalog }) {
     if (inspected && dialog.current && !dialog.current.open)
       dialog.current.showModal();
   }, [inspected]);
+  useEffect(() => {
+    if (restoreSelectionFocus.current) {
+      restoreSelectionFocus.current = false;
+      selectedFilter.current?.focus();
+    }
+  }, [selection]);
   function save(next: Selection) {
     setSelection(next);
     try {
@@ -119,6 +128,10 @@ export default function CompanionStudio({ catalog }: { catalog: Catalog }) {
   }
   function toggle(asset: CatalogAsset) {
     const exists = selection.assets.some((a) => a.asset_id === asset.asset_id);
+    // A removed card disappears in this view. Keep modal focus inside the
+    // dialog until close; otherwise return to the persistent selection filter.
+    if (exists && onlySelected && !dialog.current?.open)
+      restoreSelectionFocus.current = true;
     save({
       ...selection,
       assets: exists
@@ -398,6 +411,7 @@ export default function CompanionStudio({ catalog }: { catalog: Catalog }) {
               />
             </label>
             <button
+              ref={selectedFilter}
               className={styles.secondary}
               aria-pressed={onlySelected}
               onClick={() => setOnlySelected(!onlySelected)}
@@ -436,7 +450,10 @@ export default function CompanionStudio({ catalog }: { catalog: Catalog }) {
                 <button
                   className={styles.artButton}
                   disabled={!images[a.asset_id]}
-                  onClick={() => setInspected(a)}
+                  onClick={(event) => {
+                    dialogTrigger.current = event.currentTarget;
+                    setInspected(a);
+                  }}
                   aria-label={`Inspect ${a.title}`}
                 >
                   {images[a.asset_id] ? (
@@ -491,7 +508,12 @@ export default function CompanionStudio({ catalog }: { catalog: Catalog }) {
         ref={dialog}
         className={styles.dialog}
         aria-labelledby="asset-title"
-        onClose={() => setInspected(null)}
+        onClose={() => {
+          setInspected(null);
+          if (!dialogTrigger.current?.isConnected)
+            selectedFilter.current?.focus();
+          dialogTrigger.current = null;
+        }}
       >
         <form method="dialog" className={styles.dialogBar}>
           <span>Asset details</span>
