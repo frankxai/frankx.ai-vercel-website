@@ -1,6 +1,6 @@
 # CI and security completion review, Codex, 4 November 2026, revision 4
 
-Author: Codex. Created: 2026-11-04. Review state: text-package verification pending.
+Author: Codex. Created: 2026-11-04. Review state: package preparation passed; final CI, preview and independent review pending.
 Sources: PR #1162, issue #1161, current source and the linked hosted checks.
 Revisions 1–3 remain preserved; this revision corrects their pending snapshots.
 
@@ -20,7 +20,11 @@ The same verified package is now committed as 58 inspectable text files under
 protocol. Its complete tree must match the pinned rebuild, and a fresh frozen
 install must verify the installed CLI. The narrow vendor `.gitignore` rule tracks
 only these reviewed runtime files; ordinary build output remains ignored.
-Temporary lockfile preparation will be removed before final CI.
+Preparation run 41768304021 at `83e7a0d2cbda078ce8f73571f2aaeae02ddbfb8a`
+passed the new frozen installation, installed CLI tests, upstream tests/typecheck
+and complete-tree comparison. Artifact 13293442576 contains only the lockfile,
+SHA256 `1899e6319bc8c8146db0e2fa686661ca4600da4ec7f769801fd3e221305e2b1b`.
+The temporary job is removed. Local Media Guard passes for all 86 changed paths.
 
 Vercel Agent check 126365874698 independently reviewed that prior head, completed
 successfully and created zero suggestions (review ID

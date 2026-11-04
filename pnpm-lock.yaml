@@ -257,8 +257,8 @@ importers:
         version: 4.6.7
     devDependencies:
       '@google/design.md':
-        specifier: file:vendor/google-design-md/google-design-md-0.4.0-starlight.1.tgz
-        version: file:vendor/google-design-md/google-design-md-0.4.0-starlight.1.tgz
+        specifier: file:vendor/google-design-md/package
+        version: file:vendor/google-design-md/package
       '@mermaid-js/mermaid-cli':
         specifier: 12.0.0
         version: 12.0.0(@babel/core@7.29.7)(@babel/template@7.29.7)(@types/react@18.3.28)(puppeteer@25.16.0(yauzl@2.10.0))(tailwindcss@3.4.19(tsx@4.23.15)(yaml@2.9.1))
@@ -872,9 +872,8 @@ packages:
     resolution: {integrity: sha512-wmglKKPDIkgV3aWlZzWECCPoGIkYCulzBwxG9+w7rc5BGapZ6cPMpoPOT8k36J0Ni7PPX6c/rsoMWfS4d1MUMg==}
     engines: {node: '>=6'}
 
-  '@google/design.md@file:vendor/google-design-md/google-design-md-0.4.0-starlight.1.tgz':
-    resolution: {integrity: sha512-X9qaybp7Gslr8kGpxF3HXeR1aQTtuI9PljtpMMRHBr3P+yNT4QgpGPCtU6Mkh3f92zwuYTTISPYq0aX/gjXJzQ==, tarball: file:vendor/google-design-md/google-design-md-0.4.0-starlight.1.tgz}
-    version: 0.4.0-starlight.1
+  '@google/design.md@file:vendor/google-design-md/package':
+    resolution: {directory: vendor/google-design-md/package, type: directory}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -8674,7 +8673,7 @@ snapshots:
 
   '@fortawesome/fontawesome-free@7.3.1': {}
 
-  '@google/design.md@file:vendor/google-design-md/google-design-md-0.4.0-starlight.1.tgz':
+  '@google/design.md@file:vendor/google-design-md/package':
     dependencies:
       citty: 0.1.6
       remark-frontmatter: 5.0.0
@@ -13019,7 +13018,7 @@ snapshots:
   esast-util-from-js@2.0.1:
     dependencies:
       '@types/estree-jsx': 1.0.5
-      acorn: 8.16.0
+      acorn: 8.18.0
       esast-util-from-estree: 2.0.0
       vfile-message: 4.0.3
 
