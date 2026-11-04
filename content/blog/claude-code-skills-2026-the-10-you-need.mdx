@@ -170,7 +170,7 @@ Full skill-building walkthrough: [Building Custom Skills for ACOS](/blog/buildin
 
 ## Evaluating skills before global install
 
-A prose skill earns a permanent slot in your setup only when you verify both trigger accuracy and fault detection. In [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library), the public catalog checks every skill package's structure with `validate-spec`. That proves the package is well formed, not that the skill catches bugs: the catalog does not yet ship behavioral evals. Before promoting any skill into your global setup, test it against planted bugs with an executable check in `scripts/`:
+A prose skill earns a permanent slot in your setup only when you verify both trigger accuracy and fault detection. In [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library), the public catalog checks every skill package's structure with `validate-spec`. That proves the package is well formed. Whether a skill catches bugs is a separate question, and the catalog does not yet ship behavioral evals for it. Before promoting any skill into your global setup, test it against planted bugs with an executable check in `scripts/`:
 
 | Verification check | Weak prompt-only skill | Production `SKILL.md` package |
 | --- | --- | --- |
