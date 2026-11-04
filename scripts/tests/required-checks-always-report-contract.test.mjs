@@ -19,6 +19,23 @@ test('CI requires main-push coverage for the vendored design CLI', async () => {
   assert.notDeepEqual(ciAlwaysReportingErrors(omitted), [])
 })
 
+test('CI covers stacked PR bases and runs the existing search-plane regressions', async () => {
+  const workflow = await read('.github/workflows/ci.yml')
+  const on = topLevelMappingBlock(workflow, 'on')
+  const pullRequest = on.slice(on.indexOf('  pull_request:'))
+  assert.doesNotMatch(pullRequest, /^\s+branches(?:-ignore)?:/m)
+  assert.deepEqual(ciAlwaysReportingErrors(workflow), [])
+
+  const filtered = workflow.replace(
+    '    types: [opened, synchronize, reopened, edited, ready_for_review]',
+    '    types: [opened, synchronize, reopened, edited, ready_for_review]\n    branches: [main, staging]',
+  )
+  assert.notDeepEqual(ciAlwaysReportingErrors(filtered), [], 'base filters would strand stacked PRs again')
+  assert.match(workflow, /- name: Search operations regressions\s+run: pnpm run test:search-plane/)
+  const pkg = JSON.parse(await read('package.json'))
+  assert.equal(pkg.scripts['test:search-plane'], 'node --test scripts/tests/search-plane.test.mjs')
+})
+
 // The required contexts in branch protection are job names. A workflow that
 // stops producing one of these exact names blocks every pull request, the same
 // way a path filter does.

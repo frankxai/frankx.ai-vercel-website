@@ -42,7 +42,8 @@ on:
     # build of the staging merge result stays green on the same head after the
     # pull request is pointed at main, where the merge result differs.
     types: [opened, synchronize, reopened, edited, ready_for_review]
-    branches: [main, staging]
+    # Stacked security fixes target another agent branch. They need the same
+    # checks before integration; the existing draft opt-in still bounds builds.
 
 # CI is an exact required landing check and test:build-integrity scans workflow
 # security controls. Keep pull_request always-reporting; a required check with
@@ -167,6 +168,9 @@ jobs:
 
       - name: Site search relevance
         run: pnpm run test:site-search
+
+      - name: Search operations regressions
+        run: pnpm run test:search-plane
 
       - name: MCP endpoint contract (read-only, no priced claims)
         run: pnpm run test:mcp
