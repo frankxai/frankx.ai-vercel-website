@@ -3,12 +3,21 @@ import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 import { runInNewContext } from 'node:vm'
 import {
+  ciAlwaysReportingErrors,
   requiredCheckAlwaysReportsErrors,
   stripYamlComment,
   topLevelMappingBlock,
 } from './helpers/workflow-yaml-contract.mjs'
 
 const read = (path) => readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
+
+test('CI requires main-push coverage for the vendored design CLI', async () => {
+  const workflow = await read('.github/workflows/ci.yml')
+  assert.deepEqual(ciAlwaysReportingErrors(workflow), [])
+  const omitted = workflow.replace("      - 'vendor/google-design-md/**'\n", '')
+  assert.notEqual(omitted, workflow)
+  assert.notDeepEqual(ciAlwaysReportingErrors(omitted), [])
+})
 
 // The required contexts in branch protection are job names. A workflow that
 // stops producing one of these exact names blocks every pull request, the same
