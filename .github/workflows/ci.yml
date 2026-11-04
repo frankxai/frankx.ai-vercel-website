@@ -59,6 +59,24 @@ env:
   NODE_VERSION: '22'
 
 jobs:
+  dependency-audit:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6
+        with:
+          run_install: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      # Runs on drafts too; audits the lockfile without installing dependencies.
+      # Keep high/critical findings and registry failures visible; no exemptions.
+      - run: pnpm audit --audit-level high
+
   ci:
     name: CI
     if: github.event_name != 'pull_request' || (github.event.pull_request.state == 'open' && github.event.pull_request.draft == false)
@@ -101,6 +119,9 @@ jobs:
 
       - name: Type Check
         run: pnpm run type-check
+
+      - name: Private ops authorization
+        run: node --test scripts/tests/ops-authorization.test.mjs
 
       - name: Glass input source contracts
         run: node --test scripts/tests/glass-control-accessibility.test.mjs
