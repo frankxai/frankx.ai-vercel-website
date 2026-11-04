@@ -66,6 +66,8 @@ Skills hold the reusable standards. Slash commands invoke repeatable workflows. 
 
 App Router fundamentals. Layout nesting, route groups, parallel routes, metadata API. Correct route structure on the first try.
 
+Update, November 2026: Vercel retired `next-best-practices` as a separate skill. On Next.js 16.3 and later, `next dev` writes the same guidance into the project's `AGENTS.md` and `CLAUDE.md` and ships it in the bundled docs, so there is nothing extra to install. The workflow skills that remain, such as `next-cache-components-optimizer`, now live in the [Next.js repository](https://github.com/vercel/next.js/tree/canary/skills).
+
 ### 3. shadcn-ui
 
 shadcn/ui integration patterns. Extends through `cn()` and variant props. Keeps the design system coherent instead of fighting internal styles.
@@ -104,12 +106,12 @@ You can install skills globally for personal habits across every repo, or commit
 
 ```bash
 # 1. Install proven open-source skill packs globally (~/.claude/skills/)
-npx skills add vercel-labs/agent-skills -y -g
-npx skills add vercel-labs/next-skills -y -g
-npx skills add sickn33/antigravity-awesome-skills -y -g
-npx skills add ibelick/ui-skills -y -g
-npx skills add giuseppe-trisciuoglio/developer-kit -y -g
-npx skills add frankxai/claude-skills-library -y -g
+npx skills add vercel-labs/agent-skills -y -g             # vercel-react-best-practices, web-design-guidelines
+npx skills add vercel/next.js -y -g                       # Next.js workflow skills (next-best-practices is now built into next dev)
+npx skills add sickn33/antigravity-awesome-skills -y -g   # seo-content-writer, seo-fundamentals, architecture-patterns, clean-code
+npx skills add ibelick/ui-skills -y -g                    # fixing-accessibility
+npx skills add giuseppe-trisciuoglio/developer-kit -y -g  # shadcn-ui, tailwind-css-patterns
+npx skills add frankxai/claude-skills-library -y -g       # optional: the FrankX packs
 
 # 2. Verify active global skills
 npx skills list -g
@@ -168,7 +170,7 @@ Full skill-building walkthrough: [Building Custom Skills for ACOS](/blog/buildin
 
 ## Evaluating skills before global install
 
-A prose skill earns a permanent slot in your setup only when you verify both trigger accuracy and fault detection. In [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library), the public catalog enforces `validate-spec` structural validation on every skill package; before promoting any skill into your global setup, test it against planted bugs with an executable check in `scripts/`:
+A prose skill earns a permanent slot in your setup only when you verify both trigger accuracy and fault detection. In [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library), the public catalog checks every skill package's structure with `validate-spec`. That proves the package is well formed, not that the skill catches bugs: the catalog does not yet ship behavioral evals. Before promoting any skill into your global setup, test it against planted bugs with an executable check in `scripts/`:
 
 | Verification check | Weak prompt-only skill | Production `SKILL.md` package |
 | --- | --- | --- |
@@ -181,7 +183,7 @@ Before adding any third-party skill globally:
 
 1. **Test positive and negative triggers** — Confirm the YAML `description` fires on target tasks without hijacking unrelated prompts.
 2. **Pair prose with deterministic scripts** — Put link checks, schema checks, and AST checks inside `scripts/` so Node or Python executes exact assertions[^5].
-3. **Install from audited MIT sources** — Browse the open catalog in [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library) or generate your own `SKILL.md` in the [Skill Builder](/skills/builder).
+3. **Install from MIT sources you have read** — Browse the open catalog in [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library) or generate your own `SKILL.md` in the [Skill Builder](/skills/builder).
 
 ## The ACOS layer
 

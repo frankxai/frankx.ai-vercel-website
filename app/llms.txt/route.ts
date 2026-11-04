@@ -169,9 +169,9 @@ ${journalLinks}
 - [AI catalog (SEP-2127)](${SITE_URL}/.well-known/ai-catalog.json): Domain discovery entry pointing at that server card.
 - [Markdown export](${SITE_URL}/api/md?path=/blog/agentic-ai-roadmap-2025): Any article as plain markdown; replace the path with /blog/<slug>
 
-## Optional & Cultural Reading Notes
+## Optional
 - [llms-full.txt](${SITE_URL}/llms-full.txt): Comprehensive site map with per-page tldrs (longer; ~50KB)
-- [Library Index](${SITE_URL}/library): Searchable book reviews, reading field notes, and editorial reading guides; six curated collections
+- [Library Index](${SITE_URL}/library): Cultural reading notes: searchable book reviews, reading field notes, and editorial reading guides; six curated collections
 - [Library Approach](${SITE_URL}/library/approach): Why books matter for builders and creators
 - [Library Build](${SITE_URL}/library/build): How to build your own library OS
 - [Library Quotes](${SITE_URL}/library/quotes): Curated quotation collection
