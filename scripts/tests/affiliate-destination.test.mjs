@@ -35,3 +35,18 @@ test('cached Higgsfield recommendations keep the hop route before and after expi
       { href: '/go/higgsfield', sponsored: false })
   }
 })
+
+test('approved Riverside stays editorial until account attribution is verified', () => {
+  const { programs } = JSON.parse(readFileSync(new URL('../../data/affiliate/programs.json', import.meta.url), 'utf8'))
+  const riverside = programs.find(program => program.tool === 'Riverside')
+  assert.ok(riverside)
+  assert.equal(riverside.status, 'approved-link-unverified')
+  assert.equal(riverside.ourLink, null)
+  assert.equal(riverside.cookieDays, null)
+  const fallback = { name: 'Riverside', url: 'https://riverside.com/' }
+  for (const id of ['Riverside', ...riverside.aliases]) {
+    assert.deepEqual(resolveProgramDestination(id, programs, fallback, new Date('2026-11-03T12:00:00Z')),
+      { href: fallback.url, sponsored: false })
+    assert.equal(resolveProgramDestination(id, programs), undefined)
+  }
+})

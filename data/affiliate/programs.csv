@@ -31,3 +31,4 @@ priority,tool,category,has_program,commission,recurring,cookie_days,network,stat
 -,Black Forest Labs,image,no,,,,,dead-end,,,Model lab — no referral layer.
 -,Leonardo.ai,image,no,,,,Impact,closed,,,CLOSED Apr 7 2026 — no new applicants.
 -,Notion,creator-stack,no,50%/180d (when open),lifetime,180,direct,closed,,,Not accepting new affiliates (Mar 2026). Monitor.
+-,Riverside,video,yes,Unverified,Unverified,,PartnerStack,approved-link-unverified,https://riverside.com/,,Riverside approved 2026-10-29; FrankX Network approved 2026-11-02 supersedes 2026-10-30 restriction. Reuse existing account. Candidate https://affiliate.riverside.com/frankx GET redirects 302 then 200 on 2026-11-03; HEAD 404. Attribution and account terms unverified; candidate is not a publishable affiliate URL. See JSON registry. Disclose with ad or advertisement before activation.
