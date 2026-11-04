@@ -16,10 +16,7 @@ const root = realpathSync(packet);
 const catalog = JSON.parse(
   readFileSync(
     fileURLToPath(
-      new URL(
-        "../../docs/media/collective-20261030/companion-collection.v2.json",
-        import.meta.url,
-      ),
+      new URL("../../data/media/companion-collection.v2.json", import.meta.url),
     ),
     "utf8",
   ),

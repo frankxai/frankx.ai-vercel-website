@@ -7,7 +7,7 @@ target=Path(sys.argv[1])
 doc=target.read_text()
 if 'id="placement-context"' in doc:
     raise SystemExit('This picker already contains placement controls; recover its current source before editing.')
-catalog=json.loads((root/'docs/media/collective-20261030/companion-collection.v2.json').read_text())
+catalog=json.loads((root/'data/media/companion-collection.v2.json').read_text())
 rows=json.loads(re.search(r'<script id="assets" type="application/json">(.*?)</script>',doc,re.S).group(1))
 for a in rows:
     known=next(x for x in catalog['assets'] if x['asset_id']==a['asset_id'])

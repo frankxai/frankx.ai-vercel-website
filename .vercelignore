@@ -19,14 +19,7 @@
 /.playwright-mcp/
 
 # Documentation, research drafts, internal ops (top-level only, anchored)
-# Companion Studio imports this public-safe catalog at build time. Traverse
-# its ancestors, retaining only that JSON; review docs and patches stay excluded.
-/docs/*
-!/docs/media/
-/docs/media/*
-!/docs/media/collective-20261030/
-/docs/media/collective-20261030/*
-!/docs/media/collective-20261030/companion-collection.v2.json
+/docs/
 /research/
 /_archive/
 /_inbox/

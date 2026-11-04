@@ -16,9 +16,9 @@ import {
 test("the deployment retains its catalog while excluding review documents", () => {
   const root = fileURLToPath(new URL("../../", import.meta.url));
   const fixture = mkdtempSync(join(tmpdir(), "frankx-companion-ignore-"));
-  const catalogPath =
-    "docs/media/collective-20261030/companion-collection.v2.json";
+  const catalogPath = "data/media/companion-collection.v2.json";
   const excluded = [
+    "docs/media/collective-20261030/companion-collection.v2.json",
     "docs/media/collective-20261030/README.md",
     "docs/media/collective-20261030/REVIEW.md",
     "docs/media/collective-20261030/integration.patch",
@@ -27,8 +27,8 @@ test("the deployment retains its catalog while excluding review documents", () =
     "docs/media/another-collection/private-notes.md",
     "docs/architecture/private-notes.md",
   ];
-  // Vercel uses gitignore semantics. Exercise ancestor traversal as well as the
-  // final exception: a negation inside an excluded directory is insufficient.
+  // Vercel uses gitignore semantics. Runtime data must survive filtering,
+  // while documentation and any artwork accidentally placed there stay out.
   try {
     writeFileSync(
       join(fixture, ".gitignore"),

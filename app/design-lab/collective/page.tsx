@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import catalog from "@/docs/media/collective-20261030/companion-collection.v2.json";
+import catalog from "@/data/media/companion-collection.v2.json";
 import CompanionStudio from "./CompanionStudio";
 
 export const metadata: Metadata = {

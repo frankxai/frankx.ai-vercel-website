@@ -47,7 +47,7 @@ Ten tests cover old-format recovery, context bounds, unknown/duplicate/stale pin
 
 The candidate integrates main `7ba367b4a81ba1250fbc0122d01d9d673108438f`. Its production deployment hold, security changes, frozen dependency tree and draft CI admission remain unchanged.
 
-Vercel skipped the earlier preview intentionally: the PR was a draft without the existing `[preview]` commit-subject opt-in. A separate deployment-context defect was found before requesting another preview: `.vercelignore` excluded the imported catalog. Its ancestor rules now retain only `companion-collection.v2.json`; sibling review documents, patches and arbitrary new assets remain excluded. The new regression failed on the previous rules and passes with the exception.
+Vercel skipped the earlier preview intentionally: the PR was a draft without the existing `[preview]` commit-subject opt-in. The imported catalog also lived under excluded documentation and outside the deploy/CI path coverage. Its unchanged bytes now live at `data/media/companion-collection.v2.json`, consumed by the route and both bundle/picker builders. Existing `data/**` gates cover future catalog changes. The normal `/docs/` exclusion remains unchanged; the deployment-context regression proves runtime data is retained and documentation/artwork under docs stays excluded.
 
 Keyboard removal in the selected-only grid now returns focus to its persistent filter. Removing a card from its inspection dialog keeps focus inside the modal; closing falls back to the same filter when the original trigger has disappeared. Both component regressions failed on the previous implementation and pass after the fix.
 
