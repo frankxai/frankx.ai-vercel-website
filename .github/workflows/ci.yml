@@ -59,30 +59,6 @@ env:
   NODE_VERSION: '22'
 
 jobs:
-  # Temporary repair job: removed after this exact-head lockfile is downloaded.
-  # No PR token writes, secrets, dependency scripts or source artifacts.
-  prepare-lockfile:
-    if: github.event_name == 'pull_request' && github.event.pull_request.number == 1162 && github.event.pull_request.draft
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-        with:
-          persist-credentials: false
-      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115
-        with:
-          run_install: false
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-      - run: pnpm install --lockfile-only --no-frozen-lockfile --ignore-scripts
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
-        with:
-          name: candidate-lockfile-${{ github.event.pull_request.head.sha }}
-          path: pnpm-lock.yaml
-          retention-days: 1
-          if-no-files-found: error
-
   dependency-audit:
     name: Dependency audit
     runs-on: ubuntu-latest
@@ -205,6 +181,12 @@ jobs:
         # Download the Puppeteer-pinned binary as the runner user; --install-deps
         # requires root and would also put its browser cache in root's home.
         run: pnpm exec puppeteer browsers install chrome
+
+      - name: Mermaid CLI browser compatibility
+        run: |
+          printf 'flowchart LR\nA-->B\n' > "$RUNNER_TEMP/mermaid-ci.mmd"
+          pnpm exec mmdc -i "$RUNNER_TEMP/mermaid-ci.mmd" -o "$RUNNER_TEMP/mermaid-ci.svg" --puppeteerConfigFile scripts/diagrams/puppeteer.config.json
+          node -e "const fs=require('node:fs'); const svg=fs.readFileSync(process.env.RUNNER_TEMP+'/mermaid-ci.svg','utf8'); if(!svg.includes('<svg') || svg.length < 500) process.exit(1)"
 
       - name: Reader journeys and screen evidence
         run: node scripts/qa/book-journey.mjs

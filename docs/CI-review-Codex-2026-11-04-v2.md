@@ -17,6 +17,12 @@ Local build admission at 01:12 UTC was HOLD: 2,474 MB free versus 8,192 MB requi
 
 The Google design CLI remains an upstream blocker. Published 0.4.0 and current upstream main still require Zod 3, and the npm CLI/linter artifacts embed Zod 3 code. A dependency override alone would hide the declared path while leaving the embedded implementation unchanged. No override or suppression is added. Existing upstream issue: https://github.com/google-labs-code/design.md/issues/184 . Actual exploitability through local DESIGN.md input has not been demonstrated.
 
+Preparation run 41753886388 succeeded at head 95de037b1cd36c3c7a3d6d8a56571d0e1804e15a. Artifact 13286168774 contains only pnpm-lock.yaml, SHA-256 898c29623bb023418067adaad5de7ce876a400698b28bf04ae789fe8c24735a0. Its four importers cover root plus all three templates. Only the two intended root dependency versions changed. The lockfile contains no extract-zip or basic-ftp package, and each template resolves Zod 4.6.7. All 29 existing override pins remain. The temporary preparation job has been removed.
+
+The root lockfile audit now reports one high advisory, seven moderate and two low, with zero critical; the remaining high is the unchanged Google design CLI Zod path. This is an affected dependency, not a demonstrated website exploit. No exemption was added.
+
+Small source-level tests using the existing primary checkout's compiler/dependencies passed the payments guard's 20 tests and the governance starter's 32 tests when each suite ran from its documented directory. An initial combined invocation from repository root failed two fixture-path lookups; no product code was changed to mask that invocation error. Frozen-install compilation and tests against the committed lockfile remain the authoritative hosted checks.
+
 The four historical secret alerts still require credential-owner review; no key is printed, tested, rotated or dismissed. No merge, production promotion, billing change, Vercel review-setting change, additional paid reviewer or service purchase is authorized or performed.
 
 Sources inspected 2026-11-04: npm package metadata for Puppeteer, @puppeteer/browsers, Mermaid CLI, Zod and MCP SDK; https://pptr.dev/guides/configuration ; https://zod.dev/v4/changelog ; https://pnpm.io/cli/install ; upstream design.md package/source and issue 184. Hosted run and final exact-head results will be linked in issue 1161 and PR 1162.
