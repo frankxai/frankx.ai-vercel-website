@@ -59,6 +59,30 @@ env:
   NODE_VERSION: '22'
 
 jobs:
+  # Temporary repair job: removed after this exact-head lockfile is downloaded.
+  # No PR token writes, secrets, dependency scripts or source artifacts.
+  prepare-lockfile:
+    if: github.event_name == 'pull_request' && github.event.pull_request.number == 1162 && github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115
+        with:
+          run_install: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - run: pnpm install --lockfile-only --no-frozen-lockfile --ignore-scripts
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: candidate-lockfile-${{ github.event.pull_request.head.sha }}
+          path: pnpm-lock.yaml
+          retention-days: 1
+          if-no-files-found: error
+
   dependency-audit:
     name: Dependency audit
     runs-on: ubuntu-latest
@@ -79,7 +103,9 @@ jobs:
 
   ci:
     name: CI
-    if: github.event_name != 'pull_request' || (github.event.pull_request.state == 'open' && github.event.pull_request.draft == false)
+    # An authorized maintainer can opt a draft into full verification before a
+    # synchronize/re-run event, without enabling automatic draft AI reviews.
+    if: github.event_name != 'pull_request' || (github.event.pull_request.state == 'open' && (github.event.pull_request.draft == false || contains(github.event.pull_request.labels.*.name, 'ci:verify')))
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -122,6 +148,12 @@ jobs:
 
       - name: Private ops authorization
         run: node --test scripts/tests/ops-authorization.test.mjs
+
+      - name: Template contracts
+        run: |
+          pnpm --dir templates/agent-payments-guard test
+          pnpm --dir templates/mcp-server-kit build
+          pnpm --dir templates/swarm-governance-starter test
 
       - name: Glass input source contracts
         run: node --test scripts/tests/glass-control-accessibility.test.mjs
