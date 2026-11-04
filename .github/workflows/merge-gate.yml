@@ -61,7 +61,7 @@ env:
 jobs:
   merge-gate:
     name: Merge Gate
-    if: github.event.pull_request.draft == false
+    if: github.event.pull_request.draft == false || contains(github.event.pull_request.labels.*.name, 'ci:verify')
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

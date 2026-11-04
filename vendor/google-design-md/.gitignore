@@ -1,0 +1,3 @@
+# Reviewed, reproducible Node package source; ordinary build outputs stay ignored.
+!package/dist/
+!package/dist/**
