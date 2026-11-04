@@ -106,7 +106,9 @@ You can install skills globally for personal habits across every repo, or commit
 # 1. Install proven open-source skill packs globally (~/.claude/skills/)
 npx skills add vercel-labs/agent-skills -y -g
 npx skills add vercel-labs/next-skills -y -g
+npx skills add sickn33/antigravity-awesome-skills -y -g
 npx skills add ibelick/ui-skills -y -g
+npx skills add giuseppe-trisciuoglio/developer-kit -y -g
 npx skills add frankxai/claude-skills-library -y -g
 
 # 2. Verify active global skills
@@ -136,9 +138,9 @@ If you switch between Claude Code, Codex CLI, Cursor, and Gemini/Antigravity, ke
 | Agent runtime | Always-on repo file | Skill discovery path | Tool & permission boundary |
 | --- | --- | --- | --- |
 | **Claude Code** | `CLAUDE.md` | `~/.claude/skills/<name>/SKILL.md` or `.claude/skills/` | `allowed-tools` frontmatter + `.claude/settings.json` hooks |
-| **OpenAI Codex CLI** | `AGENTS.md` | `~/.codex/skills/<name>/SKILL.md` | `approval_policy` + sandbox mode in `~/.codex/config.toml` |
-| **Cursor** | `.cursor/rules/*.mdc` / `AGENTS.md` | Glob/description-matched `.mdc` or linked `SKILL.md` | IDE workspace approval + MCP server allowlist |
-| **Antigravity / Gemini CLI** | `GEMINI.md` + `AGENTS.md` | `~/.gemini/skills/<name>/SKILL.md` + plugin skills | Scoped tool declarations + workspace boundary rules |
+| **OpenAI Codex CLI** | `AGENTS.md` | `~/.codex/skills/<name>/SKILL.md` or `.agents/skills/` | `approval_policy` + sandbox mode in `~/.codex/config.toml` |
+| **Cursor** | `AGENTS.md` / `.cursor/rules/*.mdc` | `.cursor/skills/<name>/SKILL.md`, `.agents/skills/`, or `~/.cursor/skills/` | IDE workspace approval + MCP server allowlist |
+| **Antigravity / Gemini CLI** | `GEMINI.md` + `AGENTS.md` | `~/.gemini/config/skills/` (Antigravity) · `~/.gemini/skills/` (Gemini CLI) | Scoped tool declarations + workspace boundary rules |
 
 ## Building your own production skill (20 minutes)
 
@@ -166,7 +168,7 @@ Full skill-building walkthrough: [Building Custom Skills for ACOS](/blog/buildin
 
 ## Evaluating skills before global install
 
-A prose skill earns a permanent slot in your setup only when you verify both trigger accuracy and fault detection. Across our evaluated catalog in [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library), we test candidate skills against planted bugs before promoting them:
+A prose skill earns a permanent slot in your setup only when you verify both trigger accuracy and fault detection. In [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library), the public catalog enforces `validate-spec` structural validation on every skill package; before promoting any skill into your global setup, test it against planted bugs with an executable check in `scripts/`:
 
 | Verification check | Weak prompt-only skill | Production `SKILL.md` package |
 | --- | --- | --- |
