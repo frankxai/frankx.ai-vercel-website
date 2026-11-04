@@ -16,6 +16,7 @@ on:
       - 'scripts/**'
       - 'styles/**'
       - 'types/**'
+      - 'vendor/google-design-md/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
       - 'pnpm-workspace.yaml'
@@ -59,41 +60,6 @@ env:
   NODE_VERSION: '22'
 
 jobs:
-  # Temporary, exact-PR preparation receipt. Remove before the final CI run.
-  prepare-design-cli:
-    if: github.event_name == 'pull_request' && github.event.pull_request.number == 1162 && github.event.pull_request.draft && github.event.pull_request.head.repo.full_name == github.repository
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6
-        with:
-          run_install: false
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
-        with:
-          node-version: '22'
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
-        with:
-          bun-version: '1.3.12'
-      - run: node vendor/google-design-md/rebuild.mjs "$RUNNER_TEMP/design-md-package"
-      - name: Prepare lockfile for the verified local package
-        run: |
-          cp "$RUNNER_TEMP/design-md-package/google-design-md-0.4.0-starlight.1.tgz" vendor/google-design-md/
-          node -e "const fs=require('node:fs'); const p=JSON.parse(fs.readFileSync('package.json','utf8')); p.devDependencies['@google/design.md']='file:vendor/google-design-md/google-design-md-0.4.0-starlight.1.tgz'; fs.writeFileSync('package.json',JSON.stringify(p,null,2)+'\n')"
-          pnpm install --lockfile-only --no-frozen-lockfile --ignore-scripts
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: design-md-package-${{ github.event.pull_request.head.sha }}
-          path: |
-            vendor/google-design-md/google-design-md-0.4.0-starlight.1.tgz
-            pnpm-lock.yaml
-          if-no-files-found: error
-          retention-days: 1
-
   dependency-audit:
     name: Dependency audit
     runs-on: ubuntu-latest
@@ -144,6 +110,18 @@ jobs:
         run: node scripts/check-pnpm-overrides.mjs
 
       - run: pnpm install --frozen-lockfile
+
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: '1.3.12'
+
+      - name: Reproduce the reviewed design CLI package
+        run: |
+          node vendor/google-design-md/rebuild.mjs "$RUNNER_TEMP/design-md-verified"
+          cmp vendor/google-design-md/google-design-md-0.4.0-starlight.1.tgz "$RUNNER_TEMP/design-md-verified/google-design-md-0.4.0-starlight.1.tgz"
+
+      - name: Design CLI security and compatibility
+        run: node --test vendor/google-design-md/security.test.mjs
 
       - name: Build integrity contract
         run: pnpm run test:build-integrity

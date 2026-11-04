@@ -1,6 +1,6 @@
 # Google design.md security rebuild, Codex, 4 November 2026, revision 1
 
-Author: Codex. Review state: pending rebuild, upstream tests and independent review.
+Author: Codex. Review state: rebuilt; upstream tests/typecheck passed; final CI and independent review pending.
 Upstream author: Google LLC. License: Apache-2.0, preserved in the package.
 
 The upstream 0.4.0 release bundles vulnerable Zod 3 into its JavaScript. A pnpm
