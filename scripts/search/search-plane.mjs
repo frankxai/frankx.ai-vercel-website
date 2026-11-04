@@ -108,8 +108,13 @@ export function ctrGaps(rows, { minImpressions = 50, maxPosition = 10, ratio = 0
 
 export function toCsv(rows, columns) {
   const cell = (v) => {
-    const s = v == null ? '' : String(v)
-    return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s
+    let s = v == null ? '' : String(v)
+    // Search queries are untrusted text. These CSVs are for spreadsheet review;
+    // rows.json remains the lossless source for programmatic consumers. Follow
+    // OWASP's quoted-tab mitigation for Excel, including whitespace/fullwidth
+    // formula prefixes. Other spreadsheet importers should import cells as text.
+    if (typeof v === 'string' && /^[\s\u0000-\u001f]*[=+\-@\uFF1D\uFF0B\uFF0D\uFF20]/u.test(s)) s = `\t${s}`
+    return /[",\r\n\t]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s
   }
-  return [columns.join(','), ...rows.map((r) => columns.map((c) => cell(r[c])).join(','))].join('\n') + '\n'
+  return [columns.map(cell).join(','), ...rows.map((r) => columns.map((c) => cell(r[c])).join(','))].join('\n') + '\n'
 }
