@@ -2,7 +2,7 @@
 title: "Claude Code Skills 2026: The 10 You Actually Need"
 description: "Most skill libraries are noise. These 10 skills changed how I ship code, content, and products — with install commands and real examples."
 date: "2026-03-21"
-lastUpdated: "2026-11-02"
+lastUpdated: "2026-11-04"
 author: "FrankX"
 category: "Creator Systems"
 tags: ["Claude Code", "Skills", "ACOS", "AI Development", "Productivity"]
@@ -14,6 +14,8 @@ keywords:
     "claude skills",
     "best claude code skills 2026",
     "SKILL.md",
+    "claude code templates",
+    "how to add skills to claude code",
     "claude code plugins vs skills",
     "agent skills claude",
     "npx skills add",
@@ -37,13 +39,13 @@ schema: ["Article", "FAQPage"]
 
 ---
 
-## What Skills Are
+## What skills are
 
 Skills are folders containing a `SKILL.md` file with YAML frontmatter (`name` and `description`) plus markdown operational rules and optional helper scripts. Claude preloads the short YAML description at startup and reads the full `SKILL.md` body when your prompt matches the task.
 
 The `vercel-react-best-practices` skill contains 40+ rules about React inside Vercel — avoiding unnecessary `useEffect`, preferring Server Components, structuring data fetching. Claude reads those rules and applies them as constraints.
 
-## Skills vs Plugins vs Commands vs Subagents
+## Skills vs plugins vs commands vs subagents
 
 | Primitive   | What It Is                                   | When It Activates                | Best For                                    |
 | ----------- | -------------------------------------------- | -------------------------------- | ------------------------------------------- |
@@ -54,7 +56,7 @@ The `vercel-react-best-practices` skill contains 40+ rules about React inside Ve
 
 Skills hold the reusable standards. Slash commands invoke repeatable workflows. Plugins distribute everything across VS Code, JetBrains, and CLI setups — see [Claude Code plugins vs skills](/guides/claude-code-plugins-vs-skills) and the interactive [Skills Hub](/skills).
 
-## The 10 Essential Skills
+## The 10 essential skills
 
 ### 1. vercel-react-best-practices
 
@@ -96,59 +98,90 @@ Code quality rules. Naming conventions, function length, abstraction levels. Eve
 
 WCAG 2.2 compliance. Semantic HTML, ARIA labels, keyboard navigation, focus management, color contrast. Passed WCAG 2.2 AA on first audit for the [prompt library](/prompt-library).
 
-## How to Install
+## How to add skills to Claude Code (global vs project templates)
+
+You can install skills globally for personal habits across every repo, or commit project-scoped skills into `.claude/skills/` so your teammates and CI agents inherit the exact same guardrails:
 
 ```bash
-# Install globally
+# 1. Install proven open-source skill packs globally (~/.claude/skills/)
 npx skills add vercel-labs/agent-skills -y -g
 npx skills add vercel-labs/next-skills -y -g
-npx skills add sickn33/antigravity-awesome-skills -y -g
 npx skills add ibelick/ui-skills -y -g
-npx skills add giuseppe-trisciuoglio/developer-kit -y -g
+npx skills add frankxai/claude-skills-library -y -g
 
-# List installed
+# 2. Verify active global skills
 npx skills list -g
 ```
 
-## Building Your Own (20 minutes)
+When setting up a reusable repository starter (`claude code templates`), separate universal instructions (`CLAUDE.md` / `AGENTS.md`) from on-demand domain skills so your startup token budget stays lean:
 
-Create `~/.agents/skills/my-skill/SKILL.md`:
+```text
+your-repo/
+├── CLAUDE.md                        # Always-on repo architecture, build commands & branch rules
+├── AGENTS.md                        # Cross-agent mirror for Codex CLI, Cursor & OpenCode
+└── .claude/
+    ├── settings.json                # Scoped permissions & PreToolUse safety hooks
+    ├── commands/                    # Explicit slash commands (/ship, /review)
+    └── skills/                      # Auto-loaded only when task matches description
+        └── api-contract-guard/
+            ├── SKILL.md             # Rules + decision checklist (< 250 lines)
+            └── scripts/
+                └── check-openapi.mjs # Deterministic validator run by the agent
+```
+
+## Portable skill mapping across coding agents
+
+If you switch between Claude Code, Codex CLI, Cursor, and Gemini/Antigravity, keep one canonical `SKILL.md` directory and project thin instruction pointers rather than maintaining four diverging prompt copies:
+
+| Agent runtime | Always-on repo file | Skill discovery path | Tool & permission boundary |
+| --- | --- | --- | --- |
+| **Claude Code** | `CLAUDE.md` | `~/.claude/skills/<name>/SKILL.md` or `.claude/skills/` | `allowed-tools` frontmatter + `.claude/settings.json` hooks |
+| **OpenAI Codex CLI** | `AGENTS.md` | `~/.codex/skills/<name>/SKILL.md` | `approval_policy` + sandbox mode in `~/.codex/config.toml` |
+| **Cursor** | `.cursor/rules/*.mdc` / `AGENTS.md` | Glob/description-matched `.mdc` or linked `SKILL.md` | IDE workspace approval + MCP server allowlist |
+| **Antigravity / Gemini CLI** | `GEMINI.md` + `AGENTS.md` | `~/.gemini/skills/<name>/SKILL.md` + plugin skills | Scoped tool declarations + workspace boundary rules |
+
+## Building your own production skill (20 minutes)
+
+Create `.claude/skills/brand-voice-check/SKILL.md` with explicit trigger boundaries in `description` and pair it with a runnable check script. For the deeper specification, read [Anatomy of a production skill](/guides/anatomy-of-a-production-skill).
 
 ```markdown
 ---
-name: my-brand-voice
-description: Brand voice rules for content
-triggers:
-  - blog post
-  - landing page
-  - copy
+name: brand-voice-check
+description: >-
+  Use when drafting or reviewing public blog posts, product pages, or release
+  notes. Checks concrete claims, sentence-case headings, and banned filler phrases.
 ---
 
-# Brand Voice
+# Brand voice and editorial check
 
 ## Rules
 
-- Lead with outcomes, explain mechanisms second.
-- Specific numbers over vague claims.
-- Short sentences for impact. Longer for explanation.
-
-## Patterns to Avoid
-
-- Filler phrases: "it is worth noting", "in today's world"
-- Passive constructions when active is available.
+1. Lead with what the builder can make or verify in the next 10 minutes.
+2. Pair architectural claims with an exact file path, command, or measured count.
+3. Keep section headings and button labels in sentence case.
+4. Run `node .claude/skills/brand-voice-check/scripts/audit-copy.mjs <file>` before opening a PR.
 ```
 
-Full skill-building guide: [Building Custom Skills for ACOS](/blog/building-custom-skills-acos) and starter repository configs in the [Claude Code templates starter kit](/guides/claude-code-templates-starter-kit).
+Full skill-building walkthrough: [Building Custom Skills for ACOS](/blog/building-custom-skills-acos), [MCP servers for Claude Code business workflows](/guides/mcp-servers-claude-code-business), and starter repository configs in the [Claude Code templates starter kit](/guides/claude-code-templates-starter-kit).
 
-## Evaluating Skills Before Global Install
+## Evaluating skills before global install
 
-A prose skill earns its keep only when you verify both trigger accuracy and output compliance. Before adding any skill globally:
+A prose skill earns a permanent slot in your setup only when you verify both trigger accuracy and fault detection. Across our evaluated catalog in [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library), we test candidate skills against planted bugs before promoting them:
+
+| Verification check | Weak prompt-only skill | Production `SKILL.md` package |
+| --- | --- | --- |
+| **Startup token cost** | Dumps 2,000+ lines into `CLAUDE.md` on every turn | Loads ~40-token YAML `description`; reads body only on match |
+| **Trigger precision** | Vague description (`"Helps with backend"`) fires randomly | Explicit `"Use when..."` scope tested against positive and negative prompts |
+| **Fault detection** | Advises `"write accessible HTML"` in prose | Runs `axe-core` / AST script in `scripts/` and blocks broken output[^6] |
+| **Portability** | Locked to one chat window | MIT-licensed folder portable across Claude Code, Codex, and CI |
+
+Before adding any third-party skill globally:
 
 1. **Test positive and negative triggers** — Confirm the YAML `description` fires on target tasks without hijacking unrelated prompts.
-2. **Pair prose with deterministic scripts** — Put link checks, schema checks, and AST checks inside `scripts/` so Node or Python executes exact assertions.
-3. **Install from audited MIT sources** — Browse the 114-skill open catalog in [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library) or generate your own `SKILL.md` in the [Skill Builder](/skills/builder).
+2. **Pair prose with deterministic scripts** — Put link checks, schema checks, and AST checks inside `scripts/` so Node or Python executes exact assertions[^5].
+3. **Install from audited MIT sources** — Browse the open catalog in [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library) or generate your own `SKILL.md` in the [Skill Builder](/skills/builder).
 
-## The ACOS Layer
+## The ACOS layer
 
 The 10 skills above are the general foundation. [ACOS](/acos) adds 75+ domain-specific skills[^7]: agent profiles, command libraries, hook systems, and memory architecture. The difference between giving Claude a style guide and giving Claude a complete operating context. Full setup: [ACOS + Claude Code + MCP guide](/blog/ultimate-ai-coding-agent-setup-acos-claude-code-mcp).
 

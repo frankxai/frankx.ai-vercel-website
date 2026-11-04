@@ -114,13 +114,6 @@ ${osLinks}
 - [Agent Catalog](${SITE_URL}/agents): The 99-agent Creator OS, packaged as installable artifacts
 - [LLM Hub JSON](${SITE_URL}/llm-hub.json): Model rows with pricing source, scope, API ID and registry evaluation status
 
-## Library OS (book intelligence)
-- [Library Index](${SITE_URL}/library): Searchable book reviews, reading field notes, and editorial reading guides; six curated collections
-- [Library Approach](${SITE_URL}/library/approach): Why books matter for builders and creators
-- [Library Build](${SITE_URL}/library/build): How to build your own library OS
-- [Library Quotes](${SITE_URL}/library/quotes): Curated quotation collection
-${libraryLinks}
-
 ## Canva Founder System
 - [Canva for Founders](${SITE_URL}/canva): Independent, source-led operating system for governed visual production
 - [Canva MCP implementation guide](${SITE_URL}/guides/canva-mcp-for-founders): Setup, approval boundaries, and the FrankX agent graph
@@ -176,8 +169,13 @@ ${journalLinks}
 - [AI catalog (SEP-2127)](${SITE_URL}/.well-known/ai-catalog.json): Domain discovery entry pointing at that server card.
 - [Markdown export](${SITE_URL}/api/md?path=/blog/agentic-ai-roadmap-2025): Any article as plain markdown; replace the path with /blog/<slug>
 
-## Optional
+## Optional & Cultural Reading Notes
 - [llms-full.txt](${SITE_URL}/llms-full.txt): Comprehensive site map with per-page tldrs (longer; ~50KB)
+- [Library Index](${SITE_URL}/library): Searchable book reviews, reading field notes, and editorial reading guides; six curated collections
+- [Library Approach](${SITE_URL}/library/approach): Why books matter for builders and creators
+- [Library Build](${SITE_URL}/library/build): How to build your own library OS
+- [Library Quotes](${SITE_URL}/library/quotes): Curated quotation collection
+${libraryLinks}
 - [sitemap.xml](${SITE_URL}/sitemap.xml): Full URL inventory
 - [rss.xml](${SITE_URL}/rss.xml): Latest 50 posts as RSS 2.0
 - [journal/feed.xml](${SITE_URL}/journal/feed.xml): Journal entries as RSS 2.0
