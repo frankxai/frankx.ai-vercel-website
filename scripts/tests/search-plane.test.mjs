@@ -87,3 +87,32 @@ test('ctr gaps flag page-one rows earning far under their position', () => {
 test('csv quotes cells with commas and quotes', () => {
   assert.equal(toCsv([{ q: 'a, "b"', n: 1 }], ['q', 'n']), 'q,n\n"a, ""b""",1\n')
 })
+
+test('spreadsheet CSV keeps formula-like search queries as text', () => {
+  const cases = [
+    ['=1+1', '"\t=1+1"'],
+    ['+1+1', '"\t+1+1"'],
+    ['-1+1', '"\t-1+1"'],
+    ['@SUM(1,1)', '"\t@SUM(1,1)"'],
+    ['  =1+1', '"\t  =1+1"'],
+    ['\t=1+1', '"\t\t=1+1"'],
+    ['\r=1+1', '"\t\r=1+1"'],
+    ['\n=1+1', '"\t\n=1+1"'],
+    ['\uFF1D1+1', '"\t\uFF1D1+1"'],
+    ['\uFF0B1+1', '"\t\uFF0B1+1"'],
+    ['\uFF0D1+1', '"\t\uFF0D1+1"'],
+    ['\uFF201', '"\t\uFF201"'],
+  ]
+  for (const [query, expected] of cases) {
+    assert.equal(toCsv([{ query }], ['query']), `query\n${expected}\n`)
+  }
+})
+
+test('CSV quotes carriage returns and preserves ordinary values and numeric metrics', () => {
+  assert.equal(toCsv([{ q: 'first\rsecond', n: -1 }], ['q', 'n']), 'q,n\n"first\rsecond",-1\n')
+  assert.equal(toCsv([{ q: 'normal query', n: 0 }], ['q', 'n']), 'q,n\nnormal query,0\n')
+})
+
+test('CSV applies the same quoting and spreadsheet protection to column headings', () => {
+  assert.equal(toCsv([], ['=1+1', 'query,page']), '"\t=1+1","query,page"\n')
+})
