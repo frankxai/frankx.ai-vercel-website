@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, realpathSync, renameSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join, resolve, sep } from 'node:path';
@@ -84,12 +84,8 @@ try {
   copyFileSync(join(source, 'LICENSE'), join(cli, 'LICENSE'));
   writeFileSync(join(cli, 'NOTICE'), `Google LLC, Apache-2.0. Local Zod 4 security rebuild by Codex, 2026-11-04.\nUpstream ${commit}. See the repository's vendor/google-design-md/zod4.patch.\nAll third-party runtime dependencies are external and declared in package.json.\n`);
   mkdirSync(output, { recursive: true });
-  run('pnpm', ['pack', '--pack-destination', output], cli);
-  const packed = join(output, '@google-design.md-0.4.0-starlight.1.tgz');
-  const produced = existsSync(packed) ? packed : join(output, 'google-design.md-0.4.0-starlight.1.tgz');
-  assert.ok(existsSync(produced), `Expected package was not created: ${readdirSync(output)}`);
   const destination = join(output, 'google-design-md-0.4.0-starlight.1.tgz');
-  renameSync(produced, destination);
+  run('pnpm', ['pack', '--out', destination], cli);
   console.log(`${basename(destination)} SHA256 ${createHash('sha256').update(readFileSync(destination)).digest('hex')}`);
 } finally {
   // Only this invocation's mkdtemp directory is eligible for removal.

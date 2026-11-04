@@ -40,3 +40,15 @@
 @@ -54 +54 @@
 -  }).default({}),
 +  }).prefault({}),
+--- a/packages/cli/src/linter/spec-gen/generate.ts
++++ b/packages/cli/src/linter/spec-gen/generate.ts
+@@ -25 +25,2 @@
+-import { resolve } from 'node:path';
++import { dirname, resolve } from 'node:path';
++import { fileURLToPath } from 'node:url';
+@@ -30,2 +31,3 @@
+-const ROOT = resolve(import.meta.dir, '../../../../../');
+-const MDX_PATH = resolve(import.meta.dir, 'spec.mdx');
++const currentDir = dirname(fileURLToPath(import.meta.url));
++const ROOT = resolve(currentDir, '../../../../../');
++const MDX_PATH = resolve(currentDir, 'spec.mdx');
