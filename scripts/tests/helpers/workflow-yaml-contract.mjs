@@ -91,6 +91,7 @@ const canonicalCiTriggerLines = [
   "      - 'scripts/**'",
   "      - 'styles/**'",
   "      - 'types/**'",
+  "      - 'vendor/google-design-md/**'",
   "      - 'package.json'",
   "      - 'pnpm-lock.yaml'",
   "      - 'pnpm-workspace.yaml'",

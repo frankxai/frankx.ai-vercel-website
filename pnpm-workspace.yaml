@@ -4,6 +4,11 @@
 # still-passing `--frozen-lockfile`. Measured 2026-09-03: under pnpm 11.25.0 the
 # package.json form silently reverted @opentelemetry/propagator-jaeger to 2.7.1
 # and reintroduced postcss 8.5.23. scripts/check-pnpm-overrides.mjs guards this.
+packages:
+  - 'templates/agent-payments-guard'
+  - 'templates/mcp-server-kit'
+  - 'templates/swarm-governance-starter'
+
 overrides:
   '@opentelemetry/propagator-jaeger': '^2.9.0'
   'hono': '^4.13.1'
@@ -50,6 +55,7 @@ allowBuilds:
   'onnxruntime-node@1.24.3': false
   'protobufjs@6.11.6 || 7.6.5': false
   'puppeteer@24.43.0': false
+  'puppeteer@25.16.0': false
   'sharp@0.32.6': false
   'sharp@0.34.5': true
   'unrs-resolver@1.11.1': true
