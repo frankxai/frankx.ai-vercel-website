@@ -1,7 +1,7 @@
 import { after, NextRequest, NextResponse } from 'next/server'
 import programs from '@/data/affiliate/programs.json'
 import { getOutboundLink } from '@/data/outbound-links'
-import { outboundRedirect, resolveGoDestination } from '@/lib/tools/go-destination'
+import { outboundRedirect, resolveGoDestination, stackHref } from '@/lib/tools/go-destination'
 import { recordHop, type HopDevice } from '@/lib/tools/hop-log'
 import { recordsFromPrograms } from '@/lib/tools/record'
 
@@ -47,7 +47,7 @@ export async function GET(
   }
 
   if (decision.action === 'stack') {
-    return NextResponse.redirect(new URL(`/stack/${decision.id}`, request.url), 302)
+    return NextResponse.redirect(new URL(stackHref(decision.id), request.url), 302)
   }
 
   if (!hasPrivacyOptOut(request)) {
