@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
@@ -23,12 +24,12 @@ export const metadata: Metadata = {
   title: 'Studio — The Content Operations System',
   description:
     'Single capture → many ships. Eight L4 producer specialists serving three operator archetypes (Creator, Influencer, Solution Engineer) from one Android-native inbox. Phone-to-publish in under 2 hours.',
-  alternates: { canonical: 'https://frankx.ai/studio' },
+  alternates: { canonical: `${siteConfig.url}/studio` },
   openGraph: {
     title: 'Studio — The Content Operations System',
     description:
       'Eight producer specialists. Fourteen platform personas. Three operator archetypes. One inbox.',
-    url: 'https://frankx.ai/studio',
+    url: `${siteConfig.url}/studio`,
     siteName: 'FrankX',
     type: 'website',
     images: [
@@ -72,11 +73,11 @@ const articleSchema = {
   headline: 'FrankX Studio — The Content Operations System',
   description:
     'A single capture → many ships pipeline. Eight L4 producer specialists serving Creator, Influencer, and Solution Engineer archetypes from one Android-native inbox.',
-  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
-  publisher: { '@type': 'Organization', name: 'FrankX', url: 'https://frankx.ai' },
+  author: { '@type': 'Person', name: 'Frank Riemer', url: siteConfig.url },
+  publisher: { '@type': 'Organization', name: 'FrankX', url: siteConfig.url },
   datePublished: INTAKE_SHIPPED,
   dateModified: INTAKE_SHIPPED,
-  mainEntityOfPage: 'https://frankx.ai/studio',
+  mainEntityOfPage: `${siteConfig.url}/studio`,
   inLanguage: 'en',
   keywords:
     'content operations, multi-agent content production, Android Syncthing, content classifier, multimodal orchestration, creator economy, AI content pipeline',

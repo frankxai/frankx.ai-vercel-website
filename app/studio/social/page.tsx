@@ -1,13 +1,14 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 import { SocialCockpitDashboard } from '@/components/studio/SocialCockpitDashboard'
 
 export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
-  title: 'Social Swarm Cockpit — Starlight | FrankX',
+  title: 'Social Swarm Cockpit — Starlight',
   description:
     'Sovereign Social Media Command Suite. Coordinate cognitive swarm node pipelines, audit hooks, and automate comment-to-DM routing loops locally without SaaS API fees.',
-  alternates: { canonical: 'https://frankx.ai/studio/social' },
+  alternates: { canonical: `${siteConfig.url}/studio/social` },
 }
 
 export default function StudioSocialPage() {

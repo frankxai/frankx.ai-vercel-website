@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { EnhancedVideo, VideoAnnotation, VideoObjectSchema, ClipSchema } from './video-types'
 
 /**
@@ -83,13 +84,13 @@ export function buildVideoListSchema(
             '@type': 'ListItem',
             position: 1,
             name: 'Home',
-            item: 'https://frankx.ai',
+            item: siteConfig.url,
           },
           {
             '@type': 'ListItem',
             position: 2,
             name: 'Video Vault',
-            item: 'https://frankx.ai/watch',
+            item: `${siteConfig.url}/watch`,
           },
         ],
       },
@@ -97,12 +98,12 @@ export function buildVideoListSchema(
         '@type': 'CollectionPage',
         name: 'Video Vault — Curated AI & Creator Intelligence',
         description: `${videos.length}+ curated videos on AI engineering, agents, music production, and creator economy.`,
-        url: 'https://frankx.ai/watch',
+        url: `${siteConfig.url}/watch`,
         numberOfItems: videos.length,
         publisher: {
           '@type': 'Person',
           name: 'FrankX',
-          url: 'https://frankx.ai',
+          url: siteConfig.url,
         },
       },
       ...videoSchemas,

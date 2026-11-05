@@ -1,8 +1,9 @@
+import { siteConfig } from '@/lib/seo'
 import { NextResponse } from 'next/server'
 import { getPortalPartner, getAllPortalSlugs } from '@/content/portal'
 import { toRecommendationGroups } from '@/lib/portal/recommend'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 export function generateStaticParams() {
   return getAllPortalSlugs().map((slug) => ({ slug }))

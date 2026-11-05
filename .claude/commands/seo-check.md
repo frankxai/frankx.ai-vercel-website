@@ -2,13 +2,15 @@
 
 Quick audit of SEO health and traffic performance.
 
+## Research budget and evidence
+
+Read `docs/strategy/search-research-budget.md` before research. Reuse saved evidence and first-party exports; unknown balance, tariff or authorized allowance means zero paid requests. Share one aggregate budget across clients. Never simulate performance metrics or turn missing data into zero. Keep raw vendor/account evidence private and publish through the existing content review path.
+
 ## Execution Steps
 
 ### Step 1: Check Site Indexing
-```bash
-# Check how many pages Google has indexed
-curl -s "https://www.google.com/search?q=site:frankx.ai" | grep -o "About [0-9,]* results" || echo "Check manually: site:frankx.ai"
-```
+
+Use the authorized native Search Console indexing export for the verified property; record its date and coverage. When unavailable, report indexation as UNKNOWN. A Google `site:` result count is not an authoritative indexation measurement.
 
 ### Step 2: Verify Sitemap
 ```bash

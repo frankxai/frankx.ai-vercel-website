@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Sparkles, Brain, Heart, Workflow, ArrowRight, Shield, Waves, CheckCircle2 } from 'lucide-react'
 
 export const metadata = {
-  title: 'Soul Frequency Assessment | FrankX',
+  title: 'Soul Frequency Assessment',
   description: 'Discover your conscious creator archetype and receive a custom intelligence stack to amplify your work with AI.',
 }
 

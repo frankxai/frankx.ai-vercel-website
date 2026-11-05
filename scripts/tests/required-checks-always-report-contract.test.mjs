@@ -1,13 +1,23 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import test from 'node:test'
+import { runInNewContext } from 'node:vm'
 import {
+  ciAlwaysReportingErrors,
   requiredCheckAlwaysReportsErrors,
   stripYamlComment,
   topLevelMappingBlock,
 } from './helpers/workflow-yaml-contract.mjs'
 
 const read = (path) => readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
+
+test('CI requires main-push coverage for the vendored design CLI', async () => {
+  const workflow = await read('.github/workflows/ci.yml')
+  assert.deepEqual(ciAlwaysReportingErrors(workflow), [])
+  const omitted = workflow.replace("      - 'vendor/google-design-md/**'\n", '')
+  assert.notEqual(omitted, workflow)
+  assert.notDeepEqual(ciAlwaysReportingErrors(omitted), [])
+})
 
 // The required contexts in branch protection are job names. A workflow that
 // stops producing one of these exact names blocks every pull request, the same
@@ -77,7 +87,11 @@ for (const { file, label } of REQUIRED) {
     const workflow = await read(file)
 
     assert.deepEqual(requiredCheckAlwaysReportsErrors(workflow, label), [])
-    assert.deepEqual(requiredJobNameErrors(workflow, label), [], `${file} must keep job name "${label}"`)
+    assert.deepEqual(
+      requiredJobNameErrors(workflow, label),
+      [],
+      `${file} must keep job name "${label}"`,
+    )
   })
 
   test(`${label} produces a result for a .nvmrc-only pull request and for a surface change`, async () => {
@@ -126,10 +140,16 @@ on:
 
   const hostile = {
     'a paths filter': canonical.replace('staging]', "staging]\n    paths:\n      - 'app/**'"),
-    'a paths-ignore filter': canonical.replace('staging]', "staging]\n    paths-ignore:\n      - 'docs/**'"),
+    'a paths-ignore filter': canonical.replace(
+      'staging]',
+      "staging]\n    paths-ignore:\n      - 'docs/**'",
+    ),
     "a missing 'edited' type": canonical.replace(' edited,', ''),
     'a missing base branch': canonical.replace('[main, staging]', '[main]'),
-    'an extra push trigger': canonical.replace('  pull_request:', '  push:\n    branches: [main]\n  pull_request:'),
+    'an extra push trigger': canonical.replace(
+      '  pull_request:',
+      '  push:\n    branches: [main]\n  pull_request:',
+    ),
     'a canonical trigger hidden in a block scalar above a filtered real one': `
 env:
   DECOY: |
@@ -146,6 +166,143 @@ on:
   }
 
   for (const [name, workflow] of Object.entries(hostile)) {
-    assert.notDeepEqual(requiredCheckAlwaysReportsErrors(workflow, 'Merge Gate'), [], `must reject ${name}`)
+    assert.notDeepEqual(
+      requiredCheckAlwaysReportsErrors(workflow, 'Merge Gate'),
+      [],
+      `must reject ${name}`,
+    )
   }
+})
+
+const ciDecision = (workflow, github) => {
+  const group = topLevelMappingBlock(workflow, 'concurrency')?.match(/^  group:\s*(.+)$/m)?.[1]
+  const condition = topLevelMappingBlock(workflow, 'jobs')?.match(/^    if:\s*(.+)$/m)?.[1]
+  assert.ok(group, 'CI must declare its concurrency group')
+  assert.ok(condition, 'CI must declare its job admission')
+  const context = {
+    github: {
+      ...github,
+      event: { ...github.event, pull_request: { labels: [], ...github.event.pull_request } },
+    },
+    format: (pattern, ...args) => pattern.replace(/\{(\d+)\}/g, (_, i) => String(args[Number(i)])),
+    contains: (values, expected) => values.some(value => String(value).toLowerCase() === expected.toLowerCase()),
+  }
+  const evaluate = (expression) => runInNewContext(
+    expression.replaceAll('github.event.pull_request.labels.*.name', 'github.event.pull_request.labels.map(label => label.name)'),
+    context,
+    { timeout: 100 },
+  )
+  return {
+    admitted: Boolean(evaluate(condition)),
+    group: group.replace(/\$\{\{([\s\S]*?)\}\}/g, (_, expression) => String(evaluate(expression))),
+  }
+}
+
+const ciEvent = (over = {}) => ({
+  event_name: 'pull_request',
+  ref: 'refs/pull/1088/merge',
+  event: { pull_request: { number: 1088, state: 'open', draft: false } },
+  ...over,
+})
+
+test('CI admits ready and retargeted open PRs, defers drafts, and refuses closed PR edits', async () => {
+  const workflow = await read('.github/workflows/ci.yml')
+  for (const [state, draft, expected] of [
+    ['open', false, true],
+    ['open', true, false],
+    ['closed', false, false],
+    ['closed', true, false],
+  ]) {
+    const github = ciEvent({
+      event: { action: 'edited', pull_request: { number: 1088, state, draft } },
+    })
+    assert.equal(ciDecision(workflow, github).admitted, expected, `${state}, draft=${draft}`)
+  }
+  assert.equal(
+    ciDecision(workflow, ciEvent({ event_name: 'push', ref: 'refs/heads/main', event: {} }))
+      .admitted,
+    true,
+  )
+})
+
+test('draft CI verification requires the exact opt-in label and an open PR', async () => {
+  const workflow = await read('.github/workflows/ci.yml')
+  for (const [state, labels, expected] of [
+    ['open', [{ name: 'ci:verify' }], true],
+    ['open', [{ name: 'CI:VERIFY' }], true],
+    ['open', [{ name: 'ci:verify-later' }], false],
+    ['open', [{ name: 'other', description: 'ci:verify' }], false],
+    ['closed', [{ name: 'ci:verify' }], false],
+  ]) {
+    const github = ciEvent({ event: { pull_request: { number: 1088, state, draft: true, labels } } })
+    assert.equal(ciDecision(workflow, github).admitted, expected, `${state}: ${JSON.stringify(labels)}`)
+  }
+})
+
+test('a merged PR receipt edit cannot cancel the current main verification', async () => {
+  const workflow = await read('.github/workflows/ci.yml')
+  const main = ciDecision(
+    workflow,
+    ciEvent({ event_name: 'push', ref: 'refs/heads/main', event: {} }),
+  )
+  // GitHub sends refs/heads/main for this closed, merged PR edit. Workflow concurrency is
+  // evaluated before the job condition, so skipping the job alone does not protect main.
+  const mergedEdit = ciDecision(
+    workflow,
+    ciEvent({
+      ref: 'refs/heads/main',
+      event: {
+        action: 'edited',
+        pull_request: { number: 1088, state: 'closed', draft: false, merged: true },
+      },
+    }),
+  )
+  assert.notEqual(mergedEdit.group, main.group)
+  assert.equal(mergedEdit.admitted, false)
+})
+
+test('CI supersedes the same PR while keeping distinct PRs and main in separate groups', async () => {
+  const workflow = await read('.github/workflows/ci.yml')
+  const first = ciDecision(workflow, ciEvent())
+  const nextPush = ciDecision(
+    workflow,
+    ciEvent({
+      event: { action: 'synchronize', pull_request: { number: 1088, state: 'open', draft: false } },
+    }),
+  )
+  const other = ciDecision(
+    workflow,
+    ciEvent({
+      ref: 'refs/pull/12/merge',
+      event: { pull_request: { number: 12, state: 'open', draft: false } },
+    }),
+  )
+  const main = ciDecision(
+    workflow,
+    ciEvent({ event_name: 'push', ref: 'refs/heads/main', event: {} }),
+  )
+  assert.equal(first.group, nextPush.group)
+  assert.notEqual(first.group, other.group)
+  assert.notEqual(first.group, main.group)
+})
+
+test('new main runs are isolated from closed PR edits still using a historical workflow', async () => {
+  const workflow = await read('.github/workflows/ci.yml')
+  const main = ciDecision(
+    workflow,
+    ciEvent({ event_name: 'push', ref: 'refs/heads/main', event: {} }),
+  )
+  // Closed pull refs may retain the old workflow after the fix reaches main.
+  const historical = workflow.replace(/^  group:.*$/m, '  group: ci-${{ github.ref }}')
+  const historicalClosedPR = ciDecision(
+    historical,
+    ciEvent({
+      ref: 'refs/heads/main',
+      event: {
+        action: 'edited',
+        pull_request: { number: 1088, state: 'closed', draft: false, merged: true },
+      },
+    }),
+  )
+  assert.notEqual(main.group, historicalClosedPR.group)
 })

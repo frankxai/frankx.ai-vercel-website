@@ -19,7 +19,7 @@ What remains is the builder.
 
 The GenCreator system promises one thing: that one person, with the right operating system, can produce creative work at the quality and volume that previously required a team.
 
-This promise is not hypothetical. It is demonstrated. The system described in this book produced this book — and 22 others, and 12,000 songs, and 90+ articles, and a platform serving thousands.
+This promise is not hypothetical. It is demonstrated. The system described in this book produced this book — and 22 others, and AI music, and 90+ articles, and a platform serving thousands.
 
 The system is the proof. The output is the evidence. The evidence is in your hands.
 
@@ -95,7 +95,7 @@ What has been missing is the operating system — the systematic approach that t
 
 GenCreator is that operating system.
 
-It is not the only possible system. It is one system, refined through two years of daily operation, proven by a body of work that exceeds 300,000 words and 12,000 songs, and offered to you as a blueprint for building your own.
+This blueprint draws on my work in writing and AI music. Adapt the parts that help your practice, test them, and keep a record of what changes.
 
 Take the blueprint. Adapt it. Improve it. Make it yours.
 

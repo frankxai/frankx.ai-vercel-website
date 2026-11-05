@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Piano Songs & Sheet Music | Play & Learn | FrankX Music Lab',
   description:
     'Curated piano songs with auto-play tutorials and free sheet music. Studio Ghibli, classical favorites, and film scores — all playable in your browser.',

@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
@@ -17,14 +18,15 @@ import {
 export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
-  title: 'How the Studio operates — capture-to-publish flows | FrankX',
+  title: 'How the Studio operates — capture-to-publish flows',
   description:
     'Four concrete operator flows. Voice memo on a walk → 5 published pieces. Talking-head capture → multi-platform. Restaurant photo + voice → IG + blog. Music drop → cross-promo. Phone-to-publish in under 2 hours.',
-  alternates: { canonical: 'https://frankx.ai/studio/operating' },
+  alternates: { canonical: `${siteConfig.url}/studio/operating` },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'How the Studio operates — capture-to-publish flows',
     description: 'Four concrete operator flows from capture to publish.',
-    url: 'https://frankx.ai/studio/operating',
+    url: `${siteConfig.url}/studio/operating`,
     siteName: 'FrankX',
     type: 'website',
   },

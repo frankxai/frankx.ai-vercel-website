@@ -1,0 +1,169 @@
+---
+title: "Claude Code Plugins vs Skills: Marketplace, JetBrains & Cross-Harness Guide"
+description: "When to write a standalone SKILL.md folder versus packaging a Claude Code plugin — covering the plugin marketplace, VS Code & JetBrains IDEs, and Codex CLI interoperability."
+date: "2026-11-02"
+updated: "2026-11-02"
+author: "Frank"
+category: "AI Development"
+tags: ["claude-code", "plugins", "skills", "jetbrains", "codex", "agent-engineering"]
+keywords:
+  [
+    "claude code plugins",
+    "claude code plugins vs skills",
+    "claude code plugin marketplace",
+    "claude code jetbrains plugin",
+    "codex skill for claude code",
+  ]
+image: ""
+decisions:
+  - audience: "Platform teams sharing standards across 3+ repositories"
+    call: "adopt"
+    because: "Packaging skills, hooks, slash commands, and MCP configs under .claude-plugin/marketplace.json lets every developer install and update with /plugin update."
+    source: "https://github.com/frankxai/claude-skills-library"
+  - audience: "IntelliJ IDEA, WebStorm, and PyCharm developers"
+    call: "adopt"
+    because: "Installing the official Claude Code plugin from JetBrains Marketplace connects live editor selections, side-by-side diff approvals, and IDE inspection warnings directly to the CLI."
+    source: "https://plugins.jetbrains.com"
+  - audience: "Single-repo product teams iterating weekly on domain rules"
+    call: "wait"
+    because: "Keep standalone .claude/skills/<name>/SKILL.md folders inside your application repository until at least three repositories need the exact same bundle."
+    source: "https://agentskills.io"
+faqs:
+  - question: "How do I add a custom Claude Code plugin marketplace?"
+    answer: "Inside an interactive Claude Code session, run `/plugin marketplace add <owner>/<repo>` pointing to any GitHub repository with a `.claude-plugin/marketplace.json` manifest, then install individual packages via `/plugin install <plugin>@<marketplace>`."
+  - question: "Does installing a plugin with 100 skills fill up my context window?"
+    answer: "No. Skills bundled inside a plugin keep progressive disclosure: Claude loads only short YAML descriptions for routing and reads full SKILL.md bodies only when triggered. Bundled MCP servers with many eager tools are what consume extra context."
+  - question: "How do I run Claude Code inside IntelliJ IDEA, WebStorm, or PyCharm?"
+    answer: "Install the official Claude Code plugin from Settings -> Plugins -> Marketplace in your JetBrains IDE, launch `claude` in the integrated terminal (or click the Claude toolbar icon), and diff views, active file selection, and diagnostics wire automatically."
+---
+
+For developers and engineering leads standardizing coding agents across repositories and IDEs: the phrase **"Claude Code plugin"** now refers to two separate layers—**IDE extensions** (VS Code and JetBrains Marketplace) and **in-harness workflow packages** (`/plugin marketplace add`). Verified as of November 2026 across Claude Code CLI, IntelliJ/WebStorm, VS Code, and OpenAI Codex CLI, this guide untangles both layers, compares plugins against standalone `SKILL.md` folders, and shows how to share skills across Claude Code and Codex.
+
+---
+
+## Disambiguating the two meanings of "Claude Code plugin"
+
+Before choosing an installation path, separate the **IDE bridge** from the **workflow package**:
+
+| Term in search / docs | What it actually installs | Where you install it | What it gives you |
+|---|---|---|---|
+| **Claude Code JetBrains / VS Code plugin** | Official IDE extension bridging your editor and the `claude` CLI | JetBrains Marketplace (`Settings -> Plugins`) or VS Code Extensions | Native side-by-side diff approval, active editor tab & line-selection context, live Diagnostics (`tsc` / ESLint / inspections) sharing |
+| **Claude Code `/plugin` package** | Portable bundle of `skills/`, `commands/`, `agents/`, `hooks/`, and `.mcp.json` | Inside Claude Code via `/plugin marketplace add` + `/plugin install` | Reusable domain skills, slash commands, guard hooks, and MCP servers versioned in Git |
+
+Once the JetBrains or VS Code extension connects to your local `claude` binary, every `/plugin` package and `.claude/skills/` folder in your project works identically inside the IDE and the standalone terminal.
+
+---
+
+## Claude Code plugins vs standalone `SKILL.md` folders
+
+A **skill** teaches the agent *how* to execute a domain workflow. A **plugin** packages skills alongside commands, hooks, subagents, and MCP servers for multi-repo distribution.
+
+| Dimension | Standalone skill (`.claude/skills/<name>/SKILL.md`) | Claude Code plugin (`.claude-plugin/plugin.json`) |
+|---|---|---|
+| **Setup overhead** | One folder + one Markdown file committed to your repo | Manifest file (`plugin.json`) + optional `marketplace.json` repo |
+| **Contents** | `SKILL.md`, `scripts/`, `references/`, `assets/` | Skills + slash commands + subagents + hooks + `.mcp.json` |
+| **Version updates** | Travels atomically with repo `git pull` | Explicit version bumps pulled via `/plugin update` |
+| **Cross-harness portability** | Native across Claude Code, Codex CLI, Gemini CLI, OpenCode, Cursor | Skills subfolder stays portable; `plugin.json` manifest is Claude-native |
+| **Ideal team stage** | Single product repo or fast weekly iteration | Platform / staff engineering sharing standards across 3–50 repos |
+
+### Practical rule of thumb
+
+1. **Author inside `.claude/skills/` first.** Prove the `SKILL.md` triggers accurately and passes real pull requests in one codebase.
+2. **Extract into a plugin repository once a third repo copies the folder.** Centralizing too early slows iteration; extracting on the third copy eliminates copy-paste drift.
+
+---
+
+## Anatomy of a Claude Code plugin marketplace repository
+
+Any public or private GitHub repository becomes a self-hosted plugin marketplace by adding `.claude-plugin/marketplace.json`. Here is the minimal production layout modeled on [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library):
+
+```text
+team-agent-marketplace/
+├── .claude-plugin/
+│   └── marketplace.json
+└── plugins/
+    └── web-release-pack/
+        ├── .claude-plugin/
+        │   └── plugin.json
+        ├── skills/
+        │   └── accessibility-check/
+        │       └── SKILL.md
+        ├── commands/
+        │   └── preflight.md
+        └── agents/
+            └── release-verifier.md
+```
+
+Sample `.claude-plugin/plugin.json`:
+
+```json
+{
+  "name": "web-release-pack",
+  "version": "1.2.0",
+  "description": "WCAG 2.2 AA accessibility skill, preflight slash command, and independent release verifier.",
+  "author": {
+    "name": "Platform Engineering"
+  }
+}
+```
+
+Team installation takes two commands inside Claude Code:
+
+```bash
+/plugin marketplace add your-org/team-agent-marketplace
+/plugin install web-release-pack@team-agent-marketplace
+```
+
+---
+
+## Setting up the Claude Code JetBrains plugin (IntelliJ, WebStorm, PyCharm)
+
+Engineers on IntelliJ IDEA, WebStorm, PyCharm, GoLand, or Rider get three concrete workflow upgrades from the JetBrains integration:
+
+1. **Install the CLI first** — Verify `claude --version` runs in your OS terminal.
+2. **Install the JetBrains plugin** — Open `Settings -> Plugins -> Marketplace`, search **Claude Code [Beta]**, install, and restart the IDE.
+3. **Launch from the integrated terminal** — Running `claude` inside WebStorm or IntelliJ's built-in terminal automatically sets up the local IDE bridge socket.
+4. **Use selection + diagnostics handoff** — Highlighting lines `40–75` in your active editor tab immediately exposes that exact code range and current IDE inspection warnings to Claude without copy-pasting file paths.
+5. **Keymap tip** — Bind `Send Selection to Claude` to a dedicated shortcut so code review loops stay keyboard-only.
+
+---
+
+## How "Codex skill for Claude Code" works (two-way interoperability)
+
+Developers searching for a **Codex skill for Claude Code** are solving one of two problems:
+
+### 1. Sharing one `SKILL.md` library across both Claude Code and Codex CLI
+
+Because Anthropic and OpenAI converged on the open Agent Skills specification (`SKILL.md` with YAML `name` and `description`), you can maintain **one canonical `skills/` directory** and expose it to both harnesses through directory symlinks or Windows junctions:
+
+```bash
+# macOS / Linux symlink from canonical repo into both harnesses
+ln -s ~/repos/team-skills/skills ~/.claude/skills/team
+ln -s ~/repos/team-skills/skills ~/.codex/skills/team
+```
+
+### 2. Calling OpenAI Codex CLI from Claude Code as an independent verifier
+
+Multi-model verification catches blind spots that single-model self-review misses. A lightweight `.claude/skills/codex-second-opinion/SKILL.md` lets Claude Code dispatch a read-only audit to Codex CLI (`codex exec --sandbox read-only`):
+
+```markdown
+---
+name: codex-second-opinion
+description: Run an independent read-only code review using OpenAI Codex CLI on the current git diff before merging high-impact changes.
+---
+
+# Codex second-opinion review
+
+1. Verify `codex --version` is installed locally.
+2. Run a read-only review pass against the current branch diff:
+   `codex exec --sandbox read-only "Review git diff origin/main...HEAD for regressions, security flaws, and missing edge cases. Cite exact file:line numbers."`
+3. Address every verified defect and re-run local unit tests before opening the pull request.
+```
+
+---
+
+## Next steps
+
+- Copy starter `CLAUDE.md`, `.claude/settings.json`, and hook configs from the [Claude Code templates & starter kit](/guides/claude-code-templates-starter-kit).
+- Pair your skills with live data tools in [Best MCP servers for Claude Code & business workflows](/guides/mcp-servers-claude-code-business).
+- Read the rapid comparison in [Q&A: Claude Code plugins vs skills](/ask/claude-code-plugins-vs-skills) or build a custom skill in the [Skills Hub](/skills).

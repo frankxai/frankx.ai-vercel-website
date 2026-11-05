@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Calendar, ArrowRight, FileText } from 'lucide-react'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { getAllIssues, getPublishedIssues } from '@/lib/newsletter-issues'
 import JsonLd from '@/components/seo/JsonLd'
 
@@ -16,7 +16,7 @@ const collectionSchema = {
   name: 'FrankX Newsletter Archive',
   description:
     'Weekly issues from the FrankX newsletter — operating loops, shipped systems, and the one thing worth doing this week.',
-  url: 'https://frankx.ai/newsletter/archive',
+  url: `${siteConfig.url}/newsletter/archive`,
 }
 
 function formatDate(iso: string): string {
@@ -44,7 +44,7 @@ export default function NewsletterArchivePage() {
     itemListElement: publishedIssues.map((issue, idx) => ({
       '@type': 'ListItem',
       position: idx + 1,
-      url: `https://frankx.ai/newsletter/archive/${issue.slug}`,
+      url: `${siteConfig.url}/newsletter/archive/${issue.slug}`,
       name: issue.subject,
     })),
   }

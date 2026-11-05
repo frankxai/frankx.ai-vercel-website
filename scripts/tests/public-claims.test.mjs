@@ -265,3 +265,29 @@ test('Vibe OS final CTA and products shell carry no music-mastery claims', () =>
     assert.equal(shell.includes(phrase), false, phrase)
   }
 })
+
+test('Vibe OS featured product card, JSON-LD list metadata, and CTAs stay aligned and honest', () => {
+  const shell = fs.readFileSync(path.join(root, 'components/products/ProductsShell.tsx'), 'utf8')
+  const listData = fs.readFileSync(path.join(root, 'components/products/products-data.ts'), 'utf8')
+  const hero = fs.readFileSync(path.join(root, 'app/products/vibe-os/components/VibeOSHero.tsx'), 'utf8')
+  const modules = fs.readFileSync(path.join(root, 'app/products/vibe-os/components/VibeOSModules.tsx'), 'utf8')
+  const catalog = JSON.parse(fs.readFileSync(path.join(root, 'data/products.json'), 'utf8'))
+  const vibe = catalog.find((p) => p.id === 'vibe-os')
+
+  assert.ok(vibe, 'vibe-os record exists in data/products.json')
+  assert.equal(vibe.offer.ctaPrimaryHref, '/products/vibe-os/docs')
+  assert.equal(vibe.offer.ctaPrimary.includes('Start Using Vibe OS'), false)
+  assert.equal(vibe.offer.guarantee?.label, 'Public guide')
+
+  assert.equal(listData.includes('Suno Music Mastery'), false)
+  assert.ok(listData.includes("tagline: 'Creative state management'"))
+  assert.ok(shell.includes("tagline: 'Creative state management'"))
+  assert.ok(shell.includes('Public guide open now with daily check-in and scheduling instructions'))
+  assert.equal(shell.includes('workflow templates'), false)
+  assert.ok(modules.includes('Four modules built around'))
+  assert.ok(modules.includes('your focus cycles'))
+
+  assert.equal(hero.includes('Watch Overview'), false)
+  assert.equal(modules.includes('Ship Music'), false)
+  assert.equal(modules.includes('not just a prompt pack'), false)
+})

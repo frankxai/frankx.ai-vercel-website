@@ -1,8 +1,9 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Github, FileText, Layers, Type, Ruler, Square, ShieldCheck, Sparkles } from 'lucide-react';
 
-const SITE_URL = 'https://frankx.ai';
+const SITE_URL = siteConfig.url;
 const PAGE_URL = `${SITE_URL}/design`;
 const SOURCE_DESIGN = 'https://github.com/frankxai/FrankX/blob/main/design.md';
 const SOURCE_TASTE = 'https://github.com/frankxai/FrankX/blob/main/taste.md';
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'The FrankX Design System',
     description:
       'Tokens, taste, and source — open and version-controlled. Built on Google Labs DESIGN.md.',
@@ -32,7 +34,7 @@ export const metadata: Metadata = {
     url: PAGE_URL,
     siteName: 'FrankX',
   },
-  twitter: { card: 'summary_large_image', title: 'The FrankX Design System' },
+  twitter: { images: defaultTwitterImages, card: 'summary_large_image', title: 'The FrankX Design System' },
 };
 
 // =============================================================================

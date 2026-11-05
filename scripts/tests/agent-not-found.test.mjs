@@ -10,10 +10,20 @@ register('./support/app-module-hooks.mjs', import.meta.url)
 const {
   agentNotFoundMarkdown,
   agentNotFoundResponse,
+  routeOwnsMarkdown,
   wantsMarkdownNotFound,
 } = await import('../../lib/agent-not-found.ts')
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '../..')
+
+test('docs keeps its own markdown negotiation', () => {
+  assert.equal(routeOwnsMarkdown('/docs'), true)
+  assert.equal(routeOwnsMarkdown('/docs/intro'), true)
+  assert.equal(routeOwnsMarkdown('/docs/intro.md'), true)
+  assert.equal(routeOwnsMarkdown('/docs-platform'), false)
+  assert.equal(routeOwnsMarkdown('/developers'), false)
+  assert.equal(routeOwnsMarkdown('/'), false)
+})
 
 test('markdown is chosen only when it is explicitly acceptable', () => {
   assert.equal(wantsMarkdownNotFound(null), false)
@@ -85,6 +95,7 @@ test('unknown URLs negotiate markdown outside the shared not-found boundary', ()
 
   const proxySource = readFileSync(join(root, 'proxy.ts'), 'utf8')
   assert.match(proxySource, /wantsMarkdownNotFound/)
+  assert.match(proxySource, /routeOwnsMarkdown/)
   assert.match(proxySource, /\/api\/md/)
 
   const notFoundPage = readFileSync(join(root, 'app/not-found.tsx'), 'utf8')

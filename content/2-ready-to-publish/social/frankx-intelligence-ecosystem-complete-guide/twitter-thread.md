@@ -25,7 +25,7 @@ learning_applied:
 
 I built 5 interconnected systems that let one person ship like a team of ten.
 
-12,000+ AI songs. 70+ blog posts. A full website. Enterprise consulting.
+AI music. 70+ blog posts. A full website. Enterprise consulting.
 
 All running through a single intelligence stack.
 
