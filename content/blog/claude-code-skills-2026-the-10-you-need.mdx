@@ -77,7 +77,7 @@ Every field is optional, and `description` is the one to get right.
 
 Two limits are worth designing around. Keep `SKILL.md` under 500 lines, and move reference material into side files that Claude reads only when needed. After auto-compaction, Claude Code keeps the first 5,000 tokens of each invoked skill, within a combined 25,000-token budget.
 
-Claude Code also ships bundled skills, including `/code-review`, `/debug`, `/batch`, `/loop`, `/simplify`, `/verify` and `/skill-doctor`. Run `/skill-doctor` before adding more: it reports which installed skills never fire.
+Claude Code also ships bundled skills, including `/code-review`, `/debug`, `/batch`, `/loop`, `/simplify`, `/verify` and `/skill-doctor`. Run `/skill-doctor` before adding more: it reports which of your installed skills never fire (its usage report leaves out bundled and enterprise skills).
 
 ## Skills vs plugins vs commands vs subagents
 
@@ -202,7 +202,7 @@ description: >-
 1. Lead with what the builder can make or verify in the next 10 minutes.
 2. Pair architectural claims with an exact file path, command, or measured count.
 3. Keep section headings and button labels in sentence case.
-4. Run `node .claude/skills/brand-voice-check/scripts/audit-copy.mjs <file>` before opening a PR.
+4. List every claim that has no source next to it, with its line number, before opening a PR.
 ```
 
 That skill is safe to load automatically because it only reads and advises. A skill with side effects should run only when you ask for it. This one prepares a release note from the actual diff:
@@ -289,7 +289,7 @@ The 10 skills above are the general foundation. [ACOS](/acos) adds 75+ domain-sp
 
 ### How many skills globally?
 
-Start with 5-10. Every installed skill's description sits in context on every turn, so each one has a cost. I run 12 globally and load more per project. Run `/skill-doctor` now and then to find skills that never fire.
+Start with 5-10. Every skill Claude can invoke on its own adds a line to the skill listing in context, so each one has a cost. Skills with `disable-model-invocation: true` stay out of that listing. I run 12 globally and load more per project. Run `/skill-doctor` now and then to find skills that never fire.
 
 ### Do skills work on Claude.ai?
 
