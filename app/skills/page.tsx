@@ -30,9 +30,9 @@ const workflowSteps = [
 const primitiveRows = [
   {
     primitive: 'Skill (`SKILL.md`)',
-    mechanism: 'Markdown folder with YAML frontmatter; name + description preload for routing, body loads on trigger.',
+    mechanism: 'Markdown folder with YAML frontmatter; the description stays in context for routing, the body loads when the task matches or you type /name.',
     scope: 'Domain standards, repeatable checklists, brand voice, framework rules.',
-    contextCost: 'Minimal idle cost (~40–80 tokens per skill description until triggered).',
+    contextCost: 'Each description is listed on every turn (description plus when_to_use is cut off at 1,536 characters); the body loads only on use.',
   },
   {
     primitive: 'Plugin (`/plugin`)',
@@ -42,9 +42,9 @@ const primitiveRows = [
   },
   {
     primitive: 'Slash command (`.claude/commands/`)',
-    mechanism: 'Explicit prompt template invoked directly via `/command-name` in the terminal or IDE.',
+    mechanism: 'Single-file prompt invoked with `/command-name`. Commands are now merged into skills: `.claude/commands/ship.md` and `.claude/skills/ship/SKILL.md` both create `/ship`.',
     scope: 'Deterministic operator workflows such as `/ship`, `/handover`, or `/review`.',
-    contextCost: 'Zero tokens until the user invokes the command.',
+    contextCost: 'Same as a skill. Add `disable-model-invocation: true` to keep it out of context until you invoke it.',
   },
   {
     primitive: 'Subagent (`.claude/agents/`)',
