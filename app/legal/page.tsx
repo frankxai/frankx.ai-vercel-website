@@ -1,8 +1,9 @@
+import { siteConfig } from '@/lib/seo'
 import { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Legal | FrankX.AI',
+  title: 'Legal',
   description: 'Legal information for FrankX.AI - policies, disclaimers, and compliance information.',
 }
 
@@ -73,7 +74,7 @@ export default function LegalPage() {
                 </a>
               </p>
               <p><strong className="text-white">Website:</strong>{' '}
-                <a href="https://frankx.ai" className="text-emerald-400 hover:text-emerald-300">
+                <a href={siteConfig.url} className="text-emerald-400 hover:text-emerald-300">
                   https://frankx.ai
                 </a>
               </p>

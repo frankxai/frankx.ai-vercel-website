@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 
 // ── JSON-LD Schema ──────────────────────────────────────────────────────────
 // All data below is static — no user input used. XSS risk is zero.
@@ -11,21 +11,21 @@ const playbookItems = [
     name: 'Suno AI Prompt Playbook',
     description:
       'Battle-tested prompt frameworks for generating professional-quality music with Suno AI — genres, moods, structures, and advanced techniques.',
-    url: 'https://frankx.ai/free-playbook#suno-prompt-playbook',
+    url: `${siteConfig.url}/free-playbook#suno-prompt-playbook`,
   },
   {
     '@type': 'DigitalDocument',
     name: 'Top 50 AI Prompts',
     description:
       'The 50 highest-leverage AI prompts for creators, builders, and entrepreneurs — covering writing, code, strategy, and creative work.',
-    url: 'https://frankx.ai/free-playbook#top-50-ai-prompts',
+    url: `${siteConfig.url}/free-playbook#top-50-ai-prompts`,
   },
   {
     '@type': 'DigitalDocument',
     name: 'Claude Code Quick Start',
     description:
       'A practical quick-start guide to Claude Code: setup, key commands, agentic workflows, and patterns that save hours every week.',
-    url: 'https://frankx.ai/free-playbook#claude-code-quick-start',
+    url: `${siteConfig.url}/free-playbook#claude-code-quick-start`,
   },
 ]
 
@@ -37,13 +37,13 @@ const jsonLdGraph = {
       name: 'Free AI Creator Toolkit — 3 Playbooks Worth $111',
       description:
         'Download three battle-tested AI playbooks: Suno AI Prompt Playbook, Top 50 AI Prompts, and Claude Code Quick Start. Free instant access.',
-      url: 'https://frankx.ai/free-playbook',
+      url: `${siteConfig.url}/free-playbook`,
       numberOfItems: 3,
       hasPart: playbookItems,
       publisher: {
         '@type': 'Person',
         name: 'Frank',
-        url: 'https://frankx.ai',
+        url: siteConfig.url,
       },
     },
     {
@@ -99,6 +99,7 @@ const jsonLdString = JSON.stringify(jsonLdGraph)
 // ── Metadata ──────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = createMetadata({
+  canonical: './',
   title: 'Free AI Creator Toolkit — 3 Playbooks Worth $111 | FrankX',
   description:
     'Download three battle-tested AI playbooks: Suno AI Prompt Playbook, Top 50 AI Prompts, and Claude Code Quick Start. Free instant access.',

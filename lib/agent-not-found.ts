@@ -45,6 +45,14 @@ function htmlQuality(items: AcceptItem[]): { q: number; index: number } | null {
   return { q: best.q, index: best.index }
 }
 
+/**
+ * Paths that already answer Accept: text/markdown themselves.
+ * The unknown-URL rewrite must leave them alone, or a real document is reported missing.
+ */
+export function routeOwnsMarkdown(pathname: string): boolean {
+  return pathname === '/docs' || pathname.startsWith('/docs/')
+}
+
 /** True when text/markdown is explicitly acceptable and beats text/html (including wildcard ranges). */
 export function wantsMarkdownNotFound(header: string | null): boolean {
   const items = parseAccept(header)

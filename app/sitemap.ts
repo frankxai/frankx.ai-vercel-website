@@ -1,4 +1,6 @@
 import { MetadataRoute } from 'next'
+import { aliasSources, isExcludedFromSitemap, literalRedirectSources } from '../lib/sitemap-exclusions.mjs'
+import nextConfig from '../next.config.mjs'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -42,6 +44,7 @@ function getBlogEntries(): { slug: string; date: string }[] {
         try {
           const content = fs.readFileSync(path.join(blogDir, file), 'utf8')
           const { data } = matter(content)
+          if (data.draft === true || data.noindex === true) return null
           return { slug, date: data.lastUpdated || data.date || '' }
         } catch {
           return { slug, date: '' }
@@ -53,16 +56,23 @@ function getBlogEntries(): { slug: string; date: string }[] {
   }
 }
 
-// Get all guide slugs from content/guides directory
+// Get all guide slugs from content/guides directory (published & indexable only)
 function getGuideSlugs(): string[] {
   const guidesDir = path.join(process.cwd(), 'content/guides')
   try {
     const files = fs.readdirSync(guidesDir)
-    const slugs = new Set(
-      files
-        .filter(file => file.endsWith('.mdx'))
-        .map(file => getSlugFromFilename(file))
-    )
+    const slugs = new Set<string>()
+    for (const file of files) {
+      if (!file.endsWith('.mdx')) continue
+      try {
+        const content = fs.readFileSync(path.join(guidesDir, file), 'utf8')
+        const { data } = matter(content)
+        if (data.draft === true || data.noindex === true) continue
+      } catch {
+        // Keep slug if frontmatter read fails unexpectedly
+      }
+      slugs.add(getSlugFromFilename(file))
+    }
     return Array.from(slugs)
   } catch {
     return []
@@ -120,7 +130,18 @@ function getRouteIndexRoutes(): Array<{ href: string; type: string; sitemap?: bo
   }
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// next.config.mjs locates this file through import.meta.url, which moves once the route is bundled, so read it
+// from the project root as well. A missing or unreadable file means no alias redirects exist to exclude.
+function getRedirectAliasSources(): string[] {
+  try {
+    const aliasPath = path.join(process.cwd(), 'data', 'redirect-aliases.json')
+    return aliasSources(JSON.parse(fs.readFileSync(aliasPath, 'utf8')))
+  } catch {
+    return []
+  }
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const currentDate = new Date().toISOString()
 
   // Core pages (highest priority)
@@ -872,5 +893,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   }
 
-  return entries
+  const redirects = nextConfig.redirects ? await nextConfig.redirects() : []
+  const redirectSources = new Set([...literalRedirectSources(redirects), ...getRedirectAliasSources()])
+
+  // The curated lists above and the route index can name the same URL (/ai-architect, /watch). Keep the first.
+  const emitted = new Set<string>()
+  return entries.filter(entry => {
+    const pathname = entry.url.replace(BASE_URL, '').replace(/\/$/, '') || '/'
+    if (isExcludedFromSitemap(pathname, redirectSources) || emitted.has(pathname)) return false
+    emitted.add(pathname)
+    return true
+  })
 }

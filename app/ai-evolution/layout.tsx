@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     description:
       'A living research map of the complete AI landscape — foundation models, agentic AI, multi-agent systems, and the path to AGI.',
     type: 'article',
-    url: 'https://frankx.ai/ai-evolution',
+    url: `${siteConfig.url}/ai-evolution`,
     siteName: 'FrankX',
     images: [
       {
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
     creator: '@frankxai',
   },
   alternates: {
-    canonical: 'https://frankx.ai/ai-evolution',
+    canonical: './',
   },
 }
 
@@ -57,23 +58,23 @@ const articleLd = JSON.stringify({
   headline: 'The AI Evolution: From GenAI to AGI',
   description:
     'A living research map of the complete AI landscape — from foundation models through agentic AI to the AGI horizon.',
-  url: 'https://frankx.ai/ai-evolution',
+  url: `${siteConfig.url}/ai-evolution`,
   datePublished: '2026-03-22T00:00:00Z',
   dateModified: '2026-03-22T00:00:00Z',
   author: {
     '@type': 'Person',
     name: 'Frank Riemer',
-    url: 'https://frankx.ai',
+    url: siteConfig.url,
     jobTitle: 'AI Architect',
   },
   publisher: {
     '@type': 'Organization',
     name: 'FrankX',
-    url: 'https://frankx.ai',
+    url: siteConfig.url,
   },
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': 'https://frankx.ai/ai-evolution',
+    '@id': `${siteConfig.url}/ai-evolution`,
   },
   breadcrumb: {
     '@type': 'BreadcrumbList',
@@ -82,19 +83,19 @@ const articleLd = JSON.stringify({
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://frankx.ai',
+        item: siteConfig.url,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Research Hub',
-        item: 'https://frankx.ai/research',
+        item: `${siteConfig.url}/research`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'The AI Evolution',
-        item: 'https://frankx.ai/ai-evolution',
+        item: `${siteConfig.url}/ai-evolution`,
       },
     ],
   },

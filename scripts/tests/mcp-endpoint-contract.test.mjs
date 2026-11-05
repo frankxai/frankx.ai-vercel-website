@@ -261,3 +261,24 @@ test('the 31st anonymous POST from one address returns 429 and GET stays open', 
   const listing = await GET(new Request('https://www.frankx.ai/api/mcp', { method: 'GET', headers }))
   assert.notEqual(listing.status, 429)
 })
+
+test('stateless GET and DELETE answer 405 at once instead of holding a stream open', async () => {
+  const { GET, DELETE } = await import('../../app/api/mcp/route.ts')
+  for (const [method, handler] of [['GET', GET], ['DELETE', DELETE]]) {
+    const response = await handler(new Request('https://www.frankx.ai/api/mcp', { method, headers: { accept: 'text/event-stream' } }))
+    assert.equal(response.status, 405, method)
+    assert.equal(response.headers.get('allow'), 'POST', method)
+    const body = await response.json()
+    assert.equal(body.jsonrpc, '2.0')
+    assert.equal(body.id, null)
+    assert.equal(typeof body.error.message, 'string')
+  }
+  assert.match(route, /export const maxDuration = 60/)
+})
+
+test('OPTIONS advertises only the POST-only contract', async () => {
+  const { OPTIONS } = await import('../../app/api/mcp/route.ts')
+  const response = await OPTIONS(new Request('https://www.frankx.ai/api/mcp', { method: 'OPTIONS' }))
+  assert.equal(response.status, 204)
+  assert.equal(response.headers.get('allow'), 'POST, OPTIONS')
+})

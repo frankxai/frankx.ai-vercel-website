@@ -5,6 +5,7 @@
  * cited by search/AI engines. Article and Book scaffolds back the manifesto.
  */
 
+import { siteConfig } from '@/lib/seo'
 import { witali } from '@/data/papa'
 
 export function PersonWitaliJsonLd() {
@@ -32,7 +33,7 @@ export function PersonWitaliJsonLd() {
     children: [{ '@type': 'Person', name: 'Frank Riemer' }],
     knowsLanguage: ['de', 'ru'],
     nationality: ['Russlanddeutsche', 'German'],
-    subjectOf: { '@type': 'WebPage', url: 'https://frankx.ai/papa/' },
+    subjectOf: { '@type': 'WebPage', url: `${siteConfig.url}/papa/` },
   }
   return (
     <script
@@ -61,7 +62,7 @@ export function ArticleJsonLd({
     headline: title,
     description,
     inLanguage,
-    author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
+    author: { '@type': 'Person', name: 'Frank Riemer', url: siteConfig.url },
     about: { '@type': 'Person', name: witali.fullName },
     url,
     isAccessibleForFree: true,

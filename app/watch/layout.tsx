@@ -1,7 +1,8 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'What to Watch — Curated Videos for Builders & Creators | FrankX',
+  title: 'What to Watch — Curated Videos for Builders & Creators',
   description:
     'Curated high-signal videos on AI foundations, engineering, agents, creator economy, and strategy. Organized by watchlists, levels, and personas.',
   keywords: [
@@ -14,11 +15,12 @@ export const metadata: Metadata = {
     'FrankX watch',
   ],
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'What to Watch — Curated Videos for Builders & Creators | FrankX',
     description:
       'High-signal videos for AI engineers, creators, and builders. Curated by level and topic.',
     type: 'website',
-    url: 'https://frankx.ai/watch',
+    url: `${siteConfig.url}/watch`,
   },
 }
 

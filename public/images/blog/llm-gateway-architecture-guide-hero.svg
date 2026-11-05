@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="LLM Gateway Architecture diagram connecting Agent Harnesses through Routing, Guardrails, Spend Caps, and OpenTelemetry to Claude, Gemini, OpenAI, and Local vLLM">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07090e" />
+      <stop offset="50%" stop-color="#0b101b" />
+      <stop offset="100%" stop-color="#090d16" />
+    </linearGradient>
+    <linearGradient id="gatewayGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.22" />
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#grid)" />
+
+  <text x="72" y="76" fill="#10b981" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" letter-spacing="3">AI ARCHITECTURE REFERENCE</text>
+  <text x="72" y="122" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700">LLM Gateway Control Plane</text>
+
+  <!-- Left column: Callers -->
+  <g transform="translate(72, 185)">
+    <rect width="250" height="84" rx="16" fill="#111827" stroke="#334155" stroke-width="1.5" />
+    <text x="24" y="36" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="17" font-weight="600">Web &amp; API Services</text>
+    <text x="24" y="60" fill="#94a3b8" font-family="monospace" font-size="13">Next.js / Vercel AI SDK</text>
+
+    <rect y="112" width="250" height="84" rx="16" fill="#111827" stroke="#334155" stroke-width="1.5" />
+    <text x="24" y="148" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="17" font-weight="600">Coding Harnesses</text>
+    <text x="24" y="172" fill="#94a3b8" font-family="monospace" font-size="13">Claude Code / Codex CLI</text>
+
+    <rect y="224" width="250" height="84" rx="16" fill="#111827" stroke="#334155" stroke-width="1.5" />
+    <text x="24" y="260" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="17" font-weight="600">Background Swarms</text>
+    <text x="24" y="284" fill="#94a3b8" font-family="monospace" font-size="13">Scoped virtual keys</text>
+  </g>
+
+  <!-- Connector lines left -> center -->
+  <g stroke="#10b981" stroke-opacity="0.55" stroke-width="2" fill="none">
+    <path d="M 322 227 C 375 227, 385 285, 438 285" />
+    <path d="M 322 339 L 438 339" />
+    <path d="M 322 451 C 375 451, 385 393, 438 393" />
+  </g>
+
+  <!-- Center column: LLM Gateway -->
+  <g transform="translate(438, 170)">
+    <rect width="324" height="340" rx="24" fill="url(#gatewayGlow)" stroke="#10b981" stroke-opacity="0.6" stroke-width="2" />
+    <rect x="14" y="14" width="296" height="312" rx="18" fill="#0b111e" fill-opacity="0.92" />
+    <text x="34" y="54" fill="#34d399" font-family="monospace" font-size="13" font-weight="600">GATEWAY LAYER</text>
+    <text x="34" y="82" fill="#ffffff" font-family="system-ui, sans-serif" font-size="22" font-weight="700">Unified Router &amp; Policy</text>
+
+    <rect x="34" y="106" width="256" height="44" rx="10" fill="#131c2e" stroke="#1e293b" />
+    <text x="50" y="133" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="14">1. Virtual Auth &amp; USD Spend Caps</text>
+
+    <rect x="34" y="160" width="256" height="44" rx="10" fill="#131c2e" stroke="#1e293b" />
+    <text x="50" y="187" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="14">2. Tiered Model Routing &amp; Cache</text>
+
+    <rect x="34" y="214" width="256" height="44" rx="10" fill="#131c2e" stroke="#1e293b" />
+    <text x="50" y="241" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="14">3. 429/529 Automatic Failover</text>
+
+    <rect x="34" y="268" width="256" height="44" rx="10" fill="#131c2e" stroke="#1e293b" />
+    <text x="50" y="295" fill="#67e8f9" font-family="monospace" font-size="13">4. OpenTelemetry gen_ai.* Spans</text>
+  </g>
+
+  <!-- Connector lines center -> right -->
+  <g stroke="#8b5cf6" stroke-opacity="0.65" stroke-width="2" fill="none">
+    <path d="M 762 285 C 815 285, 825 227, 878 227" />
+    <path d="M 762 339 L 878 339" />
+    <path d="M 762 393 C 815 393, 825 451, 878 451" />
+  </g>
+
+  <!-- Right column: Upstream Providers -->
+  <g transform="translate(878, 185)">
+    <rect width="250" height="84" rx="16" fill="#111827" stroke="#4c1d95" stroke-width="1.5" />
+    <text x="24" y="36" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="17" font-weight="600">Anthropic Claude</text>
+    <text x="24" y="60" fill="#c4b5fd" font-family="monospace" font-size="13">Reasoning &amp; Code</text>
+
+    <rect y="112" width="250" height="84" rx="16" fill="#111827" stroke="#0e7490" stroke-width="1.5" />
+    <text x="24" y="148" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="17" font-weight="600">Google Gemini</text>
+    <text x="24" y="172" fill="#67e8f9" font-family="monospace" font-size="13">1M Context &amp; Multimodal</text>
+
+    <rect y="224" width="250" height="84" rx="16" fill="#111827" stroke="#065f46" stroke-width="1.5" />
+    <text x="24" y="260" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="17" font-weight="600">OpenAI / Local vLLM</text>
+    <text x="24" y="284" fill="#6ee7b7" font-family="monospace" font-size="13">Fallback &amp; Private Inference</text>
+  </g>
+
+  <text x="72" y="578" fill="#64748b" font-family="monospace" font-size="13">frankx.ai/ai-architecture • LiteLLM • Cloudflare AI Gateway • Kong • Portkey • OpenTelemetry</text>
+</svg>

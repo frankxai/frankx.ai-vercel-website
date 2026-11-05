@@ -11,11 +11,11 @@ import type { Metadata } from 'next'
  */
 
 export const metadata: Metadata = {
-  title: 'Ikigai & Branding Workshop · FrankX',
+  title: 'Ikigai & Branding Workshop',
   description:
     'A walk through ikigai with your AI as peer collaborator. Map your purpose, write your sentence, ship a 30-day plan, walk out with three brand-launch visuals. Nine modules. Thirteen prompts. Free.',
   alternates: {
-    canonical: '/workshops/ikigai-branding',
+    canonical: './',
   },
   openGraph: {
     title: 'Ikigai & Branding Workshop',
