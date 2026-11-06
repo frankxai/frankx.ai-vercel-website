@@ -19,6 +19,7 @@ import { isCanonicalBlogSlug } from '@/lib/blog-redirects.mjs'
 import { askQuestions } from '@/data/ask-questions'
 import { publishedSignals } from '@/lib/dream100'
 import { agenticRoles } from '@/lib/agentic-roles'
+import { booksRegistry } from '@/app/books/lib/books-registry'
 
 const BASE_URL = siteConfig.url
 
@@ -163,6 +164,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // investor excluded: legal read of investor copy pending
     ...agenticRoles.filter((role) => role.slug !== 'investor').map((role) => ({ url: `/agentic-creator/${role.slug}`, priority: 0.7, changeFrequency: 'monthly' as const })),
     { url: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
+    { url: '/magazine', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/playbooks', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/journal', priority: 0.8, changeFrequency: 'daily' as const },
     { url: '/peak-performance', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/products', priority: 0.9, changeFrequency: 'weekly' as const },
@@ -817,6 +820,33 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.75,
     })
   })
+
+  // Books — every non-draft book (all language variants have their own slug)
+  // plus each published chapter. Chapter routes 404 unless `published`, so
+  // only those are listed. Previously only a handful of chapters reached the
+  // sitemap through the route index, leaving most of the library invisible.
+  booksRegistry
+    .filter((book) => book.status !== 'draft')
+    .forEach((book) => {
+      const bookModified = book.publishDate && !Number.isNaN(Date.parse(book.publishDate))
+        ? new Date(book.publishDate).toISOString()
+        : undefined
+      entries.push({
+        url: `${BASE_URL}/books/${book.slug}`,
+        ...(bookModified ? { lastModified: bookModified } : {}),
+        changeFrequency: 'monthly',
+        priority: 0.8,
+      })
+      book.chapters
+        .filter((chapter) => chapter.published)
+        .forEach((chapter) => {
+          entries.push({
+            url: `${BASE_URL}/books/${book.slug}/${chapter.slug}`,
+            changeFrequency: 'monthly',
+            priority: 0.6,
+          })
+        })
+    })
 
   // Agent Hub — one page per platform/framework, registry-driven.
   getAllAgentEntries().forEach((entry) => {
