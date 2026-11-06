@@ -2,7 +2,7 @@
 title: "Best MCP Servers for Claude Code, Sales & Marketing Workflows (2026)"
 description: "Curated production MCP servers for Claude Code engineering, analytics, CRM, and publishing workflows — with .mcp.json configs, security scopes, and token-budget discipline."
 date: "2026-11-02"
-updated: "2026-11-02"
+updated: "2026-11-05"
 author: "Frank"
 category: "AI Architecture"
 tags: ["mcp", "claude-code", "sales", "marketing", "automation", "ai-architecture"]
@@ -30,16 +30,38 @@ decisions:
     source: "https://docs.starlightintelligence.ai/starlight/after-smithery"
 faqs:
   - question: "How many MCP servers should I keep enabled at once in Claude Code?"
-    answer: "Keep 3 to 6 active MCP servers per project `.mcp.json`. Every eager tool schema consumes context tokens on session boot; scope specialized business or database servers per repository to preserve context window capacity."
+    answer: "As a rule of thumb, not a measured limit, keep 3 to 6 active MCP servers per project `.mcp.json`. Claude Code's tool search is on by default and defers tool schemas until Claude needs them, so the limit is less about tokens than about permissions and noise: every server is another credential and another set of tools Claude may pick from. Scope specialized business or database servers per repository."
   - question: "How do I add an MCP server to a team repository in Claude Code?"
     answer: "Run `claude mcp add --transport http --scope project <name> <url>` (or commit `.mcp.json` at the repo root using `${ENV_VAR}` references for headers) so every teammate shares the exact tool surface without committing secrets."
   - question: "What are the highest-ROI MCP servers for sales and marketing teams?"
     answer: "HubSpot or Attio (CRM pipeline hygiene), Google Search Console / Analytics or Plausible (search and funnel attribution), Notion or Linear (campaign briefs and launch tracking), Slack (deal-room digests), and Canva or Figma (brand asset assembly)."
   - question: "How do I check how many tokens my MCP servers consume?"
-    answer: "Run `/context` and `/mcp` inside Claude Code to inspect connected server health and exact tool-schema token footprint."
+    answer: "Run `/mcp` to see each connected server and its tool count, and `/context` to see what is using your context window. With tool search on (the default), tool schemas stay out of context until Claude searches for them."
 ---
 
-For technical founders, revenue engineers, and full-stack builders wiring live tools into Claude Code: Model Context Protocol (MCP) replaces brittle glue scripts only when you curate servers tightly, guard credentials via OAuth or environment references, and cap tool-schema token bloat. Tested as of November 2026 across production engineering and growth operations, here are the highest-signal MCP servers for **software shipping** and **business, sales, and marketing workflows**, complete with copy-paste `.mcp.json` configurations and human-gate rules.
+For technical founders, revenue engineers, and full-stack builders wiring live tools into Claude Code: Model Context Protocol (MCP) replaces brittle glue scripts only when you curate servers tightly, guard credentials via OAuth or environment references, and cap tool-schema token bloat. On 5 November 2026 every remote endpoint in the configs below was reachable and replied `401` with an OAuth challenge, which means the server is up and waiting for you to sign in. Signing in and permissions are still on you to check. Here are the highest-signal MCP servers for **software shipping** and **business, sales, and marketing workflows**, complete with copy-paste `.mcp.json` configurations and human-gate rules.
+
+---
+
+## Try a live MCP server in 30 seconds
+
+Before wiring anything with credentials, connect one read-only server that needs no key. frankx.ai runs one:
+
+```bash
+claude mcp add --transport http frankx https://www.frankx.ai/api/mcp
+```
+
+Then ask Claude Code to "search frankx.ai for claude code skills". It calls `frankx_search_site`, and the server answers with real pages. This is the reply it returned on 5 November 2026, trimmed:
+
+```json
+{"results":[
+  {"title":"Claude Code Skills 2026: The 10 You Actually Need","type":"blog"},
+  {"title":"Claude Code Plugins vs Skills: Marketplace, JetBrains & Cross-Harness Guide","type":"guide"},
+  {"title":"Claude Code Templates & Starter Kit (CLAUDE.md, Skills, Settings & Hooks)","type":"guide"}
+]}
+```
+
+The server exposes three read-only tools (`frankx_search_site`, `frankx_get_article`, `frankx_list_products`) and allows 30 anonymous requests a minute. Once you have seen one round trip work, add the servers below one at a time.
 
 ---
 
@@ -51,7 +73,7 @@ Keep your core engineering `.mcp.json` focused on tools that provide **live runt
 |---|---|---|---|
 | **GitHub (`github-mcp-server`)** | Remote HTTP / Stdio | Inspect PR checks, inline review threads, issues, and workflow runs | Read + branch/PR write; protect `main` via GitHub rulesets |
 | **Playwright / CDP Browser Hub** | Local Stdio -> shared CDP | Verify rendered DOM, console errors, mobile layout, and WCAG contrast | Connect to shared local browser endpoint; block production credential autofill |
-| **PostgreSQL / Supabase / Neon** | Remote HTTP / Local Stdio | Inspect live table schemas, `EXPLAIN` plans, RLS policies, and branch previews | Read-only role on production; read-write on ephemeral preview branches only |
+| **Supabase / Neon** | Remote HTTP (OAuth) | Inspect live table schemas, `EXPLAIN` plans, RLS policies, and branch previews | Read-only role on production; read-write on ephemeral preview branches only |
 | **Sentry / Grafana / Datadog** | Remote HTTP (OAuth) | Pull real stack traces, error frequencies, and p95 latency regressions | Read-only |
 | **Cloudflare / Vercel** | Remote HTTP (OAuth) | Inspect preview deployment logs, Worker bindings, KV/D1 state, and build errors | Read + preview deploy; gate production DNS and billing |
 | **Context7 / Official Docs MCP** | Remote HTTP | Fetch version-pinned library documentation (Next.js 16, AI SDK v6, Tailwind v4) | Read-only |
@@ -64,10 +86,10 @@ Revenue and growth teams get the fastest payback when agents connect **search de
 
 | MCP server | Category | High-leverage workflow | Mandatory human gate |
 |---|---|---|---|
-| **HubSpot / Attio MCP** | CRM & pipeline | Summarize stalled deals, enrich account notes from call transcripts, flag missing next-step dates | Stage draft notes/tasks; human rep approves stage/amount edits and outbound emails |
-| **Google Search Console + Analytics / Plausible** | SEO & attribution | Cross-reference striking-distance queries (positions 8–20) against conversion pages to prioritize content refreshes | Read-only |
-| **Stripe / Polar (read-scoped)** | Revenue telemetry | Reconcile MRR cohorts, failed-payment churn reasons, and product-level SKU performance | Strict read-only key (`rk_live_*`); zero autonomous refunds, price edits, or payouts |
-| **Notion / Coda MCP** | Campaign & editorial OS | Turn weekly research briefs into structured launch checklists and editorial calendars | Read + staging database write |
+| **HubSpot MCP** (`mcp.hubspot.com`) | CRM & pipeline | Summarize stalled deals, enrich account notes from call transcripts, flag missing next-step dates | Stage draft notes/tasks; human rep approves stage/amount edits and outbound emails. Setup needs a HubSpot MCP auth app (client ID, secret, matching redirect URL, OAuth with PKCE): see [HubSpot's guide](https://developers.hubspot.com/docs/apps/developer-platform/build-apps/integrate-with-the-remote-hubspot-mcp-server) |
+| **Search Console / Analytics** (check for a vendor-maintained server first; review any community server's code before granting property access) | SEO & attribution | Cross-reference striking-distance queries (positions 8–20) against conversion pages to prioritize content refreshes | Read-only |
+| **Stripe** ([docs](https://docs.stripe.com/mcp)) or **Polar** ([docs](https://polar.sh/integrate)) | Revenue telemetry | Reconcile MRR cohorts, failed-payment churn reasons, and product-level SKU performance | Connect with each vendor's OAuth flow and grant read-only permissions; zero autonomous refunds, price edits, or payouts |
+| **Notion MCP** (`mcp.notion.com`) | Campaign & editorial OS | Turn weekly research briefs into structured launch checklists and editorial calendars | Read + staging database write |
 | **Figma / Canva MCP** | Brand & creative ops | Pull exact design tokens into landing pages ([Figma](/skills)) or stage templated social carousels ([Canva MCP guide](/guides/canva-mcp-for-founders)) | Human visual review before publishing |
 | **Slack MCP** | Deal-room intelligence | Compile daily digest of customer feature requests and support blockers into structured GitHub issues | Read channels + post only to designated internal `#ops-staging` channels |
 
@@ -75,7 +97,7 @@ Revenue and growth teams get the fastest payback when agents connect **search de
 
 ## Copy-paste `.mcp.json` configuration (zero hardcoded secrets)
 
-Commit `.mcp.json` to your repository root using environment variable expansion (`${VAR_NAME}`) for any token-authenticated endpoint, and prefer OAuth-backed Streamable HTTP endpoints wherever vendors provide them:
+Commit `.mcp.json` to your repository root using environment variable expansion (`${VAR_NAME}`) for any token-authenticated endpoint, and prefer OAuth-backed Streamable HTTP endpoints wherever vendors provide them. Set every referenced variable before you start Claude Code (here `GITHUB_MCP_PAT` and `SUPABASE_PROJECT_REF`), then confirm each server connects with `/mcp` or `claude mcp get <name>`; an unset variable can still load and then fail to authenticate:
 
 ```json
 {
@@ -95,29 +117,27 @@ Commit `.mcp.json` to your repository root using environment variable expansion 
       "type": "http",
       "url": "https://observability.mcp.cloudflare.com/mcp"
     },
-    "postgres-preview": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-postgres",
-        "${PREVIEW_DATABASE_READONLY_URL}"
-      ]
+    "supabase": {
+      "type": "http",
+      "url": "https://mcp.supabase.com/mcp?project_ref=${SUPABASE_PROJECT_REF}&read_only=true"
     }
   }
 }
 ```
 
+> **Database note:** the old `@modelcontextprotocol/server-postgres` package is deprecated on npm and no longer in the official servers repository. Use your database vendor's own server instead. For Supabase, scope it to one project and read-only mode with `?project_ref=...&read_only=true`, as in the config above (set `SUPABASE_PROJECT_REF` first; see [Supabase's MCP security guidance](https://supabase.com/docs/guides/ai-tools/mcp)). Neon's server is `https://mcp.neon.tech/mcp`. Both sign in with OAuth. Point it at a preview branch or a read-only role, never production write access.
+
 > **Security rule:** Never paste raw `sk_live_`, `ghp_`, or database passwords into `.mcp.json` or `~/.claude.json`. Store credentials in your OS keychain or gitignored `.env` loader and pass least-privilege read-only tokens by default.
 
 ---
 
-## Avoiding the 40,000-token MCP tax
+## Keeping MCP from crowding your context
 
-Connecting fifteen MCP servers with 20 tools each can silently burn 35,000–50,000 tokens of your context window before you type your first prompt. Keep your harness fast and accurate with four habits:
+Claude Code's tool search is on by default: tool schemas stay out of context until Claude searches for the tool it needs. With `ENABLE_TOOL_SEARCH=false`, or on older models without tool search, every connected server's schemas load up front, and a large stack can fill a real share of your context before your first prompt. Tool output is the other cost: Claude Code warns when one MCP result passes 10,000 tokens and caps it at 25,000 by default (`MAX_MCP_OUTPUT_TOKENS` raises the cap). Four habits keep this in check:
 
 1. **Scope servers per repository (`.mcp.json`)** — Keep Postgres in your backend repo, HubSpot/Search Console in your growth repo, and Figma in your design-system repo.
-2. **Audit `/context` weekly** — Run `/context` inside Claude Code to see exact token usage broken down across `CLAUDE.md`, skills, and MCP tool definitions.
-3. **Prefer CLI scripts inside `SKILL.md` for simple read tasks** — If a tool wraps `gh pr checks` or a 15-line `curl` call, a `SKILL.md` script costs ~60 idle tokens compared to thousands of tokens for a 30-tool MCP schema.
+2. **Audit `/mcp` and `/context` weekly** — `/mcp` lists each server and its tool count; `/context` shows what is filling your context window. Disconnect servers you have not used in a week.
+3. **Prefer a CLI call inside a skill for simple reads** — If a tool only wraps `gh pr checks` or a short `curl`, a skill that runs the command keeps one short description in context instead of a whole server's tool surface and credential.
 4. **Migrate off deprecated proxy registries** — When self-hosting team MCP endpoints on Cloudflare Workers, follow our [remote MCP deployment guide](https://docs.starlightintelligence.ai/starlight/after-smithery).
 
 ---
