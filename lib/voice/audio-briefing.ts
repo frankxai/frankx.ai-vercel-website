@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto'
 import type { JournalEntry } from '../journal.ts'
-import { uploadFile } from '../storage.ts'
+import { BLOB_BASE_URL, getFileInfo, listFiles, uploadFile } from '../storage.ts'
 
 /**
  * Bounded reference implementation:
@@ -295,8 +295,14 @@ export function compileJournalToAudioBriefing(
 
   const closingSection = `End of briefing. Read the canonical note at frankx.ai/journal/${entry.slug}.`
 
+  const fixedSectionLength = headerSection.length + 2 + closingSection.length
+  if (fixedSectionLength >= maxCharacters) {
+    return { ok: false, reason: 'invalid-max-characters' }
+  }
+
   const selectedSections: string[] = [headerSection]
   let truncated = false
+  let includedBodySections = 0
   const reservedForClosing = closingSection.length + 2
 
   for (const paragraph of bodyParagraphs) {
@@ -304,15 +310,23 @@ export function compileJournalToAudioBriefing(
       selectedSections.join('\n\n').length + 2 + paragraph.length + reservedForClosing
     if (candidateLength <= maxCharacters) {
       selectedSections.push(paragraph)
+      includedBodySections += 1
     } else {
       truncated = true
       break
     }
   }
 
+  if (includedBodySections === 0) {
+    return { ok: false, reason: 'invalid-max-characters' }
+  }
+
   selectedSections.push(closingSection)
   const spokenScript = selectedSections.join('\n\n')
   const characterCount = spokenScript.length
+  if (characterCount > maxCharacters) {
+    return { ok: false, reason: 'invalid-max-characters' }
+  }
   const creditRate = MODEL_CREDIT_PER_CHAR[modelId] ?? 1
   const estimatedCredits = Math.ceil(characterCount * creditRate)
 
@@ -400,13 +414,44 @@ export function inspectGeneratedAudioBytes(
   }
 }
 
+const inMemoryAudioBlobCache = new Map<string, string>()
+
 const DEFAULT_STORAGE_ADAPTER: AudioBriefingStorageAdapter = {
+  async exists(blobKey) {
+    const cachedUrl = inMemoryAudioBlobCache.get(blobKey)
+    if (cachedUrl) {
+      return { url: cachedUrl }
+    }
+    try {
+      const normalizedKey = blobKey.replace(/^\/+/, '')
+      const candidateUrl = `${BLOB_BASE_URL}/${normalizedKey}`
+      const headInfo = await getFileInfo(candidateUrl)
+      if (headInfo?.url) {
+        inMemoryAudioBlobCache.set(blobKey, headInfo.url)
+        return { url: headInfo.url }
+      }
+    } catch {
+      // Fall back to prefix listing if direct head lookup fails or blob is absent
+    }
+    try {
+      const matches = await listFiles(blobKey)
+      const exact = matches.find((item) => item.pathname === blobKey)
+      if (exact?.url) {
+        inMemoryAudioBlobCache.set(blobKey, exact.url)
+        return { url: exact.url }
+      }
+    } catch {
+      // Ignore missing BLOB_READ_WRITE_TOKEN or network errors during cache check
+    }
+    return null
+  },
   async putAudio(blobKey, bytes) {
     const uploaded = await uploadFile(blobKey, bytes, {
       contentType: 'audio/mpeg',
       access: 'public',
       addRandomSuffix: false,
     })
+    inMemoryAudioBlobCache.set(blobKey, uploaded.url)
     return { url: uploaded.url }
   },
   async putManifest(blobKey, manifest) {

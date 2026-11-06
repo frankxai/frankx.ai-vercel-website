@@ -175,6 +175,12 @@ test('journal-to-audio briefing compiler enforces public visibility, character c
     visibility: 'private',
   })
   assert.deepEqual(privateResult, { ok: false, reason: 'entry-not-public' })
+
+  // Fixed-section character ceiling enforcement: reject maxCharacters smaller than header + body + closing
+  const overtightResult = compileJournalToAudioBriefing(entry, {
+    maxCharacters: 120,
+  })
+  assert.deepEqual(overtightResult, { ok: false, reason: 'invalid-max-characters' })
 })
 
 test('consent guard blocks unconsented voice synthesis and MP3 byte QA rejects invalid payloads', () => {
