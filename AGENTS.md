@@ -298,3 +298,23 @@ At handoff distinguish policy proposed, merged, loaded in this agent session and
 <!-- PRODUCT-OUTCOME-CONTRACT:END -->
 
 Current quality implementation: https://github.com/frankxai/frankx.ai-vercel-website/issues/706. Reconcile historical instructions against accepted current decisions before changing product scope.
+
+## Review evidence and release routing
+
+Added by Codex, 3 November 2026, revision 1; proposed until this PR is reviewed and merged.
+
+Declare one implementation owner and provider for the full PR head SHA. A shared
+GitHub account or branch prefix cannot authenticate the model that wrote the code.
+Use Copilot as the first pass on qualifying ready PRs; request a final-head re-review
+when new-push review is off. OpenAI-authored work needs a substantive reviewer from
+a different provider, usually Claude; Anthropic-authored work can route to Codex.
+Do not count a second session of the maker's provider or a typed receipt as independence.
+
+Preserve the existing homepage contract, every required CI/context and the Vercel
+app binding. Review auth, sends, payments, tenant isolation, secrets, agents, CI and
+infrastructure as sensitive changes. Findings and test/preview evidence name the full
+head; a new push invalidates prior release review. State incomplete/truncated coverage.
+A review request, green unrelated job or resolved thread is not production approval.
+No review rule here grants merge, deployment, billing or permission authority.
+
+Shared measured rollout: https://github.com/frankxai/agentic-ops/pull/439.
