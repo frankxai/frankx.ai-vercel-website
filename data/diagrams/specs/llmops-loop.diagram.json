@@ -1,0 +1,24 @@
+{
+  "id": "llmops-loop",
+  "rev": 1,
+  "type": "flow",
+  "eyebrow": "AI Architecture",
+  "title": "The LLMOps loop",
+  "subtitle": "Evaluation gates every release. Production traces become the next evaluation set.",
+  "alt": "Five stages in a loop: prompts and data, evaluate, release, observe and improve, with failures from production feeding back into the evaluation set.",
+  "source": "Generic LLMOps lifecycle; release stage assumes the gateway pattern shown in the AI gateway diagram.",
+  "reviewed": "2026-11-07",
+  "replaces": {
+    "src": "/images/architectures/llmops.png",
+    "pages": ["/ai-architecture/templates"],
+    "legacySubject": "Agentic OS synthesis workflow render with garbled labels, not an LLMOps lifecycle"
+  },
+  "stages": [
+    { "accent": "cyan", "title": "Prompts and data", "items": ["Version prompts, datasets and tool schemas", "Pin the model and its parameters"] },
+    { "accent": "violet", "title": "Evaluate", "items": ["Run the eval set before every change", "Score quality, cost and latency"] },
+    { "accent": "emerald", "title": "Release", "items": ["Ship behind the AI gateway", "Canary first, then widen"] },
+    { "accent": "amber", "title": "Observe", "items": ["Trace every call", "Track cost per verified outcome"] },
+    { "accent": "fuchsia", "title": "Improve", "items": ["Turn failures into eval cases", "Review drift against the baseline"] }
+  ],
+  "loop": { "accent": "emerald", "label": "Production failures become the next eval set" }
+}
