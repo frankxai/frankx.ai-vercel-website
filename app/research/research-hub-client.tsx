@@ -40,6 +40,7 @@ import LearnHubSection from '@/components/learn/LearnHubSection'
 import { MODEL_MAKER_PORTALS } from '@/lib/learn/related-portals'
 import { EmailSignup } from '@/components/email-signup'
 import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
+import { featuredInvestigations } from '@/lib/research/featured-investigations'
 
 // Icon map for dynamic rendering
 const iconMap: Record<string, ComponentType<{ className?: string }>> = {
@@ -84,30 +85,30 @@ function HeroSection() {
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-white/5 border border-white/10">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             <span className="text-xs font-semibold text-emerald-400 tracking-wider uppercase">
-              FrankX Research · Science, systems & human potential
+              FrankX Research · AI systems and human performance
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
-            Research what matters.
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight text-balance leading-[1.1]">
+            Research you can check.
             <span className="block bg-gradient-to-r from-emerald-400 to-cyan-300 bg-clip-text text-transparent">
-              Build what comes next.
+              From the systems I build.
             </span>
           </h1>
 
           <p className="text-lg md:text-xl text-white/70 mb-8 leading-relaxed max-w-3xl">
-            Explore the ideas shaping intelligent systems, creative work and human potential.
-            Seven topic hubs map the questions. Individual briefs are under source review;
-            reviewed evidence will return to each page as it is checked.
+            Long-form investigations into agents, models and human performance. Every published
+            claim carries a receipt, a source or an evidence grade. The generated topic maps below
+            stay on hold until their sources are reviewed.
           </p>
 
           <div className="flex flex-wrap gap-4">
             <Link
-              href="#hubs"
+              href="#investigations"
               className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-white/90 transition-[background-color,color]"
             >
-              Explore research hubs
-              <ArrowRight className="w-4 h-4" />
+              Read the investigations
+              <ArrowRight aria-hidden="true" className="w-4 h-4" />
             </Link>
             <Link
               href="#domains"
@@ -117,9 +118,9 @@ function HeroSection() {
             </Link>
             <Link
               href="#methodology"
-              className="inline-flex items-center gap-2 bg-white/5 text-white px-6 py-3 rounded-full font-semibold border border-white/10 hover:bg-white/10 transition-[background-color,color,border-color]"
+              className="inline-flex items-center gap-2 rounded-full px-3 py-3 font-semibold text-white/70 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
             >
-              Methodology
+              How evidence is graded
             </Link>
           </div>
         </div>
@@ -127,8 +128,11 @@ function HeroSection() {
         {/* Stats */}
         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: 'Research domains', value: String(publicTopicMaps.length), icon: Layers },
-            { label: 'Reviewed domains', value: String(sourcedDomainCount), icon: ShieldCheck },
+            { label: 'Published investigations', value: String(featuredInvestigations.length), icon: FileText },
+            { label: 'Topic maps', value: String(publicTopicMaps.length), icon: Layers },
+            ...(sourcedDomainCount > 0
+              ? [{ label: 'Reviewed topic maps', value: String(sourcedDomainCount), icon: ShieldCheck }]
+              : []),
             ...(totalSources > 0
               ? [{ label: 'Published sources', value: String(totalSources), icon: Search }]
               : []),
@@ -462,68 +466,6 @@ function CTASection() {
   )
 }
 
-function FlagshipArticles() {
-  const articles = [
-    {
-      kanji: '長',
-      label: 'meaning · longevity · ai era',
-      title: 'Blue Zones, Ikigai, and the AI Era',
-      href: '/research/blue-zones-ikigai-ai-era',
-      blurb:
-        'Longevity research from Okinawa and Sardinia, read as a systems question: what keeps work meaningful when AI does more of it.',
-      readingTime: '12 min',
-    },
-    // Human-Centered AI Operating Systems removed: no primary source on /research/conscious-ai-operating-systems (Estate Editor 17 Aug 2026)
-  ]
-  return (
-    <section className="py-12 md:py-16 border-b border-white/[0.04]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-3">
-            <FileText className="w-5 h-5 text-cyan-300" />
-            <h2 className="text-2xl md:text-3xl font-bold text-white">Selected investigations</h2>
-          </div>
-          <p className="text-white/60 max-w-2xl">
-            Long-form investigations that preserve sources, questions, and the distinction
-            between reported evidence and my interpretation.
-          </p>
-        </div>
-        <div className="grid md:grid-cols-2 gap-4">
-          {articles.map((a) => (
-            <div key={a.href}>
-              <Link
-                href={a.href}
-                className="group relative block rounded-2xl border border-cyan-500/[0.18] bg-cyan-500/[0.03] hover:bg-cyan-500/[0.06] hover:border-cyan-500/[0.32] p-6 h-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
-              >
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <span
-                    className="text-4xl text-white/85 leading-none font-light group-hover:text-white transition-colors"
-                    aria-hidden="true"
-                    style={{ fontFamily: 'var(--font-jp-serif), serif' }}
-                  >
-                    {a.kanji}
-                  </span>
-                  <ArrowUpRight aria-hidden="true" className="w-4 h-4 text-cyan-300 group-hover:text-white transition-colors flex-shrink-0 mt-1" />
-                </div>
-                <p className="text-[10px] uppercase tracking-[0.24em] text-white/55 mb-2">
-                  {a.label}
-                </p>
-                <h3 className="text-lg font-semibold text-white mb-2 leading-snug">
-                  {a.title}
-                </h3>
-                <p className="text-sm text-white/70 leading-relaxed mb-3">{a.blurb}</p>
-                <p className="text-[11px] text-white/55 uppercase tracking-wider">
-                  {a.readingTime} read
-                </p>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function QualitiesResearchBridge() {
   return (
     <section className="border-b border-white/[0.04] py-12 md:py-16">
@@ -633,7 +575,6 @@ export default function ResearchHubClient({
       <div className="relative z-10">
         <HeroSection />
         {children}
-        <FlagshipArticles />
         <QualitiesResearchBridge />
 
         <DomainsGrid />

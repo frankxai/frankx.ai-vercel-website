@@ -1,4 +1,5 @@
 import ResearchHubLead from "./research-hub-lead";
+import ResearchFeatured from "./research-featured";
 import ResearchHubClient from "./research-hub-client";
 import { researchHubFaqs as hubFaqs } from "@/lib/research/hubs";
 import ResearchModelWatch from "./research-model-watch";
@@ -43,6 +44,7 @@ export default function ResearchPage() {
           </>
         }
       >
+        <ResearchFeatured />
         <ResearchHubLead />
       </ResearchHubClient>
     </>

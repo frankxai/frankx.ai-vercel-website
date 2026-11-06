@@ -104,21 +104,21 @@ export default function AboutPage() {
               Frank Riemer · Amsterdam · AI Architect &amp; Musician
             </p>
             <h1 className="mt-6 font-display text-5xl font-bold leading-[0.98] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
-              Building sovereign systems for a
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">freer world.</span>
+              I build agent workflows,
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">research, books and music.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-8 text-white/80 sm:text-xl font-medium">
-              Builder since age 5. Former AI architect at Oracle. Prolific musician.
+              Builder since age 5. Former AI architect at Oracle. I make music.
             </p>
             <p className="mt-4 max-w-2xl text-base leading-7 text-white/60">
-              From pouring concrete on construction sites to architecting multi-agent AI swarms and sovereign business starter kits, my mission is singular: empower builders and creators to achieve total economic, creative, and technical independence.
+              I translate enterprise experience into inspectable architectures, agent workflows, evaluation boundaries, and practical build decisions, and I publish the work.
             </p>
             <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <Link
                 href="/#current-work"
                 className="inline-flex min-h-12 items-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#07120d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
               >
-                Explore current work
+                See current work
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link
