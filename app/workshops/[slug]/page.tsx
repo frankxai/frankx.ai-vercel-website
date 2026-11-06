@@ -88,6 +88,39 @@ function BreadcrumbJsonLd({ workshop }: { workshop: NonNullable<ReturnType<typeo
   )
 }
 
+// Course schema: each detail page describes a single course. Only
+// fields already shown on the page are emitted; no prices, dates, or ratings
+// are invented here.
+function CourseJsonLd({ workshop }: { workshop: NonNullable<ReturnType<typeof getWorkshopBySlug>> }) {
+  const url = `${SITE_URL}/workshops/${workshop.slug}`
+  const courseLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    '@id': `${url}#course`,
+    name: workshop.title,
+    description: workshop.subtitle ? `${workshop.subtitle}. ${workshop.overview}` : workshop.overview,
+    url,
+    inLanguage: 'en',
+    educationalLevel: workshop.difficulty,
+    audience: { '@type': 'Audience', audienceType: workshop.audience },
+    teaches: workshop.objectives,
+    ...(workshop.prerequisites.length > 0 ? { coursePrerequisites: workshop.prerequisites } : {}),
+    provider: { '@id': `${SITE_URL}/#organization` },
+    instructor: { '@id': `${SITE_URL}/#frank-riemer` },
+    syllabusSections: workshop.modules.map((module) => ({
+      '@type': 'Syllabus',
+      name: module.title,
+      description: module.description,
+    })),
+  }
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(courseLd) }}
+    />
+  )
+}
+
 export default async function WorkshopDetailPage(
   { params }: { params: Promise<Params> },
 ) {
@@ -101,6 +134,7 @@ export default async function WorkshopDetailPage(
   return (
     <>
       <BreadcrumbJsonLd workshop={workshop} />
+      <CourseJsonLd workshop={workshop} />
       <WorkshopClient workshop={workshop} />
     </>
   )
