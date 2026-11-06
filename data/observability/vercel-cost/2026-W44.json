@@ -1,0 +1,61 @@
+{
+  "week": "2026-W44",
+  "generatedAt": "2026-10-26T07:10:43Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-10-19T07:10:57Z",
+  "windowEnd": "2026-10-26T07:10:57Z",
+  "pagesFetched": 2,
+  "paginationNote": "list_deployments fetched 2 pages for complete window coverage. Page 1: 100 deploys (newest-first, until=now). Pagination next=1792428734145 (2026-10-19T16:52:14Z) was within the window; gap page fetched with since=1792393917000 (windowStart) and until=1792428734145 returned 76 deploys with no further next key — confirming full coverage. Combined total: 176 deploys covering the complete 7-day window.",
+  "metrics": {
+    "count_total": 176,
+    "count_production": 35,
+    "count_preview": 141,
+    "count_skipped": 58,
+    "count_error": 2,
+    "count_ready": 113,
+    "count_other": 3,
+    "state_note": "count_ready(113) + count_error(2) + count_skipped(58) + count_other(3) = 176 = count_total. The 3 'other' deploys had a state that was not READY, ERROR, or CANCELED (likely BUILDING or QUEUED at snapshot time — observed in page-1 data only).",
+    "duration_p50_seconds": null,
+    "duration_p95_seconds": null,
+    "duration_max_seconds": null,
+    "total_build_minutes": null,
+    "duration_method": "unavailable",
+    "duration_note": "list_deployments response does not include readyAt or buildingAt fields. The consecutive-created-timestamps proxy is unreliable — many branches run concurrently. Precise timing requires individual get_deployment calls. Prior baseline: W43 p50=168s, p95=274s; W42 p50=169s, p95=205s. No regression evidence without sampling.",
+    "error_deploys": [
+      {
+        "id": "dpl_819ZFgDf7qYR9WQxZvw7W1Ub6hfL",
+        "url": "frankx-ai-vercel-website-58qqtzzaf-starlight-intelligence.vercel.app",
+        "created": "2026-10-26T03:52:16Z",
+        "target": "production",
+        "commit_ref": "main",
+        "note": "Production deploy ERROR — same commit SHA as the subsequent READY production deploy dpl_AoSrE1C6. Failed first attempt; second attempt succeeded. Not an active outage."
+      },
+      {
+        "id": "dpl_7iJqTPCoaanCsrJtsQ1ghiVCSKQD",
+        "url": null,
+        "created": "2026-10-19T16:33Z",
+        "target": "preview",
+        "commit_ref": "agent/codex/research-dossiers",
+        "note": "Preview deploy ERROR on agent/codex/research-dossiers branch. Found in gap page (2026-10-19T07:10Z–T16:52Z coverage). No subsequent READY deploy observed on this branch in the window — may indicate a persistent build failure on this branch."
+      }
+    ]
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W43",
+    "duration_p50_seconds": "unavailable",
+    "count_total": "-196",
+    "count_production": "-20",
+    "count_error": "-11",
+    "total_build_minutes": "unavailable"
+  },
+  "verdict": "RED",
+  "alerts": [
+    "count_error=2 (RED threshold ≥2). Two ERROR deploys this week: (1) dpl_819ZFgDf7qYR9WQxZvw7W1Ub6hfL — production main deploy failed at 2026-10-26T03:52Z, same commit retried and succeeded immediately (not an active outage); (2) dpl_7iJqTPCoaanCsrJtsQ1ghiVCSKQD — preview ERROR on agent/codex/research-dossiers at 2026-10-19T16:33Z with no observed subsequent READY on this branch (may indicate a persistent build failure).",
+    "count_total=176 (complete 2-page coverage, GREEN <200). Significant drop from W43=372 (-196 delta). Reflects reduced automation branch activity this week.",
+    "count_production=35 (vs 55 in W43, -20). Lower production merge activity — likely reflects consolidation after W43's intensive agent/grok branch session.",
+    "count_skipped=58 (33% of total). CANCELED rate is moderate — rapid successive pushes on automation branches continuing but at reduced volume vs W43's 161 skipped.",
+    "Duration metrics unavailable this run: list_deployments API response does not include readyAt/buildingAt fields. Prior baseline: p50=168s (W43), p95=274s (W43). No regression evidence without per-deployment sampling.",
+    "count_other=3: three deploys were in BUILDING or QUEUED state at snapshot time (page-1 data only); excluded from READY/ERROR/CANCELED counts."
+  ]
+}
