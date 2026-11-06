@@ -1739,6 +1739,61 @@
         "https://docs.x.ai/developers/models/grok-4.3",
         "https://venturebeat.com/technology/xai-launches-grok-4-3-at-an-aggressively-low-price-and-a-new-fast-powerful-voice-cloning-suite"
       ]
+    },
+    "gemini-4-argon": {
+      "name": "Gemini 4 Argon",
+      "id": "gemini-4-argon",
+      "organization": "google",
+      "family": "gemini",
+      "released": "2026-10-08",
+      "status": "ga",
+      "architecture": "undisclosed",
+      "context_window": 1048576,
+      "max_output_tokens": 65536,
+      "modalities": [
+        "text",
+        "vision",
+        "audio",
+        "video"
+      ],
+      "capabilities": [
+        "reasoning",
+        "coding",
+        "multimodal",
+        "agentic-infra"
+      ],
+      "pricing": {
+        "input_per_1m": 2.0,
+        "output_per_1m": 10.0,
+        "cached_input_per_1m": 0.1,
+        "verified_at": "2026-10-14",
+        "scope": "Standard Gemini API introductory rates in USD through 2026-11-30 ($2.00 input, $10.00 output, $0.10 cached input per million tokens; 95% cache discount). Default synchronous output limit is 65,536 tokens, scaling up to 1,000,000 tokens via long decode continuation."
+      },
+      "benchmarks": {},
+      "key_capabilities": [
+        "Text, image, audio, video and PDF input; text output with adjustable thinking levels (low, medium, high)",
+        "1,048,576 input-token window; 65,536 default output limit expandable to 1,000,000 tokens via long decode continuation",
+        "95% context-caching discount ($0.10 per 1M cached input tokens) for warm repository and document sessions",
+        "Function calling, structured outputs, code execution, search grounding and computer use preview",
+        "Measured in Starlight Model Arena Round 6 (/research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json)"
+      ],
+      "frankx_notes": "Google DeepMind's October 2026 Gemini 4 flagship. Pairs a 1,048,576-token native multimodal window (text, image, audio, video, PDF) with $2.00/$10.00 introductory API pricing and a $0.10/1M cached-input rate through 30 November 2026. In Starlight Model Arena Round 6 (2026-10-14, /research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json), Argon passed 5/5 first-party tasks covering Next.js 16 TypeScript row normalization, WCAG AA dark-mode UI synthesis, a 7-rule editorial constraint stack, provenance-boundary pushback (at thinking=high), and Langfuse Cloud EU telemetry wiring. Named caveat: at thinking=low it prioritizes speed over specification pushback, and Claude Opus 5 / Fable 5.1 retain an edge on long-form literary voice.",
+      "sources": [
+        "https://ai.google.dev/gemini-api/docs/models",
+        "https://ai.google.dev/gemini-api/docs/pricing",
+        "https://deepmind.google/models/gemini/"
+      ],
+      "evaluation": {
+        "status": "measured",
+        "planned_cases": 5,
+        "measured_cases": 5,
+        "judge_model": null,
+        "production_ready": true,
+        "url": "/research/model-arena",
+        "evidence_url": "/research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json"
+      },
+      "last_verified": "2026-10-14",
+      "verification_scope": "Model ID, release window, 1M input / 65K default (1M continuation) output limits, modalities, introductory API pricing ($2/$10, $0.10 cached through 2026-11-30), and first-party Round 6 Proving Ground receipt (5 tasks, mechanically verified 2026-10-14)."
     }
   },
   "organizations": {
