@@ -29,15 +29,19 @@ function services({ resendFails = false } = {}) {
     let result = null
     switch (cmd.toLowerCase()) {
       case 'eval': {
-        const [, , positionsKey, countKey, email] = args
-        const existing = hash(positionsKey).get(email)
-        if (existing !== undefined) result = existing
-        else {
-          const next = Number(strings.get(countKey) ?? 0) + 1
-          strings.set(countKey, String(next))
-          hash(positionsKey).set(email, String(next))
-          result = next
+        const [, , positionsKey, countKey, signalsKey, email, json] = args
+        let position = hash(positionsKey).get(email)
+        let created = 0
+        if (position === undefined) {
+          position = String(Number(strings.get(countKey) ?? 0) + 1)
+          strings.set(countKey, position)
+          hash(positionsKey).set(email, position)
+          created = 1
         }
+        if (!hash(signalsKey).has(email)) {
+          hash(signalsKey).set(email, '{"position":' + position + json.slice('{"position":-1'.length))
+        }
+        result = [Number(position), created]
         break
       }
       case 'set': {

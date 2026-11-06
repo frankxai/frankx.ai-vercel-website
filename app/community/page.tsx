@@ -21,6 +21,7 @@ import {
 import { EmailSignup } from '@/components/email-signup'
 import { GlowCard } from '@/components/ui/glow-card'
 import { WaitlistForm } from '@/lib/demand-capture/WaitlistForm'
+import { giftCopy } from '@/lib/demand-capture/gift-config'
 import './waitlist.css'
 
 // ── Data ──
@@ -213,6 +214,7 @@ export default function CommunityPage() {
               productId={OPERATOR_LAB_ID}
               productName="the Starlight operator lab"
               placeholder="you@example.com"
+              copy={giftCopy(OPERATOR_LAB_ID)}
             />
           </motion.div>
         </motion.section>
