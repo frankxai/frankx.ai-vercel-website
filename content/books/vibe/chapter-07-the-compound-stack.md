@@ -47,7 +47,7 @@ Scott Adams (Dilbert creator) described this as the Talent Stack: you don't need
 
 **2. Content Stack.** Every piece of content you publish is an asset. The article you write today appears in search results for years. The book you publish lives on a shelf indefinitely. The course you build generates enrollments long after creation. The content stack compounds because each piece cross-references others, because search engines reward sites with large content libraries, and because audiences who find one piece discover the others.
 
-My content stack: 17 books, 90+ articles, 12,000+ songs. No single piece is remarkable in isolation. The stack — the full body of work — is what creates authority. The stack says: this person has practiced. The stack cannot be faked, cannot be purchased, and cannot be replicated by someone who has not done the work.
+My content stack: 17 books, 90+ articles, AI music. No single piece is remarkable in isolation. The stack — the full body of work — is what creates authority. The stack says: this person has practiced. The stack cannot be faked, cannot be purchased, and cannot be replicated by someone who has not done the work.
 
 **3. Relationship Stack.** Trust compounds over time. The person who has known you for five years trusts you differently than the person who met you yesterday. Professional relationships that begin with a single collaboration deepen into partnerships, partnerships into investments, investments into shared ventures. Each positive interaction deposits into a trust account that accrues interest.
 

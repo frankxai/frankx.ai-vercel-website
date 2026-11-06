@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, ExternalLink } from 'lucide-react'
@@ -9,11 +10,12 @@ export const metadata: Metadata = {
   title: 'Dream 100 — contribution before contact',
   description:
     'The people and organizations FrankX studies, supports, and hopes to earn the right to collaborate with over time.',
-  alternates: { canonical: 'https://frankx.ai/dream-100' },
+  alternates: { canonical: `${siteConfig.url}/dream-100` },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Dream 100 — FrankX',
     description: 'A contribution engine for long-term relationships, not a prospect list.',
-    url: 'https://frankx.ai/dream-100',
+    url: `${siteConfig.url}/dream-100`,
     type: 'website',
   },
 }

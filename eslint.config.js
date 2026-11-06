@@ -18,6 +18,7 @@ module.exports = [
       'react/no-unescaped-entities': 'off',
       'react-hooks/purity': 'off',
       'react-hooks/set-state-in-effect': 'off',
+      '@next/next/no-html-link-for-pages': 'off',
     },
   },
 ]

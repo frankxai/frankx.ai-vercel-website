@@ -27,6 +27,13 @@ export const outboundLinks: OutboundLink[] = [
     description: 'Official fallback. Issued affiliate destination lives only in data/affiliate/programs.json.',
   },
   {
+    slug: 'wispr',
+    destination: 'https://wisprflow.ai',
+    label: 'Wispr Flow',
+    category: 'tool',
+    description: 'Official fallback. Issued referral destination lives only in data/affiliate/programs.json.',
+  },
+  {
     slug: 'canva',
     destination: 'https://www.canva.com/',
     label: 'Canva',

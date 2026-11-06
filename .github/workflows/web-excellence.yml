@@ -21,11 +21,16 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: web-excellence-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   guidelines:
     name: Web Interface Guidelines (mechanical)
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v7
         with:

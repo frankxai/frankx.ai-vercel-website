@@ -35,9 +35,13 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: branch-cleanup-${{ github.ref }}
+
 jobs:
   delete:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
         with:

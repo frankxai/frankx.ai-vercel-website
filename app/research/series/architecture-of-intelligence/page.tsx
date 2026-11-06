@@ -1,3 +1,4 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
@@ -17,15 +18,17 @@ export const metadata: Metadata = {
   description:
     'A research spine on how intelligence organizes itself across human minds, AI systems, meaning, and embodied life. Five connected briefs — IFS, Self-Led AI Architecture, the Predictive Mind, Meaning OS, Embodied Cognition — read as one argument.',
   alternates: {
-    canonical: 'https://frankx.ai/research/series/architecture-of-intelligence',
+    canonical: `${siteConfig.url}/research/series/architecture-of-intelligence`,
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'The Architecture of Intelligence | FrankX Research',
     description: 'Five connected research briefs on how intelligence organizes itself — across mind, machine, meaning, and embodied life.',
     type: 'article',
-    url: 'https://frankx.ai/research/series/architecture-of-intelligence',
+    url: `${siteConfig.url}/research/series/architecture-of-intelligence`,
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary_large_image',
     title: 'The Architecture of Intelligence',
     description: 'A research spine on inner systems, agentic governance, predictive minds, meaning, and embodied cognition.',
@@ -96,27 +99,27 @@ const companionContent = [
 const collectionLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  '@id': 'https://frankx.ai/research/series/architecture-of-intelligence',
+  '@id': `${siteConfig.url}/research/series/architecture-of-intelligence`,
   name: 'The Architecture of Intelligence',
   description: 'A FrankX research series on how intelligence organizes itself across mind, machine, meaning, and embodied life.',
-  url: 'https://frankx.ai/research/series/architecture-of-intelligence',
+  url: `${siteConfig.url}/research/series/architecture-of-intelligence`,
   isPartOf: {
     '@type': 'WebSite',
-    '@id': 'https://frankx.ai',
+    '@id': siteConfig.url,
     name: 'FrankX',
   },
   hasPart: seriesDomains.map((d) => ({
     '@type': 'TechArticle',
     headline: d.title,
-    url: `https://frankx.ai/research/${d.slug}`,
+    url: `${siteConfig.url}/research/${d.slug}`,
     description: d.tldr,
   })),
   breadcrumb: {
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai' },
-      { '@type': 'ListItem', position: 2, name: 'Research', item: 'https://frankx.ai/research' },
-      { '@type': 'ListItem', position: 3, name: 'Architecture of Intelligence', item: 'https://frankx.ai/research/series/architecture-of-intelligence' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
+      { '@type': 'ListItem', position: 2, name: 'Research', item: `${siteConfig.url}/research` },
+      { '@type': 'ListItem', position: 3, name: 'Architecture of Intelligence', item: `${siteConfig.url}/research/series/architecture-of-intelligence` },
     ],
   },
 })

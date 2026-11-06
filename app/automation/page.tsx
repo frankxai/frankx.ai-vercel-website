@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import { workflowSummary } from '@/lib/automation/workflow-registry'
 
@@ -45,7 +45,7 @@ export default function AutomationPage() {
         data={{
           name: 'Automation Empire — FrankX',
           description: `${workflowSummary.active} active n8n workflows powering the FrankX operation.`,
-          url: 'https://frankx.ai/automation',
+          url: `${siteConfig.url}/automation`,
         }}
       />
 

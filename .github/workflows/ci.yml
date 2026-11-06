@@ -2,7 +2,39 @@ name: CI
 
 on:
   push:
-    branches: [main, staging]
+    branches: [main]
+    # Pull requests already prove workflow/docs-only changes before merge.
+    # Re-run the full install, typecheck, test, and build only when a main
+    # commit can change the deployed application.
+    paths:
+      - 'app/**'
+      - 'components/**'
+      - 'lib/**'
+      - 'content/**'
+      - 'data/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'styles/**'
+      - 'types/**'
+      - 'vendor/google-design-md/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'next.config.mjs'
+      - 'vercel.json'
+      - 'tailwind.config.js'
+      - 'tsconfig.json'
+      - 'proxy.ts'
+      - 'middleware.ts'
+      - 'middleware.js'
+      - '.vercelignore'
+      - '.npmrc'
+      - 'postcss.config.js'
+      - 'postcss.config.mjs'
+      - 'eslint.config.js'
+      - 'eslint.config.mjs'
+      - '.eslintrc.json'
+      - 'instrumentation.ts'
   pull_request:
     # 'edited' matters here for the base branch, not the title: a pull_request
     # run builds the merge commit, so this verdict is about one base. Retargeting
@@ -13,11 +45,12 @@ on:
     branches: [main, staging]
 
 # CI is an exact required landing check and test:build-integrity scans workflow
-# security controls. Keep it always-reporting; never add paths/paths-ignore.
+# security controls. Keep pull_request always-reporting; a required check with
+# PR paths/paths-ignore can leave unmatched pull requests permanently blocked.
 
-# Cancel superseded runs on rapid pushes to the same ref
+# Event namespaces keep main separate even from closed PRs using an older workflow.
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ci-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -27,9 +60,29 @@ env:
   NODE_VERSION: '22'
 
 jobs:
+  dependency-audit:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6
+        with:
+          run_install: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      # Runs on drafts too; audits the lockfile without installing dependencies.
+      # Keep high/critical findings and registry failures visible; no exemptions.
+      - run: pnpm audit --audit-level high
+
   ci:
     name: CI
-    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
+    # An authorized maintainer can opt a draft into full verification before a
+    # synchronize/re-run event, without enabling automatic draft AI reviews.
+    if: github.event_name != 'pull_request' || (github.event.pull_request.state == 'open' && (github.event.pull_request.draft == false || contains(github.event.pull_request.labels.*.name, 'ci:verify')))
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -58,6 +111,18 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: '1.3.12'
+
+      - name: Reproduce the reviewed design CLI package
+        run: |
+          node vendor/google-design-md/rebuild.mjs "$RUNNER_TEMP/design-md-verified"
+          diff -qr vendor/google-design-md/package "$RUNNER_TEMP/design-md-verified/package"
+
+      - name: Design CLI security and compatibility
+        run: node --test vendor/google-design-md/security.test.mjs
+
       - name: Build integrity contract
         run: pnpm run test:build-integrity
 
@@ -69,6 +134,21 @@ jobs:
 
       - name: Type Check
         run: pnpm run type-check
+
+      - name: Private ops authorization
+        run: node --test scripts/tests/ops-authorization.test.mjs
+
+      - name: Production deployment hold
+        run: node --test scripts/tests/deployment-hold.test.mjs
+
+      - name: Template contracts
+        run: |
+          pnpm --dir templates/agent-payments-guard test
+          pnpm --dir templates/mcp-server-kit build
+          pnpm --dir templates/swarm-governance-starter test
+
+      - name: Glass input source contracts
+        run: node --test scripts/tests/glass-control-accessibility.test.mjs
 
       - name: Changelog contract
         run: pnpm run test:changelog-release
@@ -112,11 +192,21 @@ jobs:
       - name: Request-time book chapters (no jsdom in the chapter function)
         run: pnpm run test:book-chapter:rendered
 
+      - name: Private ops production authorization
+        run: node scripts/qa/ops-authorization.mjs
+        timeout-minutes: 2
+
       - name: Install the reader QA browser
         # The GitHub-hosted Ubuntu image already provides Chrome's OS libraries.
         # Download the Puppeteer-pinned binary as the runner user; --install-deps
         # requires root and would also put its browser cache in root's home.
         run: pnpm exec puppeteer browsers install chrome
+
+      - name: Mermaid CLI browser compatibility
+        run: |
+          printf 'flowchart LR\nA-->B\n' > "$RUNNER_TEMP/mermaid-ci.mmd"
+          pnpm exec mmdc -i "$RUNNER_TEMP/mermaid-ci.mmd" -o "$RUNNER_TEMP/mermaid-ci.svg" --puppeteerConfigFile scripts/diagrams/puppeteer.config.json
+          node -e "const fs=require('node:fs'); const svg=fs.readFileSync(process.env.RUNNER_TEMP+'/mermaid-ci.svg','utf8'); if(!svg.includes('<svg') || svg.length < 500) process.exit(1)"
 
       - name: Reader journeys and screen evidence
         run: node scripts/qa/book-journey.mjs
@@ -133,6 +223,46 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
+      - name: Search resources and brief journey
+        run: node scripts/qa/search-journey.mjs
+        timeout-minutes: 8
+        env:
+          REVIEWED_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Save search journey evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: search-journey-${{ github.sha }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/search-journey
+          if-no-files-found: ignore
+          retention-days: 14
+
       - name: GenCreator rendered metadata
         if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: pnpm run test:gencreator-metadata:rendered
+
+      - name: Glass input keyboard, touch and motion journey
+        run: node scripts/qa/glass-input-journey.mjs
+        timeout-minutes: 6
+        env:
+          REVIEWED_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Glass input production journey
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: node scripts/qa/glass-input-journey.mjs
+        timeout-minutes: 6
+        env:
+          GLASS_QA_ORIGIN: https://www.frankx.ai
+          REVIEWED_HEAD_SHA: ${{ github.sha }}
+
+      - name: Save glass input evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: glass-input-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/glass-input-journey
+            ${{ runner.temp }}/glass-input-production
+          if-no-files-found: ignore
+          retention-days: 14

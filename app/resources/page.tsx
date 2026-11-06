@@ -453,6 +453,15 @@ export default function ResourcesPage() {
           </div>
         </section>
 
+        <section aria-labelledby="search-resources-title" className="mx-auto max-w-7xl px-6 py-8">
+          <div className="flex flex-col gap-5 rounded-3xl border border-emerald-300/25 bg-[#111113] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+            <div>
+              <h2 id="search-resources-title" className="text-2xl font-semibold text-white">SEO and AEO playbooks</h2>
+              <p className="mt-3 max-w-2xl leading-7 text-slate-300">Research a page decision, prepare a brief, and keep the supporting evidence.</p>
+            </div>
+            <Link href="/resources/seo-aeo" className="inline-flex shrink-0 items-center gap-2 self-start rounded-full border border-emerald-300/50 px-5 py-3 text-sm font-semibold text-emerald-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 sm:self-auto">Explore the workflow<ArrowRight aria-hidden="true" size={16} /></Link>
+          </div>
+        </section>
         <ResourceGrid title="Start Here" subtitle="Free Resources" items={foundationItems} />
         <ResourceGrid title="Interactive Tools" subtitle="Built By FrankX" items={toolItems} />
         <ResourceGrid title="Products" subtitle="Systems" items={productItems} />

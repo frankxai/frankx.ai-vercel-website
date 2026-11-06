@@ -24,7 +24,7 @@
        ========================================================================= */
 
     /* Brand Accents */
-    --brand-purple: #ab47c7; /* Intelligence, ACOS, primary brand */
+    --brand-purple: #ab47c7; /* Arcanea/ACOS accent only. FrankX primary is --brand-emerald (Tech) or --brand-gold (Soul) */
     --brand-blue: #43bfe3; /* Technology, Vibe OS, architecture */
     --brand-magenta: #e040fb; /* GenCreator OS, multi-modal creation */
     --brand-emerald: #10b981; /* Success, Labs, CTAs */
@@ -173,10 +173,10 @@
     font-family: var(--font-poppins), "Poppins", system-ui, sans-serif;
   }
 
+  /* Kept for compatibility; renders solid brand emerald. The purple-to-blue diagonal is
+     banned (taste ledger, taste-frankx-surface-texture) and taste.md rejects decorative gradients. */
   .gradient-text {
-    background-image: linear-gradient(135deg, #ab47c7, #43bfe3);
-    -webkit-background-clip: text;
-    color: transparent;
+    color: theme('colors.tech.primary');
   }
 
   .gradient-bg {
@@ -489,9 +489,12 @@
 /* ── Shimmer border utility classes ── */
 @layer utilities {
   /* Always-on shimmer border */
+  .shimmer-border,
+  .shimmer-border-hover {
+    --shimmer-color-1: theme('colors.tech.primary');
+    --shimmer-color-2: theme('colors.tech.secondary');
+  }
   .shimmer-border {
-    --shimmer-color-1: #ab47c7;
-    --shimmer-color-2: #43bfe3;
     background: conic-gradient(
       from var(--shimmer-angle),
       transparent 60%,
@@ -513,8 +516,8 @@
     background: conic-gradient(
       from var(--shimmer-angle),
       transparent 60%,
-      #ab47c7 70%,
-      #43bfe3 80%,
+      var(--shimmer-color-1) 70%,
+      var(--shimmer-color-2) 80%,
       transparent 90%
     );
     animation: none;

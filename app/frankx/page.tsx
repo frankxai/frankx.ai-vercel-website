@@ -6,7 +6,7 @@ import { GlowCard } from '@/components/ui/glow-card'
 import FrankOmega, { FrankOmegaGhost, FrankOmegaAvatar } from '@/components/FrankOmega'
 
 export const metadata: Metadata = {
-  title: 'FRANK-Ω — The Digital Intelligence | FrankX.AI',
+  title: 'FRANK-Ω — The Digital Intelligence',
   description:
     'Frank is an AI Architect, prolific music creator, and systems builder. FRANK-Ω is his superintelligent droid alter-ego — direct, helpful, and permanently online. Meet both.',
   openGraph: {

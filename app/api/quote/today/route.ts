@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { bookReviews } from '@/data/book-reviews';
+import { calendarDay } from '@/lib/quote-day';
 
 const SITE_URL = 'https://frankx.ai';
 
@@ -50,17 +51,6 @@ function hashString(s: string): number {
   return h >>> 0;
 }
 
-function todayKey(timezone = 'UTC') {
-  const now = new Date();
-  const fmt = new Intl.DateTimeFormat('en-CA', {
-    timeZone: timezone,
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  });
-  return fmt.format(now); // YYYY-MM-DD
-}
-
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const tz = url.searchParams.get('tz') ?? 'UTC';
@@ -70,7 +60,18 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'No quotes available', total: 0 }, { status: 503 });
   }
 
-  const day = todayKey(tz);
+  const day = calendarDay(tz, new Date());
+  if (!day) {
+    return NextResponse.json(
+      { error: 'Unrecognized IANA timezone.' },
+      {
+        status: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    );
+  }
   const idx = hashString(day) % pool.length;
   const quote = pool[idx];
 

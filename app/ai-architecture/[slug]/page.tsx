@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 
 import prototypesData from '@/data/ai-architecture/prototypes.json'
+import { createMetadata } from '@/lib/seo'
 import { CATEGORY_META, CLOUD_PROVIDER_META, DIFFICULTY_META } from '@/types/ai-architecture'
 import type { ArchitecturePrototype } from '@/types/ai-architecture'
 import { BlueprintDiagramWrapper } from './BlueprintDiagramWrapper'
@@ -27,12 +28,20 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
   const blueprint = blueprints.find((b) => b.slug === slug)
-  if (!blueprint) return { title: 'Blueprint Not Found' }
-
-  return {
-    title: `${blueprint.title} | AI Architecture Blueprint`,
-    description: blueprint.metaDescription || blueprint.subtitle,
+  if (!blueprint) {
+    return createMetadata({
+      title: 'Blueprint Not Found',
+      description: 'The requested AI architecture blueprint could not be located.',
+      path: `/ai-architecture/${slug}`,
+      noindex: true,
+    })
   }
+
+  return createMetadata({
+    title: `${blueprint.title} — AI Architecture Blueprint`,
+    description: blueprint.metaDescription || blueprint.subtitle,
+    path: `/ai-architecture/${blueprint.slug}`,
+  })
 }
 
 export default async function BlueprintPage({ params }: Props) {

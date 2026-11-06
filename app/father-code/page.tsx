@@ -1,3 +1,4 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
@@ -17,7 +18,7 @@ import {
   Users,
 } from 'lucide-react'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 export const metadata: Metadata = {
   title: "The Builder's Line — What My Father Built With His Hands, What We Must Build in Our Minds",
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
     canonical: `${SITE_URL}/the-builders-line`,
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: "The Builder's Line — What My Father Built With His Hands, What We Must Build in Our Minds",
     description:
       'A son’s translation of Witali Riemer’s craftsman ethics for founders, creators, engineers, and strivers who need an operating code that carries life without breaking the builder.',
@@ -34,6 +36,7 @@ export const metadata: Metadata = {
     type: 'article',
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary',
     title: "The Builder's Line — A Son's Inheritance",
     description:
@@ -269,12 +272,6 @@ export default function BuildersLinePage() {
                 Read Witali’s story
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link
-                href="/blog/the-builder-and-the-belief"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-white transition hover:border-white/20 hover:bg-white/[0.06]"
-              >
-                Read the flagship essay
-              </Link>
             </div>
           </div>
         </div>
@@ -444,13 +441,6 @@ export default function BuildersLinePage() {
                   className="inline-flex items-center gap-2 text-sm font-semibold text-amber-200 transition hover:text-amber-100"
                 >
                   Return to Witali’s memorial
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/blog/the-builder-and-the-belief"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-400 transition hover:text-zinc-200"
-                >
-                  Read the essay
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>

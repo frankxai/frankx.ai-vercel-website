@@ -1,8 +1,9 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 import VisionariesHub from './VisionariesHub'
 import { topVisionaries, visionarySources, visionaryUpdatedAt, visionaries } from '@/lib/research/visionaries'
 
-const pageUrl = 'https://frankx.ai/visionaries'
+const pageUrl = `${siteConfig.url}/visionaries`
 
 export const metadata: Metadata = {
   title: 'Visionaries Hub | FrankX Research',
@@ -53,18 +54,18 @@ const pageLd = JSON.stringify({
   author: {
     '@type': 'Person',
     name: 'Frank Riemer',
-    url: 'https://frankx.ai',
+    url: siteConfig.url,
     jobTitle: 'AI Architect',
   },
   publisher: {
     '@type': 'Organization',
     name: 'FrankX',
-    url: 'https://frankx.ai',
+    url: siteConfig.url,
   },
   citation: visionarySources.map((source) => ({
     '@type': 'CreativeWork',
     name: source.label,
-    url: source.url.startsWith('http') ? source.url : `https://frankx.ai${source.url}`,
+    url: source.url.startsWith('http') ? source.url : `${siteConfig.url}${source.url}`,
   })),
 })
 

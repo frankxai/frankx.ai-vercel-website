@@ -1,17 +1,17 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1057,
-    "aliases": 59,
+    "total": 1077,
+    "aliases": 61,
     "byType": {
       "core": 24,
-      "section": 446,
+      "section": 447,
       "community": 17,
       "tool": 75,
       "static": 15,
-      "blog": 271,
+      "blog": 278,
       "research": 23,
-      "guide": 34,
+      "guide": 46,
       "library": 88,
       "newsletter": 1,
       "os": 11,
@@ -976,19 +976,20 @@
     },
     {
       "href": "/blog/aeo-knowledge-graph-2026",
-      "title": "The 2026 AEO Knowledge Graph: From SEO to Entity-First Authority",
-      "description": "Discover why Answer Engine Optimization (AEO) and Knowledge Graphs have replaced traditional SEO in 2026, and how to build topical authority clusters.",
+      "title": "AEO knowledge graphs: connect your content and preserve the evidence",
+      "description": "Use a content graph to manage page relationships, sources and updates. Understand its limits for SEO and AI search visibility.",
       "tags": [
-        "intelligence-dispatches",
-        "ai-systems",
-        "production"
+        "seo",
+        "aeo",
+        "knowledge graphs",
+        "content strategy"
       ],
       "type": "blog"
     },
     {
       "href": "/blog/aeo-playbook-get-cited-by-ai-2026",
-      "title": "How to Get Cited by ChatGPT and Perplexity: The AEO Playbook for 2026",
-      "description": "Answer Engine Optimization is how you become the source AI quotes. The on-page and off-page playbook to get cited by ChatGPT, Perplexity, and Gemini — with a checklist and the tools that track it.",
+      "title": "How to evaluate AI citations: an AEO playbook for your website",
+      "description": "Improve useful website content and measure sampled citations across AI answer tools. Includes an evidence checklist and a repeatable observation method.",
       "tags": [
         "AEO",
         "AI Search",
@@ -2157,19 +2158,6 @@
       "type": "blog"
     },
     {
-      "href": "/blog/das-fundament-und-der-glaube",
-      "title": "Die Linie des Erbauers: Was mein Vater mit Händen baute, und was wir im Geist errichten müssen",
-      "description": "Die Reflexion eines Sohnes an Witali Riemer zu seinem 57. Geburtstag. Ein wolgadeutscher Handwerksmeister, das Gewicht chronischer Erschöpfung, die Anatomie einer Prognose und die innere Architektur wahrer Vitalität.",
-      "tags": [
-        "die-linie-des-erbauers",
-        "state-engineering",
-        "handwerk",
-        "vitalitaet",
-        "autonome-gesundheit"
-      ],
-      "type": "blog"
-    },
-    {
       "href": "/blog/deepseek-r1-open-weight-reasoning-analysis",
       "title": "DeepSeek R1: What Open-Weight Reasoning Actually Means",
       "description": "The model that disrupted AI pricing. How DeepSeek R1 works, where it excels, and what it means for builders choosing between open and closed models.",
@@ -2922,6 +2910,19 @@
       "type": "blog"
     },
     {
+      "href": "/blog/llm-gateway-architecture-guide",
+      "title": "LLM Gateway Architecture Guide: Routing, Failover & Cost Control (2026)",
+      "description": "How to design and select a production LLM gateway across LiteLLM, Cloudflare AI Gateway, Kong, Portkey, and Helicone — with fallback configs, spend caps, and OpenTelemetry spans.",
+      "tags": [
+        "llm-gateway",
+        "ai-architecture",
+        "observability",
+        "cost-control",
+        "multi-model"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/lpu-wafer-scale-inference-economics-2026",
       "title": "LPU & Wafer-Scale Economics: Why SRAM Beats HBM3e for Sub-10ms Agent Loops",
       "description": "A silicon and architectural analysis of Groq LPUs, Cerebras WSE-3, and SRAM computing. How spatial compute and deterministic bandwidth break the memory wall for real-time swarms.",
@@ -3664,8 +3665,8 @@
     },
     {
       "href": "/blog/seo-aeo-optimization-acos",
-      "title": "SEO & AEO Optimization with ACOS: Rank in Search and AI Engines",
-      "description": "Master search and AI engine optimization with ACOS. Question-based structure, FAQ schemas, AI citation optimization, and the /factory pipeline for publish-ready content.",
+      "title": "SEO and AEO with ACOS: an evidence-led content workflow",
+      "description": "Plan and review search content with AI assistants. Preserve sources, check claims, and measure website outcomes without promising AI citations.",
       "tags": [
         "seo",
         "aeo",
@@ -3791,6 +3792,19 @@
         "capital-allocation",
         "digital-assets",
         "acos"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/speaking-vs-typing-speed",
+      "title": "Is speaking faster than typing? What the research shows",
+      "description": "What the Stanford speech study and the 136 million keystroke study actually measured, why sendable-text speed differs, and a five-minute test to run yourself.",
+      "tags": [
+        "voice-typing",
+        "speech-to-text",
+        "productivity",
+        "research",
+        "wispr-flow"
       ],
       "type": "blog"
     },
@@ -3932,19 +3946,6 @@
         "ai-architecture",
         "ai-systems",
         "production"
-      ],
-      "type": "blog"
-    },
-    {
-      "href": "/blog/the-builder-and-the-belief",
-      "title": "The Builder's Line: What My Father Built With His Hands, What We Must Build in Our Minds",
-      "description": "A son's reflection on Witali Riemer on his 57th birthday. An immigrant craftsman who built homes from ruins, the weight of chronic depletion, the anatomy of a medical prognosis, and the inner architecture of vitality.",
-      "tags": [
-        "the-builders-line",
-        "state-engineering",
-        "craftsmanship",
-        "vitality",
-        "autonomic-health"
       ],
       "type": "blog"
     },
@@ -4243,6 +4244,18 @@
       "type": "blog"
     },
     {
+      "href": "/blog/vercel-ship-2026-builder-decisions",
+      "title": "Vercel Ship 2026 decisions for people who ship agents",
+      "description": "Which Ship 2026 primitives to adopt, wait on, or skip, with the runtime guide and a decision matrix a builder can use on the page.",
+      "tags": [
+        "vercel",
+        "agent-stack",
+        "founders",
+        "ai-architecture"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/vibe-os-creative-soul",
       "title": "Vibe OS: Engineering Neuro-State with the RPM Model",
       "description": "Stop treating AI audio like a slot machine. Use the RPM Model to engineer the biological state of your users. Here is specific code for your prompt strategy.",
@@ -4287,6 +4300,71 @@
       "type": "blog"
     },
     {
+      "href": "/blog/voice-prompting-for-ai-architects",
+      "title": "Voice prompting for AI architects: dictate agent briefs",
+      "description": "How to dictate Claude Code, Cursor and Codex briefs by voice: a six-part spoken structure, what to keep on the keyboard, and how to review before you send.",
+      "tags": [
+        "voice-typing",
+        "wispr-flow",
+        "claude-code",
+        "prompt-engineering",
+        "ai-agents"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/voice-typing-for-ceos",
+      "title": "Voice typing for CEOs: delegate faster, with less loss",
+      "description": "How CEOs can dictate delegation memos, board narratives and 1:1 notes, run a voice-memo to owner loop, and roll out Wispr Flow with the right controls.",
+      "tags": [
+        "voice-typing",
+        "wispr-flow",
+        "leadership",
+        "delegation",
+        "team-rollout"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/voice-typing-for-creators",
+      "title": "Voice typing for creators: scripts, hooks and captions",
+      "description": "A voice typing workflow for content creators: dictate YouTube scripts, hooks, captions and newsletter drafts, capture ideas on mobile, and keep your own voice.",
+      "tags": [
+        "voice-typing",
+        "wispr-flow",
+        "content-creation",
+        "creator-workflows",
+        "youtube"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/voice-typing-for-founders",
+      "title": "Voice typing for founders: speak your inbox to zero",
+      "description": "A 7-day voice-first protocol for founders: dictate investor updates, async decisions, customer follow-ups and hiring notes, and know where dictation fails.",
+      "tags": [
+        "voice-typing",
+        "wispr-flow",
+        "founders",
+        "productivity",
+        "async-communication"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/voice-writing-for-authors",
+      "title": "Voice writing for authors: dictate the draft, edit by hand",
+      "description": "How authors can dictate a book: draft chapters by voice, keep a dictionary of character and place names, talk each scene, then revise by keyboard and AI.",
+      "tags": [
+        "voice-typing",
+        "wispr-flow",
+        "writing",
+        "book-writing",
+        "dictation"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/what-is-a-gencreator",
       "title": "What Is a GenCreator? The New Breed of AI-Native Creator",
       "description": "GenCreators use AI as a creative force multiplier. 12 principles, soul.md, daily shipping — the complete framework for the AI-native creator.",
@@ -4317,6 +4395,19 @@
         "intelligence-dispatches",
         "ai-systems",
         "production"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/wispr-flow-vs-superwhisper-vs-macwhisper-vs-willow",
+      "title": "Wispr Flow vs Superwhisper vs MacWhisper vs Willow",
+      "description": "Compare four dictation apps by where audio is processed, platforms, live dictation versus file transcription, AI cleanup and listed October 2026 prices.",
+      "tags": [
+        "voice-typing",
+        "wispr-flow",
+        "dictation",
+        "speech-to-text",
+        "ai-tools"
       ],
       "type": "blog"
     },
@@ -5841,6 +5932,21 @@
       "type": "guide"
     },
     {
+      "href": "/guides/ai-agent-ready-website-checklist",
+      "title": "How to Check if a Website Is AI-Agent Ready (8-Step Technical Audit)",
+      "description": "Run an 8-command curl and schema checklist to verify whether ChatGPT Search, Claude, Perplexity, and MCP agents can crawl, cite, and query your website.",
+      "tags": [
+        "aeo",
+        "geo",
+        "seo",
+        "llms-txt",
+        "mcp",
+        "json-ld",
+        "web-architecture"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/ai-operating-systems-workshop",
       "title": "Build an AI operating system: the workshop curriculum",
       "description": "Twelve lessons, working offline labs and a capstone for agents, MCP, memory, studio delivery, founder operations and family ownership.",
@@ -5895,7 +6001,7 @@
     {
       "href": "/guides/claude-anthropic-guide",
       "title": "Claude AI Guide for Creators",
-      "description": "Master Anthropic's Claude for creative writing, content strategy, coding assistance, and building AI-powered workflows that amplify your creative output",
+      "description": "Use Claude for writing, coding, and research synthesis with practical prompts, project workflows, and links to current Anthropic feature and plan guidance.",
       "tags": [
         "ai",
         "claude",
@@ -5920,6 +6026,33 @@
       "type": "guide"
     },
     {
+      "href": "/guides/claude-code-plugins-vs-skills",
+      "title": "Claude Code Plugins vs Skills: Marketplace, JetBrains & Cross-Harness Guide",
+      "description": "When to write a standalone SKILL.md folder versus packaging a Claude Code plugin — covering the plugin marketplace, VS Code & JetBrains IDEs, and Codex CLI interoperability.",
+      "tags": [
+        "claude-code",
+        "plugins",
+        "skills",
+        "jetbrains",
+        "codex",
+        "agent-engineering"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/claude-code-templates-starter-kit",
+      "title": "Claude Code Templates & Starter Kit (CLAUDE.md, Skills, Settings & Hooks)",
+      "description": "Copy-paste Claude Code templates for production repositories: CLAUDE.md, .claude/settings.json, SKILL.md, slash commands, subagents, and pre-tool hooks.",
+      "tags": [
+        "claude-code",
+        "templates",
+        "skills",
+        "devops",
+        "agent-engineering"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/community-platform-for-creators",
       "title": "Circle vs Custom Community App: The 2026 Creator Guide",
       "description": "Compare 71 community platforms for creators: Circle, branded apps, official MCP, AI integrations, custom builds, ownership, pricing, and exit risk.",
@@ -5933,8 +6066,8 @@
     },
     {
       "href": "/guides/elevenlabs-voice-guide",
-      "title": "ElevenLabs Voice AI Guide for Creators",
-      "description": "Master ElevenLabs for professional voiceovers, podcast production, voice cloning, and building audio content at scale without recording equipment",
+      "title": "ElevenLabs Voice AI Guide for Creators (2026 Pricing, Cloning & API)",
+      "description": "Practical ElevenLabs guide for YouTube voiceovers, podcasts, voice cloning, and low-latency API automation — with Starter vs Creator credit math.",
       "tags": [
         "ai",
         "elevenlabs",
@@ -6112,6 +6245,20 @@
       "type": "guide"
     },
     {
+      "href": "/guides/mcp-servers-claude-code-business",
+      "title": "Best MCP Servers for Claude Code, Sales & Marketing Workflows (2026)",
+      "description": "Curated production MCP servers for Claude Code engineering, analytics, CRM, and publishing workflows — with .mcp.json configs, security scopes, and token-budget discipline.",
+      "tags": [
+        "mcp",
+        "claude-code",
+        "sales",
+        "marketing",
+        "automation",
+        "ai-architecture"
+      ],
+      "type": "guide"
+    },
+    {
       "href": "/guides/midjourney-guide",
       "title": "Midjourney Guide for Creators",
       "description": "Master Midjourney for stunning visuals, brand imagery, content graphics, and developing a consistent visual identity powered by AI image generation",
@@ -6153,14 +6300,13 @@
     {
       "href": "/guides/openai-chatgpt-guide",
       "title": "OpenAI ChatGPT Guide for Creators",
-      "description": "Master ChatGPT and OpenAI tools for content creation, brainstorming, automation, and building AI-powered workflows with the world's most popular AI assistant",
+      "description": "Use ChatGPT for writing, research, images, and repeatable creator workflows, with practical prompts and links to current OpenAI feature and plan details.",
       "tags": [
         "ai",
         "chatgpt",
         "openai",
         "guide",
         "tutorial",
-        "gpt-4",
         "content-creation"
       ],
       "type": "guide"
@@ -6226,6 +6372,67 @@
         "Midjourney",
         "Suno",
         "Productivity"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/vercel",
+      "title": "Vercel for builders",
+      "description": "The FrankX reading path for Vercel: the Ship 2026 recap, the AI SDK, and the pages that still say public beta. Every door cites a Vercel page.",
+      "tags": [
+        "vercel",
+        "ai-sdk",
+        "founders",
+        "saas"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/vercel-agent-runtime-decisions",
+      "title": "Vercel agent runtimes: Python, Daemons, Drives",
+      "description": "Choose Python, Daemons, Drives, Services, and Connect events on Vercel. Four audiences each get one adopt, wait, or skip call tied to a primary page.",
+      "tags": [
+        "vercel",
+        "python",
+        "daemons",
+        "agent-runtime"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/vercel-ai-sdk",
+      "title": "Vercel AI SDK for builders",
+      "description": "One TypeScript API for models, tools, structured output, and streaming, plus the Gateway and the Python SDK that is still public beta. Every claim cites a Vercel page.",
+      "tags": [
+        "vercel",
+        "ai-sdk",
+        "ai-gateway",
+        "founders"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/vercel-ship-2026-recap",
+      "title": "Vercel Ship 2026: a sourced recap for builders",
+      "description": "What Vercel Ship 2026 put on the platform, which skills are generally available or public beta, and which recording to watch. Every claim cites a Vercel page.",
+      "tags": [
+        "vercel",
+        "agent-stack",
+        "founders",
+        "saas"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/guides/wispr-flow",
+      "title": "Wispr Flow guide: voice typing for builders",
+      "description": "Set up Wispr Flow, dictate agent briefs and daily messages, and decide which work to speak and which to type. Pricing and privacy checked October 2026.",
+      "tags": [
+        "wispr-flow",
+        "voice-typing",
+        "speech-to-text",
+        "dictation",
+        "ai-prompting"
       ],
       "type": "guide"
     },
@@ -8889,7 +9096,7 @@
     },
     {
       "href": "/products/5-suno-prompts",
-      "title": "5 Prompts That Made My Best Suno Tracks",
+      "title": "5 Suno Prompts",
       "tags": [
         "suno",
         "prompts"
@@ -9064,7 +9271,7 @@
     {
       "href": "/products/golden-age",
       "title": "The Golden Age of Creators",
-      "description": "How the creator economy crossed $250 billion and the barriers to creative expression evaporated. The definitive guide to building in the golden age.",
+      "description": "The definitive guide to building in the golden age.",
       "tags": [
         "book",
         "creator-economy",
@@ -9636,6 +9843,16 @@
       "type": "section"
     },
     {
+      "href": "/research/economy",
+      "title": "Economy",
+      "tags": [
+        "research",
+        "economy"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
       "href": "/research/hubs/agentic-products",
       "title": "Creative systems & products",
       "tags": [
@@ -9765,6 +9982,37 @@
         "stack"
       ],
       "type": "section"
+    },
+    {
+      "href": "/resources/seo-aeo",
+      "title": "SEO and AEO playbooks",
+      "tags": [
+        "seo",
+        "aeo",
+        "search",
+        "content strategy"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/resources/seo-aeo/semrush-mcp",
+      "title": "Semrush MCP setup and research prompt",
+      "tags": [
+        "semrush",
+        "mcp",
+        "keyword research"
+      ],
+      "type": "guide"
+    },
+    {
+      "href": "/resources/seo-aeo/workflow",
+      "title": "AI SEO workflow from evidence to website change",
+      "tags": [
+        "seo",
+        "ai",
+        "content brief"
+      ],
+      "type": "guide"
     },
     {
       "href": "/resources/skills",
@@ -10700,9 +10948,11 @@
     "/books/fable/chapter-17-epilogue-from-the-workbench": "/books/fable/27-close-the-fable-neither-would-claim",
     "/build-first-ai-agent": "/workshops/build-first-ai-agent",
     "/downloads/ana-ai-business-kit": "/allies/ana-cancino",
+    "/guide": "/guides",
     "/guide/agentic-obsidian-second-brain": "/guides/agentic-obsidian-second-brain",
     "/guide/obsidian-mcp-agent-skills": "/guides/agentic-obsidian-second-brain",
     "/guide/starlight-second-brain": "/guides/agentic-obsidian-second-brain",
+    "/guide/wispr-flow": "/guides/wispr-flow",
     "/guides/starlight-second-brain": "/guides/agentic-obsidian-second-brain",
     "/ikigai": "/workshops/ikigai-branding",
     "/ikigai-branding": "/workshops/ikigai-branding",

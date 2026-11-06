@@ -16,6 +16,7 @@ import {
 import JsonLd from '@/components/seo/JsonLd'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
+import { buildFrankPerson } from '@/lib/frank-person'
 
 export const metadata = createMetadata({
   title: 'Frank Riemer Media Kit | FrankX',
@@ -106,37 +107,7 @@ const boundaries = [
 
 const siteUrl = siteConfig.url
 
-const personSchema = {
-  '@id': `${siteUrl}/#frank-riemer`,
-  name: 'Frank Riemer',
-  alternateName: 'FrankX',
-  jobTitle: 'AI Architect',
-  url: `${siteUrl}/frank-riemer`,
-  image: `${siteUrl}/images/portraits/frank-presenting-oracle-2025.jpg`,
-  alumniOf: {
-    '@type': 'Organization',
-    name: 'Oracle',
-  },
-  brand: {
-    '@type': 'Brand',
-    name: 'FrankX',
-    url: siteUrl,
-  },
-  sameAs: [
-    socialLinks.linkedin,
-    socialLinks.github,
-    socialLinks.suno,
-    socialLinks.twitter,
-  ],
-  knowsAbout: [
-    'AI architecture',
-    'agentic workflows',
-    'AI creator systems',
-    'AI music creation',
-    'attention and recovery systems',
-    'personal AI operating systems',
-  ],
-}
+const personSchema = buildFrankPerson(siteUrl)
 
 const mediaKitSchema = {
   '@id': `${siteUrl}/media-kit#page`,

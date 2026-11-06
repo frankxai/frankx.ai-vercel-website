@@ -24,7 +24,7 @@
 .sectionHeader>p { max-width:340px; color:#a9b6b0; font-size:14px; line-height:1.8; }
 .selector { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:22px; }
 .selector button { min-height:58px; padding:14px 18px; background:#ffffff03; border:1px solid #ffffff14; border-radius:12px; display:flex; align-items:center; gap:12px; font-size:13px; color:#b8c3bd; text-align:left; }
-.selector button>span { font-size:10px; color:#83958b; font-family:var(--font-mono),monospace; }
+.selector button>span { font-size:10px; color:#9cb0a5; font-family:var(--font-mono),monospace; }
 .selector button>svg { margin-left:auto; }
 .selector button[aria-pressed=true] { color:#cffce6; border-color:#61dba15a; background:#153128; }
 .workbench { display:grid; grid-template-columns:330px minmax(0,1fr); border:1px solid #ffffff1a; border-radius:24px; overflow:hidden; }

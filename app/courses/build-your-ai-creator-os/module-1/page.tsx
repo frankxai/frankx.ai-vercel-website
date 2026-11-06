@@ -681,17 +681,20 @@ claude`}
               <div className="pt-8">
                 <div className="p-8 rounded-2xl bg-white/[0.03] border border-white/[0.08] text-center">
                   <h3 className="text-xl font-bold text-white mb-2">
-                    Get notified when Module 2 launches
+                    Interested in the next module?
                   </h3>
                   <p className="text-sm text-white/40 mb-6 max-w-md mx-auto">
-                    Join the course waitlist for early access to new modules, bonus content, and
-                    implementation resources.
+                    Submitting records interest in the rest of the course and subscribes you to
+                    occasional FrankX field notes. The immediate email is the standard newsletter
+                    welcome, not a module notification or course-specific follow-up.
                   </p>
                   <div className="max-w-md mx-auto">
                     <EmailSignup
                       listType="courses-waitlist"
+                      source="/courses/build-your-ai-creator-os/module-1"
+                      intent="course-build-your-ai-creator-os"
                       placeholder="you@example.com"
-                      buttonText="Notify Me"
+                      buttonText="Record course interest"
                       compact
                     />
                   </div>

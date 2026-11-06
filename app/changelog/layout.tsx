@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { createMetadata } from '@/lib/seo'
 
 const baseMetadata = createMetadata({
+  canonical: './',
   title: 'Changelog | Verified FrankX Releases',
   description: 'Meaningful FrankX releases explained in plain language, with dates, outcomes, and public GitHub evidence.',
   path: '/changelog',

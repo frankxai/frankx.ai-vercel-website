@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { ArrowLeft, Book, Mail, Zap } from 'lucide-react'
 
 export const metadata = {
-  title: 'Vibe OS Documentation | FrankX.ai',
+  title: 'Vibe OS Documentation',
   description: 'Learn how to use Vibe OS for creative state management and energy tracking.',
 }
 
