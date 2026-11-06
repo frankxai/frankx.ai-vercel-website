@@ -12,7 +12,7 @@ const { createWaitlistRoute, STORE_UNAVAILABLE, ALLOWED_ORIGINS } = await import
   '../../lib/demand-capture/waitlist-route.ts'
 )
 const { WAITLIST_PRODUCTS } = await import('../../lib/demand-capture/products.ts')
-const { claimPosition } = await import('../../lib/demand-capture/store.ts')
+const { claimWithSignal } = await import('../../lib/demand-capture/store.ts')
 const { landingUtm, joinPayload, refinePayload } = await import('../../lib/demand-capture/form-payload.ts')
 
 const PRODUCT = 'starlight-academy-operator-lab'
@@ -23,7 +23,7 @@ const URL_BASE = 'https://www.frankx.ai/api/waitlist'
  * `failWith` makes Upstash answer the way it does for a quota-limited or suspended
  * database: HTTP 200 with a single { error } object.
  */
-function fakeServices({ failWith } = {}) {
+function fakeServices({ failWith, failCommands = [] } = {}) {
   const hashes = new Map()
   const strings = new Map()
   const resend = []
@@ -36,18 +36,26 @@ function fakeServices({ failWith } = {}) {
     }
     if (failWith) return new Response(JSON.stringify({ error: failWith }), { status: 200 })
     const [cmd, ...args] = JSON.parse(init.body)
+    if (failCommands.includes(cmd.toLowerCase())) {
+      return new Response(JSON.stringify({ error: 'ERR injected failure on ' + cmd }), { status: 200 })
+    }
     let result = null
     switch (cmd.toLowerCase()) {
       case 'eval': {
-        const [, , positionsKey, countKey, email] = args
-        const existing = hash(positionsKey).get(email)
-        if (existing !== undefined) result = existing
-        else {
-          const next = Number(strings.get(countKey) ?? 0) + 1
-          strings.set(countKey, String(next))
-          hash(positionsKey).set(email, String(next))
-          result = next
+        // Mirrors CLAIM_WITH_SIGNAL: one atomic step for position, count and first signal.
+        const [, , positionsKey, countKey, signalsKey, email, json] = args
+        let position = hash(positionsKey).get(email)
+        let created = 0
+        if (position === undefined) {
+          position = String(Number(strings.get(countKey) ?? 0) + 1)
+          strings.set(countKey, position)
+          hash(positionsKey).set(email, position)
+          created = 1
         }
+        if (!hash(signalsKey).has(email)) {
+          hash(signalsKey).set(email, '{"position":' + position + json.slice('{"position":-1'.length))
+        }
+        result = [Number(position), created]
         break
       }
       case 'hget':
@@ -98,7 +106,10 @@ const post = (body, headers = {}) =>
 
 test('P1: an Upstash HTTP 200 { error } payload is a failure, not a signup', async () => {
   fakeServices({ failWith: 'ERR max requests limit exceeded' })
-  await assert.rejects(() => claimPosition(PRODUCT, 'a@example.com'), /max requests limit exceeded/)
+  await assert.rejects(
+    () => claimWithSignal({ productId: PRODUCT, email: 'a@example.com', consent: true, createdAt: 'now' }),
+    /max requests limit exceeded/,
+  )
 
   const res = await route().POST(post({ productId: PRODUCT, email: 'a@example.com', consent: true }))
   assert.equal(res.status, 503)
@@ -109,6 +120,28 @@ test('P1: GET state also answers 503 when Upstash refuses the database', async (
   fakeServices({ failWith: 'ERR database is suspended' })
   const res = await route().GET(new Request(`${URL_BASE}?productId=${PRODUCT}`))
   assert.equal(res.status, 503)
+})
+
+test('codex P2: a failed claim stores nothing and counts nothing', async () => {
+  const svc = fakeServices({ failCommands: ['eval'] })
+  const res = await route().POST(post({ productId: PRODUCT, email: 'atomic@example.com', consent: true }))
+  assert.equal(res.status, 503)
+  assert.equal(svc.count(), 0)
+  assert.equal(svc.signal('atomic@example.com'), null)
+})
+
+test('codex P2: a first join writes its signal inside the claim, not in a second write that can fail', async () => {
+  // Every plain HSET fails. A first join must not need one, so the signup is whole.
+  const svc = fakeServices({ failCommands: ['hset'] })
+  const res = await route().POST(
+    post({ productId: PRODUCT, email: 'whole@example.com', consent: true, source: '/community', utm: { utm_source: 'x' } }),
+  )
+  assert.equal(res.status, 200)
+  assert.equal(svc.count(), 1)
+  const stored = svc.signal('whole@example.com')
+  assert.equal(stored.position, 1)
+  assert.equal(stored.source, '/community')
+  assert.deepEqual(stored.utm, { utm_source: 'x' })
 })
 
 test('P2: landing-page UTM parameters are read from the page and kept on the signal', async () => {

@@ -4,7 +4,7 @@ import assert from 'node:assert/strict'
 process.env.KV_REST_API_URL = 'https://kv.test'
 process.env.KV_REST_API_TOKEN = 'test-token'
 
-const { mergeSignal, claimPosition } = await import('../../lib/demand-capture/store.ts')
+const { mergeSignal, claimWithSignal } = await import('../../lib/demand-capture/store.ts')
 
 const first = {
   productId: 'starlight-academy-operator-lab',
@@ -53,24 +53,27 @@ test('mergeSignal lets a new answer replace an old one', () => {
   assert.equal(mergeSignal(first, { ...first, role: 'agency' }).role, 'agency')
 })
 
-test('claimPosition sends one EVAL so the read, increment and write run as one step', async () => {
+test('claimWithSignal sends one EVAL that claims the position and writes the first signal together', async () => {
   const calls = []
   const realFetch = globalThis.fetch
   globalThis.fetch = async (url, init) => {
     calls.push(JSON.parse(init.body))
-    return new Response(JSON.stringify({ result: 7 }), { status: 200 })
+    return new Response(JSON.stringify({ result: [7, 1] }), { status: 200 })
   }
   try {
-    const position = await claimPosition('starlight-academy-operator-lab', 'a@example.com')
-    assert.equal(position, 7)
+    const out = await claimWithSignal({ ...first, position: undefined })
+    assert.deepEqual(out, { position: 7, created: true })
     assert.equal(calls.length, 1)
-    const [command, script, numKeys, positionsKey, countKey, email] = calls[0]
+    const [command, script, numKeys, positionsKey, countKey, signalsKey, email, json] = calls[0]
     assert.equal(command, 'eval')
-    assert.match(script, /HGET[\s\S]*INCR[\s\S]*HSET/)
-    assert.equal(numKeys, '2')
+    assert.match(script, /HGET[\s\S]*INCR[\s\S]*HSET[\s\S]*HEXISTS[\s\S]*HSET/)
+    assert.equal(numKeys, '3')
     assert.equal(positionsKey, 'waitlist:starlight-academy-operator-lab:positions')
     assert.equal(countKey, 'waitlist:starlight-academy-operator-lab:count')
-    assert.equal(email, 'a@example.com')
+    assert.equal(signalsKey, 'waitlist:starlight-academy-operator-lab:signals')
+    assert.equal(email, first.email)
+    assert.ok(json.startsWith('{"position":-1,'), 'position is the first key, filled in by the script')
+    assert.equal(JSON.parse(json).source, first.source)
   } finally {
     globalThis.fetch = realFetch
   }
