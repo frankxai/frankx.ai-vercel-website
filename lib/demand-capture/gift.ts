@@ -1,0 +1,1 @@
+export const GIFTS: Record<string, any> = {}; export const giftEmail = (..._a: unknown[]): any => { throw new Error('todo') }; export const sendGift = async (..._a: unknown[]): Promise<string> => 'todo'; export const giftCopy = (_p: string): any => { throw new Error('todo') }
