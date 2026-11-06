@@ -62,5 +62,17 @@
     "checkedOn": "2026-10-11",
     "kind": "screenshot",
     "aspectRatio": "2286/1420"
+  },
+  "elevenlabs-journal-audio-briefing": {
+    "src": "/images/editorial/elevenlabs-journal-audio-briefing.svg",
+    "width": 960,
+    "height": 1060,
+    "alt": "Four-step founder journal to consent-based audio briefing pipeline: public journal note and character ceiling, voice-owner consent and allowlist check, idempotent ElevenLabs synthesis, and MP3 frame QA with provenance manifest.",
+    "caption": "Governed journal-to-audio briefing pipeline. Halt immediately if the note is private, voice-owner consent is missing, or synthesized MP3 bytes fail header and loudness inspection.",
+    "credit": "Original diagram by FrankX",
+    "sourceUrl": "https://www.frankx.ai/guides/elevenlabs-voice-guide",
+    "rights": "original",
+    "createdOn": "2026-11-05",
+    "kind": "diagram"
   }
 }
