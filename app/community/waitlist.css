@@ -1,0 +1,126 @@
+/* Styles for the vendored demand-capture WaitlistForm (lib/demand-capture). The form only emits wl-* classes so each page decides how it looks. */
+
+.wl-input {
+  min-height: 48px;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(255 255 255 / 0.15);
+  background: rgb(10 10 11 / 0.8);
+  padding: 0.75rem 1rem;
+  color: #fff;
+  font-size: 16px;
+}
+
+.wl-input::placeholder {
+  color: rgb(148 163 184 / 0.7);
+}
+
+.wl-input:focus-visible,
+.wl-btn:focus-visible,
+.wl-chip:focus-visible,
+.wl-link:focus-visible {
+  outline: 2px solid #43bfe3;
+  outline-offset: 2px;
+}
+
+.wl-btn {
+  min-height: 48px;
+  border-radius: 0.75rem;
+  background: #ab47c7;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  touch-action: manipulation;
+  transition: background-color 150ms ease;
+}
+
+.wl-btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.wl-btn-quiet {
+  background: rgb(255 255 255 / 0.1);
+}
+
+.wl-check {
+  height: 1rem;
+  width: 1rem;
+  accent-color: #ab47c7;
+}
+
+.wl-note {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: rgb(148 163 184);
+}
+
+.wl-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgb(226 232 240);
+}
+
+.wl-error {
+  font-size: 0.875rem;
+  color: #fca5a5;
+}
+
+.wl-panel {
+  border-radius: 1rem;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  background: rgb(255 255 255 / 0.04);
+  padding: 1.25rem;
+}
+
+.wl-panel-title {
+  font-weight: 600;
+  color: #fff;
+}
+
+.wl-panel-text {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: rgb(148 163 184);
+}
+
+.wl-chip {
+  min-height: 40px;
+  border-radius: 9999px;
+  border: 1px solid rgb(255 255 255 / 0.15);
+  padding: 0.375rem 0.875rem;
+  font-size: 0.875rem;
+  color: rgb(203 213 225);
+  touch-action: manipulation;
+}
+
+.wl-chip-active {
+  border-color: #43bfe3;
+  background: rgb(67 191 227 / 0.15);
+  color: #fff;
+}
+
+.wl-link {
+  font-size: 0.875rem;
+  color: rgb(148 163 184);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .wl-btn:hover:not(:disabled) {
+    background: #9b3db6;
+  }
+
+  .wl-btn-quiet:hover:not(:disabled) {
+    background: rgb(255 255 255 / 0.15);
+  }
+
+  .wl-chip:hover {
+    border-color: rgb(255 255 255 / 0.3);
+  }
+
+  .wl-link:hover {
+    color: #fff;
+  }
+}
