@@ -84,6 +84,16 @@ const GUIDE_CATEGORIES = [
     slugs: ['modern-guide', 'skills-library-playbook', 'agent-collective-operating-system', 'founder-ai-stack-2026']
   },
   {
+    id: 'demos',
+    title: 'Demos and video',
+    subtitle: 'Record videos people finish',
+    description: 'Script, record, edit and share product demos, updates and lessons, and choose the right recorder.',
+    icon: Play,
+    color: 'from-sky-500/20 to-indigo-500/20',
+    iconColor: 'text-sky-400',
+    slugs: ['tella-guide', 'product-demo-video-guide', 'async-video-for-founders', 'record-a-course-or-tutorial', 'record-ai-agent-demos', 'tella-vs-loom', 'tella-alternatives', 'tella-pricing']
+  },
+  {
     id: 'development',
     title: 'AI Development',
     subtitle: 'Code smarter, ship faster',
