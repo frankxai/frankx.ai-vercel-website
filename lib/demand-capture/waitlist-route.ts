@@ -1,4 +1,4 @@
-import { handleJoin, handleState, type ProductConfig } from './handler.ts'
+import { handleJoin, handleRefine, handleState, type ProductConfig } from './handler.ts'
 import { redisRestConfig } from '../redis-env.ts'
 
 /**
@@ -11,6 +11,9 @@ export const ALLOWED_ORIGINS = new Set([
   'https://www.starlightintelligence.academy',
   'https://starlightintelligence.ai',
   'https://www.starlightintelligence.ai',
+  // The apex 307-redirects to www today, so no page renders there. Listed anyway so a DNS or
+  // redirect change cannot silently break the form.
+  'https://frankx.ai',
   'https://www.frankx.ai',
 ])
 
@@ -25,7 +28,10 @@ type Limiter = (key: string) => Promise<{ success: boolean }>
 
 type Options = {
   products: ProductConfig[]
-  /** Called with a per-IP key on every join. */
+  /**
+   * Called with a per-IP key: `waitlist:ip:<ip>` on a join, `waitlist:refine:ip:<ip>` on step 2.
+   * Separate buckets, so finishing step 2 does not spend a join token.
+   */
   limit: Limiter
   storeReady?: () => boolean
 }
@@ -73,13 +79,15 @@ export function createWaitlistRoute({ products, limit, storeReady = defaultStore
     if (!product) return reply(req, { error: 'Unknown product' }, 404)
     if (!storeReady()) return reply(req, { error: STORE_UNAVAILABLE }, 503)
 
-    const allowed = await limit(`waitlist:ip:${clientIp(req)}`)
+    const refine = body.step === 'refine'
+    const bucket = refine ? 'waitlist:refine:ip:' : 'waitlist:ip:'
+    const allowed = await limit(bucket + clientIp(req))
       .then((result) => result.success)
       .catch(() => false)
     if (!allowed) return reply(req, { error: RATE_LIMITED }, 429)
 
     try {
-      const { status, body: out } = await handleJoin(product, body, req)
+      const { status, body: out } = refine ? await handleRefine(product, body) : await handleJoin(product, body, req)
       return reply(req, out, status)
     } catch (error) {
       console.error('[waitlist] store unavailable', error instanceof Error ? error.message : 'unknown')

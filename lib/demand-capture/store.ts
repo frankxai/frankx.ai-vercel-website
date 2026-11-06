@@ -8,15 +8,15 @@ import type { DemandSignal } from './types.ts'
 const KV_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
 const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
 const RESEND_KEY = process.env.RESEND_API_KEY
-const RESEND_AUDIENCE = process.env.RESEND_AUDIENCE_ID
 
 /**
- * A product promises its list "nothing from any other list". That only holds
- * with one audience per product, so RESEND_AUDIENCE_ID__<PRODUCT_ID> wins
- * over the shared RESEND_AUDIENCE_ID when it is set.
+ * The consent line promises the address stays with this list, which only holds with one
+ * audience per product. There is deliberately no fallback to the shared RESEND_AUDIENCE_ID
+ * (the newsletter): with no RESEND_AUDIENCE_ID__<PRODUCT_ID> set, the signal stays in KV only.
+ * Same rule as #1018.
  */
 const audienceFor = (productId: string) =>
-  process.env['RESEND_AUDIENCE_ID__' + productId.toUpperCase().replace(/-/g, '_')] ?? RESEND_AUDIENCE
+  process.env['RESEND_AUDIENCE_ID__' + productId.toUpperCase().replace(/-/g, '_')] || undefined
 
 const key = (productId: string, suffix: string) => `waitlist:${productId}:${suffix}`
 
@@ -29,7 +29,14 @@ async function kv(command: unknown[]): Promise<unknown> {
     cache: 'no-store',
   })
   if (!res.ok) throw new Error(`KV ${res.status}`)
-  return (await res.json()).result
+  // Upstash answers a refused database (quota, rate limit, suspended) with HTTP 200 and a
+  // single { error } object; see lib/redis-client.ts. Treating that as success would tell a
+  // visitor they are on the list when nothing was written.
+  const body = (await res.json()) as { result?: unknown; error?: unknown }
+  if (body && typeof body === 'object' && 'error' in body && body.error) {
+    throw new Error(`KV error: ${String(body.error)}`)
+  }
+  return body.result
 }
 
 // One script so Redis runs the read, increment and write as a single step: two overlapping

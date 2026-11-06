@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { joinPayload, refinePayload } from './form-payload.ts'
 import { PAIN_PROMPT, PRICE_BANDS, PRICE_PROMPT, URGENCY, rolesFor } from './questions.ts'
 import type { WaitlistState } from './types.ts'
 
@@ -88,6 +89,8 @@ export function WaitlistForm({
   const [step, setStep] = useState<'join' | 'refine' | 'done'>('join')
   const [state, setState] = useState<WaitlistState | undefined>(initialState)
   const [email, setEmail] = useState('')
+  // The address step 1 stored. Step 2 refines that signal, whatever the input says later.
+  const [joinedEmail, setJoinedEmail] = useState('')
   const [consent, setConsent] = useState(false)
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [busy, setBusy] = useState(false)
@@ -100,7 +103,7 @@ export function WaitlistForm({
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId, email, consent, ...payload }),
+        body: JSON.stringify(payload),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error ?? 'Something went wrong')
@@ -123,8 +126,19 @@ export function WaitlistForm({
         className="space-y-4"
         onSubmit={async (event) => {
           event.preventDefault()
-          const source = typeof window === 'undefined' ? '' : window.location.pathname
-          if (await post({ source })) setStep('refine')
+          if (busy) return
+          const submitted = email
+          const payload = joinPayload({
+            productId,
+            email: submitted,
+            consent,
+            pathname: typeof window === 'undefined' ? '' : window.location.pathname,
+            search: typeof window === 'undefined' ? '' : window.location.search,
+          })
+          if (await post(payload)) {
+            setJoinedEmail(submitted)
+            setStep('refine')
+          }
         }}
       >
         <div className="flex flex-col gap-3 sm:flex-row">
@@ -132,6 +146,8 @@ export function WaitlistForm({
             type="email"
             required
             value={email}
+            readOnly={busy}
+            aria-busy={busy}
             onChange={(event) => setEmail(event.target.value)}
             placeholder={placeholder}
             aria-label={'Email address to join the waitlist for ' + productName}
@@ -217,7 +233,7 @@ export function WaitlistForm({
         <div className="flex items-center gap-5">
           <button
             onClick={async () => {
-              if (await post(answers)) setStep('done')
+              if (await post(refinePayload({ productId, joinedEmail, answers }))) setStep('done')
             }}
             disabled={busy}
             className="wl-btn wl-btn-quiet"
