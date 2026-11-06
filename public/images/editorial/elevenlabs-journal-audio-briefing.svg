@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1060" viewBox="0 0 960 1060" role="img" aria-labelledby="title desc">
+  <title id="title">From founder journal to consent-based audio briefing</title>
+  <desc id="desc">Four-step governed pipeline with one stop rule: select a public published journal note, verify voice-owner and editorial consent, synthesize a bounded script with SHA-256 idempotency, inspect MP3 bytes and loudness before publishing alongside provenance.</desc>
+  <rect width="960" height="1060" rx="24" fill="#0a0a0b"/>
+  <path d="M56 64h64" stroke="#34d399" stroke-width="6"/>
+  <text x="56" y="128" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="40" font-weight="700">Founder journal to audio briefing</text>
+  <text x="56" y="176" fill="#b6b9b4" font-family="Arial,sans-serif" font-size="22">Consent-first synthesis, deterministic SHA-256 idempotency, and MP3 byte QA.</text>
+
+  <rect x="56" y="216" width="848" height="136" rx="16" fill="#131819" stroke="#2d3534"/>
+  <text x="84" y="270" fill="#34d399" font-family="Arial,sans-serif" font-size="28" font-weight="700">01</text>
+  <text x="150" y="270" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="30" font-weight="700">Public journal note &amp; character ceiling</text>
+  <text x="150" y="316" fill="#c5cbc7" font-family="Arial,sans-serif" font-size="21">Read published public /journal markdown, strip syntax, cap at 2,800 chars.</text>
+
+  <rect x="56" y="374" width="848" height="136" rx="16" fill="#131819" stroke="#2d3534"/>
+  <text x="84" y="428" fill="#34d399" font-family="Arial,sans-serif" font-size="28" font-weight="700">02</text>
+  <text x="150" y="428" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="30" font-weight="700">Voice-owner consent &amp; allowlist check</text>
+  <text x="150" y="474" fill="#c5cbc7" font-family="Arial,sans-serif" font-size="21">Require voiceOwnerApproved, editorialApproved, and an allowlisted Voice ID.</text>
+
+  <rect x="56" y="532" width="848" height="136" rx="16" fill="#131819" stroke="#2d3534"/>
+  <text x="84" y="586" fill="#34d399" font-family="Arial,sans-serif" font-size="28" font-weight="700">03</text>
+  <text x="150" y="586" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="30" font-weight="700">Idempotent ElevenLabs synthesis</text>
+  <text x="150" y="632" fill="#c5cbc7" font-family="Arial,sans-serif" font-size="21">Hash (slug + script + voice + model) so repeat triggers reuse existing audio.</text>
+
+  <rect x="56" y="690" width="848" height="136" rx="16" fill="#131819" stroke="#2d3534"/>
+  <text x="84" y="744" fill="#34d399" font-family="Arial,sans-serif" font-size="28" font-weight="700">04</text>
+  <text x="150" y="744" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="30" font-weight="700">MP3 frame QA &amp; provenance manifest</text>
+  <text x="150" y="790" fill="#c5cbc7" font-family="Arial,sans-serif" font-size="21">Verify ID3/MPEG header, normalize to -14 LUFS, store audio + JSON receipt.</text>
+
+  <rect x="56" y="848" width="848" height="92" rx="14" fill="#1c1610" stroke="#f59e0b" stroke-opacity="0.45"/>
+  <text x="84" y="886" fill="#fbbf24" font-family="Arial,sans-serif" font-size="20" font-weight="700">STOP RULE</text>
+  <text x="84" y="918" fill="#e5e7eb" font-family="Arial,sans-serif" font-size="19">Halt immediately if entry is private, voice consent is missing, or MP3 bytes fail QA.</text>
+
+  <path d="M56 968h848" stroke="#303635"/>
+  <text x="56" y="1012" fill="#b6b9b4" font-family="Arial,sans-serif" font-size="22">FrankX  /  Voice Architecture Schematic  /  November 2026</text>
+</svg>

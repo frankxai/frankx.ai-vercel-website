@@ -43,6 +43,18 @@ const partners: Partner[] = [
     ],
   },
   {
+    name: 'ElevenLabs',
+    url: 'https://elevenlabs.io',
+    kind: 'affiliate',
+    description:
+      'ElevenLabs is our recommended voice synthesis, multilingual dubbing, and founder journal audio briefing platform. Verified PartnerStack affiliate program (/go/elevenlabs): 22% recurring commission for 12 months on Starter, Creator, Pro, and Scale plans; 11% for 12 months on Business; Enterprise excluded; 90-day attribution window.',
+    usedIn: [
+      '/guides/elevenlabs-voice-guide',
+      '/resources/builder-stack',
+      '/api/voice/audio-briefing (founder journal audio briefings)',
+    ],
+  },
+  {
     name: 'Cursor',
     url: 'https://cursor.sh',
     kind: 'referral',
