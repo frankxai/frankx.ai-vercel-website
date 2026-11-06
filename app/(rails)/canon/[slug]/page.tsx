@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Script from 'next/script';
@@ -14,7 +15,7 @@ import { composeCanonSchema } from '@/lib/rails/schema';
 import { traditionLabels } from '@/data/rails/traditions';
 import { hubUrl } from '@/lib/rails/types';
 
-const SITE = 'https://frankx.ai';
+const SITE = siteConfig.url;
 
 export function generateStaticParams() {
   return getAllCanonSlugs().map((slug) => ({ slug }));

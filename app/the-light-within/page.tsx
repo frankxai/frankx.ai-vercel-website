@@ -1,19 +1,21 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'The Light Within — A Contemplation | FrankX',
+  title: 'The Light Within — A Contemplation',
   description:
     'A quiet essay on the light within: the inner stillness the traditions point to, visualization as a form of attention, and the felt connection to something larger than the self.',
   alternates: {
-    canonical: 'https://frankx.ai/the-light-within',
+    canonical: `${siteConfig.url}/the-light-within`,
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'The Light Within — A Contemplation',
     description:
       'A quiet essay on the inner light, attention as prayer, and the connection to something larger than the self.',
     type: 'article',
-    url: 'https://frankx.ai/the-light-within',
+    url: `${siteConfig.url}/the-light-within`,
   },
 }
 

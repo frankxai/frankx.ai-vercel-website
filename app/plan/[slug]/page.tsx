@@ -1,3 +1,4 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { planInitiatives, getInitiativeBySlug, getRelatedInitiatives, planTrackConfig } from '@/lib/plan/initiatives'
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!initiative) return {}
 
   return {
-    title: `${initiative.title} | The Plan | FrankX.AI`,
+    title: `${initiative.title} | The Plan`,
     description: initiative.tldr,
     keywords: [
       initiative.title.toLowerCase(),
@@ -29,18 +30,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       'Frank Riemer',
     ],
     openGraph: {
+      images: defaultOpenGraphImages,
       title: `${initiative.title} | The Plan`,
       description: initiative.tldr,
       type: 'article',
-      url: `https://frankx.ai/plan/${initiative.slug}`,
+      url: `${siteConfig.url}/plan/${initiative.slug}`,
     },
     twitter: {
+      images: defaultTwitterImages,
       card: 'summary_large_image',
       title: `${initiative.title} | The Plan`,
       description: initiative.tldr,
     },
     alternates: {
-      canonical: `https://frankx.ai/plan/${initiative.slug}`,
+      canonical: `${siteConfig.url}/plan/${initiative.slug}`,
     },
   }
 }
@@ -61,25 +64,25 @@ export default async function Page({ params }: PageProps) {
     '@type': 'WebPage',
     name: initiative.title,
     description: initiative.tldr,
-    url: `https://frankx.ai/plan/${initiative.slug}`,
+    url: `${siteConfig.url}/plan/${initiative.slug}`,
     author: {
       '@type': 'Person',
       name: 'Frank Riemer',
-      url: 'https://frankx.ai',
+      url: siteConfig.url,
       jobTitle: 'AI Architect',
     },
     publisher: {
       '@type': 'Organization',
       name: 'FrankX',
-      url: 'https://frankx.ai',
+      url: siteConfig.url,
     },
     dateModified: initiative.lastUpdated,
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai' },
-        { '@type': 'ListItem', position: 2, name: 'The Plan', item: 'https://frankx.ai/plan' },
-        { '@type': 'ListItem', position: 3, name: initiative.title, item: `https://frankx.ai/plan/${initiative.slug}` },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
+        { '@type': 'ListItem', position: 2, name: 'The Plan', item: `${siteConfig.url}/plan` },
+        { '@type': 'ListItem', position: 3, name: initiative.title, item: `${siteConfig.url}/plan/${initiative.slug}` },
       ],
     },
   })

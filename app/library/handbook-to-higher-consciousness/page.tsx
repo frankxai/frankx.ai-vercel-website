@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -12,7 +13,7 @@ import {
   type ManualItem,
 } from '@/data/handbook-to-higher-consciousness';
 
-const SITE_URL = 'https://frankx.ai';
+const SITE_URL = siteConfig.url;
 const CANONICAL = `${SITE_URL}/library/${review.slug}`;
 
 export const metadata: Metadata = {

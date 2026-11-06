@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 // ── JSON-LD Schema ──────────────────────────────────────────────────────────
@@ -12,24 +13,24 @@ const jsonLdGraph = {
       name: 'The Vision — Build What Used to Require an Army',
       description:
         'The vision behind FrankX: proving that one person with AI leverage, taste, and work ethic can build what used to require an army.',
-      url: 'https://frankx.ai/vision',
+      url: `${siteConfig.url}/vision`,
       publisher: {
         '@type': 'Person',
         name: 'FrankX',
-        url: 'https://frankx.ai',
+        url: siteConfig.url,
       },
     },
     {
       '@type': 'AboutPage',
       name: 'FrankX Vision — Personal Vision, Community Mission, Golden Age Thesis',
-      url: 'https://frankx.ai/vision',
+      url: `${siteConfig.url}/vision`,
       description:
         'Personal vision, community mission, and the thesis behind the FrankX ecosystem. AI architecture, creative production, and the builder economy.',
       mainEntity: {
         '@type': 'Person',
         name: 'Frank Riemer',
         alternateName: 'FrankX',
-        url: 'https://frankx.ai',
+        url: siteConfig.url,
         jobTitle: 'AI Architect & Creator',
         knowsAbout: [
           'AI Architecture',
@@ -61,14 +62,14 @@ export const metadata: Metadata = {
     'the great transition',
   ],
   alternates: {
-    canonical: 'https://frankx.ai/vision',
+    canonical: './',
   },
   openGraph: {
     title: 'The Vision — Build What Used to Require an Army',
     description:
       'Personal vision, community mission, and the thesis behind the FrankX ecosystem. AI architecture, creative production, and the builder economy.',
     type: 'website',
-    url: 'https://frankx.ai/vision',
+    url: `${siteConfig.url}/vision`,
     images: [
       {
         url: '/images/vision/hero-builder-empire.png',

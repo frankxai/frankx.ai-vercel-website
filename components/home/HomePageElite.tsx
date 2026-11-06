@@ -606,7 +606,7 @@ function ProductsTools() {
           viewport={{ once: true }}
           className="text-center mb-12 md:mb-16"
         >
-          <p className="mb-4 text-xs font-medium tracking-[0.1em] text-emerald-400/50">
+          <p className="mb-4 text-xs font-medium tracking-[0.1em] text-emerald-300/80">
             Products & Tools
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">

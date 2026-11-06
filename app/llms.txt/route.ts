@@ -1,4 +1,5 @@
 import { getAllBlogPosts } from '@/lib/blog'
+import { getAllGuides } from '@/lib/guides'
 import { getJournalEntrySummaries } from '@/lib/journal'
 import { bookReviews } from '@/data/book-reviews'
 import { libraryCollections } from '@/data/library-collections'
@@ -17,7 +18,11 @@ const SITE_URL = siteConfig.url
  */
 export async function GET() {
   const recentPosts = getAllBlogPosts().slice(0, 20)
-  const featuredSlugs = new Set(libraryCollections.flatMap(collection => collection.featured.slice(0, 2)))
+  const guideLinks = getAllGuides()
+    .slice(0, 12)
+    .map((g) => `- [${g.title}](${SITE_URL}/guides/${g.slug}): ${g.description}`)
+    .join('\n')
+  const featuredSlugs = new Set(libraryCollections.flatMap(collection => collection.featured.slice(0, 1)))
   const featuredBooks = bookReviews.filter(book => featuredSlugs.has(book.slug))
 
   const blogLinks = recentPosts
@@ -64,6 +69,21 @@ The site combines enterprise-grade AI architecture (multi-agent orchestration, M
 - [Connection](${SITE_URL}/qualities/connection): Trust, belonging, and collective capability as the multiplier
 - [Media Kit](${SITE_URL}/media-kit): Press bio, story angles, speaking topics, proof points, boundaries, and contact
 
+## Claude Code, Agent Skills & MCP
+- [Claude Code & Agent Skills Hub](${SITE_URL}/skills): Reusable SKILL.md modules, skill builder, and agent installation workflows
+- [Skills Catalog](${SITE_URL}/resources/skills): Curated agent skills across coding, content, research, and operations
+- [Implementation Guides](${SITE_URL}/guides): Step-by-step guides across Claude Code, MCP servers, voice workflows, and agent systems
+${guideLinks}
+- [Claude Skills Library (GitHub)](https://github.com/frankxai/claude-skills-library): Open repository of modular SKILL.md definitions and evaluation harnesses
+- [MCP Doctor (GitHub)](https://github.com/frankxai/mcp-doctor): Diagnostic CLI for Model Context Protocol server configurations
+
+## AI Architecture & Blueprints
+- [AI Architecture Hub](${SITE_URL}/ai-architecture): Production reference architectures, cost estimators, and governance patterns
+- [Architecture Blueprints](${SITE_URL}/ai-architecture/blueprints): Interactive diagrams and specifications for RAG, multi-agent systems, and LLM gateways
+- [Starter Templates](${SITE_URL}/ai-architecture/templates): Implementation kits and reference topologies
+- [Multi-Cloud AI Comparison](${SITE_URL}/ai-architecture/multi-cloud-comparison): Side-by-side comparison of AWS Bedrock, Azure AI Foundry, Google Vertex AI, and OCI GenAI
+- [Architecture Tools](${SITE_URL}/ai-architecture/tools): Curated frameworks, vector stores, and observability stacks
+
 ## Founder Path
 Founder Stack → Foundry or Founder's Circle → Human Layer and Signal Loop.
 - [Founder Stack](${SITE_URL}/founder-stack): Diagnose the current constraint across State, Signal, Systems, Scale, and Stewardship
@@ -72,18 +92,11 @@ Founder Stack → Foundry or Founder's Circle → Human Layer and Signal Loop.
 - [Human Layer](${SITE_URL}/human-layer): Evidence-aware founder statecraft governed by established, emerging, experiential, and symbolic lenses
 - [Signal Loop](${SITE_URL}/newsletter): Main founder letter, with additional editorial lanes available through the newsletter hub
 - [Start Here](${SITE_URL}/start): Founder-led entry spine for new visitors
-- [Peak State Systems](${SITE_URL}/peak-performance): Evidence-led attention, energy, recovery, and work-review system; not medical advice
+- [Peak State Systems](${SITE_URL}/peak-performance): Evidence-led attention, energy, recovery, and work-review system; educational, see page disclosures
 - [Build with Me](${SITE_URL}/build): Product ladder: see /build; prices on each product page.
 
 ## Operating Systems (the FrankX OS spine)
 ${osLinks}
-
-## Library OS (book intelligence)
-- [Library Index](${SITE_URL}/library): Searchable book reviews, reading field notes, and editorial reading guides; six curated collections
-- [Library Approach](${SITE_URL}/library/approach): The manifesto — why books matter for creators
-- [Library Build](${SITE_URL}/library/build): How to build your own library OS
-- [Library Quotes](${SITE_URL}/library/quotes): Curated quotation collection
-${libraryLinks}
 
 ## Model & Agent Intelligence (the decision layers)
 - [Images 2.5 creator and founder analysis](${SITE_URL}/blog/chatgpt-images-2-5-creator-founder-workflows): Release facts, model choice, product opportunities and evidence limits
@@ -97,7 +110,7 @@ ${libraryLinks}
 - [Model Arena](${SITE_URL}/research/model-arena): First-party measured model rounds with published run receipts
 - [Model Arena Receipts JSON](${SITE_URL}/research/model-arena/receipts.json): Machine-readable receipts manifest — lastMeasured: null means nothing measured yet; carry it through rather than substituting a date
 - [Agent Hub](${SITE_URL}/agent-hub): Agent platforms and frameworks compared, every claim carrying an evidence grade
-- [Golden 7 AI Architectures](${SITE_URL}/ai-architectures): Production-grade blueprints for sovereign swarms, GraphRAG & MCP meshes
+- [AI Architecture Field Guide & Blueprints](${SITE_URL}/ai-architecture): Production-grade blueprints for multi-agent orchestration, RAG pipelines & MCP meshes
 - [Agent Catalog](${SITE_URL}/agents): The 99-agent Creator OS, packaged as installable artifacts
 - [LLM Hub JSON](${SITE_URL}/llm-hub.json): Model rows with pricing source, scope, API ID and registry evaluation status
 
@@ -105,6 +118,11 @@ ${libraryLinks}
 - [Canva for Founders](${SITE_URL}/canva): Independent, source-led operating system for governed visual production
 - [Canva MCP implementation guide](${SITE_URL}/guides/canva-mcp-for-founders): Setup, approval boundaries, and the FrankX agent graph
 - [Canva agent-readable brief](${SITE_URL}/canva/llms.txt): Concise claims, relationship disclosure, key pages, and first-party sources
+
+## Voice-first operations
+- [Wispr Flow guide](${SITE_URL}/guides/wispr-flow): Setup, spoken-brief protocol, pricing checked against the vendor page, privacy controls and role-specific workflows; contains affiliate links, disclosed on the page
+- [Voice typing learning path](${SITE_URL}/learn/voice-typing): Curated tutorials and the official Wispr Flow walkthrough
+- [Wispr Flow vs Superwhisper vs MacWhisper vs Willow](${SITE_URL}/blog/wispr-flow-vs-superwhisper-vs-macwhisper-vs-willow): Processing location, platforms, listed pricing and which reader each tool fits
 
 ## Research Hub
 - [Research Index](${SITE_URL}/research): All research domains
@@ -153,6 +171,11 @@ ${journalLinks}
 
 ## Optional
 - [llms-full.txt](${SITE_URL}/llms-full.txt): Comprehensive site map with per-page tldrs (longer; ~50KB)
+- [Library Index](${SITE_URL}/library): Cultural reading notes: searchable book reviews, reading field notes, and editorial reading guides; six curated collections
+- [Library Approach](${SITE_URL}/library/approach): Why books matter for builders and creators
+- [Library Build](${SITE_URL}/library/build): How to build your own library OS
+- [Library Quotes](${SITE_URL}/library/quotes): Curated quotation collection
+${libraryLinks}
 - [sitemap.xml](${SITE_URL}/sitemap.xml): Full URL inventory
 - [rss.xml](${SITE_URL}/rss.xml): Latest 50 posts as RSS 2.0
 - [journal/feed.xml](${SITE_URL}/journal/feed.xml): Journal entries as RSS 2.0

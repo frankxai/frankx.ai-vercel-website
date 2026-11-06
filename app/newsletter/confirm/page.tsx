@@ -6,7 +6,7 @@ type ConfirmPageProps = {
 }
 
 export const metadata = {
-  title: 'Newsletter Confirmation | FrankX',
+  title: 'Newsletter Confirmation',
   robots: { index: false, follow: false },
 }
 

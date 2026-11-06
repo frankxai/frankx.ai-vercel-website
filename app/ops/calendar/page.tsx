@@ -1,3 +1,4 @@
+import { defaultOpenGraphImages } from '@/lib/seo'
 import fs from 'node:fs'
 import path from 'node:path'
 import type { Metadata } from 'next'
@@ -18,11 +19,12 @@ import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 import { workshops as workshopFormats } from '@/data/workshops'
 
 export const metadata: Metadata = {
-  title: 'Workshop Calendar — Travel + Delivery Schedule | FrankX',
+  title: 'Workshop Calendar — Travel + Delivery Schedule',
   description:
     'Where Frank is each week, which workshops are confirmed, and which slots are open for booking. Source-of-truth for FrankX workshop operations.',
   robots: { index: true, follow: true },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Workshop Calendar | FrankX',
     description:
       'Travel-aware workshop calendar — confirmed deliveries, open slots, and trip windows.',

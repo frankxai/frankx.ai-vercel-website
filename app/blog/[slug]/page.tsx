@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     image:
       post.ogImage ||
       post.image ||
-      `/api/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent(post.description)}`,
+      siteConfig.ogImage,
     publishedTime: post.date,
     updatedTime: post.lastUpdated || undefined,
     authors: [post.author],
@@ -73,9 +73,22 @@ export default async function BlogPostPage({
   }
 
   // Recommendations are a client component and only consume metadata. Passing
-  // full MDX bodies here serializes the entire blog corpus into every article.
+  // full MDX bodies or all ~300 summaries serializes unnecessary RSC payload into every article.
   const allPosts = getAllBlogPostSummaries()
-  const documents = allPosts.map((postItem) => ({
+  const currentTagSet = new Set(post.tags || [])
+  const relatedSummaries = allPosts
+    .filter((postItem) => postItem.slug !== post.slug)
+    .map((postItem) => ({
+      postItem,
+      commonTags: (postItem.tags || []).filter((tag) => currentTagSet.has(tag)).length,
+      sameCategory: postItem.category === post.category ? 1 : 0,
+    }))
+    .filter((entry) => entry.commonTags > 0 || entry.sameCategory > 0)
+    .sort((a, b) => b.commonTags - a.commonTags || b.sameCategory - a.sameCategory)
+    .slice(0, 6)
+    .map((entry) => entry.postItem)
+
+  const documents = relatedSummaries.map((postItem) => ({
     title: postItem.title,
     url: `/blog/${postItem.slug}`,
     tags: postItem.tags,
@@ -150,6 +163,8 @@ export default async function BlogPostPage({
       <JsonLd type="Article" data={articleSchema} />
       {post.slug === 'vercel-ship-2026-builder-decisions' && post.content ? (
         <BodyFaqSchema source={post.content} id="blog-faq-vercel-ship-2026" />
+      ) : post.faqSource === 'body' && post.content ? (
+        <BodyFaqSchema source={post.content} id={`blog-faq-${post.slug}`} />
       ) : null}
 
       {/* Aurora Background Effect */}

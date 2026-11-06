@@ -257,6 +257,17 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
+## FrankX voice sources
+
+Read these before drafting or editing any FrankX copy, post, script, email or page. Earlier voice notes in this repo yield to them.
+
+1. **Stance:** `Starlight-Intelligence/starlight-design-intelligence` `brand-packs/frankx/POINT_OF_VIEW.md`. What FrankX believes about the AI era, who it speaks to, and the rules for AGI and superintelligence claims.
+2. **Voice:** the same pack's `BRAND.md`, `COPY.md` and `NARRATIVE.md`. How a sentence earns its place, and the required tests.
+3. **References:** `frankxai/content-os` `knowledge/voice-observatory/`. Read `pattern-grammar.md`, then `voices/frontier-lab-lane.md` or `voices/founder-teacher-lane.md`. These cards are research. Steal the mechanism, never the phrasing.
+4. **Estate standard:** `Starlight-Intelligence/starlight-agent-config` `core/policies/human-writing-standard.v1.md` and the humanizer skill.
+
+On this machine the repos sit under `C:/Users/frank/starlight/repos/`. Elsewhere, fetch with `gh api repos/<owner>/<repo>/contents/<path> -H "Accept: application/vnd.github.raw"`. If a source cannot be read, say so and stop; do not draft from memory.
+
 <!-- STARLIGHT-EDITORIAL:START -->
 ## Editorial contract
 
@@ -268,7 +279,7 @@ Brand: **FrankX** (`frankx`)
 - Keep public labels in sentence case.
 - Run the changed-copy editorial audit before release.
 
-Pinned source: https://github.com/frankxai/starlight-design-intelligence/blob/50ae34c7ac06e6c083f277ca96c3bde8f0a39b43/brand-packs/frankx/COPY.md
+Pinned source: https://github.com/Starlight-Intelligence/starlight-design-intelligence/blob/851a11be31a0640df64baabcf2b1fc1afb9ce849/brand-packs/frankx/COPY.md
 <!-- STARLIGHT-EDITORIAL:END -->
 
 

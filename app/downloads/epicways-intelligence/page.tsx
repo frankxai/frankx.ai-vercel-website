@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "EpicWays Intelligence Starter Kit | FrankX.AI",
+  title: "EpicWays Intelligence Starter Kit",
   description:
     "Download the EpicWays Intelligence Starter Kit for TheEpicWays client signal, offer design, workshop preparation, follow-up, impact tracking, and agent briefs.",
 };
