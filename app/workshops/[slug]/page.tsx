@@ -88,7 +88,7 @@ function BreadcrumbJsonLd({ workshop }: { workshop: NonNullable<ReturnType<typeo
   )
 }
 
-// Course schema: the detail page describes one course, not a collection. Only
+// Course schema: each detail page describes a single course. Only
 // fields already shown on the page are emitted; no prices, dates, or ratings
 // are invented here.
 function CourseJsonLd({ workshop }: { workshop: NonNullable<ReturnType<typeof getWorkshopBySlug>> }) {
