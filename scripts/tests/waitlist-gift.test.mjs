@@ -29,6 +29,15 @@ function services({ resendFails = false } = {}) {
     let result = null
     switch (cmd.toLowerCase()) {
       case 'eval': {
+        if (args[1] === '1') {
+          const [, , signalsKey, email, expected, next] = args
+          const current = hash(signalsKey).get(email) ?? ''
+          if (current === expected) {
+            hash(signalsKey).set(email, next)
+            result = 1
+          } else result = 0
+          break
+        }
         const [, , positionsKey, countKey, signalsKey, email, json] = args
         let position = hash(positionsKey).get(email)
         let created = 0
