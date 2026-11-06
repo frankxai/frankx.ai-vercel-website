@@ -10,7 +10,6 @@
  *
  *   pnpm journal:new "What broke in the build today"
  *   pnpm journal:new "Shipped the split" --kind log
- *   pnpm journal:new "Half-formed thought" --private
  *   pnpm journal:new "Backfill" --date 2026-07-24
  *
  * The frontmatter contract lives in lib/journal.ts. Keep this in sync with it.
@@ -18,6 +17,7 @@
 
 import { writeFile, mkdir, access } from 'fs/promises'
 import { join } from 'path'
+import { journalDay } from '../lib/journal-policy.ts'
 import { fileURLToPath } from 'url'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
@@ -33,20 +33,13 @@ function parseArgs(argv) {
     const arg = argv[i]
     if (arg === '--kind') args.kind = argv[++i] ?? ''
     else if (arg === '--date') args.date = argv[++i] ?? ''
-    else if (arg === '--private') args.visibility = 'private'
+    else if (arg === '--private') throw new Error('Private notes belong outside Git. Use pnpm journal:capture capture --source <external-file>.')
     else if (arg.startsWith('--')) throw new Error(`Unknown flag: ${arg}`)
     else rest.push(arg)
   }
 
   args.title = rest.join(' ').trim()
   return args
-}
-
-/** Today in the local timezone — not UTC, so a late-night note is not filed tomorrow. */
-function today() {
-  const d = new Date()
-  const pad = (n) => String(n).padStart(2, '0')
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
 }
 
 function slugify(title) {
@@ -88,10 +81,8 @@ if (!args.title) {
     'a title is required.\n\n' +
       '  pnpm journal:new "What broke in the build today"\n' +
       '  pnpm journal:new "Shipped the split" --kind log\n' +
-      '  pnpm journal:new "Half-formed thought" --private\n' +
-      '  pnpm journal:new "Backfill" --date 2026-07-24\n\n' +
+        '  pnpm journal:new "Backfill" --date 2026-07-24\n\n' +
       `  --kind     ${KINDS.join(' | ')}   (default: daily)\n` +
-      '  --private  keep it out of the index, feed, sitemap, and its own URL\n' +
       '  --date     YYYY-MM-DD             (default: today)',
   )
 }
@@ -100,7 +91,7 @@ if (!KINDS.includes(args.kind)) {
   fail(`--kind must be one of: ${KINDS.join(', ')} (got "${args.kind}")`)
 }
 
-const date = args.date || today()
+const date = args.date || journalDay()
 if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
   fail(`--date must be YYYY-MM-DD (got "${date}")`)
 }
@@ -124,32 +115,20 @@ if (await exists(filepath)) {
 // The date is quoted so it stays a string. Unquoted, YAML parses it into a
 // Date; lib/journal.ts normalizes that, but writing it correctly is clearer.
 const body = `---
-title: "${args.title.replace(/"/g, '\\"')}"
+title: ${JSON.stringify(args.title)}
 date: "${date}"
 kind: "${args.kind}"
 summary: ""
 tags: []
 visibility: "${args.visibility}"
-published: true
+published: false
 ---
 
 `
 
 await mkdir(JOURNAL_DIR, { recursive: true })
-await writeFile(filepath, body, 'utf8')
+await writeFile(filepath, body, { encoding: 'utf8', flag: 'wx' })
 
 console.log(`content/journal/${filename}`)
 
-if (args.visibility === 'private') {
-  // No URL to print — a private entry has no route. Saying so plainly beats
-  // printing an address that 404s.
-  console.log('  private — no URL. Kept out of the index, feed, sitemap, and its own route.')
-  console.log(
-    '\nThis is not access control. Committing the file publishes its text to this\n' +
-      'public repo on GitHub; it just never reaches frankx.ai. Anything you would\n' +
-      'not show a stranger belongs outside the repo entirely.',
-  )
-} else {
-  console.log(`  /journal/${date}-${slug}`)
-  console.log('\nFill in the summary line, write the note, commit. That publishes it.')
-}
+console.log('Unpublished scaffold. Add only public-safe prose. Create a draft PR; human approval is required before publication.')

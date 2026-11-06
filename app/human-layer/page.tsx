@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { RelatedJournalNotes } from '@/components/journal/RelatedJournalNotes'
 import {
   ArrowRight,
   Brain,
@@ -312,6 +313,9 @@ export default function HumanLayerPage() {
           </div>
         </div>
       </section>
+      <div className="mx-auto max-w-5xl px-5 pb-16 sm:px-6">
+        <RelatedJournalNotes hub="human-layer" />
+      </div>
     </main>
   )
 }
