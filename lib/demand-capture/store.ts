@@ -107,9 +107,27 @@ export async function getCount(productId: string): Promise<number> {
   return raw ? Number(raw) : 0
 }
 
+// Compare-and-set: write only if the stored JSON is still the one the merge started from
+// ('' meaning absent). Two overlapping saves for one address then cannot both win with stale
+// reads; the loser re-reads and merges again.
+const SAVE_IF_UNCHANGED = `
+local current = redis.call('HGET', KEYS[1], ARGV[1]) or ''
+if current ~= ARGV[2] then return 0 end
+redis.call('HSET', KEYS[1], ARGV[1], ARGV[3])
+return 1`
+
+const SAVE_ATTEMPTS = 5
+
 export async function saveSignal(signal: DemandSignal): Promise<void> {
-  const merged = mergeSignal(await getSignal(signal.productId, signal.email), signal)
-  await kv(['hset', key(signal.productId, 'signals'), signal.email, JSON.stringify(merged)])
+  const signalsKey = key(signal.productId, 'signals')
+  for (let attempt = 0; attempt < SAVE_ATTEMPTS; attempt++) {
+    const raw = await kv(['hget', signalsKey, signal.email])
+    const before = raw ? String(raw) : ''
+    const merged = mergeSignal(before ? (JSON.parse(before) as DemandSignal) : null, signal)
+    const written = await kv(['eval', SAVE_IF_UNCHANGED, '1', signalsKey, signal.email, before, JSON.stringify(merged)])
+    if (Number(written) === 1) return
+  }
+  throw new Error('KV: signal kept changing during save')
 }
 
 export async function allSignals(productId: string): Promise<DemandSignal[]> {

@@ -42,6 +42,16 @@ function fakeServices({ failWith, failCommands = [] } = {}) {
     let result = null
     switch (cmd.toLowerCase()) {
       case 'eval': {
+        if (args[1] === '1') {
+          // Mirrors SAVE_IF_UNCHANGED: compare-and-set on one signal.
+          const [, , signalsKey, email, expected, next] = args
+          const current = hash(signalsKey).get(email) ?? ''
+          if (current === expected) {
+            hash(signalsKey).set(email, next)
+            result = 1
+          } else result = 0
+          break
+        }
         // Mirrors CLAIM_WITH_SIGNAL: one atomic step for position, count and first signal.
         const [, , positionsKey, countKey, signalsKey, email, json] = args
         let position = hash(positionsKey).get(email)
