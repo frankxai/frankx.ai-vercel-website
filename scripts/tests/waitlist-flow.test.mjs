@@ -280,3 +280,43 @@ test('the audience add uses the per-product audience only, never the shared news
 test('P3: the apex origin is allowlisted explicitly', () => {
   assert.ok(ALLOWED_ORIGINS.has('https://frankx.ai'))
 })
+
+test('codex P2: overlapping refine and re-join never erase each other’s answers', async () => {
+  const svc = fakeServices()
+  const r = route()
+  await r.POST(post({ productId: PRODUCT, email: 'race@example.com', consent: true, source: '/community' }))
+
+  // Hold every HGET of the signal until both requests have read, so both merge from the
+  // same pre-refinement record: the interleaving that used to drop the refine's answers.
+  const realFetch = globalThis.fetch
+  let reads = 0
+  let release
+  const bothRead = new Promise((resolve) => (release = resolve))
+  globalThis.fetch = async (url, init) => {
+    const [cmd, , field] = JSON.parse(init.body)
+    if (cmd === 'hget' && field === 'race@example.com' && reads < 2) {
+      reads++
+      const res = await realFetch(url, init)
+      if (reads === 2) release()
+      await bothRead
+      return res
+    }
+    return realFetch(url, init)
+  }
+  try {
+    const [refine, rejoin] = await Promise.all([
+      r.POST(post(refinePayload({ productId: PRODUCT, joinedEmail: 'race@example.com', answers: { priceBand: '300-999', urgency: 'now' } }))),
+      r.POST(post({ productId: PRODUCT, email: 'race@example.com', consent: true, role: 'founder' })),
+    ])
+    assert.equal(refine.status, 200)
+    assert.equal(rejoin.status, 200)
+  } finally {
+    globalThis.fetch = realFetch
+  }
+  const stored = svc.signal('race@example.com')
+  assert.equal(stored.priceBand, '300-999')
+  assert.equal(stored.urgency, 'now')
+  assert.equal(stored.role, 'founder')
+  assert.equal(stored.source, '/community')
+  assert.equal(svc.count(), 1)
+})
