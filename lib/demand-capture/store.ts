@@ -39,19 +39,47 @@ async function kv(command: unknown[]): Promise<unknown> {
   return body.result
 }
 
-// One script so Redis runs the read, increment and write as a single step: two overlapping
-// requests for the same email could otherwise both miss the HGET and both increment the count.
-const CLAIM_POSITION = `
-local existing = redis.call('HGET', KEYS[1], ARGV[1])
-if existing then return existing end
-local position = redis.call('INCR', KEYS[2])
-redis.call('HSET', KEYS[1], ARGV[1], position)
-return position`
+// One script so Redis claims the position, bumps the count and writes the first signal as a
+// single step. Two overlapping requests cannot both increment, and a signup can never be
+// counted (or take a founding seat) without its signal: either all three land or none do.
+// The signal arrives as JSON whose first key is "position":-1; the script splices the real
+// position over that fixed prefix, so no JSON parsing runs inside Redis.
+const PLACEHOLDER = '{"position":-1'
+const CLAIM_WITH_SIGNAL = `
+local position = redis.call('HGET', KEYS[1], ARGV[1])
+local created = 0
+if not position then
+  position = redis.call('INCR', KEYS[2])
+  redis.call('HSET', KEYS[1], ARGV[1], position)
+  created = 1
+end
+if redis.call('HEXISTS', KEYS[3], ARGV[1]) == 0 then
+  redis.call('HSET', KEYS[3], ARGV[1], '{"position":' .. position .. string.sub(ARGV[2], ${PLACEHOLDER.length + 1}))
+end
+return {tonumber(position), created}`
 
-/** Email is the identity, so a re-submit updates in place instead of double-counting. */
-export async function claimPosition(productId: string, email: string): Promise<number> {
-  const position = await kv(['eval', CLAIM_POSITION, '2', key(productId, 'positions'), key(productId, 'count'), email])
-  return Number(position)
+/**
+ * Email is the identity, so a re-submit updates in place instead of double-counting.
+ * `created` is false when the address already held a position; the caller then merges.
+ */
+export async function claimWithSignal(
+  signal: Omit<DemandSignal, 'position'> & { position?: number },
+): Promise<{ position: number; created: boolean }> {
+  const { position: _ignored, ...rest } = signal
+  const json = JSON.stringify({ position: -1, ...rest })
+  if (!json.startsWith(PLACEHOLDER + ',')) throw new Error('signal JSON must start with the position placeholder')
+  const out = (await kv([
+    'eval',
+    CLAIM_WITH_SIGNAL,
+    '3',
+    key(signal.productId, 'positions'),
+    key(signal.productId, 'count'),
+    key(signal.productId, 'signals'),
+    signal.email,
+    json,
+  ])) as unknown
+  const [position, created] = Array.isArray(out) ? out : [out, 0]
+  return { position: Number(position), created: Number(created) === 1 }
 }
 
 /**

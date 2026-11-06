@@ -1,5 +1,5 @@
 import type { DemandSignal, PriceBand, Stage, Urgency, WaitlistState } from './types.ts'
-import { addToAudience, claimPosition, getCount, getSignal, saveSignal } from './store.ts'
+import { addToAudience, claimWithSignal, getCount, getSignal, saveSignal } from './store.ts'
 
 export interface ProductConfig {
   id: string
@@ -67,11 +67,10 @@ export async function handleJoin(product: ProductConfig, body: Record<string, un
   if (!email) return { status: 400 as const, body: { error: 'Valid email required' } }
   if (body.consent !== true) return { status: 400 as const, body: { error: 'Consent required' } }
 
-  const position = await claimPosition(product.id, email)
   const url = new URL(req.url)
   const utm = readUtm(url, body.utm)
 
-  const signal: DemandSignal = {
+  const signal: Omit<DemandSignal, 'position'> = {
     productId: product.id,
     email,
     name: clip(body.name, MAX.name),
@@ -83,12 +82,14 @@ export async function handleJoin(product: ProductConfig, body: Record<string, un
     source: clip(body.source, MAX.source) ?? url.pathname,
     referrer: clip(req.headers.get('referer'), MAX.source),
     utm,
-    position,
     createdAt: new Date().toISOString(),
     consent: true,
   }
 
-  await saveSignal(signal)
+  // A first join is whole after this one call. A repeat join keeps its first-touch facts and
+  // position, and merges any new answers.
+  const { position, created } = await claimWithSignal(signal)
+  if (!created) await saveSignal({ ...signal, position })
   await addToAudience(email, signal.name, product.id)
 
   const count = await getCount(product.id)
