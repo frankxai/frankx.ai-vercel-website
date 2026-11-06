@@ -113,14 +113,14 @@ const WORKFLOWS: ElevenLabsWorkflowDef[] = [
       'Do not run whole-chapter scripts in a single unchunked request; split at 800–2,800 characters to prevent cadence drift.',
     route: 'ElevenLabs v1/text-to-speech/{voice_id}?output_format=mp3_44100_128',
     codeSnippet: `// Credit math:
-// eleven_multilingual_v2 -> 1.0 credit / char (~1,000 credits per spoken minute)
-// eleven_turbo_v2_5      -> 0.5 credits / char (~500 credits per spoken minute)
-// eleven_flash_v2_5      -> 0.5 credits / char (~75ms model latency)`,
+// eleven_multilingual_v2 -> 1.0 credit per char (~1,000 credits per spoken minute)
+// eleven_turbo_v2_5      -> 0.5 credits per char (~500 credits per spoken minute)
+// eleven_flash_v2_5      -> 0.5 credits per char (~75ms model latency)`,
   },
   {
     key: 'agent-mcp',
     title: 'Claude Code & Codex Tool Contract',
-    shortLabel: 'Agent / MCP',
+    shortLabel: 'Agent and MCP',
     badge: 'Operator Automation',
     description:
       'Expose deterministic dry-run compilation and consent-gated synthesis to Claude Code, Codex, and ChatGPT tool runners.',
@@ -209,14 +209,14 @@ export default function ElevenLabsAudioBriefingWorkbench() {
   const wf = WORKFLOWS.find((w) => w.key === selectedKey) || WORKFLOWS[0]
   const Icon = wf.icon
 
-  const briefText = `ELEVENLABS VOICE ARCHITECTURE BRIEF — ${wf.title.toUpperCase()}
+  const briefText = `ElevenLabs Voice Architecture Brief — ${wf.title}
 Workflow: ${wf.title} (${wf.badge}) | Route: ${wf.route}
-1. INPUT & SCOPE: ${wf.inputSpec}
-2. EXECUTION SEQUENCE:
+1. Input and Scope: ${wf.inputSpec}
+2. Execution Sequence:
 ${wf.executionSteps.map((s) => `  - ${s}`).join('\n')}
-3. ACCEPTANCE CHECK: ${wf.acceptanceCheck}
-4. STOP RULE: ${wf.stopRule}
-5. COMMAND / PAYLOAD:
+3. Acceptance Check: ${wf.acceptanceCheck}
+4. Stop Rule: ${wf.stopRule}
+5. Command and Payload:
 ${wf.codeSnippet}
 Prepared with FrankX ElevenLabs Voice Architecture Workbench (frankx.ai/guides/elevenlabs-voice-guide)`.trim()
 
@@ -398,7 +398,7 @@ Prepared with FrankX ElevenLabs Voice Architecture Workbench (frankx.ai/guides/e
           </div>
           <div>
             <span className="font-semibold text-emerald-400 uppercase tracking-wider text-[11px]">
-              Command / Payload Preview:
+              Command and Payload Preview:
             </span>
             <pre className="mt-1 overflow-x-auto rounded-lg border border-white/5 bg-[#090d13] p-3 text-[11px] leading-relaxed text-emerald-200/90 font-mono">
               <code>{wf.codeSnippet}</code>
