@@ -316,7 +316,7 @@ Prepared with FrankX ElevenLabs Voice Architecture Workbench (frankx.ai/guides/e
                 aria-controls={`elevenlabs-panel-${w.key}`}
                 id={`elevenlabs-tab-${w.key}`}
                 onClick={() => handleSelectTab(w.key)}
-                className={`flex min-h-[44px] items-center gap-2 rounded-xl border px-3 py-2 text-left text-xs transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
+                className={`flex min-h-[44px] items-center gap-2 rounded-xl border px-3 py-2 text-left text-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
                   isSelected
                     ? 'border-emerald-500/60 bg-emerald-500/15 text-white font-semibold'
                     : 'border-white/10 bg-white/[0.03] text-white/70 hover:bg-white/[0.06] hover:text-white'
