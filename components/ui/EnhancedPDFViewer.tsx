@@ -42,7 +42,7 @@ export default function EnhancedPDFViewer({
   const pagesViewedRef = useRef<Set<number>>(new Set([1]))
   const startTimeRef = useRef<number>(0)
   const lastTrackTimeRef = useRef<number>(0)
-  const trackingIntervalRef = useRef<NodeJS.Timeout>()
+  const trackingIntervalRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
   // Initialize timestamps on mount
   useEffect(() => {
