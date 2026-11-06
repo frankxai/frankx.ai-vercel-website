@@ -21,6 +21,7 @@ import { MindPalaceAtlas } from '@/components/home/MindPalaceAtlas'
 import { SignalRouteSelector } from '@/components/home/SignalRouteSelector'
 import { FeaturedTrackPlayer } from '@/components/home/FeaturedTrackPlayer'
 import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
+import { AiLearningLinks } from '@/components/home/AiLearningLinks'
 
 // ============================================================================
 // TYPES
@@ -1560,6 +1561,8 @@ export default function HomePageElite({
 
         {/* 4. Authority bar */}
         <AuthorityBar />
+
+        <AiLearningLinks />
 
         {/* 4b. AI Stack — tool logos with guide links */}
         <TrustedByBlock />
