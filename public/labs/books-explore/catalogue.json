@@ -1,0 +1,182 @@
+[
+  {
+    "slug": "the-wordless-laws",
+    "title": "The Wordless Laws",
+    "shelf": "reflection",
+    "description": "Twelve forces examined through story and reflection.",
+    "cover": "https://www.frankx.ai/images/books/the-wordless-laws-cover.png",
+    "chapters": 14,
+    "url": "https://www.frankx.ai/books/the-wordless-laws"
+  },
+  {
+    "slug": "the-wordless-laws-book-two",
+    "title": "The Wordless Laws, Book Two: The Practice",
+    "shelf": "reflection",
+    "description": "A companion volume of practices and questions.",
+    "cover": "https://www.frankx.ai/images/books/the-wordless-laws-book-two-cover.png",
+    "chapters": 14,
+    "url": "https://www.frankx.ai/books/the-wordless-laws-book-two"
+  },
+  {
+    "slug": "golden-age-of-intelligence",
+    "title": "The Golden Age of Intelligence",
+    "shelf": "craft",
+    "description": "An evolving manuscript on human and artificial intelligence.",
+    "cover": "https://www.frankx.ai/images/books/golden-age-of-intelligence-cover.jpg",
+    "chapters": 12,
+    "url": "https://www.frankx.ai/books/golden-age-of-intelligence"
+  },
+  {
+    "slug": "love-and-poetry",
+    "title": "Love & Poetry",
+    "shelf": "reflection",
+    "description": "Poems and readings about affection, longing and attention.",
+    "cover": "https://www.frankx.ai/images/books/love-and-poetry-cover.png",
+    "chapters": 5,
+    "url": "https://www.frankx.ai/books/love-and-poetry"
+  },
+  {
+    "slug": "spartan-mindset",
+    "title": "Spartan Mindset",
+    "shelf": "reflection",
+    "description": "Discipline and the work of continuing.",
+    "cover": "https://www.frankx.ai/images/books/spartan-mindset-cover.png",
+    "chapters": 5,
+    "url": "https://www.frankx.ai/books/spartan-mindset"
+  },
+  {
+    "slug": "golden-age",
+    "title": "The Golden Age of Creators",
+    "shelf": "craft",
+    "description": "Creative work as its tools and distribution change.",
+    "cover": null,
+    "chapters": 3,
+    "url": "https://www.frankx.ai/books/golden-age"
+  },
+  {
+    "slug": "self-development",
+    "title": "The Art of Self-Development",
+    "shelf": "reflection",
+    "description": "A working map of personal practice.",
+    "cover": "https://www.frankx.ai/images/books/self-development-cover.png",
+    "chapters": 7,
+    "url": "https://www.frankx.ai/books/self-development"
+  },
+  {
+    "slug": "imagination",
+    "title": "Imagination",
+    "shelf": "reflection",
+    "description": "An inquiry into what a mind can picture and pursue.",
+    "cover": "https://www.frankx.ai/images/books/imagination-cover.png",
+    "chapters": 5,
+    "url": "https://www.frankx.ai/books/imagination"
+  },
+  {
+    "slug": "manifestation",
+    "title": "Manifestation",
+    "shelf": "reflection",
+    "description": "Thought, intention and the effort of making.",
+    "cover": "https://www.frankx.ai/images/books/manifestation-cover.png",
+    "chapters": 5,
+    "url": "https://www.frankx.ai/books/manifestation"
+  },
+  {
+    "slug": "hope",
+    "title": "Hope",
+    "shelf": "reflection",
+    "description": "Poetry and reflections for difficult passages.",
+    "cover": "https://www.frankx.ai/images/books/hoffnung-cover.png",
+    "chapters": 8,
+    "url": "https://www.frankx.ai/books/hope"
+  },
+  {
+    "slug": "the-book-of-secrets",
+    "title": "The Book of Secrets",
+    "shelf": "craft",
+    "description": "Observations about the work behind a finished piece.",
+    "cover": "https://www.frankx.ai/images/books/the-book-of-secrets-cover.png",
+    "chapters": 14,
+    "url": "https://www.frankx.ai/books/the-book-of-secrets"
+  },
+  {
+    "slug": "arcanea-bestiary",
+    "title": "The Bestiary of Creation",
+    "shelf": "fiction",
+    "description": "A fictional field guide from Arcanea.",
+    "cover": "https://www.frankx.ai/images/books/arcanea-bestiary-cover.png",
+    "chapters": 5,
+    "url": "https://www.frankx.ai/books/arcanea-bestiary"
+  },
+  {
+    "slug": "arcanea-chronicles",
+    "title": "The Chronicles of Arcanea",
+    "shelf": "fiction",
+    "description": "Origin stories from the Arcanea world.",
+    "cover": "https://www.frankx.ai/images/books/arcanea-chronicles-cover.png",
+    "chapters": 10,
+    "url": "https://www.frankx.ai/books/arcanea-chronicles"
+  },
+  {
+    "slug": "arcanea-creator-principles",
+    "title": "The Arcanean Creator Principles",
+    "shelf": "fiction",
+    "description": "Creative principles expressed within Arcanea’s fiction.",
+    "cover": "https://www.frankx.ai/images/books/arcanea-creator-principles-cover.png",
+    "chapters": 7,
+    "url": "https://www.frankx.ai/books/arcanea-creator-principles"
+  },
+  {
+    "slug": "arcanea-legends",
+    "title": "The Legends of Arcanea",
+    "shelf": "fiction",
+    "description": "Myths from the Arcanea fictional universe.",
+    "cover": "https://www.frankx.ai/images/books/arcanea-legends-cover.png",
+    "chapters": 7,
+    "url": "https://www.frankx.ai/books/arcanea-legends"
+  },
+  {
+    "slug": "arcanea-wisdom-scrolls",
+    "title": "The Wisdom Scrolls of Arcanea",
+    "shelf": "fiction",
+    "description": "Meditations and letters within a fictional tradition.",
+    "cover": "https://www.frankx.ai/images/books/arcanea-wisdom-scrolls-cover.png",
+    "chapters": 4,
+    "url": "https://www.frankx.ai/books/arcanea-wisdom-scrolls"
+  },
+  {
+    "slug": "fire-horse-poems",
+    "title": "Fire Horse Poems",
+    "shelf": "reflection",
+    "description": "A short cycle on making and beginning.",
+    "cover": "https://www.frankx.ai/images/books/fire-horse-poems-cover.png",
+    "chapters": 5,
+    "url": "https://www.frankx.ai/books/fire-horse-poems"
+  },
+  {
+    "slug": "great-transition",
+    "title": "The Great Transition",
+    "shelf": "craft",
+    "description": "Work, ownership and building in a changing economy.",
+    "cover": "https://www.frankx.ai/images/books/great-transition-cover.png",
+    "chapters": 8,
+    "url": "https://www.frankx.ai/books/great-transition"
+  },
+  {
+    "slug": "fable",
+    "title": "Fable",
+    "shelf": "fiction",
+    "description": "Stories about the minds we make and the choices we keep.",
+    "cover": "https://www.frankx.ai/images/books/fable-cover.jpg",
+    "chapters": 28,
+    "url": "https://www.frankx.ai/books/fable"
+  },
+  {
+    "slug": "wonderproof",
+    "title": "Wonderproof",
+    "shelf": "reflection",
+    "description": "A developing inquiry into attention and expectation.",
+    "cover": null,
+    "chapters": 3,
+    "url": "https://www.frankx.ai/books/wonderproof"
+  }
+]
