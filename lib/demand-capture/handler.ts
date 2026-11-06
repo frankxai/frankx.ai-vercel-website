@@ -1,4 +1,5 @@
 import type { DemandSignal, PriceBand, Stage, Urgency, WaitlistState } from './types.ts'
+import { sendGift } from './gift.ts'
 import { addToAudience, claimWithSignal, getCount, getSignal, saveSignal } from './store.ts'
 
 export interface ProductConfig {
@@ -91,6 +92,8 @@ export async function handleJoin(product: ProductConfig, body: Record<string, un
   const { position, created } = await claimWithSignal(signal)
   if (!created) await saveSignal({ ...signal, position })
   await addToAudience(email, signal.name, product.id)
+  // Awaited inside the request so the gift lands within the minute; never throws.
+  await sendGift(product.id, email)
 
   const count = await getCount(product.id)
   return { status: 200 as const, body: publicState(product, count, position) }
