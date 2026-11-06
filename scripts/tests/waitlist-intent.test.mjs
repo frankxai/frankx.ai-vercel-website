@@ -75,7 +75,15 @@ async function submitWaitlist(intent) {
   assert.equal(requests.length, 1)
   assert.equal(requests[0].url, '/api/subscribe')
   assert.equal(requests[0].method, 'POST')
-  return { props: signup.props, body: requests[0].body }
+  const answerDemand = async () => {
+    const roleButton = findElement(renderSignup(), (element) => element.type === 'button' && typeof element.props.onClick === 'function')
+    roleButton.props.onClick()
+    const forms = []
+    findElement(renderSignup(), (element) => { if (element.type === 'form') forms.push(element); return false })
+    await forms.at(-1).props.onSubmit({ preventDefault() {} })
+    return requests.at(-1)
+  }
+  return { props: signup.props, body: requests[0].body, answerDemand }
 }
 
 for (const [intent, label] of [['bv-kit', 'Creator BV Kit'], ['prompt-vault', 'Prompt Vault']]) {
@@ -103,6 +111,14 @@ for (const intent of ['creative-ai-toolkit', 'creation-chronicles']) {
     assert.equal(props.intent, intent)
     assert.equal(body.intent, intent)
     assert.equal(body.source, '/waitlist')
+  })
+
+  test(`${intent} demand answers keep the list the signup was written to`, async () => {
+    const { body, answerDemand } = await submitWaitlist(intent)
+    const demand = await answerDemand()
+    assert.equal(demand.url, '/api/demand')
+    assert.equal(demand.body.intent, intent)
+    assert.equal(demand.body.listType, body.listType)
   })
 }
 
