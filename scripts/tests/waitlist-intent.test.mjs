@@ -96,6 +96,16 @@ test('legacy waitlist entry points preserve their current list routing', async (
   }
 })
 
+for (const intent of ['creative-ai-toolkit', 'creation-chronicles']) {
+  test(`${intent} gets a per-product waitlist that asks the demand questions`, async () => {
+    const { props, body } = await submitWaitlist(intent)
+    assert.equal(props.askDemand, true)
+    assert.equal(props.intent, intent)
+    assert.equal(body.intent, intent)
+    assert.equal(body.source, '/waitlist')
+  })
+}
+
 test('missing, repeated, or unsafe intents cannot become product attribution', async () => {
   for (const intent of [undefined, ['bv-kit', 'prompt-vault'], '../bv-kit', '<script>']) {
     const { props, body } = await submitWaitlist(intent)
