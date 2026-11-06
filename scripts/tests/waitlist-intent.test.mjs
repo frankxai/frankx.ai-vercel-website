@@ -75,7 +75,15 @@ async function submitWaitlist(intent) {
   assert.equal(requests.length, 1)
   assert.equal(requests[0].url, '/api/subscribe')
   assert.equal(requests[0].method, 'POST')
-  return { props: signup.props, body: requests[0].body }
+  const answerDemand = async () => {
+    const roleButton = findElement(renderSignup(), (element) => element.type === 'button' && typeof element.props.onClick === 'function')
+    roleButton.props.onClick()
+    const forms = []
+    findElement(renderSignup(), (element) => { if (element.type === 'form') forms.push(element); return false })
+    await forms.at(-1).props.onSubmit({ preventDefault() {} })
+    return requests.at(-1)
+  }
+  return { props: signup.props, body: requests[0].body, answerDemand }
 }
 
 for (const [intent, label] of [['bv-kit', 'Creator BV Kit'], ['prompt-vault', 'Prompt Vault']]) {
@@ -95,6 +103,24 @@ test('legacy waitlist entry points preserve their current list routing', async (
     assert.equal(body.listType, 'courses-waitlist')
   }
 })
+
+for (const intent of ['creative-ai-toolkit', 'creation-chronicles']) {
+  test(`${intent} gets a per-product waitlist that asks the demand questions`, async () => {
+    const { props, body } = await submitWaitlist(intent)
+    assert.equal(props.askDemand, true)
+    assert.equal(props.intent, intent)
+    assert.equal(body.intent, intent)
+    assert.equal(body.source, '/waitlist')
+  })
+
+  test(`${intent} demand answers keep the list the signup was written to`, async () => {
+    const { body, answerDemand } = await submitWaitlist(intent)
+    const demand = await answerDemand()
+    assert.equal(demand.url, '/api/demand')
+    assert.equal(demand.body.intent, intent)
+    assert.equal(demand.body.listType, body.listType)
+  })
+}
 
 test('missing, repeated, or unsafe intents cannot become product attribution', async () => {
   for (const intent of [undefined, ['bv-kit', 'prompt-vault'], '../bv-kit', '<script>']) {
