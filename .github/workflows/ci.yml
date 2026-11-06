@@ -155,6 +155,8 @@ jobs:
 
       - name: Lint
         run: pnpm run lint
+      - name: Companion selection and scoped types
+        run: pnpm run test:companion-selection
 
       - name: Language refusal gate
         run: pnpm run ai-slop:audit:strict

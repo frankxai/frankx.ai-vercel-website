@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "created_on": "2026-11-02",
+  "proposals": [
+    {
+      "placement_key": "frankx.library.editorial-intro",
+      "status": "proposed",
+      "collection_id": "fx-companions-20261030-v2",
+      "brand": "FrankX",
+      "surface": "Library",
+      "job": "A library essay about keeping useful knowledge.",
+      "constraint": "Keep official book covers, summaries and attribution intact.",
+      "asset_id": "ast_fx_collective_living_archive_20261030",
+      "version_id": "ver_776a1b9606158155",
+      "web_sha256": "b6a39a57dc4ece43a5f8d48df6553d3386a30823bab12ea4e3848c0a20411239",
+      "source_dimensions": [
+        1672,
+        941
+      ],
+      "public_approved": false,
+      "crop_intent": "Preserve complete action and anatomy; a new crop requires its own review.",
+      "measure_after_release": [
+        "placement impressions",
+        "engaged reading or task continuation",
+        "accessibility and loading regressions"
+      ],
+      "baseline": null
+    },
+    {
+      "placement_key": "frankx.learning.route-intro",
+      "status": "proposed",
+      "collection_id": "fx-companions-20261030-v2",
+      "brand": "FrankX",
+      "surface": "Learning",
+      "job": "An orientation image beside a learning route.",
+      "constraint": "Use actual prerequisites and progress states in native UI.",
+      "asset_id": "ast_fx_companion_wolf_crossing_20261030",
+      "version_id": "ver_af5e122831c22aec",
+      "web_sha256": "fa42cf0d2738155632c81f5243f9098a2cd8e7af2903767cb188559a31e65aab",
+      "source_dimensions": [
+        1672,
+        941
+      ],
+      "public_approved": false,
+      "crop_intent": "Preserve complete action and anatomy; a new crop requires its own review.",
+      "measure_after_release": [
+        "placement impressions",
+        "engaged reading or task continuation",
+        "accessibility and loading regressions"
+      ],
+      "baseline": null
+    },
+    {
+      "placement_key": "frankx.music.listening-essay",
+      "status": "proposed",
+      "collection_id": "fx-companions-20261030-v2",
+      "brand": "FrankX",
+      "surface": "Music",
+      "job": "A listening essay or research note.",
+      "constraint": "The track or cited research carries the evidence.",
+      "asset_id": "ast_fx_companion_whale_listening_20261030",
+      "version_id": "ver_3a581f0637141246",
+      "web_sha256": "a2e64613c9364e09c1a6f47127bd6404010826a02e68cc993ad0e34cff870b23",
+      "source_dimensions": [
+        1672,
+        941
+      ],
+      "public_approved": false,
+      "crop_intent": "Preserve complete action and anatomy; a new crop requires its own review.",
+      "measure_after_release": [
+        "placement impressions",
+        "engaged reading or task continuation",
+        "accessibility and loading regressions"
+      ],
+      "baseline": null
+    },
+    {
+      "placement_key": "gencreator.editorial.build-journal",
+      "status": "proposed",
+      "collection_id": "fx-companions-20261030-v2",
+      "brand": "GenCreator",
+      "surface": "Editorial",
+      "job": "A build journal showing revision and craft.",
+      "constraint": "Pair with the actual output and preserve GenCreator editorial identity.",
+      "asset_id": "ast_fx_companion_robot_repair_20261030",
+      "version_id": "ver_e110b6074491cde2",
+      "web_sha256": "2e9c70c310e88a6876b3c1f36ab2e3d7e3edef300e3cc7d342f0471361e616b1",
+      "source_dimensions": [
+        1672,
+        941
+      ],
+      "public_approved": false,
+      "crop_intent": "Preserve complete action and anatomy; a new crop requires its own review.",
+      "measure_after_release": [
+        "placement impressions",
+        "engaged reading or task continuation",
+        "accessibility and loading regressions"
+      ],
+      "baseline": null
+    },
+    {
+      "placement_key": "frankx.social.patient-maintenance",
+      "status": "proposed",
+      "collection_id": "fx-companions-20261030-v2",
+      "brand": "FrankX",
+      "surface": "Social",
+      "job": "A portrait story about patient maintenance.",
+      "constraint": "Keep the contact and water path legible; no health or outcome claims.",
+      "asset_id": "ast_fx_companion_turtle_tide_20261030",
+      "version_id": "ver_e77f2ae4c36b38ee",
+      "web_sha256": "5cd6301bcb06c95e95c2f5060ed5504aba54fefe56ea411f28dc623b4fe25e63",
+      "source_dimensions": [
+        1122,
+        1402
+      ],
+      "public_approved": false,
+      "crop_intent": "Preserve complete action and anatomy; a new crop requires its own review.",
+      "measure_after_release": [
+        "placement impressions",
+        "engaged reading or task continuation",
+        "accessibility and loading regressions"
+      ],
+      "baseline": null
+    },
+    {
+      "placement_key": "frankx.design-lab.companion-world",
+      "status": "proposed",
+      "collection_id": "fx-companions-20261030-v2",
+      "brand": "FrankX",
+      "surface": "Design Lab",
+      "job": "An optional discovery panorama.",
+      "constraint": "Noncanonical concept; not a factual architecture or homepage replacement.",
+      "asset_id": "ast_fx_companion_connected_habitat_20261030",
+      "version_id": "ver_e8a50d4b5469fc28",
+      "web_sha256": "3c3a6d36d78b0b1db6f4da7dce50cd4911785cff9e296a00432c9e3fb9514888",
+      "source_dimensions": [
+        1672,
+        941
+      ],
+      "public_approved": false,
+      "crop_intent": "Preserve complete action and anatomy; a new crop requires its own review.",
+      "measure_after_release": [
+        "placement impressions",
+        "engaged reading or task continuation",
+        "accessibility and loading regressions"
+      ],
+      "baseline": null
+    }
+  ],
+  "external_guests": "Keep private pending applicable usage decision; never present generated renditions as native official artwork."
+}

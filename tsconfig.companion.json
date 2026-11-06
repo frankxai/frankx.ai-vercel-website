@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "incremental": false },
+  "include": [
+    "next-env.d.ts",
+    "app/design-lab/collective/**/*.tsx",
+    "lib/media/companion-selection.d.mts"
+  ],
+  "exclude": ["node_modules", ".next"]
+}
