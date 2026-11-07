@@ -11,7 +11,7 @@ export const NOT_FOR_SALE = "pre-stage (not for sale)";
 
 export type CheckoutProduct = {
   name: string;
-  /** Env var that holds the Stripe price id, not the value itself. */
+  /** Env var name for the Stripe price id. */
   priceEnv: string;
   amount: number;
   status: string;
