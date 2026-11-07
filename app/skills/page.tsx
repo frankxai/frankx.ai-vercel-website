@@ -30,9 +30,9 @@ const workflowSteps = [
 const primitiveRows = [
   {
     primitive: 'Skill (`SKILL.md`)',
-    mechanism: 'Markdown folder with YAML frontmatter; name + description preload for routing, body loads on trigger.',
+    mechanism: 'Markdown folder with YAML frontmatter; the description stays in context for routing, the body loads when the task matches or you type /name.',
     scope: 'Domain standards, repeatable checklists, brand voice, framework rules.',
-    contextCost: 'Minimal idle cost (~40–80 tokens per skill description until triggered).',
+    contextCost: 'Model-invocable skills add a name and description to the skill listing (description plus when_to_use is cut off at 1,536 characters); the body loads only on use.',
   },
   {
     primitive: 'Plugin (`/plugin`)',
@@ -42,9 +42,9 @@ const primitiveRows = [
   },
   {
     primitive: 'Slash command (`.claude/commands/`)',
-    mechanism: 'Explicit prompt template invoked directly via `/command-name` in the terminal or IDE.',
+    mechanism: 'Single-file prompt invoked with `/command-name`. Commands are now merged into skills: `.claude/commands/ship.md` and `.claude/skills/ship/SKILL.md` both create `/ship`.',
     scope: 'Deterministic operator workflows such as `/ship`, `/handover`, or `/review`.',
-    contextCost: 'Zero tokens until the user invokes the command.',
+    contextCost: 'Same as a skill. With `disable-model-invocation: true` its description leaves the listing and it runs only when you type /name.',
   },
   {
     primitive: 'Subagent (`.claude/agents/`)',
@@ -97,7 +97,7 @@ const skillsFaqs = [
   {
     question: 'What is a Claude Code skill (`SKILL.md`)?',
     answer:
-      'A Claude Code skill is a directory containing a SKILL.md file with YAML frontmatter (`name` and `description`) plus optional scripts, templates, and reference files. Claude preloads the short frontmatter to match user intent and reads the full instructions when the task matches.',
+      'A Claude Code skill is a directory containing a SKILL.md file with YAML frontmatter plus optional scripts, templates, and reference files. Every frontmatter field is optional; `description` is the one to write well, and `name` defaults to the folder name. Claude keeps the name and description in a short listing and reads the full instructions when the task matches.',
   },
   {
     question: 'Where do Claude Code skills live on disk?',
