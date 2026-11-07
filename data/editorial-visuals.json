@@ -74,5 +74,17 @@
     "rights": "original",
     "createdOn": "2026-11-05",
     "kind": "diagram"
+  },
+  "proof-project-three-routes": {
+    "src": "/images/editorial/proof-project-three-routes.svg",
+    "width": 960,
+    "height": 1060,
+    "alt": "One project, three routes: pick a problem from the role, build a small working answer, publish it with a short walkthrough, then use it for a job application, a paid pilot or a feedback loop.",
+    "caption": "One project can serve a job application, a first paid pilot and a learning loop at the same time. Original schematic.",
+    "credit": "Original diagram by FrankX",
+    "sourceUrl": "https://www.frankx.ai/blog/build-proof-before-you-send-the-cv-2026",
+    "rights": "original",
+    "createdOn": "2026-11-07",
+    "kind": "diagram"
   }
 }
