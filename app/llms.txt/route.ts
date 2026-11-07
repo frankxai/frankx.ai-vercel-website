@@ -6,7 +6,7 @@ import { libraryCollections } from '@/data/library-collections'
 import { osModules } from '@/data/os-modules'
 import { researchDomains } from '@/lib/research/domains'
 import { contentLicense, siteConfig } from '@/lib/seo'
-import { getProductCards } from '@/lib/products'
+import { getProductCards, productPublicPath } from '@/lib/products'
 import { askQuestions } from '@/data/ask-questions'
 
 const SITE_URL = siteConfig.url
@@ -52,7 +52,7 @@ export async function GET() {
   // Product pages that exist at /products/<slug>. Headlines come from
   // data/products.json; price and availability stay on each product page.
   const productLinks = getProductCards()
-    .map((p) => `- [${p.name}](${SITE_URL}${p.href}): ${p.headline}`)
+    .map((p) => `- [${p.name}](${SITE_URL}${productPublicPath(p.href.slice('/products/'.length))}): ${p.headline}`)
     .join('\n')
 
   const askLinks = askQuestions

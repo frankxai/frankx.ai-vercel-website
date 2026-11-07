@@ -84,10 +84,22 @@ test('llms.txt is served, lists real entries, and blog pages carry canonical + l
     assert.ok(!fullBooks.some((slug) => slug.startsWith('arcanea-')), 'no Arcanea titles in FrankX llms-full.txt')
     assert.match(full, /^https:\/\/www\.frankx\.ai\/products\/[a-z0-9-]+$/m, 'llms-full.txt lists products')
 
-    // A listed book and product resolve, so the map does not point at 404s.
-    for (const path of [`/books/${fullBooks[0]}`, entryLinks(llms, '/products/')[0].slice(SITE.length)]) {
-      assert.equal((await fetch(`${base}${path}`, { redirect: 'manual' })).status, 200, `${path} resolves`)
+    // Every book, product and resource link added for #81 resolves directly
+    // (200, no redirect), so the map never sends an agent to a 404 or a hop.
+    const fullProducts = [...full.matchAll(/^https:\/\/www\.frankx\.ai(\/[^\s]*)$/gm)]
+      .map((m) => m[1])
+      .filter((path) => path.startsWith('/books/') || path.startsWith('/products/') || path === '/acos' || path === '/soulbook')
+    const listed = new Set([
+      ...fullProducts,
+      ...entryLinks(llms, '/products').map((url) => url.slice(SITE.length)),
+      ...entryLinks(llms, '/resources').map((url) => url.slice(SITE.length)),
+    ])
+    const broken = []
+    for (const path of listed) {
+      const { status } = await fetch(`${base}${path}`, { redirect: 'manual' })
+      if (status !== 200) broken.push(`${path} -> ${status}`)
     }
+    assert.deepEqual(broken, [], 'listed books, products and resources resolve with 200')
 
     const blogUrls = [
       ...entryLinks(llms, '/blog/').slice(0, 3),

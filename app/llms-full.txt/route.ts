@@ -5,7 +5,7 @@ import { bookReviews } from '@/data/book-reviews'
 import { osModules } from '@/data/os-modules'
 import { researchDomains } from '@/lib/research/domains'
 import { contentLicense, siteConfig } from '@/lib/seo'
-import { getProductCards } from '@/lib/products'
+import { getProductCards, productPublicPath } from '@/lib/products'
 import { getPublishedBooks } from '@/app/books/lib/books-registry'
 import type { ArchitecturePrototype } from '@/types/ai-architecture'
 
@@ -103,7 +103,7 @@ ${b.description}
   const productsSection = getProductCards()
     .map(
       (p) => `### ${p.name}
-${SITE_URL}${p.href}
+${SITE_URL}${productPublicPath(p.href.slice('/products/'.length))}
 ${p.category || 'Product'}
 
 ${p.headline}${p.summary && p.summary !== p.headline ? `\n\n${p.summary}` : ''}

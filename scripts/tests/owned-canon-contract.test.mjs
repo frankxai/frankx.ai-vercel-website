@@ -55,6 +55,19 @@ test('every blog route sets a canonical and declares the content licence', () =>
   assert.match(read('LICENSE'), /All rights reserved\./)
 })
 
+test('product redirect map matches next.config.mjs, so llms.txt never links a redirect', () => {
+  const config = read('next.config.mjs')
+  const fromConfig = Object.fromEntries(
+    [...config.matchAll(/source:\s*'(\/products\/[a-z0-9-]+)',\s*destination:\s*'([^']+)'/g)].map((m) => [m[1], m[2]]),
+  )
+  const products = read('lib/products.ts')
+  const fromLib = Object.fromEntries(
+    [...products.matchAll(/'(\/products\/[a-z0-9-]+)':\s*'([^']+)'/g)].map((m) => [m[1], m[2]]),
+  )
+  assert.ok(Object.keys(fromConfig).length > 0)
+  assert.deepEqual(fromLib, fromConfig)
+})
+
 const blogSlugs = new Set(
   readdirSync(new URL('../../content/blog', import.meta.url))
     .filter((name) => /\.mdx?$/.test(name))
