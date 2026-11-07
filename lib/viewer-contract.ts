@@ -1,14 +1,20 @@
 /**
  * viewer.v1 for FrankX.
  *
- * FrankX has admin credentials, not customer accounts, and its commerce is
- * one-time Stripe products, not subscriptions. This adapter tells that truth:
- * an authenticated admin gets an `admin` plan with no paid subscription and
- * product offers whose availability comes from the same env gate as
- * `/api/checkout`.
+ * FrankX authenticates a single admin account. Its commerce is one-time Stripe
+ * products; no recurring plan exists. This adapter tells that truth: an
+ * authenticated admin gets an `admin` plan with no paid subscription and
+ * product offers whose availability comes from the same sale-status and
+ * configuration gate as `/api/checkout`.
  *
  * Pure and dependency-free so it can be tested without NextAuth or a build.
  */
+
+import {
+  CHECKOUT_PRODUCTS,
+  type CheckoutProduct,
+} from "./checkout-products.ts";
+import { stripeCheckoutGate } from "./checkout-gate.ts";
 
 export const VIEWER_SCHEMA = "viewer.v1";
 
@@ -39,57 +45,31 @@ export type OfferInput = {
   reason?: string | null;
 };
 
-/** The three products `/api/checkout` knows how to sell. */
-export const PRODUCT_OFFERS = [
-  {
-    id: "creative-ai-toolkit",
-    label: "Creative AI Toolkit",
-    priceEnv: "STRIPE_PRICE_TOOLKIT",
-  },
-  {
-    id: "agentic-creator-os",
-    label: "ACOS Creator Kit",
-    priceEnv: "STRIPE_PRICE_ACOS",
-  },
-  {
-    id: "suno-prompt-library",
-    label: "Suno Prompt Pack",
-    priceEnv: "STRIPE_PRICE_SUNO",
-  },
-] as const;
-
-/**
- * Product availability mirrors the checkout route: a Stripe secret plus the
- * product's price id. Anything missing is unavailable with a reason, not a
- * dead buy button.
- */
+/** The checkout products, mapped to offers with their real purchase gate. */
 export function offersFromEnv(
   env: Record<string, string | undefined>,
+  products: Record<string, CheckoutProduct> = CHECKOUT_PRODUCTS,
 ): OfferInput[] {
-  const stripeReady = Boolean(env.STRIPE_SECRET_KEY?.trim());
-  return PRODUCT_OFFERS.map((offer) => {
-    if (!stripeReady) {
+  return Object.entries(products).map(([id, product]) => {
+    const gate = stripeCheckoutGate(
+      {
+        status: product.status,
+        priceId: env[product.priceEnv] ?? "",
+      },
+      env.STRIPE_SECRET_KEY,
+    );
+    if (!gate.ok) {
       return {
-        id: offer.id,
-        label: offer.label,
+        id,
+        label: product.name,
         available: false,
-        reason: "Stripe checkout is not configured.",
+        reason:
+          gate.refusal === "checkout_gated"
+            ? "Not for sale yet."
+            : "Checkout is not configured.",
       };
     }
-    if (!env[offer.priceEnv]?.trim()) {
-      return {
-        id: offer.id,
-        label: offer.label,
-        available: false,
-        reason: `${offer.priceEnv} is not configured.`,
-      };
-    }
-    return {
-      id: offer.id,
-      label: offer.label,
-      available: true,
-      reason: null,
-    };
+    return { id, label: product.name, available: true, reason: null };
   });
 }
 

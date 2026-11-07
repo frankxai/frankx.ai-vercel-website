@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { CHECKOUT_PRODUCTS, NOT_FOR_SALE } from "../../lib/checkout-products.ts";
 import {
   VIEWER_SCHEMA,
   buildAdminViewer,
@@ -8,17 +9,20 @@ import {
 
 const now = new Date("2026-11-07T12:00:00.000Z");
 const user = { id: "admin-1", email: "admin@frankx.ai" };
-const configuredEnv = {
+const fullyConfigured = {
   STRIPE_SECRET_KEY: "sk_test_x",
-  STRIPE_PRICE_TOOLKIT: "price_toolkit",
-  STRIPE_PRICE_ACOS: "price_acos",
-  STRIPE_PRICE_SUNO: "price_suno",
+  ...Object.fromEntries(
+    Object.values(CHECKOUT_PRODUCTS).map((product) => [
+      product.priceEnv,
+      `price_${product.priceEnv.toLowerCase()}`,
+    ]),
+  ),
 };
 
 test("an admin session maps to a truthful viewer.v1 account", () => {
   const viewer = buildAdminViewer({
     user,
-    offers: offersFromEnv(configuredEnv),
+    offers: offersFromEnv(fullyConfigured),
     now,
   });
   assert.equal(viewer.schema, VIEWER_SCHEMA);
@@ -37,45 +41,54 @@ test("an admin session maps to a truthful viewer.v1 account", () => {
   assert.equal(viewer.generatedAt, now.toISOString());
 });
 
-test("offers are available only when checkout has both the key and the price", () => {
-  const offers = offersFromEnv(configuredEnv);
-  assert.equal(offers.length, 3);
-  assert.ok(offers.every((offer) => offer.available === true));
-  assert.ok(offers.every((offer) => offer.reason === null));
-
-  const viewer = buildAdminViewer({ user, offers, now });
-  assert.deepEqual(viewer.nextOffer, {
-    id: "creative-ai-toolkit",
-    kind: "product",
-    label: "Creative AI Toolkit",
-    available: true,
-    reason: null,
-  });
-});
-
-test("missing Stripe configuration makes every offer unavailable with a reason", () => {
-  const offers = offersFromEnv({});
+test("every checkout product is represented, and the current closed status wins over configuration", () => {
+  const offers = offersFromEnv(fullyConfigured);
+  assert.equal(offers.length, Object.keys(CHECKOUT_PRODUCTS).length);
   assert.ok(offers.every((offer) => offer.available === false));
-  assert.ok(
-    offers.every((offer) => offer.reason === "Stripe checkout is not configured."),
-  );
+  assert.ok(offers.every((offer) => offer.reason === "Not for sale yet."));
+
   const viewer = buildAdminViewer({ user, offers, now });
   assert.equal(viewer.nextOffer, null);
 });
 
-test("one missing price id does not hide the other configured products", () => {
-  const offers = offersFromEnv({
-    ...configuredEnv,
-    STRIPE_PRICE_ACOS: "",
-  });
-  const byId = Object.fromEntries(offers.map((offer) => [offer.id, offer]));
-  assert.equal(byId["creative-ai-toolkit"].available, true);
-  assert.equal(byId["agentic-creator-os"].available, false);
-  assert.equal(
-    byId["agentic-creator-os"].reason,
-    "STRIPE_PRICE_ACOS is not configured.",
+test("a for-sale product becomes available; a closed one does not", () => {
+  const offers = offersFromEnv(
+    {
+      STRIPE_SECRET_KEY: "sk_test_x",
+      PRICE_OPEN: "price_open",
+    },
+    {
+      open: { name: "Open product", priceEnv: "PRICE_OPEN", amount: 100, status: "for sale" },
+      closed: { name: "Closed product", priceEnv: "PRICE_OPEN", amount: 100, status: NOT_FOR_SALE },
+    },
   );
-  assert.equal(byId["suno-prompt-library"].available, true);
+  const byId = Object.fromEntries(offers.map((offer) => [offer.id, offer]));
+  assert.equal(byId.open.available, true);
+  assert.equal(byId.open.reason, null);
+  assert.equal(byId.closed.available, false);
+  assert.equal(byId.closed.reason, "Not for sale yet.");
+});
+
+test("a for-sale product without a price is unavailable, not silently sold", () => {
+  const offers = offersFromEnv(
+    { STRIPE_SECRET_KEY: "sk_test_x" },
+    {
+      open: { name: "Open product", priceEnv: "PRICE_MISSING", amount: 100, status: "for sale" },
+    },
+  );
+  assert.equal(offers[0].available, false);
+  assert.equal(offers[0].reason, "Checkout is not configured.");
+});
+
+test("missing Stripe configuration makes even a for-sale product unavailable", () => {
+  const offers = offersFromEnv(
+    { PRICE_OPEN: "price_open" },
+    {
+      open: { name: "Open product", priceEnv: "PRICE_OPEN", amount: 100, status: "for sale" },
+    },
+  );
+  assert.equal(offers[0].available, false);
+  assert.equal(offers[0].reason, "Checkout is not configured.");
 });
 
 test("only an explicit true becomes an available offer", () => {
@@ -95,7 +108,7 @@ test("only an explicit true becomes an available offer", () => {
 test("the contract never invents a subscription or a paid plan", () => {
   const viewer = buildAdminViewer({
     user,
-    offers: offersFromEnv(configuredEnv),
+    offers: offersFromEnv(fullyConfigured),
     now,
   });
   assert.equal(viewer.paid, false);
