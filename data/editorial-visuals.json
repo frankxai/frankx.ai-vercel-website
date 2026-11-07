@@ -86,5 +86,17 @@
     "rights": "original",
     "createdOn": "2026-11-07",
     "kind": "diagram"
+  },
+  "proof-toolkit-layers": {
+    "src": "/images/editorial/proof-toolkit-layers.svg",
+    "width": 960,
+    "height": 900,
+    "alt": "Your AI crew in three layers: prompts help you think, skills make your process consistent, MCP connects real tools such as GitHub, notes and deploy. You approve every send, merge and publish.",
+    "caption": "Prompts for thinking, a skill for the repeatable process, MCP for real tools. The human keeps the approval step. Original schematic.",
+    "credit": "Original diagram by FrankX",
+    "sourceUrl": "https://www.frankx.ai/blog/build-proof-before-you-send-the-cv-2026",
+    "rights": "original",
+    "createdOn": "2026-11-07",
+    "kind": "diagram"
   }
 }
