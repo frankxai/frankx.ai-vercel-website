@@ -34,6 +34,17 @@ export const siteConfig = {
   ],
 }
 
+/**
+ * Licence for written content on frankx.ai, as stated in the repo LICENSE and
+ * on /licensing: all rights reserved; reading is allowed, reuse needs written terms.
+ * Used for the Article `license` / `copyrightHolder` fields and `<link rel="license">`.
+ */
+export const contentLicense = {
+  url: `${siteUrl}/licensing`,
+  holder: 'Frank Riemer',
+  notice: 'All rights reserved. Reading on frankx.ai is permitted; reuse needs written permission.',
+}
+
 // Next replaces a parent's openGraph and twitter objects wholesale instead of merging them, so any route or layout
 // that sets its own openGraph or twitter must carry its own images or the social card has none.
 export const defaultOpenGraphImages = [

@@ -4,7 +4,9 @@ import prototypesData from '@/data/ai-architecture/prototypes.json'
 import { bookReviews } from '@/data/book-reviews'
 import { osModules } from '@/data/os-modules'
 import { researchDomains } from '@/lib/research/domains'
-import { siteConfig } from '@/lib/seo'
+import { contentLicense, siteConfig } from '@/lib/seo'
+import { getProductCards } from '@/lib/products'
+import { getPublishedBooks } from '@/app/books/lib/books-registry'
 import type { ArchitecturePrototype } from '@/types/ai-architecture'
 
 const SITE_URL = siteConfig.url
@@ -84,6 +86,31 @@ Best for: ${b.bestFor?.slice(0, 3).join('; ') || '—'}
     )
     .join('\n')
 
+  // Frank's own books at /books/<slug>. Arcanea titles are left out, matching
+  // the rule that keeps Arcanea mythology out of FrankX copy.
+  const booksSection = getPublishedBooks('en')
+    .filter((b) => !b.slug.startsWith('arcanea-'))
+    .map(
+      (b) => `### ${b.title}
+${SITE_URL}/books/${b.slug}
+Status: ${b.status === 'published' ? 'published' : 'in progress'}${b.subtitle ? ` · ${b.subtitle}` : ''}
+
+${b.description}
+`
+    )
+    .join('\n')
+
+  const productsSection = getProductCards()
+    .map(
+      (p) => `### ${p.name}
+${SITE_URL}${p.href}
+${p.category || 'Product'}
+
+${p.headline}${p.summary && p.summary !== p.headline ? `\n\n${p.summary}` : ''}
+`
+    )
+    .join('\n')
+
   const researchSection = researchDomains
     .map(
       (d) => `### ${d.title}
@@ -150,6 +177,29 @@ Founder Stack → Foundry or Founder's Circle → Human Layer and Signal Loop.
 - [Coaching](${SITE_URL}/coaching): 1:1 advisory across AI architecture, creator strategy, music production
 - [Work With Me](${SITE_URL}/work-with-me): Studio engagements
 
+## Books
+
+Books written by Frank, free to read online. Status says whether every chapter is out.
+
+- [Books](${SITE_URL}/books): All FrankX books
+
+${booksSection}
+
+## Products
+
+Price and availability (available now, waitlist, or application) are stated on each product page, not here.
+
+- [Products](${SITE_URL}/products): Index of FrankX products
+
+${productsSection}
+
+## Resources
+
+- [Resources](${SITE_URL}/resources): Templates, playbooks, affiliate programs, and GitHub repo maps
+- [Templates](${SITE_URL}/resources/templates): Downloadable AI implementation and governance templates
+- [Builder stack](${SITE_URL}/resources/builder-stack): Design, publishing, and payment tools, with which programs are open or closed
+- [SEO and AEO workflow](${SITE_URL}/resources/seo-aeo): Turn search evidence into a reviewable website change; free evidence and measurement templates
+
 ## Operating Systems
 
 ${osSection}
@@ -208,6 +258,10 @@ ${blogSection}
 - [Library OS](https://github.com/frankxai/library-os): MIT-licensed book intelligence system
 - [Starlight Intelligence System](https://github.com/frankxai/Starlight-Intelligence-System): MIT-licensed substrate (memory palace, IS layers, voice operator)
 - [GitHub profile](https://github.com/frankxai): All public repos
+
+## Licence
+
+Written content on frankx.ai: ${contentLicense.notice} Terms: ${contentLicense.url}. Each article declares its canonical URL with <link rel="canonical">.
 
 ## Useful References
 
