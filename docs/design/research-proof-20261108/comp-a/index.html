@@ -1,0 +1,549 @@
+<!doctype html>
+<!-- Author: opencode/designer subagent. Date: 2026-11-08. Session: local. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research, with the working shown | FrankX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0a0a0b;
+    --space:#111113;
+    --elevated:#1a1a1f;
+    --line:rgba(255,255,255,.08);
+    --line-strong:rgba(255,255,255,.14);
+    --ink-1:rgba(255,255,255,.95);
+    --ink-2:rgba(255,255,255,.72);
+    --ink-3:rgba(255,255,255,.52);
+    --ink-4:rgba(255,255,255,.46);
+    --emerald:#10b981;
+    --emerald-light:#34d399;
+    --cyan:#06b6d4;
+    --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --display:"Poppins","Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --serif:"Playfair Display",Georgia,serif;
+    --pad:clamp(20px,4vw,48px);
+    --max:1280px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--void);color:var(--ink-1);
+    font-family:var(--sans);font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:rgba(16,185,129,.28)}
+  :focus-visible{outline:2px solid var(--emerald-light);outline-offset:3px;border-radius:4px}
+  .wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+  .skip{position:absolute;left:-999px;top:0;background:var(--emerald);color:#050a07;padding:12px 18px;border-radius:0 0 12px 0;z-index:20;font-weight:600}
+  .skip:focus{left:0}
+
+  /* ---------- header ---------- */
+  header{position:relative;z-index:10;border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:68px}
+  .brand{display:flex;align-items:baseline;gap:10px;font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:-.01em}
+  .brand span{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.04em;color:var(--ink-3)}
+  nav{display:flex;align-items:center;gap:4px}
+  nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;font-size:14px;color:var(--ink-2);border-radius:999px;transition:color .18s ease,background-color .18s ease}
+  nav a:hover{color:var(--ink-1);background:rgba(255,255,255,.04)}
+  nav a.is-here{color:var(--ink-1)}
+  nav .dot{width:5px;height:5px;border-radius:50%;background:var(--emerald);margin-right:8px}
+  @media (max-width:720px){nav a:not(.always){display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{padding:clamp(56px,8vw,104px) 0 clamp(44px,6vw,72px)}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(32px,5vw,72px);align-items:start}
+  .eyebrow{font-size:11px;letter-spacing:.22em;color:var(--emerald-light);margin:0 0 22px;font-weight:500}
+  h1{
+    font-family:var(--display);font-weight:600;
+    font-size:clamp(38px,4.6vw,64px);line-height:1.03;letter-spacing:-.035em;
+    margin:0;max-width:15ch;text-wrap:balance;
+  }
+  h1 em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.01em}
+  .deck{font-size:clamp(16px,1.35vw,19px);line-height:1.65;color:var(--ink-2);max-width:56ch;margin:24px 0 0}
+  .actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 28px;margin-top:36px}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;
+    background:var(--emerald);color:#06110b;border-radius:999px;
+    font-weight:600;font-size:15px;letter-spacing:-.005em;
+    transition:background-color .18s ease,transform .18s ease;
+  }
+  .btn:hover{background:var(--emerald-light)}
+  .btn:active{transform:translateY(1px)}
+  .btn svg{width:15px;height:15px}
+  .link{
+    display:inline-flex;align-items:center;gap:8px;min-height:44px;
+    font-size:14px;color:var(--ink-2);border-bottom:1px solid transparent;
+    transition:color .18s ease,border-color .18s ease;
+  }
+  .link:hover{color:var(--ink-1);border-color:var(--line-strong)}
+  .link .arrow{color:var(--emerald-light);transition:transform .18s ease}
+  .link:hover .arrow{transform:translate(2px,-2px)}
+
+  /* ---------- counters ---------- */
+  .counters{border-left:1px solid var(--line);padding-left:clamp(20px,2.4vw,32px)}
+  .counters .cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--ink-4);margin:0 0 18px}
+  .counters dl{display:grid;grid-template-columns:1fr 1fr;gap:26px 20px;margin:0}
+  .counters dt{font-family:var(--display);font-size:clamp(28px,3vw,38px);font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+  .counters dd{margin:8px 0 0;font-size:12.5px;line-height:1.45;color:var(--ink-3)}
+  .counters dd b{display:block;font-weight:500;color:var(--ink-2)}
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr}
+    .counters{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:28px}
+  }
+
+  /* ---------- method strip ---------- */
+  .method{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.012),transparent 60%)}
+  .method-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:0;align-items:stretch}
+  .phase{padding:26px 26px 26px 0;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+  .phase:first-child{padding-left:0}
+  .phase .n{font-family:var(--mono);font-size:10.5px;color:var(--emerald-light);letter-spacing:.08em}
+  .phase .t{font-family:var(--display);font-size:15.5px;font-weight:600;letter-spacing:-.01em}
+  .phase .d{font-size:12.5px;line-height:1.5;color:var(--ink-3);max-width:26ch}
+  .method-grid .tail{display:flex;align-items:center;padding-left:26px;border-right:0}
+  .method-grid .tail .link{white-space:nowrap;font-size:13px}
+  @media (max-width:1000px){
+    .method-grid{grid-template-columns:1fr 1fr}
+    .phase{border-bottom:1px solid var(--line)}
+    .phase:nth-child(2n){border-right:0;padding-right:0}
+    .phase:nth-child(n+3){border-bottom:0}
+    .method-grid .tail{grid-column:1/-1;padding:18px 0 22px;border-top:1px solid var(--line)}
+  }
+
+  /* ---------- section frames ---------- */
+  section{position:relative}
+  .sect{padding:clamp(64px,8vw,104px) 0;border-bottom:1px solid var(--line)}
+  .sect-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px;margin-bottom:36px}
+  .sect-head .meta{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-4);margin:0 0 12px}
+  h2{font-family:var(--display);font-size:clamp(26px,2.9vw,38px);line-height:1.1;letter-spacing:-.03em;font-weight:600;margin:0;max-width:24ch;text-wrap:balance}
+  .sect-deck{font-size:15px;line-height:1.65;color:var(--ink-2);max-width:52ch;margin:14px 0 0}
+
+  /* view switch */
+  .switch{display:flex;align-items:center;gap:10px}
+  .switch .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .switch label{
+    display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:999px;
+    border:1px solid var(--line);color:var(--ink-3);font-size:13px;cursor:pointer;
+    transition:color .16s ease,border-color .16s ease,background-color .16s ease;
+  }
+  .switch label:hover{color:var(--ink-1);border-color:var(--line-strong)}
+  .viewinput{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+  #view-cards:checked ~ .sect-head label[for="view-cards"],
+  #view-table:checked ~ .sect-head label[for="view-table"]{color:var(--ink-1);border-color:rgba(16,185,129,.45);background:rgba(16,185,129,.08)}
+  #view-cards:focus-visible ~ .sect-head label[for="view-cards"],
+  #view-table:focus-visible ~ .sect-head label[for="view-table"]{outline:2px solid var(--emerald-light);outline-offset:2px}
+
+  /* ---------- investigations ---------- */
+  .inv{margin:0;padding:0;list-style:none}
+  .inv .num{font-family:var(--mono);font-size:11px;color:var(--ink-4);letter-spacing:.06em}
+  .kind{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--emerald-light)}
+
+  /* lead card */
+  .lead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:clamp(24px,3.5vw,52px);
+    border:1px solid rgba(16,185,129,.22);background:rgba(16,185,129,.035);
+    border-radius:24px;padding:clamp(24px,3.2vw,40px);
+    transition:border-color .2s ease,background-color .2s ease}
+  .lead:hover{border-color:rgba(16,185,129,.45);background:rgba(16,185,129,.055)}
+  .lead .top{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+  .lead h3{font-family:var(--display);font-size:clamp(26px,2.6vw,34px);line-height:1.1;letter-spacing:-.03em;font-weight:600;margin:0;max-width:18ch}
+  .lead p{margin:16px 0 0;font-size:15px;line-height:1.68;color:var(--ink-2);max-width:52ch}
+  .inspect{margin:26px 0 0;padding:0;list-style:none;display:grid;gap:9px}
+  .inspect li{display:flex;gap:10px;font-size:13.5px;color:var(--ink-2)}
+  .inspect li::before{content:"";flex:none;width:5px;height:5px;margin-top:8px;border-radius:50%;background:var(--emerald-light)}
+  .lead .open{margin-top:28px}
+  .lead .open .link{color:var(--ink-1);font-weight:500}
+
+  .manifest{border:1px solid var(--line);border-radius:16px;background:rgba(10,10,11,.72);overflow:hidden}
+  .manifest .bar2{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+  .manifest .bar2 span{font-family:var(--mono);font-size:10.5px;color:var(--ink-4);letter-spacing:.06em}
+  .manifest .bar2 em{font-style:normal;font-family:var(--mono);font-size:10.5px;color:var(--emerald-light)}
+  .manifest pre{margin:0;padding:16px;overflow-x:auto;font-family:var(--mono);font-size:11.5px;line-height:1.85;color:var(--ink-3);tab-size:2}
+  @media (max-width:760px){.manifest .bar2,.manifest pre{display:none}}
+  .manifest .k{color:var(--cyan)}
+  .manifest .s{color:var(--emerald-light)}
+  .manifest .p{color:var(--ink-4)}
+  .manifest footer{display:flex;flex-wrap:wrap;gap:8px 20px;padding:12px 16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10.5px;color:var(--ink-4)}
+  .manifest footer b{font-weight:400;color:var(--ink-2)}
+
+  /* support cards */
+  .support{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+  .card{
+    display:flex;flex-direction:column;gap:0;height:100%;
+    border:1px solid var(--line);border-radius:20px;padding:24px;
+    background:rgba(255,255,255,.015);
+    transition:border-color .2s ease,background-color .2s ease,transform .2s ease;
+  }
+  .card:hover{border-color:rgba(16,185,129,.34);background:rgba(16,185,129,.03);transform:translateY(-2px)}
+  .card .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+  .card h3{font-family:var(--display);font-size:20px;line-height:1.25;letter-spacing:-.02em;font-weight:600;margin:0}
+  .card p{margin:10px 0 0;font-size:13.5px;line-height:1.62;color:var(--ink-3);flex:1}
+  .card .foot{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-top:22px;padding-top:14px;border-top:1px solid var(--line)}
+  .card .foot .read{font-family:var(--mono);font-size:10.5px;color:var(--ink-4);line-height:1.5}
+  .card .foot .read b{display:block;font-weight:400;color:var(--ink-2)}
+  .card .arw{color:var(--ink-4);transition:color .2s ease,transform .2s ease}
+  .card:hover .arw{color:var(--emerald-light);transform:translate(2px,-2px)}
+
+  /* table view */
+  .tablewrap{display:none;border-top:1px solid var(--line-strong)}
+  .thead,.trow{display:grid;grid-template-columns:44px minmax(0,1.6fr) minmax(0,1.15fr) minmax(0,.7fr) 28px;gap:20px;align-items:baseline}
+  .thead{padding:12px 0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.09em;color:var(--ink-4)}
+  .trow{padding:20px 0;border-bottom:1px solid var(--line);transition:background-color .16s ease}
+  .trow:hover{background:rgba(255,255,255,.02)}
+  .trow .title{font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-.015em;line-height:1.3}
+  .trow .title small{display:block;font-family:var(--sans);font-size:12.5px;font-weight:400;color:var(--ink-3);margin-top:4px;letter-spacing:0;line-height:1.5}
+  .trow .ev{font-size:12.5px;color:var(--ink-2)}
+  .trow .ev b{display:block;font-family:var(--mono);font-size:10.5px;font-weight:400;color:var(--ink-4);margin-top:4px}
+  .trow .when{font-family:var(--mono);font-size:11px;color:var(--ink-4);white-space:nowrap}
+  .trow .arw{color:var(--ink-4);justify-self:end}
+
+  /* switch behaviour: cards by default, table when #view-table is checked */
+  #view-table:checked ~ .cards{display:none}
+  #view-table:checked ~ .tablewrap{display:block}
+  #view-cards:checked ~ .cards{display:block}
+  #view-cards:checked ~ .tablewrap{display:none}
+
+  /* ---------- grade scale ---------- */
+  .grade{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(28px,4vw,64px);align-items:center}
+  .grade p{font-size:15px;line-height:1.7;color:var(--ink-2);margin:16px 0 0;max-width:44ch}
+  .grade .link{margin-top:18px}
+  .scale{border:1px solid var(--line);border-radius:20px;padding:clamp(20px,2.4vw,30px);background:rgba(255,255,255,.014)}
+  .scale figcaption{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;color:var(--ink-4);margin-top:16px}
+  .scale svg{display:block;width:100%;height:auto}
+  .scale .svg-mobile{display:none}
+  @media (max-width:640px){
+    .scale .svg-desktop{display:none}
+    .scale .svg-mobile{display:block}
+  }
+
+  /* ---------- topic maps ---------- */
+  .maps-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(28px,4vw,64px)}
+  .maplist{display:grid;grid-template-columns:1fr 1fr;gap:0 32px;margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+  .maplist li{display:flex;flex-direction:column;gap:5px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .maplist .t{font-size:13.5px;line-height:1.45;color:var(--ink-1)}
+  .maplist .h{font-family:var(--mono);font-size:10px;color:var(--ink-4);letter-spacing:.05em}
+
+  /* ---------- close ---------- */
+  .close{padding:clamp(72px,9vw,120px) 0;border-bottom:1px solid var(--line)}
+  .close h2{font-size:clamp(30px,3.6vw,46px);max-width:20ch}
+  .close .row{display:flex;flex-wrap:wrap;align-items:center;gap:16px 32px;margin-top:32px}
+  .close .note{font-size:13px;color:var(--ink-4);max-width:34ch}
+
+  footer.foot{padding:36px 0 56px}
+  .foot .row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px}
+  .foot p{margin:0;font-size:12px;color:var(--ink-4)}
+  .foot nav a{font-size:12.5px;min-height:44px;color:var(--ink-3)}
+
+  @media (max-width:900px){
+    .lead{grid-template-columns:1fr}
+    .support{grid-template-columns:1fr}
+    .grade,.maps-grid{grid-template-columns:1fr}
+    .maplist{grid-template-columns:1fr}
+    .thead{display:none}
+    .trow{grid-template-columns:32px 1fr 24px;gap:14px}
+    .trow .ev,.trow .when{grid-column:2;margin-top:2px}
+    .trow .arw{grid-column:3;grid-row:1}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+    .card:hover{transform:none}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the investigations</a>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="/">frankx <span>/ research</span></a>
+    <nav aria-label="Primary">
+      <a class="is-here always" href="/research"><span class="dot" aria-hidden="true"></span>Research</a>
+      <a href="/ai-architecture">Architecture</a>
+      <a href="/blog">Writing</a>
+      <a href="/research/methodology">Method</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">FrankX research</p>
+        <h1>Research, with the <em>working</em> shown.</h1>
+        <p class="deck">Five published investigations. Each one opens onto the receipts, dataset, grades or source ledger behind its claims. The topic maps below stay under review until their sources pass.</p>
+        <div class="actions">
+          <a class="btn" href="#investigations">
+            Read the investigations
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="link" href="/research/methodology">How a claim is graded <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <aside class="counters" aria-label="What this page holds">
+        <p class="cap">Index</p>
+        <dl>
+          <div><dt>05</dt><dd><b>Investigations</b>published with their evidence</dd></div>
+          <div><dt>07</dt><dd><b>Arena rounds</b>last measured 28 Aug 2026</dd></div>
+          <div><dt>29</dt><dd><b>Systems mapped</b>dataset checked 17 Jul 2026</dd></div>
+          <div><dt>104</dt><dd><b>Topic maps</b>in the public index</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="method" aria-labelledby="method-title">
+    <div class="wrap">
+      <h2 id="method-title" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Method</h2>
+      <div class="method-grid">
+        <div class="phase"><span class="n">01</span><span class="t">Signal detection</span><span class="d">Directed searches, specialist scans, papers and filings.</span></div>
+        <div class="phase"><span class="n">02</span><span class="t">Deep analysis</span><span class="d">Two to four hours per domain, facts kept apart from interpretation.</span></div>
+        <div class="phase"><span class="n">03</span><span class="t">Validation and rating</span><span class="d">Each claim rated by source quality, recency and corroboration.</span></div>
+        <div class="phase"><span class="n">04</span><span class="t">Publication and schema</span><span class="d">Reviewed briefs ship with sources, limits and dates attached.</span></div>
+        <div class="tail"><a class="link" href="/research/methodology">Method in full <span class="arrow" aria-hidden="true">↗</span></a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect" id="investigations" aria-labelledby="inv-title">
+    <div class="wrap">
+      <input class="viewinput" type="radio" name="view" id="view-cards" checked>
+      <input class="viewinput" type="radio" name="view" id="view-table">
+      <div class="sect-head">
+        <div>
+          <p class="meta">01 / Published investigations</p>
+          <h2 id="inv-title">Investigations with their evidence attached</h2>
+          <p class="sect-deck">Each piece publishes what it rests on. Open the one you need to check first.</p>
+        </div>
+        <div class="switch">
+          <span class="vh">Read the investigations as</span>
+          <label for="view-cards">Cards</label>
+          <label for="view-table">Table</label>
+        </div>
+      </div>
+
+      <div class="cards">
+        <ol class="inv" role="list">
+          <li>
+            <a class="lead" href="/research/model-arena">
+              <div>
+                <div class="top">
+                  <span class="kind">First-party receipts</span>
+                  <span class="num">01</span>
+                </div>
+                <h3>Starlight Model Arena</h3>
+                <p>Which model should handle which task. Every harness measurement traces to a public JSON receipt, and vendor benchmark figures carry their own source. The two are never merged into a ranking.</p>
+                <ul class="inspect">
+                  <li>Harness receipts as raw JSON</li>
+                  <li>Third-party figures with source and licence</li>
+                  <li>Methodology in the open repository</li>
+                </ul>
+                <div class="open"><span class="link">Open the receipts <span class="arrow" aria-hidden="true">↗</span></span></div>
+              </div>
+              <div>
+                <div class="manifest">
+                  <div class="bar2"><span>GET /research/model-arena/receipts.json</span><em>200</em></div>
+<pre translate="no" aria-label="Shape of the published receipts manifest">
+<span class="p">{</span>
+  <span class="k">"schema"</span>: <span class="s">"frankx/arena-receipts-manifest@1"</span>,
+  <span class="k">"lastMeasured"</span>: <span class="s">"2026-08-28"</span>,
+  <span class="k">"receiptCount"</span>: <span class="p">7</span>,
+  <span class="k">"receipts"</span>: <span class="p">[{</span>
+    <span class="k">"roundId"</span>, <span class="k">"date"</span>,
+    <span class="k">"contestants"</span>, <span class="k">"tasks"</span>, <span class="k">"href"</span>
+  <span class="p">}]</span>
+<span class="p">}</span>
+</pre>
+                  <footer>
+                    <span>rounds <b>7</b></span>
+                    <span>last measured <b>28 Aug 2026</b></span>
+                    <span>source <b>public/research/arena-receipts</b></span>
+                  </footer>
+                </div>
+                <p style="font-family:var(--mono);font-size:11px;line-height:1.7;color:var(--ink-4);margin:14px 0 0">
+                  Round 5, the most recent, is published as void-equivalent: it did not separate the four tiers it was built for, so the routing table did not move.
+                </p>
+              </div>
+            </a>
+          </li>
+        </ol>
+
+        <div class="support">
+          <a class="card" href="/research/agentic-life-observatory">
+            <div class="top"><span class="kind">Market map and dataset</span><span class="num">02</span></div>
+            <h3>Agentic Life Observatory</h3>
+            <p>Memory, orchestration, sovereignty, evaluation, protocols and coding harnesses, each system classified by whether to build, integrate, partner, compete or watch.</p>
+            <div class="foot">
+              <span class="read"><b>29 systems</b>6 capability axes, checked 17 Jul 2026</span>
+              <span class="arw" aria-hidden="true">↗</span>
+            </div>
+          </a>
+          <a class="card" href="/research/the-light-within">
+            <div class="top"><span class="kind">Evidence graded A to D</span><span class="num">03</span></div>
+            <h3>The Light Within</h3>
+            <p>What neuroscience can and cannot confirm about visualization, breathwork and gamma states, and where popular claims outrun the data.</p>
+            <div class="foot">
+              <span class="read"><b>Grades A to D</b>per claim, 14-minute read</span>
+              <span class="arw" aria-hidden="true">↗</span>
+            </div>
+          </a>
+          <a class="card" href="/research/blue-zones-ikigai-ai-era">
+            <div class="top"><span class="kind">Meaning and longevity</span><span class="num">04</span></div>
+            <h3>Blue Zones, Ikigai, and the AI Era</h3>
+            <p>Longevity research from Okinawa and Sardinia, read as a systems question: what keeps work meaningful when AI does more of it.</p>
+            <div class="foot">
+              <span class="read"><b>1966 to 2017</b>origin texts traced, 12-minute read</span>
+              <span class="arw" aria-hidden="true">↗</span>
+            </div>
+          </a>
+          <a class="card" href="/research/economy">
+            <div class="top"><span class="kind">Working atlas</span><span class="num">05</span></div>
+            <h3>Economic atlas</h3>
+            <p>Product proposals and distribution channels with the evidence behind each one, plus an illustrative cost scenario you can save. Demand is not yet measured.</p>
+            <div class="foot">
+              <span class="read"><b>73 products, 30 channels</b>48 sources, dataset 2 Oct 2026</span>
+              <span class="arw" aria-hidden="true">↗</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="tablewrap">
+        <div class="thead" aria-hidden="true">
+          <span>No.</span><span>Investigation</span><span>What it rests on</span><span>State</span><span></span>
+        </div>
+        <ol class="inv" role="list">
+          <li><a class="trow" href="/research/model-arena"><span class="num">01</span><span class="title">Starlight Model Arena<small>Which model should handle which task</small></span><span class="ev">First-party receipts<b>receipts.json · 7 rounds</b></span><span class="when">28 Aug 2026</span><span class="arw" aria-hidden="true">↗</span></a></li>
+          <li><a class="trow" href="/research/agentic-life-observatory"><span class="num">02</span><span class="title">Agentic Life Observatory<small>Market map of agentic systems</small></span><span class="ev">Open dataset<b>29 systems · 6 axes</b></span><span class="when">17 Jul 2026</span><span class="arw" aria-hidden="true">↗</span></a></li>
+          <li><a class="trow" href="/research/the-light-within"><span class="num">03</span><span class="title">The Light Within<small>Visualization, breathwork and gamma states</small></span><span class="ev">Graded claims<b>A to D, per claim</b></span><span class="when">graded A to D</span><span class="arw" aria-hidden="true">↗</span></a></li>
+          <li><a class="trow" href="/research/blue-zones-ikigai-ai-era"><span class="num">04</span><span class="title">Blue Zones, Ikigai, and the AI Era<small>Longevity research read as a systems question</small></span><span class="ev">Source-led essay<b>1966 to 2017</b></span><span class="when">sources 1966 to 2017</span><span class="arw" aria-hidden="true">↗</span></a></li>
+          <li><a class="trow" href="/research/economy"><span class="num">05</span><span class="title">Economic atlas<small>Products, channels and their costs</small></span><span class="ev">Working atlas<b>73 products · 30 channels</b></span><span class="when">2 Oct 2026</span><span class="arw" aria-hidden="true">↗</span></a></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect" aria-labelledby="grade-title">
+    <div class="wrap grade">
+      <div>
+        <p class="meta" style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-4);margin:0 0 12px">02 / Grades</p>
+        <h2 id="grade-title">What a grade means here</h2>
+        <p>A grade describes where a claim came from. It follows the claim into the page, so you can see where the evidence stops and the interpretation starts.</p>
+        <a class="link" href="/research/methodology">Read the grading rules <span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+      <figure class="scale" style="margin:0">
+        <svg class="svg-desktop" viewBox="0 0 640 190" role="img" aria-labelledby="scale-title scale-desc">
+          <title id="scale-title">The four evidence grades used in the research</title>
+          <desc id="scale-desc">A is peer reviewed, B is clinical or industry, C is mixed evidence, D is traditional or editorial.</desc>
+          <line x1="0" y1="150" x2="640" y2="150" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+          <g font-family="JetBrains Mono, monospace" font-size="11" fill="rgba(255,255,255,0.52)">
+            <text x="4" y="176">strongest source</text>
+            <text x="636" y="176" text-anchor="end">weakest source</text>
+          </g>
+          <g>
+            <rect x="0" y="40" width="152" height="110" fill="rgba(52,211,153,0.07)"/>
+            <rect x="0" y="40" width="152" height="3" fill="#34d399"/>
+            <text x="16" y="86" font-family="Poppins, sans-serif" font-size="34" font-weight="600" fill="rgba(255,255,255,0.95)">A</text>
+            <text x="16" y="112" font-family="Inter, sans-serif" font-size="12" fill="rgba(255,255,255,0.72)">peer reviewed</text>
+            <rect x="152" y="40" width="162" height="110" fill="rgba(6,182,212,0.06)"/>
+            <rect x="152" y="40" width="162" height="3" fill="#06b6d4"/>
+            <text x="168" y="86" font-family="Poppins, sans-serif" font-size="34" font-weight="600" fill="rgba(255,255,255,0.95)">B</text>
+            <text x="168" y="112" font-family="Inter, sans-serif" font-size="12" fill="rgba(255,255,255,0.72)">clinical or industry</text>
+            <rect x="314" y="40" width="162" height="110" fill="rgba(255,255,255,0.035)"/>
+            <rect x="314" y="40" width="162" height="3" fill="rgba(255,255,255,0.38)"/>
+            <text x="330" y="86" font-family="Poppins, sans-serif" font-size="34" font-weight="600" fill="rgba(255,255,255,0.95)">C</text>
+            <text x="330" y="112" font-family="Inter, sans-serif" font-size="12" fill="rgba(255,255,255,0.72)">mixed evidence</text>
+            <rect x="476" y="40" width="164" height="110" fill="rgba(255,255,255,0.02)"/>
+            <rect x="476" y="40" width="164" height="3" fill="rgba(255,255,255,0.22)"/>
+            <text x="492" y="86" font-family="Poppins, sans-serif" font-size="34" font-weight="600" fill="rgba(255,255,255,0.95)">D</text>
+            <text x="492" y="112" font-family="Inter, sans-serif" font-size="12" fill="rgba(255,255,255,0.72)">traditional or editorial</text>
+          </g>
+          <g stroke="rgba(255,255,255,0.14)" stroke-width="1">
+            <line x1="152" y1="40" x2="152" y2="150"/>
+            <line x1="314" y1="40" x2="314" y2="150"/>
+            <line x1="476" y1="40" x2="476" y2="150"/>
+          </g>
+        </svg>
+        <svg class="svg-mobile" viewBox="0 0 340 236" role="img" aria-labelledby="scale-mt scale-md">
+          <title id="scale-mt">The four evidence grades used in the research</title>
+          <desc id="scale-md">A is peer reviewed, B is clinical or industry, C is mixed evidence, D is traditional or editorial.</desc>
+          <g>
+            <rect x="0" y="6" width="4" height="42" rx="2" fill="#34d399"/>
+            <text x="18" y="38" font-family="Poppins, sans-serif" font-size="21" font-weight="600" fill="rgba(255,255,255,0.95)">A</text>
+            <text x="48" y="38" font-family="Inter, sans-serif" font-size="13.5" fill="rgba(255,255,255,0.78)">peer reviewed</text>
+            <line x1="0" y1="60" x2="340" y2="60" stroke="rgba(255,255,255,0.08)"/>
+
+            <rect x="0" y="66" width="4" height="42" rx="2" fill="#06b6d4"/>
+            <text x="18" y="98" font-family="Poppins, sans-serif" font-size="21" font-weight="600" fill="rgba(255,255,255,0.95)">B</text>
+            <text x="48" y="98" font-family="Inter, sans-serif" font-size="13.5" fill="rgba(255,255,255,0.78)">clinical or industry</text>
+            <line x1="0" y1="120" x2="340" y2="120" stroke="rgba(255,255,255,0.08)"/>
+
+            <rect x="0" y="126" width="4" height="42" rx="2" fill="rgba(255,255,255,0.38)"/>
+            <text x="18" y="158" font-family="Poppins, sans-serif" font-size="21" font-weight="600" fill="rgba(255,255,255,0.95)">C</text>
+            <text x="48" y="158" font-family="Inter, sans-serif" font-size="13.5" fill="rgba(255,255,255,0.78)">mixed evidence</text>
+            <line x1="0" y1="180" x2="340" y2="180" stroke="rgba(255,255,255,0.08)"/>
+
+            <rect x="0" y="186" width="4" height="42" rx="2" fill="rgba(255,255,255,0.22)"/>
+            <text x="18" y="218" font-family="Poppins, sans-serif" font-size="21" font-weight="600" fill="rgba(255,255,255,0.95)">D</text>
+            <text x="48" y="218" font-family="Inter, sans-serif" font-size="13.5" fill="rgba(255,255,255,0.78)">traditional or editorial</text>
+          </g>
+        </svg>
+        <figcaption>Grade labels from /research/the-light-within. Applied per claim.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sect" aria-labelledby="maps-title">
+    <div class="wrap maps-grid">
+      <div>
+        <p class="meta" style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-4);margin:0 0 12px">03 / Topic maps</p>
+        <h2 id="maps-title">104 topic maps, still under review</h2>
+        <p class="sect-deck">The index is wider than the five investigations above. Their briefs stay back until a source is registered and a claim survives review. Here is a sample of what is being worked on.</p>
+        <a class="link" style="margin-top:20px" href="/research#domains">Search the topic map <span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+      <ul class="maplist" role="list">
+        <li><span class="t">Frontier Reasoning Models &amp; Test-Time Compute</span><span class="h">Models &amp; intelligence</span></li>
+        <li><span class="t">Context Engineering &amp; Long-Context Architecture</span><span class="h">Models &amp; intelligence</span></li>
+        <li><span class="t">Agentic Memory Architectures: Episodic, Semantic &amp; Procedural</span><span class="h">Agents &amp; autonomous systems</span></li>
+        <li><span class="t">Model Context Protocol (MCP) &amp; Universal Tool Ecosystems</span><span class="h">Agents &amp; autonomous systems</span></li>
+        <li><span class="t">AI Inference Optimization Runtimes &amp; Serving Engines</span><span class="h">Compute &amp; infrastructure</span></li>
+        <li><span class="t">AI Energy Economics, Nuclear Power &amp; SMR Micro-Grids</span><span class="h">Compute &amp; infrastructure</span></li>
+        <li><span class="t">The EU AI Act &amp; Global Regulatory Compliance Frameworks</span><span class="h">Architecture &amp; economics</span></li>
+        <li><span class="t">Human-in-the-Loop (HITL) Governance &amp; Verification Gates</span><span class="h">Agents &amp; autonomous systems</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="close" aria-labelledby="close-title">
+    <div class="wrap">
+      <h2 id="close-title">Start with the one you can check today.</h2>
+      <div class="row">
+        <a class="btn" href="#investigations">Read the investigations
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="link" href="/research/methodology">Or read the method first <span class="arrow" aria-hidden="true">↗</span></a>
+        <p class="note">New rounds are published with their receipt. The newsletter carries the short version when one lands.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap row">
+    <p>FrankX research. Background #0a0a0b, emerald for technology. Nothing here asks for an email to read.</p>
+    <nav aria-label="Research footer">
+      <a href="/research/methodology">Method</a>
+      <a href="/research/sources">Sources</a>
+      <a href="/research/feed">Feed</a>
+      <a href="/newsletter">Newsletter</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
