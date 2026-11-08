@@ -91,6 +91,9 @@ export function WaitlistForm({
   const [email, setEmail] = useState('')
   // The address step 1 stored. Step 2 refines that signal, whatever the input says later.
   const [joinedEmail, setJoinedEmail] = useState('')
+  // Returned once by a new join and held in memory only. An address that was already on the
+  // list gets no token, so it skips the questions instead of sending a refine that would fail.
+  const [editToken, setEditToken] = useState('')
   const [consent, setConsent] = useState(false)
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [busy, setBusy] = useState(false)
@@ -107,11 +110,12 @@ export function WaitlistForm({
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error ?? 'Something went wrong')
-      setState(data)
-      return true
+      const { editToken: token, ...nextState } = data
+      setState(nextState)
+      return { token: typeof token === 'string' ? token : '' }
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Something went wrong')
-      return false
+      return null
     } finally {
       setBusy(false)
     }
@@ -135,9 +139,11 @@ export function WaitlistForm({
             pathname: typeof window === 'undefined' ? '' : window.location.pathname,
             search: typeof window === 'undefined' ? '' : window.location.search,
           })
-          if (await post(payload)) {
+          const result = await post(payload)
+          if (result) {
             setJoinedEmail(submitted)
-            setStep('refine')
+            setEditToken(result.token)
+            setStep(result.token ? 'refine' : 'done')
           }
         }}
       >
@@ -233,7 +239,7 @@ export function WaitlistForm({
         <div className="flex items-center gap-5">
           <button
             onClick={async () => {
-              if (await post(refinePayload({ productId, joinedEmail, answers }))) setStep('done')
+              if (await post(refinePayload({ productId, joinedEmail, editToken, answers }))) setStep('done')
             }}
             disabled={busy}
             className="wl-btn wl-btn-quiet"
