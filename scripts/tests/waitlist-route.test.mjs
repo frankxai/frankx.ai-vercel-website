@@ -107,3 +107,26 @@ test('grants CORS only to allowlisted origins, never a wildcard', async () => {
     assert.equal(res.headers.get('vary'), 'Origin')
   }
 })
+
+test('rejects an over-long email instead of truncating it into a different address', async () => {
+  // 324 chars. Clipped to 320 it still matches the pattern and would be stored as an
+  // address nobody typed. The other email routes reject anything over 320.
+  const email = 'a@b.' + 'c'.repeat(320)
+  const res = await route().POST(post({ productId: PRODUCT, email, consent: true }))
+  assert.equal(res.status, 400)
+  assert.match((await res.json()).error, /email/i)
+})
+
+test('rejects a POST that is not application/json, so a cross-site simple request cannot skip the CORS preflight', async () => {
+  const r = route()
+  const res = await r.POST(
+    new Request(URL_BASE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain', Origin: 'https://evil.example' },
+      body: JSON.stringify({ productId: PRODUCT, email: 'a@example.com', consent: true }),
+    }),
+  )
+  assert.equal(res.status, 415)
+  assert.equal(r.keys.length, 0)
+  assert.equal(res.headers.get('access-control-allow-origin'), null)
+})

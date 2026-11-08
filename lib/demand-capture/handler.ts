@@ -55,9 +55,12 @@ export function readUtm(url: URL, bodyUtm: unknown): Record<string, string> | un
   return entries.length ? Object.fromEntries(entries) : undefined
 }
 
+// Reject an over-long address rather than clipping it: clipping can turn it into a different
+// address that still passes the pattern. Same rule as app/api/subscribe and app/api/newsletter.
 function readEmail(body: Record<string, unknown>) {
-  const email = clip(body.email, MAX.email)?.toLowerCase()
-  return email && EMAIL_RE.test(email) ? email : undefined
+  if (typeof body.email !== 'string') return undefined
+  const email = body.email.trim().toLowerCase()
+  return email.length <= MAX.email && EMAIL_RE.test(email) ? email : undefined
 }
 
 export async function handleJoin(product: ProductConfig, body: Record<string, unknown>, req: Request) {

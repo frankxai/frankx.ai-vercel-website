@@ -66,6 +66,13 @@ export function createWaitlistRoute({ products, limit, storeReady = defaultStore
     })
 
   async function POST(req: Request) {
+    // A text/plain or form POST is a CORS "simple request": the browser sends it without a
+    // preflight, so ALLOWED_ORIGINS would not stop another site from submitting through its
+    // visitors' browsers (and their IPs' rate-limit buckets). Requiring JSON forces the preflight.
+    if (!(req.headers.get('content-type') ?? '').toLowerCase().startsWith('application/json')) {
+      return reply(req, { error: 'Content-Type must be application/json' }, 415)
+    }
+
     let body: Record<string, unknown>
     try {
       const parsed = await req.json()
