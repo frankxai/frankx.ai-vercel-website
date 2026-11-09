@@ -1,0 +1,173 @@
+{
+  "hit": 14,
+  "afterEnter": {
+    "tableHeight": 487,
+    "cardsPressed": "false",
+    "tablePressed": "true"
+  },
+  "rowFocus": {
+    "tag": "A",
+    "text": "Agentic Life Observatory",
+    "pressed": null,
+    "ring": "rgb(10, 10, 11) 0px 0px 0px 2px, rgb(110, 231, 183) 0px 0px ",
+    "h": 24,
+    "w": 202
+  },
+  "rows": [
+    {
+      "tag": "A",
+      "text": "Starlight Model Arena",
+      "pressed": null,
+      "ring": "rgb(10, 10, 11) 0px 0px 0px 2px, rgb(110, 231, 183) 0px 0px ",
+      "h": 24,
+      "w": 178
+    },
+    {
+      "tag": "A",
+      "text": "Agentic Life Observatory",
+      "pressed": null,
+      "ring": "rgb(10, 10, 11) 0px 0px 0px 2px, rgb(110, 231, 183) 0px 0px ",
+      "h": 24,
+      "w": 202
+    }
+  ],
+  "walk": [
+    {
+      "tag": "A",
+      "text": "Skip to content",
+      "pressed": null,
+      "ring": "rgb(10, 10, 11) 0px 0px 0px 4px, rgb(110, 231, 183) 0px 0px ",
+      "h": 48,
+      "w": 162
+    },
+    {
+      "tag": "A",
+      "text": "FrankX.AI",
+      "pressed": null,
+      "ring": "rgb(3, 7, 18) 0px 0px 0px 2px, rgba(52, 211, 153, 0.7) 0px 0",
+      "h": 40,
+      "w": 111
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Founder",
+      "pressed": null,
+      "ring": "rgb(3, 7, 18) 0px 0px 0px 2px, rgba(52, 211, 153, 0.7) 0px 0",
+      "h": 32,
+      "w": 90
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Build",
+      "pressed": null,
+      "ring": "rgb(3, 7, 18) 0px 0px 0px 2px, rgba(52, 211, 153, 0.7) 0px 0",
+      "h": 32,
+      "w": 69
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Learn",
+      "pressed": null,
+      "ring": "rgb(3, 7, 18) 0px 0px 0px 2px, rgba(52, 211, 153, 0.7) 0px 0",
+      "h": 32,
+      "w": 74
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Create",
+      "pressed": null,
+      "ring": "rgb(3, 7, 18) 0px 0px 0px 2px, rgba(52, 211, 153, 0.7) 0px 0",
+      "h": 32,
+      "w": 80
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Music",
+      "pressed": null,
+      "ring": "rgb(3, 7, 18) 0px 0px 0px 2px, rgba(52, 211, 153, 0.7) 0px 0",
+      "h": 32,
+      "w": 76
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Search",
+      "pressed": null,
+      "ring": "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(52, 211, 153, 0.7) ",
+      "h": 32,
+      "w": 81
+    },
+    {
+      "tag": "A",
+      "text": "Explore AI Architecture",
+      "pressed": null,
+      "ring": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0",
+      "h": 32,
+      "w": 177
+    },
+    {
+      "tag": "A",
+      "text": "Read the investigations",
+      "pressed": null,
+      "ring": "rgb(10, 10, 11) 0px 0px 0px 2px, rgb(167, 243, 208) 0px 0px ",
+      "h": 48,
+      "w": 243
+    },
+    {
+      "tag": "A",
+      "text": "How a claim is graded",
+      "pressed": null,
+      "ring": "rgb(10, 10, 11) 0px 0px 0px 2px, rgba(110, 231, 183, 0.7) 0p",
+      "h": 44,
+      "w": 166
+    },
+    {
+      "tag": "A",
+      "text": "Method in full",
+      "pressed": null,
+      "ring": "rgb(10, 10, 11) 0px 0px 0px 2px, rgba(110, 231, 183, 0.7) 0p",
+      "h": 44,
+      "w": 104
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Cards",
+      "pressed": "true",
+      "ring": "rgb(10, 10, 11) 0px 0px 0px 2px, rgb(110, 231, 183) 0px 0px ",
+      "h": 44,
+      "w": 70
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Table",
+      "pressed": "false",
+      "ring": "rgb(10, 10, 11) 0px 0px 0px 2px, rgb(110, 231, 183) 0px 0px ",
+      "h": 44,
+      "w": 67
+    }
+  ],
+  "metrics": {
+    "scrollWidth": 375,
+    "innerWidth": 375,
+    "h1": {
+      "text": "Research, with the working shown.",
+      "bottom": -1212,
+      "font": "Poppins, \"Poppins Fallback\", Poppins, system-ui, sans-serif",
+      "size": "36px"
+    },
+    "deck": {
+      "font": "Inter, \"Inter Fallback\", Inter, system-ui, -apple-system, sans-serif",
+      "size": "16px"
+    },
+    "cta": {
+      "top": -1040,
+      "bottom": -992,
+      "h": 48
+    },
+    "switchVisible": false
+  },
+  "reducedMotion": {
+    "scrollBehavior": "auto",
+    "h1Visible": true
+  },
+  "errors": []
+}
