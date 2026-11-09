@@ -111,8 +111,7 @@ const canonicalCiTriggerLines = [
   "      - '.eslintrc.json'",
   "      - 'instrumentation.ts'",
   "  pull_request:",
-  "    types: [opened, synchronize, reopened, edited, ready_for_review]",
-  "    branches: [main, staging]"
+  "    types: [opened, synchronize, reopened, edited, ready_for_review]"
 ];
 
 // Shared by every required check whose trigger block is pinned. `label` only

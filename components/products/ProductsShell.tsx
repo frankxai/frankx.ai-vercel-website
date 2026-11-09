@@ -655,7 +655,7 @@ export default function ProductsShell() {
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
-                <p className="text-[11px] text-slate-500">
+                <p className="text-[11px] text-slate-400">
                   Or{' '}
                   <Link
                     href="/newsletter"

@@ -304,7 +304,7 @@ export default function AssessmentPage() {
     const Icon = result.icon;
 
     return (
-      <div className="min-h-screen bg-[#0a0a0b] py-20 px-4 relative overflow-hidden">
+      <main className="min-h-screen bg-[#0a0a0b] py-20 px-4 relative overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0">
           <Image
@@ -405,7 +405,7 @@ export default function AssessmentPage() {
             </GlassmorphicCard>
           </motion.div>
         </div>
-      </div>
+      </main>
     );
   }
 
@@ -413,7 +413,7 @@ export default function AssessmentPage() {
   const progress = (currentQuestion / questions.length) * 100;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0b] relative overflow-hidden">
+    <main className="min-h-screen bg-[#0a0a0b] relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <Image
@@ -438,7 +438,7 @@ export default function AssessmentPage() {
 
       {/* Question Counter */}
       <div className="relative z-10 pt-8 pb-4 px-4 text-center">
-        <span className="text-slate-500 text-sm">
+        <span className="text-slate-400 text-sm">
           Question {currentQuestion} of {questions.length}
         </span>
       </div>
@@ -526,6 +526,6 @@ export default function AssessmentPage() {
           </PremiumButton>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

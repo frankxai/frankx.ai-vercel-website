@@ -8,6 +8,7 @@ import { researchDomains } from '@/lib/research/domains'
 import { contentLicense, siteConfig } from '@/lib/seo'
 import { getProductCards, productPublicPath } from '@/lib/products'
 import { askQuestions } from '@/data/ask-questions'
+import { getPublishedBooks } from '@/app/books/lib/books-registry'
 
 const SITE_URL = siteConfig.url
 
@@ -45,6 +46,11 @@ export async function GET() {
     .map((b) => `- [${b.title} — ${b.author}](${SITE_URL}/library/${b.slug}): ${b.guide ? `${b.guide.kind}; editorial reading guide with source and edition links. ` : b.capture ? 'Reading field note. ' : 'Book review. '}${b.tldr || ''}`)
     .join('\n')
 
+  // Frank's own books (distinct from the reviewed-books library above).
+  const bookLinks = getPublishedBooks('en')
+    .map((b) => `- [${b.title}](${SITE_URL}/books/${b.slug}): ${b.subtitle ? `${b.subtitle}. ` : ''}${b.description}`)
+    .join('\n')
+
   const researchLinks = researchDomains
     .map((d) => `- [${d.title}](${SITE_URL}/research/${d.slug}): ${d.subtitle}`)
     .join('\n')
@@ -75,6 +81,15 @@ The site combines enterprise-grade AI architecture (multi-agent orchestration, M
 - [Meaning](${SITE_URL}/qualities/meaning): Relevance, purpose, and coherence as the compass
 - [Connection](${SITE_URL}/qualities/connection): Trust, belonging, and collective capability as the multiplier
 - [Media Kit](${SITE_URL}/media-kit): Press bio, story angles, speaking topics, proof points, boundaries, and contact
+
+## Editorial & Playbooks
+- [FrankX Magazine](${SITE_URL}/magazine): Editorial front page: cover story, architecture and infrastructure, agents and creator systems, intelligence dispatches, music and creativity, books, guides, and working notes
+- [AI Agent Playbooks](${SITE_URL}/playbooks): Five-step build order for AI agents: AI computer and stack, first agents and SKILL.md skills, running agents as a crew, production architecture, and paid engagements
+- [AI Computer Field Guide](${SITE_URL}/ai-computer): Workstations, cloud GPUs, AI mini PCs, DGX Spark, and private AI factory setups for founders and creators
+
+## Books (free to read online)
+${bookLinks}
+- [Library](${SITE_URL}/books): All published FrankX books
 
 ## Claude Code, Agent Skills & MCP
 - [Claude Code & Agent Skills Hub](${SITE_URL}/skills): Reusable SKILL.md modules, skill builder, and agent installation workflows
