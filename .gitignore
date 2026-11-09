@@ -223,3 +223,4 @@ v0.html
 # Personal financial data. This repository is public; never commit these.
 data/wealth-ops.json
 data/bv-ops.json
+.claude/agents.replaced/
