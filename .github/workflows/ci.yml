@@ -42,7 +42,8 @@ on:
     # build of the staging merge result stays green on the same head after the
     # pull request is pointed at main, where the merge result differs.
     types: [opened, synchronize, reopened, edited, ready_for_review]
-    branches: [main, staging]
+    # Stacked security fixes target another agent branch. They need the same
+    # checks before integration; the existing draft opt-in still bounds builds.
 
 # CI is an exact required landing check and test:build-integrity scans workflow
 # security controls. Keep pull_request always-reporting; a required check with
@@ -153,6 +154,9 @@ jobs:
       - name: Changelog contract
         run: pnpm run test:changelog-release
 
+      - name: Viewer contract
+        run: pnpm run test:viewer
+
       - name: Lint
         run: pnpm run lint
 
@@ -167,6 +171,9 @@ jobs:
 
       - name: Site search relevance
         run: pnpm run test:site-search
+
+      - name: Search operations regressions
+        run: pnpm run test:search-plane
 
       - name: MCP endpoint contract (read-only, no priced claims)
         run: pnpm run test:mcp
@@ -241,6 +248,10 @@ jobs:
       - name: GenCreator rendered metadata
         if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: pnpm run test:gencreator-metadata:rendered
+
+      - name: Owned canon rendered (llms.txt, blog canonical and licence)
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: pnpm run test:owned-canon:rendered
 
       - name: Glass input keyboard, touch and motion journey
         run: node scripts/qa/glass-input-journey.mjs

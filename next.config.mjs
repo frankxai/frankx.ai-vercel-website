@@ -167,6 +167,31 @@ const nextConfig = {
       // /games and /games/:slug. Vercel cleanUrls canonicalizes .html and
       // index.html requests before these rules, so effective aliases and
       // destinations stay extensionless and converge without redirect loops.
+      // Founder entry points. /about is the URL Google ranks for "frank riemer"
+      // (Search Console, Aug-Nov 2026) and the author URL in site config, so
+      // /founder and /founders consolidate there instead of 404ing.
+      {
+        source: '/founder',
+        destination: '/about',
+        permanent: true,
+      },
+      {
+        source: '/founders',
+        destination: '/about',
+        permanent: true,
+      },
+      // Editorial aliases converge on the magazine front page.
+      {
+        source: '/editorial',
+        destination: '/magazine',
+        permanent: true,
+      },
+      // Singular alias for the agent playbooks hub.
+      {
+        source: '/playbook',
+        destination: '/playbooks',
+        permanent: true,
+      },
       {
         source: '/games/hub',
         destination: '/game-embeds/legacy-hub',

@@ -193,9 +193,11 @@ test('P2: the refine step posts the email that joined, not the one typed afterwa
   const payload = refinePayload({
     productId: PRODUCT,
     joinedEmail: 'first@example.com',
+    editToken: 'tok',
     answers: { role: 'founder', priceBand: '300-999' },
   })
   assert.equal(payload.email, 'first@example.com')
+  assert.equal(payload.editToken, 'tok')
   assert.equal(payload.step, 'refine')
   assert.equal(payload.role, 'founder')
 })
@@ -215,10 +217,18 @@ test('P2: two-step signup stores once, spends one join token, adds to the audien
     post({ productId: PRODUCT, email: 'two@example.com', consent: true, source: '/community', utm: { utm_source: 'x' } }),
   )
   assert.equal(join.status, 200)
-  assert.equal((await join.json()).position, 1)
+  const joined = await join.json()
+  assert.equal(joined.position, 1)
 
   const refine = await r.POST(
-    post(refinePayload({ productId: PRODUCT, joinedEmail: 'two@example.com', answers: { priceBand: '300-999', urgency: 'now' } })),
+    post(
+      refinePayload({
+        productId: PRODUCT,
+        joinedEmail: 'two@example.com',
+        editToken: joined.editToken,
+        answers: { priceBand: '300-999', urgency: 'now' },
+      }),
+    ),
   )
   assert.equal(refine.status, 200)
   assert.equal((await refine.json()).position, 1)
@@ -250,7 +260,10 @@ test('P2: three people behind one NAT can each finish both steps', async () => {
   for (const email of ['n1@example.com', 'n2@example.com', 'n3@example.com']) {
     const join = await handlers.POST(post({ productId: PRODUCT, email, consent: true }))
     assert.equal(join.status, 200)
-    const refine = await handlers.POST(post(refinePayload({ productId: PRODUCT, joinedEmail: email, answers: { role: 'founder' } })))
+    const { editToken } = await join.json()
+    const refine = await handlers.POST(
+      post(refinePayload({ productId: PRODUCT, joinedEmail: email, editToken, answers: { role: 'founder' } })),
+    )
     assert.equal(refine.status, 200)
   }
 })
@@ -258,9 +271,9 @@ test('P2: three people behind one NAT can each finish both steps', async () => {
 test('P2: refine never creates a signup for an address that did not join', async () => {
   const svc = fakeServices()
   const res = await route().POST(
-    post(refinePayload({ productId: PRODUCT, joinedEmail: 'ghost@example.com', answers: { role: 'founder' } })),
+    post(refinePayload({ productId: PRODUCT, joinedEmail: 'ghost@example.com', editToken: 'x'.repeat(43), answers: { role: 'founder' } })),
   )
-  assert.equal(res.status, 404)
+  assert.equal(res.status, 403)
   assert.equal(svc.signal('ghost@example.com'), null)
   assert.equal(svc.count(), 0)
   assert.equal(svc.resend.length, 0)
@@ -291,13 +304,14 @@ test('P3: the apex origin is allowlisted explicitly', () => {
   assert.ok(ALLOWED_ORIGINS.has('https://frankx.ai'))
 })
 
-test('codex P2: overlapping refine and re-join never erase each other’s answers', async () => {
+test('codex P2: two overlapping refines never erase each other’s answers', async () => {
   const svc = fakeServices()
   const r = route()
-  await r.POST(post({ productId: PRODUCT, email: 'race@example.com', consent: true, source: '/community' }))
+  const join = await r.POST(post({ productId: PRODUCT, email: 'race@example.com', consent: true, source: '/community' }))
+  const { editToken } = await join.json()
 
   // Hold every HGET of the signal until both requests have read, so both merge from the
-  // same pre-refinement record: the interleaving that used to drop the refine's answers.
+  // same pre-refinement record: the interleaving that used to drop one side's answers.
   const realFetch = globalThis.fetch
   let reads = 0
   let release
@@ -313,13 +327,12 @@ test('codex P2: overlapping refine and re-join never erase each other’s answer
     }
     return realFetch(url, init)
   }
+  const refine = (answers) =>
+    r.POST(post(refinePayload({ productId: PRODUCT, joinedEmail: 'race@example.com', editToken, answers })))
   try {
-    const [refine, rejoin] = await Promise.all([
-      r.POST(post(refinePayload({ productId: PRODUCT, joinedEmail: 'race@example.com', answers: { priceBand: '300-999', urgency: 'now' } }))),
-      r.POST(post({ productId: PRODUCT, email: 'race@example.com', consent: true, role: 'founder' })),
-    ])
-    assert.equal(refine.status, 200)
-    assert.equal(rejoin.status, 200)
+    const [a, b] = await Promise.all([refine({ priceBand: '300-999', urgency: 'now' }), refine({ role: 'founder' })])
+    assert.equal(a.status, 200)
+    assert.equal(b.status, 200)
   } finally {
     globalThis.fetch = realFetch
   }
@@ -329,4 +342,125 @@ test('codex P2: overlapping refine and re-join never erase each other’s answer
   assert.equal(stored.role, 'founder')
   assert.equal(stored.source, '/community')
   assert.equal(svc.count(), 1)
+})
+
+// Vercel Security Review frankx-ai-vercel-website/1: refine and re-join must not let a
+// stranger overwrite another participant's answers by submitting their address.
+async function joinAs(r, email, extra = {}) {
+  const res = await r.POST(post({ productId: PRODUCT, email, consent: true, ...extra }))
+  assert.equal(res.status, 200)
+  return res.json()
+}
+
+test('IDOR: a new join returns a one-time edit token and stores only its SHA-256', async () => {
+  const svc = fakeServices()
+  const { createHash } = await import('node:crypto')
+  const joined = await joinAs(route(), 'tok@example.com')
+  assert.equal(typeof joined.editToken, 'string')
+  assert.ok(Buffer.from(joined.editToken, 'base64url').length === 32)
+
+  const stored = svc.signal('tok@example.com')
+  assert.equal(stored.editTokenHash, createHash('sha256').update(joined.editToken).digest('hex'))
+  const everything = [...svc.hashes.values()].flatMap((h) => [...h.values()]).join('\n')
+  assert.ok(!everything.includes(joined.editToken), 'the raw token is never written to the store')
+})
+
+test('IDOR: refine without a token is 403 and changes nothing', async () => {
+  const svc = fakeServices()
+  const r = route()
+  await joinAs(r, 'victim@example.com', { role: 'founder' })
+  const before = svc.signal('victim@example.com')
+  const res = await r.POST(post({ productId: PRODUCT, email: 'victim@example.com', step: 'refine', role: 'attacker' }))
+  assert.equal(res.status, 403)
+  assert.deepEqual(svc.signal('victim@example.com'), before)
+})
+
+test('IDOR: refine with a wrong token is 403 and changes nothing', async () => {
+  const svc = fakeServices()
+  const r = route()
+  await joinAs(r, 'victim@example.com', { role: 'founder' })
+  const before = svc.signal('victim@example.com')
+  const res = await r.POST(
+    post(refinePayload({ productId: PRODUCT, joinedEmail: 'victim@example.com', editToken: 'A'.repeat(43), answers: { role: 'attacker' } })),
+  )
+  assert.equal(res.status, 403)
+  assert.deepEqual(svc.signal('victim@example.com'), before)
+})
+
+test('IDOR: a valid token for one address cannot refine another address', async () => {
+  const svc = fakeServices()
+  const r = route()
+  await joinAs(r, 'victim@example.com', { role: 'founder' })
+  const mine = await joinAs(r, 'attacker@example.com')
+  const before = svc.signal('victim@example.com')
+  const res = await r.POST(
+    post(refinePayload({ productId: PRODUCT, joinedEmail: 'victim@example.com', editToken: mine.editToken, answers: { role: 'attacker' } })),
+  )
+  assert.equal(res.status, 403)
+  assert.deepEqual(svc.signal('victim@example.com'), before)
+})
+
+test('IDOR: unknown address, wrong token and legacy record get the same 403 body', async () => {
+  const svc = fakeServices()
+  const r = route()
+  await joinAs(r, 'known@example.com')
+  // A record written before this fix has no editTokenHash.
+  const legacy = { ...svc.signal('known@example.com'), email: 'legacy@example.com' }
+  delete legacy.editTokenHash
+  svc.hashes.get(`waitlist:${PRODUCT}:signals`).set('legacy@example.com', JSON.stringify(legacy))
+
+  const bodies = []
+  for (const email of ['nobody@example.com', 'known@example.com', 'legacy@example.com']) {
+    const res = await r.POST(
+      post(refinePayload({ productId: PRODUCT, joinedEmail: email, editToken: 'B'.repeat(43), answers: { role: 'x' } })),
+    )
+    assert.equal(res.status, 403)
+    bodies.push(await res.json())
+  }
+  assert.deepEqual(bodies[0], bodies[1])
+  assert.deepEqual(bodies[1], bodies[2])
+  assert.equal(svc.signal('legacy@example.com').role, undefined)
+})
+
+test('IDOR: refine with the correct token is 200 and updates the answers', async () => {
+  const svc = fakeServices()
+  const r = route()
+  const joined = await joinAs(r, 'owner@example.com', { source: '/community' })
+  const res = await r.POST(
+    post(refinePayload({ productId: PRODUCT, joinedEmail: 'owner@example.com', editToken: joined.editToken, answers: { role: 'founder', priceBand: '100-299' } })),
+  )
+  assert.equal(res.status, 200)
+  const body = await res.json()
+  assert.equal(body.editToken, undefined)
+  const stored = svc.signal('owner@example.com')
+  assert.equal(stored.role, 'founder')
+  assert.equal(stored.priceBand, '100-299')
+  assert.equal(stored.source, '/community')
+  assert.ok(stored.editTokenHash, 'the hash survives a refine, so the owner can refine again')
+})
+
+test('IDOR: re-joining an existing address returns the same shape, no token, and changes nothing', async () => {
+  const svc = fakeServices()
+  const r = route()
+  const first = await joinAs(r, 'victim@example.com', { role: 'founder', priceBand: '300-999', source: '/community' })
+  const before = svc.signal('victim@example.com')
+  const audienceCalls = svc.resend.length
+
+  const again = await joinAs(r, 'victim@example.com', { role: 'attacker', priceBand: 'free-only', name: 'Mallory' })
+  assert.equal(again.editToken, undefined)
+  const { editToken: _t, ...firstState } = first
+  assert.deepEqual(Object.keys(again).sort(), Object.keys(firstState).sort())
+  assert.equal(again.position, first.position)
+
+  assert.deepEqual(svc.signal('victim@example.com'), before)
+  assert.equal(svc.count(), 1)
+  assert.equal(svc.resend.length, audienceCalls, 'a re-join does not re-add the contact to the audience')
+})
+
+test('the form keeps the edit token in component state only and sends it with the refine step', async () => {
+  const { readFile } = await import('node:fs/promises')
+  const src = await readFile(new URL('../../lib/demand-capture/WaitlistForm.tsx', import.meta.url), 'utf8')
+  assert.match(src, /useState\(''\)[\s\S]*setEditToken/)
+  assert.match(src, /refinePayload\(\{[^}]*editToken/)
+  assert.doesNotMatch(src, /localStorage|sessionStorage|document\.cookie/)
 })

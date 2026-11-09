@@ -1,3 +1,4 @@
+import { createHash, randomBytes, timingSafeEqual } from 'node:crypto'
 import type { DemandSignal, PriceBand, Stage, Urgency, WaitlistState } from './types.ts'
 import { sendGift } from './gift.ts'
 import { addToAudience, claimWithSignal, getCount, getSignal, saveSignal } from './store.ts'
@@ -56,9 +57,35 @@ export function readUtm(url: URL, bodyUtm: unknown): Record<string, string> | un
   return entries.length ? Object.fromEntries(entries) : undefined
 }
 
+// Reject an over-long address rather than clipping it: clipping can turn it into a different
+// address that still passes the pattern. Same rule as app/api/subscribe and app/api/newsletter.
 function readEmail(body: Record<string, unknown>) {
-  const email = clip(body.email, MAX.email)?.toLowerCase()
-  return email && EMAIL_RE.test(email) ? email : undefined
+  if (typeof body.email !== 'string') return undefined
+  const email = body.email.trim().toLowerCase()
+  return email.length <= MAX.email && EMAIL_RE.test(email) ? email : undefined
+}
+
+/**
+ * Changing a stored signal needs proof of the signup that created it. A new join gets a random
+ * token, returned once; only its SHA-256 is stored. Refine must present the token. The token is
+ * never reissued for an address already on the list, because the join step cannot verify that
+ * the caller owns that address.
+ */
+const TOKEN_BYTES = 32
+const MAX_TOKEN_LENGTH = 128
+export const REFINE_FORBIDDEN = 'This signup cannot be changed from here.'
+
+const hashToken = (token: string) => createHash('sha256').update(token, 'utf8').digest('hex')
+
+export function newEditToken(): { token: string; hash: string } {
+  const token = randomBytes(TOKEN_BYTES).toString('base64url')
+  return { token, hash: hashToken(token) }
+}
+
+export function tokenMatches(token: unknown, storedHash: unknown): boolean {
+  if (typeof token !== 'string' || !token || token.length > MAX_TOKEN_LENGTH) return false
+  if (typeof storedHash !== 'string' || !/^[0-9a-f]{64}$/.test(storedHash)) return false
+  return timingSafeEqual(Buffer.from(hashToken(token), 'hex'), Buffer.from(storedHash, 'hex'))
 }
 
 export async function handleJoin(product: ProductConfig, body: Record<string, unknown>, req: Request) {
@@ -71,6 +98,7 @@ export async function handleJoin(product: ProductConfig, body: Record<string, un
   const url = new URL(req.url)
   const utm = readUtm(url, body.utm)
 
+  const edit = newEditToken()
   const signal: Omit<DemandSignal, 'position'> = {
     productId: product.id,
     email,
@@ -85,18 +113,23 @@ export async function handleJoin(product: ProductConfig, body: Record<string, un
     utm,
     createdAt: new Date().toISOString(),
     consent: true,
+    editTokenHash: edit.hash,
   }
 
-  // A first join is whole after this one call. A repeat join keeps its first-touch facts and
-  // position, and merges any new answers.
+  // A first join is whole after this one call. A repeat join for an address already on the list
+  // changes nothing: anyone can type someone else's address, so it must not overwrite answers,
+  // re-subscribe a contact or hand out an editing token. It gets the same success shape, minus
+  // the token, so the reply does not confirm whether the address was new.
   const { position, created } = await claimWithSignal(signal)
-  if (!created) await saveSignal({ ...signal, position })
-  await addToAudience(email, signal.name, product.id)
-  // Awaited inside the request so the gift lands within the minute; never throws.
-  await sendGift(product.id, email)
+  if (created) {
+    await addToAudience(email, signal.name, product.id)
+    // Awaited inside the request so the gift lands within the minute; never throws.
+    await sendGift(product.id, email)
+  }
 
   const count = await getCount(product.id)
-  return { status: 200 as const, body: publicState(product, count, position) }
+  const state = publicState(product, count, position)
+  return { status: 200 as const, body: created ? { ...state, editToken: edit.token } : state }
 }
 
 /**
@@ -110,8 +143,12 @@ export async function handleRefine(product: ProductConfig, body: Record<string, 
   const email = readEmail(body)
   if (!email) return { status: 400 as const, body: { error: 'Valid email required' } }
 
+  // Unknown address, missing or wrong token, and a legacy record with no token hash all get the
+  // same 403, so the reply does not reveal who is on the list.
+  const forbidden = { status: 403 as const, body: { error: REFINE_FORBIDDEN } }
+  if (typeof body.editToken !== 'string' || !body.editToken) return forbidden
   const existing = await getSignal(product.id, email)
-  if (!existing) return { status: 404 as const, body: { error: 'Join the list first.' } }
+  if (!existing || !tokenMatches(body.editToken, existing.editTokenHash)) return forbidden
 
   await saveSignal({
     ...existing,

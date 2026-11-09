@@ -15,7 +15,7 @@ import {
   getAllBlogPosts,
   getBlogPost,
 } from '@/lib/blog'
-import { createMetadata, siteConfig } from '@/lib/seo'
+import { contentLicense, createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 import JsonLd from '@/components/seo/JsonLd'
 import BodyFaqSchema from '@/components/blog/BodyFaqSchema'
@@ -156,10 +156,15 @@ export default async function BlogPostPage({
     wordCount,
     keywords: post.keywords?.join(', ') || post.tags?.join(', ') || post.category || '',
     ...(post.tldr && { abstract: post.tldr }),
+    license: contentLicense.url,
+    copyrightHolder: { '@type': 'Person', name: contentLicense.holder },
+    ...(post.date && { copyrightYear: new Date(post.date).getUTCFullYear() }),
+    copyrightNotice: contentLicense.notice,
   }
 
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
+      <link rel="license" href={contentLicense.url} />
       <JsonLd type="Article" data={articleSchema} />
       {post.slug === 'vercel-ship-2026-builder-decisions' && post.content ? (
         <BodyFaqSchema source={post.content} id="blog-faq-vercel-ship-2026" />

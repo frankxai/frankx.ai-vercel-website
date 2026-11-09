@@ -5,8 +5,10 @@ import { bookReviews } from '@/data/book-reviews'
 import { libraryCollections } from '@/data/library-collections'
 import { osModules } from '@/data/os-modules'
 import { researchDomains } from '@/lib/research/domains'
-import { siteConfig } from '@/lib/seo'
+import { contentLicense, siteConfig } from '@/lib/seo'
+import { getProductCards, productPublicPath } from '@/lib/products'
 import { askQuestions } from '@/data/ask-questions'
+import { getPublishedBooks } from '@/app/books/lib/books-registry'
 
 const SITE_URL = siteConfig.url
 
@@ -44,8 +46,19 @@ export async function GET() {
     .map((b) => `- [${b.title} — ${b.author}](${SITE_URL}/library/${b.slug}): ${b.guide ? `${b.guide.kind}; editorial reading guide with source and edition links. ` : b.capture ? 'Reading field note. ' : 'Book review. '}${b.tldr || ''}`)
     .join('\n')
 
+  // Frank's own books (distinct from the reviewed-books library above).
+  const bookLinks = getPublishedBooks('en')
+    .map((b) => `- [${b.title}](${SITE_URL}/books/${b.slug}): ${b.subtitle ? `${b.subtitle}. ` : ''}${b.description}`)
+    .join('\n')
+
   const researchLinks = researchDomains
     .map((d) => `- [${d.title}](${SITE_URL}/research/${d.slug}): ${d.subtitle}`)
+    .join('\n')
+
+  // Product pages that exist at /products/<slug>. Headlines come from
+  // data/products.json; price and availability stay on each product page.
+  const productLinks = getProductCards()
+    .map((p) => `- [${p.name}](${SITE_URL}${productPublicPath(p.href.slice('/products/'.length))}): ${p.headline}`)
     .join('\n')
 
   const askLinks = askQuestions
@@ -68,6 +81,15 @@ The site combines enterprise-grade AI architecture (multi-agent orchestration, M
 - [Meaning](${SITE_URL}/qualities/meaning): Relevance, purpose, and coherence as the compass
 - [Connection](${SITE_URL}/qualities/connection): Trust, belonging, and collective capability as the multiplier
 - [Media Kit](${SITE_URL}/media-kit): Press bio, story angles, speaking topics, proof points, boundaries, and contact
+
+## Editorial & Playbooks
+- [FrankX Magazine](${SITE_URL}/magazine): Editorial front page: cover story, architecture and infrastructure, agents and creator systems, intelligence dispatches, music and creativity, books, guides, and working notes
+- [AI Agent Playbooks](${SITE_URL}/playbooks): Five-step build order for AI agents: AI computer and stack, first agents and SKILL.md skills, running agents as a crew, production architecture, and paid engagements
+- [AI Computer Field Guide](${SITE_URL}/ai-computer): Workstations, cloud GPUs, AI mini PCs, DGX Spark, and private AI factory setups for founders and creators
+
+## Books (free to read online)
+${bookLinks}
+- [Library](${SITE_URL}/books): All published FrankX books
 
 ## Claude Code, Agent Skills & MCP
 - [Claude Code & Agent Skills Hub](${SITE_URL}/skills): Reusable SKILL.md modules, skill builder, and agent installation workflows
@@ -94,6 +116,17 @@ Founder Stack → Foundry or Founder's Circle → Human Layer and Signal Loop.
 - [Start Here](${SITE_URL}/start): Founder-led entry spine for new visitors
 - [Peak State Systems](${SITE_URL}/peak-performance): Evidence-led attention, energy, recovery, and work-review system; educational, see page disclosures
 - [Build with Me](${SITE_URL}/build): Product ladder: see /build; prices on each product page.
+
+## Products
+Each product page states its own price and whether it is available now, on a waitlist, or by application.
+- [Products](${SITE_URL}/products): Index of FrankX products
+${productLinks}
+
+## Resources
+- [Resources](${SITE_URL}/resources): Templates, playbooks, affiliate programs, and GitHub repo maps
+- [Templates](${SITE_URL}/resources/templates): Downloadable AI implementation and governance templates
+- [Builder stack](${SITE_URL}/resources/builder-stack): Design, publishing, and payment tools, with which programs are open or closed
+- [SEO and AEO workflow](${SITE_URL}/resources/seo-aeo): Turn search evidence into a reviewable website change; free evidence and measurement templates
 
 ## Operating Systems (the FrankX OS spine)
 ${osLinks}
@@ -180,6 +213,9 @@ ${libraryLinks}
 - [rss.xml](${SITE_URL}/rss.xml): Latest 50 posts as RSS 2.0
 - [journal/feed.xml](${SITE_URL}/journal/feed.xml): Journal entries as RSS 2.0
 - [Open Source Repos](https://github.com/frankxai): Library OS, SIS, ACOS, and more
+
+## Licence
+Written content on frankx.ai: ${contentLicense.notice} Terms: [${contentLicense.url}](${contentLicense.url}). Each article declares its canonical URL with <link rel="canonical">.
 `
 
   return new Response(content, {

@@ -33,6 +33,8 @@ export interface DemandSignal {
   position: number
   createdAt: string
   consent: true
+  /** SHA-256 (hex) of the edit token returned once by the first join. The token itself is never stored. */
+  editTokenHash?: string
 }
 
 export interface WaitlistState {
