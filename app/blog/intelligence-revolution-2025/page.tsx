@@ -11,10 +11,11 @@ import {
 import Link from "next/link";
 import { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
-import { defaultOpenGraphImages, siteConfig } from "@/lib/seo";
+import { contentLicense, defaultOpenGraphImages, siteConfig } from "@/lib/seo";
 import { socialLinks } from "@/lib/social-links";
 
 export const metadata: Metadata = {
+  alternates: { canonical: `${siteConfig.url}/blog/intelligence-revolution-2025` },
   title: "The Intelligence Revolution Playbook 2025",
   description:
     "A systems-first guide to orchestrating conscious AI across products, teams, and experiences. Transform your organization for the intelligence age.",
@@ -109,10 +110,15 @@ export default function IntelligenceRevolutionPlaybook() {
       "@type": "WebPage",
       "@id": `${siteConfig.url}/blog/intelligence-revolution-2025`,
     },
+    license: contentLicense.url,
+    copyrightHolder: { "@type": "Person", name: contentLicense.holder },
+    copyrightYear: 2025,
+    copyrightNotice: contentLicense.notice,
   };
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
+      <link rel="license" href={contentLicense.url} />
       <JsonLd type="Article" data={articleSchema} />
       <main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-4xl space-y-12">

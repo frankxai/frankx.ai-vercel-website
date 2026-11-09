@@ -19,6 +19,7 @@ import { isCanonicalBlogSlug } from '@/lib/blog-redirects.mjs'
 import { askQuestions } from '@/data/ask-questions'
 import { publishedSignals } from '@/lib/dream100'
 import { agenticRoles } from '@/lib/agentic-roles'
+import { booksRegistry } from '@/app/books/lib/books-registry'
 
 const BASE_URL = siteConfig.url
 
@@ -142,7 +143,13 @@ function getRedirectAliasSources(): string[] {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const currentDate = new Date().toISOString()
+  // Omit lastmod when the real modification date is unknown. Google ignores lastmod
+  // site-wide once it proves inaccurate, and a build timestamp is always inaccurate.
+  const isoDate = (value?: string | null): string | undefined => {
+    if (!value) return undefined
+    const parsed = new Date(value)
+    return Number.isNaN(parsed.getTime()) ? undefined : parsed.toISOString()
+  }
 
   // Core pages (highest priority)
   const corePages = [
@@ -163,6 +170,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // investor excluded: legal read of investor copy pending
     ...agenticRoles.filter((role) => role.slug !== 'investor').map((role) => ({ url: `/agentic-creator/${role.slug}`, priority: 0.7, changeFrequency: 'monthly' as const })),
     { url: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
+    { url: '/magazine', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/playbooks', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/journal', priority: 0.8, changeFrequency: 'daily' as const },
     { url: '/peak-performance', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/products', priority: 0.9, changeFrequency: 'weekly' as const },
@@ -467,7 +476,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   corePages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
       changeFrequency: page.changeFrequency,
       priority: page.priority,
     })
@@ -477,7 +485,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   productSlugs.forEach(slug => {
     entries.push({
       url: `${BASE_URL}/products/${slug}`,
-      lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.9,
     })
@@ -487,7 +494,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     researchPages.forEach(page => {
       entries.push({
         url: `${BASE_URL}${page.url}`,
-        lastModified: currentDate,
         changeFrequency: page.changeFrequency,
         priority: page.priority,
       })
@@ -506,7 +512,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       strategyPages.forEach(page => {
         entries.push({
           url: `${BASE_URL}${page.url}`,
-          lastModified: currentDate,
           changeFrequency: page.changeFrequency,
           priority: page.priority,
         })
@@ -516,7 +521,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       videoPages.forEach(page => {
         entries.push({
           url: `${BASE_URL}${page.url}`,
-          lastModified: currentDate,
           changeFrequency: page.changeFrequency,
           priority: page.priority,
         })
@@ -526,7 +530,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       shortDetailPages.forEach(page => {
         entries.push({
           url: `${BASE_URL}${page.url}`,
-          lastModified: currentDate,
           changeFrequency: page.changeFrequency,
           priority: page.priority,
         })
@@ -539,7 +542,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   toolPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.7,
     })
@@ -549,7 +551,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   assessmentPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.7,
     })
@@ -559,7 +560,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   communityPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.6,
     })
@@ -569,7 +569,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   learningPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.7,
     })
@@ -579,7 +578,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   papaPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.6,
     })
@@ -589,7 +587,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   contentPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.7,
     })
@@ -599,7 +596,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   aiPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.7,
     })
@@ -609,7 +605,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   utilityPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.5,
     })
@@ -620,7 +615,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const parsed = q.date ? new Date(q.date) : null
     entries.push({
       url: `${BASE_URL}/ask/${q.slug}`,
-      lastModified: parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : currentDate,
+      lastModified: parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : undefined,
       changeFrequency: 'monthly',
       priority: 0.75,
     })
@@ -630,7 +625,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   legalPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
       changeFrequency: 'yearly',
       priority: 0.3,
     })
@@ -640,7 +634,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   sectionPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
       changeFrequency: page.changeFrequency,
       priority: page.priority,
     })
@@ -651,7 +644,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   learningPaths.forEach((path) => {
     const m = path.heroEyebrow?.match(/([A-Z][a-z]+ \d{1,2}, \d{4})/)
     const parsed = m ? new Date(m[1]) : null
-    const lastModified = parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : currentDate
+    const lastModified = parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : undefined
     entries.push({
       url: `${BASE_URL}/learn/${path.slug}`,
       lastModified,
@@ -664,7 +657,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   audiencePages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
       changeFrequency: page.changeFrequency,
       priority: page.priority,
     })
@@ -674,7 +666,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   legacyPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.4,
     })
@@ -684,7 +675,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   subRoutePages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
       changeFrequency: page.changeFrequency,
       priority: page.priority,
     })
@@ -694,7 +684,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   blogEntries.forEach(entry => {
     entries.push({
       url: `${BASE_URL}/blog/${entry.slug}`,
-      lastModified: entry.date ? new Date(entry.date).toISOString() : currentDate,
+      lastModified: isoDate(entry.date),
       changeFrequency: 'monthly',
       priority: 0.8,
     })
@@ -704,7 +694,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   guideSlugs.forEach(slug => {
     entries.push({
       url: `${BASE_URL}/guides/${slug}`,
-      lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.7,
     })
@@ -712,15 +701,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // MVU journey hub + event page + journal entries
   entries.push(
-    { url: `${BASE_URL}/mvu`, lastModified: currentDate, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/mvu/lab`, lastModified: currentDate, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/mvu`, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/mvu/lab`, changeFrequency: 'monthly', priority: 0.7 },
   )
 
   // Tallinn is closed; these entries are a finished archive, not a live feed.
   mvuEntries.forEach(entry => {
     entries.push({
       url: `${BASE_URL}/mvu/${entry.slug}`,
-      lastModified: entry.date ? new Date(entry.date).toISOString() : currentDate,
+      lastModified: isoDate(entry.date),
       changeFrequency: 'yearly',
       priority: 0.6,
     })
@@ -735,7 +724,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     entries.push({
       url: `${BASE_URL}/journal/${entry.slug}`,
       lastModified:
-        parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : currentDate,
+        parsed && !Number.isNaN(parsed.getTime()) ? parsed.toISOString() : undefined,
       changeFrequency: 'monthly',
       priority: 0.6,
     })
@@ -756,7 +745,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   libraryPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
       changeFrequency: page.changeFrequency,
       priority: page.priority,
     })
@@ -766,7 +754,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   libraryDetailPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
       changeFrequency: page.changeFrequency,
       priority: page.priority,
     })
@@ -776,7 +763,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   osHubPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
       changeFrequency: page.changeFrequency,
       priority: page.priority,
     })
@@ -786,7 +772,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   osDetailPages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
       changeFrequency: page.changeFrequency,
       priority: page.priority,
     })
@@ -795,14 +780,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Partnerships — strategic-partner hub + per-partner deep pages
   entries.push({
     url: `${BASE_URL}/partnerships`,
-    lastModified: currentDate,
     changeFrequency: 'weekly',
     priority: 0.8,
   })
   listPartners().forEach(partner => {
     entries.push({
       url: `${BASE_URL}/partnerships/${partner.slug}`,
-      lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: partner.status === 'active' ? 0.8 : 0.5,
     })
@@ -812,17 +795,43 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   getNewsletterIssues().forEach((issue) => {
     entries.push({
       url: `${BASE_URL}/newsletter/archive/${issue.slug}`,
-      lastModified: issue.date ? new Date(issue.date).toISOString() : currentDate,
+      lastModified: isoDate(issue.date),
       changeFrequency: 'monthly',
       priority: 0.75,
     })
   })
 
+  // Books — every non-draft book (all language variants have their own slug)
+  // plus each published chapter. Chapter routes 404 unless `published`, so
+  // only those are listed. Previously only a handful of chapters reached the
+  // sitemap through the route index, leaving most of the library invisible.
+  booksRegistry
+    .filter((book) => book.status !== 'draft')
+    .forEach((book) => {
+      const bookModified = book.publishDate && !Number.isNaN(Date.parse(book.publishDate))
+        ? new Date(book.publishDate).toISOString()
+        : undefined
+      entries.push({
+        url: `${BASE_URL}/books/${book.slug}`,
+        ...(bookModified ? { lastModified: bookModified } : {}),
+        changeFrequency: 'monthly',
+        priority: 0.8,
+      })
+      book.chapters
+        .filter((chapter) => chapter.published)
+        .forEach((chapter) => {
+          entries.push({
+            url: `${BASE_URL}/books/${book.slug}/${chapter.slug}`,
+            changeFrequency: 'monthly',
+            priority: 0.6,
+          })
+        })
+    })
+
   // Agent Hub — one page per platform/framework, registry-driven.
   getAllAgentEntries().forEach((entry) => {
     entries.push({
       url: `${BASE_URL}/agent-hub/${entry.id}`,
-      lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.7,
     })
@@ -887,7 +896,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const def = defaults[route.type] ?? defaults.section
     entries.push({
       url,
-      lastModified: currentDate,
       changeFrequency: def.changeFrequency,
       priority: def.priority,
     })

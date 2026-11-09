@@ -3,12 +3,38 @@ import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 import { runInNewContext } from 'node:vm'
 import {
+  ciAlwaysReportingErrors,
   requiredCheckAlwaysReportsErrors,
   stripYamlComment,
   topLevelMappingBlock,
 } from './helpers/workflow-yaml-contract.mjs'
 
 const read = (path) => readFile(new URL(`../../${path}`, import.meta.url), 'utf8')
+
+test('CI requires main-push coverage for the vendored design CLI', async () => {
+  const workflow = await read('.github/workflows/ci.yml')
+  assert.deepEqual(ciAlwaysReportingErrors(workflow), [])
+  const omitted = workflow.replace("      - 'vendor/google-design-md/**'\n", '')
+  assert.notEqual(omitted, workflow)
+  assert.notDeepEqual(ciAlwaysReportingErrors(omitted), [])
+})
+
+test('CI covers stacked PR bases and runs the existing search-plane regressions', async () => {
+  const workflow = await read('.github/workflows/ci.yml')
+  const on = topLevelMappingBlock(workflow, 'on')
+  const pullRequest = on.slice(on.indexOf('  pull_request:'))
+  assert.doesNotMatch(pullRequest, /^\s+branches(?:-ignore)?:/m)
+  assert.deepEqual(ciAlwaysReportingErrors(workflow), [])
+
+  const filtered = workflow.replace(
+    '    types: [opened, synchronize, reopened, edited, ready_for_review]',
+    '    types: [opened, synchronize, reopened, edited, ready_for_review]\n    branches: [main, staging]',
+  )
+  assert.notDeepEqual(ciAlwaysReportingErrors(filtered), [], 'base filters would strand stacked PRs again')
+  assert.match(workflow, /- name: Search operations regressions\s+run: pnpm run test:search-plane/)
+  const pkg = JSON.parse(await read('package.json'))
+  assert.equal(pkg.scripts['test:search-plane'], 'node --test scripts/tests/search-plane.test.mjs')
+})
 
 // The required contexts in branch protection are job names. A workflow that
 // stops producing one of these exact names blocks every pull request, the same
@@ -173,11 +199,16 @@ const ciDecision = (workflow, github) => {
   const context = {
     github: {
       ...github,
-      event: { ...github.event, pull_request: github.event.pull_request ?? {} },
+      event: { ...github.event, pull_request: { labels: [], ...github.event.pull_request } },
     },
     format: (pattern, ...args) => pattern.replace(/\{(\d+)\}/g, (_, i) => String(args[Number(i)])),
+    contains: (values, expected) => values.some(value => String(value).toLowerCase() === expected.toLowerCase()),
   }
-  const evaluate = (expression) => runInNewContext(expression, context, { timeout: 100 })
+  const evaluate = (expression) => runInNewContext(
+    expression.replaceAll('github.event.pull_request.labels.*.name', 'github.event.pull_request.labels.map(label => label.name)'),
+    context,
+    { timeout: 100 },
+  )
   return {
     admitted: Boolean(evaluate(condition)),
     group: group.replace(/\$\{\{([\s\S]*?)\}\}/g, (_, expression) => String(evaluate(expression))),
@@ -209,6 +240,20 @@ test('CI admits ready and retargeted open PRs, defers drafts, and refuses closed
       .admitted,
     true,
   )
+})
+
+test('draft CI verification requires the exact opt-in label and an open PR', async () => {
+  const workflow = await read('.github/workflows/ci.yml')
+  for (const [state, labels, expected] of [
+    ['open', [{ name: 'ci:verify' }], true],
+    ['open', [{ name: 'CI:VERIFY' }], true],
+    ['open', [{ name: 'ci:verify-later' }], false],
+    ['open', [{ name: 'other', description: 'ci:verify' }], false],
+    ['closed', [{ name: 'ci:verify' }], false],
+  ]) {
+    const github = ciEvent({ event: { pull_request: { number: 1088, state, draft: true, labels } } })
+    assert.equal(ciDecision(workflow, github).admitted, expected, `${state}: ${JSON.stringify(labels)}`)
+  }
 })
 
 test('a merged PR receipt edit cannot cancel the current main verification', async () => {

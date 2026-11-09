@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { getPublishedBooks } from './lib/books-registry';
 import { getThemeClasses } from './lib/theme-classes';
 import type { Metadata } from 'next';
+import JsonLd from '@/components/seo/JsonLd';
+import { siteConfig } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Books',
@@ -20,8 +22,33 @@ export const metadata: Metadata = {
 export default function BooksHubPage() {
   const books = getPublishedBooks();
 
+  // Book ItemList so search and answer engines can enumerate the library.
+  const librarySchema = {
+    name: 'The FrankX Library',
+    url: `${siteConfig.url}/books`,
+    numberOfItems: books.length,
+    itemListElement: books.map((book, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: `${siteConfig.url}/books/${book.slug}`,
+      item: {
+        '@type': 'Book',
+        name: book.title,
+        ...(book.subtitle ? { alternativeHeadline: book.subtitle } : {}),
+        description: book.description,
+        url: `${siteConfig.url}/books/${book.slug}`,
+        author: { '@id': `${siteConfig.url}/#frank-riemer` },
+        inLanguage: book.language ?? 'en',
+        ...(book.coverImage ? { image: `${siteConfig.url}${book.coverImage}` } : {}),
+        ...(book.publishDate ? { datePublished: book.publishDate } : {}),
+        isAccessibleForFree: true,
+      },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white">
+      <JsonLd type="ItemList" data={librarySchema} />
       {/* Hero */}
       <section className="relative overflow-hidden">
         {/* Ambient glow */}

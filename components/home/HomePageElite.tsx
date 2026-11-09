@@ -17,6 +17,7 @@ import { EmailSignup } from '@/components/email-signup'
 import { GlowCard } from '@/components/ui/glow-card'
 import { FrankOmegaAvatar } from '@/components/FrankOmega'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
+import { FounderStory } from '@/components/home/FounderStory'
 import { MindPalaceAtlas } from '@/components/home/MindPalaceAtlas'
 import { SignalRouteSelector } from '@/components/home/SignalRouteSelector'
 import { FeaturedTrackPlayer } from '@/components/home/FeaturedTrackPlayer'
@@ -1560,6 +1561,9 @@ export default function HomePageElite({
 
         {/* 4. Authority bar */}
         <AuthorityBar />
+
+        {/* Personal authorship and the existing miniature studio */}
+        <FounderStory />
 
         {/* 4b. AI Stack — tool logos with guide links */}
         <TrustedByBlock />

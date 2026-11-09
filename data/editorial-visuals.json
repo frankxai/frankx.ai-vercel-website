@@ -62,5 +62,41 @@
     "checkedOn": "2026-10-11",
     "kind": "screenshot",
     "aspectRatio": "2286/1420"
+  },
+  "elevenlabs-journal-audio-briefing": {
+    "src": "/images/editorial/elevenlabs-journal-audio-briefing.svg",
+    "width": 960,
+    "height": 1060,
+    "alt": "Four-step founder journal to consent-based audio briefing pipeline: public journal note and character ceiling, voice-owner consent and allowlist check, idempotent ElevenLabs synthesis, and MP3 frame QA with provenance manifest.",
+    "caption": "Governed journal-to-audio briefing pipeline. Halt immediately if the note is private, voice-owner consent is missing, or synthesized MP3 bytes fail header and loudness inspection.",
+    "credit": "Original diagram by FrankX",
+    "sourceUrl": "https://www.frankx.ai/guides/elevenlabs-voice-guide",
+    "rights": "original",
+    "createdOn": "2026-11-05",
+    "kind": "diagram"
+  },
+  "proof-project-three-routes": {
+    "src": "/images/editorial/proof-project-three-routes.svg",
+    "width": 960,
+    "height": 1060,
+    "alt": "One project, three routes: pick a problem from the role, build a small working answer, publish it with a short walkthrough, then use it for a job application, a paid pilot or a feedback loop.",
+    "caption": "One project can serve a job application, a first paid pilot and a learning loop at the same time. Original schematic.",
+    "credit": "Original diagram by FrankX",
+    "sourceUrl": "https://www.frankx.ai/blog/build-proof-before-you-send-the-cv-2026",
+    "rights": "original",
+    "createdOn": "2026-11-07",
+    "kind": "diagram"
+  },
+  "proof-toolkit-layers": {
+    "src": "/images/editorial/proof-toolkit-layers.svg",
+    "width": 960,
+    "height": 900,
+    "alt": "Your AI crew in three layers: prompts help you think, skills make your process consistent, MCP connects real tools such as GitHub, notes and deploy. You approve every send, merge and publish.",
+    "caption": "Prompts for thinking, a skill for the repeatable process, MCP for real tools. The human keeps the approval step. Original schematic.",
+    "credit": "Original diagram by FrankX",
+    "sourceUrl": "https://www.frankx.ai/blog/build-proof-before-you-send-the-cv-2026",
+    "rights": "original",
+    "createdOn": "2026-11-07",
+    "kind": "diagram"
   }
 }

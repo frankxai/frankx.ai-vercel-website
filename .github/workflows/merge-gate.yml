@@ -61,7 +61,7 @@ env:
 jobs:
   merge-gate:
     name: Merge Gate
-    if: github.event.pull_request.draft == false
+    if: github.event.pull_request.draft == false || contains(github.event.pull_request.labels.*.name, 'ci:verify')
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -116,6 +116,7 @@ jobs:
           pnpm run test:expert-authority
           pnpm run test:ai-architecture
           pnpm run test:email-safety
+          pnpm run test:waitlist
           pnpm run test:book-reader
           pnpm run test:checkout-sku
           pnpm run test:auction-bid
@@ -123,6 +124,7 @@ jobs:
           pnpm run test:community-platform-guide
           pnpm run test:learning-routes
           pnpm run test:blog-discoverability
+          pnpm run test:owned-canon
           pnpm run test:ship-guides
           pnpm run test:social-identity
           pnpm run test:seo-title
