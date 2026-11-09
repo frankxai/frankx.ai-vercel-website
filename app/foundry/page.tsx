@@ -240,9 +240,9 @@ export default function FoundryPage() {
             Three layers. Every one of them public.
           </h2>
           <p className="mt-3 max-w-xl text-base text-white/60">
-            The claim is substance, not marketing: the substrate, the operating
-            systems, and the reference implementation and operating contracts
-            are open repositories. Verify rather than trust.
+            The substrate, the operating systems, and the reference implementation
+            and operating contracts are open repositories. Read them before you
+            apply.
           </p>
 
           <div className="mt-12 space-y-4">
@@ -370,7 +370,7 @@ export default function FoundryPage() {
             Proof
           </p>
           <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
-            The receipts, not the pitch.
+            What you can inspect
           </h2>
           <div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-3">
             <GlowCard color="emerald" className="p-7">
@@ -437,7 +437,7 @@ export default function FoundryPage() {
             The Process
           </p>
           <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
-            Evaluated, not transactional.
+            How applications are reviewed
           </h2>
           <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s) => (
