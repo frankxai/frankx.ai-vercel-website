@@ -30,7 +30,7 @@ decisions:
     source: "https://docs.starlightintelligence.ai/starlight/after-smithery"
 faqs:
   - question: "How many MCP servers should I keep enabled at once in Claude Code?"
-    answer: "As a rule of thumb, not a measured limit, keep 3 to 6 active MCP servers per project `.mcp.json`. Claude Code's tool search is on by default and defers tool schemas until Claude needs them, so the limit is less about tokens than about permissions and noise: every server is another credential and another set of tools Claude may pick from. Scope specialized business or database servers per repository."
+    answer: "Keep 3 to 6 active MCP servers per project `.mcp.json` as a practical working baseline. Claude Code's tool search is on by default and defers tool schemas until Claude needs them, so the limit is less about tokens than about permissions and noise: every server is another credential and another set of tools Claude may pick from. Scope specialized business or database servers per repository."
   - question: "How do I add an MCP server to a team repository in Claude Code?"
     answer: "Run `claude mcp add --transport http --scope project <name> <url>` (or commit `.mcp.json` at the repo root using `${ENV_VAR}` references for headers) so every teammate shares the exact tool surface without committing secrets."
   - question: "What are the highest-ROI MCP servers for sales and marketing teams?"
