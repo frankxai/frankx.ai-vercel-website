@@ -3,7 +3,10 @@
 // Each entry is a page that renders its own evidence today: receipts, a dataset,
 // graded claims or a source ledger. Generated topic maps stay out of this list
 // until they pass the publication boundary in docs/research/PUBLICATION-BOUNDARY.md.
-// Keep this module free of JSON imports: the research hub client reads its length.
+// Keep this module free of JSON imports. Entries with a release gate are filtered
+// server-side by publishedInvestigations(); never count the raw list.
+
+import { economyAtlasAvailable } from './economy-release.ts'
 
 export interface FeaturedInvestigation {
   href: string
@@ -11,6 +14,8 @@ export interface FeaturedInvestigation {
   kind: string
   blurb: string
   meta: string
+  /** Set when the page itself is behind a release flag and 404s until released. */
+  release?: 'economy-atlas'
 }
 
 export const featuredInvestigations: FeaturedInvestigation[] = [
@@ -53,5 +58,13 @@ export const featuredInvestigations: FeaturedInvestigation[] = [
     blurb:
       'Product proposals and distribution channels with the evidence behind each one, plus an illustrative cost scenario you can save. Demand is not yet measured.',
     meta: 'Sources inspectable',
+    release: 'economy-atlas',
   },
 ]
+
+/** Server-only: the entries whose pages actually render in this deployment. */
+export function publishedInvestigations(env: NodeJS.ProcessEnv = process.env): FeaturedInvestigation[] {
+  return featuredInvestigations.filter(
+    (item) => item.release !== 'economy-atlas' || economyAtlasAvailable(env),
+  )
+}

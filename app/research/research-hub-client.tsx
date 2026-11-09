@@ -40,7 +40,6 @@ import LearnHubSection from '@/components/learn/LearnHubSection'
 import { MODEL_MAKER_PORTALS } from '@/lib/learn/related-portals'
 import { EmailSignup } from '@/components/email-signup'
 import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
-import { featuredInvestigations } from '@/lib/research/featured-investigations'
 
 // Icon map for dynamic rendering
 const iconMap: Record<string, ComponentType<{ className?: string }>> = {
@@ -77,7 +76,7 @@ const sourcedDomainCount = publicTopicMaps.filter(
 ).length
 const sourceCountFor = (slug: string) => domainSources[slug]?.length ?? 0
 
-function HeroSection() {
+function HeroSection({ investigationCount }: { investigationCount: number }) {
   return (
     <section className="relative pt-28 pb-12 md:pt-32 md:pb-14 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -128,7 +127,7 @@ function HeroSection() {
         {/* Stats */}
         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: 'Published investigations', value: String(featuredInvestigations.length), icon: FileText },
+            { label: 'Published investigations', value: String(investigationCount), icon: FileText },
             { label: 'Topic maps', value: String(publicTopicMaps.length), icon: Layers },
             ...(sourcedDomainCount > 0
               ? [{ label: 'Reviewed topic maps', value: String(sourcedDomainCount), icon: ShieldCheck }]
@@ -534,9 +533,11 @@ function QualitiesResearchBridge() {
 export default function ResearchHubClient({
   children,
   models,
+  investigationCount,
 }: {
   children?: ReactNode
   models?: ReactNode
+  investigationCount: number
 }) {
   return (
     <main className="relative min-h-screen bg-[#0a0a0b] text-white overflow-hidden">
@@ -573,7 +574,7 @@ export default function ResearchHubClient({
       </div>
 
       <div className="relative z-10">
-        <HeroSection />
+        <HeroSection investigationCount={investigationCount} />
         {children}
         <QualitiesResearchBridge />
 

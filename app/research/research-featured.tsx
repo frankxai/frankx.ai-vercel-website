@@ -1,6 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
-import { featuredInvestigations } from "@/lib/research/featured-investigations";
+import { publishedInvestigations } from "@/lib/research/featured-investigations";
 import { agenticLifeMarketRegistry } from "@/lib/research/agentic-life-market";
 
 // What a reader can open on the lead investigation's own page.
@@ -19,7 +19,9 @@ const cardFocus =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]";
 
 export default function ResearchFeatured() {
-  const [lead, ...rest] = featuredInvestigations;
+  const [lead, ...rest] = publishedInvestigations();
+  // Method tile fills the remainder of the last row of the three-column grid.
+  const methodSpan = rest.length > 2 ? 3 - ((rest.length - 2) % 3) : 1;
 
   return (
     <section
@@ -142,7 +144,7 @@ export default function ResearchFeatured() {
             </li>
           ))}
 
-          <li>
+          <li className={methodSpan === 2 ? "md:col-span-2" : methodSpan === 3 ? "md:col-span-3" : undefined}>
             <a
               href="#methodology"
               className={`flex h-full flex-col rounded-3xl border border-dashed border-white/15 p-6 transition-colors hover:border-white/30 ${cardFocus}`}
