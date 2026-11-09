@@ -1836,6 +1836,7 @@
       "name": "Google DeepMind",
       "url": "https://deepmind.google",
       "models": [
+        "gemini-4-argon",
         "gemini-3-8-flash",
         "gemini-omni-flash",
         "gemini-3-7-flash",
