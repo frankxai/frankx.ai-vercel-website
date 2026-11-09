@@ -276,7 +276,7 @@ export default function ProductsPage() {
           category,
           badge: p.badge,
           price,
-          priceDisplay: launchListIntent ? NOT_PRICED_LABEL : priceDisplay,
+          priceDisplay,
           currency,
           originalPrice: p.offer?.originalPrice,
           highlights,
