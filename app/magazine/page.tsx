@@ -93,6 +93,18 @@ function isLocalImage(src?: string): src is string {
   return Boolean(src && src.startsWith('/'))
 }
 
+function isSelfCanonical(post: BlogPostSummary): boolean {
+  if (!post.canonical) return true
+  try {
+    const url = new URL(post.canonical, 'https://www.frankx.ai')
+    const host = url.hostname.replace(/^www\./, '')
+    const path = url.pathname.replace(/\/+$/, '')
+    return host === 'frankx.ai' && path === `/blog/${post.slug}`
+  } catch {
+    return false
+  }
+}
+
 function StoryRow({ post }: { post: BlogPostSummary }) {
   return (
     <li>
@@ -111,7 +123,8 @@ function StoryRow({ post }: { post: BlogPostSummary }) {
 
 export default function MagazinePage() {
   // Only canonical, self-hosted articles appear on the front page.
-  const archive = getAllBlogPostSummaries().filter((post) => !post.canonical)
+  // A canonical that points at the article's own URL still counts as self-hosted.
+  const archive = getAllBlogPostSummaries().filter((post) => isSelfCanonical(post))
   const posts = archive.filter(isEditorial)
   const cover = posts.find((post) => post.flagship || post.featured) ?? posts[0]
   const inThisIssue = posts.filter((post) => post.slug !== cover?.slug).slice(0, 4)
