@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1060" viewBox="0 0 960 1060" role="img" aria-labelledby="title desc">
+<title id="title">One project. Three routes.</title><desc id="desc">Pick one problem from the role you want. Build a small working answer. Publish it on your own page with a 90-second walkthrough. Then use it three ways: a role application, a paid pilot, and a feedback loop. FrankX / Career schematic / November 2026</desc>
+<rect width="960" height="1060" rx="24" fill="#0a0a0b"/>
+<path d="M56 68h60" stroke="#34d399" stroke-width="6"/>
+<text x="56" y="139" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="48" font-weight="700">One project. Three routes.</text>
+<text x="56" y="194" fill="#b6b9b4" font-family="Arial,sans-serif" font-size="30">Make your skill inspectable before you apply.</text>
+<rect x="56" y="244" width="848" height="128" rx="16" fill="#15191a" stroke="#303635"/>
+<text x="86" y="298" fill="#34d399" font-family="Arial,sans-serif" font-size="32">01</text>
+<text x="158" y="298" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="36" font-weight="700">Pick one problem</text>
+<text x="158" y="344" fill="#c5cbc7" font-family="Arial,sans-serif" font-size="28">An outcome that repeats across real postings.</text>
+<rect x="56" y="396" width="848" height="128" rx="16" fill="#15191a" stroke="#303635"/>
+<text x="86" y="450" fill="#34d399" font-family="Arial,sans-serif" font-size="32">02</text>
+<text x="158" y="450" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="36" font-weight="700">Build a small working answer</text>
+<text x="158" y="496" fill="#c5cbc7" font-family="Arial,sans-serif" font-size="28">Tested, with its limits written down.</text>
+<rect x="56" y="548" width="848" height="128" rx="16" fill="#15191a" stroke="#303635"/>
+<text x="86" y="602" fill="#34d399" font-family="Arial,sans-serif" font-size="32">03</text>
+<text x="158" y="602" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="36" font-weight="700">Publish with a walkthrough</text>
+<text x="158" y="648" fill="#c5cbc7" font-family="Arial,sans-serif" font-size="28">Your own page plus a 90-second video.</text>
+<path d="M480 676v40M216 716h528M216 716v34M480 716v34M744 716v34" stroke="#06b6d4" stroke-width="3" fill="none"/>
+<rect x="56" y="750" width="264" height="150" rx="16" fill="#15191a" stroke="#06b6d4"/>
+<text x="188" y="812" text-anchor="middle" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="30" font-weight="700">Role</text>
+<text x="188" y="856" text-anchor="middle" fill="#c5cbc7" font-family="Arial,sans-serif" font-size="24">application</text>
+<rect x="348" y="750" width="264" height="150" rx="16" fill="#15191a" stroke="#06b6d4"/>
+<text x="480" y="812" text-anchor="middle" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="30" font-weight="700">Paid</text>
+<text x="480" y="856" text-anchor="middle" fill="#c5cbc7" font-family="Arial,sans-serif" font-size="24">pilot offer</text>
+<rect x="640" y="750" width="264" height="150" rx="16" fill="#15191a" stroke="#06b6d4"/>
+<text x="772" y="812" text-anchor="middle" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="30" font-weight="700">Feedback</text>
+<text x="772" y="856" text-anchor="middle" fill="#c5cbc7" font-family="Arial,sans-serif" font-size="24">loop</text>
+<path d="M56 942h848" stroke="#303635"/>
+<text x="56" y="992" fill="#b6b9b4" font-family="Arial,sans-serif" font-size="27">FrankX  /  Career schematic  /  November 2026</text></svg>

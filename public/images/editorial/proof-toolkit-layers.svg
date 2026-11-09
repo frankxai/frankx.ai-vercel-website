@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="900" viewBox="0 0 960 900" role="img" aria-labelledby="title desc">
+<title id="title">Your AI crew in three layers.</title><desc id="desc">Prompts help you think: decode roles, scope builds, red-team your page. Skills make you consistent: your whole process saved in one SKILL.md folder. MCP connects real tools: GitHub, notes, deploy, drafts for email. You approve every send, merge and publish. FrankX / Toolkit schematic / November 2026</desc>
+<rect width="960" height="900" rx="24" fill="#0a0a0b"/>
+<rect x="56" y="62" width="60" height="6" fill="#34d399"/>
+<text x="56" y="139" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="48" font-weight="700">Your AI crew in three layers.</text>
+<text x="56" y="194" fill="#b6b9b4" font-family="Arial,sans-serif" font-size="30">Each layer has one job.</text>
+<rect x="56" y="244" width="848" height="150" rx="16" fill="#15191a" stroke="#34d399" stroke-width="2"/>
+<text x="86" y="302" fill="#34d399" font-family="Arial,sans-serif" font-size="26" font-weight="700">PROMPTS</text>
+<text x="300" y="302" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="34" font-weight="700">Help you think</text>
+<text x="300" y="350" fill="#c5cbc7" font-family="Arial,sans-serif" font-size="26">Decode roles, scope builds, red-team your page.</text>
+<rect x="56" y="414" width="848" height="150" rx="16" fill="#15191a" stroke="#22c3c9" stroke-width="2"/>
+<text x="86" y="472" fill="#22c3c9" font-family="Arial,sans-serif" font-size="26" font-weight="700">SKILLS</text>
+<text x="300" y="472" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="34" font-weight="700">Make you consistent</text>
+<text x="300" y="520" fill="#c5cbc7" font-family="Arial,sans-serif" font-size="26">Your whole process saved in one SKILL.md.</text>
+<rect x="56" y="584" width="848" height="150" rx="16" fill="#15191a" stroke="#06b6d4" stroke-width="2"/>
+<text x="86" y="642" fill="#06b6d4" font-family="Arial,sans-serif" font-size="26" font-weight="700">MCP</text>
+<text x="300" y="642" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="34" font-weight="700">Connects real tools</text>
+<text x="300" y="690" fill="#c5cbc7" font-family="Arial,sans-serif" font-size="26">GitHub, notes, deploy, email drafts.</text>
+<rect x="56" y="770" width="848" height="1" fill="#303635"/>
+<text x="56" y="828" fill="#f4f4ef" font-family="Arial,sans-serif" font-size="27" font-weight="700">You approve every send, merge and publish.</text>
+<text x="56" y="868" fill="#b6b9b4" font-family="Arial,sans-serif" font-size="22">FrankX  /  Toolkit schematic  /  November 2026</text></svg>
