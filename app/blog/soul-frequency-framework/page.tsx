@@ -12,10 +12,11 @@ import {
 import Link from "next/link";
 import { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
-import { defaultOpenGraphImages, siteConfig } from "@/lib/seo";
+import { contentLicense, defaultOpenGraphImages, siteConfig } from "@/lib/seo";
 import { socialLinks } from "@/lib/social-links";
 
 export const metadata: Metadata = {
+  alternates: { canonical: `${siteConfig.url}/blog/soul-frequency-framework` },
   title: "Soul Frequency Framework",
   description:
     "Map the creative signature AI should amplify across your brand, family, and leadership. A conscious approach to AI that honors human values and creativity.",
@@ -129,10 +130,15 @@ export default function SoulFrequencyFramework() {
       "@type": "WebPage",
       "@id": `${siteConfig.url}/blog/soul-frequency-framework`,
     },
+    license: contentLicense.url,
+    copyrightHolder: { "@type": "Person", name: contentLicense.holder },
+    copyrightYear: 2024,
+    copyrightNotice: contentLicense.notice,
   };
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
+      <link rel="license" href={contentLicense.url} />
       <JsonLd type="Article" data={articleSchema} />
       <main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-4xl space-y-12">
