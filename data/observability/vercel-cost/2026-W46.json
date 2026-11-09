@@ -1,0 +1,45 @@
+{
+  "week": "2026-W46",
+  "generatedAt": "2026-11-09T07:13:11Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-11-02T07:13:42Z",
+  "windowEnd": "2026-11-09T07:13:42Z",
+  "pagesFetched": 2,
+  "paginationNote": "list_deployments paginated via until=<oldest_created>. Page 1: 100 items (oldest created=1793715902846, still within 7d window); Page 2: 52 items (no next cursor, confirmed complete). Total raw rows: 152, all within window.",
+  "metrics": {
+    "count_total": 152,
+    "count_production": 11,
+    "count_preview": 141,
+    "count_skipped": 109,
+    "count_error": 0,
+    "count_ready": 43,
+    "count_other": 0,
+    "state_note": "count_ready + count_error + count_skipped = 43+0+109 = 152 = count_total. No builds in BUILDING/QUEUED state at snapshot time.",
+    "duration_p50_seconds": 197,
+    "duration_p95_seconds": 313,
+    "duration_max_seconds": 339,
+    "total_build_minutes": 158,
+    "total_build_minutes_basis": "READY deploys only (43 of 152 total; ERROR, CANCELED excluded)",
+    "duration_method": "readyAt_minus_buildingAt_sampled",
+    "ready_deploys_sampled": 10,
+    "ready_deploys_total": 43,
+    "duration_note": "10/43 READY deploys sampled evenly via get_deployment (readyAt - buildingAt). Sorted durations (s): 149.7, 152.6, 161.3, 167.3, 182.1, 211.0, 279.0, 280.0, 282.0, 338.6. p50=196.6s≈197s (mean of 5th+6th: (182.1+211.0)/2). p95=313s (linear interp at index 8.55: 282.0+0.55×(338.6-282.0)). total_build_minutes = mean 220.4s / 60 × 43 READY = 158 min.",
+    "error_deploys": []
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W45",
+    "prior_week_note": "W45 snapshot was opened as a PR but not merged to main. W45 metrics sourced from commit message embedded in deployment dpl_FmwszUTSNw7B3aw8cv2HwfV13EWE: count_total=105, p50=196s, p95=340s, max=431s, total_build_minutes=200, count_error=3.",
+    "duration_p50_seconds": "+1",
+    "count_total": "+47",
+    "total_build_minutes": "-42"
+  },
+  "verdict": "RED",
+  "alerts": [
+    "count_total +44.8% week-over-week (105→152) triggers the +30% single-metric delta RED threshold. Volume driven by heavy PR preview activity across waitlist security fixes, community-waitlist branch, SEO wave 1, and agent branch churn. No production errors this week.",
+    "count_error=0 — GREEN. No failed builds this week (W45 had 3 preview errors, all resolved).",
+    "duration_p50=197s (W45=196s, +1s) — stable. Build efficiency maintained week-over-week.",
+    "total_build_minutes=158 (W45=200, -42 min, -21%) — improved. Fewer READY builds despite higher total volume (more cancels/skips).",
+    "count_production=11 production deploys to main this week: checkout gate, SEO waves 1–2, vibe-os fixes, intelligence snapshot, Refero products, waitlist security hardening."
+  ]
+}
