@@ -26,6 +26,22 @@ export type ProductCard = {
   }
 }
 
+/**
+ * /products/<slug> paths that next.config.mjs redirects elsewhere. Machine-readable
+ * maps (llms.txt) link the destination so they never point at a redirect.
+ * Kept in sync with next.config.mjs by scripts/tests/owned-canon-contract.test.mjs.
+ */
+export const PRODUCT_PATH_REDIRECTS: Record<string, string> = {
+  '/products/agentic-creator-os': '/acos',
+  '/products/soulbook': '/soulbook',
+}
+
+/** Final public path for a product page, after any configured redirect. */
+export function productPublicPath(slug: string): string {
+  const path = `/products/${slug}`
+  return PRODUCT_PATH_REDIRECTS[path] ?? path
+}
+
 export function getProductBySlug(slug: string) {
   return products.find((product) => product.slug === slug)
 }
