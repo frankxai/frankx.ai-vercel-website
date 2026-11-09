@@ -1,0 +1,240 @@
+---
+title: "Claude Code Templates & Starter Kit (CLAUDE.md, Skills, Settings & Hooks)"
+description: "Copy-paste Claude Code templates for production repositories: CLAUDE.md, .claude/settings.json, SKILL.md, slash commands, subagents, and pre-tool hooks."
+date: "2026-11-02"
+updated: "2026-11-02"
+author: "Frank"
+category: "AI Development"
+tags: ["claude-code", "templates", "skills", "devops", "agent-engineering"]
+keywords:
+  [
+    "claude code templates",
+    "claude.md template",
+    "claude code starter kit",
+    "claude settings.json template",
+    "SKILL.md template",
+  ]
+image: ""
+decisions:
+  - audience: "Engineers onboarding a single repository to Claude Code"
+    call: "adopt"
+    because: "Committing a 100-line CLAUDE.md, .claude/settings.json, and one release-gate SKILL.md takes fifteen minutes and eliminates repeated test approvals and context drift."
+    source: "https://docs.anthropic.com/en/docs/claude-code/memory"
+  - audience: "Teams running Claude Code alongside Codex CLI or Cursor"
+    call: "adopt"
+    because: "Storing domain checklists in the standard SKILL.md folder layout and mirroring core build rules in AGENTS.md lets every developer harness share one source of truth."
+    source: "https://agentskills.io"
+  - audience: "Solo prototypes under 500 lines of throwaway code"
+    call: "skip"
+    because: "A two-hour spike needs zero custom hooks or subagent profiles; add the starter kit once the repository graduates to pull requests and CI."
+    source: "https://github.com/frankxai/claude-skills-library"
+faqs:
+  - question: "Where do Claude Code templates live inside a repository?"
+    answer: "Root instruction contract at CLAUDE.md, shared permissions and hooks at .claude/settings.json, reusable skills at .claude/skills/<name>/SKILL.md, slash commands at .claude/commands/<name>.md, and isolated subagents at .claude/agents/<name>.md."
+  - question: "How big should a production CLAUDE.md file be?"
+    answer: "Aim for 80 to 150 lines. Every line in CLAUDE.md is injected into every session turn, so moving specialized playbooks into progressive-disclosure SKILL.md files preserves context budget and improves instruction adherence."
+  - question: "Can I install ready-made Claude Code templates with one command?"
+    answer: "Yes. Run /plugin marketplace add frankxai/claude-skills-library inside Claude Code or generate custom templates in the interactive FrankX Skill Builder at /skills/builder."
+---
+
+For software engineers and technical founders setting up a new repository for coding agents: a clean Claude Code starter kit prevents context bloat, accidental destructive commands, and repeated onboarding prompts. Verified as of November 2026 across Next.js, Python, and TypeScript monorepos, the five copy-paste templates below give you a working `CLAUDE.md`, `.claude/settings.json`, `SKILL.md`, `/ship` slash command, and secret-guard hook in under fifteen minutes.
+
+---
+
+## What is the recommended `.claude/` directory structure?
+
+A maintainable repository separates **always-on invariants** (`CLAUDE.md`) from **on-demand workflows** (`skills/`, `commands/`, `agents/`) and **machine enforcement** (`settings.json` hooks):
+
+```text
+your-repo/
+├── CLAUDE.md                                   # Always-on repo contract (80–150 lines)
+├── AGENTS.md                                   # Cross-harness contract for Codex / OpenCode
+├── .mcp.json                                   # Project-scoped MCP server definitions
+└── .claude/
+    ├── settings.json                           # Committed permissions + PreToolUse/PostToolUse hooks
+    ├── settings.local.json                     # Gitignored personal overrides
+    ├── skills/
+    │   └── release-gate/
+    │       ├── SKILL.md                        # Progressive-disclosure domain instructions
+    │       └── scripts/verify-links.mjs        # Deterministic validator script
+    ├── commands/
+    │   └── ship.md                             # Explicit /ship operator workflow
+    └── agents/
+        └── code-reviewer.md                    # Isolated read-only verification subagent
+```
+
+| File | Loaded into context | Committed to Git | Primary responsibility |
+|---|---|---|---|
+| `CLAUDE.md` | Every session turn | Yes | Build/test commands, architecture map, non-negotiable rules |
+| `.claude/settings.json` | Harness config parser | Yes | Safe tool allowlists, denied destructive commands, hooks |
+| `.claude/skills/<name>/SKILL.md` | YAML header at boot; body on match | Yes | Specialized domain rules (UI, SQL, SEO, testing) |
+| `.claude/commands/<name>.md` | Only when `/name` runs | Yes | Repeatable multi-step operator sequences |
+| `.claude/agents/<name>.md` | Isolated subagent window | Yes | Independent review or broad codebase exploration |
+
+---
+
+## Template 1: Lean `CLAUDE.md` repository contract
+
+Keep `CLAUDE.md` concise and operational. Every command listed here should be verified in CI so the agent can self-check its work before summarizing.
+
+```markdown
+# Project: Acme Web Platform
+
+## Stack & commands
+- Runtime: Node 22, Next.js 16 App Router, TypeScript strict, Tailwind CSS, Vitest
+- Install: `pnpm install --frozen-lockfile`
+- Type check: `pnpm run type-check`
+- Unit tests: `pnpm test`
+- Build gate: `pnpm run build`
+
+## Architecture boundaries
+- `app/` — Server Components by default; add `'use client'` at leaf interactive controls only
+- `lib/db/` — Drizzle queries and schema migrations; all writes require Zod input validation
+- `components/ui/` — Shared accessible primitives; preserve keyboard focus rings and ARIA labels
+
+## Git & pull request protocol
+- Create feature branches named `agent/<harness>/<scope>` from `origin/main`
+- Run `pnpm run type-check && pnpm test` before every commit
+- Never commit `.env*` files, API keys, or customer PII fixtures
+- Keep edits surgical to the requested scope
+```
+
+---
+
+## Template 2: `.claude/settings.json` with safe permissions and hooks
+
+Commit a balanced `.claude/settings.json` that pre-approves routine test and inspection commands, blocks destructive flags, and runs automatic formatting or secret checks on file edits:
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm run type-check)",
+      "Bash(pnpm test*)",
+      "Bash(pnpm run lint*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)"
+    ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Bash(git push --force*)",
+      "Bash(git reset --hard*)",
+      "Read(.env)",
+      "Read(.env.local)",
+      "Read(.env.production)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node scripts/hooks/block-protected-files.mjs"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx prettier --write --ignore-unknown \"$CLAUDE_FILE_PATHS\""
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+And here is the zero-dependency `scripts/hooks/block-protected-files.mjs` guard referenced above (exits code `2` so Claude Code halts the write and explains why):
+
+```javascript
+#!/usr/bin/env node
+import fs from 'node:fs'
+
+const payload = JSON.parse(fs.readFileSync(0, 'utf8') || '{}')
+const filePath = String(payload?.tool_input?.file_path ?? '')
+const protectedPatterns = [/^\.env($|\.)/, /^pnpm-lock\.yaml$/, /^migrations\/locked\//]
+
+if (protectedPatterns.some((rx) => rx.test(filePath))) {
+  process.stderr.write(`Blocked edit to protected path: ${filePath}. Ask human operator first.\n`)
+  process.exit(2)
+}
+```
+
+---
+
+## Template 3: Progressive-disclosure `SKILL.md`
+
+Write the `description` field in third person with explicit trigger terms (`Use when...`). That single field determines whether Claude loads the skill at the right moment.
+
+```markdown
+---
+name: api-route-hardening
+description: Enforce Zod request validation, rate-limit headers, structured error envelopes, and integration tests on Next.js Route Handlers. Use when creating or modifying files under app/api/.
+---
+
+# API route hardening
+
+## Required checklist
+1. Parse request body, query params, and headers through a strict `zod` schema before business logic.
+2. Return consistent JSON error shapes: `{ error: { code: string, message: string, requestId: string } }`.
+3. Enforce authentication and tenant authorization prior to any database read or mutation.
+4. Set explicit `Cache-Control` headers (`no-store` on authenticated or mutating endpoints).
+5. Add or update a `node:test` or `vitest` case covering `200`, `400` validation failure, and `401` unauthorized responses.
+```
+
+You can generate tailored `SKILL.md` files interactively in the [FrankX Skill Builder](/skills/builder) or browse 114 production examples in [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library).
+
+---
+
+## Template 4: `/ship` slash command (`.claude/commands/ship.md`)
+
+Slash commands turn a multi-step pre-PR ritual into a deterministic four-letter invocation:
+
+```markdown
+---
+description: Run type-check, tests, diff audit, and open a draft pull request
+---
+
+Execute the pre-release verification sequence for the current branch:
+
+1. Verify we are on a feature branch (`git branch --show-current` must differ from `main`).
+2. Run `pnpm run type-check` and `pnpm test`. Stop immediately and fix any failure before continuing.
+3. Inspect `git diff origin/main...HEAD` for unintended debug logs, secrets, or out-of-scope file edits.
+4. Stage verified files, write a conventional commit message explaining the mechanism changed, push the branch, and open a draft pull request with test output attached.
+```
+
+---
+
+## Template 5: Independent reviewer subagent (`.claude/agents/code-reviewer.md`)
+
+Subagents shine when given **read-only tools** so an independent context window critiques the work produced by your main session:
+
+```markdown
+---
+name: code-reviewer
+description: Independent read-only reviewer for pull request diffs, security boundaries, and test coverage.
+tools: Read, Grep, Glob, Bash(git diff*), Bash(git log*)
+---
+
+You are an independent technical reviewer auditing the current branch diff against `origin/main`.
+
+1. Check every modified route, database query, and external call for unhandled failure states, injection risks, or missing auth checks.
+2. Verify tests exercise real system behavior against concrete fixtures and verifiable failure states.
+3. Report findings with exact `file:line` references grouped into `Blocker` and `Improvement`, ending with `VERDICT: PASS` or `VERDICT: FAIL`.
+```
+
+---
+
+## Next steps
+
+- Compare standalone skills against multi-repo bundles in [Claude Code plugins vs skills](/guides/claude-code-plugins-vs-skills).
+- Wire external tools safely with [Best MCP servers for Claude Code & business workflows](/guides/mcp-servers-claude-code-business).
+- Explore the full [Claude Code & Agent Skills Hub](/skills) and [AI Architecture Blueprints](/ai-architecture).

@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: CourseDetailPageProps) {
 
   return createMetadata({
     title: `${course.title} (Planned) | FrankX Courses`,
-    description: `${course.shortDescription} Join the waitlist for launch updates and early access announcements.`,
+    description: `${course.shortDescription} Review the planned course and record your interest.`,
     path: `/courses/${course.slug}`,
   })
 }
@@ -57,8 +57,8 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
         </div>
 
         <header className="space-y-6">
-          <span className="inline-flex items-center rounded-full border border-amber-400/30 bg-amber-500/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.14em] text-amber-300">
-            Planned Course · Waitlist Open
+          <span className="inline-flex items-center rounded-full border border-amber-400/30 bg-amber-500/10 px-3 py-1 text-xs font-medium tracking-[0.14em] text-amber-300">
+            Planned course · Interest open
           </span>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1]">
             {course.title}
@@ -90,8 +90,9 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
         <section className="rounded-2xl border border-emerald-400/20 bg-emerald-500/10 p-6">
           <h2 className="text-lg font-semibold text-emerald-200 mb-2">What is true right now</h2>
           <p className="text-sm text-emerald-100/80 leading-relaxed">
-            This is a planning page, not a live paid course. Joining the waitlist only subscribes you to launch and
-            availability updates.
+            This page outlines a planned course. The form below records course interest
+            and subscribes you to occasional FrankX field notes. The immediate email is the standard
+            newsletter welcome. It does not enroll you or create course-specific follow-up.
           </p>
         </section>
 
@@ -134,15 +135,19 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
 
         <section id="waitlist" className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-8 space-y-6">
           <div className="space-y-2">
-            <h2 className="text-2xl font-semibold">Join the waitlist</h2>
+            <h2 className="text-2xl font-semibold">Record your interest</h2>
             <p className="text-white/65 max-w-2xl">
-              Get launch timing, beta invites, and first access when this course opens.
+              Tell Frank which planned course matters to you. Submitting also subscribes you to
+              occasional FrankX field notes and their standard welcome email. It does not create
+              course-specific notifications. Unsubscribe anytime.
             </p>
           </div>
           <EmailSignup
             listType="courses-waitlist"
+            source={`/courses/${course.slug}`}
+            intent={`course-${course.slug}`}
             showName
-            buttonText="Join Course Waitlist"
+            buttonText="Record course interest"
             placeholder="you@company.com"
           />
         </section>

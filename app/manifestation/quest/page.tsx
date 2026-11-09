@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import { questFaqs } from '@/data/manifestation'
 import ManifestationQuestClient from './ManifestationQuestClient'
 
@@ -21,8 +21,8 @@ export default function ManifestationQuestPage() {
           name: 'The 10-Day Reality Architect Quest',
           description:
             'A guided 10-day manifestation loop: vision → felt state → attention → AI-rendered artifact → shipped → lesson.',
-          url: 'https://frankx.ai/manifestation/quest',
-          isPartOf: { '@type': 'WebSite', name: 'FrankX.AI', url: 'https://frankx.ai' },
+          url: `${siteConfig.url}/manifestation/quest`,
+          isPartOf: { '@type': 'WebSite', name: 'FrankX.AI', url: siteConfig.url },
         }}
       />
       <FAQPageJsonLd faqs={questFaqs} />

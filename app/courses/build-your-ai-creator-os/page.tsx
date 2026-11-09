@@ -298,7 +298,7 @@ export default function BuildYourAICreatorOSPage() {
                 Module 1 is free. Start now.
               </h2>
               <p className="text-lg text-white/50 mb-10 max-w-2xl mx-auto">
-                Set up your AI foundation today. Get notified when new modules launch.
+                Set up your AI foundation today. Module 1 is available to read now.
               </p>
 
               <div className="flex flex-col items-center gap-6">
@@ -312,12 +312,16 @@ export default function BuildYourAICreatorOSPage() {
 
                 <div className="w-full max-w-md mt-8">
                   <p className="text-sm text-white/40 mb-4">
-                    Get notified when new modules launch
+                    Submitting records interest in the rest of the course and subscribes you to
+                    occasional FrankX field notes. The immediate email is the standard newsletter
+                    welcome, not a module notification or course-specific follow-up.
                   </p>
                   <EmailSignup
                     listType="courses-waitlist"
+                    source="/courses/build-your-ai-creator-os"
+                    intent="course-build-your-ai-creator-os"
                     placeholder="you@example.com"
-                    buttonText="Notify Me"
+                    buttonText="Record course interest"
                     compact
                   />
                 </div>

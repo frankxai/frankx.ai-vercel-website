@@ -95,7 +95,7 @@ function AuroraBackground() {
         className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full"
         style={{
           background: 'radial-gradient(circle, rgba(16, 185, 129, 0.06) 0%, transparent 70%)',
-          filter: 'blur(128px)',
+          willChange: 'transform',
         }}
         animate={
           shouldReduceMotion
@@ -110,7 +110,7 @@ function AuroraBackground() {
         className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full"
         style={{
           background: 'radial-gradient(circle, rgba(6, 182, 212, 0.04) 0%, transparent 70%)',
-          filter: 'blur(128px)',
+          willChange: 'transform',
         }}
         animate={
           shouldReduceMotion
@@ -560,8 +560,8 @@ function AuthorityBar() {
 const products = [
   {
     title: 'Sovereign Business Kits',
-    description: 'Turn-key modular starter kits (Micro-SaaS, Marketplace, Creator Hub) designed for builders to launch globally on their own terms.',
-    href: '/templates',
+    description: 'Modular starter-kit templates (Micro-SaaS, Marketplace, Creator Hub). Launch list open.',
+    href: '/waitlist',
     color: 'emerald' as const,
   },
   {
@@ -606,7 +606,7 @@ function ProductsTools() {
           viewport={{ once: true }}
           className="text-center mb-12 md:mb-16"
         >
-          <p className="mb-4 text-xs font-medium tracking-[0.1em] text-emerald-400/50">
+          <p className="mb-4 text-xs font-medium tracking-[0.1em] text-emerald-300/80">
             Products & Tools
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
@@ -1091,7 +1091,6 @@ function LibraryShowcase({ libraryBooks }: { libraryBooks: LibraryBookData[] }) 
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> MIT-licensed</span>
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> Cross-AI portable</span>
           <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> SEO + JSON-LD per book</span>
-          <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" /> 3 commands, 1 schema</span>
         </motion.div>
       </div>
     </section>
@@ -1297,14 +1296,14 @@ function EmailCTA() {
 
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
               <Sparkles className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm text-emerald-400">Weekly Insights</span>
+              <span className="text-sm text-emerald-400">Field notes</span>
             </div>
 
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-2">
               Stay in the Signal Loop
             </h2>
             <p className="text-sm text-white/60 mb-8 max-w-xs mx-auto">
-              One focused transmission a week. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
+              Field notes from the workspace. No noise—just the latest story, framework, and soundtrack I&apos;m shipping.
             </p>
             <div className="max-w-sm mx-auto">
               <EmailSignup

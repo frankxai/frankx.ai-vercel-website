@@ -7,7 +7,7 @@ import { TiltCard } from '@/components/ui/TiltCard'
 import { Music, Zap, Users, Trophy, Star, Heart } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Showcase - FrankX.AI',
+  title: 'Showcase',
   description: 'Experience the future of creator tools with our state-of-the-art UI components and animations.',
 }
 

@@ -71,30 +71,6 @@ export default function VibeOSSocialProof({ stats }: VibeOSSocialProofProps) {
             )
           })}
         </div>
-
-        {/* Additional Social Proof */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-16 flex flex-wrap items-center justify-center gap-8 text-sm text-white/50"
-        >
-          <div className="flex items-center gap-3">
-            <div className="flex -space-x-2">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <div
-                  key={i}
-                  className="h-8 w-8 rounded-full border-2 border-void bg-gradient-to-br from-cyan-400 to-blue-500"
-                  style={{ zIndex: 5 - i }}
-                />
-              ))}
-            </div>
-            <span>Creators in Early Access</span>
-          </div>
-
-
-        </motion.div>
       </div>
     </section>
   )

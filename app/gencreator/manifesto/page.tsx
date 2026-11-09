@@ -53,9 +53,9 @@ export default function ManifestoPage() {
         />
 
         <div className="relative mx-auto max-w-3xl px-6 text-center">
-          <div className="mb-12 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.5em] text-emerald-300/60">
+          <h1 className="mb-12 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.5em] text-emerald-300/60">
             Manifesto
-          </div>
+          </h1>
 
           <div className="space-y-6">
             {manifestoLines.map((line, i) => (

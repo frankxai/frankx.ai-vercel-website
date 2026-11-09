@@ -112,6 +112,18 @@ const salesPlatforms: Affiliate[] = [
 
 const aiTools: Affiliate[] = [
   {
+    id: 'elevenlabs',
+    name: 'ElevenLabs',
+    url: 'https://elevenlabs.io',
+    category: 'ai-tool',
+    commission: '22% Starter/Creator/Pro/Scale (11% Business) for 12 months; Enterprise excluded',
+    cookieDuration: '90 days',
+    signupUrl: 'https://elevenlabs.io/affiliates',
+    logoIcon: 'AudioWaveform',
+    brandColor: '#10B981',
+    oracleCompatible: true,
+  },
+  {
     id: 'suno',
     name: 'Suno',
     url: 'https://suno.com/',

@@ -1,3 +1,4 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata, Viewport } from 'next'
 import Atlas from '@/components/globe/Atlas'
 
@@ -17,24 +18,26 @@ export const metadata: Metadata = {
     'lehrkarte',
   ],
   alternates: {
-    canonical: 'https://frankx.ai/erde',
+    canonical: `${siteConfig.url}/erde`,
     languages: {
-      en: 'https://frankx.ai/globe',
-      de: 'https://frankx.ai/erde',
-      hr: 'https://frankx.ai/svijet',
-      'x-default': 'https://frankx.ai/globe',
+      en: `${siteConfig.url}/globe`,
+      de: `${siteConfig.url}/erde`,
+      hr: `${siteConfig.url}/svijet`,
+      'x-default': `${siteConfig.url}/globe`,
     },
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title,
     description,
-    url: 'https://frankx.ai/erde',
+    url: `${siteConfig.url}/erde`,
     siteName: 'FrankX',
     type: 'website',
     locale: 'de_DE',
     alternateLocale: ['en_US', 'hr_HR'],
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary_large_image',
     title,
     description,

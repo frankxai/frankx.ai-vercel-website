@@ -17,15 +17,12 @@ import {
   Play,
   Shield,
   Zap,
-  Train,
-  Triangle,
-  Workflow,
   ExternalLink,
 } from 'lucide-react'
-import CheckoutButton from '@/components/commerce/CheckoutButton'
 import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 import { GlowButton } from '@/components/ui/GlowButton'
 import templates from '@/data/templates.json'
+import { templatesFaq } from './faq'
 
 // ── Category Config ─────────────────────────────────────────────────────────
 
@@ -51,21 +48,21 @@ const categoryColors: Record<string, string> = {
 const tiers = [
   {
     name: 'Starter',
-    range: '$19 – $47',
+    range: 'Launch list',
     description: 'Individual skills and configs. Perfect for adding one capability.',
     color: 'cyan',
     filter: (t: { price: number }) => t.price <= 47,
   },
   {
     name: 'Professional',
-    range: '$47 – $97',
-    description: 'Multi-component workflows and chat apps. Ship features in hours.',
+    range: 'Launch list',
+    description: 'Multi-component workflows and chat apps.',
     color: 'emerald',
     filter: (t: { price: number }) => t.price > 47 && t.price <= 97,
   },
   {
     name: 'Enterprise',
-    range: '$197 – $297',
+    range: 'Launch list',
     description: 'Full production systems. RAG platforms, SaaS boilerplates, agent frameworks.',
     color: 'purple',
     filter: (t: { price: number }) => t.price > 97,
@@ -77,43 +74,21 @@ const tiers = [
 const stats = [
   { value: '15', label: 'Templates' },
   { value: '5', label: 'Categories' },
-  { value: '$27', label: 'Starting at' },
-  { value: '100%', label: 'Source code' },
+  { value: 'Launch list', label: 'Open, nothing on sale yet' },
+  { value: 'Planned', label: 'As readable source' },
 ]
 
-// ── Deploy Platform Badges ──────────────────────────────────────────────────
+// ── Launch list link (no checkout exists yet) ────────────────────────────────
 
-const platformIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  railway: Train,
-  vercel: Triangle,
-  n8n: Workflow,
-}
-
-function DeployBadges({ techStack }: { techStack: string[] }) {
-  const platforms = ['railway', 'vercel', 'n8n'].filter(
-    (p) =>
-      techStack.some((t) => t.toLowerCase().includes(p)) ||
-      (p === 'vercel' && techStack.some((t) => t.toLowerCase().includes('next'))) ||
-      (p === 'railway' && techStack.some((t) => ['Python', 'FastAPI', 'Redis'].includes(t))) ||
-      (p === 'n8n' && techStack.some((t) => t.toLowerCase().includes('n8n')))
-  )
-  if (platforms.length === 0) return null
-
+function LaunchListLink({ size = 'sm' }: { size?: 'sm' | 'lg' }) {
+  const sizeClasses = size === 'lg' ? 'px-8 py-4 text-lg' : 'px-4 py-2 text-sm'
   return (
-    <div className="flex items-center gap-1.5">
-      {platforms.map((p) => {
-        const Icon = platformIcons[p]
-        return (
-          <span
-            key={p}
-            className="flex items-center gap-1 rounded bg-white/[0.06] px-1.5 py-0.5 text-[9px] text-white/40"
-          >
-            <Icon className="h-2.5 w-2.5" />
-            {p}
-          </span>
-        )
-      })}
-    </div>
+    <Link
+      href="/waitlist"
+      className={`${sizeClasses} inline-flex items-center rounded-full border border-white/10 bg-white/[0.06] font-semibold text-white/80 transition-colors hover:bg-white/[0.12]`}
+    >
+      Join the launch list
+    </Link>
   )
 }
 
@@ -132,7 +107,7 @@ function FeaturedCard({
           <div className="flex-1">
             <div className="mb-3 flex items-center gap-2">
               <span className="rounded-full bg-amber-500/20 px-2.5 py-0.5 text-[10px] font-semibold uppercase text-amber-400">
-                Most Popular
+                Featured
               </span>
               <span className="rounded-full bg-purple-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase text-purple-400">
                 {categoryLabels[template.category]}
@@ -156,15 +131,9 @@ function FeaturedCard({
             </ul>
 
             <div className="flex flex-wrap items-center gap-3">
-              <CheckoutButton
-                variantId={template.lemonSqueezy.variantId || undefined}
-                price={template.price}
-                originalPrice={template.originalPrice}
-                label="Get Template"
-                size="lg"
-              />
+              <LaunchListLink size="lg" />
               <span className="text-xs text-white/30">
-                Includes commercial license
+                Not available to buy yet
               </span>
             </div>
           </div>
@@ -173,25 +142,20 @@ function FeaturedCard({
           <div className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] p-5 md:w-72">
             <div className="mb-4 text-center">
               <div className="mb-1 flex items-baseline justify-center gap-2">
-                <span className="text-4xl font-bold text-white">${template.price}</span>
-                {template.originalPrice && (
-                  <span className="text-lg text-white/30 line-through">
-                    ${template.originalPrice}
-                  </span>
-                )}
+                <span className="text-2xl font-bold text-white">Launch list</span>
               </div>
               <span className="text-xs text-emerald-400">
-                Save ${(template.originalPrice || template.price) - template.price}
+                Coming soon
               </span>
             </div>
 
             <div className="mb-4 space-y-2 border-t border-white/[0.06] pt-4">
               {[
-                { icon: Code2, text: 'Full source code' },
-                { icon: Github, text: 'GitHub repo access' },
-                { icon: Play, text: 'Video walkthrough' },
-                { icon: Shield, text: 'Commercial license' },
-                { icon: Zap, text: 'One-click deploy' },
+                { icon: Code2, text: 'Planned: source files' },
+                { icon: Github, text: 'Repo access confirmed per kit' },
+                { icon: Play, text: 'Walkthrough may be included' },
+                { icon: Shield, text: 'License terms confirmed per kit' },
+                { icon: Zap, text: 'Deploy guidance may be included' },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-2 text-sm text-white/50">
                   <Icon className="h-3.5 w-3.5 text-white/30" />
@@ -268,7 +232,7 @@ function TemplateCard({
         </p>
       </div>
 
-      {/* Tech Stack + Deploy */}
+      {/* Tech Stack */}
       <div className="px-5 pb-3">
         <div className="mb-2 flex flex-wrap gap-1">
           {template.techStack.slice(0, 4).map((tech) => (
@@ -285,16 +249,12 @@ function TemplateCard({
             </span>
           )}
         </div>
-        <DeployBadges techStack={template.techStack} />
       </div>
 
       {/* Footer */}
       <div className="mt-auto flex items-center justify-between border-t border-white/[0.06] px-5 py-4">
         <div className="flex items-baseline gap-2">
-          <span className="text-2xl font-bold text-white">${template.price}</span>
-          {template.originalPrice && (
-            <span className="text-sm text-white/30 line-through">${template.originalPrice}</span>
-          )}
+          <span className="text-lg font-bold text-white">Launch list</span>
         </div>
         <div className="flex items-center gap-2">
           {'vercelDeployUrl' in template && template.vercelDeployUrl && (
@@ -308,13 +268,7 @@ function TemplateCard({
               <span>▲ Deploy</span>
             </a>
           )}
-          <CheckoutButton
-            variantId={template.lemonSqueezy.variantId || undefined}
-            price={template.price}
-            originalPrice={template.originalPrice}
-            label="Get"
-            size="sm"
-          />
+          <LaunchListLink />
         </div>
       </div>
     </motion.div>
@@ -383,7 +337,7 @@ export default function ShopTemplatesPage() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-400">
               <Sparkles className="h-4 w-4" />
-              {templates.length} Production Templates
+              {templates.length} planned templates
             </div>
 
             <h1 className="mb-4 text-4xl font-bold tracking-tight text-white md:text-6xl">
@@ -395,7 +349,7 @@ export default function ShopTemplatesPage() {
             </h1>
 
             <p className="mb-8 max-w-2xl text-lg text-white/50">
-              Production-tested templates from the systems behind frankx.ai.
+              Planned templates from the systems behind frankx.ai. Nothing is on sale yet; join the launch list.
               Claude Code skills, n8n workflows, Next.js starters, and full AI architecture blueprints.
               Built by an AI architect who ships in production.
             </p>
@@ -444,13 +398,14 @@ export default function ShopTemplatesPage() {
       {/* ── What's Included ─────────────────────────────────────────────── */}
       <section className="border-y border-white/[0.06] py-10">
         <div className="mx-auto max-w-7xl px-6">
+          <p className="mb-6 text-xs text-white/40">Nothing is on sale yet. Planned contents vary by kit and are not final.</p>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
             {[
-              { icon: Code2, title: 'Full Source Code', desc: 'No obfuscation. Yours forever.' },
-              { icon: Zap, title: 'One-Click Deploy', desc: 'Railway, Vercel, n8n ready.' },
-              { icon: Play, title: 'Video Walkthrough', desc: 'Setup and customization guide.' },
-              { icon: Shield, title: 'Commercial License', desc: 'Use in client projects.' },
-              { icon: Download, title: 'Free Updates', desc: 'Lifetime access to improvements.' },
+              { icon: Code2, title: 'Source files', desc: 'Planned as readable source, not a hosted service.' },
+              { icon: Zap, title: 'Deploy guidance', desc: 'May include Railway, Vercel or n8n setup.' },
+              { icon: Play, title: 'Walkthrough', desc: 'May include a setup and customization guide.' },
+              { icon: Shield, title: 'License terms', desc: 'Confirmed per kit before launch.' },
+              { icon: Download, title: 'Updates', desc: 'Update policy confirmed per kit before launch.' },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="flex items-start gap-3">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/[0.06]">
@@ -598,32 +553,7 @@ export default function ShopTemplatesPage() {
         <div className="mx-auto max-w-4xl px-6">
           <h2 className="mb-8 text-2xl font-bold text-white">Frequently Asked Questions</h2>
           <div className="grid gap-4 md:grid-cols-2">
-            {[
-              {
-                q: 'What do I get when I purchase?',
-                a: 'Full source code in a private GitHub repo, deploy configs for Railway/Vercel, a video walkthrough, and access to our Discord support channel.',
-              },
-              {
-                q: 'Can I use templates for client projects?',
-                a: 'Yes. All templates include a commercial license. Use them for client projects, SaaS products, or internal tools.',
-              },
-              {
-                q: 'Do I need my own API keys?',
-                a: 'Yes. Templates require your own API keys for AI providers (Anthropic, OpenAI, Google, or OCI). You control your costs.',
-              },
-              {
-                q: 'Are updates included?',
-                a: 'Yes. All future updates to the template are included free. You get lifetime access to the GitHub repo.',
-              },
-              {
-                q: 'What platforms can I deploy to?',
-                a: 'Templates include configs for Railway (backend), Vercel (frontend), and n8n (workflows). One-click deploy buttons included.',
-              },
-              {
-                q: 'Is there a refund policy?',
-                a: 'Due to the digital nature of the product (immediate source code access), we cannot offer refunds. Review the features carefully before purchasing.',
-              },
-            ].map((faq) => (
+            {templatesFaq.map((faq) => (
               <div
                 key={faq.q}
                 className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-5"

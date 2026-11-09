@@ -34,6 +34,13 @@ export const siteConfig = {
   ],
 }
 
+// Next replaces a parent's openGraph and twitter objects wholesale instead of merging them, so any route or layout
+// that sets its own openGraph or twitter must carry its own images or the social card has none.
+export const defaultOpenGraphImages = [
+  { url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name },
+]
+export const defaultTwitterImages = [siteConfig.ogImage]
+
 
 
 type CreateMetadataOptions = {
@@ -116,6 +123,25 @@ export function createMetadata({
       description,
       images: [image],
       creator: siteConfig.twitter,
+    },
+  }
+}
+
+/** Structured data for a product that is still on the waitlist. */
+export function comingSoonProductStructuredData(
+  name: string,
+  description: string,
+  image?: string,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name,
+    description,
+    ...(image ? { image } : {}),
+    brand: {
+      '@type': 'Brand',
+      name: 'FrankX.ai',
     },
   }
 }

@@ -29,7 +29,7 @@ Every enterprise AI CoE is built on six pillars. Every Personal AI CoE is built 
 
 **Personal:** A markdown file. One page. Updated weekly. It answers four questions: What am I building? What AI tools am I using? What outcomes am I tracking? What will I do this week? Cost: $0.
 
-My strategy file is called `MASTER_PLAN.md`. It tracks 250+ production pages, 90+ blog articles, 15 books, 12,000+ songs, and every active initiative across my creative practice. It takes fifteen minutes to review and five to update. It gives an individual creator the kind of strategic clarity usually reserved for much larger organizations.
+My strategy file is called `MASTER_PLAN.md`. It tracks 250+ production pages, 90+ blog articles, 15 books, AI music, and every active initiative across my creative practice. It takes fifteen minutes to review and five to update. It gives an individual creator the kind of strategic clarity usually reserved for much larger organizations.
 
 The difference is not the quality of the strategy. It is the scale of the operation it governs. A one-person operation needs a one-page strategy. A ten-thousand-person organization needs a hundred-page strategy. The principles are the same.
 
@@ -98,7 +98,7 @@ This book is the complete guide to building your Personal AI CoE. Each chapter t
 - A website with 250+ production pages
 - 90+ published articles
 - 15 books totaling 156,000+ words
-- 12,000+ AI-generated songs
+- AI-generated music
 - An education platform serving students, professors, researchers, and doctors
 - An open-source operating system with 75 skills and 38 agents
 

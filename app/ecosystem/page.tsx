@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import {
@@ -16,16 +17,20 @@ import {
   type EcosystemTier,
 } from '@/data/ecosystem'
 
+// Derived from the registry so metadata, JSON-LD and the page body cannot disagree.
+const entryCount = ecosystemEntries.length
+
 export const metadata: Metadata = {
   title: 'FrankX Ecosystem — The Complete System Map',
   description:
-    'Every shipped system across the FrankX ecosystem — Watch OS, Workshop OS, ACOS, Library OS, the Build First funnel, the Starlight Intelligence System, and more. 28 entries across 4 tiers.',
+    `Every system across the FrankX ecosystem — Watch OS, Workshop OS, ACOS, Library OS, the Build First funnel, the Starlight Intelligence System, and more. ${entryCount} entries across 4 tiers.`,
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'FrankX Ecosystem — The Complete System Map',
-    description: '28 systems across 4 tiers — public surfaces, open-source substrate, operational layer, ops tooling.',
+    description: `${entryCount} systems across 4 tiers — public surfaces, open-source substrate, operational layer, ops tooling.`,
     type: 'website',
   },
-  alternates: { canonical: 'https://frankx.ai/ecosystem' },
+  alternates: { canonical: `${siteConfig.url}/ecosystem` },
 }
 
 const COLOR_TOKENS = {
@@ -64,12 +69,12 @@ function EcosystemSchema() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'FrankX Ecosystem',
-    description: 'The complete map of every system across the FrankX ecosystem — 28 entries across 4 tiers.',
-    url: 'https://frankx.ai/ecosystem',
+    description: `The complete map of every system across the FrankX ecosystem — ${entryCount} entries across 4 tiers.`,
+    url: `${siteConfig.url}/ecosystem`,
     author: {
       '@type': 'Person',
       name: 'Frank Riemer',
-      url: 'https://frankx.ai',
+      url: siteConfig.url,
       jobTitle: 'AI Architect',
     },
   }
@@ -118,7 +123,7 @@ function TierSection({ tierId, label, description }: { tierId: EcosystemTier; la
             <h2 className="text-xl sm:text-2xl font-bold text-zinc-50 mb-1">{label}</h2>
             <p className="text-sm text-zinc-500 max-w-2xl">{description}</p>
           </div>
-          <span className="text-xs font-mono text-zinc-500 whitespace-nowrap">{entries.length} systems</span>
+          <span className="text-xs font-mono text-zinc-500 whitespace-nowrap">{entries.length} {entries.length === 1 ? 'system' : 'systems'}</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
           {entries.map((entry) => (
@@ -152,7 +157,7 @@ export default function EcosystemPage() {
           </h1>
 
           <p className="text-lg sm:text-xl text-zinc-400 max-w-3xl leading-relaxed mb-6">
-            {ecosystemEntries.length} systems across 4 tiers — public surfaces on frankx.ai, open-source substrate
+            {entryCount} systems across 4 tiers — public surfaces on or linked from frankx.ai, open-source substrate
             you can fork, internal operational layers, and the daily ops tooling that keeps it all running.
           </p>
 

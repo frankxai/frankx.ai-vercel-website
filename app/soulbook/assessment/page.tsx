@@ -378,18 +378,18 @@ export default function AssessmentPage() {
                 </PremiumButton>
               </div>
 
-              {/* Upsell to Commercial Product: System Architect Starter Kit ($97) */}
+              {/* Launch-list prompt: System Architect Starter Kit (€97, not on sale yet) */}
               <div className="mt-8 p-6 rounded-2xl bg-gradient-to-r from-amber-500/10 via-purple-500/10 to-blue-500/10 border border-amber-500/30 text-left">
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                   <div>
                     <span className="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold uppercase tracking-wider mb-2">
-                      Level 99 Acceleration
+                      Launch list
                     </span>
                     <h3 className="text-xl font-bold text-white mb-1">
-                      System Architect Starter Kit ($97)
+                      System Architect Starter Kit (€97)
                     </h3>
                     <p className="text-slate-300 text-sm max-w-xl">
-                      Bridge your personal Life Book with an autonomous multi-agent operating system. Includes terminal CLI engine, Obsidian vault sync, and production agent council.
+                      Ready-to-use JSON pipelines and automation templates that run content atomization, guest research, and newsletter queueing.
                     </p>
                   </div>
                   <PremiumButton
@@ -398,7 +398,7 @@ export default function AssessmentPage() {
                     href="/products/starter-kit"
                     className="whitespace-nowrap"
                   >
-                    Acquire Starter Kit — $97
+                    Join the launch list
                   </PremiumButton>
                 </div>
               </div>
@@ -455,9 +455,9 @@ export default function AssessmentPage() {
           >
             <InteractiveCard glowColor="yellow" intensity="medium">
               <GlassmorphicCard variant="premium" gradient="aurora" border="subtle" className="p-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
+                <h1 className="text-2xl md:text-3xl font-bold text-white mb-8">
                   {question.question}
-                </h2>
+                </h1>
 
                 <div className="space-y-4">
                   {question.options.map((option, idx) => (

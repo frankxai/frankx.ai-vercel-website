@@ -85,6 +85,7 @@ const NAV_COLUMNS = [
       { label: 'Guides', href: '/guides' },
       { label: 'Architecture Hub', href: '/ai-architecture' },
       { label: 'Agent Catalog', href: '/agents' },
+      { label: 'Developers', href: '/developers' },
     ],
   },
   {
@@ -247,7 +248,7 @@ export default function Footer() {
           />
           <div className="relative flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-white">One reviewed note from the workspace each week</p>
+              <p className="text-sm font-semibold text-white">Field notes from the workspace</p>
               <p className="mt-0.5 text-xs text-white/60">Research, builds, field notes, and decisions worth carrying forward.</p>
             </div>
             <div className="w-full sm:w-auto sm:min-w-[300px]">

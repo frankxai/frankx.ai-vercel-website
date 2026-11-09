@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { EnhancedVideo, VideoAnnotation, VideoObjectSchema, ClipSchema } from './video-types'
 
 /**
@@ -83,13 +84,13 @@ export function buildVideoListSchema(
             '@type': 'ListItem',
             position: 1,
             name: 'Home',
-            item: 'https://frankx.ai',
+            item: siteConfig.url,
           },
           {
             '@type': 'ListItem',
             position: 2,
             name: 'Video Vault',
-            item: 'https://frankx.ai/watch',
+            item: `${siteConfig.url}/watch`,
           },
         ],
       },
@@ -97,12 +98,12 @@ export function buildVideoListSchema(
         '@type': 'CollectionPage',
         name: 'Video Vault — Curated AI & Creator Intelligence',
         description: `${videos.length}+ curated videos on AI engineering, agents, music production, and creator economy.`,
-        url: 'https://frankx.ai/watch',
+        url: `${siteConfig.url}/watch`,
         numberOfItems: videos.length,
         publisher: {
           '@type': 'Person',
           name: 'FrankX',
-          url: 'https://frankx.ai',
+          url: siteConfig.url,
         },
       },
       ...videoSchemas,
@@ -113,8 +114,12 @@ export function buildVideoListSchema(
 /**
  * Builds inline VideoObject schema for a single YouTube embed in a blog post
  */
-export function buildInlineVideoSchema(videoId: string, title?: string): Record<string, unknown> {
-  return {
+export function buildInlineVideoSchema(
+  videoId: string,
+  title?: string,
+  uploadDate?: string,
+): Record<string, unknown> {
+  const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
     name: title || `Video ${videoId}`,
@@ -122,4 +127,11 @@ export function buildInlineVideoSchema(videoId: string, title?: string): Record<
     embedUrl: `https://www.youtube.com/embed/${videoId}`,
     contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
   }
+  if (
+    typeof uploadDate === 'string' &&
+    /^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2}))?$/.test(uploadDate)
+  ) {
+    schema.uploadDate = uploadDate
+  }
+  return schema
 }

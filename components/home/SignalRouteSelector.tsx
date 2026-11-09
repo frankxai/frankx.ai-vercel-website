@@ -79,16 +79,16 @@ const signalRoutes: SignalRoute[] = [
   {
     id: 'creator-systems',
     label: 'Creator Systems',
-    audience: 'Creators, video makers, musicians, and operators turning signals into repeatable releases.',
-    title: 'Make the next campaign, video, or song shippable.',
+    audience: 'Creators, video makers, and operators turning signals into repeatable releases.',
+    title: 'Make the next campaign, article, or video script shippable.',
     description:
-      'The multi-modal creator studio: social campaign engines, video pacing, Suno prompt systems, and the 100-tool Agentic Creator Stack.',
+      'The GenCreator workspace: turn one source idea into a social campaign, long-form article or video script, with proof checks, review notes and a portable export.',
     proof: '',
     href: 'https://gencreator.ai/create',
     cta: 'Open Creator Studio',
     icon: Sparkles,
     accent: 'emerald',
-    checks: ['Social campaigns', 'Video scripts', 'Suno audio', '100-tool stack'],
+    checks: ['Social campaigns', 'Long-form articles', 'Video scripts', 'Portable export'],
   },
   {
     id: 'builder-systems',
@@ -148,7 +148,7 @@ export function SignalRouteSelector() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
           <div className="max-w-2xl">
-            <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400/50">
+            <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400/75">
               Signal Router
             </p>
             <h2
@@ -170,7 +170,7 @@ export function SignalRouteSelector() {
                 key={signal.label}
                 className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4 backdrop-blur-[24px] backdrop-saturate-[150%]"
               >
-                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/35">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/55">
                   {signal.label}
                 </p>
                 <p className="mt-3 text-sm font-semibold text-white">{signal.value}</p>
@@ -235,7 +235,7 @@ export function SignalRouteSelector() {
                     {route.checks.map((check) => (
                       <span
                         key={check}
-                        className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-[11px] font-medium text-white/45"
+                        className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-[11px] font-medium text-white/55"
                       >
                         {check}
                       </span>
@@ -270,7 +270,7 @@ export function SignalRouteSelector() {
             <GitBranch className="h-4 w-4 text-emerald-300/70" aria-hidden="true" />
             <span>Routing contract: creator output, builder systems, team architecture.</span>
           </div>
-          <span className="text-[11px] text-white/40">
+          <span className="text-[11px] text-white/55">
             Open field notes · Inspectable architecture · Independent release
           </span>
         </div>

@@ -89,16 +89,16 @@ export const osModules: OSModule[] = [
     shipped: 'ongoing',
     oneLine: 'Agent orchestration with learning across sessions.',
     description:
-      'The Agentic Creator Operating System — a persistent agent runtime that learns from past trajectories, scores intelligence, and routes complex tasks across 150+ skills and dozens of agents. The engine under the hood.',
+      'The Agentic Creator Operating System — a persistent agent runtime that learns from past trajectories, scores intelligence, and routes complex tasks across its skills and agents. The engine under the hood.',
     phases: ['cross-cutting'],
     connectsTo: ['watch-os', 'workshop-os', 'aco', 'coe-hub'],
     artifacts: ['Skills', 'Agents', 'Trajectory logs', 'Intelligence scores'],
     commands: ['/acos', '/acos-flow', '/acos-monitor', '/agentic-jujutsu'],
     deepDive: {
       route: '/acos/agents',
-      label: 'Browse the 99-agent catalog',
+      label: 'Browse the ACOS catalog',
       description:
-        '11 pillars × 9 specialists. The full ACOS agent + skill + command catalog with shipped / in-progress / gap status per slot.',
+        '11 pillars. The full ACOS agent + skill + command catalog with shipped / in-progress / gap status per slot.',
     },
   },
   {
@@ -144,7 +144,7 @@ export const osModules: OSModule[] = [
     color: 'fuchsia',
     iconName: 'Zap',
     shipped: '2026-04-25',
-    oneLine: '5-tier premium funnel — €0 Primer to €2,997 Founder Circle.',
+    oneLine: 'Product ladder from Primer to Founder Circle.',
     description:
       'Test-branch funnel: Primer → Pack → Toolkit → Mastery → Architect → Founder\'s Circle. Lemon Squeezy + Claude Managed Agents customer service. Routes /start-here, /build, /build/[slug], /founders-circle. Ramps the operational systems above into a clear commercial offering.',
     phases: ['funnel'],

@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Collectibles | ACOS Trading Cards & Limited Prints | FrankX',
   description:
     'Digital and physical collectibles from the ACOS ecosystem: the 40-card Genesis trading card set, Bio-Tech Instrument design prints, and rotating mixed drops.',

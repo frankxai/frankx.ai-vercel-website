@@ -5,7 +5,7 @@ description: Weekly learn loop — performance analysis, insight distillation, n
 
 # /friday-loop
 
-Run the Learn stage. Model: Fable/Opus — this is the judgment stage; do not route to Haiku/Sonnet.
+Run the Learn stage. Model: Sonnet 5.5 (`claude-sonnet-5-5`) — Sonnet 5 has sufficient judgment for content analysis; escalate to Opus 5.5 only if multi-series synthesis or architectural content decisions are needed.
 
 1. Load skills: `xpoz-intelligence`, `pattern-recognition`, starlight-memory `insight-distillation`.
 2. Pull performance on everything `Published` this week + trailing 28d movers.

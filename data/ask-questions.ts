@@ -61,7 +61,7 @@ If your task fits in a single context window and runs in under 10 seconds, a sin
 - **Claude Code** — agentic task loops with file access
 - **MCP (Model Context Protocol)** — connects agents to external tools without bespoke integration code
 
-For enterprise deployments, I layer these inside Oracle Cloud's AI infrastructure with proper logging, rate-limit controls, and audit trails.`,
+For enterprise deployments, place these behind an LLM gateway and cloud IAM boundary with OpenTelemetry traces, rate-limit controls, and immutable audit trails.`,
     category: 'ai-architecture',
     persona: 'architect',
     tags: ['multi-agent', 'architecture', 'vercel-ai-sdk', 'orchestration'],
@@ -106,7 +106,7 @@ Use Suno\'s \`[Instrumental]\`, \`[Verse]\`, \`[Chorus]\`, \`[Bridge]\` structur
 4. Select best 2 clips per variant, extend them
 5. Crop and splice in post
 
-I\'ve produced 12,000+ tracks this way. The model rewards structural clarity over creative prose.`,
+I\'ve produced hundreds of tracks this way. The model rewards structural clarity over creative prose.`,
     category: 'music-production',
     persona: 'producer',
     tags: ['suno', 'prompting', 'music-production', 'ai-music'],
@@ -440,11 +440,11 @@ Where secrets live, how to run the dev server, what commands run what, what the 
     slug: 'enterprise-ai-adoption-strategy',
     question: 'What\'s the right strategy for an enterprise adopting AI in 2026?',
     tldr: 'Start with use-case inventory, identify the 3 highest-ROI pilots, run them in parallel with clear success criteria, then build the Center of Excellence infrastructure for scale.',
-    answer: `Enterprise AI adoption fails when it\'s driven by tool selection before problem definition, or when it tries to boil the ocean rather than proving value in 90 days.
+    answer: `Enterprise AI adoption fails when tool selection precedes problem definition, or when teams attempt an enterprise-wide rollout before proving measurable value in 90 days.
 
 ## The 6-pillar AI CoE framework
 
-This is the framework I implement at Oracle EMEA:
+This is the six-pillar AI Center of Excellence framework used in enterprise AI governance:
 
 **1. Strategy & Governance** — What problems are we solving? What are the guardrails? Who makes model selection decisions?
 
@@ -626,6 +626,180 @@ If the generation doesn\'t lift enough: add a sidechain compression pump to the 
     related: ['how-to-write-suno-prompts', 'ai-music-workflow-end-to-end', 'adding-ai-without-losing-voice'],
     cta: { label: 'Watch the AI Music Masterclass', href: '/workshops/ai-music-masterclass', variant: 'primary' },
     date: '2026-05-25',
+  },
+  {
+    slug: 'claude-skills-vs-agents',
+    question: 'What is the difference between Claude Code skills and subagents?',
+    tldr: 'A skill (`SKILL.md`) loads reusable domain instructions into the active context window when triggered. A subagent runs inside its own isolated context window with dedicated tool permissions and returns a summary.',
+    answer: `Claude Code provides two distinct primitives for scaling complex work: **skills** and **subagents**. Choosing the right one protects your context window and keeps token spend predictable.
+
+## How a skill works (\`SKILL.md\`)
+
+A skill is a folder at \`.claude/skills/<name>/SKILL.md\` (project) or \`~/.claude/skills/<name>/SKILL.md\` (personal). At startup, Claude reads only the YAML \`name\` and \`description\`. When your task matches that description, Claude loads the full markdown instructions and optional helper scripts into the **current conversation context**.
+
+Use a skill when the main agent needs domain standards while editing files directly:
+- Next.js App Router conventions and Server Component rules
+- Brand editorial rules and accessibility checklists
+- Deterministic local verification scripts in \`scripts/\`
+
+## How a subagent works (\`.claude/agents/\`)
+
+A subagent spawns a **separate context window** with its own system prompt, model choice, and restricted tool list. It performs bounded work—such as scanning 40 files or running an independent security review—and returns only the final report to your main session.
+
+Use a subagent when the intermediate tool output would pollute your primary context:
+- Codebase-wide exploration and dependency mapping
+- Independent code or editorial verification (dual-reviewer gates)
+- Parallel test debugging across separate packages
+
+## Decision rule
+
+Keep instructions in a **skill** when they guide how the active maker writes code. Delegate to a **subagent** when the task requires heavy reading, parallel execution, or an independent reviewer.`,
+    category: 'ai-architecture',
+    persona: 'architect',
+    tags: ['claude-code', 'skills', 'subagents', 'context-engineering'],
+    related: ['claude-code-plugins-vs-skills', 'what-is-a-multi-agent-system', 'mcp-vs-a2a'],
+    cta: { label: 'Explore the Skills Hub', href: '/skills', variant: 'primary' },
+    date: '2026-11-02',
+    featured: true,
+  },
+  {
+    slug: 'claude-code-plugins-vs-skills',
+    question: 'When should I package a Claude Code plugin versus a standalone SKILL.md?',
+    tldr: 'Start with a standalone `.claude/skills/<name>/SKILL.md` folder inside one repo. Package a plugin when you need versioned distribution of skills, slash commands, hooks, subagents, and MCP servers across multiple repos or IDEs.',
+    answer: `A standalone **skill** is the unit of instruction; a **plugin** is the unit of distribution.
+
+## Standalone \`SKILL.md\` folder
+
+Drop a \`SKILL.md\` file inside \`.claude/skills/<skill-name>/\` and commit it to Git. Every developer using Claude Code CLI, VS Code, JetBrains, Codex, or Cursor in that repository gets the exact same routing behavior with zero marketplace setup.
+
+Choose a standalone skill when:
+- The rules belong to a single codebase or monorepo
+- You iterate on the instructions weekly alongside application code
+- You want zero external version drift
+
+## Claude Code plugin (\`/plugin\`)
+
+A plugin bundles multiple primitives—\`skills/\`, \`commands/\`, \`agents/\`, \`hooks/\`, and \`.mcp.json\`—under a \`plugin.json\` manifest so teams can install the entire bundle via \`/plugin marketplace add <org>/<repo>\`.
+
+Choose a plugin when:
+- Three or more repositories share the same engineering or brand gates
+- You ship preconfigured hooks and slash commands alongside skills
+- Contributors work across terminal CLI, VS Code, and JetBrains IDEs and need one-command updates
+
+Read the full comparison and directory layout in the [Claude Code plugins vs skills guide](/guides/claude-code-plugins-vs-skills).`,
+    category: 'ai-architecture',
+    persona: 'architect',
+    tags: ['claude-code', 'plugins', 'skills', 'jetbrains', 'marketplace'],
+    related: ['claude-skills-vs-agents', 'mcp-vs-a2a', 'what-is-a-multi-agent-system'],
+    cta: { label: 'Read the plugins vs skills guide', href: '/guides/claude-code-plugins-vs-skills', variant: 'primary' },
+    date: '2026-11-02',
+    featured: true,
+  },
+  {
+    slug: 'mcp-vs-a2a',
+    question: 'How does Model Context Protocol (MCP) differ from Agent-to-Agent (A2A) protocols?',
+    tldr: 'MCP connects an agent to deterministic tools, databases, and APIs (vertical tool access). A2A coordinates task delegation, state handoffs, and capability discovery between autonomous peer agents (horizontal collaboration).',
+    answer: `Production agent architectures separate **tool invocation** from **peer delegation**. MCP and A2A operate on orthogonal planes.
+
+## Model Context Protocol (MCP) — agent to tool
+
+MCP standardizes how an LLM runtime discovers and calls deterministic external capabilities over stdio or Streamable HTTP:
+- Querying Postgres or Supabase schemas
+- Reading GitHub pull requests and CI checks
+- Inspecting live DOM state through a headless browser hub
+
+An MCP tool takes typed JSON inputs and returns deterministic structured outputs. It holds no autonomous goal loop of its own.
+
+## Agent-to-Agent (A2A) — agent to peer agent
+
+A2A protocols govern how one autonomous agent delegates an open-ended objective to another specialist agent that owns its own planner, memory, credentials, and multi-step execution loop:
+- Publishing an Agent Card declaring supported tasks and authentication scopes
+- Negotiating long-running asynchronous tasks, streaming progress updates, and structured artifacts
+- Enforcing cross-boundary permissions so Agent A never sees Agent B's raw database credentials
+
+## How they compose in one stack
+
+Inside a multi-agent deployment, each specialist agent uses **MCP** to operate its private tools and databases while communicating across team boundaries via **A2A** handoff packets.`,
+    category: 'ai-architecture',
+    persona: 'architect',
+    tags: ['mcp', 'a2a', 'multi-agent', 'protocols', 'architecture'],
+    related: ['what-is-a-multi-agent-system', 'llm-gateway-vs-direct-api', 'what-is-agentic-ai-architecture'],
+    cta: { label: 'View AI architecture blueprints', href: '/ai-architecture', variant: 'primary' },
+    date: '2026-11-02',
+  },
+  {
+    slug: 'llm-gateway-vs-direct-api',
+    question: 'When do I need an LLM gateway versus calling model provider APIs directly?',
+    tldr: 'Call provider SDKs directly in single-model prototypes with one API key. Introduce an LLM gateway as soon as you need automatic provider failover, per-tenant spend caps, unified OpenTelemetry traces, or multi-model routing.',
+    answer: `Direct provider SDK calls keep early prototypes simple. Once an application serves real users or runs background agent loops, direct API calls scatter retry logic, billing telemetry, and key rotation across every service.
+
+## What an LLM gateway centralizes
+
+An LLM gateway sits between your application (or coding harness) and upstream providers such as Anthropic, Google Gemini, OpenAI, and local vLLM endpoints:
+1. **Resilient failover** — Automatically retries 429/529 provider rate limits against a warm fallback region or secondary model.
+2. **Hard budget enforcement** — Enforces daily and per-workflow USD caps before runaway agent loops exhaust monthly credits.
+3. **Unified observability** — Emits standardized OpenTelemetry GenAI spans (latency, prompt/completion tokens, cache hits, cost) to Langfuse, Grafana, or Datadog.
+4. **Credential isolation** — Issues scoped virtual keys to developers and agents while keeping master provider keys in one vault.
+
+## Practical threshold
+
+Stay on direct SDK calls (or Vercel AI SDK provider packages) when running one model under $100/month. Move behind LiteLLM, Cloudflare AI Gateway, Kong AI Gateway, or Portkey when adding a second model family, onboarding multiple engineers, or running unattended agent schedules. See the full [LLM gateway architecture guide](/blog/llm-gateway-architecture-guide).`,
+    category: 'enterprise-ai',
+    persona: 'architect',
+    tags: ['llm-gateway', 'ai-gateway', 'observability', 'cost-control', 'architecture'],
+    related: ['claude-and-gemini-together', 'what-is-agentic-ai-architecture', 'mcp-vs-a2a'],
+    cta: { label: 'Read the LLM gateway guide', href: '/blog/llm-gateway-architecture-guide', variant: 'primary' },
+    date: '2026-11-02',
+  },
+  {
+    slug: 'what-is-agentic-ai-architecture',
+    question: 'What are the core layers of a production agentic AI architecture?',
+    tldr: 'A production agentic AI architecture comprises six layers: an orchestration loop, context and memory stores, deterministic tool contracts (MCP), an LLM gateway, evaluation and observability gates, and human approval boundaries.',
+    answer: `Shipping reliable agent systems requires engineering the harness around the model with the same rigor applied to distributed systems.
+
+## The six production layers
+
+1. **Context & instruction substrate** — Version-controlled \`CLAUDE.md\` / \`AGENTS.md\` contracts and progressive-disclosure \`SKILL.md\` modules so agents load exact repo invariants.
+2. **Orchestration & state loop** — Bounded task graphs with explicit iteration caps, checkpointing, and independent verification between maker and reviewer contexts.
+3. **Tool & data plane (MCP)** — Typed JSON-RPC/HTTP tool interfaces with read/write separation and schema validation.
+4. **Model routing & LLM gateway** — Task-appropriate model selection (frontier reasoning for architecture, fast models for mechanical checks) with fallback chains and spend limits.
+5. **Memory & retrieval** — Hybrid lexical + vector indexing over verified operational decisions, separated cleanly from ephemeral scratchpads.
+6. **Governance & observability** — OpenTelemetry trace capture, promptfoo regression suites, and fail-closed human gates on billing, production credentials, and external communications.
+
+Explore reference diagrams and deployable topologies in the [AI Architecture Hub](/ai-architecture).`,
+    category: 'ai-architecture',
+    persona: 'architect',
+    tags: ['agentic-ai', 'ai-architecture', 'mcp', 'governance', 'observability'],
+    related: ['what-is-a-multi-agent-system', 'ai-agents-vs-agentic-ai', 'llm-gateway-vs-direct-api'],
+    cta: { label: 'Browse reference architectures', href: '/ai-architecture', variant: 'primary' },
+    date: '2026-11-02',
+    featured: true,
+  },
+  {
+    slug: 'ai-agents-vs-agentic-ai',
+    question: 'What is the practical difference between an AI agent and agentic AI?',
+    tldr: 'An AI agent is a single bounded runtime unit with a system prompt, tools, and a loop to complete a defined task. Agentic AI describes the broader system architecture coordinating multiple agents, memory stores, verifiers, and human gates.',
+    answer: `Teams frequently conflate the unit of execution (**an AI agent**) with the system pattern (**agentic AI**). Separating the two clarifies how you scope, test, and govern software.
+
+## An AI agent (the component)
+
+An individual AI agent pairs a language model with a toolset and a termination condition—for example, a PR triage bot that reads a diff, runs a linter, and posts structured findings. You test an individual agent with unit fixtures and promptfoo evaluations.
+
+## Agentic AI (the system architecture)
+
+Agentic AI refers to end-to-end workflows where planning, tool execution, state persistence, independent verification, and human approval coordinate across multiple steps or specialist agents:
+- A maker agent implements a feature in an isolated Git worktree
+- Deterministic CI scripts verify types, links, and schema contracts
+- An independent reviewer agent audits the exact revision against product standards
+- A human operator approves high-impact release or financial actions
+
+Build single, well-tested AI agents first; compose them into an agentic AI system only where context isolation, parallel throughput, or independent verification earns its complexity.`,
+    category: 'ai-architecture',
+    persona: 'architect',
+    tags: ['ai-agents', 'agentic-ai', 'systems-design', 'verification'],
+    related: ['what-is-agentic-ai-architecture', 'what-is-a-multi-agent-system', 'claude-skills-vs-agents'],
+    cta: { label: 'Explore AI architecture patterns', href: '/ai-architecture', variant: 'secondary' },
+    date: '2026-11-02',
   },
 ]
 

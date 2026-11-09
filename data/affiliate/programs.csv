@@ -2,7 +2,7 @@ priority,tool,category,has_program,commission,recurring,cookie_days,network,stat
 1,Higgsfield,video,yes,See partner dashboard,See partner dashboard,,FirstPromoter,active,https://higgsfield.ai/ambassador-program,https://higgsfield.ai?fpr=frank-255866,Owner supplied the issued referral URL on 2026-10-10. Use /go/higgsfield in editorial content and disclose before the first referral. Rates and subscription prices are not independently verified.
 2,Systeme.io,creator-stack,yes,60%,lifetime,,direct,active,https://systeme.io/affiliate-program,https://go.agenticincome.ai/systeme,Highest recurring % lifetime no gate. Compounding spine.
 3,CapCut,creator-stack,yes,up to 35%,recurring,,Impact,active,https://www.capcut.com/partners/affiliate-program,https://go.agenticincome.ai/capcut,Massive install base easy convert.
-4,ElevenLabs,creator-stack,yes,22% (11% Business),12-month,90,direct/PartnerStack,active,https://elevenlabs.io/affiliates,https://go.agenticincome.ai/elevenlabs,Long 90-day cookie + recurring + viral.
+4,ElevenLabs,creator-stack,yes,22% Starter/Creator/Pro/Scale (11% Business),12-month,90,PartnerStack,active,https://elevenlabs.io/affiliates,https://try.elevenlabs.io/uc8prmq6tiyt,Verified PartnerStack referral URL (confirmed 2026-11-05). Use /go/elevenlabs in public surfaces and disclose before the referral control. Enterprise excluded; 90-day payout window.
 5,Copy.ai,writing,yes,45% first year,year-1,60,PartnerStack,active,https://www.copy.ai/partners,https://go.agenticincome.ai/copyai,Highest writing rate no traffic min.
 6,Writesonic,writing,yes,30% (40% top),lifetime,30,PartnerStack/Tolt,active,https://writesonic.com/partners,https://go.agenticincome.ai/writesonic,Lifetime recurring.
 7,Adobe Firefly,image,yes,~30%,recurring,60,Partnerize/Impact,active,https://www.adobe.com/affiliates.html,https://go.agenticincome.ai/firefly,Image-post monetization target (Midjourney/Ideogram/FLUX have none).
@@ -31,3 +31,4 @@ priority,tool,category,has_program,commission,recurring,cookie_days,network,stat
 -,Black Forest Labs,image,no,,,,,dead-end,,,Model lab — no referral layer.
 -,Leonardo.ai,image,no,,,,Impact,closed,,,CLOSED Apr 7 2026 — no new applicants.
 -,Notion,creator-stack,no,50%/180d (when open),lifetime,180,direct,closed,,,Not accepting new affiliates (Mar 2026). Monitor.
+-,Ironstone Design,design,yes,Unverified 50% vendor claim,,,PartnerStack,hold,,,HOLD (2026-11-05): PartnerStack invitation only; missing official terms URL and product fit verification. No public link.

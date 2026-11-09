@@ -3,13 +3,11 @@
   "_version": "1.1.0",
   "_source": "claude-flow Q-Learning Router pattern + model-registry.json",
   "_updated": "2026-02-06",
-  "_note": "Updated for Claude Opus 4.6 (adaptive thinking, 1M context, $5/$25 pricing)",
+  "_note": "Updated for Claude 5 family (Haiku 5.5, Sonnet 5.5, Opus 5.5, Fable 5.1) — 2026-10-12",
 
   "models": {
     "haiku": {
-      "id": "claude-haiku-4-5-20251001",
-      "cost_per_1m_input": 0.80,
-      "cost_per_1m_output": 4.0,
+      "id": "claude-haiku-5-5",
       "latency": "fastest",
       "capability": "basic",
       "use_for": [
@@ -18,13 +16,13 @@
         "Status checks",
         "Deployment execution",
         "Formatting and linting",
-        "List operations"
+        "List operations",
+        "Mechanical data collection",
+        "SEO audits (mechanical checks)"
       ]
     },
     "sonnet": {
-      "id": "claude-sonnet-4-5-20250929",
-      "cost_per_1m_input": 3.0,
-      "cost_per_1m_output": 15.0,
+      "id": "claude-sonnet-5-5",
       "latency": "medium",
       "capability": "balanced",
       "use_for": [
@@ -33,18 +31,14 @@
         "Code review",
         "Bug fixes",
         "Test generation",
-        "API integration"
+        "API integration",
+        "Weekly automations (cost watch, analytics, newsletter)",
+        "CI failure diagnosis",
+        "PR management"
       ]
     },
     "opus": {
-      "id": "claude-opus-4-6",
-      "cost_per_1m_input": 5.0,
-      "cost_per_1m_output": 25.0,
-      "context_window": 200000,
-      "context_window_beta": 1000000,
-      "max_output_tokens": 128000,
-      "thinking_mode": "adaptive",
-      "effort_levels": ["low", "medium", "high", "max"],
+      "id": "claude-opus-5-5",
       "latency": "slowest",
       "capability": "maximum",
       "use_for": [
@@ -54,6 +48,16 @@
         "Complex debugging",
         "Security audits",
         "Research synthesis"
+      ]
+    },
+    "fable": {
+      "id": "claude-fable-5-1",
+      "latency": "medium",
+      "capability": "creative",
+      "use_for": [
+        "Long-form content with narrative arc",
+        "Book authoring",
+        "Creative strategy"
       ]
     }
   },
@@ -88,8 +92,11 @@
       "/council",
       "/research",
       "/plan-week",
-      "/author-team",
       "/starlight-intelligence"
+    ],
+    "fable": [
+      "/author-team",
+      "/excellence-book-writing"
     ]
   },
 
@@ -104,7 +111,11 @@
     ],
     "opus_keywords": [
       "architect", "design", "strategy", "council", "enterprise", "complex",
-      "research", "plan", "analyze", "system", "multi-agent", "book"
+      "research", "plan", "analyze", "system", "multi-agent"
+    ],
+    "fable_keywords": [
+      "book", "story", "narrative", "long-form", "author", "fiction",
+      "chapter", "manuscript", "prose", "creative writing"
     ]
   },
 
@@ -123,7 +134,7 @@
     "enabled": true,
     "target_savings": 0.5,
     "prefer_cheaper_when_ambiguous": true,
-    "track_actual_vs_predicted": true
+    "track_actual_vs_predicted": false
   },
 
   "agent_routing": {
@@ -145,12 +156,15 @@
       "starlight-architecture-design",
       "starlight-orchestrator",
       "luminor-strategic-guidance",
-      "master-story-architect",
       "golden-age-visionary",
-      "line-editor-voice-alchemist",
-      "research-librarian",
+      "research-librarian"
+    ],
+    "fable_agents": [
+      "master-story-architect",
       "world-architect",
-      "character-psychologist"
+      "character-psychologist",
+      "line-editor-voice-alchemist",
+      "developmental-editor"
     ]
   }
 }

@@ -1,0 +1,341 @@
+{
+  "_generated": "Written by claude-skills-library packs/stack-kits/install.sh. Do not edit: put repo rules in stack-kits.local.json and re-run the installer.",
+  "_vendor": {
+    "source": "blencorp/claude-code-kit",
+    "commit": "d1b17ed60a7fa870ca4346dcbbac9a54602ca7af",
+    "kits": [
+      "nextjs",
+      "react",
+      "shadcn"
+    ],
+    "aliases": {
+      "nextjs": "nextjs-expert"
+    }
+  },
+  "_precedence": "taste.md, design.md, CREATOR.md and docs/experience-brief.md outrank every skill listed here. app/page.tsx and components/home/** follow docs/strategy/HOMEPAGE-PRESERVATION-CONTRACT.md: baselines, preservation matrix, exactly three directions and Frank's approval before code. Kit examples use placeholder colors and fonts; use this repo's tokens instead.",
+  "version": "1.0",
+  "skills": {
+    "nextjs-expert": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "promptTriggers": {
+        "keywords": [
+          "next.js",
+          "nextjs",
+          "app router",
+          "app directory",
+          "server component",
+          "client component",
+          "server action",
+          "generateMetadata",
+          "generateStaticParams",
+          "next/navigation",
+          "next/link",
+          "use client"
+        ],
+        "intentPatterns": [
+          "create.*(page|route|layout|component)",
+          "add.*(page|route|layout|component)",
+          "build.*component",
+          "make.*component",
+          "add.*route.*handler",
+          "create.*api.*route",
+          "add.*server.*action",
+          "create.*server.*component",
+          "create.*client.*component",
+          "add.*metadata",
+          "create.*loading.*state",
+          "add.*error.*boundary",
+          "implement.*dynamic.*route"
+        ]
+      },
+      "stage": "framework",
+      "description": "framework patterns (stack-kits routes nextjs triggers here)"
+    },
+    "react": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "promptTriggers": {
+        "keywords": [
+          "react",
+          "useState",
+          "useEffect",
+          "useCallback",
+          "useMemo",
+          "useRef",
+          "useContext",
+          "useReducer",
+          "useTransition",
+          "useDeferredValue",
+          "useId",
+          "useSyncExternalStore",
+          "useImperativeHandle",
+          "useLayoutEffect",
+          "React.lazy",
+          "React.memo",
+          "React.forwardRef",
+          "React.createContext",
+          "createContext",
+          "forwardRef",
+          "Suspense",
+          "ErrorBoundary",
+          "StrictMode",
+          "startTransition",
+          "flushSync",
+          "createPortal",
+          "cloneElement"
+        ],
+        "intentPatterns": [
+          "use.*react.*hook",
+          "implement.*(useState|useEffect|useCallback|useMemo|useContext|useReducer)",
+          "add.*react.*(lazy|suspense|memo)",
+          "create.*react.*context",
+          "optimize.*react.*component",
+          "memoize.*react.*component",
+          "use.*(useTransition|useDeferredValue)",
+          "create.*error.*boundary",
+          "implement.*react.*(forwardRef|memo)",
+          "add.*react.*portal"
+        ]
+      },
+      "stage": "framework"
+    },
+    "shadcn": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "promptTriggers": {
+        "keywords": [
+          "shadcn",
+          "shadcn/ui",
+          "npx shadcn",
+          "@/components/ui",
+          "table component",
+          "form component",
+          "dialog component",
+          "card component",
+          "button component"
+        ],
+        "intentPatterns": [
+          "create.*(table|form|dialog|card|button)",
+          "add.*(table|form|dialog|card|button).*component",
+          "add.*shadcn.*component",
+          "install.*shadcn.*component",
+          "style.*component.*shadcn",
+          "use.*shadcn"
+        ]
+      },
+      "stage": "framework"
+    },
+    "web-release-gate": {
+      "type": "guardrail",
+      "enforcement": "suggest",
+      "priority": "critical",
+      "description": "website work starts here; it sequences audit, motion, performance and visual proof, and defines done",
+      "promptTriggers": {
+        "keywords": [
+          "website",
+          "landing page",
+          "homepage",
+          "home page",
+          "hero section",
+          "hero",
+          "redesign",
+          "design overhaul",
+          "above the fold",
+          "call to action",
+          "cta",
+          "conversion",
+          "responsive",
+          "mobile layout",
+          "mobile design",
+          "navbar",
+          "pricing page",
+          "visual polish",
+          "premium feel",
+          "css",
+          "stylesheet",
+          "ui component"
+        ],
+        "intentPatterns": [
+          "\\b(design|redesign|build|improve|polish|overhaul|refresh|restyle|revamp)\\b.*\\b(page|site|website|section|hero|landing|ui|layout|header|footer|nav)\\b",
+          "\\b(create|make|add|build|style|restyle|design)\\b.*\\b(components?|screens?|modals?|dialogs?|css|stylesheet|ui)\\b",
+          "\\b(mobile|responsive)\\b.*\\b(fix|design|layout|view|break|broken)",
+          "\\b(increase|improve|boost|raise)\\b.*\\b(conversions?|sign-?ups?|click-?through)"
+        ]
+      }
+    },
+    "web-design-guidelines": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "audit changed UI files against the live Vercel Web Interface Guidelines, file:line findings",
+      "promptTriggers": {
+        "keywords": [
+          "accessibility",
+          "a11y",
+          "focus state",
+          "contrast",
+          "ui audit",
+          "design review",
+          "aria"
+        ],
+        "intentPatterns": [
+          "\\b(audit|review|check)\\b.*\\b(ui|page|design|accessibility|interface)\\b"
+        ]
+      }
+    },
+    "core-web-vitals": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "measure LCP / INP / CLS and bundle cost before and after",
+      "promptTriggers": {
+        "keywords": [
+          "lcp",
+          "inp",
+          "cls",
+          "core web vitals",
+          "lighthouse",
+          "page speed",
+          "bundle size",
+          "performance budget"
+        ],
+        "intentPatterns": [
+          "\\b(slow|speed up|faster|optimi[sz]e)\\b.*\\b(page|site|load|render|hero|image)"
+        ]
+      }
+    },
+    "ui-ux-pro-max": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "searchable styles, palettes, font pairings and UX rules; query it, never import a whole aesthetic",
+      "promptTriggers": {
+        "keywords": [
+          "palette",
+          "font pairing",
+          "typography",
+          "color scheme",
+          "ux pattern",
+          "layout pattern",
+          "visual hierarchy"
+        ]
+      }
+    },
+    "emil-design-eng": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "the invisible details: easing, interruptible motion, optical alignment",
+      "promptTriggers": {
+        "keywords": [
+          "polish",
+          "micro-interaction",
+          "micro interaction",
+          "easing",
+          "smooth",
+          "premium",
+          "craft",
+          "delight",
+          "hover state"
+        ]
+      }
+    },
+    "motion-system": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "GSAP ScrollTrigger + Lenis scroll choreography with a reduced-motion fallback",
+      "promptTriggers": {
+        "keywords": [
+          "gsap",
+          "scrolltrigger",
+          "lenis",
+          "parallax",
+          "scroll choreography",
+          "pinned section",
+          "smooth scroll"
+        ]
+      }
+    },
+    "review-animations": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "review motion in a diff: what to cut, what to tune",
+      "promptTriggers": {
+        "keywords": [
+          "animation",
+          "animations",
+          "motion",
+          "framer motion",
+          "transition",
+          "spring"
+        ]
+      }
+    },
+    "find-animation-opportunities": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "low",
+      "description": "where motion is missing and would carry meaning",
+      "promptTriggers": {
+        "intentPatterns": [
+          "\\b(add|where|more)\\b.*\\b(animation|motion)\\b"
+        ]
+      }
+    },
+    "visual-proof": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "before/after captures at 375 / 768 / 1440 in both themes",
+      "promptTriggers": {
+        "keywords": [
+          "screenshot",
+          "screenshots",
+          "before/after",
+          "before and after",
+          "visual regression",
+          "breakpoint",
+          "breakpoints"
+        ]
+      }
+    },
+    "frankx-brand": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "FrankX voice and identity for public copy",
+      "promptTriggers": {
+        "keywords": [
+          "headline",
+          "tagline",
+          "copywriting",
+          "messaging",
+          "brand voice",
+          "microcopy"
+        ]
+      }
+    },
+    "apple-design": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "low",
+      "description": "spring physics, gesture and depth conventions",
+      "promptTriggers": {
+        "keywords": [
+          "apple",
+          "ios feel",
+          "haptic",
+          "gesture",
+          "spring physics"
+        ]
+      }
+    }
+  },
+  "agents": {}
+}

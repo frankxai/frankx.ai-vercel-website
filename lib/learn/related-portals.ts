@@ -38,6 +38,7 @@ const GUIDE_PORTALS: Record<string, string[]> = {
   'first-agent-primer': ['claude-mastery', 'codex-mastery', 'antigravity-mastery'],
   'agent-collective-operating-system': ['claude-mastery'],
   'top-50-ai-prompts': ['chatgpt-mastery', 'claude-mastery'],
+  'wispr-flow': ['voice-typing', 'claude-mastery'],
   'skills-library-playbook': ['claude-mastery'],
   'frankx-skill-creation-methodology': ['claude-mastery'],
   'founder-ai-stack-2026': ['claude-mastery', 'chatgpt-mastery', 'gemini-mastery'],

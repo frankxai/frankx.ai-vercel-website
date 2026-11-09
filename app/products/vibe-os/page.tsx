@@ -1,7 +1,9 @@
 import Script from 'next/script'
 
 import products from '@/data/products.json'
-import { createMetadata } from '@/lib/seo'
+import { getPreviewManifest } from '@/lib/products/preview-manifests'
+import { createMetadata, siteConfig } from '@/lib/seo'
+import ProductFileInspector from '@/components/products/ProductFileInspector'
 import type { ProductRecord } from '@/types/products'
 
 // Premium Vibe OS Components
@@ -41,30 +43,25 @@ const structuredData = {
   '@type': 'SoftwareApplication',
   name: product.name,
   description: product.promise,
-  image: 'https://frankx.ai/images/products/vibe-os-hero.jpg',
+  image: `${siteConfig.url}/images/products/vibe-os-hero.jpg`,
   applicationCategory: 'ProductivityApplication',
   operatingSystem: 'Web',
   brand: {
     '@type': 'Brand',
     name: 'FrankX.ai'
-  },
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: product.offer.currency,
-    availability: 'https://schema.org/InStock'
   }
 }
 
 export default function VibeOSPage() {
   const productId = product.analyticsId ?? product.id
+  const manifest = getPreviewManifest(product.id) ?? getPreviewManifest(product.slug)
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-void">
       {/* Ambient Background Effects */}
       <div className="pointer-events-none fixed inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(6,182,212,0.15),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(139,92,246,0.08),transparent_40%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(245,158,11,0.08),transparent_40%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_60%,rgba(16,185,129,0.06),transparent_35%)]" />
       </div>
 
@@ -81,6 +78,12 @@ export default function VibeOSPage() {
           modules={product.modules}
           offer={product.offer}
         />
+
+        {manifest ? (
+          <div className="mx-auto max-w-6xl px-6 pb-8">
+            <ProductFileInspector manifest={manifest} />
+          </div>
+        ) : null}
 
         {product.bonuses && product.bonuses.length > 0 && (
           <VibeOSBonuses bonuses={product.bonuses} />
@@ -128,7 +131,7 @@ export default function VibeOSPage() {
               </div>
 
               <div className="spotlight-card p-8">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/10 text-violet-400">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400">
                   <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
                   </svg>

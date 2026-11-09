@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Copy } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
+import { copyReviewReport, createCopyAttemptGuard, withReportProvenance } from '@/lib/ai-architect/report-export'
 
 const FOCUS_RING =
   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-void'
@@ -109,7 +110,7 @@ function buildReport(answers: Answers, date: string): string {
       })()
     : 'Nothing. All four are made — re-run after the next architecture change.'
 
-  return [
+  return withReportProvenance([
     `## Architecture review — self-run, ${date}`,
     '',
     '### The four decisions',
@@ -120,16 +121,14 @@ function buildReport(answers: Answers, date: string): string {
     '',
     '### Fix first',
     fixFirst,
-    '',
-    'Rubric: https://www.frankx.ai/ai-architect',
-    'Skill (MIT): https://www.frankx.ai/skills/ai-architect-review/SKILL.md',
-  ].join('\n')
+  ].join('\n'))
 }
 
 export default function ReviewRunner() {
   const [answers, setAnswers] = useState<Answers>(EMPTY_ANSWERS)
   const [copyState, setCopyState] = useState<'idle' | 'copied' | 'manual'>('idle')
   const [report, setReport] = useState('')
+  const copyAttempt = useRef(createCopyAttemptGuard())
 
   const answered = DECISIONS.filter((d) => answers[d.id] !== null).length
   const complete = answered === DECISIONS.length
@@ -164,17 +163,21 @@ export default function ReviewRunner() {
   }, [answers, complete])
 
   const copyReport = async () => {
-    trackEvent('ai_architect_review_copied', {})
-    try {
-      await navigator.clipboard.writeText(report)
-      setCopyState('copied')
-      setTimeout(() => setCopyState('idle'), 2000)
-    } catch {
-      setCopyState('manual')
+    const isCurrent = copyAttempt.current.begin()
+    const state = await copyReviewReport(report, navigator.clipboard, () => {
+      if (isCurrent()) trackEvent('ai_architect_review_copied', {})
+    })
+    if (!isCurrent()) return
+    setCopyState(state)
+    if (state === 'copied') {
+      setTimeout(() => {
+        if (isCurrent()) setCopyState('idle')
+      }, 2000)
     }
   }
 
   const reset = () => {
+    copyAttempt.current.invalidate()
     setAnswers(EMPTY_ANSWERS)
     setCopyState('idle')
     setReport('')
@@ -199,6 +202,7 @@ export default function ReviewRunner() {
                     className="peer sr-only"
                     checked={answers[decision.id] === optionIndex}
                     onChange={() => {
+                      copyAttempt.current.invalidate()
                       setAnswers((prev) => ({ ...prev, [decision.id]: optionIndex }))
                       setCopyState('idle')
                     }}

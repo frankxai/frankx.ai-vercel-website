@@ -89,7 +89,10 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   alternates: {
-    canonical: siteConfig.url,
+    // './' resolves against metadataBase and each route's own pathname, so a page that sets no canonical
+    // of its own gets a self-canonical instead of the homepage.
+    canonical: './',
+    languages: { en: './', 'x-default': './' },
     types: {
       'application/rss+xml': '/rss.xml',
     },
@@ -97,7 +100,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: siteConfig.name,
     description: siteConfig.description,
-    url: siteConfig.url,
+    url: './',
     siteName: siteConfig.shortName,
     locale: 'en_US',
     type: 'website',
@@ -118,6 +121,9 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
   },
   category: 'Technology',
+  other: {
+    'is-agentic-site-type': 'content',
+  },
   robots: {
     index: true,
     follow: true,
@@ -151,8 +157,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
-        <link rel="alternate" hrefLang="en" href={siteConfig.url} />
-        <link rel="alternate" hrefLang="x-default" href={siteConfig.url} />
         {aisSchemaGraph && (
           <Script
             id="ais-schema-graph"

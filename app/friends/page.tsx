@@ -100,6 +100,12 @@ export default function FriendsPage() {
                 Open Estefania
               </Link>
               <Link
+                href="/friends/joei"
+                className="inline-flex items-center gap-2 rounded-full border border-amber-200/25 bg-amber-200/10 px-5 py-3 text-sm font-bold text-amber-50 transition hover:border-amber-100/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-200 focus-visible:outline-offset-4"
+              >
+                Joei’s story studio
+              </Link>
+              <Link
                 href="/allies"
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.045] px-5 py-3 text-sm font-bold text-white backdrop-blur-xl transition hover:border-white/45 hover:bg-white/10"
               >
@@ -159,6 +165,17 @@ export default function FriendsPage() {
               downloaded, and what still needs approval.
             </p>
           </div>
+
+          <article className="mb-8 rounded-[2.5rem] border border-amber-200/20 bg-amber-200/[0.035] p-7 md:p-9">
+            <p className="text-xs font-semibold text-amber-100">A personal proposal from Frank</p>
+            <h3 className="mt-4 text-3xl font-semibold tracking-tight">Joei’s story studio</h3>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-white/75">
+              Five original robot companions, printable story experiments and a command desk for preparing circles, speaker workbooks and team sessions. A creative invitation for Joei Chan to explore and review.
+            </p>
+            <Link href="/friends/joei" className="mt-6 inline-flex items-center gap-2 rounded-full bg-amber-100 px-5 py-3 text-sm font-semibold text-stone-900 hover:bg-amber-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-200 focus-visible:outline-offset-4">
+              Explore the story studio <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </article>
 
           <GlowCard color="amber" className="grid overflow-hidden rounded-[2.5rem] p-0 lg:grid-cols-[0.92fr_1.08fr]">
             <div className="bg-[linear-gradient(145deg,rgba(245,158,11,0.22),rgba(16,185,129,0.13),rgba(255,255,255,0.04))] p-7 md:p-9">

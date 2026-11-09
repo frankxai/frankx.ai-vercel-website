@@ -51,7 +51,7 @@ export type ProductOffer = {
   ctaSecondary?: string
   ctaSecondaryHref?: string
   ctaSecondaryTracking?: string
-  guarantee: ProductGuarantee
+  guarantee?: ProductGuarantee
   note?: string
 }
 
@@ -91,6 +91,7 @@ export type ProductRecord = {
   id: string
   slug: string
   name: string
+  brand?: string
   badge?: string
   category?: string
   headline: string

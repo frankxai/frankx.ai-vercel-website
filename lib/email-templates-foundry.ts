@@ -19,7 +19,7 @@ export function foundryApplicationReceivedEmail(input: FoundryApplicationInput) 
     subject: 'Your Foundry application is in',
     plainText: `${input.name ? `${input.name} —` : 'Hey —'}
 
-Your application for a Foundry install is in. I read every one personally — usually within a few days, sometimes faster.
+Your application for a Foundry install is in. Hit reply if you have a question.
 
 What happens next:
 

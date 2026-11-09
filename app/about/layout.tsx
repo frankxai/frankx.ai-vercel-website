@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'About Frank Riemer | AI Architect & Creator',
   description: 'Enterprise AI Architect and builder of the Agentic Creator OS. AI systems, music production, and digital products.',
   path: '/about',

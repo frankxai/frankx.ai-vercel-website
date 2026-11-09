@@ -1,8 +1,9 @@
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import { buildCourseData } from '@/components/seo/JsonLd'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Build Your AI Creator OS | FrankX Courses',
   description:
     'Explore the free Claude Code introduction and source-based workflow lab. The wider eight-module AI Creator OS curriculum is a roadmap with further modules in development.',
@@ -26,7 +27,7 @@ const courseSchema = buildCourseData({
   description:
     'An AI Creator OS learning path with a free Claude Code introduction and AI-generated source-based workflow lab. Further curriculum modules are in development.',
   provider: 'FrankX.AI',
-  url: 'https://frankx.ai/courses/build-your-ai-creator-os',
+  url: `${siteConfig.url}/courses/build-your-ai-creator-os`,
 })
 
 export default function BuildYourAICreatorOSLayout({

@@ -29,12 +29,13 @@
   <rect x="116" y="112" width="256" height="42" rx="21" fill="#10b981" fill-opacity=".10" stroke="#10b981" stroke-opacity=".45"/>
   <text x="140" y="140" fill="#10b981" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="750" letter-spacing="0">Agent Stack</text>
   <text x="116" y="212" fill="#64748b" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="600">FRANKX.AI / CREATION CHRONICLES</text>
-  <text x="116" y="308" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="62" font-weight="760" letter-spacing="0">The Golden Age of</text>
-<text x="116" y="380" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="62" font-weight="760" letter-spacing="0">Intelligence: Agentic SEO OS</text>
-<text x="116" y="452" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="62" font-weight="760" letter-spacing="0">for Exponential Reach</text>
-  <text x="120" y="640" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="450" letter-spacing="0">Launch a 12-day sprint and 15,000-word masterplan for</text>
-<text x="120" y="674" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="450" letter-spacing="0">flagship content, high-frequency publishing,</text>
-<text x="120" y="708" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="450" letter-spacing="0">automation pipelines, distribution loops, and...</text>
+<text x="116" y="290" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="760" letter-spacing="0">The Golden Age of</text>
+<text x="116" y="350" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="760" letter-spacing="0">Intelligence: Agentic</text>
+<text x="116" y="410" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="760" letter-spacing="0">SEO OS for</text>
+<text x="116" y="470" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="760" letter-spacing="0">Exponential Reach</text>
+<text x="120" y="540" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="450" letter-spacing="0">Launch a 12-day sprint and masterplan for</text>
+<text x="120" y="574" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="450" letter-spacing="0">flagship content, high-frequency publishing,</text>
+<text x="120" y="608" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="450" letter-spacing="0">automation, distribution, and measurement.</text>
   <g opacity=".96">
     <circle cx="1166" cy="450" r="132" fill="#111318" stroke="#10b981" stroke-opacity=".55" stroke-width="2"/>
     <circle cx="1166" cy="450" r="88" fill="none" stroke="#06b6d4" stroke-opacity=".5" stroke-width="2"/>

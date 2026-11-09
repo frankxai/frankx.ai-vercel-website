@@ -49,8 +49,17 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   // in code. `properties.source` still segments them for the one email they
   // did consent to: the confirm-or-cancel note about the lab.
   'mvu-porto-2027': { topics: [] },
+  // Reality Architect Vault applicants. Their form says applications are
+  // reviewed by hand and tagged separately from the newsletter, so an unknown
+  // list type must not fold them into it (it did, until this key existed).
+  'reality-architect-vault-waitlist': { topics: [] },
   all: { topics: [TOPICS.newsletter, TOPICS['music-suno'], TOPICS['product-updates']] },
 }
+
+// List types whose form promises a hand-written reply instead of an automatic
+// one. They are stored and segmented like any other signup but receive no
+// welcome email, so the generic newsletter welcome can never reach them.
+const NO_AUTO_REPLY_LISTS = new Set(['reality-architect-vault-waitlist'])
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const MAX_EMAIL_LEN = 320
@@ -332,7 +341,6 @@ async function sendWelcomeEmail(
   if (listType === 'music-lab') {
     template = musicPromptsEmail({
       recipientName: name || 'Creator',
-      downloadUrl: `${siteConfig.url}/api/download?product=5-suno-prompts`,
       recipientEmail: email,
     })
   } else if (listType === 'ikigai-branding') {
@@ -585,18 +593,20 @@ export async function POST(request: NextRequest) {
     }
 
     let welcomeSent = false
-    try {
-      await sendWelcomeEmail(email, name, listType, intention)
-      welcomeSent = true
-    } catch (error) {
-      console.error('Welcome email error:', error)
+    if (!NO_AUTO_REPLY_LISTS.has(listType)) {
+      try {
+        await sendWelcomeEmail(email, name, listType, intention)
+        welcomeSent = true
+      } catch (error) {
+        console.error('Welcome email error:', error)
+      }
     }
 
     if (listType === 'music-lab' && !welcomeSent) {
       return NextResponse.json(
         {
           error:
-            'Your subscription was saved, but the prompt email could not be sent. Please try again.',
+            'Your subscription was saved, but the confirmation email could not be sent. Please try again.',
         },
         { status: 502 },
       )
@@ -606,7 +616,7 @@ export async function POST(request: NextRequest) {
       success: true,
       message:
         listType === 'music-lab'
-          ? 'Check your email for your free prompts!'
+          ? "You're on the list. We'll email you when the prompts are ready."
           : 'Successfully subscribed!',
       subscriber: data.id,
       updated: false,

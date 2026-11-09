@@ -6,7 +6,8 @@ import HeroImage from '@/components/ui/HeroImage'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import LearnHubSection from '@/components/learn/LearnHubSection'
 import { portalsForGuide } from '@/lib/learn/related-portals'
-import JsonLd from '@/components/seo/JsonLd'
+import JsonLd, { buildFAQPageData } from '@/components/seo/JsonLd'
+import AudienceDecisionMatrix from '@/components/guides/AudienceDecisionMatrix'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import AgenticObsidianHero from '@/components/guides/AgenticObsidianHero'
 import CommunityPlatformGuidePage from '@/components/guides/community-platform/CommunityPlatformGuidePage'
@@ -32,9 +33,15 @@ function resolveAbsoluteUrl(primary: string | undefined, fallback?: string) {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const guide = getGuide(slug)
-  if (!guide) return { title: 'Guide Not Found' }
-  const fallbackImage = `/api/og?title=${encodeURIComponent(guide.title)}&subtitle=${encodeURIComponent(guide.description)}`
-  const ogImage = resolveAbsoluteUrl(guide.image, fallbackImage) ?? `${SITE_URL}/api/og`
+  if (!guide) {
+    return createMetadata({
+      title: 'Guide Not Found',
+      description: 'The requested FrankX implementation guide could not be located.',
+      path: `/guides/${slug}`,
+      noindex: true,
+    })
+  }
+  const ogImage = resolveAbsoluteUrl(guide.image, siteConfig.ogImage) ?? `${SITE_URL}${siteConfig.ogImage}`
   return createMetadata({
     title: guide.title,
     description: guide.description,
@@ -73,6 +80,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
       <JsonLd type="Article" data={articleSchema} id={`guide-article-${guide.slug}`} />
+      {guide.faqs && guide.faqs.length > 0 ? (
+        <JsonLd type="FAQPage" data={buildFAQPageData(guide.faqs)} id={`guide-faq-${guide.slug}`} />
+      ) : null}
       {guide.slug === 'community-platform-for-creators' ? (
         <CommunityPlatformGuidePage guide={guide} platforms={getCommunityPlatforms()} />
       ) : (
@@ -106,6 +116,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             <div className="space-y-6 text-base leading-relaxed text-white/75">
               <MDXContent source={guide.content} />
             </div>
+            {guide.decisions && guide.decisions.length > 0 ? (
+              <AudienceDecisionMatrix decisions={guide.decisions} />
+            ) : null}
             {guide.faqs && guide.faqs.length > 0 ? (
               <section className="mt-16 border-t border-white/[0.08] pt-12" aria-labelledby="guide-faq-heading">
                 <h2 id="guide-faq-heading" className="text-3xl font-bold tracking-tight text-white">

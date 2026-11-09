@@ -9,8 +9,12 @@
  *     touching nothing in that list SKIPS the production build. Its own header
  *     states the bias: "Skipping a build that should have run is a correctness
  *     bug (stale prod)."
- *   - the `paths:` filters in ci.yml, merge-gate.yml and contract-guard.yml — a
- *     pull request touching nothing in them runs none of those jobs.
+ *   - the `paths:` filters in the PR gate workflows — a pull request touching
+ *     nothing in them runs none of those jobs. Only ci.yml's main-push filter
+ *     remains; merge-gate.yml and contract-guard.yml are required checks and
+ *     run on every pull request (required-checks-always-report-contract.test.mjs
+ *     pins that), so the loop below skips them and would catch a filter that
+ *     someone re-adds.
  *
  * Both lists were written by hand from the directories that existed at the time.
  * Neither is derived from what the app actually imports, so a source directory

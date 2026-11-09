@@ -2,6 +2,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { z } from 'zod'
 import { getBlogPost } from '@/lib/blog'
 import { blogPostToMarkdown } from '@/lib/blog-markdown'
+import { frankxMcpServerInfo } from './server-identity.ts'
 import { products } from '@/lib/products'
 import { searchSiteItems } from '@/lib/site-search'
 
@@ -42,7 +43,10 @@ function errorResult(message: string) {
  * prices and testimonials stay on the pages, where they pass the site's own claim review.
  */
 export function createFrankxMcpServer(): McpServer {
-  const server = new McpServer({ name: 'frankx', version: '1.1.0' })
+  const server = new McpServer({
+    name: frankxMcpServerInfo.name,
+    version: frankxMcpServerInfo.version,
+  })
 
   server.registerTool(
     'frankx_search_site',

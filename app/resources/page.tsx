@@ -4,6 +4,7 @@ import type { ComponentType } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
+import { trackEvent } from '@/lib/analytics'
 import {
   ArrowRight,
   BookOpen,
@@ -195,6 +196,18 @@ const intelligenceItems = [
 
 const affiliateProgramItems = [
   {
+    name: 'Builder Stack',
+    description: 'Verified design, publishing, and voice tools with freshness checks and inline disclosure.',
+    href: '/resources/builder-stack',
+    icon: Wrench,
+  },
+  {
+    name: 'ElevenLabs Voice Architecture',
+    description: 'Consent-first voice synthesis, founder journal audio briefings, and PartnerStack disclosure.',
+    href: '/guides/elevenlabs-voice-guide',
+    icon: Music,
+  },
+  {
     name: 'The FrankX Stack',
     description: 'Third-party tools I actually use and recommend, by category.',
     href: '/stack',
@@ -205,6 +218,12 @@ const affiliateProgramItems = [
     description: 'See the full, transparent policy and all active partner recommendations.',
     href: '/affiliates',
     icon: Sparkles,
+  },
+  {
+    name: 'Partners & Policy',
+    description: 'Plan-tier commission boundaries, 45-day freshness rules, and editorial standards.',
+    href: '/partners',
+    icon: Star,
   },
   {
     name: 'Vercel Partner Path',
@@ -371,6 +390,12 @@ function ResourceGrid({
               <LinkComponent
                 key={item.name}
                 {...linkProps}
+                onClick={() =>
+                  trackEvent('resource_hub_card_clicked', {
+                    section: subtitle.toLowerCase().replace(/[^a-z0-9]+/g, '_'),
+                    card: item.name.toLowerCase().replace(/[^a-z0-9]+/g, '_'),
+                  })
+                }
                 className="group rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.04]"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-emerald-300">
@@ -453,6 +478,15 @@ export default function ResourcesPage() {
           </div>
         </section>
 
+        <section aria-labelledby="search-resources-title" className="mx-auto max-w-7xl px-6 py-8">
+          <div className="flex flex-col gap-5 rounded-3xl border border-emerald-300/25 bg-[#111113] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+            <div>
+              <h2 id="search-resources-title" className="text-2xl font-semibold text-white">SEO and AEO playbooks</h2>
+              <p className="mt-3 max-w-2xl leading-7 text-slate-300">Research a page decision, prepare a brief, and keep the supporting evidence.</p>
+            </div>
+            <Link href="/resources/seo-aeo" className="inline-flex shrink-0 items-center gap-2 self-start rounded-full border border-emerald-300/50 px-5 py-3 text-sm font-semibold text-emerald-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 sm:self-auto">Explore the workflow<ArrowRight aria-hidden="true" size={16} /></Link>
+          </div>
+        </section>
         <ResourceGrid title="Start Here" subtitle="Free Resources" items={foundationItems} />
         <ResourceGrid title="Interactive Tools" subtitle="Built By FrankX" items={toolItems} />
         <ResourceGrid title="Products" subtitle="Systems" items={productItems} />

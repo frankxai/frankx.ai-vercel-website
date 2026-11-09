@@ -48,11 +48,6 @@ const uploads = [
   },
   // ─── Lead Magnets ──────────────────────────────────
   {
-    local: 'public/pdfs/5-suno-prompts.pdf',
-    blobPath: 'products/5-suno-prompts/5-suno-prompts.pdf',
-    product: '5-suno-prompts',
-  },
-  {
     local: 'public/products/soulbook-7-pillars-framework.pdf',
     blobPath: 'products/soulbook/soulbook-7-pillars-framework.pdf',
     product: 'creators-soulbook',
