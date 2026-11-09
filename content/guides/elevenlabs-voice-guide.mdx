@@ -1,13 +1,16 @@
 ---
 title: "ElevenLabs Voice AI Guide for Creators (2026 Pricing, Cloning & API)"
-description: "Practical ElevenLabs guide for YouTube voiceovers, podcasts, voice cloning, and low-latency API automation — with Starter vs Creator credit math."
+description: "Practical ElevenLabs guide for YouTube voiceovers, founder journal audio briefings, voice cloning consent, and low-latency API automation — with Starter vs Creator credit math."
 date: "2026-01-12"
-updated: "2026-11-02"
-author: "Frank"
+updated: "2026-11-05"
+lastUpdated: "2026-11-05"
+author: "Frank Riemer"
 category: "AI Tools"
 tags: ["ai", "elevenlabs", "voice", "audio", "guide", "tutorial", "text-to-speech"]
-keywords: ["elevenlabs guide", "elevenlabs pricing", "elevenlabs voice cloning", "elevenlabs for youtube", "elevenlabs flash v2.5"]
-image: ""
+keywords: ["elevenlabs guide", "elevenlabs pricing", "elevenlabs voice cloning", "elevenlabs for youtube", "elevenlabs flash v2.5", "elevenlabs audio briefing"]
+image: "/images/editorial/elevenlabs-journal-audio-briefing.svg"
+readingGoal: "Configure a consent-first ElevenLabs narration and audio-briefing workflow with predictable credit math, SHA-256 idempotency, and -14 LUFS loudness mastering."
+tldr: "Use ElevenLabs Starter ($5/month) or Creator ($22/month) for asynchronous studio narration and Flash v2.5 (~75ms) for live WebSocket turn-taking. Enforce voice-owner consent, chunk scripts under 2,800 characters, and normalize output to -14 LUFS."
 decisions:
   - audience: "Monetized YouTube & podcast creators"
     call: "adopt"
@@ -31,341 +34,163 @@ faqs:
   - question: "Does ElevenLabs Starter include commercial rights?"
     answer: "Yes. ElevenLabs Starter ($5/month) includes a commercial license for YouTube Partner monetization, podcasts, and sponsored social videos."
   - question: "How do I stop ElevenLabs voices from speeding up on long scripts?"
-    answer: "Generate in 2–4 paragraph chunks (800–1,500 characters per request), keep Stability between 0.45 and 0.60, and use request stitching (`previous_text` / `next_text`) in the API so cadence stays steady across sections."
+    answer: "Generate in 2–4 paragraph chunks (800–2,800 characters per request), keep Stability between 0.50 and 0.65, and use request stitching (`previous_text` / `next_text`) in the API so cadence stays steady across sections."
+  - question: "What are the verified PartnerStack terms for the FrankX ElevenLabs referral link?"
+    answer: "When you sign up through `/go/elevenlabs`, FrankX may receive a 22% recurring commission for 12 months on Starter, Creator, Pro, and Scale subscriptions, or 11% for 12 months on Business plans (Enterprise excluded, 90-day attribution window) at no additional cost to you."
 ---
 
-For YouTube creators, podcasters, and software builders who want studio-grade narration without booking booth time: ElevenLabs turns written scripts into natural spoken audio with commercial licensing starting at $5/month. Tested as of November 2026 across long-form video narration, multilingual dubbing, and streaming API workflows, this guide covers plan selection, voice-cloning hygiene, model latency tradeoffs, and post-processing steps.
+For YouTube creators, podcasters, and software builders who want studio-grade narration without booking booth time: ElevenLabs turns written scripts and founder journal notes into natural spoken audio with commercial licensing starting at $5/month. Checked against ElevenLabs documentation and PartnerStack program terms on November 5, 2026, this guide covers plan selection, consent-first voice governance, model latency tradeoffs, deterministic audio briefings, and `-14 LUFS` post-processing.
 
----
-
-## Why ElevenLabs Leads Voice AI
-
-ElevenLabs earns its slot in creator and developer stacks across five concrete capabilities:
-
-- **Natural prosody** — Breath pacing, clause emphasis, and cadence track human narration across multi-paragraph scripts
-- **Emotional range** — Conveys urgency, calm, curiosity, and conversational warmth
-- **Voice cloning** — Instant clones from 60–120 seconds of clean audio plus studio-trained Professional Voice Clones
-- **Multilingual support** — 29+ languages with accent preservation
-- **Low-latency API & MCP server** — Sub-100ms Flash streaming for interactive agents alongside high-bitrate studio rendering
+<ArticleRecommendation affiliateId="elevenlabs" article="elevenlabs-voice-guide" title="ElevenLabs">
+Start on Free to audition voices with a 60-word script sample, or Starter ($5/month) when you need commercial rights and Instant Voice Cloning. Keep chunks under 2,800 characters and record every render in the QA ledger before scaling batch synthesis.
+</ArticleRecommendation>
 
 ---
 
-## Getting Started
+## Reference Slice: Founder Journal to Audio Briefing
 
-### Pricing Tiers
+Before wiring a full multi-agent voice pipeline, build one bounded, inspectable job: turning a published public `/journal` note into a 90-second executive audio briefing with deterministic idempotency and a companion provenance receipt.
 
-| Tier | Price | Characters | Best For |
-|------|-------|------------|----------|
-| Free | $0 | 10,000/month | Testing, small projects |
-| Starter | $5/month | 30,000 | Regular short-form content |
-| Creator | $22/month | 100,000 | Consistent content production |
-| Pro | $99/month | 500,000 | High-volume production |
-| Scale | $330/month | 2,000,000 | Commercial operations |
+1. **Stage 01 (Public note & character boundary):** Read a published public `/journal` entry (`visibility: public`, `published: true`), strip markdown syntax into clean spoken prose, and cap the script at `2,800` characters (`~2.5` spoken minutes).
+2. **Stage 02 (Voice-owner consent & allowlist gate):** Verify `voiceOwnerApproved: true`, `editorialApproved: true`, and `cloneProhibited: true` against an allowlisted Voice ID before any network request leaves the server.
+3. **Stage 03 (Idempotent synthesis):** Hash `(slug + scriptSha256 + voiceId + modelId)` into a 32-character SHA-256 `idempotencyKey` so repeated runs reuse the existing briefing instead of burning duplicate credits.
+4. **Stage 04 (MP3 byte QA & provenance):** Confirm the returned payload starts with a valid `ID3` header (`0x49 0x44 0x33`) or MPEG frame sync (`0xFF 0xE0`), normalize loudness to `-14 LUFS`, and write both the `.mp3` and `.json` provenance receipt.
 
-For most creators, Creator tier hits the sweet spot between cost and capacity.
+### When to halt a voice synthesis run immediately
 
-### First Voice Generation
+Do not ship uninspected TTS output or retry broken configurations in a loop. Stop the run when:
 
-1. Sign up at elevenlabs.io
-2. Navigate to Speech Synthesis
-3. Select a voice from the library
-4. Paste your text
-5. Click Generate
+- **Privacy boundary violation:** the source journal entry is marked `visibility: private` or `published: false`.
+- **Missing voice consent:** the selected voice lacks documented owner consent or is not in the approved studio library allowlist.
+- **Repeated pronunciation drift:** proper nouns, product names, or acronyms mispronounce on two consecutive takes — add phonetic respelling or SSML `<break>` tags before rendering again.
+- **Invalid audio payload:** the HTTP response is smaller than `512` bytes or lacks an `ID3`/MPEG frame sync header.
 
-That's it. Your audio is ready to download.
+<ArticleFigure id="elevenlabs-journal-audio-briefing" />
 
----
+Download the [audio briefing production spec](/downloads/elevenlabs-audio-briefing-spec.md) and log each take in the [voice QA ledger](/downloads/elevenlabs-voice-qa-ledger.csv) so credit usage and loudness targets stay auditable.
 
-## Key Features for Creators
-
-### Voice Library
-
-ElevenLabs offers a curated library of voices:
-
-**Categories:**
-- Narrative (audiobooks, documentaries)
-- Conversational (podcasts, casual content)
-- News/Broadcast (professional, clear)
-- Character (unique personalities)
-- Multilingual (native speakers of various languages)
-
-**Finding the Right Voice:**
-- Preview multiple voices with your actual text
-- Consider your audience and content type
-- Test at different stability/clarity settings
-
-### Voice Cloning
-
-Create a custom voice from audio samples:
-
-**Instant Voice Cloning**
-- Upload 1+ minute of clean audio
-- Get a usable clone in seconds
-- Good for quick projects
-
-**Professional Voice Cloning**
-- Upload 30+ minutes of audio
-- Higher quality, more consistent
-- Requires Pro tier or above
-
-**Voice Design**
-- Generate entirely new voices
-- Adjust gender, age, accent
-- No sample required
-
-### Voice Settings
-
-Fine-tune any voice with these parameters:
-
-| Setting | Effect |
-|---------|--------|
-| Stability | Higher = more consistent, Lower = more expressive |
-| Clarity | Higher = clearer enunciation |
-| Style | How much emotional range to use |
-| Speaker Boost | Enhances similarity to original voice |
-
-For most content, start with defaults and adjust based on results.
+<ElevenLabsAudioBriefingWorkbench />
 
 ---
 
-## Best Use Cases for Creators
+## When to Use ElevenLabs vs Native Speech-to-Speech APIs
 
-### Video Narration
+Not every voice problem should be solved with a chained `ASR -> LLM -> TTS` pipeline. As detailed in our [Grok Voice vs OpenAI Realtime vs ElevenLabs architecture comparison](/blog/grok-voice-vs-openai-realtime-vs-elevenlabs), pick the layer that matches your turn-taking and editorial control requirements:
 
-**YouTube Videos**
-Generate consistent voiceovers without recording:
-- Script your video
-- Generate in sections for easier editing
-- Match voice tone to content type
-
-**Course Content**
-Create hours of instruction efficiently:
-- Clone your own voice for consistency
-- Generate module-by-module
-- Update content without re-recording
-
-### Podcast Production
-
-**Solo Podcasts**
-If you prefer writing to speaking:
-- Write your episode as a script
-- Generate with a voice that fits your brand
-- Edit in your DAW as you would normal audio
-
-**Multi-Voice Shows**
-Create dialogue or multiple hosts:
-- Assign different voices to speakers
-- Generate each part separately
-- Mix for natural conversation flow
-
-### Audiobook Creation
-
-**Full Narration**
-Turn written content into audio:
-- Process chapter by chapter
-- Use consistent voice settings throughout
-- Add music and sound design in post
-
-**Book Samples**
-Generate samples for marketing:
-- Choose compelling excerpts
-- Test different voice styles
-- Use in promotional content
-
-### Audio Articles
-
-**Newsletter to Audio**
-Convert written newsletters:
-- Paste article text
-- Generate audio version
-- Offer as alternative format
-
-**Blog Posts**
-Add audio to existing content:
-- Increase accessibility
-- Reach audio-preferred audiences
-- Improve time-on-site metrics
+| Architecture Job | Recommended Stack | Typical Latency | Why It Wins |
+|---|---|---|---|
+| **Published narration, founder briefings, audiobooks, dubbing** | **ElevenLabs (`eleven_multilingual_v2` or `eleven_turbo_v2_5`)** | Asynchronous (`~250–400ms`) | Exact script lock, deterministic pronunciation, multi-character studio timelines, and reusable voice identity across 29+ languages. |
+| **Chained tool-calling agent with custom frontier LLM** | **Deepgram Nova-3 + Claude or GPT + ElevenLabs `eleven_flash_v2_5`** | ~450–700ms turn-to-turn | ~75ms model TTS latency at 0.5 credits per char while preserving full text inspection, guardrails, and custom voice timbre. |
+| **Ultra-low-latency native speech-to-speech phone agent** | **OpenAI Realtime API or xAI Grok Voice API** | ~200–350ms native audio | Single WebSocket audio-in and audio-out session without intermediate text transcription hops when custom voice cloning is unnecessary. |
+| **Air-gapped or zero-cloud local synthesis** | **Kokoro-82M or F5-TTS (local GPU or Apple Silicon)** | Hardware-dependent | Runs entirely offline when compliance prohibits sending text or voice data to an external cloud API. |
 
 ---
 
-## Pro Tips for Quality Output
+## Pricing Tiers, Credit Math, and Partner Disclosure
 
-### 1. Write for Speech
+### Plan Comparison (Verified November 2026)
 
-Written text doesn't always sound natural spoken. Optimize your scripts:
+| Tier | Monthly Price | Monthly Credits | Approx. Standard Audio (`1 credit per char`) | Approx. Flash and Turbo Audio (`0.5 credits per char`) | Commercial Rights & Cloning |
+|---|---|---|---|---|---|
+| **Free** | `$0` | `10,000` | ~10 mins | ~20 mins | Non-commercial only (attribution required) |
+| **Starter** | `$5/month` | `30,000` | ~30 mins | ~60 mins | Commercial license + Instant Voice Cloning |
+| **Creator** | `$22/month` | `100,000` | ~100 mins | ~200 mins | Professional Voice Cloning (PVC) + 192 kbps audio |
+| **Pro** | `$99/month` | `500,000` | ~500 mins | ~1,000 mins | 44.1 kHz PCM output + higher concurrency |
+| **Scale** | `$330/month` | `2,000,000` | ~2,000 mins | ~4,000 mins | Multi-seat workspace + priority rendering |
+| **Business** | `$1,320/month` | `11,000,000` | ~11,000 mins | ~22,000 mins | Low-latency SLAs + dedicated volume pricing |
 
-**Instead of:** "The aforementioned solution provides approximately 47% efficiency gains"
-**Write:** "This solution improves efficiency by almost fifty percent"
+**Practical sizing rule:** Budget a `15–20%` regeneration buffer for phonetic tweaks and pacing retakes. One finished 10-minute YouTube narration (~9,500 characters) consumes roughly `11,500` credits on `eleven_multilingual_v2` or `5,750` credits on `eleven_turbo_v2_5`.
 
-Tips:
-- Use contractions (don't vs. do not)
-- Spell out numbers for natural reading
-- Add punctuation for pacing
-- Break long sentences
+### Transparent Partner Terms
 
-### 2. Use SSML for Control
+ElevenLabs is a verified entry in the [Builder Stack](/resources/builder-stack) and [Partners & Affiliate Policy](/partners). When you open ElevenLabs via `/go/elevenlabs`, the hop routes to our PartnerStack link (`https://try.elevenlabs.io/uc8prmq6tiyt`):
 
-Speech Synthesis Markup Language gives precise control:
+- **Standard self-serve tiers:** 22% recurring commission for 12 months on Starter, Creator, Pro, and Scale plans.
+- **Business tier:** 11% recurring commission for 12 months.
+- **Exclusions & attribution:** Enterprise contracts are excluded; PartnerStack uses a 90-day attribution cookie window.
+- **Freshness guardrail:** Every partner record in `data/affiliate/programs.json` carries a `verifiedOn` date (`2026-11-05`). If a verification ages past 45 days without renewal, our embed helpers automatically downgrade the link to the non-affiliate `https://elevenlabs.io` origin.
+
+---
+
+## Voice Library, Cloning Hygiene, and Parameter Tuning
+
+### Choosing and Auditioning Voices
+
+1. **Licensed Voice Library:** Start with pre-cleared narrative or broadcast voices (`George`, `Daniel`, `Rachel`) when shipping daily briefings or product explainers.
+2. **Instant Voice Cloning (IVC):** Upload 60–120 seconds of dry, room-echo-free speech recorded on a cardioid dynamic or condenser mic. Avoid noise-gated zoom calls or music beds.
+3. **Professional Voice Cloning (PVC):** Available on Creator (`$22/mo`) and above; train on 30–120 minutes of studio-grade recordings for long-form audiobooks and signature founder narration.
+
+### Voice Parameter Baseline
+
+| Setting | Recommended Range | Effect on Delivery |
+|---|---|---|
+| `stability` | `0.50 – 0.65` | Lower values increase emotional inflection but risk mid-paragraph speed-up; keep near `0.55` for technical briefings. |
+| `similarity_boost` | `0.75 – 0.82` | Locks vocal timbre closer to the reference recording without introducing metallic harshness. |
+| `style` | `0.05 – 0.18` | Amplifies the speaker's directional style; keep below `0.20` to prevent artificial drama and extra latency. |
+| `use_speaker_boost` | `true` | Enhances mid-range clarity on phone speakers and earbuds. |
+
+---
+
+## Pro Tips for Natural Spoken Cadence
+
+### 1. Rewrite Visual Prose into Spoken Sentences
+
+Written markdown often trips TTS prosody. Before calling the API:
+
+- Strip markdown headings, tables, and inline URLs into natural transitions (our compiler in `lib/voice/audio-briefing.ts` handles this automatically).
+- Write out ambiguous abbreviations (`"twenty-two percent"` instead of `"22%"` when emphasis matters).
+- Replace em-dashes and parenthetical asides with short, declarative sentences.
+
+### 2. Use SSML Break Tags for Deliberate Pauses
+
+Insert `<break time="400ms"/>` between major thesis shifts so the listener can absorb dense technical points:
 
 ```xml
 <speak>
-  Welcome to <emphasis level="strong">ElevenLabs</emphasis>.
-  <break time="500ms"/>
-  Let's learn about voice AI.
+  State becomes strategy only when it reaches a real person and returns with evidence.
+  <break time="450ms"/>
+  Regulate, then rehearse, then ship.
 </speak>
 ```
 
-Common SSML tags:
-- `<break time="Xs"/>` - Add pauses
-- `<emphasis>` - Stress words
-- `<prosody rate="slow">` - Adjust speed
+### 3. Normalize Every Master to `-14 LUFS`
 
-### 3. Generate in Sections
+Raw synthesis output varies in peak amplitude across models. Run a deterministic `ffmpeg` pass before publishing to `<audio>` players or podcast RSS feeds:
 
-For long content:
-- Break into logical sections (paragraphs or scenes)
-- Generate each section separately
-- Review and regenerate problem areas
-- Combine in audio editing software
-
-### 4. Match Voice to Content
-
-| Content Type | Voice Qualities |
-|--------------|-----------------|
-| Tutorial | Clear, steady, friendly |
-| Storytelling | Expressive, varied pace |
-| News/Updates | Professional, authoritative |
-| Meditation | Calm, slow, soothing |
-| Sales/Promo | Energetic, confident |
-
-### 5. Post-Processing
-
-ElevenLabs output is good, but post-processing improves it:
-- Normalize audio levels
-- Add subtle compression
-- Remove any artifacts
-- Add music or sound design
-- Export in appropriate format
-
----
-
-## Integration with Creator Workflow
-
-### Content Repurposing Pipeline
-
-Turn one piece of content into many formats:
-
-1. **Write** - Create article or script with Claude
-2. **Generate** - Convert to audio with ElevenLabs
-3. **Distribute** - Publish as podcast, video narration, or audio article
-4. **Clip** - Extract highlights for social media
-
-### Vibe OS Integration
-
-For music creators using our Vibe OS system:
-- Generate spoken word intros/outros
-- Create guided meditation narration
-- Add voice elements to ambient tracks
-- Produce audio affirmations to pair with music
-
-### Video Production
-
-Combine with your video workflow:
-1. Script video content
-2. Generate voiceover
-3. Edit video to match audio
-4. Add B-roll and graphics
-5. Export and publish
-
----
-
-## Common Mistakes to Avoid
-
-**Not previewing before committing**
-Always preview with your actual text before generating. Different voices handle different content better.
-
-**Ignoring voice settings**
-Default settings are good but not optimal. Experiment with stability and clarity for your specific use case.
-
-**Processing huge texts at once**
-Break long content into sections. It's easier to edit, and you won't lose everything if one section needs regeneration.
-
-**Skipping post-processing**
-Raw ElevenLabs audio is good, but basic audio editing (normalization, compression) makes it professional.
-
-**Not checking usage**
-Character counts add up. Monitor your usage to avoid mid-project surprises.
-
----
-
-## ElevenLabs vs. Alternatives
-
-| Tool | Quality | Speed | Voice Cloning | Price |
-|------|---------|-------|---------------|-------|
-| ElevenLabs | Excellent | Fast | Yes | $$ |
-| Play.ht | Very Good | Fast | Yes | $$ |
-| Murf AI | Good | Fast | Limited | $$ |
-| Amazon Polly | Good | Fast | No | $ |
-| Google TTS | Fair | Fast | No | $ |
-
-ElevenLabs wins on quality and naturalness, especially for creative content where expressiveness matters.
-
----
-
-## Advanced Techniques
-
-### Voice Acting Direction
-
-Guide the AI with text cues:
-
-```
-[excited] Oh wow, this is incredible!
-[thoughtful pause] Hmm, let me think about that.
-[whispered] Don't tell anyone, but...
+```bash
+ffmpeg -i raw-briefing.mp3 \
+  -af "highpass=f=80,acompressor=threshold=-18dB:ratio=3:attack=15:release=180,loudnorm=I=-14:TP=-1.5:LRA=9" \
+  -ar 44100 -b:a 128k briefing-master.mp3
 ```
 
-### Multilingual Content
+---
 
-Create content for global audiences:
-- Use native-language voices for authenticity
-- Generate same script in multiple languages
-- Maintain brand voice across languages
+## API, Dry-Run Compiler, and MCP Integration
 
-### API & MCP Integration (Model Selection)
+### Inspecting a Journal Briefing Dry-Run
 
-When calling ElevenLabs from Python, TypeScript, or the official ElevenLabs MCP server inside Claude Code, pick the model ID that matches your latency and fidelity budget:
+You can test the FrankX journal-to-audio compiler right now without spending ElevenLabs credits via our GET endpoint:
 
-| Model ID | Model latency | Credit rate | Primary job |
-|----------|---------------|-------------|-------------|
-| `eleven_multilingual_v2` | ~300–400ms | 1 credit / char | Long-form YouTube voiceovers, audiobooks, podcasts |
-| `eleven_flash_v2_5` | ~75ms | 0.5 credits / char | Live conversational voice agents and real-time WebSockets |
-| `eleven_turbo_v2_5` | ~250ms | 0.5 credits / char | Balanced quality and cost for high-volume batch narration |
+```bash
+curl -sS "https://www.frankx.ai/api/voice/audio-briefing?slug=2026-07-29-confidence-must-enter-the-market&modelId=eleven_multilingual_v2" | jq .
+```
 
-For full faceless channel budgeting alongside video, music, and Shorts tools, see [Best AI Tools for a Faceless YouTube Channel in 2026](/blog/faceless-youtube-ai-tools-2026).
+The endpoint returns the sanitized spoken script, character count, estimated credit cost across models, SHA-256 `idempotencyKey`, and the `AUDIO_BRIEFING_TOOL_CONTRACTS` schemas ready for Claude Code, Codex, or ChatGPT tool invocation.
+
+### Model Selection Matrix
+
+| Model ID | Model Latency | Credit Rate | Best Fit |
+|---|---|---|---|
+| `eleven_multilingual_v2` | ~300–400ms | `1.0` credit per char | Flagship essays, YouTube narration, multilingual dubbing |
+| `eleven_turbo_v2_5` | ~250ms | `0.5` credits per char | Daily founder journal briefings and batch content review |
+| `eleven_flash_v2_5` | ~75ms | `0.5` credits per char | Live WebSocket voice agents and interactive tool replies |
 
 ---
 
-## Getting More from ElevenLabs
+## Related Guides & Stack Surfaces
 
-### Resources
-
-- [ElevenLabs Documentation](https://elevenlabs.io/docs) - Official API and studio guides
-- [Voice Library](https://elevenlabs.io/voice-library) - Curated community and studio voices
-- [Faceless YouTube AI Stack Guide](/blog/faceless-youtube-ai-tools-2026) - Full video, voice, and Shorts budget breakdown
-- [AI Writing System Guide](/guides/ai-writing-system) - Script preparation workflow
-
-### Practice Exercises
-
-1. **Voice Selection** - Audition 5 voices using the exact opening 60 words of your next video
-2. **Script Optimization** - Rewrite dense prose with contractions, spelled-out numbers, and breath breaks
-3. **Settings Experiment** - Compare Stability `0.45` vs `0.65` on the same paragraph
-4. **Full Production** - Export a 3-minute narrated segment, normalize to `-14 LUFS`, and layer subtle background music
-
----
-
-## Next Steps
-
-1. Sign up on Free to audition voices, or Starter ($5/mo) if monetizing immediately
-2. Generate a 60-second test read from an actual script
-3. Lock a repeatable preset (Voice ID, model, Stability, Similarity, LUFS target)
-4. Explore [implementation guides](/guides) and [Claude Code MCP servers](/guides/mcp-servers-claude-code-business) to automate batch audio rendering
+- [Builder Stack (`/resources/builder-stack`)](/resources/builder-stack) — Verified design, publishing, and voice tools with live freshness checks
+- [Partners & Affiliate Policy (`/partners`)](/partners) — Full commercial disclosure and governance rules
+- [Grok Voice vs OpenAI Realtime vs ElevenLabs](/blog/grok-voice-vs-openai-realtime-vs-elevenlabs) — Architecture comparison for speech-to-speech vs TTS layers
+- [Ultimate ElevenLabs Workflow 2026](/blog/ultimate-elevenlabs-workflow-2026) — Deep production notes for multi-speaker studio pipelines
+- [Audio Briefing Production Spec (`.md`)](/downloads/elevenlabs-audio-briefing-spec.md) and [Voice QA Ledger (`.csv`)](/downloads/elevenlabs-voice-qa-ledger.csv)
