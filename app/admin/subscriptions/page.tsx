@@ -36,7 +36,7 @@ export default function SubscriptionsPage() {
           </h1>
         </div>
         <p className="text-zinc-500 text-sm mb-8">
-          SaaS, APIs, and tool spending — Arcanea Labs BV
+          SaaS, APIs, and tool spending — Starlight Intelligence
         </p>
 
         {/* Summary Cards */}

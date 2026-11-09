@@ -1,0 +1,65 @@
+{
+  "week": "2026-W45",
+  "generatedAt": "2026-11-02T07:28:19Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-10-26T07:28:19Z",
+  "windowEnd": "2026-11-02T07:28:19Z",
+  "pagesFetched": 2,
+  "paginationNote": "Page 1 (100 rows) next cursor 1793033143321 was within the window; page 2 (5 rows) had no next cursor, confirming complete coverage. 105 total raw rows, all within the 7-day window.",
+  "metrics": {
+    "count_total": 105,
+    "count_production": 15,
+    "count_preview": 90,
+    "count_skipped": 40,
+    "count_error": 3,
+    "count_ready": 55,
+    "count_other": 7,
+    "state_note": "count_other=7 are deploys not yet in a terminal state (likely BUILDING/QUEUED at fetch time); excluded from duration metrics and build-minute totals.",
+    "duration_p50_seconds": 196,
+    "duration_p95_seconds": 340,
+    "duration_max_seconds": 431,
+    "total_build_minutes": 200,
+    "total_build_minutes_basis": "READY deploys only (55 of 105 total); mean 217.7s from 15 evenly-sampled deploys × 55 READY / 60",
+    "duration_method": "readyAt_minus_buildingAt_sampled",
+    "ready_deploys_sampled": 15,
+    "ready_deploys_total": 55,
+    "sampled_durations_sorted_seconds": [151.2, 154.2, 176.9, 178.7, 185.1, 191.1, 191.2, 195.5, 196.5, 196.9, 198.1, 247.2, 271.5, 301.0, 430.8],
+    "duration_note": "15/55 READY deploys sampled evenly via get_deployment. p50=196s. p95=340s (linear interpolation). Max=431s is a single outlier on fix/mcp-stateless-get-405 (merge commit). total_build_minutes=200, well below 1500-min RED threshold.",
+    "error_deploys": [
+      {
+        "id": "dpl_Hhy4qJKyZSR5WDHNHWcwvKRBSiRh",
+        "branch": "agent/claude/seo-fundamentals",
+        "created": "2026-10-27T15:33:38Z",
+        "target": null
+      },
+      {
+        "id": "dpl_6R9TUwRVAZrX9PTWGxxLZFz4GSQG",
+        "branch": "agent/antigravity/model-arena-gemini-4-argon-20261014",
+        "created": "2026-10-26T11:28:29Z",
+        "target": null
+      },
+      {
+        "id": "dpl_5B4FRg3jDGh6cHe5okfWPVjURjcf",
+        "branch": "agent/antigravity/model-arena-gemini-4-argon-20261014",
+        "created": "2026-10-26T11:25:04Z",
+        "target": null
+      }
+    ]
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W44",
+    "note": "No W44 snapshot exists. Most recent prior snapshot is 2026-W43 (count_total=372, duration_p50=168s, total_build_minutes=610). Deltas set to baseline.",
+    "duration_p50_seconds": "baseline",
+    "count_total": "baseline",
+    "total_build_minutes": "baseline"
+  },
+  "verdict": "RED",
+  "alerts": [
+    "count_error=3 (RED threshold >=2). Two errors on agent/antigravity/model-arena-gemini-4-argon-20261014 (×2) and one on agent/claude/seo-fundamentals. All are preview deploys — no production errors this week.",
+    "duration_max=431s (single outlier: fix/mcp-stateless-get-405 merge commit). p95=340s elevated but below RED threshold of 360s.",
+    "count_total=105 — steep drop from W43 (372). Low-volume week; no RED by count or build minutes.",
+    "total_build_minutes=200 — well below 1500-min RED threshold.",
+    "No W44 snapshot exists; deltas are baseline. Investigate why the W44 scheduled run did not commit a snapshot."
+  ]
+}
