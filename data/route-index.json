@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1077,
+    "total": 1082,
     "aliases": 61,
     "byType": {
       "core": 24,
       "section": 447,
       "community": 17,
-      "tool": 75,
+      "tool": 79,
       "static": 15,
-      "blog": 278,
+      "blog": 279,
       "research": 23,
       "guide": 46,
       "library": 88,
@@ -2406,6 +2406,22 @@
         "AI Models",
         "Coding Agents",
         "AGY"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/gemini-4-argon-analysis-2026",
+      "title": "Gemini 4 Argon: 1M Multimodal Economics and Round 6 Arena Receipts",
+      "description": "Google DeepMind shipped Gemini 4 Argon in October 2026 with a 1,048,576-token native multimodal window and $2/$10 ($0.10 cached) pricing. Here is what our Round 6 Starlight Proving Ground receipt actually measured.",
+      "tags": [
+        "google-deepmind",
+        "gemini",
+        "gemini-4-argon",
+        "frontier-models",
+        "benchmarks",
+        "agentic-ai",
+        "model-arena",
+        "langfuse"
       ],
       "type": "blog"
     },
@@ -7907,8 +7923,26 @@
       "type": "tool"
     },
     {
+      "href": "/llm-hub/compare/claude-opus-5-vs-gemini-4-argon",
+      "title": "Claude Opus 5 VS Gemini 4 Argon — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
       "href": "/llm-hub/compare/claude-sonnet-4-5-vs-gemini-3-5-flash",
       "title": "Claude Sonnet 4 5 VS Gemini 3 5 Flash — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/claude-sonnet-5-vs-gemini-4-argon",
+      "title": "Claude Sonnet 5 VS Gemini 4 Argon — Comparison",
       "tags": [
         "llm-hub",
         "comparison"
@@ -7936,6 +7970,15 @@
     {
       "href": "/llm-hub/compare/gemini-3-5-flash-vs-gpt-5-2-pro",
       "title": "Gemini 3 5 Flash VS Gpt 5 2 Pro — Comparison",
+      "tags": [
+        "llm-hub",
+        "comparison"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/compare/gemini-4-argon-vs-gpt-5-5",
+      "title": "Gemini 4 Argon VS Gpt 5 5 — Comparison",
       "tags": [
         "llm-hub",
         "comparison"
@@ -8044,6 +8087,15 @@
     {
       "href": "/llm-hub/gemini-3-pro",
       "title": "Gemini 3 Pro — Model Hub",
+      "tags": [
+        "llm-hub",
+        "model"
+      ],
+      "type": "tool"
+    },
+    {
+      "href": "/llm-hub/gemini-4-argon",
+      "title": "Gemini 4 Argon — Model Hub",
       "tags": [
         "llm-hub",
         "model"
