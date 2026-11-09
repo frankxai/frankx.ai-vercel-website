@@ -1,6 +1,19 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, CheckCircle2, Mail, Music, Network, Sparkles } from 'lucide-react'
+import {
+  ArrowRight,
+  BookOpen,
+  Briefcase,
+  CheckCircle2,
+  Cpu,
+  Mail,
+  Music,
+  Network,
+  Newspaper,
+  Presentation,
+  Sparkles,
+  Workflow,
+} from 'lucide-react'
 
 import JsonLd from '@/components/seo/JsonLd'
 import { createMetadata, siteConfig } from '@/lib/seo'
@@ -52,6 +65,47 @@ const pillars = [
       'Attention, recovery, environment, and review loops that make clearer work more repeatable without pretending discipline is the whole story.',
     icon: Sparkles,
     href: '/peak-performance',
+  },
+]
+
+// The founder's index: every body of work, one click from the entity page, so
+// readers and answer engines can see the whole surface Frank publishes.
+const founderIndex = [
+  {
+    title: 'Magazine',
+    description: 'Long reads on AI architecture, agents, infrastructure, music, and the craft of making things.',
+    icon: Newspaper,
+    href: '/magazine',
+  },
+  {
+    title: 'Books',
+    description: 'Books written to be read cover to cover, free to read online.',
+    icon: BookOpen,
+    href: '/books',
+  },
+  {
+    title: 'Workshops',
+    description: 'Delivered workshops and studio curricula on agents, MCP, memory, and coordinated work.',
+    icon: Presentation,
+    href: '/workshops',
+  },
+  {
+    title: 'AI agent playbooks',
+    description: 'The build order: stack, first agents and skills, running a crew, production architecture.',
+    icon: Workflow,
+    href: '/playbooks',
+  },
+  {
+    title: 'AI computer and infrastructure',
+    description: 'Workstations, cloud GPUs, mini PCs, and private AI setups for founders and creators.',
+    icon: Cpu,
+    href: '/ai-computer',
+  },
+  {
+    title: 'Work with me',
+    description: 'Architecture studio, Foundry installs, and the Founder\u2019s Circle for consequential decisions.',
+    icon: Briefcase,
+    href: '/work-with-me',
   },
 ]
 
@@ -150,6 +204,34 @@ export default function FrankRiemerPage() {
               )
             })}
           </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="founder-index" className="border-t border-white/10 py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mb-10 max-w-3xl">
+            <h2 id="founder-index" className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Everything I make, in one place.
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-white/60">
+              Writing, books, teaching, open playbooks, the machines underneath, and the few ways to work
+              with me directly.
+            </p>
+          </div>
+          <ul className="grid gap-px overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+            {founderIndex.map((entry) => {
+              const Icon = entry.icon
+              return (
+                <li key={entry.href} className="bg-[#0a0a0b]">
+                  <Link href={entry.href} className="group flex h-full flex-col p-6 transition hover:bg-white/[0.03]">
+                    <Icon aria-hidden className="h-5 w-5 text-emerald-300" />
+                    <span className="mt-4 text-base font-semibold text-white">{entry.title}</span>
+                    <span className="mt-2 text-sm leading-relaxed text-white/50">{entry.description}</span>
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
         </div>
       </section>
 
