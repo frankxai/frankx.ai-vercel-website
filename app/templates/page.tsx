@@ -87,7 +87,7 @@ const freeTemplates = [
 const premiumTemplates = [
   {
     title: 'Agentic Micro-SaaS Starter Kit',
-    description: 'Next.js 16 + Edge API + MCP bridge starter for launching sovereign AI tools.',
+    description: 'Next.js 16 + Edge API + MCP bridge starter for launching small AI tools.',
     href: '/shop/templates',
     icon: Rocket,
     meta: 'Starter kit · Launch list',
@@ -116,7 +116,7 @@ const premiumTemplates = [
     deployUrl: null,
   },
   {
-    title: 'Autonomous Swarm Workstation (ACOS Core)',
+    title: 'ACOS: commands and agents for Claude Code',
     description: 'Multi-agent orchestration system built on the ACOS agent catalog, with deterministic test gates.',
     href: '/products/agentic-creator-os',
     icon: Sparkles,
@@ -307,21 +307,21 @@ export default function TemplatesPage() {
               {/* Breadcrumb */}
               <div className="mb-8">
                 <span className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-400/80">
-                  AI Architect for a More Free World · Starter Kits &amp; Blueprints
+                  AI architect · Starter kits and blueprints
                 </span>
               </div>
 
               {/* Headline */}
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
-                Sovereign Business Starter Kits &amp; Templates
+                Starter kits and templates
                 <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
-                  Fork, Own, and Launch Globally.
+                  You can read them before you use them.
                 </span>
               </h1>
 
               {/* Subtext */}
               <p className="text-lg text-white/60 max-w-2xl leading-relaxed mb-8">
-                Modular architectures built on local-first principles. Launch micro-SaaS tools, digital asset marketplaces, autonomous swarms, and creator knowledge hubs with zero SaaS cage lock-in.
+                Free templates download today. Commercial kits are on a launch list.
               </p>
 
               {/* Action Buttons */}
@@ -331,7 +331,7 @@ export default function TemplatesPage() {
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-sm transition-colors shadow-lg shadow-emerald-500/20"
                 >
                   <Sparkles className="w-4 h-4" />
-                  <span>Explore 19 v0 Interactive Prototypes</span>
+                  <span>Open the v0 prototypes</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
@@ -359,7 +359,7 @@ export default function TemplatesPage() {
               <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
                 <div className="max-w-2xl">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold uppercase tracking-wider mb-4">
-                    <Zap className="w-3.5 h-3.5" /> Canonical v0 Sovereign Design Engine
+                    <Zap className="w-3.5 h-3.5" /> Live demos in v0
                   </div>
                   <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
                     Experience Live Responsive Demos at /v0

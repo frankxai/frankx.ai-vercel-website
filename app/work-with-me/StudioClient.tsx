@@ -382,7 +382,7 @@ function MethodologySection() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Methodology</h2>
           <p className="text-slate-400 text-lg max-w-2xl">
-            A proven five-phase approach refined across 110+ solution designs.
+            A five-phase approach drawn from the enterprise solution designs I contributed to.
           </p>
         </motion.div>
 
