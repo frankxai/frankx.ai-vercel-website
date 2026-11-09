@@ -11,7 +11,7 @@ const blogFaqs = [
   },
   {
     question: 'How often is new content published?',
-    answer: 'New articles cover a range of topics including AI implementation guides, enterprise architecture patterns, creative AI workflows, and insights from building production AI systems.'
+    answer: 'Articles publish when a build or a source is ready.'
   },
   {
     question: 'What is the difference between the blog and the journal?',
@@ -19,7 +19,7 @@ const blogFaqs = [
   },
   {
     question: 'What topics does the blog cover?',
-    answer: 'The blog covers enterprise AI architecture, agentic systems, creative AI tools like Suno and Midjourney, AI implementation strategies, venture building, and insights from building production AI systems.'
+    answer: 'The blog covers AI architecture, agent workflows, creative AI tools like Suno and Midjourney, and what I learn building AI systems.'
   },
   {
     question: 'Can I get notified about new articles?',
@@ -27,7 +27,7 @@ const blogFaqs = [
   },
   {
     question: 'Are the articles suitable for beginners?',
-    answer: 'Yes, articles range from beginner-friendly introductions to advanced technical deep-dives. Each article is tagged by category, making it easy to find content matching your experience level.'
+    answer: 'Yes, articles range from beginner-friendly introductions to advanced technical write-ups. Each article is tagged by category, so you can find content that matches your experience level.'
   }
 ]
 

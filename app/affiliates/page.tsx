@@ -47,7 +47,7 @@ const intelligenceArsenal = [
     category: 'ai-intelligence',
     description: 'Constitutional AI system for strategic thinking and complex reasoning workflows.',
     url: 'https://claude.ai',
-    expertNote: 'Core engine for our agentic systems. Unmatched reasoning depth.',
+    expertNote: 'I use Claude Code as my daily build harness.',
     rating: 5,
     verified: true,
     hasAffiliate: false
@@ -58,7 +58,7 @@ const intelligenceArsenal = [
     category: 'development',
     description: 'Zero-config infrastructure platform for rapid deployment and scaling.',
     url: 'https://railway.app',
-    expertNote: 'Powers our production deployments. Effortless infrastructure.',
+    expertNote: 'Hosting platform. This link is an affiliate link.',
     rating: 5,
     verified: true,
     hasAffiliate: true
@@ -69,7 +69,7 @@ const intelligenceArsenal = [
     category: 'development',
     description: 'Frontend platform optimized for Next.js and edge computing.',
     url: 'https://vercel.com',
-    expertNote: 'Our hosting platform of choice. Unbeatable developer experience.',
+    expertNote: 'Every frankx.ai surface ships on Vercel.',
     rating: 5,
     verified: true,
     hasAffiliate: false
@@ -80,7 +80,7 @@ const intelligenceArsenal = [
     category: 'design-creative',
     description: 'Collaborative design platform with AI-powered features.',
     url: 'https://figma.com',
-    expertNote: 'Essential for our design systems and creative workflows.',
+    expertNote: 'Design and prototyping tool.',
     rating: 5,
     verified: true,
     hasAffiliate: false
@@ -91,7 +91,7 @@ const intelligenceArsenal = [
     category: 'analytics',
     description: 'Privacy-first analytics without compromising intelligence insights.',
     url: 'https://plausible.io',
-    expertNote: 'Clean metrics that respect user privacy. No bloat.',
+    expertNote: 'Privacy-focused web analytics.',
     rating: 5,
     verified: true,
     hasAffiliate: false
@@ -118,16 +118,16 @@ export default function IntelligenceArsenal() {
             <div className="mb-16 text-center">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-500/20 to-indigo-500/20 px-4 py-2 text-sm font-semibold text-purple-200 border border-purple-500/30">
                 <Shield className="h-4 w-4" />
-                Expert-Curated Intelligence Arsenal
+                Tools I use and affiliate links
               </div>
               <h1 className="mb-6 text-5xl font-bold text-white sm:text-6xl lg:text-7xl">
-                Intelligence
-                <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent"> Arsenal</span>
+                Tools I use,
+                <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent"> and which links pay me</span>
               </h1>
               <p className="mx-auto mb-12 max-w-4xl text-xl text-slate-300">
-                The exact tools and systems powering the FrankX intelligence stack.
+                Each entry says what the tool is for.
                 <br className="hidden sm:block" />
-                Tested, validated, and recommended by our agentic experts.
+                Links marked as affiliate earn me a commission.
               </p>
             </div>
           </StaggerItem>
@@ -208,7 +208,7 @@ export default function IntelligenceArsenal() {
                                 {resource.verified && (
                                   <div className="inline-flex items-center gap-1 text-xs text-emerald-400">
                                     <Shield className="h-3 w-3" />
-                                    Expert Verified
+                                    Listed
                                   </div>
                                 )}
                               </div>
@@ -229,7 +229,7 @@ export default function IntelligenceArsenal() {
 
                         {/* Expert Note */}
                         <div className="mb-6 rounded-lg bg-slate-800/50 p-3 border-l-2 border-purple-500/50">
-                          <p className="text-xs text-purple-200 font-medium">Expert Insight:</p>
+                          <p className="text-xs text-purple-200 font-medium">Note:</p>
                           <p className="text-sm text-slate-300 italic">"{resource.expertNote}"</p>
                         </div>
 
@@ -240,7 +240,7 @@ export default function IntelligenceArsenal() {
                           rel="noopener noreferrer"
                           className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-all hover:from-purple-600 hover:to-indigo-700 group-hover:shadow-lg"
                         >
-                          Explore Tool
+                          Open {resource.name}
                           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </a>
                       </div>
@@ -256,7 +256,7 @@ export default function IntelligenceArsenal() {
         <div className="mt-16 mx-auto max-w-4xl">
           <GlassmorphicCard variant="default" className="p-6">
             <p className="text-xs text-slate-400 leading-relaxed">
-              <strong className="text-slate-300">Transparency Note:</strong> Our Intelligence Arsenal represents tools we genuinely use and recommend based on performance in production environments. Some resources may include affiliate partnerships that support our research and development—these are clearly marked and never influence our technical recommendations. All expert insights reflect real implementation experience across our agentic systems.
+              <strong className="text-slate-300">Transparency Note:</strong> This page lists tools I use or recommend. Some entries may include affiliate partnerships that support the work. Those are marked, and they do not change which tools I recommend.
             </p>
           </GlassmorphicCard>
         </div>

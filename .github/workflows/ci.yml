@@ -245,6 +245,10 @@ jobs:
         if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: pnpm run test:gencreator-metadata:rendered
 
+      - name: Owned canon rendered (llms.txt, blog canonical and licence)
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: pnpm run test:owned-canon:rendered
+
       - name: Glass input keyboard, touch and motion journey
         run: node scripts/qa/glass-input-journey.mjs
         timeout-minutes: 6

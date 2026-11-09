@@ -6,7 +6,7 @@ const stackOg = '/images/brand/frankx-public-workspace-og-1200x630.png'
 export const metadata: Metadata = {
   title: 'The FrankX Stack — Curated AI Tools & Templates',
   description:
-    'Hand-curated gallery of the best AI tools, templates, and infrastructure I use and recommend. Battle-tested picks across templates, agents, infra, databases, and dev tools.',
+    'Hand-curated gallery of the best AI tools, templates, and infrastructure I use and recommend. Picks across templates, agents, infrastructure, databases and developer tools.',
   alternates: {
     canonical: 'https://www.frankx.ai/stack',
   },
