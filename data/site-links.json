@@ -222,18 +222,18 @@
     {
       "id": "creative-ai-toolkit",
       "label": "Creative AI Toolkit",
-      "kind": "paid-product",
-      "url": "https://frankx.gumroad.com/l/creative-ai-toolkit",
+      "kind": "waitlist",
+      "url": "/waitlist?intent=creative-ai-toolkit",
       "status": "needs-verification",
-      "ownerAction": "Confirm canonical checkout platform and delivery file before changing CTAs."
+      "ownerAction": "Waitlist-first: the dead Gumroad link was removed. Open checkout only after the product holds a release-gate PASS."
     },
     {
       "id": "creation-chronicles",
       "label": "Creation Chronicles",
-      "kind": "paid-product",
-      "url": "https://frankx.gumroad.com/l/creation-chronicles-creator",
+      "kind": "waitlist",
+      "url": "/waitlist?intent=creation-chronicles",
       "status": "needs-verification",
-      "ownerAction": "Confirm canonical checkout platform, tier links, and delivery pipeline."
+      "ownerAction": "Waitlist-first: the dead Gumroad link was removed. Open checkout only after the product holds a release-gate PASS."
     },
     {
       "id": "bv-kit",
