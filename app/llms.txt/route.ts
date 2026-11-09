@@ -5,7 +5,8 @@ import { bookReviews } from '@/data/book-reviews'
 import { libraryCollections } from '@/data/library-collections'
 import { osModules } from '@/data/os-modules'
 import { researchDomains } from '@/lib/research/domains'
-import { siteConfig } from '@/lib/seo'
+import { contentLicense, siteConfig } from '@/lib/seo'
+import { getProductCards, productPublicPath } from '@/lib/products'
 import { askQuestions } from '@/data/ask-questions'
 import { getPublishedBooks } from '@/app/books/lib/books-registry'
 
@@ -52,6 +53,12 @@ export async function GET() {
 
   const researchLinks = researchDomains
     .map((d) => `- [${d.title}](${SITE_URL}/research/${d.slug}): ${d.subtitle}`)
+    .join('\n')
+
+  // Product pages that exist at /products/<slug>. Headlines come from
+  // data/products.json; price and availability stay on each product page.
+  const productLinks = getProductCards()
+    .map((p) => `- [${p.name}](${SITE_URL}${productPublicPath(p.href.slice('/products/'.length))}): ${p.headline}`)
     .join('\n')
 
   const askLinks = askQuestions
@@ -109,6 +116,17 @@ Founder Stack → Foundry or Founder's Circle → Human Layer and Signal Loop.
 - [Start Here](${SITE_URL}/start): Founder-led entry spine for new visitors
 - [Peak State Systems](${SITE_URL}/peak-performance): Evidence-led attention, energy, recovery, and work-review system; educational, see page disclosures
 - [Build with Me](${SITE_URL}/build): Product ladder: see /build; prices on each product page.
+
+## Products
+Each product page states its own price and whether it is available now, on a waitlist, or by application.
+- [Products](${SITE_URL}/products): Index of FrankX products
+${productLinks}
+
+## Resources
+- [Resources](${SITE_URL}/resources): Templates, playbooks, affiliate programs, and GitHub repo maps
+- [Templates](${SITE_URL}/resources/templates): Downloadable AI implementation and governance templates
+- [Builder stack](${SITE_URL}/resources/builder-stack): Design, publishing, and payment tools, with which programs are open or closed
+- [SEO and AEO workflow](${SITE_URL}/resources/seo-aeo): Turn search evidence into a reviewable website change; free evidence and measurement templates
 
 ## Operating Systems (the FrankX OS spine)
 ${osLinks}
@@ -195,6 +213,9 @@ ${libraryLinks}
 - [rss.xml](${SITE_URL}/rss.xml): Latest 50 posts as RSS 2.0
 - [journal/feed.xml](${SITE_URL}/journal/feed.xml): Journal entries as RSS 2.0
 - [Open Source Repos](https://github.com/frankxai): Library OS, SIS, ACOS, and more
+
+## Licence
+Written content on frankx.ai: ${contentLicense.notice} Terms: [${contentLicense.url}](${contentLicense.url}). Each article declares its canonical URL with <link rel="canonical">.
 `
 
   return new Response(content, {
