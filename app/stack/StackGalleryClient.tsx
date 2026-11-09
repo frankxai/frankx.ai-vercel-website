@@ -57,7 +57,7 @@ const categories: CategoryMeta[] = [
     id: 'templates',
     label: 'AI App Templates',
     title: 'Starters worth cloning',
-    tagline: 'Production-grade scaffolds that save you weeks.',
+    tagline: 'Starter repositories I would clone first.',
   },
   {
     id: 'agents',
@@ -528,7 +528,7 @@ export default function StackGalleryClient() {
               Tools I actually use and recommend.
             </p>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/70">
-              Battle-tested across shipped products. Affiliate links help keep this site free {'\u2014'} they never affect what makes the list.
+              Affiliate links help keep this site free {'\u2014'} they never affect what makes the list.
             </p>
             <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-white/70">
               Looking for the instruments built here {'\u2014'} calculators, canvases, decision atlases?{' '}
@@ -619,7 +619,7 @@ export default function StackGalleryClient() {
                     className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
                   >
                     {categoryItems.map((item) => (
-                      <motion.div key={item.id} variants={itemVariants} className="h-full">
+                      <motion.div key={item.id} id={item.id} variants={itemVariants} className="h-full scroll-mt-24">
                         <StackCard item={item} />
                       </motion.div>
                     ))}
@@ -631,7 +631,7 @@ export default function StackGalleryClient() {
             {/* ── Footer note ── */}
             <motion.div {...fadeUp} initial={false} className="mt-32 text-center">
               <p className="text-xs text-white/70">
-                Built by Frank {'\u00b7'} Curated, not sponsored.
+                Built by Frank {'\u00b7'} Some links pay a referral fee; marked on each card.
               </p>
             </motion.div>
           </motion.div>
