@@ -5,6 +5,9 @@ import assert from 'node:assert/strict'
 import { readdirSync, readFileSync } from 'node:fs'
 import test from 'node:test'
 
+import matter from 'gray-matter'
+
+import { isCanonicalBlogSlug } from '../../lib/blog-redirects.mjs'
 import { validateSyndicationManifest } from '../../lib/syndication.ts'
 
 const read = (path) => readFileSync(new URL(`../../${path}`, import.meta.url), 'utf8')
@@ -68,23 +71,27 @@ test('product redirect map matches next.config.mjs, so llms.txt never links a re
   assert.deepEqual(fromLib, fromConfig)
 })
 
-const blogSlugs = new Set(
+// slug -> resolved canonical, mirroring lib/blog.ts (published .mdx files,
+// frontmatter `canonical` override, else /blog/<slug>).
+const blogPosts = new Map(
   readdirSync(new URL('../../content/blog', import.meta.url))
-    .filter((name) => /\.mdx?$/.test(name))
-    .map((name) => name.replace(/\.mdx?$/, '')),
+    .filter((name) => name.endsWith('.mdx'))
+    .map((name) => name.replace(/\.mdx$/, ''))
+    .filter((slug) => isCanonicalBlogSlug(slug))
+    .map((slug) => {
+      const { data } = matter(read(`content/blog/${slug}.mdx`))
+      return [slug, data.canonical || `https://www.frankx.ai/blog/${slug}`]
+    }),
 )
 
 test('the committed syndication manifest is valid and only references real posts', () => {
   const manifest = JSON.parse(read('data/syndication-manifest.json'))
-  assert.deepEqual(validateSyndicationManifest(manifest, blogSlugs), [])
-  // Seeded empty or with drafts: nothing is recorded as published until a human publishes it.
-  for (const entry of manifest.entries) {
-    for (const copy of entry.channels) assert.equal(copy.status, 'draft')
-  }
+  // Every lifecycle state is allowed; the validator enforces each state's required fields.
+  assert.deepEqual(validateSyndicationManifest(manifest, blogPosts), [])
 })
 
 test('syndication validator rejects bad entries', () => {
-  const slug = [...blogSlugs][0]
+  const slug = [...blogPosts.keys()][0]
   const ok = {
     version: 1,
     entries: [
@@ -95,11 +102,39 @@ test('syndication validator rejects bad entries', () => {
       },
     ],
   }
-  assert.deepEqual(validateSyndicationManifest(ok, blogSlugs), [])
+  assert.deepEqual(validateSyndicationManifest(ok, blogPosts), [])
+
+  // A copy can move through its whole lifecycle once the required fields are recorded.
+  const lifecycle = {
+    version: 1,
+    entries: [
+      {
+        ...ok.entries[0],
+        channels: [
+          { channel: 'medium', cut: 'full', status: 'published', url: 'https://medium.com/@frankx/a', publishedAt: '2026-11-09' },
+          { channel: 'substack', cut: 'excerpt', status: 'scheduled' },
+          { channel: 'dev-to', cut: 'summary', status: 'withdrawn' },
+        ],
+      },
+    ],
+  }
+  assert.deepEqual(validateSyndicationManifest(lifecycle, blogPosts), [])
+
+  // A frontmatter canonical override is honoured.
+  const overridden = new Map([[slug, 'https://www.frankx.ai/blog/primary-post']])
+  assert.deepEqual(
+    validateSyndicationManifest(
+      { version: 1, entries: [{ ...ok.entries[0], canonicalUrl: 'https://www.frankx.ai/blog/primary-post' }] },
+      overridden,
+    ),
+    [],
+  )
 
   const cases = [
     [{ ...ok.entries[0], slug: 'no-such-post-xyz' }, /no blog post/],
-    [{ ...ok.entries[0], canonicalUrl: `https://medium.com/@frankx/${slug}` }, /canonicalUrl must be on/],
+    [{ ...ok.entries[0], canonicalUrl: `https://medium.com/@frankx/${slug}` }, /canonicalUrl must be the post's canonical/],
+    [{ ...ok.entries[0], canonicalUrl: 'https://www.frankx.ai/' }, /canonicalUrl must be the post's canonical/],
+    [{ ...ok.entries[0], canonicalUrl: 'https://www.frankx.ai/blog/some-other-post' }, /canonicalUrl must be the post's canonical/],
     [{ ...ok.entries[0], channels: [{ channel: 'myspace', cut: 'full', status: 'draft' }] }, /unknown channel/],
     [{ ...ok.entries[0], channels: [{ channel: 'medium', cut: 'remix', status: 'draft' }] }, /unknown cut/],
     [{ ...ok.entries[0], channels: [{ channel: 'medium', cut: 'full', status: 'published' }] }, /need url and publishedAt/],
@@ -115,11 +150,11 @@ test('syndication validator rejects bad entries', () => {
     ],
   ]
   for (const [entry, expected] of cases) {
-    const errors = validateSyndicationManifest({ version: 1, entries: [entry] }, blogSlugs)
+    const errors = validateSyndicationManifest({ version: 1, entries: [entry] }, blogPosts)
     assert.ok(errors.some((e) => expected.test(e)), `expected ${expected} in ${JSON.stringify(errors)}`)
   }
   assert.match(
-    validateSyndicationManifest({ version: 1, entries: [ok.entries[0], ok.entries[0]] }, blogSlugs).join(),
+    validateSyndicationManifest({ version: 1, entries: [ok.entries[0], ok.entries[0]] }, blogPosts).join(),
     /duplicate slug/,
   )
   assert.match(validateSyndicationManifest({ version: 2, entries: [] }).join(), /unsupported version/)

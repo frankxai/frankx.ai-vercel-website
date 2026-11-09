@@ -30,11 +30,14 @@ export const SYNDICATION_STATUSES: readonly SyndicationStatus[] = [
 
 /**
  * Returns a list of problems; an empty list means the manifest is valid.
- * `knownSlugs`, when given, must contain every slug the manifest references.
+ * `knownPosts`, when given, maps each blog slug to the post's resolved canonical
+ * URL (its frontmatter `canonical`, else /blog/<slug>). Every referenced slug
+ * must be in it and `canonicalUrl` must equal that post's canonical. Without
+ * the map, `canonicalUrl` must be exactly https://www.frankx.ai/blog/<slug>.
  */
 export function validateSyndicationManifest(
   manifest: SyndicationManifest,
-  knownSlugs?: ReadonlySet<string>,
+  knownPosts?: ReadonlyMap<string, string>,
 ): string[] {
   const errors: string[] = []
   if (manifest.version !== 1) errors.push(`unsupported version ${String(manifest.version)}`)
@@ -46,11 +49,13 @@ export function validateSyndicationManifest(
     if (!entry.slug) errors.push(`${at}: slug is required`)
     if (seenSlugs.has(entry.slug)) errors.push(`${at}: duplicate slug`)
     seenSlugs.add(entry.slug)
-    if (knownSlugs && entry.slug && !knownSlugs.has(entry.slug)) {
+    if (knownPosts && entry.slug && !knownPosts.has(entry.slug)) {
       errors.push(`${at}: no blog post with this slug`)
-    }
-    if (!entry.canonicalUrl?.startsWith(`${SITE_URL}/`)) {
-      errors.push(`${at}: canonicalUrl must be on ${SITE_URL}`)
+    } else if (entry.slug) {
+      const expected = knownPosts?.get(entry.slug) ?? `${SITE_URL}/blog/${entry.slug}`
+      if (entry.canonicalUrl !== expected) {
+        errors.push(`${at}: canonicalUrl must be the post's canonical ${expected}`)
+      }
     }
 
     const seenChannels = new Set<string>()
