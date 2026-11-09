@@ -1,0 +1,3 @@
+Google LLC, Apache-2.0. Local Zod 4 security rebuild by Codex, 2026-11-04.
+Upstream 9bf8eae67128b6cc55ad9bf86665767deb4c11cd. See the repository's vendor/google-design-md/zod4.patch.
+All third-party runtime dependencies are external and declared in package.json.

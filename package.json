@@ -185,7 +185,7 @@
     "analytics:ga4": "node scripts/observability/analytics-cli.mjs --ga4",
     "analytics:opportunities": "node scripts/observability/analytics-cli.mjs --opportunities",
     "analytics:inspect": "node scripts/observability/analytics-cli.mjs --inspect",
-    "test:affiliate-links": "node --experimental-strip-types --test scripts/tests/affiliate-destination.test.mjs scripts/tests/tool-record-contract.test.mjs scripts/tests/tool-embed-contract.test.mjs",
+    "test:affiliate-links": "node --experimental-strip-types --test scripts/tests/affiliate-destination.test.mjs scripts/tests/tool-record-contract.test.mjs scripts/tests/tool-embed-contract.test.mjs scripts/tests/elevenlabs-partner-slice.test.mjs",
     "test:higgsfield-reader": "node --test scripts/tests/higgsfield-reader-contract.test.mjs",
     "test:mcp": "node --test scripts/tests/mcp-endpoint-contract.test.mjs",
     "test:mcp:e2e": "node --test scripts/tests/mcp-endpoint.e2e.mjs",
@@ -228,7 +228,7 @@
     "dotenv": "^17.2.3",
     "framer-motion": "^11.15.0",
     "fuse.js": "^7.5.0",
-    "glob": "^10.5.0",
+    "glob": "^14.0.2",
     "gray-matter": "^4.0.3",
     "hast-util-from-html": "^2.0.3",
     "hast-util-sanitize": "^5.0.2",
@@ -268,9 +268,9 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@google/design.md": "^0.4.0",
+    "@google/design.md": "file:vendor/google-design-md/package",
     "@gsap/react": "^2.1.2",
-    "@mermaid-js/mermaid-cli": "^11.17.0",
+    "@mermaid-js/mermaid-cli": "12.0.0",
     "@modelcontextprotocol/sdk": "^1.32.2",
     "@nivo/sunburst": "^0.99.0",
     "@terrastruct/d2": "^0.1.33",
@@ -290,7 +290,7 @@
     "eslint-config-next": "^16.4.3",
     "gsap": "^3.14.2",
     "lint-staged": "^16.2.7",
-    "puppeteer": "^24.35.0",
+    "puppeteer": "25.16.0",
     "styled-jsx": "^5.1.7",
     "svgo": "^4.0.2",
     "typescript": "^5.7.2"
