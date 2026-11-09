@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Frontend Design Patterns — Interactive Component Library | FrankX.AI',
   description:
     'Live component pattern library: hover effects, cursor-following glows, scroll animations, glassmorphic cards, and micro-interactions. Code alongside preview.',

@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -14,16 +15,17 @@ export const metadata: Metadata = {
   description:
     "A son's archive for Witali Riemer. Volga German roots, Pavlovka to Seesen, and the inheritance he passed on — in German, English, and Russian.",
   alternates: {
-    canonical: 'https://frankx.ai/papa/en',
+    canonical: `${siteConfig.url}/papa/en`,
     languages: {
-      de: 'https://frankx.ai/papa',
-      en: 'https://frankx.ai/papa/en',
+      de: `${siteConfig.url}/papa`,
+      en: `${siteConfig.url}/papa/en`,
     },
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Papa — Witali Riemer (1969–2018)',
     description: "A son's archive for Witali Riemer.",
-    url: 'https://frankx.ai/papa/en',
+    url: `${siteConfig.url}/papa/en`,
     type: 'profile',
     locale: 'en_US',
   },
@@ -35,8 +37,8 @@ export default function PapaEnHomePage() {
       <PersonWitaliJsonLd />
       <BreadcrumbJsonLd
         items={[
-          { name: 'Frankx', url: 'https://frankx.ai/' },
-          { name: 'Papa', url: 'https://frankx.ai/papa/en' },
+          { name: 'Frankx', url: `${siteConfig.url}/` },
+          { name: 'Papa', url: `${siteConfig.url}/papa/en` },
         ]}
       />
 

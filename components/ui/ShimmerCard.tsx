@@ -7,7 +7,7 @@ import { useMouseGlow } from '@/lib/hooks/useMouseGlow'
 // ── Color presets ──
 
 const shimmerColors: Record<string, { css: string; rgb: string }> = {
-  brand:   { css: 'shimmer-border',          rgb: '171, 71, 199' },
+  brand:   { css: 'shimmer-border',          rgb: '16, 185, 129' },
   rainbow: { css: 'shimmer-border shimmer-rainbow', rgb: '16, 185, 129' },
   gold:    { css: 'shimmer-border shimmer-gold',    rgb: '245, 158, 11' },
   emerald: { css: 'shimmer-border shimmer-emerald', rgb: '16, 185, 129' },
@@ -22,7 +22,7 @@ const speedClasses: Record<string, string> = {
 
 export interface ShimmerCardProps {
   children: ReactNode
-  /** Shimmer color preset. Default: 'brand' (purple→cyan). */
+  /** Shimmer color preset. Default: 'brand' (emerald→cyan, the Tech spectrum). */
   color?: 'brand' | 'rainbow' | 'gold' | 'emerald' | 'ice'
   /** Animation speed. Default: 'normal' (3s). */
   speed?: 'fast' | 'normal' | 'slow'

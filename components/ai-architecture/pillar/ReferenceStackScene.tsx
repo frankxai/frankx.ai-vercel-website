@@ -91,7 +91,7 @@ export function ReferenceStackScene({ layers }: { layers: StackLayer[] }) {
                   aria-hidden="true"
                   className="my-1 block h-6 w-px origin-top bg-gradient-to-b from-emerald-400/50 to-cyan-400/20"
                 />
-                <span className="self-center font-mono text-[11px] text-slate-500">
+                <span className="self-center font-mono text-[11px] text-slate-400">
                   {layer.boundary}
                 </span>
               </div>

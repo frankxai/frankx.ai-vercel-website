@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, Calendar, AlertCircle, CheckCircle2, Clock } from 'lucide-react'
@@ -8,14 +9,15 @@ export const dynamic = 'force-static'
 export const revalidate = 3600 // 1h — recompute "days until" labels
 
 export const metadata: Metadata = {
-  title: 'Studio Calendar — Forcing Functions | FrankX',
+  title: 'Studio Calendar — Forcing Functions',
   description:
     'The deadlines the Content Operations system optimizes against. Workshops, launches, weekly releases — each biases producer dispatch decisions during classifier cross-reference.',
-  alternates: { canonical: 'https://frankx.ai/studio/calendar' },
+  alternates: { canonical: `${siteConfig.url}/studio/calendar` },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Studio Calendar — Forcing Functions',
     description: 'The deadlines that bias content production. Workshops, launches, weekly releases.',
-    url: 'https://frankx.ai/studio/calendar',
+    url: `${siteConfig.url}/studio/calendar`,
     siteName: 'FrankX',
     type: 'website',
   },

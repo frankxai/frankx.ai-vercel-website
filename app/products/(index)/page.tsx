@@ -1,8 +1,9 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
   Music,
@@ -42,13 +43,15 @@ interface NormalizedProduct {
   icon: typeof Cpu
   isFree: boolean
   isWaitlist: boolean
+  isApplication: boolean
+  isLivePublic: boolean
   featured: boolean
   href: string
   primaryCtaHref: string
   primaryCtaLabel: string
 }
 
-// Background atmosphere — restrained ambient depth
+// Background atmosphere: restrained ambient depth
 function ProductsBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
@@ -145,6 +148,30 @@ const CATEGORY_MAPPINGS: Record<string, string[]> = {
 
 const FLAGSHIP_IDS = ['agentic-creator-os', 'vibe-os', 'creators-soulbook']
 
+const LIVE_PUBLIC_SLUGS = new Set([
+  'soulbook',
+  'vibe-os',
+  'love-and-poetry',
+  'spartan-mindset',
+  'self-development',
+  'imagination',
+  'manifestation',
+  'golden-age',
+  'reality-architect-os',
+])
+
+function toSentenceCaseLabel(label: string): string {
+  const trimmed = label.trim()
+  if (!trimmed) return trimmed
+  const preservedAcronyms = ['Vibe OS', 'PDF', 'UI', 'MCP', 'CLI', 'AI', 'OS', 'GitHub']
+  let result = trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase()
+  for (const token of preservedAcronyms) {
+    const re = new RegExp(`\\b${token.replace(/\s+/g, '\\s+')}\\b`, 'gi')
+    result = result.replace(re, token)
+  }
+  return result
+}
+
 function resolveProductColor(category: string, price: number): GlowColor {
   if (category.includes('Music') || category.includes('Creative')) return 'emerald'
   if (category.includes('Architecture') || category.includes('Engineering') || category.includes('Agentic')) return 'cyan'
@@ -165,6 +192,7 @@ export default function ProductsPage() {
   const [selectedTab, setSelectedTab] = useState<CategoryTab>('All')
   const [searchQuery, setSearchQuery] = useState('')
   const [showAllCards, setShowAllCards] = useState(false)
+  const shouldReduceMotion = useReducedMotion()
 
   // Normalize all products once, excluding Arcanea mythology per FrankX brand boundary
   const allProducts: NormalizedProduct[] = useMemo(() => {
@@ -181,29 +209,59 @@ export default function ProductsPage() {
         const description = p.summary ?? p.promise ?? p.description ?? ''
         const category = p.category || 'General'
 
+        const allTiersWaitlist =
+          Array.isArray(p.pricing?.tiers) &&
+          p.pricing.tiers.length > 0 &&
+          p.pricing.tiers.every((tier: { ctaHref?: string }) =>
+            Boolean(tier?.ctaHref?.startsWith('/waitlist'))
+          )
+
+        const rawCtaLabel = String(p.offer?.ctaPrimary ?? p.cta?.label ?? '')
+        const rawCtaHref = String(p.offer?.ctaPrimaryHref ?? p.cta?.href ?? '')
+
         const isWaitlist = Boolean(
-          p.offer?.ctaPrimary?.toLowerCase().includes('waitlist') ||
-          p.cta?.label?.toLowerCase().includes('waitlist')
+          /waitlist|launch list|coming soon|early access|notify/i.test(rawCtaLabel) ||
+          rawCtaHref.startsWith('/waitlist') ||
+          allTiersWaitlist
         )
 
-        // Truthful transformation highlights — no invented engineering claims for books
+        const isApplication = Boolean(
+          !isWaitlist &&
+          (/apply|diagnostic|scope/i.test(rawCtaLabel) ||
+            rawCtaHref.startsWith('/founders-circle'))
+        )
+
+        const isLivePublic = Boolean(
+          LIVE_PUBLIC_SLUGS.has(p.slug) && !isWaitlist && !isApplication
+        )
+
+        // Truthful transformation highlights: no invented engineering claims for books
         const highlights =
           Array.isArray(p.transformation) && p.transformation.length > 0
             ? p.transformation.slice(0, 3)
             : []
 
         const primaryCtaHref = isWaitlist
-          ? (p.offer?.ctaPrimaryHref ?? `/waitlist?intent=${p.slug}`)
-          : (price === 0
-              ? (p.offer?.ctaPrimaryHref ?? p.cta?.href ?? `/products/${p.slug}`)
-              : (p.offer?.ctaPrimaryHref?.startsWith('http')
-                  ? p.offer.ctaPrimaryHref
-                  : `/checkout/${p.slug}`))
+          ? (rawCtaHref || `/waitlist?intent=${p.slug}`)
+          : rawCtaHref
+            ? rawCtaHref
+            : price === 0
+              ? `/products/${p.slug}`
+              : `/checkout/${p.slug}`
 
-        const primaryCtaLabel =
-          p.offer?.ctaPrimary ??
-          p.cta?.label ??
-          (isWaitlist ? 'Join waitlist' : price === 0 ? 'Free access' : 'Acquire')
+        const fallbackLabel = isWaitlist
+          ? 'Join waitlist'
+          : isApplication
+            ? 'Apply now'
+            : price === 0
+              ? 'Free access'
+              : 'Acquire'
+
+        const primaryCtaLabel = isWaitlist
+          ? 'Join waitlist'
+          : rawCtaLabel
+            ? toSentenceCaseLabel(rawCtaLabel)
+            : fallbackLabel
 
         return {
           id: p.id,
@@ -222,6 +280,8 @@ export default function ProductsPage() {
           icon: resolveProductIcon(category, p.id),
           isFree: price === 0,
           isWaitlist,
+          isApplication,
+          isLivePublic,
           featured: FLAGSHIP_IDS.includes(p.id) || p.featured === true || price >= 147,
           href: `/products/${p.slug}`,
           primaryCtaHref,
@@ -235,7 +295,7 @@ export default function ProductsPage() {
     return allProducts.filter((product) => {
       // Tab matching
       if (selectedTab === 'Free starter kits') {
-        if (!product.isFree) return false
+        if (!product.isFree || product.isWaitlist || product.isApplication) return false
       } else if (selectedTab !== 'All') {
         const allowedIds = CATEGORY_MAPPINGS[selectedTab]
         if (!allowedIds || !allowedIds.includes(product.id)) {
@@ -283,9 +343,9 @@ export default function ProductsPage() {
     return {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      name: 'FrankX AI Digital Estate and Architecture Solutions',
+      name: 'FrankX products: skill packs, prompt libraries and templates',
       description:
-        'Production agent frameworks, system prompt suites, multi-modal workflows, and enterprise AI blueprints by AI Architect Frank Riemer.',
+        'Skill packs, prompt libraries, Obsidian vaults and repository templates by Frank Riemer.',
       numberOfItems: allProducts.length,
       itemListElement: allProducts.map((product, index) => ({
         '@type': 'ListItem',
@@ -300,9 +360,9 @@ export default function ProductsPage() {
             '@type': 'Offer',
             price: product.price,
             priceCurrency: product.currency,
-            availability: product.isWaitlist
-              ? 'https://schema.org/PreOrder'
-              : 'https://schema.org/InStock',
+            availability: product.isLivePublic
+              ? 'https://schema.org/InStock'
+              : 'https://schema.org/PreOrder',
           },
         },
       })),
@@ -321,38 +381,38 @@ export default function ProductsPage() {
         <section className="relative pt-32 pb-16">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.2 }}
               className="mb-8 flex items-center gap-4"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-400">
                 <Package className="h-5 w-5" />
               </div>
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
-                The sovereign digital estate
+              <span className="font-mono text-xs font-medium tracking-[0.08em] text-slate-400">
+                Digital systems and inspectable starter kits
               </span>
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 15 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.2, delay: shouldReduceMotion ? 0 : 0.05 }}
               className="mb-6 max-w-4xl font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
             >
-              Operational systems.
-              <span className="mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-amber-300">
-                Engineered for production.
+              Skill packs, prompt libraries,
+              <span className="mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-cyan-300">
+                vaults and repo templates.
               </span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 15 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.2, delay: shouldReduceMotion ? 0 : 0.1 }}
               className="max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
-              Agent frameworks, system prompt suites, multi-modal pipelines and advisory playbooks.
+              Each product lists its files before you get it.
             </motion.p>
           </div>
         </section>
@@ -363,7 +423,7 @@ export default function ProductsPage() {
             <div className="mx-auto max-w-6xl px-6">
               <div className="mb-6 flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400 mb-1">
+                  <p className="font-mono text-xs font-semibold tracking-[0.08em] text-emerald-400 mb-1">
                     Flagship architectures
                   </p>
                   <h2 className="text-xl font-bold text-white">
@@ -382,8 +442,18 @@ export default function ProductsPage() {
                     >
                       <GlowCard
                         color={product.color}
-                        className="group flex flex-col h-full p-7 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.02] hover:border-emerald-500/40 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1"
+                        className="group flex flex-col h-full p-7 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.02] hover:border-emerald-500/40 transition-[border-color,box-shadow,transform] duration-200 motion-reduce:transition-none hover:-translate-y-1 motion-reduce:hover:translate-y-0"
                       >
+                        <div className="mb-5 overflow-hidden rounded-xl border border-white/10 bg-[#07090e]">
+                          <Image
+                            src={`/images/products/plates/${product.slug}.svg`}
+                            alt={`${product.name} schematic plate`}
+                            width={640}
+                            height={360}
+                            unoptimized
+                            className="aspect-video h-auto w-full object-cover"
+                          />
+                        </div>
                         <div className="mb-5 flex items-start justify-between gap-3">
                           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                             <Icon className="h-6 w-6" />
@@ -394,7 +464,7 @@ export default function ProductsPage() {
                         </div>
 
                         <div className="mb-4 flex-1">
-                          <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-emerald-400/80 block mb-1">
+                          <span className="font-mono text-[11px] font-medium tracking-[0.06em] text-emerald-400/80 block mb-1">
                             Flagship system
                           </span>
                           <h3 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors duration-200 mb-2">
@@ -407,7 +477,7 @@ export default function ProductsPage() {
 
                         {product.highlights.length > 0 && (
                           <div className="mb-6 border-t border-white/5 pt-4">
-                            <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 mb-2.5">
+                            <p className="text-[11px] font-semibold tracking-wider text-slate-400 mb-2.5">
                               Core deliverables
                             </p>
                             <ul className="space-y-2">
@@ -436,34 +506,45 @@ export default function ProductsPage() {
                             <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
                           </Link>
 
-                          {!product.isFree ? (
+                          {product.isWaitlist ? (
                             <Link
-                              href={
-                                product.isWaitlist
-                                  ? (product.primaryCtaHref || `/waitlist?intent=${product.slug}`)
-                                  : (product.primaryCtaHref.startsWith('http')
-                                      ? product.primaryCtaHref
-                                      : `/checkout/${product.slug}`)
-                              }
+                              href={product.primaryCtaHref}
                               onClick={() =>
-                                trackEvent(
-                                  product.isWaitlist ? 'product_waitlist_click' : 'product_checkout_click',
-                                  { productId: product.id }
-                                )
+                                trackEvent('product_waitlist_click', { productId: product.id })
                               }
-                              className="min-h-[44px] flex items-center justify-center rounded-xl bg-emerald-500 px-4 py-2.5 text-xs font-semibold text-black hover:bg-emerald-400 shadow-[0_0_15px_-3px_rgba(16,185,129,0.3)] transition-[background-color,box-shadow] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50"
+                              className="min-h-[44px] flex items-center justify-center rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-2.5 text-xs font-semibold text-amber-300 hover:bg-amber-500/20 transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-amber-500/40"
                             >
-                              <span>{product.isWaitlist ? 'Join waitlist' : 'Acquire'}</span>
+                              <span>Join waitlist</span>
                             </Link>
-                          ) : (
+                          ) : product.isApplication ? (
                             <Link
-                              href={product.primaryCtaHref || product.href}
+                              href={product.primaryCtaHref}
+                              onClick={() =>
+                                trackEvent('product_application_click', { productId: product.id })
+                              }
+                              className="min-h-[44px] flex items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-2.5 text-xs font-semibold text-cyan-200 hover:bg-cyan-500/20 transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50"
+                            >
+                              <span>{product.primaryCtaLabel}</span>
+                            </Link>
+                          ) : product.isFree ? (
+                            <Link
+                              href={product.primaryCtaHref}
                               onClick={() =>
                                 trackEvent('product_free_access_click', { productId: product.id })
                               }
                               className="min-h-[44px] flex items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/20 transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
                             >
-                              <span>{product.primaryCtaLabel || 'Free access'}</span>
+                              <span>{product.primaryCtaLabel}</span>
+                            </Link>
+                          ) : (
+                            <Link
+                              href={product.primaryCtaHref}
+                              onClick={() =>
+                                trackEvent('product_checkout_click', { productId: product.id })
+                              }
+                              className="min-h-[44px] flex items-center justify-center rounded-xl bg-emerald-500 px-4 py-2.5 text-xs font-semibold text-black hover:bg-emerald-400 shadow-[0_0_15px_-3px_rgba(16,185,129,0.3)] transition-[background-color,box-shadow] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50"
+                            >
+                              <span>{product.primaryCtaLabel}</span>
                             </Link>
                           )}
                         </div>
@@ -520,7 +601,7 @@ export default function ProductsPage() {
                     type="button"
                     onClick={() => setSearchQuery('')}
                     aria-label="Clear search"
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-white transition-colors duration-200"
+                    className="absolute right-0.5 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full text-slate-400 hover:text-white transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50"
                   >
                     <X className="h-4 w-4" />
                   </button>
@@ -578,21 +659,36 @@ export default function ProductsPage() {
                     return (
                       <motion.div
                         key={product.id}
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.3) }}
+                        transition={{
+                          duration: shouldReduceMotion ? 0 : 0.2,
+                          delay: shouldReduceMotion ? 0 : Math.min(index * 0.03, 0.18),
+                        }}
                         className="flex flex-col"
                       >
                         <GlowCard
                           color={product.color}
-                          className="group flex flex-col h-full p-7 rounded-2xl border border-white/[0.08] bg-white/[0.02] hover:border-white/20 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1"
+                          className="group flex flex-col h-full p-7 rounded-2xl border border-white/[0.08] bg-white/[0.02] hover:border-white/20 transition-[border-color,box-shadow,transform] duration-200 motion-reduce:transition-none hover:-translate-y-1 motion-reduce:hover:translate-y-0"
                         >
+                          {/* Vector Schematic Plate */}
+                          <div className="mb-5 overflow-hidden rounded-xl border border-white/10 bg-[#07090e]">
+                            <Image
+                              src={`/images/products/plates/${product.slug}.svg`}
+                              alt={`${product.name} schematic plate`}
+                              width={640}
+                              height={360}
+                              unoptimized
+                              className="aspect-video h-auto w-full object-cover"
+                            />
+                          </div>
+
                           {/* Header Badges */}
-                          <div className="mb-5 flex items-start justify-between gap-3">
+                          <div className="mb-4 flex items-start justify-between gap-3">
                             <div
-                              className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.04] text-white/90 border border-white/10 group-hover:border-emerald-500/30 transition-colors duration-300"
+                              className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.04] text-white/90 border border-white/10 group-hover:border-emerald-500/30 transition-colors duration-200"
                             >
-                              <Icon className="h-6 w-6 text-emerald-400" />
+                              <Icon className="h-5 w-5 text-emerald-400" />
                             </div>
                             <div className="flex flex-wrap items-center justify-end gap-1.5">
                               {product.badge && (
@@ -602,9 +698,11 @@ export default function ProductsPage() {
                               )}
                               <span
                                 className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                                  product.isFree
+                                  product.isLivePublic
                                     ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-                                    : 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/20'
+                                    : product.isWaitlist
+                                      ? 'bg-amber-500/10 text-amber-300 border border-amber-500/20'
+                                      : 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/20'
                                 }`}
                               >
                                 {product.priceDisplay}
@@ -614,7 +712,7 @@ export default function ProductsPage() {
 
                           {/* Title and Summary */}
                           <div className="mb-4 flex-1">
-                            <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-slate-500 block mb-1">
+                            <span className="text-[11px] font-medium tracking-[0.06em] text-slate-400 block mb-1">
                               {product.category}
                             </span>
                             <h3 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors duration-200 mb-2">
@@ -628,7 +726,7 @@ export default function ProductsPage() {
                           {/* Deliverables / Transformation Highlights (truthful, only rendered when present) */}
                           {product.highlights.length > 0 && (
                             <div className="mb-6 border-t border-white/5 pt-4">
-                              <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 mb-2.5">
+                              <p className="text-[11px] font-semibold tracking-wider text-slate-400 mb-2.5">
                                 Core deliverables
                               </p>
                               <ul className="space-y-2">
@@ -658,38 +756,45 @@ export default function ProductsPage() {
                               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
                             </Link>
 
-                            {!product.isFree ? (
+                            {product.isWaitlist ? (
                               <Link
-                                href={
-                                  product.isWaitlist
-                                    ? (product.primaryCtaHref || `/waitlist?intent=${product.slug}`)
-                                    : (product.primaryCtaHref.startsWith('http')
-                                        ? product.primaryCtaHref
-                                        : `/checkout/${product.slug}`)
-                                }
+                                href={product.primaryCtaHref}
                                 onClick={() =>
-                                  trackEvent(
-                                    product.isWaitlist ? 'product_waitlist_click' : 'product_checkout_click',
-                                    { productId: product.id }
-                                  )
+                                  trackEvent('product_waitlist_click', { productId: product.id })
                                 }
-                                className={`min-h-[44px] flex items-center justify-center rounded-xl px-4 py-2.5 text-xs font-semibold transition-[background-color,box-shadow] duration-200 outline-none focus-visible:ring-2 ${
-                                  product.isWaitlist
-                                    ? 'border border-amber-500/30 bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 focus-visible:ring-amber-500/40'
-                                    : 'bg-emerald-500 text-black hover:bg-emerald-400 shadow-[0_0_15px_-3px_rgba(16,185,129,0.3)] focus-visible:ring-emerald-500/50'
-                                }`}
+                                className="min-h-[44px] flex items-center justify-center rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-2.5 text-xs font-semibold text-amber-300 hover:bg-amber-500/20 transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-amber-500/40"
                               >
-                                <span>{product.isWaitlist ? 'Join waitlist' : 'Acquire'}</span>
+                                <span>Join waitlist</span>
                               </Link>
-                            ) : (
+                            ) : product.isApplication ? (
                               <Link
-                                href={product.primaryCtaHref || product.href}
+                                href={product.primaryCtaHref}
+                                onClick={() =>
+                                  trackEvent('product_application_click', { productId: product.id })
+                                }
+                                className="min-h-[44px] flex items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-2.5 text-xs font-semibold text-cyan-200 hover:bg-cyan-500/20 transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50"
+                              >
+                                <span>{product.primaryCtaLabel}</span>
+                              </Link>
+                            ) : product.isFree ? (
+                              <Link
+                                href={product.primaryCtaHref}
                                 onClick={() =>
                                   trackEvent('product_free_access_click', { productId: product.id })
                                 }
                                 className="min-h-[44px] flex items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/20 transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
                               >
-                                <span>{product.primaryCtaLabel || 'Free access'}</span>
+                                <span>{product.primaryCtaLabel}</span>
+                              </Link>
+                            ) : (
+                              <Link
+                                href={product.primaryCtaHref}
+                                onClick={() =>
+                                  trackEvent('product_checkout_click', { productId: product.id })
+                                }
+                                className="min-h-[44px] flex items-center justify-center rounded-xl bg-emerald-500 px-4 py-2.5 text-xs font-semibold text-black hover:bg-emerald-400 shadow-[0_0_15px_-3px_rgba(16,185,129,0.3)] transition-[background-color,box-shadow] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50"
+                              >
+                                <span>{product.primaryCtaLabel}</span>
                               </Link>
                             )}
                           </div>
@@ -758,10 +863,10 @@ export default function ProductsPage() {
               <div className="relative flex flex-col items-center gap-6 text-center max-w-2xl mx-auto">
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs sm:text-sm font-medium border border-emerald-500/20">
                   <Shield className="w-4 h-4" />
-                  Sovereign architecture
+                  Free starter kits
                 </span>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
-                  Deploy elite AI architectures in your own stack
+                  Start with the free starter kits
                 </h2>
                 <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
                   Start with open specifications and free starter kits, or join the launch list for paid kits.

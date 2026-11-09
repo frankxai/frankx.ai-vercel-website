@@ -18,6 +18,7 @@ import {
 } from 'lucide-react'
 import { learningPaths, featuredCreators, type LearningPath, type VideoResource } from '@/data/learning-paths'
 import JsonLd from '@/components/seo/JsonLd'
+import { siteConfig } from '@/lib/seo'
 
 const iconMap: Record<string, React.ComponentType<{className?: string}>> = {
   brain: Brain,
@@ -166,7 +167,7 @@ export default function LearnPage() {
         '@type': 'LearningResource',
         name: path.title,
         description: path.description,
-        url: `https://frankx.ai/learn/${path.slug}`,
+        url: `${siteConfig.url}/learn/${path.slug}`,
         provider: { '@type': 'Organization', name: 'FrankX.AI' },
         educationalLevel: path.difficulty === 'beginner' ? 'Beginner' : path.difficulty === 'intermediate' ? 'Intermediate' : 'Advanced',
         ...(path.videos.length > 0

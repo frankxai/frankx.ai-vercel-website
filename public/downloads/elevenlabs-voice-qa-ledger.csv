@@ -1,0 +1,4 @@
+briefing_id,journal_slug,attempt,model_id,voice_id,rights_basis,characters,estimated_credits,idempotency_key,mp3_header_valid,loudness_lufs,accepted,stop_reason,next_action
+B01,2026-07-29-confidence-must-enter-the-market,1,eleven_multilingual_v2,JBFqnCBsd6RMkjVDRZzb,elevenlabs-licensed-voice-library,942,942,,yes,-14.0,pending,,Verify acronym pronunciation and attach JSON provenance receipt
+B02,2026-07-26-the-journal-and-the-blog-are-two-things,1,eleven_turbo_v2_5,onwK4e9ZLuTAKqWW03F9,elevenlabs-licensed-voice-library,1180,590,,yes,-14.0,pending,,Compare 0.5 credit/char Turbo pacing against Multilingual v2
+B03,2026-07-27-power-without-tension,1,eleven_flash_v2_5,21m00Tcm4TlvDq8ikWAM,elevenlabs-licensed-voice-library,810,405,,yes,-14.0,pending,,Check pause cadence around short single-sentence paragraphs

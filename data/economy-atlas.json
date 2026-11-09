@@ -1,0 +1,3680 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Machine to market",
+  "asOf": "2026-10-02",
+  "state": "Research preview; product proposals and prices untested",
+  "sources": [
+    {
+      "id": "ms-store-reach",
+      "title": "Microsoft Store 2025 review",
+      "url": "https://blogs.windows.com/windowsdeveloper/2025/12/18/2025-in-review-how-we-elevated-the-microsoft-store-experience/",
+      "publishedAt": "2025-12-18",
+      "checkedAt": "2026-10-01",
+      "resolution": "full-page",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "ms-store-fees",
+      "title": "Microsoft Store commerce options",
+      "url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/why-distribute-through-store",
+      "publishedAt": null,
+      "checkedAt": "2026-10-02",
+      "resolution": "full-page",
+      "note": "Microsoft commerce lists 15% for apps and 12% for games. Non-game apps may use their own commerce; external payment, tax and distribution costs still apply. The source page was last updated in 2023; check the current agreement.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "qualified",
+      "reviewScope": "Summary checked against current primary page; no seller-account or product-specific approval."
+    },
+    {
+      "id": "android-reach",
+      "title": "Google Android ecosystem update",
+      "url": "https://blog.google/products-and-platforms/platforms/android/android-updates-io-2023/",
+      "publishedAt": "2023-05-10",
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "play-fees",
+      "title": "Google Play service fees",
+      "url": "https://support.google.com/googleplay/android-developer/answer/112622?hl=en-GB",
+      "publishedAt": null,
+      "checkedAt": "2026-10-02",
+      "resolution": "full-page",
+      "note": "Regional rollout changes the fee basis: EEA/UK/US from 30 June 2026, Australia/Japan from 30 September 2026. Subscription, new/existing install, program and billing method affect fees. Remaining markets retain eligible 15% first USD 1 million / 30% above; verify the full regional table.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "qualified",
+      "reviewScope": "Summary checked against current primary page; no seller-account or product-specific approval."
+    },
+    {
+      "id": "samsung-fees",
+      "title": "Galaxy Store revenue model",
+      "url": "https://developer.samsung.com/sdp/news/en/2025/03/13/new-revenue-share-model-for-galaxy-store",
+      "publishedAt": "2025-03-13",
+      "checkedAt": "2026-10-01",
+      "resolution": "full-page",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "samsung-gate",
+      "title": "Galaxy Themes Studio designer eligibility",
+      "url": "https://developer.samsung.com/galaxy-themes/overview.html",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "wear-format",
+      "title": "Wear OS Watch Face Format",
+      "url": "https://developer.android.com/training/wearables/wff",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "huawei-themes",
+      "title": "Huawei Themes designer program",
+      "url": "https://developer.huawei.com/consumer/en/huaweithemes/",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "roblox-users",
+      "title": "Roblox 2025 Form 10-K",
+      "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000024/rblx-20251231.htm",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "full-page",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "roblox-payout",
+      "title": "Roblox economic impact report",
+      "url": "https://about.roblox.com/en-au/newsroom/2025/09/roblox-annual-economic-impact-report",
+      "publishedAt": "2025-09-05",
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "roblox-store",
+      "title": "Roblox Creator Store",
+      "url": "https://create.roblox.com/docs/production/creator-store",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "full-page",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "fortnite-payout",
+      "title": "Fortnite creator payout reporting",
+      "url": "https://www.fortnite.com/news/fortnite-engagement-payout-estimates-now-available",
+      "publishedAt": "2025-01-29",
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "fortnite-items",
+      "title": "Fortnite in-island item sales",
+      "url": "https://www.fortnite.com/news/fortnite-developers-will-soon-be-able-to-sell-in-game-items",
+      "publishedAt": "2025-09-18",
+      "checkedAt": "2026-10-01",
+      "resolution": "full-page",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "steam-wallet",
+      "title": "Steam Community Market FAQ",
+      "url": "https://help.steampowered.com/en/faqs/view/61F0-72B7-9A18-C70B",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "fab-fees",
+      "title": "Fab publisher guide",
+      "url": "https://dev.epicgames.com/documentation/fab/publisher-get-started-in-fab?lang=en-US",
+      "publishedAt": null,
+      "checkedAt": "2026-10-02",
+      "resolution": "full-page",
+      "note": "Fab states an 88% publisher share. Refunds reduce payouts; payout minimum is USD 100 and payments are approximately 30 days after month end. Listings require review and appropriate rights.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "qualified",
+      "reviewScope": "Summary checked against current primary page; no seller-account or product-specific approval."
+    },
+    {
+      "id": "unity-fees",
+      "title": "Unity Asset Store publisher guide",
+      "url": "https://marketplace.unity.com/publishing/publish-and-sell-assets",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "elgato-fees",
+      "title": "Elgato Marketplace revenue share",
+      "url": "https://docs.elgato.com/monetization/revenue-share/",
+      "publishedAt": null,
+      "checkedAt": "2026-10-02",
+      "resolution": "full-page",
+      "note": "Elgato states a 70% maker / 30% platform split. Payout uses Stripe Connect. This establishes a published split, not actual sales or seller eligibility.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "qualified",
+      "reviewScope": "Summary checked against current primary page; no seller-account or product-specific approval."
+    },
+    {
+      "id": "framer-prices",
+      "title": "Framer AI template listings",
+      "url": "https://www.framer.com/marketplace/templates/categories/ai/",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "full-page",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "framer-program",
+      "title": "Framer creator program",
+      "url": "https://www.framer.com/creators",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "full-page",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "etsy-users",
+      "title": "Etsy Q2 2026 Form 10-Q",
+      "url": "https://investors.etsy.com/sec-filings/all-sec-filings/content/0001370637-26-000080/etsy-20260630.htm",
+      "publishedAt": "2026-08-05",
+      "checkedAt": "2026-10-01",
+      "resolution": "full-page",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "etsy-ai",
+      "title": "Etsy creativity standards",
+      "url": "https://www.etsy.com/ca/legal/creativity/",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "etsy-fees",
+      "title": "Etsy seller fees",
+      "url": "https://help.etsy.com/hc/en-in/articles/115014483627-What-are-the-Fees-and-Taxes-for-Selling-on-Etsy",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "chrome-payments",
+      "title": "Chrome Web Store payments deprecation",
+      "url": "https://github.com/GoogleChrome/developer.chrome.com/blob/main/site/en/docs/webstore/cws-payments-deprecation/index.md",
+      "publishedAt": "2020-09-21",
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "vscode-format",
+      "title": "VS Code extensibility",
+      "url": "https://code.visualstudio.com/features/extensibility",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "meta-program",
+      "title": "Meta Horizon creator fund and tools",
+      "url": "https://developers.meta.com/horizon/blog/worlds/empowering-horizon-creators-with-a-new-50m-fund-and-advanced-tools-for-mobile-and-mr-worlds/",
+      "publishedAt": "2025-02-20",
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "meta-commerce",
+      "title": "Meta Horizon app monetization",
+      "url": "https://developers.meta.com/vr/documentation/unreal/ps-monetization-overview/",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "tencent-reach",
+      "title": "Tencent interim 2025 results",
+      "url": "https://static.www.tencent.com/uploads/2025/09/15/a91e39e8822813432efb3d3b511199e2.pdf",
+      "publishedAt": "2025-09-15",
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "apple-context",
+      "title": "Apple global ecosystem report 2024",
+      "url": "https://www.apple.com/newsroom/pdfs/2024-Apple-Global-Ecosystem-Report-June2025.pdf",
+      "publishedAt": "2025-06-01",
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "polar-fees",
+      "title": "Polar fee documentation",
+      "url": "https://polar.sh/docs/merchant-of-record/fees",
+      "publishedAt": null,
+      "checkedAt": "2026-10-02",
+      "resolution": "full-page",
+      "note": "Starter is 5% + USD 0.50; paid plans and qualifying Early Member accounts differ. Non-US cards add 1.5%; refunds retain original transaction fees; payout and conversion fees remain.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "qualified",
+      "reviewScope": "Summary checked against current primary page; no seller-account or product-specific approval."
+    },
+    {
+      "id": "whop-fees",
+      "title": "Whop network pricing",
+      "url": "https://whop.com/network/pricing/",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "ai-act",
+      "title": "EU AI Act current framework and timeline",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+      "publishedAt": null,
+      "checkedAt": "2026-10-02",
+      "resolution": "full-page",
+      "note": "The Commission describes risk-based obligations and distinct provider/deployer roles. Transparency rules apply from August 2026; GPAI obligations from August 2025. High-risk dates differ by category under the amended framework. Product classification and current legislation need specialist review.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "qualified",
+      "reviewScope": "Summary checked against current primary page; no seller-account or product-specific approval."
+    },
+    {
+      "id": "ai-enforcement",
+      "title": "EU AI Act enforcement",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/enforcement-ai-act",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "nl-ai",
+      "title": "Dutch AI supervision proposal",
+      "url": "https://autoriteitpersoonsgegevens.nl/actueel/toezicht-op-ai-wordt-concreet-sleutelrol-voor-de-ap-en-de-rdi",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "de-ai",
+      "title": "German AI authority information",
+      "url": "https://www.bundesnetzagentur.de/DE/Fachthemen/Digitales/KI/1_Ziel/start_ziel.html",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "gdpr-ai",
+      "title": "AP generative AI and GDPR guidance",
+      "url": "https://autoriteitpersoonsgegevens.nl/en/documents/guidance-generative-ai-and-the-gdpr",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "cra",
+      "title": "EU Cyber Resilience Act summary",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/cra-summary",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "full-page",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "cra-oss",
+      "title": "CRA and open source",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/cra-open-source",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "eu-sales",
+      "title": "EU distance selling and digital content",
+      "url": "https://europa.eu/youreurope/business/selling-in-eu/selling-goods-services/ecommerce-distance-selling/index_en.htm",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "eu-vat",
+      "title": "EU VAT One Stop Shop",
+      "url": "https://europa.eu/youreurope/business/finance-and-tax/vat/one-stop-shop/index_en.htm",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "ftc",
+      "title": "FTC AI privacy and confidentiality",
+      "url": "https://www.ftc.gov/policy/advocacy-research/tech-at-ftc/2024/01/ai-companies-uphold-your-privacy-confidentiality-commitments",
+      "publishedAt": "2024-01-09",
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "cn-app",
+      "title": "China MIIT app filing notice",
+      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2023/art_920db564162e4312916a01bed6540ad8.html",
+      "publishedAt": "2023-08-04",
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "cn-ai",
+      "title": "China generative AI interim measures",
+      "url": "https://wap.miit.gov.cn/gyhxxhb/jgsj/cyzcyfgs/bmgz/xxtxl/art/2023/art_4248f433b62143d8a0222a7db8873822.html",
+      "publishedAt": "2023-08-30",
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "nasa-rights",
+      "title": "NASA brand and media usage",
+      "url": "https://www.nasa.gov/nasa-brand-center/",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "fences-price",
+      "title": "Stardock Fences 6 launch pricing",
+      "url": "https://www.stardock.com/press/software/fences6/documents/Fences_6_1.0_Press_Release.pdf",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "search-excerpt",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "gumroad-fees",
+      "title": "Gumroad pricing",
+      "url": "https://gumroad.com/pricing",
+      "publishedAt": null,
+      "checkedAt": "2026-10-02",
+      "resolution": "full-page",
+      "note": "Direct/profile sales are 10% + USD 0.50; Discover sales are 30%. Sales-tax merchant-of-record handling does not remove the creator’s other tax, legal or product obligations.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "qualified",
+      "reviewScope": "Summary checked against current primary page; no seller-account or product-specific approval."
+    },
+    {
+      "id": "rainmeter",
+      "title": "Rainmeter official site",
+      "url": "https://www.rainmeter.net/",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "full-page",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "wallpaper-engine",
+      "title": "Wallpaper Engine official FAQ",
+      "url": "https://www.wallpaperengine.io/en",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "full-page",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    },
+    {
+      "id": "chrome-policy",
+      "title": "Chrome Web Store program policies",
+      "url": "https://developer.chrome.com/docs/webstore/program-policies",
+      "publishedAt": null,
+      "checkedAt": "2026-10-01",
+      "resolution": "full-page",
+      "note": "Research lead. Claims, eligibility and commercial terms require review against the primary source before use.",
+      "status": "retrieved",
+      "refreshDays": 30,
+      "claimReview": "needs review"
+    }
+  ],
+  "marketplaces": [
+    {
+      "id": "owned",
+      "name": "Owned websites",
+      "type": "Checkout + distribution",
+      "products": "Portable products, downloads, update licenses",
+      "economics": "Merchant-of-record or processor costs depend on contract",
+      "gate": "Existing sites; pre-launch demand capture and product gate",
+      "region": "Global",
+      "status": "hypothesis",
+      "sourceIds": [],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "polar",
+      "name": "Polar",
+      "type": "Merchant of record",
+      "products": "Software licenses, downloads, subscriptions",
+      "economics": "Starter 5% + USD 0.50; paid tiers / qualifying Early Member differ; +1.5% non-US cards and payout costs",
+      "gate": "Acceptable-use, supported country and product approval",
+      "region": "Global",
+      "status": "retrieved",
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "qualified"
+    },
+    {
+      "id": "gumroad",
+      "name": "Gumroad",
+      "type": "Merchant of record + discovery",
+      "products": "Download bundles, media and memberships",
+      "economics": "Direct 10% + USD 0.50; Discover 30%",
+      "gate": "Country payout, product policy and rights",
+      "region": "Global",
+      "status": "retrieved",
+      "sourceIds": [
+        "gumroad-fees"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "qualified"
+    },
+    {
+      "id": "whop",
+      "name": "Whop",
+      "type": "Payments + community",
+      "products": "Self-service packs and content access",
+      "economics": "Domestic cards 2.7% + USD 0.30; other fees vary",
+      "gate": "Payment-product scope, international/billing charges",
+      "region": "Global",
+      "status": "retrieved",
+      "sourceIds": [
+        "whop-fees"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "etsy",
+      "name": "Etsy",
+      "type": "Marketplace",
+      "products": "Original digital artwork, planners, downloadable designs",
+      "economics": "Listing + transaction + processing + possible ads",
+      "gate": "Creativity rules, AI disclosure, format eligibility",
+      "region": "Global",
+      "status": "retrieved",
+      "sourceIds": [
+        "etsy-ai",
+        "etsy-fees",
+        "etsy-users"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "msstore",
+      "name": "Microsoft Store",
+      "type": "App store",
+      "products": "Signed desktop utilities and theme companion apps",
+      "economics": "15% apps / 12% games with Microsoft commerce; own commerce for non-games",
+      "gate": "Certification, privacy, packaging, software maintenance",
+      "region": "Global",
+      "status": "retrieved",
+      "sourceIds": [
+        "ms-store-fees",
+        "ms-store-reach"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "play",
+      "name": "Google Play",
+      "type": "App store",
+      "products": "Android wallpaper/widget utilities and Wear OS faces",
+      "economics": "Regional rollout changes the fee basis: EEA/UK/US from 30 June 2026, Australia/Japan from 30 September 2026. Subscription, new/existing install, program and billing method affect fees. Remaining markets retain eligible 15% first USD 1 million / 30% above; verify the full regional table.",
+      "gate": "Developer verification, testing, billing rules, WFF for faces",
+      "region": "Global",
+      "status": "retrieved",
+      "sourceIds": [
+        "play-fees",
+        "wear-format"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "galaxy",
+      "name": "Samsung Galaxy Store / Themes",
+      "type": "App store + curated designer program",
+      "products": "Galaxy themes and eligible applications",
+      "economics": "80% net share; 85% subscriptions under standard contract",
+      "gate": "Theme-designer selection; current intake unknown",
+      "region": "Galaxy regions",
+      "status": "retrieved",
+      "sourceIds": [
+        "samsung-fees",
+        "samsung-gate"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "huawei",
+      "name": "Huawei Themes / AppGallery",
+      "type": "OEM marketplace",
+      "products": "Phone themes, AOD, fonts, faces and apps",
+      "economics": "Themes advertises up to 70%; verify contract",
+      "gate": "Certification, local payout and mainland filing",
+      "region": "Global / China",
+      "status": "retrieved",
+      "sourceIds": [
+        "huawei-themes",
+        "cn-app"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "chrome",
+      "name": "Chrome Web Store",
+      "type": "Extension distribution",
+      "products": "Useful browser extensions and companion themes",
+      "economics": "Native payments deprecated; external licensing",
+      "gate": "Permissions, user-data disclosure, current policies",
+      "region": "Global",
+      "status": "retrieved",
+      "sourceIds": [
+        "chrome-payments",
+        "chrome-policy"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "vscode",
+      "name": "VS Code Marketplace",
+      "type": "Extension distribution",
+      "products": "Themes, icons, profiles, snippets, extensions",
+      "economics": "Checkout model must be designed separately",
+      "gate": "Licenses, publishing requirements, trust boundaries",
+      "region": "Global",
+      "status": "retrieved",
+      "sourceIds": [
+        "vscode-format"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "rainmeter",
+      "name": "Rainmeter community",
+      "type": "Community distribution",
+      "products": "Free demo skins; separately licensed original source packs",
+      "economics": "Runtime free; no native skin checkout assumed",
+      "gate": "GPL interactions, asset rights and no forced telemetry",
+      "region": "Windows",
+      "status": "retrieved",
+      "sourceIds": [
+        "rainmeter"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "wallpaper",
+      "name": "Wallpaper Engine Workshop",
+      "type": "Community distribution",
+      "products": "Free wallpaper demo and community discovery",
+      "economics": "Workshop wallpaper subscriptions are free",
+      "gate": "Do not count free Workshop downloads as paid orders",
+      "region": "Windows / Android",
+      "status": "retrieved",
+      "sourceIds": [
+        "wallpaper-engine"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "elgato",
+      "name": "Elgato Marketplace",
+      "type": "Device assets + plugins",
+      "products": "Stream Deck icon packs, profiles and plugins",
+      "economics": "70% maker / 30% marketplace",
+      "gate": "Maker eligibility, plugin review and payout verification",
+      "region": "Global",
+      "status": "retrieved",
+      "sourceIds": [
+        "elgato-fees"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "qualified"
+    },
+    {
+      "id": "framer",
+      "name": "Framer Marketplace",
+      "type": "Templates + plugins",
+      "products": "Complete website templates and components",
+      "economics": "Observe listed prices; verify current seller terms",
+      "gate": "Marketplace quality review, license and support expectations",
+      "region": "Global",
+      "status": "retrieved",
+      "sourceIds": [
+        "framer-prices",
+        "framer-program"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "roblox",
+      "name": "Roblox Creator Store",
+      "type": "Developer assets",
+      "products": "Studio plugins and models sold in USD",
+      "economics": "100% net proceeds after tax/payment deductions",
+      "gate": "Seller eligibility, originality and asset/script safety",
+      "region": "Global",
+      "status": "retrieved",
+      "sourceIds": [
+        "roblox-store"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "roblox-avatar",
+      "name": "Roblox avatar economy",
+      "type": "Virtual items + DevEx",
+      "products": "Original avatar cosmetics",
+      "economics": "Terms vary by item, creator program and payout route",
+      "gate": "Do not apply Creator Store USD economics to avatars",
+      "region": "Global",
+      "status": "candidate",
+      "sourceIds": [
+        "roblox-users",
+        "roblox-payout"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "fortnite",
+      "name": "Fortnite islands / UEFN",
+      "type": "Engagement + item payouts",
+      "products": "Original game experiences and in-island items",
+      "economics": "2026 promotion uses V-Bucks value; confirm current live terms",
+      "gate": "Creator eligibility, age/country, moderation, retention",
+      "region": "Eligible regions",
+      "status": "retrieved",
+      "sourceIds": [
+        "fortnite-items",
+        "fortnite-payout"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "fab",
+      "name": "Fab",
+      "type": "Game / 3D asset marketplace",
+      "products": "Game-ready environments, UI, VFX, models",
+      "economics": "88% creator share",
+      "gate": "Seller review, rights, payout threshold and support",
+      "region": "Global",
+      "status": "retrieved",
+      "sourceIds": [
+        "fab-fees"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "qualified"
+    },
+    {
+      "id": "unity",
+      "name": "Unity Asset Store",
+      "type": "Game asset marketplace",
+      "products": "Editor tools, assets and game templates",
+      "economics": "70% publisher revenue",
+      "gate": "Submission standards, licensing and supported versions",
+      "region": "Global",
+      "status": "retrieved",
+      "sourceIds": [
+        "unity-fees"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "steam",
+      "name": "Steam Workshop / game creator programs",
+      "type": "Game-dependent creator contract",
+      "products": "Publisher-selected original skins",
+      "economics": "Game-specific contracts; Wallet trading not bank revenue",
+      "gate": "Publisher selection and license, separate from secondary trading",
+      "region": "Global",
+      "status": "candidate",
+      "sourceIds": [
+        "steam-wallet"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "meta",
+      "name": "Meta Horizon",
+      "type": "App commerce + creator programs",
+      "products": "XR apps, original worlds and interaction templates",
+      "economics": "Program/region terms; historical fund is not guaranteed income",
+      "gate": "Creator and store eligibility, headset/mobile QA",
+      "region": "Eligible regions",
+      "status": "retrieved",
+      "sourceIds": [
+        "meta-program",
+        "meta-commerce"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "wechat",
+      "name": "Weixin / WeChat Mini Programs",
+      "type": "Super-app distribution",
+      "products": "Local-language commerce/workflow apps",
+      "economics": "Commercial arrangements require local investigation",
+      "gate": "Entity/publisher, filing, payments, content/data requirements",
+      "region": "China / diaspora",
+      "status": "candidate",
+      "sourceIds": [
+        "tencent-reach",
+        "cn-app",
+        "cn-ai"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "apple",
+      "name": "Apple App Store",
+      "type": "App store",
+      "products": "Widgets, utilities, macOS apps and visionOS tools",
+      "economics": "Current region/program terms not researched in this slice",
+      "gate": "Device QA, enrollment, review and consumer rules",
+      "region": "Global",
+      "status": "candidate",
+      "sourceIds": [
+        "apple-context"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "webflow",
+      "name": "Webflow Marketplace",
+      "type": "Website templates",
+      "products": "Responsive site templates",
+      "economics": "Seller terms and fees not yet researched",
+      "gate": "Native template criteria and approval",
+      "region": "Global",
+      "status": "candidate",
+      "sourceIds": [],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "figma",
+      "name": "Figma Community / commercial distribution",
+      "type": "Design resources",
+      "products": "UI kits, variables and prototypes",
+      "economics": "Current commercial channel terms not verified",
+      "gate": "Asset/font licensing and format eligibility",
+      "region": "Global",
+      "status": "candidate",
+      "sourceIds": [],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "notion",
+      "name": "Notion Marketplace",
+      "type": "Workspace templates",
+      "products": "Business databases and documented workflows",
+      "economics": "Seller approval and current fees not verified",
+      "gate": "Native functionality, privacy and support duties",
+      "region": "Global",
+      "status": "candidate",
+      "sourceIds": [],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "itch",
+      "name": "itch.io",
+      "type": "Indie digital marketplace",
+      "products": "Game assets, small games and source packs",
+      "economics": "Current revenue terms not retrieved",
+      "gate": "License clarity, content policy and payout",
+      "region": "Global",
+      "status": "candidate",
+      "sourceIds": [],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "oem-cn",
+      "name": "Xiaomi / OPPO / vivo stores",
+      "type": "OEM distribution",
+      "products": "Localized phone themes and applications",
+      "economics": "Country and OEM contracts not verified",
+      "gate": "Local partner, certification, filing and device QA",
+      "region": "China / regional OEM",
+      "status": "candidate",
+      "sourceIds": [
+        "cn-app"
+      ],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    },
+    {
+      "id": "cloud",
+      "name": "AWS / Azure / Google Cloud marketplaces",
+      "type": "Enterprise marketplace",
+      "products": "Customer-deployed infrastructure products",
+      "economics": "Procurement, offer type and fees not researched",
+      "gate": "Entity eligibility, operations/SLA, security and billing",
+      "region": "Global",
+      "status": "candidate",
+      "sourceIds": [],
+      "salesKnown": false,
+      "evidenceStatus": "needs review"
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "terminal-pack",
+      "name": "Portable terminal studio",
+      "category": "Personalization",
+      "buyer": "Developers who want a coherent workspace",
+      "deliverable": "PowerShell profile, Terminal schemes, command help, preview and uninstall",
+      "priority": 1,
+      "complexity": 2,
+      "channelIds": [
+        "owned",
+        "gumroad",
+        "vscode"
+      ],
+      "experiment": "Three clean Windows installs; zero profile clobbers; measure time to first useful command.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "gumroad-fees",
+        "vscode-format"
+      ],
+      "risk": "Compatibility, readability, rights, battery/idle resource costs and reversible installation.",
+      "priceHypothesisEUR": {
+        "low": 19,
+        "high": 49,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "editor-theme",
+      "name": "Editor color and icon collection",
+      "category": "Personalization",
+      "buyer": "Developers buying visual consistency",
+      "deliverable": "Original VS Code themes, icon resources, contrast reports and matching terminal palette",
+      "priority": 2,
+      "complexity": 1,
+      "channelIds": [
+        "vscode",
+        "owned",
+        "gumroad"
+      ],
+      "experiment": "Compare two readable themes with ten target developers; record use after seven days.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "vscode-format",
+        "gumroad-fees"
+      ],
+      "risk": "Compatibility, readability, rights, battery/idle resource costs and reversible installation.",
+      "priceHypothesisEUR": {
+        "low": 9,
+        "high": 29,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "desktop-skin",
+      "name": "Desktop information skin",
+      "category": "Personalization",
+      "buyer": "Desktop customization enthusiasts",
+      "deliverable": "Original Rainmeter layout with local machine metrics and removable configuration",
+      "priority": 2,
+      "complexity": 2,
+      "channelIds": [
+        "rainmeter",
+        "owned",
+        "gumroad"
+      ],
+      "experiment": "Measure idle CPU/RAM and installation success; collect price choices before release.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "rainmeter",
+        "gumroad-fees"
+      ],
+      "risk": "Compatibility, readability, rights, battery/idle resource costs and reversible installation.",
+      "priceHypothesisEUR": {
+        "low": 9,
+        "high": 39,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "wallpaper-pack",
+      "name": "Original animated wallpaper source pack",
+      "category": "Personalization",
+      "buyer": "Creators building distinctive workspaces",
+      "deliverable": "Looping original artwork, editable source, multi-monitor exports and still alternatives",
+      "priority": 2,
+      "complexity": 2,
+      "channelIds": [
+        "owned",
+        "etsy",
+        "gumroad",
+        "wallpaper"
+      ],
+      "experiment": "Use free Workshop demo for discovery; test paid source-pack interest separately.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "etsy-ai",
+        "etsy-fees",
+        "etsy-users",
+        "gumroad-fees",
+        "wallpaper-engine"
+      ],
+      "risk": "Compatibility, readability, rights, battery/idle resource costs and reversible installation.",
+      "priceHypothesisEUR": {
+        "low": 9,
+        "high": 39,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "streamdeck-icons",
+      "name": "Stream Deck creative controls",
+      "category": "Personalization",
+      "buyer": "Streamers and agent users with Stream Decks",
+      "deliverable": "Original icon family, documented profiles and safe task shortcuts",
+      "priority": 2,
+      "complexity": 2,
+      "channelIds": [
+        "elgato",
+        "owned"
+      ],
+      "experiment": "Five device owners test profile import and shortcut accuracy without dangerous defaults.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "elgato-fees"
+      ],
+      "risk": "Compatibility, readability, rights, battery/idle resource costs and reversible installation.",
+      "priceHypothesisEUR": {
+        "low": 15,
+        "high": 49,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "wear-faces",
+      "name": "Wear OS glanceable faces",
+      "category": "Personalization",
+      "buyer": "Wearable owners seeking useful personal style",
+      "deliverable": "WFF face family, complications, accessibility variants and battery test evidence",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "play"
+      ],
+      "experiment": "One physical Wear OS device and multiple sizes; battery and readability compared with stock.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "play-fees",
+        "wear-format"
+      ],
+      "risk": "Compatibility, readability, rights, battery/idle resource costs and reversible installation.",
+      "priceHypothesisEUR": {
+        "low": 2,
+        "high": 9,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "phone-theme",
+      "name": "OEM phone theme family",
+      "category": "Personalization",
+      "buyer": "Samsung and Huawei personalization buyers",
+      "deliverable": "Original icons, wallpaper, lock screen and device-specific theme package",
+      "priority": 3,
+      "complexity": 3,
+      "channelIds": [
+        "galaxy",
+        "huawei",
+        "oem-cn"
+      ],
+      "experiment": "Verify designer intake and seller eligibility before creating a device package.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "samsung-fees",
+        "samsung-gate",
+        "huawei-themes",
+        "cn-app"
+      ],
+      "risk": "Compatibility, readability, rights, battery/idle resource costs and reversible installation.",
+      "priceHypothesisEUR": {
+        "low": 2,
+        "high": 12,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "widgets",
+      "name": "Phone and desktop widget collection",
+      "category": "Personalization",
+      "buyer": "People who want calendar and task information in a cohesive layout",
+      "deliverable": "Configurable widgets with local data and offline fallback",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "play",
+        "apple",
+        "owned"
+      ],
+      "experiment": "Test on actual Android and iOS devices; no platform-wide skin promise.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "play-fees",
+        "wear-format",
+        "apple-context"
+      ],
+      "risk": "Compatibility, readability, rights, battery/idle resource costs and reversible installation.",
+      "priceHypothesisEUR": {
+        "low": 9,
+        "high": 29,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "cursor-font",
+      "name": "Cursor, icon and typography set",
+      "category": "Personalization",
+      "buyer": "Design-conscious makers",
+      "deliverable": "Original cursors, icons and appropriately licensed typography specimens",
+      "priority": 2,
+      "complexity": 2,
+      "channelIds": [
+        "owned",
+        "etsy",
+        "gumroad"
+      ],
+      "experiment": "Test discoverability at small sizes and legal redistribution rights.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "etsy-ai",
+        "etsy-fees",
+        "etsy-users",
+        "gumroad-fees"
+      ],
+      "risk": "Compatibility, readability, rights, battery/idle resource costs and reversible installation.",
+      "priceHypothesisEUR": {
+        "low": 9,
+        "high": 39,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "skin-system",
+      "name": "Cross-surface design token compiler",
+      "category": "Personalization",
+      "buyer": "Community theme designers",
+      "deliverable": "One original design specification exported to compatible editor/terminal/web formats",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "gumroad",
+        "vscode"
+      ],
+      "experiment": "Prove exact exports and round-trip migration on three formats.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "gumroad-fees",
+        "vscode-format"
+      ],
+      "risk": "Compatibility, readability, rights, battery/idle resource costs and reversible installation.",
+      "priceHypothesisEUR": {
+        "low": 39,
+        "high": 129,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "repo-starter",
+      "name": "Agent-ready repository starter",
+      "category": "Developer tools",
+      "buyer": "Builders starting maintainable software projects",
+      "deliverable": "Scoped instructions, setup checks, tests, secret hygiene and source references",
+      "priority": 2,
+      "complexity": 2,
+      "channelIds": [
+        "owned",
+        "polar",
+        "gumroad"
+      ],
+      "experiment": "Fresh-machine setup plus adversarial prompt-injection and secret-leak fixtures.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees",
+        "gumroad-fees"
+      ],
+      "risk": "Secrets, unsafe defaults, dependency changes, provenance and ongoing software-security obligations.",
+      "priceHypothesisEUR": {
+        "low": 39,
+        "high": 99,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "safe-installer",
+      "name": "Reversible product installer toolkit",
+      "category": "Developer tools",
+      "buyer": "Creators shipping downloadable software",
+      "deliverable": "Dry run, versioned manifests, backups, signature/checksum checks, doctor and uninstall",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "polar"
+      ],
+      "experiment": "Break installation mid-run; prove safe recovery and preservation of existing profiles.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Secrets, unsafe defaults, dependency changes, provenance and ongoing software-security obligations.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "mcp-kit",
+      "name": "MCP integration developer kit",
+      "category": "Developer tools",
+      "buyer": "Developers connecting their agents to software",
+      "deliverable": "Typed schemas, scoped auth examples, fixture tools, observability and conformance checks",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "polar",
+        "gumroad"
+      ],
+      "experiment": "Implement one narrow tool and demonstrate authorization failures and audit records.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees",
+        "gumroad-fees"
+      ],
+      "risk": "Secrets, unsafe defaults, dependency changes, provenance and ongoing software-security obligations.",
+      "priceHypothesisEUR": {
+        "low": 39,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "extension-kit",
+      "name": "Browser extension quickstart",
+      "category": "Developer tools",
+      "buyer": "Developers building a single-purpose extension",
+      "deliverable": "Manifest V3 scaffolding, minimal permissions, settings, external licensing example and tests",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "polar",
+        "chrome"
+      ],
+      "experiment": "A useful demo accepted in a test environment; inspect data handling and permissions.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees",
+        "chrome-payments",
+        "chrome-policy"
+      ],
+      "risk": "Secrets, unsafe defaults, dependency changes, provenance and ongoing software-security obligations.",
+      "priceHypothesisEUR": {
+        "low": 29,
+        "high": 99,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "local-memory",
+      "name": "Local knowledge workspace",
+      "category": "Developer tools",
+      "buyer": "Creators who need searchable project knowledge",
+      "deliverable": "Import/export, citations, local indexing, deletion controls and optional BYOK retrieval",
+      "priority": 2,
+      "complexity": 4,
+      "channelIds": [
+        "owned",
+        "polar"
+      ],
+      "experiment": "Known-answer retrieval set with deletion and offline tests; do not promise perfect recall.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Secrets, unsafe defaults, dependency changes, provenance and ongoing software-security obligations.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "eval-pack",
+      "name": "Agent reliability evaluation pack",
+      "category": "Developer tools",
+      "buyer": "Teams measuring agent output",
+      "deliverable": "Ground-truth fixtures, blind scoring, failure categories and reproducible reports",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "polar"
+      ],
+      "experiment": "Compare runs across two dates; publish failure rates with denominators and uncertainty.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Secrets, unsafe defaults, dependency changes, provenance and ongoing software-security obligations.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 199,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "cost-kit",
+      "name": "AI cost and outcome ledger",
+      "category": "Developer tools",
+      "buyer": "People paying for API-powered workflows",
+      "deliverable": "Provider-neutral cost receipts and cost-per-success calculator",
+      "priority": 2,
+      "complexity": 2,
+      "channelIds": [
+        "owned",
+        "polar"
+      ],
+      "experiment": "Reconcile sample receipts against actual invoices; count retries and failures.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Secrets, unsafe defaults, dependency changes, provenance and ongoing software-security obligations.",
+      "priceHypothesisEUR": {
+        "low": 29,
+        "high": 99,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "business-pack",
+      "name": "BYOK business workflow pack",
+      "category": "Agent products",
+      "buyer": "Small digital-product businesses",
+      "deliverable": "A complete research-to-draft workflow with fixtures, approvals and exportable records",
+      "priority": 1,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "polar",
+        "whop"
+      ],
+      "experiment": "Three customer-owned clean environments complete one workflow without personal assistance.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees",
+        "whop-fees"
+      ],
+      "risk": "Prompt injection, over-permissioned tools, unsupported claims, model changes and autonomous-action boundaries.",
+      "priceHypothesisEUR": {
+        "low": 79,
+        "high": 199,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "research-pack",
+      "name": "Evidence-first research agent pack",
+      "category": "Agent products",
+      "buyer": "Analysts and content creators",
+      "deliverable": "Source capture, claim ledger, freshness checks, contradiction log and cited briefing",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "polar",
+        "gumroad"
+      ],
+      "experiment": "Score unsupported claims on a fixed task set; test stale and conflicting evidence.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees",
+        "gumroad-fees"
+      ],
+      "risk": "Prompt injection, over-permissioned tools, unsupported claims, model changes and autonomous-action boundaries.",
+      "priceHypothesisEUR": {
+        "low": 39,
+        "high": 129,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "creator-pack",
+      "name": "Creator production agent pack",
+      "category": "Agent products",
+      "buyer": "Creators producing original media",
+      "deliverable": "Brief, scripts, asset manifests, rights checks and reusable publishing exports",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "whop",
+        "gumroad"
+      ],
+      "experiment": "Create one reproducible multimedia packet and measure edits needed before release.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "whop-fees",
+        "gumroad-fees"
+      ],
+      "risk": "Prompt injection, over-permissioned tools, unsupported claims, model changes and autonomous-action boundaries.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "agent-souls",
+      "name": "Role and behavior packs",
+      "category": "Agent products",
+      "buyer": "Agent users needing domain-specific behavior",
+      "deliverable": "Explicit scope, tool policy, refusal/approval behavior, examples and evaluation fixtures",
+      "priority": 2,
+      "complexity": 2,
+      "channelIds": [
+        "owned",
+        "gumroad"
+      ],
+      "experiment": "Blind-test against generic prompt; sell behavior with demonstrated improvement.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "gumroad-fees"
+      ],
+      "risk": "Prompt injection, over-permissioned tools, unsupported claims, model changes and autonomous-action boundaries.",
+      "priceHypothesisEUR": {
+        "low": 19,
+        "high": 79,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "connector-pack",
+      "name": "Read-only business connector pack",
+      "category": "Agent products",
+      "buyer": "Operators assembling their own business workspace",
+      "deliverable": "Narrow customer-owned connectors with typed permissions and audit trails",
+      "priority": 2,
+      "complexity": 4,
+      "channelIds": [
+        "owned",
+        "polar"
+      ],
+      "experiment": "One accounting or CRM sandbox; no production mutations until separate authorization.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Prompt injection, over-permissioned tools, unsupported claims, model changes and autonomous-action boundaries.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "community-agent",
+      "name": "Community moderation helper",
+      "category": "Agent products",
+      "buyer": "Community owners managing repeated tasks",
+      "deliverable": "Local/BYOK moderation suggestions, FAQs and human approval queues",
+      "priority": 2,
+      "complexity": 4,
+      "channelIds": [
+        "owned",
+        "whop"
+      ],
+      "experiment": "Evaluate harmful false positives, privacy and platform bot permissions on synthetic posts.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "whop-fees"
+      ],
+      "risk": "Prompt injection, over-permissioned tools, unsupported claims, model changes and autonomous-action boundaries.",
+      "priceHypothesisEUR": {
+        "low": 39,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "assistant-shell",
+      "name": "Original cinematic assistant shell",
+      "category": "Agent products",
+      "buyer": "Sci-fi interface enthusiasts",
+      "deliverable": "Original branded voice/UI shell over real tools with visible permissions and task state",
+      "priority": 3,
+      "complexity": 4,
+      "channelIds": [
+        "owned",
+        "msstore"
+      ],
+      "experiment": "Functional demo with cancel, approvals and recovery; avoid Marvel branding and actor likenesses.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "ms-store-fees",
+        "ms-store-reach"
+      ],
+      "risk": "Prompt injection, over-permissioned tools, unsupported claims, model changes and autonomous-action boundaries.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 199,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "website-kit",
+      "name": "Agent-ready website and business kit",
+      "category": "Web templates",
+      "buyer": "Founders and creators launching a defined offer",
+      "deliverable": "Responsive site, content model, working demand capture, deployment guide and buyer-run agent",
+      "priority": 1,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "framer",
+        "polar"
+      ],
+      "experiment": "Three independent deployments; all CTAs work; record qualified price-band choices.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "framer-prices",
+        "framer-program",
+        "polar-fees"
+      ],
+      "risk": "Broken CTAs, accessibility, privacy/consent, customer deployment costs and template support requirements.",
+      "priceHypothesisEUR": {
+        "low": 79,
+        "high": 199,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "vertical-sites",
+      "name": "Vertical website template series",
+      "category": "Web templates",
+      "buyer": "Specific professional niches",
+      "deliverable": "Complete niche-specific pages, realistic demo data, accessibility and native builder exports",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "framer",
+        "webflow",
+        "owned"
+      ],
+      "experiment": "Compare one specific niche against generic AI landing page in a moderated task.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "framer-prices",
+        "framer-program"
+      ],
+      "risk": "Broken CTAs, accessibility, privacy/consent, customer deployment costs and template support requirements.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "ui-kit",
+      "name": "Accessible AI interface kit",
+      "category": "Web templates",
+      "buyer": "Product designers and developers",
+      "deliverable": "Components for tool approvals, citations, error recovery, voice state and agent progress",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "figma",
+        "framer",
+        "owned"
+      ],
+      "experiment": "Keyboard and screen-reader task tests; measure comprehension of pending actions.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "framer-prices",
+        "framer-program"
+      ],
+      "risk": "Broken CTAs, accessibility, privacy/consent, customer deployment costs and template support requirements.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "atlas-template",
+      "name": "Interactive evidence atlas template",
+      "category": "Web templates",
+      "buyer": "Researchers and educators",
+      "deliverable": "Dataset schema, filterable maps, citations, accessible tables and export tools",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "polar",
+        "framer"
+      ],
+      "experiment": "Replace demo dataset without code changes; check claims retain dates and units.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees",
+        "framer-prices",
+        "framer-program"
+      ],
+      "risk": "Broken CTAs, accessibility, privacy/consent, customer deployment costs and template support requirements.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "commerce-kit",
+      "name": "Self-service digital-product commerce kit",
+      "category": "Web templates",
+      "buyer": "Creators distributing downloads",
+      "deliverable": "License delivery, receipts, account export, refund flow and merchant integration patterns",
+      "priority": 2,
+      "complexity": 4,
+      "channelIds": [
+        "owned",
+        "polar"
+      ],
+      "experiment": "Sandbox purchase/refund/download test; fraud and webhook replay coverage.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Broken CTAs, accessibility, privacy/consent, customer deployment costs and template support requirements.",
+      "priceHypothesisEUR": {
+        "low": 79,
+        "high": 199,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "portfolio-kit",
+      "name": "Creator portfolio and media library",
+      "category": "Web templates",
+      "buyer": "Artists, authors and musicians",
+      "deliverable": "Accessible portfolio, rights metadata, original media previews and contact/demand forms",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "framer",
+        "webflow",
+        "owned"
+      ],
+      "experiment": "Deploy with real owned assets; verify speed and no broken media.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "framer-prices",
+        "framer-program"
+      ],
+      "risk": "Broken CTAs, accessibility, privacy/consent, customer deployment costs and template support requirements.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 129,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "motion-components",
+      "name": "Purposeful web motion library",
+      "category": "Web templates",
+      "buyer": "Designers building responsive interactions",
+      "deliverable": "Original components with reduced-motion paths and interrupted-transition demos",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "framer",
+        "figma",
+        "owned"
+      ],
+      "experiment": "Touch, focus, keyboard and rapid-toggle testing; compare task speed.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "framer-prices",
+        "framer-program"
+      ],
+      "risk": "Broken CTAs, accessibility, privacy/consent, customer deployment costs and template support requirements.",
+      "priceHypothesisEUR": {
+        "low": 29,
+        "high": 99,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "media-library",
+      "name": "Commercial original media library",
+      "category": "Media IP",
+      "buyer": "Creators needing reusable owned/licensed assets",
+      "deliverable": "Art, loops, overlays and audio with license manifest and provenance",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "etsy",
+        "gumroad",
+        "fab"
+      ],
+      "experiment": "Rights audit every asset; test search and remix utility with five makers.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "etsy-ai",
+        "etsy-fees",
+        "etsy-users",
+        "gumroad-fees",
+        "fab-fees"
+      ],
+      "risk": "Chain of title, generation-provider rights, copyright/likeness, font/media licensing and channel disclosure.",
+      "priceHypothesisEUR": {
+        "low": 19,
+        "high": 99,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "world-kits",
+      "name": "Original world and character kits",
+      "category": "Media IP",
+      "buyer": "Writers and game creators",
+      "deliverable": "Coherent original lore, character sheets, environments, prompts and editable assets",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "gumroad",
+        "fab"
+      ],
+      "experiment": "Canon review plus rights review; one creator builds a scene from the kit.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "gumroad-fees",
+        "fab-fees"
+      ],
+      "risk": "Chain of title, generation-provider rights, copyright/likeness, font/media licensing and channel disclosure.",
+      "priceHypothesisEUR": {
+        "low": 39,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "books",
+      "name": "Practical field guides and books",
+      "category": "Media IP",
+      "buyer": "People learning a specific technical or creative practice",
+      "deliverable": "Edited EPUB/PDF, worked examples, companion files and update record",
+      "priority": 2,
+      "complexity": 2,
+      "channelIds": [
+        "owned",
+        "gumroad"
+      ],
+      "experiment": "Readability review, EPUB validation and example replication; no unverified expertise claims.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "gumroad-fees"
+      ],
+      "risk": "Chain of title, generation-provider rights, copyright/likeness, font/media licensing and channel disclosure.",
+      "priceHypothesisEUR": {
+        "low": 9,
+        "high": 39,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "music-pack",
+      "name": "Original soundscape and music license packs",
+      "category": "Media IP",
+      "buyer": "Video, game and workspace creators",
+      "deliverable": "Stems/loops where rights permit, usage license, provenance and mix alternatives",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "gumroad",
+        "unity"
+      ],
+      "experiment": "Check generation subscription and downstream rights; export actual usable files.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "gumroad-fees",
+        "unity-fees"
+      ],
+      "risk": "Chain of title, generation-provider rights, copyright/likeness, font/media licensing and channel disclosure.",
+      "priceHypothesisEUR": {
+        "low": 19,
+        "high": 79,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "video-kit",
+      "name": "Editable video and launch-story templates",
+      "category": "Media IP",
+      "buyer": "Creators publishing demos and product updates",
+      "deliverable": "Remotion or equivalent source, motion presets, subtitles and licensed example media",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "gumroad"
+      ],
+      "experiment": "Replace media and render in customer environment; measure editing time.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "gumroad-fees"
+      ],
+      "risk": "Chain of title, generation-provider rights, copyright/likeness, font/media licensing and channel disclosure.",
+      "priceHypothesisEUR": {
+        "low": 29,
+        "high": 129,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "learning-bundle",
+      "name": "Self-paced applied learning bundle",
+      "category": "Media IP",
+      "buyer": "People learning agent-assisted production",
+      "deliverable": "Recorded lessons, exercises, fixtures and finished example project",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "whop",
+        "gumroad"
+      ],
+      "experiment": "Test independent exercise completion; no one-to-one support dependency.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "whop-fees",
+        "gumroad-fees"
+      ],
+      "risk": "Chain of title, generation-provider rights, copyright/likeness, font/media licensing and channel disclosure.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 199,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "character-licensing",
+      "name": "Original character and universe licensing",
+      "category": "Media IP",
+      "buyer": "Studios needing recognizable original IP",
+      "deliverable": "Rights-defined character/world license with approved style and reuse limits",
+      "priority": 3,
+      "complexity": 4,
+      "channelIds": [
+        "owned"
+      ],
+      "experiment": "Establish chain of title and buyer use case; contracts and human deal approval.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [],
+      "risk": "Chain of title, generation-provider rights, copyright/likeness, font/media licensing and channel disclosure.",
+      "priceHypothesisEUR": {
+        "low": 99,
+        "high": 999,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "game-environments",
+      "name": "Game-ready environment packs",
+      "category": "Games",
+      "buyer": "Indie developers",
+      "deliverable": "Optimized scenes, original meshes/materials, colliders, LODs and demo map",
+      "priority": 2,
+      "complexity": 4,
+      "channelIds": [
+        "fab",
+        "unity",
+        "itch"
+      ],
+      "experiment": "Import into supported engines; inspect performance and asset rights.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "fab-fees",
+        "unity-fees"
+      ],
+      "risk": "Publisher approval, unsafe scripts, children, moderation, retention, engine compatibility and payout terms.",
+      "priceHypothesisEUR": {
+        "low": 29,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "game-ui",
+      "name": "Game HUD and UI kit",
+      "category": "Games",
+      "buyer": "Indie teams",
+      "deliverable": "Original interface assets, states, readable typography and engine implementation",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "fab",
+        "unity",
+        "itch"
+      ],
+      "experiment": "Controller, keyboard and localization tests; no simulated telemetry sold as functional.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "fab-fees",
+        "unity-fees"
+      ],
+      "risk": "Publisher approval, unsafe scripts, children, moderation, retention, engine compatibility and payout terms.",
+      "priceHypothesisEUR": {
+        "low": 29,
+        "high": 99,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "game-vfx",
+      "name": "Game VFX and shader pack",
+      "category": "Games",
+      "buyer": "Small studios",
+      "deliverable": "Original effects, shader source, performance budgets and supported engine versions",
+      "priority": 2,
+      "complexity": 4,
+      "channelIds": [
+        "fab",
+        "unity",
+        "itch"
+      ],
+      "experiment": "Profile low-end hardware and verify fallback rendering.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "fab-fees",
+        "unity-fees"
+      ],
+      "risk": "Publisher approval, unsafe scripts, children, moderation, retention, engine compatibility and payout terms.",
+      "priceHypothesisEUR": {
+        "low": 19,
+        "high": 99,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "roblox-plugin",
+      "name": "Roblox Studio production plugin",
+      "category": "Games",
+      "buyer": "Roblox developers",
+      "deliverable": "Useful Luau tool with documented scope, undo and safe scripts",
+      "priority": 2,
+      "complexity": 4,
+      "channelIds": [
+        "roblox"
+      ],
+      "experiment": "Developer sandbox tasks; no hidden network calls or unsafe script insertion.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "roblox-store"
+      ],
+      "risk": "Publisher approval, unsafe scripts, children, moderation, retention, engine compatibility and payout terms.",
+      "priceHypothesisEUR": {
+        "low": 19,
+        "high": 99,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "avatar-pack",
+      "name": "Original avatar cosmetic line",
+      "category": "Games",
+      "buyer": "Players expressing identity",
+      "deliverable": "Original wearable models with proper rigging and platform moderation compliance",
+      "priority": 3,
+      "complexity": 4,
+      "channelIds": [
+        "roblox-avatar"
+      ],
+      "experiment": "Verify eligibility, fees, item moderation and actual payout route first.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "roblox-users",
+        "roblox-payout"
+      ],
+      "risk": "Publisher approval, unsafe scripts, children, moderation, retention, engine compatibility and payout terms.",
+      "priceHypothesisEUR": {
+        "low": 2,
+        "high": 29,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "fortnite-world",
+      "name": "Small original Fortnite experience",
+      "category": "Games",
+      "buyer": "Players of a defined game loop",
+      "deliverable": "UEFN experience with tutorial, retention instrumentation and safe economy",
+      "priority": 3,
+      "complexity": 5,
+      "channelIds": [
+        "fortnite"
+      ],
+      "experiment": "One playable loop; measure return sessions before expecting engagement payouts.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "fortnite-items",
+        "fortnite-payout"
+      ],
+      "risk": "Publisher approval, unsafe scripts, children, moderation, retention, engine compatibility and payout terms.",
+      "priceHypothesisEUR": {
+        "low": 0,
+        "high": 0,
+        "meaning": "No proposed sale price; payout/research route needs validation"
+      }
+    },
+    {
+      "id": "game-skins",
+      "name": "Publisher-selected game skin concepts",
+      "category": "Games",
+      "buyer": "Game-specific creator programs",
+      "deliverable": "Original skin concepts and publisher-compliant assets",
+      "priority": 3,
+      "complexity": 4,
+      "channelIds": [
+        "steam"
+      ],
+      "experiment": "Confirm active submission/royalty contract; secondary item trading is a separate activity.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "steam-wallet"
+      ],
+      "risk": "Publisher approval, unsafe scripts, children, moderation, retention, engine compatibility and payout terms.",
+      "priceHypothesisEUR": {
+        "low": 0,
+        "high": 0,
+        "meaning": "No proposed sale price; payout/research route needs validation"
+      }
+    },
+    {
+      "id": "database-kit",
+      "name": "Business database starter",
+      "category": "Data products",
+      "buyer": "Operators wanting structured business truth",
+      "deliverable": "Postgres schema, migrations, seeds, access controls and export/backup examples",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "polar"
+      ],
+      "experiment": "Restore a backup and verify tenant/role boundaries using synthetic records.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Redistribution/database rights, personal data, freshness, lawful ingestion and unsubstantiated accuracy.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "knowledge-kit",
+      "name": "Licensed domain knowledge base",
+      "category": "Data products",
+      "buyer": "Researchers in a narrow domain",
+      "deliverable": "Cited licensed source index, ontology, updates and reproducible retrieval evaluation",
+      "priority": 2,
+      "complexity": 4,
+      "channelIds": [
+        "owned",
+        "polar"
+      ],
+      "experiment": "Audit redistribution rights and test known-answer retrieval before subscriptions.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Redistribution/database rights, personal data, freshness, lawful ingestion and unsubstantiated accuracy.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 199,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "market-dataset",
+      "name": "Marketplace economics dataset",
+      "category": "Data products",
+      "buyer": "Creators comparing product channels",
+      "deliverable": "Dated terms, audience definitions, approval gates and change history",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "gumroad"
+      ],
+      "experiment": "Check ten contract changes against original source; do not resell restricted scraped data.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "gumroad-fees"
+      ],
+      "risk": "Redistribution/database rights, personal data, freshness, lawful ingestion and unsubstantiated accuracy.",
+      "priceHypothesisEUR": {
+        "low": 29,
+        "high": 99,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "workflow-db",
+      "name": "Business workflow and SOP database",
+      "category": "Data products",
+      "buyer": "Solo digital businesses",
+      "deliverable": "Reusable operations records, examples, owner/approval fields and failure playbooks",
+      "priority": 2,
+      "complexity": 2,
+      "channelIds": [
+        "owned",
+        "notion"
+      ],
+      "experiment": "One recurring operation completed using only included documentation.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [],
+      "risk": "Redistribution/database rights, personal data, freshness, lawful ingestion and unsubstantiated accuracy.",
+      "priceHypothesisEUR": {
+        "low": 29,
+        "high": 99,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "analytics-kit",
+      "name": "First-party product analytics kit",
+      "category": "Data products",
+      "buyer": "Self-service software creators",
+      "deliverable": "Consent-aware events, cohorts, refunds and attribution schema with demo reports",
+      "priority": 2,
+      "complexity": 4,
+      "channelIds": [
+        "owned",
+        "polar"
+      ],
+      "experiment": "No secrets/PII in events; reconcile paid-order events with merchant receipts.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Redistribution/database rights, personal data, freshness, lawful ingestion and unsubstantiated accuracy.",
+      "priceHypothesisEUR": {
+        "low": 39,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "localization-kit",
+      "name": "Localized product and documentation kit",
+      "category": "Data products",
+      "buyer": "Creators expanding from English",
+      "deliverable": "Reviewed locale files, formatting, currency display and jurisdiction routing",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "gumroad"
+      ],
+      "experiment": "German and Dutch task review; localized legal copy receives local review.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "gumroad-fees"
+      ],
+      "risk": "Redistribution/database rights, personal data, freshness, lawful ingestion and unsubstantiated accuracy.",
+      "priceHypothesisEUR": {
+        "low": 29,
+        "high": 99,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "procurement-kit",
+      "name": "Buyer security and procurement evidence kit",
+      "category": "Data products",
+      "buyer": "Small software vendors",
+      "deliverable": "Templates for data flow, subprocessors, SBOM, incident response and evidence references",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "polar"
+      ],
+      "experiment": "Independent review of factual completeness; never advertise guaranteed certification.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Redistribution/database rights, personal data, freshness, lawful ingestion and unsubstantiated accuracy.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 199,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "deployment-kit",
+      "name": "Customer-owned deployment kit",
+      "category": "Infrastructure",
+      "buyer": "Builders deploying on their own cloud accounts",
+      "deliverable": "Versioned configuration, minimal privileges, budget limits, rollback and disaster recovery",
+      "priority": 2,
+      "complexity": 4,
+      "channelIds": [
+        "owned",
+        "polar",
+        "cloud"
+      ],
+      "experiment": "Deploy/destroy in sandbox with cost receipts; secret and rollback tests.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Cloud spend, tenant isolation, credentials, incident response and conflict with no-managed-runtime doctrine.",
+      "priceHypothesisEUR": {
+        "low": 79,
+        "high": 249,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "rag-kit",
+      "name": "BYOK retrieval infrastructure kit",
+      "category": "Infrastructure",
+      "buyer": "Developers shipping a document assistant",
+      "deliverable": "Ingestion, citations, evaluation, access control and deletion in buyer-owned deployment",
+      "priority": 2,
+      "complexity": 4,
+      "channelIds": [
+        "owned",
+        "polar"
+      ],
+      "experiment": "Ground-truth answer/citation tests and malicious-document cases.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Cloud spend, tenant isolation, credentials, incident response and conflict with no-managed-runtime doctrine.",
+      "priceHypothesisEUR": {
+        "low": 79,
+        "high": 249,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "automation-kit",
+      "name": "Bounded durable-workflow templates",
+      "category": "Infrastructure",
+      "buyer": "Builders automating recoverable tasks",
+      "deliverable": "Retry/idempotency patterns, queues, schedules and operational runbooks",
+      "priority": 2,
+      "complexity": 4,
+      "channelIds": [
+        "owned",
+        "polar"
+      ],
+      "experiment": "Fault injection and duplicate-event runs; use exactly one owning orchestrator.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Cloud spend, tenant isolation, credentials, incident response and conflict with no-managed-runtime doctrine.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "observability-kit",
+      "name": "Agent observability deployment template",
+      "category": "Infrastructure",
+      "buyer": "Teams needing accountable agents",
+      "deliverable": "Traces, approvals, cost and failure dashboards with export and retention controls",
+      "priority": 2,
+      "complexity": 4,
+      "channelIds": [
+        "owned",
+        "polar"
+      ],
+      "experiment": "Link one final outcome to all tool calls, retries and actual billed cost.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Cloud spend, tenant isolation, credentials, incident response and conflict with no-managed-runtime doctrine.",
+      "priceHypothesisEUR": {
+        "low": 79,
+        "high": 249,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "edge-kit",
+      "name": "Edge/device coordination template",
+      "category": "Infrastructure",
+      "buyer": "Developers coordinating local devices",
+      "deliverable": "Customer-owned edge agent, local state, explicit device permissions and recovery",
+      "priority": 3,
+      "complexity": 5,
+      "channelIds": [
+        "owned",
+        "polar"
+      ],
+      "experiment": "Simulated network outage and command cancellation; do not control safety-critical hardware.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Cloud spend, tenant isolation, credentials, incident response and conflict with no-managed-runtime doctrine.",
+      "priceHypothesisEUR": {
+        "low": 79,
+        "high": 249,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "cloud-market-product",
+      "name": "Enterprise cloud marketplace offer",
+      "category": "Infrastructure",
+      "buyer": "Procurement teams buying customer-deployed software",
+      "deliverable": "A defined software license plus audited deployable artifacts",
+      "priority": 3,
+      "complexity": 5,
+      "channelIds": [
+        "cloud"
+      ],
+      "experiment": "Verify seller eligibility and procurement buyer demand; no hosting/SLA promise without capacity.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [],
+      "risk": "Cloud spend, tenant isolation, credentials, incident response and conflict with no-managed-runtime doctrine.",
+      "priceHypothesisEUR": {
+        "low": 199,
+        "high": 999,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "managed-agent",
+      "name": "Hosted managed-agent subscription",
+      "category": "Infrastructure",
+      "buyer": "Customers paying for continuous outsourced execution",
+      "deliverable": "Hosted execution, billing, isolation, service levels and incident response",
+      "priority": 3,
+      "complexity": 5,
+      "channelIds": [
+        "owned",
+        "cloud"
+      ],
+      "experiment": "Doctrine-change proposal required; benchmark cost per successful outcome before operating.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [],
+      "risk": "Cloud spend, tenant isolation, credentials, incident response and conflict with no-managed-runtime doctrine.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 499,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "desktop-app",
+      "name": "Local-first desktop companion",
+      "category": "Devices",
+      "buyer": "Agent users who want clear task control",
+      "deliverable": "Signed desktop shell, visible approvals, local data and import/export",
+      "priority": 2,
+      "complexity": 5,
+      "channelIds": [
+        "msstore",
+        "owned"
+      ],
+      "experiment": "Actual Windows QA, signed update/rollback and process/cancel tests.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "ms-store-fees",
+        "ms-store-reach"
+      ],
+      "risk": "Physical-device QA, security updates, permission visibility and applicable product/safety obligations.",
+      "priceHypothesisEUR": {
+        "low": 39,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "device-control",
+      "name": "Stream Deck real-tool plugin",
+      "category": "Devices",
+      "buyer": "Power users invoking repeatable workflows",
+      "deliverable": "Permission-aware plugin with local task status, cancellation and profiles",
+      "priority": 2,
+      "complexity": 4,
+      "channelIds": [
+        "elgato",
+        "owned"
+      ],
+      "experiment": "Test with physical device and interrupted calls; bound execution.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "elgato-fees"
+      ],
+      "risk": "Physical-device QA, security updates, permission visibility and applicable product/safety obligations.",
+      "priceHypothesisEUR": {
+        "low": 19,
+        "high": 79,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "home-visuals",
+      "name": "Home Assistant dashboard/source pack",
+      "category": "Devices",
+      "buyer": "Home automation enthusiasts",
+      "deliverable": "Original dashboards and local automation examples with mock device states",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "gumroad"
+      ],
+      "experiment": "Test dashboard separately from actuators; preserve device safety interlocks.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "gumroad-fees"
+      ],
+      "risk": "Physical-device QA, security updates, permission visibility and applicable product/safety obligations.",
+      "priceHypothesisEUR": {
+        "low": 19,
+        "high": 79,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "kiosk-kit",
+      "name": "Kiosk and ambient information template",
+      "category": "Devices",
+      "buyer": "People running community or workspace displays",
+      "deliverable": "Offline-friendly display, readable states and customer-owned content",
+      "priority": 2,
+      "complexity": 4,
+      "channelIds": [
+        "owned",
+        "polar"
+      ],
+      "experiment": "Readability from distance, reconnect and burn-in/power behavior.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Physical-device QA, security updates, permission visibility and applicable product/safety obligations.",
+      "priceHypothesisEUR": {
+        "low": 39,
+        "high": 129,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "xr-template",
+      "name": "XR interaction and workspace starter",
+      "category": "Devices",
+      "buyer": "XR developers",
+      "deliverable": "Original spatial UI, interaction states, accessible fallback and demo scene",
+      "priority": 3,
+      "complexity": 5,
+      "channelIds": [
+        "meta",
+        "fab",
+        "unity"
+      ],
+      "experiment": "Physical-headset comfort, input and performance testing; no invented adoption count.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "meta-program",
+        "meta-commerce",
+        "fab-fees",
+        "unity-fees"
+      ],
+      "risk": "Physical-device QA, security updates, permission visibility and applicable product/safety obligations.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 199,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "print-designs",
+      "name": "Physical skins and print-ready design licenses",
+      "category": "Devices",
+      "buyer": "Accessory makers and device owners",
+      "deliverable": "Original dieline-ready artwork and clearly scoped production licenses",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "etsy",
+        "owned"
+      ],
+      "experiment": "Fit test per device model; manufacturing/returns obligations if selling physical goods.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "etsy-ai",
+        "etsy-fees",
+        "etsy-users"
+      ],
+      "risk": "Physical-device QA, security updates, permission visibility and applicable product/safety obligations.",
+      "priceHypothesisEUR": {
+        "low": 9,
+        "high": 79,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "hardware-control-kit",
+      "name": "Non-critical hardware developer kit",
+      "category": "Devices",
+      "buyer": "Makers integrating LEDs, buttons and displays",
+      "deliverable": "Firmware examples, schematics, simulator and safe demo software",
+      "priority": 3,
+      "complexity": 5,
+      "channelIds": [
+        "owned",
+        "gumroad"
+      ],
+      "experiment": "Electrical/product compliance review before physical sale; no claim of finished hardware.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "gumroad-fees"
+      ],
+      "risk": "Physical-device QA, security updates, permission visibility and applicable product/safety obligations.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 199,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "space-visuals",
+      "name": "Original space art and information collection",
+      "category": "Space",
+      "buyer": "Science and space enthusiasts",
+      "deliverable": "Original planet/mission visualizations with educational citations and accessible alternatives",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "owned",
+        "etsy",
+        "gumroad"
+      ],
+      "experiment": "Separate original art, factual data and third-party media rights; test educational usefulness.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "etsy-ai",
+        "etsy-fees",
+        "etsy-users",
+        "gumroad-fees"
+      ],
+      "risk": "Scientific validity, asset rights, uncertainty and specialist safety/export-control review for operational uses.",
+      "priceHypothesisEUR": {
+        "low": 19,
+        "high": 79,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "space-sim",
+      "name": "Educational orbital simulation template",
+      "category": "Space",
+      "buyer": "Teachers and interactive-science developers",
+      "deliverable": "Documented numerical assumptions, visual controls and source code",
+      "priority": 3,
+      "complexity": 4,
+      "channelIds": [
+        "owned",
+        "unity",
+        "fab"
+      ],
+      "experiment": "Known orbit cases and units; clearly exclude flight/navigation use.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "unity-fees",
+        "fab-fees"
+      ],
+      "risk": "Scientific validity, asset rights, uncertainty and specialist safety/export-control review for operational uses.",
+      "priceHypothesisEUR": {
+        "low": 49,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "earth-data",
+      "name": "Earth-observation analysis starter",
+      "category": "Space",
+      "buyer": "Analysts using licensed/open geospatial data",
+      "deliverable": "Customer-run notebooks, data provenance, uncertainty and repeatable visualization",
+      "priority": 3,
+      "complexity": 4,
+      "channelIds": [
+        "owned",
+        "polar"
+      ],
+      "experiment": "Ground truth one narrowly defined analysis; check each dataset license and recency.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "polar-fees"
+      ],
+      "risk": "Scientific validity, asset rights, uncertainty and specialist safety/export-control review for operational uses.",
+      "priceHypothesisEUR": {
+        "low": 79,
+        "high": 249,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "mission-ui",
+      "name": "Fictional mission-control interface kit",
+      "category": "Space",
+      "buyer": "Game and film makers",
+      "deliverable": "Original interface system with editable text and clearly fictional data",
+      "priority": 2,
+      "complexity": 3,
+      "channelIds": [
+        "fab",
+        "figma",
+        "owned"
+      ],
+      "experiment": "Sell original visual assets; avoid agency logos and implied operational reliability.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "fab-fees"
+      ],
+      "risk": "Scientific validity, asset rights, uncertainty and specialist safety/export-control review for operational uses.",
+      "priceHypothesisEUR": {
+        "low": 29,
+        "high": 129,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "space-assets",
+      "name": "Original spacecraft and planet asset pack",
+      "category": "Space",
+      "buyer": "Indie simulation/game studios",
+      "deliverable": "Original 3D props, materials, textures, LODs and demo scene",
+      "priority": 3,
+      "complexity": 4,
+      "channelIds": [
+        "fab",
+        "unity",
+        "itch"
+      ],
+      "experiment": "Verify originality, topology and performance; factual dimensions sourced separately.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "fab-fees",
+        "unity-fees"
+      ],
+      "risk": "Scientific validity, asset rights, uncertainty and specialist safety/export-control review for operational uses.",
+      "priceHypothesisEUR": {
+        "low": 29,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "space-curriculum",
+      "name": "Self-paced space and AI curriculum",
+      "category": "Space",
+      "buyer": "Learners and educators",
+      "deliverable": "Source-backed lessons, exercises and simulations with reproducible answers",
+      "priority": 3,
+      "complexity": 4,
+      "channelIds": [
+        "owned",
+        "whop"
+      ],
+      "experiment": "Subject-matter review and learner task tests; distinguish science from fictional worlds.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [
+        "whop-fees"
+      ],
+      "risk": "Scientific validity, asset rights, uncertainty and specialist safety/export-control review for operational uses.",
+      "priceHypothesisEUR": {
+        "low": 39,
+        "high": 149,
+        "meaning": "Untested one-time/license price range; not observed willingness to pay"
+      }
+    },
+    {
+      "id": "space-operations",
+      "name": "Space/robotics operating software research",
+      "category": "Space",
+      "buyer": "Engineering organizations with verified needs",
+      "deliverable": "Research prototypes for planning, documentation or simulation",
+      "priority": 3,
+      "complexity": 5,
+      "channelIds": [
+        "cloud",
+        "owned"
+      ],
+      "experiment": "Domain experts and liability/export-control review; no mission-critical launch from this catalog.",
+      "status": "proposed",
+      "demandEvidence": "unmeasured",
+      "salesKnown": false,
+      "sourceIds": [],
+      "risk": "Scientific validity, asset rights, uncertainty and specialist safety/export-control review for operational uses.",
+      "priceHypothesisEUR": {
+        "low": 0,
+        "high": 0,
+        "meaning": "No proposed sale price; payout/research route needs validation"
+      }
+    }
+  ],
+  "regions": [
+    {
+      "id": "nl",
+      "name": "Netherlands",
+      "sequence": "First experiment",
+      "formats": "Dutch/English; creator tools and self-service business kits",
+      "hypothesis": "Use local proximity for installation and purchase-flow tests; location is a testing advantage, not proven demand.",
+      "legal": "AP/RDI and sector routing; EU consumer/data rules; verify seller tax setup",
+      "sourceIds": [
+        "nl-ai",
+        "gdpr-ai",
+        "eu-sales",
+        "eu-vat"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "de",
+      "name": "Germany / DACH",
+      "sequence": "First localization",
+      "formats": "German documentation; professional workflows and developer products",
+      "hypothesis": "Test whether German setup/docs reduce abandonment; compare actual paid conversion after release gate.",
+      "legal": "Bundesnetzagentur AI coordination, sector authorities, Länder data-protection authorities; imprint/consumer requirements need local review",
+      "sourceIds": [
+        "de-ai",
+        "eu-sales",
+        "eu-vat"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "us",
+      "name": "United States",
+      "sequence": "English demand test",
+      "formats": "English developer, creator, gaming and visual-software audiences",
+      "hypothesis": "Use audience-specific demos and buyer tasks; reach is established for major channels, willingness to pay for our products is unknown.",
+      "legal": "FTC, state privacy/consumer rules, sector regulators; sales tax/MoR responsibilities",
+      "sourceIds": [
+        "ftc",
+        "ms-store-reach",
+        "roblox-users"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "uk",
+      "name": "United Kingdom",
+      "sequence": "English expansion",
+      "formats": "Developer and creator products",
+      "hypothesis": "Reuse English product with UK-specific legal/payment review before launch.",
+      "legal": "ICO, UK consumer law/VAT and sector rules require separate current research",
+      "sourceIds": [],
+      "status": "proposed"
+    },
+    {
+      "id": "eu",
+      "name": "Rest of EU / EEA",
+      "sequence": "Locale-by-locale",
+      "formats": "French, Spanish, Italian, Polish and Nordic variants",
+      "hypothesis": "Prioritize locales using qualified demand and independent task completion, not country stereotypes.",
+      "legal": "EU framework plus local authorities, language and consumer-law implementation",
+      "sourceIds": [
+        "ai-act",
+        "eu-sales",
+        "eu-vat"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "cn",
+      "name": "Mainland China",
+      "sequence": "Partner-dependent research",
+      "formats": "Chinese language; Weixin, Huawei and OEM ecosystems",
+      "hypothesis": "Large historical audience signal; legal/entity/payment and distribution gates must be resolved before any pilot.",
+      "legal": "CAC/MIIT, app/algorithm filings, PIPL and cross-border rules; local legal/publisher review",
+      "sourceIds": [
+        "tencent-reach",
+        "huawei-themes",
+        "cn-app",
+        "cn-ai"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "jp",
+      "name": "Japan",
+      "sequence": "Localized niche test",
+      "formats": "Japanese game/creator assets and device tools",
+      "hypothesis": "Test original aesthetics with local reviewers; payment/device adoption and demand remain to research.",
+      "legal": "APPI/PPC, consumer and platform requirements need dedicated review",
+      "sourceIds": [],
+      "status": "proposed"
+    },
+    {
+      "id": "kr",
+      "name": "South Korea",
+      "sequence": "OEM and creator research",
+      "formats": "Korean Galaxy themes, game assets and creator utilities",
+      "hypothesis": "Verify Samsung editorial/program access and actual theme-buyer behavior.",
+      "legal": "PIPA/PIPC, local consumer/billing rules and developer eligibility require research",
+      "sourceIds": [
+        "samsung-fees",
+        "samsung-gate"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "in",
+      "name": "India",
+      "sequence": "Scale / price experiment",
+      "formats": "English and local-language developer/creator kits",
+      "hypothesis": "Compare entry-price bundles and BYOK cost transparency; no assumed low willingness to pay.",
+      "legal": "DPDP implementation, consumer/GST and payment rules require current research",
+      "sourceIds": [
+        "play-fees"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "latam",
+      "name": "Latin America",
+      "sequence": "Local payment research",
+      "formats": "Spanish/Portuguese creator and game assets",
+      "hypothesis": "Test local currency, payment methods and localized instructions before expansion.",
+      "legal": "Country-specific privacy/tax; Brazil LGPD/ANPD and other jurisdictions need review",
+      "sourceIds": [],
+      "status": "proposed"
+    },
+    {
+      "id": "mena",
+      "name": "MENA",
+      "sequence": "Localized experience research",
+      "formats": "Arabic/English; creative packs and game tools",
+      "hypothesis": "Right-to-left layouts, local payments and cultural review are product requirements.",
+      "legal": "Country-specific privacy, content, licensing, consumer and payment requirements",
+      "sourceIds": [],
+      "status": "proposed"
+    },
+    {
+      "id": "apac",
+      "name": "Other APAC / Africa",
+      "sequence": "Country-by-country",
+      "formats": "Mobile-friendly downloads and local-language maker tools",
+      "hypothesis": "Measure payment availability, bandwidth, device compatibility and audience response per country.",
+      "legal": "No blanket regional compliance claim; local store/payment/consumer requirements",
+      "sourceIds": [],
+      "status": "proposed"
+    }
+  ],
+  "models": [
+    {
+      "id": "download",
+      "name": "Download / perpetual license",
+      "definition": "Sell a finished version once; define updates and permitted use.",
+      "burden": "Low marginal delivery cost; maintenance, payment, security and legal work remain.",
+      "examples": "Terminal packs, templates, books, media",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "updates",
+      "name": "License + renewable update access",
+      "definition": "Buyer owns installed version; annual payment buys future versions/library updates.",
+      "burden": "Measure update demand and license-delivery overhead.",
+      "examples": "Developer kits, agent packs, datasets",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "subscription-content",
+      "name": "Content/library membership",
+      "definition": "Recurring payment for a regularly updated asset or knowledge library.",
+      "burden": "Recurring value and churn must be demonstrated; no founder support queue.",
+      "examples": "Original asset catalogs, learning",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "byok",
+      "name": "BYOK / customer-deployed software",
+      "definition": "Buyer pays model/cloud providers; seller charges license or updates.",
+      "burden": "Buyer onboarding and total run cost must be explicit; BYOK does not remove legal duties.",
+      "examples": "Workflow packs, MCP tools, RAG kits",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "royalty",
+      "name": "Royalty / original IP license",
+      "definition": "License reuse of original assets, characters or worlds under defined rights.",
+      "burden": "Chain of title, usage scope and approval/contract overhead.",
+      "examples": "Worlds, music, characters",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "affiliate",
+      "name": "Affiliate distribution",
+      "definition": "Earn disclosed referral commission on an eligible transaction.",
+      "burden": "Not owned-product revenue; platform terms and paid endorsement disclosure matter.",
+      "examples": "Tool recommendations with actual use",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "engagement",
+      "name": "Platform engagement payout",
+      "definition": "Platform rewards qualifying usage using its own formula.",
+      "burden": "Retention, eligibility, moderation and changing formulas determine revenue.",
+      "examples": "Fortnite/Horizon creator experiences",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "ads",
+      "name": "Advertising / sponsorship",
+      "definition": "Monetize attention through eligible ad inventory or sponsorship.",
+      "burden": "Audience/brand safety and disclosure; no automatic paid-post publishing.",
+      "examples": "Owned media and eligible apps",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "iaas",
+      "name": "IaaS",
+      "definition": "Sell/operate infrastructure resources.",
+      "burden": "Capacity, security, uptime, capital and billing responsibilities.",
+      "examples": "Cloud compute/network/storage",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "paas",
+      "name": "PaaS",
+      "definition": "Operate an application platform for customer deployments.",
+      "burden": "Platform maintenance, data plane, service levels and support.",
+      "examples": "Hosted developer platforms",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "saas",
+      "name": "SaaS",
+      "definition": "Operate software for multiple customers on recurring access.",
+      "burden": "Hosting, privacy, incident response, isolation and service operations.",
+      "examples": "Hosted business applications",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "agent-service",
+      "name": "Agent as a service",
+      "definition": "Operate bounded agents for customer tasks.",
+      "burden": "Outcome budgets, delegated credentials, escalation and liability.",
+      "examples": "Managed research or business agents",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "automation-service",
+      "name": "Automation as a service",
+      "definition": "Operate recurring workflows for customers.",
+      "burden": "Recoverability, integrations, uptime and operations.",
+      "examples": "Managed automation",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "outcome",
+      "name": "Outcome-based pricing",
+      "definition": "Charge for an objectively accepted result.",
+      "burden": "Contract defines acceptance, failure, liability and variable cost.",
+      "examples": "Verifiable bounded tasks",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "games-service",
+      "name": "Games as a service",
+      "definition": "Operate a continuously updated game/service economy.",
+      "burden": "Content cadence, moderation, fraud, minors and platform retention.",
+      "examples": "Live games",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "data-service",
+      "name": "Data as a service",
+      "definition": "Sell API/feed access or licensed periodically updated data.",
+      "burden": "Rights, freshness, rate limits, privacy and update economics.",
+      "examples": "Licensed reference datasets",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "hardware",
+      "name": "Hardware/product licensing",
+      "definition": "Sell physical devices/accessories or license designs for production.",
+      "burden": "Manufacturing, conformity, returns and distribution economics.",
+      "examples": "Device skins, displays, maker kits",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    },
+    {
+      "id": "label-policy",
+      "name": "AaaS / ASaaS / GAaaS / AGSaaS labels",
+      "definition": "Use a descriptive name and define runtime, ownership, billing and accepted output.",
+      "burden": "These strings are ambiguous across industries; inventing an acronym does not create a market.",
+      "examples": "Use agent software license or managed-agent service when accurate",
+      "fit": "Compare runtime ownership, operating costs and continuing obligations."
+    }
+  ],
+  "metrics": [
+    {
+      "id": "ms-store",
+      "ecosystem": "Microsoft Store",
+      "metric": "monthly users",
+      "value": null,
+      "unit": "people",
+      "period": "2025",
+      "sourceIds": [
+        "ms-store-reach"
+      ],
+      "limit": "More than; provider-reported Store audience, not purchasers.",
+      "status": "provider-reported",
+      "asOf": "2026-10-01",
+      "comparableGroup": "audience-context",
+      "aggregateAllowed": false
+    },
+    {
+      "id": "android",
+      "ecosystem": "Android",
+      "metric": "active devices",
+      "value": null,
+      "unit": "devices",
+      "period": "2023",
+      "sourceIds": [
+        "android-reach"
+      ],
+      "limit": "More than; historical installed ecosystem, not current users or buyers.",
+      "status": "provider-reported",
+      "asOf": "2026-10-01",
+      "comparableGroup": "audience-context",
+      "aggregateAllowed": false
+    },
+    {
+      "id": "roblox-active",
+      "ecosystem": "Roblox",
+      "metric": "average daily active users",
+      "value": null,
+      "unit": "people",
+      "period": "2025",
+      "sourceIds": [
+        "roblox-users"
+      ],
+      "limit": "Annual average; not asset-store customers.",
+      "status": "provider-reported",
+      "asOf": "2026-10-01",
+      "comparableGroup": "audience-context",
+      "aggregateAllowed": false
+    },
+    {
+      "id": "roblox-paying",
+      "ecosystem": "Roblox",
+      "metric": "average daily unique paying users",
+      "value": null,
+      "unit": "people",
+      "period": "2025",
+      "sourceIds": [
+        "roblox-users"
+      ],
+      "limit": "Approximate annual average; spend covers platform economy, not our category.",
+      "status": "provider-reported",
+      "asOf": "2026-10-01",
+      "comparableGroup": "audience-context",
+      "aggregateAllowed": false
+    },
+    {
+      "id": "etsy-active",
+      "ecosystem": "Etsy",
+      "metric": "active buyers",
+      "value": null,
+      "unit": "people",
+      "period": "2026-06-30",
+      "sourceIds": [
+        "etsy-users"
+      ],
+      "limit": "Trailing active-buyer metric; includes physical goods.",
+      "status": "provider-reported",
+      "asOf": "2026-10-01",
+      "comparableGroup": "audience-context",
+      "aggregateAllowed": false
+    },
+    {
+      "id": "wechat",
+      "ecosystem": "Weixin / WeChat",
+      "metric": "combined monthly active accounts",
+      "value": null,
+      "unit": "accounts",
+      "period": "2025-06-30",
+      "sourceIds": [
+        "tencent-reach"
+      ],
+      "limit": "Historical; overlap and program-specific buyers unknown.",
+      "status": "provider-reported",
+      "asOf": "2026-10-01",
+      "comparableGroup": "audience-context",
+      "aggregateAllowed": false
+    },
+    {
+      "id": "roblox-payout",
+      "ecosystem": "Roblox",
+      "metric": "DevEx creator earnings",
+      "value": null,
+      "unit": "USD",
+      "period": "2024-03 to 2025-03",
+      "sourceIds": [
+        "roblox-payout"
+      ],
+      "limit": "More than; aggregate historical payout, not seller median.",
+      "status": "provider-reported",
+      "asOf": "2026-10-01",
+      "comparableGroup": "money-context",
+      "aggregateAllowed": false
+    },
+    {
+      "id": "fortnite-payout",
+      "ecosystem": "Fortnite",
+      "metric": "creator payouts",
+      "value": null,
+      "unit": "USD",
+      "period": "2024",
+      "sourceIds": [
+        "fortnite-payout"
+      ],
+      "limit": "Aggregate historical payout; current seller median unknown.",
+      "status": "provider-reported",
+      "asOf": "2026-10-01",
+      "comparableGroup": "money-context",
+      "aggregateAllowed": false
+    },
+    {
+      "id": "apple-sales",
+      "ecosystem": "Apple ecosystem",
+      "metric": "facilitated billings and sales",
+      "value": null,
+      "unit": "USD",
+      "period": "2024",
+      "sourceIds": [
+        "apple-context"
+      ],
+      "limit": "Nearly; includes physical commerce. Not App Store net developer revenue.",
+      "status": "provider-reported",
+      "asOf": "2026-10-01",
+      "comparableGroup": "money-context",
+      "aggregateAllowed": false
+    },
+    {
+      "id": "meta-fund",
+      "ecosystem": "Meta Horizon",
+      "metric": "announced creator fund",
+      "value": null,
+      "unit": "USD",
+      "period": "2025 announcement",
+      "sourceIds": [
+        "meta-program"
+      ],
+      "limit": "Program announcement, not annual realized creator payouts.",
+      "status": "provider-reported",
+      "asOf": "2026-10-01",
+      "comparableGroup": "money-context",
+      "aggregateAllowed": false
+    }
+  ],
+  "regulation": [
+    {
+      "name": "EU AI Act",
+      "trigger": "Provider/deployer/distributor role and intended use",
+      "action": "Classify each real system; API integration can still make us a system provider. Static art does not automatically become a high-risk AI system.",
+      "sourceIds": [
+        "ai-act",
+        "ai-enforcement"
+      ]
+    },
+    {
+      "name": "AI transparency",
+      "trigger": "Chatbots, generated content and applicable disclosure duties",
+      "action": "Determine who must mark or disclose which content; sidecars support provenance but are not complete legal compliance.",
+      "sourceIds": [
+        "ai-act"
+      ]
+    },
+    {
+      "name": "GDPR",
+      "trigger": "Personal data collected, inferred, indexed or transferred",
+      "action": "Map controller/processor roles, lawful basis, retention, export/deletion, subprocessors and transfers; assess DPIA need.",
+      "sourceIds": [
+        "gdpr-ai"
+      ]
+    },
+    {
+      "name": "Cyber Resilience Act",
+      "trigger": "Commercial products with digital elements",
+      "action": "Scope each downloadable/connected product, vulnerability reporting, supported lifetime and security-update obligations. Main and reporting dates differ.",
+      "sourceIds": [
+        "cra",
+        "cra-oss"
+      ]
+    },
+    {
+      "name": "Consumer and VAT",
+      "trigger": "B2C digital sale and recurring access",
+      "action": "Correct pre-contract disclosures, withdrawal consent where applicable, guarantees, cancellation/refunds and VAT/MoR responsibilities.",
+      "sourceIds": [
+        "eu-sales",
+        "eu-vat",
+        "gumroad-fees"
+      ]
+    },
+    {
+      "name": "Netherlands and Germany",
+      "trigger": "Where marketed and where established",
+      "action": "Route to actual national/sector authorities; preserve tentative designation status; obtain local review for product-specific obligations.",
+      "sourceIds": [
+        "nl-ai",
+        "de-ai"
+      ]
+    },
+    {
+      "name": "United States",
+      "trigger": "US buyers, claims and data practices",
+      "action": "Substantiate accuracy/earnings claims, honor confidentiality; check state privacy, sales tax, children and sector rules.",
+      "sourceIds": [
+        "ftc"
+      ]
+    },
+    {
+      "name": "Mainland China",
+      "trigger": "Local app distribution or public generative services",
+      "action": "Resolve MIIT/CAC filings, entity/publisher, content, data/cross-border and payments; current local counsel before pilot.",
+      "sourceIds": [
+        "cn-app",
+        "cn-ai"
+      ]
+    },
+    {
+      "name": "Rights and original IP",
+      "trigger": "Third-party media, datasets, fonts, characters and likenesses",
+      "action": "Keep chain of title and license scope; use original assistant branding. NASA/JPL marks and third-party data are not universally public-domain assets.",
+      "sourceIds": [
+        "nasa-rights",
+        "fab-fees",
+        "etsy-ai"
+      ]
+    },
+    {
+      "name": "Devices, games and space",
+      "trigger": "Children, hardware or safety-sensitive use",
+      "action": "Additional product, child-safety, consumer, gambling/financial, export-control and domain rules can apply; specialist review before consequential launch.",
+      "sourceIds": [
+        "roblox-users",
+        "ftc",
+        "nasa-rights"
+      ]
+    }
+  ],
+  "experiments": [
+    {
+      "id": "E1",
+      "opportunityId": "terminal-pack",
+      "sample": "Five volunteers with real Windows workflows, including three clean installation environments",
+      "hypothesis": "A coherent portable profile with help and reversible install is valuable beyond free colors.",
+      "stop": "Security/reversibility failure, no qualified demand, or repeated personal support need.",
+      "priceCellsEUR": [
+        19,
+        39,
+        49
+      ],
+      "success": "Proposed acceptance: three independent installs work without manual help, existing profile changes survive, and stated price choices are recorded. These criteria have not been tested.",
+      "status": "not run",
+      "budget": "Set a bounded project budget before running the experiment. Paid conversion, receipt and refund tests require a separate released offer."
+    },
+    {
+      "id": "E2",
+      "opportunityId": "website-kit",
+      "sample": "Five founders in one specific niche; three independent customer-account deployments",
+      "hypothesis": "A complete working offer site and agent workflow provides more value than decorative pages.",
+      "stop": "Deploy requires creator credentials, generic buyer story, or no demonstrated preference.",
+      "priceCellsEUR": [
+        79,
+        129,
+        199
+      ],
+      "success": "Proposed acceptance: three independent customer-account deployments, working CTAs and qualified stated intent with price choices. These criteria have not been tested.",
+      "status": "not run",
+      "budget": "Set a bounded project budget before running the experiment. Paid conversion, receipt and refund tests require a separate released offer."
+    },
+    {
+      "id": "E3",
+      "opportunityId": "business-pack",
+      "sample": "Three buyer-owned agent environments using one narrowly bounded workflow",
+      "hypothesis": "Tested fixtures and approval boundaries make a BYOK workflow useful without founder support.",
+      "stop": "Unreliable outcome, buyer cannot reproduce setup, or unsafe tool behavior.",
+      "priceCellsEUR": [
+        79,
+        129,
+        199
+      ],
+      "success": "Proposed acceptance: tasks complete with traceable evidence, measured run cost and no unauthorized actions; stated price choices are recorded. These criteria have not been tested.",
+      "status": "not run",
+      "budget": "Set a bounded project budget before running the experiment. Paid conversion, receipt and refund tests require a separate released offer."
+    }
+  ],
+  "rules": {
+    "demand": "unmeasured",
+    "sales": "No sales evidence collected for these proposals",
+    "prices": "EUR experiment hypotheses",
+    "ranking": "Proposed sequence; no market-return forecast",
+    "publication": "Research preview. Qualified source summaries do not validate product demand, seller approval or legal compliance."
+  },
+  "machine": [
+    {
+      "command": "Get-Location",
+      "purpose": "Inspect the current working directory",
+      "status": "PowerShell built-in",
+      "limit": "Verify the intended project before writing."
+    },
+    {
+      "command": "Get-Command <name>",
+      "purpose": "Check whether a command resolves",
+      "status": "PowerShell built-in",
+      "limit": "Resolution does not establish authentication or product readiness."
+    },
+    {
+      "command": "Set-Location <path>",
+      "purpose": "Navigate to an explicit project directory",
+      "status": "PowerShell built-in",
+      "limit": "Custom shell profiles can override aliases."
+    },
+    {
+      "command": "git status --short --branch",
+      "purpose": "Inspect branch and changed files",
+      "status": "Requires Git",
+      "limit": "Preserve other work and acquire ownership before edits."
+    },
+    {
+      "command": "git remote get-url origin",
+      "purpose": "Verify repository identity",
+      "status": "Requires Git",
+      "limit": "Do not infer identity from a directory name."
+    }
+  ],
+  "architecture": [
+    {
+      "name": "Define the job",
+      "home": "Versioned product brief",
+      "behavior": "Specify the buyer task, supported devices, acceptance criteria and stop condition."
+    },
+    {
+      "name": "Research the route",
+      "home": "Source and claim records",
+      "behavior": "Keep URL, retrieval date, period, unit, contract scope and uncertainty with each claim."
+    },
+    {
+      "name": "Package the outcome",
+      "home": "Customer-owned project",
+      "behavior": "Deliver compatibility checks, fixture data, installation, permission boundaries, rollback and a license."
+    },
+    {
+      "name": "Verify independently",
+      "home": "Reproducible release evidence",
+      "behavior": "Test behavior, accessibility, security and economics on the exact candidate. Record failures and intervention."
+    },
+    {
+      "name": "Learn from use",
+      "home": "Consented observations",
+      "behavior": "Separate stated intent from paid receipts and refunds. Update decisions from observed buyer outcomes."
+    }
+  ]
+}

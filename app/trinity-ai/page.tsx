@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import { redirect } from "next/navigation";
 
 export const metadata = {
@@ -5,7 +6,7 @@ export const metadata = {
   description:
     "Compatibility route for the Trinity AI founder system. The practical ally system now lives at /allies/trinity-ai.",
   robots: { index: false, follow: true, nocache: true },
-  alternates: { canonical: "https://frankx.ai/allies/trinity-ai" },
+  alternates: { canonical: `${siteConfig.url}/allies/trinity-ai` },
 };
 
 export default function TrinityAICompatibilityPage() {

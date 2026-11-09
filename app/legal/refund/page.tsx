@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Refund Policy — FrankX',
+  title: 'Refund Policy',
   description: 'Refund and cancellation policy for FrankX digital products and services.',
 }
 

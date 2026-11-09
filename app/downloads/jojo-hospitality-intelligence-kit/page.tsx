@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Jojo Hospitality Intelligence Kit | FrankX.AI",
+  title: "Jojo Hospitality Intelligence Kit",
   description:
     "Download the Jojo Hospitality Intelligence Kit: booking, service, hotel, review, team, menu, privacy, and agent briefs for an approval-based hospitality AI pilot.",
   robots: { index: false, follow: true, nocache: true },

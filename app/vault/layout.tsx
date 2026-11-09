@@ -5,7 +5,7 @@ import vaultManifest from '@/data/vault-manifest.json'
 const { totalAssets, totalCollections } = vaultManifest
 
 export const metadata: Metadata = {
-  title: 'ArcaneaVault — Visual Asset Library | FrankX',
+  title: 'ArcaneaVault — Visual Asset Library',
   description: `Browse ${totalAssets.toLocaleString('en-US')} AI-generated visual assets across ${totalCollections} collections — blog heroes, mascot concepts, ecosystem infographics, architecture diagrams, and more.`,
   openGraph: {
     title: 'ArcaneaVault — Visual Asset Library',

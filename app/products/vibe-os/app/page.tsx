@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { ArrowLeft, Calendar, Zap, TrendingUp, Settings } from 'lucide-react'
 
 export const metadata = {
-  title: 'Vibe OS App - Creative State Management | FrankX.ai',
+  title: 'Vibe OS App - Creative State Management',
   description: 'Track your creative energy, optimize your workflow, and ship consistently.',
 }
 

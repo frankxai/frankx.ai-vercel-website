@@ -10,6 +10,7 @@
  *   ?q=<substring>
  *   ?page=<1+>
  */
+import { defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
@@ -19,11 +20,12 @@ import { getLivePatterns } from '@/lib/prompt-hub/fetch-library'
 import type { Category, Lane, Pattern } from '@/lib/prompt-hub/types'
 
 export const metadata: Metadata = {
-  title: 'Prompt Library — 130+ patterns evaluated, attributed, lab-tagged | FrankX',
+  title: 'Prompt Library — 130+ patterns evaluated, attributed, lab-tagged',
   description:
     'Live OSS prompt corpus. Every pattern in the frankxai/prompt-library repo, ranked, attributed, and lab-tagged. Filter by Claude / GPT / Gemini / OSS lane, by category, or search across titles.',
   alternates: { canonical: 'https://www.frankx.ai/prompt-library' },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Prompt Library — FrankX',
     description:
       'Every pattern in the frankxai/prompt-library corpus, ranked, attributed, lab-tagged, red-teamed. Open source.',

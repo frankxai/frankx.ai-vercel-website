@@ -1,6 +1,7 @@
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
+  canonical: './',
   title: "Learn Music Production | Recording, Mixing & Mastering | FrankX",
   description:
     "A free introduction to DAWs, recording, arrangement, mixing, mastering, plugins, and finishing a clearly labeled first demo.",

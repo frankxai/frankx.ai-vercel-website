@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 import { designExperiments } from '@/lib/design-lab/experiments'
 
@@ -6,7 +7,7 @@ const completedCount = designExperiments.filter(e => e.status === 'complete').le
 const totalEntries = designExperiments.reduce((sum, e) => sum + e.entries.length, 0)
 
 export const metadata: Metadata = {
-  title: 'Design Lab | FrankX.AI',
+  title: 'Design Lab',
   description: `${experimentCount} experiments where AI coding agents compete at design challenges. Side-by-side comparisons with ratings across design, code quality, accessibility, performance, and creativity. The best outputs become products.`,
   keywords: [
     'AI design competition',
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     title: 'Design Lab | FrankX.AI',
     description: `${experimentCount} experiments. ${totalEntries} agent entries. AI coding agents compete at real design challenges.`,
     type: 'website',
-    url: 'https://frankx.ai/design-lab',
+    url: `${siteConfig.url}/design-lab`,
     images: [
       {
         url: '/images/brand/og-template.png',
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
     images: ['/images/brand/og-template.png'],
   },
   alternates: {
-    canonical: 'https://frankx.ai/design-lab',
+    canonical: './',
   },
 }
 
@@ -50,17 +51,17 @@ const websiteLd = JSON.stringify({
   '@type': 'WebPage',
   name: 'Design Lab',
   description: `AI coding agents compete at design challenges. ${experimentCount} experiments with ${totalEntries} agent entries rated across 5 dimensions.`,
-  url: 'https://frankx.ai/design-lab',
+  url: `${siteConfig.url}/design-lab`,
   author: {
     '@type': 'Person',
     name: 'Frank Riemer',
-    url: 'https://frankx.ai',
+    url: siteConfig.url,
     jobTitle: 'AI Architect',
   },
   publisher: {
     '@type': 'Organization',
     name: 'FrankX',
-    url: 'https://frankx.ai',
+    url: siteConfig.url,
   },
   breadcrumb: {
     '@type': 'BreadcrumbList',
@@ -69,13 +70,13 @@ const websiteLd = JSON.stringify({
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://frankx.ai',
+        item: siteConfig.url,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Design Lab',
-        item: 'https://frankx.ai/design-lab',
+        item: `${siteConfig.url}/design-lab`,
       },
     ],
   },

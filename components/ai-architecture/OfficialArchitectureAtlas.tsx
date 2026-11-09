@@ -246,7 +246,7 @@ export function OfficialArchitectureAtlas({ showHero = true }: { showHero?: bool
               ['Managed service', 'Rent the hard parts', 'Model endpoints, governed data, hosted evaluation. Buy these where their governance or scale earns the dependency.'],
             ].map(([name, title, body]) => (
               <div key={name} className="border-l border-white/10 pl-5">
-                <p className="font-mono text-xs text-slate-500">{name}</p>
+                <p className="font-mono text-xs text-slate-400">{name}</p>
                 <h2 className="mt-3 text-xl font-semibold text-white">{title}</h2>
                 <p className="mt-3 text-sm leading-6 text-slate-400">{body}</p>
               </div>
@@ -267,7 +267,7 @@ export function OfficialArchitectureAtlas({ showHero = true }: { showHero?: bool
             they leave you operating.
           </p>
           <figure className="mt-10">
-            <div className="overflow-x-auto rounded-2xl border border-white/[0.08] bg-[#050a14] p-3 sm:p-4">
+            <div tabIndex={0} role="region" aria-label="Deployment platform comparison matrix" className="overflow-x-auto rounded-2xl border border-white/[0.08] bg-[#050a14] p-3 sm:p-4">
               <Image
                 src="/images/diagrams/ai-architecture/platform-matrix.svg"
                 alt="Eight deployment platforms — Vercel, Cloudflare, AWS, Google Cloud, Azure, Railway, Fly.io and Modal — compared on unit of execution, where a long agent loop lives, and what you still operate yourself. Presented as equals, not ranked."
@@ -278,7 +278,7 @@ export function OfficialArchitectureAtlas({ showHero = true }: { showHero?: bool
                 className="mx-auto h-auto w-full min-w-[960px]"
               />
             </div>
-            <figcaption className="mt-3 text-sm text-white/45">
+            <figcaption className="mt-3 text-sm text-white/65">
               Eight platforms as equals. Managed platforms hand you a primitive and take the operations;
               self-assembled clouds hand you every primitive and take your Tuesdays.
             </figcaption>
@@ -322,18 +322,18 @@ export function OfficialArchitectureAtlas({ showHero = true }: { showHero?: bool
               <article key={source.id} className="grid gap-6 py-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-12">
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-mono text-xs text-slate-500">{source.owner}</span>
+                    <span className="font-mono text-xs text-slate-400">{source.owner}</span>
                     <span className="text-slate-700" aria-hidden="true">/</span>
                     <span className="font-mono text-xs text-emerald-300">{source.layer}</span>
                   </div>
                   <h3 className="mt-3 text-2xl font-semibold text-white">{source.title}</h3>
                   <p className="mt-3 max-w-lg leading-7 text-slate-400">{source.summary}</p>
-                  <p className="mt-4 text-sm leading-6 text-slate-300"><span className="text-slate-500">Use it for:</span> {source.bestFor}</p>
+                  <p className="mt-4 text-sm leading-6 text-slate-300"><span className="text-slate-400">Use it for:</span> {source.bestFor}</p>
                   <div className="mt-5 flex flex-wrap gap-2">
                     <RuntimeBadge runtime={source.runtime} />
                     <time
                       dateTime={source.verifiedOn}
-                      className="rounded-full border border-white/10 px-2.5 py-1 font-mono text-xs text-slate-500"
+                      className="rounded-full border border-white/10 px-2.5 py-1 font-mono text-xs text-slate-400"
                     >
                       Links checked {source.verifiedOn}
                     </time>
@@ -386,7 +386,7 @@ export function OfficialArchitectureAtlas({ showHero = true }: { showHero?: bool
                 key={lane.id}
                 className="surface-2 flex flex-col rounded-2xl border border-white/[0.08] p-6"
               >
-                <p className="font-mono text-xs text-slate-500">{lane.platform}</p>
+                <p className="font-mono text-xs text-slate-400">{lane.platform}</p>
                 <h3 className="mt-3 text-xl font-semibold text-white">{lane.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-400">{lane.blurb}</p>
                 <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-6">

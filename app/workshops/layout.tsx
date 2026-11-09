@@ -1,6 +1,7 @@
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Workshops and Session Studio',
   description:
     'Delivered workshops and studio curricula, including twelve lessons on AI agents, MCP, accountable memory and coordinated work with a free offline lab.',
@@ -25,17 +26,17 @@ const workshopsLd = JSON.stringify({
   name: 'FrankX Workshop Studio',
   description:
     'A delivered Ikigai & Branding workshop and a studio of adaptable workshop architectures to shape and pilot.',
-  url: 'https://frankx.ai/workshops',
+  url: `${siteConfig.url}/workshops`,
   author: {
     '@type': 'Person',
     name: 'Frank Riemer',
-    url: 'https://frankx.ai',
+    url: siteConfig.url,
     jobTitle: 'AI Architect',
   },
   publisher: {
     '@type': 'Organization',
     name: 'FrankX',
-    url: 'https://frankx.ai',
+    url: siteConfig.url,
   },
   breadcrumb: {
     '@type': 'BreadcrumbList',
@@ -44,13 +45,13 @@ const workshopsLd = JSON.stringify({
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://frankx.ai',
+        item: siteConfig.url,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Workshops',
-        item: 'https://frankx.ai/workshops',
+        item: `${siteConfig.url}/workshops`,
       },
     ],
   },
