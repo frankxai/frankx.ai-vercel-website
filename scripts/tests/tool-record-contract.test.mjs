@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import test from 'node:test'
-import { outboundRedirect, resolveGoDestination } from '../../lib/tools/go-destination.ts'
+import { outboundRedirect, resolveGoDestination, stackHref } from '../../lib/tools/go-destination.ts'
 import { recordHop, writeHopToKv } from '../../lib/tools/hop-log.ts'
 import { programToRecord, socialToolToRecord, sponsorDecision } from '../../lib/tools/record.ts'
 import { resolveProgramDestination } from '../../lib/affiliates/resolve-destination.ts'
@@ -158,4 +158,13 @@ test('hop HTTP response preserves issued bytes and cannot cache an expired relat
     assert.equal(response.headers.get('location'), href)
     assert.equal(response.headers.get('cache-control'), 'private, no-store')
   }
+})
+
+test('a stack decision lands on an anchor of the existing /stack page, not a missing route', () => {
+  assert.equal(stackHref('higgsfield'), '/stack#higgsfield')
+  const route = readFileSync(new URL('../../app/go/[slug]/route.ts', import.meta.url), 'utf8')
+  assert.doesNotMatch(route, /\/stack\/\$\{/)
+  assert.match(route, /stackHref\(decision\.id\)/)
+  const gallery = readFileSync(new URL('../../app/stack/StackGalleryClient.tsx', import.meta.url), 'utf8')
+  assert.match(gallery, /id=\{item\.id\}/)
 })

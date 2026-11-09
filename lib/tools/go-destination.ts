@@ -40,6 +40,11 @@ function isUnissuedPartnerUrl(destination: string, record: ToolRecord) {
   }
 }
 
+/** The /stack page has no per-tool route; each card carries its id as an anchor. */
+export function stackHref(id: string) {
+  return `/stack#${encodeURIComponent(id)}`
+}
+
 /** Preserve issued query strings and signatures without URL normalization. */
 export function outboundRedirect(href: string) {
   return new Response(null, {
