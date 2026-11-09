@@ -153,6 +153,9 @@ jobs:
       - name: Changelog contract
         run: pnpm run test:changelog-release
 
+      - name: Viewer contract
+        run: pnpm run test:viewer
+
       - name: Lint
         run: pnpm run lint
 
