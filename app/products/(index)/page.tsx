@@ -25,6 +25,7 @@ import {
 import { trackEvent } from '@/lib/analytics'
 import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 import rawProducts from '@/data/products.json'
+import { WAITLIST_INTENTS } from '@/lib/diagnostic/waitlist-intents'
 
 interface NormalizedProduct {
   id: string
@@ -145,6 +146,9 @@ const CATEGORY_MAPPINGS: Record<string, string[]> = {
     'book-manifestation',
   ],
 }
+
+// Shown instead of a price while a product is on its launch list.
+const NOT_PRICED_LABEL = 'Not priced yet'
 
 const FLAGSHIP_IDS = ['agentic-creator-os', 'vibe-os', 'creators-soulbook']
 
