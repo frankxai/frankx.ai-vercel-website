@@ -44,19 +44,77 @@ export type SponsorDecision = {
   reason: string
 }
 
+export type PartnerProgramStatus =
+  | 'active'
+  | 'pending'
+  | 'paused'
+  | 'closed'
+  | 'hold'
+  | 'none'
+  | 'dead-end'
+  | 'deprioritized'
+  | 'verify'
+
+export type PartnerPlanTerms = {
+  starterCreatorProScaleRate?: string
+  businessRate?: string
+  enterpriseIncluded?: boolean
+  payoutWindowDays?: number
+}
+
+export type PartnerConversionMetrics = {
+  hopRoute?: string
+  analyticsEvents?: readonly string[]
+}
+
 export type ProgramSource = {
+  id?: string
   tool: string
+  category?: string
   aliases?: readonly string[]
   hasProgram?: boolean
-  status?: string
+  priority?: number
+  commission?: string
+  recurring?: string
+  cookieDays?: number | null
+  network?: string
+  status?: PartnerProgramStatus | string
   ourLink?: string | null
+  candidateUrls?: readonly string[]
   useHop?: boolean
   signupUrl?: string
+  officialUrl?: string
+  pricingUrl?: string
+  docsUrl?: string
+  affiliateGuideUrl?: string
+  affiliateTermsUrl?: string
   evidence?: string
   verifiedOn?: string
   checkedOn?: string
+  verifiedAt?: string
+  lastChecked?: string
+  expiry?: string
+  reviewOwner?: string
+  disclosure?: string
+  sourceEvidence?: readonly string[]
+  planTerms?: PartnerPlanTerms
+  useCases?: readonly string[]
+  integrations?: readonly string[]
+  contentLinks?: readonly string[]
+  conversionMetrics?: PartnerConversionMetrics
   oracleExcluded?: boolean
   note?: string
+}
+
+export type PartnerValidationReport = {
+  id: string
+  tool: string
+  status: string
+  valid: boolean
+  sponsoredEligible: boolean
+  freshVerification: boolean
+  errors: string[]
+  warnings: string[]
 }
 
 export function toolSlug(value: string) {
@@ -95,8 +153,16 @@ export function programToRecord(program: ProgramSource): ToolRecord {
   let relationship: ToolRelationship
   if (canBeLive && program.ourLink && program.checkedOn) {
     relationship = { kind: 'live', href: program.ourLink, checkedOn: program.checkedOn }
-  } else if (!program.hasProgram || program.status === 'closed' || program.status === 'dead-end' || program.status === 'deprioritized') {
+  } else if (
+    !program.hasProgram ||
+    program.status === 'closed' ||
+    program.status === 'dead-end' ||
+    program.status === 'deprioritized' ||
+    program.status === 'none'
+  ) {
     relationship = { kind: 'program-closed' }
+  } else if (program.status === 'hold' || program.status === 'paused' || program.status === 'pending') {
+    relationship = { kind: 'editorial' }
   } else if (program.signupUrl) {
     relationship = { kind: 'enroll', signupUrl: program.signupUrl }
   } else {
@@ -234,3 +300,75 @@ function siteImage(path?: string): path is string {
   if (!path || !path.startsWith('/') || path.startsWith('//') || path.includes('://') || path.includes('..')) return false
   return /\.(png|jpe?g|webp|gif|svg|avif)$/i.test(path)
 }
+
+export function validatePartnerProgram(
+  program: ProgramSource,
+  now = new Date(),
+): PartnerValidationReport {
+  const id = program.id ? toolSlug(program.id) : toolSlug(program.tool)
+  const record = programToRecord(program)
+  const decision = sponsorDecision(record, now)
+  const errors: string[] = []
+  const warnings: string[] = []
+  const status = program.status ?? 'unknown'
+
+  if (!program.tool || !id) {
+    errors.push('missing-tool-name')
+  }
+
+  if (program.ourLink) {
+    const safeLink = httpsHref(program.ourLink)
+    if (!safeLink) {
+      errors.push('unsafe-our-link')
+    }
+    if (program.ourLink.includes('go.agenticincome.ai') && program.useHop) {
+      errors.push('legacy-cloak-with-hop')
+    }
+  }
+
+  if (status === 'hold' && program.ourLink) {
+    errors.push('hold-program-must-not-publish-affiliate-link')
+  }
+
+  if (program.useHop) {
+    if (!program.ourLink) errors.push('hop-missing-issued-link')
+    if (!program.verifiedOn) errors.push('hop-missing-verified-on')
+    if (!program.checkedOn) errors.push('hop-missing-checked-on')
+    if (program.evidence !== 'first-party' && program.evidence !== 'official-docs') {
+      errors.push('hop-requires-verified-evidence')
+    }
+    if (!isFresh(program.verifiedOn, now) || !isFresh(program.checkedOn, now)) {
+      warnings.push('hop-verification-expired-falls-back-to-official-url')
+    }
+  }
+
+  if (program.sourceEvidence) {
+    for (const url of program.sourceEvidence) {
+      if (!httpsHref(url)) {
+        errors.push(`invalid-evidence-url:${url}`)
+      }
+      if (/mail\.google\.com|gmail\.com/i.test(url)) {
+        errors.push('private-mailbox-url-forbidden-in-public-evidence')
+      }
+    }
+  }
+
+  return {
+    id,
+    tool: program.tool,
+    status,
+    valid: errors.length === 0,
+    sponsoredEligible: decision.sponsored,
+    freshVerification: isFresh(program.verifiedOn, now) && isFresh(program.checkedOn, now),
+    errors,
+    warnings,
+  }
+}
+
+export function partnerRegistryReport(
+  programs: readonly ProgramSource[],
+  now = new Date(),
+): PartnerValidationReport[] {
+  return programs.map((program) => validatePartnerProgram(program, now))
+}
+
