@@ -84,6 +84,15 @@ export const LAUNCH_LIST_INTENTS: ReadonlySet<string> = new Set([
   'vibe-os',
 ])
 
+/**
+ * Products whose /waitlist page asks the three demand questions (role, price band, reason)
+ * after the email is captured. Both previously linked to a dead Gumroad checkout.
+ */
+export const DEMAND_CAPTURE_INTENTS: ReadonlySet<string> = new Set([
+  'creative-ai-toolkit',
+  'creation-chronicles',
+])
+
 export const WAITLIST_INTENT_LABELS: Record<string, string> = Object.fromEntries(
   Object.entries(WAITLIST_INTENTS).map(([id, intent]) => [id, intent.label]),
 )
