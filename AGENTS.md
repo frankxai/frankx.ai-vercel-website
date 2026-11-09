@@ -257,6 +257,17 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
+## FrankX voice sources
+
+Read these before drafting or editing any FrankX copy, post, script, email or page. Earlier voice notes in this repo yield to them.
+
+1. **Stance:** `Starlight-Intelligence/starlight-design-intelligence` `brand-packs/frankx/POINT_OF_VIEW.md`. What FrankX believes about the AI era, who it speaks to, and the rules for AGI and superintelligence claims.
+2. **Voice:** the same pack's `BRAND.md`, `COPY.md` and `NARRATIVE.md`. How a sentence earns its place, and the required tests.
+3. **References:** `frankxai/content-os` `knowledge/voice-observatory/`. Read `pattern-grammar.md`, then `voices/frontier-lab-lane.md` or `voices/founder-teacher-lane.md`. These cards are research. Steal the mechanism, never the phrasing.
+4. **Estate standard:** `Starlight-Intelligence/starlight-agent-config` `core/policies/human-writing-standard.v1.md` and the humanizer skill.
+
+On this machine the repos sit under `C:/Users/frank/starlight/repos/`. Elsewhere, fetch with `gh api repos/<owner>/<repo>/contents/<path> -H "Accept: application/vnd.github.raw"`. If a source cannot be read, say so and stop; do not draft from memory.
+
 <!-- STARLIGHT-EDITORIAL:START -->
 ## Editorial contract
 
@@ -268,7 +279,7 @@ Brand: **FrankX** (`frankx`)
 - Keep public labels in sentence case.
 - Run the changed-copy editorial audit before release.
 
-Pinned source: https://github.com/frankxai/starlight-design-intelligence/blob/50ae34c7ac06e6c083f277ca96c3bde8f0a39b43/brand-packs/frankx/COPY.md
+Pinned source: https://github.com/Starlight-Intelligence/starlight-design-intelligence/blob/851a11be31a0640df64baabcf2b1fc1afb9ce849/brand-packs/frankx/COPY.md
 <!-- STARLIGHT-EDITORIAL:END -->
 
 
@@ -287,3 +298,23 @@ At handoff distinguish policy proposed, merged, loaded in this agent session and
 <!-- PRODUCT-OUTCOME-CONTRACT:END -->
 
 Current quality implementation: https://github.com/frankxai/frankx.ai-vercel-website/issues/706. Reconcile historical instructions against accepted current decisions before changing product scope.
+
+## Review evidence and release routing
+
+Added by Codex, 3 November 2026, revision 1; proposed until this PR is reviewed and merged.
+
+Declare one implementation owner and provider for the full PR head SHA. A shared
+GitHub account or branch prefix cannot authenticate the model that wrote the code.
+Use Copilot as the first pass on qualifying ready PRs; request a final-head re-review
+when new-push review is off. OpenAI-authored work needs a substantive reviewer from
+a different provider, usually Claude; Anthropic-authored work can route to Codex.
+Do not count a second session of the maker's provider or a typed receipt as independence.
+
+Preserve the existing homepage contract, every required CI/context and the Vercel
+app binding. Review auth, sends, payments, tenant isolation, secrets, agents, CI and
+infrastructure as sensitive changes. Findings and test/preview evidence name the full
+head; a new push invalidates prior release review. State incomplete/truncated coverage.
+A review request, green unrelated job or resolved thread is not production approval.
+No review rule here grants merge, deployment, billing or permission authority.
+
+Shared measured rollout: https://github.com/frankxai/agentic-ops/pull/439.

@@ -179,7 +179,7 @@ When the creator practice generates enough revenue, enough stability, and enough
 
 ## IX. A Story
 
-I write this chapter with 17 books published, 12,000 songs produced, and a platform serving students, professors, researchers, and doctors. I write it after years working around enterprise-scale AI architecture, including a former AI architect role at Oracle, where I learned public, non-confidential patterns that I now translate into independent tools for individuals.
+I write this chapter with 17 books published, AI music produced, and a platform serving students, professors, researchers, and doctors. I write it after years working around enterprise-scale AI architecture, including a former AI architect role at Oracle, where I learned public, non-confidential patterns that I now translate into independent tools for individuals.
 
 I did not arrive here through a viral moment. I arrived through staying.
 

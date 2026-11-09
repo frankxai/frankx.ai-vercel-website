@@ -4,6 +4,9 @@ import { isPriceBand, MAX_PAIN_LENGTH } from '@/lib/diagnostic/demand'
 import { listTypeForIntent, sanitizeIntent } from '@/lib/diagnostic/waitlist-intents'
 import { emailRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 
+/** List types a waitlist signup can be written to (the subscribe route's waitlist lists). */
+const WAITLIST_LIST_TYPES: ReadonlySet<string> = new Set(['premium-packs', 'creation-chronicles', 'courses-waitlist'])
+
 export const runtime = 'nodejs'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
@@ -61,8 +64,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Rebuilds the full property set rather than merging, because Resend replaces
-    // `properties` wholesale. `source` mirrors what /api/subscribe wrote in step 1.
-    const properties: Record<string, string> = { source: listTypeForIntent(intent) }
+    // `properties` wholesale. `source` mirrors what /api/subscribe wrote in step 1: the
+    // form sends the listType it subscribed with, and the intent's registry list is the
+    // fallback when it is missing or not one of the waitlist lists.
+    const sentListType = typeof raw.listType === 'string' ? raw.listType : ''
+    const source = WAITLIST_LIST_TYPES.has(sentListType) ? sentListType : listTypeForIntent(intent)
+    const properties: Record<string, string> = { source }
     if (intent) properties.intent = intent
     if (priceBand) properties.price_band = priceBand
     if (role) properties.role = role

@@ -12,6 +12,10 @@
     "jw_o0xr8MWU": [
       "nvidia-gtc-2026-ai-architect-breakdown"
     ],
+    "mbunGLyvlRg": [
+      "speaking-vs-typing-speed",
+      "voice-typing-for-founders"
+    ],
     "tW40b122Rbs": [
       "the-research-generation-flywheel-sandcastles-higgsfield-grok-2026",
       "using-elevenlabs-for-faceless-youtube-channels-and-higgsfield-for-b-roll"
@@ -21,6 +25,30 @@
     ],
     "WJ8Jj44ehWE": [
       "ultimate-canva-ai-workflow-2026"
+    ],
+    "w6bjGDwn4ZY": [
+      "vercel-ship-2026-builder-decisions"
+    ],
+    "T1vs9jE-EEI": [
+      "vercel-ship-2026-builder-decisions"
+    ],
+    "Fr5vzNknYJE": [
+      "vercel-ship-2026-builder-decisions"
+    ],
+    "02BXGNGhIUE": [
+      "voice-prompting-for-ai-architects"
+    ],
+    "Bg0rdpFKCQI": [
+      "voice-typing-for-ceos"
+    ],
+    "UP6tV_JrCfU": [
+      "voice-typing-for-creators"
+    ],
+    "fyifKHq8XaY": [
+      "voice-writing-for-authors"
+    ],
+    "t_nnBqXpodo": [
+      "wispr-flow-vs-superwhisper-vs-macwhisper-vs-willow"
     ]
   },
   "blogToVideo": {
@@ -36,6 +64,9 @@
     "nvidia-gtc-2026-ai-architect-breakdown": [
       "jw_o0xr8MWU"
     ],
+    "speaking-vs-typing-speed": [
+      "mbunGLyvlRg"
+    ],
     "the-research-generation-flywheel-sandcastles-higgsfield-grok-2026": [
       "tW40b122Rbs"
     ],
@@ -45,6 +76,29 @@
     ],
     "using-elevenlabs-for-faceless-youtube-channels-and-higgsfield-for-b-roll": [
       "tW40b122Rbs"
+    ],
+    "vercel-ship-2026-builder-decisions": [
+      "w6bjGDwn4ZY",
+      "T1vs9jE-EEI",
+      "Fr5vzNknYJE"
+    ],
+    "voice-prompting-for-ai-architects": [
+      "02BXGNGhIUE"
+    ],
+    "voice-typing-for-ceos": [
+      "Bg0rdpFKCQI"
+    ],
+    "voice-typing-for-creators": [
+      "UP6tV_JrCfU"
+    ],
+    "voice-typing-for-founders": [
+      "mbunGLyvlRg"
+    ],
+    "voice-writing-for-authors": [
+      "fyifKHq8XaY"
+    ],
+    "wispr-flow-vs-superwhisper-vs-macwhisper-vs-willow": [
+      "t_nnBqXpodo"
     ]
   },
   "videoToWatchlist": {

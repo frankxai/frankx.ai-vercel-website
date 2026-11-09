@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import {
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
     title: 'FrankX OS — Personal AI Operating System',
     description:
       'Ten interlocking modules. One CRM. One amplification loop. The operating system behind frankx.ai.',
-    url: 'https://frankx.ai/os',
+    url: `${siteConfig.url}/os`,
     siteName: 'FrankX',
     type: 'website',
     images: [
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
     description: 'Ten interlocking modules. One CRM. One amplification loop.',
     images: ['/hero-homepage.png'],
   },
-  alternates: { canonical: 'https://frankx.ai/os' },
+  alternates: { canonical: `${siteConfig.url}/os` },
 }
 
 const ICON_MAP = { Video, Users, Film, Cpu, Building2, BookOpen, Zap, LineChart, Hammer }
@@ -136,11 +137,11 @@ function OSSchema() {
     '@type': 'WebSite',
     name: 'FrankX OS',
     description: 'Personal AI Operating System. Ten interlocking modules + unified CRM.',
-    url: 'https://frankx.ai/os',
+    url: `${siteConfig.url}/os`,
     author: {
       '@type': 'Person',
       name: 'Frank Riemer',
-      url: 'https://frankx.ai',
+      url: siteConfig.url,
       jobTitle: 'AI Architect',
     },
   }

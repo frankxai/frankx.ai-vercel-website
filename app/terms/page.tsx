@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | FrankX.AI',
+  title: 'Terms of Service',
   description: 'Terms of service for FrankX.AI - rules and guidelines for using our services.',
 }
 

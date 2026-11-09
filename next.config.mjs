@@ -32,15 +32,28 @@ const REDIRECT_ALIASES = loadRedirectAliases()
 
 const GAME_TAILWIND_BROWSER_SCRIPT = 'https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4'
 
-function siteContentSecurityPolicy(frameAncestors, additionalScriptSources = []) {
+// Origin of the docs-platform deployment whose build assets the /docs proxy
+// route references (see app/docs/[[...slug]]/route.ts).
+const DOCS_ASSET_ORIGIN = 'https://docs-platform-nine.vercel.app'
+
+function siteContentSecurityPolicy(
+  frameAncestors,
+  additionalScriptSources = [],
+  additionalStyleSources = [],
+  additionalFontSources = [],
+) {
   const scriptSourceSuffix =
     additionalScriptSources.length > 0 ? ` ${additionalScriptSources.join(' ')}` : ''
+  const styleSourceSuffix =
+    additionalStyleSources.length > 0 ? ` ${additionalStyleSources.join(' ')}` : ''
+  const fontSourceSuffix =
+    additionalFontSources.length > 0 ? ` ${additionalFontSources.join(' ')}` : ''
 
   return [
     "default-src 'self'",
     `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://assets.lemonsqueezy.com${scriptSourceSuffix}`,
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-    "font-src 'self' https://fonts.gstatic.com data:",
+    `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com${styleSourceSuffix}`,
+    `font-src 'self' https://fonts.gstatic.com data:${fontSourceSuffix}`,
     "img-src 'self' data: blob: https: http:",
     "media-src 'self' https:",
     "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://open.spotify.com https://embeds.beehiiv.com https://vercel.live https://*.lemonsqueezy.com https://vusercontent.net https://*.vusercontent.net",
@@ -154,6 +167,31 @@ const nextConfig = {
       // /games and /games/:slug. Vercel cleanUrls canonicalizes .html and
       // index.html requests before these rules, so effective aliases and
       // destinations stay extensionless and converge without redirect loops.
+      // Founder entry points. /about is the URL Google ranks for "frank riemer"
+      // (Search Console, Aug-Nov 2026) and the author URL in site config, so
+      // /founder and /founders consolidate there instead of 404ing.
+      {
+        source: '/founder',
+        destination: '/about',
+        permanent: true,
+      },
+      {
+        source: '/founders',
+        destination: '/about',
+        permanent: true,
+      },
+      // Editorial aliases converge on the magazine front page.
+      {
+        source: '/editorial',
+        destination: '/magazine',
+        permanent: true,
+      },
+      // Singular alias for the agent playbooks hub.
+      {
+        source: '/playbook',
+        destination: '/playbooks',
+        permanent: true,
+      },
       {
         source: '/games/hub',
         destination: '/game-embeds/legacy-hub',
@@ -524,6 +562,26 @@ const nextConfig = {
           {
             key: 'X-Frame-Options',
             value: 'SAMEORIGIN',
+          },
+        ],
+      },
+      {
+        // The /docs route proxies the docs-platform deployment: its scripts,
+        // styles and fonts are served from that origin (asset paths rewritten
+        // to absolute URLs by app/docs/[[...slug]]/route.ts), so the docs
+        // origin is added to the source lists here. Deliberately placed after
+        // the site-wide rule — when two rules set the same header, the last
+        // one wins (Next.js documented merge order).
+        source: '/docs/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: siteContentSecurityPolicy(
+              "'none'",
+              [DOCS_ASSET_ORIGIN],
+              [DOCS_ASSET_ORIGIN],
+              [DOCS_ASSET_ORIGIN],
+            ),
           },
         ],
       },

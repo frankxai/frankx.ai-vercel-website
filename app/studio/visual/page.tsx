@@ -1,3 +1,4 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
@@ -25,19 +26,21 @@ import {
 export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
-  title: 'Visual Intelligence System — Drop Images, Get a Per-Platform Strategy | FrankX',
+  title: 'Visual Intelligence System — Drop Images, Get a Per-Platform Strategy',
   description:
     'The substrate for FrankX visual production. Three asset tiers (NB2, Higgsfield, HyperFrames), nine platform personas, one drop-images workflow. Built on the existing /watch, /workshops, /aco, /library systems.',
-  alternates: { canonical: 'https://frankx.ai/studio/visual' },
+  alternates: { canonical: `${siteConfig.url}/studio/visual` },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Visual Intelligence System — Drop Images, Get a Per-Platform Strategy',
     description:
       'Three asset tiers, nine platform personas, one workflow. The visual substrate that turns raw imagery into per-platform content strategy.',
-    url: 'https://frankx.ai/studio/visual',
+    url: `${siteConfig.url}/studio/visual`,
     siteName: 'FrankX',
     type: 'website',
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary_large_image',
     title: 'Visual Intelligence System — Drop Images, Get a Per-Platform Strategy',
     description:
@@ -51,11 +54,11 @@ const articleSchema = {
   headline: 'Visual Intelligence System — Drop Images, Get a Per-Platform Strategy',
   description:
     'A typed substrate (lib/visual-intelligence/), runtime (skill + command + agent), and public face that composes NB2, Higgsfield, and HyperFrames into a single drop-images workflow with per-platform persona enforcement.',
-  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
-  publisher: { '@type': 'Organization', name: 'FrankX', url: 'https://frankx.ai' },
+  author: { '@type': 'Person', name: 'Frank Riemer', url: siteConfig.url },
+  publisher: { '@type': 'Organization', name: 'FrankX', url: siteConfig.url },
   datePublished: VIS_SHIPPED,
   dateModified: VIS_SHIPPED,
-  mainEntityOfPage: 'https://frankx.ai/studio/visual',
+  mainEntityOfPage: `${siteConfig.url}/studio/visual`,
   inLanguage: 'en',
   keywords:
     'visual intelligence, AI image generation, Higgsfield, Nano Banana, HyperFrames, content strategy, social media, multimodal analysis',

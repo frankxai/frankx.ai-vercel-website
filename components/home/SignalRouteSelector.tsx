@@ -148,7 +148,7 @@ export function SignalRouteSelector() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
           <div className="max-w-2xl">
-            <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400/50">
+            <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400/75">
               Signal Router
             </p>
             <h2
@@ -170,7 +170,7 @@ export function SignalRouteSelector() {
                 key={signal.label}
                 className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-4 backdrop-blur-[24px] backdrop-saturate-[150%]"
               >
-                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/35">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/55">
                   {signal.label}
                 </p>
                 <p className="mt-3 text-sm font-semibold text-white">{signal.value}</p>
@@ -235,7 +235,7 @@ export function SignalRouteSelector() {
                     {route.checks.map((check) => (
                       <span
                         key={check}
-                        className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-[11px] font-medium text-white/45"
+                        className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-[11px] font-medium text-white/55"
                       >
                         {check}
                       </span>
@@ -270,7 +270,7 @@ export function SignalRouteSelector() {
             <GitBranch className="h-4 w-4 text-emerald-300/70" aria-hidden="true" />
             <span>Routing contract: creator output, builder systems, team architecture.</span>
           </div>
-          <span className="text-[11px] text-white/40">
+          <span className="text-[11px] text-white/55">
             Open field notes · Inspectable architecture · Independent release
           </span>
         </div>

@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from "next";
 import {
   EssaySection,
@@ -11,14 +12,15 @@ export const metadata: Metadata = {
   description:
     "A close reading of Meta’s personal superintelligence strategy, with a practical extension from broad access to human sovereignty.",
   alternates: {
-    canonical: "https://frankx.ai/insights/meta-the-future-is-for-everyone",
+    canonical: `${siteConfig.url}/insights/meta-the-future-is-for-everyone`,
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title:
       "What Meta Gets Right About a Future for Everyone—and What Comes Next",
     description:
       "Individual empowerment is the right direction. Sovereignty, capability, and responsibility make it concrete.",
-    url: "https://frankx.ai/insights/meta-the-future-is-for-everyone",
+    url: `${siteConfig.url}/insights/meta-the-future-is-for-everyone`,
     type: "article",
     publishedTime: "2026-08-12",
     authors: ["Frank Riemer"],
@@ -36,15 +38,15 @@ export default function MetaFutureEssay() {
     author: {
       "@type": "Person",
       name: "Frank Riemer",
-      url: "https://frankx.ai",
+      url: siteConfig.url,
     },
     publisher: {
       "@type": "Organization",
       name: "FrankX",
-      url: "https://frankx.ai",
+      url: siteConfig.url,
     },
     mainEntityOfPage:
-      "https://frankx.ai/insights/meta-the-future-is-for-everyone",
+      `${siteConfig.url}/insights/meta-the-future-is-for-everyone`,
     citation: [
       "https://www.meta.com/thefutureisforeveryone/",
       "https://openai.com/index/built-to-benefit-everyone-our-plan/",
