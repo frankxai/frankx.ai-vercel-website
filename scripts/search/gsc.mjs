@@ -45,16 +45,18 @@ async function queryAll(token, body, maxRows) {
   const url = `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(opt.site)}/searchAnalytics/query`
   const rows = []
   for (let startRow = 0; startRow < maxRows; startRow += GSC_MAX_ROWS) {
+    const remaining = maxRows - startRow
+    const rowLimit = Math.min(GSC_MAX_ROWS, remaining)
     const res = await fetch(url, {
       method: 'POST',
       headers: { authorization: `Bearer ${token}`, 'content-type': 'application/json' },
-      body: JSON.stringify({ ...body, rowLimit: GSC_MAX_ROWS, startRow }),
+      body: JSON.stringify({ ...body, rowLimit, startRow }),
     })
     const data = await res.json()
     if (!res.ok) throw new Error(`searchAnalytics ${res.status}: ${data.error?.message ?? 'unknown error'}`)
     const page = data.rows ?? []
-    rows.push(...page)
-    if (page.length < GSC_MAX_ROWS) break
+    rows.push(...page.slice(0, rowLimit))
+    if (page.length < rowLimit) break
   }
   return rows
 }
@@ -70,14 +72,16 @@ async function main() {
     clicks: r.clicks, impressions: r.impressions, ctr: Number(r.ctr.toFixed(4)), position: Number(r.position.toFixed(1)),
   }))
 
-  const dir = join(opt.out, `${endDate}-${opt.days}d`)
+  const siteSlug = opt.site.replace(/[^a-zA-Z0-9_.-]/g, '_')
+  const dimSlug = dimensions.join('-')
+  const dir = join(opt.out, siteSlug, `${endDate}-${opt.days}d-${dimSlug}`)
   mkdirSync(dir, { recursive: true })
   const columns = [...dimensions, 'clicks', 'impressions', 'ctr', 'position']
   writeFileSync(join(dir, 'rows.json'), JSON.stringify({ site: opt.site, startDate, endDate, dimensions, rows }, null, 2))
   writeFileSync(join(dir, 'rows.csv'), toCsv(rows, columns))
   writeFileSync(join(dir, 'striking-distance.csv'), toCsv(strikingDistance(rows), columns))
   writeFileSync(join(dir, 'ctr-gaps.csv'), toCsv(ctrGaps(rows), columns))
-  writeFileSync(join(opt.out, 'latest.json'), JSON.stringify({ dir, site: opt.site, startDate, endDate, rows: rows.length }, null, 2))
+  writeFileSync(join(opt.out, 'latest.json'), JSON.stringify({ dir, site: opt.site, dimensions, startDate, endDate, rows: rows.length }, null, 2))
   console.log(`${rows.length} rows ${startDate}..${endDate} for ${opt.site} -> ${dir}`)
 }
 
