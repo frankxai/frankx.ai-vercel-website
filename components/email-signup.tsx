@@ -155,7 +155,7 @@ export function EmailSignup({
       await fetch('/api/demand', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, intent, priceBand, role, pain: pain.trim() }),
+        body: JSON.stringify({ email, intent, listType, priceBand, role, pain: pain.trim() }),
       })
       trackEvent('demand_signal_captured', {
         list_type: listType,
