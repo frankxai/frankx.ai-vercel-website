@@ -25,14 +25,17 @@ function walk(dir, out = []) {
 }
 
 function knownSkus() {
-  const source = readFileSync(join(ROOT, 'app/api/checkout/route.ts'), 'utf8')
-  const map = source.slice(source.indexOf('const PRODUCTS'), source.indexOf('export async function POST'))
-  return new Set([...map.matchAll(/^\s*'([^']+)':\s*\{/gm)].map((m) => m[1]))
+  const source = readFileSync(join(ROOT, 'lib/checkout-products.ts'), 'utf8')
+  const start = source.indexOf('export const CHECKOUT_PRODUCTS')
+  const map = source.slice(start, source.indexOf('};', start))
+  return new Set(
+    [...map.matchAll(/^\s*['"]([^'"]+)['"]:\s*\{/gm)].map((m) => m[1]),
+  )
 }
 
 test('every CheckoutButton productId resolves to a SKU the checkout route knows', () => {
   const skus = knownSkus()
-  assert.ok(skus.size > 0, 'could not parse any SKU out of the checkout route PRODUCTS map')
+  assert.ok(skus.size > 0, 'could not parse any SKU out of the CHECKOUT_PRODUCTS registry')
 
   const offenders = []
   for (const file of [...walk(join(ROOT, 'app')), ...walk(join(ROOT, 'components'))]) {
@@ -83,14 +86,17 @@ test('checkout opens only with for-sale status, key and price', () => {
   assert.deepEqual(stripeCheckoutGate(open, KEY), { ok: true, secretKey: KEY, priceId: 'price_x' })
 })
 
-test('every product in the Stripe route ships closed and the route calls the gate before Stripe', () => {
-  const source = readFileSync(join(ROOT, 'app/api/checkout/route.ts'), 'utf8')
-  const map = source.slice(source.indexOf('const PRODUCTS'), source.indexOf('export async function POST'))
-  const entries = [...map.matchAll(/^\s*'([^']+)':\s*\{([\s\S]*?)^\s*\},/gm)]
-  assert.ok(entries.length > 0, 'could not parse PRODUCTS entries')
+test('every product in the shared registry ships closed and the route calls the gate before Stripe', () => {
+  const catalog = readFileSync(join(ROOT, 'lib/checkout-products.ts'), 'utf8')
+  const start = catalog.indexOf('export const CHECKOUT_PRODUCTS')
+  const map = catalog.slice(start, catalog.indexOf('};', start))
+  const entries = [...map.matchAll(/^\s*['"]([^'"]+)['"]:\s*\{([\s\S]*?)^\s*\},/gm)]
+  assert.ok(entries.length > 0, 'could not parse CHECKOUT_PRODUCTS entries')
   const open = entries.filter(([, , body]) => !/status:\s*NOT_FOR_SALE/.test(body)).map(([, id]) => id)
   assert.deepEqual(open, [], `products not shipped closed (opening one needs a reviewed PR that also updates this test): ${open.join(', ')}`)
 
+  const source = readFileSync(join(ROOT, 'app/api/checkout/route.ts'), 'utf8')
+  assert.match(source, /CHECKOUT_PRODUCTS/, 'the route must read the shared registry')
   const post = source.slice(source.indexOf('export async function POST'))
   assert.ok(post.indexOf('stripeCheckoutGate(') > 0, 'POST does not call stripeCheckoutGate')
   assert.ok(post.indexOf('api.stripe.com') > post.indexOf('stripeCheckoutGate('), 'gate must run before the Stripe API call')

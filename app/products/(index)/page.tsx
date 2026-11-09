@@ -343,9 +343,9 @@ export default function ProductsPage() {
     return {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      name: 'FrankX AI Digital Estate and Architecture Solutions',
+      name: 'FrankX products: skill packs, prompt libraries and templates',
       description:
-        'Production agent frameworks, system prompt suites, multi-modal workflows, and enterprise AI blueprints by AI Architect Frank Riemer.',
+        'Skill packs, prompt libraries, Obsidian vaults and repository templates by Frank Riemer.',
       numberOfItems: allProducts.length,
       itemListElement: allProducts.map((product, index) => ({
         '@type': 'ListItem',
@@ -400,9 +400,9 @@ export default function ProductsPage() {
               transition={{ duration: shouldReduceMotion ? 0 : 0.2, delay: shouldReduceMotion ? 0 : 0.05 }}
               className="mb-6 max-w-4xl font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
             >
-              Operational systems.
+              Skill packs, prompt libraries,
               <span className="mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-cyan-300">
-                Engineered for production.
+                vaults and repo templates.
               </span>
             </motion.h1>
 
@@ -412,7 +412,7 @@ export default function ProductsPage() {
               transition={{ duration: shouldReduceMotion ? 0 : 0.2, delay: shouldReduceMotion ? 0 : 0.1 }}
               className="max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
-              Inspectable skill packs, prompt libraries, Obsidian vaults, and repository templates with clear file manifests.
+              Each product lists its files before you get it.
             </motion.p>
           </div>
         </section>
@@ -863,10 +863,10 @@ export default function ProductsPage() {
               <div className="relative flex flex-col items-center gap-6 text-center max-w-2xl mx-auto">
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs sm:text-sm font-medium border border-emerald-500/20">
                   <Shield className="w-4 h-4" />
-                  Sovereign architecture
+                  Free starter kits
                 </span>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
-                  Run inspectable AI architectures in your own stack
+                  Start with the free starter kits
                 </h2>
                 <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
                   Start with open specifications and free starter kits, or join the launch list for paid kits.

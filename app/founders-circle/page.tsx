@@ -184,8 +184,9 @@ export default function FoundersCirclePage() {
             obligations, the work is referred upstream rather than serviced in the Circle.
           </p>
           <p className="text-sm text-zinc-400 leading-relaxed">
-            All work in the Circle is done under FrankX (Frank's separate Dutch
-            BV). Conflict-of-interest screening happens before acceptance.
+            All work in the Circle is contracted directly with Frank Riemer, a
+            Dutch sole proprietor (eenmanszaak). Conflict-of-interest screening
+            happens before acceptance.
             Confidentiality terms, including an NDA when needed, are agreed
             before confidential work begins.
           </p>
