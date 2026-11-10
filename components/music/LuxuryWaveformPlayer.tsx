@@ -143,20 +143,32 @@ export function LuxuryWaveformPlayer({ track, className = '' }: LuxuryWaveformPl
     }
   }, [isPlaying, totalDuration, playbackSpeed])
 
-  const toggleStemMute = (stemKey: string) => {
-    setStems((prev) => ({
-      ...prev,
-      [stemKey]: !prev[stemKey],
-    }))
-    // Tactile acoustic modulation on synth
-    if (oscillatorRefs.current && audioContextRef.current) {
-      const { gain } = oscillatorRefs.current
-      gain.gain.setValueAtTime(gain.gain.value, audioContextRef.current.currentTime)
-      gain.gain.linearRampToValueAtTime(
-        stems[stemKey] ? 0.04 : 0.12,
-        audioContextRef.current.currentTime + 0.1
-      )
+  // Synchronize audio drone lifecycle directly with isPlaying state
+  useEffect(() => {
+    if (isPlaying) {
+      startHarmonicDrone()
+    } else {
+      stopHarmonicDrone()
     }
+  }, [isPlaying])
+
+  const toggleStemMute = (stemKey: string) => {
+    setStems((prev) => {
+      const nextActive = !prev[stemKey]
+      // Tactile acoustic modulation on synth
+      if (oscillatorRefs.current && audioContextRef.current) {
+        const { gain } = oscillatorRefs.current
+        gain.gain.setValueAtTime(gain.gain.value, audioContextRef.current.currentTime)
+        gain.gain.linearRampToValueAtTime(
+          nextActive ? 0.12 : 0.04,
+          audioContextRef.current.currentTime + 0.1
+        )
+      }
+      return {
+        ...prev,
+        [stemKey]: nextActive,
+      }
+    })
   }
 
   const toggleStemSolo = (stemKey: string) => {
@@ -185,13 +197,7 @@ export function LuxuryWaveformPlayer({ track, className = '' }: LuxuryWaveformPl
   }, [])
 
   const handleTogglePlay = () => {
-    if (isPlaying) {
-      stopHarmonicDrone()
-      setIsPlaying(false)
-    } else {
-      startHarmonicDrone()
-      setIsPlaying(true)
-    }
+    setIsPlaying((prev) => !prev)
   }
 
   const handleScrub = (e: React.MouseEvent<HTMLDivElement>) => {

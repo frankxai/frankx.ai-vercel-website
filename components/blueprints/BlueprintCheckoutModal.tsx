@@ -29,19 +29,18 @@ export function BlueprintCheckoutModal({
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
+      if (e.key === 'Escape' && !loading) onClose()
     }
     if (isOpen) {
+      const prevOverflow = document.body.style.overflow
       document.body.style.overflow = 'hidden'
       window.addEventListener('keydown', handleKeyDown)
-    } else {
-      document.body.style.overflow = 'auto'
+      return () => {
+        document.body.style.overflow = prevOverflow
+        window.removeEventListener('keydown', handleKeyDown)
+      }
     }
-    return () => {
-      document.body.style.overflow = 'auto'
-      window.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [isOpen, onClose])
+  }, [isOpen, onClose, loading])
 
   if (!isOpen || !product) return null
 
@@ -73,11 +72,11 @@ export function BlueprintCheckoutModal({
         return
       }
 
-      // If checkout is gated (waitlist-first / doctrine 0 staging gate)
-      if (res.status === 503 || data.refusal) {
+      // If checkout is gated or in early-access pre-stage (waitlist-first / doctrine 0 staging gate)
+      if (res.status === 503 || res.status === 404 || data.refusal) {
         // Post to waitlist / VIP reservation
         try {
-          await fetch('/api/waitlist', {
+          const waitlistRes = await fetch('/api/waitlist', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -85,11 +84,15 @@ export function BlueprintCheckoutModal({
               source: `blueprint-${product.id}`,
             }),
           })
+          if (waitlistRes.ok) {
+            setIsSuccess(true)
+            setStatusMessage('reservation confirmed: early-access seat locked at this price')
+          } else {
+            setStatusMessage('early-access reservation could not be recorded: please retry.')
+          }
         } catch {
-          // Non-blocking
+          setStatusMessage('network error: unable to reach reservation service.')
         }
-        setIsSuccess(true)
-        setStatusMessage('reservation confirmed: early-access seat locked at this price')
       } else {
         setStatusMessage(data.error || 'checkout could not be initiated')
       }
