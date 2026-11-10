@@ -59,7 +59,12 @@ export async function sendGift(productId: string, email: string): Promise<GiftRe
   try {
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      headers: {
+        Authorization: `Bearer ${key}`,
+        'Content-Type': 'application/json',
+        // Resend drops a repeat of the same key for 24 hours, a second guard behind the marker.
+        'Idempotency-Key': `gift/${productId}/${email}`,
+      },
       body: JSON.stringify({ from: gift.from, to: [email], reply_to: gift.replyTo, ...mail }),
       signal: AbortSignal.timeout(5_000),
     })
