@@ -6,6 +6,7 @@ export const metadata = createMetadata({
   description:
     'A magical space of poetry, games, music, and stories — growing every birthday. With love from Uncle Frank.',
   path: '/alea',
+  noindex: true,
 })
 
 export default function Layout({ children }: { children: React.ReactNode }) {

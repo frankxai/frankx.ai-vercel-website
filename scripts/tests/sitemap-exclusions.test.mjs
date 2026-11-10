@@ -101,6 +101,28 @@ test('sign-in gated and middleware-redirected paths are excluded', async () => {
   }
 })
 
+test('private and internal surfaces are excluded and say noindex in their own metadata', async () => {
+  const sources = await sourcesLikeTheSitemap()
+  const surfaces = [
+    ['/alea', 'app/alea/layout.tsx', '/alea/musik/klavier'],
+    ['/business-plan', 'app/business-plan/page.tsx'],
+    ['/design-lab', 'app/design-lab/layout.tsx', '/design-lab/nature/variants'],
+    ['/experiments', 'app/experiments/page.tsx'],
+    ['/frankx-investment-dashboard', 'app/frankx-investment-dashboard/layout.tsx'],
+    ['/goals', 'app/goals/page.tsx'],
+    ['/testimonials', 'app/testimonials/layout.tsx'],
+    ['/v0', 'app/v0/page.tsx'],
+  ]
+  for (const [prefix, metadataFile, child] of surfaces) {
+    assert.ok(isExcludedFromSitemap(prefix, sources), `${prefix} is listed in the sitemap`)
+    if (child) assert.ok(isExcludedFromSitemap(child, sources), `${child} is listed in the sitemap`)
+    const source = fs.readFileSync(path.join(ROOT, metadataFile), 'utf8')
+    assert.match(source, /\bnoindex:\s*true\b|\brobots:\s*\{\s*index:\s*false\b/, `${metadataFile} does not say noindex`)
+  }
+  // A prefix covers the route and everything beneath it, never a sibling that shares its first letters.
+  assert.equal(isExcludedFromSitemap('/goalsetting', sources), false)
+})
+
 test('conditional, pattern and root redirect sources never exclude a page', () => {
   const sources = literalRedirectSources([
     { source: '/only-on-host', destination: '/x', permanent: true, has: [{ type: 'host', value: 'example.com' }] },
