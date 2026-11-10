@@ -99,10 +99,9 @@ function ThankYouContent() {
           </PremiumButton>
         </div>
 
-        {/* Social Proof */}
         <div className="pt-8 border-t border-slate-800">
           <p className="text-sm text-slate-400">
-            Join <span className="text-white font-semibold">5,000+</span> creators building the future with AI
+            You can unsubscribe at any time.
           </p>
         </div>
       </div>

@@ -27,6 +27,7 @@ export const metadata: Metadata = {
   description:
     'The FrankX public operating model: verified customer-facing brands, explicit recurring-value experiments, and a measurable path from natural advantage to scalable impact.',
   alternates: { canonical: `${siteConfig.url}/business-plan` },
+  robots: { index: false, follow: false },
   openGraph: {
     images: defaultOpenGraphImages,
     title: 'The FrankX Business Architecture',
