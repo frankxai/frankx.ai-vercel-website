@@ -21,6 +21,7 @@ import { FounderStory } from '@/components/home/FounderStory'
 import { MindPalaceAtlas } from '@/components/home/MindPalaceAtlas'
 import { SignalRouteSelector } from '@/components/home/SignalRouteSelector'
 import { FeaturedTrackPlayer } from '@/components/home/FeaturedTrackPlayer'
+import { LuxuryWaveformPlayer } from '@/components/music/LuxuryWaveformPlayer'
 import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
 
 // ============================================================================
@@ -158,7 +159,7 @@ function AuroraBackground() {
 // ============================================================================
 
 function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
-  return <FeaturedTrackPlayer track={track} />
+  return <LuxuryWaveformPlayer track={track} />
 }
 
 // ============================================================================
