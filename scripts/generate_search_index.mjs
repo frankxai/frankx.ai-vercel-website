@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import { selectPublicReadingFiles } from './lib/public-reading-publication.mjs'
 
 const ROOT = process.cwd()
 const OUTPUT = path.join(ROOT, 'public', 'reading', 'search-index.json')
@@ -48,7 +49,8 @@ function summarize(content) {
   return plain.slice(0, 300)
 }
 
-const files = walk(ROOT)
+const { eligible: files, held } = selectPublicReadingFiles(walk(ROOT), ROOT)
+console.log(`Held ${held.length} documents from reading search.`)
 const items = []
 for (const file of files) {
   const rel = path.relative(ROOT, file).replace(/\\/g, '/')
