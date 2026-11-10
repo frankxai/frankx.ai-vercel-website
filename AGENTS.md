@@ -177,6 +177,7 @@ Multiple harnesses (Claude, Codex, Gemini, Grok, Cursor, Cline) may work this re
 - **Do not use `[skip ci]`** for changes under `app/`, `components/`, `content/`, `lib/`, or `taste.md`; those paths carry required release gates. Use it only for truly non-executable documentation after checking the workflow path rules.
 - **Verify locally first.** Run `pnpm run type-check`, `pnpm run lint`, `pnpm run ai-slop:audit:strict`, and `pnpm run build` before pushing. Cloud CI is the merge-boundary check, not the iteration loop.
 - **Vercel deploys via git integration only.** Never add a GitHub Actions deploy step — Vercel's own git integration already deploys `main` on push; an Actions-based deploy would double-build and fight it.
+- **Evidence in every PR.** Fill the Evidence section of `.github/pull_request_template.md`; UI PRs commit a design lock and screenshots; state test counts as `N pass, 0 fail`.
 - **Don't touch another agent's in-flight work.** Check `git branch -a`, `git status`, and any dirty/untracked state before editing — foreign state usually means another harness is mid-task.
 
 ---
