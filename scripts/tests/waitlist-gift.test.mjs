@@ -16,11 +16,14 @@ function services({ resendFails = false } = {}) {
   const hashes = new Map()
   const strings = new Map()
   const emails = []
+  const attempts = []
+  const ctl = { resendFails }
   const hash = (k) => hashes.get(k) ?? hashes.set(k, new Map()).get(k)
   globalThis.fetch = async (url, init) => {
     const u = String(url)
     if (u === 'https://api.resend.com/emails') {
-      if (resendFails) return new Response('{"message":"down"}', { status: 500 })
+      attempts.push(init.headers)
+      if (ctl.resendFails) return new Response('{"message":"down"}', { status: 500 })
       emails.push(JSON.parse(init.body))
       return new Response('{"id":"e1"}', { status: 200 })
     }
@@ -80,7 +83,7 @@ function services({ resendFails = false } = {}) {
     }
     return new Response(JSON.stringify({ result }), { status: 200 })
   }
-  return { emails, strings }
+  return { emails, strings, attempts, ctl }
 }
 
 const route = () =>
@@ -164,6 +167,38 @@ test('the form copy only promises the gift while it is switched on', async () =>
   await withLive(async () => {
     const copy = giftCopy(PRODUCT)
     assert.match(copy.quiet, /first practice/i)
-    assert.match(copy.doneText, /inbox/i)
+    // The response cannot know whether the email arrived, and must not say whether the
+    // address was new, so the copy states the practice and a fallback, never a delivery.
+    assert.doesNotMatch(copy.doneText, /is in your inbox|has been sent|is on its way|we sent/i)
+    assert.match(copy.doneText, /first practice/i)
+    assert.match(copy.doneText, /spam|frank@frankx\.ai/i)
+  })
+})
+
+test('a send that failed is retried on the next join, and delivered at most once', async () => {
+  await withLive(async () => {
+    const svc = services({ resendFails: true })
+    const r = route()
+    const join = () => r.POST(post({ productId: PRODUCT, email: 'retry@example.com', consent: true }))
+    assert.equal((await join()).status, 200)
+    assert.equal(svc.emails.length, 0)
+
+    svc.ctl.resendFails = false
+    assert.equal((await join()).status, 200)
+    assert.equal(svc.attempts.length, 2, 'the repeat join retried the failed send')
+    assert.equal(svc.emails.length, 1)
+
+    await join()
+    await join()
+    assert.equal(svc.emails.length, 1, 'once delivered, repeat joins never send again')
+    assert.equal(svc.attempts.length, 2)
+  })
+})
+
+test('each send carries a stable idempotency key, so a lost marker cannot double-send', async () => {
+  await withLive(async () => {
+    const svc = services()
+    await sendGift(PRODUCT, 'idem@example.com')
+    assert.equal(svc.attempts[0]['Idempotency-Key'], `gift/${PRODUCT}/idem@example.com`)
   })
 })
