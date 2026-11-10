@@ -154,6 +154,11 @@ banned.push(
   ['app/vision/VisionContent.tsx', ['$14k MRR']],
   ['app/tools/strategy-canvas/StrategyCanvasClient.tsx', ['Success Stories', 'TechCorp', '% faster', '% reduction', 'improved by 35%']],
 )
+// /testimonials has no testimonials, so it may not say that real stories or results are on it.
+banned.push(
+  ['app/testimonials/layout.tsx', ['Real results from real builders', 'What Builders Say', 'Hear from']],
+  ['app/testimonials/page.tsx', ['Real Stories', 'Real Creators', 'Success Stories', 'creators are using']],
+)
 
 for (const [file, phrases] of banned) {
   test(file + ' does not publish an unsupported headcount', () => {
