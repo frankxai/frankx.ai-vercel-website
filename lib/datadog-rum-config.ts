@@ -15,6 +15,27 @@ export const DATADOG_RUM_INTAKE_SOURCES = [
   'https://*.browser-intake-datadoghq.eu',
 ] as const
 
+/**
+ * Routes whose path carries a bearer credential. Everything after the prefix is the secret, so it
+ * is rewritten to ":token" in views and all other events on these pages are dropped.
+ * Add a prefix here whenever a new route puts a credential in the URL.
+ */
+const CREDENTIAL_PATH_PREFIXES = ['/workshops/me/'] as const
+
+function credentialPrefix(pathname: string): string | undefined {
+  const lower = pathname.toLowerCase()
+  return CREDENTIAL_PATH_PREFIXES.find((prefix) => lower.startsWith(prefix) && lower.length > prefix.length)
+}
+
+export function isSensitiveRumPath(pathname: string): boolean {
+  return credentialPrefix(pathname) !== undefined
+}
+
+export function redactRumPath(pathname: string): string {
+  const prefix = credentialPrefix(pathname)
+  return prefix ? `${prefix}:token` : pathname
+}
+
 /** RUM is billed per session, so the default samples a tenth of them. */
 const DEFAULT_SESSION_SAMPLE_RATE = 10
 
