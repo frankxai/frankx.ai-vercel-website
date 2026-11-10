@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import BookPage from '@/components/manifestation/BookPage'
 import { thinkAndGrowRich, experiments } from '@/data/manifestation'
 
@@ -39,8 +39,8 @@ export default function ThinkAndGrowRichPage() {
           name: 'Think and Grow Rich as a System',
           description:
             "Napoleon Hill's principles reframed as grounded mechanisms you can run — definiteness of purpose, auto-suggestion, the mastermind, persistence.",
-          url: 'https://frankx.ai/think-and-grow-rich',
-          isPartOf: { '@type': 'WebSite', name: 'FrankX.AI', url: 'https://frankx.ai' },
+          url: `${siteConfig.url}/think-and-grow-rich`,
+          isPartOf: { '@type': 'WebSite', name: 'FrankX.AI', url: siteConfig.url },
         }}
       />
       <FAQPageJsonLd faqs={faqs} />

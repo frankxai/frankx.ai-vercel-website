@@ -64,11 +64,13 @@ const NAV_COLUMNS = [
     links: [
       { label: 'Mental Models', href: '/mental-models', accent: 'emerald' },
       { label: 'Courses', href: '/courses' },
+      { label: 'Agent Playbooks', href: '/playbooks' },
       { label: 'Guides', href: '/guides' },
       { label: 'Books', href: '/books' },
       { label: 'Library', href: '/library' },
       { label: 'Games Lab', href: '/games' },
       { label: 'Watch', href: '/watch' },
+      { label: 'Magazine', href: '/magazine' },
       { label: 'Blog', href: '/blog' },
       { label: 'Journal', href: '/journal' },
     ],

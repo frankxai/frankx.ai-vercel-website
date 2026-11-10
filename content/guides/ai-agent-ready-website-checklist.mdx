@@ -1,0 +1,170 @@
+---
+title: "How to Check if a Website Is AI-Agent Ready (8-Step Technical Audit)"
+description: "Run an 8-command curl and schema checklist to verify whether ChatGPT Search, Claude, Perplexity, and MCP agents can crawl, cite, and query your website."
+date: "2026-11-02"
+updated: "2026-11-02"
+author: "Frank"
+category: "AI Architecture"
+tags: ["aeo", "geo", "seo", "llms-txt", "mcp", "json-ld", "web-architecture"]
+keywords:
+  [
+    "how to check if a website is ai-agent ready",
+    "ai agent ready website checklist",
+    "llms.txt audit",
+    "oai-searchbot robots.txt",
+    "website mcp server",
+  ]
+image: ""
+decisions:
+  - audience: "B2B SaaS, developer docs, and technical content sites"
+    call: "adopt"
+    because: "Allowing OAI-SearchBot, Claude-SearchBot, and PerplexityBot alongside server-rendered HTML, self-canonicals, JSON-LD entity graphs, and /llms.txt makes your pages directly citable in AI answers."
+    source: "https://www.frankx.ai/llms.txt"
+  - audience: "Catalogs and documentation platforms queried by coding agents"
+    call: "adopt"
+    because: "Publishing a read-only Streamable HTTP /api/mcp endpoint and /.well-known/mcp/server-card.json lets external agents query structured records with zero HTML scraping fragility."
+    source: "https://modelcontextprotocol.io"
+  - audience: "Private authenticated web apps behind login walls"
+    call: "skip"
+    because: "Public crawler rules, /llms.txt, and open discovery cards apply exclusively to public marketing and documentation surfaces; keep /dashboard/ and /api/admin/ disallowed and authenticated."
+    source: "https://www.frankx.ai/robots.txt"
+faqs:
+  - question: "How do I test if an AI agent can read my page without JavaScript?"
+    answer: "Run `curl -sL https://yourdomain.com/your-page | grep -i '<h1'` in a terminal. If your `<h1>`, summary paragraph, and comparison tables are absent from the raw HTML response, non-browser retrieval bots see an empty shell."
+  - question: "What files make a website discoverable to MCP and coding agents?"
+    answer: "Publish `/llms.txt` (curated index), `/llms-full.txt` (expanded reference), `/.well-known/mcp/server-card.json` or `/.well-known/ai-catalog.json` (agent discovery metadata), and a read-only Streamable HTTP `/api/mcp` endpoint."
+  - question: "How fast can I fix a site that fails an AI-agent readiness check?"
+    answer: "Most Next.js or Astro sites can ship the core fixes—`robots.txt` bot rules, self-canonicals, `Organization`/`Person` JSON-LD, and `/llms.txt`—in a single afternoon pull request."
+---
+
+For web engineers, technical SEOs, and SaaS founders auditing how AI answer engines and autonomous agents read their domain: checking a site in Chrome hides the exact failure modes that break retrieval bots—blocked search crawlers, client-only rendering, missing canonicals, disconnected JSON-LD entities, and 500 KB hydration payloads. Verified as of November 2026 against `https://www.frankx.ai`, run the eight terminal checks below against any domain to score its AI-agent readiness in ten minutes.
+
+---
+
+## The 8-point AI-agent readiness scorecard
+
+| Check | Endpoint / Signal | Target pass condition | Failure symptom |
+|---|---|---|---|
+| **1. AI search crawler access** | `/robots.txt` | Explicit `Allow: /` for `OAI-SearchBot`, `Claude-SearchBot`, `PerplexityBot` | Zero citations in ChatGPT Search, Claude, or Perplexity |
+| **2. Server-rendered prose & tables** | Raw HTML (`curl -sL`) | `<h1>`, TL;DR answer, and `<table>` rows present without executing JS | Agents index nav bars and empty `<div id="__next">` shells |
+| **3. HTML payload budget** | `wc -c` on raw HTML | Under `250 KB` uncompressed HTML (`< 6` related-post summaries in RSC state) | Retrieval parsers truncate the bottom half of long guides |
+| **4. Clean canonicals & sitemap** | `<link rel="canonical">` + `/sitemap.xml` | Every indexable child route emits a self-canonical; zero `draft` or `404` URLs in sitemap | Search engines collapse child blueprints onto parent hub URLs |
+| **5. Linked JSON-LD entity graph** | `<script type="application/ld+json">` | Stable `@id` URIs joining `Organization`, `WebSite`, `Person`, `Article`, and `FAQPage` | Answer engines hallucinate founder roles or merge unrelated brands |
+| **6. Curated `/llms.txt` index** | `/llms.txt` & `/llms-full.txt` | HTTP `200 text/plain` leading with flagship hubs, docs, and canonical URLs | Coding agents guess stale URLs or scrape low-priority pages |
+| **7. Clean Markdown retrieval** | `Accept: text/markdown` or `.md` endpoint | Optional clean Markdown representation stripping chrome and scripts | High token waste when developers paste URLs into coding harnesses |
+| **8. Agent tool discovery (MCP)** | `/.well-known/mcp/server-card.json` + `/api/mcp` | Read-only JSON-RPC / Streamable HTTP endpoint for structured queries | Agents scrape HTML tables when a typed query tool would be exact |
+
+---
+
+## Step 1: Audit `/robots.txt` for search vs training bots
+
+Many Cloudflare WAF presets and legacy `robots.txt` templates block every AI user agent indiscriminately, cutting off live search citations alongside training crawls. Separate **citation search bots** from **corpus training crawlers**:
+
+```bash
+curl -sL https://www.frankx.ai/robots.txt | grep -E "User-agent|Allow|Disallow"
+```
+
+Recommended baseline in Next.js `app/robots.ts`:
+
+- **Allow `/`:** `Googlebot`, `Bingbot`, `OAI-SearchBot`, `ChatGPT-User`, `Claude-SearchBot`, `PerplexityBot`
+- **Disallow private & API mutation surfaces:** `/api/admin/`, `/dashboard/`, `/checkout/`
+
+---
+
+## Step 2: Confirm server-rendered HTML without JavaScript execution
+
+Most AI retrieval pipelines fetch raw HTML over HTTP without booting headless Chromium. Verify your primary heading, opening summary, and comparison tables exist in the initial server response:
+
+```bash
+curl -sL https://www.frankx.ai/skills | grep -E "<h1|<table|<th"
+```
+
+If a route wraps its entire page body in `'use client'` and fetches content inside `useEffect`, refactor data loading into a Next.js Server Component so the first HTTP packet carries the complete semantic document.
+
+---
+
+## Step 3: Measure raw HTML byte size and RSC hydration weight
+
+In Next.js App Router, passing an entire array of 300 blog post objects from a Server Component into a Client Component serializes megabytes of duplicate `self.__next_f.push` scripts into every HTML response. Check your byte weight directly:
+
+```bash
+curl -sL https://www.frankx.ai/blog/claude-code-skills-2026-the-10-you-need | wc -c
+```
+
+Keep raw HTML comfortably under `250,000` bytes by filtering related-article arrays on the server (`<= 6` summaries with `title`, `slug`, `description`, `category`, and `readingTime` only) before passing props across a client boundary.
+
+---
+
+## Step 4: Verify self-canonicals and sitemap hygiene
+
+A subtle Next.js bug occurs when a parent `layout.tsx` defines `alternates: { canonical: '/parent-hub' }` and child pages forget to override `alternates.canonical`. Every child page then tells Google and Bing that it is a duplicate of the parent hub!
+
+Test a child route's canonical tag in two seconds:
+
+```bash
+curl -sL https://www.frankx.ai/ai-architecture/blueprints | grep -i 'rel="canonical"'
+```
+
+Confirm two invariants:
+1. Every indexable route emits an exact **self-referencing canonical** matching its primary `https://` host.
+2. `/sitemap.xml` excludes `draft: true`, `noindex: true`, and redirect-source slugs.
+
+---
+
+## Step 5: Validate your Schema.org `@graph` entity `@id` links
+
+Structured data works best when pages reference consistent `@id` URIs across your domain and satellite properties:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.frankx.ai/#organization",
+      "name": "FrankX",
+      "url": "https://www.frankx.ai",
+      "founder": { "@id": "https://www.frankx.ai/#frank-riemer" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.frankx.ai/#frank-riemer",
+      "name": "Frank Riemer",
+      "url": "https://www.frankx.ai/frank-riemer",
+      "jobTitle": "AI Architect"
+    }
+  ]
+}
+```
+
+Keep `Organization.sameAs` strictly limited to profiles representing that exact organization (such as its official GitHub org or LinkedIn page); link sibling products via `founder` or `parentOrganization` so Knowledge Graph parsers keep distinct brands separate.
+
+---
+
+## Step 6: Serve a curated `/llms.txt` with high-signal hubs at the top
+
+When developers drop your domain into Claude Code, Cursor, or Perplexity, `/llms.txt` acts as a high-signal table of contents. Order sections by technical utility:
+
+1. One-sentence domain summary and primary canonical origin
+2. Flagship technical hubs (`/skills`, `/ai-architecture`, `/guides`)
+3. Top evergreen implementation guides with one-line descriptions
+4. Public API or MCP discovery endpoints
+
+Test it via `curl -I https://www.frankx.ai/llms.txt` (`HTTP/2 200`, `content-type: text/plain; charset=utf-8`).
+
+---
+
+## Step 7 & 8: Expose clean Markdown and read-only WebMCP / HTTP MCP discovery
+
+For documentation hubs and technical catalogs, two lightweight endpoints turn passive pages into agent-queryable tools:
+
+- **Markdown route (`/api/md?path=/guides/...`):** Returns clean frontmatter + Markdown prose with navigation chrome removed, cutting prompt token usage by 70–85%.
+- **MCP discovery (`/.well-known/mcp/server-card.json` + `/api/mcp`):** Exposes read-only search and catalog tools (`search_guides`, `get_blueprint`, `list_skills`) over stateless Streamable HTTP so external agents retrieve exact structured records with zero scraping fragility.
+
+---
+
+## Next steps
+
+- Connect MCP servers inside your own coding harness with [Best MCP servers for Claude Code & business workflows](/guides/mcp-servers-claude-code-business).
+- Standardize repository guardrails using the [Claude Code templates & starter kit](/guides/claude-code-templates-starter-kit).
+- Explore production system topologies in the [AI Architecture Hub](/ai-architecture).

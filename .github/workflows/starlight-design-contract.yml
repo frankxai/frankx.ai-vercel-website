@@ -11,7 +11,7 @@ on:
   # not re-run this check, and its SHA-scoped verdict from the old base stands.
   # Every other required context in this repo listens for 'edited' for exactly
   # that reason. This one cannot be fixed here — it needs the rule relaxed in
-  # frankxai/starlight-design-intelligence to allow the canonical action list.
+  # Starlight-Intelligence/starlight-design-intelligence to allow the canonical action list.
   pull_request:
 
 concurrency:
@@ -23,4 +23,4 @@ permissions:
 
 jobs:
   design-contract:
-    uses: frankxai/starlight-design-intelligence/.github/workflows/design-contract.yml@80830c60040967956580c761772469664c44dd55
+    uses: Starlight-Intelligence/starlight-design-intelligence/.github/workflows/design-contract.yml@cbc5091ce58d21947ae70bfffcd80c9e53ee1967

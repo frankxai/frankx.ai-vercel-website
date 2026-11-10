@@ -1,0 +1,47 @@
+{
+  "id": "mcp-hub",
+  "rev": 1,
+  "type": "layers",
+  "eyebrow": "AI Architecture",
+  "title": "One MCP hub between agents and tools",
+  "subtitle": "Agents ask the hub for tools. The hub decides which server answers, with which credentials, and records the call.",
+  "alt": "Three tiers: agent harnesses call an MCP hub that provides a server registry, scoped credentials, tool policy and an audit log, which fronts individual MCP servers.",
+  "source": "Hub pattern as run in the Starlight tool plane; harness list from the estate harness matrix.",
+  "reviewed": "2026-11-07",
+  "replaces": {
+    "src": "/images/architectures/mcp-hub.png",
+    "pages": ["/ai-architecture/prototypes"],
+    "legacySubject": "Agentic Creator OS council render, not an MCP hub"
+  },
+  "layers": [
+    {
+      "accent": "violet", "title": "Agent harnesses", "subtitle": "Clients that call tools",
+      "items": [
+        {"label": "Claude Code"}, {"label": "Codex"}, {"label": "Antigravity"},
+        {"label": "OpenCode"}, {"label": "Grok CLI"}, {"label": "Hermes"}
+      ]
+    },
+    {
+      "accent": "cyan", "title": "MCP hub", "subtitle": "One control point for tool access",
+      "tag": "e.g. the Starlight tool plane",
+      "items": [
+        {"label": "Server registry", "detail": "One list of approved servers"},
+        {"label": "Scoped credentials", "detail": "Environment references, never inline secrets"},
+        {"label": "Tool policy", "detail": "Read first, writes gated"},
+        {"label": "Audit log", "detail": "Which agent called which tool"}
+      ]
+    },
+    {
+      "accent": "emerald", "title": "MCP servers", "subtitle": "Each one wraps a system of record",
+      "items": [
+        {"label": "Filesystem", "detail": "Repos and documents"},
+        {"label": "Git", "detail": "History, branches, diffs"},
+        {"label": "Browser", "detail": "Live, signed-in sessions"},
+        {"label": "Memory", "detail": "Vaults and entries"},
+        {"label": "Deploy", "detail": "Railway and Vercel"},
+        {"label": "Docs", "detail": "Library documentation"}
+      ]
+    }
+  ],
+  "links": ["Tool requests", "Scoped, logged calls"]
+}

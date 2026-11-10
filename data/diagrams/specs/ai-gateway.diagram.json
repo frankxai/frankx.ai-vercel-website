@@ -1,0 +1,51 @@
+{
+  "id": "ai-gateway",
+  "rev": 1,
+  "type": "layers",
+  "eyebrow": "AI Architecture",
+  "title": "Route every model call through one gateway",
+  "subtitle": "A control plane between the agent runtime and the models keeps keys, limits and logs in one place.",
+  "alt": "Three tiers: an agent runtime sends prompts and tool calls to an AI gateway that handles authentication, logging, rate limits, caching, retries and observability, which routes to model providers.",
+  "source": "Pattern from the OpenCode, AI gateway and Workers AI reference; gateway tools as listed on /ai-ops/architecture.",
+  "reviewed": "2026-11-07",
+  "replaces": {
+    "src": "/images/architectures/ai-gateway.png",
+    "pages": ["/ai-architecture/multi-cloud-comparison"],
+    "legacySubject": "Agentic Creator OS slash-command and swarm render, not an AI gateway"
+  },
+  "layers": [
+    {
+      "accent": "violet", "title": "Agent runtime", "subtitle": "Coding agents and apps that need a model",
+      "tag": "e.g. OpenCode, Claude Code, Codex",
+      "items": [
+        {"label": "Sessions", "detail": "Conversation and task state"},
+        {"label": "Context", "detail": "Files, memory and instructions"},
+        {"label": "Tools", "detail": "Shell, browser and MCP servers"},
+        {"label": "Agent loop", "detail": "Plan, act, check, repeat"}
+      ]
+    },
+    {
+      "accent": "blue", "title": "AI gateway", "subtitle": "Operational control plane",
+      "tag": "e.g. Cloudflare AI Gateway, LiteLLM, Portkey",
+      "items": [
+        {"label": "Authentication", "detail": "Provider keys stay off the client"},
+        {"label": "Logging", "detail": "Every request and response recorded"},
+        {"label": "Rate limits", "detail": "Caps per key, user and model"},
+        {"label": "Caching", "detail": "Identical requests served from cache"},
+        {"label": "Retries", "detail": "Failed calls re-sent or rerouted"},
+        {"label": "Observability", "detail": "Latency, cost and error traces"}
+      ]
+    },
+    {
+      "accent": "emerald", "title": "Model providers", "subtitle": "Inference chosen per request",
+      "tag": "e.g. Workers AI, OCI GenAI",
+      "items": [
+        {"label": "Edge inference", "detail": "Workers AI and similar"},
+        {"label": "Cloud models", "detail": "OCI GenAI and other hosted APIs"},
+        {"label": "Frontier APIs", "detail": "Claude, GPT, Gemini"},
+        {"label": "Self-hosted", "detail": "Open weights on your own GPUs"}
+      ]
+    }
+  ],
+  "links": ["Prompts and tool calls", "Routed, metered and cached"]
+}

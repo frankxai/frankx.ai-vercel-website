@@ -1,5 +1,10 @@
 import { EmailSignup } from '@/components/email-signup'
-import { LAUNCH_LIST_INTENTS, sanitizeIntent, WAITLIST_INTENTS } from '@/lib/diagnostic/waitlist-intents'
+import {
+  DEMAND_CAPTURE_INTENTS,
+  LAUNCH_LIST_INTENTS,
+  sanitizeIntent,
+  WAITLIST_INTENTS,
+} from '@/lib/diagnostic/waitlist-intents'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
@@ -31,15 +36,22 @@ export default async function WaitlistPage({ searchParams }: WaitlistPageProps) 
     ? WAITLIST_INTENTS[intent]
     : undefined
   const selectedIntentLabel = productLaunch?.label ?? intentLabelMap[intent]
+  // Per-product waitlist with demand capture (role, price band, reason) for products whose
+  // checkout is not open. The list routing above is unchanged; the intent travels with the signup.
+  const askDemand = DEMAND_CAPTURE_INTENTS.has(intent)
 
   return (
     <main className="min-h-screen bg-[#030712] text-white">
       <div className="mx-auto max-w-3xl px-6 py-20 pt-28 space-y-8">
         <header className="space-y-4">
           <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400/70">FrankX Waitlist</p>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Get launch updates</h1>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+            {askDemand ? 'Join the waitlist' : 'Get launch updates'}
+          </h1>
           <p className="text-white/65 text-lg leading-relaxed">
-            Join once and get launch updates for planned courses and product releases.
+            {askDemand
+              ? `We will email you when ${selectedIntentLabel} is available to buy.`
+              : 'Join once and get launch updates for planned courses and product releases.'}
           </p>
         </header>
 
@@ -56,7 +68,8 @@ export default async function WaitlistPage({ searchParams }: WaitlistPageProps) 
             intentLabel={selectedIntentLabel}
             source="/waitlist"
             showName
-            buttonText="Join Waitlist"
+            askDemand={askDemand}
+            buttonText={askDemand ? 'Join the waitlist' : 'Join Waitlist'}
             placeholder="you@company.com"
           />
         </section>

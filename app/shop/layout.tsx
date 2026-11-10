@@ -1,7 +1,8 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Shop — Templates, Tools & Digital Products | FrankX',
+  title: 'Shop — Templates, Tools & Digital Products',
   description:
     'Production-ready AI templates, Claude Code skill packs, n8n workflows, Next.js starters, and digital products. Built by an AI architect who ships.',
   keywords: [
@@ -15,20 +16,22 @@ export const metadata: Metadata = {
     'FrankX shop',
   ],
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Shop — Templates, Tools & Digital Products | FrankX',
     description:
       'Production-ready AI templates, skill packs, workflows, and digital products. Built by an AI architect.',
-    url: 'https://frankx.ai/shop',
+    url: `${siteConfig.url}/shop`,
     type: 'website',
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary_large_image',
     title: 'FrankX Shop — AI Templates & Digital Products',
     description:
       'Production-ready AI templates, skill packs, workflows, and digital products.',
   },
   alternates: {
-    canonical: 'https://frankx.ai/shop',
+    canonical: './',
   },
 }
 

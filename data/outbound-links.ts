@@ -34,6 +34,14 @@ export const outboundLinks: OutboundLink[] = [
     description: 'Official fallback. Issued referral destination lives only in data/affiliate/programs.json.',
   },
   {
+    slug: 'elevenlabs',
+    destination: 'https://elevenlabs.io',
+    label: 'ElevenLabs',
+    category: 'tool',
+    description:
+      'Official fallback. Issued PartnerStack referral destination lives only in data/affiliate/programs.json.',
+  },
+  {
     slug: 'canva',
     destination: 'https://www.canva.com/',
     label: 'Canva',

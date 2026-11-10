@@ -6,7 +6,7 @@ type UnsubscribePageProps = {
 }
 
 export const metadata = {
-  title: 'Newsletter Unsubscribe | FrankX',
+  title: 'Newsletter Unsubscribe',
   robots: { index: false, follow: false },
 }
 
