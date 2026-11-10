@@ -12,7 +12,7 @@ import NavigationMega from '@/components/NavigationMega'
 import CommandPaletteProvider from '@/components/CommandPaletteProvider'
 import Footer from '@/components/Footer'
 import { MusicRuntime } from '@/components/music/MusicRuntime'
-import { getPlaybackCatalog } from '@/lib/music-playback-catalog'
+import { getPlayableCatalog } from '@/lib/music-playback-catalog'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
@@ -178,7 +178,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <SessionProvider>
-          <MusicRuntime catalog={getPlaybackCatalog()}>
+          <MusicRuntime catalog={getPlayableCatalog()}>
             <OrganizationJsonLd />
             <a
               href="#main"
