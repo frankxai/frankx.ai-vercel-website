@@ -145,7 +145,10 @@ export default function FreePlaybookPage() {
       })
 
       if (res.ok) {
-        trackWaitlistJoin({ product: 'newsletter', source: 'free-playbook' })
+        trackWaitlistJoin(
+          { product: 'newsletter', source: 'free-playbook' },
+          await res.clone().json().catch(() => null),
+        )
         setStatus('success')
         setUnlockedResources(true)
       } else {

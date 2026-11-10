@@ -36,7 +36,7 @@ export function LabRsvp({ confirmed }: { confirmed: boolean }) {
       })
       const data = await res.json()
       if (res.ok) {
-        trackWaitlistJoin({ product: 'mvu-porto-2027', source: 'mvu-lab-page' })
+        trackWaitlistJoin({ product: 'mvu-porto-2027', source: 'mvu-lab-page' }, data)
         setStatus('success')
         setMessage(data.message || '')
       } else {

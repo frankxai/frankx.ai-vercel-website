@@ -12,7 +12,7 @@ Defined in `lib/track.ts`. Names and props are fixed. Never send an email, name,
 
 `price_band` is one of `free`, `under-50`, `50-199`, `200-999`, `1000-plus`, `unknown`. Exact prices are not sent.
 
-Each event also carries `utm_source`, `utm_medium`, `utm_campaign` when the visit landed with them (kept in `sessionStorage` for the tab). Events respect Do Not Track and Global Privacy Control through `lib/privacy-safe-analytics-client.ts`.
+`waitlist_join` is skipped when `/api/subscribe` answers `duplicate: true` (contact already on file). Each event also carries `utm_source`, `utm_medium`, `utm_campaign` when the visit landed with them. They are read on the landing page and kept in `sessionStorage` for the tab, so a conversion on a later page keeps its campaign. Events respect Do Not Track and Global Privacy Control through `lib/privacy-safe-analytics-client.ts`.
 
 ## UTM convention
 

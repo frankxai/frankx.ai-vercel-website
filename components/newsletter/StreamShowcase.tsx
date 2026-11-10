@@ -203,7 +203,10 @@ function StreamCard({
         body: JSON.stringify({ email, listType: stream.listType }),
       })
       if (res.ok) {
-        trackWaitlistJoin({ product: stream.listType, source: 'newsletter-streams' })
+        trackWaitlistJoin(
+          { product: stream.listType, source: 'newsletter-streams' },
+          await res.clone().json().catch(() => null),
+        )
         setStatus('success')
         setEmail('')
       } else {

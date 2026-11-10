@@ -305,7 +305,10 @@ export default function OperatorScorecardClient() {
       })
 
       if (res.ok) {
-        trackWaitlistJoin({ product: 'operator-scorecard', source: 'operator-scorecard' })
+        trackWaitlistJoin(
+          { product: 'operator-scorecard', source: 'operator-scorecard' },
+          await res.clone().json().catch(() => null),
+        )
         setStage('report')
         return
       }

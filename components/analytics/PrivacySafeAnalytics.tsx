@@ -6,6 +6,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { allowsAnalyticsMeasurement } from '@/lib/analytics-policy'
 import { privacySafeBeforeSend } from '@/lib/privacy-safe-analytics-client'
+import { getInboundUtm } from '@/lib/utm'
 
 type PrivacyNavigator = Navigator & { globalPrivacyControl?: boolean }
 
@@ -18,12 +19,14 @@ export function PrivacySafeAnalytics() {
 
   useEffect(() => {
     const privacyNavigator = navigator as PrivacyNavigator
-    setMeasurementAllowed(
-      allowsAnalyticsMeasurement(
-        privacyNavigator.doNotTrack,
-        privacyNavigator.globalPrivacyControl,
-      ),
+    const allowed = allowsAnalyticsMeasurement(
+      privacyNavigator.doNotTrack,
+      privacyNavigator.globalPrivacyControl,
     )
+    // Remember the landing page's utm_* for the tab, so a conversion on a later
+    // page still carries its campaign. Skipped when measurement is declined.
+    if (allowed) getInboundUtm()
+    setMeasurementAllowed(allowed)
   }, [])
 
   // Fail closed while browser privacy signals are still unresolved.

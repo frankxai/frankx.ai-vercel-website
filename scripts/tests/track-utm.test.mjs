@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import { buildTrackPayload, trackWith, priceBand, TRACK_EVENTS } from '../../lib/track.ts'
+import { buildTrackPayload, trackWith, priceBand, isDuplicateSignup, TRACK_EVENTS } from '../../lib/track.ts'
 import { withUtm, readInboundUtm } from '../../lib/utm.ts'
 
 const campaign = { source: 'linkedin', medium: 'social', campaign: '2026-11-launch' }
@@ -72,4 +72,12 @@ test('priceBand hides exact prices', () => {
   assert.equal(priceBand(197), '50-199')
   assert.equal(priceBand(497), '200-999')
   assert.equal(priceBand(2500), '1000-plus')
+})
+
+test('an already-on-file contact is not a waitlist join', () => {
+  assert.equal(isDuplicateSignup({ success: true, duplicate: true, updated: false }), true)
+  assert.equal(isDuplicateSignup({ success: true, updated: true }), false)
+  assert.equal(isDuplicateSignup({ success: true, subscriber: 'abc', updated: false }), false)
+  assert.equal(isDuplicateSignup(null), false)
+  assert.equal(isDuplicateSignup(undefined), false)
 })

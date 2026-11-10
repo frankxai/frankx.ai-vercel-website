@@ -310,7 +310,10 @@ export default function AiCoeReadinessClient() {
       })
 
       if (res.ok) {
-        trackWaitlistJoin({ product: 'ai-architect', source: 'ai-coe-readiness' })
+        trackWaitlistJoin(
+          { product: 'ai-architect', source: 'ai-coe-readiness' },
+          await res.clone().json().catch(() => null),
+        )
         setStage('report')
         return
       }

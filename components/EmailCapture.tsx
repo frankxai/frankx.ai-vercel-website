@@ -37,7 +37,7 @@ export default function EmailCapture({
       const data = await response.json()
 
       if (response.ok) {
-        trackWaitlistJoin({ product, source: 'email-capture' })
+        trackWaitlistJoin({ product, source: 'email-capture' }, data)
         setStatus('success')
         setMessage(data.message || 'Successfully subscribed!')
         setEmail('')

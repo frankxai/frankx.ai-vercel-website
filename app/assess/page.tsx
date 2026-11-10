@@ -436,7 +436,7 @@ function EmailGate({ onUnlock }: { onUnlock: () => void }) {
       const data = await response.json()
 
       if (response.ok) {
-        trackWaitlistJoin({ product: 'assessment', source: 'assess' })
+        trackWaitlistJoin({ product: 'assessment', source: 'assess' }, data)
         setStatus('success')
         setMessage('Report unlocked.')
         onUnlock()

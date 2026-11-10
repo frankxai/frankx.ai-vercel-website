@@ -63,8 +63,23 @@ export function track<E extends TrackEventName>(event: E, props: TrackEventProps
   trackWith(trackPrivacySafeAnalyticsEvent, getInboundUtm, event, props)
 }
 
-export const trackWaitlistJoin = (props: TrackEventProps['waitlist_join']) =>
+/**
+ * `response` is the parsed /api/subscribe body. The route answers 200 with
+ * `duplicate: true` for a contact that was already on file and changes nothing,
+ * which is not a join, so no event is recorded.
+ */
+export function isDuplicateSignup(response: unknown): boolean {
+  return (
+    typeof response === 'object' &&
+    response !== null &&
+    (response as { duplicate?: unknown }).duplicate === true
+  )
+}
+
+export const trackWaitlistJoin = (props: TrackEventProps['waitlist_join'], response?: unknown) => {
+  if (isDuplicateSignup(response)) return
   track('waitlist_join', props)
+}
 export const trackCtaClick = (props: TrackEventProps['cta_click']) => track('cta_click', props)
 export const trackCheckoutStart = (props: TrackEventProps['checkout_start']) =>
   track('checkout_start', props)

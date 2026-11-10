@@ -49,7 +49,10 @@ export default function NewsletterHero({
         body: JSON.stringify({ email: allEmail, listType: 'creation-chronicles' }),
       })
       if (res.ok) {
-        trackWaitlistJoin({ product: 'creation-chronicles', source: 'newsletter-hero' })
+        trackWaitlistJoin(
+          { product: 'creation-chronicles', source: 'newsletter-hero' },
+          await res.clone().json().catch(() => null),
+        )
         setAllStatus('success')
         setAllEmail('')
       } else {

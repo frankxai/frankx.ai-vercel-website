@@ -119,7 +119,7 @@ export function EmailSignup({
       }
 
       setStatus('success')
-      trackWaitlistJoin({ product: listType, source: source || 'unspecified' })
+      trackWaitlistJoin({ product: listType, source: source || 'unspecified' }, data)
       trackEvent('signal_loop_submit_success', {
         list_type: listType,
         surface: source || 'unspecified',

@@ -35,7 +35,10 @@ export function ConnectNewsletterForm() {
         throw new Error(data.message ?? "Subscription failed");
       }
 
-      trackWaitlistJoin({ product: "inner-circle", source: "connect" });
+      trackWaitlistJoin(
+        { product: "inner-circle", source: "connect" },
+        await response.clone().json().catch(() => null),
+      );
       trackEvent("connect_waitlist_signed_up", { listType: "inner-circle" });
       setStatus("success");
       setEmail("");
