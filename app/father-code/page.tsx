@@ -1,3 +1,4 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
@@ -17,7 +18,7 @@ import {
   Users,
 } from 'lucide-react'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 export const metadata: Metadata = {
   title: "The Builder's Line — What My Father Built With His Hands, What We Must Build in Our Minds",
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
     canonical: `${SITE_URL}/the-builders-line`,
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: "The Builder's Line — What My Father Built With His Hands, What We Must Build in Our Minds",
     description:
       'A son’s translation of Witali Riemer’s craftsman ethics for founders, creators, engineers, and strivers who need an operating code that carries life without breaking the builder.',
@@ -34,6 +36,7 @@ export const metadata: Metadata = {
     type: 'article',
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary',
     title: "The Builder's Line — A Son's Inheritance",
     description:

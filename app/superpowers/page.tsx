@@ -108,10 +108,14 @@ export default function SuperpowersPage() {
     )
   }, [searchQuery])
 
-  // Split programs into payers vs non-payers
+  // Split programs into payers vs non-payers (exclude held/unverified records from active public listing)
   const { payingPrograms, nonPayingPrograms } = useMemo(() => {
-    const payers = programsData.programs.filter((p: any) => p.hasProgram && p.status !== 'dead-end')
-    const nonPayers = programsData.programs.filter((p: any) => !p.hasProgram || p.status === 'dead-end')
+    const payers = programsData.programs.filter(
+      (p: any) => p.hasProgram && p.status !== 'dead-end' && p.status !== 'hold' && p.status !== 'closed'
+    )
+    const nonPayers = programsData.programs.filter(
+      (p: any) => !p.hasProgram || p.status === 'dead-end' || p.status === 'hold' || p.status === 'closed'
+    )
     return { payingPrograms: payers, nonPayingPrograms: nonPayers }
   }, [])
 

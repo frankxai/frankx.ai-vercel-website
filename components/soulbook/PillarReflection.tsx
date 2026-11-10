@@ -164,7 +164,7 @@ export default function PillarReflection({ chapterSlug }: { chapterSlug: string 
 
       {/* Reflection questions */}
       <div className="space-y-3 mb-5">
-        <p className="text-xs font-medium text-white/40 uppercase tracking-wider">Reflect</p>
+        <p className="text-xs font-medium text-white/60 uppercase tracking-wider">Reflect</p>
         {exercise.questions.map((q, i) => (
           <label
             key={i}
@@ -187,7 +187,7 @@ export default function PillarReflection({ chapterSlug }: { chapterSlug: string 
 
       {/* Weekly action */}
       <div className="rounded-lg bg-black/20 border border-white/[0.04] p-4">
-        <p className="text-xs font-medium text-white/40 uppercase tracking-wider mb-2">Weekly Action</p>
+        <p className="text-xs font-medium text-white/60 uppercase tracking-wider mb-2">Weekly Action</p>
         <label className="flex items-start gap-3 cursor-pointer group">
           <input
             type="checkbox"

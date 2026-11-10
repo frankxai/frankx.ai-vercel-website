@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, ExternalLink } from 'lucide-react'
@@ -9,11 +10,12 @@ export const metadata: Metadata = {
   title: 'Signals — source-backed AI architecture notes',
   description:
     'A source-linked ledger of consequential AI work, its architecture implications, and one useful contribution.',
-  alternates: { canonical: 'https://frankx.ai/signals' },
+  alternates: { canonical: `${siteConfig.url}/signals` },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Signals — FrankX',
     description: 'Read the work. Trace the evidence. Build the useful next move.',
-    url: 'https://frankx.ai/signals',
+    url: `${siteConfig.url}/signals`,
     type: 'website',
   },
 }
@@ -31,12 +33,12 @@ export default function SignalsPage() {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'FrankX Signals',
-    url: 'https://frankx.ai/signals',
+    url: `${siteConfig.url}/signals`,
     description: 'Source-backed AI architecture notes and useful contributions.',
     hasPart: publishedSignals.map((signal) => ({
       '@type': 'Article',
       headline: signal.title,
-      url: `https://frankx.ai/signals/${signal.slug}`,
+      url: `${siteConfig.url}/signals/${signal.slug}`,
       datePublished: signal.publishedAt,
       citation: signal.sourceUrl,
     })),

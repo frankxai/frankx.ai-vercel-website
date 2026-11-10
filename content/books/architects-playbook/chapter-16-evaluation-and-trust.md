@@ -151,7 +151,7 @@ Every factual claim in a published article should be verifiable. This does not m
 
 My process: after AI generates a draft, I read every sentence that makes a factual assertion and classify it:
 
-- **Verifiable from personal experience:** "I have produced twelve thousand songs." I know this is true because I produced them.
+- **Verifiable from a work record:** "I tested this prompt in a Suno session." Keep the dated session and its output with the claim.
 - **Verifiable from public data:** "Claude Opus 4.6 has a one-million-token context window." Anthropic's documentation confirms this.
 - **Verifiable from cited source:** "According to McKinsey's 2025 State of AI report..." The source exists and says what is claimed.
 - **Not verifiable:** "Most enterprises fail at AI adoption." This is a common claim, but is it supported? What percentage is "most"? What does "fail" mean? This kind of claim gets either sourced, qualified ("many enterprises report challenges with AI adoption"), or removed.

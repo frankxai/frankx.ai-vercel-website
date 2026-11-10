@@ -117,7 +117,7 @@ const agentSchema = {
       '@type': 'Thing',
       name: agent.name,
       description: agent.role,
-      url: `https://frankx.ai/agent-team#${agent.id}`,
+      url: `${siteConfig.url}/agent-team#${agent.id}`,
     },
   })),
 }

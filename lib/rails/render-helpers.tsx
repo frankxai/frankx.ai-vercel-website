@@ -4,6 +4,7 @@
  * generateStaticParams + generateMetadata + default-export contract).
  */
 
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { notFound } from 'next/navigation';
@@ -25,7 +26,7 @@ import type { HubSlug } from './types';
 import { hubUrl } from './types';
 import { hubs } from '@/data/rails/hubs';
 
-const SITE = 'https://frankx.ai';
+const SITE = siteConfig.url;
 
 export function buildHubMetadata(hub: HubSlug): Metadata {
   const config = hubs[hub];
@@ -36,6 +37,7 @@ export function buildHubMetadata(hub: HubSlug): Metadata {
     keywords: config.keywordSpine,
     alternates: { canonical: `${SITE}${hubUrl(hub)}` },
     openGraph: {
+      images: defaultOpenGraphImages,
       title: `${config.displayTitle} — ${config.question}`,
       description,
       type: 'website',
@@ -75,6 +77,7 @@ export function buildEntryMetadata(hub: HubSlug, slug: string): Metadata {
     keywords: entry.keywords,
     alternates: { canonical: url, types: { 'application/rss+xml': `${hubUrl(hub)}/feed.xml` } },
     openGraph: {
+      images: defaultOpenGraphImages,
       title: entry.title,
       description: entry.description,
       type: 'article',

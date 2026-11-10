@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -51,11 +52,12 @@ export async function generateMetadata({
       `${model.name.toLowerCase()} context window`,
       `${model.name.toLowerCase()} vs`,
     ],
-    alternates: { canonical: `https://frankx.ai/llm-hub/${slug}` },
+    alternates: { canonical: `${siteConfig.url}/llm-hub/${slug}` },
     openGraph: {
+      images: defaultOpenGraphImages,
       title,
       description,
-      url: `https://frankx.ai/llm-hub/${slug}`,
+      url: `${siteConfig.url}/llm-hub/${slug}`,
       type: 'article',
     },
   }
@@ -115,9 +117,9 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai/' },
-      { '@type': 'ListItem', position: 2, name: 'LLM Hub', item: 'https://frankx.ai/llm-hub' },
-      { '@type': 'ListItem', position: 3, name: model.name, item: `https://frankx.ai/llm-hub/${slug}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteConfig.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'LLM Hub', item: `${siteConfig.url}/llm-hub` },
+      { '@type': 'ListItem', position: 3, name: model.name, item: `${siteConfig.url}/llm-hub/${slug}` },
     ],
   }
 

@@ -1,10 +1,23 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, CheckCircle2, Mail, Music, Network, Sparkles } from 'lucide-react'
+import {
+  ArrowRight,
+  BookOpen,
+  Briefcase,
+  CheckCircle2,
+  Cpu,
+  Mail,
+  Music,
+  Network,
+  Newspaper,
+  Presentation,
+  Sparkles,
+  Workflow,
+} from 'lucide-react'
 
 import JsonLd from '@/components/seo/JsonLd'
 import { createMetadata, siteConfig } from '@/lib/seo'
-import { socialLinks } from '@/lib/social-links'
+import { buildFrankPerson } from '@/lib/frank-person'
 
 export const metadata = createMetadata({
   title: 'Frank Riemer | AI Architect and Creator Behind FrankX',
@@ -55,32 +68,50 @@ const pillars = [
   },
 ]
 
+// The founder's index: every body of work, one click from the entity page, so
+// readers and answer engines can see the whole surface Frank publishes.
+const founderIndex = [
+  {
+    title: 'Magazine',
+    description: 'Long reads on AI architecture, agents, infrastructure, music, and the craft of making things.',
+    icon: Newspaper,
+    href: '/magazine',
+  },
+  {
+    title: 'Books',
+    description: 'Books written to be read cover to cover, free to read online.',
+    icon: BookOpen,
+    href: '/books',
+  },
+  {
+    title: 'Workshops',
+    description: 'Delivered workshops and studio curricula on agents, MCP, memory, and coordinated work.',
+    icon: Presentation,
+    href: '/workshops',
+  },
+  {
+    title: 'AI agent playbooks',
+    description: 'The build order: stack, first agents and skills, running a crew, production architecture.',
+    icon: Workflow,
+    href: '/playbooks',
+  },
+  {
+    title: 'AI computer and infrastructure',
+    description: 'Workstations, cloud GPUs, mini PCs, and private AI setups for founders and creators.',
+    icon: Cpu,
+    href: '/ai-computer',
+  },
+  {
+    title: 'Work with me',
+    description: 'Architecture studio, Foundry installs, and the Founder\u2019s Circle for consequential decisions.',
+    icon: Briefcase,
+    href: '/work-with-me',
+  },
+]
+
 const siteUrl = siteConfig.url
 
-const personSchema = {
-  name: 'Frank Riemer',
-  url: `${siteUrl}/frank-riemer`,
-  image: `${siteUrl}/images/portraits/frank-presenting-oracle-2025.jpg`,
-  jobTitle: 'AI Architect and Creator',
-  brand: {
-    '@type': 'Brand',
-    name: 'FrankX',
-    url: siteUrl,
-  },
-  alumniOf: {
-    '@type': 'Organization',
-    name: 'Oracle',
-  },
-  sameAs: [socialLinks.linkedin, socialLinks.github, socialLinks.suno, socialLinks.twitter],
-  knowsAbout: [
-    'AI architecture',
-    'agentic workflows',
-    'AI music creation',
-    'personal AI operating systems',
-    'creator systems',
-    'attention and recovery systems',
-  ],
-}
+const personSchema = buildFrankPerson(siteUrl)
 
 export default function FrankRiemerPage() {
   return (
@@ -176,6 +207,34 @@ export default function FrankRiemerPage() {
         </div>
       </section>
 
+      <section aria-labelledby="founder-index" className="border-t border-white/10 py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mb-10 max-w-3xl">
+            <h2 id="founder-index" className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Everything I make, in one place.
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-white/60">
+              Writing, books, teaching, open playbooks, the machines underneath, and the few ways to work
+              with me directly.
+            </p>
+          </div>
+          <ul className="grid gap-px overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+            {founderIndex.map((entry) => {
+              const Icon = entry.icon
+              return (
+                <li key={entry.href} className="bg-[#0a0a0b]">
+                  <Link href={entry.href} className="group flex h-full flex-col p-6 transition hover:bg-white/[0.03]">
+                    <Icon aria-hidden className="h-5 w-5 text-emerald-300" />
+                    <span className="mt-4 text-base font-semibold text-white">{entry.title}</span>
+                    <span className="mt-2 text-sm leading-relaxed text-white/50">{entry.description}</span>
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </section>
+
       <section className="border-t border-white/10 py-20">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <div>
@@ -206,7 +265,15 @@ export default function FrankRiemerPage() {
         </div>
       </section>
 
-      <JsonLd type="Person" data={personSchema} id="frank-riemer-person" />
+      <JsonLd
+        data={{
+          '@type': 'ProfilePage',
+          '@id': `${siteUrl}/frank-riemer#page`,
+          url: personSchema.url,
+          mainEntity: personSchema,
+        }}
+        id="frank-riemer-profile"
+      />
     </main>
   )
 }

@@ -1,6 +1,8 @@
+import { siteConfig } from '@/lib/seo'
+
 export const dynamic = 'force-static'
 
-const BASE_URL = 'https://frankx.ai'
+const BASE_URL = siteConfig.url
 
 export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
