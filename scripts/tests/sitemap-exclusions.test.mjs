@@ -88,7 +88,10 @@ test('discovered routes caught by a pattern redirect are excluded', async () => 
     .filter((route) => route.sitemap !== false)
     .map((route) => route.href)
     .filter((href) => matchers.some((matcher) => matcher.test(href)))
-  assert.ok(redirected.includes('/ai-architect/multi-cloud-comparison'))
+  // The one page this used to find, app/ai-architect/multi-cloud-comparison, was deleted because the pattern below
+  // made it unreachable. Keep proving the matcher reads that pattern and spares the route it carves out.
+  assert.ok(matchers.some((matcher) => matcher.test('/ai-architect/multi-cloud-comparison')))
+  assert.equal(matchers.some((matcher) => matcher.test('/ai-architect/ai-coe-hub')), false)
   for (const href of redirected) {
     assert.ok(isExcludedFromSitemap(href, sources), `${href} matches a pattern redirect; add it to EXCLUDED_PATHS`)
   }

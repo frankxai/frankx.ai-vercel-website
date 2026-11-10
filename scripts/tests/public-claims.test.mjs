@@ -66,7 +66,6 @@ const banned = [
   ['app/products/vibe-os/components/VibeOSHero.tsx', ['500+ Sessions', '30-Day Guarantee', 'Lifetime Updates', '50+ Genre Prompts', 'Emotion Mapping', 'Release Playbooks']],
   ['data/learning-paths.ts', ['verified official walkthrough', 'Official supported agent']],
   ['app/products/vibe-os/components/VibeOSSocialProof.tsx', ['500+ Sessions', 'Creators in Early Access']],
-  ['app/soul-frequency-assessment/page.tsx', ['500+ Suno']],
   ['app/team/page.tsx', ['12,000+', '50+ genres']],
   ['app/vibe/producer/page.tsx', ['500+', '12,000+']],
   ['app/year-of-the-fire-horse/vision/page.tsx', ['500+ AI-produced']],
