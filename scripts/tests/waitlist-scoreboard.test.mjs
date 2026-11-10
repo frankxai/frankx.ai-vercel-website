@@ -33,3 +33,13 @@ test('an empty list reads as zero, not as an estimate', () => {
   assert.match(md, /\| Total signups \| 0 \|/)
   assert.doesNotMatch(md, /estimate|projected|~/i)
 })
+
+test('the scoreboard refuses a writable token: it reads only with the read-only one', async () => {
+  const { spawnSync } = await import('node:child_process')
+  const run = spawnSync(process.execPath, ['scripts/waitlist/scoreboard.mjs'], {
+    env: { PATH: process.env.PATH, KV_REST_API_URL: 'https://kv.invalid', KV_REST_API_TOKEN: 'rw', UPSTASH_REDIS_REST_TOKEN: 'rw' },
+    encoding: 'utf8',
+  })
+  assert.equal(run.status, 2)
+  assert.match(run.stderr, /KV_REST_API_READ_ONLY_TOKEN/)
+})
