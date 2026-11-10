@@ -316,9 +316,9 @@ export function LuxuryWaveformPlayer({ track, className = '' }: LuxuryWaveformPl
             onClick={handleScrub}
             onKeyDown={(e) => {
               if (e.key === 'ArrowRight') {
-                seekProgress(Math.min(1, (currentTime + 5) / totalDuration))
+                setCurrentTime((prev) => Math.min(totalDuration, prev + 5))
               } else if (e.key === 'ArrowLeft') {
-                seekProgress(Math.max(0, (currentTime - 5) / totalDuration))
+                setCurrentTime((prev) => Math.max(0, prev - 5))
               } else if (e.key === ' ' || e.key === 'Enter') {
                 e.preventDefault()
                 handleTogglePlay()
