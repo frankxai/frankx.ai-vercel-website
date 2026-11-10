@@ -432,6 +432,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                   className={heroVerbClassName}
                   animate={isRotating}
                 />
+                <span className="sr-only"> </span>
                 <br />
                 <SplitFlipLine
                   text={heroTails[phraseIndex % heroTails.length]}

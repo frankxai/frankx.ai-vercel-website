@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   description:
     'Live v0 interface studies, an open creator-business starter, and the workflow that turns visual prototypes into evidence-backed products.',
   alternates: { canonical: '/v0' },
+  robots: { index: false, follow: false },
   openGraph: {
     images: defaultOpenGraphImages,
     title: 'Product Foundry | FrankX',

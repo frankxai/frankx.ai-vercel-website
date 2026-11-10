@@ -54,8 +54,6 @@ const tools = [
     keyRequired: null,
     stats: [
       { n: '12', label: 'Dimensions' },
-      { n: '1k+', label: 'Builders scored' },
-      { n: '40+', label: 'Countries' },
     ],
   },
   {

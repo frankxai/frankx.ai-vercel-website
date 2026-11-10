@@ -20,6 +20,7 @@ import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
 
 
 import { PrivacySafeAnalytics } from "@/components/analytics/PrivacySafeAnalytics"
+import { DatadogRum } from "@/components/analytics/DatadogRum"
 // AIS Plan A Task 21 — Schema.org @graph injected into <head> for AEO/GEO
 const aisSchemaGraph = (() => {
   try {
@@ -201,6 +202,7 @@ export default function RootLayout({
             </div>
             <Footer />
             <PrivacySafeAnalytics />
+            <DatadogRum />
           </MusicRuntime>
         </SessionProvider>
       </body>

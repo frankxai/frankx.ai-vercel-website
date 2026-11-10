@@ -6,6 +6,7 @@ export const metadata = createMetadata({
   title: 'Goals | FrankX',
   description: 'Current objectives and roadmap for FrankX.ai — from shipping products to scaling the creator platform.',
   path: '/goals',
+  noindex: true,
 })
 
 const goalSections = [

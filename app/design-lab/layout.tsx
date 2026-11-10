@@ -43,6 +43,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: './',
   },
+  robots: { index: false, follow: false },
 }
 
 // JSON-LD structured data - content from our own static registries, safe for inline rendering

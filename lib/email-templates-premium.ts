@@ -392,10 +392,6 @@ export function premiumNewsletterEmail(data: NewsletterData): { subject: string;
                     <!-- Stats Row (Morning Brew style) -->
                     <table role="presentation" cellpadding="0" cellspacing="0" style="background: rgba(30, 41, 59, 0.5); border-radius: 12px; margin-bottom: 24px;">
                       <tr>
-                        <td style="padding: 16px 24px; text-align: center; border-right: 1px solid rgba(100, 116, 139, 0.2);">
-                          <p style="margin: 0 0 4px 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 20px; font-weight: 700; color: #8B5CF6;">10K+</p>
-                          <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Creators</p>
-                        </td>
                         <td style="padding: 16px 24px; text-align: center;">
                           <p style="margin: 0 0 4px 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 20px; font-weight: 700; color: #a78bfa;">4+</p>
                           <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Years Enterprise AI</p>

@@ -60,7 +60,7 @@ const creatorTools = [
     icon: Palette,
     title: 'AI Art Gallery',
     description: 'Visual explorations generated with nano-banana AI. Techniques and processes shared.',
-    href: '/ai-art',
+    href: '/gallery',
     stat: '40+ artworks',
     color: 'amber',
   },
