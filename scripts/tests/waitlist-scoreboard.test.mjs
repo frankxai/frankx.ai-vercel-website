@@ -43,3 +43,10 @@ test('the scoreboard refuses a writable token: it reads only with the read-only 
   assert.equal(run.status, 2)
   assert.match(run.stderr, /KV_REST_API_READ_ONLY_TOKEN/)
 })
+
+test('a malformed stored signal is skipped and counted, never crashes the scoreboard', async () => {
+  const { parseSignals } = await import('../waitlist/scoreboard-core.mjs')
+  const { signals, skipped } = parseSignals(['{"email":"a@example.com","consent":true}', '{oops', 42])
+  assert.equal(signals.length, 1)
+  assert.equal(skipped, 2)
+})

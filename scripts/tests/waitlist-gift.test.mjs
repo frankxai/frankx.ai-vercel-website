@@ -202,3 +202,15 @@ test('each send carries a stable idempotency key, so a lost marker cannot double
     assert.equal(svc.attempts[0]['Idempotency-Key'], `gift/${PRODUCT}/idem@example.com`)
   })
 })
+
+test('a repeat join only retries a gift that failed; it never mails an address that was not due one', async () => {
+  const svc = services()
+  const r = route()
+  // Joined while the gift was off: nothing pending for this address.
+  await r.POST(post({ productId: PRODUCT, email: 'early@example.com', consent: true }))
+  await withLive(async () => {
+    await r.POST(post({ productId: PRODUCT, email: 'early@example.com', consent: true }))
+    await r.POST(post({ productId: PRODUCT, email: 'early@example.com', consent: true }))
+  })
+  assert.equal(svc.attempts.length, 0, 'a third party re-entering the address triggers no mail')
+})
