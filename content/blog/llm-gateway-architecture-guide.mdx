@@ -1,0 +1,212 @@
+---
+title: "LLM Gateway Architecture Guide: Routing, Failover & Cost Control (2026)"
+description: "How to design and select a production LLM gateway across LiteLLM, Cloudflare AI Gateway, Kong, Portkey, and Helicone — with fallback configs, spend caps, and OpenTelemetry spans."
+date: "2026-11-02"
+lastUpdated: "2026-11-02"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["llm-gateway", "ai-architecture", "observability", "cost-control", "multi-model"]
+image: "/images/blog/llm-gateway-architecture-guide-hero.svg"
+featured: true
+readingGoal: "You will know when to introduce an LLM gateway, how LiteLLM, Cloudflare, Kong, Portkey, and Helicone compare on latency and governance, and how to wire fallback + budget rules."
+tldr: "An LLM gateway sits between your applications or coding harnesses and upstream model providers (Claude, Gemini, OpenAI, local vLLM) to centralize virtual API keys, automatic 429/529 failover, per-tenant USD spend limits, caching, and OpenTelemetry GenAI traces. Use LiteLLM or Kong for self-hosted control, Cloudflare AI Gateway for zero-hop edge caching, or Portkey for managed enterprise routing."
+keywords:
+  [
+    "llm gateway",
+    "ai gateway architecture",
+    "litellm vs portkey",
+    "cloudflare ai gateway",
+    "kong ai gateway",
+    "multi-model routing",
+  ]
+schema: ["Article", "FAQPage"]
+faqSource: "frontmatter"
+faq:
+  - question: "What is an LLM gateway?"
+    answer: "An LLM gateway is an infrastructure proxy between your application or agent harness and upstream model APIs (Anthropic, Google Gemini, OpenAI, Bedrock, Vertex, local vLLM). It normalizes request schemas, enforces per-key spend budgets, executes automatic failover on 429/529 errors, and emits unified OpenTelemetry traces."
+  - question: "How much latency does an LLM gateway add?"
+    answer: "A self-hosted LiteLLM or Kong proxy running inside the same VPC or Kubernetes cluster adds roughly 2 to 8 milliseconds per request. Edge gateways such as Cloudflare AI Gateway add ~5 to 15 milliseconds on cache misses and return cached responses in under 30 milliseconds."
+  - question: "When should a team add an LLM gateway?"
+    answer: "Introduce an LLM gateway as soon as you run two or more model providers, issue credentials to multiple developers or background agents, or require hard daily USD caps and provider failover SLAs."
+  - question: "Does Vercel AI SDK replace an LLM gateway?"
+    answer: "Vercel AI SDK provides an ergonomic in-process TypeScript abstraction across model providers. Pair it with an external LLM gateway when multiple services (Python workers, CLI coding agents, and Next.js routes) need shared virtual keys, centralized spend enforcement, and cross-service rate-limit failover."
+---
+
+**TL;DR:** For AI architects and platform engineers scaling beyond a single API key: an **LLM gateway** centralizes credential isolation, automatic `429`/`529` provider failover, hard USD spend caps, prompt caching, and OpenTelemetry `gen_ai.*` traces in one control plane. Evaluated as of November 2026 across **LiteLLM**, **Cloudflare AI Gateway**, **Kong AI Gateway**, **Portkey**, and **Helicone**, this guide maps the architectural tradeoffs and gives you a production routing configuration you can deploy today.
+
+---
+
+## What problem does an LLM gateway solve in production?
+
+Calling `api.anthropic.com` or `generativelanguage.googleapis.com` directly from application code works cleanly for a single-service prototype. As soon as three engineers, two background workers, and a fleet of coding agents share upstream accounts, four operational failures surface:
+
+1. **Cascading `529 Overloaded` and `429 Rate Limit` outages** — When a primary region spikes in latency, direct callers fail user requests unless every microservice implements identical exponential backoff and cross-provider fallback logic.
+2. **Unbounded agent loop spend** — A misconfigured background retry loop can burn $400 of frontier reasoning tokens overnight when master provider keys lack per-workflow daily caps.
+3. **Credential sprawl** — Rotating a leaked master API key requires redeploying twelve services and updating every developer laptop.
+4. **Fragmented telemetry** — Token counts, prompt cache hit ratios, and p95 Time-to-First-Token (TTFT) sit in three separate vendor billing consoles.
+
+An LLM gateway moves all four concerns out of application business logic and into a single policy layer.
+
+---
+
+## Reference architecture: the four planes of an LLM gateway
+
+Inside our [AI Architecture Blueprints](/ai-architecture), a production gateway separates traffic into four explicit responsibilities:
+
+1. **Identity & budget plane** — Issues scoped virtual keys (`vk_prod_checkout`, `vk_dev_alice`) mapped to Postgres/Redis token counters with hard daily and monthly USD ceilings.
+2. **Routing & resilience plane** — Classifies task tier (`reasoning`, `coding`, `mechanical`, `multimodal`), checks exact/semantic cache, and executes health-checked failover chains (for example, Anthropic direct -> AWS Bedrock / Google Vertex Claude -> Gemini 2.5 Pro).
+3. **Safety & PII plane** — Scrubs secrets and regulated PII patterns prior to external egress while enforcing allowed model lists per tenant.
+4. **Observability plane** — Streams asynchronous OpenTelemetry `gen_ai.*` spans to your [multi-agent observability stack](/blog/observability-stack-multi-agent-systems-2026) (Langfuse, Grafana Tempo, or Datadog) off the critical latency path.
+
+---
+
+## Comparing the top 5 LLM gateways in 2026
+
+| Gateway | Deployment model | Added proxy latency | Standout strength | Primary trade-off |
+|---|---|---|---|---|
+| **LiteLLM Proxy** | Open-source self-hosted (Docker / K8s, Python) | `~3–8ms` in-VPC | Broadest 100+ provider normalization, virtual keys, hard USD budgets, native Claude Code / OpenAI SDK compatibility | Requires Postgres + Redis operations for high-throughput multi-replica state |
+| **Cloudflare AI Gateway** | Managed global edge | `~5–15ms` (sub-30ms on cache hit) | Zero infrastructure to run, one-line URL swap, edge caching, rate limiting, Workers binding | Lighter per-user Postgres budget hierarchy than self-hosted LiteLLM |
+| **Kong AI Gateway** | Self-hosted / Konnect enterprise (Go/Lua/Rust plugins) | `~2–5ms` in-VPC | Unifies traditional REST/gRPC API gateway governance, mTLS, and LLM routing in one proxy | Heavier configuration surface for small startups without existing Kong infra |
+| **Portkey** | Managed cloud + self-hosted enterprise | `~8–18ms` | Polished visual routing trees, conditional fallbacks, guardrails, and SOC2 compliance dashboards | Paid SaaS tier required for team governance and sustained trace retention |
+| **Helicone** | Open-source Rust/TS proxy + managed cloud | `~4–12ms` | High-speed Rust proxy (`ai-gateway`), request/response observability, prompt experiment analytics | Focused primarily on high-throughput proxy performance, request tracing, and prompt experiment analytics |
+
+### How to pick in 60 seconds
+
+- **Already on Cloudflare Workers or Next.js edge?** Turn on **Cloudflare AI Gateway** first—it takes ten minutes and costs zero extra infrastructure.
+- **Standardizing Claude Code, Codex, Python workers, and internal apps behind virtual keys + hard USD caps?** Self-host **LiteLLM Proxy** on Kubernetes, ECS, or Railway backed by Postgres + Redis.
+- **Enterprise platform team running Kong for existing microservices?** Enable **Kong AI Gateway** plugins so security, IAM, and mTLS stay on one control plane.
+
+---
+
+## Copy-paste production config: LiteLLM router with failover & spend caps
+
+Below is a battle-tested `litellm_config.yaml` pattern demonstrating **tiered model aliases**, **cross-provider failover**, **hard budget limits**, and **asynchronous OpenTelemetry export**:
+
+```yaml
+model_list:
+  # Primary reasoning & coding lane (Anthropic direct)
+  - model_name: architect-reasoning
+    litellm_params:
+      model: anthropic/claude-opus-4-7
+      api_key: os.environ/ANTHROPIC_API_KEY
+      timeout: 90
+      max_retries: 1
+
+  # Warm fallback on Vertex AI if direct API returns 429/529
+  - model_name: architect-reasoning-fallback
+    litellm_params:
+      model: vertex_ai/claude-opus-4-7
+      vertex_project: os.environ/GCP_PROJECT_ID
+      vertex_location: us-east5
+      timeout: 90
+
+  # Fast mechanical & classification lane
+  - model_name: mechanical-fast
+    litellm_params:
+      model: gemini/gemini-2.5-flash
+      api_key: os.environ/GEMINI_API_KEY
+      timeout: 20
+
+router_settings:
+  routing_strategy: latency-based-routing
+  num_retries: 2
+  cooldown_time: 30
+  fallbacks:
+    - {"architect-reasoning": ["architect-reasoning-fallback"]}
+
+litellm_settings:
+  drop_params: true
+  success_callback: ["otel"]
+  failure_callback: ["otel"]
+  cache: true
+  cache_params:
+    type: redis
+    host: os.environ/REDIS_HOST
+    port: 6379
+    ttl: 3600
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
+  database_url: os.environ/DATABASE_URL
+```
+
+Once running, create a scoped virtual key capped at `$25/day` for an autonomous agent workflow so a bug can never drain your master provider balance:
+
+```bash
+curl -X POST "https://gateway.internal.example.com/key/generate" \
+  -H "Authorization: Bearer $LITELLM_MASTER_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "key_alias": "ci-pr-reviewer-bot",
+    "models": ["mechanical-fast", "architect-reasoning"],
+    "max_budget": 25.0,
+    "budget_duration": "1d",
+    "metadata": { "team": "platform", "workflow": "pr-review" }
+  }'
+```
+
+---
+
+## Wiring coding harnesses (Claude Code & Vercel AI SDK) through your gateway
+
+Both developer CLI harnesses and TypeScript web apps point at your gateway via base-URL environment variables—zero application code rewrites required:
+
+```bash
+# Point Claude Code at an Anthropic-compatible gateway endpoint with a virtual key
+export ANTHROPIC_BASE_URL="https://gateway.internal.example.com/anthropic"
+export ANTHROPIC_AUTH_TOKEN="$VIRTUAL_DEVELOPER_KEY"
+```
+
+And inside Next.js Server Actions or Route Handlers using Vercel AI SDK:
+
+```typescript
+import { createOpenAICompatible } from '@ai-sdk/openai-compatible'
+import { generateText } from 'ai'
+
+const gateway = createOpenAICompatible({
+  name: 'internal-llm-gateway',
+  baseURL: process.env.LLM_GATEWAY_URL!,
+  apiKey: process.env.LLM_GATEWAY_VIRTUAL_KEY!,
+})
+
+export async function summarizeArchitectureDiff(diff: string) {
+  const { text, usage } = await generateText({
+    model: gateway('mechanical-fast'),
+    prompt: `Summarize the operational impact of this diff in 3 bullet points:\n\n${diff}`,
+  })
+  return { text, usage }
+}
+```
+
+---
+
+## Three production anti-patterns to avoid
+
+1. **Enabling fuzzy semantic caching on personalized or tool-calling prompts** — A 0.92 cosine-similarity cache hit can return Customer A's invoice summary to Customer B or replay stale tool arguments. Restrict caching to exact deterministic hashes (`temperature: 0`) on public, tenant-agnostic prompts.
+2. **Falling back silently from a 200K-context model to a 32K-context model** — Every fallback pair in `router_settings.fallbacks` must support at least the same context window, tool-calling schema, and structured-output contract as the primary model.
+3. **Logging raw prompt bodies without secret/PII scrubbing** — Configure OTel span processors to hash or redact authorization headers, emails, and customer payloads before persistence.
+
+---
+
+## Frequently Asked Questions
+
+### What is an LLM gateway?
+An LLM gateway is an infrastructure proxy between your application or agent harness and upstream model APIs (Anthropic, Google Gemini, OpenAI, Bedrock, Vertex, local vLLM). It normalizes request schemas, enforces per-key spend budgets, executes automatic failover on `429`/`529` errors, and emits unified OpenTelemetry traces.
+
+### How much latency does an LLM gateway add?
+A self-hosted LiteLLM or Kong proxy running inside the same VPC or Kubernetes cluster adds roughly 2 to 8 milliseconds per request. Edge gateways such as Cloudflare AI Gateway add ~5 to 15 milliseconds on cache misses and return cached responses in under 30 milliseconds.
+
+### When should a team add an LLM gateway?
+Introduce an LLM gateway as soon as you run two or more model providers, issue credentials to multiple developers or background agents, or require hard daily USD caps and provider failover SLAs. See [Q&A: LLM gateway vs direct API](/ask/llm-gateway-vs-direct-api).
+
+### Does Vercel AI SDK replace an LLM gateway?
+Vercel AI SDK provides an ergonomic in-process TypeScript abstraction across model providers. Pair it with an external LLM gateway when multiple services (Python workers, CLI coding agents, and Next.js routes) need shared virtual keys, centralized spend enforcement, and cross-service rate-limit failover.
+
+---
+
+## Related Architecture Resources
+
+- [AI Architecture Hub](/ai-architecture) — Full multi-cloud reference blueprints and system topologies
+- [The Observability Stack for Production Multi-Agent Systems](/blog/observability-stack-multi-agent-systems-2026) — OpenTelemetry `gen_ai.*` metrics, traces, and evaluation gates
+- [Best MCP Servers for Claude Code & Business Workflows](/guides/mcp-servers-claude-code-business) — Connecting agents safely to live tools
+- [Claude Code Skills & Agent Skill Library](/skills) — Modular `SKILL.md` templates and evaluation workflows

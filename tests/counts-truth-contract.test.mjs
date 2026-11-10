@@ -112,7 +112,7 @@ test("/acos routes derive counts from ACOS_REPO_SNAPSHOT, PILLARS, and pillarCou
   }
 });
 
-test("route-enumeration and canonical library data files reconcile to all 80 library book slugs", () => {
+test("route-enumeration and canonical library data files reconcile to all 81 library book slugs", () => {
   for (const requiredSource of [
     "data/library-reviews.ts",
     "data/handbook-to-higher-consciousness.ts",
@@ -137,7 +137,7 @@ test("route-enumeration and canonical library data files reconcile to all 80 lib
     ...extractSlugs(read("data/book-reviews.ts")),
     ...extractSlugs(read("data/library-reviews.ts")),
   ]);
-  assert.equal(allSlugs.size, 80);
+  assert.equal(allSlugs.size, 81);
 });
 
 test("touched components enforce sentence case and contain no uppercase utility classes", () => {

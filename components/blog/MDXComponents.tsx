@@ -18,6 +18,7 @@ import { MascotInsight } from '@/components/blog/MascotInsight'
 import { LiquidGlassImage } from '@/components/blog/LiquidGlassImage'
 import PlatformMarkGrid from '@/components/blog/PlatformMarkGrid'
 import HiggsfieldWorkbench from '@/components/guides/HiggsfieldWorkbench'
+import ElevenLabsAudioBriefingWorkbench from '@/components/guides/ElevenLabsAudioBriefingWorkbench'
 import { GuideSkill, GuideSkillMap } from '@/components/guides/GuideSkillMap'
 import {
   VoiceArchitectureChoice,
@@ -345,6 +346,7 @@ export const mdxComponents: MDXComponents = {
   VoiceProviderRoles,
   VoiceReferenceArchitecture,
   HiggsfieldWorkbench,
+  ElevenLabsAudioBriefingWorkbench,
   GuideSkillMap,
   GuideSkill,
   Link,

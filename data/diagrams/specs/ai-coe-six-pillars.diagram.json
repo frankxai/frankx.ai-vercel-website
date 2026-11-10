@@ -1,0 +1,25 @@
+{
+  "id": "ai-coe-six-pillars",
+  "rev": 1,
+  "type": "radial",
+  "eyebrow": "AI Center of Excellence",
+  "title": "Six pillars of an AI center of excellence",
+  "subtitle": "One operating model that works for a single person, a team or an enterprise program.",
+  "alt": "Six pillars around an AI center of excellence: strategy, governance, talent, technology, data and ethics, each with a one-line job.",
+  "source": "Pillar names and descriptions from /ai-coe (app/ai-coe/page.tsx).",
+  "reviewed": "2026-11-07",
+  "replaces": {
+    "src": "/images/architectures/ai-coe.png",
+    "pages": ["/ai-coe", "/ai-architecture/blueprints"],
+    "legacySubject": "Agentic Creator OS three-phase workflow, not the six-pillar CoE model"
+  },
+  "core": { "accent": "emerald", "title": "AI CoE", "subtitle": "Personal, team or enterprise scale" },
+  "nodes": [
+    { "accent": "cyan", "label": "Strategy", "detail": "Define the work AI should handle, the work humans keep, and the outcomes worth measuring." },
+    { "accent": "amber", "label": "Governance", "detail": "Set rules for review, disclosure, privacy, source quality, and final human accountability." },
+    { "accent": "emerald", "label": "Talent", "detail": "Build fluency through prompts, playbooks, role-specific workflows, and repeated practice." },
+    { "accent": "violet", "label": "Technology", "detail": "Choose the tool stack deliberately: models, agents, automations, interfaces, and observability." },
+    { "accent": "blue", "label": "Data", "detail": "Turn documents, notes, research, and outputs into reusable context with clear ownership." },
+    { "accent": "fuchsia", "label": "Ethics", "detail": "Make values operational through checks, limits, review moments, and escalation paths." }
+  ]
+}

@@ -42,6 +42,23 @@ const frontierModels = [
     notes: 'Native audio modality. Strong general-purpose performance.',
   },
   {
+    name: 'Gemini 4 Argon',
+    org: 'Google DeepMind',
+    released: 'Oct 8, 2026',
+    context: '1M',
+    output: '65K (1M cont.)',
+    pricing: { input: 2.0, output: 10.0 },
+    achievement: '5/5 Starlight Arena Round 6 receipt, 1M multimodal ($0.10/M cached)',
+    benchmarks: {},
+    tags: ['multimodal', 'coding', 'reasoning', 'video', 'audio', 'agentic'],
+    color: '#3b82f6',
+    highlight: true,
+    links: {
+      docs: 'https://ai.google.dev/gemini-api/docs/models',
+    },
+    notes: 'October 2026 Gemini 4 flagship. Introductory $2/$10 ($0.10 cached input) through Nov 30, 2026. Measured in Starlight Model Arena Round 6.',
+  },
+  {
     name: 'Gemini 3 Pro',
     org: 'Google DeepMind',
     released: 'Dec 2025',
@@ -56,7 +73,7 @@ const frontierModels = [
     links: {
       docs: 'https://ai.google.dev/gemini-api/docs',
     },
-    notes: 'Widest modality support: text, vision, audio, video. 2M native context.',
+    notes: 'Prior Pro generation. Widest modality support: text, vision, audio, video.',
   },
   {
     name: 'Grok 4.1',

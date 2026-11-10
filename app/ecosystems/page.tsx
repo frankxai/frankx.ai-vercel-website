@@ -1,16 +1,18 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { Compass, ArrowRight, ShieldCheck } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Founder Ecosystems | FrankX',
+  title: 'Founder Ecosystems',
   description: 'Founder ecosystems, mapped from the ground. Practical, field-tested workspace guides for builders, creators, and operators.',
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Founder Ecosystems | FrankX',
     description: 'Practical, field-tested workspace guides for builders, creators, and operators.',
     type: 'website',
   },
-  alternates: { canonical: 'https://frankx.ai/ecosystems' },
+  alternates: { canonical: `${siteConfig.url}/ecosystems` },
 }
 
 function EcosystemsSchema() {
@@ -19,11 +21,11 @@ function EcosystemsSchema() {
     '@type': 'CollectionPage',
     name: 'Founder Ecosystems',
     description: 'Field-tested workspace and community guides for startup founders and AI architects.',
-    url: 'https://frankx.ai/ecosystems',
+    url: `${siteConfig.url}/ecosystems`,
     author: {
       '@type': 'Person',
       name: 'Frank Riemer',
-      url: 'https://frankx.ai',
+      url: siteConfig.url,
       jobTitle: 'AI Architect',
     },
     mainEntity: {
@@ -34,13 +36,13 @@ function EcosystemsSchema() {
           '@type': 'ListItem',
           position: 1,
           name: 'Amsterdam',
-          url: 'https://frankx.ai/ecosystems/amsterdam',
+          url: `${siteConfig.url}/ecosystems/amsterdam`,
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Zadar & Split',
-          url: 'https://frankx.ai/ecosystems/zadar-split',
+          url: `${siteConfig.url}/ecosystems/zadar-split`,
         }
       ],
     },

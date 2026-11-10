@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from "next";
 import {
   EssaySection,
@@ -13,13 +14,14 @@ export const metadata: Metadata = {
     "How Starlight Intelligence, FrankX, GenCreator, and Arcanea turn advanced intelligence into human capability, creator agency, and futures worth choosing.",
   alternates: {
     canonical:
-      "https://frankx.ai/insights/from-personal-superintelligence-to-human-sovereignty",
+      `${siteConfig.url}/insights/from-personal-superintelligence-to-human-sovereignty`,
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: "From Personal Superintelligence to Human Sovereignty",
     description:
       "The frontier labs are building more intelligence. We are building for the people who will direct it.",
-    url: "https://frankx.ai/insights/from-personal-superintelligence-to-human-sovereignty",
+    url: `${siteConfig.url}/insights/from-personal-superintelligence-to-human-sovereignty`,
     type: "article",
     publishedTime: "2026-08-12",
     authors: ["Frank Riemer"],
@@ -37,15 +39,15 @@ export default function HumanSovereigntyEssay() {
     author: {
       "@type": "Person",
       name: "Frank Riemer",
-      url: "https://frankx.ai",
+      url: siteConfig.url,
     },
     publisher: {
       "@type": "Organization",
       name: "FrankX",
-      url: "https://frankx.ai",
+      url: siteConfig.url,
     },
     mainEntityOfPage:
-      "https://frankx.ai/insights/from-personal-superintelligence-to-human-sovereignty",
+      `${siteConfig.url}/insights/from-personal-superintelligence-to-human-sovereignty`,
   };
   return (
     <>

@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import {
@@ -24,11 +25,12 @@ export const metadata: Metadata = {
   description:
     `Every system across the FrankX ecosystem — Watch OS, Workshop OS, ACOS, Library OS, the Build First funnel, the Starlight Intelligence System, and more. ${entryCount} entries across 4 tiers.`,
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'FrankX Ecosystem — The Complete System Map',
     description: `${entryCount} systems across 4 tiers — public surfaces, open-source substrate, operational layer, ops tooling.`,
     type: 'website',
   },
-  alternates: { canonical: 'https://frankx.ai/ecosystem' },
+  alternates: { canonical: `${siteConfig.url}/ecosystem` },
 }
 
 const COLOR_TOKENS = {
@@ -68,11 +70,11 @@ function EcosystemSchema() {
     '@type': 'WebSite',
     name: 'FrankX Ecosystem',
     description: `The complete map of every system across the FrankX ecosystem — ${entryCount} entries across 4 tiers.`,
-    url: 'https://frankx.ai/ecosystem',
+    url: `${siteConfig.url}/ecosystem`,
     author: {
       '@type': 'Person',
       name: 'Frank Riemer',
-      url: 'https://frankx.ai',
+      url: siteConfig.url,
       jobTitle: 'AI Architect',
     },
   }

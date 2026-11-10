@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import Link from 'next/link'
 import Script from 'next/script'
 import { Metadata } from 'next'
@@ -10,11 +11,12 @@ const pillarCount = PILLARS.length
 export const metadata: Metadata = {
   title: `${catalogCounts.total} agents — The complete Creator OS | ACOS`,
   description: `Every agent, skill, and command in the ACOS Creator OS — organized into ${pillarCount} pillars (${catalogCounts.total} specialist slots). Open source, MIT licensed.`,
-  alternates: { canonical: 'https://frankx.ai/acos/agents' },
+  alternates: { canonical: `${siteConfig.url}/acos/agents` },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: `${catalogCounts.total} agents — The complete Creator OS`,
     description: 'The specialist catalog inside ACOS. Shipped, in-progress, and planned.',
-    url: 'https://frankx.ai/acos/agents',
+    url: `${siteConfig.url}/acos/agents`,
     siteName: 'FrankX',
     type: 'website',
   },
@@ -74,48 +76,48 @@ export default function ACOSAgentsPage() {
     '@graph': [
       {
         '@type': 'CollectionPage',
-        '@id': 'https://frankx.ai/acos/agents#page',
+        '@id': `${siteConfig.url}/acos/agents#page`,
         name: `${counts.total} agents — The complete Creator OS`,
         description: `Full catalog of ACOS agents, skills, and commands organized into ${pillarCount} pillars.`,
-        url: 'https://frankx.ai/acos/agents',
+        url: `${siteConfig.url}/acos/agents`,
         isPartOf: {
           '@type': 'WebSite',
           name: 'FrankX',
-          url: 'https://frankx.ai',
+          url: siteConfig.url,
         },
         about: {
           '@type': 'SoftwareApplication',
           name: 'Agentic Creator OS',
-          url: 'https://frankx.ai/acos',
+          url: `${siteConfig.url}/acos`,
         },
         hasPart: PILLARS.map((p) => ({
           '@type': 'Collection',
           name: p.title,
           description: p.tagline,
-          url: `https://frankx.ai/acos/agents#${p.id}`,
+          url: `${siteConfig.url}/acos/agents#${p.id}`,
         })),
       },
       {
         '@type': 'BreadcrumbList',
-        '@id': 'https://frankx.ai/acos/agents#breadcrumb',
+        '@id': `${siteConfig.url}/acos/agents#breadcrumb`,
         itemListElement: [
           {
             '@type': 'ListItem',
             position: 1,
             name: 'FrankX OS',
-            item: 'https://frankx.ai/os',
+            item: `${siteConfig.url}/os`,
           },
           {
             '@type': 'ListItem',
             position: 2,
             name: 'ACOS',
-            item: 'https://frankx.ai/os/acos',
+            item: `${siteConfig.url}/os/acos`,
           },
           {
             '@type': 'ListItem',
             position: 3,
             name: 'Agent catalog',
-            item: 'https://frankx.ai/acos/agents',
+            item: `${siteConfig.url}/acos/agents`,
           },
         ],
       },

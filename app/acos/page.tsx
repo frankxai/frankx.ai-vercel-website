@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import Link from 'next/link'
 import Image from 'next/image'
 import Script from 'next/script'
@@ -163,7 +164,7 @@ const structuredData = {
       availability: 'https://schema.org/PreOrder',
     },
   ],
-  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
+  author: { '@type': 'Person', name: 'Frank Riemer', url: siteConfig.url },
   url: 'https://github.com/frankxai/agentic-creator-os',
 }
 

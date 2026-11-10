@@ -35,43 +35,98 @@ export default function ReceiptsBrowser({
               <span aria-hidden className="text-zinc-400 transition-transform group-open:rotate-45">+</span>
             </span>
           </summary>
-          <div className="mt-4 space-y-3 border-t border-white/5 pt-4">
+          <div className="mt-4 space-y-4 border-t border-white/5 pt-4">
             <p className="text-xs leading-relaxed text-zinc-400">{r.methodology}</p>
             <p className="font-mono text-[11px] text-zinc-500">
               Contestants: {r.contestants.join(' · ')}
             </p>
-            <ul className="space-y-1 text-xs">
+            <ul className="space-y-3 text-xs">
               {r.tasks.map((t) => (
-                <li key={t.id} className="flex flex-wrap gap-x-3 gap-y-0.5 font-mono text-zinc-400">
-                  <span className="text-zinc-300">{t.id}</span>
-                  {Object.entries(t.results ?? {}).map(([model, result]) => (
-                    <span key={model} className="text-[11px]">
-                      {model}:{' '}
-                      <span
-                        className={
-                          result?.status === 'pass'
-                            ? 'text-emerald-400'
-                            : result?.status === 'fail'
-                              ? 'text-red-400'
-                              : 'text-amber-400'
-                        }
-                      >
-                        {result?.status ?? 'unknown'}
+                <li
+                  key={t.id}
+                  className="rounded-xl border border-white/[0.06] bg-white/[0.015] p-3.5 space-y-2"
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 font-mono">
+                      <span className="font-semibold text-zinc-200">{t.id}</span>
+                      {t.category && (
+                        <span className="rounded-full border border-cyan-400/25 bg-cyan-400/10 px-2 py-0.5 text-[10px] text-cyan-300">
+                          {t.category}
+                        </span>
+                      )}
+                    </div>
+                    {t.verification && (
+                      <span className="font-mono text-[10px] text-zinc-500">
+                        Gate: {t.verification}
                       </span>
-                    </span>
-                  ))}
+                    )}
+                  </div>
+                  <p className="text-[11px] leading-relaxed text-zinc-400">{t.prompt}</p>
+                  <div className="grid gap-1.5 sm:grid-cols-2">
+                    {Object.entries(t.results ?? {}).map(([model, result]) => (
+                      <div
+                        key={model}
+                        className="rounded-lg border border-white/[0.05] bg-black/30 px-2.5 py-2 font-mono text-[11px]"
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="font-medium text-zinc-200">{model}</span>
+                          <span
+                            className={
+                              result?.status === 'pass'
+                                ? 'text-emerald-400'
+                                : result?.status === 'fail'
+                                  ? 'text-red-400'
+                                  : 'text-amber-400'
+                            }
+                          >
+                            {result?.status ?? 'unknown'}
+                          </span>
+                        </div>
+                        {(typeof result?.latency_ms === 'number' ||
+                          typeof result?.cost_usd === 'number') && (
+                          <div className="mt-1 flex items-center gap-3 text-[10px] text-zinc-500 tabular-nums">
+                            {typeof result?.latency_ms === 'number' && (
+                              <span>{(result.latency_ms / 1000).toFixed(2)}s</span>
+                            )}
+                            {typeof result?.cost_usd === 'number' && (
+                              <span>${result.cost_usd.toFixed(3)}</span>
+                            )}
+                          </div>
+                        )}
+                        {typeof result?.notes === 'string' && result.notes && (
+                          <p className="mt-1 font-sans text-[11px] leading-snug text-zinc-400">
+                            {result.notes}
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </li>
               ))}
             </ul>
-            <a
-              href={r.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-zinc-300 underline decoration-zinc-700 underline-offset-4 hover:text-white"
-            >
-              Raw JSON receipt
-              <ExternalLink className="h-3 w-3" aria-hidden />
-            </a>
+            <div className="flex flex-wrap items-center gap-4 pt-1">
+              <a
+                href={r.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs text-zinc-300 underline decoration-zinc-700 underline-offset-4 hover:text-white"
+              >
+                Raw JSON receipt
+                <ExternalLink className="h-3 w-3" aria-hidden />
+              </a>
+              {r.visual_evidence?.screenshots?.map((shot, idx) => (
+                <a
+                  key={shot}
+                  href={shot}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs text-cyan-300 underline decoration-cyan-500/40 underline-offset-4 hover:text-cyan-200"
+                >
+                  Visual scorecard #{idx + 1}
+                  <ExternalLink className="h-3 w-3" aria-hidden />
+                </a>
+              ))}
+            </div>
           </div>
         </details>
       ))}

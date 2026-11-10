@@ -1,21 +1,23 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import JsonLd from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'AI and the Contemplative Traditions — Research | FrankX',
+  title: 'AI and the Contemplative Traditions — Research',
   description:
     'A sober look at AI as an instrument in spiritual practice: what is actually happening, what the contemplative traditions say about new tools, and the failure modes to respect.',
   alternates: {
-    canonical: 'https://frankx.ai/research/ai-contemplative-practice',
+    canonical: `${siteConfig.url}/research/ai-contemplative-practice`,
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'AI and the Contemplative Traditions — Research',
     description:
       'What is real, what the traditions actually say, and the failure modes to respect when using AI in spiritual practice.',
     type: 'article',
-    url: 'https://frankx.ai/research/ai-contemplative-practice',
+    url: `${siteConfig.url}/research/ai-contemplative-practice`,
   },
 }
 
@@ -105,12 +107,12 @@ export default function AIContemplativePracticePage() {
           headline: 'AI and the Contemplative Traditions',
           description:
             'A sober look at AI as an instrument in spiritual practice: what is real, what the traditions say, and the failure modes to respect.',
-          author: { '@type': 'Person', name: 'Frank', url: 'https://frankx.ai' },
+          author: { '@type': 'Person', name: 'Frank', url: siteConfig.url },
           datePublished: '2026-06-12',
           dateModified: '2026-06-12',
           mainEntityOfPage: {
             '@type': 'WebPage',
-            '@id': 'https://frankx.ai/research/ai-contemplative-practice',
+            '@id': `${siteConfig.url}/research/ai-contemplative-practice`,
           },
         }}
       />

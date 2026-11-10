@@ -57,14 +57,13 @@ test('the public document is OpenAPI 3.1 and lists the published reads', () => {
     publicOpenApi.paths['/api/quote/today'].get.responses['400'].content['application/json'].schema.$ref,
     '#/components/schemas/TimezoneError',
   )
+  assert.equal(publicOpenApi.paths['/api/mcp'].get.responses['200'], undefined)
+  assert.equal(publicOpenApi.paths['/api/mcp'].get.responses['406'], undefined)
   assert.equal(
-    publicOpenApi.paths['/api/mcp'].get.responses['200'].content['text/event-stream'].schema.type,
-    'string',
-  )
-  assert.equal(
-    publicOpenApi.paths['/api/mcp'].get.responses['406'].content['application/json'].schema.$ref,
+    publicOpenApi.paths['/api/mcp'].get.responses['405'].content['application/json'].schema.$ref,
     '#/components/schemas/McpNotAcceptable',
   )
+  assert.equal(publicOpenApi.paths['/api/mcp'].get.responses['405'].headers.Allow.schema.const, 'POST')
   for (const method of ['post', 'put', 'patch', 'delete']) {
     for (const routePath of ['/api/v1', '/.well-known/api-catalog', '/openapi.json']) {
       assert.equal(

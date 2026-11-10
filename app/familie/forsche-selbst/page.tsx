@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
@@ -18,10 +19,11 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Forsche selbst — Wie man Vorfahren findet, ohne zu erfinden | FrankX',
+  title: 'Forsche selbst — Wie man Vorfahren findet, ohne zu erfinden',
   description: 'Ich habe einen Kandidaten gefunden — getauft 1729 in Freudental, Gründungssiedler einer Wolga-Kolonie. Ob er mein Vorfahr ist, weiß ich nicht. Hier ist, wie ich den Unterschied zwischen Hypothese und Beweis handhabe — und wie du es auch kannst.',
   robots: { index: true, follow: true },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Kandidat gefunden. Beweis offen. So forsche ich ehrlich.',
     description: 'Die Methode, um Familienforschung mit KI zu betreiben, ohne sich selbst zu belügen. Drei Bewegungen: zuhören, suchen, bewahren — mit Konfidenzlevel in jedem Schritt.',
     type: 'article',
@@ -62,7 +64,7 @@ const werkzeuge = [
   },
   {
     name: 'Claude · ACOS',
-    url: 'https://frankx.ai/acos',
+    url: `${siteConfig.url}/acos`,
     rolle: 'Das Agenten-Team',
     notiz: 'KI-Agenten, die parallel Quellen durchsuchen, Fakten gegenprüfen, und Hypothesen bewerten. Das System, das ich sonst für Oracle-Kunden baue — hier für etwas Persönlicheres.',
   },

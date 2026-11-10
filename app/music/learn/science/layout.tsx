@@ -1,6 +1,7 @@
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
+  canonical: './',
   title: "Music, Sound & Evidence | Research and Claim Boundaries | FrankX",
   description:
     "An evidence-aware guide to music, listening, practice, tuning, hearing safety, and the limits of frequency and health claims.",

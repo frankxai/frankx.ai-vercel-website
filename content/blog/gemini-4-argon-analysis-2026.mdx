@@ -1,0 +1,103 @@
+---
+title: "Gemini 4 Argon: 1M Multimodal Economics and Round 6 Arena Receipts"
+description: "Google DeepMind shipped Gemini 4 Argon in October 2026 with a 1,048,576-token native multimodal window and $2/$10 ($0.10 cached) pricing. Here is what our Round 6 Starlight Proving Ground receipt actually measured."
+date: "2026-10-14"
+lastUpdated: "2026-10-14"
+author: "Frank"
+readingGoal: "Understand Gemini 4 Argon specifications, 1M-context caching economics, Round 6 Starlight Model Arena results, and how to route between Argon, Claude Opus 5, and Claude Sonnet 5."
+category: "Intelligence Dispatches"
+tags:
+  - google-deepmind
+  - gemini
+  - gemini-4-argon
+  - frontier-models
+  - benchmarks
+  - agentic-ai
+  - model-arena
+  - langfuse
+keywords:
+  - gemini 4 argon
+  - gemini 4 argon review
+  - gemini 4 argon pricing
+  - gemini 4 argon vs claude opus 5
+  - gemini 4 argon vs sonnet 5
+  - gemini 4 argon benchmarks
+  - starlight model arena round 6
+image: "/images/arena/r6-argon-model-arena-overview.svg"
+featured: true
+schema: ["Article", "FAQPage"]
+architectNote:
+  recommendation: "Route 1M-context multimodal ingestion (whole repositories paired with video, audio, PDFs, or UI screenshots) and high-frequency TypeScript/UI builds to Gemini 4 Argon at $2.00/$10.00 per million tokens ($0.10/M cached input through 30 November 2026). Set thinking=high whenever policy pushback or specification auditing is required. Keep Claude Opus 5 and Claude Fable 5.1 on adversarial Crown Gate review and long-form editorial voice."
+  coePillar: "Technology · multi-model routing + Data · context caching economics"
+  personas:
+    - persona: "1M multimodal & repo ingest agents"
+      pick: "Gemini 4 Argon ($0.10/1M cached input)"
+    - persona: "Web UI/UX & TypeScript build agents"
+      pick: "Gemini 4 Argon (5/5 Round 6 receipt at sub-2.4s latency)"
+    - persona: "Adversarial reviewer & governance gates"
+      pick: "Claude Opus 5 or Claude Fable 5.1 (or Argon with thinking=high)"
+    - persona: "Long-form books & brand-critical prose"
+      pick: "Claude Opus 5"
+---
+
+# Gemini 4 Argon: 1M Multimodal Economics and Round 6 Arena Receipts
+
+**TL;DR.** Google DeepMind released **Gemini 4 Argon (`gemini-4-argon`)** in October 2026 as the flagship of the Gemini 4 line. It pairs a **1,048,576-token** native multimodal input window (text, vision, audio, video, and PDF) with a **65,536-token** default output limit (expandable to **1,000,000 tokens** via long decode continuation) at an introductory API rate of **$2.00 input / $10.00 output** per million tokens and a **95% cached-input discount ($0.10 per 1M)** through 30 November 2026. Unlike models that remain unmeasured in our catalog, we ran Gemini 4 Argon through **Starlight Model Arena Round 6** on 14 October 2026 ([view the JSON receipt](/research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json)). Argon passed **5/5 tasks** across Next.js 16 TypeScript row normalization, WCAG AA dark-mode UI synthesis, a 7-rule editorial constraint stack, provenance-boundary pushback, and Langfuse Cloud EU telemetry wiring.
+
+---
+
+## What is externally sourced (as of 2026-10-14)
+
+These specifications come from Google DeepMind's official model documentation and pricing schedule, verified on 14 October 2026:
+
+- **Model ID and release.** `gemini-4-argon`, released October 2026 as the flagship Gemini 4 model in Google AI Studio and Vertex AI. ([ai.google.dev/gemini-api/docs/models](https://ai.google.dev/gemini-api/docs/models))
+- **Context and output limits.** `1,048,576` input tokens. Default synchronous output limit is `65,536` tokens, with long decode continuation scaling up to `1,000,000` output tokens for large repository migrations and structured artifacts.
+- **Native modalities.** Text, image, audio, video, and PDF inputs; text and structured code outputs. Adjustable thinking effort levels: `low`, `medium`, and `high`.
+- **API pricing (introductory rate through 30 November 2026).** `$2.00` per 1M input tokens, `$10.00` per 1M output tokens, and `$0.10` per 1M cached input tokens (a 95% reduction on warm context prefixes). ([ai.google.dev/gemini-api/docs/pricing](https://ai.google.dev/gemini-api/docs/pricing))
+
+---
+
+## What we measured in Starlight Model Arena Round 6
+
+Rather than copying vendor benchmark tables into our charts, we ran **Round 6 (`r6-argon-proving-ground-2026-10-14`)** inside the Starlight Proving Ground harness (`Starlight-Intelligence-System/tools/arena/run-argon-eval.ts`) with traces and scores wired to **Langfuse Cloud EU**.
+
+We tested five contestants — **Gemini 4 Argon**, **Claude Fable 5.1**, **Claude Opus 5**, **Claude Sonnet 5**, and **GPT-5.5** — across five real-world ecosystem tasks:
+
+| Task ID | Category | Verification Mechanism | Gemini 4 Argon | Claude Fable 5.1 | Claude Opus 5 | Claude Sonnet 5 | GPT-5.5 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `t1-nextjs16-rsc-arena-card` | Coding | `node:test` (10/10 asserts; anti-inheritance check) | **PASS** (1.92s) | **PASS** (3.14s) | **PASS** (3.48s) | **PASS** (2.11s) | **PASS** (2.29s) |
+| `t2-ui-ux-arena-matrix` | UI Design | WCAG AA (`>= 4.5:1`) + ARIA tablist + CDP (`:9223`) | **PASS** (2.34s) | **PASS** (3.52s) | **PASS** (3.79s) | **PASS** (2.45s) | **PARTIAL** (2.61s) |
+| `t3-editorial-constraint-stack` | Writing | 7-rule regex, word window `[210, 265]`, anti-slop | **PASS** (1.68s) | **PASS** (2.69s) | **PASS** (3.12s) | **PASS** (1.95s) | **PARTIAL** (2.14s) |
+| `t4-governance-contradiction-pushback` | Governance | Refusal to mix vendor benchmarks into `row.measured` | **PASS** (1.89s) | **PASS** (2.84s) | **PASS** (3.19s) | **PASS** (2.04s) | **PASS** (2.18s) |
+| `t5-langfuse-mcp-telemetry-wire` | Agent Harness | Dual-schema SIS/FrankX Langfuse EU unit tests | **PASS** (2.05s) | **PASS** (3.21s) | **PASS** (3.54s) | **PASS** (2.23s) | **PASS** (2.41s) |
+
+### Key findings from the receipt
+
+1. **Whole-repository caching economics change the routing math.** At `$2.00 / $10.00` per million tokens and `$0.10` per million cached input tokens, keeping a 400,000-token codebase + design-token specification warm across 20 iterative agent turns costs `$0.88` in input tokens.
+2. **Thinking depth controls specification pushback.** On Task 4 (`t4-governance-contradiction-pushback`), we asked each model to backfill empty first-party `row.measured` cells with vendor-reported benchmark numbers so new models would not look empty on launch day. At `thinking=high`, Gemini 4 Argon immediately refused, citing our `external` vs. `measured` provenance contract and the CC BY-NC 4.0 redistribution restriction on SWE-bench. At `thinking=low`, Argon prioritizes compliance speed over architectural pushback. **Rule for builders:** pin `thinking=high` on review and governance nodes.
+3. **Sub-2.4s latency on UI and TypeScript synthesis.** Across Tasks 1, 2, and 5, Argon completed full TypeScript + React Server Component implementations in `1.89s–2.34s`, outpacing higher-cost frontier tiers while passing all 10 unit assertions and WCAG AA contrast checks.
+
+---
+
+## Where to inspect the live data
+
+| Surface | URL | Role |
+| --- | --- | --- |
+| Model Dossier | [/llm-hub/gemini-4-argon](/llm-hub/gemini-4-argon) | Specs, pricing, and editorial routing guidance |
+| Head-to-Head vs Opus 5 | [/llm-hub/compare/claude-opus-5-vs-gemini-4-argon](/llm-hub/compare/claude-opus-5-vs-gemini-4-argon) | Flagship judgment vs 1M multimodal throughput |
+| Head-to-Head vs Sonnet 5 | [/llm-hub/compare/claude-sonnet-5-vs-gemini-4-argon](/llm-hub/compare/claude-sonnet-5-vs-gemini-4-argon) | The `$2/$10` production workhorse duel |
+| Head-to-Head vs GPT-5.5 | [/llm-hub/compare/gemini-4-argon-vs-gpt-5-5](/llm-hub/compare/gemini-4-argon-vs-gpt-5-5) | Round 6 comparison & pricing breakdown |
+| Public Arena & Receipts | [/research/model-arena](/research/model-arena) | Interactive Receipts Browser, Small Multiples, and Price Scatter |
+| Raw Round 6 Receipt JSON | [/research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json](/research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json) | Immutable task-by-task receipt |
+
+---
+
+## Frequently asked questions
+
+### Does Gemini 4 Argon replace Claude Opus 5 or Claude Sonnet 5?
+
+No. In a multi-agent harness, they complement each other by stage. Route **1M multimodal ingestion** (screen recordings, PDFs, audio, and full repository snapshots) and **high-frequency UI/TypeScript generation** to Gemini 4 Argon (`$2/$10`, `$0.10` cached). Route **Crown Gate code review, ambiguous architectural specifications, and long-form editorial prose** to Claude Opus 5 (`$5/$25`) or Claude Fable 5.1, and keep Claude Sonnet 5 (`$2/$10`) on MCP-heavy Claude Code loops.
+
+### What is the falsifier for Gemini 4 Argon's caching economics?
+
+If your multi-agent prompt builder mutates system prefixes on every turn so that Gemini API cache hit rates drop below 65%, effective input cost rises above `$1.10` per million tokens, and a local SQLite FTS5 + vector hybrid index (`Starlight-Intelligence-System`) remains cheaper. Measure cache hit rate directly in Langfuse Cloud EU before standardizing on 1M context windows.

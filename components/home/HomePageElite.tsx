@@ -17,6 +17,7 @@ import { EmailSignup } from '@/components/email-signup'
 import { GlowCard } from '@/components/ui/glow-card'
 import { FrankOmegaAvatar } from '@/components/FrankOmega'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
+import { FounderStory } from '@/components/home/FounderStory'
 import { MindPalaceAtlas } from '@/components/home/MindPalaceAtlas'
 import { SignalRouteSelector } from '@/components/home/SignalRouteSelector'
 import { FeaturedTrackPlayer } from '@/components/home/FeaturedTrackPlayer'
@@ -431,6 +432,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                   className={heroVerbClassName}
                   animate={isRotating}
                 />
+                <span className="sr-only"> </span>
                 <br />
                 <SplitFlipLine
                   text={heroTails[phraseIndex % heroTails.length]}
@@ -606,7 +608,7 @@ function ProductsTools() {
           viewport={{ once: true }}
           className="text-center mb-12 md:mb-16"
         >
-          <p className="mb-4 text-xs font-medium tracking-[0.1em] text-emerald-400/50">
+          <p className="mb-4 text-xs font-medium tracking-[0.1em] text-emerald-300/80">
             Products & Tools
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
@@ -1560,6 +1562,9 @@ export default function HomePageElite({
 
         {/* 4. Authority bar */}
         <AuthorityBar />
+
+        {/* Personal authorship and the existing miniature studio */}
+        <FounderStory />
 
         {/* 4b. AI Stack — tool logos with guide links */}
         <TrustedByBlock />

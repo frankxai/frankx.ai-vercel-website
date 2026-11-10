@@ -2,6 +2,7 @@ import { createMetadata } from '@/lib/seo'
 import { ACOS_REPO_SNAPSHOT } from '@/data/acos/agents'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: `ACOS — The operating system for generative creators | ${ACOS_REPO_SNAPSHOT.skills} skills, ${ACOS_REPO_SNAPSHOT.agents} agents`,
   description: `Open-source AI operating system for Claude Code (${ACOS_REPO_SNAPSHOT.repo}/${ACOS_REPO_SNAPSHOT.sourcePath}, verified ${ACOS_REPO_SNAPSHOT.verifiedOn}): ${ACOS_REPO_SNAPSHOT.skills} skill modules, ${ACOS_REPO_SNAPSHOT.agents} agent profiles, and ${ACOS_REPO_SNAPSHOT.commands} slash commands.`,
   path: '/acos',

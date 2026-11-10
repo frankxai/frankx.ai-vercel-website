@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Script from 'next/script';
@@ -8,10 +9,10 @@ import { traditionLabels, traditionDisplayOrder } from '@/data/rails/traditions'
 import { breadcrumbSchema } from '@/lib/rails/schema';
 import type { TraditionSlug } from '@/lib/rails/types';
 
-const SITE = 'https://frankx.ai';
+const SITE = siteConfig.url;
 
 export const metadata: Metadata = {
-  title: 'The Canon — Mystics, Sages, Physicists, Philosophers | FrankX',
+  title: 'The Canon — Mystics, Sages, Physicists, Philosophers',
   description:
     'The canonical thinkers cited across /on-god/, /on-reality/, /on-consciousness/, /on-faith/. Christian mystics, Advaita teachers, Sufi poets, modern physicists, consciousness scientists.',
   keywords: [

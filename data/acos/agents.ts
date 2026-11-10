@@ -210,11 +210,11 @@ export const PILLARS: Pillar[] = [
     id: 'business',
     number: 8,
     title: 'Business Ops',
-    tagline: 'Dutch BV, wealth, tax, legal — sovereign operator.',
+    tagline: 'Starlight Intelligence, wealth, tax, legal — sovereign operator.',
     accent: 'teal',
     surface: '/bv',
     specialists: [
-      { name: 'BV Operations', kind: 'command', ref: '/bv-ops', status: 'in-progress', one_liner: 'Arcanea Labs BV — status, milestones, compliance.' },
+      { name: 'Business Operations', kind: 'command', ref: '/bv-ops', status: 'in-progress', one_liner: 'Starlight Intelligence ops — status, milestones, compliance.' },
       { name: 'Business Ops Skill', kind: 'skill', ref: 'business-ops', status: 'in-progress', one_liner: 'Legal, tax, accounting, GDPR, trademarks. Consolidation candidate with BV Operations.' },
       { name: 'Wealth Operations', kind: 'command', ref: '/wealth-ops', status: 'in-progress', one_liner: 'Real estate, mortgages, tax optimization, FIRE planning.' },
       { name: 'Wealth Ops Skill', kind: 'skill', ref: 'wealth-ops', status: 'in-progress', one_liner: 'Multi-property portfolio and net-worth tracking. Consolidation candidate with Wealth Operations.' },

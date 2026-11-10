@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Nature-Tech Hub Variants — Homepage & Key Page Redesign Concepts | FrankX.AI',
   description:
     'Nature-inspired design variants for FrankX.AI homepage, products, blog, labs, inner circle, and ACOS hubs. Premium dark-mode concepts merging organic intelligence with technology.',

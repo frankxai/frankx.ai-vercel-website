@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import Link from 'next/link'
 import { ArrowRight, Compass, ShieldCheck, Boxes } from 'lucide-react'
 import {
@@ -104,7 +105,7 @@ export default function AgentHubPage() {
         position: kindIndex * 100 + index + 1,
         item: {
           '@type': 'SoftwareApplication',
-          '@id': `https://frankx.ai/agent-hub/${entry.id}`,
+          '@id': `${siteConfig.url}/agent-hub/${entry.id}`,
           name: entry.name,
           applicationCategory: 'DeveloperApplication',
           description: entry.one_liner,
@@ -125,8 +126,8 @@ export default function AgentHubPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai/' },
-      { '@type': 'ListItem', position: 2, name: 'Agent Hub', item: 'https://frankx.ai/agent-hub' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteConfig.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Agent Hub', item: `${siteConfig.url}/agent-hub` },
     ],
   }
 

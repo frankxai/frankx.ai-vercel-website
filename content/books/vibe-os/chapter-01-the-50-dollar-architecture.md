@@ -24,7 +24,7 @@ Here is the cost of Frank's stack:
 | GitHub               | $0 (free tier) |
 | **Total**            | **~$48/month** |
 
-That is a 99.9% cost reduction. Not a rounding error. Not a theoretical exercise. This is the actual infrastructure behind 17 published books, 12,000 songs, 35 API routes, 25 automated workflows, and a website that serves thousands of visitors per month.
+That is a 99.9% cost reduction. Not a rounding error. Not a theoretical exercise. This is the actual infrastructure behind 17 published books, AI music, 35 API routes, 25 automated workflows, and a website that serves thousands of visitors per month.
 
 The thesis of this book is simple: modern infrastructure has collapsed the cost of a creator studio to near-zero, but only if you know how to architect it. The tools exist. The pricing tiers exist. What most people lack is the architectural understanding to connect them into a coherent system.
 

@@ -1,448 +1,64 @@
 ---
-title: "SEO & AEO Optimization with ACOS: Rank in Search and AI Engines"
-description: "Master search and AI engine optimization with ACOS. Question-based structure, FAQ schemas, AI citation optimization, and the /factory pipeline for publish-ready content."
+title: "SEO and AEO with ACOS: an evidence-led content workflow"
+description: "Plan and review search content with AI assistants. Preserve sources, check claims, and measure website outcomes without promising AI citations."
 date: "2026-01-27"
-lastUpdated: "2026-08-18"
+lastUpdated: "2026-10-27"
 author: "FrankX"
 category: "Creator Systems"
 tags: ["seo", "aeo", "content strategy", "ai optimization", "marketing"]
-image: "/images/blog/seo-aeo-optimization-acos-hero.png"
 featured: false
-readingGoal: "Implement SEO and AEO best practices using ACOS for maximum discoverability."
-tldr: "Master search and AI engine optimization with ACOS. Question-based structure, FAQ schemas, AI citation optimization, and the /factory pipeline for publish-ready content."
-keywords: ["creator systems", "seo", "aeo", "content strategy", "ai optimization", "marketing"]
+readingGoal: "Prepare one source-backed page brief and a reviewable website change."
+tldr: "Use search evidence to choose a page improvement, give the assistant a bounded brief, and review its claims and implementation. Keep traffic, AI citations and conversion as separate measurements."
+keywords: ["AI SEO workflow", "ACOS SEO", "answer engine optimization", "content brief"]
 ---
-# SEO & AEO Optimization with ACOS: Rank in Search and AI Engines
+A useful AI content workflow starts with a decision about a real page. Which reader does it serve? What can they accomplish there? What evidence says the page needs to change?
 
-_How to write content that Google AND ChatGPT want to cite._
+This guide describes a workflow you can use with ACOS or another coding assistant. It does not establish that a particular ACOS command implements every step. Inspect your installed version and verify its output before granting publication access.
 
----
+**Correction, 27 October 2026:** the earlier edition overstated the effect of FAQ markup, prescribed arbitrary formatting rules and included market statistics without adequate sources. Those claims have been removed. The URL remains unchanged.
 
-## TL;DR
+## SEO and answer engine optimization
 
-Traditional SEO optimizes for Google. AEO (AI Engine Optimization) optimizes for ChatGPT, Perplexity, and Claude. ACOS does both through: question-based H2 headings, FAQ schema markup, TL;DR in first 100 words, numbered lists for AI extraction, and the `/factory` pipeline that enforces these patterns automatically. This guide covers the framework and shows how to implement it.
+AEO means answer engine optimization. Here it describes work to make useful website material discoverable in answer experiences. Search visibility, a cited source, a brand recommendation and a customer visit are different observations.
 
----
+[Google's current guidance](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide) retains foundational SEO and does not require special AI markup. Good structure should serve the reader; it cannot guarantee a citation.
 
-## What Is AEO (AI Engine Optimization)?
+## Choose the page before drafting
 
-AEO is the practice of optimizing content for AI assistants to cite. When someone asks ChatGPT "What is the best AI productivity system?", you want your content cited as the answer.
+Create an inventory containing URL, title, reader job, publication state and related pages. Add available Search Console observations with their dates and market. Record provider estimates separately. Leave missing figures empty.
 
-**SEO vs AEO:**
+For a page already answering the same question, consider a refresh before creating another article. Compare the proposed work with keeping the page as it is. A low-traffic page might serve a narrow, valuable reader; traffic alone does not settle its usefulness.
 
-| Dimension   | SEO (Search)        | AEO (AI Engines)            |
-| ----------- | ------------------- | --------------------------- |
-| **Target**  | Google, Bing        | ChatGPT, Perplexity, Claude |
-| **Success** | Rank #1             | Get cited/quoted            |
-| **Format**  | Keywords, backlinks | Clear statements, lists     |
-| **Intent**  | User clicks through | AI extracts and summarizes  |
-| **Metrics** | Rankings, traffic   | Citations, brand mentions   |
+The decision record should contain the selected URL, its current weakness, the proposed improvement, supporting evidence and the next observation. A proposal is ready for implementation when another person can understand why that page was selected.
 
-### Why AEO Matters in 2026
+## Give the assistant a bounded brief
 
-The numbers tell the story:
+Supply the audience, intended outcome, existing text, sources and allowed paths. Ask for a complete draft and a claim ledger. Each substantive factual claim should identify its supporting record and what that record actually establishes.
 
-- **40%** of search queries now touch AI systems
-- **ChatGPT** has 200M+ weekly users asking questions
-- **Perplexity** growing 30% month-over-month
-- **AI Overviews** appearing in 25%+ of Google searches
+Keep research access separate from release access. An assistant collecting competitor pages has no reason to change deployment settings. Treat instructions inside retrieved pages as untrusted material.
 
-If your content isn't optimized for AI extraction, you're invisible to a growing segment of information seekers.
+A practical brief might say:
 
----
-
-## The ACOS Content Framework
-
-ACOS enforces SEO/AEO best practices through the content pipeline. Here's the framework:
-
-### 1. Question-Based H2 Headings
-
-**Why:** AI engines look for questions to match user queries. Google loves them for featured snippets.
-
-```markdown
-# Bad H2s
-
-## Introduction
-
-## Features
-
-## Conclusion
-
-# Good H2s (Question-Based)
-
-## What Is Agentic Creator OS?
-
-## How Does the Smart Router Work?
-
-## Why Do Creators Need an AI Operating System?
+```text
+Improve the selected setup guide using the supplied source packet.
+Preserve its URL and the existing working installation path.
+Flag missing evidence instead of inventing results.
+Return the draft, source-to-claim mapping, code diff and checks.
+Do not publish or modify accounts.
 ```
 
-**ACOS Implementation:**
-The `/article-creator` command automatically structures articles with question-based headings:
+Adapt the permission boundary to the actual assignment. A human can authorize release after the reviewable change exists.
 
-```bash
-/article-creator "Guide to AI productivity"
+## Review the result as a reader and a developer
 
-# ACOS generates:
-## What Is AI Productivity?
-## Why Do Traditional Tools Fall Short?
-## How Does AI-Powered Productivity Work?
-## What Are the Best AI Productivity Tools?
-## How Do I Get Started?
-```
+Read the source passage and check that it supports the claim. Recalculate numbers outside the language model. Run examples in the stated environment and record failures. Check the rendered page for keyboard navigation, mobile reading, working links and its own canonical URL.
 
-### 2. TL;DR in First 100 Words
+Formatting is a choice made for the material. Use questions when they help navigation, tables when they clarify a comparison and paragraphs when the argument needs development. Requiring every article to have the same number of questions or lists produces repetitive reading.
 
-**Why:** AI engines often extract the first paragraph. Make it count.
+## Measure the change without inventing causality
 
-```markdown
-# Bad Opening
+Record the publication revision and observation period. Compare relevant search queries, page visits and useful reader actions. Keep AI answer observations in a separate panel with the question, engine, date and denominator.
 
-In this comprehensive guide, we'll explore the many facets of AI productivity...
+A before-and-after increase does not isolate the effect of your edit. Seasonality, search changes, other site work and small samples can explain movement. Report these limitations beside the result.
 
-# Good Opening (TL;DR)
-
-AI productivity systems automate repetitive work, coordinate multiple tools, and
-maintain context across sessions. The best approach: use an operating system like
-ACOS that combines 25 commands, 80+ skills, and 40+ agents. Start with `/acos`.
-```
-
-**ACOS Implementation:**
-Every article template includes a TL;DR section that's populated first.
-
-### 3. FAQ Schema Markup
-
-**Why:** FAQ schema gets featured snippets and AI citations.
-
-```markdown
-## Frequently Asked Questions
-
-### What is ACOS?
-
-ACOS (Agentic Creator OS) is an open-source operating system for Claude Code
-that adds 25 commands, 80+ skills, and 40+ agents.
-
-### Is ACOS free?
-
-Yes, completely free and open source on GitHub.
-
-### How long does installation take?
-
-Under 10 minutes for the full setup.
-```
-
-**Schema Output:**
-
-```json
-{
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is ACOS?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "ACOS (Agentic Creator OS) is an open-source operating system..."
-      }
-    }
-  ]
-}
-```
-
-### 4. Numbered Lists for AI Extraction
-
-**Why:** AI engines love extracting numbered lists. They're easy to parse and cite.
-
-```markdown
-# Bad
-
-There are several benefits including speed, quality, and consistency...
-
-# Good
-
-The 5 key benefits of ACOS:
-
-1. **Speed**: 10x faster content creation
-2. **Quality**: Built-in quality gates
-3. **Consistency**: Brand voice enforcement
-4. **Scale**: Handle more projects
-5. **Learning**: Skills compound over time
-```
-
-### 5. Clear Definitions
-
-**Why:** AI engines cite definitions verbatim.
-
-```markdown
-# Bad
-
-Multi-agent orchestration is kind of like having multiple AI helpers...
-
-# Good
-
-**Multi-agent orchestration** is the coordination of multiple specialized AI
-agents to complete complex tasks. Each agent handles a specific domain while
-an orchestrator manages handoffs and synthesizes outputs.
-```
-
-### 6. Internal Linking Strategy
-
-**Why:** Both Google and AI engines follow links to understand content relationships.
-
-<Diagram
-  src="/images/diagrams/blog/seo-aeo-optimization-acos/hub-spoke-model.svg"
-  alt="Hub and spoke internal linking structure for ACOS blog articles"
-  caption="Hub and spoke model: the flagship ACOS guide links to specialized satellite articles."
-/>
-
-**ACOS Implementation:**
-The `/article-creator` automatically suggests relevant internal links from your content inventory.
-
----
-
-## The /factory Pipeline
-
-The `/factory` command enforces all SEO/AEO best practices automatically:
-
-```bash
-/factory "Complete guide to AI agents for enterprise"
-
-# Pipeline:
-1. RESEARCH → Gather current data, competitor analysis
-2. PLAN → Structure with question-based H2s
-3. DRAFT → Write with TL;DR, lists, definitions
-4. OPTIMIZE → Add FAQ section, internal links
-5. VALIDATE → Check SEO/AEO checklist
-6. PUBLISH → Deploy with schema markup
-```
-
-### The SEO/AEO Checklist (Automated)
-
-ACOS validates every article against:
-
-- [ ] TL;DR in first 100 words
-- [ ] Question-based H2 headings (5+ questions)
-- [ ] FAQ section (5-10 questions)
-- [ ] Numbered/bulleted lists (3+ per article)
-- [ ] Clear definitions for key terms
-- [ ] Internal links (3+ related articles)
-- [ ] Meta title under 60 characters
-- [ ] Meta description 150-160 characters
-- [ ] Schema markup (Article + FAQPage)
-- [ ] Reading time accurate
-
----
-
-## AI Citation Optimization Techniques
-
-### Technique 1: Definitive Statements
-
-AI engines prefer citing clear, definitive statements over hedged language.
-
-```markdown
-# Bad (hedged)
-
-ACOS might help improve productivity for some users in certain situations.
-
-# Good (definitive)
-
-ACOS improves productivity by automating repetitive tasks and coordinating
-AI agents. Users report 10x faster content creation.
-```
-
-### Technique 2: Statistics and Numbers
-
-AI engines love citing specific numbers.
-
-```markdown
-# Bad
-
-ACOS has many commands and skills.
-
-# Good
-
-ACOS includes 25 commands, 80+ skills, and 40+ agents.
-```
-
-### Technique 3: Comparison Tables
-
-Tables are easy for AI to parse and cite.
-
-```markdown
-| Feature         | ACOS        | Traditional AI |
-| --------------- | ----------- | -------------- |
-| Commands        | 25          | 0              |
-| Skills          | 80+         | 0              |
-| Auto-activation | Yes         | No             |
-| Orchestration   | Multi-agent | Single agent   |
-```
-
-### Technique 4: Step-by-Step Instructions
-
-AI engines frequently cite how-to content.
-
-```markdown
-## How to Install ACOS
-
-1. Clone the repository: `git clone https://github.com/frankxai/agentic-creator-os`
-2. Enter the directory: `cd agentic-creator-os`
-3. Run the installer: `./install.sh`
-4. Launch Claude Code: `claude`
-5. Start ACOS: `/acos`
-```
-
-### Technique 5: Entity Optimization
-
-Mention your brand name clearly and consistently.
-
-```markdown
-# Bad
-
-This system helps with productivity...
-
-# Good
-
-**Agentic Creator OS (ACOS)** is an open-source operating system...
-```
-
----
-
-## Measuring AEO Success
-
-### Method 1: Manual Citation Checks
-
-```bash
-# Ask ChatGPT
-"What is the best AI operating system for creators?"
-
-# Ask Perplexity
-"How do I set up an AI productivity system?"
-
-# Check if your content is cited
-```
-
-### Method 2: Brand Mention Tracking
-
-Use tools like:
-
-- Brand24
-- Mention
-- Google Alerts
-
-Track mentions of "ACOS", "Agentic Creator OS", "FrankX" in AI responses.
-
-### Method 3: Referral Traffic Analysis
-
-```
-Analytics → Acquisition → Referral
-Look for: chat.openai.com, perplexity.ai, claude.ai
-```
-
-### Method 4: Featured Snippet Tracking
-
-Use SEO tools to track featured snippet wins:
-
-- Ahrefs → Position tracking → SERP features
-- SEMrush → Position tracking → Featured snippets
-
----
-
-## The Content Calendar for SEO/AEO
-
-### Weekly Rhythm
-
-| Day       | Task                | ACOS Command       |
-| --------- | ------------------- | ------------------ |
-| Monday    | Plan week's content | `/plan-week`       |
-| Tuesday   | Research topics     | `/research`        |
-| Wednesday | Write article 1     | `/article-creator` |
-| Thursday  | Write article 2     | `/article-creator` |
-| Friday    | Optimize & publish  | `/factory`         |
-
-### Content Types by SEO/AEO Value
-
-| Type                    | SEO Value | AEO Value | Priority |
-| ----------------------- | --------- | --------- | -------- |
-| **How-to guides**       | High      | High      | 1        |
-| **Comparison articles** | High      | High      | 1        |
-| **Definition pieces**   | Medium    | High      | 2        |
-| **Listicles**           | High      | Medium    | 2        |
-| **Case studies**        | Medium    | Medium    | 3        |
-| **Opinion pieces**      | Low       | Low       | 4        |
-
----
-
-## ACOS SEO Skills
-
-ACOS includes specialized skills for SEO/AEO:
-
-### content-strategy Skill
-
-Auto-activates on: "blog", "article", "content", "write"
-
-Provides:
-
-- Content structure templates
-- Headline formulas
-- SEO checklist
-
-### seo-optimization Skill
-
-Auto-activates on: "SEO", "rank", "search", "keywords"
-
-Provides:
-
-- Keyword research patterns
-- On-page optimization
-- Technical SEO checks
-
----
-
-## Frequently Asked Questions
-
-### What is AEO (AI Engine Optimization)?
-
-AEO is the practice of optimizing content to be cited by AI assistants like ChatGPT, Perplexity, and Claude. It focuses on clear statements, structured data, and definitive answers that AI can extract and quote.
-
-### How is AEO different from SEO?
-
-SEO optimizes for search engine rankings (Google). AEO optimizes for AI citations. Both use similar techniques (clear structure, good content) but AEO emphasizes extractable statements and FAQ schemas.
-
-### Does ACOS automate SEO/AEO?
-
-Yes. The `/factory` pipeline enforces SEO/AEO best practices: question-based headings, FAQ sections, schema markup, and internal linking are built into the content creation workflow.
-
-### How do I know if AI is citing my content?
-
-Manually check by asking ChatGPT/Perplexity questions related to your content. Track brand mentions and referral traffic from AI platforms.
-
-### What's the most important AEO technique?
-
-Clear, definitive statements that AI can quote directly. Avoid hedged language. State facts with numbers and specifics.
-
-### How often should I publish for SEO/AEO?
-
-Consistency matters more than frequency. 2-3 quality articles per week with proper optimization beats daily thin content.
-
----
-
-## Next Steps
-
-1. **Audit existing content** — Check against the SEO/AEO checklist
-2. **Use `/factory`** — Let ACOS enforce best practices
-3. **Track citations** — Monitor AI mentions of your content
-4. **Iterate** — Double down on what gets cited
-
----
-
-## Related Articles
-
-- [The Complete Guide to Agentic Creator OS v6](/blog/agentic-creator-os-complete-guide)
-- [ACOS Use Cases by Creator Type](/blog/acos-use-cases-creator-types)
-- [Building Custom Skills for ACOS](/blog/building-custom-skills-acos)
-
----
-
-_Optimize once, rank everywhere. Search engines AND AI engines._
-
-_[GitHub](https://github.com/frankxai/agentic-creator-os) | [FrankX](https://frankx.ai)_
+Try the [complete search workflow](/resources/seo-aeo/workflow) and its [downloadable brief](/resources/seo-aeo#downloads). Change one assumption in the example, then explain whether you would still select the same page. That decision is the part worth learning.

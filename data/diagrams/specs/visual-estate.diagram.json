@@ -1,0 +1,47 @@
+{
+  "id": "visual-estate",
+  "rev": 1,
+  "type": "layers",
+  "eyebrow": "Visual estate, target state",
+  "title": "How a diagram is made, stored and served",
+  "subtitle": "Specs in git are the source. Everything else is derived and served from the repo that owns the site.",
+  "alt": "Four tiers: specs in git, deterministic render, a registry and asset library, and serving from each brand site's own URL path.",
+  "source": "Audit of frankx.ai-vercel-website and visual-intelligence, 2026-11-06. Sites other than frankx.ai are not yet covered.",
+  "reviewed": "2026-11-07",
+  "layers": [
+    {
+      "badge": "1", "accent": "violet", "title": "Source", "subtitle": "Reviewable text in git",
+      "items": [
+        {"label": "Diagram specs", "detail": "data/diagrams/specs/*.diagram.json"},
+        {"label": "Mermaid and D2", "detail": "content/blog/diagrams for blog posts"},
+        {"label": "Prompt sidecars", "detail": "Provenance for generated art"}
+      ]
+    },
+    {
+      "badge": "2", "accent": "cyan", "title": "Render", "subtitle": "Deterministic, same input and same output",
+      "items": [
+        {"label": "spec-render.mjs", "detail": "SVG in dark and light themes"},
+        {"label": "mmdc and d2", "detail": "Existing blog diagram render"},
+        {"label": "Lint on render", "detail": "Contrast and text fit checked"}
+      ]
+    },
+    {
+      "badge": "3", "accent": "emerald", "title": "Registry and library", "subtitle": "What exists, where it is used, who approved it",
+      "items": [
+        {"label": "Diagram registry", "detail": "registry.json with file hashes"},
+        {"label": "VIS asset graph", "detail": "Local index with rights and provenance"},
+        {"label": "Visual ledger", "detail": "Blog heroes and social cards"},
+        {"label": "Creative vault", "detail": "Drive and Eagle for human browsing"}
+      ]
+    },
+    {
+      "badge": "4", "accent": "amber", "title": "Serve", "subtitle": "Each site serves its own repo",
+      "items": [
+        {"label": "frankx.ai", "detail": "/images/diagrams/system/"},
+        {"label": "frankx.ai blog", "detail": "/images/diagrams/blog/"},
+        {"label": "Other brand sites", "detail": "Same pattern, own repo, to be added"}
+      ]
+    }
+  ],
+  "links": ["Commit and review", "Hash recorded", "Deploy through Vercel"]
+}
