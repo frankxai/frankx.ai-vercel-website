@@ -153,6 +153,13 @@ banned.push(
   ['app/vision/VisionContent.tsx', ['$14k MRR']],
   ['app/tools/strategy-canvas/StrategyCanvasClient.tsx', ['Success Stories', 'TechCorp', '% faster', '% reduction', 'improved by 35%']],
 )
+// Audience and usage counts whose number and noun sit in separate fields or elements.
+banned.push(
+  ['app/lab/page.tsx', ['1k+', 'Builders scored', '40+']],
+  ['data/progress-tracker.json', ['5K+', 'Community Size', 'Creator Transformations', 'Testimonials from']],
+  ['app/tools/roi-calculator/page.tsx', ['5K+', 'Calculations Run', 'Accuracy Rate']],
+  ['lib/email-templates-premium.ts', ['10K+']],
+)
 // /testimonials has no testimonials, so it may not say that real stories or results are on it.
 banned.push(
   ['app/testimonials/layout.tsx', ['Real results from real builders', 'What Builders Say', 'Hear from']],
@@ -312,14 +319,21 @@ test('Vibe OS featured product card, JSON-LD list metadata, and CTAs stay aligne
   assert.equal(modules.includes('not just a prompt pack'), false)
 })
 
-test('no compiled page, component or lib file invites visitors to join a counted audience', () => {
+test('no compiled page, component, lib or data file invites visitors to join a counted audience', () => {
   // components/v0-variants is excluded from the build in tsconfig.json and imported by nothing.
   const counted = /\b(?:join|community of|used by|trusted by)\s+(?:<[^>]*>\s*)?\d[\d,.]*[km]?\+?(?:\s*<\/[^>]*>)?\s+(?:[a-z]+\s+)?(?:creators|builders|professionals|subscribers|students|members|users|clients|architects|readers|customers|developers)\b/i
-  for (const dir of ['app', 'components', 'lib']) {
+  // A stat tile on one line: a quoted "1k+" beside a quoted label that names an audience, in either order.
+  const count = String.raw`['"]\d[\d,.]*\s?[km]?\+['"]`
+  const label = String.raw`['"][^'"\n]*\b(?:creators|builders|professionals|subscribers|students|members|users|clients|architects|readers|customers|developers|countries)\b[^'"\n]*['"]`
+  const tile = new RegExp(`${count}[^{}\\n]*${label}|${label}[^{}\\n]*${count}`, 'i')
+  for (const dir of ['app', 'components', 'lib', 'data']) {
     for (const entry of fs.readdirSync(path.join(root, dir), { recursive: true })) {
       const file = path.join(dir, entry).split(path.sep).join('/')
-      if (!/\.(ts|tsx|mdx)$/.test(file) || file.startsWith('components/v0-variants/')) continue
-      const hit = counted.exec(fs.readFileSync(path.join(root, file), 'utf8'))
+      if (!/\.(ts|tsx|mdx|json)$/.test(file) || file.startsWith('components/v0-variants/')) continue
+      // app/ has route folders named like files (registry.json/route.ts).
+      if (!fs.statSync(path.join(root, file)).isFile()) continue
+      const text = fs.readFileSync(path.join(root, file), 'utf8')
+      const hit = counted.exec(text) ?? tile.exec(text)
       assert.equal(hit, null, `${file}: ${hit?.[0]}`)
     }
   }
