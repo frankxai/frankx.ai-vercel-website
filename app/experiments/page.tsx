@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     'L99 catalog',
   ],
   alternates: { canonical: PAGE_URL },
+  robots: { index: false, follow: false },
   openGraph: {
     images: defaultOpenGraphImages,
     title: 'FrankX Experiments — Hypothesis-Driven Research',

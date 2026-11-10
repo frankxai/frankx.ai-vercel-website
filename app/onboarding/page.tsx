@@ -605,10 +605,9 @@ export default function OnboardingPage() {
                   <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
                     <CheckCircle className="w-12 h-12 text-white" />
                   </div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">Welcome to the AI Revolution!</h2>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">You've reached the end of the walkthrough.</h2>
                   <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-                    You're now part of a community of 10,000+ professionals transforming their work with AI.
-                    Your personalized dashboard is ready.
+                    Nothing you entered on this page is saved or sent.
                   </p>
                   <div className="grid md:grid-cols-3 gap-6 mb-8">
                     {[

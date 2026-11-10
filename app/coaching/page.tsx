@@ -426,8 +426,6 @@ export default function CoachingPage() {
               <span>AI Architect & Creator</span>
               <span className="text-white/20">|</span>
               <span>99-Agent ACOS Catalog</span>
-              <span className="text-white/20">|</span>
-              <span>ACOS 1,000+ Builders</span>
             </motion.div>
             <p className="mt-3 text-xs text-slate-600">
               Independent project. Not affiliated with, endorsed by, or sponsored by Oracle.
