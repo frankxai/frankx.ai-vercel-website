@@ -236,7 +236,17 @@ export default function BlueprintsPage() {
 
                 {/* Card CTA & Guarantee */}
                 <div className="mt-8 border-t border-white/[0.06] pt-6">
-                  <BlueprintCardAction product={bp} />
+                  <BlueprintCardAction
+                    product={{
+                      id: bp.id,
+                      name: bp.name,
+                      price: bp.price,
+                      badge: bp.badge,
+                      deliverables: bp.deliverables,
+                      color: bp.color,
+                      checkoutHref: bp.checkoutHref,
+                    }}
+                  />
 
                   <div className="mt-3 flex items-center justify-center gap-4 text-[11px] text-white/40">
                     <span className="flex items-center gap-1">
