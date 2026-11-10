@@ -138,6 +138,17 @@ const banned = [
 
 banned.push(['components/products/ProductsShell.tsx', ['50+ genre-specific', '50+ battle-tested', 'Genre-specific prompts (electronic']])
 for (const file of ['lib/email-templates.ts', 'emails/components/Layout.tsx', 'lib/email-design-system.ts', 'emails/templates/PdfDelivery.tsx', 'lib/email-templates-foundry.ts']) banned.push([file, ['I read every one']])
+// Audience sizes that the public goals pages list as targets not yet reached.
+banned.push(
+  ['app/golden-age/page.tsx', ['5,000+']],
+  ['components/golden-age/GoldenAgeShell.tsx', ['5,000+']],
+  ['app/thank-you/page.tsx', ['5,000+']],
+  ['components/ui/PDFEmailModal.tsx', ['10,000+']],
+  ['app/onboarding/page.tsx', ['10,000+', 'AI Revolution', 'dashboard is ready']],
+  ['app/frankx/page.tsx', ['1,000+']],
+  ['app/coaching/page.tsx', ['1,000+']],
+  ['app/products/creative-ai-toolkit/page.tsx', ['thousands of creators']],
+)
 
 for (const [file, phrases] of banned) {
   test(file + ' does not publish an unsupported headcount', () => {
@@ -290,4 +301,17 @@ test('Vibe OS featured product card, JSON-LD list metadata, and CTAs stay aligne
   assert.equal(hero.includes('Watch Overview'), false)
   assert.equal(modules.includes('Ship Music'), false)
   assert.equal(modules.includes('not just a prompt pack'), false)
+})
+
+test('no compiled page, component or lib file invites visitors to join a counted audience', () => {
+  // components/v0-variants is excluded from the build in tsconfig.json and imported by nothing.
+  const counted = /\b(?:join|community of|used by|trusted by)\s+(?:<[^>]*>\s*)?\d[\d,.]*[km]?\+?(?:\s*<\/[^>]*>)?\s+(?:[a-z]+\s+)?(?:creators|builders|professionals|subscribers|students|members|users|clients|architects|readers|customers|developers)\b/i
+  for (const dir of ['app', 'components', 'lib']) {
+    for (const entry of fs.readdirSync(path.join(root, dir), { recursive: true })) {
+      const file = path.join(dir, entry).split(path.sep).join('/')
+      if (!/\.(ts|tsx|mdx)$/.test(file) || file.startsWith('components/v0-variants/')) continue
+      const hit = counted.exec(fs.readFileSync(path.join(root, file), 'utf8'))
+      assert.equal(hit, null, `${file}: ${hit?.[0]}`)
+    }
+  }
 })
