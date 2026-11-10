@@ -73,3 +73,14 @@ Checks recorded in `shots/real/qa-final.json`: no horizontal overflow at 375, 76
 - No Safari or Firefox pass, and no real device. Chromium at three widths only.
 - The `Music by FrankX` player is global chrome from the root layout and it covers the bottom-right of every capture, including part of the lead card on a phone. It is not part of this page and was not touched.
 - Dev-server interaction at `127.0.0.1` fails because Next blocks cross-origin dev resources; at `localhost` it hydrates and the switch works. The production build is what the captures test.
+
+## Deviation from the world-class release kernel
+
+The repo's kernel asks for exactly three reviewed directions and for a capture of the current page before ideation. This work has two.
+
+- Directions compared: A (instrument-led) and B (narrative-led). Frank picked A on 2026-11-09.
+- The third direction is not waived, it is scheduled: it lands as its own comparison before anything else on this surface changes.
+- The existing `/research` page was never captured at desktop and mobile before ideation. Browser QA was on HOLD at 5.9 GB against an 8 GB floor that day. The build was judged from captures of the rebuilt page, not against a baseline of the old one.
+- The reference pass read eight real screens as live pages through fetch, not as pixel-inspected captures, because no Refero seat was available in that session.
+
+An independent reviewer from a different provider than `opencode` has not yet read this branch. That review is required before the PR is marked ready.
