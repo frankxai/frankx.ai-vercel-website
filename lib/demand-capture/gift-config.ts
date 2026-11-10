@@ -35,7 +35,7 @@ export function giftCopy(productId: string): Partial<WaitlistCopy> {
   return {
     quiet: `A first practice by email now, about ${gift.minutes} minutes. Then one email when it opens.`,
     // Neutral on purpose: the reply cannot know whether the email arrived, and must not reveal
-    // whether the address was new. It names the practice and a fallback, not a delivery.
+    // whether the address was new. It describes the practice and gives a fallback.
     doneText: `You are on the list. New members get a first practice by email, about ${gift.minutes} minutes. If it is not there in a few minutes, check spam or write to ${gift.replyTo}. The next email comes when {product} opens.`,
   }
 }
