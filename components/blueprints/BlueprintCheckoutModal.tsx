@@ -94,8 +94,7 @@ export function BlueprintCheckoutModal({
         setStatusMessage(data.error || 'checkout could not be initiated')
       }
     } catch {
-      setIsSuccess(true)
-      setStatusMessage('reservation confirmed: we will notify you the moment checkout opens')
+      setStatusMessage('network error: unable to reach checkout service. please retry in a moment.')
     } finally {
       setLoading(false)
     }
