@@ -212,7 +212,7 @@ export function LuxuryWaveformPlayer({ track, className = '' }: LuxuryWaveformPl
 
   return (
     <div
-      className={`group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0a0a0b]/80 backdrop-blur-xl transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_8px_32px_rgba(0,0,0,0.4)] ${className}`}
+      className={`group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0a0a0b]/80 backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-white/[0.12] hover:shadow-[0_8px_32px_rgba(0,0,0,0.4)] ${className}`}
     >
       {/* Background ambient radial glow */}
       <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-emerald-500/[0.04] blur-3xl" />
@@ -310,11 +310,24 @@ export function LuxuryWaveformPlayer({ track, className = '' }: LuxuryWaveformPl
         {/* Interactive Waveform Visualizer */}
         <div className="mt-5 rounded-xl border border-white/[0.04] bg-white/[0.015] p-3">
           <div
-            className="group/wave relative flex h-14 w-full cursor-pointer items-end justify-between gap-[3px] px-1 py-1"
+            role="button"
+            tabIndex={0}
+            className="group/wave relative flex h-14 w-full cursor-pointer items-end justify-between gap-[3px] px-1 py-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-400/50"
             onClick={handleScrub}
+            onKeyDown={(e) => {
+              if (e.key === 'ArrowRight') {
+                seekProgress(Math.min(1, (currentTime + 5) / totalDuration))
+              } else if (e.key === 'ArrowLeft') {
+                seekProgress(Math.max(0, (currentTime - 5) / totalDuration))
+              } else if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault()
+                handleTogglePlay()
+              }
+            }}
             onMouseMove={handleMouseMove}
             onMouseLeave={() => setHoverProgress(null)}
-            title="click to seek playback"
+            title="click or use arrow keys to seek playback"
+            aria-label="waveform timeline scrubber"
           >
             {WAVEFORM_BAR_RATIOS.map((ratio, idx) => {
               const barPercent = (idx / WAVEFORM_BAR_RATIOS.length) * 100
@@ -333,7 +346,7 @@ export function LuxuryWaveformPlayer({ track, className = '' }: LuxuryWaveformPl
                 >
                   <div
                     style={{ height: `${dynamicHeight}%` }}
-                    className={`w-full rounded-full transition-all duration-150 ${
+                    className={`w-full rounded-full transition-[height,background-color,box-shadow] duration-150 ${
                       isPlayed
                         ? 'bg-gradient-to-t from-emerald-400 via-teal-300 to-cyan-300 shadow-[0_0_8px_rgba(52,211,153,0.3)]'
                         : isHovered
@@ -362,7 +375,7 @@ export function LuxuryWaveformPlayer({ track, className = '' }: LuxuryWaveformPl
               <button
                 type="button"
                 onClick={handleTogglePlay}
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-400 text-[#0a0a0b] font-medium transition-all hover:bg-emerald-300 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-400 text-[#0a0a0b] font-medium transition-[background-color,transform] hover:bg-emerald-300 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
                 aria-label={isPlaying ? 'pause preview' : 'play audio preview'}
               >
                 {isPlaying ? (
@@ -418,7 +431,7 @@ export function LuxuryWaveformPlayer({ track, className = '' }: LuxuryWaveformPl
                       type="button"
                       onClick={() => toggleStemMute(stem)}
                       title={`toggle ${stem} mute`}
-                      className={`rounded-l-md px-2 py-0.5 text-[10px] font-mono tracking-tight transition-all border border-r-0 ${
+                      className={`rounded-l-md px-2 py-0.5 text-[10px] font-mono tracking-tight transition-[background-color,border-color,color,box-shadow] border border-r-0 ${
                         isActive
                           ? isSoloed
                             ? 'bg-emerald-400 text-black border-emerald-400 font-semibold shadow-[0_0_8px_rgba(52,211,153,0.4)]'
@@ -432,7 +445,7 @@ export function LuxuryWaveformPlayer({ track, className = '' }: LuxuryWaveformPl
                       type="button"
                       onClick={() => toggleStemSolo(stem)}
                       title={`solo ${stem}`}
-                      className={`rounded-r-md px-1.5 py-0.5 text-[9px] font-mono font-medium border border-white/[0.08] transition-all ${
+                      className={`rounded-r-md px-1.5 py-0.5 text-[9px] font-mono font-medium border border-white/[0.08] transition-[background-color,border-color,color,box-shadow] ${
                         isSoloed
                           ? 'bg-emerald-400 text-black border-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.4)]'
                           : 'bg-white/[0.02] text-white/40 hover:text-white/80'

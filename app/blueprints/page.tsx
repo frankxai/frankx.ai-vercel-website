@@ -160,7 +160,7 @@ export default function BlueprintsPage() {
             return (
               <div
                 key={bp.id}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0d0d0f]/90 p-8 backdrop-blur-xl transition-all duration-300 hover:border-white/[0.14] hover:shadow-[0_12px_40px_rgba(0,0,0,0.6)]"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0d0d0f]/90 p-8 backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-white/[0.14] hover:shadow-[0_12px_40px_rgba(0,0,0,0.6)]"
               >
                 {/* Accent glow on hover */}
                 <div

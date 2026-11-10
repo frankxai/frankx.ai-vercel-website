@@ -209,7 +209,7 @@ export function BlueprintCheckoutModal({
                   placeholder="frank@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-xl border border-white/[0.1] bg-[#000000]/60 px-3.5 py-2.5 text-sm text-white placeholder-white/30 transition-colors focus:border-emerald-400/60 focus:outline-none focus:ring-1 focus:ring-emerald-400/60"
+                  className="w-full rounded-xl border border-white/[0.1] bg-[#000000]/60 px-3.5 py-2.5 text-sm text-white placeholder-white/30 transition-colors focus:border-emerald-400/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-400/60"
                 />
               </div>
 
@@ -220,7 +220,7 @@ export function BlueprintCheckoutModal({
               <button
                 type="submit"
                 disabled={loading}
-                className={`flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-medium text-black transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 ${
+                className={`flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-medium text-black transition-[background-color,transform,opacity] hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 ${
                   isEmerald
                     ? 'bg-emerald-400 hover:bg-emerald-300'
                     : 'bg-violet-400 hover:bg-violet-300'
