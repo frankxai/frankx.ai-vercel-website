@@ -1,10 +1,5 @@
 {
   "framework": "nextjs",
-  "git": {
-    "deploymentEnabled": {
-      "main": false
-    }
-  },
   "cleanUrls": true,
   "ignoreCommand": "bash scripts/should-deploy.sh",
   "headers": [
