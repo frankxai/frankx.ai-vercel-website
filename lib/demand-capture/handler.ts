@@ -1,6 +1,6 @@
 import { createHash, randomBytes, timingSafeEqual } from 'node:crypto'
 import type { DemandSignal, PriceBand, Stage, Urgency, WaitlistState } from './types.ts'
-import { sendGift } from './gift.ts'
+import { retryGift, sendGift } from './gift.ts'
 import { addToAudience, claimWithSignal, getCount, getSignal, saveSignal } from './store.ts'
 
 export interface ProductConfig {
@@ -121,11 +121,14 @@ export async function handleJoin(product: ProductConfig, body: Record<string, un
   // re-subscribe a contact or hand out an editing token. It gets the same success shape, minus
   // the token, so the reply does not confirm whether the address was new.
   const { position, created } = await claimWithSignal(signal)
-  if (created) await addToAudience(email, signal.name, product.id)
-  // Awaited inside the request so the gift lands within the minute; never throws. A repeat join
-  // calls it too: sendGift delivers at most once per address, so this only retries a send that
-  // failed earlier, and it goes to the stored address, never to the caller.
-  await sendGift(product.id, email)
+  // The gift is awaited inside the request so it lands within the minute; neither call throws.
+  // A repeat join only retries this address's own failed gift, so it cannot be used to mail anyone.
+  if (created) {
+    await addToAudience(email, signal.name, product.id)
+    await sendGift(product.id, email)
+  } else {
+    await retryGift(product.id, email)
+  }
 
   const count = await getCount(product.id)
   const state = publicState(product, count, position)

@@ -1,5 +1,5 @@
 import { GIFTS, type Gift } from './gift-config.ts'
-import { claimOnce, releaseOnce } from './store.ts'
+import { claimOnce, hasMarker, releaseOnce } from './store.ts'
 
 export { GIFTS, giftCopy, type Gift } from './gift-config.ts'
 
@@ -39,11 +39,12 @@ export function giftEmail(gift: Gift, _to: { email: string }) {
   return { subject, text, html }
 }
 
-export type GiftResult = 'off' | 'sent' | 'already-sent' | 'failed'
+export type GiftResult = 'off' | 'sent' | 'already-sent' | 'failed' | 'not-due'
 
 /**
- * Sends the gift once per address. The SET NX guard is taken before the send so two
- * parallel joins cannot both send; a failed send releases it so a later join can retry.
+ * Sends the gift once per address, on a first join. The SET NX guard is taken before the send so
+ * two parallel joins cannot both send. A failed send releases it and leaves a pending marker,
+ * so retryGift can try again on a later join.
  * Never throws: the signup is already stored, and an email problem must not undo that.
  */
 export async function sendGift(productId: string, email: string): Promise<GiftResult> {
@@ -72,6 +73,27 @@ export async function sendGift(productId: string, email: string): Promise<GiftRe
     return 'sent'
   } catch {
     await releaseOnce(productId, `gift:${email}`).catch(() => undefined)
+    await claimOnce(productId, `gift-pending:${email}`).catch(() => undefined)
     return 'failed'
   }
+}
+
+/**
+ * For a repeat join. Anyone can type an address that is already on the list, so this sends
+ * only when that address's own first-join gift failed and is still pending. An address that
+ * joined while the gift was off, or already got it, gets no mail. Never throws.
+ */
+export async function retryGift(productId: string, email: string): Promise<GiftResult> {
+  const gift = GIFTS[productId]
+  if (!gift?.live || !process.env.RESEND_API_KEY) return 'off'
+  try {
+    if (!(await hasMarker(productId, `gift-pending:${email}`))) return 'not-due'
+  } catch {
+    return 'failed'
+  }
+  const result = await sendGift(productId, email)
+  if (result === 'sent' || result === 'already-sent') {
+    await releaseOnce(productId, `gift-pending:${email}`).catch(() => undefined)
+  }
+  return result
 }

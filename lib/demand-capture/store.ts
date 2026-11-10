@@ -135,6 +135,10 @@ export async function claimOnce(productId: string, marker: string): Promise<bool
   return (await kv(['SET', key(productId, marker), '1', 'NX', 'EX', '31536000'])) === 'OK'
 }
 
+export async function hasMarker(productId: string, marker: string): Promise<boolean> {
+  return (await kv(['GET', key(productId, marker)])) !== null
+}
+
 export async function releaseOnce(productId: string, marker: string): Promise<void> {
   await kv(['DEL', key(productId, marker)])
 }

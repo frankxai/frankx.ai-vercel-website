@@ -61,3 +61,19 @@ export function toMarkdown(productId, t) {
     table('Day', t.day),
   ].join('\n')
 }
+
+/** Parses stored rows; a malformed one is skipped and counted so one bad row cannot stop the report. */
+export function parseSignals(values) {
+  const signals = []
+  let skipped = 0
+  for (const v of values) {
+    try {
+      const s = typeof v === 'string' ? JSON.parse(v) : null
+      if (s && typeof s === 'object') signals.push(s)
+      else skipped++
+    } catch {
+      skipped++
+    }
+  }
+  return { signals, skipped }
+}
