@@ -38,6 +38,7 @@ export function LuxuryWaveformPlayer({ track, className = '' }: LuxuryWaveformPl
   const [hoverProgress, setHoverProgress] = useState<number | null>(null)
   const [showEmbed, setShowEmbed] = useState(false)
   const [playbackSpeed, setPlaybackSpeed] = useState<number>(1.0)
+  const [volume, setVolume] = useState<number>(0.8)
   const [stems, setStems] = useState<Record<string, boolean>>({
     drums: true,
     bass: true,
