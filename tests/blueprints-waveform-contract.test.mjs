@@ -28,7 +28,7 @@ test('the checkout modal handles escape, overflow, and waitlist fallback', () =>
   assert.match(checkoutModal, /handleKeyDown/)
   assert.match(checkoutModal, /prevOverflow/)
   assert.match(checkoutModal, /waitlistRes\.ok/)
-  assert.match(checkoutModal, /reservation confirmed/)
+  assert.match(checkoutModal, /priority list joined/)
 })
 
 test('the luxury waveform player provides stem isolation, playhead control, and audio lifecycle cleanup', () => {

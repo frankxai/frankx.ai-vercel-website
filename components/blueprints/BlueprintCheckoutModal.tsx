@@ -27,6 +27,16 @@ export function BlueprintCheckoutModal({
   const [statusMessage, setStatusMessage] = useState<string | null>(null)
   const [isSuccess, setIsSuccess] = useState(false)
 
+  // Reset transient form state whenever modal opens or active product changes
+  useEffect(() => {
+    if (isOpen) {
+      setEmail('')
+      setIsSuccess(false)
+      setStatusMessage(null)
+      setLoading(false)
+    }
+  }, [isOpen, product?.id])
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && !loading) onClose()
@@ -64,17 +74,21 @@ export function BlueprintCheckoutModal({
         }),
       })
 
-      const data = await res.json()
+      let data: any = null
+      try {
+        data = await res.json()
+      } catch {
+        // Non-JSON response body
+      }
 
-      if (res.ok && data.url) {
+      if (res.ok && data?.url) {
         // Direct redirect to live Stripe Checkout session
         window.location.href = data.url
         return
       }
 
-      // If checkout is gated or in early-access pre-stage (waitlist-first / doctrine 0 staging gate)
-      if (res.status === 503 || res.status === 404 || data.refusal) {
-        // Post to waitlist / VIP reservation
+      // If checkout is gated under doctrine 0 staging gate or in pre-stage
+      if (res.status === 503 || data?.refusal) {
         try {
           const waitlistRes = await fetch('/api/waitlist', {
             method: 'POST',
@@ -86,15 +100,15 @@ export function BlueprintCheckoutModal({
           })
           if (waitlistRes.ok) {
             setIsSuccess(true)
-            setStatusMessage('reservation confirmed: early-access seat locked at this price')
+            setStatusMessage('priority list joined: you will be notified the moment checkout goes live')
           } else {
-            setStatusMessage('early-access reservation could not be recorded: please retry.')
+            setStatusMessage('unable to join priority list: please retry in a moment.')
           }
         } catch {
-          setStatusMessage('network error: unable to reach reservation service.')
+          setStatusMessage('network error: unable to reach notification service.')
         }
       } else {
-        setStatusMessage(data.error || 'checkout could not be initiated')
+        setStatusMessage(data?.error || 'checkout unavailable: please try again later.')
       }
     } catch {
       setStatusMessage('network error: unable to reach checkout service. please retry in a moment.')
@@ -183,8 +197,8 @@ export function BlueprintCheckoutModal({
           {/* Checkout form or success view */}
           {isSuccess ? (
             <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-center">
-              <Sparkles className="mx-auto h-7 w-7 text-emerald-400" />
-              <h4 className="mt-2 text-sm font-semibold text-white">seat secured</h4>
+              <CheckCircle2 className="mx-auto h-7 w-7 text-emerald-400" />
+              <h4 className="mt-2 text-sm font-semibold text-white">priority notification registered</h4>
               <p className="mt-1 text-xs text-white/70">
                 {statusMessage}
               </p>

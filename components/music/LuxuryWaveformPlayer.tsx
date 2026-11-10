@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useState, useEffect, useRef, useId } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Play, Pause, ExternalLink, Volume2, Sparkles, Disc, Radio } from 'lucide-react'
+import { Play, Pause, ExternalLink, Radio } from 'lucide-react'
 
 export interface LuxuryTrack {
   id: string
@@ -63,7 +63,7 @@ export function LuxuryWaveformPlayer({ track, className = '' }: LuxuryWaveformPl
   const startHarmonicDrone = () => {
     try {
       const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
-      if (!audioContextRef.current) {
+      if (!audioContextRef.current || audioContextRef.current.state === 'closed') {
         audioContextRef.current = new AudioCtx()
       }
       const ctx = audioContextRef.current
@@ -192,6 +192,7 @@ export function LuxuryWaveformPlayer({ track, className = '' }: LuxuryWaveformPl
       stopHarmonicDrone()
       if (audioContextRef.current) {
         audioContextRef.current.close().catch(() => {})
+        audioContextRef.current = null
       }
     }
   }, [])
