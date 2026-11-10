@@ -124,20 +124,6 @@
             "context": "Vibe OS, courses, guides, tools",
             "verifiable": true,
             "source": "Product catalog"
-          },
-          {
-            "metric": "Community Size",
-            "value": "5K+",
-            "context": "Email subscribers, social following",
-            "verifiable": true,
-            "source": "Platform analytics"
-          },
-          {
-            "metric": "Creator Transformations",
-            "value": "100+",
-            "context": "Testimonials from AI-empowered creators",
-            "verifiable": true,
-            "source": "Testimonials page"
           }
         ],
         "journey": "Building sustainable prosperity through products that genuinely transform creators. Abundance through service."
