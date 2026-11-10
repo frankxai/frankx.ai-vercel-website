@@ -105,7 +105,7 @@ const variants = [
 const appearances = [
   { href: '/infogenius', icon: '🎨', label: 'InfoGenius', role: 'Turns any topic into a 4K visual — research-grounded, in seconds.' },
   { href: '/agents', icon: '🤖', label: 'Agent Collective', role: 'Orchestrates the full FrankX AI team across creative domains.' },
-  { href: '/acos', icon: '🧠', label: 'ACOS', role: 'Powers the Agentic Creator OS used by 1,000+ builders.' },
+  { href: '/acos', icon: '🧠', label: 'ACOS', role: 'Powers the Agentic Creator OS.' },
   { href: '/tools', icon: '⚡', label: 'Tools', role: 'Instant AI utilities — no setup, no wait.' },
 ]
 

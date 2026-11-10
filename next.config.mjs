@@ -36,14 +36,27 @@ const GAME_TAILWIND_BROWSER_SCRIPT = 'https://cdn.jsdelivr.net/npm/@tailwindcss/
 // route references (see app/docs/[[...slug]]/route.ts).
 const DOCS_ASSET_ORIGIN = 'https://docs-platform-nine.vercel.app'
 
+// Datadog RUM (lib/datadog-rum-config.ts). The CSP admits Datadog only when RUM is configured,
+// so an unconfigured deploy keeps today's policy byte for byte.
+const DATADOG_RUM_ENABLED = Boolean(
+  process.env.NEXT_PUBLIC_DD_RUM_APPLICATION_ID?.trim() &&
+    process.env.NEXT_PUBLIC_DD_RUM_CLIENT_TOKEN?.trim(),
+)
+const DATADOG_RUM_SCRIPT_SOURCES = DATADOG_RUM_ENABLED ? ['https://www.datadoghq-browser-agent.com'] : []
+const DATADOG_RUM_CONNECT_SOURCES = DATADOG_RUM_ENABLED
+  ? ['https://browser-intake-datadoghq.eu', 'https://*.browser-intake-datadoghq.eu']
+  : []
+
 function siteContentSecurityPolicy(
   frameAncestors,
   additionalScriptSources = [],
   additionalStyleSources = [],
   additionalFontSources = [],
 ) {
-  const scriptSourceSuffix =
-    additionalScriptSources.length > 0 ? ` ${additionalScriptSources.join(' ')}` : ''
+  const scriptSourceSuffix = [...additionalScriptSources, ...DATADOG_RUM_SCRIPT_SOURCES]
+    .map((source) => ` ${source}`)
+    .join('')
+  const connectSourceSuffix = DATADOG_RUM_CONNECT_SOURCES.map((source) => ` ${source}`).join('')
   const styleSourceSuffix =
     additionalStyleSources.length > 0 ? ` ${additionalStyleSources.join(' ')}` : ''
   const fontSourceSuffix =
@@ -57,7 +70,7 @@ function siteContentSecurityPolicy(
     "img-src 'self' data: blob: https: http:",
     "media-src 'self' https:",
     "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://open.spotify.com https://embeds.beehiiv.com https://vercel.live https://*.lemonsqueezy.com https://vusercontent.net https://*.vusercontent.net",
-    "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app https://tonejs.github.io",
+    `connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app https://tonejs.github.io${connectSourceSuffix}`,
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",

@@ -139,7 +139,7 @@ jobs:
       - name: Private ops authorization
         run: node --test scripts/tests/ops-authorization.test.mjs
 
-      - name: Production deployment hold
+      - name: Production deployment enabled
         run: node --test scripts/tests/deployment-hold.test.mjs
 
       - name: Template contracts

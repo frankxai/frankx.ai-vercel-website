@@ -69,7 +69,7 @@ test('a unique lowest layer remains a clear constraint', () => {
 
 test('nested founder routes keep semantic main landmarks without duplicating the global id', async () => {
   for (const path of [
-    'components/home/FounderHome.tsx',
+    'components/home/HomePageElite.tsx',
     'app/founder-stack/page.tsx',
     'app/start/page.tsx',
     'app/founders-circle/apply/page.tsx',
