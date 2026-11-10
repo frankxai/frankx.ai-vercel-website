@@ -620,7 +620,8 @@ export default function ProductsPage() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="mb-6 flex items-center justify-between text-xs sm:text-sm text-slate-400">
               <span>
-                Showing <strong className="text-white">{filteredProducts.length}</strong> operational systems
+                Showing <strong className="text-white">{visibleProducts.length}</strong>
+                {visibleProducts.length < gridProducts.length ? ` of ${gridProducts.length}` : ''} systems
               </span>
               {selectedTab !== 'All' && (
                 <button

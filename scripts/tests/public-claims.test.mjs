@@ -66,7 +66,6 @@ const banned = [
   ['app/products/vibe-os/components/VibeOSHero.tsx', ['500+ Sessions', '30-Day Guarantee', 'Lifetime Updates', '50+ Genre Prompts', 'Emotion Mapping', 'Release Playbooks']],
   ['data/learning-paths.ts', ['verified official walkthrough', 'Official supported agent']],
   ['app/products/vibe-os/components/VibeOSSocialProof.tsx', ['500+ Sessions', 'Creators in Early Access']],
-  ['app/soul-frequency-assessment/page.tsx', ['500+ Suno']],
   ['app/team/page.tsx', ['12,000+', '50+ genres']],
   ['app/vibe/producer/page.tsx', ['500+', '12,000+']],
   ['app/year-of-the-fire-horse/vision/page.tsx', ['500+ AI-produced']],
@@ -138,6 +137,34 @@ const banned = [
 
 banned.push(['components/products/ProductsShell.tsx', ['50+ genre-specific', '50+ battle-tested', 'Genre-specific prompts (electronic']])
 for (const file of ['lib/email-templates.ts', 'emails/components/Layout.tsx', 'lib/email-design-system.ts', 'emails/templates/PdfDelivery.tsx', 'lib/email-templates-foundry.ts']) banned.push([file, ['I read every one']])
+// Audience sizes that the public goals pages list as targets not yet reached.
+banned.push(
+  ['app/golden-age/page.tsx', ['5,000+']],
+  ['components/golden-age/GoldenAgeShell.tsx', ['5,000+']],
+  ['app/thank-you/page.tsx', ['5,000+']],
+  ['components/ui/PDFEmailModal.tsx', ['10,000+']],
+  ['app/onboarding/page.tsx', ['10,000+', 'AI Revolution', 'dashboard is ready']],
+  ['app/frankx/page.tsx', ['1,000+']],
+  ['app/coaching/page.tsx', ['1,000+']],
+  ['app/products/creative-ai-toolkit/page.tsx', ['thousands of creators']],
+)
+// A revenue figure and three client results with nothing in the repo behind them.
+banned.push(
+  ['app/vision/VisionContent.tsx', ['$14k MRR']],
+  ['app/tools/strategy-canvas/StrategyCanvasClient.tsx', ['Success Stories', 'TechCorp', '% faster', '% reduction', 'improved by 35%']],
+)
+// Audience and usage counts whose number and noun sit in separate fields or elements.
+banned.push(
+  ['app/lab/page.tsx', ['1k+', 'Builders scored', '40+']],
+  ['data/progress-tracker.json', ['5K+', 'Community Size', 'Creator Transformations', 'Testimonials from']],
+  ['app/tools/roi-calculator/page.tsx', ['5K+', 'Calculations Run', 'Accuracy Rate']],
+  ['lib/email-templates-premium.ts', ['10K+']],
+)
+// /testimonials has no testimonials, so it may not say that real stories or results are on it.
+banned.push(
+  ['app/testimonials/layout.tsx', ['Real results from real builders', 'What Builders Say', 'Hear from']],
+  ['app/testimonials/page.tsx', ['Real Stories', 'Real Creators', 'Success Stories', 'creators are using']],
+)
 
 for (const [file, phrases] of banned) {
   test(file + ' does not publish an unsupported headcount', () => {
@@ -290,4 +317,24 @@ test('Vibe OS featured product card, JSON-LD list metadata, and CTAs stay aligne
   assert.equal(hero.includes('Watch Overview'), false)
   assert.equal(modules.includes('Ship Music'), false)
   assert.equal(modules.includes('not just a prompt pack'), false)
+})
+
+test('no compiled page, component, lib or data file invites visitors to join a counted audience', () => {
+  // components/v0-variants is excluded from the build in tsconfig.json and imported by nothing.
+  const counted = /\b(?:join|community of|used by|trusted by)\s+(?:<[^>]*>\s*)?\d[\d,.]*[km]?\+?(?:\s*<\/[^>]*>)?\s+(?:[a-z]+\s+)?(?:creators|builders|professionals|subscribers|students|members|users|clients|architects|readers|customers|developers)\b/i
+  // A stat tile on one line: a quoted "1k+" beside a quoted label that names an audience, in either order.
+  const count = String.raw`['"]\d[\d,.]*\s?[km]?\+['"]`
+  const label = String.raw`['"][^'"\n]*\b(?:creators|builders|professionals|subscribers|students|members|users|clients|architects|readers|customers|developers|countries)\b[^'"\n]*['"]`
+  const tile = new RegExp(`${count}[^{}\\n]*${label}|${label}[^{}\\n]*${count}`, 'i')
+  for (const dir of ['app', 'components', 'lib', 'data']) {
+    for (const entry of fs.readdirSync(path.join(root, dir), { recursive: true })) {
+      const file = path.join(dir, entry).split(path.sep).join('/')
+      if (!/\.(ts|tsx|mdx|json)$/.test(file) || file.startsWith('components/v0-variants/')) continue
+      // app/ has route folders named like files (registry.json/route.ts).
+      if (!fs.statSync(path.join(root, file)).isFile()) continue
+      const text = fs.readFileSync(path.join(root, file), 'utf8')
+      const hit = counted.exec(text) ?? tile.exec(text)
+      assert.equal(hit, null, `${file}: ${hit?.[0]}`)
+    }
+  }
 })

@@ -324,9 +324,6 @@ export default function PDFEmailModal({ isOpen, onClose, pdfTitle, pdfUrl, guide
                         <p className="text-xs text-gray-400">
                           🔒 Your email stays with us. Zero spam, pure value.
                         </p>
-                        <p className="text-[10px] text-gray-500">
-                          Join 10,000+ creators crafting with AI
-                        </p>
                       </div>
                     </form>
                   </>

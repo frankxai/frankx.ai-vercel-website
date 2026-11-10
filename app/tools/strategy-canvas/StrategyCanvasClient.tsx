@@ -100,30 +100,6 @@ const templates = [
   }
 ]
 
-const examples = [
-  {
-    company: 'TechCorp Enterprise',
-    industry: 'Software Development',
-    challenge: 'Manual code review processes slowing development velocity',
-    solution: 'Implemented AI-powered code analysis and automated testing pipeline',
-    results: '60% faster code reviews, 40% reduction in bugs, improved developer satisfaction'
-  },
-  {
-    company: 'Creative Agency',
-    industry: 'Marketing & Design',
-    challenge: 'Scaling creative output while maintaining quality and brand consistency',
-    solution: 'AI-assisted design workflows and content generation with brand guidelines',
-    results: '3x content output, maintained brand consistency, freed creatives for strategic work'
-  },
-  {
-    company: 'Healthcare Startup',
-    industry: 'Healthcare Technology',
-    challenge: 'Analyzing large volumes of patient data for insights',
-    solution: 'AI-powered analytics platform with predictive health modeling',
-    results: 'Early detection improved by 35%, reduced diagnostic time by 50%'
-  }
-]
-
 export default function StrategyCanvasClient() {
   const [selectedElement, setSelectedElement] = useState<string | null>(null)
   const [completedElements, setCompletedElements] = useState<Set<string>>(new Set())
@@ -283,40 +259,6 @@ export default function StrategyCanvasClient() {
                 <Download className="w-4 h-4" />
                 Download Template
               </Link>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="space-y-12">
-        <div className="text-center space-y-4">
-          <h2 className="text-4xl font-bold text-white">Strategy Success Stories</h2>
-          <p className="text-xl text-white/70 max-w-3xl mx-auto">
-            See how organizations have used strategic AI planning to achieve transformative results.
-          </p>
-        </div>
-
-        <div className="space-y-8">
-          {examples.map((example, index) => (
-            <article key={index} className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
-              <div className="grid gap-8 lg:grid-cols-3">
-                <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">{example.company}</h3>
-                  <p className="text-cyan-300 text-sm mb-4">{example.industry}</p>
-                  <div>
-                    <h4 className="text-sm font-semibold text-white/80 mb-2">Challenge</h4>
-                    <p className="text-white/70 text-sm leading-relaxed">{example.challenge}</p>
-                  </div>
-                </div>
-                <div>
-                  <h4 className="text-sm font-semibold text-white/80 mb-2">Solution</h4>
-                  <p className="text-white/70 text-sm leading-relaxed">{example.solution}</p>
-                </div>
-                <div>
-                  <h4 className="text-sm font-semibold text-white/80 mb-2">Results</h4>
-                  <p className="text-emerald-300 text-sm leading-relaxed font-medium">{example.results}</p>
-                </div>
-              </div>
             </article>
           ))}
         </div>

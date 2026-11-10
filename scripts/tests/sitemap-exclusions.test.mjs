@@ -88,7 +88,10 @@ test('discovered routes caught by a pattern redirect are excluded', async () => 
     .filter((route) => route.sitemap !== false)
     .map((route) => route.href)
     .filter((href) => matchers.some((matcher) => matcher.test(href)))
-  assert.ok(redirected.includes('/ai-architect/multi-cloud-comparison'))
+  // The one page this used to find, app/ai-architect/multi-cloud-comparison, was deleted because the pattern below
+  // made it unreachable. Keep proving the matcher reads that pattern and spares the route it carves out.
+  assert.ok(matchers.some((matcher) => matcher.test('/ai-architect/multi-cloud-comparison')))
+  assert.equal(matchers.some((matcher) => matcher.test('/ai-architect/ai-coe-hub')), false)
   for (const href of redirected) {
     assert.ok(isExcludedFromSitemap(href, sources), `${href} matches a pattern redirect; add it to EXCLUDED_PATHS`)
   }
@@ -99,6 +102,31 @@ test('sign-in gated and middleware-redirected paths are excluded', async () => {
   for (const pathname of ['/dashboard', '/dashboard/leads', '/dashboard/pdf-analytics', '/sis', '/links', '/products/agentic-creator-os']) {
     assert.ok(isExcludedFromSitemap(pathname, sources), pathname)
   }
+})
+
+test('private and internal surfaces are excluded and say noindex in their own metadata', async () => {
+  const sources = await sourcesLikeTheSitemap()
+  const surfaces = [
+    ['/alea', 'app/alea/layout.tsx', '/alea/musik/klavier'],
+    ['/business-plan', 'app/business-plan/page.tsx'],
+    ['/design-lab', 'app/design-lab/layout.tsx', '/design-lab/nature/variants'],
+    ['/experiments', 'app/experiments/page.tsx'],
+    ['/familie/geschichte', 'app/familie/geschichte/layout.tsx', '/familie/geschichte/riemer-linie'],
+    ['/frankx-investment-dashboard', 'app/frankx-investment-dashboard/layout.tsx'],
+    ['/goals', 'app/goals/page.tsx'],
+    ['/testimonials', 'app/testimonials/layout.tsx'],
+    ['/v0', 'app/v0/page.tsx'],
+  ]
+  for (const [prefix, metadataFile, child] of surfaces) {
+    assert.ok(isExcludedFromSitemap(prefix, sources), `${prefix} is listed in the sitemap`)
+    if (child) assert.ok(isExcludedFromSitemap(child, sources), `${child} is listed in the sitemap`)
+    const source = fs.readFileSync(path.join(ROOT, metadataFile), 'utf8')
+    assert.match(source, /\bnoindex:\s*true\b|\brobots:\s*\{\s*index:\s*false\b/, `${metadataFile} does not say noindex`)
+  }
+  // A prefix covers the route and everything beneath it, never a sibling that shares its first letters.
+  assert.equal(isExcludedFromSitemap('/goalsetting', sources), false)
+  // The family-history hub is excluded as an exact path: a topic page the repo marks public stays listed.
+  assert.equal(isExcludedFromSitemap('/familie/geschichte/wolgadeutsche', sources), false)
 })
 
 test('conditional, pattern and root redirect sources never exclude a page', () => {

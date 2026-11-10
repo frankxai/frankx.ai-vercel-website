@@ -324,7 +324,7 @@ export default function GoldenAgePage() {
               Get Notified When New Chapters Drop
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-              Join 5,000+ creators receiving weekly chapters, music drops, and studio intelligence. No spam, just creation fuel.
+              Weekly chapters, music drops, and studio notes. No spam.
             </p>
           </div>
 

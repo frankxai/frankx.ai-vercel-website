@@ -24,6 +24,11 @@ import {
 import feedData from '@/data/feed-entries.json'
 import { cn } from '@/lib/utils'
 
+// Tailwind only scans app/ and components/, so it never sees the agent gradients in data/feed-entries.json.
+// They are repeated here as plain text so their CSS is generated. Keep this list in step with that file:
+// from-violet-500 to-purple-600 from-orange-500 to-red-600 from-cyan-500 to-blue-600 from-green-500 to-emerald-600
+// from-pink-500 to-rose-600 from-amber-500 to-yellow-600 from-slate-500 to-zinc-600 from-fuchsia-500 to-pink-600
+
 const iconMap: Record<string, typeof Crown> = {
   Crown,
   Hammer,

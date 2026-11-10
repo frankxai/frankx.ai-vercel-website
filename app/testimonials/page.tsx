@@ -113,7 +113,7 @@ export default function TestimonialsPage() {
                 <Heart className="h-5 w-5" />
               </div>
               <span className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
-                Success Stories
+                Testimonials
               </span>
             </motion.div>
 
@@ -123,8 +123,7 @@ export default function TestimonialsPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="mb-6 max-w-3xl text-4xl font-bold leading-tight text-white sm:text-5xl"
             >
-              Real Stories from
-              <span className="block text-violet-400">Real Creators</span>
+              No stories published yet
             </motion.h1>
 
             <motion.p
@@ -133,8 +132,8 @@ export default function TestimonialsPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400"
             >
-              This page will feature genuine stories from creators, students, and developers
-              who've used FrankX resources to level up their AI skills.
+              Attributed stories from people who have used FrankX resources will be published
+              here when they exist.
             </motion.p>
 
             <motion.div
@@ -233,7 +232,7 @@ export default function TestimonialsPage() {
               viewport={{ once: true }}
             >
               <p className="text-slate-400 mb-6">
-                While we collect stories, explore the resources that creators are using.
+                While we collect stories, explore the resources.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
