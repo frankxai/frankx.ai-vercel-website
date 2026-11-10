@@ -1,11 +1,12 @@
 #!/usr/bin/env node
-// Daily waitlist scoreboard, read straight from KV. Read-only: prefers the read-only token.
+// Daily waitlist scoreboard, read straight from KV with the read-only token.
 //   KV_REST_API_URL=... KV_REST_API_READ_ONLY_TOKEN=... node scripts/waitlist/scoreboard.mjs [productId] [--json]
 import { appendFileSync } from 'node:fs'
 import { tally, toMarkdown } from './scoreboard-core.mjs'
 
 const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
-const token = process.env.KV_REST_API_READ_ONLY_TOKEN || process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
+// Read-only token only: a writable one is never used, so this script cannot change the list.
+const token = process.env.KV_REST_API_READ_ONLY_TOKEN
 const productId = process.argv.slice(2).find((a) => !a.startsWith('--')) || 'starlight-academy-operator-lab'
 
 if (!url || !token) {
