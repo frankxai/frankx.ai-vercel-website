@@ -43,8 +43,8 @@ export type GiftResult = 'off' | 'sent' | 'already-sent' | 'failed' | 'not-due'
 
 /**
  * Sends the gift once per address, on a first join. The SET NX guard is taken before the send so
- * two parallel joins cannot both send. A failed send releases it and leaves a pending marker,
- * so retryGift can try again on a later join.
+ * two parallel joins cannot both send. Only an explicit refusal from Resend releases it and leaves
+ * a pending marker for retryGift; a timeout keeps it, since the email may have gone out.
  * Never throws: the signup is already stored, and an email problem must not undo that.
  */
 export async function sendGift(productId: string, email: string): Promise<GiftResult> {
@@ -57,8 +57,9 @@ export async function sendGift(productId: string, email: string): Promise<GiftRe
     return 'failed'
   }
   const mail = giftEmail(gift, { email })
+  let res: Response
   try {
-    const res = await fetch('https://api.resend.com/emails', {
+    res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${key}`,
@@ -69,13 +70,16 @@ export async function sendGift(productId: string, email: string): Promise<GiftRe
       body: JSON.stringify({ from: gift.from, to: [email], reply_to: gift.replyTo, ...mail }),
       signal: AbortSignal.timeout(5_000),
     })
-    if (!res.ok) throw new Error(`Resend ${res.status}`)
-    return 'sent'
   } catch {
-    await releaseOnce(productId, `gift:${email}`).catch(() => undefined)
-    await claimOnce(productId, `gift-pending:${email}`).catch(() => undefined)
+    // Timeout or network error: Resend may have accepted the email. Keep the guard and do not
+    // mark it for retry, so the person never gets two copies.
     return 'failed'
   }
+  if (res.ok) return 'sent'
+  // Resend answered and refused it, so nothing was sent: free the guard and leave it pending.
+  await releaseOnce(productId, `gift:${email}`).catch(() => undefined)
+  await claimOnce(productId, `gift-pending:${email}`).catch(() => undefined)
+  return 'failed'
 }
 
 /**
