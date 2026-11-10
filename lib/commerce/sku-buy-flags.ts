@@ -3,10 +3,10 @@
  *
  * Every priced product starts on the waitlist. A product shows a buy button and
  * reaches a payment provider only when its `buyEnabled` flag below is `true`.
- * Flipping a flag is a reviewed code change, not an env var, so a product
- * cannot go live from the Vercel dashboard by accident.
+ * Flipping a flag takes a reviewed edit to this file. An env var set in the
+ * Vercel dashboard cannot open a sale on its own.
  *
- * The flag is necessary, not sufficient. With the flag on:
+ * The flag alone does not take payment. With the flag on:
  *   - the product page links to /checkout/<slug> instead of the waitlist,
  *   - /checkout/<slug> still renders a buy link only when the Lemon Squeezy
  *     store and that product's variant env var are configured,
