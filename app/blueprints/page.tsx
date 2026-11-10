@@ -30,7 +30,6 @@ interface BlueprintOffer {
   name: string
   tagline: string
   price: number
-  originalPrice: number
   badge: string
   description: string
   icon: typeof Music
@@ -48,7 +47,6 @@ const BLUEPRINTS: BlueprintOffer[] = [
     name: 'Vibe OS — AI music system & sound architecture',
     tagline: 'From emotional intent to broadcast-ready studio release in minutes',
     price: 97,
-    originalPrice: 197,
     badge: 'Flagship music stack',
     description:
       'The comprehensive sound intelligence architecture used to compose, prompt, stem, and master releases like Star Show Us. Complete Suno v4 prompt mechanics, DAW stem mastering chains, and sensory vibe-state mapping.',
@@ -77,7 +75,6 @@ const BLUEPRINTS: BlueprintOffer[] = [
     name: 'Agentic Creator OS — autonomous creator swarm blueprint',
     tagline: 'Multi-agent publishing pipeline, self-healing memory, and content factory',
     price: 147,
-    originalPrice: 297,
     badge: 'Enterprise creator runtime',
     description:
       'The exact operating system Frank uses to orchestrate parallel agent swarms across Claude Code, Gemini, and Codex. Includes 12 production pipelines, event-sourced memory vaults, and automated quality gates.',
@@ -186,9 +183,6 @@ export default function BlueprintsPage() {
                     <div className="text-right">
                       <div className="flex items-baseline gap-2">
                         <span className="text-3xl font-bold font-mono text-white">${bp.price}</span>
-                        <span className="text-sm font-mono text-white/30 line-through">
-                          ${bp.originalPrice}
-                        </span>
                       </div>
                       <span className="text-[10px] font-mono text-emerald-400">one-time payment</span>
                     </div>
