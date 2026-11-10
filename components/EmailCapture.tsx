@@ -1,5 +1,6 @@
 'use client'
 
+import { trackWaitlistJoin } from '@/lib/track'
 import { useState, FormEvent } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Check, AlertCircle, Loader2 } from 'lucide-react'
@@ -36,6 +37,7 @@ export default function EmailCapture({
       const data = await response.json()
 
       if (response.ok) {
+        trackWaitlistJoin({ product, source: 'email-capture' })
         setStatus('success')
         setMessage(data.message || 'Successfully subscribed!')
         setEmail('')

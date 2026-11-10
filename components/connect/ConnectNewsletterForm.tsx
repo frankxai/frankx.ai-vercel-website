@@ -1,5 +1,6 @@
 "use client";
 
+import { trackWaitlistJoin } from "@/lib/track"
 import Link from "next/link";
 import { useId, useState, type FormEvent } from "react";
 import { AlertCircle, CheckCircle2, ArrowRight } from "lucide-react";
@@ -34,6 +35,7 @@ export function ConnectNewsletterForm() {
         throw new Error(data.message ?? "Subscription failed");
       }
 
+      trackWaitlistJoin({ product: "inner-circle", source: "connect" });
       trackEvent("connect_waitlist_signed_up", { listType: "inner-circle" });
       setStatus("success");
       setEmail("");

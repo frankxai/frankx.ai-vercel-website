@@ -1,5 +1,6 @@
 'use client'
 
+import { trackWaitlistJoin } from '@/lib/track'
 import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
@@ -309,6 +310,7 @@ export default function AiCoeReadinessClient() {
       })
 
       if (res.ok) {
+        trackWaitlistJoin({ product: 'ai-architect', source: 'ai-coe-readiness' })
         setStage('report')
         return
       }

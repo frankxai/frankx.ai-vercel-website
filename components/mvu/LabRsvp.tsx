@@ -1,5 +1,6 @@
 'use client'
 
+import { trackWaitlistJoin } from '@/lib/track'
 import { useState, FormEvent } from 'react'
 
 /**
@@ -35,6 +36,7 @@ export function LabRsvp({ confirmed }: { confirmed: boolean }) {
       })
       const data = await res.json()
       if (res.ok) {
+        trackWaitlistJoin({ product: 'mvu-porto-2027', source: 'mvu-lab-page' })
         setStatus('success')
         setMessage(data.message || '')
       } else {

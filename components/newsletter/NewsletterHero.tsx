@@ -1,5 +1,6 @@
 'use client'
 
+import { trackWaitlistJoin } from '@/lib/track'
 import { useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -48,6 +49,7 @@ export default function NewsletterHero({
         body: JSON.stringify({ email: allEmail, listType: 'creation-chronicles' }),
       })
       if (res.ok) {
+        trackWaitlistJoin({ product: 'creation-chronicles', source: 'newsletter-hero' })
         setAllStatus('success')
         setAllEmail('')
       } else {

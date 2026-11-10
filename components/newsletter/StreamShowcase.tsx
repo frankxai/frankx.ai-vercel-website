@@ -1,5 +1,6 @@
 'use client'
 
+import { trackWaitlistJoin } from '@/lib/track'
 import { useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -202,6 +203,7 @@ function StreamCard({
         body: JSON.stringify({ email, listType: stream.listType }),
       })
       if (res.ok) {
+        trackWaitlistJoin({ product: stream.listType, source: 'newsletter-streams' })
         setStatus('success')
         setEmail('')
       } else {

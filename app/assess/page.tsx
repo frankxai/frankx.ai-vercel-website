@@ -1,5 +1,6 @@
 'use client'
 
+import { trackWaitlistJoin } from '@/lib/track'
 import { useState, useEffect, useCallback, FormEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -435,6 +436,7 @@ function EmailGate({ onUnlock }: { onUnlock: () => void }) {
       const data = await response.json()
 
       if (response.ok) {
+        trackWaitlistJoin({ product: 'assessment', source: 'assess' })
         setStatus('success')
         setMessage('Report unlocked.')
         onUnlock()

@@ -1,5 +1,6 @@
 'use client'
 
+import { trackWaitlistJoin } from '@/lib/track'
 import { useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -144,6 +145,7 @@ export default function FreePlaybookPage() {
       })
 
       if (res.ok) {
+        trackWaitlistJoin({ product: 'newsletter', source: 'free-playbook' })
         setStatus('success')
         setUnlockedResources(true)
       } else {
