@@ -1,9 +1,14 @@
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
+import { headers } from 'next/headers'
+import { notFound } from 'next/navigation'
+import { verifyAdminSecret } from '@/lib/admin-secret'
 import { OpsClient } from './OpsClient'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
-  title: 'Ops — Agent Mission Control | FrankX',
+  title: 'Ops — Agent Mission Control',
   description:
     'Real-time mission control for autonomous coding agents across FrankX and Arcanea repos.',
   robots: { index: false, follow: false },
@@ -56,7 +61,7 @@ async function fetchGitHub(path: string) {
       Authorization: `Bearer ${GITHUB_TOKEN}`,
       Accept: 'application/vnd.github+json',
     },
-    next: { revalidate: 60 },
+    cache: 'no-store',
   })
   if (!res.ok) return null
   return res.json()
@@ -99,7 +104,7 @@ async function getRecentDeploys(): Promise<VercelDeploy[]> {
     'https://api.vercel.com/v6/deployments?projectId=prj_NHVIKZtglNidOE1FJiq6eYx5QjIL&teamId=starlight-intelligence&limit=5',
     {
       headers: { Authorization: `Bearer ${token}` },
-      next: { revalidate: 60 },
+      cache: 'no-store',
     }
   )
   if (!res.ok) return []
@@ -108,6 +113,10 @@ async function getRecentDeploys(): Promise<VercelDeploy[]> {
 }
 
 export default async function OpsPage() {
+  const secret = process.env.ADMIN_SECRET
+  const candidate = (await headers()).get('x-admin-secret')
+  if (!secret || !candidate || !verifyAdminSecret(candidate, secret)) notFound()
+
   const [prs, issues, deploys] = await Promise.all([
     getPRs(),
     getAgentIssues(),

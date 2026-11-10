@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -18,7 +19,7 @@ import {
   Workflow,
 } from 'lucide-react'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 export const metadata: Metadata = {
   title: 'Agentic AI Center',

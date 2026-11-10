@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -29,11 +30,12 @@ export async function generateMetadata({
   return {
     title,
     description: entry.one_liner,
-    alternates: { canonical: `https://frankx.ai/agent-hub/${entry.id}` },
+    alternates: { canonical: `${siteConfig.url}/agent-hub/${entry.id}` },
     openGraph: {
+      images: defaultOpenGraphImages,
       title,
       description: `${entry.name} by ${org?.name ?? entry.organization}: ${entry.one_liner}`,
-      url: `https://frankx.ai/agent-hub/${entry.id}`,
+      url: `${siteConfig.url}/agent-hub/${entry.id}`,
       type: 'article',
     },
   }
@@ -59,20 +61,20 @@ export default async function AgentEntryPage({
     name: entry.name,
     applicationCategory: 'DeveloperApplication',
     description: entry.one_liner,
-    url: `https://frankx.ai/agent-hub/${entry.id}`,
+    url: `${siteConfig.url}/agent-hub/${entry.id}`,
     author: org ? { '@type': 'Organization', name: org.name, url: org.url } : undefined,
   }
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai/' },
-      { '@type': 'ListItem', position: 2, name: 'Agent Hub', item: 'https://frankx.ai/agent-hub' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteConfig.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Agent Hub', item: `${siteConfig.url}/agent-hub` },
       {
         '@type': 'ListItem',
         position: 3,
         name: entry.name,
-        item: `https://frankx.ai/agent-hub/${entry.id}`,
+        item: `${siteConfig.url}/agent-hub/${entry.id}`,
       },
     ],
   }

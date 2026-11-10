@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Content Command Center | FrankX Admin',
   description: 'Content strategy, publishing pipeline, and social distribution command center.',
   path: '/admin/content',

@@ -1,3 +1,4 @@
+import { defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.frankx.ai/research/methodology',
   },
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Research Methodology | FrankX Research Hub',
     description: 'The working FrankX method for directed scans, specialist passes, evidence review, and human publication decisions.',
     type: 'article',

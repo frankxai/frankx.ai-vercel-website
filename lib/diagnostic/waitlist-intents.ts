@@ -82,6 +82,16 @@ export const LAUNCH_LIST_INTENTS: ReadonlySet<string> = new Set([
   'suno-prompt-library',
   '5-suno-prompts',
   'vibe-os',
+  'creation-chronicles',
+])
+
+/**
+ * Products whose /waitlist page asks the three demand questions (role, price band, reason)
+ * after the email is captured. Both previously linked to a dead Gumroad checkout.
+ */
+export const DEMAND_CAPTURE_INTENTS: ReadonlySet<string> = new Set([
+  'creative-ai-toolkit',
+  'creation-chronicles',
 ])
 
 export const WAITLIST_INTENT_LABELS: Record<string, string> = Object.fromEntries(

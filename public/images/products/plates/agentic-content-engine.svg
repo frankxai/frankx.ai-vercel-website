@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-labelledby="title-agentic-content-engine desc-agentic-content-engine">
+  <title id="title-agentic-content-engine">Agentic Content Engine schematic plate</title>
+  <desc id="desc-agentic-content-engine">Technical deliverable diagram for Agentic Content Engine (SYSTEMS &amp; AGENTS).</desc>
+  <defs>
+    <linearGradient id="bg-agentic-content-engine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A0B0F" />
+      <stop offset="100%" stop-color="#10141D" />
+    </linearGradient>
+    <radialGradient id="glow-agentic-content-engine" cx="82%" cy="18%" r="60%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid-agentic-content-engine" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(255,255,255,0.028)" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="640" height="360" rx="20" fill="url(#bg-agentic-content-engine)" />
+  <rect width="640" height="360" rx="20" fill="url(#grid-agentic-content-engine)" />
+  <rect width="640" height="360" rx="20" fill="url(#glow-agentic-content-engine)" />
+  <rect x="0.75" y="0.75" width="638.5" height="358.5" rx="19.25" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1.5" />
+
+  <!-- Top Telemetry Header -->
+  <text x="36" y="42" fill="#38BDF8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600" letter-spacing="1.6">SYSTEMS &amp; AGENTS</text>
+  <text x="36" y="68" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.4">Agentic Content Engine</text>
+
+  <rect x="476" y="26" width="128" height="28" rx="14" fill="rgba(56, 189, 248, 0.14)" stroke="rgba(56, 189, 248, 0.34)" />
+  <text x="540" y="44" text-anchor="middle" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">Content kit</text>
+
+  
+      <!-- Directed Agent and Protocol Mesh -->
+      <g transform="translate(36, 98)">
+        <rect x="0" y="0" width="568" height="190" rx="14" fill="#0D1017" stroke="rgba(255,255,255,0.08)" />
+        <line x1="184" y1="54" x2="252" y2="54" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="4 3" />
+        <line x1="184" y1="136" x2="252" y2="95" stroke="#38BDF8" stroke-width="1.2" opacity="0.65" />
+        <line x1="384" y1="74" x2="420" y2="74" stroke="#22D3EE" stroke-width="1.5" />
+        <line x1="384" y1="120" x2="420" y2="120" stroke="#22D3EE" stroke-width="1.2" opacity="0.65" />
+
+        <rect x="20" y="28" width="164" height="52" rx="10" fill="#121722" stroke="rgba(56, 189, 248, 0.34)" />
+        <circle cx="38" cy="54" r="4.5" fill="#38BDF8" />
+        <text x="52" y="50" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">Premium Blog…</text>
+        <text x="52" y="66" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">INPUT CONTRACT · MD/JSON</text>
+
+        <rect x="20" y="108" width="164" height="52" rx="10" fill="#121722" stroke="rgba(255,255,255,0.12)" />
+        <circle cx="38" cy="134" r="4.5" fill="#22D3EE" />
+        <text x="52" y="130" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10.5" font-weight="600">AI Writing Pipeline</text>
+        <text x="52" y="146" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">EXECUTION HARNESS</text>
+
+        <rect x="252" y="34" width="132" height="122" rx="12" fill="rgba(56, 189, 248, 0.14)" stroke="rgba(56, 189, 248, 0.34)" />
+        <text x="318" y="64" text-anchor="middle" fill="#38BDF8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" letter-spacing="1.4">ROUTER BUS</text>
+        <line x1="270" y1="78" x2="366" y2="78" stroke="rgba(56, 189, 248, 0.34)" />
+        <text x="318" y="100" text-anchor="middle" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="600">Scoped Lane</text>
+        <text x="318" y="118" text-anchor="middle" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">ISOLATED WORKTREE</text>
+        <text x="318" y="138" text-anchor="middle" fill="#22D3EE" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">RECEIPT VERIFIED</text>
+
+        <rect x="420" y="46" width="128" height="98" rx="10" fill="#121722" stroke="rgba(255,255,255,0.14)" />
+        <text x="484" y="74" text-anchor="middle" fill="#F8FAFC" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" font-weight="600">SEO Engine</text>
+        <rect x="444" y="88" width="80" height="20" rx="5" fill="rgba(56,189,248,0.12)" stroke="rgba(56, 189, 248, 0.34)" />
+        <text x="484" y="102" text-anchor="middle" fill="#38BDF8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5">GATE PASS</text>
+        <text x="484" y="128" text-anchor="middle" fill="#64748B" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9">SHA-256</text>
+      </g>
+    
+
+  <!-- Bottom Inspectable Footer -->
+  <text x="36" y="324" fill="#64748B" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" letter-spacing="1.1">SKU // AGENTIC-CONTENT-ENGINE</text>
+  <text x="604" y="324" text-anchor="end" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10">INSPECTABLE MANIFEST · 16:9</text>
+</svg>

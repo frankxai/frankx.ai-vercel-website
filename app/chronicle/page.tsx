@@ -5,7 +5,7 @@ import Image from 'next/image';
 const SITE_URL = 'https://www.frankx.ai';
 
 export const metadata: Metadata = {
-  title: 'The Starlight Chronicle — A Practice of Witnessing | FrankX',
+  title: 'The Starlight Chronicle — A Practice of Witnessing',
   description:
     'The reflective layer of the FrankX OS. The State of the Palace as it stands on 2026-05-03 — eight composed operating systems, ratified substrate, and a four-cadence practice of witnessing.',
   keywords: [

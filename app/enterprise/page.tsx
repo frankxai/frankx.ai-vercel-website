@@ -1,12 +1,13 @@
+import { siteConfig } from '@/lib/seo'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { ArrowRight, Building2, CheckCircle2, ShieldCheck, Workflow } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Enterprise AI Architecture | FrankX',
+  title: 'Enterprise AI Architecture',
   description:
     'Enterprise AI architecture, governance, and agentic operating-system patterns for teams moving from pilots to production.',
-  alternates: { canonical: 'https://frankx.ai/enterprise' },
+  alternates: { canonical: `${siteConfig.url}/enterprise` },
 }
 
 const capabilities = [

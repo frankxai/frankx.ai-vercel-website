@@ -1,6 +1,7 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
+  canonical: './',
   title: 'Best AI Courses | Independent FrankX Course Picks',
   description:
     'A small, independently selected shelf of AI courses—mapped to learner goals, explained in plain language, and verified for freshness.',

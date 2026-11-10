@@ -1,3 +1,4 @@
+import { siteConfig, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -18,11 +19,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: signal.title,
     description: signal.dek,
-    alternates: { canonical: `https://frankx.ai/signals/${signal.slug}` },
+    alternates: { canonical: `${siteConfig.url}/signals/${signal.slug}` },
     openGraph: {
+      images: defaultOpenGraphImages,
       title: signal.title,
       description: signal.dek,
-      url: `https://frankx.ai/signals/${signal.slug}`,
+      url: `${siteConfig.url}/signals/${signal.slug}`,
       type: 'article',
       publishedTime: signal.publishedAt,
       modifiedTime: signal.updatedAt,
@@ -49,9 +51,9 @@ export default async function SignalDetailPage({ params }: Props) {
     description: signal.dek,
     datePublished: signal.publishedAt,
     dateModified: signal.updatedAt,
-    mainEntityOfPage: `https://frankx.ai/signals/${signal.slug}`,
-    author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai/about' },
-    publisher: { '@type': 'Organization', name: 'FrankX', url: 'https://frankx.ai' },
+    mainEntityOfPage: `${siteConfig.url}/signals/${signal.slug}`,
+    author: { '@type': 'Person', name: 'Frank Riemer', url: `${siteConfig.url}/about` },
+    publisher: { '@type': 'Organization', name: 'FrankX', url: siteConfig.url },
     about: member?.name,
     citation: signal.sourceUrl,
   }

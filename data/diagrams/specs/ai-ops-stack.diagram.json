@@ -1,0 +1,38 @@
+{
+  "id": "ai-ops-stack",
+  "rev": 1,
+  "type": "layers",
+  "eyebrow": "AI Ops",
+  "title": "The five-layer AI Ops stack",
+  "subtitle": "Interface, orchestration, memory, observability and gateway, with the example tools the AI Ops hub lists at each layer.",
+  "alt": "Five stacked layers of an AI Ops stack, top to bottom: interface, orchestration, memory, observability and gateway, each with example tools.",
+  "source": "Layer names and tools from /ai-ops/architecture (app/ai-ops/architecture/page.tsx).",
+  "reviewed": "2026-11-07",
+  "replaces": {
+    "src": "/images/architectures/mcp-hub.png",
+    "pages": ["/ai-ops/architecture"],
+    "legacySubject": "Agentic Creator OS council render, not an AI Ops stack"
+  },
+  "layers": [
+    {
+      "badge": "5", "accent": "red", "title": "Interface", "subtitle": "User interaction layer",
+      "items": [{"label": "Open WebUI"}, {"label": "LibreChat"}, {"label": "Custom apps"}]
+    },
+    {
+      "badge": "4", "accent": "violet", "title": "Orchestration", "subtitle": "Agent coordination and routing",
+      "items": [{"label": "LangGraph"}, {"label": "CrewAI"}, {"label": "AutoGen"}, {"label": "Oracle ADK"}]
+    },
+    {
+      "badge": "3", "accent": "blue", "title": "Memory", "subtitle": "Knowledge persistence and retrieval",
+      "items": [{"label": "Mem0"}, {"label": "Graphiti"}, {"label": "Qdrant"}, {"label": "Oracle AI DB 26ai"}]
+    },
+    {
+      "badge": "2", "accent": "emerald", "title": "Observability", "subtitle": "Monitoring, traces and evaluation",
+      "items": [{"label": "Langfuse"}, {"label": "LangSmith"}, {"label": "Arize"}, {"label": "OCI Monitoring"}]
+    },
+    {
+      "badge": "1", "accent": "amber", "title": "Gateway", "subtitle": "Unified API routing and cost control",
+      "items": [{"label": "LiteLLM"}, {"label": "Portkey"}, {"label": "Martian"}, {"label": "OCI GenAI"}]
+    }
+  ]
+}

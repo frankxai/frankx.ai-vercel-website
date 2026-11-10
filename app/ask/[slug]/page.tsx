@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Bot, Mic2, PenLine, Layers, Building2, Calendar, ExternalLink } from 'lucide-react'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import {
@@ -279,7 +279,7 @@ export default async function AskSlugPage({ params }: { params: Promise<{ slug: 
           author: {
             '@type': 'Person',
             name: 'Frank X. Riemer',
-            url: 'https://frankx.ai/about',
+            url: `${siteConfig.url}/about`,
           },
           datePublished: q.date,
         },

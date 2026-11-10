@@ -1,7 +1,8 @@
+import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Imprint — FrankX',
+  title: 'Imprint',
   description: 'Legal information and business details for Frank Riemer (eenmanszaak), trading as FrankX.',
 }
 
@@ -32,7 +33,7 @@ export default function ImprintPage() {
           <table className="w-full text-sm mt-3">
             <tbody className="divide-y divide-zinc-800">
               <Row label="Email" value="frank@frankx.ai" />
-              <Row label="Website" value="https://frankx.ai" />
+              <Row label="Website" value={siteConfig.url} />
             </tbody>
           </table>
         </div>

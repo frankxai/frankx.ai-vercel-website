@@ -1,6 +1,7 @@
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
+  canonical: './',
   title: "Music Theory | Notes, Scales, Chords & Keys | FrankX",
   description:
     "A free visual guide to music theory fundamentals: notes, scales, chords, keys, intervals, time signatures, and practical exercises.",

@@ -1,3 +1,4 @@
+import { siteConfig, defaultTwitterImages, defaultOpenGraphImages } from '@/lib/seo'
 import type { Metadata } from 'next'
 import templates from '@/data/templates.json'
 import { templatesFaq } from './faq'
@@ -13,7 +14,7 @@ const templateItems = templates.map((t, i) => ({
     '@type': 'Product',
     name: t.name,
     description: t.description,
-    url: `https://frankx.ai/shop/templates#${t.slug}`,
+    url: `${siteConfig.url}/shop/templates#${t.slug}`,
     ...(t.category && { category: t.category }),
   },
 }))
@@ -40,13 +41,13 @@ const jsonLdGraph = {
     {
       '@type': 'WebPage',
       name: 'FrankX Templates Marketplace',
-      url: 'https://frankx.ai/shop/templates',
+      url: `${siteConfig.url}/shop/templates`,
       description:
         `${templates.length} planned AI templates. Launch list open; nothing is on sale yet.`,
       publisher: {
         '@type': 'Person',
         name: 'FrankX',
-        url: 'https://frankx.ai',
+        url: siteConfig.url,
       },
     },
   ],
@@ -55,7 +56,7 @@ const jsonLdGraph = {
 // ── Metadata ──────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: 'Templates — Claude Code Skills, n8n Workflows & Starter Kits | FrankX',
+  title: 'Templates — Claude Code Skills, n8n Workflows & Starter Kits',
   description:
     `${templates.length} planned templates: Claude Code skill packs, n8n workflow automations, Next.js starters, MCP configs, and AI architecture blueprints. Launch list open; nothing is on sale yet.`,
   keywords: [
@@ -69,20 +70,22 @@ export const metadata: Metadata = {
     'AI developer tools',
   ],
   openGraph: {
+    images: defaultOpenGraphImages,
     title: 'Templates — AI Architecture Templates & Skill Packs | FrankX',
     description:
       `${templates.length} planned templates. Claude Code skills, n8n workflows, Next.js starters, and blueprints. Launch list open.`,
-    url: 'https://frankx.ai/shop/templates',
+    url: `${siteConfig.url}/shop/templates`,
     type: 'website',
   },
   twitter: {
+    images: defaultTwitterImages,
     card: 'summary_large_image',
     title: 'FrankX Templates — Planned AI Architecture Kits',
     description:
       `${templates.length} planned templates. Skill packs, workflows, starters, and blueprints. Launch list open.`,
   },
   alternates: {
-    canonical: 'https://frankx.ai/shop/templates',
+    canonical: './',
   },
 }
 
