@@ -149,6 +149,11 @@ banned.push(
   ['app/coaching/page.tsx', ['1,000+']],
   ['app/products/creative-ai-toolkit/page.tsx', ['thousands of creators']],
 )
+// A revenue figure and three client results with nothing in the repo behind them.
+banned.push(
+  ['app/vision/VisionContent.tsx', ['$14k MRR']],
+  ['app/tools/strategy-canvas/StrategyCanvasClient.tsx', ['Success Stories', 'TechCorp', '% faster', '% reduction', 'improved by 35%']],
+)
 
 for (const [file, phrases] of banned) {
   test(file + ' does not publish an unsupported headcount', () => {
