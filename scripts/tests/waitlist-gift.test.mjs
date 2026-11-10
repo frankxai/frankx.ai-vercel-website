@@ -23,6 +23,7 @@ function services({ resendFails = false } = {}) {
     const u = String(url)
     if (u === 'https://api.resend.com/emails') {
       attempts.push(init.headers)
+      if (ctl.resendThrows) throw new Error('socket hang up')
       if (ctl.resendFails) return new Response('{"message":"down"}', { status: 500 })
       emails.push(JSON.parse(init.body))
       return new Response('{"id":"e1"}', { status: 200 })
@@ -213,4 +214,17 @@ test('a repeat join only retries a gift that failed; it never mails an address t
     await r.POST(post({ productId: PRODUCT, email: 'early@example.com', consent: true }))
   })
   assert.equal(svc.attempts.length, 0, 'a third party re-entering the address triggers no mail')
+})
+
+test('a timeout or network error is treated as maybe-sent: kept guarded, never retried', async () => {
+  await withLive(async () => {
+    const svc = services()
+    svc.ctl.resendThrows = true
+    const r = route()
+    const join = () => r.POST(post({ productId: PRODUCT, email: 'lost@example.com', consent: true }))
+    assert.equal((await join()).status, 200)
+    svc.ctl.resendThrows = false
+    await join()
+    assert.equal(svc.attempts.length, 1, 'Resend may have accepted it; a retry could double-send')
+  })
 })
