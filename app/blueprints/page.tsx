@@ -15,6 +15,7 @@ import {
   Zap,
 } from 'lucide-react'
 import { createMetadata } from '@/lib/seo'
+import { BlueprintCardAction } from '@/components/blueprints/BlueprintCardAction'
 
 export const metadata = createMetadata({
   title: 'Architecture blueprints — sovereign creator & music operating systems',
@@ -235,17 +236,7 @@ export default function BlueprintsPage() {
 
                 {/* Card CTA & Guarantee */}
                 <div className="mt-8 border-t border-white/[0.06] pt-6">
-                  <Link
-                    href={bp.checkoutHref}
-                    className={`flex w-full items-center justify-center gap-2 rounded-xl py-3.5 px-6 font-medium text-sm transition-all duration-200 ${
-                      isEmerald
-                        ? 'bg-emerald-400 text-[#0a0a0b] hover:bg-emerald-300 hover:shadow-[0_0_24px_rgba(52,211,153,0.3)]'
-                        : 'bg-violet-500 text-white hover:bg-violet-400 hover:shadow-[0_0_24px_rgba(168,85,247,0.3)]'
-                    }`}
-                  >
-                    <span>unlock instant download (${bp.price})</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
+                  <BlueprintCardAction product={bp} />
 
                   <div className="mt-3 flex items-center justify-center gap-4 text-[11px] text-white/40">
                     <span className="flex items-center gap-1">

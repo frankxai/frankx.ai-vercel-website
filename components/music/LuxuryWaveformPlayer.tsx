@@ -37,7 +37,14 @@ export function LuxuryWaveformPlayer({ track, className = '' }: LuxuryWaveformPl
   const [currentTime, setCurrentTime] = useState(0)
   const [hoverProgress, setHoverProgress] = useState<number | null>(null)
   const [showEmbed, setShowEmbed] = useState(false)
-  const [volume, setVolume] = useState(0.8)
+  const [playbackSpeed, setPlaybackSpeed] = useState<number>(1.0)
+  const [stems, setStems] = useState<Record<string, boolean>>({
+    drums: true,
+    bass: true,
+    synths: true,
+    vocals: true,
+  })
+  const [soloStem, setSoloStem] = useState<string | null>(null)
   const audioContextRef = useRef<AudioContext | null>(null)
   const oscillatorRefs = useRef<{ osc1: OscillatorNode; osc2: OscillatorNode; gain: GainNode } | null>(null)
   const animFrameRef = useRef<number | null>(null)
@@ -130,10 +137,41 @@ export function LuxuryWaveformPlayer({ track, className = '' }: LuxuryWaveformPl
           }
           return prev + 1
         })
-      }, 1000)
+      }, 1000 / playbackSpeed)
       return () => clearInterval(interval)
     }
-  }, [isPlaying, totalDuration])
+  }, [isPlaying, totalDuration, playbackSpeed])
+
+  const toggleStemMute = (stemKey: string) => {
+    setStems((prev) => ({
+      ...prev,
+      [stemKey]: !prev[stemKey],
+    }))
+    // Tactile acoustic modulation on synth
+    if (oscillatorRefs.current && audioContextRef.current) {
+      const { gain } = oscillatorRefs.current
+      gain.gain.setValueAtTime(gain.gain.value, audioContextRef.current.currentTime)
+      gain.gain.linearRampToValueAtTime(
+        stems[stemKey] ? 0.04 : 0.12,
+        audioContextRef.current.currentTime + 0.1
+      )
+    }
+  }
+
+  const toggleStemSolo = (stemKey: string) => {
+    if (soloStem === stemKey) {
+      setSoloStem(null)
+      setStems({ drums: true, bass: true, synths: true, vocals: true })
+    } else {
+      setSoloStem(stemKey)
+      setStems({
+        drums: stemKey === 'drums',
+        bass: stemKey === 'bass',
+        synths: stemKey === 'synths',
+        vocals: stemKey === 'vocals',
+      })
+    }
+  }
 
   // Cleanup on unmount
   useEffect(() => {
@@ -318,7 +356,7 @@ export function LuxuryWaveformPlayer({ track, className = '' }: LuxuryWaveformPl
           </div>
 
           {/* Time and playback controls row */}
-          <div className="mt-3 flex items-center justify-between">
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <button
                 type="button"
@@ -340,10 +378,70 @@ export function LuxuryWaveformPlayer({ track, className = '' }: LuxuryWaveformPl
               </div>
             </div>
 
+            {/* Playback speed selector */}
+            <div className="flex items-center gap-1 rounded-full border border-white/[0.06] bg-white/[0.02] p-0.5">
+              {[0.75, 1.0, 1.25, 1.5].map((speed) => (
+                <button
+                  key={speed}
+                  type="button"
+                  onClick={() => setPlaybackSpeed(speed)}
+                  className={`rounded-full px-2 py-0.5 font-mono text-[10px] transition-colors ${
+                    playbackSpeed === speed
+                      ? 'bg-emerald-400/20 text-emerald-300 font-semibold border border-emerald-400/30'
+                      : 'text-white/40 hover:text-white/70'
+                  }`}
+                >
+                  {speed}x
+                </button>
+              ))}
+            </div>
+
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-mono text-emerald-400/80 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
                 {isPlaying ? 'previewing synthesis' : 'lossless master'}
               </span>
+            </div>
+          </div>
+
+          {/* Interactive Stems Isolation Matrix */}
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-white/[0.04] pt-2.5">
+            <span className="text-[10px] font-mono text-white/40">stems isolation</span>
+            <div className="flex items-center gap-1.5">
+              {(['drums', 'bass', 'synths', 'vocals'] as const).map((stem) => {
+                const isActive = stems[stem]
+                const isSoloed = soloStem === stem
+
+                return (
+                  <div key={stem} className="flex items-center">
+                    <button
+                      type="button"
+                      onClick={() => toggleStemMute(stem)}
+                      title={`toggle ${stem} mute`}
+                      className={`rounded-l-md px-2 py-0.5 text-[10px] font-mono tracking-tight transition-all border border-r-0 ${
+                        isActive
+                          ? isSoloed
+                            ? 'bg-emerald-400 text-black border-emerald-400 font-semibold shadow-[0_0_8px_rgba(52,211,153,0.4)]'
+                            : 'bg-white/[0.04] text-white/80 border-white/[0.08] hover:bg-white/[0.08]'
+                          : 'bg-black/60 text-white/20 border-white/[0.04] line-through'
+                      }`}
+                    >
+                      {stem}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => toggleStemSolo(stem)}
+                      title={`solo ${stem}`}
+                      className={`rounded-r-md px-1.5 py-0.5 text-[9px] font-mono font-medium border border-white/[0.08] transition-all ${
+                        isSoloed
+                          ? 'bg-emerald-400 text-black border-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.4)]'
+                          : 'bg-white/[0.02] text-white/40 hover:text-white/80'
+                      }`}
+                    >
+                      S
+                    </button>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </div>
