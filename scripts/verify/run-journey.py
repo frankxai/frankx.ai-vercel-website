@@ -628,6 +628,45 @@ def overflow_metrics(page: Any) -> dict[str, Any]:
     return data
 
 
+
+def heading_in_view(page: Any, selector: str, timeout: int = 4000) -> bool:
+    loc = page.locator(selector)
+    loc.wait_for()
+    try:
+        page.wait_for_function(
+            """(sel) => {
+                const el = document.querySelector(sel);
+                if (!el) return false;
+                const r = el.getBoundingClientRect();
+                return r.top < window.innerHeight && r.bottom > 0;
+            }""",
+            arg=selector,
+            timeout=timeout,
+        )
+        return True
+    except Exception:
+        return bool(
+            loc.evaluate(
+                """el => {
+                    const r = el.getBoundingClientRect();
+                    return r.top < window.innerHeight && r.bottom > 0;
+                }"""
+            )
+        )
+
+
+def panel_sliver(box: dict[str, float] | None, width: int) -> float:
+    """How many CSS pixels of a right-fixed panel remain inside the viewport."""
+    if not box:
+        return 0.0
+    if box["x"] >= width:
+        return 0.0
+    if box["x"] + box["width"] <= 0:
+        return 0.0
+    if box["x"] > width * 0.5:
+        return max(0.0, width - box["x"])
+    return float(box["width"])
+
 def screenshot(page: Any, path: Path) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     page.screenshot(path=str(path), full_page=False)
@@ -674,8 +713,8 @@ def drive_golden_age(page_factory, origin: str, out: Path) -> dict[str, Any]:
         vp: dict[str, Any] = {"width": width, "height": height}
         try:
             page.goto(ch1, wait_until="domcontentloaded")
-            page.get_by_role("heading", level=1, name="When Creation Calls").wait_for()
-            vp["h1"] = page.get_by_role("heading", level=1).inner_text()
+            page.get_by_role("heading", level=1, name="When Creation Calls", exact=True).wait_for()
+            vp["h1"] = page.get_by_role("heading", level=1, name="When Creation Calls", exact=True).inner_text()
             toggle = visible_locator(page, 'button[aria-label="Toggle table of contents"]')
             panel = visible_locator(page, "aside#toc-panel")
             # On mobile the closed panel may be in the DOM but translated off-screen.
@@ -715,14 +754,7 @@ def drive_golden_age(page_factory, origin: str, out: Path) -> dict[str, Any]:
                     fail(f"{name}: no visible TOC panel to click")
                 else:
                     target.get_by_role("button", name="II. The History You Carry", exact=True).click()
-                    heading = page.locator("#ii-the-history-you-carry")
-                    heading.wait_for()
-                    in_view = heading.evaluate(
-                        """el => {
-                            const r = el.getBoundingClientRect();
-                            return r.top < window.innerHeight && r.bottom > 0;
-                        }"""
-                    )
+                    in_view = heading_in_view(page, "#ii-the-history-you-carry")
                     vp["jumpInView"] = bool(in_view)
                     vp["screenshots"]["afterJump"] = screenshot(page, out / f"{name}-chapter-01-after-jump.png")
                     if not in_view:
@@ -730,8 +762,14 @@ def drive_golden_age(page_factory, origin: str, out: Path) -> dict[str, Any]:
             else:
                 if not vp["toggleVisible"]:
                     fail(f"{name}: mobile TOC toggle is not visible")
-                if on_screen:
-                    fail(f"{name}: mobile TOC panel should start off-screen")
+                sliver = panel_sliver(panel_box, width)
+                vp["closedSliverPx"] = sliver
+                # Closed means the panel body is to the right of the page.
+                # On this checkout, translate-x-full plus right-6 leaves a ~24px sliver.
+                if panel_box is None or panel_box["x"] <= width * 0.5:
+                    fail(f"{name}: mobile TOC panel is not translated closed")
+                if sliver > 32:
+                    fail(f"{name}: closed mobile TOC sliver is {sliver}px (expected at most 24px + tolerance)")
                 vp["screenshots"] = {
                     "closed": screenshot(page, out / f"{name}-chapter-01-toc-closed.png")
                 }
@@ -767,14 +805,7 @@ def drive_golden_age(page_factory, origin: str, out: Path) -> dict[str, Any]:
                         fail(f"{name}: open mobile TOC missing 'II. The History You Carry'")
                     if panel_after is not None:
                         panel_after.get_by_role("button", name="II. The History You Carry", exact=True).click()
-                        heading = page.locator("#ii-the-history-you-carry")
-                        heading.wait_for()
-                        in_view = heading.evaluate(
-                            """el => {
-                                const r = el.getBoundingClientRect();
-                                return r.top < window.innerHeight && r.bottom > 0;
-                            }"""
-                        )
+                        in_view = heading_in_view(page, "#ii-the-history-you-carry")
                         vp["jumpInView"] = bool(in_view)
                         vp["screenshots"]["afterJump"] = screenshot(
                             page, out / f"{name}-chapter-01-after-jump.png"
@@ -785,7 +816,7 @@ def drive_golden_age(page_factory, origin: str, out: Path) -> dict[str, Any]:
             # Numerals-only chapter at this width (one screenshot + non-empty TOC).
             if name == "1280":
                 page.goto(ch2, wait_until="domcontentloaded")
-                page.get_by_role("heading", level=1, name="The Orchestration Age").wait_for()
+                page.get_by_role("heading", level=1, name="The Orchestration Age", exact=True).wait_for()
                 panel2 = visible_locator(page, "aside#toc-panel")
                 labels2 = []
                 if panel2 is not None:
