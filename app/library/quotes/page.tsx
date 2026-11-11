@@ -132,7 +132,7 @@ export default function LibraryQuotesPage() {
       <div className="max-w-5xl mx-auto px-6 pt-28 pb-4">
         <Link
           href="/library"
-          className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white/70 transition-colors"
         >
           <svg
             className="w-4 h-4"
@@ -159,7 +159,7 @@ export default function LibraryQuotesPage() {
         </div>
 
         <div className="relative max-w-4xl mx-auto px-6 pt-8 pb-16">
-          <p className="text-[11px] uppercase tracking-[0.3em] text-rose-400/70 mb-6">
+          <p className="text-[11px] uppercase tracking-[0.3em] text-rose-300 mb-6">
             The Quote Vault
           </p>
           <h1 className="text-5xl md:text-6xl font-bold leading-[1.05] tracking-tight">
@@ -198,7 +198,7 @@ export default function LibraryQuotesPage() {
       {/* Book jump nav */}
       <nav className="max-w-5xl mx-auto px-6 pb-12" aria-label="Books in this collection">
         <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
-          <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-3">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-white/60 mb-3">
             Jump to
           </p>
           <div className="flex flex-wrap gap-2">
@@ -211,7 +211,7 @@ export default function LibraryQuotesPage() {
                   className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/[0.06] bg-white/[0.02] text-[13px] text-white/70 hover:text-white hover:border-white/[0.2] transition-colors"
                 >
                   {book.title}
-                  <span className="text-white/30 text-[11px] font-mono">
+                  <span className="text-white/60 text-[11px] font-mono">
                     {byBook.get(slug)!.length}
                   </span>
                 </a>
@@ -243,7 +243,7 @@ export default function LibraryQuotesPage() {
                       <h2 className="text-2xl md:text-3xl font-bold text-white/90 group-hover:text-white">
                         {book.title}
                       </h2>
-                      <span className="text-[13px] text-white/40 group-hover:text-white/60 transition-colors">
+                      <span className="text-[13px] text-white/60 group-hover:text-white/80 transition-colors">
                         by {book.author}
                       </span>
                     </Link>
@@ -258,7 +258,7 @@ export default function LibraryQuotesPage() {
                       ))}
                     </div>
                   </div>
-                  <span className="text-[11px] uppercase tracking-[0.18em] text-white/40 font-mono">
+                  <span className="text-[11px] uppercase tracking-[0.18em] text-white/60 font-mono">
                     {bookQuotes.length} quote{bookQuotes.length === 1 ? '' : 's'}
                   </span>
                 </div>
@@ -283,7 +283,7 @@ export default function LibraryQuotesPage() {
                     {(q.chapter || q.context) && (
                       <figcaption className="mt-4 pt-4 border-t border-white/[0.04] space-y-1.5">
                         {q.chapter && (
-                          <p className="text-[11px] uppercase tracking-[0.15em] text-rose-400/60">
+                          <p className="text-[11px] uppercase tracking-[0.15em] text-rose-300">
                             {q.chapter}
                           </p>
                         )}

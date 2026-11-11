@@ -315,14 +315,14 @@ function BookCard({ entry, index }: { entry: StackEntry; index: number }) {
             <span className="font-mono text-[11px] text-orange-300/70">
               {String(index + 1).padStart(2, '0')}
             </span>
-            <span className="text-[10px] uppercase tracking-[0.18em] text-white/30">
+            <span className="text-[10px] uppercase tracking-[0.18em] text-white/60">
               {entry.tier === 'core' ? 'Core' : 'Archetype'}
             </span>
           </div>
           <h3 className="text-lg font-semibold text-white group-hover:text-orange-200 transition-colors leading-snug">
             {entry.title}
           </h3>
-          <p className="text-sm text-white/40">
+          <p className="text-sm text-white/60">
             {entry.author} · {entry.year}
           </p>
           {review && (
@@ -369,7 +369,7 @@ export default function RockstarEnergyPage() {
         <div className="relative max-w-4xl mx-auto text-center">
           <Link
             href="/library"
-            className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white/70 transition-colors mb-8"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden>
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -450,7 +450,7 @@ export default function RockstarEnergyPage() {
           <span className="w-8 h-px bg-orange-500/50" />
           <h2 className="text-xl font-semibold text-white">Start here — the core three</h2>
         </div>
-        <p className="text-sm text-white/40 mb-8 ml-11">
+        <p className="text-sm text-white/60 mb-8 ml-11">
           Immersion, sacred alliance, and inner state. Read these first; they set the frame for
           everything else.
         </p>
@@ -467,7 +467,7 @@ export default function RockstarEnergyPage() {
           <span className="w-8 h-px bg-orange-500/50" />
           <h2 className="text-xl font-semibold text-white">Archetype training — the scenes</h2>
         </div>
-        <p className="text-sm text-white/40 mb-8 ml-11">
+        <p className="text-sm text-white/60 mb-8 ml-11">
           Context, persona, velocity, and reinvention — read these as field studies in how
           scenes form and how style becomes a weapon.
         </p>
@@ -484,7 +484,7 @@ export default function RockstarEnergyPage() {
           <span className="w-8 h-px bg-orange-500/50" />
           <h2 className="text-xl font-semibold text-white">Go deeper — voice, genre &amp; reinvention</h2>
         </div>
-        <p className="text-sm text-white/40 mb-8 ml-11">
+        <p className="text-sm text-white/60 mb-8 ml-11">
           The same thesis, wider aperture — the DIY underground, hip-hop’s birth, the creative
           interior, and reinvention across folk, No Wave, and art-pop. Scenes and selves, beyond
           rock.
@@ -502,7 +502,7 @@ export default function RockstarEnergyPage() {
           <span className="w-8 h-px bg-red-400/60" />
           <h2 className="text-xl font-semibold text-white">The watch list</h2>
         </div>
-        <p className="text-sm text-white/40 mb-8 ml-11">
+        <p className="text-sm text-white/60 mb-8 ml-11">
           Archetype training in motion. Watch each one against the study question — what,
           precisely, are they doing?
         </p>
@@ -524,7 +524,7 @@ export default function RockstarEnergyPage() {
                 <h3 className="text-[15px] font-semibold text-white group-hover:text-red-200 transition-colors leading-snug">
                   {w.title}
                 </h3>
-                <p className="text-[12px] text-white/40 mt-0.5">{w.meta}</p>
+                <p className="text-[12px] text-white/60 mt-0.5">{w.meta}</p>
                 <p className="text-[13.5px] text-white/60 leading-relaxed mt-2">{w.lesson}</p>
               </div>
             </a>
