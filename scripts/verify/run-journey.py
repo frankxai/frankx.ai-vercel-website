@@ -16,13 +16,36 @@ import sys
 import time
 import urllib.error
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
-from zoneinfo import ZoneInfo
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-AMSTERDAM = ZoneInfo("Europe/Amsterdam")
 DEFAULT_PORT = 3107
+
+def _last_sunday(year: int, month: int) -> datetime:
+    if month == 12:
+        day = datetime(year + 1, 1, 1) - timedelta(days=1)
+    else:
+        day = datetime(year, month + 1, 1) - timedelta(days=1)
+    return day - timedelta(days=(day.weekday() - 6) % 7)
+
+
+def amsterdam_tz():
+    """Europe/Amsterdam, with a stdlib CET/CEST fallback when tzdata is missing."""
+    try:
+        return ZoneInfo("Europe/Amsterdam")
+    except ZoneInfoNotFoundError:
+        utc_now = datetime.now(timezone.utc).replace(tzinfo=None)
+        start = _last_sunday(utc_now.year, 3).replace(hour=1, minute=0, second=0)
+        end = _last_sunday(utc_now.year, 10).replace(hour=1, minute=0, second=0)
+        if start <= utc_now < end:
+            return timezone(timedelta(hours=2), name="CEST")
+        return timezone(timedelta(hours=1), name="CET")
+
+
+AMSTERDAM = amsterdam_tz()
+
 PROD_ORIGIN = "https://www.frankx.ai"
 READY_PATH = "/legal/privacy"
 READY_NEEDLES = ("Privacy Policy", "Frank Riemer")
