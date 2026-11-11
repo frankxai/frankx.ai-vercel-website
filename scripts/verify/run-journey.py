@@ -148,6 +148,16 @@ def shutil_which(name: str) -> str | None:
 
     return shutil.which(name)
 
+def run_capture(args: list[str]) -> str:
+    """Run a process and decode stdout with the Windows OEM code page when needed."""
+    encoding = "oem" if os.name == "nt" else "utf-8"
+    return subprocess.check_output(
+        args,
+        stderr=subprocess.DEVNULL,
+        encoding=encoding,
+        errors="replace",
+    )
+
 
 # ---------------------------------------------------------------------------
 # Process / port helpers
@@ -158,10 +168,8 @@ def pid_is_running(pid: int) -> bool:
         return False
     if os.name == "nt":
         try:
-            output = subprocess.check_output(
+            output = run_capture(
                 ["tasklist", "/FI", f"PID eq {pid}", "/FO", "CSV", "/NH"],
-                text=True,
-                stderr=subprocess.DEVNULL,
             )
         except (subprocess.CalledProcessError, FileNotFoundError):
             return False
@@ -176,15 +184,13 @@ def pid_is_running(pid: int) -> bool:
 def parent_pid(pid: int) -> int | None:
     if os.name == "nt":
         try:
-            output = subprocess.check_output(
+            output = run_capture(
                 [
                     "powershell",
                     "-NoProfile",
                     "-Command",
                     f"(Get-CimInstance Win32_Process -Filter 'ProcessId={pid}').ParentProcessId",
                 ],
-                text=True,
-                stderr=subprocess.DEVNULL,
             ).strip()
             return int(output) if output else None
         except (subprocess.CalledProcessError, ValueError, FileNotFoundError):
@@ -222,11 +228,7 @@ def listening_pids(port: int) -> list[int]:
     pids: set[int] = set()
     if os.name == "nt":
         try:
-            output = subprocess.check_output(
-                ["netstat", "-ano", "-p", "tcp"],
-                text=True,
-                stderr=subprocess.DEVNULL,
-            )
+            output = run_capture(["netstat", "-ano", "-p", "tcp"])
         except (subprocess.CalledProcessError, FileNotFoundError):
             return []
         token = f":{port}"
