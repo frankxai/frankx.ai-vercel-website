@@ -4,12 +4,19 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { List, X } from 'lucide-react';
 import type { TOCItem } from '../types';
+import {
+  tocPanelInertProps,
+  tocPanelTranslateClass,
+  type TocVariant,
+} from '../lib/tocPanel';
 
 interface TableOfContentsProps {
   items: TOCItem[];
+  /** desktop: always visible/focusable at lg+. mobile: drawer; inert when closed. */
+  variant: TocVariant;
 }
 
-export default function TableOfContents({ items }: TableOfContentsProps) {
+export default function TableOfContents({ items, variant }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>('');
   const [isOpen, setIsOpen] = useState(false);
 
@@ -50,6 +57,8 @@ export default function TableOfContents({ items }: TableOfContentsProps) {
     }
   };
 
+  const inertProps = tocPanelInertProps(variant, isOpen);
+
   return (
     <>
       {/* Mobile Toggle Button */}
@@ -77,20 +86,25 @@ export default function TableOfContents({ items }: TableOfContentsProps) {
       </AnimatePresence>
 
       {/* Table of Contents.
-          Closed-state translate is CSS-only (translate-x-full lg:translate-x-0)
-          so the panel stays on-screen at lg+, where the toggle is hidden.
+          Closed-state translate is CSS-only so the panel stays on-screen at
+          lg+, where the toggle is hidden. Use calc(100%+1.5rem) rather than
+          translate-x-full so the right-6 inset does not leave a 24px sliver.
           Framer Motion animate={{ x }} previously set an inline transform that
-          overrode lg:translate-x-0 and hid the desktop panel. */}
+          overrode lg:translate-x-0 and hid the desktop panel.
+          inert / aria-hidden apply only to the mobile instance when closed
+          (React 18: pass inert={true} only when closed; omit the attribute
+          when the panel must be focusable, never inert={false}). */}
       <aside
         id="toc-panel"
         role="navigation"
         aria-label="Table of contents"
+        {...inertProps}
         className={`
           fixed top-24 right-6 w-72 max-h-[calc(100vh-8rem)] overflow-y-auto
           bg-white dark:bg-slate-900 border-2 border-gray-200 dark:border-gray-800 rounded-xl shadow-xl
           p-6 space-y-4 z-40
           transition-transform duration-300 ease-out
-          ${isOpen ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'}
+          ${tocPanelTranslateClass(isOpen)}
           scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700
         `}
       >

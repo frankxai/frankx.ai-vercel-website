@@ -8,7 +8,8 @@ import { ArrowLeft, Clock, BookOpen } from 'lucide-react';
 import ReadingProgress from './ReadingProgress';
 import TableOfContents from './TableOfContents';
 import ChapterNav from './ChapterNav';
-import type { Chapter, TOCItem } from '../types';
+import { extractChapterToc, tocHeadingSourceText } from '../lib/extractChapterToc';
+import type { Chapter } from '../types';
 
 interface ChapterReaderProps {
   chapter: Chapter;
@@ -23,51 +24,22 @@ export default function ChapterReader({
   previousChapter,
   nextChapter,
 }: ChapterReaderProps) {
-  // Extract TOC from content
-  const tocItems = useMemo(() => {
-    const items: TOCItem[] = [];
-    const headingRegex = /^(#{1,3})\s+(.+)$/gm;
-    let match;
-
-    while ((match = headingRegex.exec(content)) !== null) {
-      const level = match[1].length;
-      const text = match[2].trim();
-
-      // Skip if it's just a chapter title or sources
-      if (
-        text.toLowerCase().includes('chapter') ||
-        text.toLowerCase().includes('source') ||
-        text.toLowerCase().includes('quotable') ||
-        text.toLowerCase().includes('end chapter')
-      ) {
-        continue;
-      }
-
-      // Create ID from text
-      const id = text
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-|-$/g, '');
-
-      items.push({ id, text, level });
-    }
-
-    return items;
-  }, [content]);
+  const tocItems = useMemo(() => extractChapterToc(content), [content]);
 
   // Process markdown content with sanitization
   const htmlContent = useMemo(() => {
     // Add IDs to headings for TOC navigation
     let processedContent = content;
     tocItems.forEach((item) => {
-      const escapedText = item.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const sourceText = tocHeadingSourceText(item);
+      const escapedText = sourceText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       const headingPattern = new RegExp(
         `^#{${item.level}}\\s+${escapedText}$`,
         'm'
       );
       processedContent = processedContent.replace(
         headingPattern,
-        `${'#'.repeat(item.level)} <span id="${item.id}">${item.text}</span>`
+        `${'#'.repeat(item.level)} <span id="${item.id}">${sourceText}</span>`
       );
     });
 
@@ -193,7 +165,7 @@ export default function ChapterReader({
             {tocItems.length > 0 && (
               <div className="hidden lg:block flex-shrink-0 w-80">
                 <div className="sticky top-24">
-                  <TableOfContents items={tocItems} />
+                  <TableOfContents items={tocItems} variant="desktop" />
                 </div>
               </div>
             )}
@@ -203,7 +175,7 @@ export default function ChapterReader({
         {/* Mobile TOC */}
         {tocItems.length > 0 && (
           <div className="lg:hidden">
-            <TableOfContents items={tocItems} />
+            <TableOfContents items={tocItems} variant="mobile" />
           </div>
         )}
       </div>
