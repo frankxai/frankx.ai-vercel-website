@@ -178,6 +178,9 @@ jobs:
       - name: MCP endpoint contract (read-only, no priced claims)
         run: pnpm run test:mcp
 
+      - name: AI SDK API route smokes (mocked, no network)
+        run: pnpm run test:ai-sdk-routes
+
       - name: Navigation completeness
         run: pnpm run test:navigation-completeness
 

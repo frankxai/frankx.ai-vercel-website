@@ -55,7 +55,7 @@ function workerTools(providerKey?: string) {
         // A focused worker sub-agent: one tight call, single responsibility.
         const { text } = await generateText({
           model: model(providerKey),
-          system:
+          instructions:
             'You are a precise writer. Turn the supplied notes into a clear, ' +
             'well-structured answer. Do not invent facts beyond the notes.',
           prompt: `Topic: ${topic}\n\nNotes:\n${notes

@@ -124,7 +124,7 @@ Propose at most 15 fixes total. Quality over quantity.`
     const result = await generateObject({
       model,
       schema: ProposalsResponseSchema,
-      system: systemPrompt,
+      instructions: systemPrompt,
       prompt: userPrompt,
       temperature: 0.2,
     })
