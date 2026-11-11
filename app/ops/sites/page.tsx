@@ -2,6 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import path from 'node:path'
 import { promises as fs } from 'node:fs'
+import { headers } from 'next/headers'
+import { notFound } from 'next/navigation'
+import { verifyAdminSecret } from '@/lib/admin-secret'
 
 export const metadata: Metadata = {
   title: 'Sites — Sentinel | FrankX Ops',
@@ -226,6 +229,10 @@ function MetricBadge({ value, budget, lowerIsBetter = true, suffix = '' }: {
 }
 
 export default async function SitesOpsPage() {
+  const secret = process.env.ADMIN_SECRET
+  const candidate = (await headers()).get('x-admin-secret')
+  if (!secret || !candidate || !verifyAdminSecret(candidate, secret)) notFound()
+
   const summaries = await gatherAll()
   const briefMd = summaries[0]?.brief
 
