@@ -12,6 +12,7 @@ import {
   Menu,
   X
 } from 'lucide-react';
+import { extractChapterToc } from '../lib/extractChapterToc';
 import type { Chapter, TOCItem } from '../types';
 
 interface PremiumReaderProps {
@@ -234,36 +235,7 @@ export default function PremiumReader({
 }: PremiumReaderProps) {
   const [mobileTocOpen, setMobileTocOpen] = useState(false);
 
-  // Extract TOC from content
-  const tocItems = useMemo(() => {
-    const items: TOCItem[] = [];
-    const headingRegex = /^(#{2,3})\s+(.+)$/gm;
-    let match;
-
-    while ((match = headingRegex.exec(content)) !== null) {
-      const level = match[1].length;
-      const text = match[2].trim();
-
-      // Skip metadata sections
-      if (
-        text.toLowerCase().includes('chapter') ||
-        text.toLowerCase().includes('source') ||
-        text.toLowerCase().includes('quotable') ||
-        text.toLowerCase().includes('end chapter')
-      ) {
-        continue;
-      }
-
-      const id = text
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-|-$/g, '');
-
-      items.push({ id, text, level });
-    }
-
-    return items;
-  }, [content]);
+  const tocItems = useMemo(() => extractChapterToc(content), [content]);
 
   // Process markdown content
   const htmlContent = useMemo(() => {
