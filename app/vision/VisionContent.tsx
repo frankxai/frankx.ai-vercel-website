@@ -435,7 +435,7 @@ export default function VisionContent() {
                 icon: Rocket,
                 stat: 'Infinite Leverage',
                 title: 'The Window Is Now',
-                body: "The people building today will own the infrastructure of tomorrow. This is structural. The gap between what one person can build now versus five years ago is wide.",
+                body: "The gap between what one person can build now versus five years ago is wide.",
                 color: 'text-violet-400',
               },
             ].map((card, i) => (

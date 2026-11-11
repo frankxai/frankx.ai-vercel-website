@@ -59,7 +59,7 @@ const visionImages = [
     src: '/images/social/great-transition-split.png',
     alt: 'The Great Transition — from the old world to the builder economy',
     title: 'The Great Transition',
-    href: '/blog/the-great-transition',
+    href: '/books/great-transition',
     aspect: 'landscape' as const,
   },
   {
