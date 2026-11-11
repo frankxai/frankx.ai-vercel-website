@@ -118,7 +118,7 @@ const timeline = [
     items: [
       'First courses live with real enrollment',
       'Community platform for builders',
-      'First $10k/month from products',
+      'Revenue from products',
       'Speaking engagements and visibility',
       'AI music distribution deal',
     ],
@@ -419,9 +419,9 @@ export default function VisionContent() {
             {[
               {
                 icon: Building2,
-                stat: '$20/month tools',
+                stat: 'Accessible tools',
                 title: 'The Old Barriers Are Gone',
-                body: 'Tools that cost millions five years ago now cost $20/month. The capital requirement for building a real business has collapsed to nearly zero.',
+                body: 'Tools that cost millions five years ago are now within reach of a solo builder. The capital requirement for building a real business has collapsed to nearly zero.',
                 color: 'text-emerald-400',
               },
               {
