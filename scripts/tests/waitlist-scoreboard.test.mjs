@@ -1,0 +1,52 @@
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import { tally, toMarkdown } from '../waitlist/scoreboard-core.mjs'
+
+const now = new Date('2026-11-10T12:00:00Z')
+const sig = (o) => ({ productId: 'p', consent: true, position: 1, createdAt: '2026-11-09T10:00:00Z', ...o })
+
+test('counts real signups by source, campaign, price band and urgency; test addresses excluded', () => {
+  const t = tally(
+    [
+      sig({ email: 'a@acme.io', source: '/community', utm: { utm_source: 'linkedin', utm_campaign: 'launch' }, priceBand: '300-999', urgency: 'now' }),
+      sig({ email: 'b@acme.io', source: 'starlightintelligence.academy/apply', priceBand: 'under-25' }),
+      sig({ email: 'c@acme.io', source: '/community', createdAt: '2026-10-01T00:00:00Z' }),
+      sig({ email: 'friemerx+waitlist-test@gmail.com', source: '/community' }),
+      sig({ email: 'x@example.com', source: '/community' }),
+    ],
+    { now },
+  )
+  assert.equal(t.total, 3)
+  assert.equal(t.testSignalsExcluded, 2)
+  assert.equal(t.last7Days, 2)
+  assert.equal(t.paidIntent, 1)
+  assert.equal(t.startNow, 1)
+  assert.deepEqual(t.source, [['frankx.ai/community', 2], ['academy', 1]])
+  assert.deepEqual(t.campaign[0], ['none', 2])
+  assert.deepEqual(t.urgency, [['not answered', 2], ['now', 1]])
+})
+
+test('an empty list reads as zero, not as an estimate', () => {
+  const t = tally([], { now })
+  assert.equal(t.total, 0)
+  const md = toMarkdown('starlight-academy-operator-lab', t)
+  assert.match(md, /\| Total signups \| 0 \|/)
+  assert.doesNotMatch(md, /estimate|projected|~/i)
+})
+
+test('the scoreboard refuses a writable token: it reads only with the read-only one', async () => {
+  const { spawnSync } = await import('node:child_process')
+  const run = spawnSync(process.execPath, ['scripts/waitlist/scoreboard.mjs'], {
+    env: { PATH: process.env.PATH, KV_REST_API_URL: 'https://kv.invalid', KV_REST_API_TOKEN: 'rw', UPSTASH_REDIS_REST_TOKEN: 'rw' },
+    encoding: 'utf8',
+  })
+  assert.equal(run.status, 2)
+  assert.match(run.stderr, /KV_REST_API_READ_ONLY_TOKEN/)
+})
+
+test('a malformed stored signal is skipped and counted, never crashes the scoreboard', async () => {
+  const { parseSignals } = await import('../waitlist/scoreboard-core.mjs')
+  const { signals, skipped } = parseSignals(['{"email":"a@example.com","consent":true}', '{oops', 42])
+  assert.equal(signals.length, 1)
+  assert.equal(skipped, 2)
+})
