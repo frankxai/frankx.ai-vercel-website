@@ -1,4 +1,4 @@
-import { marked } from 'marked'
+import { Marked } from 'marked'
 import DOMPurify from 'isomorphic-dompurify'
 
 /**
@@ -47,28 +47,52 @@ export function sanitizePromptHtml(html: string): string {
   return DOMPurify.sanitize(html, promptSanitizeConfig)
 }
 
-/**
- * Parse markdown with the chapter marked options, then sanitize.
- * setOptions is called on every invocation because marked options are global
- * and must not leak into the prompt policy (or vice versa).
+/*
+ * Main's effective marked options at 3b9352ea (including global setOptions
+ * side effects and import order):
+ *
+ * The site used the default marked singleton. PromptCard called
+ * marked.setOptions({ gfm: true, breaks: false }) once at module evaluation
+ * and then marked.parse(body, { async: false }) on each render, without
+ * resetting options. ChapterReader and PremiumReader called
+ * marked.setOptions({ gfm: true, breaks: true }) on every render, then
+ * marked.parse(processedContent) with no async flag.
+ *
+ * Because those chapter renders mutate the same singleton:
+ * - A chapter render's effective options were always { gfm: true, breaks: true },
+ *   regardless of whether PromptCard had already been imported.
+ * - A PromptCard render's effective options were { gfm: true, breaks: false }
+ *   after its own module init, and stayed that way until a chapter renderer
+ *   ran in the same cached client graph. After a chapter render (typical
+ *   client navigation: workshop → chapter → back to workshop, PromptCard
+ *   module already evaluated), a later PromptCard render inherited
+ *   breaks: true. Soft linebreaks such as "alpha\nbeta" then became
+ *   <p>alpha<br>beta</p> instead of <p>alpha\nbeta</p>.
+ *
+ * These helpers use a scoped `new Marked(...)` instance per policy and never
+ * call the global marked.setOptions or marked.use. Chapter output matches
+ * main at every chapter render. Prompt output matches main's intended
+ * PromptCard configuration (module-init options), not the leaked
+ * post-chapter state. That leak is a deliberate isolation fix, not preserved.
  */
+const chapterParser = new Marked({
+  gfm: true,
+  breaks: true,
+})
+
+const promptParser = new Marked({
+  gfm: true,
+  breaks: false,
+})
+
+/** Parse markdown with the chapter marked options, then sanitize. */
 export function renderSanitizedChapterMarkdown(markdown: string): string {
-  marked.setOptions({
-    gfm: true,
-    breaks: true,
-  })
-  const rawHtml = marked.parse(markdown)
+  const rawHtml = chapterParser.parse(markdown)
   return sanitizeChapterHtml(rawHtml as string)
 }
 
-/**
- * Parse markdown with the prompt marked options, then sanitize.
- * setOptions is called on every invocation for the same reason as the chapter helper.
- * PromptCard historically set these options at module load; calling them here
- * preserves the same options at parse time.
- */
+/** Parse markdown with the prompt marked options, then sanitize. */
 export function renderSanitizedPromptMarkdown(markdown: string): string {
-  marked.setOptions({ gfm: true, breaks: false })
-  const html = marked.parse(markdown, { async: false }) as string
+  const html = promptParser.parse(markdown, { async: false }) as string
   return sanitizePromptHtml(html)
 }

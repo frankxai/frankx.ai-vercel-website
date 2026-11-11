@@ -237,6 +237,9 @@ Hello **world** and a [safe link](https://frankx.ai).
   raw_html_entity_hex_href: 'Hello <a href="&#x6A;avascript:alert(1)">link</a>',
   malformed_svg: 'Hi <svg onload=alert(1)><script>alert(1)</script></svg>',
   malformed_mathml: 'Hi <math><mi xlink:href="javascript:alert(1)">x</mi></math>',
+  single_newline_in_paragraph: 'alpha\nbeta',
+  trailing_double_space: 'alpha  \nbeta',
+  list: '- one\n- two',
 }
 
 for (const [name, markdown] of Object.entries(CHAPTER_MARKDOWN_CASES)) {
@@ -263,6 +266,9 @@ const PROMPT_MARKDOWN_CASES = {
   markdown_javascript_link: 'See [click](javascript:alert(1)) please',
   raw_html_entity_decimal_href: 'Hello <a href="&#106;avascript:alert(1)">link</a>',
   raw_html_entity_hex_href: 'Hello <a href="&#x6A;avascript:alert(1)">link</a>',
+  single_newline_in_paragraph: 'alpha\nbeta',
+  trailing_double_space: 'alpha  \nbeta',
+  list: '- one\n- two',
 }
 
 for (const [name, markdown] of Object.entries(PROMPT_MARKDOWN_CASES)) {
@@ -281,10 +287,17 @@ for (const [name, markdown] of Object.entries(PROMPT_MARKDOWN_CASES)) {
 }
 
 
-// Exact ChapterReader / PremiumReader TOC heading-id injection, kept in the
-// components (not extracted). Used only to prove the real chapter path.
+// ChapterReader heading-id injection (h1–h3). Kept in the component, not extracted.
 function injectChapterHeadingIds(content) {
-  const headingRegex = /^(#{1,3})\s+(.+)$/gm
+  return injectHeadingIds(content, /^(#{1,3})\s+(.+)$/gm)
+}
+
+// PremiumReader heading-id injection (h2–h3 only; h1 is left without an id span).
+function injectPremiumHeadingIds(content) {
+  return injectHeadingIds(content, /^(#{2,3})\s+(.+)$/gm)
+}
+
+function injectHeadingIds(content, headingRegex) {
   const toc = []
   let match
   while ((match = headingRegex.exec(content)) !== null) {
@@ -316,9 +329,19 @@ function injectChapterHeadingIds(content) {
   return processedContent
 }
 
+const TOC_MARKDOWN_CASES = {
+  'h1-and-h2': `# Opening Title
+
+## A Section
+
+Some text.
+`,
+}
+
 const SNAPSHOT = JSON.parse(
   readFileSync(path.join(root, 'scripts/tests/fixtures/sanitize-markdown-snapshots.json'), 'utf8'),
 )
+
 
 function renderSnapshotCase(id) {
   const slash = id.indexOf('/')
@@ -330,9 +353,19 @@ function renderSnapshotCase(id) {
   if (group === 'encoded-js-prompt') return sanitizePromptHtml(ENCODED_JS_HREFS[key])
   if (group === 'chapter-md') return renderSanitizedChapterMarkdown(CHAPTER_MARKDOWN_CASES[key])
   if (group === 'prompt-md') return renderSanitizedPromptMarkdown(PROMPT_MARKDOWN_CASES[key])
+  if (group === 'chapter-toc') {
+    return renderSanitizedChapterMarkdown(injectChapterHeadingIds(TOC_MARKDOWN_CASES[key]))
+  }
+  if (group === 'premium-toc') {
+    return renderSanitizedChapterMarkdown(injectPremiumHeadingIds(TOC_MARKDOWN_CASES[key]))
+  }
   if (group === 'real-chapter') {
     const md = readFileSync(path.join(root, 'content/golden-age-book', key), 'utf8')
     return renderSanitizedChapterMarkdown(injectChapterHeadingIds(md))
+  }
+  if (group === 'real-chapter-premium') {
+    const md = readFileSync(path.join(root, 'content/golden-age-book', key), 'utf8')
+    return renderSanitizedChapterMarkdown(injectPremiumHeadingIds(md))
   }
   if (group === 'real-prompt') {
     const prompt = WORKSHOP_PROMPTS.find((p) => p.id === key)
@@ -342,9 +375,10 @@ function renderSnapshotCase(id) {
   throw new Error(`unknown snapshot id ${id}`)
 }
 
-test('shared sanitize module is byte-identical to pre-extract snapshots', () => {
+test('shared sanitize module matches fixtures captured from main inline paths', () => {
   assert.equal(SNAPSHOT.capturedAt, 'pre-extract')
   assert.equal(SNAPSHOT.sourceSha, '3b9352ea83d96766dac5da657ba14180684bc3dc')
+  assert.equal(SNAPSHOT.capturedBy, 'scripts/tests/capture-sanitize-snapshots.mjs')
   assert.ok(Array.isArray(SNAPSHOT.cases) && SNAPSHOT.cases.length > 0)
 
   const seen = new Set()
@@ -355,7 +389,7 @@ test('shared sanitize module is byte-identical to pre-extract snapshots', () => 
     assert.equal(
       actual,
       entry.html,
-      `${entry.id} is not byte-identical to the pre-extract snapshot`,
+      `${entry.id} does not match the fixture captured from main's inline paths`,
     )
   }
 
@@ -373,14 +407,67 @@ test('shared sanitize module is byte-identical to pre-extract snapshots', () => 
   for (const name of Object.keys(PROMPT_MARKDOWN_CASES)) {
     assert.ok(seen.has(`prompt-md/${name}`), `missing snapshot for prompt-md/${name}`)
   }
+  for (const name of Object.keys(TOC_MARKDOWN_CASES)) {
+    assert.ok(seen.has(`chapter-toc/${name}`), `missing snapshot for chapter-toc/${name}`)
+    assert.ok(seen.has(`premium-toc/${name}`), `missing snapshot for premium-toc/${name}`)
+  }
   for (const file of [
     'chapter-01-when-creation-calls.md',
     'chapter-02-the-orchestration-age.md',
     'chapter-03-the-first-gesture.md',
   ]) {
     assert.ok(seen.has(`real-chapter/${file}`), `missing snapshot for real-chapter/${file}`)
+    assert.ok(seen.has(`real-chapter-premium/${file}`), `missing snapshot for real-chapter-premium/${file}`)
   }
   for (const id of ['ai-initial-assessment', 'socratic-ikigai', 'dream-doubt-validator']) {
     assert.ok(seen.has(`real-prompt/${id}`), `missing snapshot for real-prompt/${id}`)
   }
+})
+
+// Expected HTML taken from main (3b9352ea) inline paths, in isolation
+// (each policy's own setOptions immediately before parse).
+test('soft linebreaks match main isolated-path output for chapter and prompt', () => {
+  assert.equal(
+    renderSanitizedChapterMarkdown('alpha\nbeta'),
+    '<p>alpha<br>beta</p>\n',
+  )
+  assert.equal(
+    renderSanitizedPromptMarkdown('alpha\nbeta'),
+    '<p>alpha\nbeta</p>\n',
+  )
+  assert.equal(
+    renderSanitizedChapterMarkdown('alpha  \nbeta'),
+    '<p>alpha<br>beta</p>\n',
+  )
+  assert.equal(
+    renderSanitizedPromptMarkdown('alpha  \nbeta'),
+    '<p>alpha<br>beta</p>\n',
+  )
+  const listHtml = '<ul>\n<li>one</li>\n<li>two</li>\n</ul>\n'
+  assert.equal(renderSanitizedChapterMarkdown('- one\n- two'), listHtml)
+  assert.equal(renderSanitizedPromptMarkdown('- one\n- two'), listHtml)
+})
+
+test('scoped parsers do not leak breaks options across chapter and prompt renders', () => {
+  // chapter then prompt
+  assert.equal(renderSanitizedChapterMarkdown('alpha\nbeta'), '<p>alpha<br>beta</p>\n')
+  assert.equal(renderSanitizedPromptMarkdown('alpha\nbeta'), '<p>alpha\nbeta</p>\n')
+  // prompt then chapter then prompt again
+  assert.equal(renderSanitizedPromptMarkdown('alpha\nbeta'), '<p>alpha\nbeta</p>\n')
+  assert.equal(renderSanitizedChapterMarkdown('alpha\nbeta'), '<p>alpha<br>beta</p>\n')
+  assert.equal(renderSanitizedPromptMarkdown('alpha\nbeta'), '<p>alpha\nbeta</p>\n')
+})
+
+test('PremiumReader TOC injection skips h1 ids that ChapterReader inserts', () => {
+  const md = TOC_MARKDOWN_CASES['h1-and-h2']
+  const chapter = renderSanitizedChapterMarkdown(injectChapterHeadingIds(md))
+  const premium = renderSanitizedChapterMarkdown(injectPremiumHeadingIds(md))
+  assert.equal(
+    chapter,
+    '<h1><span id="opening-title">Opening Title</span></h1>\n<h2><span id="a-section">A Section</span></h2>\n<p>Some text.</p>\n',
+  )
+  assert.equal(
+    premium,
+    '<h1>Opening Title</h1>\n<h2><span id="a-section">A Section</span></h2>\n<p>Some text.</p>\n',
+  )
 })
