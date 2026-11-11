@@ -115,6 +115,9 @@ export const config = {
     '/api/dashboard/:path*',
     '/api/leads/:path*',
     '/api/admin/:path*',
-    '/((?!api/|_next/static|_next/image|_next/data|favicon.ico|robots.txt|sitemap.xml|llms.txt|llms-full.txt|images/|fonts/).*)',
+    // `.+` rather than `.*`: the homepage `/` is left out. None of the branches above act on `/`
+    // (markdown negotiation skips it, it is not gated or localised), so running the proxy there only
+    // added a function invocation in front of a prerendered page.
+    '/((?!api/|_next/static|_next/image|_next/data|favicon.ico|robots.txt|sitemap.xml|llms.txt|llms-full.txt|images/|fonts/).+)',
   ],
 }

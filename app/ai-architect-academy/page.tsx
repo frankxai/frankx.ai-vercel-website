@@ -333,7 +333,7 @@ export default function AIArchitectAcademyPage() {
                 <ExternalLink className="h-4 w-4 text-slate-500" />
               </a>
               <Link
-                href="/prototypes"
+                href="/ai-architecture/blueprints"
                 className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold text-white transition-all hover:bg-white/10"
               >
                 <Layers className="h-5 w-5" />

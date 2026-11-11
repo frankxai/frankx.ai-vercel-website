@@ -11,6 +11,11 @@ import { MDXContent } from '@/components/blog/MDXContent'
 
 const SITE_URL = 'https://www.frankx.ai'
 
+// Tailwind only scans app/ and components/, so it never sees the layer classes in lib/mvu-display.ts.
+// They are repeated here as plain text so their CSS is generated. Keep this list in step with that file:
+// text-amber-200 border-amber-200/20 bg-amber-100/[0.04] text-tech-light border-tech-light/20 bg-tech-light/[0.04]
+// text-emerald-300 border-emerald-300/20 bg-emerald-300/[0.04]
+
 export const dynamic = 'force-static'
 export const dynamicParams = false
 

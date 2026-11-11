@@ -12,7 +12,7 @@ import NavigationMega from '@/components/NavigationMega'
 import CommandPaletteProvider from '@/components/CommandPaletteProvider'
 import Footer from '@/components/Footer'
 import { MusicRuntime } from '@/components/music/MusicRuntime'
-import { getPlaybackCatalog } from '@/lib/music-playback-catalog'
+import { getPlayableCatalog } from '@/lib/music-playback-catalog'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
@@ -20,6 +20,7 @@ import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
 
 
 import { PrivacySafeAnalytics } from "@/components/analytics/PrivacySafeAnalytics"
+import { DatadogRum } from "@/components/analytics/DatadogRum"
 // AIS Plan A Task 21 — Schema.org @graph injected into <head> for AEO/GEO
 const aisSchemaGraph = (() => {
   try {
@@ -178,7 +179,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <SessionProvider>
-          <MusicRuntime catalog={getPlaybackCatalog()}>
+          <MusicRuntime catalog={getPlayableCatalog()}>
             <OrganizationJsonLd />
             <a
               href="#main"
@@ -201,6 +202,7 @@ export default function RootLayout({
             </div>
             <Footer />
             <PrivacySafeAnalytics />
+            <DatadogRum />
           </MusicRuntime>
         </SessionProvider>
       </body>

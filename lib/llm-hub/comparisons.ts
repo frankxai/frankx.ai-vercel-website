@@ -43,6 +43,125 @@ export interface Comparison {
 
 export const COMPARISONS: Comparison[] = [
   {
+    slug: 'claude-opus-5-vs-gemini-4-argon',
+    models: ['claude-opus-5', 'gemini-4-argon'],
+    title: 'Claude Opus 5 vs Gemini 4 Argon',
+    description:
+      'Claude Opus 5 vs Gemini 4 Argon: $5/$25 judgment and long-form craft against $2/$10 ($0.10 cached) 1M native multimodal throughput. Backed by Starlight Arena Round 6 receipt.',
+    verdict:
+      'Both passed 5/5 tasks in Starlight Arena Round 6. Route whole-repo + video/PDF multimodal workloads and warm-cache loops to Gemini 4 Argon at 40% of the token cost; route adversarial review, ambiguous specs, and long-form editorial voice to Claude Opus 5.',
+    analysis: [
+      'In Starlight Model Arena Round 6 (2026-10-14, receipt published at /research/arena-receipts/2026-10-14-r6-gemini-4-argon-proving-ground.json), both Claude Opus 5 and Gemini 4 Argon completed 5/5 tasks covering Next.js 16 TypeScript row normalization, WCAG AA dark-mode UI synthesis, a 7-rule editorial constraint stack, provenance-boundary pushback, and Langfuse Cloud EU telemetry wiring.',
+      'The economic and modality split is sharp: Gemini 4 Argon runs at $2.00/$10.00 per million tokens with a $0.10/1M cached-input rate (through 30 November 2026) and accepts native text, vision, audio, video, and PDF across a 1,048,576-token window. Opus 5 runs at $5.00/$25.00 per million tokens across text, vision, and code.',
+      'Named weakness from Round 6: Argon required thinking=high to flag the subtle provenance-violation prompt on Task 4, whereas Opus 5 pushed back immediately on default settings and delivered stronger micro-interaction and prose polish.',
+    ],
+    pickFirst: [
+      'Adversarial code review, architecture gates, and ambiguous specifications',
+      'Long-form books, essays, and brand-critical editorial voice',
+      'Default-on situational judgment without tuning thinking effort parameters',
+    ],
+    pickSecond: [
+      'Native video, audio, image, and PDF ingestion alongside large codebases (1M window)',
+      'Warm-cache repository loops where $0.10/1M cached input cuts token spend by 80%+',
+      'High-frequency UI/UX and TypeScript generation at sub-2.4s latency',
+    ],
+    keywords: [
+      'claude opus 5 vs gemini 4 argon',
+      'gemini 4 argon vs claude opus 5',
+      'gemini 4 argon review',
+      'gemini 4 argon pricing',
+      'best ai model october 2026',
+    ],
+    architect: {
+      call: 'Pair them by stage: Gemini 4 Argon ingests the 1M multimodal context (repo + screen recordings + docs) and drafts the implementation; Claude Opus 5 runs the Crown Gate review and polishes customer-facing copy.',
+      coePillar: 'Technology · multi-model routing + Data · context economics',
+      personas: [
+        { persona: 'Multimodal & repo ingest agents', pick: 'Gemini 4 Argon ($0.10/M cached)' },
+        { persona: 'UI/UX & fast TypeScript builders', pick: 'Gemini 4 Argon (thinking=medium)' },
+        { persona: 'Adversarial reviewer / governance gate', pick: 'Claude Opus 5' },
+        { persona: 'Long-form author & editorial voice', pick: 'Claude Opus 5' },
+      ],
+    },
+  },
+  {
+    slug: 'gemini-4-argon-vs-gpt-5-5',
+    models: ['gemini-4-argon', 'gpt-5-5'],
+    title: 'Gemini 4 Argon vs GPT-5.5',
+    description:
+      'Gemini 4 Argon vs GPT-5.5: $2/$10 1M native multimodal flagship vs $5/$30 desktop and terminal agent specialist. First-party Round 6 receipt comparison.',
+    verdict:
+      'Gemini 4 Argon passed 5/5 tasks in Starlight Arena Round 6 against GPT-5.5’s 3/5 (2 partials on WCAG contrast and strict word-window cap), while costing 60–67% less per token. Keep GPT-5.5 where Codex-native terminal or OSWorld desktop loops are already qualified.',
+    analysis: [
+      'Starlight Arena Round 6 tested both models on the same five mechanical tasks. Gemini 4 Argon passed all five (5/5) at $2.00/$10.00 per million tokens. GPT-5.5 passed three (TypeScript row joiner, provenance pushback, Langfuse adapter) and scored partial on two: its secondary muted badge text fell below the 4.5:1 WCAG AA contrast threshold on Task 2, and its Task 3 brief ran 9 words over the 265-word ceiling.',
+      'On unit economics, Argon’s $2/$10 ($0.10 cached input through 30 November 2026) undercuts GPT-5.5’s $5/$30 by 2.5x on input and 3x on output, while holding a full 1,048,576-token window across text, image, audio, video, and PDF.',
+      'GPT-5.5 retains its advantage inside OpenAI’s Codex CLI harness and customer-workflow automation where teams have already validated its tool-calling schemas.',
+    ],
+    pickFirst: [
+      'You need 1M native multimodal context (including video and audio) at $2/$10',
+      'Strict formatting caps and WCAG-compliant UI component generation',
+      'Warm-cache agentic loops ($0.10/1M cached input)',
+    ],
+    pickSecond: [
+      'Existing OpenAI Codex CLI and Responses API production pipelines',
+      'OSWorld-style desktop automation already tuned to GPT-5.5',
+      'Workloads paired with OpenAI’s realtime voice stack',
+    ],
+    keywords: [
+      'gemini 4 argon vs gpt-5.5',
+      'gemini 4 vs gpt 5.5',
+      'gemini 4 argon benchmarks',
+      'google deepmind gemini 4 argon',
+    ],
+    architect: {
+      call: 'For new multimodal and web-engineering pipelines, start with Gemini 4 Argon and verify cache hit rates in Langfuse. Migrate GPT-5.5 workloads only when re-running your own harness receipt confirms parity on your tool schemas.',
+      coePillar: 'Technology · model routing + Governance · receipt-backed migration',
+      personas: [
+        { persona: 'Web UI & TypeScript builders', pick: 'Gemini 4 Argon (5/5 Round 6)' },
+        { persona: 'Multimodal video/audio analysts', pick: 'Gemini 4 Argon' },
+        { persona: 'Codex CLI terminal agents', pick: 'GPT-5.5' },
+      ],
+    },
+  },
+  {
+    slug: 'claude-sonnet-5-vs-gemini-4-argon',
+    models: ['claude-sonnet-5', 'gemini-4-argon'],
+    title: 'Claude Sonnet 5 vs Gemini 4 Argon',
+    description:
+      'Claude Sonnet 5 vs Gemini 4 Argon: the $2/$10 production workhorse duel. Both have 1M context and 5/5 Round 6 Arena receipts — here is how to route between them.',
+    verdict:
+      'Price-matched at $2/$10 per million tokens and tied at 5/5 in Starlight Arena Round 6. Pick Claude Sonnet 5 for Claude Code / MCP-native software engineering and editorial drafting; pick Gemini 4 Argon when native video/audio/PDF input or $0.10/M cached context dominates.',
+    analysis: [
+      'This is the most practical daily-driver comparison in October 2026: both Claude Sonnet 5 and Gemini 4 Argon sit at $2.00 input / $10.00 output per million tokens, both offer a 1M-token context window, and both scored 5/5 in Starlight Model Arena Round 6.',
+      'Where Gemini 4 Argon pulls ahead: native audio and video input (Sonnet 5 is text/vision/code), a 95% cached-input discount ($0.10/M vs Sonnet 5’s $0.20/M), and long decode continuation up to 1M output tokens.',
+      'Where Claude Sonnet 5 pulls ahead: tighter out-of-the-box behavior inside Claude Code and ACOS skill harnesses, 128K standard synchronous output (vs Argon’s 65K default before continuation), and stronger default specification pushback without requiring thinking=high.',
+    ],
+    pickFirst: [
+      'Claude Code, Cursor, and MCP-heavy software engineering workflows',
+      'Single-shot outputs between 65K and 128K tokens without continuation',
+      'Editorial and documentation pipelines calibrated to Claude voice rules',
+    ],
+    pickSecond: [
+      'Native video, audio, and large PDF analysis in the same prompt as code',
+      'Heavy context caching ($0.10/1M cached input through 2026-11-30)',
+      'Sub-2s latency on 1M-context UI and data-normalization tasks',
+    ],
+    keywords: [
+      'claude sonnet 5 vs gemini 4 argon',
+      'gemini 4 argon vs sonnet 5',
+      'best $2 llm 2026',
+      '1m context model comparison',
+    ],
+    architect: {
+      call: 'Keep both active in your router at the $2/$10 tier: route text/code/MCP loops to Sonnet 5 and multimodal (video/audio/screenshot) or heavy cached-repo loops to Gemini 4 Argon.',
+      coePillar: 'Technology · dual-workhorse routing',
+      personas: [
+        { persona: 'Claude Code & MCP build agents', pick: 'Claude Sonnet 5' },
+        { persona: 'Multimodal & screen-recording critics', pick: 'Gemini 4 Argon' },
+        { persona: 'Cached-repo Q&A & search agents', pick: 'Gemini 4 Argon ($0.10/M cached)' },
+      ],
+    },
+  },
+  {
     slug: 'grok-4-6-vs-grok-4-3',
     models: ['grok-4-6', 'grok-4-3'],
     title: 'Grok 4.6 vs Grok 4.3',

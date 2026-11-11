@@ -332,7 +332,7 @@ export default function AIArchitectClient() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
-                href="/prototypes"
+                href="/ai-architecture/blueprints"
                 className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
               >
                 <Layers className="h-4 w-4" />
@@ -637,7 +637,7 @@ export default function AIArchitectClient() {
               className="mt-12 text-center"
             >
               <Link
-                href="/prototypes"
+                href="/ai-architecture/blueprints"
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
               >
                 <Layers className="h-4 w-4" />
