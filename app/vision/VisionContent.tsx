@@ -79,7 +79,7 @@ const visionPillars = [
     icon: Globe,
     title: 'A More Free World',
     description:
-      'Democratizing sovereign technology so millions of individuals can achieve economic, intellectual, and creative freedom at global scale.',
+      'Democratizing sovereign technology so individuals can achieve economic, intellectual, and creative freedom.',
     color: 'from-emerald-400 to-teal-400',
     borderColor: 'border-emerald-500/20',
     bgColor: 'bg-emerald-500/5',
@@ -93,7 +93,7 @@ const timeline = [
     label: 'Foundation',
     items: [
       'frankx.ai launched and live',
-      'First 80+ blog articles published',
+      'Blog articles published',
       'AI music practice started with Suno',
       'ACOS v1 — first autonomous coding system',
       'Arcanea mythology and creative universe born',
@@ -118,7 +118,7 @@ const timeline = [
     items: [
       'First courses live with real enrollment',
       'Community platform for builders',
-      'First $10k/month from products',
+      'Revenue from products',
       'Speaking engagements and visibility',
       'AI music distribution deal',
     ],
@@ -419,9 +419,9 @@ export default function VisionContent() {
             {[
               {
                 icon: Building2,
-                stat: '$20/month tools',
+                stat: 'Accessible tools',
                 title: 'The Old Barriers Are Gone',
-                body: 'Tools that cost millions five years ago now cost $20/month. The capital requirement for building a real business has collapsed to nearly zero.',
+                body: 'Tools are now within reach of a solo builder.',
                 color: 'text-emerald-400',
               },
               {
@@ -594,7 +594,7 @@ export default function VisionContent() {
                   companies.
                 </span>{' '}
                 Where a single person with taste, drive, and AI leverage can
-                build products that serve millions. Where the old gatekeepers
+                build products. Where the old gatekeepers
                 lose their grip and the builders inherit the economy.
               </p>
               <p className="mt-6 text-lg leading-relaxed text-white/65 md:text-xl md:leading-relaxed">
