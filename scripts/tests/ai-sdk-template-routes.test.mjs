@@ -126,6 +126,19 @@ function loadAgent(options = {}) {
   return { route, streamCalls, generateTextCalls, openaiCalls }
 }
 
+function loadIngest() {
+  const ingestCalls = []
+  const route = load(read('templates/rag-starter/app/api/ingest/route.ts'), {
+    '@/lib/rag': {
+      ingest: async (source, text, providerKey) => {
+        ingestCalls.push({ source, text, providerKey })
+        return 3
+      },
+    },
+  })
+  return { route, ingestCalls }
+}
+
 test('rag-starter /api/chat returns 400 for invalid JSON and never retrieves or streams', async () => {
   const { route, retrieveCalls, streamCalls, openaiCalls } = loadRag()
   const res = await route.POST(request({ raw: 'invalid' }))
@@ -177,4 +190,29 @@ test('multi-agent /api/agent returns 401 when no provider key is present and nev
   assert.match(await res.text(), /No provider key/)
   assert.equal(generateTextCalls.length, 0)
   assert.equal(openaiCalls.length, 0)
+})
+
+test('rag-starter /api/ingest rejects bad bodies and returns mocked chunk counts without embedding', async () => {
+  const { route, ingestCalls } = loadIngest()
+
+  const invalid = await route.POST(request({ raw: 'invalid' }))
+  assert.equal(invalid.status, 400)
+  assert.equal(await invalid.text(), 'Invalid JSON body.')
+  assert.equal(ingestCalls.length, 0)
+
+  const missing = await route.POST(request({ body: { source: 'notes.md' } }))
+  assert.equal(missing.status, 400)
+  assert.equal(await missing.text(), '`text` is required.')
+  assert.equal(ingestCalls.length, 0)
+
+  const ok = await route.POST(request({
+    headers: { 'x-provider-key': 'test-key' },
+    body: { source: 'notes.md', text: 'A fixture paragraph.' },
+  }))
+  assert.equal(ok.status, 200)
+  assert.deepEqual(await ok.json(), { chunks: 3 })
+  assert.equal(ingestCalls.length, 1)
+  assert.equal(ingestCalls[0].source, 'notes.md')
+  assert.equal(ingestCalls[0].text, 'A fixture paragraph.')
+  assert.equal(ingestCalls[0].providerKey, 'test-key')
 })

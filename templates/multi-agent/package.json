@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "ai": "^7.0.165",
-    "@ai-sdk/openai": "^4.0.114",
-    "@ai-sdk/anthropic": "^4.0.102",
-    "@ai-sdk/react": "^4.0.173",
+    "@ai-sdk/openai": "^4.0.111",
+    "@ai-sdk/anthropic": "^4.0.99",
+    "@ai-sdk/react": "^4.0.169",
     "next": "^16.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
