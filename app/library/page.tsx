@@ -61,22 +61,20 @@ export default function LibraryPage() {
             <h2 className="text-xl font-semibold text-white">Research grounded in this collection</h2>
             <span className="text-[10px] uppercase tracking-[0.18em] text-cyan-200">flagship article</span>
           </div>
-          <p className="text-sm text-white/60 leading-relaxed mb-5">
-            Some of the books in this library are not just reading recommendations &mdash; they
-            are sources for deep research articles. Where four library books cluster around
-            one idea, you can read the meta-article that synthesises them.
+          <p className="max-w-[65ch] text-sm text-white/60 leading-relaxed mb-5">
+            Four books in this library are the sources for one research article, linked below.
           </p>
           <Link
             href="/research/blue-zones-ikigai-ai-era"
             className="group block rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.16] p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
           >
-            <p className="text-[10px] uppercase tracking-[0.24em] text-white/40 mb-2">
+            <p className="text-[10px] uppercase tracking-[0.24em] text-white/60 mb-2">
               Blue Zones &middot; Ikigai &middot; AI Era
             </p>
             <h3 className="text-base font-semibold text-white mb-2">
               The four library books behind one Japanese word
             </h3>
-            <p className="text-sm text-white/60 leading-relaxed">
+            <p className="max-w-[65ch] text-sm text-white/60 leading-relaxed">
               Kamiya (1966), Buettner (2005), Garc&iacute;a &amp; Miralles (2016), Mogi (2017) &mdash; the
               lineage of ikigai from psychiatric foundation to global bestseller, with an
               honest reckoning of the 2014 Western Venn. 12-minute read.
@@ -89,7 +87,7 @@ export default function LibraryPage() {
               prefetch={false}
               className="group block rounded-xl border border-white/[0.06] bg-white/[0.01] hover:bg-white/[0.025] hover:border-white/[0.12] p-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
-              <p className="text-[10px] uppercase tracking-[0.24em] text-white/40 mb-1.5">
+              <p className="text-[10px] uppercase tracking-[0.24em] text-white/60 mb-1.5">
                 Walk the practice
               </p>
               <p className="text-sm font-semibold text-white">Ikigai &amp; Branding workshop</p>
@@ -102,7 +100,7 @@ export default function LibraryPage() {
               prefetch={false}
               className="group block rounded-xl border border-white/[0.06] bg-white/[0.01] hover:bg-white/[0.025] hover:border-white/[0.12] p-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
             >
-              <p className="text-[10px] uppercase tracking-[0.24em] text-white/40 mb-1.5">
+              <p className="text-[10px] uppercase tracking-[0.24em] text-white/60 mb-1.5">
                 Adjacent research
               </p>
               <p className="text-sm font-semibold text-white">Conscious AI Operating Systems</p>

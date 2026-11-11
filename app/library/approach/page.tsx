@@ -229,7 +229,7 @@ export default function LibraryApproachPage() {
       <div className="max-w-6xl mx-auto px-6 pt-28 pb-4">
         <Link
           href="/library"
-          className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors"
         >
           <svg
             className="w-4 h-4"
@@ -336,7 +336,7 @@ export default function LibraryApproachPage() {
                 <div className="text-3xl md:text-4xl font-bold text-white tabular-nums">
                   {s.value}
                 </div>
-                <div className="text-[11px] uppercase tracking-[0.18em] text-white/40 mt-2">
+                <div className="text-[11px] uppercase tracking-[0.18em] text-white/60 mt-2">
                   {s.label}
                 </div>
               </div>
@@ -347,7 +347,7 @@ export default function LibraryApproachPage() {
 
       {/* The Problem */}
       <section className="max-w-4xl mx-auto px-6 py-20">
-        <p className="text-[11px] uppercase tracking-[0.3em] text-white/40 mb-4">
+        <p className="text-[11px] uppercase tracking-[0.3em] text-white/60 mb-4">
           The Problem
         </p>
         <h2 className="text-3xl md:text-5xl font-bold leading-tight text-white">
@@ -373,7 +373,7 @@ export default function LibraryApproachPage() {
 
       {/* The Workflow — four stages */}
       <section className="max-w-5xl mx-auto px-6 py-20">
-        <p className="text-[11px] uppercase tracking-[0.3em] text-white/40 mb-4">
+        <p className="text-[11px] uppercase tracking-[0.3em] text-white/60 mb-4">
           The Workflow
         </p>
         <h2 className="text-3xl md:text-5xl font-bold leading-tight text-white mb-4">
@@ -416,7 +416,7 @@ export default function LibraryApproachPage() {
 
       {/* Signal → Publish matrix */}
       <section className="max-w-5xl mx-auto px-6 py-20">
-        <p className="text-[11px] uppercase tracking-[0.3em] text-white/40 mb-4">
+        <p className="text-[11px] uppercase tracking-[0.3em] text-white/60 mb-4">
           How any input becomes a permanent page
         </p>
         <h2 className="text-3xl md:text-5xl font-bold leading-tight text-white mb-12">
@@ -424,7 +424,7 @@ export default function LibraryApproachPage() {
         </h2>
 
         <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
-          <div className="hidden md:grid grid-cols-4 gap-0 border-b border-white/[0.06] text-[11px] uppercase tracking-[0.18em] text-white/40">
+          <div className="hidden md:grid grid-cols-4 gap-0 border-b border-white/[0.06] text-[11px] uppercase tracking-[0.18em] text-white/60">
             <div className="p-5">Signal</div>
             <div className="p-5 border-l border-white/[0.06]">Capture</div>
             <div className="p-5 border-l border-white/[0.06]">Extract</div>
@@ -452,7 +452,7 @@ export default function LibraryApproachPage() {
 
       {/* Case studies — live deep dives */}
       <section className="max-w-5xl mx-auto px-6 py-20">
-        <p className="text-[11px] uppercase tracking-[0.3em] text-white/40 mb-4">
+        <p className="text-[11px] uppercase tracking-[0.3em] text-white/60 mb-4">
           Live Deep-Dives
         </p>
         <h2 className="text-3xl md:text-5xl font-bold leading-tight text-white mb-4">
@@ -529,7 +529,7 @@ export default function LibraryApproachPage() {
 
       {/* Architecture — the spine */}
       <section className="max-w-5xl mx-auto px-6 py-20">
-        <p className="text-[11px] uppercase tracking-[0.3em] text-white/40 mb-4">
+        <p className="text-[11px] uppercase tracking-[0.3em] text-white/60 mb-4">
           Architecture
         </p>
         <h2 className="text-3xl md:text-5xl font-bold leading-tight text-white mb-4">
@@ -598,7 +598,7 @@ export default function LibraryApproachPage() {
 
       {/* Cross-AI compatibility */}
       <section className="max-w-5xl mx-auto px-6 py-20">
-        <p className="text-[11px] uppercase tracking-[0.3em] text-white/40 mb-4">
+        <p className="text-[11px] uppercase tracking-[0.3em] text-white/60 mb-4">
           Cross-AI · Cross-Tool
         </p>
         <h2 className="text-3xl md:text-5xl font-bold leading-tight text-white mb-4">
@@ -638,7 +638,7 @@ export default function LibraryApproachPage() {
 
       {/* Deployment targets */}
       <section className="max-w-5xl mx-auto px-6 py-20">
-        <p className="text-[11px] uppercase tracking-[0.3em] text-white/40 mb-4">
+        <p className="text-[11px] uppercase tracking-[0.3em] text-white/60 mb-4">
           Deploy Anywhere
         </p>
         <h2 className="text-3xl md:text-5xl font-bold leading-tight text-white mb-10">
@@ -646,7 +646,7 @@ export default function LibraryApproachPage() {
         </h2>
 
         <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
-          <div className="hidden md:grid grid-cols-[200px_120px_1fr] gap-0 border-b border-white/[0.06] text-[11px] uppercase tracking-[0.18em] text-white/40">
+          <div className="hidden md:grid grid-cols-[200px_120px_1fr] gap-0 border-b border-white/[0.06] text-[11px] uppercase tracking-[0.18em] text-white/60">
             <div className="p-5">Stack</div>
             <div className="p-5 border-l border-white/[0.06]">Port effort</div>
             <div className="p-5 border-l border-white/[0.06]">Notes</div>
@@ -670,7 +670,7 @@ export default function LibraryApproachPage() {
 
       {/* The future */}
       <section className="max-w-4xl mx-auto px-6 py-20">
-        <p className="text-[11px] uppercase tracking-[0.3em] text-white/40 mb-4">
+        <p className="text-[11px] uppercase tracking-[0.3em] text-white/60 mb-4">
           Where it&apos;s going
         </p>
         <h2 className="text-3xl md:text-5xl font-bold leading-tight text-white mb-10">
@@ -791,7 +791,7 @@ export default function LibraryApproachPage() {
                 </svg>
               </Link>
             </div>
-            <p className="mt-10 text-[12px] text-white/30">
+            <p className="mt-10 text-[12px] text-white/60">
               MIT licensed · Built on Next.js App Router · Published on frankx.ai
             </p>
           </div>
