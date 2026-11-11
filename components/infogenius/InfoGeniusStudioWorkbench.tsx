@@ -507,7 +507,7 @@ export default function InfoGeniusStudioWorkbench() {
             }`}
           >
             <Key className="w-3.5 h-3.5" />
-            {apiKey.trim() ? `BYOK Active (${detectedProvider.split(' ')[0]})` : 'Connect Gemini / OpenRouter Key'}
+            {apiKey.trim() ? `BYOK Active (${detectedProvider.split(' ')[0]})` : 'Connect Gemini or OpenRouter key'}
           </button>
         </div>
       </div>
@@ -536,7 +536,7 @@ export default function InfoGeniusStudioWorkbench() {
           }`}
         >
           <FileText className="w-3.5 h-3.5" />
-          2. Article / Markdown → 5-Slide Pack
+          2. Article or markdown → 5-slide pack
         </button>
         <button
           type="button"
@@ -600,7 +600,7 @@ export default function InfoGeniusStudioWorkbench() {
         </div>
       )}
 
-      {/* TAB 3: CUSTOM BRAND DNA BUILDER */}
+      {/* Tab 3: Custom brand DNA builder */}
       {activeTab === 'brand' && (
         <div className="mt-6 space-y-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
@@ -860,9 +860,9 @@ export default function InfoGeniusStudioWorkbench() {
                 onChange={(e) => setAspectRatio(e.target.value as '16:9' | '1:1' | '9:16')}
                 className="w-full rounded-xl border border-white/15 bg-black/50 px-3.5 py-2.5 text-xs font-semibold text-white focus:border-teal-400 focus:outline-none"
               >
-                <option value="16:9">16:9 Landscape (Blog Hero / Deck)</option>
-                <option value="1:1">1:1 Square (Carousel / LinkedIn)</option>
-                <option value="9:16">9:16 Vertical (Stories / Shorts)</option>
+                <option value="16:9">16:9 Landscape (Blog hero or deck)</option>
+                <option value="1:1">1:1 Square (Carousel or LinkedIn)</option>
+                <option value="9:16">9:16 Vertical (Stories or Shorts)</option>
               </select>
             </div>
 
@@ -877,7 +877,7 @@ export default function InfoGeniusStudioWorkbench() {
               >
                 <option value="1K">1K Fast Preview</option>
                 <option value="2K">2K Production (Recommended)</option>
-                <option value="4K">4K Print / Flagship</option>
+                <option value="4K">4K Print or flagship</option>
               </select>
             </div>
 
@@ -960,7 +960,7 @@ export default function InfoGeniusStudioWorkbench() {
         </div>
       )}
 
-      {/* TAB 2 RESULTS: 5-SLIDE DECOMPOSED VISUAL PACK */}
+      {/* Tab 2 results: 5-slide decomposed visual pack */}
       {activeTab === 'decompose' && packResult && (
         <div className="mt-8 space-y-6 pt-8 border-t border-white/10">
           <div className="flex flex-wrap items-center justify-between gap-3">

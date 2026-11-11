@@ -16,7 +16,7 @@ const STYLES_V5: Record<string, StyleDefinition> = {
     name: 'Premium 3D Glassmorphism',
     tag: 'v5.2 Flagship',
     instruction:
-      'Premium 3D Glassmorphic Infographic. Dark void background (#0b0e14). All information displayed on frosted translucent glass panels floating at different depths. Key concepts rendered as 3D crystal/glass nodes connected by thin luminous teal (#7fffd4) threads. Dramatic directional spotlight from upper-left creating teal rim lighting on all glass surfaces. Gold (#ffd700) accents on highlights. Clean white sans-serif labels on every element. Maximum 3 accent colors. Professional data visualization meets luxury 3D rendering. NOT flat, NOT HUD overlay, NOT cyberpunk, NOT clay. Ultra-high detail, studio quality.',
+      'Premium 3D Glassmorphic Infographic. Dark void background (#0b0e14). All information displayed on frosted translucent glass panels floating at different depths. Key concepts rendered as 3D crystal/glass nodes connected by thin luminous teal (#7fffd4) threads. Dramatic directional spotlight from upper-left creating teal rim lighting on all glass surfaces. Gold (#ffd700) accents on highlights. Clean white sans-serif labels on every element. Maximum 3 accent colors. Professional data visualization meets luxury 3D rendering. Avoid flat, HUD overlay, cyberpunk, and clay styling. Ultra-high detail, studio quality.',
     palette: ['#0b0e14', '#7fffd4', '#ffd700', '#ffffff'],
   },
   premium: {
@@ -188,10 +188,10 @@ AUDIENCE: ${audienceObj.instruction}
 KNOWLEDGE TO VISUALIZE (these are researched facts — each must be represented visually):
 ${factsBlock}
 
-VISUAL ELEMENTS TO INCLUDE:
+Visual elements to include:
 ${visualBlock}
 
-REQUIRED LABELS AND TEXT (render clearly and legibly):
+Required labels and text (render clearly and legibly):
 ${labelsBlock}
 
 COMPOSITION:
@@ -425,7 +425,7 @@ export async function POST(req: NextRequest) {
         ? 'openrouter'
         : 'google'
 
-    // Action 0: Decompose Article / Markdown into a 5-Slide Visual Carousel & Diagram Pack
+    // Action 0: Decompose article or markdown into a 5-slide visual carousel and diagram pack
     if (action === 'decompose-article') {
       const rawArticle = String(articleText || topic).trim()
       if (!rawArticle || rawArticle.length < 20) {
@@ -533,7 +533,7 @@ export async function POST(req: NextRequest) {
         }
       })
 
-      // If user supplied an API key, enrich the 5 slides using Gemini / OpenRouter LLM decomposition
+      // If user supplied an API key, enrich the 5 slides using Gemini or OpenRouter LLM decomposition
       if (userKey) {
         try {
           const decomposePrompt = `You are a Master Visual Knowledge Architect. Decompose the following article/markdown into a 5-slide visual infographic sequence.

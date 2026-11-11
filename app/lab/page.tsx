@@ -35,7 +35,7 @@ const tools = [
     stats: [
       { n: '12', label: 'v5.3 Styles' },
       { n: '4K', label: 'Resolution' },
-      { n: 'BYOK', label: 'Gemini / OpenRouter' },
+      { n: 'BYOK', label: 'Gemini or OpenRouter' },
     ],
   },
   {
