@@ -76,13 +76,13 @@ const BLUEPRINTS: BlueprintOffer[] = [
     price: 147,
     badge: 'Enterprise creator runtime',
     description:
-      'The exact operating system Frank uses to orchestrate parallel agent swarms across Claude Code, Gemini, and Codex. Includes 12 production pipelines, event-sourced memory vaults, and automated quality gates.',
+      'The exact operating system Frank uses to orchestrate parallel agent swarms across Claude Code, Gemini, and Codex. Includes production pipelines, event-sourced memory vaults, and automated quality gates.',
     icon: Cpu,
     color: 'violet',
     deliverables: [
       'Complete multi-agent fleet configuration (.claude, .gemini, .codex)',
-      '12 automated production pipelines (articles, newsletters, books, tools)',
-      '5-layer memory vault architecture (strategic, technical, creative, ops, wisdom)',
+      'Automated production pipelines (articles, newsletters, books, tools)',
+      'Memory vault architecture',
       'Self-healing loop contracts and automated test-audit harnesses',
       'Starlight Intelligence System (SIS) integration connectors',
       'Deterministic quality-gate linters and anti-slop filters',
@@ -90,7 +90,7 @@ const BLUEPRINTS: BlueprintOffer[] = [
     specs: [
       { label: 'Runtime compatibility', value: 'Node.js, Claude Code, Antigravity, Codex' },
       { label: 'Memory engine', value: 'Event-sourced SQLite + JSONL truth' },
-      { label: 'Pipeline count', value: '12 end-to-end production pipelines' },
+      { label: 'Pipelines', value: 'End-to-end production pipelines for articles, newsletters, books, and tools' },
       { label: 'License type', value: 'Full commercial sovereign developer license' },
     ],
     targetAudience: 'Founders, solopreneurs, and AI architects wanting autonomous leverage without hiring an agency.',
