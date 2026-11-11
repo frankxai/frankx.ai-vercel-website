@@ -161,7 +161,7 @@ export default async function ReviewPage({
         <ol className="mt-5 grid max-w-[65ch] grid-cols-1 gap-x-8 gap-y-2 text-[15px] text-white/70 sm:grid-cols-2">
             <li>
               <a href="#insights" className="hover:text-amber-300 transition-colors">
-                01 &nbsp;·&nbsp; Key Insights
+                01 &nbsp;·&nbsp; Key insights
               </a>
             </li>
             {review.application && (
@@ -181,13 +181,13 @@ export default async function ReviewPage({
             {review.chapters && review.chapters.length > 0 && (
               <li>
                 <a href="#chapters" className="hover:text-amber-300 transition-colors">
-                  03 &nbsp;·&nbsp; {mapFromDepth ? 'Editorial reading map' : 'Chapter-by-Chapter'} ({review.chapters.length})
+                  03 &nbsp;·&nbsp; {mapFromDepth ? 'Editorial reading map' : 'Chapter by chapter'} ({review.chapters.length})
                 </a>
               </li>
             )}
             <li>
               <a href="#audience" className="hover:text-amber-300 transition-colors">
-                04 &nbsp;·&nbsp; Best For
+                04 &nbsp;·&nbsp; Best for
               </a>
             </li>
             {review.faq && review.faq.length > 0 && (
@@ -200,14 +200,14 @@ export default async function ReviewPage({
             {review.continueReading && review.continueReading.length > 0 && (
               <li>
                 <a href="#continue-reading" className="hover:text-amber-300 transition-colors">
-                  06 &nbsp;·&nbsp; Continue Reading
+                  06 &nbsp;·&nbsp; Continue reading
                 </a>
               </li>
             )}
             {review.videos && review.videos.length > 0 && (
               <li>
                 <a href="#videos" className="hover:text-amber-300 transition-colors">
-                  07 &nbsp;·&nbsp; Go Deeper — Videos
+                  07 &nbsp;·&nbsp; Go deeper: videos
                 </a>
               </li>
             )}
@@ -218,7 +218,7 @@ export default async function ReviewPage({
       <section id="insights" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
         <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
           <span className="w-8 h-px bg-amber-500/50" />
-          Key Insights
+          Key insights
         </h2>
         <ol className="max-w-[40rem] list-decimal space-y-6 pl-5 text-base leading-[1.7] text-white/90 marker:text-emerald-200">
           {review.keyInsights.map((insight, i) => (
@@ -232,7 +232,7 @@ export default async function ReviewPage({
         <section id="quotes" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
           <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
             <span className="w-8 h-px bg-rose-400/60" />
-            Quotes Worth Remembering
+            Quotes worth remembering
           </h2>
           <p className="mb-8 max-w-[40rem] text-sm leading-relaxed text-white/70">{quotesFromDepth && depth ? `${review.quotes.length} passages in ${depth.translation.translator}’s ${depth.translation.year} translation, each linked to the page it was checked against. Other translations word these lines differently.` : `${review.quotes.length} recorded excerpts. Check the named edition and location before sharing the wording.`}</p>
           <div className="max-w-[40rem] space-y-12">
@@ -268,7 +268,7 @@ export default async function ReviewPage({
         <section id="chapters" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
           <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
             <span className="w-8 h-px bg-violet-400/60" />
-            {mapFromDepth ? 'Editorial reading map' : 'Chapter-by-Chapter'}
+            {mapFromDepth ? 'Editorial reading map' : 'Chapter by chapter'}
           </h2>
           <p className="mb-6 max-w-[40rem] text-sm leading-relaxed text-white/70">
             {mapFromDepth

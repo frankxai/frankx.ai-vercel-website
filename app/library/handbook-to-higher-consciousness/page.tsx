@@ -217,12 +217,12 @@ export default function HandbookToHigherConsciousnessPage() {
               <span className="tracking-[0.16em] text-amber-300" aria-hidden="true">
                 ★★★★☆
               </span>
-              <span className="text-xs text-white/35">FrankX critical edition</span>
+              <span className="text-xs text-white/60">FrankX critical edition</span>
             </div>
           </div>
 
           <div className="rounded-3xl border border-white/[0.08] bg-white/[0.025] p-6">
-            <p className="text-[10px] uppercase tracking-[0.24em] text-white/35">System checksum</p>
+            <p className="text-[10px] uppercase tracking-[0.24em] text-white/60">System checksum</p>
             <div className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.07]">
               {[
                 ['16', 'Insights'],
@@ -232,13 +232,13 @@ export default function HandbookToHigherConsciousnessPage() {
               ].map(([value, label]) => (
                 <div key={label} className="bg-[#0b0b0d] p-4">
                   <p className="text-2xl font-semibold text-amber-200">{value}</p>
-                  <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-white/35">
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-white/60">
                     {label}
                   </p>
                 </div>
               ))}
             </div>
-            <p className="mt-4 text-xs leading-relaxed text-white/40">
+            <p className="mt-4 text-xs leading-relaxed text-white/60">
               Complete architecture, practical translation, and explicit limits. No quote dump.
             </p>
           </div>
@@ -268,7 +268,7 @@ export default function HandbookToHigherConsciousnessPage() {
               <p className="mt-5 text-lg leading-relaxed text-white/82">{review.tldr}</p>
             </div>
             <div className="rounded-3xl border border-white/[0.07] bg-white/[0.02] p-6 sm:p-8">
-              <p className="text-[10px] uppercase tracking-[0.24em] text-white/35">
+              <p className="text-[10px] uppercase tracking-[0.24em] text-white/60">
                 FrankX synthesis
               </p>
               <p className="mt-5 text-2xl font-medium leading-snug tracking-[-0.02em] text-white sm:text-3xl">
@@ -456,7 +456,7 @@ export default function HandbookToHigherConsciousnessPage() {
               </a>
             ))}
           </div>
-          <p className="mt-5 text-xs leading-relaxed text-white/35">
+          <p className="mt-5 text-xs leading-relaxed text-white/60">
             Rights posture: transformative analysis. This page intentionally excludes extended
             quotations and chapter reproduction.
           </p>
