@@ -61,7 +61,7 @@ export default function LibraryPage() {
             <h2 className="text-xl font-semibold text-white">Research grounded in this collection</h2>
             <span className="text-[10px] uppercase tracking-[0.18em] text-cyan-200">flagship article</span>
           </div>
-          <p className="max-w-[40rem] text-sm text-white/60 leading-relaxed mb-5">
+          <p className="max-w-[65ch] text-sm text-white/60 leading-relaxed mb-5">
             Four books in this library are the sources for one research article, linked below.
           </p>
           <Link
@@ -74,7 +74,7 @@ export default function LibraryPage() {
             <h3 className="text-base font-semibold text-white mb-2">
               The four library books behind one Japanese word
             </h3>
-            <p className="max-w-[40rem] text-sm text-white/60 leading-relaxed">
+            <p className="max-w-[65ch] text-sm text-white/60 leading-relaxed">
               Kamiya (1966), Buettner (2005), Garc&iacute;a &amp; Miralles (2016), Mogi (2017) &mdash; the
               lineage of ikigai from psychiatric foundation to global bestseller, with an
               honest reckoning of the 2014 Western Venn. 12-minute read.

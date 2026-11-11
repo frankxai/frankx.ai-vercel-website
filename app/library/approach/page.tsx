@@ -229,7 +229,7 @@ export default function LibraryApproachPage() {
       <div className="max-w-6xl mx-auto px-6 pt-28 pb-4">
         <Link
           href="/library"
-          className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white/70 transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors"
         >
           <svg
             className="w-4 h-4"

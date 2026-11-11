@@ -237,7 +237,7 @@ export default async function QuotePage({
 
           <Link
             href={`/library/${slug}#${quoteId}`}
-            className="text-[12px] uppercase tracking-[0.18em] text-white/60 hover:text-white/70 transition-colors"
+            className="text-[12px] uppercase tracking-[0.18em] text-white/70 hover:text-white transition-colors"
           >
             Read in full deep-dive
           </Link>

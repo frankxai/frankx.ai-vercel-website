@@ -132,7 +132,7 @@ export default function LibraryQuotesPage() {
       <div className="max-w-5xl mx-auto px-6 pt-28 pb-4">
         <Link
           href="/library"
-          className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white/70 transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors"
         >
           <svg
             className="w-4 h-4"
@@ -243,7 +243,7 @@ export default function LibraryQuotesPage() {
                       <h2 className="text-2xl md:text-3xl font-bold text-white/90 group-hover:text-white">
                         {book.title}
                       </h2>
-                      <span className="text-[13px] text-white/60 group-hover:text-white/80 transition-colors">
+                      <span className="text-[13px] text-white/70 group-hover:text-white transition-colors">
                         by {book.author}
                       </span>
                     </Link>
