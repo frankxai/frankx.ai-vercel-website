@@ -3,8 +3,7 @@
 import { useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { marked } from 'marked';
-import DOMPurify from 'isomorphic-dompurify';
+import { renderSanitizedChapterMarkdown } from '@/lib/sanitize/markdown';
 import { ArrowLeft, Clock, BookOpen } from 'lucide-react';
 import ReadingProgress from './ReadingProgress';
 import TableOfContents from './TableOfContents';
@@ -58,12 +57,6 @@ export default function ChapterReader({
 
   // Process markdown content with sanitization
   const htmlContent = useMemo(() => {
-    // Configure marked
-    marked.setOptions({
-      gfm: true,
-      breaks: true,
-    });
-
     // Add IDs to headings for TOC navigation
     let processedContent = content;
     tocItems.forEach((item) => {
@@ -79,11 +72,7 @@ export default function ChapterReader({
     });
 
     // Parse markdown and sanitize HTML to prevent XSS
-    const rawHtml = marked.parse(processedContent);
-    return DOMPurify.sanitize(rawHtml as string, {
-      ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'a', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'code', 'pre', 'span', 'hr'],
-      ALLOWED_ATTR: ['href', 'id', 'class', 'target', 'rel'],
-    });
+    return renderSanitizedChapterMarkdown(processedContent);
   }, [content, tocItems]);
 
   return (
