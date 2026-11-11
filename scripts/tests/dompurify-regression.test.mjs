@@ -13,6 +13,17 @@ const installed = JSON.parse(
   readFileSync(path.join(root, 'node_modules/isomorphic-dompurify/package.json'), 'utf8'),
 ).version
 
+// jsdom is a transitive dependency of isomorphic-dompurify, not a root dep,
+// and is not public-hoisted. Resolve it from the sanitizer package so the
+// detector always uses a real DOM. Fail closed if that is not possible.
+const requireFromPurifier = createRequire(require.resolve('isomorphic-dompurify'))
+const { JSDOM } = requireFromPurifier('jsdom')
+if (typeof JSDOM !== 'function') {
+  throw new Error(
+    'jsdom must resolve through isomorphic-dompurify so entity-encoded javascript: hrefs can be decoded; refusing to run a weaker detector',
+  )
+}
+
 // These configs are mirrored from the production call sites, which live
 // inline in TSX modules (not a shared importable sanitizer module):
 //   components/workshops/ikigai/PromptCard.tsx:76-79
@@ -71,55 +82,28 @@ const V2 = {
   },
 }
 
-let JSDOM
-try {
-  ;({ JSDOM } = require('jsdom'))
-} catch {
-  JSDOM = null
+const ENCODED_JS_HREFS = {
+  decimal: '<a href="&#106;avascript:alert(1)">link</a>',
+  hex: '<a href="&#x6A;avascript:alert(1)">link</a>',
 }
 
 function listUnsafeHandlers(html) {
   const findings = []
   const source = String(html ?? '')
-
-  if (JSDOM) {
-    const dom = new JSDOM(`<!doctype html><body><div id="root">${source}</div></body>`)
-    const rootEl = dom.window.document.getElementById('root')
-    for (const el of rootEl.querySelectorAll('*')) {
-      for (const attr of [...el.attributes]) {
-        if (/^on/i.test(attr.name)) {
-          findings.push(`${el.tagName.toLowerCase()}[${attr.name}]`)
-        }
-        if (/javascript\s*:/i.test(attr.value)) {
-          findings.push(`${el.tagName.toLowerCase()}[${attr.name}]=javascript:`)
-        }
+  const dom = new JSDOM(`<!doctype html><body><div id="root">${source}</div></body>`)
+  const rootEl = dom.window.document.getElementById('root')
+  if (!rootEl) {
+    throw new Error('jsdom failed to provide a document root; refusing to skip handler detection')
+  }
+  for (const el of rootEl.querySelectorAll('*')) {
+    for (const attr of [...el.attributes]) {
+      if (/^on/i.test(attr.name)) {
+        findings.push(`${el.tagName.toLowerCase()}[${attr.name}]`)
+      }
+      if (/javascript\s*:/i.test(attr.value)) {
+        findings.push(`${el.tagName.toLowerCase()}[${attr.name}]=javascript:`)
       }
     }
-    // Also inspect raw text in case a URL did not land in an attribute
-    // but still survived as a javascript: token in the serialized tree.
-    if (/javascript\s*:/i.test(rootEl.innerHTML) || /javascript\s*:/i.test(rootEl.textContent || '')) {
-      // textContent mentioning the word as documentation is fine; only
-      // flag if the token still appears as a URL-like value in HTML.
-      if (/javascript\s*:/i.test(rootEl.innerHTML)) {
-        // If it is only inside a text node (escaped), innerHTML may still
-        // contain the characters. Walk text nodes separately for attributes
-        // already handled; flag leftover unescaped protocol in markup.
-        const raw = rootEl.innerHTML
-        if (/(?:href|src|xlink:href|action|formaction|data)\s*=\s*(['"]?)\s*javascript\s*:/i.test(raw) || /javascript\s*:/i.test(raw) && /<[^>]+javascript\s*:/i.test(raw)) {
-          if (!findings.some((f) => f.includes('javascript:'))) {
-            findings.push('markup contains javascript: URL')
-          }
-        }
-      }
-    }
-    return findings
-  }
-
-  if (/<\s*[a-z][^>]*\s+on[a-z]+\s*=/i.test(source)) {
-    findings.push('on* attribute')
-  }
-  if (/javascript\s*:/i.test(source)) {
-    findings.push('javascript: URL')
   }
   return findings
 }
@@ -180,11 +164,30 @@ test('isomorphic-dompurify is the v4 line under test', () => {
   assert.match(installed, /^4\./, `expected 4.x, got ${installed}`)
 })
 
+test('jsdom is resolved through isomorphic-dompurify', () => {
+  assert.equal(typeof JSDOM, 'function')
+})
+
 test('onclick-for-shorter-markup is not accepted as stricter', () => {
   const v2 = '<a href="https://frankx.ai" rel="noopener">link</a>'
   const v4 = '<a onclick="alert(1)">link</a>'
   assert.equal(isStricterOrEqual(v2, v4), false)
   assert.ok(listUnsafeHandlers(v4).length > 0)
+})
+
+test('detector flags entity-encoded javascript: hrefs', () => {
+  const original = '<a href="https://frankx.ai" rel="noopener">link</a>'
+  for (const [name, html] of Object.entries(ENCODED_JS_HREFS)) {
+    assert.ok(
+      listUnsafeHandlers(html).length > 0,
+      `${name} encoded javascript: href must be visible to the DOM detector: ${html}`,
+    )
+    assert.equal(
+      isStricterOrEqual(original, html),
+      false,
+      `${name} encoded javascript: href must not be accepted as stricter than a safe link`,
+    )
+  }
 })
 
 for (const [cname, cfg] of Object.entries(CONFIGS)) {
@@ -198,6 +201,15 @@ for (const [cname, cfg] of Object.entries(CONFIGS)) {
         true,
         `${cname}/${pname}: v4 ${JSON.stringify(v4)} is not identical or stricter than v2 ${JSON.stringify(v2)}`,
       )
+    })
+  }
+}
+
+for (const [cname, cfg] of Object.entries(CONFIGS)) {
+  for (const [name, html] of Object.entries(ENCODED_JS_HREFS)) {
+    test(`sanitizer drops entity-encoded javascript: href (${cname}/${name})`, () => {
+      const cleaned = DOMPurify.sanitize(html, cfg)
+      assertNoUnsafeHandlers(cleaned, `${cname}/${name} direct`)
     })
   }
 }
@@ -228,6 +240,8 @@ Hello **world** and a [safe link](https://frankx.ai).
   markdown_javascript_uppercase: 'See [click](JAVASCRIPT:alert(1)) now',
   encoded_javascript_href: 'See [click](javascript&#58;alert(1)) now',
   entity_javascript_href: 'See [click](&#106;avascript:alert(1)) now',
+  raw_html_entity_decimal_href: 'Hello <a href="&#106;avascript:alert(1)">link</a>',
+  raw_html_entity_hex_href: 'Hello <a href="&#x6A;avascript:alert(1)">link</a>',
   malformed_svg: 'Hi <svg onload=alert(1)><script>alert(1)</script></svg>',
   malformed_mathml: 'Hi <math><mi xlink:href="javascript:alert(1)">x</mi></math>',
 }
@@ -254,6 +268,8 @@ const PROMPT_MARKDOWN_CASES = {
 `,
   raw_html_onclick: 'Hello <a onclick="alert(1)" href="https://evil.example">click</a>',
   markdown_javascript_link: 'See [click](javascript:alert(1)) please',
+  raw_html_entity_decimal_href: 'Hello <a href="&#106;avascript:alert(1)">link</a>',
+  raw_html_entity_hex_href: 'Hello <a href="&#x6A;avascript:alert(1)">link</a>',
 }
 
 for (const [name, markdown] of Object.entries(PROMPT_MARKDOWN_CASES)) {
