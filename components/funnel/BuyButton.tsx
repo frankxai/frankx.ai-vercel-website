@@ -1,6 +1,7 @@
 'use client'
 
 import { ArrowRight } from 'lucide-react'
+import { trackCheckoutStart, trackCtaClick, priceBand } from '@/lib/track'
 
 /**
  * BuyButton — primary CTA on a product detail page.
@@ -12,12 +13,14 @@ import { ArrowRight } from 'lucide-react'
  * No countdown timers, no "limited spots" tricks. Just price + action.
  */
 export function BuyButton({
+  productSlug,
   ctaText,
   price,
   cadence,
   lemonSqueezyVariantId,
   fallbackHref = '/start-here',
 }: {
+  productSlug?: string
   ctaText: string
   price: number
   cadence: 'lifetime' | 'subscription' | 'application'
@@ -31,10 +34,16 @@ export function BuyButton({
   const href = checkoutUrl ?? fallbackHref
   const isLive = !!checkoutUrl
 
+  const handleClick = () => {
+    if (isLive) trackCheckoutStart({ product: productSlug ?? ctaText, price_band: priceBand(price) })
+    else trackCtaClick({ cta: ctaText, location: 'product-buy-button' })
+  }
+
   return (
     <div className="space-y-2">
       <a
         href={href}
+        onClick={handleClick}
         target={isLive ? '_blank' : undefined}
         rel={isLive ? 'noopener noreferrer' : undefined}
         className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3.5 rounded-xl text-base font-semibold bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-300 transition-colors"
