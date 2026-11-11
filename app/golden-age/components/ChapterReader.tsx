@@ -164,7 +164,7 @@ export default function ChapterReader({
             {tocItems.length > 0 && (
               <div className="hidden lg:block flex-shrink-0 w-80">
                 <div className="sticky top-24">
-                  <TableOfContents items={tocItems} />
+                  <TableOfContents items={tocItems} variant="desktop" />
                 </div>
               </div>
             )}
@@ -174,7 +174,7 @@ export default function ChapterReader({
         {/* Mobile TOC */}
         {tocItems.length > 0 && (
           <div className="lg:hidden">
-            <TableOfContents items={tocItems} />
+            <TableOfContents items={tocItems} variant="mobile" />
           </div>
         )}
       </div>
