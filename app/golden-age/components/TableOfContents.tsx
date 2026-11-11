@@ -76,20 +76,21 @@ export default function TableOfContents({ items }: TableOfContentsProps) {
         )}
       </AnimatePresence>
 
-      {/* Table of Contents */}
-      <motion.aside
+      {/* Table of Contents.
+          Closed-state translate is CSS-only (translate-x-full lg:translate-x-0)
+          so the panel stays on-screen at lg+, where the toggle is hidden.
+          Framer Motion animate={{ x }} previously set an inline transform that
+          overrode lg:translate-x-0 and hid the desktop panel. */}
+      <aside
         id="toc-panel"
         role="navigation"
         aria-label="Table of contents"
-        initial={false}
-        animate={{
-          x: isOpen ? 0 : '100%',
-        }}
         className={`
           fixed top-24 right-6 w-72 max-h-[calc(100vh-8rem)] overflow-y-auto
           bg-white dark:bg-slate-900 border-2 border-gray-200 dark:border-gray-800 rounded-xl shadow-xl
           p-6 space-y-4 z-40
-          lg:translate-x-0
+          transition-transform duration-300 ease-out
+          ${isOpen ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'}
           scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700
         `}
       >
@@ -121,7 +122,7 @@ export default function TableOfContents({ items }: TableOfContentsProps) {
             </button>
           ))}
         </nav>
-      </motion.aside>
+      </aside>
     </>
   );
 }
