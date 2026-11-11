@@ -480,6 +480,15 @@ module.exports = {
       screens: {
         xs: '475px',
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            blockquote: { quotes: 'none' },
+            'blockquote p:first-of-type::before': { content: 'none' },
+            'blockquote p:first-of-type::after': { content: 'none' },
+          },
+        },
+      },
     },
   },
   plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],

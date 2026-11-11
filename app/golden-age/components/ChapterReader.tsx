@@ -8,7 +8,7 @@ import { ArrowLeft, Clock, BookOpen } from 'lucide-react';
 import ReadingProgress from './ReadingProgress';
 import TableOfContents from './TableOfContents';
 import ChapterNav from './ChapterNav';
-import { extractChapterToc } from '../lib/extractChapterToc';
+import { extractChapterToc, tocHeadingSourceText } from '../lib/extractChapterToc';
 import type { Chapter } from '../types';
 
 interface ChapterReaderProps {
@@ -31,14 +31,15 @@ export default function ChapterReader({
     // Add IDs to headings for TOC navigation
     let processedContent = content;
     tocItems.forEach((item) => {
-      const escapedText = item.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const sourceText = tocHeadingSourceText(item);
+      const escapedText = sourceText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       const headingPattern = new RegExp(
         `^#{${item.level}}\\s+${escapedText}$`,
         'm'
       );
       processedContent = processedContent.replace(
         headingPattern,
-        `${'#'.repeat(item.level)} <span id="${item.id}">${item.text}</span>`
+        `${'#'.repeat(item.level)} <span id="${item.id}">${sourceText}</span>`
       );
     });
 

@@ -12,7 +12,7 @@ import {
   Menu,
   X
 } from 'lucide-react';
-import { extractChapterToc } from '../lib/extractChapterToc';
+import { extractChapterToc, tocHeadingSourceText } from '../lib/extractChapterToc';
 import type { Chapter, TOCItem } from '../types';
 
 interface PremiumReaderProps {
@@ -243,13 +243,14 @@ export default function PremiumReader({
 
     // Add IDs to headings
     tocItems.forEach((item) => {
+      const sourceText = tocHeadingSourceText(item);
       const headingPattern = new RegExp(
-        `^#{${item.level}}\\s+${item.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`,
+        `^#{${item.level}}\\s+${sourceText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`,
         'm'
       );
       processedContent = processedContent.replace(
         headingPattern,
-        `${'#'.repeat(item.level)} <span id="${item.id}">${item.text}</span>`
+        `${'#'.repeat(item.level)} <span id="${item.id}">${sourceText}</span>`
       );
     });
 
