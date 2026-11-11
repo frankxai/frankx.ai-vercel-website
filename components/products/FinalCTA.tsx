@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Sparkles, Mail } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
+import { trackCtaClick } from '@/lib/track'
 
 // Global coming soon mode - set to true to hide all pricing
 const COMING_SOON_MODE = true
@@ -24,6 +25,7 @@ function isExternal(href: string) {
 export default function FinalCTA({ productId, title, description, primaryLabel, primaryHref, primaryTracking }: FinalCTAProps) {
   const waitlistHref = `/waitlist?intent=${productId}`
   const handleClick = () => {
+    trackCtaClick({ cta: `${productId}-final`, location: 'product-final' })
     trackEvent('product_cta_click', {
       productId,
       location: 'final',

@@ -30,3 +30,4 @@ jobs:
           name: search-context
           path: ${{ runner.temp }}/search-context
           if-no-files-found: error
+          retention-days: 3

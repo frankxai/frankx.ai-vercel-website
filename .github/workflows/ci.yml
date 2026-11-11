@@ -228,7 +228,7 @@ jobs:
           name: book-journey-${{ github.sha }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/book-journey
           if-no-files-found: ignore
-          retention-days: 14
+          retention-days: 3
 
       - name: Search resources and brief journey
         run: node scripts/qa/search-journey.mjs
@@ -243,7 +243,7 @@ jobs:
           name: search-journey-${{ github.sha }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/search-journey
           if-no-files-found: ignore
-          retention-days: 14
+          retention-days: 3
 
       - name: GenCreator rendered metadata
         if: ${{ !cancelled() && steps.build.outcome == 'success' }}
@@ -276,4 +276,4 @@ jobs:
             ${{ runner.temp }}/glass-input-journey
             ${{ runner.temp }}/glass-input-production
           if-no-files-found: ignore
-          retention-days: 14
+          retention-days: 3

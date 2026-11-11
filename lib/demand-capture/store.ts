@@ -130,6 +130,19 @@ export async function saveSignal(signal: DemandSignal): Promise<void> {
   throw new Error('KV: signal kept changing during save')
 }
 
+/** SET NX: true the first time a marker is taken, false after. Kept for a year. */
+export async function claimOnce(productId: string, marker: string): Promise<boolean> {
+  return (await kv(['SET', key(productId, marker), '1', 'NX', 'EX', '31536000'])) === 'OK'
+}
+
+export async function hasMarker(productId: string, marker: string): Promise<boolean> {
+  return (await kv(['GET', key(productId, marker)])) !== null
+}
+
+export async function releaseOnce(productId: string, marker: string): Promise<void> {
+  await kv(['DEL', key(productId, marker)])
+}
+
 export async function allSignals(productId: string): Promise<DemandSignal[]> {
   const raw = (await kv(['hgetall', key(productId, 'signals')])) as unknown[] | null
   if (!raw) return []
