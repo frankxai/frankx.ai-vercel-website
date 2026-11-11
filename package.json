@@ -225,7 +225,7 @@
     "@vercel/speed-insights": "^2.1.0",
     "@xyflow/react": "^12.12.0",
     "agentdb": "3.0.0-alpha.20",
-    "ai": "^7.0.165",
+    "ai": "^6.0.190",
     "autoprefixer": "^10.6.2",
     "bcryptjs": "^3.0.3",
     "chokidar": "^6.0.0",
