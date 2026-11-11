@@ -255,9 +255,6 @@ export default function BlueprintsPage() {
             <Lock className="h-5 w-5" />
           </div>
           <h3 className="mt-4 text-xl font-semibold text-white">Sovereignty and guarantee</h3>
-          <p className="mx-auto mt-2 max-w-xl text-sm text-white/60 leading-relaxed">
-            Every blueprint ships with full markdown documentation and prompt tokens. Zero ongoing royalties. Run it locally and adapt it to your workflow.
-          </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-white/50">
             <span>✓ commercial use enabled</span>
           </div>
