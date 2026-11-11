@@ -16,7 +16,8 @@ const server = spawnManagedProcess(process.execPath, [
   stdio: 'ignore',
 })
 
-const request = candidate => fetch(`${origin}/ops`, {
+const paths = ['/ops', '/ops/sites', '/ops/calendar']
+const request = (path, candidate) => fetch(`${origin}${path}`, {
   headers: candidate ? { 'x-admin-secret': candidate } : {},
   redirect: 'manual',
   signal: AbortSignal.timeout(15_000),
@@ -29,26 +30,36 @@ try {
     assert.equal(server.spawnError, null, 'Production server failed to launch')
     assert.equal(server.exitCode, null, 'Production server exited before readiness')
     assert.ok(Date.now() < deadline, 'Production server readiness timed out')
-    try { anonymous = await request() } catch {
+    try { anonymous = await request('/ops') } catch {
       await new Promise(resolve => setTimeout(resolve, 250))
     }
   }
-  assert.equal(anonymous.status, 404, 'Anonymous access must be denied')
+  assert.equal(anonymous.status, 404, 'Anonymous access to /ops must be denied')
   await anonymous.arrayBuffer()
 
-  const incorrect = await request('fixture-incorrect-admin')
-  assert.equal(incorrect.status, 404, 'Incorrect admin access must be denied')
-  await incorrect.arrayBuffer()
+  for (const path of paths) {
+    if (path !== '/ops') {
+      const anonymousChild = await request(path)
+      assert.equal(anonymousChild.status, 404, `Anonymous access to ${path} must be denied`)
+      await anonymousChild.arrayBuffer()
+    }
 
-  const authorized = await request(admin)
-  assert.equal(authorized.status, 200, 'Configured admin must reach the page')
-  assert.match(authorized.headers.get('cache-control') ?? '', /\bno-store\b/)
-  assert.equal((await authorized.text()).includes(admin), false, 'Admin credential must not enter HTML')
+    const incorrect = await request(path, 'fixture-incorrect-admin')
+    assert.equal(incorrect.status, 404, `Incorrect admin access to ${path} must be denied`)
+    await incorrect.arrayBuffer()
 
-  const afterAdmin = await request()
-  assert.equal(afterAdmin.status, 404, 'An authorized response must not be shared with anonymous visitors')
-  await afterAdmin.arrayBuffer()
-  console.log('Ops production authorization passed: anonymous, incorrect, authorized, and post-admin anonymous requests.')
+    const authorized = await request(path, admin)
+    assert.equal(authorized.status, 200, `Configured admin must reach ${path}`)
+    if (path === '/ops') {
+      assert.match(authorized.headers.get('cache-control') ?? '', /\bno-store\b/)
+    }
+    assert.equal((await authorized.text()).includes(admin), false, `Admin credential must not enter HTML on ${path}`)
+
+    const afterAdmin = await request(path)
+    assert.equal(afterAdmin.status, 404, `An authorized ${path} response must not be shared with anonymous visitors`)
+    await afterAdmin.arrayBuffer()
+  }
+  console.log('Ops production authorization passed: anonymous, incorrect, authorized, and post-admin anonymous requests for /ops, /ops/sites, and /ops/calendar.')
 } finally {
   await stopManagedProcess(server)
 }
