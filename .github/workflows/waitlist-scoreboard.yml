@@ -1,0 +1,26 @@
+name: waitlist-scoreboard
+# Daily read-only count of operator lab signups, posted to the run summary.
+# Needs repository secrets KV_REST_API_URL and KV_REST_API_READ_ONLY_TOKEN (Frank adds them).
+# No addresses are printed: only counts by day, source, campaign, price band and urgency.
+on:
+  schedule:
+    - cron: '15 7 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  scoreboard:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == 'frankxai/frankx.ai-vercel-website' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '22'
+      - name: Scoreboard
+        env:
+          KV_REST_API_URL: ${{ secrets.KV_REST_API_URL }}
+          KV_REST_API_READ_ONLY_TOKEN: ${{ secrets.KV_REST_API_READ_ONLY_TOKEN }}
+        run: node scripts/waitlist/scoreboard.mjs starlight-academy-operator-lab

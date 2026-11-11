@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Shield, Sparkles, Mail } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
+import { trackCtaClick } from '@/lib/track'
 import type { ProductOffer } from '@/types/products'
 
 // Global coming soon mode - set to true to hide all pricing
@@ -35,6 +36,7 @@ export default function ProductHero({ productId, badge, title, subtitle, promise
       : target === 'primary'
         ? offer?.ctaPrimaryTracking ?? offer?.ctaPrimary
         : offer?.ctaSecondaryTracking ?? offer?.ctaSecondary
+    trackCtaClick({ cta: `${productId}-${target}`, location: 'product-hero' })
     trackEvent('product_cta_click', {
       productId,
       location: 'hero',

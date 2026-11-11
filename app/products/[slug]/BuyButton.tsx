@@ -1,6 +1,7 @@
 'use client'
 
 import { trackConversion } from '@/lib/gtag'
+import { trackCheckoutStart, trackCtaClick } from '@/lib/track'
 
 interface BuyButtonProps {
   href?: string
@@ -11,6 +12,8 @@ interface BuyButtonProps {
 export default function BuyButton({ href, label, trackingId }: BuyButtonProps) {
   const handleBuyNow = () => {
     const destination = href || '/contact?product=purchase-interest'
+    if (href) trackCheckoutStart({ product: trackingId || label, price_band: 'unknown' })
+    else trackCtaClick({ cta: label, location: 'product-buy-button' })
     if (href && trackingId && process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID) {
       trackConversion(href, trackingId)
       return

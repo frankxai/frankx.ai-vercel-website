@@ -50,6 +50,7 @@ async function submitWaitlist(intent) {
     'next/link': { default: 'a' },
     'next/navigation': { useRouter: () => ({}) },
     '@/lib/analytics': { trackEvent() {} },
+    '@/lib/track': { trackWaitlistJoin() {} },
     '@/lib/utils': { cn: (...values) => values.filter(Boolean).join(' ') },
     '@/lib/diagnostic/demand': loadModule('lib/diagnostic/demand.ts'),
   }, async (url, options) => {

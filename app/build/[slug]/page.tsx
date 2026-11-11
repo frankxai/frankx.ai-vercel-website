@@ -70,6 +70,7 @@ export default async function BuildProductPage({ params }: { params: Params }) {
 
           <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
             <BuyButton
+              productSlug={product.slug}
               ctaText={product.ctaText}
               price={product.pricing.eur}
               cadence={product.pricing.cadence}
@@ -166,6 +167,7 @@ export default async function BuildProductPage({ params }: { params: Params }) {
           <div className="rounded-2xl border border-cyan-500/20 bg-cyan-500/[0.03] p-6 sm:p-8 text-center">
             <h3 className="text-lg font-semibold text-white mb-3">Ready when you are</h3>
             <BuyButton
+              productSlug={product.slug}
               ctaText={product.ctaText}
               price={product.pricing.eur}
               cadence={product.pricing.cadence}
