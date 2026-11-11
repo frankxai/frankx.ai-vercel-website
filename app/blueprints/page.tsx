@@ -7,7 +7,6 @@ import {
   Download,
   Headphones,
   Layers,
-  Lock,
   Music,
   ShieldCheck,
   Sparkles,
@@ -249,16 +248,6 @@ export default function BlueprintsPage() {
           })}
         </div>
 
-        {/* Guarantee and FAQ banner */}
-        <div className="mt-16 rounded-2xl border border-white/[0.06] bg-white/[0.015] p-8 text-center backdrop-blur-md">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-400">
-            <Lock className="h-5 w-5" />
-          </div>
-          <h3 className="mt-4 text-xl font-semibold text-white">Sovereignty and guarantee</h3>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-white/50">
-            <span>✓ commercial use enabled</span>
-          </div>
-        </div>
       </div>
     </div>
   )
