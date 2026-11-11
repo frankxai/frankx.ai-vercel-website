@@ -2,8 +2,7 @@
 
 import { useMemo, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { marked } from 'marked';
-import DOMPurify from 'isomorphic-dompurify';
+import { renderSanitizedChapterMarkdown } from '@/lib/sanitize/markdown';
 import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 import {
   ArrowLeft,
@@ -268,11 +267,6 @@ export default function PremiumReader({
 
   // Process markdown content
   const htmlContent = useMemo(() => {
-    marked.setOptions({
-      gfm: true,
-      breaks: true
-    });
-
     let processedContent = content;
 
     // Add IDs to headings
@@ -287,15 +281,7 @@ export default function PremiumReader({
       );
     });
 
-    const rawHtml = marked.parse(processedContent);
-    return DOMPurify.sanitize(rawHtml as string, {
-      ALLOWED_TAGS: [
-        'p', 'br', 'strong', 'em', 'a', 'ul', 'ol', 'li',
-        'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote',
-        'code', 'pre', 'span', 'hr'
-      ],
-      ALLOWED_ATTR: ['href', 'id', 'class', 'target', 'rel']
-    });
+    return renderSanitizedChapterMarkdown(processedContent);
   }, [content, tocItems]);
 
   return (

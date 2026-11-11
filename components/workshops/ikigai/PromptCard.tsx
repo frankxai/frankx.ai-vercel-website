@@ -2,11 +2,9 @@
 
 import { useMemo, useState } from 'react'
 import { Copy, Check, ExternalLink, Sparkles, ArrowRight } from 'lucide-react'
-import { marked } from 'marked'
-import DOMPurify from 'isomorphic-dompurify'
+import { renderSanitizedPromptMarkdown } from '@/lib/sanitize/markdown'
 import type { WorkshopPrompt } from '@/lib/workshop-prompts'
 
-marked.setOptions({ gfm: true, breaks: false })
 
 interface PromptCardProps {
   prompt: WorkshopPrompt
@@ -68,15 +66,12 @@ export function PromptCard({ prompt }: PromptCardProps) {
   const [copied, setCopied] = useState(false)
 
   const renderedBody = useMemo(() => {
-    const html = marked.parse(prompt.body, { async: false }) as string
     // ALLOWED_ATTR=[] strips href/onclick/style/class — every future markdown
     // link silently loses its href. Trade-off accepted: defends against
     // contributor pastes of raw HTML. h1–h4 intentionally NOT allowed so
     // prompt bodies cannot inject into the page's heading outline.
-    return DOMPurify.sanitize(html, {
-      ALLOWED_TAGS: ['p', 'strong', 'em', 'ul', 'ol', 'li', 'blockquote', 'pre', 'code', 'br', 'hr'],
-      ALLOWED_ATTR: [],
-    })
+    // Policy lives in lib/sanitize/markdown.ts (promptSanitizeConfig).
+    return renderSanitizedPromptMarkdown(prompt.body)
   }, [prompt.body])
 
   function handleCopy() {

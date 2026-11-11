@@ -4,8 +4,15 @@ import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import test from 'node:test'
 import { fileURLToPath } from 'node:url'
-import DOMPurify from 'isomorphic-dompurify'
-import { marked } from 'marked'
+import {
+  chapterSanitizeConfig,
+  promptSanitizeConfig,
+  sanitizeChapterHtml,
+  sanitizePromptHtml,
+  renderSanitizedChapterMarkdown,
+  renderSanitizedPromptMarkdown,
+} from '../../lib/sanitize/markdown.ts'
+import { WORKSHOP_PROMPTS } from '../../lib/workshop-prompts.ts'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 const require = createRequire(import.meta.url)
@@ -24,24 +31,16 @@ if (typeof JSDOM !== 'function') {
   )
 }
 
-// These configs are mirrored from the production call sites, which live
-// inline in TSX modules (not a shared importable sanitizer module):
-//   components/workshops/ikigai/PromptCard.tsx:76-79
-//   app/golden-age/components/ChapterReader.tsx:83-86
-//   app/golden-age/components/PremiumReader.tsx:291-298 (same allowlists as ChapterReader)
+// Named policies live in lib/sanitize/markdown.ts and are used by
+// ChapterReader, PremiumReader (chapter), and PromptCard (prompt).
 const CONFIGS = {
-  prompt: {
-    ALLOWED_TAGS: ['p', 'strong', 'em', 'ul', 'ol', 'li', 'blockquote', 'pre', 'code', 'br', 'hr'],
-    ALLOWED_ATTR: [],
-  },
-  chapter: {
-    ALLOWED_TAGS: [
-      'p', 'br', 'strong', 'em', 'a', 'ul', 'ol', 'li',
-      'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote',
-      'code', 'pre', 'span', 'hr',
-    ],
-    ALLOWED_ATTR: ['href', 'id', 'class', 'target', 'rel'],
-  },
+  prompt: promptSanitizeConfig,
+  chapter: chapterSanitizeConfig,
+}
+
+const SANITIZE = {
+  prompt: sanitizePromptHtml,
+  chapter: sanitizeChapterHtml,
 }
 
 const PAYLOADS = {
@@ -136,28 +135,22 @@ function isStricterOrEqual(v2, v4) {
 }
 
 function parseMarkdownLikeChapter(content) {
-  // Mirrors app/golden-age/components/ChapterReader.tsx:60-86
-  // (PremiumReader.tsx:270-298 uses the same marked options and allowlists).
-  // The sanitizer is not extracted to a shared module, so this test mirrors
-  // that exact call sequence and config.
-  marked.setOptions({
-    gfm: true,
-    breaks: true,
-  })
-  const rawHtml = marked.parse(content)
+  // Production path: ChapterReader / PremiumReader call renderSanitizedChapterMarkdown
+  // after TOC heading-id injection (tested separately against pre-extract snapshots).
+  const html = renderSanitizedChapterMarkdown(content)
   assert.equal(
-    typeof rawHtml,
+    typeof html,
     'string',
-    `ChapterReader calls marked.parse without async:false; expected a string, got ${typeof rawHtml}`,
+    `renderSanitizedChapterMarkdown must return a string, got ${typeof html}`,
   )
-  return DOMPurify.sanitize(rawHtml, CONFIGS.chapter)
+  return html
 }
 
 function parseMarkdownLikePrompt(body) {
-  // Mirrors components/workshops/ikigai/PromptCard.tsx:71-79
-  const html = marked.parse(body, { async: false })
+  // Production path: PromptCard calls renderSanitizedPromptMarkdown.
+  const html = renderSanitizedPromptMarkdown(body)
   assert.equal(typeof html, 'string')
-  return DOMPurify.sanitize(html, CONFIGS.prompt)
+  return html
 }
 
 test('isomorphic-dompurify is the v4 line under test', () => {
@@ -190,11 +183,11 @@ test('detector flags entity-encoded javascript: hrefs', () => {
   }
 })
 
-for (const [cname, cfg] of Object.entries(CONFIGS)) {
+for (const cname of Object.keys(CONFIGS)) {
   for (const [pname, html] of Object.entries(PAYLOADS)) {
     test(`v4 is identical or stricter than v2 for ${cname}/${pname}`, () => {
       const v2 = V2.results[cname][pname]
-      const v4 = DOMPurify.sanitize(html, cfg)
+      const v4 = SANITIZE[cname](html)
       assertNoUnsafeHandlers(v4, `${cname}/${pname}`)
       assert.equal(
         isStricterOrEqual(v2, v4),
@@ -205,22 +198,22 @@ for (const [cname, cfg] of Object.entries(CONFIGS)) {
   }
 }
 
-for (const [cname, cfg] of Object.entries(CONFIGS)) {
+for (const cname of Object.keys(CONFIGS)) {
   for (const [name, html] of Object.entries(ENCODED_JS_HREFS)) {
     test(`sanitizer drops entity-encoded javascript: href (${cname}/${name})`, () => {
-      const cleaned = DOMPurify.sanitize(html, cfg)
+      const cleaned = SANITIZE[cname](html)
       assertNoUnsafeHandlers(cleaned, `${cname}/${name} direct`)
     })
   }
 }
 
 test('safe markdown and HTML still survive the chapter allowlist', () => {
-  const md = DOMPurify.sanitize(PAYLOADS.normal_markdown_html, CONFIGS.chapter)
+  const md = sanitizeChapterHtml(PAYLOADS.normal_markdown_html)
   assertNoUnsafeHandlers(md, 'safe markdown html')
   assert.match(md, /Hello/)
   assert.match(md, /world/)
   assert.match(md, /<strong>/)
-  const html = DOMPurify.sanitize(PAYLOADS.normal_html, CONFIGS.chapter)
+  const html = sanitizeChapterHtml(PAYLOADS.normal_html)
   assertNoUnsafeHandlers(html, 'safe html')
   assert.match(html, /Safe/)
   assert.match(html, /href="https:\/\/frankx.ai"/)
@@ -286,3 +279,108 @@ for (const [name, markdown] of Object.entries(PROMPT_MARKDOWN_CASES)) {
     }
   })
 }
+
+
+// Exact ChapterReader / PremiumReader TOC heading-id injection, kept in the
+// components (not extracted). Used only to prove the real chapter path.
+function injectChapterHeadingIds(content) {
+  const headingRegex = /^(#{1,3})\s+(.+)$/gm
+  const toc = []
+  let match
+  while ((match = headingRegex.exec(content)) !== null) {
+    const level = match[1].length
+    const text = match[2].trim()
+    if (
+      text.toLowerCase().includes('chapter') ||
+      text.toLowerCase().includes('source') ||
+      text.toLowerCase().includes('quotable') ||
+      text.toLowerCase().includes('end chapter')
+    ) {
+      continue
+    }
+    const id = text
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '')
+    toc.push({ id, text, level })
+  }
+  let processedContent = content
+  toc.forEach((item) => {
+    const escapedText = item.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const headingPattern = new RegExp(`^#{${item.level}}\\s+${escapedText}$`, 'm')
+    processedContent = processedContent.replace(
+      headingPattern,
+      `${'#'.repeat(item.level)} <span id="${item.id}">${item.text}</span>`,
+    )
+  })
+  return processedContent
+}
+
+const SNAPSHOT = JSON.parse(
+  readFileSync(path.join(root, 'scripts/tests/fixtures/sanitize-markdown-snapshots.json'), 'utf8'),
+)
+
+function renderSnapshotCase(id) {
+  const slash = id.indexOf('/')
+  const group = id.slice(0, slash)
+  const key = id.slice(slash + 1)
+  if (group === 'payload-chapter') return sanitizeChapterHtml(PAYLOADS[key])
+  if (group === 'payload-prompt') return sanitizePromptHtml(PAYLOADS[key])
+  if (group === 'encoded-js-chapter') return sanitizeChapterHtml(ENCODED_JS_HREFS[key])
+  if (group === 'encoded-js-prompt') return sanitizePromptHtml(ENCODED_JS_HREFS[key])
+  if (group === 'chapter-md') return renderSanitizedChapterMarkdown(CHAPTER_MARKDOWN_CASES[key])
+  if (group === 'prompt-md') return renderSanitizedPromptMarkdown(PROMPT_MARKDOWN_CASES[key])
+  if (group === 'real-chapter') {
+    const md = readFileSync(path.join(root, 'content/golden-age-book', key), 'utf8')
+    return renderSanitizedChapterMarkdown(injectChapterHeadingIds(md))
+  }
+  if (group === 'real-prompt') {
+    const prompt = WORKSHOP_PROMPTS.find((p) => p.id === key)
+    if (!prompt) throw new Error(`missing workshop prompt ${key}`)
+    return renderSanitizedPromptMarkdown(prompt.body)
+  }
+  throw new Error(`unknown snapshot id ${id}`)
+}
+
+test('shared sanitize module is byte-identical to pre-extract snapshots', () => {
+  assert.equal(SNAPSHOT.capturedAt, 'pre-extract')
+  assert.equal(SNAPSHOT.sourceSha, '3b9352ea83d96766dac5da657ba14180684bc3dc')
+  assert.ok(Array.isArray(SNAPSHOT.cases) && SNAPSHOT.cases.length > 0)
+
+  const seen = new Set()
+  for (const entry of SNAPSHOT.cases) {
+    assert.equal(seen.has(entry.id), false, `duplicate snapshot id ${entry.id}`)
+    seen.add(entry.id)
+    const actual = renderSnapshotCase(entry.id)
+    assert.equal(
+      actual,
+      entry.html,
+      `${entry.id} is not byte-identical to the pre-extract snapshot`,
+    )
+  }
+
+  for (const name of Object.keys(PAYLOADS)) {
+    assert.ok(seen.has(`payload-chapter/${name}`), `missing snapshot for payload-chapter/${name}`)
+    assert.ok(seen.has(`payload-prompt/${name}`), `missing snapshot for payload-prompt/${name}`)
+  }
+  for (const name of Object.keys(ENCODED_JS_HREFS)) {
+    assert.ok(seen.has(`encoded-js-chapter/${name}`), `missing snapshot for encoded-js-chapter/${name}`)
+    assert.ok(seen.has(`encoded-js-prompt/${name}`), `missing snapshot for encoded-js-prompt/${name}`)
+  }
+  for (const name of Object.keys(CHAPTER_MARKDOWN_CASES)) {
+    assert.ok(seen.has(`chapter-md/${name}`), `missing snapshot for chapter-md/${name}`)
+  }
+  for (const name of Object.keys(PROMPT_MARKDOWN_CASES)) {
+    assert.ok(seen.has(`prompt-md/${name}`), `missing snapshot for prompt-md/${name}`)
+  }
+  for (const file of [
+    'chapter-01-when-creation-calls.md',
+    'chapter-02-the-orchestration-age.md',
+    'chapter-03-the-first-gesture.md',
+  ]) {
+    assert.ok(seen.has(`real-chapter/${file}`), `missing snapshot for real-chapter/${file}`)
+  }
+  for (const id of ['ai-initial-assessment', 'socratic-ikigai', 'dream-doubt-validator']) {
+    assert.ok(seen.has(`real-prompt/${id}`), `missing snapshot for real-prompt/${id}`)
+  }
+})
