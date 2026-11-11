@@ -130,6 +130,11 @@ function lintContrast(spec, themeName) {
   for (const l of spec.layers || []) used.add(l.accent)
   for (const n of spec.nodes || []) used.add(n.accent)
   for (const s of spec.stages || []) used.add(s.accent)
+  for (const t of spec.tiers || []) used.add(t.accent)
+  for (const c of spec.inputs || []) if (c.accent) used.add(c.accent)
+  for (const c of spec.cores || []) if (c.accent) used.add(c.accent)
+  for (const c of spec.substrates || []) if (c.accent) used.add(c.accent)
+  for (const d of spec.dock || []) if (d.accent) used.add(d.accent)
   if (spec.core) used.add(spec.core.accent)
   if (spec.loop) used.add(spec.loop.accent)
   for (const name of used) {
@@ -356,13 +361,227 @@ function renderFlow(spec, T, themeName, id, top, warn) {
   return { svg: out, bottom }
 }
 
-const RENDERERS = { layers: renderLayers, radial: renderRadial, flow: renderFlow }
+function iconGlyph(kind, cx, cy, r, stroke) {
+  const s = r / 14
+  const g = (p) => `<g transform="translate(${r1(cx - 14 * s)} ${r1(cy - 14 * s)}) scale(${r1(s)})" fill="none" stroke="${stroke}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p}</g>`
+  switch (kind) {
+    case 'terminal':
+      return g('<rect x="2" y="3" width="24" height="22" rx="5"/><path d="M8 10l5 4-5 4M15 18h5"/>')
+    case 'cloud':
+      return g('<path d="M7.5 21h12a5.5 5.5 0 0 0 .8-10.9A7.5 7.5 0 0 0 6 11.5a5 5 0 0 0 1.5 9.5Z"/><path d="M12 14l2-2 2 2"/>')
+    case 'mesh':
+      return g('<polygon points="14,2 24,8 24,20 14,26 4,20 4,8"/><circle cx="14" cy="14" r="3"/><path d="M14 2v9M24 8l-7.4 4.5M24 20l-7.4-4.5M14 26v-9M4 20l7.4-4.5M4 8l7.4 4.5"/>')
+    case 'shield':
+      return g('<path d="M14 3l9 4v6.5c0 5.6-3.8 9.8-9 11.5-5.2-1.7-9-5.9-9-11.5V7l9-4Z"/><path d="M10 14l2.8 2.8L18.5 11"/>')
+    case 'chart':
+      return g('<path d="M5 23V15M11 23V10M17 23V13M23 23V6"/>')
+    case 'gauge':
+      return g('<path d="M5 19a9 9 0 1 1 18 0"/><path d="M14 15l4-5"/><circle cx="14" cy="16" r="1.5"/>')
+    case 'database':
+      return g('<ellipse cx="14" cy="7" rx="8" ry="3.5"/><path d="M6 7v14c0 2 3.6 3.5 8 3.5s8-1.5 8-3.5V7"/><path d="M6 14c0 2 3.6 3.5 8 3.5s8-1.5 8-3.5"/>')
+    case 'refresh':
+      return g('<path d="M21 10A8 8 0 0 0 7.5 8.5L5 11M5 6v5h5"/><path d="M7 18a8 8 0 0 0 13.5 1.5L23 17M23 22v-5h-5"/>')
+    case 'eye':
+      return g('<path d="M2.5 14S7 7 14 7s11.5 7 11.5 7-4.5 7-11.5 7S2.5 14 2.5 14Z"/><circle cx="14" cy="14" r="3"/>')
+    case 'layers':
+      return g('<polygon points="14,4 24,9.5 14,15 4,9.5"/><path d="M4 14.5L14 20l10-5.5M4 19.5L14 25l10-5.5"/>')
+    case 'wrench':
+      return g('<path d="M17.5 6.5a5 5 0 0 0-6.6 6.6L5 19l4 4 5.9-5.9a5 5 0 0 0 6.6-6.6l-3 3-2-2 3-3Z"/>')
+    case 'bot':
+      return g('<rect x="5" y="8" width="18" height="14" rx="4"/><path d="M14 4v4M10 14h.01M18 14h.01M10 18h8"/>')
+    case 'star':
+      return g('<polygon points="14,3 17,10.5 25,11.2 19,16.5 20.8,24.5 14,20.2 7.2,24.5 9,16.5 3,11.2 11,10.5"/>')
+    default:
+      return g('<rect x="4" y="6" width="20" height="16" rx="3"/><path d="M8 12h6M8 16h10"/>')
+  }
+}
+
+function renderStackTiers(spec, T, themeName, id, top, warn) {
+  let out = ''
+  let y = top + 6
+  const cardW = 1160
+  const x0 = (W - cardW) / 2
+  spec.tiers.forEach((tier, ti) => {
+    const acc = accentOf(tier.accent, themeName)
+    const caps = tier.capabilities || []
+    const hasCaps = caps.length > 0
+    const hasPill = Boolean(tier.pill)
+    const cardH = hasCaps ? 214 : hasPill ? 168 : 140
+
+    out += `<g>`
+    out += `<rect x="${r1(x0)}" y="${r1(y)}" width="${cardW}" height="${cardH}" rx="24" fill="${T.panel}" stroke="${acc.base}" stroke-opacity="0.55" stroke-width="1.6"/>`
+    out += `<rect x="${r1(x0)}" y="${r1(y)}" width="520" height="${cardH}" rx="24" fill="url(#${id}-glow-${tier.accent})"/>`
+
+    // Icon badge
+    const bx = x0 + 44
+    const by = y + 28
+    out += `<rect x="${r1(bx)}" y="${r1(by)}" width="68" height="68" rx="18" fill="${T.card}" stroke="${acc.base}" stroke-opacity="0.7" stroke-width="1.5"/>`
+    out += iconGlyph(tier.icon || 'terminal', bx + 34, by + 34, 17, acc.text)
+
+    // Title & subtitle
+    const tx = bx + 92
+    out += text(tx, by + 30, tier.title, { size: 30, weight: 750, fill: T.text })
+    const sub = wrap(tier.subtitle, 18, cardW - 200, 'sans', warn)
+    out += lines(tx, by + 58, sub.slice(0, 1), 24, { size: 18, fill: T.text2 })
+
+    if (hasPill) {
+      const pw = measure(tier.pill, 15, 'mono') + 44
+      const py = by + 76
+      out += `<rect x="${r1(tx)}" y="${r1(py)}" width="${r1(pw)}" height="32" rx="16" fill="${T.card}" stroke="${acc.base}" stroke-opacity="0.55"/>`
+      out += text(tx + 22, py + 21, tier.pill, { size: 15, weight: 600, fill: acc.text, kind: 'mono' })
+    }
+
+    if (hasCaps) {
+      const cy = y + 116
+      out += `<path d="M${r1(x0 + 44)} ${r1(cy)}H${r1(x0 + cardW - 44)}" stroke="${T.border}"/>`
+      const innerW = cardW - 88
+      const colW = innerW / caps.length
+      caps.forEach((cap, ci) => {
+        const cx = x0 + 44 + ci * colW + colW / 2
+        if (ci > 0) {
+          out += `<path d="M${r1(x0 + 44 + ci * colW)} ${r1(cy + 16)}V${r1(cy + 78)}" stroke="${T.border}"/>`
+        }
+        out += iconGlyph(cap.icon || 'card', cx, cy + 34, 12, acc.text)
+        const cl = wrap(cap.label, 15, colW - 16, 'sans', warn)
+        out += lines(cx, cy + 68, cl.slice(0, 2), 18, { size: 15, weight: 600, fill: T.text2, anchor: 'middle' })
+      })
+    }
+    out += `</g>`
+    y += cardH
+
+    if (ti < spec.tiers.length - 1) {
+      const connH = 48
+      const midX = W / 2
+      out += `<circle cx="${midX}" cy="${r1(y)}" r="5" fill="${acc.base}"/>`
+      out += `<path d="M${midX} ${r1(y + 6)}V${r1(y + connH - 6)}" stroke="${T.line}" stroke-width="2.2" marker-end="url(#${id}-arrow)"/>`
+      if (spec.tierLinks && spec.tierLinks[ti]) {
+        const lbl = spec.tierLinks[ti]
+        const lw = measure(lbl, 13, 'mono') + 28
+        out += `<rect x="${r1(midX + 18)}" y="${r1(y + connH / 2 - 13)}" width="${r1(lw)}" height="26" rx="13" fill="${T.panel}" stroke="${T.border}"/>`
+        out += text(midX + 32, y + connH / 2 + 4.5, lbl, { size: 13, fill: T.text2, kind: 'mono' })
+      }
+      y += connH
+    }
+  })
+  return { svg: out, bottom: y + 8 }
+}
+
+function renderHudArchitecture(spec, T, themeName, id, top, warn) {
+  let out = ''
+  const colGap = 64
+  const leftW = 340
+  const midW = 410
+  const rightW = CW - leftW - midW - colGap * 2
+  const leftX = X0
+  const midX = leftX + leftW + colGap
+  const rightX = midX + midW + colGap
+
+  const inH = 68
+  const inGap = 16
+  const inputsTotalH = spec.inputs.length * inH + (spec.inputs.length - 1) * inGap
+
+  const subH = 78
+  const subGap = 14
+  const subsTotalH = spec.substrates.length * subH + (spec.substrates.length - 1) * subGap
+
+  const bodyH = Math.max(inputsTotalH, subsTotalH, 420)
+  const inStartY = top + 12 + (bodyH - inputsTotalH) / 2
+  const subStartY = top + 12 + (bodyH - subsTotalH) / 2
+
+  const coreH = 156
+  const coreGap = 44
+  const coresTotalH = spec.cores.length * coreH + (spec.cores.length - 1) * coreGap
+  const coreStartY = top + 12 + (bodyH - coresTotalH) / 2
+
+  // Inputs (left) & connectors to cores
+  spec.inputs.forEach((inp, i) => {
+    const acc = accentOf(inp.accent || 'cyan', themeName)
+    const iy = inStartY + i * (inH + inGap)
+    out += `<rect x="${leftX}" y="${r1(iy)}" width="${leftW}" height="${inH}" rx="16" fill="${T.panel}" stroke="${T.border}"/>`
+    out += iconGlyph(inp.icon || 'card', leftX + 32, iy + inH / 2, 11, acc.text)
+    out += text(leftX + 58, iy + 30, inp.label, { size: 18, weight: 700, fill: T.text })
+    if (inp.detail) out += text(leftX + 58, iy + 51, inp.detail, { size: 14, fill: T.text2 })
+
+    const targetCoreIdx = i < Math.ceil(spec.inputs.length / 2) ? 0 : Math.min(1, spec.cores.length - 1)
+    const ty = coreStartY + targetCoreIdx * (coreH + coreGap) + coreH / 2
+    const sx = leftX + leftW
+    const sy = iy + inH / 2
+    out += `<path d="M${sx} ${r1(sy)}C${r1(sx + colGap * 0.55)} ${r1(sy)} ${r1(midX - colGap * 0.55)} ${r1(ty)} ${midX - 4} ${r1(ty)}" fill="none" stroke="${T.line}" stroke-width="1.8" marker-end="url(#${id}-arrow)"/>`
+  })
+
+  // Cores (center)
+  spec.cores.forEach((core, ci) => {
+    const acc = accentOf(core.accent || 'violet', themeName)
+    const cy = coreStartY + ci * (coreH + coreGap)
+    out += `<rect x="${midX}" y="${r1(cy)}" width="${midW}" height="${coreH}" rx="22" fill="${T.panel}" stroke="${acc.base}" stroke-width="2"/>`
+    out += `<rect x="${midX}" y="${r1(cy)}" width="${midW}" height="${coreH}" rx="22" fill="url(#${id}-glow-${core.accent || 'violet'})"/>`
+    out += iconGlyph(core.icon || 'star', midX + midW / 2, cy + 40, 14, acc.text)
+    out += text(midX + midW / 2, cy + 84, core.title, { size: 24, weight: 750, fill: T.text, anchor: 'middle' })
+    const csub = wrap(core.subtitle, 15, midW - 48, 'sans', warn)
+    out += lines(midX + midW / 2, cy + 112, csub.slice(0, 2), 20, { size: 15, fill: T.text2, anchor: 'middle' })
+
+    if (ci < spec.cores.length - 1) {
+      const cxMid = midX + midW / 2
+      out += `<path d="M${r1(cxMid)} ${r1(cy + coreH + 4)}V${r1(cy + coreH + coreGap - 4)}" stroke="${acc.base}" stroke-width="2.2" marker-start="url(#${id}-arrow)" marker-end="url(#${id}-arrow)"/>`
+    }
+  })
+
+  // Substrates (right) & connectors from cores
+  spec.substrates.forEach((sub, si) => {
+    const acc = accentOf(sub.accent || 'emerald', themeName)
+    const sy = subStartY + si * (subH + subGap)
+    out += `<rect x="${rightX}" y="${r1(sy)}" width="${rightW}" height="${subH}" rx="16" fill="${T.panel}" stroke="${acc.base}" stroke-opacity="0.55"/>`
+    out += `<rect x="${rightX}" y="${r1(sy)}" width="220" height="${subH}" rx="16" fill="url(#${id}-glow-${sub.accent || 'emerald'})"/>`
+    out += iconGlyph(sub.icon || 'database', rightX + 34, sy + subH / 2, 12, acc.text)
+    out += text(rightX + 62, sy + 33, sub.title, { size: 19, weight: 700, fill: T.text })
+    const sd = wrap(sub.detail, 14, rightW - 80, 'sans', warn)
+    out += lines(rightX + 62, sy + 55, sd.slice(0, 1), 18, { size: 14, fill: T.text2 })
+
+    const fromCoreIdx = si < 2 ? 0 : Math.min(1, spec.cores.length - 1)
+    const fy = coreStartY + fromCoreIdx * (coreH + coreGap) + coreH / 2
+    const fx = midX + midW
+    const ty = sy + subH / 2
+    out += `<path d="M${fx} ${r1(fy)}C${r1(fx + colGap * 0.55)} ${r1(fy)} ${r1(rightX - colGap * 0.55)} ${r1(ty)} ${rightX - 4} ${r1(ty)}" fill="none" stroke="${T.line}" stroke-width="1.8" marker-end="url(#${id}-arrow)"/>`
+  })
+
+  let bottom = top + 12 + bodyH
+  if (spec.dock && spec.dock.length) {
+    const dockY = bottom + 36
+    const dockH = 68
+    out += `<rect x="${X0}" y="${r1(dockY)}" width="${CW}" height="${dockH}" rx="20" fill="${T.panel}" stroke="${T.border}"/>`
+    const stepW = CW / spec.dock.length
+    spec.dock.forEach((d, di) => {
+      const acc = accentOf(d.accent || 'violet', themeName)
+      const dx = X0 + di * stepW + stepW / 2
+      if (di > 0) {
+        out += `<path d="M${r1(X0 + di * stepW - 8)} ${r1(dockY + dockH / 2)}h16" stroke="${T.line}" stroke-width="1.8" marker-end="url(#${id}-arrow)"/>`
+      }
+      out += text(dx, dockY + 28, String(di + 1).padStart(2, '0'), { size: 12, weight: 600, fill: acc.text, anchor: 'middle', kind: 'mono', ls: 1.5 })
+      out += text(dx, dockY + 50, d.label, { size: 17, weight: 700, fill: T.text, anchor: 'middle' })
+    })
+    bottom = dockY + dockH
+  }
+  return { svg: out, bottom: bottom + 8 }
+}
+
+const RENDERERS = {
+  layers: renderLayers,
+  radial: renderRadial,
+  flow: renderFlow,
+  'stack-tiers': renderStackTiers,
+  'hud-architecture': renderHudArchitecture,
+}
 
 function collectAccents(spec) {
   const s = new Set([spec.accent || 'emerald'])
   for (const l of spec.layers || []) s.add(l.accent)
   for (const n of spec.nodes || []) s.add(n.accent)
   for (const st of spec.stages || []) s.add(st.accent)
+  for (const t of spec.tiers || []) s.add(t.accent)
+  for (const c of spec.inputs || []) if (c.accent) s.add(c.accent)
+  for (const c of spec.cores || []) if (c.accent) s.add(c.accent)
+  for (const c of spec.substrates || []) if (c.accent) s.add(c.accent)
+  for (const d of spec.dock || []) if (d.accent) s.add(d.accent)
   if (spec.core) s.add(spec.core.accent)
   if (spec.loop) s.add(spec.loop.accent)
   return [...s]
@@ -469,7 +688,7 @@ function main() {
 
 /** Which source files already reference the new diagram. Empty until pages adopt it. */
 function findAdopters(id) {
-  const needle = `diagrams/system/${id}`
+  const needles = [`diagrams/system/${id}`, `diagramId="${id}"`, `diagramId='${id}'`, `diagramId: '${id}'`, `diagramId: "${id}"`]
   const hits = []
   const roots = ['app', 'components', 'content', 'data/acos']
   const walk = (dir) => {
@@ -480,7 +699,10 @@ function findAdopters(id) {
       const p = path.join(dir, e.name)
       if (e.isDirectory()) walk(p)
       else if (/\.(tsx?|mdx?|json)$/.test(e.name)) {
-        try { if (fs.readFileSync(p, 'utf8').includes(needle)) hits.push(path.relative(ROOT, p).replace(/\\/g, '/')) } catch { /* unreadable */ }
+        try {
+          const txt = fs.readFileSync(p, 'utf8')
+          if (needles.some((n) => txt.includes(n))) hits.push(path.relative(ROOT, p).replace(/\\/g, '/'))
+        } catch { /* unreadable */ }
       }
     }
   }

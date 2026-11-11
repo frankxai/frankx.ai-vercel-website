@@ -1,0 +1,12 @@
+{
+  "schema": "vis.provenance.v1",
+  "assetPath": "/images/living-world/studio-mission-control.jpg",
+  "sha256": "4b335fa8f3fe6fe2731da611c0273c8c65665b572d5b61c6893fc42799b065f8",
+  "bytes": 409837,
+  "title": "Mission Control Information Architecture",
+  "alt": "Founder with ceramic, obsidian, and copper robot companions reviewing Starlight Mission Control information architecture and research citations.",
+  "edition": "editorial",
+  "promptFidelity": "FOUNDER_CURATED",
+  "rightsState": "owner_approved_2026_11_11",
+  "recordedAt": "2026-11-11T04:21:00Z"
+}

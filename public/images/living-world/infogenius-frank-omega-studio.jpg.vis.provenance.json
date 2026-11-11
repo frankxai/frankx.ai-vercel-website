@@ -1,0 +1,14 @@
+{
+  "schema": "vis.provenance.v1",
+  "assetPath": "/images/living-world/infogenius-frank-omega-studio.jpg",
+  "sha256": "35491b66e8d5203d23494ab810e2cdb2a72728fd452d328557ec30a9eb1b4819",
+  "bytes": 795932,
+  "title": "InfoGenius Observatory Synthesis",
+  "alt": "Ivory-and-gold optical camera robot and knitted blue cloud-hoodie robot inspecting floating sapphire crystal prisms and luminous aquamarine light threads over indigo star charts in a dusk observatory.",
+  "edition": "editorial",
+  "promptFidelity": "EXACT",
+  "generator": "antigravity-native-image-generator",
+  "visualQaScore": "29/30",
+  "rightsState": "first_party_generated_2026_11_11",
+  "recordedAt": "2026-11-11T04:25:00Z"
+}

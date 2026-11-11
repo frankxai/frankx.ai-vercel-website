@@ -1,0 +1,12 @@
+{
+  "schema": "vis.provenance.v1",
+  "assetPath": "/images/living-world/observatory-cli-companion.jpg",
+  "sha256": "7753a9fbf10494518a37ff06818cf11d6f58e73cb2a9bd4f34828439a2c982ec",
+  "bytes": 214130,
+  "title": "Observatory CLI Companion",
+  "alt": "Blue cloud-hoodie CLI robot with cyan prompt visor peering through a brass observatory telescope beside a terracotta voxel companion and floating purple cat spirit.",
+  "edition": "editorial",
+  "promptFidelity": "FOUNDER_CURATED",
+  "rightsState": "owner_approved_2026_11_11",
+  "recordedAt": "2026-11-11T04:21:00Z"
+}

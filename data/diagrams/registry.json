@@ -5,6 +5,39 @@
   "servePath": "/images/diagrams/system/",
   "diagrams": [
     {
+      "id": "agentic-os-architecture",
+      "title": "Orchestrator, specialist fleet and shared substrate",
+      "type": "hud-architecture",
+      "rev": 1,
+      "spec": "data/diagrams/specs/agentic-os-architecture.diagram.json",
+      "reviewed": "2026-11-11",
+      "source": "Derived from the Starlight and FrankX multi-agent orchestration reference blueprint.",
+      "alt": "Three-column agentic architecture: five input channels on the left connect to a central orchestrator and specialist agent fleet, which connect to five substrate planes on the right (memory, skills and MCP, models, compute, and data), above a six-stage build-to-improve lifecycle dock.",
+      "outputs": [
+        {
+          "theme": "dark",
+          "path": "/images/diagrams/system/agentic-os-architecture.svg",
+          "width": 1600,
+          "height": 990,
+          "bytes": 20493,
+          "sha256": "e861b040f817d2dff5dbed4bd3b192068fcc619eef6eb9eb002c4978bc995b1b"
+        },
+        {
+          "theme": "light",
+          "path": "/images/diagrams/system/agentic-os-architecture.light.svg",
+          "width": 1600,
+          "height": 990,
+          "bytes": 20532,
+          "sha256": "286682c9e2d969bde3dc58f55b95deea1cd24afd9c738380577b93c8601b62d7"
+        }
+      ],
+      "replaces": null,
+      "adoptedBy": [
+        "app/ai-architecture/blueprints/page.tsx",
+        "components/diagrams/LivingWorldHudGallery.tsx"
+      ]
+    },
+    {
       "id": "ai-coe-six-pillars",
       "title": "Six pillars of an AI center of excellence",
       "type": "radial",
@@ -39,7 +72,10 @@
         ],
         "legacySubject": "Agentic Creator OS three-phase workflow, not the six-pillar CoE model"
       },
-      "adoptedBy": []
+      "adoptedBy": [
+        "app/ai-coe/page.tsx",
+        "components/diagrams/LivingWorldHudGallery.tsx"
+      ]
     },
     {
       "id": "ai-gateway",
@@ -75,7 +111,9 @@
         ],
         "legacySubject": "Agentic Creator OS slash-command and swarm render, not an AI gateway"
       },
-      "adoptedBy": []
+      "adoptedBy": [
+        "app/ai-architecture/multi-cloud-comparison/page.tsx"
+      ]
     },
     {
       "id": "ai-ops-stack",
@@ -111,7 +149,9 @@
         ],
         "legacySubject": "Agentic Creator OS council render, not an AI Ops stack"
       },
-      "adoptedBy": []
+      "adoptedBy": [
+        "app/ai-ops/architecture/page.tsx"
+      ]
     },
     {
       "id": "llmops-loop",
@@ -147,7 +187,9 @@
         ],
         "legacySubject": "Agentic OS synthesis workflow render with garbled labels, not an LLMOps lifecycle"
       },
-      "adoptedBy": []
+      "adoptedBy": [
+        "app/ai-architecture/templates/page.tsx"
+      ]
     },
     {
       "id": "mcp-hub",
@@ -183,7 +225,42 @@
         ],
         "legacySubject": "Agentic Creator OS council render, not an MCP hub"
       },
-      "adoptedBy": []
+      "adoptedBy": [
+        "app/ai-architecture/prototypes/page.tsx"
+      ]
+    },
+    {
+      "id": "opencode-ai-gateway-stack",
+      "title": "Agent runtime, AI gateway and inference substrate",
+      "type": "stack-tiers",
+      "rev": 1,
+      "spec": "data/diagrams/specs/opencode-ai-gateway-stack.diagram.json",
+      "reviewed": "2026-11-11",
+      "source": "Derived from the OpenCode, Cloudflare AI Gateway and edge inference reference pattern.",
+      "alt": "Three-tier stack: an agent runtime handles sessions, context, tools and execution; an AI gateway control plane handles authentication, logging, rate limits, caching, retries and observability; and an inference substrate serves global model execution.",
+      "outputs": [
+        {
+          "theme": "dark",
+          "path": "/images/diagrams/system/opencode-ai-gateway-stack.svg",
+          "width": 1600,
+          "height": 1126,
+          "bytes": 13461,
+          "sha256": "1ead5d0f044258ad82b8792dd84567c7e9b558cb8ce63fb31b473eecf0113660"
+        },
+        {
+          "theme": "light",
+          "path": "/images/diagrams/system/opencode-ai-gateway-stack.light.svg",
+          "width": 1600,
+          "height": 1126,
+          "bytes": 13478,
+          "sha256": "c28df6681003677c1904adb9cab1b7c314ef8d2ae20210f4823e48c52e739149"
+        }
+      ],
+      "replaces": null,
+      "adoptedBy": [
+        "app/ai-ops/architecture/page.tsx",
+        "components/diagrams/LivingWorldHudGallery.tsx"
+      ]
     },
     {
       "id": "visual-estate",
@@ -213,7 +290,9 @@
         }
       ],
       "replaces": null,
-      "adoptedBy": []
+      "adoptedBy": [
+        "components/diagrams/LivingWorldHudGallery.tsx"
+      ]
     }
   ]
 }

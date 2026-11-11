@@ -1,0 +1,12 @@
+{
+  "schema": "vis.provenance.v1",
+  "assetPath": "/images/living-world/amsterdam-canal-sailboat.jpg",
+  "sha256": "e1ae1f62515a5c1448b04521e6b31cb483d415b7915fe0d1688e2358711020e3",
+  "bytes": 372990,
+  "title": "Amsterdam Canal Fleet Rigging",
+  "alt": "Stylized founder rigging a miniature brass sailboat piloted by the blue CLI hoodie bot along a golden-hour Amsterdam canal with voxel and cat-spirit companions.",
+  "edition": "editorial",
+  "promptFidelity": "FOUNDER_CURATED",
+  "rightsState": "owner_approved_2026_11_11",
+  "recordedAt": "2026-11-11T04:21:00Z"
+}

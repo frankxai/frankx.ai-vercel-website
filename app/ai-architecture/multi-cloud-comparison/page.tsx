@@ -1,9 +1,9 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import { SystemDiagram } from '@/components/diagrams/SystemDiagram'
 import {
   ArrowLeft,
   ArrowRight,
@@ -694,16 +694,21 @@ export default function AIArchitecturePage() {
       <AuroraBackground />
 
       <div className="relative z-10">
-        {/* Hero */}
-        <div className="relative mb-8 overflow-hidden rounded-2xl mx-auto max-w-6xl mt-24 px-6">
-          <div className="relative aspect-[21/9]">
-            <Image src="/images/architectures/ai-gateway.png" alt="AI gateway architecture diagram" fill className="object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
-          </div>
-          <div className="absolute bottom-0 left-0 p-6">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-cyan-400/60 mb-2">AI Architecture</p>
-            <h1 className="text-2xl font-bold text-white">Multi-Cloud Architecture Comparison</h1>
-          </div>
+        {/* Hero Diagram */}
+        <div className="mx-auto max-w-6xl mt-24 px-6 mb-8">
+          <SystemDiagram
+            diagramId="ai-gateway"
+            eyebrow="Multi-Cloud Routing"
+            title="Route Every Model Call Through One AI Gateway"
+            alt="Three tiers: an agent runtime sends prompts and tool calls to an AI gateway that handles authentication, logging, rate limits, caching, retries and observability, which routes to model providers."
+            caption="Multi-cloud AI portability starts with one gateway control plane between runtimes and AWS, GCP, Azure, and OCI model endpoints."
+            companion={{
+              src: '/images/living-world/studio-mission-control.jpg',
+              alt: 'Founder with ceramic, obsidian, and copper robot companions reviewing Starlight Mission Control information architecture and research citations.',
+              badge: 'Mission Control IA',
+              note: 'Inspect Dark SVG, Light SVG, or Studio Split.',
+            }}
+          />
         </div>
 
         <HeroSection />

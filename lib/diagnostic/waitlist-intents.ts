@@ -25,6 +25,7 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
   // Product launch lists linked from their existing product pages.
   'bv-kit': { label: 'Creator BV Kit', listType: 'premium-packs' },
   'prompt-vault': { label: 'Prompt Vault', listType: 'premium-packs' },
+  'infogenius-pro': { label: 'InfoGenius Visual Knowledge OS', listType: 'premium-packs' },
   // Launch lists for products whose checkout or download is not open yet.
   'starter-kit': { label: 'System Architect Starter Kit', listType: 'premium-packs' },
   'visual-creation-loop': { label: 'Visual Creation Loop', listType: 'premium-packs' },
@@ -65,6 +66,7 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
 export const LAUNCH_LIST_INTENTS: ReadonlySet<string> = new Set([
   'bv-kit',
   'prompt-vault',
+  'infogenius-pro',
   'starter-kit',
   'visual-creation-loop',
   'income-blueprint',
