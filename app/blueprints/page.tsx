@@ -112,7 +112,7 @@ export default function BlueprintsPage() {
         <div className="mb-6 flex items-center justify-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.02] px-3.5 py-1 text-xs font-mono tracking-wider text-emerald-400 backdrop-blur-md">
             <Sparkles className="h-3.5 w-3.5" />
-            <span>sovereign digital blueprints · instant access</span>
+            <span>Sovereign digital blueprints · instant access</span>
           </div>
         </div>
 
@@ -256,12 +256,10 @@ export default function BlueprintsPage() {
           </div>
           <h3 className="mt-4 text-xl font-semibold text-white">Sovereignty and guarantee</h3>
           <p className="mx-auto mt-2 max-w-xl text-sm text-white/60 leading-relaxed">
-            Every blueprint ships with clean, unminified source code, full markdown documentation, and prompt tokens. Zero ongoing royalties. Run it locally, inspect every line, and adapt it to your workflow.
+            Every blueprint ships with full markdown documentation and prompt tokens. Zero ongoing royalties. Run it locally and adapt it to your workflow.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-white/50">
-            <span>✓ direct git & markdown assets</span>
             <span>✓ commercial use enabled</span>
-            <span>✓ source you can inspect</span>
           </div>
         </div>
       </div>
