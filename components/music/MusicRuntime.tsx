@@ -65,7 +65,14 @@ export function MusicLoadButton({ sunoId, title, className = '' }: { sunoId: str
   ) : <a href={`https://suno.com/song/${sunoId}`} target="_blank" rel="noopener noreferrer" onClick={() => music?.stop()} className={classes} aria-label={`Listen to ${title} on Suno`}>Listen on Suno</a>
 }
 
-/** One persistent native media element. Sources are assigned during the listener's click. */
+/** Full catalog (playable and Suno-only tracks) for search. Fetched on first search so it stays out of every page's HTML. */
+const SEARCH_CATALOG_URL = '/api/music/catalog'
+type SearchCatalogState = 'idle' | 'loading' | 'ready' | 'failed'
+
+/**
+ * One persistent native media element. Sources are assigned during the listener's click.
+ * `catalog` holds the playable tracks only; search loads the full catalog on demand.
+ */
 export function MusicRuntime({ children, catalog }: { children: ReactNode; catalog: PlaybackTrack[] }) {
   const [active, setActive] = useState<PlaybackTrack | null>(null)
   const [expanded, setExpanded] = useState(false)
@@ -78,6 +85,8 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
   const [duration, setDuration] = useState(0)
   const [autoNext, setAutoNext] = useState(true)
   const [resumeId, setResumeId] = useState<string | null>(null)
+  const [searchCatalog, setSearchCatalog] = useState<PlaybackTrack[] | null>(null)
+  const [searchCatalogState, setSearchCatalogState] = useState<SearchCatalogState>('idle')
   const audioRef = useRef<HTMLAudioElement>(null)
   const disclosureRef = useRef<HTMLButtonElement>(null)
   const searchRef = useRef<HTMLInputElement>(null)
@@ -96,8 +105,27 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
   const collapsedChip = (isHome || onLibrary || onBooks) && !expanded
   const dockRef = useRef<HTMLElement>(null)
   const playable = catalog.filter(track => safeMediaUrl(track.streamUrl))
-  const results = searched ? suggestTracks(catalog, request) : browseAll ? playable : playable.slice(0, 6)
+  const results = searched ? suggestTracks(searchCatalog ?? catalog, request) : browseAll ? playable : playable.slice(0, 6)
   const resumeTrack = playable.find(track => track.sunoId === resumeId) ?? playable[0]
+
+  // Until the full catalog arrives (or if it fails), search covers the playable tracks.
+  function loadSearchCatalog() {
+    if (searchCatalogState === 'loading' || searchCatalogState === 'ready') return
+    setSearchCatalogState('loading')
+    fetch(SEARCH_CATALOG_URL)
+      .then(response => (response.ok ? response.json() : Promise.reject(new Error(String(response.status)))))
+      .then((tracks: unknown) => {
+        if (!Array.isArray(tracks)) throw new Error('Unexpected catalog shape')
+        setSearchCatalog(tracks as PlaybackTrack[])
+        setSearchCatalogState('ready')
+      })
+      .catch(() => setSearchCatalogState('failed'))
+  }
+  function search(nextRequest?: string) {
+    if (nextRequest !== undefined) setRequest(nextRequest)
+    setSearched(true)
+    loadSearchCatalog()
+  }
 
   function collapse() {
     restoreFocusOnCollapseRef.current = true
@@ -418,11 +446,11 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
             </div>
           )}
           {error && <p role="status" className="mb-3 text-sm text-amber-200">{error}</p>}
-          {suggestion && <button type="button" className="mb-3 min-h-11 rounded-full border border-white/20 px-3 text-sm" onClick={() => { setRequest(suggestion); setSearched(true) }}>Suggest {suggestion}</button>}
-          <form onSubmit={event => { event.preventDefault(); setSearched(true) }}>
+          {suggestion && <button type="button" className="mb-3 min-h-11 rounded-full border border-white/20 px-3 text-sm" onClick={() => search(suggestion)}>Suggest {suggestion}</button>}
+          <form onSubmit={event => { event.preventDefault(); search() }}>
             <label htmlFor={requestId} className="mb-2 block text-sm text-white/80">Find a soundtrack</label>
             <div className="flex gap-2">
-              <input ref={searchRef} id={requestId} value={request} onChange={event => setRequest(event.target.value)} placeholder="Piano, Arcanea, tech house…" className="min-h-11 min-w-0 flex-1 rounded-xl border border-white/25 bg-white/5 px-3 text-base focus-visible:outline focus-visible:outline-emerald-300" />
+              <input ref={searchRef} id={requestId} value={request} onChange={event => setRequest(event.target.value)} onFocus={loadSearchCatalog} placeholder="Piano, Arcanea, tech house…" className="min-h-11 min-w-0 flex-1 rounded-xl border border-white/25 bg-white/5 px-3 text-base focus-visible:outline focus-visible:outline-emerald-300" />
               <button type="submit" className="min-h-11 rounded-full bg-white/10 px-4 text-sm">Find</button>
             </div>
           </form>
@@ -440,7 +468,7 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
               </a>}
             </li>)}
           </ul>
-          {searched && !results.length && <p role="status" className="mt-3 text-sm text-white/80">No catalog match yet. Try a title or genre.</p>}
+          {searched && !results.length && searchCatalogState !== 'loading' && <p role="status" className="mt-3 text-sm text-white/80">No catalog match yet. Try a title or genre.</p>}
         </div>
       </aside>
     </MusicContext.Provider>
