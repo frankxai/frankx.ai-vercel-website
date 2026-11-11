@@ -128,7 +128,7 @@ export default async function QuotePage({
 
       {/* Top breadcrumb */}
       <header className="max-w-4xl w-full mx-auto px-6 pt-12 pb-4">
-        <nav aria-label="Breadcrumb" className="text-[12px] text-white/40">
+        <nav aria-label="Breadcrumb" className="text-[12px] text-white/60">
           <Link href="/library" className="hover:text-white/70 transition-colors">
             Library
           </Link>
@@ -194,7 +194,7 @@ export default async function QuotePage({
             </figcaption>
           </figure>
 
-          <p className="mt-10 text-center text-[12px] text-white/30">
+          <p className="mt-10 text-center text-[12px] text-white/60">
             Highlight any line above to share, or press{' '}
             <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 font-mono text-[10px]">
               S
@@ -237,7 +237,7 @@ export default async function QuotePage({
 
           <Link
             href={`/library/${slug}#${quoteId}`}
-            className="text-[12px] uppercase tracking-[0.18em] text-white/40 hover:text-white/70 transition-colors"
+            className="text-[12px] uppercase tracking-[0.18em] text-white/70 hover:text-white transition-colors"
           >
             Read in full deep-dive
           </Link>
@@ -276,7 +276,7 @@ export default async function QuotePage({
             href={`/library/${slug}`}
             className="rounded-xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.12] py-4 px-3 transition-all"
           >
-            <p className="text-white/40 text-[10px] uppercase tracking-[0.18em] mb-1">
+            <p className="text-white/60 text-[10px] uppercase tracking-[0.18em] mb-1">
               Full deep-dive
             </p>
             <p className="text-white/85">{review.title}</p>
