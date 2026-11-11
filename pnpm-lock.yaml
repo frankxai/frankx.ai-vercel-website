@@ -81,6 +81,9 @@ importers:
       '@react-three/fiber':
         specifier: ^9.8.2
         version: 9.8.2(@types/react@18.3.28)(immer@10.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(three@0.186.1)
+      '@tailwindcss/typography':
+        specifier: 0.5.20
+        version: 0.5.20(tailwindcss@3.4.19(tsx@4.23.15)(yaml@2.9.1))
       '@types/mdx':
         specifier: ^2.0.14
         version: 2.0.14
@@ -3239,6 +3242,11 @@ packages:
 
   '@swc/helpers@0.5.23':
     resolution: {integrity: sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw==}
+
+  '@tailwindcss/typography@0.5.20':
+    resolution: {integrity: sha512-hwbzQuNUfcPvbegQFatVPl/MY/tcM9KLl963hQ5laJKPh81TEZ1+dNG9PirGvcaDBkp+BCshExAyKVPW91dozw==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >=4.0.0 || insiders'
 
   '@tanstack/react-virtual@3.13.24':
     resolution: {integrity: sha512-aIJvz5OSkhNIhZIpYivrxrPTKYsjW9Uzy+sP/mx0S3sev2HyvPb7xmjbYvokzEpfgYHy/HjzJ2zFAETuUfgCpg==}
@@ -10992,6 +11000,11 @@ snapshots:
   '@swc/helpers@0.5.23':
     dependencies:
       tslib: 2.8.1
+
+  '@tailwindcss/typography@0.5.20(tailwindcss@3.4.19(tsx@4.23.15)(yaml@2.9.1))':
+    dependencies:
+      postcss-selector-parser: 6.1.4
+      tailwindcss: 3.4.19(tsx@4.23.15)(yaml@2.9.1)
 
   '@tanstack/react-virtual@3.13.24(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
