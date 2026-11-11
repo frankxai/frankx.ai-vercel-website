@@ -136,6 +136,9 @@ jobs:
       - name: Type Check
         run: pnpm run type-check
 
+      - name: Unit tests
+        run: pnpm run test:unit
+
       - name: Private ops authorization
         run: node --test scripts/tests/ops-authorization.test.mjs
 

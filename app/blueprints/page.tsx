@@ -7,7 +7,6 @@ import {
   Download,
   Headphones,
   Layers,
-  Lock,
   Music,
   ShieldCheck,
   Sparkles,
@@ -77,13 +76,13 @@ const BLUEPRINTS: BlueprintOffer[] = [
     price: 147,
     badge: 'Enterprise creator runtime',
     description:
-      'The exact operating system Frank uses to orchestrate parallel agent swarms across Claude Code, Gemini, and Codex. Includes 12 production pipelines, event-sourced memory vaults, and automated quality gates.',
+      'The exact operating system Frank uses to orchestrate parallel agent swarms across Claude Code, Gemini, and Codex. Includes production pipelines, event-sourced memory vaults, and automated quality gates.',
     icon: Cpu,
     color: 'violet',
     deliverables: [
       'Complete multi-agent fleet configuration (.claude, .gemini, .codex)',
-      '12 automated production pipelines (articles, newsletters, books, tools)',
-      '5-layer memory vault architecture (strategic, technical, creative, ops, wisdom)',
+      'Automated production pipelines (articles, newsletters, books, tools)',
+      'Memory vault architecture',
       'Self-healing loop contracts and automated test-audit harnesses',
       'Starlight Intelligence System (SIS) integration connectors',
       'Deterministic quality-gate linters and anti-slop filters',
@@ -91,7 +90,7 @@ const BLUEPRINTS: BlueprintOffer[] = [
     specs: [
       { label: 'Runtime compatibility', value: 'Node.js, Claude Code, Antigravity, Codex' },
       { label: 'Memory engine', value: 'Event-sourced SQLite + JSONL truth' },
-      { label: 'Pipeline count', value: '12 end-to-end production pipelines' },
+      { label: 'Pipelines', value: 'End-to-end production pipelines for articles, newsletters, books, and tools' },
       { label: 'License type', value: 'Full commercial sovereign developer license' },
     ],
     targetAudience: 'Founders, solopreneurs, and AI architects wanting autonomous leverage without hiring an agency.',
@@ -112,7 +111,7 @@ export default function BlueprintsPage() {
         <div className="mb-6 flex items-center justify-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.02] px-3.5 py-1 text-xs font-mono tracking-wider text-emerald-400 backdrop-blur-md">
             <Sparkles className="h-3.5 w-3.5" />
-            <span>sovereign digital blueprints · instant access</span>
+            <span>Sovereign digital blueprints · instant access</span>
           </div>
         </div>
 
@@ -127,30 +126,19 @@ export default function BlueprintsPage() {
           <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-white/60 leading-relaxed">
             Stop starting from scratch. Deploy battle-tested operating systems, multi-agent pipelines, and generative music architectures built to compound on your own infrastructure.
           </p>
-        </div>
-
-        {/* Trust metrics bar */}
-        <div className="mt-12 grid grid-cols-2 gap-4 border-y border-white/[0.06] py-6 sm:grid-cols-4 sm:gap-8">
-          <div className="text-center">
-            <p className="font-mono text-2xl font-bold text-white sm:text-3xl">100%</p>
-            <p className="mt-1 text-xs text-white/50">sovereign runtime ownership</p>
-          </div>
-          <div className="text-center">
-            <p className="font-mono text-2xl font-bold text-white sm:text-3xl">12+</p>
-            <p className="mt-1 text-xs text-white/50">automated production pipelines</p>
-          </div>
-          <div className="text-center">
-            <p className="font-mono text-2xl font-bold text-white sm:text-3xl">0%</p>
-            <p className="mt-1 text-xs text-white/50">platform lock-in or subscription</p>
-          </div>
-          <div className="text-center">
-            <p className="font-mono text-2xl font-bold text-white sm:text-3xl">&lt; 5 min</p>
-            <p className="mt-1 text-xs text-white/50">instant repository deployment</p>
+          <div className="mt-8 flex justify-center">
+            <a
+              href="#blueprint-cards"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-medium text-[#0a0a0b] transition-[background-color,box-shadow] duration-200 hover:bg-emerald-300 hover:shadow-[0_0_24px_rgba(52,211,153,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            >
+              Choose your blueprint
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
         </div>
 
         {/* Blueprint Product Cards Grid */}
-        <div className="mt-16 grid gap-8 lg:grid-cols-2">
+        <div id="blueprint-cards" className="mt-10 scroll-mt-24 grid gap-8 lg:grid-cols-2">
           {BLUEPRINTS.map((bp) => {
             const Icon = bp.icon
             const isEmerald = bp.color === 'emerald'
@@ -177,7 +165,7 @@ export default function BlueprintsPage() {
                       }`}
                     >
                       <Icon className="h-3 w-3" />
-                      <span>{bp.badge.toLowerCase()}</span>
+                      <span>{bp.badge}</span>
                     </span>
 
                     <div className="text-right">
@@ -210,7 +198,7 @@ export default function BlueprintsPage() {
 
                   {/* Deliverables checklist */}
                   <div className="mt-6 space-y-2.5">
-                    <p className="text-xs font-mono tracking-wider text-white/40 uppercase">
+                    <p className="text-xs font-mono tracking-wider text-white/40">
                       Included deliverables:
                     </p>
                     {bp.deliverables.map((item, idx) => (
@@ -231,6 +219,7 @@ export default function BlueprintsPage() {
                 {/* Card CTA & Guarantee */}
                 <div className="mt-8 border-t border-white/[0.06] pt-6">
                   <BlueprintCardAction
+                    ctaLabel={bp.slug === 'vibe-os' ? 'Get Vibe OS' : 'Get Agentic Creator OS'}
                     product={{
                       id: bp.id,
                       name: bp.name,
@@ -259,21 +248,6 @@ export default function BlueprintsPage() {
           })}
         </div>
 
-        {/* Guarantee and FAQ banner */}
-        <div className="mt-16 rounded-2xl border border-white/[0.06] bg-white/[0.015] p-8 text-center backdrop-blur-md">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-400">
-            <Lock className="h-5 w-5" />
-          </div>
-          <h3 className="mt-4 text-xl font-semibold text-white">Sovereignty and guarantee</h3>
-          <p className="mx-auto mt-2 max-w-xl text-sm text-white/60 leading-relaxed">
-            Every blueprint ships with clean, unminified source code, full markdown documentation, and prompt tokens. Zero ongoing royalties. Run it locally, inspect every line, and adapt it to your workflow.
-          </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-white/50">
-            <span>✓ direct git & markdown assets</span>
-            <span>✓ commercial use enabled</span>
-            <span>✓ tested on live production instances</span>
-          </div>
-        </div>
       </div>
     </div>
   )

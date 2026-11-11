@@ -77,6 +77,8 @@ export default function FamilyTreeMermaidPage() {
       mermaid.initialize({
         startOnLoad: false,
         theme: 'dark',
+        look: 'classic',
+        layout: 'dagre',
         themeVariables: {
           darkMode: true,
           background: '#0a0a0f',
