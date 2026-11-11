@@ -5,6 +5,7 @@ import { ArrowRight, Lock } from 'lucide-react'
 import { BlueprintCheckoutModal } from './BlueprintCheckoutModal'
 
 interface BlueprintCardActionProps {
+  ctaLabel: string
   product: {
     id: string
     name: string
@@ -16,7 +17,7 @@ interface BlueprintCardActionProps {
   }
 }
 
-export function BlueprintCardAction({ product }: BlueprintCardActionProps) {
+export function BlueprintCardAction({ ctaLabel, product }: BlueprintCardActionProps) {
   const [isOpen, setIsOpen] = useState(false)
   const isEmerald = product.color === 'emerald'
 
@@ -31,7 +32,7 @@ export function BlueprintCardAction({ product }: BlueprintCardActionProps) {
             : 'bg-violet-400 text-[#0a0a0b] hover:bg-violet-300 hover:shadow-[0_0_24px_rgba(167,139,250,0.3)]'
         }`}
       >
-        <span>get instant access</span>
+        <span>{ctaLabel}</span>
         <ArrowRight className="h-4 w-4" />
       </button>
 

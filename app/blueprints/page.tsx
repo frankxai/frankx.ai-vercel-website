@@ -127,30 +127,19 @@ export default function BlueprintsPage() {
           <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-white/60 leading-relaxed">
             Stop starting from scratch. Deploy battle-tested operating systems, multi-agent pipelines, and generative music architectures built to compound on your own infrastructure.
           </p>
-        </div>
-
-        {/* Trust metrics bar */}
-        <div className="mt-12 grid grid-cols-2 gap-4 border-y border-white/[0.06] py-6 sm:grid-cols-4 sm:gap-8">
-          <div className="text-center">
-            <p className="font-mono text-2xl font-bold text-white sm:text-3xl">100%</p>
-            <p className="mt-1 text-xs text-white/50">sovereign runtime ownership</p>
-          </div>
-          <div className="text-center">
-            <p className="font-mono text-2xl font-bold text-white sm:text-3xl">12+</p>
-            <p className="mt-1 text-xs text-white/50">automated production pipelines</p>
-          </div>
-          <div className="text-center">
-            <p className="font-mono text-2xl font-bold text-white sm:text-3xl">0%</p>
-            <p className="mt-1 text-xs text-white/50">platform lock-in or subscription</p>
-          </div>
-          <div className="text-center">
-            <p className="font-mono text-2xl font-bold text-white sm:text-3xl">&lt; 5 min</p>
-            <p className="mt-1 text-xs text-white/50">instant repository deployment</p>
+          <div className="mt-8 flex justify-center">
+            <a
+              href="#blueprint-cards"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-medium text-[#0a0a0b] transition-[background-color,box-shadow] duration-200 hover:bg-emerald-300 hover:shadow-[0_0_24px_rgba(52,211,153,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            >
+              Choose your blueprint
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
         </div>
 
         {/* Blueprint Product Cards Grid */}
-        <div className="mt-16 grid gap-8 lg:grid-cols-2">
+        <div id="blueprint-cards" className="mt-10 scroll-mt-24 grid gap-8 lg:grid-cols-2">
           {BLUEPRINTS.map((bp) => {
             const Icon = bp.icon
             const isEmerald = bp.color === 'emerald'
@@ -177,7 +166,7 @@ export default function BlueprintsPage() {
                       }`}
                     >
                       <Icon className="h-3 w-3" />
-                      <span>{bp.badge.toLowerCase()}</span>
+                      <span>{bp.badge}</span>
                     </span>
 
                     <div className="text-right">
@@ -210,7 +199,7 @@ export default function BlueprintsPage() {
 
                   {/* Deliverables checklist */}
                   <div className="mt-6 space-y-2.5">
-                    <p className="text-xs font-mono tracking-wider text-white/40 uppercase">
+                    <p className="text-xs font-mono tracking-wider text-white/40">
                       Included deliverables:
                     </p>
                     {bp.deliverables.map((item, idx) => (
@@ -231,6 +220,7 @@ export default function BlueprintsPage() {
                 {/* Card CTA & Guarantee */}
                 <div className="mt-8 border-t border-white/[0.06] pt-6">
                   <BlueprintCardAction
+                    ctaLabel={bp.slug === 'vibe-os' ? 'Get Vibe OS' : 'Get Agentic Creator OS'}
                     product={{
                       id: bp.id,
                       name: bp.name,
@@ -271,7 +261,7 @@ export default function BlueprintsPage() {
           <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-white/50">
             <span>✓ direct git & markdown assets</span>
             <span>✓ commercial use enabled</span>
-            <span>✓ tested on live production instances</span>
+            <span>✓ source you can inspect</span>
           </div>
         </div>
       </div>
