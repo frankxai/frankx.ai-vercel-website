@@ -2,6 +2,9 @@ import { defaultOpenGraphImages } from '@/lib/seo'
 import fs from 'node:fs'
 import path from 'node:path'
 import type { Metadata } from 'next'
+import { headers } from 'next/headers'
+import { notFound } from 'next/navigation'
+import { verifyAdminSecret } from '@/lib/admin-secret'
 import Link from 'next/link'
 import matter from 'gray-matter'
 import {
@@ -22,7 +25,7 @@ export const metadata: Metadata = {
   title: 'Workshop Calendar — Travel + Delivery Schedule',
   description:
     'Where Frank is each week, which workshops are confirmed, and which slots are open for booking. Source-of-truth for FrankX workshop operations.',
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: false },
   openGraph: {
     images: defaultOpenGraphImages,
     title: 'Workshop Calendar | FrankX',
@@ -273,7 +276,11 @@ function sortByDate(a: CalendarEvent, b: CalendarEvent): number {
 
 // ── Page ───────────────────────────────────────────────────────────────
 
-export default function CalendarPage() {
+export default async function CalendarPage() {
+  const secret = process.env.ADMIN_SECRET
+  const candidate = (await headers()).get('x-admin-secret')
+  if (!secret || !candidate || !verifyAdminSecret(candidate, secret)) notFound()
+
   const file = path.join(process.cwd(), 'docs/workshops/CALENDAR.md')
   let raw = ''
   try {
