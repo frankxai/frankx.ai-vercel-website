@@ -8,6 +8,7 @@ import {
   ArrowRight,
   ExternalLink
 } from 'lucide-react'
+import type { JSX } from 'react'
 import { docsContent } from '../docs-content'
 
 /**
