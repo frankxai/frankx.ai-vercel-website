@@ -31,3 +31,4 @@ Preconditions:
 - The visible H1 text rotates (`SplitFlipLine`). Assert the stable `aria-label`, not a single verb/tail combination.
 - The headline pause button is only interactive while the verb is rotating and may be `invisible` otherwise. It is not the primary CTA.
 - Overflow must be measured on `document.documentElement` (and the body if it is wider), not guessed from a screenshot.
+- #1228 did not change the hero `h1` accessible name (`Build intelligence that compounds.`) or the primary CTA (`Inspect the Blueprints` → `/ai-architecture`). Those handles stay as written.

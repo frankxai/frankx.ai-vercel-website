@@ -27,6 +27,6 @@ Preconditions:
 
 ## Gotchas
 
-- These pages also set explicit heading and body color/size classes, so some typography is visible even when the typography plugin is not registered. Still assert `article.prose` and a heading size above body size; do not reduce the check to "the page loaded".
-- Pull request #1228 (in review) registers `@tailwindcss/typography`. After it merges, plugin styles such as list markers may appear in addition to the explicit classes. Do not fail the journey if those extras are absent on this checkout.
+- The article hook is still `prose prose-invert prose-zinc max-w-none` on privacy, terms, imprint, and refund. #1228 registered `@tailwindcss/typography` in the Tailwind v3 plugins array, so those classes now apply plugin typography on top of the explicit heading and body color/size classes. Keep asserting `article.prose` and a heading size above body size; do not reduce the check to "the page loaded".
+- #1228 also disables the plugin's blockquote quote marks globally in `tailwind.config.js` (`blockquote.quotes: none` and `blockquote p:first-of-type::before/::after` `content: none`). These legal pages do not render a `<blockquote>`, so that config is not visible here; do not invent a blockquote assertion on this journey.
 - The ready probe uses this same privacy document. A doctor failure and a typography failure are different: doctor is HTTP 200 plus two strings; this journey is computed typography plus screenshots.

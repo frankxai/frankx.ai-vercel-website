@@ -667,6 +667,41 @@ def panel_sliver(box: dict[str, float] | None, width: int) -> float:
         return max(0.0, width - box["x"])
     return float(box["width"])
 
+
+CH1_TITLED_ENTRY = "II. The History You Carry"
+CH1_SKIPPED_NUMERALS = ("I.", "I", "XI.", "XI", "Section I", "Section XI")
+CH2_SECTION_LABELS = [
+    "Section I",
+    "Section II",
+    "Section III",
+    "Section IV",
+    "Section V",
+    "Section VI",
+    "Section VII",
+    "Section VIII",
+]
+
+
+def panel_a11y(locator: Any) -> dict[str, str | None]:
+    if locator is None:
+        return {"inert": None, "ariaHidden": None}
+    return {
+        "inert": locator.get_attribute("inert"),
+        "ariaHidden": locator.get_attribute("aria-hidden"),
+    }
+
+
+def assert_ch1_numeral_rule(labels: list[str], name: str, fail) -> None:
+    if CH1_TITLED_ENTRY not in labels:
+        fail(f"{name}: chapter 1 TOC missing '{CH1_TITLED_ENTRY}'")
+    leftover = [label for label in labels if label in CH1_SKIPPED_NUMERALS]
+    if leftover:
+        fail(
+            f"{name}: chapter 1 TOC still lists {leftover}; bare I./XI. must be skipped "
+            "when the chapter also has titled headings"
+        )
+
+
 def screenshot(page: Any, path: Path) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     page.screenshot(path=str(path), full_page=False)
@@ -745,10 +780,11 @@ def drive_golden_age(page_factory, origin: str, out: Path) -> dict[str, Any]:
                     fail(f"{name}: TOC toggle should be hidden on desktop")
                 shot = screenshot(page, out / f"{name}-chapter-01-toc.png")
                 vp["screenshots"] = {"toc": shot}
-                if "II. The History You Carry" not in labels:
-                    fail(f"{name}: chapter 1 TOC missing 'II. The History You Carry'")
-                if "I." not in labels and "I" not in labels:
-                    fail(f"{name}: chapter 1 TOC missing bare 'I.' numeral (current main rule)")
+                assert_ch1_numeral_rule(labels, name, fail)
+                a11y = panel_a11y(panel)
+                vp["panelA11y"] = a11y
+                if a11y["inert"] is not None or a11y["ariaHidden"] is not None:
+                    fail(f"{name}: desktop TOC panel must omit inert and aria-hidden (got {a11y})")
                 target = visible_locator(page, "aside#toc-panel")
                 if target is None:
                     fail(f"{name}: no visible TOC panel to click")
@@ -764,12 +800,21 @@ def drive_golden_age(page_factory, origin: str, out: Path) -> dict[str, Any]:
                     fail(f"{name}: mobile TOC toggle is not visible")
                 sliver = panel_sliver(panel_box, width)
                 vp["closedSliverPx"] = sliver
-                # Closed means the panel body is to the right of the page.
-                # On this checkout, translate-x-full plus right-6 leaves a ~24px sliver.
-                if panel_box is None or panel_box["x"] <= width * 0.5:
-                    fail(f"{name}: mobile TOC panel is not translated closed")
-                if sliver > 32:
-                    fail(f"{name}: closed mobile TOC sliver is {sliver}px (expected at most 24px + tolerance)")
+                closed_a11y = panel_a11y(panel)
+                vp["panelA11yClosed"] = closed_a11y
+                # Closed mobile uses translate-x-[calc(100%+1.5rem)] so right-6
+                # does not leave a sliver. inert and aria-hidden apply only then.
+                if panel_box is None or panel_box["x"] < width - 1:
+                    fail(
+                        f"{name}: closed mobile TOC is not fully off-screen "
+                        f"(box={panel_box}, sliver={sliver}px)"
+                    )
+                if sliver > 1:
+                    fail(f"{name}: closed mobile TOC sliver is {sliver}px; expected 0px")
+                if closed_a11y["inert"] is None:
+                    fail(f"{name}: closed mobile TOC must set inert")
+                if closed_a11y["ariaHidden"] != "true":
+                    fail(f"{name}: closed mobile TOC must set aria-hidden=true (got {closed_a11y})")
                 vp["screenshots"] = {
                     "closed": screenshot(page, out / f"{name}-chapter-01-toc-closed.png")
                 }
@@ -798,11 +843,14 @@ def drive_golden_age(page_factory, origin: str, out: Path) -> dict[str, Any]:
                             if text.strip()
                         ]
                     vp["tocLabelsOpen"] = labels_open
+                    open_a11y = panel_a11y(panel_after)
+                    vp["panelA11yOpen"] = open_a11y
                     vp["screenshots"]["open"] = screenshot(page, out / f"{name}-chapter-01-toc-open.png")
                     if not open_on_screen:
                         fail(f"{name}: mobile TOC panel did not open on screen")
-                    if "II. The History You Carry" not in labels_open:
-                        fail(f"{name}: open mobile TOC missing 'II. The History You Carry'")
+                    assert_ch1_numeral_rule(labels_open, f"{name} open", fail)
+                    if open_a11y["inert"] is not None or open_a11y["ariaHidden"] is not None:
+                        fail(f"{name}: open mobile TOC must omit inert and aria-hidden (got {open_a11y})")
                     if panel_after is not None:
                         panel_after.get_by_role("button", name="II. The History You Carry", exact=True).click()
                         in_view = heading_in_view(page, "#ii-the-history-you-carry")
@@ -823,8 +871,11 @@ def drive_golden_age(page_factory, origin: str, out: Path) -> dict[str, Any]:
                     labels2 = [text.strip() for text in panel2.locator("button").all_inner_texts() if text.strip()]
                 vp["chapter2TocLabels"] = labels2
                 vp["screenshots"]["chapter2"] = screenshot(page, out / f"{name}-chapter-02-toc.png")
-                if not labels2:
-                    fail("1280: chapter 2 TOC is empty (numerals-only chapter should still list I.–VIII.)")
+                if labels2 != CH2_SECTION_LABELS:
+                    fail(
+                        "1280: chapter 2 TOC must be Section I–Section VIII "
+                        f"(got {labels2})"
+                    )
         finally:
             context.close()
         results["viewports"][name] = vp
