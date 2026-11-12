@@ -223,3 +223,7 @@ v0.html
 # Personal financial data. This repository is public; never commit these.
 data/wealth-ops.json
 data/bv-ops.json
+
+# queen-ops pack — local briefs and receipts, not repo artifacts
+.starlight/queen/
+.claude/hooks/__pycache__/
