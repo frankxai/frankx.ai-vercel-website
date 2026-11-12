@@ -648,12 +648,22 @@ def kill_recorded_pids(record: dict[str, Any]) -> list[dict[str, Any]]:
                 deadline = time.time() + 8
                 while time.time() < deadline and pid_is_running(pid):
                     time.sleep(0.2)
-                if pid_is_running(pid):
+                # Revalidate identity before escalating: the PID may have
+                # been recycled during the grace period, and SIGKILL must
+                # never land on a process we did not record.
+                if pid_is_running(pid) and process_start_fingerprint(pid) == fingerprint:
                     try:
                         os.killpg(pid, signal.SIGKILL)
                     except OSError:
                         os.kill(pid, signal.SIGKILL)
-            action["killed"] = not pid_is_running(pid)
+                elif pid_is_running(pid):
+                    action["skippedEscalationIdentityMismatch"] = {
+                        "recorded": fingerprint,
+                        "current": process_start_fingerprint(pid),
+                    }
+            action["killed"] = not (
+                pid_is_running(pid) and process_start_fingerprint(pid) == fingerprint
+            )
         except OSError as exc:
             action["error"] = str(exc)
         actions.append(action)
@@ -666,6 +676,16 @@ def cleanup_local(root: Path, port: int) -> dict[str, Any]:
     if not record:
         return {"ok": True, "note": "No PID file; nothing to kill.", "port": port}
     actions = kill_recorded_pids(record)
+    # A live process we could not positively identify is still running:
+    # keep its record and report not-ok, so callers (rebuild) fail closed
+    # instead of proceeding against a server they could not stop.
+    blocked = [
+        a for a in actions
+        if (a.get("skippedIdentityMismatch") or a.get("skippedEscalationIdentityMismatch"))
+        and pid_is_running(a["pid"])
+    ]
+    if blocked:
+        return {"ok": False, "port": port, "actions": actions, "blockedLivePids": blocked}
     # Remove the PID file only after signaling. Evidence is not in this directory.
     if path.exists():
         path.unlink()
@@ -718,6 +738,12 @@ def ensure_local(root: Path, port: int, rebuild: bool) -> dict[str, Any]:
         stopped = stop_other_recorded_servers(root, port)
         if stopped:
             print(f"Stopped recorded servers on other ports before rebuild: {json.dumps(stopped)}", flush=True)
+        unconfirmed = [s for s in stopped if not s.get("ok")]
+        if unconfirmed:
+            raise SystemExit(
+                "Refusing to rebuild the shared .next: a recorded server on "
+                f"another port could not be confirmed stopped: {json.dumps(unconfirmed)}"
+            )
         print(f"Building production bundle for {short_sha(sha)}…", flush=True)
         run_build(root, origin)
     else:
