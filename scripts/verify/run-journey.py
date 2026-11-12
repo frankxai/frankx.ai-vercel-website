@@ -205,7 +205,59 @@ def parent_pid(pid: int) -> int | None:
             return int(rest[1])
         except (ValueError, IndexError, OSError):
             return None
-    return None
+    # POSIX without procfs (macOS): ask ps for the parent.
+    try:
+        output = run_capture(["ps", "-o", "ppid=", "-p", str(pid)]).strip()
+        return int(output) if output else None
+    except (subprocess.CalledProcessError, ValueError, FileNotFoundError):
+        return None
+
+
+def process_start_fingerprint(pid: int) -> str | None:
+    """Stable per-process-instance identity, so a recycled PID is never
+    mistaken for the process this script recorded at launch."""
+    if pid <= 0:
+        return None
+    if os.name == "nt":
+        try:
+            import ctypes
+
+            kernel32 = ctypes.windll.kernel32  # type: ignore[attr-defined]
+            handle = kernel32.OpenProcess(0x1000, False, pid)  # PROCESS_QUERY_LIMITED_INFORMATION
+            if not handle:
+                return None
+            try:
+                creation = ctypes.c_ulonglong(0)
+                exit_time = ctypes.c_ulonglong(0)
+                kernel = ctypes.c_ulonglong(0)
+                user = ctypes.c_ulonglong(0)
+                if not kernel32.GetProcessTimes(
+                    handle,
+                    ctypes.byref(creation),
+                    ctypes.byref(exit_time),
+                    ctypes.byref(kernel),
+                    ctypes.byref(user),
+                ):
+                    return None
+                return f"win:{creation.value}"
+            finally:
+                kernel32.CloseHandle(handle)
+        except Exception:  # noqa: BLE001 — identity is best-effort, never a crash
+            return None
+    stat = Path(f"/proc/{pid}/stat")
+    if stat.is_file():
+        try:
+            text = stat.read_text(encoding="utf-8")
+            rest = text[text.rfind(")") + 1 :].split()
+            # rest[0] is state (field 3); starttime is field 22 => rest[19].
+            return f"proc:{rest[19]}"
+        except (IndexError, OSError):
+            return None
+    try:
+        output = run_capture(["ps", "-o", "lstart=", "-p", str(pid)]).strip()
+        return f"ps:{output}" if output else None
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return None
 
 
 def is_descendant(pid: int, ancestor: int) -> bool:
@@ -441,7 +493,9 @@ def start_server(root: Path, port: int) -> dict[str, Any]:
     )
     record = {
         "launchPid": proc.pid,
+        "launchPidFingerprint": process_start_fingerprint(proc.pid),
         "portPid": None,
+        "portPidFingerprint": None,
         "port": port,
         "host": "127.0.0.1",
         "baseUrl": f"http://127.0.0.1:{port}",
@@ -464,12 +518,14 @@ def start_server(root: Path, port: int) -> dict[str, Any]:
         owners = listening_pids(port)
         if owners:
             record["portPid"] = owners[0]
+            record["portPidFingerprint"] = process_start_fingerprint(owners[0])
             write_json(pid_path(root, port), record)
         ok, last_ready = ready_ok(record["baseUrl"])
         if ok:
             owners = listening_pids(port) or owners
             if owners:
                 record["portPid"] = owners[0]
+                record["portPidFingerprint"] = process_start_fingerprint(owners[0])
             record["ready"] = last_ready
             record["readyAt"] = iso_amsterdam()
             write_json(pid_path(root, port), record)
@@ -557,15 +613,23 @@ def doctor_prod() -> dict[str, Any]:
 
 def kill_recorded_pids(record: dict[str, Any]) -> list[dict[str, Any]]:
     actions = []
-    pids: list[int] = []
-    for key in ("launchPid", "portPid"):
+    pids: list[tuple[int, str | None]] = []
+    for key, fp_key in (("launchPid", "launchPidFingerprint"), ("portPid", "portPidFingerprint")):
         value = record.get(key)
-        if isinstance(value, int) and value > 0 and value not in pids:
-            pids.append(value)
-    for pid in pids:
+        if isinstance(value, int) and value > 0 and all(value != seen for seen, _ in pids):
+            fingerprint = record.get(fp_key)
+            pids.append((value, fingerprint if isinstance(fingerprint, str) else None))
+    for pid, fingerprint in pids:
         action: dict[str, Any] = {"pid": pid, "killed": False}
         if not pid_is_running(pid):
             action["alreadyDead"] = True
+            actions.append(action)
+            continue
+        # A numeric PID alone is not identity: the OS recycles PIDs. Signal
+        # only the process instance recorded at launch.
+        current = process_start_fingerprint(pid)
+        if fingerprint is None or current != fingerprint:
+            action["skippedIdentityMismatch"] = {"recorded": fingerprint, "current": current}
             actions.append(action)
             continue
         try:
@@ -608,6 +672,27 @@ def cleanup_local(root: Path, port: int) -> dict[str, Any]:
     return {"ok": True, "port": port, "actions": actions, "removedPidFile": str(path)}
 
 
+def stop_other_recorded_servers(root: Path, keep_port: int) -> list[dict[str, Any]]:
+    """Stop recorded servers on other ports of this same checkout.
+
+    Every local server here serves the one shared `.next` build, so a
+    rebuild for this port would corrupt any retained server on another
+    port. Stop them all before touching the build.
+    """
+    stopped: list[dict[str, Any]] = []
+    for path in sorted(run_dir(root).glob("next-start-*.json")):
+        record = read_json(path)
+        other = record.get("port") if record else None
+        if not isinstance(other, int):
+            try:
+                other = int(path.stem.rsplit("-", 1)[1])
+            except (IndexError, ValueError):
+                continue
+        if other != keep_port:
+            stopped.append(cleanup_local(root, other))
+    return stopped
+
+
 def ensure_local(root: Path, port: int, rebuild: bool) -> dict[str, Any]:
     origin = f"http://127.0.0.1:{port}"
     existing = doctor_local(root, port)
@@ -630,6 +715,9 @@ def ensure_local(root: Path, port: int, rebuild: bool) -> dict[str, Any]:
     build_id = read_build_id(root)
     need_build = rebuild or not build_id or not meta or meta.get("gitSha") != sha or meta.get("buildId") != build_id
     if need_build:
+        stopped = stop_other_recorded_servers(root, port)
+        if stopped:
+            print(f"Stopped recorded servers on other ports before rebuild: {json.dumps(stopped)}", flush=True)
         print(f"Building production bundle for {short_sha(sha)}…", flush=True)
         run_build(root, origin)
     else:
@@ -1254,7 +1342,10 @@ def main(argv: list[str] | None = None) -> int:
             print("Production ready probe passed.", flush=True)
 
         evidence_root = Path(args.evidence_dir) if args.evidence_dir else default_evidence_dir(root, sha)
-        run_out = evidence_root / f"{args.target}-{args.journey}"
+        # Every attempt gets its own directory: a retry must never overwrite
+        # or mix with the evidence of the attempt it is retrying.
+        attempt = f"{amsterdam_now().strftime('%Y%m%d-%H%M%S')}-{os.getpid()}"
+        run_out = evidence_root / f"{args.target}-{args.journey}" / f"attempt-{attempt}"
         print(f"Driving {args.journey} against {origin}…", flush=True)
         result = run_journey(args.journey, origin, run_out)
         summary = {
@@ -1267,11 +1358,12 @@ def main(argv: list[str] | None = None) -> int:
             "buildId": read_build_id(root) if args.target == "local" else None,
             "doctor": doctor,
             "evidenceDir": str(run_out),
+            "attempt": attempt,
             "finishedAt": iso_amsterdam(),
             "timezone": "Europe/Amsterdam",
         }
         write_json(run_out / "summary.json", summary)
-        write_json(evidence_root / f"{args.target}-{args.journey}-summary.json", summary)
+        write_json(evidence_root / f"{args.target}-{args.journey}-{attempt}-summary.json", summary)
         print(json.dumps({k: summary[k] for k in ("ok", "failures", "evidenceDir", "gitSha", "finishedAt")}, indent=2))
         if not result.get("ok"):
             return 1
