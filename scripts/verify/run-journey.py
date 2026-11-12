@@ -281,6 +281,46 @@ def listening_pids(port: int) -> list[int]:
                     pids.add(int(line))
         except (subprocess.CalledProcessError, FileNotFoundError):
             pass
+        if pids:
+            return sorted(pids)
+    # /proc fallback for hosts with neither ss nor lsof: find LISTEN socket
+    # inodes for this port, then map them to owning processes via fd links.
+    inodes: set[str] = set()
+    for table in ("/proc/net/tcp", "/proc/net/tcp6"):
+        try:
+            rows = Path(table).read_text(encoding="utf-8", errors="replace").splitlines()[1:]
+        except OSError:
+            continue
+        for row in rows:
+            fields = row.split()
+            if len(fields) < 10 or fields[3] != "0A":
+                continue
+            try:
+                local_port = int(fields[1].rsplit(":", 1)[1], 16)
+            except (IndexError, ValueError):
+                continue
+            if local_port == port:
+                inodes.add(fields[9])
+    if inodes:
+        targets = {f"socket:[{inode}]" for inode in inodes}
+        try:
+            proc_entries = list(Path("/proc").iterdir())
+        except OSError:
+            proc_entries = []
+        for entry in proc_entries:
+            if not entry.name.isdigit():
+                continue
+            try:
+                fds = list((entry / "fd").iterdir())
+            except OSError:
+                continue
+            for fd in fds:
+                try:
+                    if os.readlink(fd) in targets:
+                        pids.add(int(entry.name))
+                        break
+                except OSError:
+                    continue
     return sorted(pids)
 
 
@@ -483,9 +523,20 @@ def doctor_local(root: Path, port: int) -> dict[str, Any]:
         "recorded": meta,
         "note": "Mapped via .next/BUILD_ID and .verify-run/build-meta.json. No public endpoint.",
     }
+    # The running server must serve the build recorded at its own launch. A
+    # later rebuild replaces .next on disk; without this binding, doctor would
+    # bless the new build metadata while the retained server still serves the
+    # old one, and its responses would be reused as evidence for the new SHA.
+    server_build_ok = bool(record.get("gitSha") == sha and record.get("buildId") == build_id)
+    result["checks"]["serverBuild"] = {
+        "ok": server_build_ok,
+        "launched": {"gitSha": record.get("gitSha"), "buildId": record.get("buildId")},
+        "current": {"gitSha": sha, "buildId": build_id},
+        "note": "PID record build identity must equal the current disk build.",
+    }
     ok_ready, ready = ready_ok(f"http://127.0.0.1:{port}")
     result["checks"]["readyProbe"] = {"ok": ok_ready, **ready}
-    result["ok"] = running and owned and sha_ok and ok_ready
+    result["ok"] = running and owned and sha_ok and server_build_ok and ok_ready
     return result
 
 
@@ -562,10 +613,13 @@ def ensure_local(root: Path, port: int, rebuild: bool) -> dict[str, Any]:
     existing = doctor_local(root, port)
     if existing["ok"] and not rebuild:
         return {"reused": True, "doctor": existing, "baseUrl": origin}
-    if existing.get("pidFile") and not existing["ok"]:
-        # Stale or mismatched instance. Tear down only what we recorded.
+    if existing.get("pidFile"):
+        # Any recorded instance that is not being reused (stale, mismatched, or
+        # a forced rebuild) is stopped before we touch the shared .next build
+        # or the port. Rebuilding under a retained server would corrupt its
+        # build, and relaunching first would clobber the recorded launch PID.
         cleanup_local(root, port)
-    if not port_free(port) and not rebuild:
+    if not port_free(port):
         owners = listening_pids(port)
         raise SystemExit(
             f"Port {port} is already in use by PIDs {owners}, and it is not a "
@@ -966,7 +1020,14 @@ def drive_blueprints(page_factory, origin: str, out: Path) -> dict[str, Any]:
             elif name == "1280":
                 buttons.first.click()
                 page.wait_for_timeout(400)
-                vp["modalVisible"] = page.get_by_role("dialog").count() > 0 or page.locator("[role='dialog']").count() > 0
+                # BlueprintCheckoutModal renders plain divs (fixed overlay),
+                # not role=dialog; detect the overlay markup it actually uses.
+                overlay = page.locator("div.fixed.inset-0.z-50")
+                vp["modalVisible"] = (
+                    page.get_by_role("dialog").count() > 0
+                    or page.locator("[role='dialog']").count() > 0
+                    or (overlay.count() > 0 and overlay.first.is_visible())
+                )
                 vp["screenshots"]["modal"] = screenshot(page, out / f"{name}-blueprints-modal.png")
                 # Close if a close control exists; never proceed to payment.
                 closer = page.get_by_role("button", name="Close")
@@ -975,8 +1036,7 @@ def drive_blueprints(page_factory, origin: str, out: Path) -> dict[str, Any]:
                 if closer.count():
                     closer.first.click()
                 if not vp["modalVisible"]:
-                    # Modal may not use role=dialog; still captured the click state.
-                    fail(f"{name}: checkout modal role=dialog not detected after card CTA click")
+                    fail(f"{name}: checkout modal overlay not detected after card CTA click")
         finally:
             context.close()
         results["viewports"][name] = vp
@@ -1117,6 +1177,13 @@ def run_journey(journey: str, origin: str, out: Path) -> dict[str, Any]:
 
     try:
         result = DRIVERS[journey](factory, origin, out)
+    except Exception as exc:  # noqa: BLE001 — a raised driver must still leave a receipt
+        result = {
+            "journey": journey,
+            "viewports": {},
+            "ok": False,
+            "failures": [f"driver raised {type(exc).__name__}: {exc}"],
+        }
     finally:
         browser.close()
         playwright.stop()
