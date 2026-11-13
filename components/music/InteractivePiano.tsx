@@ -382,13 +382,15 @@ export const SONGS: Record<string, Song> = {
 // ── Audio Engine — warmer triangle+sine with reverb + master volume ─────────
 
 interface AudioEngine {
-  playNote: (frequency: number, duration?: number) => void
-  playChime: () => void
+  playNote: (frequency: number, duration?: number) => Promise<boolean>
+  playChime: () => Promise<void>
   setMasterVolume: (v: number) => void
-  resume: () => void
+  resume: () => Promise<void>
+  status: 'idle' | 'ready' | 'error'
 }
 
 function useAudio(): AudioEngine {
+  const [status, setStatus] = useState<AudioEngine['status']>('idle')
   const ctxRef = useRef<AudioContext | null>(null)
   const masterRef = useRef<GainNode | null>(null)
   const reverbRef = useRef<ConvolverNode | null>(null)
@@ -398,74 +400,82 @@ function useAudio(): AudioEngine {
   const sampleLoadRef = useRef<Promise<void> | null>(null)
   const sampleAbortRef = useRef<AbortController | null>(null)
 
-  const ensureCtx = useCallback(() => {
-    if (!ctxRef.current || ctxRef.current.state === 'closed') {
-      const ctx = new AudioContext({ latencyHint: 'interactive' })
-      ctxRef.current = ctx
+  const ensureCtx = useCallback(async () => {
+    try {
+      if (!ctxRef.current || ctxRef.current.state === 'closed') {
+        const ctx = new AudioContext({ latencyHint: 'interactive' })
+        ctxRef.current = ctx
 
-      // Master gain — controlled by volume slider
-      const master = ctx.createGain()
-      master.gain.value = getVolume()
-      masterRef.current = master
+        // Master gain — controlled by volume slider
+        const master = ctx.createGain()
+        master.gain.value = getVolume()
+        masterRef.current = master
 
-      // Compressor — keeps peaks safe even at higher volume
-      const comp = ctx.createDynamicsCompressor()
-      comp.threshold.value = -10
-      comp.knee.value = 12
-      comp.ratio.value = 2.5
-      comp.attack.value = 0.005
-      comp.release.value = 0.15
-      master.connect(comp)
-      comp.connect(ctx.destination)
+        // Compressor — keeps peaks safe even at higher volume
+        const comp = ctx.createDynamicsCompressor()
+        comp.threshold.value = -10
+        comp.knee.value = 12
+        comp.ratio.value = 2.5
+        comp.attack.value = 0.005
+        comp.release.value = 0.15
+        master.connect(comp)
+        comp.connect(ctx.destination)
 
-      // Tiny convolver reverb (10% wet)
-      const reverb = ctx.createConvolver()
-      const rate = ctx.sampleRate
-      const len = rate * 1.5
-      const buf = ctx.createBuffer(2, len, rate)
-      for (let ch = 0; ch < 2; ch++) {
-        const d = buf.getChannelData(ch)
-        for (let i = 0; i < len; i++) {
-          const t = i / rate
-          d[i] = Math.exp(-3.0 * t) * (Math.random() * 2 - 1) * 0.4
+        // Tiny convolver reverb (10% wet)
+        const reverb = ctx.createConvolver()
+        const rate = ctx.sampleRate
+        const len = rate * 1.5
+        const buf = ctx.createBuffer(2, len, rate)
+        for (let ch = 0; ch < 2; ch++) {
+          const d = buf.getChannelData(ch)
+          for (let i = 0; i < len; i++) {
+            const t = i / rate
+            d[i] = Math.exp(-3.0 * t) * (Math.random() * 2 - 1) * 0.4
+          }
         }
+        reverb.buffer = buf
+        reverbRef.current = reverb
+
+        const dry = ctx.createGain()
+        dry.gain.value = 0.88
+        const wet = ctx.createGain()
+        wet.gain.value = 0.12
+        dryRef.current = dry
+        wetRef.current = wet
+
+        dry.connect(master)
+        reverb.connect(wet)
+        wet.connect(master)
+
+        const controller = new AbortController()
+        sampleAbortRef.current = controller
+        sampleLoadRef.current = Promise.all(GUIDED_PIANO_SAMPLES.map(async (sample) => {
+          try {
+            const response = await fetch(`${GUIDED_SAMPLE_CDN}${sample.name}.mp3`, { signal: controller.signal })
+            if (!response.ok) return
+            const data = await response.arrayBuffer()
+            const buffer = await ctx.decodeAudioData(data)
+            sampleBuffersRef.current.set(sample.name, buffer)
+          } catch {
+            // The oscillator voice remains available when a sample cannot load.
+          }
+        })).then(() => undefined)
       }
-      reverb.buffer = buf
-      reverbRef.current = reverb
-
-      const dry = ctx.createGain()
-      dry.gain.value = 0.88
-      const wet = ctx.createGain()
-      wet.gain.value = 0.12
-      dryRef.current = dry
-      wetRef.current = wet
-
-      dry.connect(master)
-      reverb.connect(wet)
-      wet.connect(master)
-
-      const controller = new AbortController()
-      sampleAbortRef.current = controller
-      sampleLoadRef.current = Promise.all(GUIDED_PIANO_SAMPLES.map(async (sample) => {
-        try {
-          const response = await fetch(`${GUIDED_SAMPLE_CDN}${sample.name}.mp3`, { signal: controller.signal })
-          if (!response.ok) return
-          const data = await response.arrayBuffer()
-          const buffer = await ctx.decodeAudioData(data)
-          sampleBuffersRef.current.set(sample.name, buffer)
-        } catch {
-          // The oscillator voice remains available when a sample cannot load.
-        }
-      })).then(() => undefined)
+      if (ctxRef.current.state !== 'running') {
+        await ctxRef.current.resume()
+      }
+      if (ctxRef.current.state !== 'running') throw new Error('Audio unavailable')
+      setStatus('ready')
+      return ctxRef.current
+    } catch {
+      setStatus('error')
+      return null
     }
-    if (ctxRef.current.state === 'suspended') {
-      void ctxRef.current.resume()
-    }
-    return ctxRef.current
   }, [])
 
-  const playNote = useCallback((frequency: number, duration = 0.6) => {
-    const ctx = ensureCtx()
+  const playNote = useCallback(async (frequency: number, duration = 0.6) => {
+    const ctx = await ensureCtx()
+    if (!ctx) return false
     const dry = dryRef.current!
     const reverb = reverbRef.current!
     const now = ctx.currentTime
@@ -498,7 +508,7 @@ function useAudio(): AudioEngine {
       source.connect(tone)
       source.start(now)
       source.stop(now + Math.min(4, Math.max(duration + 1.2, 1.5)))
-      return
+      return true
     }
 
     // Two-osc warmth: triangle (fundamental) + sine (octave below at 0.4 of triangle)
@@ -543,11 +553,13 @@ function useAudio(): AudioEngine {
     sine.start(now)
     tri.stop(now + duration + 0.5)
     sine.stop(now + duration + 0.5)
+    return true
   }, [ensureCtx])
 
-  const playChime = useCallback(() => {
+  const playChime = useCallback(async () => {
     // Soft "✓" reward chime — 1320 Hz sine, very short
-    const ctx = ensureCtx()
+    const ctx = await ensureCtx()
+    if (!ctx) return
     const dry = dryRef.current!
     const reverb = reverbRef.current!
     const now = ctx.currentTime
@@ -573,8 +585,8 @@ function useAudio(): AudioEngine {
     }
   }, [])
 
-  const resume = useCallback(() => {
-    ensureCtx()
+  const resume = useCallback(async () => {
+    await ensureCtx()
   }, [ensureCtx])
 
   // Cleanup on unmount
@@ -590,7 +602,7 @@ function useAudio(): AudioEngine {
     }
   }, [])
 
-  return { playNote, playChime, setMasterVolume, resume }
+  return { playNote, playChime, setMasterVolume, resume, status }
 }
 
 // ── Helper: stars badge ─────────────────────────────────────────────────────
@@ -643,6 +655,7 @@ export default function InteractivePiano({
   const [autoPlaying, setAutoPlaying] = useState(false)
   const [currentSong, setCurrentSong] = useState<string | null>(null)
   const stopRef = useRef(false)
+  const guidedInputPending = useRef(false)
 
   // Guided mode state
   const [guided, setGuided] = useState<GuidedState | null>(null)
@@ -689,9 +702,16 @@ export default function InteractivePiano({
   // ── Key press dispatcher (touch / mouse / keyboard) ──────────────────────
 
   const handleKeyPress = useCallback(
-    (note: NoteDef) => {
-      audio.resume()
-      audio.playNote(note.freq, mode === 'guided' ? 0.7 : 0.6)
+    async (note: NoteDef) => {
+      if (guidedInputPending.current) return
+      guidedInputPending.current = true
+      let played: boolean
+      try {
+        played = await audio.playNote(note.freq, mode === 'guided' ? 0.7 : 0.6)
+      } finally {
+        guidedInputPending.current = false
+      }
+      if (!played) return
       setActiveNote(note.note)
       window.setTimeout(() => setActiveNote((cur) => (cur === note.note ? null : cur)), 220)
 
@@ -700,13 +720,13 @@ export default function InteractivePiano({
         const song = SONGS[guided.songId]
         const expected = song.notes[guided.step]?.note
         if (note.note === expected) {
-          window.setTimeout(() => audio.playChime(), 120)
+          window.setTimeout(() => { void audio.playChime() }, 120)
           const nextStep = guided.step + 1
           if (nextStep >= song.notes.length) {
             // Song complete!
             const result = recordAttempt(guided.songId, guided.misses)
             setProgress((prev) => ({ ...prev, [guided.songId]: result }))
-            setTotalStarsCount((s) => s + result.lastStars)
+            setTotalStarsCount(totalStars({ ...progress, [guided.songId]: result }))
             setCompletion({ songId: guided.songId, stars: result.lastStars })
             setGuided(null)
             setHighlightedNote(null)
@@ -720,13 +740,15 @@ export default function InteractivePiano({
         }
       }
     },
-    [audio, mode, guided]
+    [audio, mode, guided, progress]
   )
 
   // Computer keyboard listener (desktop play)
   useEffect(() => {
     function down(e: KeyboardEvent) {
       if (e.repeat || e.metaKey || e.ctrlKey || e.altKey) return
+      const target = e.target as HTMLElement | null
+      if (target?.closest('input, textarea, select, [contenteditable]')) return
       const k = e.key.toLowerCase()
       const noteName = KEY_TO_NOTE[k]
       if (noteName) {
@@ -747,7 +769,6 @@ export default function InteractivePiano({
     async (songId: string) => {
       const song = SONGS[songId]
       if (!song || autoPlaying) return
-      audio.resume()
       setAutoPlaying(true)
       setCurrentSong(songId)
       stopRef.current = false
@@ -756,7 +777,7 @@ export default function InteractivePiano({
         if (stopRef.current) break
         const noteData = NOTES.find((n) => n.note === step.note)
         if (noteData) {
-          audio.playNote(noteData.freq, step.duration)
+          if (!await audio.playNote(noteData.freq, step.duration)) break
           setHighlightedNote(step.note)
           await new Promise((r) => setTimeout(r, step.duration * 1000 + 80))
         }
@@ -777,7 +798,7 @@ export default function InteractivePiano({
   const startGuided = useCallback((songId: string) => {
     const song = SONGS[songId]
     if (!song) return
-    audio.resume()
+    void audio.resume()
     setCompletion(null)
     setGuided({ songId, step: 0, misses: 0, startedAt: Date.now() })
     setHighlightedNote(song.notes[0].note)
@@ -791,11 +812,10 @@ export default function InteractivePiano({
     setCompletion(null)
   }, [])
 
-  const previewNote = useCallback((note: string) => {
+  const previewNote = useCallback(async (note: string) => {
     const n = NOTES.find((x) => x.note === note)
     if (n) {
-      audio.resume()
-      audio.playNote(n.freq, 0.6)
+      if (!await audio.playNote(n.freq, 0.6)) return
       setActiveNote(note)
       window.setTimeout(() => setActiveNote((cur) => (cur === note ? null : cur)), 220)
     }
@@ -871,6 +891,18 @@ export default function InteractivePiano({
         </div>
       </div>
 
+      <div className={`mb-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border px-4 py-3 text-sm ${childMode ? 'border-slate-200 text-slate-700' : 'border-white/10 text-white/75'}`}>
+        <p role="status" aria-live="polite">
+          {audio.status === 'error' ? labels.audioError : volume === 0 ? labels.muted : labels.audioHint}
+        </p>
+        <button type="button" onClick={() => {
+          if (volume === 0) { setVolumeState(1); persistVolume(1); audio.setMasterVolume(1) }
+          void audio.playNote(261.63)
+        }} className="rounded-full border border-current px-3 py-2 text-xs focus-visible:outline focus-visible:outline-2">
+          {labels.testSound}
+        </button>
+      </div>
+
       {/* ── Guided mode banner: shows next note + finger hint ─────────────── */}
       <AnimatePresence>
         {mode === 'guided' && guided && guidedSong && expectedNote && (
@@ -878,7 +910,7 @@ export default function InteractivePiano({
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className={`mb-3 flex items-center justify-between gap-3 rounded-xl px-4 py-3 ${
+            className={`mb-3 flex flex-wrap items-center justify-between gap-3 rounded-xl px-4 py-3 ${
               childMode ? 'bg-emerald-50 border border-emerald-200' : 'bg-emerald-500/10 border border-emerald-500/20'
             }`}
           >
@@ -889,11 +921,16 @@ export default function InteractivePiano({
               <p className="mt-1 text-base font-bold">
                 {labels.pressTheKey}{' '}
                 <span className="rounded-full bg-violet-500 px-3 py-0.5 text-white">
-                  {NOTES.find((n) => n.note === expectedNote)?.label ?? expectedNote}
+                  {expectedNote}
                 </span>
               </p>
+              <p className="mt-2 text-xs opacity-80">
+                {labels.keyboardKey}: {Object.entries(KEY_TO_NOTE).find(([, note]) => note === expectedNote)?.[0].toUpperCase()}
+                {' · '}{guidedSong.notes.slice(guided.step, guided.step + 5).map(step => step.note).join(' → ')}
+              </p>
+              <progress className="mt-2 h-1 w-full accent-emerald-500" aria-label={labels.progress} value={guided.step} max={guidedSong.notes.length} />
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <button
                 type="button"
                 onClick={() => previewNote(expectedNote)}
@@ -1088,6 +1125,9 @@ export default function InteractivePiano({
         .animate-pulse-slow {
           animation: pulse-slow 1.2s ease-in-out infinite;
         }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-pulse-slow { animation: none; }
+        }
       `}</style>
     </div>
   )
@@ -1096,6 +1136,12 @@ export default function InteractivePiano({
 // ── i18n labels ─────────────────────────────────────────────────────────────
 
 const GERMAN_LABELS = {
+  testSound: 'Ton testen',
+  audioHint: 'Tippe eine Taste an oder nutze Z–M und Q–I.',
+  audioError: 'Audio startet nicht. Tippe auf Ton testen, um es erneut zu versuchen.',
+  muted: 'Lautstärke ist auf null.',
+  keyboardKey: 'Tastatur',
+  progress: 'Lernfortschritt',
   freeMode: 'Frei spielen',
   guidedMode: 'Geführter Modus',
   freeHint: 'Tippe auf ein Lied — die Tasten leuchten violett, das Klavier spielt!',
@@ -1115,6 +1161,12 @@ const GERMAN_LABELS = {
 }
 
 const ENGLISH_LABELS = {
+  testSound: 'Test sound',
+  audioHint: 'Tap a piano key or use Z–M and Q–I on your keyboard.',
+  audioError: 'Audio could not start. Select Test sound to retry.',
+  muted: 'Volume is set to zero.',
+  keyboardKey: 'Keyboard',
+  progress: 'Practice progress',
   freeMode: 'Free Play',
   guidedMode: 'Guided',
   freeHint: 'Pick a song — keys glow violet as it plays.',
@@ -1132,3 +1184,4 @@ const ENGLISH_LABELS = {
   minLabel: 'min',
   volumeLabel: 'Volume',
 }
+

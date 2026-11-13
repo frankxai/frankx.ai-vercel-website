@@ -67,7 +67,8 @@ class GrandPianoEngine {
 
   async init() {
     if (this.ctx) {
-      if (this.ctx.state === 'suspended') await this.ctx.resume()
+      if (this.ctx.state !== 'running') await this.ctx.resume()
+      if (this.ctx.state !== 'running') throw new Error('Audio unavailable')
       return
     }
 
@@ -112,7 +113,10 @@ class GrandPianoEngine {
     dry.connect(hiRolloff)
     wet.connect(hiRolloff)
 
-    this.loadAllSamples()
+    // Resume during the initiating gesture, including the first note.
+    void this.loadAllSamples()
+    await this.ctx.resume()
+    if (this.ctx.state !== 'running') throw new Error('Audio unavailable')
   }
 
   private buildIR(): AudioBuffer {
@@ -325,6 +329,8 @@ export default function PianoPage() {
   const [lastNote, setLastNote] = useState<string | null>(null)
   const [loadCount, setLoadCount] = useState(0)
   const [samplesReady, setSamplesReady] = useState(false)
+  const [audioError, setAudioError] = useState(false)
+  const pendingNotes = useRef(new Map<number, symbol>())
   const [volume, setVolume] = useState(1.15)
   const touchMap = useRef<Map<number, number>>(new Map())
   const pianoRef = useRef<HTMLDivElement>(null)
@@ -359,13 +365,24 @@ export default function PianoPage() {
   }, [volume])
 
   const noteOn = useCallback(async (midi: number, vel?: number) => {
-    const eng = await getEngine()
-    eng.noteOn(midi, vel)
-    setPressed(prev => new Set(prev).add(midi))
-    setLastNote(midiToDisplay(midi))
-  }, [getEngine])
+    const request = Symbol()
+    pendingNotes.current.set(midi, request)
+    try {
+      const eng = await getEngine()
+      if (pendingNotes.current.get(midi) !== request) return
+      eng.setMasterVolume(volume)
+      eng.noteOn(midi, vel)
+      setAudioError(false)
+      setPressed(prev => new Set(prev).add(midi))
+      setLastNote(midiToDisplay(midi))
+    } catch {
+      pendingNotes.current.delete(midi)
+      setAudioError(true)
+    }
+  }, [getEngine, volume])
 
   const noteOff = useCallback((midi: number) => {
+    pendingNotes.current.delete(midi)
     engineRef.current?.noteOff(midi)
     if (!engineRef.current?.sustain) {
       setPressed(prev => { const n = new Set(prev); n.delete(midi); return n })
@@ -373,7 +390,8 @@ export default function PianoPage() {
   }, [])
 
   const toggleSustain = useCallback(async () => {
-    const eng = await getEngine()
+    let eng: GrandPianoEngine
+    try { eng = await getEngine(); setAudioError(false) } catch { setAudioError(true); return }
     eng.sustain = !eng.sustain
     setSustainOn(eng.sustain)
     if (!eng.sustain) {
@@ -385,7 +403,9 @@ export default function PianoPage() {
   useEffect(() => {
     const held = new Set<string>()
     function down(e: KeyboardEvent) {
-      if (e.repeat || e.metaKey || e.ctrlKey) return
+      if (e.repeat || e.metaKey || e.ctrlKey || e.altKey) return
+      const target = e.target as HTMLElement | null
+      if (target?.closest('input, textarea, select, [contenteditable]')) return
       const k = e.key.toLowerCase()
       if (k in KEY_MAP && !held.has(k)) {
         e.preventDefault(); held.add(k)
@@ -492,6 +512,10 @@ export default function PianoPage() {
           <span className="text-[10px] tracking-wide text-white/35">Grand Piano ready</span>
         )}
       </div>
+
+      {audioError && <p role="alert" className="relative z-10 px-4 py-2 text-center text-sm text-amber-200">
+        Audio could not start. Press a piano key to retry.
+      </p>}
 
       {/* Controls */}
       <div className="relative z-10 flex flex-wrap items-center justify-center gap-2 px-4 py-2 sm:gap-3">
@@ -645,3 +669,4 @@ export default function PianoPage() {
     </div>
   )
 }
+
