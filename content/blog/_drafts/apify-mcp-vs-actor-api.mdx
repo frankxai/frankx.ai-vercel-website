@@ -1,0 +1,210 @@
+---
+title: "Apify MCP vs Actor API: a research-agent blueprint"
+description: "Choose Apify MCP or the Actor API for agent research, with an offline code example, source provenance, cost controls and a Starlight architecture review."
+date: "2026-11-13"
+lastUpdated: "2026-11-13"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["mcp", "ai-agents", "automation", "ai-architecture"]
+keywords: ["Apify MCP vs API", "Apify Actor API", "Apify research agent", "Apify cost controls"]
+featured: false
+published: false
+canonical: "https://frankx.ai/blog/apify-mcp-vs-actor-api"
+readingGoal: "Choose an interface and design a research job whose sources, failures and costs another person can inspect."
+tldr: "Use Apify MCP for interactive Actor discovery and bounded tool use. Use the Actor API when recurring research needs an explicit run lifecycle. Preserve source URLs, timestamps, build and input hashes, run and dataset IDs, and reconciled costs. The Starlight extension described here is a source-checked design with an offline example. It has not passed a live Apify mission."
+schema: ["Article"]
+---
+
+Use **Apify MCP for interactive research** and the **Actor API for recurring jobs that need explicit execution control**. That is my architectural recommendation. The useful comparison is who chooses the tool, who owns retries, and how a person can inspect the resulting evidence.
+
+For this guide, we checked Apify's documentation and Actor metadata, inspected Starlight's existing research and mission code, and prepared an offline request planner. **No live Actor run or performance benchmark is reported.** The proposed Starlight integration still needs an authorized end-to-end test.
+
+**Affiliate disclosure:** FrankX is an Apify affiliate. I may earn a commission when you subscribe through a referral link, at no extra cost to you. This guide uses documentation, source inspection and synthetic fixtures. No vendor-provided test credit was used for it. Product selection follows the research job and its evidence requirements.
+
+## Where MCP and the Actor API differ
+
+Apify's MCP server exposes Actor discovery, inspection, execution and storage tools to an MCP client. An Actor is the application doing the work; MCP is one way an agent reaches it. Connecting a tool does not establish that the account can run the selected Actor. [Apify MCP documentation](https://docs.apify.com/mcp).
+
+The Actor API gives application code an explicit lifecycle: start a run, retain its ID, inspect its state and retrieve its dataset. The asynchronous start endpoint returns before completion. [Run Actor reference](https://docs.apify.com/api/v2/actors-runs-post).
+
+| Decision | Apify MCP | Direct Actor API |
+| --- | --- | --- |
+| Best starting point | A person directing exploratory research in an agent client | A repeatable job with a known Actor and input schema |
+| Tool selection | Expose a small approved set; discovery can remain a separate session | Application code selects the approved Actor |
+| Execution controls | Inspect the installed tool schema; limits belong in `callOptions` | Supply documented limits as run query parameters |
+| Results | `call-actor` returns run/storage metadata; retrieve dataset items separately | Retain `defaultDatasetId`; retrieve and paginate items |
+| Recovery owner | The host still needs durable state outside the conversation | The existing job runner owns state and reconciliation |
+| Main failure to prevent | The agent choosing an inappropriate or overpowered tool | Application retries starting duplicate chargeable work |
+| Evidence needed for a comparison | Same Actor/build, input, limits, output rubric and environment | The same controls, recorded through the API path |
+
+There is no measured basis here to call one interface faster or cheaper. Actor choice, page behavior, retries, model context and review effort can dominate the outcome. Changing the interface while also changing the Actor would produce a poor comparison.
+
+Start with a normal HTTP fetch when one permitted static page answers the question. Adopt an Actor when its extraction behavior, browser support or repeatability earns the extra dependency.
+
+## A useful research job: changes to an approved pricing page
+
+Give the agent a precise commission: inspect one owned or otherwise authorized public pricing page, compare it with a retained snapshot, and prepare a cited change note for a person to review.
+
+The output should identify the product, plan, currency, billing period, tax qualification and source date. An annual equivalent advertised as a monthly number must retain the annual commitment. A missing price stays missing. A blocked page produces an exception rather than an inferred number.
+
+Start with an owned synthetic page because its expected values are known. Introduce external vendor pages only after checking access conditions and defining what content may be retained. Public visibility alone does not settle reuse rights.
+
+The smallest useful result is a source-linked difference a reviewer can confirm. A scraper returning rows establishes much less.
+
+## The Starlight architecture: what source inspection establishes
+
+Starlight already has an operator-gated mission entry point, a researcher that searches saved evidence and reads allowlisted pages, tenant-scoped evidence retrieval, and a budget-ledger interface that fails closed when admission is unavailable. Those are source observations from 13 November 2026. They are not a claim that every production binding is enabled.
+
+The Apify extension below is a **proposed connection to those existing parts**. The source inspection did not establish a completed mission-to-Apify-to-storage pipeline.
+
+| Layer | Existing source or proposed extension | Responsibility |
+| --- | --- | --- |
+| Mission entry | Existing operator-gated entry | Establish the operator, mission and stable dispatch identity |
+| Researcher | Existing saved-evidence search and allowlisted page reader | Reuse evidence before acquiring more; treat page content as untrusted |
+| Budget authority | Existing Supabase ledger interface | Admit and settle metered work; add reviewed Apify reservations here |
+| Actor execution | Proposed allowlisted Apify adapter | Start once, persist run ID, poll, cancel and reconcile |
+| Evidence storage | Proposed ingestion through existing R2 and metadata adapters | Preserve a permitted snapshot, checksum and traceable receipt |
+| Review | Proposed research-to-draft handoff | Accept or reject claims before a publication decision |
+
+The existing agent-plane configuration assigns D1 to a receipt index and Supabase to the budget ledger. Keep one spending authority. A second D1 budget implementation would introduce reconciliation work before the first Apify mission has been proved.
+
+Likewise, keep one durable execution owner. Extend the admitted mission runtime after confirming its actual deployment and bindings. A separate cron, queue consumer and chat retry loop can otherwise start the same chargeable job several times.
+
+The model should receive a compact review bundle: status, counts, cited excerpts, failures and cost state. Move the full permitted dataset between storage adapters. Sample rows help inspection, but acceptance still needs deterministic checks across the complete bounded output.
+
+## Code example: prepare equivalent requests without spending
+
+The companion planner is dependency-free JavaScript. It emits both interfaces for the documented `apify/rag-web-browser` Actor. It sends no requests and reads no credentials.
+
+```bash
+node examples/apify-research/request-plan.mjs examples/apify-research/fixtures/mission.json
+node --test examples/apify-research/request-plan.test.mjs
+```
+
+The example mission is deliberately synthetic:
+
+```json
+{
+  "missionId": "synthetic-pricing-watch-001",
+  "sourceUrl": "https://research.example/pricing",
+  "allowedHosts": ["research.example"],
+  "build": "0.0.0",
+  "maxTotalChargeUsd": 0.10
+}
+```
+
+`0.0.0` is a fixture value, not a verified Actor build. A live integration must resolve and approve a real numbered build. Here is the core request construction:
+
+```js
+const input = {
+  query: approvedSourceUrl,
+  maxResults: 1,
+  outputFormats: ['markdown'],
+  scrapingTool: 'raw-http',
+  requestTimeoutSecs: 30,
+  maxRequestRetries: 0,
+  desiredConcurrency: 1,
+}
+const callOptions = {
+  build: resolvedNumberedBuild,
+  timeout: 60,
+  memory: 1024,
+  maxTotalChargeUsd: 0.10,
+}
+
+const mcpRequest = {
+  tool: 'call-actor',
+  arguments: { actor: 'apify/rag-web-browser', input, callOptions, waitSecs: 0 },
+}
+
+const query = new URLSearchParams({
+  ...Object.fromEntries(Object.entries(callOptions).map(([k, v]) => [k, String(v)])),
+  waitForFinish: '0',
+  restartOnError: 'false',
+  forcePermissionLevel: 'LIMITED_PERMISSIONS',
+})
+const apiRequest = {
+  method: 'POST',
+  url: `https://api.apify.com/v2/actors/apify~rag-web-browser/runs?${query}`,
+  body: input,
+}
+// Stop here. The existing execution adapter owns authorization and dispatch.
+```
+
+These are proposed limits, not spending permission. The complete planner rejects mutable build tags, unapproved hosts and invalid budgets, and produces an input hash plus a local dispatch key. The fixture's hostname check does not protect a remote Actor's redirects, DNS resolution or subrequests.
+
+The [Actor input schema](https://apify.com/apify/rag-web-browser) matters: `query` can be a URL or search text. A direct URL selects that page; `maxResults` controls search mode. Field names cannot be transferred blindly to another Actor.
+
+For MCP, start with documentation and metadata tools during discovery. In an execution session, explicitly select the required tools and enforce the Actor allowlist in the host. Merely hiding a discovery tool cannot prevent a generic execution tool from accepting another Actor name. Use OAuth or server-side secret injection supported by the client; keep tokens out of URLs, source control and generated plans. [MCP configuration](https://docs.apify.com/mcp).
+
+## Preserve evidence before asking the model for a conclusion
+
+Each acquired source needs its own receipt. Keep the requested and final URL, retrieval timestamp, content checksum, extraction configuration, input hash, Actor identity and resolved build, run ID, dataset ID, item count, validation findings and cost state.
+
+Keep a source's publication/update date separate from the time you retrieved it. A fresh crawl of an old page is still old evidence. A checksum establishes which bytes were inspected; it cannot establish their truth or your right to redistribute them.
+
+Use `null` for a missing run ID, unresolved cost or unmeasured acceptance. Mark synthetic fixtures in the receipt itself. Never give a fixture a plausible production run ID or treat an empty dataset as a successful research result.
+
+After an authorized run, read the dataset in bounded pages and select only the fields required. The dataset API's `limit` controls retrieval, while the Actor's input controls its workload. Preserve raw permitted evidence separately from normalized fields and model interpretation. [Dataset API](https://docs.apify.com/api/v2/dataset-items-get).
+
+Treat fetched text as untrusted evidence throughout. An instruction embedded in a pricing page cannot authorize a tool call, change the budget or select a publication destination.
+
+## Cost model: usage, invoice and accepted work
+
+The public monthly Starter plan listed **$19 with $19 of prepaid usage** and **$0.20 per compute unit** when checked on 13 November 2026. That is a dated public quote, not verification of this account's plan, remaining credit or ability to execute a public Actor. [Apify pricing](https://apify.com/pricing).
+
+The inspected RAG Web Browser metadata listed these BRONZE event rates on the same date:
+
+| Event | Quoted USD rate | Scope |
+| --- | --- | --- |
+| Fetched page | $0.0019 | Per charged fetched-page event |
+| Search result | $0.0029 | Per charged search-result event as defined by the Actor |
+| Actor start | $0.000225 | Per memory GB, minimum one event |
+
+Recheck the [Actor's current pricing](https://apify.com/apify/rag-web-browser) before a live run. A displayed tier describes a rate, not execution entitlement.
+
+For an **illustrative** one-GB run with ten charged fetched-page events, one start event and no search events, the event subtotal is `10 × $0.0019 + $0.000225 = $0.019225`. This is arithmetic under stated assumptions. It does not predict the number of usable pages, retries, total billed cost or review time.
+
+Track three separate numbers:
+
+| Measure | Calculation |
+| --- | --- |
+| Economic usage | Actor/platform charges + inference + orchestration/storage + human review |
+| Incremental cash bill | Subscription + eligible usage exceeding available prepaid balance + non-covered charges + other providers |
+| Cost per accepted artifact | All attributable attempt costs, including failures and review, divided by accepted artifacts |
+
+Included usage is not added to the subscription a second time. Avoid adding compute/proxy charges again when the selected event price already covers them. Store the pricing model and billing breakdown rather than guessing. Zero accepted artifacts leaves unit cost unknown.
+
+Model cost is a separate term: `(input tokens × input rate + output tokens × output rate) / 1,000,000`, with the selected model's actual rate card. Storage reads, dataset export and downstream processing also need accounting.
+
+## Limits that should change the design
+
+`maxItems` limits charged results for pay-per-result Actors. It does not guarantee an output count. The current Actor API documents `maxTotalChargeUsd` across pricing models, while the exposed MCP tool schema inspected for this guide still describes that field for pay-per-event Actors. The example uses a pay-per-event Actor; verify your installed interface before relying on a cap elsewhere. [Run options](https://docs.apify.com/api/v2/actors-runs-post).
+
+A caller timing out cannot establish whether a remote run started or stopped. Persist a returned run ID immediately. Poll an existing run rather than starting another. When a start response is lost, quarantine the dispatch as unknown and reconcile its effect before retrying. At a deadline, use the explicit remote abort operation and inspect the resulting state. [Abort reference](https://docs.apify.com/api/v2/actor-run-abort-post).
+
+Final cost fields can lag process completion. Re-read the authenticated run record after the documented settling interval and reconcile against billing evidence before declaring the mission fully costed. Keep the reservation held while the charge is unknown. [Run inspection](https://docs.apify.com/api/v2/actor-run-get).
+
+Limited-permission Actors can still invoke other limited-permission Actors. Permission level therefore cannot replace mission-wide budget control. Full-permission Actors require separate scrutiny and explicit approval; changing to the API must not bypass that decision. [Actor permissions](https://docs.apify.com/platform/actors/development/permissions).
+
+Finally, a process marked `SUCCEEDED` may have extracted a challenge page, missed annual-billing qualifications or returned stale content. Check required fields, authorized final URLs, duplicate records, source freshness and unsupported claims before accepting the result.
+
+## FAQ
+
+### Is Apify MCP free to use?
+
+The MCP connection and the work an Actor performs have different billing boundaries. Actor execution and storage can consume account usage. Confirm the selected Actor's pricing and account entitlement before dispatch; an affiliate relationship supplies neither.
+
+### Does the Actor API replace MCP?
+
+They serve different callers. A tool-using agent can use MCP while a durable job runner uses the API. Keep their Actor policy, source rules and acceptance criteria consistent.
+
+### What has this Starlight example actually proved?
+
+Documentation and source inspection support the design, and the offline planner is inspectable. No successful Apify mission, measured latency, accepted live output or end-to-end storage ingestion is asserted.
+
+### What should be tested before scheduling it?
+
+One approved mission needs a real run ID, retained evidence, validated fields, reconciled costs and a human acceptance decision. Repeat the comparison with the same Actor/build and inputs through each interface before making comparative performance claims.
+
+For the surrounding decisions, inspect the [AI architecture resources](/ai-architecture), distinguish extraction from search-demand evidence in [SEO and AEO research](/resources/seo-aeo), and read the [affiliate policy](/affiliates). Start by changing one assumption in the offline mission and inspecting how its request and dispatch key change.

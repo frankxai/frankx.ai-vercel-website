@@ -1,0 +1,7 @@
+{
+  "missionId": "synthetic-pricing-watch-001",
+  "sourceUrl": "https://research.example/pricing",
+  "allowedHosts": ["research.example"],
+  "build": "0.0.0",
+  "maxTotalChargeUsd": 0.10
+}

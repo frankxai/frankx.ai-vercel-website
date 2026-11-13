@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "frankx-apify-product-lane-20261113",
+  "studio_id": "studio_publishing",
+  "product_id": null,
+  "sku_id": null,
+  "brand_id": "brand_frankx",
+  "owner": "FrankX editorial/product lane; OpenAI Codex maker",
+  "objective": "Prepare a source-linked interface comparison and a reviewable starter-kit proposal without publication or paid execution.",
+  "buyer_job": "Choose and configure bounded agent research that produces inspectable evidence and costs.",
+  "value_plan": {
+    "usable_customer_output": "Article, runnable offline request planner, evaluation contract and starter-kit specification",
+    "acceptance_event": "Independent review of exact draft revision; later external user activation is separate and unmeasured",
+    "baseline_alternative": "Manual source check and spreadsheet or a direct HTTP fetch",
+    "reused_assets": ["Existing blog MDX loader", "Canonical affiliate registry", "AffiliateLink and /go/[slug]", "Existing Starlight research, admission and storage interfaces"],
+    "community_contribution": "Inspectable no-secret request example and evidence contract, subject to existing license",
+    "privacy_or_rights_boundary": "No private code, email bodies, contacts, account identifiers, tokens or third-party page dumps in public repository",
+    "evidence_state": "source_inspection_and_synthetic_fixtures",
+    "measurement_window": null,
+    "all_attempts": null,
+    "accepted_outcomes": null,
+    "cash_cost_actual": null,
+    "human_hours_actual": null,
+    "founder_hours_actual": null,
+    "currency": null
+  },
+  "source_authority": {
+    "repository": "frankxai/frankx.ai-vercel-website",
+    "revision": "baea0d3f51e3e6aed77f7d389f21c1f11b5697e1",
+    "paths": ["AGENTS.md", "CREATOR.md", "data/affiliate/programs.json", "lib/blog.ts", "docs/content-system.md"]
+  },
+  "target_channels": ["Draft GitHub review only"],
+  "autonomy": { "reversible_branch_work": "allowed", "publication": "requires Frank approval", "actor_execution": "not authorized" },
+  "budget": { "external_credit_or_cash_ceiling": 0, "verification_reserve_percent": 25, "maximum_rounds": 3 },
+  "state_policy": "One writer in isolated branch; append verification receipts",
+  "conflict_owner": "Frank Riemer",
+  "stop_conditions": ["Paid execution, publication or commercial decision required", "Authority or source access missing", "Existing implementation duplication detected"],
+  "acceptance": ["Source-linked comparison and original architectural judgment", "No invented live results or benchmarks", "Offline planner checks pass", "Registry remains held", "Draft excluded from public blog loader", "Product spec covers rights, recovery, costs, delivery and support"],
+  "customer_context": { "state": "hypothesis", "product_mapping": "No admitted Apify starter-kit product; research gap", "context_packet": "blocked: no registered product mapping; no customer-demand claim" },
+  "policy_adoption_receipt": "Private coordination issue records exact policy/source hashes read in this session; no private Registry records copied here."
+}
