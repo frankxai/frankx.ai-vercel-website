@@ -8,6 +8,7 @@ import type { BookChapter, BookTheme } from '../types';
 import { getThemeClasses } from '../lib/theme-classes';
 import { renderChapter } from '../lib/render-chapter';
 import styles from './BookReader.module.css';
+import ReadingPreferences from './ReadingPreferences';
 
 interface BookReaderProps {
   chapter: BookChapter;
@@ -31,7 +32,6 @@ export default function BookReader({
   const tc = getThemeClasses(theme.id);
   const isPoetry = chapter.type === 'poetry' || chapter.type === 'quotes';
   const fontClass = theme.headingFont === 'serif' ? 'font-serif' : 'font-sans';
-  const bodyFontClass = theme.bodyFont === 'serif' ? 'font-serif' : 'font-sans';
 
   const { html: htmlContent, tocItems } = renderChapter(content, chapter.title);
 
@@ -60,6 +60,8 @@ export default function BookReader({
             </div>
           </div>
         </header>
+
+        <ReadingPreferences bookSlug={bookSlug} chapterSlug={chapter.slug} chapterNumber={chapter.number} chapterTitle={chapter.title}>
 
         {/* Chapter Hero Image */}
         {chapter.image && (
@@ -97,7 +99,7 @@ export default function BookReader({
             </div>
           )}
           <div className="lg:flex lg:gap-12">
-            <article className={`min-w-0 flex-1 max-w-3xl ${isPoetry ? 'mx-auto' : ''}`}>
+            <article className={`${styles.article} min-w-0 flex-1 ${isPoetry ? 'mx-auto' : ''}`}>
               {/* Header (if no hero image) */}
               {!chapter.image && (
                 <header className="space-y-6 mb-12 pb-12 border-b border-white/10">
@@ -122,7 +124,7 @@ export default function BookReader({
               {/* Chapter Content */}
               {/* Server preparation ends with sanitization after all document transformations. */}
               <div
-                className={`${bodyFontClass} book-reader-content ${styles.content} ${theme.headingFont === 'serif' ? styles.serifHeadings : styles.sansHeadings} ${isPoetry ? styles.poetry : styles.prose}`}
+                className={`book-reader-content ${styles.content} ${styles.sansHeadings} ${isPoetry ? styles.poetry : styles.prose}`}
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
               />
               {chapter.experiment && (
@@ -155,8 +157,7 @@ export default function BookReader({
             )}
           </div>
         </div>
-
-
+        </ReadingPreferences>
       </div>
     </>
   );
