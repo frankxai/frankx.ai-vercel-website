@@ -1,0 +1,26 @@
+{
+  "version": "0.1.0",
+  "verified_on": "2026-11-13",
+  "native_status": "source-checked only; not compiled",
+  "sha256": {
+    ".env.example": "e4e7d3665d3c45cd440b3df504f136b379f9a84e02f0af7fc10232389ad4522c",
+    ".gitignore": "7a035970e9c931abb083683673e2fd6477c1327663ef306ba588ecdfcacf61e4",
+    "LICENSE": "34b39f2400a9077c9d57db8aa12e1d21aa8a2f0d251c9771aa47307b616bc306",
+    "README.md": "b15aa327edcf4e066d68c6f46d7fd71ff1b20a19c720e9bc7a7a84e82000191f",
+    "api/index.mjs": "34959396721388f881a373509c4e92e8011e9c2dd25e2cc9eb1616ed46db92e1",
+    "docs/device-api-capability-matrix.csv": "a917c76a794c1b7f3711e31b05bf285646a55a5e865a7c460101ca76e7d894f8",
+    "docs/founder-worksheet.md": "59c40945e746c2c3cfed03ef38bf0ff55cc5d20d26fd368ba6d9991b07182222",
+    "docs/platform-appendix.md": "d3079ba1a9af4e269bb6cd4acbc56a16c1e0642a40db31b637bede3bab752d02",
+    "docs/validation.md": "646be5ad86d9ac74af4de42d46abe5f507cbb3605cdcd17be2e3a8d2b44612d0",
+    "fixtures/capture.json": "cfe2b3a569908fdbff3d44df27d613293a1a6e6095420a32c03f6021f4057c71",
+    "package.json": "d2fd219a04da3e164f88ea422af2f5d86327a04970e641d39e60f8018abe378a",
+    "scripts/demo.mjs": "48cfdbae7180ad4d83cece12ac292e6791da9e84b8a039aed35cd038e6a1aef2",
+    "src/app.mjs": "3a404aa80b4cded058fd84366940da1708ad4e2a92a8ef575f71a5f53435d567",
+    "src/inference.mjs": "01991fc28da0eb4d4fa2fa46f9704732ac6274ac66b8c5ce26ed2e6a1622408d",
+    "src/policy.mjs": "97b3c6af8b568fe8fba61ebea0888c8b3a7d4c34d9702fa9514816042d499725",
+    "src/server.mjs": "1f770c2d8ad315f7369eca676c0acc6ccb02ffac7a243fe9e2c06f12cbf4160e",
+    "test/app.test.mjs": "c015a5cae198bbfce6586d1b10d5a241863ed002512ee10e94ac8c1ca5f0fce6",
+    "test/transport.test.mjs": "bcfb85f8f11075ded385a829c6b0c3ff4183609ba818ad80477430b6fa0d96b3",
+    "vercel.json": "26bf0c77524e630cdacd352acef523566ac1a3cdde8767c63623472068ada82c"
+  }
+}

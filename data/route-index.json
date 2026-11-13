@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1082,
+    "total": 1083,
     "aliases": 61,
     "byType": {
       "core": 24,
@@ -9,7 +9,7 @@
       "community": 17,
       "tool": 79,
       "static": 15,
-      "blog": 279,
+      "blog": 280,
       "research": 23,
       "guide": 46,
       "library": 88,
@@ -3663,6 +3663,19 @@
         "bunq",
         "Netherlands",
         "fintech comparison"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/samsung-google-meta-wearable-ai-founder-guide",
+      "title": "Samsung and Google’s AI Glasses: What Founders Can Build Now",
+      "description": "A verified founder guide to Samsung, Android XR and Meta glasses: real SDK boundaries, practical tutorials, wearable AI architecture and business models.",
+      "tags": [
+        "ai-architecture",
+        "wearable-ai",
+        "android-xr",
+        "founder-strategy",
+        "multimodal-ai"
       ],
       "type": "blog"
     },
