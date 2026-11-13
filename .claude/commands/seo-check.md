@@ -37,9 +37,9 @@ Check these for each new article:
 
 | Check | How |
 |-------|-----|
-| TL;DR in first 100 words | Read article intro |
-| Question-based H2s | Scan headings |
-| FAQ section | Scroll to bottom |
+| Summary appears once | Check the shell and article intro together |
+| Useful headings | Follow the argument or task, without a question quota |
+| Optional FAQ | Answers unresolved questions; schema matches visible content |
 | Internal links | Check for 3+ links to other content |
 | Meta description | View page source or use browser SEO extension |
 
@@ -84,7 +84,7 @@ Check these for each new article:
 
 ### Action Items
 - [ ] Optimize [page] for [keyword]
-- [ ] Add FAQ to [article]
+- [ ] Resolve unanswered reader questions in [article], using an FAQ only when useful
 - [ ] Internal link from [high-traffic] to [new content]
 ```
 

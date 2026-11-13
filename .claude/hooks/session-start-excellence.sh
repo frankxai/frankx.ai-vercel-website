@@ -23,13 +23,13 @@ VOICE — use instead:
   infrastructure, criteria. Show don't tell.
 
 ANY content/blog/**.mdx commit MUST pass the blog-commit-gate:
-  • title ≤ 60 chars  • description ≤ 155 chars  • ≥ 3 question-format H2s
-  • ## FAQ section with ≥ 5 "### Question?" Q&As
+  • title ≤ 60 chars  • description ≤ 155 chars
+  • headings follow the argument; FAQ only for unresolved reader questions
   • voice-audit clean (no banned vocabulary)
   • flagship-only: tldr + lastModified frontmatter; counter-argument section
 
 PIPELINE — for blog posts, prefer these over raw write+commit:
-  /flagship             — strictest pipeline (Flagship category, ≥2500 words)
+  /flagship             — evidence-led long-form pipeline (Flagship category)
   /publish-content      — standard publish with integrity-guard gate
   /frankx-ai-blog       — full draft → polish → publish workflow
   /seo-check            — weekly SEO audit
