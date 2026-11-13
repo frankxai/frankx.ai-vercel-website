@@ -93,7 +93,7 @@ The example mission is deliberately synthetic:
 }
 ```
 
-`0.0.0` is a fixture value, not a verified Actor build. A live integration must resolve and approve a real numbered build. Here is the core request construction:
+`0.0.0` is a synthetic fixture value. A live integration must resolve and approve a real numbered build. Here is the core request construction:
 
 ```js
 const input = {
@@ -131,7 +131,7 @@ const apiRequest = {
 // Stop here. The existing execution adapter owns authorization and dispatch.
 ```
 
-These are proposed limits, not spending permission. The complete planner rejects mutable build tags, unapproved hosts and invalid budgets, and produces an input hash plus a local dispatch key. The fixture's hostname check does not protect a remote Actor's redirects, DNS resolution or subrequests.
+These proposed limits still require separate spending authorization. The complete planner rejects mutable build tags, unapproved hosts and invalid budgets, and produces an input hash plus a local dispatch key. The fixture's hostname check does not protect a remote Actor's redirects, DNS resolution or subrequests.
 
 The [Actor input schema](https://apify.com/apify/rag-web-browser) matters: `query` can be a URL or search text. A direct URL selects that page; `maxResults` controls search mode. Field names cannot be transferred blindly to another Actor.
 
@@ -151,7 +151,7 @@ Treat fetched text as untrusted evidence throughout. An instruction embedded in 
 
 ## Cost model: usage, invoice and accepted work
 
-The public monthly Starter plan listed **$19 with $19 of prepaid usage** and **$0.20 per compute unit** when checked on 13 November 2026. That is a dated public quote, not verification of this account's plan, remaining credit or ability to execute a public Actor. [Apify pricing](https://apify.com/pricing).
+The public monthly Starter plan listed **$19 with $19 of prepaid usage** and **$0.20 per compute unit** when checked on 13 November 2026. This account's plan, remaining credit and ability to execute a public Actor remain unverified. [Apify pricing](https://apify.com/pricing).
 
 The inspected RAG Web Browser metadata listed these BRONZE event rates on the same date:
 
@@ -161,7 +161,7 @@ The inspected RAG Web Browser metadata listed these BRONZE event rates on the sa
 | Search result | $0.0029 | Per charged search-result event as defined by the Actor |
 | Actor start | $0.000225 | Per memory GB, minimum one event |
 
-Recheck the [Actor's current pricing](https://apify.com/apify/rag-web-browser) before a live run. A displayed tier describes a rate, not execution entitlement.
+Recheck the [Actor's current pricing](https://apify.com/apify/rag-web-browser) before a live run. Execution entitlement needs a separate account check.
 
 For an **illustrative** one-GB run with ten charged fetched-page events, one start event and no search events, the event subtotal is `10 × $0.0019 + $0.000225 = $0.019225`. This is arithmetic under stated assumptions. It does not predict the number of usable pages, retries, total billed cost or review time.
 

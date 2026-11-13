@@ -29,7 +29,7 @@ Website base: `baea0d3f51e3e6aed77f7d389f21c1f11b5697e1`.
 | MDX compilation with GFM | Passed; draft title 50 characters, description 153 |
 | Internal article routes | 3 resolve in source |
 | Draft exclusion | Immediate blog enumeration and direct lookup cannot select the nested draft |
-| Changed-copy editorial audit | Score 0; no identified phrase signals |
+| Changed-copy editorial audits | Local signal score 0; pinned shared language policy: zero hard failures/review signals on changed content/data lines after fixing a remote finding |
 | `pnpm run type-check` | Passed |
 | `pnpm run lint` | Passed with 12 warnings in unchanged files, zero errors |
 | `pnpm run ai-slop:audit:strict` | Passed; 2685 files scanned, zero hits |
