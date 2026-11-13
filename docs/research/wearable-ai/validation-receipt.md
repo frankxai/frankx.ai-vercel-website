@@ -4,7 +4,7 @@ Date: 2026-11-13. Implementation owner/provider: Codex / OpenAI. Base: `baea0d3f
 
 ## What exists
 
-- Article: `content/blog/samsung-google-meta-wearable-ai-founder-guide.mdx`, 3,148 body words and exactly 150 opening words at source verification.
+- Article: `content/blog/samsung-google-meta-wearable-ai-founder-guide.mdx`, 3,155 body words and exactly 150 opening words at source verification.
 - Appendix: `docs/research/wearable-ai/technical-appendix.md`.
 - Matrix: `docs/research/wearable-ai/device-api-capability-matrix.csv`, seven distinct surfaces with verification date, sources and confidence.
 - Evidence: `docs/research/wearable-ai/evidence-ledger.json`, 34 primary-source records and 29 typed material claims. Original assumptions/validation sources also appear in the portable article packet.
@@ -63,3 +63,7 @@ Draft PR: https://github.com/frankxai/frankx.ai-vercel-website/pull/1234. Initia
 Initial Vercel Git preview `dpl_2gSP6QVuZtAJdvErBHWeLYb2Gb1A` was canceled by `scripts/should-deploy.sh` because the PR is a draft. Its logs explicitly document `[preview]` in the commit subject as the opt-in. The next metadata-only commit uses that supported review path; it does not remove or weaken a gate. The PR remains draft.
 
 Code-review followup independently verified both malformed-input fixes; no findings remain within the bounded mock scope. A separate architecture lane reviewed both SVGs as conceptual proposals. The raster art layer scored85/100 independently; production visual and responsive verification remain pending.
+
+## Editorial and schema correction
+
+The first remote editorial-contract check flagged a contrast phrase in the conceptual-art caption. The caption and six review-signal phrases were rewritten without changing factual scope. The pinned current editorial audit is run locally before the next source commit. The existing FAQ extractor requires a `Frequently asked...` heading; the article now uses that heading and the real extractor returns exactly three question/answer pairs. MDX compilation still passes; the final source has3,155 body words and a150-word opening.
