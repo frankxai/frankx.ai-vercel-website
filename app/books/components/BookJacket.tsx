@@ -6,7 +6,7 @@ import styles from './BookJacket.module.css';
 export default function BookJacket({ book, priority = false }: { book: BookConfig; priority?: boolean }) {
   const collection = getBookCollection(book);
   return (
-    <div className={styles.jacket} data-collection={collection} aria-hidden="true">
+    <div className={styles.jacket} data-collection={collection} data-treatment={book.coverTreatment ?? 'cloth'} aria-hidden="true">
       {book.coverImage && <Image src={book.coverImage} alt="" fill priority={priority} sizes="(max-width: 640px) 44vw, 320px" className={styles.art} />}
       <div className={styles.shade} />
       <div className={styles.weave} />

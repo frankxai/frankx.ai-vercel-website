@@ -31,7 +31,7 @@ export default function BookReader({
 }: BookReaderProps) {
   const tc = getThemeClasses(theme.id);
   const isPoetry = chapter.type === 'poetry' || chapter.type === 'quotes';
-  const fontClass = theme.headingFont === 'serif' ? 'font-serif' : 'font-sans';
+  const fontClass = 'font-display';
 
   const { html: htmlContent, tocItems } = renderChapter(content, chapter.title);
 

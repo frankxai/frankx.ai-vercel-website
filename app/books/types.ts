@@ -52,6 +52,7 @@ export interface BookConfig {
   description: string;
   keywords: string[];
   coverImage: string;
+  coverTreatment?: 'cloth' | 'illustrated';
   theme: BookTheme;
   status: 'draft' | 'in-progress' | 'published';
   language?: 'de' | 'en';

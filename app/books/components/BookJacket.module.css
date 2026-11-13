@@ -15,6 +15,11 @@
 .jacket[data-collection='Poetry & reflection'] { --ink: #352323; --foil: #e8c5b5; }
 .jacket[data-collection='Arcanea fiction'] { --ink: #202c35; --foil: #dfcd9e; }
 .art { object-fit: cover; opacity: .5; }
+.jacket[data-treatment='illustrated'] .art { opacity: 1; }
+.jacket[data-treatment='illustrated'] .shade { background: linear-gradient(180deg, #07131e88, transparent 48%, transparent 83%, #07131eaa); }
+.jacket[data-treatment='illustrated'] .title { font-size: 9cqw; }
+.jacket[data-treatment='illustrated'] .imprint { margin-bottom: 9%; }
+.jacket[data-treatment='illustrated'] .author { text-shadow: 0 1px 5px #000; }
 .shade { position: absolute; inset: 0; background: linear-gradient(180deg, var(--ink) 0%, transparent 82%), linear-gradient(0deg, var(--ink), transparent 40%); }
 .weave { position: absolute; inset: 0; opacity: .12; background-image: repeating-linear-gradient(0deg, #fff3 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, #0004 0 1px, transparent 1px 3px); }
 .binding { position: absolute; inset: 0 auto 0 0; width: 5%; background: linear-gradient(90deg, #0007, #ffffff15 50%, #0003); }

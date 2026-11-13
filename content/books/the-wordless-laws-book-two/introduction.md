@@ -52,7 +52,7 @@ Give yourself permission to stop a practice that proves unhelpful. A missed day 
 
 Read slowly enough to disagree. Try one exercise at a time. Return to the evidence when an explanation feels too satisfying.
 
-The next chapter concerns decision. Bring something specific to it: a piece of work, an unfinished conversation, a commitment you can describe without making a speech. The book becomes useful at the point where a sentence meets a day you actually have to live.
+The next chapter concerns decision. Choose one commitment you can observe this week: a piece of work, an unfinished conversation, a task you have postponed. Keep a record of what you do.
 
 ## Source note
 

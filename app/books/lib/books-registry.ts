@@ -352,7 +352,8 @@ export const booksRegistry: BookConfig[] = [
       'frank riemer',
       'experiments',
     ],
-    coverImage: '/images/books/the-wordless-laws-book-two-cover.png',
+    coverImage: '/images/books/wordless-practice-nilo-brio-v1.webp',
+    coverTreatment: 'illustrated',
     theme: {
       id: 'the-wordless-laws-book-two',
       name: 'The Wordless Laws, Book Two',
@@ -990,7 +991,7 @@ export const booksRegistry: BookConfig[] = [
     subtitle: 'An Arcanea field guide',
     author: 'Frank',
     publishDate: '2026',
-    description: 'An illustrated literary field guide to creatures of the creative mind, including the Blank Terror and the Perfect Phantom. These beings belong to the fictional world of Arcanea.',
+    description: 'A literary field guide to creatures of the creative mind, including the Blank Terror and the Perfect Phantom. These beings belong to the fictional world of Arcanea.',
     keywords: ['creativity', 'psychology', 'bestiary', 'arcanea', 'creative process', 'inner critic'],
     coverImage: '/images/books/arcanea-bestiary-cover.png',
     theme: {

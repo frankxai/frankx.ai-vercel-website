@@ -83,7 +83,7 @@ export default async function BookLandingPage({ params }: PageProps) {
                 {publishedChapters.length > 0 && <Link href={`/books/${bookSlug}/${publishedChapters[0].slug}`} className={styles.start}>Start reading <span aria-hidden="true">→</span></Link>}
                 <a href="#chapters" className={styles.contentsLink}>Browse chapters</a>
               </div>
-              <div className="mt-4"><ResumeReading bookSlug={book.slug} chapters={book.chapters} /></div>
+              <div className="mt-4"><ResumeReading key={book.slug} bookSlug={book.slug} chapters={book.chapters} /></div>
             </div>
             <div className={styles.cover}><BookJacket book={book} priority /></div>
           </div>
