@@ -175,7 +175,7 @@ const studioPracticeRoutes = [
     cta: 'Open prompt templates',
     tags: ['Nine style templates', 'Tempo, key, and instruments', 'Free to copy'],
     summary:
-      'Copy nine starting-point prompts with explicit tempo, key, mode, and instrumentation for deep focus, progressive house, orchestral scores, and ambient study.',
+      'Copy nine starting-point prompts with explicit tempo, key, and instrumentation for deep focus, workouts, relaxation, meditation, and sleep.',
   },
   {
     title: 'Interactive music lab',
