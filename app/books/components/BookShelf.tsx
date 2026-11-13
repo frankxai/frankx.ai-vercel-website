@@ -36,7 +36,7 @@ export default function BookShelf({ books }: { books: BookConfig[] }) {
           </Link>
         </li>)}
       </ul>
-      {filtered.length === 0 && <div className={styles.empty}><h3>No books match this search.</h3><p>Try a shorter phrase or another subject.</p><button type="button" onClick={reset}>Clear search and filters</button></div>}
+      {filtered.length === 0 && <div className={styles.empty}><h3>No books match this search.</h3><p>Try a shorter phrase or another subject.</p><button type="button" name="reset-book-search" onClick={reset}>Clear search and filters</button></div>}
     </section>
   );
 }

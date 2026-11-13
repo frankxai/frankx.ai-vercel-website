@@ -56,13 +56,13 @@ export default function ReadingPreferences({ children, bookSlug, chapterSlug, ch
   return (
     <div ref={surface} className={styles.surface} data-reading-size={preferences.size} data-reading-face={preferences.face} data-reading-width={preferences.width} data-reading-tone={preferences.tone}>
       {resumePercent !== null && <div className={styles.resume}><button type="button" onClick={resume}>Return to saved position · {Math.round(resumePercent)}%</button></div>}
-      <details className={styles.settings}>
+      <details className={styles.settings} data-reading-settings>
         <summary>Reading settings <span aria-hidden="true">Aa</span></summary>
         <div className={styles.controls}>
-          <label>Text size<select value={preferences.size} onChange={event => update('size', event.target.value as Preferences['size'])}><option value="standard">Standard</option><option value="large">Large</option><option value="larger">Larger</option></select></label>
-          <label>Typeface<select value={preferences.face} onChange={event => update('face', event.target.value as Preferences['face'])}><option value="sans">Sans serif</option><option value="serif">Book serif</option></select></label>
-          <label>Line width<select value={preferences.width} onChange={event => update('width', event.target.value as Preferences['width'])}><option value="comfortable">Comfortable</option><option value="wide">Wide</option></select></label>
-          <label>Page tone<select value={preferences.tone} onChange={event => update('tone', event.target.value as Preferences['tone'])}><option value="ink">Night ink</option><option value="warm">Warm charcoal</option></select></label>
+          <label>Text size<select name="reading-size" value={preferences.size} onChange={event => update('size', event.target.value as Preferences['size'])}><option value="standard">Standard</option><option value="large">Large</option><option value="larger">Larger</option></select></label>
+          <label>Typeface<select name="reading-face" value={preferences.face} onChange={event => update('face', event.target.value as Preferences['face'])}><option value="sans">Sans serif</option><option value="serif">Book serif</option></select></label>
+          <label>Line width<select name="reading-width" value={preferences.width} onChange={event => update('width', event.target.value as Preferences['width'])}><option value="comfortable">Comfortable</option><option value="wide">Wide</option></select></label>
+          <label>Page tone<select name="reading-tone" value={preferences.tone} onChange={event => update('tone', event.target.value as Preferences['tone'])}><option value="ink">Night ink</option><option value="warm">Warm charcoal</option></select></label>
         </div>
         <p>{storageAvailable ? 'Preferences stay in this browser.' : 'Browser storage is unavailable. Preferences apply for this page only.'}</p>
       </details>
