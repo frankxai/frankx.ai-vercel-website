@@ -270,7 +270,22 @@
     "verdict": "PENDING",
     "selected_direction_id": "dir_editorial_symbol"
   },
-  "reviews": [],
+  "reviews": [
+    {
+      "role": "art_director",
+      "reviewer": "visual_package independent of raster producer",
+      "reviewed_at": "2026-11-13",
+      "verdict": "PASS_LAYER_ONLY",
+      "notes": "Original art layer85/100. No final viewport/production approval; hero1672x941, mobile1122x1402, OG1200x630."
+    },
+    {
+      "role": "architecture_reviewer",
+      "reviewer": "android_and_reuse independent of diagram producer",
+      "reviewed_at": "2026-11-13",
+      "verdict": "PASS_CONCEPTUAL_SCOPE",
+      "notes": "Both diagrams match proposed responsibilities and local-receipt boundary; production tenant/RAG/redaction remain unimplemented."
+    }
+  ],
   "blocked": [
     "Source/structure benchmark read; desktop/mobile viewport benchmark not yet verified",
     "Native generated resolutions below requested2K; no upscale represented as new detail",

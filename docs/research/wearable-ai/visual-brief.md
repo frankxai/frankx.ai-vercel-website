@@ -104,3 +104,7 @@ Current official surfaces opened 13 November: Samsung launch newsroom (product-l
 Two SVG masters were parsed as XML, rasterized with `sharp`, and visually inspected at 960px width. Text fits without clipping. Final site viewport inspection remains the production editor's task. Diagrams contain no third-party logos and label proposed architecture. PNGs are convenient proof renditions, not additional canonical masters.
 
 The complete flagship packet remains DRAFT. Hero, OG, mobile art, independent rights review, owner-level video embedding eligibility and rendered preview checks must not be marked passed merely because the brief and vector masters exist. Production may omit rights-pending third-party imagery while keeping original illustration, diagrams and official source cards.
+
+## Produced candidate update
+
+Original landscape hero1672×941, independently composed portrait1122×1402, and deterministic OG1200×630 now exist under `public/images/`. The two proposed diagrams are registered in `data/editorial-visuals.json`. An independent raster reviewer scored the art layer85/100; a separate architecture reviewer accepted the diagrams within their conceptual scope. All remain DRAFT for production. Source switching to the portrait in the shared on-page hero was not introduced. Actual dimensions are below the requested2K master target and are never described as 2K/4K.

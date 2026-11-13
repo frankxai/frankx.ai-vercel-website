@@ -1074,11 +1074,14 @@
   ],
   "publication": {
     "branch": "agent/codex/wearable-ai-founder-guide",
-    "pull_request": "blocked",
+    "pull_request": "https://github.com/frankxai/frankx.ai-vercel-website/pull/1234",
     "preview_url": "blocked",
     "live_url": "blocked",
     "verified_at": null,
-    "rollback": "Close unmerged draft PR; after approved release revert its merge commit"
+    "rollback": "Close unmerged draft PR; after approved release revert its merge commit",
+    "validated_content_tree": "d9203189218221d4219d2f4b50c93d9f17decab3",
+    "initial_deployment": "dpl_2gSP6QVuZtAJdvErBHWeLYb2Gb1A",
+    "initial_deployment_state": "CANCELED: draft preview policy; documented [preview] opt-in requested in next metadata commit"
   },
   "measurement": {
     "hypothesis": "A verified guide and mock workflow qualify buyers for a phone-first documentation product",

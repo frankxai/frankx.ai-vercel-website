@@ -55,3 +55,11 @@ Do not claim native app compilation, emulator execution, physical glasses captur
 - Final art/architecture/rights approval, different-provider final-head review, and Frank’s explicit production approval. Neither merge nor social sending is authorized by this commission.
 
 Next commercial decision: test a phone-first service-documentation offer with three service managers; keep paid developer-kit checkout closed until two promised adapters and the support/license contract are deliverable.
+
+## Remote review state
+
+Draft PR: https://github.com/frankxai/frankx.ai-vercel-website/pull/1234. Initial remote candidate `a8c628e14380bd67773184ba28228e11ac34082b` has Git tree `d9203189218221d4219d2f4b50c93d9f17decab3`, exactly matching the locally prepared code/content/media tree. The shell Git client lacked push credentials; the authorized GitHub connection created the identical tree and review branch. No main ref was changed.
+
+Initial Vercel Git preview `dpl_2gSP6QVuZtAJdvErBHWeLYb2Gb1A` was canceled by `scripts/should-deploy.sh` because the PR is a draft. Its logs explicitly document `[preview]` in the commit subject as the opt-in. The next metadata-only commit uses that supported review path; it does not remove or weaken a gate. The PR remains draft.
+
+Code-review followup independently verified both malformed-input fixes; no findings remain within the bounded mock scope. A separate architecture lane reviewed both SVGs as conceptual proposals. The raster art layer scored85/100 independently; production visual and responsive verification remain pending.
