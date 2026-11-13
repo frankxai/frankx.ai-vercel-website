@@ -392,7 +392,7 @@
   ],
   "publication": {
     "branch": "agent/codex/apify-product-lane",
-    "pull_request": "blocked",
+    "pull_request": "https://github.com/frankxai/frankx.ai-vercel-website/pull/1235",
     "preview_url": "blocked",
     "live_url": "blocked",
     "verified_at": null,
