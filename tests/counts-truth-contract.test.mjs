@@ -17,16 +17,12 @@ const acosPresencePage = read("app/acos/presence/page.tsx");
 const routeEnumeration = read("lib/route-enumeration.mjs");
 
 test("NavigationMega derives book and library counts at build time and drops hardcoded prompt counts", () => {
-  assert.match(
-    navMega,
-    /import\s*\{\s*publishedBookCount\s*\}\s*from\s*['"]@\/app\/books\/lib\/books-registry['"]/,
-  );
-  assert.match(
-    navMega,
-    /import\s*\{\s*libraryBooks\s*\}\s*from\s*['"]@\/lib\/library-catalog['"]/,
-  );
-  assert.match(navMega, /\$\{publishedBookCount\}\s+published books/);
-  assert.match(navMega, /\$\{libraryBookCount\}\s+book deep-dives/);
+  const layout = read("app/layout.tsx");
+  assert.doesNotMatch(navMega, /books-registry|library-catalog/);
+  assert.match(layout, /from\s*['"]@\/app\/books\/lib\/books-registry['"]/);
+  assert.match(layout, /from\s*['"]@\/lib\/library-catalog['"]/);
+  assert.match(navMega, /\{publishedBooks\}\s+published books/);
+  assert.match(navMega, /\{libraryBooks\}\s+book deep-dives/);
 
   for (const retiredHardcoded of [
     "23 books",
@@ -62,7 +58,7 @@ test("books-registry has no duplicate book slugs and books/page derives count fr
 
   assert.match(
     booksRegistry,
-    /export const publishedBookCount = getPublishedBooks\('en'\)\.length/,
+    /export const publishedBookCount = getPublishedBooks\('en'\)\.filter\(\s*\(book\) => book\.status === 'published',\s*\)\.length/,
   );
   assert.match(booksPage, /\{books\.length\}\s*books\./);
   assert.doesNotMatch(booksPage, /Six books|Six Books|23 books|411K/i);

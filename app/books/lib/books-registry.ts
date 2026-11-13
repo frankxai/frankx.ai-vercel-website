@@ -1366,5 +1366,7 @@ export function getAllBookSlugs(): string[] {
   return booksRegistry.map((b) => b.slug);
 }
 
-export const publishedBookCount = getPublishedBooks('en').length;
+export const publishedBookCount = getPublishedBooks('en').filter(
+  (book) => book.status === 'published',
+).length;
 

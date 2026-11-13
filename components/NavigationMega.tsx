@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { createContext, useContext, useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
@@ -45,13 +45,24 @@ import {
 import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
 import { trackEvent } from '@/lib/analytics'
 import { resolveNavigationGroups } from '@/lib/navigation-groups'
-import { publishedBookCount } from '@/app/books/lib/books-registry'
-import { libraryBooks } from '@/lib/library-catalog'
 
 import { cn } from '@/lib/utils'
 import MobileNavOverlay from '@/components/MobileNavOverlay'
 
-const libraryBookCount = libraryBooks.length
+export interface NavigationCounts {
+  publishedBooks: number
+  libraryBooks: number
+}
+
+// Counts are computed on the server (app/layout.tsx) and passed in as plain
+// numbers, so the client bundle never imports the book registries.
+const NavigationCountsContext = createContext<NavigationCounts>({ publishedBooks: 0, libraryBooks: 0 })
+
+function applyCounts(text: string, counts: NavigationCounts) {
+  return text
+    .replace('{publishedBooks}', String(counts.publishedBooks))
+    .replace('{libraryBooks}', String(counts.libraryBooks))
+}
 
 // Five doors. Music is its own door because the catalog is primary work, not a
 // sub-item of Create — #409 demoted it and that was never Frank's call.
@@ -126,9 +137,9 @@ const navigation = {
       },
       { name: 'Guides', href: '/guides', icon: BookOpen, description: 'In-depth tutorials',
       },
-      { name: "Frank's Books", href: '/books', icon: BookOpen, description: `${publishedBookCount} published books, free online`,
+      { name: "Frank's Books", href: '/books', icon: BookOpen, description: '{publishedBooks} published books, free online',
       },
-      { name: 'Library', href: '/library', icon: Layers, description: `${libraryBookCount} book deep-dives · open-source Library OS`,
+      { name: 'Library', href: '/library', icon: Layers, description: '{libraryBooks} book deep-dives · open-source Library OS',
       },
       { name: 'AI Assessment', href: '/ai-assessment', icon: Target, description: 'Find your level',
       },
@@ -364,6 +375,7 @@ function Logo() {
 }
 
 function MenuLink({ item }: { item: (typeof navigation)[NavKey]['items'][0] }) {
+  const counts = useContext(NavigationCountsContext)
   const Icon = item.icon
   const isExternal = 'external' in item && item.external
   const LinkComponent = isExternal ? 'a' : Link
@@ -398,7 +410,7 @@ function MenuLink({ item }: { item: (typeof navigation)[NavKey]['items'][0] }) {
                 <ExternalLink className="h-3 w-3 text-slate-400" />
               )}
             </span>
-            <p className="text-[11px] leading-tight text-slate-400">{item.description}</p>
+            <p className="text-[11px] leading-tight text-slate-400">{applyCounts(item.description, counts)}</p>
           </div>
         </LinkComponent>
       </NavigationMenu.Link>
@@ -535,7 +547,7 @@ function NavTrigger({ children }: { children: React.ReactNode }) {
   )
 }
 
-export default function NavigationMega() {
+export default function NavigationMega({ counts }: { counts: NavigationCounts }) {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
@@ -614,7 +626,7 @@ export default function NavigationMega() {
   ]
 
   return (
-    <>
+    <NavigationCountsContext.Provider value={counts}>
       <header
         className={cn(
           'fixed top-0 z-50 w-full border-b transition-[transform,background-color,border-color,box-shadow] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none',
@@ -705,6 +717,6 @@ export default function NavigationMega() {
       </header>
 
       <MobileNavOverlay isOpen={isOpen} onClose={() => setIsOpen(false)} />
-    </>
+    </NavigationCountsContext.Provider>
   )
 }
