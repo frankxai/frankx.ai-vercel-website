@@ -6,7 +6,7 @@ settings:
 
 overrides:
   '@opentelemetry/propagator-jaeger': ^2.9.0
-  hono: ^4.13.1
+  hono: ^4.13.16
   ip-address: ^10.4.0
   nanoid: ^3.3.18
   postcss: ^8.5.26
@@ -14,7 +14,7 @@ overrides:
   jsdom@28.1.0>undici: 7.30.1
   '@babel/core': ^7.29.6
   '@grpc/grpc-js@1': ^1.14.5
-  '@hono/node-server@1': ^1.19.15
+  '@hono/node-server@1': ^1.19.18
   '@opentelemetry/core@2': ^2.8.0
   '@tiptap/core': ^3.30.4
   '@tiptap/pm': ^3.31.0
@@ -29,7 +29,7 @@ overrides:
   fast-uri: ^3.1.6
   js-yaml@3: ^3.15.1
   js-yaml@4: ^4.3.1
-  postcss-selector-parser@6: ^6.1.3
+  postcss-selector-parser@6: ^6.1.5
   qs: ^6.16.0
   sharp: ^0.35.3
   ws: ^8.21.0
@@ -861,11 +861,11 @@ packages:
     peerDependencies:
       react: '>= 16 || ^19.0.0-rc'
 
-  '@hono/node-server@1.19.17':
-    resolution: {integrity: sha512-dSneS5qhiauZWGDCeK4o695Xd9nUNjviSZCMQrj10eetr8Uln1ucn6bbphOM6UynAMMtNIzZNSpL9vnASJwrPQ==}
+  '@hono/node-server@1.19.18':
+    resolution: {integrity: sha512-609kppIP9GITS+EwPyB6Kiq8z2yXONaYD1VHpo7MMP9celRJYbkFr9KakJncHwK0EK/XYtlogqmrLchDv5HX5w==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
-      hono: ^4.13.1
+      hono: ^4.13.16
 
   '@huggingface/jinja@0.5.9':
     resolution: {integrity: sha512-uWTG+l3VJRsl7EXxYizuL3P+cCPoc3cRqbWWRcQN0FhejRfbdq0RNhCmbY/YDtnTcz9icdLYuLDjsnz4d8JMuw==}
@@ -4533,11 +4533,6 @@ packages:
     resolution: {integrity: sha512-wD5oz5xibMOPHzy13CyGmogB3phdvcDaB5t0W/Nr5Z2O/agcB8YwOz6e2Lsp10pNDzBoDO9nVa3RGs/2BttpHQ==}
     engines: {node: '>= 6'}
 
-  cssesc@3.0.0:
-    resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
-    engines: {node: '>=4'}
-    hasBin: true
-
   csso@5.0.5:
     resolution: {integrity: sha512-0LrrStPOdJj+SPCCrGhzryycLjwcgUSHBtxNA8aIDxf0GLsRh1cKYhB00Gd1lDOS4yGH69+SNn13+TWbVHETFQ==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
@@ -5494,8 +5489,8 @@ packages:
   hnswlib-node@3.0.0:
     resolution: {integrity: sha512-fypn21qvVORassppC8/qNfZ5KAOspZpm/IbUkAtlqvbtDNnF5VVk5RWF7O5V6qwr7z+T3s1ePej6wQt5wRQ4Cg==}
 
-  hono@4.13.14:
-    resolution: {integrity: sha512-yhRLQ21U6qa9Hsu2N7Qcbh8tE+WKEcoErjIo56LeSGiGXGp9sA7UpE86Ui9uexb61KakiGwuHMn2QdV7w6i6kQ==}
+  hono@4.13.17:
+    resolution: {integrity: sha512-vZIcbkvjOR5hHRWERbGkr8fGfF0GGM1ooYkuH448iO3b2AdVEr3AXZSw4Z3Kn+1L5z0CVoVeyV29VGYmFh05kQ==}
     engines: {node: '>=16.9.0'}
 
   html-encoding-sniffer@7.0.0:
@@ -6761,8 +6756,8 @@ packages:
     peerDependencies:
       postcss: ^8.5.26
 
-  postcss-selector-parser@6.1.4:
-    resolution: {integrity: sha512-bIoJLOmjCO1S9XdY/DcnR5hJxvrDir1PbGChrzXG3vw0/FOliy/fA3dmdhQ441kah4gKv+TwckGzex6wNS5cnQ==}
+  postcss-selector-parser@6.1.6:
+    resolution: {integrity: sha512-BK87/Qgti3DIcgS2PaCVoteFIkjIFvCJBizZDIVSjdlFNg4Jv+SRqbN2JONb/qQUH4ZFqfXYF+izg15W2HVRvA==}
     engines: {node: '>=4'}
 
   postcss-value-parser@4.2.0:
@@ -8578,9 +8573,9 @@ snapshots:
     dependencies:
       react: 19.3.1
 
-  '@hono/node-server@1.19.17(hono@4.13.14)':
+  '@hono/node-server@1.19.18(hono@4.13.17)':
     dependencies:
-      hono: 4.13.14
+      hono: 4.13.17
 
   '@huggingface/jinja@0.5.9':
     optional: true
@@ -8935,7 +8930,7 @@ snapshots:
 
   '@modelcontextprotocol/sdk@1.32.2(zod@4.6.7)':
     dependencies:
-      '@hono/node-server': 1.19.17(hono@4.13.14)
+      '@hono/node-server': 1.19.18(hono@4.13.17)
       ajv: 8.20.0
       ajv-formats: 3.0.1(ajv@8.20.0)
       content-type: 1.0.5
@@ -8945,7 +8940,7 @@ snapshots:
       eventsource-parser: 3.1.1
       express: 5.3.0
       express-rate-limit: 8.7.1(express@5.3.0)
-      hono: 4.13.14
+      hono: 4.13.17
       jose: 6.2.13
       json-schema-typed: 8.0.2
       pkce-challenge: 5.0.1
@@ -10939,7 +10934,7 @@ snapshots:
 
   '@tailwindcss/typography@0.5.20(tailwindcss@3.4.19(tsx@4.23.15)(yaml@2.9.1))':
     dependencies:
-      postcss-selector-parser: 6.1.4
+      postcss-selector-parser: 6.1.6
       tailwindcss: 3.4.19(tsx@4.23.15)(yaml@2.9.1)
 
   '@tanstack/react-virtual@3.13.24(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
@@ -12326,8 +12321,6 @@ snapshots:
 
   css-what@7.0.0: {}
 
-  cssesc@3.0.0: {}
-
   csso@5.0.5:
     dependencies:
       css-tree: 2.2.1
@@ -13585,7 +13578,7 @@ snapshots:
       node-addon-api: 8.9.1
     optional: true
 
-  hono@4.13.14: {}
+  hono@4.13.17: {}
 
   html-encoding-sniffer@7.0.0:
     dependencies:
@@ -15123,11 +15116,10 @@ snapshots:
   postcss-nested@6.2.0(postcss@8.5.32):
     dependencies:
       postcss: 8.5.32
-      postcss-selector-parser: 6.1.4
+      postcss-selector-parser: 6.1.6
 
-  postcss-selector-parser@6.1.4:
+  postcss-selector-parser@6.1.6:
     dependencies:
-      cssesc: 3.0.0
       util-deprecate: 1.0.2
 
   postcss-value-parser@4.2.0: {}
@@ -16263,7 +16255,7 @@ snapshots:
       postcss-js: 4.1.0(postcss@8.5.32)
       postcss-load-config: 6.0.1(jiti@1.21.7)(postcss@8.5.32)(tsx@4.23.15)(yaml@2.9.1)
       postcss-nested: 6.2.0(postcss@8.5.32)
-      postcss-selector-parser: 6.1.4
+      postcss-selector-parser: 6.1.6
       resolve: 1.22.12
       sucrase: 3.35.1
     transitivePeerDependencies:
