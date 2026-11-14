@@ -1,0 +1,458 @@
+{
+  "schema_version": "1.1.0",
+  "content_id": "cnt_frankx_apify_mcp_actor_api",
+  "status": "DRAFT",
+  "authority": "DRAFT",
+  "brand": {
+    "brand_id": "frankx",
+    "domain": "frankx.ai",
+    "repository": "frankxai/frankx.ai-vercel-website",
+    "vercel_project": "frankx-ai-vercel-website",
+    "notion_record": "blocked"
+  },
+  "brief": {
+    "working_title": "Apify MCP vs Actor API: a research-agent blueprint",
+    "subject": "Interface choice and evidence-bound recurring research",
+    "origin": "Current Apify documentation and Actor metadata inspection, sanitized Starlight source review and offline teaching example",
+    "thesis": "Interface choice follows execution ownership; both paths require admission, provenance and human acceptance.",
+    "reader": "Technical founder or AI architect operating an agent client or job runner",
+    "reader_baseline": "Knows MCP and APIs but needs a defensible recurring research contract",
+    "reader_delta": "Can prepare equivalent bounded requests and separate completed runs from accepted evidence and reconciled charges",
+    "stakes": "Avoid duplicate starts, unsupported product claims, lost provenance and misleading cost estimates",
+    "strongest_objection": "For a single static page a manual check or direct fetch can be simpler and cheaper.",
+    "commercial_relationship": "Confirmed affiliate enrollment; referral publication held; proposed starter kit unpriced"
+  },
+  "content_graph": {
+    "cluster_id": "cluster_ai_architecture_research_agents",
+    "canonical_url": "https://frankx.ai/blog/apify-mcp-vs-actor-api",
+    "existing_related_urls": [
+      "/ai-architecture",
+      "/resources/seo-aeo",
+      "/affiliates"
+    ],
+    "internal_links": [
+      "/ai-architecture",
+      "/resources/seo-aeo",
+      "/affiliates"
+    ],
+    "entities": [
+      "Apify",
+      "Model Context Protocol",
+      "Actor API",
+      "RAG Web Browser",
+      "Starlight Intelligence",
+      "Cloudflare",
+      "Supabase"
+    ],
+    "cannibalization": "PR #1224 covers general web-data choices and Actor monetization; this article owns interface decision and reproducible research receipts."
+  },
+  "search": {
+    "primary_intent": "Choose Apify MCP or Actor API for a bounded research agent",
+    "query_set": [
+      "Apify MCP vs API",
+      "Apify Actor API",
+      "Apify research agent",
+      "Apify cost controls"
+    ],
+    "serp_snapshot": {
+      "captured_at": "2026-11-13",
+      "locale": "English; no geography targeting",
+      "device": "not observed",
+      "dominant_intent": "Technical implementation and interface comparison; inference from official-document search results",
+      "information_gap": "One same-Actor request plan with explicit source, budget, recovery and no-live-proof boundaries"
+    },
+    "answer_units": [
+      "Decision table",
+      "Source-verified versus proposed Starlight layers",
+      "Offline equivalent request example",
+      "Evidence receipt",
+      "Cost arithmetic and invoice distinction",
+      "Limitations and FAQ"
+    ],
+    "structured_data": [
+      "Article"
+    ],
+    "indexation": "unlisted_draft",
+    "crawler_policy_checked": false,
+    "volume_and_ranking": "unmeasured"
+  },
+  "sources": [
+    {
+      "source_id": "apify_mcp",
+      "title": "Apify MCP server",
+      "publisher": "Apify",
+      "url": "https://docs.apify.com/mcp",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-11-13",
+      "owner": "FrankX editorial/product",
+      "freshness_rule": "Recheck within seven days before publication or after schema/price/permission change"
+    },
+    {
+      "source_id": "actor_start",
+      "title": "Run Actor",
+      "publisher": "Apify",
+      "url": "https://docs.apify.com/api/v2/actors-runs-post",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-11-13",
+      "owner": "FrankX editorial/product",
+      "freshness_rule": "Recheck within seven days before publication or after schema/price/permission change"
+    },
+    {
+      "source_id": "actor_status",
+      "title": "Get Actor run",
+      "publisher": "Apify",
+      "url": "https://docs.apify.com/api/v2/actor-run-get",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-11-13",
+      "owner": "FrankX editorial/product",
+      "freshness_rule": "Recheck within seven days before publication or after schema/price/permission change"
+    },
+    {
+      "source_id": "dataset",
+      "title": "Get dataset items",
+      "publisher": "Apify",
+      "url": "https://docs.apify.com/api/v2/dataset-items-get",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-11-13",
+      "owner": "FrankX editorial/product",
+      "freshness_rule": "Recheck within seven days before publication or after schema/price/permission change"
+    },
+    {
+      "source_id": "abort",
+      "title": "Abort Actor run",
+      "publisher": "Apify",
+      "url": "https://docs.apify.com/api/v2/actor-run-abort-post",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-11-13",
+      "owner": "FrankX editorial/product",
+      "freshness_rule": "Recheck within seven days before publication or after schema/price/permission change"
+    },
+    {
+      "source_id": "permissions",
+      "title": "Actor permissions",
+      "publisher": "Apify",
+      "url": "https://docs.apify.com/platform/actors/development/permissions",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-11-13",
+      "owner": "FrankX editorial/product",
+      "freshness_rule": "Recheck within seven days before publication or after schema/price/permission change"
+    },
+    {
+      "source_id": "pricing",
+      "title": "Apify pricing",
+      "publisher": "Apify",
+      "url": "https://apify.com/pricing",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-11-13",
+      "owner": "FrankX editorial/product",
+      "freshness_rule": "Recheck within seven days before publication or after schema/price/permission change"
+    },
+    {
+      "source_id": "affiliate_terms",
+      "title": "Affiliate program terms",
+      "publisher": "Apify",
+      "url": "https://docs.apify.com/legal/affiliate-program-terms-and-conditions",
+      "source_type": "official_documentation",
+      "retrieved_at": "2026-11-13",
+      "owner": "FrankX editorial/product",
+      "freshness_rule": "Recheck within seven days before publication or after schema/price/permission change"
+    },
+    {
+      "source_id": "rag_browser",
+      "title": "RAG Web Browser metadata, input and inferred output schema",
+      "publisher": "Apify",
+      "url": "https://apify.com/apify/rag-web-browser",
+      "source_type": "connected_actor_metadata",
+      "retrieved_at": "2026-11-13",
+      "owner": "FrankX editorial/product",
+      "freshness_rule": "Recheck within seven days before publication or after schema/price/permission change"
+    },
+    {
+      "source_id": "starlight_source_review",
+      "title": "Sanitized Starlight source-inspection boundary",
+      "publisher": "FrankX editorial/product",
+      "repository_path": "docs/ops/apify-product-lane/brief-and-evidence.md",
+      "source_type": "first_party_source_inspection",
+      "retrieved_at": "2026-11-13",
+      "owner": "FrankX editorial/product",
+      "freshness_rule": "Reinspect exact owning source revision before release; full provenance in private coordination receipt"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "mcp_metadata",
+      "text": "MCP call-actor returns run and storage metadata; output needs a dataset read.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "apify_mcp"
+      ],
+      "owner": "FrankX editorial/product",
+      "verified_on": "2026-11-13"
+    },
+    {
+      "claim_id": "api_async",
+      "text": "The asynchronous Actor start returns before completion; numbered builds and run limits are available.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "actor_start"
+      ],
+      "owner": "FrankX editorial/product",
+      "verified_on": "2026-11-13"
+    },
+    {
+      "claim_id": "max_items",
+      "text": "maxItems caps charged results for pay-per-result Actors and does not guarantee an output count.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "actor_start"
+      ],
+      "owner": "FrankX editorial/product",
+      "verified_on": "2026-11-13"
+    },
+    {
+      "claim_id": "cap_discrepancy",
+      "text": "API docs describe a total-cost cap across pricing models; installed MCP schema uses narrower pay-per-event wording.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "actor_start",
+        "apify_mcp"
+      ],
+      "owner": "FrankX editorial/product",
+      "verified_on": "2026-11-13"
+    },
+    {
+      "claim_id": "price_plan",
+      "text": "Public monthly Starter quote was USD 19 with USD 19 prepaid usage and USD 0.20 per CU on 2026-11-13.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "pricing"
+      ],
+      "owner": "FrankX editorial/product",
+      "verified_on": "2026-11-13"
+    },
+    {
+      "claim_id": "event_quote",
+      "text": "Inspected RAG Web Browser BRONZE event quotes were fetched page USD 0.0019, search result USD 0.0029 and start USD 0.000225 per GB, minimum one event.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "rag_browser"
+      ],
+      "owner": "FrankX editorial/product",
+      "verified_on": "2026-11-13"
+    },
+    {
+      "claim_id": "cost_example",
+      "text": "Hypothetical 10 fetched-page events plus one one-GB start event total USD 0.019225 in event charges; no live total inferred.",
+      "type": "inference",
+      "support": "derived",
+      "source_ids": [
+        "rag_browser"
+      ],
+      "owner": "FrankX editorial/product",
+      "verified_on": "2026-11-13"
+    },
+    {
+      "claim_id": "cost_lag",
+      "text": "Completion responses can have preliminary cost figures; authenticated reinspection is needed.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "actor_status"
+      ],
+      "owner": "FrankX editorial/product",
+      "verified_on": "2026-11-13"
+    },
+    {
+      "claim_id": "limited_nested",
+      "text": "Limited-permission Actors can run other limited-permission Actors.",
+      "type": "fact",
+      "support": "direct",
+      "source_ids": [
+        "permissions"
+      ],
+      "owner": "FrankX editorial/product",
+      "verified_on": "2026-11-13"
+    },
+    {
+      "claim_id": "interface_choice",
+      "text": "Prefer restricted MCP for interactive discovery and the explicit Actor API lifecycle for recurring jobs.",
+      "type": "opinion",
+      "support": "derived",
+      "source_ids": [
+        "apify_mcp",
+        "actor_start"
+      ],
+      "owner": "FrankX editorial/product",
+      "verified_on": "2026-11-13"
+    },
+    {
+      "claim_id": "source_boundary",
+      "text": "Starlight architecture is source-inspected; Apify connection, deployed enablement and real mission acceptance remain unproved.",
+      "type": "first_party",
+      "support": "direct",
+      "source_ids": [
+        "starlight_source_review"
+      ],
+      "owner": "FrankX editorial/product",
+      "verified_on": "2026-11-13"
+    }
+  ],
+  "article": {
+    "source_path": "content/blog/_drafts/apify-mcp-vs-actor-api.mdx",
+    "canonical_title": "Apify MCP vs Actor API: a research-agent blueprint",
+    "description": "Choose Apify MCP or the Actor API for agent research, with an offline code example, source provenance, cost controls and a Starlight architecture review.",
+    "author_id": "frank-riemer",
+    "published_at": null,
+    "modified_at": "2026-11-13"
+  },
+  "visual_plan": {
+    "tier": "FLAGSHIP",
+    "reason": "Named-platform architecture comparison; final publication needs a governed visual packet. Current deliverable is a source-complete text/code draft.",
+    "status": "PLANNED",
+    "visual_packet_ref": "blocked",
+    "competitive_snapshot_at": "blocked",
+    "character_mode": "OPTIONAL",
+    "character_exemption": null,
+    "canonical_character_refs": [],
+    "required_roles": [
+      "hero",
+      "architecture",
+      "comparison",
+      "workflow",
+      "og",
+      "mobile_native"
+    ],
+    "directions": [
+      {
+        "name": "Annotated execution map",
+        "purpose": "Preferred proposal: separate observed source layers from proposed Apify edges; deterministic topology and labels."
+      },
+      {
+        "name": "Same input, two interfaces",
+        "purpose": "Side-by-side verified request construction; show shared evidence contract below."
+      },
+      {
+        "name": "Research evidence sheet",
+        "purpose": "Source snapshot, claim locator and cost state as an inspectable editorial spread."
+      }
+    ],
+    "release_note": "No fabricated screenshots, partner logos, benchmark charts or production run receipts. Render and independently review exact topology and OG/mobile treatments before promotion."
+  },
+  "media": [],
+  "affiliates": [
+    {
+      "program": "Apify",
+      "destination": "https://www.apify.com?fpr=vzmwk5",
+      "disclosure": "FrankX is an Apify affiliate. I may earn a commission when you subscribe through a referral link, at no extra cost to you.",
+      "rel": "sponsored noopener",
+      "status": "hold",
+      "registry_path": "data/affiliate/programs.json",
+      "link_activation": "ourLink remains null; candidate destination only",
+      "vendor_test_credit_used": false
+    }
+  ],
+  "distribution": [],
+  "reviews": [
+    {
+      "lane": "truth_rights",
+      "verdict": "blocked",
+      "reason": "Independent exact-revision review has not been performed; maker checks are reported separately."
+    },
+    {
+      "lane": "commissioning_editor",
+      "verdict": "blocked",
+      "reason": "Independent exact-revision review has not been performed; maker checks are reported separately."
+    },
+    {
+      "lane": "icp_reader",
+      "verdict": "blocked",
+      "reason": "Independent exact-revision review has not been performed; maker checks are reported separately."
+    },
+    {
+      "lane": "seo_geo",
+      "verdict": "blocked",
+      "reason": "Independent exact-revision review has not been performed; maker checks are reported separately."
+    },
+    {
+      "lane": "art_critic",
+      "verdict": "blocked",
+      "reason": "Independent exact-revision review has not been performed; maker checks are reported separately."
+    },
+    {
+      "lane": "production_verifier",
+      "verdict": "blocked",
+      "reason": "Independent exact-revision review has not been performed; maker checks are reported separately."
+    }
+  ],
+  "publication": {
+    "branch": "agent/codex/apify-product-lane",
+    "pull_request": "https://github.com/frankxai/frankx.ai-vercel-website/pull/1235",
+    "preview_url": "blocked",
+    "live_url": "blocked",
+    "verified_at": null,
+    "rollback": "Draft remains outside the immediate blog directory; registry remains held. Revert this isolated change before release if rejected."
+  },
+  "measurement": {
+    "hypothesis": "A same-input comparison plus portable evidence contract helps technical readers produce a reviewable research brief.",
+    "primary_metric": "External user accepts and exports one authorized brief, then repeats without maker intervention",
+    "guardrails": [
+      "Source support for every factual claim",
+      "No unknown cost reported as zero",
+      "No privacy-sensitive marketing events",
+      "No undisclosed subsidy or referral"
+    ],
+    "snapshots": [],
+    "freshness_review_at": "2026-11-20",
+    "freshness_triggers": [
+      "MCP schema change",
+      "Actor build/schema or permission change",
+      "Pricing change",
+      "Approved live pilot evidence"
+    ],
+    "baseline": null,
+    "observation_windows": "After authorized publication: T+0 technical verification; T+7 index/referral check; T+28 activation; T+90 maintenance/qualified conversion review. No automation created."
+  },
+  "blocked": [
+    "Real authorized Actor execution, evidence retention, cost reconciliation and QA acceptance remain unproved.",
+    "Independent exact-head editorial and technical review pending.",
+    "Final governed visual/OG/mobile packet and rendered page review pending.",
+    "Owner approval required before publication or referral activation.",
+    "Account entitlement, dashboard tier, remaining platform credit and attribution conversion unverified.",
+    "No admitted product SKU, price, license, checkout or paid delivery evidence."
+  ],
+  "maker": "OpenAI Codex; no independent reviewer asserted",
+  "evaluation_template": "docs/ops/apify-product-lane/evaluation.template.json",
+  "starter_kit_spec": "docs/ops/apify-product-lane/starter-kit-spec.md",
+  "maker_checks": {
+    "offline_tests": {
+      "passed": 6,
+      "live_execution": false
+    },
+    "affiliate_suite": {
+      "passed": 29
+    },
+    "public_claims_and_tool_records": {
+      "combined_passed": 175,
+      "note": "Overlaps the affiliate suite; counts must not be added as unique tests."
+    },
+    "type_check": "pass",
+    "lint": "pass: zero errors, 12 warnings in unchanged files",
+    "editorial_signal_score": 0,
+    "mdx_compile": "pass with GFM",
+    "metadata": {
+      "title_characters": 50,
+      "description_characters": 153
+    },
+    "packet_validator": "pass at DRAFT",
+    "build": "failed: optimized compilation process killed, exit 137",
+    "independent_review": "pending",
+    "preview": "not inspected",
+    "shared_editorial_policy": "Pinned policy 851a11be31a0640df64baabcf2b1fc1afb9ce849: zero hard failures/review signals on changed content/data lines after fixture-boundary sentence correction"
+  }
+}
