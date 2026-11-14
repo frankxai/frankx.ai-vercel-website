@@ -137,8 +137,24 @@ export function McpConsoleClient({ skills, blueprints, totalBlueprints, stacksBy
         return
       }
 
-      const payload = await response.json()
-      const display = payload?.result?.structuredContent ?? payload
+      const contentType = response.headers.get('content-type') ?? ''
+      let payload: unknown
+      if (contentType.includes('text/event-stream')) {
+        const raw = await response.text()
+        const dataLine = raw
+          .split(/\r?\n/)
+          .map((line) => line.trim())
+          .filter((line) => line.startsWith('data:'))
+          .pop()
+        if (!dataLine) {
+          throw new Error('Empty event-stream response from /api/mcp.')
+        }
+        payload = JSON.parse(dataLine.slice(5).trim())
+      } else {
+        payload = await response.json()
+      }
+      const rpcPayload = payload as { result?: { structuredContent?: unknown } } | null
+      const display = rpcPayload?.result?.structuredContent ?? payload
       setRpcOutput(JSON.stringify(display, null, 2))
       setRpcStatus('done')
     } catch (error) {

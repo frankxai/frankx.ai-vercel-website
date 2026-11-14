@@ -22,7 +22,7 @@ export type RecommendedStackTool = {
   disclosure: string
 }
 
-type ToolCandidate = {
+export type ToolCandidate = {
   id: string
   name: string
   role: string
@@ -49,6 +49,35 @@ const ORACLE_EXCLUDED_IDS = new Set([
   'linode',
   'hetzner',
 ])
+
+const ORACLE_EXCLUDED_HOSTS = [
+  'aws.amazon.com',
+  'cloud.google.com',
+  'azure.microsoft.com',
+  'digitalocean.com',
+  'vultr.com',
+  'linode.com',
+  'hetzner.com',
+]
+
+export function isOracleExcludedCandidate(
+  candidate: Pick<ToolCandidate, 'id' | 'name' | 'officialUrl' | 'partnerSlug'>,
+): boolean {
+  const slugName = candidate.name.toLowerCase().trim().replace(/\s+/g, '-')
+  if (
+    ORACLE_EXCLUDED_IDS.has(candidate.id.toLowerCase()) ||
+    ORACLE_EXCLUDED_IDS.has(slugName) ||
+    (candidate.partnerSlug ? ORACLE_EXCLUDED_IDS.has(candidate.partnerSlug.toLowerCase()) : false)
+  ) {
+    return true
+  }
+  try {
+    const host = new URL(candidate.officialUrl).hostname.toLowerCase()
+    return ORACLE_EXCLUDED_HOSTS.some((domain) => host === domain || host.endsWith(`.${domain}`))
+  } catch {
+    return false
+  }
+}
 
 const CANDIDATES: readonly ToolCandidate[] = [
   {
@@ -182,7 +211,7 @@ const CANDIDATES: readonly ToolCandidate[] = [
 const programs = (programsFile as { programs: ProgramDestination[] }).programs
 
 export function recommendFrankxStack(
-  options: { goal: StackGoal; query?: string; limit?: number },
+  options: { goal: StackGoal; query?: string; limit?: number; candidates?: readonly ToolCandidate[] },
   now = new Date(),
 ): {
   goal: StackGoal
@@ -190,11 +219,11 @@ export function recommendFrankxStack(
   total: number
   disclosureNote: string
 } {
-  const { goal, query, limit = 6 } = options
+  const { goal, query, limit = 6, candidates = CANDIDATES } = options
   const q = query?.trim().toLowerCase() ?? ''
 
-  const matched = CANDIDATES.filter((candidate) => {
-    if (ORACLE_EXCLUDED_IDS.has(candidate.id)) return false
+  const matched = candidates.filter((candidate) => {
+    if (isOracleExcludedCandidate(candidate)) return false
     if (!candidate.goals.includes(goal)) return false
     if (!q) return true
     return (
@@ -211,17 +240,19 @@ export function recommendFrankxStack(
     let disclosure = EDITORIAL_DISCLOSURE
 
     if (candidate.partnerSlug) {
-      const program = programs.find(
-        (entry) =>
-          entry.tool.toLowerCase() === candidate.partnerSlug ||
-          entry.aliases?.some((alias) => alias.toLowerCase() === candidate.partnerSlug),
+      const lookupKeys = [candidate.partnerSlug, candidate.name]
+        .filter(Boolean)
+        .map((key) => key.toLowerCase())
+      const program = programs.find((entry) =>
+        [entry.tool, ...(entry.aliases ?? [])].some((name) => lookupKeys.includes(name.toLowerCase())),
       )
       // Fail closed: only programs explicitly marked active may produce a sponsored link.
+      // Pass the single matched program record so status gating and destination resolution never diverge.
       const isBlockedStatus = program?.status !== 'active'
       if (program && !isBlockedStatus) {
         const resolved = resolveProgramDestination(
-          candidate.partnerSlug,
-          programs,
+          program.tool,
+          [program],
           { name: candidate.name, url: candidate.officialUrl },
           now,
         )

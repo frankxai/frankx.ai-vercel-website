@@ -4,6 +4,8 @@ import { listFrankxSkills } from '@/lib/mcp/skills-catalog'
 import { recommendFrankxStack, type StackGoal } from '@/lib/mcp/stack-recommendations'
 import { McpConsoleClient } from './McpConsoleClient'
 
+export const revalidate = 3600
+
 export const metadata = createMetadata({
   title: 'FrankX MCP Console | Connect Any AI Agent',
   description:

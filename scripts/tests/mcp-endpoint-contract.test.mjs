@@ -330,3 +330,40 @@ test('frankx_recommend_stack routes verified partners through /go/<slug> with di
   assert.ok(!JSON.stringify(voice).toLowerCase().includes('ironstone'))
   assert.ok(!JSON.stringify(claude).toLowerCase().includes('digitalocean'))
 }))
+
+test('isOracleExcludedCandidate blocks excluded vendors by id, name, slug, or hostname even on synthetic candidates', async () => {
+  const { isOracleExcludedCandidate, recommendFrankxStack } = await import('../../lib/mcp/stack-recommendations.ts')
+  const digitalOcean = {
+    id: 'digitalocean',
+    name: 'DigitalOcean',
+    role: 'Cloud VPS',
+    summary: 'Managed droplets',
+    officialUrl: 'https://www.digitalocean.com',
+    goals: ['ai-architecture'],
+  }
+  const awsByHost = {
+    id: 'ec2-compute',
+    name: 'Compute Cloud',
+    role: 'Cloud compute',
+    summary: 'Elastic instances',
+    officialUrl: 'https://console.aws.amazon.com/ec2',
+    goals: ['ai-architecture'],
+  }
+  const allowed = {
+    id: 'nextjs',
+    name: 'Next.js App Router',
+    role: 'Web framework',
+    summary: 'React SSR framework',
+    officialUrl: 'https://nextjs.org',
+    goals: ['ai-architecture'],
+  }
+  assert.equal(isOracleExcludedCandidate(digitalOcean), true)
+  assert.equal(isOracleExcludedCandidate(awsByHost), true)
+  assert.equal(isOracleExcludedCandidate(allowed), false)
+  const filtered = recommendFrankxStack({
+    goal: 'ai-architecture',
+    candidates: [digitalOcean, awsByHost, allowed],
+    limit: 6,
+  })
+  assert.deepEqual(filtered.tools.map((tool) => tool.id), ['nextjs'])
+})
