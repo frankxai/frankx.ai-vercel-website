@@ -322,7 +322,6 @@ try {
       await page.$eval('article', article => window.scrollTo({ top: scrollY + article.getBoundingClientRect().top + (article.getBoundingClientRect().height - innerHeight) * .4, behavior: 'instant' }))
       await page.waitForFunction(key => { const value = JSON.parse(localStorage.getItem(key) || 'null'); return value?.scrollPct > 20 && value?.scrollPct < 80 }, {}, `frankx:reading:${practice.slug}`)
       await page.reload({ waitUntil: 'networkidle2' })
-      await page.waitForSelector('button', { visible: true })
       await page.waitForFunction(() => [...document.querySelectorAll('button')].some(button => button.textContent.includes('Return to saved position')))
       const resumeSelector = '[data-reading-size] > div > button'
       await clickTarget(resumeSelector)
