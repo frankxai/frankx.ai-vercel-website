@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { createPortal } from 'react-dom'
 import { Expand, ExternalLink, Moon, Sparkles, Sun, X } from 'lucide-react'
 
 export type SystemDiagramId =
@@ -210,7 +211,7 @@ export function SystemDiagram({
       </figcaption>
 
       {/* Lightbox Modal */}
-      {expanded && (
+      {expanded && typeof document !== 'undefined' && createPortal(
         <div
           role="dialog"
           aria-modal="true"
@@ -249,7 +250,8 @@ export function SystemDiagram({
               className="w-full h-auto rounded-xl"
             />
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </figure>
   )

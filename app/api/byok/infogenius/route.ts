@@ -11,6 +11,15 @@ function quotePosixArg(value: string): string {
   return `'${sanitized.replace(/'/g, "'\\''")}'`
 }
 
+/** Repeatable --fact flags so exported commands render the extracted article facts instead of re-researching the title. */
+function factFlags(facts: string[]): string {
+  return facts
+    .filter((fact) => typeof fact === 'string' && fact.trim())
+    .slice(0, 6)
+    .map((fact) => ` --fact ${quotePosixArg(fact.slice(0, 400))}`)
+    .join('')
+}
+
 interface StyleDefinition {
   key: string
   name: string
@@ -538,7 +547,7 @@ export async function POST(req: NextRequest) {
           visualElements: slideVisuals,
           labels: slideLabels,
           imagePrompt: slidePrompt,
-          cliCommand: `node scripts/infogenius.mjs ${quotePosixArg(sr.defaultTitle)} --style ${quotePosixArg(styleObj.key)} --audience ${quotePosixArg(audience)} --aspect ${quotePosixArg(aspectRatio)} --size ${quotePosixArg(imageSize)} --out ${quotePosixArg(`public/images/blog/generated/slide-0${idx + 1}-${slideSlug}.png`)}`,
+          cliCommand: `node scripts/infogenius.mjs ${quotePosixArg(sr.defaultTitle)}${factFlags(slideFacts)} --style ${quotePosixArg(styleObj.key)} --audience ${quotePosixArg(audience)} --aspect ${quotePosixArg(aspectRatio)} --size ${quotePosixArg(imageSize)} --out ${quotePosixArg(`public/images/blog/generated/slide-0${idx + 1}-${slideSlug}.png`)}`,
         }
       })
 
@@ -637,7 +646,7 @@ ${rawArticle.slice(0, 6000)}`
                   visualElements,
                   labels,
                   imagePrompt: slidePrompt,
-                  cliCommand: `node scripts/infogenius.mjs ${quotePosixArg(title)} --style ${quotePosixArg(styleObj.key)} --audience ${quotePosixArg(audience)} --aspect ${quotePosixArg(aspectRatio)} --size ${quotePosixArg(imageSize)} --out ${quotePosixArg(`public/images/blog/generated/slide-0${idx + 1}-${slideSlug}.png`)}`,
+                  cliCommand: `node scripts/infogenius.mjs ${quotePosixArg(title)}${factFlags(facts)} --style ${quotePosixArg(styleObj.key)} --audience ${quotePosixArg(audience)} --aspect ${quotePosixArg(aspectRatio)} --size ${quotePosixArg(imageSize)} --out ${quotePosixArg(`public/images/blog/generated/slide-0${idx + 1}-${slideSlug}.png`)}`,
                 }
               })
             }

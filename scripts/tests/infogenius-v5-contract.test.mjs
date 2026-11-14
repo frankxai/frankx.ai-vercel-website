@@ -94,7 +94,10 @@ test('Platform route /api/byok/infogenius and InfoGeniusStudioWorkbench are stri
   assert.match(routeSource, /gemini-2\.5-flash-preview-tts/)
   assert.match(routeSource, /decompose-article/)
   assert.match(routeSource, /living-world-hud/)
-  assert.match(workbenchSource, /Article \/ Markdown → 5-Slide Pack/)
+  assert.match(workbenchSource, /Article or markdown/i)
+  assert.match(routeSource, /factFlags\(slideFacts\)/)
+  assert.match(routeSource, /factFlags\(facts\)/)
+  assert.match(workbenchSource, /packGenerationRef/)
   assert.match(workbenchSource, /Custom Brand Style Builder/)
 })
 

@@ -221,6 +221,8 @@ export default function InfoGeniusStudioWorkbench() {
   const [copiedTab, setCopiedTab] = useState<string | null>(null)
   const audioCtxRef = useRef<AudioContext | null>(null)
   const audioSourceRef = useRef<AudioBufferSourceNode | null>(null)
+  // Bumped each time a new pack arrives so slide renders from a replaced pack cannot write into the new one.
+  const packGenerationRef = useRef(0)
 
   const stopNarrationPlayback = () => {
     try {
@@ -358,6 +360,7 @@ export default function InfoGeniusStudioWorkbench() {
 
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Decomposition failed')
+      packGenerationRef.current += 1
       setPackResult(data)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Decomposition failed')
@@ -377,6 +380,7 @@ export default function InfoGeniusStudioWorkbench() {
 
     const targetSlide = packResult.slides[slideIndex]
     if (!targetSlide) return
+    const generation = packGenerationRef.current
     setPackResult((prev) =>
       prev
         ? {
@@ -413,6 +417,7 @@ export default function InfoGeniusStudioWorkbench() {
 
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Failed to render slide')
+      if (generation !== packGenerationRef.current) return
 
       setPackResult((prev) =>
         prev
@@ -427,6 +432,7 @@ export default function InfoGeniusStudioWorkbench() {
           : prev
       )
     } catch (err) {
+      if (generation !== packGenerationRef.current) return
       setPackResult((prev) =>
         prev
           ? {
