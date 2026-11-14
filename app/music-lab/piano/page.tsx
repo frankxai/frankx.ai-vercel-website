@@ -332,6 +332,8 @@ export default function PianoPage() {
   const [audioError, setAudioError] = useState(false)
   const pendingNotes = useRef(new Map<number, symbol>())
   const [volume, setVolume] = useState(1.15)
+  const volumeRef = useRef(volume)
+  volumeRef.current = volume
   const touchMap = useRef<Map<number, number>>(new Map())
   const pianoRef = useRef<HTMLDivElement>(null)
 
@@ -360,6 +362,7 @@ export default function PianoPage() {
 
   // Persist + apply volume changes
   useEffect(() => {
+    volumeRef.current = volume
     persistVolume(volume / 1.15)
     engineRef.current?.setMasterVolume(volume)
   }, [volume])
@@ -370,7 +373,7 @@ export default function PianoPage() {
     try {
       const eng = await getEngine()
       if (pendingNotes.current.get(midi) !== request) return
-      eng.setMasterVolume(volume)
+      eng.setMasterVolume(volumeRef.current)
       eng.noteOn(midi, vel)
       setAudioError(false)
       setPressed(prev => new Set(prev).add(midi))
@@ -379,7 +382,7 @@ export default function PianoPage() {
       pendingNotes.current.delete(midi)
       setAudioError(true)
     }
-  }, [getEngine, volume])
+  }, [getEngine])
 
   const noteOff = useCallback((midi: number) => {
     pendingNotes.current.delete(midi)

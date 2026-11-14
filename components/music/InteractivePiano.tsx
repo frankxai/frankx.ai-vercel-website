@@ -399,78 +399,90 @@ function useAudio(): AudioEngine {
   const sampleBuffersRef = useRef<Map<string, AudioBuffer>>(new Map())
   const sampleLoadRef = useRef<Promise<void> | null>(null)
   const sampleAbortRef = useRef<AbortController | null>(null)
+  const ensurePromiseRef = useRef<Promise<AudioContext | null> | null>(null)
 
   const ensureCtx = useCallback(async () => {
-    try {
-      if (!ctxRef.current || ctxRef.current.state === 'closed') {
-        const ctx = new AudioContext({ latencyHint: 'interactive' })
-        ctxRef.current = ctx
+    if (ensurePromiseRef.current) return ensurePromiseRef.current
+    let settled = false
+    const pending = (async () => {
+      try {
+        if (!ctxRef.current || ctxRef.current.state === 'closed') {
+          const ctx = new AudioContext({ latencyHint: 'interactive' })
+          ctxRef.current = ctx
 
-        // Master gain — controlled by volume slider
-        const master = ctx.createGain()
-        master.gain.value = getVolume()
-        masterRef.current = master
+          // Master gain — controlled by volume slider
+          const master = ctx.createGain()
+          master.gain.value = getVolume()
+          masterRef.current = master
 
-        // Compressor — keeps peaks safe even at higher volume
-        const comp = ctx.createDynamicsCompressor()
-        comp.threshold.value = -10
-        comp.knee.value = 12
-        comp.ratio.value = 2.5
-        comp.attack.value = 0.005
-        comp.release.value = 0.15
-        master.connect(comp)
-        comp.connect(ctx.destination)
+          // Compressor — keeps peaks safe even at higher volume
+          const comp = ctx.createDynamicsCompressor()
+          comp.threshold.value = -10
+          comp.knee.value = 12
+          comp.ratio.value = 2.5
+          comp.attack.value = 0.005
+          comp.release.value = 0.15
+          master.connect(comp)
+          comp.connect(ctx.destination)
 
-        // Tiny convolver reverb (10% wet)
-        const reverb = ctx.createConvolver()
-        const rate = ctx.sampleRate
-        const len = rate * 1.5
-        const buf = ctx.createBuffer(2, len, rate)
-        for (let ch = 0; ch < 2; ch++) {
-          const d = buf.getChannelData(ch)
-          for (let i = 0; i < len; i++) {
-            const t = i / rate
-            d[i] = Math.exp(-3.0 * t) * (Math.random() * 2 - 1) * 0.4
+          // Tiny convolver reverb (10% wet)
+          const reverb = ctx.createConvolver()
+          const rate = ctx.sampleRate
+          const len = rate * 1.5
+          const buf = ctx.createBuffer(2, len, rate)
+          for (let ch = 0; ch < 2; ch++) {
+            const d = buf.getChannelData(ch)
+            for (let i = 0; i < len; i++) {
+              const t = i / rate
+              d[i] = Math.exp(-3.0 * t) * (Math.random() * 2 - 1) * 0.4
+            }
           }
+          reverb.buffer = buf
+          reverbRef.current = reverb
+
+          const dry = ctx.createGain()
+          dry.gain.value = 0.88
+          const wet = ctx.createGain()
+          wet.gain.value = 0.12
+          dryRef.current = dry
+          wetRef.current = wet
+
+          dry.connect(master)
+          reverb.connect(wet)
+          wet.connect(master)
+
+          const controller = new AbortController()
+          sampleAbortRef.current = controller
+          sampleLoadRef.current = Promise.all(GUIDED_PIANO_SAMPLES.map(async (sample) => {
+            try {
+              const response = await fetch(`${GUIDED_SAMPLE_CDN}${sample.name}.mp3`, { signal: controller.signal })
+              if (!response.ok) return
+              const data = await response.arrayBuffer()
+              const buffer = await ctx.decodeAudioData(data)
+              sampleBuffersRef.current.set(sample.name, buffer)
+            } catch {
+              // The oscillator voice remains available when a sample cannot load.
+            }
+          })).then(() => undefined)
         }
-        reverb.buffer = buf
-        reverbRef.current = reverb
-
-        const dry = ctx.createGain()
-        dry.gain.value = 0.88
-        const wet = ctx.createGain()
-        wet.gain.value = 0.12
-        dryRef.current = dry
-        wetRef.current = wet
-
-        dry.connect(master)
-        reverb.connect(wet)
-        wet.connect(master)
-
-        const controller = new AbortController()
-        sampleAbortRef.current = controller
-        sampleLoadRef.current = Promise.all(GUIDED_PIANO_SAMPLES.map(async (sample) => {
-          try {
-            const response = await fetch(`${GUIDED_SAMPLE_CDN}${sample.name}.mp3`, { signal: controller.signal })
-            if (!response.ok) return
-            const data = await response.arrayBuffer()
-            const buffer = await ctx.decodeAudioData(data)
-            sampleBuffersRef.current.set(sample.name, buffer)
-          } catch {
-            // The oscillator voice remains available when a sample cannot load.
-          }
-        })).then(() => undefined)
+        if (ctxRef.current.state !== 'running') {
+          await ctxRef.current.resume()
+        }
+        if (ctxRef.current.state !== 'running') throw new Error('Audio unavailable')
+        setStatus('ready')
+        return ctxRef.current
+      } catch {
+        setStatus('error')
+        return null
+      } finally {
+        settled = true
+        if (ensurePromiseRef.current === pending) {
+          ensurePromiseRef.current = null
+        }
       }
-      if (ctxRef.current.state !== 'running') {
-        await ctxRef.current.resume()
-      }
-      if (ctxRef.current.state !== 'running') throw new Error('Audio unavailable')
-      setStatus('ready')
-      return ctxRef.current
-    } catch {
-      setStatus('error')
-      return null
-    }
+    })()
+    if (!settled) ensurePromiseRef.current = pending
+    return pending
   }, [])
 
   const playNote = useCallback(async (frequency: number, duration = 0.6) => {
@@ -655,7 +667,7 @@ export default function InteractivePiano({
   const [autoPlaying, setAutoPlaying] = useState(false)
   const [currentSong, setCurrentSong] = useState<string | null>(null)
   const stopRef = useRef(false)
-  const guidedInputPending = useRef(false)
+  const guidedEpochRef = useRef(0)
 
   // Guided mode state
   const [guided, setGuided] = useState<GuidedState | null>(null)
@@ -663,6 +675,12 @@ export default function InteractivePiano({
 
   // Progress (lazy-init from localStorage)
   const [progress, setProgress] = useState<Record<string, SongProgress>>({})
+  const modeRef = useRef<Mode>(mode)
+  modeRef.current = mode
+  const guidedRef = useRef<GuidedState | null>(guided)
+  guidedRef.current = guided
+  const progressRef = useRef<Record<string, SongProgress>>(progress)
+  progressRef.current = progress
   const [todayMins, setTodayMins] = useState(0)
   const [totalStarsCount, setTotalStarsCount] = useState(0)
 
@@ -703,44 +721,45 @@ export default function InteractivePiano({
 
   const handleKeyPress = useCallback(
     async (note: NoteDef) => {
-      if (guidedInputPending.current) return
-      guidedInputPending.current = true
-      let played: boolean
-      try {
-        played = await audio.playNote(note.freq, mode === 'guided' ? 0.7 : 0.6)
-      } finally {
-        guidedInputPending.current = false
-      }
+      const epoch = guidedEpochRef.current
+      const played = await audio.playNote(note.freq, modeRef.current === 'guided' ? 0.7 : 0.6)
       if (!played) return
       setActiveNote(note.note)
       window.setTimeout(() => setActiveNote((cur) => (cur === note.note ? null : cur)), 220)
 
       // In guided mode, advance song state when correct note hit
-      if (mode === 'guided' && guided) {
-        const song = SONGS[guided.songId]
-        const expected = song.notes[guided.step]?.note
-        if (note.note === expected) {
-          window.setTimeout(() => { void audio.playChime() }, 120)
-          const nextStep = guided.step + 1
-          if (nextStep >= song.notes.length) {
-            // Song complete!
-            const result = recordAttempt(guided.songId, guided.misses)
-            setProgress((prev) => ({ ...prev, [guided.songId]: result }))
-            setTotalStarsCount(totalStars({ ...progress, [guided.songId]: result }))
-            setCompletion({ songId: guided.songId, stars: result.lastStars })
-            setGuided(null)
-            setHighlightedNote(null)
-          } else {
-            setGuided({ ...guided, step: nextStep })
-            setHighlightedNote(song.notes[nextStep].note)
-          }
+      const currentGuided = guidedRef.current
+      if (guidedEpochRef.current !== epoch || modeRef.current !== 'guided' || !currentGuided) return
+      const song = SONGS[currentGuided.songId]
+      const expected = song.notes[currentGuided.step]?.note
+      if (note.note === expected) {
+        window.setTimeout(() => { void audio.playChime() }, 120)
+        const nextStep = currentGuided.step + 1
+        if (nextStep >= song.notes.length) {
+          // Song complete!
+          const result = recordAttempt(currentGuided.songId, currentGuided.misses)
+          const nextProgress = { ...progressRef.current, [currentGuided.songId]: result }
+          progressRef.current = nextProgress
+          setProgress(nextProgress)
+          setTotalStarsCount(totalStars(nextProgress))
+          setCompletion({ songId: currentGuided.songId, stars: result.lastStars })
+          guidedRef.current = null
+          setGuided(null)
+          setHighlightedNote(null)
         } else {
-          // Wrong note — count miss but don't punish; the highlight teaches
-          setGuided({ ...guided, misses: guided.misses + 1 })
+          const updatedGuided = { ...currentGuided, step: nextStep }
+          guidedRef.current = updatedGuided
+          setGuided(updatedGuided)
+          setHighlightedNote(song.notes[nextStep].note)
         }
+      } else {
+        // Wrong note — count miss but don't punish; the highlight teaches
+        const updatedGuided = { ...currentGuided, misses: currentGuided.misses + 1 }
+        guidedRef.current = updatedGuided
+        setGuided(updatedGuided)
       }
     },
-    [audio, mode, guided, progress]
+    [audio]
   )
 
   // Computer keyboard listener (desktop play)
@@ -799,13 +818,18 @@ export default function InteractivePiano({
     const song = SONGS[songId]
     if (!song) return
     void audio.resume()
+    guidedEpochRef.current += 1
+    const nextGuided: GuidedState = { songId, step: 0, misses: 0, startedAt: Date.now() }
+    guidedRef.current = nextGuided
     setCompletion(null)
-    setGuided({ songId, step: 0, misses: 0, startedAt: Date.now() })
+    setGuided(nextGuided)
     setHighlightedNote(song.notes[0].note)
     setCurrentSong(songId)
   }, [audio])
 
   const stopGuided = useCallback(() => {
+    guidedEpochRef.current += 1
+    guidedRef.current = null
     setGuided(null)
     setHighlightedNote(null)
     setCurrentSong(null)
@@ -841,7 +865,7 @@ export default function InteractivePiano({
         <div className="flex gap-2">
           <button
             type="button"
-            onClick={() => { setMode('free'); stopGuided() }}
+            onClick={() => { guidedEpochRef.current += 1; modeRef.current = 'free'; setMode('free'); stopGuided() }}
             className={`rounded-full px-4 py-2 text-sm font-medium transition active:scale-95 ${
               mode === 'free'
                 ? childMode ? 'bg-violet-500 text-white shadow-md' : 'bg-violet-500/30 text-violet-200'
@@ -853,7 +877,7 @@ export default function InteractivePiano({
           </button>
           <button
             type="button"
-            onClick={() => { setMode('guided'); stopSongAuto() }}
+            onClick={() => { guidedEpochRef.current += 1; modeRef.current = 'guided'; setMode('guided'); stopSongAuto() }}
             className={`rounded-full px-4 py-2 text-sm font-medium transition active:scale-95 ${
               mode === 'guided'
                 ? childMode ? 'bg-emerald-500 text-white shadow-md' : 'bg-emerald-500/30 text-emerald-200'

@@ -110,11 +110,104 @@ test('Grand Piano ignores a note released while audio startup is pending', async
   const source = grand.slice(start, end)
   const noteOn = vm.runInNewContext(stripTypeScriptTypes(source) + '\nnoteOn', {
     useCallback: callback => callback, pendingNotes, getEngine: () => ready,
-    volume: 1, setAudioError() {}, setPressed() {}, setLastNote() {}, midiToDisplay: () => 'C4',
+    volumeRef: { current: 1 }, setAudioError() {}, setPressed() {}, setLastNote() {}, midiToDisplay: () => 'C4',
   })
   const playing = noteOn(60)
   pendingNotes.current.delete(60)
   resolveEngine(engine)
   await playing
   assert.equal(voices, 0)
+})
+
+test('Grand Piano applies updated volumeRef value after pending startup resolves', async () => {
+  const pendingNotes = { current: new Map() }
+  const volumeRef = { current: 1 }
+  let appliedVolume = null
+  let resolveEngine
+  const ready = new Promise(resolve => { resolveEngine = resolve })
+  const engine = { setMasterVolume(v) { appliedVolume = v }, noteOn() {} }
+  const start = grand.indexOf('  const noteOn = useCallback(async')
+  const end = grand.indexOf('  const noteOff = useCallback', start)
+  const source = grand.slice(start, end)
+  const noteOn = vm.runInNewContext(stripTypeScriptTypes(source) + '\nnoteOn', {
+    useCallback: callback => callback, pendingNotes, getEngine: () => ready,
+    volumeRef, setAudioError() {}, setPressed() {}, setLastNote() {}, midiToDisplay: () => 'C4',
+  })
+  const playing = noteOn(60)
+  volumeRef.current = 0
+  resolveEngine(engine)
+  await playing
+  assert.equal(appliedVolume, 0)
+})
+
+test('guided piano ensureCtx coalesces concurrent playNote calls into one resume', async () => {
+  const mock = mockContext()
+  const source = guided.slice(guided.indexOf('interface AudioEngine'), guided.indexOf('// ── Helper: stars badge'))
+  const hook = vm.runInNewContext(stripTypeScriptTypes(source) + '\nuseAudio', {
+    AudioContext: mock.Context,
+    useRef: value => ({ current: value }), useCallback: callback => callback,
+    useEffect() {}, useState: value => [value, () => {}],
+    getVolume: () => 1, AbortController,
+    GUIDED_PIANO_SAMPLES: [{ name: 'C4', frequency: 261.63 }],
+    fetch: async () => { throw new Error('offline') }, GUIDED_SAMPLE_CDN: '',
+  })
+  const audio = hook()
+  const [first, second] = await Promise.all([audio.playNote(261.63), audio.playNote(293.66)])
+  assert.equal(first, true)
+  assert.equal(second, true)
+  assert.equal(mock.get().resumeCalls, 1)
+  assert.equal(mock.get().started.length, 4)
+})
+
+test('guided handleKeyPress allows rapid concurrent notes and drops stale guided updates on epoch change', async () => {
+  const guidedEpochRef = { current: 1 }
+  const modeRef = { current: 'guided' }
+  const guidedRef = { current: { songId: 'test', step: 0, misses: 0, startedAt: 0 } }
+  const progressRef = { current: {} }
+  const guidedStates = []
+  const highlighted = []
+  let playedCount = 0
+  const pendingResolvers = []
+  const start = guided.indexOf('  const handleKeyPress = useCallback(')
+  const end = guided.indexOf('  // Computer keyboard listener', start)
+  const source = guided.slice(start, end)
+  const handleKeyPress = vm.runInNewContext(stripTypeScriptTypes(source) + '\nhandleKeyPress', {
+    useCallback: callback => callback,
+    guidedEpochRef,
+    modeRef,
+    guidedRef,
+    progressRef,
+    SONGS: { test: { notes: [{ note: 'C4' }, { note: 'D4' }, { note: 'E4' }] } },
+    audio: {
+      playNote: () => new Promise(resolve => { playedCount++; pendingResolvers.push(resolve) }),
+      playChime: async () => {},
+    },
+    window: { setTimeout() {} },
+    setActiveNote() {},
+    setGuided: val => guidedStates.push(val),
+    setHighlightedNote: val => highlighted.push(val),
+    setCompletion() {},
+    setProgress() {},
+    setTotalStarsCount() {},
+    recordAttempt: () => ({ lastStars: 3 }),
+    totalStars: () => 3,
+  })
+
+  const p1 = handleKeyPress({ note: 'C4', freq: 261.63 })
+  const p2 = handleKeyPress({ note: 'D4', freq: 293.66 })
+  assert.equal(playedCount, 2)
+  pendingResolvers[0](true)
+  await p1
+  pendingResolvers[1](true)
+  await p2
+  assert.equal(guidedRef.current.step, 2)
+  assert.equal(highlighted.at(-1), 'E4')
+
+  const p3 = handleKeyPress({ note: 'E4', freq: 329.63 })
+  guidedEpochRef.current += 1
+  guidedRef.current = null
+  pendingResolvers[2](true)
+  await p3
+  assert.equal(guidedStates.length, 2)
+  assert.equal(guidedRef.current, null)
 })
