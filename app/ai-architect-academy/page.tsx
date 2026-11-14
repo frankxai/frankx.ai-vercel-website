@@ -3,6 +3,7 @@
 import Link from 'next/link'
 
 import { EmailSignup } from '@/components/email-signup'
+import AcademyCustomerJourneyShowcase from '@/components/guides/AcademyCustomerJourneyShowcase'
 import { trackEvent } from '@/lib/analytics'
 import { motion } from 'framer-motion'
 import {
@@ -512,6 +513,8 @@ export default function AIArchitectAcademyPage() {
             </motion.div>
           </div>
         </section>
+
+        <AcademyCustomerJourneyShowcase />
 
         {/* Skills Section */}
         <section className="py-20 border-t border-white/5">
