@@ -1,473 +1,272 @@
-'use client'
-
 import Link from 'next/link'
-import { motion } from 'framer-motion'
-import {
-  ArrowRight,
-  Terminal,
-  Code2,
-  Bot,
-  Zap,
-  GitBranch,
-  Workflow,
-  Brain,
-  Sparkles,
-  CheckCircle2,
-  BookOpen,
-  Rocket,
-  Shield,
-  Layers,
-} from 'lucide-react'
+import { ArrowRight, BookOpen, Cpu, GitBranch, Layers, Shield, Terminal, Wrench } from 'lucide-react'
+import { LiquidGlassSurface } from '@/components/visuals/LiquidGlassSurface'
+import { SovereignSignalStage } from '@/components/visuals/SovereignSignalStage'
 
-// Premium animated background
-function DeveloperBackground() {
-  return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#0a0a0b]" />
-
-      {/* Code-like grid pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(139, 92, 246, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(139, 92, 246, 0.3) 1px, transparent 1px)
-          `,
-          backgroundSize: '40px 40px',
-        }}
-      />
-
-      {/* Gradient orbs */}
-      <motion.div
-        className="absolute -right-40 top-20 h-[600px] w-[600px] rounded-full opacity-20"
-        style={{
-          background: 'radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 70%)',
-        }}
-        animate={{
-          scale: [1, 1.1, 1],
-          x: [0, -30, 0],
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute -left-40 bottom-40 h-[500px] w-[500px] rounded-full opacity-15"
-        style={{
-          background: 'radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, transparent 70%)',
-        }}
-        animate={{
-          scale: [1.1, 1, 1.1],
-          y: [0, 30, 0],
-        }}
-        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
-      />
-    </div>
-  )
-}
-
-// Tool logos/badges
-const tools = [
-  { name: 'Claude Code', color: 'from-orange-500 to-amber-500' },
-  { name: 'Cursor', color: 'from-blue-500 to-cyan-500' },
-  { name: 'Codex', color: 'from-emerald-500 to-green-500' },
-  { name: 'Gemini Code', color: 'from-violet-500 to-purple-500' },
-  { name: 'Windsurf', color: 'from-cyan-500 to-blue-500' },
-  { name: 'Copilot', color: 'from-slate-400 to-slate-500' },
-]
-
-// Learning paths for developers
-const learningPaths = [
+const endpoints = [
   {
-    icon: Terminal,
-    title: 'Claude Code Mastery',
-    description: 'From basic prompting to autonomous agent workflows. Learn the patterns that 10x your coding velocity.',
-    topics: ['CLAUDE.md configuration', 'Multi-file editing', 'Test-driven prompting', 'Agent orchestration'],
-    href: '/prompt-library',
-    color: 'orange',
+    path: '/api/mcp',
+    kind: 'Streamable HTTP MCP',
+    summary: 'Six stateless read-only JSON-RPC tools for skills, blueprints, disclosed tool stacks, search, articles, and products.',
+    href: '/mcp',
+    cta: 'Open MCP Console',
+    isNextRoute: true,
   },
   {
-    icon: Workflow,
-    title: 'Agentic Patterns',
-    description: 'Build production-grade autonomous systems. MCP servers, tool chains, and multi-agent coordination.',
-    topics: ['MCP architecture', 'Tool composition', 'State management', 'Error recovery'],
-    href: '/prompt-library',
-    color: 'violet',
+    path: '/llms.txt',
+    kind: 'AEO Site Manifest',
+    summary: 'Structured plain-text index of guides, research portals, books, and agent tool names.',
+    href: '/llms.txt',
+    cta: 'Inspect llms.txt',
+    isNextRoute: false,
   },
   {
-    icon: GitBranch,
-    title: 'Workflow Automation',
-    description: 'Automate your entire development lifecycle. From PR reviews to deployment pipelines.',
-    topics: ['Git automation', 'CI/CD integration', 'Code review agents', 'Documentation generation'],
-    href: '/prompt-library',
-    color: 'cyan',
+    path: '/api/v1',
+    kind: 'Public API Catalog',
+    summary: 'Machine-readable JSON index of public read routes paired with OpenAPI 3.1 and RFC 9727 linksets.',
+    href: '/api/v1',
+    cta: 'Open /api/v1 JSON',
+    isNextRoute: false,
   },
 ]
 
-// What's included in Agentic Creator OS
-const agenticFeatures = [
+const buildTracks = [
   {
-    icon: Brain,
-    title: 'Claude Code Field Guide',
-    description: 'Complete mastery of Claude Code patterns, from CLAUDE.md to custom slash commands.',
+    icon: Wrench,
+    title: 'SKILL.md modules',
+    description: 'Compact instruction folders for Claude Code, Codex CLI, and Cursor with trigger heuristics and eval checks.',
+    topics: ['MCP architecture patterns', 'Claude Agent SDK loops', 'Vercel Next.js runtimes', 'Brand editorial QA'],
+    href: '/skills',
+    cta: 'Explore skills hub',
   },
   {
     icon: Layers,
-    title: 'Multi-Agent Systems',
-    description: 'Build coordinated agent swarms that handle complex, multi-step workflows autonomously.',
+    title: 'Reference blueprints',
+    description: 'Interactive system topologies covering RAG pipelines, multi-agent coordination, and observability.',
+    topics: ['Enterprise RAG platform', 'Multi-agent code assistant', 'LLM gateway routing', 'Security boundaries'],
+    href: '/ai-architecture/blueprints',
+    cta: 'Browse blueprints',
   },
   {
-    icon: Shield,
-    title: 'Production Patterns',
-    description: 'Security, error handling, and reliability patterns for enterprise-grade AI systems.',
-  },
-  {
-    icon: Rocket,
-    title: 'Speed Templates',
-    description: '50+ battle-tested prompts and configurations for instant productivity gains.',
+    icon: GitBranch,
+    title: 'Implementation guides',
+    description: 'Step-by-step build documentation tested across real production repositories and publishing pipelines.',
+    topics: ['MCP server production setup', 'Plugins vs SKILL.md', 'Voice synthesis workflows', 'Agent-readable websites'],
+    href: '/guides',
+    cta: 'Read build guides',
   },
 ]
 
-const colorMap = {
-  orange: {
-    bg: 'bg-orange-500/10',
-    border: 'border-orange-500/20 hover:border-orange-500/40',
-    icon: 'bg-orange-500/20 text-orange-400',
-    text: 'text-orange-400',
+const coreCapabilities = [
+  {
+    icon: Terminal,
+    title: 'Zero-key HTTP MCP endpoint',
+    description: 'Point Claude Code, Cursor, or Codex directly to https://frankx.ai/api/mcp with read-only schema bounds.',
   },
-  violet: {
-    bg: 'bg-violet-500/10',
-    border: 'border-violet-500/20 hover:border-violet-500/40',
-    icon: 'bg-violet-500/20 text-violet-400',
-    text: 'text-violet-400',
+  {
+    icon: Shield,
+    title: 'Explicit commercial disclosure',
+    description: 'Partner tools resolve through /go/<slug> freshness checks and carry inline sponsored metadata beside direct editorial links.',
   },
-  cyan: {
-    bg: 'bg-cyan-500/10',
-    border: 'border-cyan-500/20 hover:border-cyan-500/40',
-    icon: 'bg-cyan-500/20 text-cyan-400',
-    text: 'text-cyan-400',
+  {
+    icon: Cpu,
+    title: 'Clean markdown exports',
+    description: 'Fetch full articles paginated cleanly on paragraph boundaries via frankx_get_article or /api/md.',
   },
-}
+  {
+    icon: BookOpen,
+    title: 'Open specifications',
+    description: 'Inspect OpenAPI 3.1 (/openapi.json), MCP Server Card (/api/mcp/server-card), and RFC 9457 error responses.',
+  },
+]
 
 export default function DevelopersPage() {
   return (
-    <>
-      <DeveloperBackground />
-      <main className="relative min-h-screen">
-        {/* Hero Section */}
-        <section className="pt-32 pb-20">
-          <div className="mx-auto max-w-6xl px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-6 flex items-center gap-3"
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400">
-                <Terminal className="h-5 w-5" />
+    <main className="min-h-screen bg-[#0a0a0b] text-zinc-100 pb-24">
+      {/* Hero Section */}
+      <section className="mx-auto max-w-6xl px-5 pt-28 pb-12 sm:px-8">
+        <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0a0b0f] p-7 sm:p-11">
+          <SovereignSignalStage focusMode="blueprints" className="pointer-events-none !absolute inset-0 !rounded-none !border-0" />
+
+          <div className="relative z-10 max-w-3xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1 text-xs font-mono text-cyan-200">
+              <Terminal className="h-3.5 w-3.5" aria-hidden="true" />
+              <span>For Developers &amp; AI Agents</span>
+            </div>
+
+            <h1 className="mt-5 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+              Build with verified patterns.
+              <span className="mt-2 block bg-gradient-to-r from-emerald-300 via-cyan-300 to-amber-200 bg-clip-text text-transparent">
+                Query everything via MCP.
+              </span>
+            </h1>
+
+            <p className="mt-5 text-base leading-relaxed text-zinc-300 sm:text-lg">
+              Human documentation paired with a live Model Context Protocol endpoint. Connect your coding agent to search guides, install <code className="rounded bg-white/10 px-1.5 py-0.5 text-sm text-emerald-200">SKILL.md</code> workflows, inspect system blueprints, and resolve vetted builder tool stacks.
+            </p>
+
+            <div className="mt-7 flex flex-wrap gap-3.5">
+              <Link
+                href="/mcp"
+                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-emerald-400/40 bg-emerald-500/20 px-5 py-2.5 text-sm font-semibold text-emerald-100 transition-colors hover:bg-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              >
+                <span>Open MCP Console</span>
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/ai-architecture/blueprints"
+                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+              >
+                <span>Browse architecture blueprints</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Machine-readable surface */}
+      <section className="mx-auto max-w-6xl px-5 py-8 sm:px-8" aria-labelledby="agent-surfaces-heading">
+        <div className="mb-6">
+          <p className="text-xs font-mono uppercase tracking-[0.18em] text-emerald-400">Dual-Surface Architecture</p>
+          <h2 id="agent-surfaces-heading" className="mt-1.5 text-2xl font-semibold text-white">
+            Public machine endpoints
+          </h2>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-3">
+          {endpoints.map((ep) => (
+            <LiquidGlassSurface key={ep.path} accent="emerald" className="flex h-full flex-col justify-between p-5">
+              <div>
+                <div className="flex items-center justify-between gap-2">
+                  <code className="font-mono text-sm font-semibold text-emerald-300">{ep.path}</code>
+                  <span className="text-[11px] font-mono text-zinc-400">{ep.kind}</span>
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-zinc-300">{ep.summary}</p>
               </div>
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
-                For Developers
-              </span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-6 max-w-4xl text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
-            >
-              Code with AI.
-              <span className="mt-2 block bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-                Ship with confidence.
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
-            >
-              Master Claude Code, Cursor, and agentic development patterns.
-              Build autonomous systems that write, test, and deploy code while you focus on architecture.
-            </motion.p>
-
-            {/* Tool badges */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mb-12 flex flex-wrap gap-3"
-            >
-              {tools.map((tool) => (
-                <span
-                  key={tool.name}
-                  className={`rounded-full bg-gradient-to-r ${tool.color} px-4 py-1.5 text-sm font-medium text-white/90`}
-                >
-                  {tool.name}
-                </span>
-              ))}
-            </motion.div>
-
-            {/* CTA buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-4"
-            >
-              <Link
-                href="/products/agentic-creator-os"
-                className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/20"
-              >
-                <Bot className="h-5 w-5" />
-                Agentic Creator OS
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link
-                href="/prompt-library"
-                className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold text-white transition-all hover:bg-white/10"
-              >
-                <Sparkles className="h-5 w-5" />
-                Free Agent Prompts
-              </Link>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Stats Section */}
-        <section className="py-12 border-y border-white/5">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
-              {[
-                { value: '4+', label: 'Years Enterprise AI', sublabel: 'Production systems' },
-                { value: '50+', label: 'Agent Prompts', sublabel: 'Battle-tested templates' },
-                { value: '€197', label: 'Full System', sublabel: 'Agentic Creator OS' },
-              ].map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="text-center"
-                >
-                  <p className="text-3xl font-bold text-white md:text-4xl">{stat.value}</p>
-                  <p className="mt-1 text-sm font-medium text-white/60">{stat.label}</p>
-                  <p className="text-xs text-white/40">{stat.sublabel}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Learning Paths */}
-        <section className="py-20">
-          <div className="mx-auto max-w-6xl px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-12 text-center"
-            >
-              <span className="mb-4 inline-block rounded-full border border-violet-500/20 bg-violet-500/10 px-4 py-1.5 text-sm font-medium text-violet-400">
-                Learning Paths
-              </span>
-              <h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl">
-                From Prompting to Production
-              </h2>
-              <p className="mx-auto max-w-2xl text-lg text-slate-400">
-                Structured paths to master AI-assisted development. Start with prompts, graduate to autonomous agents.
-              </p>
-            </motion.div>
-
-            <div className="grid gap-6 md:grid-cols-3">
-              {learningPaths.map((path, i) => {
-                const colors = colorMap[path.color as keyof typeof colorMap]
-                const Icon = path.icon
-
-                return (
-                  <motion.div
-                    key={path.title}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                  >
-                    <Link href={path.href} className="group block h-full">
-                      <div
-                        className={`relative flex h-full flex-col rounded-2xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-xl`}
-                      >
-                        <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}>
-                          <Icon className="h-7 w-7" />
-                        </div>
-
-                        <h3 className="mb-3 text-xl font-bold text-white">{path.title}</h3>
-                        <p className="mb-6 flex-1 text-slate-400">{path.description}</p>
-
-                        <ul className="mb-6 space-y-2">
-                          {path.topics.map((topic) => (
-                            <li key={topic} className="flex items-center gap-2 text-sm text-slate-300">
-                              <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-emerald-400" />
-                              {topic}
-                            </li>
-                          ))}
-                        </ul>
-
-                        <div className="flex items-center gap-2 text-slate-400 transition-colors group-hover:text-white">
-                          <span className="text-sm font-medium">Explore prompts</span>
-                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Agentic Creator OS Feature Section */}
-        <section className="py-20 border-t border-white/5">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <span className="mb-4 inline-block rounded-full border border-rose-500/20 bg-rose-500/10 px-4 py-1.5 text-sm font-medium text-rose-400">
-                  Premium Product
-                </span>
-                <h2 className="mb-6 text-3xl font-bold text-white sm:text-4xl">
-                  Agentic Creator OS
-                </h2>
-                <p className="mb-8 text-lg text-slate-400">
-                  The complete system for developers who want to master AI-assisted coding.
-                  From Claude Code patterns to multi-agent orchestration.
-                </p>
-
-                <div className="mb-8 grid gap-4 sm:grid-cols-2">
-                  {agenticFeatures.map((feature) => {
-                    const Icon = feature.icon
-                    return (
-                      <div key={feature.title} className="flex gap-4">
-                        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-rose-500/10 text-rose-400">
-                          <Icon className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-white">{feature.title}</h4>
-                          <p className="text-sm text-slate-400">{feature.description}</p>
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-
-                <div className="flex items-baseline gap-4">
-                  <span className="text-4xl font-bold text-white">€197</span>
-                  <span className="text-slate-500">one-time</span>
-                </div>
-
-                <div className="mt-6 flex flex-wrap gap-4">
+              <div className="mt-5 pt-3 border-t border-white/[0.08]">
+                {ep.isNextRoute ? (
                   <Link
-                    href="/products/agentic-creator-os"
-                    className="group flex items-center gap-2 rounded-full bg-rose-600 px-6 py-3 font-semibold text-white transition-all hover:bg-rose-500"
+                    href={ep.href}
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-300 hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70 rounded"
                   >
-                    Get Agentic Creator OS
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <span>{ep.cta}</span>
+                    <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                  </Link>
+                ) : (
+                  <a
+                    href={ep.href}
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-300 hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70 rounded"
+                  >
+                    <span>{ep.cta}</span>
+                    <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                  </a>
+                )}
+              </div>
+            </LiquidGlassSurface>
+          ))}
+        </div>
+      </section>
+
+      {/* Core Build Tracks */}
+      <section className="mx-auto max-w-6xl px-5 py-10 sm:px-8" aria-labelledby="tracks-heading">
+        <div className="mb-8 max-w-2xl">
+          <h2 id="tracks-heading" className="text-2xl font-semibold text-white sm:text-3xl">
+            Documentation and skill tracks
+          </h2>
+          <p className="mt-2 text-sm text-zinc-400">
+            Practical guides, verified templates, and system diagrams organized by what you are shipping.
+          </p>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-3">
+          {buildTracks.map((track) => {
+            const Icon = track.icon
+            return (
+              <LiquidGlassSurface key={track.title} accent="cyan" className="flex h-full flex-col justify-between p-6">
+                <div>
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-400/30 bg-cyan-500/15 text-cyan-300">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <h3 className="mt-4 text-xl font-semibold text-white">{track.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-300">{track.description}</p>
+                  <ul className="mt-4 space-y-1.5 border-t border-white/[0.08] pt-3.5 text-xs text-zinc-400">
+                    {track.topics.map((topic) => (
+                      <li key={topic}>• {topic}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mt-6">
+                  <Link
+                    href={track.href}
+                    className="inline-flex min-h-[40px] items-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70"
+                  >
+                    <span>{track.cta}</span>
+                    <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                   </Link>
                 </div>
-              </motion.div>
+              </LiquidGlassSurface>
+            )
+          })}
+        </div>
+      </section>
 
-              {/* Code preview mockup */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative"
-              >
-                <div className="rounded-2xl border border-white/10 bg-[#0d1117] p-6 font-mono text-sm">
-                  <div className="mb-4 flex items-center gap-2">
-                    <div className="h-3 w-3 rounded-full bg-red-500/60" />
-                    <div className="h-3 w-3 rounded-full bg-yellow-500/60" />
-                    <div className="h-3 w-3 rounded-full bg-green-500/60" />
-                    <span className="ml-2 text-xs text-slate-500">CLAUDE.md</span>
-                  </div>
-                  <pre className="text-slate-300">
-                    <code>{`# Agentic Creator OS
+      {/* Architecture & CLAUDE.md example */}
+      <section className="mx-auto max-w-6xl px-5 py-10 sm:px-8">
+        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+          <div className="grid gap-4 sm:grid-cols-2">
+            {coreCapabilities.map((item) => {
+              const Icon = item.icon
+              return (
+                <LiquidGlassSurface key={item.title} accent="amber" className="p-5">
+                  <Icon className="h-5 w-5 text-emerald-400" aria-hidden="true" />
+                  <h3 className="mt-3 text-base font-semibold text-white">{item.title}</h3>
+                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-400">{item.description}</p>
+                </LiquidGlassSurface>
+              )
+            })}
+          </div>
 
-## Agent Configuration
-- autonomous_mode: true
-- max_iterations: 50
-- tool_use: enabled
-
-## Skills
-- code_review: advanced
-- test_generation: enabled
-- documentation: auto
-
-## Workflows
-/implement [feature]
-/refactor [pattern]
-/deploy [environment]`}</code>
-                  </pre>
-                </div>
-
-                {/* Floating badge */}
-                <div className="absolute -right-4 -top-4 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 px-4 py-2 text-sm font-semibold text-white shadow-lg">
-                  50+ Templates
-                </div>
-              </motion.div>
+          <LiquidGlassSurface accent="emerald" className="p-6">
+            <div className="mb-3 flex items-center justify-between text-xs font-mono text-zinc-400">
+              <span>.mcp.json — Project configuration</span>
+              <span>Read-only HTTP</span>
             </div>
-          </div>
-        </section>
+            <pre className="overflow-x-auto rounded-xl border border-white/[0.08] bg-[#07080c] p-4 font-mono text-xs leading-relaxed text-zinc-200">
+              <code>{`{
+  "mcpServers": {
+    "frankx": {
+      "url": "https://frankx.ai/api/mcp"
+    }
+  }
+}
 
-        {/* Free Resources CTA */}
-        <section className="py-20">
-          <div className="mx-auto max-w-4xl px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="rounded-2xl border border-white/10 bg-gradient-to-b from-slate-900/80 to-slate-900/40 p-10 text-center backdrop-blur-xl"
-            >
-              <BookOpen className="mx-auto mb-6 h-12 w-12 text-violet-400" />
-              <h2 className="mb-4 text-2xl font-bold text-white sm:text-3xl">
-                Start with Free Resources
-              </h2>
-              <p className="mx-auto mb-8 max-w-lg text-slate-400">
-                Explore the prompt library and blog to see my approach.
-                No commitment required — just valuable patterns you can use today.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link
-                  href="/prompt-library"
-                  className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
-                >
-                  <Bot className="h-5 w-5" />
-                  Agent Development Prompts
-                </Link>
-                <Link
-                  href="/prompt-library"
-                  className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
-                >
-                  <Code2 className="h-5 w-5" />
-                  Coding Prompts
-                </Link>
-                <Link
-                  href="/blog"
-                  className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
-                >
-                  <Zap className="h-5 w-5" />
-                  Read the Blog
-                </Link>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-      </main>
-    </>
+# Available tools:
+# - frankx_list_skills
+# - frankx_list_blueprints
+# - frankx_recommend_stack
+# - frankx_search_site
+# - frankx_get_article
+# - frankx_list_products`}</code>
+            </pre>
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <Link
+                href="/mcp"
+                className="inline-flex min-h-[40px] items-center gap-1.5 rounded-xl border border-emerald-400/35 bg-emerald-500/15 px-4 py-2 text-xs font-semibold text-emerald-200 transition-colors hover:bg-emerald-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
+              >
+                <span>Test live in MCP Console</span>
+                <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/resources/builder-stack"
+                className="inline-flex min-h-[40px] items-center rounded-xl border border-white/15 px-4 py-2 text-xs font-medium text-zinc-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70"
+              >
+                Partner stack directory
+              </Link>
+            </div>
+          </LiquidGlassSurface>
+        </div>
+      </section>
+    </main>
   )
 }

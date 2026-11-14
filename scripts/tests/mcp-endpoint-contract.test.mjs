@@ -13,7 +13,14 @@ const read = (path) => readFileSync(new URL(`../../${path}`, import.meta.url), '
 const server = read('lib/mcp/frankx-server.ts')
 const route = read('app/api/mcp/route.ts')
 const mdRoute = read('app/api/md/route.ts')
-const TOOLS = ['frankx_get_article', 'frankx_list_products', 'frankx_search_site']
+const TOOLS = [
+  'frankx_get_article',
+  'frankx_list_blueprints',
+  'frankx_list_products',
+  'frankx_list_skills',
+  'frankx_recommend_stack',
+  'frankx_search_site',
+]
 
 async function withClient(fn) {
   const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair()
@@ -37,7 +44,7 @@ function structured(result) {
   return result.structuredContent
 }
 
-test('the MCP endpoint serves exactly three read-only, frankx_-prefixed tools', () => withClient(async (client) => {
+test('the MCP endpoint serves six read-only, frankx_-prefixed tools', () => withClient(async (client) => {
   const { tools } = await client.listTools()
   assert.deepEqual(tools.map((tool) => tool.name).sort(), TOOLS)
   for (const tool of tools) {
@@ -282,3 +289,44 @@ test('OPTIONS advertises only the POST-only contract', async () => {
   assert.equal(response.status, 204)
   assert.equal(response.headers.get('allow'), 'POST, OPTIONS')
 })
+
+test('frankx_list_skills returns bounded curated skills with install commands and guides', () => withClient(async (client) => {
+  const res = structured(await client.callTool({ name: 'frankx_list_skills', arguments: { category: 'architecture', limit: 5 } }))
+  assert.ok(res.skills.length > 0 && res.skills.length <= 5)
+  for (const skill of res.skills) {
+    assert.equal(skill.category, 'architecture')
+    assert.match(skill.installCommand, /^npx skills add frankxai\/claude-skills-library/)
+    assert.match(skill.guideUrl, /^https:\/\/frankx\.ai\/guides\//)
+  }
+}))
+
+test('frankx_list_blueprints returns published reference architectures with canonical URLs', () => withClient(async (client) => {
+  const res = structured(await client.callTool({ name: 'frankx_list_blueprints', arguments: { limit: 4 } }))
+  assert.ok(res.blueprints.length > 0 && res.blueprints.length <= 4)
+  assert.ok(res.total >= res.blueprints.length)
+  for (const bp of res.blueprints) {
+    assert.match(bp.url, /^https:\/\/frankx\.ai\/ai-architecture\//)
+    assert.equal(typeof bp.componentCount, 'number')
+  }
+}))
+
+test('frankx_recommend_stack routes verified partners through /go/<slug> with disclosures and hides excluded vendors', () => withClient(async (client) => {
+  const voice = structured(await client.callTool({ name: 'frankx_recommend_stack', arguments: { goal: 'voice-audio', limit: 6 } }))
+  assert.ok(voice.tools.length > 0)
+  const eleven = voice.tools.find((t) => t.id === 'elevenlabs')
+  assert.ok(eleven, 'elevenlabs appears in voice-audio stack')
+  assert.equal(eleven.sponsored, true)
+  assert.equal(eleven.relationship, 'sponsored')
+  assert.equal(eleven.url, 'https://frankx.ai/go/elevenlabs')
+  assert.equal(eleven.rel, 'sponsored noopener')
+  assert.match(eleven.disclosure, /\/go\/elevenlabs/)
+
+  const claude = structured(await client.callTool({ name: 'frankx_recommend_stack', arguments: { goal: 'coding-agents', query: 'Claude', limit: 6 } }))
+  const cc = claude.tools.find((t) => t.id === 'claude-code')
+  assert.ok(cc)
+  assert.equal(cc.sponsored, false)
+  assert.equal(cc.relationship, 'editorial')
+  assert.equal(cc.rel, 'noopener')
+  assert.ok(!JSON.stringify(voice).toLowerCase().includes('ironstone'))
+  assert.ok(!JSON.stringify(claude).toLowerCase().includes('digitalocean'))
+}))
