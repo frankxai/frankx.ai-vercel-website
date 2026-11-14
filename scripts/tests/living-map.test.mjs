@@ -3,7 +3,9 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { manifestRepoToPublicRepo, normalizePublicRepo, recentActivity, filterRepos } from '../../lib/ecosystem/model.ts'
+import { register } from 'node:module'
+register('./support/app-module-hooks.mjs', import.meta.url)
+const { manifestRepoToPublicRepo, normalizePublicRepo, recentActivity, filterRepos } = await import('../../lib/ecosystem/model')
 const observed = '2026-11-14T00:00:00Z'
 const raw = { name: 'skills', full_name: 'frankxai/skills', owner: { login: 'frankxai' }, private: false, fork: false, archived: false, pushed_at: '2026-11-13T12:00:00Z', description: 'Architecture methods', stargazers_count: 3 }
 const repo = () => normalizePublicRepo(raw, observed)
@@ -39,7 +41,7 @@ test('invalid dates and missing stars remain unknown', () => {
   assert.equal(result.stars, null)
 })
 
-const { readPublicSource } = await import('../../lib/ecosystem/source.ts')
+const { readPublicSource } = await import('../../lib/ecosystem/source')
 const url = 'https://api.github.com/users/frankxai/repos?type=owner'
 test('HTTP, transport, JSON, and source date failures return unavailable without a timestamp', async () => {
   const fetchers = [async () => { throw new Error('timeout') }, async () => new Response('{}', { status: 429 }), async () => new Response('not-json'), async () => new Response(JSON.stringify([raw])), async () => new Response('{}', { headers: { date: observed } })]

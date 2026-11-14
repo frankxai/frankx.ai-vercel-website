@@ -1,4 +1,4 @@
-import { normalizePublicRepo, type MapSource, type PublicMapRepo } from './model.ts'
+import { normalizePublicRepo, type MapSource, type PublicMapRepo } from './model'
 
 /** Isolated parsing boundary: a failed source never gets a fabricated observation date. */
 export async function readPublicSource(owner: string, url: string, fetcher: (url: string) => Promise<Response>): Promise<{ source: MapSource; repos: PublicMapRepo[] }> {
