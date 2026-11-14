@@ -1,0 +1,48 @@
+{
+  "id": "agentic-os-architecture",
+  "rev": 1,
+  "type": "hud-architecture",
+  "accent": "violet",
+  "eyebrow": "Agentic operating system",
+  "title": "Orchestrator, specialist fleet and shared substrate",
+  "subtitle": "Human operators, web apps and automations route through a central orchestrator and specialist agents backed by durable memory, MCP skills and multi-cloud compute.",
+  "alt": "Three-column agentic architecture: five input channels on the left connect to a central orchestrator and specialist agent fleet, which connect to five substrate planes on the right (memory, skills and MCP, models, compute, and data), above a six-stage build-to-improve lifecycle dock.",
+  "reviewed": "2026-11-11",
+  "source": "Derived from the Starlight and FrankX multi-agent orchestration reference blueprint.",
+  "inputs": [
+    { "accent": "cyan", "icon": "card", "label": "Operator & Team", "detail": "Human gates & directives" },
+    { "accent": "blue", "icon": "layers", "label": "Web, App & API", "detail": "Next.js & edge endpoints" },
+    { "accent": "violet", "icon": "terminal", "label": "CLI & Harnesses", "detail": "Scoped git worktrees" },
+    { "accent": "emerald", "icon": "refresh", "label": "Automation Loops", "detail": "Scheduled & event triggers" },
+    { "accent": "amber", "icon": "shield", "label": "Verification Gate", "detail": "Maker != checker review" }
+  ],
+  "cores": [
+    {
+      "accent": "violet",
+      "icon": "star",
+      "title": "Central Orchestrator",
+      "subtitle": "Task routing, lane isolation & human-gate policy enforcement"
+    },
+    {
+      "accent": "blue",
+      "icon": "bot",
+      "title": "Specialist Agent Fleet",
+      "subtitle": "Research, architecture, design, code & independent QA verifiers"
+    }
+  ],
+  "substrates": [
+    { "accent": "cyan", "icon": "database", "title": "Semantic Memory", "detail": "Event-sourced JSONL vaults, D1, R2 & vector recall" },
+    { "accent": "violet", "icon": "wrench", "title": "Skills & MCP Plane", "detail": "Typed tool servers, brand packs & domain playbooks" },
+    { "accent": "amber", "icon": "mesh", "title": "Frontier Models", "detail": "Claude, Gemini, OpenAI & open-weight model routing" },
+    { "accent": "emerald", "icon": "cloud", "title": "Cloud & Edge Compute", "detail": "Cloudflare Workers, Vercel, Supabase & OCI clusters" },
+    { "accent": "blue", "icon": "layers", "title": "Knowledge & Provenance", "detail": "Source citations, .vis.provenance.json & eval ledgers" }
+  ],
+  "dock": [
+    { "accent": "cyan", "label": "Design" },
+    { "accent": "violet", "label": "Build" },
+    { "accent": "amber", "label": "Test" },
+    { "accent": "blue", "label": "Deploy" },
+    { "accent": "emerald", "label": "Operate" },
+    { "accent": "fuchsia", "label": "Improve" }
+  ]
+}

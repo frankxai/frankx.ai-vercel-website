@@ -1,8 +1,8 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { SystemDiagram } from '@/components/diagrams/SystemDiagram'
 import {
   Play,
   Key,
@@ -163,16 +163,21 @@ function PrototypeCard({
 export default function PrototypesPage() {
   return (
     <main className="min-h-screen bg-[#0a0a0b]">
-      {/* Hero */}
-      <div className="relative mb-8 overflow-hidden rounded-2xl mx-auto max-w-6xl mt-24 px-6">
-        <div className="relative aspect-[21/9]">
-          <Image src="/images/architectures/mcp-hub.png" alt="MCP hub architecture diagram" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
-        </div>
-        <div className="absolute bottom-0 left-0 p-6">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-cyan-400/60 mb-2">AI Architecture</p>
-          <h1 className="text-2xl font-bold text-white">Interactive Prototypes</h1>
-        </div>
+      {/* Hero Diagram */}
+      <div className="mx-auto max-w-6xl mt-24 px-6 mb-8">
+        <SystemDiagram
+          diagramId="mcp-hub"
+          eyebrow="Interactive Prototypes & Tool Plane"
+          title="One MCP Hub Between Agents and Tools"
+          alt="Three tiers: agent harnesses call an MCP hub that provides a server registry, scoped credentials, tool policy and an audit log, which fronts individual MCP servers."
+          caption="Scoped BYOK credentials, server discovery, and tool policy enforcement across interactive browser and CLI prototypes."
+          companion={{
+            src: '/images/living-world/studio-agent-orchestration.jpg',
+            alt: 'Founder and tactile robot companions collaborating around a miniature glowing city diorama and an Agent Orchestration glass board.',
+            badge: 'Agent Orchestration Studio',
+            note: 'Switch between Dark SVG, Light SVG, and Studio Split.',
+          }}
+        />
       </div>
 
       {/* Header */}

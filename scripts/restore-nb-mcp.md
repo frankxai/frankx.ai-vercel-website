@@ -1,18 +1,31 @@
 # Restore NB / InfoGenius MCP Server
 
-The NB MCP server source is intact at:
+The canonical InfoGenius v5.2 MCP server source and compiled binary live in the Starlight estate at:
 
 ```
-C:\Users\frank\Arcanea\arcanea-infogenius\mcp-server\dist\index.js
+C:\Users\frank\starlight\repos\arcanea-infogenius\mcp-server\dist\index.js
 ```
 
-It's `arcanea-infogenius-mcp` v2.0.0 — "Gemini 3 Pro visual generation with Guardian AI routing" — built and ready. Claude Desktop just isn't pointing at it anymore (the `mcpServers` block in `claude_desktop_config.json` got wiped during a reinstall).
+And the Google AI Studio InfoGenius React web app lives at:
 
-## To re-register (optional — the library works without it)
+```
+C:\Users\frank\starlight\repos\infogenius
+```
 
-**File:** `C:\Users\frank\AppData\Roaming\Claude\claude_desktop_config.json`
+## Direct CLI (Recommended — Zero MCP Overhead)
 
-**Current state:** preferences only, no `mcpServers` block.
+You can run the full InfoGenius v5.2 pipeline (Google Search grounded research + Nano Banana Pro 2K/4K image + Veo 3.1 `--animate` + Gemini TTS `--narrate` + `.vis.provenance.json` sidecar) directly from `frankx.ai-vercel-website` or `FrankX`:
+
+```bash
+node scripts/infogenius.mjs "Sovereign AI Swarm Architecture" --style glassmorphic --audience expert
+node scripts/infogenius.mjs "Model Context Protocol" --style premium --animate --narrate
+```
+
+Both `scripts/infogenius.mjs` and `arcanea-infogenius/mcp-server` automatically load `GEMINI_API_KEY` from `C:\Users\frank\.starlight\.env` (or repo `.env.local`).
+
+## To register the MCP server in Claude Desktop / Claude Code (optional)
+
+**File:** `C:\Users\frank\AppData\Roaming\Claude\claude_desktop_config.json` (or `~/.claude/mcp.json`)
 
 **Add this top-level block:**
 
@@ -21,20 +34,13 @@ It's `arcanea-infogenius-mcp` v2.0.0 — "Gemini 3 Pro visual generation with Gu
   "mcpServers": {
     "nanobanana": {
       "command": "node",
-      "args": ["C:\\Users\\frank\\Arcanea\\arcanea-infogenius\\mcp-server\\dist\\index.js"],
-      "env": {
-        "GOOGLE_GENERATIVE_AI_API_KEY": "<paste from Arcanea/.env.local>"
-      }
+      "args": ["C:\\Users\\frank\\starlight\\repos\\arcanea-infogenius\\mcp-server\\dist\\index.js"]
     },
     "infogenius": {
       "command": "node",
-      "args": ["C:\\Users\\frank\\Arcanea\\arcanea-infogenius\\mcp-server\\dist\\index.js"],
-      "env": {
-        "GOOGLE_GENERATIVE_AI_API_KEY": "<paste from Arcanea/.env.local>"
-      }
+      "args": ["C:\\Users\\frank\\starlight\\repos\\arcanea-infogenius\\mcp-server\\dist\\index.js"]
     }
-  },
-  "preferences": { ...keep existing preferences... }
+  }
 }
 ```
 

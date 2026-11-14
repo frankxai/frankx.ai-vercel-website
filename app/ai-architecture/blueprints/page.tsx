@@ -1,8 +1,8 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { SystemDiagram } from '@/components/diagrams/SystemDiagram'
 import {
   ArrowRight,
   Layers,
@@ -141,16 +141,21 @@ export default function BlueprintsPage() {
 
   return (
     <main className="min-h-screen bg-[#0a0a0b]">
-      {/* Hero */}
-      <div className="relative mb-8 overflow-hidden rounded-2xl mx-auto max-w-6xl mt-24 px-6">
-        <div className="relative aspect-[21/9]">
-          <Image src="/images/architectures/ai-coe.png" alt="AI Center of Excellence architecture diagram" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
-        </div>
-        <div className="absolute bottom-0 left-0 p-6">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-cyan-400/60 mb-2">AI Architecture</p>
-          <h1 className="text-2xl font-bold text-white">Architecture Blueprints</h1>
-        </div>
+      {/* Hero Diagram */}
+      <div className="mx-auto max-w-6xl mt-24 px-6 mb-8">
+        <SystemDiagram
+          diagramId="agentic-os-architecture"
+          eyebrow="AI Architecture Blueprints"
+          title="Orchestrator, Specialist Fleet & Shared Substrate"
+          alt="Three-column agentic architecture: five input channels on the left connect to a central orchestrator and specialist agent fleet, which connect to five substrate planes on the right (memory, skills and MCP, models, compute, and data), above a six-stage build-to-improve lifecycle dock."
+          caption="Reference blueprint connecting operator and API inputs through orchestrated agent fleets to memory, MCP tools, and multi-cloud compute."
+          companion={{
+            src: '/images/living-world/amsterdam-canal-sailboat.jpg',
+            alt: 'Stylized founder rigging a miniature brass sailboat piloted by the blue CLI hoodie bot along a golden-hour Amsterdam canal with voxel and cat-spirit companions.',
+            badge: 'Amsterdam Fleet Craft',
+            note: 'Toggle between Dark SVG, Light SVG, and Studio Split.',
+          }}
+        />
       </div>
 
       {/* Header */}

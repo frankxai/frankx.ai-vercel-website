@@ -1,0 +1,14 @@
+{
+  "schema": "vis.provenance.v1",
+  "assetPath": "/images/living-world/ai-coe-atelier-backplate.jpg",
+  "sha256": "ab8a595c77e60caa188e93e834f0b51614aa051cb5e1c4a0d3552ab25e3db4a8",
+  "bytes": 841838,
+  "title": "AI CoE Six-Pillar Atelier",
+  "alt": "Matte speckled ceramic robot, knitted blue cloud-hoodie robot, and aged-copper goggle robot collaborating around a glowing six-pillar translucent crystal pavilion in a golden-hour Amsterdam canal studio.",
+  "edition": "editorial",
+  "promptFidelity": "EXACT",
+  "generator": "antigravity-native-image-generator",
+  "visualQaScore": "29/30",
+  "rightsState": "first_party_generated_2026_11_11",
+  "recordedAt": "2026-11-11T04:25:00Z"
+}

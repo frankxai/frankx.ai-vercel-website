@@ -1,8 +1,8 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { SystemDiagram } from '@/components/diagrams/SystemDiagram'
 import {
   Package,
   ChevronLeft,
@@ -295,16 +295,15 @@ function TemplateCard({
 export default function TemplatesPage() {
   return (
     <main className="min-h-screen bg-[#0a0a0b]">
-      {/* Hero */}
-      <div className="relative mb-8 overflow-hidden rounded-2xl mx-auto max-w-6xl mt-24 px-6">
-        <div className="relative aspect-[21/9]">
-          <Image src="/images/architectures/llmops.png" alt="LLMOps architecture diagram" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
-        </div>
-        <div className="absolute bottom-0 left-0 p-6">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-cyan-400/60 mb-2">AI Architecture</p>
-          <h1 className="text-2xl font-bold text-white">Starter Templates</h1>
-        </div>
+      {/* Hero Diagram */}
+      <div className="mx-auto max-w-6xl mt-24 px-6 mb-8">
+        <SystemDiagram
+          diagramId="llmops-loop"
+          eyebrow="Production Starter Templates"
+          title="The Continuous LLMOps Lifecycle"
+          alt="Five stages in a loop: prompts and data, evaluate, release, observe and improve, with failures from production feeding back into the evaluation set."
+          caption="Every starter template wires prompt/data versioning into evaluation, gateway release, trace observability, and regression feedback."
+        />
       </div>
 
       {/* Header */}

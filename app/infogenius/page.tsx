@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import AuroraGradient from '@/components/ui/AuroraGradient'
 import { GlowCard } from '@/components/ui/glow-card'
+import InfoGeniusStudioWorkbench from '@/components/infogenius/InfoGeniusStudioWorkbench'
+import { LivingWorldHudGallery } from '@/components/diagrams/LivingWorldHudGallery'
 
 export const metadata: Metadata = {
   title: 'InfoGenius — FRANK-Ω',
@@ -55,14 +57,18 @@ const capabilities = [
 ]
 
 const styles = [
-  { label: 'Modern Science', tag: 'Textbook', color: 'from-blue-500/20 to-cyan-500/20' },
-  { label: 'Minimalist', tag: 'Bauhaus', color: 'from-white/10 to-white/5' },
-  { label: 'Realistic', tag: 'Photographic', color: 'from-amber-500/20 to-orange-500/20' },
-  { label: '3D Render', tag: 'Studio light', color: 'from-emerald-500/20 to-teal-500/20' },
-  { label: 'Da Vinci Blueprint', tag: 'Engineering', color: 'from-slate-500/20 to-zinc-500/20' },
-  { label: 'Futuristic', tag: 'Cyberpunk HUD', color: 'from-violet-500/20 to-purple-500/20' },
-  { label: 'Vintage', tag: '19th Century', color: 'from-yellow-700/20 to-amber-800/20' },
-  { label: 'Da Vinci Sketch', tag: 'Notebook', color: 'from-pink-500/20 to-rose-500/20' },
+  { label: 'Living-World + Glass HUD', tag: 'v5.3 Starlight · Crew & Hologram', color: 'from-indigo-500/25 to-violet-500/15' },
+  { label: 'Clean Stack Tier Cards', tag: 'v5.3 Architecture · 3-Tier Stack', color: 'from-sky-500/25 to-cyan-500/15' },
+  { label: '3D Glassmorphic', tag: 'v5.2 Flagship · Crystal & Teal', color: 'from-teal-500/25 to-emerald-500/15' },
+  { label: 'Luxury Brand', tag: 'v5.2 Flagship · Apple × DeepMind', color: 'from-amber-500/25 to-yellow-500/15' },
+  { label: 'Da Vinci Technical', tag: 'FrankX Signature · Blueprint', color: 'from-orange-500/20 to-amber-500/15' },
+  { label: '3D Isometric', tag: 'FrankX Signature · Modular', color: 'from-emerald-500/20 to-teal-500/20' },
+  { label: 'GenCreator CoE', tag: 'Enterprise 6-Pillar Schematic', color: 'from-violet-500/25 to-indigo-500/20' },
+  { label: 'Modern Science', tag: 'Scientific Editorial', color: 'from-blue-500/20 to-cyan-500/20' },
+  { label: 'Minimalist', tag: 'Bauhaus Swiss Grid', color: 'from-white/10 to-white/5' },
+  { label: 'Photorealistic', tag: '8K Optical Composite', color: 'from-amber-500/20 to-orange-500/20' },
+  { label: 'Futuristic', tag: 'Restrained Telemetry HUD', color: 'from-violet-500/20 to-purple-500/20' },
+  { label: 'Vintage', tag: '19th Century Lithograph', color: 'from-yellow-700/20 to-amber-800/20' },
 ]
 
 const pipeline = [
@@ -120,13 +126,20 @@ export default function InfoGeniusPage() {
 
               <div className="flex flex-wrap gap-4">
                 <a
+                  href="#studio"
+                  className="inline-flex items-center gap-2 rounded-full bg-violet-600 hover:bg-violet-500 px-7 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_30px_rgba(139,92,246,0.5)]"
+                >
+                  Launch Studio Workbench
+                  <span className="text-base" aria-hidden="true">↓</span>
+                </a>
+                <a
                   href={INFOGENIUS_APP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-violet-600 hover:bg-violet-500 px-7 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_30px_rgba(139,92,246,0.5)]"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-white/80 hover:text-white hover:border-white/30 transition-all duration-200"
                 >
-                  Try it free
-                  <span className="text-base" aria-hidden="true">→</span>
+                  Hosted App
+                  <span className="text-base" aria-hidden="true">↗</span>
                 </a>
                 <a
                   href={INFOGENIUS_REPO_URL}
@@ -211,6 +224,20 @@ export default function InfoGeniusPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── LIVE STUDIO WORKBENCH ── */}
+      <section className="py-16 px-6 border-t border-white/6 bg-gradient-to-b from-violet-950/15 to-transparent">
+        <div className="max-w-6xl mx-auto">
+          <InfoGeniusStudioWorkbench />
+        </div>
+      </section>
+
+      {/* ── HYBRID LIVING-WORLD + DETERMINISTIC SVG GALLERY ── */}
+      <section className="py-20 px-6 border-t border-white/6">
+        <div className="max-w-6xl mx-auto">
+          <LivingWorldHudGallery />
         </div>
       </section>
 
@@ -407,14 +434,18 @@ export default function InfoGeniusPage() {
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a
-                href={INFOGENIUS_APP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#studio"
                 className="inline-flex items-center gap-2 rounded-full bg-violet-600 hover:bg-violet-500 px-8 py-4 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_40px_rgba(139,92,246,0.5)]"
               >
-                Start generating
-                <span aria-hidden="true">→</span>
+                Open Interactive Studio
+                <span aria-hidden="true">↑</span>
               </a>
+              <Link
+                href="/waitlist?intent=infogenius-pro"
+                className="inline-flex items-center gap-2 rounded-full border border-teal-400/30 bg-teal-500/10 hover:bg-teal-500/20 px-8 py-4 text-sm font-semibold text-teal-200 transition-all duration-200"
+              >
+                Join CLI &amp; MCP Pack Waitlist
+              </Link>
               <Link
                 href="/agents"
                 className="inline-flex items-center gap-2 rounded-full border border-white/15 px-8 py-4 text-sm font-semibold text-white/70 hover:text-white hover:border-white/30 transition-all duration-200"

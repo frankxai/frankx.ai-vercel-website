@@ -1,0 +1,51 @@
+{
+  "id": "opencode-ai-gateway-stack",
+  "rev": 1,
+  "type": "stack-tiers",
+  "accent": "blue",
+  "eyebrow": "Operational stack blueprint",
+  "title": "Agent runtime, AI gateway and inference substrate",
+  "subtitle": "Three decoupled operational planes keep prompts, sessions and tool execution separate from provider routing and edge inference.",
+  "alt": "Three-tier stack: an agent runtime handles sessions, context, tools and execution; an AI gateway control plane handles authentication, logging, rate limits, caching, retries and observability; and an inference substrate serves global model execution.",
+  "reviewed": "2026-11-11",
+  "source": "Derived from the OpenCode, Cloudflare AI Gateway and edge inference reference pattern.",
+  "tierLinks": [
+    "Prompts, tool calls & session traces",
+    "Authenticated, cached & rate-limited model calls"
+  ],
+  "tiers": [
+    {
+      "accent": "violet",
+      "icon": "terminal",
+      "title": "Agent Runtime & Harnesses",
+      "subtitle": "OpenCode, Claude Code, Codex & Antigravity execution environments",
+      "capabilities": [
+        { "icon": "card", "label": "Sessions" },
+        { "icon": "layers", "label": "Context" },
+        { "icon": "wrench", "label": "MCP Tools" },
+        { "icon": "bot", "label": "Agent Runtime" }
+      ]
+    },
+    {
+      "accent": "blue",
+      "icon": "cloud",
+      "title": "AI Gateway Control Plane",
+      "subtitle": "Operational routing, policy enforcement and unified telemetry",
+      "capabilities": [
+        { "icon": "shield", "label": "Authentication" },
+        { "icon": "chart", "label": "Logging" },
+        { "icon": "gauge", "label": "Rate Limits" },
+        { "icon": "database", "label": "Caching" },
+        { "icon": "refresh", "label": "Retries" },
+        { "icon": "eye", "label": "Observability" }
+      ]
+    },
+    {
+      "accent": "emerald",
+      "icon": "mesh",
+      "title": "Frontier & Edge Model Inference",
+      "subtitle": "Workers AI, Anthropic, Google Gemini, OpenAI and OCI GenAI",
+      "pill": "Fast · Scalable · Multi-Provider"
+    }
+  ]
+}

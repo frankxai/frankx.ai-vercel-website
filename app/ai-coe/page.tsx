@@ -1,7 +1,7 @@
 import { siteConfig } from '@/lib/seo'
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
+import { SystemDiagram } from '@/components/diagrams/SystemDiagram'
 import {
   ArrowRight,
   BookOpen,
@@ -293,27 +293,20 @@ export default function AICoEPage() {
                 </Link>
               </div>
             </div>
-            <div className="overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.02]">
-              <div className="relative aspect-[4/3]">
-                <Image
-                  src="/images/architectures/ai-coe.png"
-                  alt="AI Center of Excellence architecture diagram"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 520px, 100vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/80 via-transparent to-transparent" />
-              </div>
-              <div className="border-t border-white/[0.06] p-5">
-                <p className="text-xs uppercase tracking-[0.2em] text-cyan-300/60">
-                  Six pillars
-                </p>
-                <p className="mt-2 text-sm leading-6 text-zinc-400">
-                  Strategy, governance, talent, technology, data, and ethics. The
-                  architecture is stable. The scale changes.
-                </p>
-              </div>
+            <div>
+              <SystemDiagram
+                diagramId="ai-coe-six-pillars"
+                eyebrow="Six-Pillar Operating Model"
+                title="AI Center of Excellence"
+                alt="Six pillars around an AI center of excellence: strategy, governance, talent, technology, data and ethics, each with a one-line job."
+                caption="Strategy, governance, talent, technology, data, and ethics. The architecture stays stable while the scale changes."
+                companion={{
+                  src: '/images/living-world/ai-coe-atelier-backplate.jpg',
+                  alt: 'Matte speckled ceramic robot, knitted blue cloud-hoodie robot, and aged-copper goggle robot collaborating around a glowing six-pillar translucent crystal pavilion in a golden-hour Amsterdam canal studio.',
+                  badge: 'Six-Pillar Atelier',
+                  note: 'Golden-hour Amsterdam studio model paired with the deterministic CoE diagram.',
+                }}
+              />
             </div>
           </div>
         </section>

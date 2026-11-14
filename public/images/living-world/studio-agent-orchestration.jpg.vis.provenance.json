@@ -1,0 +1,12 @@
+{
+  "schema": "vis.provenance.v1",
+  "assetPath": "/images/living-world/studio-agent-orchestration.jpg",
+  "sha256": "f3b5d0dae1ab41caf9a8b493e8f04622044504e0348fd1f853c81ee7ea78b8bf",
+  "bytes": 385856,
+  "title": "Agent Orchestration Studio",
+  "alt": "Founder and tactile robot companions collaborating around a miniature glowing city diorama and an Agent Orchestration glass board.",
+  "edition": "editorial",
+  "promptFidelity": "FOUNDER_CURATED",
+  "rightsState": "owner_approved_2026_11_11",
+  "recordedAt": "2026-11-11T04:21:00Z"
+}

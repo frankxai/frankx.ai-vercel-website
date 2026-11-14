@@ -1,9 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, Monitor, GitBranch, Database, Eye, Shield } from 'lucide-react'
+import { SystemDiagram } from '@/components/diagrams/SystemDiagram'
 
 const layers = [
   { num: 5, name: 'Interface', desc: 'User interaction layer', tools: 'Open WebUI, LibreChat, Custom Apps', icon: Monitor, color: '#C74634' },
@@ -56,15 +56,20 @@ export default function ArchitecturePage() {
           </Link>
         </nav>
 
-        <div className="relative mb-8 overflow-hidden rounded-2xl">
-          <div className="relative aspect-[21/9]">
-            <Image src="/images/architectures/mcp-hub.png" alt="The 5-Layer AI Ops Stack" fill className="object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
-          </div>
-          <div className="absolute bottom-0 left-0 p-6">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-emerald-400/60 mb-2">AI Ops</p>
-            <h1 className="text-2xl font-bold text-white">The 5-Layer AI Ops Stack</h1>
-          </div>
+        <div className="max-w-6xl mx-auto px-6 mb-10">
+          <SystemDiagram
+            diagramId="ai-ops-stack"
+            eyebrow="AI Ops Architecture"
+            title="The 5-Layer AI Ops Stack"
+            alt="Five stacked layers of an AI Ops stack, top to bottom: interface, orchestration, memory, observability and gateway, each with example tools."
+            caption="Production AI operations stack from unified gateway routing up to operator and product interfaces."
+            companion={{
+              src: '/images/living-world/observatory-cli-companion.jpg',
+              alt: 'Blue cloud-hoodie CLI robot with cyan prompt visor peering through a brass observatory telescope beside a terracotta voxel companion and floating purple cat spirit.',
+              badge: 'Observatory Telemetry',
+              note: 'Inspect the Dark SVG, Light Print SVG, or Studio Split view.',
+            }}
+          />
         </div>
 
         <section className="pb-16 px-6">
@@ -130,6 +135,15 @@ export default function ArchitecturePage() {
                   <p className="text-xs text-white/30 font-mono">{arch.cost}</p>
                 </motion.div>
               ))}
+            </div>
+            <div className="mt-12">
+              <SystemDiagram
+                diagramId="opencode-ai-gateway-stack"
+                eyebrow="Control Plane Blueprint"
+                title="Agent Runtime → AI Gateway → Model Inference"
+                alt="Three-tier stack: an agent runtime handles sessions, context, tools and execution; an AI gateway control plane handles authentication, logging, rate limits, caching, retries and observability; and an inference substrate serves global model execution."
+                caption="Decoupling runtime harnesses from provider routing gives every stack unified auth, caching, retries, and trace observability."
+              />
             </div>
           </div>
         </section>
