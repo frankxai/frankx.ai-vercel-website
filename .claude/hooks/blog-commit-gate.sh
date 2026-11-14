@@ -8,8 +8,7 @@
 #   - title    <= 60 chars
 #   - description <= 155 chars
 #   - frontmatter has: tldr (flagship only), lastModified (flagship only), coverAlt OR image
-#   - body has >= 3 question-format H2s
-#   - body has "## FAQ" or "## Frequently" section with >= 5 "### Question?" pairs
+#   - headings and FAQ follow the reader job; no question/count quotas
 #   - voice-audit clean (delegated to scripts/voice-audit.sh)
 #   - flagship-only: presence of a counter-argument marker
 #
@@ -90,20 +89,7 @@ for path in sys.argv[1:]:
         if not fm.get("lastModified"):
             viols.append(f"{path}: flagship requires `lastModified` (freshness signal)")
 
-    # H2 scan
-    h2s = re.findall(r"^## (.+?)$", body, re.M)
-    question_h2s = [h for h in h2s if h.rstrip().endswith("?")]
-    if len(question_h2s) < 3:
-        viols.append(f"{path}: only {len(question_h2s)} question-format H2s (need >=3 for AEO)")
-
-    # FAQ section presence + 5 H3 Q&As
-    faq_m = re.search(r"^## (?:FAQ|Frequently Asked[^\n]*)\n([\s\S]*?)(?=\n## [^#]|\Z)", body, re.M)
-    if not faq_m:
-        viols.append(f"{path}: missing `## FAQ` section")
-    else:
-        h3s = re.findall(r"^### .+?\?$", faq_m.group(1), re.M)
-        if len(h3s) < 5:
-            viols.append(f"{path}: FAQ has {len(h3s)} `### Question?` entries (need >=5)")
+    # Headings and FAQ are editorial choices, not universal quotas.
 
     # Flagship counter-argument
     if flagship:
