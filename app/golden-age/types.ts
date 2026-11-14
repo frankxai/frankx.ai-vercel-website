@@ -34,4 +34,6 @@ export interface TOCItem {
   id: string;
   text: string;
   level: number;
+  /** Original markdown heading, used to inject jump ids. May differ from text when a bare numeral is labelled. */
+  sourceText?: string;
 }

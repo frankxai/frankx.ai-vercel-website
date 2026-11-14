@@ -304,11 +304,11 @@ export default function LibraryBuildPage() {
             ].map((s) => (
               <div key={s.label} className="rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 py-5">
                 <div className="text-2xl md:text-3xl font-bold text-white">{s.value}</div>
-                <div className="text-[11px] tracking-wider uppercase text-white/40 mt-1">{s.label}</div>
+                <div className="text-[11px] tracking-wider uppercase text-white/60 mt-1">{s.label}</div>
               </div>
             ))}
           </div>
-          <p className="mt-4 text-xs text-white/40">
+          <p className="mt-4 text-xs text-white/60">
             Live on{' '}
             <Link href="/library" className="underline decoration-white/20 hover:decoration-emerald-400">
               frankx.ai/library
@@ -437,7 +437,7 @@ export default function LibraryBuildPage() {
 
                   <div className="flex items-baseline gap-1 mb-4">
                     <span className="text-3xl font-bold text-white">{tier.price}</span>
-                    {tier.cadence && <span className="text-xs text-white/40">{tier.cadence}</span>}
+                    {tier.cadence && <span className="text-xs text-white/60">{tier.cadence}</span>}
                   </div>
 
                   <p className="text-sm text-white/55 leading-relaxed mb-5">{tier.description}</p>
@@ -512,7 +512,7 @@ export default function LibraryBuildPage() {
               >
                 <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
                   <span className="text-base font-medium text-white">{f.q}</span>
-                  <span className="text-white/40 transition group-open:rotate-45">+</span>
+                  <span className="text-white/60 transition group-open:rotate-45">+</span>
                 </summary>
                 <p className="mt-4 text-sm text-white/60 leading-relaxed">{f.a}</p>
               </details>
@@ -535,11 +535,11 @@ export default function LibraryBuildPage() {
             placeholder="you@domain.com"
             buttonText="Get on the list"
           />
-          <p className="mt-6 text-xs text-white/40">
+          <p className="mt-6 text-xs text-white/60">
             No spam. One email when the kits open. Unsubscribe anytime.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-xs text-white/40">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-xs text-white/60">
             <Link href="/library" className="hover:text-white transition">Browse the live library</Link>
             <span>·</span>
             <Link href="/library/approach" className="hover:text-white transition">Read the manifesto</Link>

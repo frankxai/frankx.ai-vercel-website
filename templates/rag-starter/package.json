@@ -2,7 +2,7 @@
   "name": "rag-starter",
   "version": "0.1.0",
   "private": true,
-  "description": "Production RAG starter on Vercel AI SDK 6 + Supabase pgvector",
+  "description": "Production RAG starter on Vercel AI SDK 7 + Supabase pgvector",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
@@ -11,10 +11,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "ai": "^6.0.0",
-    "@ai-sdk/openai": "^3.0.86",
-    "@ai-sdk/anthropic": "^3.0.98",
-    "@ai-sdk/react": "^3.0.232",
+    "ai": "^7.0.165",
+    "@ai-sdk/openai": "^4.0.111",
+    "@ai-sdk/anthropic": "^4.0.99",
+    "@ai-sdk/react": "^4.0.169",
     "@supabase/supabase-js": "^2.108.0",
     "next": "^16.0.0",
     "react": "^19.0.0",

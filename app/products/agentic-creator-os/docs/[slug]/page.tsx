@@ -146,7 +146,7 @@ export default async function DocPage({ params }: Props) {
         {doc.contentBlocks.map((block, index) => {
           switch (block.type) {
             case 'heading':
-              const HeadingTag = `h${block.level}` as keyof JSX.IntrinsicElements
+              const HeadingTag = `h${block.level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
               return (
                 <HeadingTag
                   key={index}

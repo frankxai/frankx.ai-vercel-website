@@ -62,7 +62,7 @@ export const gatewayExecutor: Executor = {
       const result = await generateObject({
         model,
         schema,
-        system,
+        instructions: system,
         prompt,
         temperature: 0.2,
         maxOutputTokens,

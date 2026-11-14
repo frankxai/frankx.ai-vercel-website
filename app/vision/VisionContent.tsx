@@ -33,7 +33,7 @@ const visionPillars = [
     color: 'from-emerald-400 to-cyan-400',
     borderColor: 'border-emerald-500/20',
     bgColor: 'bg-emerald-500/5',
-    metrics: ['ACOS v15 Swarm', '99+ Skills', 'Local-First Orchestration'],
+    metrics: ['ACOS', 'Skills', 'Local-First Orchestration'],
   },
   {
     icon: Zap,
@@ -49,11 +49,11 @@ const visionPillars = [
     icon: BookOpen,
     title: 'Mental Models & Peak OS',
     description:
-      'The cognitive operating system: 8 Sovereign Mental Models, first-principles deconstruction, 90-minute flow state blocks, and peak execution protocols for operating in Godmode.',
+      'The cognitive operating system: mental models, first-principles deconstruction, flow-state blocks, and peak execution protocols.',
     color: 'from-violet-400 to-purple-400',
     borderColor: 'border-violet-500/20',
     bgColor: 'bg-violet-500/5',
-    metrics: ['8 Mental Models', 'Daily Execution Cadence', 'Zero Slop'],
+    metrics: ['Mental Models', 'Daily Execution Cadence', 'Zero Slop'],
   },
   {
     icon: Music,
@@ -63,7 +63,7 @@ const visionPillars = [
     color: 'from-amber-400 to-orange-400',
     borderColor: 'border-amber-500/20',
     bgColor: 'bg-amber-500/5',
-    metrics: ['Songs with Suno', '10+ Books Authored', 'Multi-Modal Pipelines'],
+    metrics: ['Songs with Suno', 'Books', 'Multi-Modal Pipelines'],
   },
   {
     icon: Users,
@@ -79,7 +79,7 @@ const visionPillars = [
     icon: Globe,
     title: 'A More Free World',
     description:
-      'Democratizing sovereign technology so millions of individuals can achieve economic, intellectual, and creative freedom at global scale.',
+      'Democratizing sovereign technology so individuals can achieve economic, intellectual, and creative freedom.',
     color: 'from-emerald-400 to-teal-400',
     borderColor: 'border-emerald-500/20',
     bgColor: 'bg-emerald-500/5',
@@ -93,7 +93,7 @@ const timeline = [
     label: 'Foundation',
     items: [
       'frankx.ai launched and live',
-      'First 80+ blog articles published',
+      'Blog articles published',
       'AI music practice started with Suno',
       'ACOS v1 — first autonomous coding system',
       'Arcanea mythology and creative universe born',
@@ -118,7 +118,7 @@ const timeline = [
     items: [
       'First courses live with real enrollment',
       'Community platform for builders',
-      'First $10k/month from products',
+      'Revenue from products',
       'Speaking engagements and visibility',
       'AI music distribution deal',
     ],
@@ -128,7 +128,7 @@ const timeline = [
     period: '2027',
     label: 'Compound',
     items: [
-      '10,000+ builders using FrankX tools',
+      'A community of builders using FrankX tools',
       'Enterprise consulting practice',
       'The ecosystem becomes self-sustaining',
       'Book deals and wider reach',
@@ -293,7 +293,7 @@ export default function VisionContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            One person. Enterprise-grade AI architecture. Songs made with Suno. 7 books.
+            One person. Enterprise-grade AI architecture. Songs made with Suno. Books.
             Production systems. An entire creative ecosystem — built not to be
             impressive, but to prove what&apos;s now possible for anyone willing
             to build.
@@ -419,14 +419,14 @@ export default function VisionContent() {
             {[
               {
                 icon: Building2,
-                stat: '$20/month tools',
+                stat: 'Accessible tools',
                 title: 'The Old Barriers Are Gone',
-                body: 'Tools that cost millions five years ago now cost $20/month. The capital requirement for building a real business has collapsed to nearly zero.',
+                body: 'Tools are now within reach of a solo builder.',
                 color: 'text-emerald-400',
               },
               {
                 icon: Lightbulb,
-                stat: '29.8M Solo Businesses',
+                stat: 'Solo businesses',
                 title: 'Individuals Are Winning',
                 body: "One-person companies are generating real revenue. Not freelancing — building products that compound. The leverage available to a single focused builder is unprecedented.",
                 color: 'text-cyan-400',
@@ -435,7 +435,7 @@ export default function VisionContent() {
                 icon: Rocket,
                 stat: 'Infinite Leverage',
                 title: 'The Window Is Now',
-                body: "The people building today will own the infrastructure of tomorrow. This isn't hype — it's structural. The gap between what one person can build now versus five years ago is 100x.",
+                body: "The gap between what one person can build now versus five years ago is wide.",
                 color: 'text-violet-400',
               },
             ].map((card, i) => (
@@ -461,7 +461,7 @@ export default function VisionContent() {
 
           <motion.div className="mt-10 text-center" {...fadeUp}>
             <Link
-              href="/blog/the-great-transition"
+              href="/books/great-transition"
               className="group inline-flex items-center gap-2 text-sm font-medium text-emerald-400 transition-colors hover:text-emerald-300"
             >
               Read the full thesis
@@ -594,7 +594,7 @@ export default function VisionContent() {
                   companies.
                 </span>{' '}
                 Where a single person with taste, drive, and AI leverage can
-                build products that serve millions. Where the old gatekeepers
+                build products. Where the old gatekeepers
                 lose their grip and the builders inherit the economy.
               </p>
               <p className="mt-6 text-lg leading-relaxed text-white/65 md:text-xl md:leading-relaxed">

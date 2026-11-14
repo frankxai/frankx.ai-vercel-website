@@ -20,12 +20,10 @@ After shipping `magnifica-humanitas-benevolent-future-arcanea.mdx` we noticed th
 
 - Title (95 chars → truncates in SERPs)
 - Description (212 chars → truncates in snippets)
-- Statement H2s instead of question H2s
-- FAQ answers in paragraph form, not the 40–60 word atoms AI engines extract
 - No engaged counter-argument
 - Missing `tldr` and `lastModified` frontmatter
 
-These issues are all detectable mechanically. They don't need a human reviewer — they need a gate.
+Metadata defects are mechanically detectable. Argument, pacing and usefulness require editorial review. Question headings and FAQ counts do not establish quality.
 
 ## What the gate enforces
 
@@ -36,8 +34,7 @@ The `blog-commit-gate.sh` script runs on any `git commit` that touches `content/
 | `title`                        | ≤ 60 chars                                                   |
 | `description`                  | ≤ 155 chars                                                  |
 | Image present                  | `image` or `coverAlt` frontmatter set                        |
-| Question-format H2s            | ≥ 3                                                          |
-| `## FAQ` section               | Present, with ≥ 5 `### Question?` entries                    |
+| Headings and FAQ               | Editorial choices; no universal question or count quotas      |
 | Brand voice                    | `scripts/voice-audit.sh` returns clean                       |
 | **Flagship-only:** `tldr`      | Required                                                     |
 | **Flagship-only:** `lastModified` | Required                                                  |

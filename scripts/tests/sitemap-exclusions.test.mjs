@@ -114,6 +114,7 @@ test('private and internal surfaces are excluded and say noindex in their own me
     ['/familie/geschichte', 'app/familie/geschichte/layout.tsx', '/familie/geschichte/riemer-linie'],
     ['/frankx-investment-dashboard', 'app/frankx-investment-dashboard/layout.tsx'],
     ['/goals', 'app/goals/page.tsx'],
+    ['/ops', 'app/ops/layout.tsx', '/ops/calendar'],
     ['/testimonials', 'app/testimonials/layout.tsx'],
     ['/v0', 'app/v0/page.tsx'],
   ]
@@ -125,6 +126,8 @@ test('private and internal surfaces are excluded and say noindex in their own me
   }
   // A prefix covers the route and everything beneath it, never a sibling that shares its first letters.
   assert.equal(isExcludedFromSitemap('/goalsetting', sources), false)
+  assert.ok(isExcludedFromSitemap('/ops/sites', sources), '/ops/sites is listed in the sitemap')
+  assert.equal(isExcludedFromSitemap('/ai-ops', sources), false)
   // The family-history hub is excluded as an exact path: a topic page the repo marks public stays listed.
   assert.equal(isExcludedFromSitemap('/familie/geschichte/wolgadeutsche', sources), false)
 })

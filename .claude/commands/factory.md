@@ -32,10 +32,10 @@ When `/factory [topic]` is called:
 ```bash
 # Create structured draft
 1. Generate outline from research
-2. Write TL;DR (50 words max) - this appears first for AI extraction
-3. Write introduction with hook
-4. Write 3-5 main sections with H2 headers as questions
-5. Write FAQ section (5+ questions from "People Also Ask")
+2. Write concise frontmatter tldr if a shell summary helps; do not duplicate it in the body
+3. Open with a concrete finding, scene or result
+4. Use sections and headings that follow the argument or task
+5. Add an FAQ only for useful questions the body leaves unanswered; no count quota
 6. Write conclusion with CTA
 7. Save draft to: content/blog/[slug].mdx
 ```
@@ -56,8 +56,8 @@ When `/factory [topic]` is called:
    - FrankX personality (technical but accessible)
 
 3. AEO Check:
-   - TL;DR in first 100 words
-   - FAQ section exists
+   - Summary appears once, without repeating the introduction
+   - Optional FAQ answers useful open questions instead of repeating the body
 
 4. @integrity-guard (THE GATE — added 2026-05-20):
    Dispatch the agent against content/blog/[slug].mdx.
@@ -76,17 +76,17 @@ When `/factory [topic]` is called:
    - Clear definitions for technical terms
    - datePublished and dateModified
 
-4. Generate schema markup (Article + FAQPage)
+4. Generate Article schema; include FAQPage only when it matches a visible FAQ
 ```
 
 ### Phase 4: Publish
 
 ```bash
-# Deploy to production
-1. Copy polished file to Vercel repo
-2. git add && git commit -m "publish: [title]"
-3. git push origin main
-4. Log to AI_GLOBAL_SESSIONS.md
+# Prepare a reviewable candidate in this production repository
+1. Work on agent/<harness>/<scope>; never push directly to main
+2. Run the repository checks, then commit the scoped change
+3. Push the feature branch and open a draft PR
+4. Record evidence; production promotion follows the repository release rules
 ```
 
 ## Execution Instructions
@@ -137,21 +137,13 @@ When `/factory [topic]` is called:
    author: "Frank X. Riemer"
    ---
 
-   **TL;DR:** [50-word summary that AI can extract]
-
    [Introduction with hook...]
 
-   ## [Question-based H2]
+   ## [Heading that follows the argument]
 
    [Content...]
 
-   ## FAQ
-
-   ### [Question 1]?
-   [Answer]
-
-   ### [Question 2]?
-   [Answer]
+   [Optional FAQ: only useful unanswered questions, no minimum count]
    ```
 
 5. **Run quality checks** using Grep and Read tools
@@ -184,7 +176,7 @@ Claude:
 4. Found 8 quality sources
 5. Creating research file...
 6. Generating outline...
-7. Writing draft (2,500 words)...
+7. Writing a draft sized to the argument...
 8. Running quality gates...
    ✅ SEO: 94/100
    ✅ Voice: Passed

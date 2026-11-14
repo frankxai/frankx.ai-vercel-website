@@ -59,7 +59,7 @@ const visionImages = [
     src: '/images/social/great-transition-split.png',
     alt: 'The Great Transition — from the old world to the builder economy',
     title: 'The Great Transition',
-    href: '/blog/the-great-transition',
+    href: '/books/great-transition',
     aspect: 'landscape' as const,
   },
   {
@@ -114,7 +114,7 @@ export default function EcosystemVisionBoard() {
             The Ecosystem in Pictures
           </span>
           <h2 className="mt-4 text-3xl font-bold leading-tight md:text-5xl">
-            100+ premium visuals.{' '}
+            Premium visuals.{' '}
             <span className="bg-gradient-to-r from-violet-300 to-cyan-300 bg-clip-text text-transparent">
               One ecosystem.
             </span>

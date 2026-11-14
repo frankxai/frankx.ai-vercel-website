@@ -26,7 +26,7 @@ Before publishing:
 - [ ] Article previewed and approved
 - [ ] All images optimized
 - [ ] SEO metadata complete
-- [ ] FAQ section present (for AI citation)
+- [ ] Optional FAQ answers useful open questions; any FAQ schema matches visible content
 - [ ] Internal links verified
 
 ## Quality Gate (MANDATORY — added 2026-05-20)

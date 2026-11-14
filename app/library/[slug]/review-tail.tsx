@@ -24,7 +24,7 @@ export function ReviewTail({
       <section id="audience" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
         <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
           <span className="w-8 h-px bg-emerald-500/50" />
-          Best For
+          Best for
         </h2>
         <div className="flex flex-wrap gap-3">
           {review.bestFor.map((tag) => (
@@ -43,7 +43,7 @@ export function ReviewTail({
         <section id="faq" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
           <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
             <span className="w-8 h-px bg-blue-500/50" />
-            Frequently Asked Questions
+            Frequently asked questions
           </h2>
           <div className="space-y-3">
             {review.faq.map((pair, i) => (
@@ -55,7 +55,7 @@ export function ReviewTail({
                   <h3 className="text-[15px] font-medium text-white/90 group-open:text-blue-300 transition-colors">
                     {pair.q}
                   </h3>
-                  <span className="flex-shrink-0 text-white/30 group-open:rotate-45 transition-transform text-lg leading-none mt-0.5">
+                  <span className="flex-shrink-0 text-white/60 group-open:rotate-45 transition-transform text-lg leading-none mt-0.5">
                     +
                   </span>
                 </summary>
@@ -71,9 +71,9 @@ export function ReviewTail({
         <section id="continue-reading" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
           <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
             <span className="w-8 h-px bg-cyan-400/60" />
-            Continue Reading
+            Continue reading
           </h2>
-          <p className="text-sm text-white/40 mb-6">
+          <p className="text-sm text-white/60 mb-6">
             If {review.title} opened a door, these books walk you through it. Curated for
             reason, not algorithm — each entry explains why it pairs with this book.
           </p>
@@ -154,9 +154,9 @@ export function ReviewTail({
         <section id="videos" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
           <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
             <span className="w-8 h-px bg-red-400/60" />
-            Go Deeper — Videos
+            Go deeper: videos
           </h2>
-          <p className="text-sm text-white/40 mb-6">
+          <p className="text-sm text-white/60 mb-6">
             {review.videos.every((video) => video.url.includes('/results?'))
               ? 'Each link opens a YouTube search for this book. Pick a named speaker before you treat a recording as a source.'
               : 'A link marked YouTube search opens YouTube results. Any other link opens the page saved with this book.'}
@@ -199,7 +199,7 @@ export function ReviewTail({
                       </span>
                     ) : null}
                     {v.duration && (
-                      <span className="px-2 py-0.5 text-[10px] rounded-full bg-white/5 text-white/40 border border-white/10">
+                      <span className="px-2 py-0.5 text-[10px] rounded-full bg-white/5 text-white/60 border border-white/10">
                         {v.duration}
                       </span>
                     )}
@@ -242,7 +242,7 @@ export function ReviewTail({
             <h3 className="text-xl font-semibold text-white group-hover:text-violet-300 transition-colors mb-1">
               {relatedBook.title}
             </h3>
-            <p className="text-sm text-white/40 mb-3">{relatedBook.subtitle}</p>
+            <p className="text-sm text-white/60 mb-3">{relatedBook.subtitle}</p>
             <p className="text-sm text-white/50 leading-relaxed line-clamp-2">
               {relatedBook.description}
             </p>
@@ -322,7 +322,7 @@ export function ReviewTail({
               <h3 className="text-sm font-semibold text-white group-hover:text-amber-300 transition-colors mb-1 truncate">
                 {r.title}
               </h3>
-              <p className="text-xs text-white/40">{r.author}</p>
+              <p className="text-xs text-white/60">{r.author}</p>
             </Link>
           ))}
         </div>

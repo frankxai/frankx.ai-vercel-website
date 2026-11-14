@@ -431,7 +431,7 @@ export default function MagicShell() {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
                 Why Arcanea?
               </h2>
-              <div className="prose prose-lg prose-invert mx-auto text-slate-300">
+              <div className="prose prose-lg prose-invert max-w-none mx-auto text-slate-300">
                 <p>
                   As a musician who found AI creation through Suno, I realized the work I wanted
                   was a partnership.

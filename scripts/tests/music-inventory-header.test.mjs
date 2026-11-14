@@ -39,9 +39,16 @@ test('a disagreeing music header is not rendered', () => {
   assert.equal(vision.includes('musicPublishedCount: Number(musicData._count)'), false)
   assert.match(vision, /Number\(musicData\._count\) === musicTracks\.length/)
 
-  const canvas = read('components/vision/VisionBoardCanvas.tsx')
-  assert.equal(canvas.includes('musicPublishedCount'), false)
-  assert.equal(canvas.includes('musicEstimatedCount'), false)
+  // The public tldraw VisionBoardCanvas was removed so tldraw stays admin-only.
+  // Keep the inventory-header guard on remaining public vision surfaces.
+  assert.equal(
+    fs.existsSync(path.join(root, 'components/vision/VisionBoardCanvas.tsx')),
+    false,
+    'VisionBoardCanvas.tsx must stay deleted so tldraw cannot ship on public routes',
+  )
+  const ecosystem = read('components/vision/EcosystemVisionBoard.tsx')
+  assert.equal(ecosystem.includes('musicPublishedCount'), false)
+  assert.equal(ecosystem.includes('musicEstimatedCount'), false)
 
   for (const rel of ['app/music/page.tsx', 'components/music/MusicShell.tsx', 'app/music-os/page.tsx']) {
     assert.equal(read(rel).includes('totalTracks'), false, rel)

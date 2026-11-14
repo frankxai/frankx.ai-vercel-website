@@ -40,10 +40,10 @@ Each gate must pass before publishing. Gates return: PASS, WARN, or FAIL.
 - [ ] Consistent tone throughout
 
 ### Gate 4: AEO (AI Engine Optimization)
-- [ ] TL;DR in first 100 words
-- [ ] FAQ section with 5+ questions
+- [ ] Summary appears once across shell and body
+- [ ] Optional FAQ answers useful questions; no minimum count
 - [ ] Clear definitions for technical terms
-- [ ] Structured data ready (Article + FAQPage)
+- [ ] Article data is valid; FAQPage only when it matches a visible FAQ
 - [ ] datePublished and dateModified present
 
 ## Execution Instructions
@@ -61,7 +61,7 @@ Each gate must pass before publishing. Gates return: PASS, WARN, or FAIL.
    Gate 1: Check frontmatter fields
    Gate 2: Count links, check title length
    Gate 3: Search for AI phrases, analyze voice
-   Gate 4: Check for TL;DR and FAQ
+   Gate 4: Check for one summary and useful optional FAQ
    ```
 
 3. **Report results**:

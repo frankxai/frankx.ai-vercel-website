@@ -2,8 +2,7 @@
 
 import { useMemo, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { marked } from 'marked';
-import DOMPurify from 'isomorphic-dompurify';
+import { renderSanitizedChapterMarkdown } from '@/lib/sanitize/markdown';
 import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 import {
   ArrowLeft,
@@ -13,6 +12,7 @@ import {
   Menu,
   X
 } from 'lucide-react';
+import { extractChapterToc, tocHeadingSourceText } from '../lib/extractChapterToc';
 import type { Chapter, TOCItem } from '../types';
 
 interface PremiumReaderProps {
@@ -235,67 +235,26 @@ export default function PremiumReader({
 }: PremiumReaderProps) {
   const [mobileTocOpen, setMobileTocOpen] = useState(false);
 
-  // Extract TOC from content
-  const tocItems = useMemo(() => {
-    const items: TOCItem[] = [];
-    const headingRegex = /^(#{2,3})\s+(.+)$/gm;
-    let match;
-
-    while ((match = headingRegex.exec(content)) !== null) {
-      const level = match[1].length;
-      const text = match[2].trim();
-
-      // Skip metadata sections
-      if (
-        text.toLowerCase().includes('chapter') ||
-        text.toLowerCase().includes('source') ||
-        text.toLowerCase().includes('quotable') ||
-        text.toLowerCase().includes('end chapter')
-      ) {
-        continue;
-      }
-
-      const id = text
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-|-$/g, '');
-
-      items.push({ id, text, level });
-    }
-
-    return items;
-  }, [content]);
+  const tocItems = useMemo(() => extractChapterToc(content), [content]);
 
   // Process markdown content
   const htmlContent = useMemo(() => {
-    marked.setOptions({
-      gfm: true,
-      breaks: true
-    });
-
     let processedContent = content;
 
     // Add IDs to headings
     tocItems.forEach((item) => {
+      const sourceText = tocHeadingSourceText(item);
       const headingPattern = new RegExp(
-        `^#{${item.level}}\\s+${item.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`,
+        `^#{${item.level}}\\s+${sourceText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`,
         'm'
       );
       processedContent = processedContent.replace(
         headingPattern,
-        `${'#'.repeat(item.level)} <span id="${item.id}">${item.text}</span>`
+        `${'#'.repeat(item.level)} <span id="${item.id}">${sourceText}</span>`
       );
     });
 
-    const rawHtml = marked.parse(processedContent);
-    return DOMPurify.sanitize(rawHtml as string, {
-      ALLOWED_TAGS: [
-        'p', 'br', 'strong', 'em', 'a', 'ul', 'ol', 'li',
-        'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote',
-        'code', 'pre', 'span', 'hr'
-      ],
-      ALLOWED_ATTR: ['href', 'id', 'class', 'target', 'rel']
-    });
+    return renderSanitizedChapterMarkdown(processedContent);
   }, [content, tocItems]);
 
   return (
