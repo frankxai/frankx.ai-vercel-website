@@ -87,10 +87,12 @@ function StaticAtmosphereFallback() {
 
 function AmbientShaderPlane() {
   const meshRef = useRef<THREE.Mesh>(null)
+  const geometryRef = useRef<THREE.PlaneGeometry>(null)
   const materialRef = useRef<THREE.ShaderMaterial | null>(null)
   const pointerTarget = useRef(new THREE.Vector2(0, 0))
 
   useEffect(() => {
+    const geometry = geometryRef.current
     const shaderMaterial = new THREE.ShaderMaterial({
       vertexShader: VERTEX_SHADER,
       fragmentShader: FRAGMENT_SHADER,
@@ -114,11 +116,13 @@ function AmbientShaderPlane() {
 
     return () => {
       materialRef.current = null
+      geometry?.dispose()
       shaderMaterial.dispose()
     }
   }, [])
 
   useFrame((state, delta) => {
+    if (typeof window !== 'undefined' && window.scrollY > 900) return
     const activeMaterial = materialRef.current
     if (!activeMaterial) return
     activeMaterial.uniforms.uTime.value += Math.min(delta, 0.05)
@@ -128,14 +132,17 @@ function AmbientShaderPlane() {
 
   return (
     <mesh ref={meshRef} frustumCulled={false}>
-      <planeGeometry args={[2, 2]} />
+      <planeGeometry ref={geometryRef} args={[2, 2]} />
       <meshBasicMaterial transparent opacity={0} depthWrite={false} />
     </mesh>
   )
 }
 
+const HERO_ATMOSPHERE_CLASS =
+  'pointer-events-none select-none absolute inset-x-0 top-0 z-0 h-[860px] overflow-hidden [mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)]'
+
 /**
- * GPU-light WebGL shader atmosphere for the homepage backdrop with SSR and reduced-motion static fallback.
+ * GPU-light WebGL shader atmosphere scoped to the homepage hero band with SSR and reduced-motion static fallback.
  */
 export function HomeShaderAtmosphere() {
   const shouldReduceMotion = useReducedMotion()
@@ -143,14 +150,14 @@ export function HomeShaderAtmosphere() {
 
   if (shouldReduceMotion || !hasWebGL) {
     return (
-      <div aria-hidden="true" className="pointer-events-none fixed inset-0 overflow-hidden">
+      <div aria-hidden="true" className={HERO_ATMOSPHERE_CLASS}>
         <StaticAtmosphereFallback />
       </div>
     )
   }
 
   return (
-    <div aria-hidden="true" className="pointer-events-none fixed inset-0 overflow-hidden">
+    <div aria-hidden="true" className={HERO_ATMOSPHERE_CLASS}>
       <StaticAtmosphereFallback />
       <ShaderErrorBoundary fallback={null}>
         <Canvas

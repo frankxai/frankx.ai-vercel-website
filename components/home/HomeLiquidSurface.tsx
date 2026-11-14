@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useRef, useState, type ReactNode } from 'react'
+import { useCallback, useRef, type ReactNode } from 'react'
 
 export type HomeLiquidTone = 'emerald' | 'cyan' | 'neutral'
 
@@ -34,7 +34,7 @@ export function HomeLiquidSurface({
   interactive = true,
 }: HomeLiquidSurfaceProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [highlight, setHighlight] = useState({ x: 50, y: 15, active: false })
+  const spotRef = useRef<HTMLDivElement>(null)
 
   const handlePointerMove = useCallback(
     (event: React.PointerEvent<HTMLDivElement>) => {
@@ -46,18 +46,22 @@ export function HomeLiquidSurface({
         return
       }
       const el = containerRef.current
-      if (!el) return
+      const spot = spotRef.current
+      if (!el || !spot) return
       const rect = el.getBoundingClientRect()
       if (!rect.width || !rect.height) return
       const x = ((event.clientX - rect.left) / rect.width) * 100
       const y = ((event.clientY - rect.top) / rect.height) * 100
-      setHighlight({ x, y, active: true })
+      spot.style.opacity = '1'
+      spot.style.background = `radial-gradient(380px circle at ${x.toFixed(1)}% ${y.toFixed(1)}%, ${TONE_GLOW[tone]}, transparent 65%)`
     },
-    [interactive],
+    [interactive, tone],
   )
 
   const handlePointerLeave = useCallback(() => {
-    setHighlight((prev) => (prev.active ? { ...prev, active: false } : prev))
+    if (spotRef.current) {
+      spotRef.current.style.opacity = '0'
+    }
   }, [])
 
   return (
@@ -73,12 +77,10 @@ export function HomeLiquidSurface({
       />
       {interactive ? (
         <div
+          ref={spotRef}
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 transition-opacity duration-300"
-          style={{
-            opacity: highlight.active ? 1 : 0,
-            background: `radial-gradient(380px circle at ${highlight.x}% ${highlight.y}%, ${TONE_GLOW[tone]}, transparent 65%)`,
-          }}
+          style={{ opacity: 0 }}
         />
       ) : null}
       <div className="relative z-10">{children}</div>

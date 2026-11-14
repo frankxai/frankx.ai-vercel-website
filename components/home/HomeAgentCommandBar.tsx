@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Check, Copy, Terminal, ArrowUpRight } from 'lucide-react'
 import { HomeLiquidSurface } from '@/components/home/HomeLiquidSurface'
 
@@ -13,12 +13,27 @@ const MCP_INSTALL_COMMAND = `claude mcp add --transport http frankx ${MCP_ENDPOI
  */
 export function HomeAgentCommandBar() {
   const [copied, setCopied] = useState(false)
+  const copyTimerRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (copyTimerRef.current !== null) {
+        window.clearTimeout(copyTimerRef.current)
+      }
+    }
+  }, [])
 
   async function handleCopy() {
     try {
       await navigator.clipboard.writeText(MCP_INSTALL_COMMAND)
+      if (copyTimerRef.current !== null) {
+        window.clearTimeout(copyTimerRef.current)
+      }
       setCopied(true)
-      window.setTimeout(() => setCopied(false), 1800)
+      copyTimerRef.current = window.setTimeout(() => {
+        copyTimerRef.current = null
+        setCopied(false)
+      }, 1800)
     } catch {
       setCopied(false)
     }
