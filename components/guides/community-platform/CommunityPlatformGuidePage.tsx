@@ -9,6 +9,7 @@ import {
 } from 'lucide-react'
 
 import { MDXContent } from '@/components/blog/MDXContent'
+import AcademyMissionBridge from '@/components/guides/AcademyMissionBridge'
 import LearnHubSection from '@/components/learn/LearnHubSection'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import JsonLd from '@/components/seo/JsonLd'
@@ -16,6 +17,7 @@ import { TrackedLink } from '@/components/analytics/TrackedLink'
 import { getCommunityPlatformAiMode } from '@/lib/community-platform-ai'
 import type { GuideDoc } from '@/lib/guides'
 import type { CommunityPlatform } from '@/lib/community-platforms'
+import { academyBridgeForGuide } from '@/lib/learn/academy-missions'
 import { portalsForGuide } from '@/lib/learn/related-portals'
 
 import AiPermissionTopology from './AiPermissionTopology'
@@ -568,6 +570,9 @@ export default function CommunityPlatformGuidePage({
       ) : null}
 
       <div className={styles.relatedLearning}>
+        <div className="px-6">
+          <AcademyMissionBridge bridge={academyBridgeForGuide(guide.slug)} />
+        </div>
         <LearnHubSection
           relatedPortals={portalsForGuide(guide.slug)}
           variant="compact"

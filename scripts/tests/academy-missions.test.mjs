@@ -22,6 +22,8 @@ const diskGuideSlugs = fs
   .sort()
 
 test('every guide MDX on disk has an explicit non-fallback academy mission mapping', () => {
+  assert.equal(Object.keys(GUIDE_ACADEMY_MISSIONS).length, 44)
+  assert.equal(MAPPED_GUIDE_SLUGS.length, diskGuideSlugs.length)
   assert.ok(diskGuideSlugs.length >= 44, `expected at least 44 guides, found ${diskGuideSlugs.length}`)
   assert.deepEqual([...MAPPED_GUIDE_SLUGS], diskGuideSlugs)
 
@@ -134,6 +136,25 @@ test('GuidePage wires AcademyMissionBridge above LearnHubSection and enforces a1
   assert.ok(bridgeIdx > 0, 'AcademyMissionBridge must be rendered in app/guides/[slug]/page.tsx')
   assert.ok(bridgeIdx < learnIdx, 'AcademyMissionBridge must appear before LearnHubSection')
 
+  const communityGuidePage = fs.readFileSync(
+    path.join(root, 'components/guides/community-platform/CommunityPlatformGuidePage.tsx'),
+    'utf8'
+  )
+  const communityBridgeIdx = communityGuidePage.indexOf('<AcademyMissionBridge')
+  const communityLearnIdx = communityGuidePage.indexOf('<LearnHubSection')
+  assert.ok(
+    communityBridgeIdx > 0,
+    'AcademyMissionBridge must be mounted in CommunityPlatformGuidePage.tsx'
+  )
+  assert.ok(
+    communityGuidePage.includes('academyBridgeForGuide(guide.slug)'),
+    'CommunityPlatformGuidePage.tsx must wire academyBridgeForGuide(guide.slug)'
+  )
+  assert.ok(
+    communityBridgeIdx < communityLearnIdx,
+    'AcademyMissionBridge must appear before LearnHubSection in CommunityPlatformGuidePage.tsx'
+  )
+
   const component = fs.readFileSync(
     path.join(root, 'components/guides/AcademyMissionBridge.tsx'),
     'utf8'
@@ -171,6 +192,12 @@ test('visual curriculum guide embeds all three responsive dark-theme academy SVG
       mdx.includes(`/images/diagrams/academy/${file}`),
       `MDX guide must embed /images/diagrams/academy/${file}`
     )
+  }
+
+  const diagramBlocks = [...mdx.matchAll(/<Diagram[\s\S]*?\/>/g)].map((m) => m[0])
+  assert.equal(diagramBlocks.length, 3, 'visual curriculum guide must render exactly 3 Diagram blocks')
+  for (const block of diagramBlocks) {
+    assert.match(block, /\bscrollable\b/, 'every 1200px Diagram block must enable scrollable on mobile')
   }
 })
 
