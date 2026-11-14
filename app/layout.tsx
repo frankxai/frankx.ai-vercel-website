@@ -9,6 +9,8 @@ import { resolve } from 'node:path'
 import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
 import NavigationMega from '@/components/NavigationMega'
+import { publishedBookCount } from '@/app/books/lib/books-registry'
+import { libraryBooks } from '@/lib/library-catalog'
 import CommandPaletteProvider from '@/components/CommandPaletteProvider'
 import Footer from '@/components/Footer'
 import { MusicRuntime } from '@/components/music/MusicRuntime'
@@ -195,7 +197,7 @@ export default function RootLayout({
               <div className="absolute top-1/3 -right-1/4 h-[500px] w-[500px] rounded-full bg-violet-500/[0.025] blur-[140px]" />
               <div className="absolute -bottom-1/4 left-1/2 h-[400px] w-[400px] rounded-full bg-emerald-500/[0.02] blur-[120px]" />
             </div>
-            <NavigationMega />
+            <NavigationMega counts={{ publishedBooks: publishedBookCount, libraryBooks: libraryBooks.length }} />
             <CommandPaletteProvider />
             <div id="main" tabIndex={-1} className="relative z-10 min-h-screen overflow-x-hidden outline-none">
               {children}

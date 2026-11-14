@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { createContext, useContext, useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
@@ -48,6 +48,21 @@ import { resolveNavigationGroups } from '@/lib/navigation-groups'
 
 import { cn } from '@/lib/utils'
 import MobileNavOverlay from '@/components/MobileNavOverlay'
+
+export interface NavigationCounts {
+  publishedBooks: number
+  libraryBooks: number
+}
+
+// Counts are computed on the server (app/layout.tsx) and passed in as plain
+// numbers, so the client bundle never imports the book registries.
+const NavigationCountsContext = createContext<NavigationCounts>({ publishedBooks: 0, libraryBooks: 0 })
+
+function applyCounts(text: string, counts: NavigationCounts) {
+  return text
+    .replace('{publishedBooks}', String(counts.publishedBooks))
+    .replace('{libraryBooks}', String(counts.libraryBooks))
+}
 
 // Five doors. Music is its own door because the catalog is primary work, not a
 // sub-item of Create — #409 demoted it and that was never Frank's call.
@@ -100,7 +115,7 @@ const navigation = {
       },
       { name: 'Blueprints', href: '/gencreator/blueprints', icon: Map, description: '12 actionable frameworks',
       },
-      { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: '130+ curated prompts',
+      { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: 'Evaluated prompts from frankxai/prompt-library',
       },
       { name: 'Creation Chronicles', href: '/creation-chronicles', icon: Scroll, description: 'Behind the build',
       },
@@ -122,9 +137,9 @@ const navigation = {
       },
       { name: 'Guides', href: '/guides', icon: BookOpen, description: 'In-depth tutorials',
       },
-      { name: "Frank's Books", href: '/books', icon: BookOpen, description: '23 books, 411K+ words',
+      { name: "Frank's Books", href: '/books', icon: BookOpen, description: '{publishedBooks} published books, free online',
       },
-      { name: 'Library', href: '/library', icon: Layers, description: 'Book deep-dives · open-source Library OS',
+      { name: 'Library', href: '/library', icon: Layers, description: '{libraryBooks} book deep-dives · open-source Library OS',
       },
       { name: 'AI Assessment', href: '/ai-assessment', icon: Target, description: 'Find your level',
       },
@@ -134,7 +149,7 @@ const navigation = {
       },
       { name: 'Watch', href: '/watch', icon: Play, description: 'Curated video library',
       },
-      { name: 'AI Shorts', href: '/watch/shorts', icon: Zap, description: 'NEW · 60-second high-signal insights',
+      { name: 'AI Shorts', href: '/watch/shorts', icon: Zap, description: 'New · 60-second high-signal insights',
       },
     ],
   },
@@ -150,7 +165,7 @@ const navigation = {
     items: [
       { name: 'Architecture Hub', href: '/ai-architecture', icon: Network, description: 'Central hub for AI builders',
       },
-      { name: 'Blueprints', href: '/ai-architecture/blueprints', icon: Layers, description: 'Diagrams & guides (FREE)',
+      { name: 'Blueprints', href: '/ai-architecture/blueprints', icon: Layers, description: 'Diagrams & guides (free)',
       },
       { name: 'Prototypes', href: '/ai-architecture/prototypes', icon: Terminal, description: 'Try with your API keys',
       },
@@ -360,6 +375,7 @@ function Logo() {
 }
 
 function MenuLink({ item }: { item: (typeof navigation)[NavKey]['items'][0] }) {
+  const counts = useContext(NavigationCountsContext)
   const Icon = item.icon
   const isExternal = 'external' in item && item.external
   const LinkComponent = isExternal ? 'a' : Link
@@ -394,7 +410,7 @@ function MenuLink({ item }: { item: (typeof navigation)[NavKey]['items'][0] }) {
                 <ExternalLink className="h-3 w-3 text-slate-400" />
               )}
             </span>
-            <p className="text-[11px] leading-tight text-slate-400">{item.description}</p>
+            <p className="text-[11px] leading-tight text-slate-400">{applyCounts(item.description, counts)}</p>
           </div>
         </LinkComponent>
       </NavigationMenu.Link>
@@ -531,7 +547,7 @@ function NavTrigger({ children }: { children: React.ReactNode }) {
   )
 }
 
-export default function NavigationMega() {
+export default function NavigationMega({ counts }: { counts: NavigationCounts }) {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
@@ -610,7 +626,7 @@ export default function NavigationMega() {
   ]
 
   return (
-    <>
+    <NavigationCountsContext.Provider value={counts}>
       <header
         className={cn(
           'fixed top-0 z-50 w-full border-b transition-[transform,background-color,border-color,box-shadow] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none',
@@ -705,6 +721,6 @@ export default function NavigationMega() {
       </header>
 
       <MobileNavOverlay isOpen={isOpen} onClose={() => setIsOpen(false)} />
-    </>
+    </NavigationCountsContext.Provider>
   )
 }
