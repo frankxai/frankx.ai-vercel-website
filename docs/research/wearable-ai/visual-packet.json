@@ -1,0 +1,296 @@
+{
+  "schema_version": "1.0.0",
+  "packet_id": "vpk_fx_wearable_ai_20261113",
+  "status": "DRAFT",
+  "tier": "FLAGSHIP",
+  "content_id": "cnt_fx_wearable_ai_20261113",
+  "brand_id": "brd_frankx",
+  "created_at": "2026-11-13",
+  "thesis": "Own accepted work and its evidence; ship a phone-first workflow while proving each device adapter and distribution permission.",
+  "reader": "AI founders and experienced application engineers",
+  "primary_visual_job": "THESIS",
+  "competitive_references": [],
+  "directions": [
+    {
+      "direction_id": "dir_character_narrative",
+      "lens": "CHARACTER_NARRATIVE",
+      "status": "REJECTED",
+      "first_read": "Technician and evidence crew",
+      "concept": "Human-led capture with crew handoff",
+      "why_it_wins": "Direct role narrative; rejected without canonical reference sheets",
+      "source_refs": [
+        "S01",
+        "M10",
+        "A01"
+      ]
+    },
+    {
+      "direction_id": "dir_architecture_world",
+      "lens": "ARCHITECTURE_WORLD",
+      "status": "REJECTED",
+      "first_read": "Device portals converging on one workbench",
+      "concept": "Topology becomes an architectural workshop",
+      "why_it_wins": "Strong topology; too dense for opening",
+      "source_refs": [
+        "S01",
+        "M10",
+        "A01"
+      ]
+    },
+    {
+      "direction_id": "dir_editorial_symbol",
+      "lens": "EDITORIAL_SYMBOL",
+      "status": "SELECTED",
+      "first_read": "Unbranded camera glasses and a real inspection",
+      "concept": "Physical tool links deliberate attention to completed work",
+      "why_it_wins": "Selected for recognition, restraint and documentary honesty",
+      "source_refs": [
+        "S01",
+        "M10",
+        "A01"
+      ]
+    }
+  ],
+  "architecture": {
+    "maturity": "CONCEPTUAL",
+    "source_refs": [
+      "M06",
+      "A05",
+      "L01"
+    ],
+    "nodes": [
+      {
+        "node_id": "device_capture",
+        "label": "Permitted selected capture",
+        "type": "input",
+        "source_refs": [
+          "L01"
+        ]
+      },
+      {
+        "node_id": "capability_contract",
+        "label": "Negotiated capability and identity",
+        "type": "policy",
+        "source_refs": [
+          "L01"
+        ]
+      },
+      {
+        "node_id": "inference_proposal",
+        "label": "Bounded inference as untrusted proposal",
+        "type": "inference",
+        "source_refs": [
+          "L01"
+        ]
+      },
+      {
+        "node_id": "user_approval",
+        "label": "Exact expiring approval",
+        "type": "human boundary",
+        "source_refs": [
+          "L01"
+        ]
+      },
+      {
+        "node_id": "local_receipt",
+        "label": "Local note receipt",
+        "type": "output",
+        "source_refs": [
+          "L01"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "edge_id": "edge_0",
+        "from": "device_capture",
+        "to": "capability_contract",
+        "action": "Validate consent and claimed capabilities",
+        "failure_behavior": "Refuse or preserve pending state; no unapproved mutation",
+        "source_refs": [
+          "L01"
+        ]
+      },
+      {
+        "edge_id": "edge_1",
+        "from": "capability_contract",
+        "to": "inference_proposal",
+        "action": "Submit authorized bounded observation",
+        "failure_behavior": "Refuse or preserve pending state; no unapproved mutation",
+        "source_refs": [
+          "L01"
+        ]
+      },
+      {
+        "edge_id": "edge_2",
+        "from": "inference_proposal",
+        "to": "user_approval",
+        "action": "Present exact action",
+        "failure_behavior": "Refuse or preserve pending state; no unapproved mutation",
+        "source_refs": [
+          "L01"
+        ]
+      },
+      {
+        "edge_id": "edge_3",
+        "from": "user_approval",
+        "to": "local_receipt",
+        "action": "Consume once after explicit confirmation",
+        "failure_behavior": "Refuse or preserve pending state; no unapproved mutation",
+        "source_refs": [
+          "L01"
+        ]
+      }
+    ],
+    "trust_boundaries": [
+      {
+        "boundary_id": "boundary_approval",
+        "label": "Proposal is untrusted; action needs independent approval",
+        "node_ids": [
+          "user_approval",
+          "local_receipt"
+        ]
+      }
+    ],
+    "scene_mapping": [
+      {
+        "scene_element": "Unbranded glasses",
+        "architecture_refs": [
+          "device_capture"
+        ]
+      },
+      {
+        "scene_element": "Inspection sheet and component",
+        "architecture_refs": [
+          "inference_proposal"
+        ]
+      },
+      {
+        "scene_element": "Notebook",
+        "architecture_refs": [
+          "local_receipt"
+        ]
+      }
+    ]
+  },
+  "character_policy": {
+    "mode": "NOT_APPLICABLE",
+    "exemption_reason": "Physical editorial metaphor with actual work context; no approved canonical crew required for this treatment"
+  },
+  "characters": [],
+  "brand_mark_policy": {
+    "mode": "NOT_REQUIRED",
+    "comparison_type": "NONE",
+    "reason": "Neutral text references identify platforms; no vendor logos/endorsement or generated marks"
+  },
+  "brand_marks": [],
+  "deliverables": [
+    {
+      "deliverable_id": "dl_fx_wearable_hero",
+      "role": "hero",
+      "asset_id": "fx-wearable-hero",
+      "placement_id": "hero",
+      "format": "webp",
+      "alt_text": "Original conceptual illustration of camera glasses, an inspection and a notebook on a workshop bench.",
+      "width": 1672,
+      "height": 941,
+      "generation_mode": "GENERATED_LAYER",
+      "state": "DRAFT",
+      "mobile_strategy": "not_applicable"
+    },
+    {
+      "deliverable_id": "dl_fx_wearable_mobile",
+      "role": "mobile_native",
+      "asset_id": "fx-wearable-mobile",
+      "placement_id": "mobile_native",
+      "format": "webp",
+      "alt_text": "Portrait composition of unbranded camera glasses and a human-reviewed inspection.",
+      "width": 1122,
+      "height": 1402,
+      "generation_mode": "GENERATED_LAYER",
+      "state": "DRAFT",
+      "mobile_strategy": "ART_DIRECTED"
+    },
+    {
+      "deliverable_id": "dl_fx_wearable_og",
+      "role": "og",
+      "asset_id": "fx-wearable-og",
+      "placement_id": "og",
+      "format": "webp",
+      "alt_text": "Build for wearable AI: Samsung, Google and Meta.",
+      "width": 1200,
+      "height": 630,
+      "generation_mode": "HYBRID",
+      "state": "DRAFT",
+      "mobile_strategy": "not_applicable"
+    },
+    {
+      "deliverable_id": "dl_fx_wearable_architecture",
+      "role": "architecture",
+      "asset_id": "fx-wearable-architecture",
+      "placement_id": "architecture",
+      "format": "svg",
+      "alt_text": "Proposed capability-negotiating wearable AI backend.",
+      "width": 960,
+      "height": 1120,
+      "generation_mode": "DETERMINISTIC",
+      "state": "DRAFT",
+      "mobile_strategy": "not_applicable"
+    },
+    {
+      "deliverable_id": "dl_fx_wearable_workflow",
+      "role": "workflow",
+      "asset_id": "fx-wearable-workflow",
+      "placement_id": "workflow",
+      "format": "svg",
+      "alt_text": "Proposed consent, proposal and explicit confirmation flow.",
+      "width": 960,
+      "height": 1270,
+      "generation_mode": "DETERMINISTIC",
+      "state": "DRAFT",
+      "mobile_strategy": "not_applicable"
+    },
+    {
+      "deliverable_id": "dl_wearable_comparison",
+      "role": "comparison",
+      "asset_id": "fx_wearable_device_matrix",
+      "placement_id": "device_matrix",
+      "format": "HTML table",
+      "alt_text": "Accessible device/API capability comparison",
+      "width": 960,
+      "height": 600,
+      "generation_mode": "DETERMINISTIC",
+      "state": "DRAFT"
+    }
+  ],
+  "taste": {
+    "hard_gates": [],
+    "scores": [],
+    "weighted_total": null,
+    "verdict": "PENDING",
+    "selected_direction_id": "dir_editorial_symbol"
+  },
+  "reviews": [
+    {
+      "role": "art_director",
+      "reviewer": "visual_package independent of raster producer",
+      "reviewed_at": "2026-11-13",
+      "verdict": "PASS_LAYER_ONLY",
+      "notes": "Original art layer85/100. No final viewport/production approval; hero1672x941, mobile1122x1402, OG1200x630."
+    },
+    {
+      "role": "architecture_reviewer",
+      "reviewer": "android_and_reuse independent of diagram producer",
+      "reviewed_at": "2026-11-13",
+      "verdict": "PASS_CONCEPTUAL_SCOPE",
+      "notes": "Both diagrams match proposed responsibilities and local-receipt boundary; production tenant/RAG/redaction remain unimplemented."
+    }
+  ],
+  "blocked": [
+    "Source/structure benchmark read; desktop/mobile viewport benchmark not yet verified",
+    "Native generated resolutions below requested2K; no upscale represented as new detail",
+    "On-page mobile hero source switching not implemented; portrait staged for social",
+    "Video playback and rendered article checks pending",
+    "Independent final visual/rights review pending"
+  ]
+}

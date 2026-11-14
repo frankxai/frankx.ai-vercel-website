@@ -1,0 +1,1110 @@
+{
+  "schema_version": "1.1.0",
+  "content_id": "cnt_fx_wearable_ai_20261113",
+  "status": "DRAFT",
+  "authority": "PREVIEW",
+  "brand": {
+    "brand_id": "frankx",
+    "domain": "frankx.ai",
+    "repository": "frankxai/frankx.ai-vercel-website",
+    "vercel_project": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+    "notion_record": "blocked: not needed for this bounded repository commission"
+  },
+  "brief": {
+    "working_title": "Samsung and Google’s AI Glasses: What Founders Can Build Now",
+    "subject": "November12 Samsung intelligent eyewear and feasible Android XR/Meta founder development",
+    "origin": "Primary-source launch/API verification plus original tested mock capture/approval starter",
+    "thesis": "Own accepted work and its evidence; ship a phone-first workflow while proving each device adapter and distribution permission.",
+    "reader": "AI founders and experienced application engineers",
+    "reader_baseline": "Already understands APIs, cloud inference, SaaS and agent runtimes",
+    "reader_delta": "Can choose a supported surface, run a bounded local workflow and test willingness to pay without unsupported device claims",
+    "stakes": "Avoid building around unavailable sensors, blocked publishing and uneconomic continuous capture",
+    "strongest_objection": "Built-in Gemini/Meta AI can absorb generic assistants; integrations and accepted records must earn retention",
+    "commercial_relationship": "Owned free educational kit and proposed paid developer product; no vendor affiliate claim"
+  },
+  "content_graph": {
+    "cluster_id": "cluster_wearable_ai",
+    "canonical_url": "https://frankx.ai/blog/samsung-google-meta-wearable-ai-founder-guide",
+    "existing_related_urls": [
+      "/blog/production-agentic-ai-systems",
+      "/blog/ai-agent-memory-persistent-systems",
+      "/blog/mcp-server-integration-guide"
+    ],
+    "internal_links": [
+      "/blog/production-agentic-ai-systems",
+      "/blog/ai-agent-memory-persistent-systems",
+      "/blog/mcp-server-integration-guide"
+    ],
+    "entities": [
+      "Samsung Intelligent Eyewear",
+      "Android XR",
+      "Jetpack Projected",
+      "Meta Wearables DAT",
+      "Meta Ray-Ban Display",
+      "Gemini"
+    ]
+  },
+  "search": {
+    "primary_intent": "Select and implement a wearable AI development/business path",
+    "query_set": [
+      "Samsung AI glasses developers",
+      "Android XR glasses tutorial",
+      "Meta DAT1.0.1",
+      "wearable AI business models"
+    ],
+    "serp_snapshot": {
+      "captured_at": "2026-11-13",
+      "locale": "global English",
+      "device": "search retrieval; no viewport ranking claim",
+      "dominant_intent": "launch coverage and developer capability",
+      "information_gap": "Exact device/distribution boundaries paired with a tested workflow"
+    },
+    "answer_units": [
+      "Verified launch",
+      "Device/API/distribution matrix",
+      "Ranked buyer opportunities",
+      "Source-checked native tutorials",
+      "Tested local starter",
+      "Transparent hypothetical economics"
+    ],
+    "structured_data": [
+      "Article",
+      "BreadcrumbList",
+      "FAQPage"
+    ],
+    "indexation": "planned index after approval",
+    "crawler_policy_checked": false
+  },
+  "sources": [
+    {
+      "source_id": "S01",
+      "title": "Samsung global launch",
+      "publisher": "Samsung",
+      "publication_or_revision": "2026-11-12",
+      "url": "https://news.samsung.com/global/samsung-announces-december-release-for-intelligent-eyewear-bringing-a-smarter-way-to-see-the-world",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "S02",
+      "title": "Samsung US launch",
+      "publisher": "Samsung",
+      "publication_or_revision": "2026-11-12",
+      "url": "https://news.samsung.com/us/samsung-announces-u-s-release-intelligent-eyewear-bringing-smart-way-world/",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "S03",
+      "title": "Eyewear privacy",
+      "publisher": "Google",
+      "publication_or_revision": "2026-11-12",
+      "url": "https://blog.google/innovation-and-ai/technology/safety-security/intelligent-eyewear-privacy-protections/",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "A01",
+      "title": "Jetpack XR device categories",
+      "publisher": "Android Developers",
+      "publication_or_revision": "2026-10-28",
+      "url": "https://developer.android.com/develop/xr/jetpack-xr-sdk",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "A02",
+      "title": "XR Projected release notes",
+      "publisher": "Android Developers",
+      "publication_or_revision": "2026-10-21",
+      "url": "https://developer.android.com/jetpack/androidx/releases/xr-projected",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "A03",
+      "title": "XR Glimmer release notes",
+      "publisher": "Android Developers",
+      "publication_or_revision": "2026-10-21",
+      "url": "https://developer.android.com/jetpack/androidx/releases/xr-glimmer",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "A04",
+      "title": "AndroidX versions",
+      "publisher": "Android Developers",
+      "publication_or_revision": "2026-11-12",
+      "url": "https://developer.android.com/jetpack/androidx/versions",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "A05",
+      "title": "First projected activity",
+      "publisher": "Android Developers",
+      "publication_or_revision": "2026-11-10",
+      "url": "https://developer.android.com/develop/xr/jetpack-xr-sdk/glasses/first-activity",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "A06",
+      "title": "Create glasses AVDs",
+      "publisher": "Android Developers",
+      "publication_or_revision": null,
+      "url": "https://developer.android.com/develop/xr/jetpack-xr-sdk/run/create-avds/glasses",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "A07",
+      "title": "Run glasses emulator",
+      "publisher": "Android Developers",
+      "publication_or_revision": "2026-10-28",
+      "url": "https://developer.android.com/develop/xr/jetpack-xr-sdk/run/emulator/glasses",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "A08",
+      "title": "Canonical package and distribution",
+      "publisher": "Android Developers",
+      "publication_or_revision": "2026-10-20",
+      "url": "https://developer.android.com/develop/xr/package-and-distribute",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "A09",
+      "title": "Official glasses prototype",
+      "publisher": "Google Android",
+      "publication_or_revision": "193dfa3062b57178c4af2cb125d6cec328ed74cd",
+      "url": "https://github.com/android/ai-samples/tree/193dfa3062b57178c4af2cb125d6cec328ed74cd",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "A10",
+      "title": "Official spatial samples",
+      "publisher": "Google Android",
+      "publication_or_revision": "434a733c8425dcf7b5bf8c0d86265c332f669314",
+      "url": "https://github.com/android/xr-samples/tree/434a733c8425dcf7b5bf8c0d86265c332f669314",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "M01",
+      "title": "Wearables FAQ",
+      "publisher": "Meta",
+      "publication_or_revision": null,
+      "url": "https://developers.meta.com/wearables/faq/",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "M02",
+      "title": "DAT Android README",
+      "publisher": "Meta",
+      "publication_or_revision": "2026-10-09",
+      "url": "https://github.com/meta/meta-wearables-dat-android/blob/f4371bc9f90249d51eb07d7f8a61e8d829294f16/README.md",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "M03",
+      "title": "DAT Android changelog",
+      "publisher": "Meta",
+      "publication_or_revision": "2026-10-09",
+      "url": "https://github.com/meta/meta-wearables-dat-android/blob/f4371bc9f90249d51eb07d7f8a61e8d829294f16/CHANGELOG.md",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "M04",
+      "title": "CameraAccess sample README",
+      "publisher": "Meta",
+      "publication_or_revision": "f4371bc9f90249d51eb07d7f8a61e8d829294f16",
+      "url": "https://github.com/meta/meta-wearables-dat-android/blob/f4371bc9f90249d51eb07d7f8a61e8d829294f16/samples/CameraAccess/README.md",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "M05",
+      "title": "CameraAccess version catalog",
+      "publisher": "Meta",
+      "publication_or_revision": "f4371bc9f90249d51eb07d7f8a61e8d829294f16",
+      "url": "https://github.com/meta/meta-wearables-dat-android/blob/f4371bc9f90249d51eb07d7f8a61e8d829294f16/samples/CameraAccess/gradle/libs.versions.toml",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "M06",
+      "title": "Camera SDK guide",
+      "publisher": "Meta",
+      "publication_or_revision": "f4371bc9f90249d51eb07d7f8a61e8d829294f16",
+      "url": "https://github.com/meta/meta-wearables-dat-android/blob/f4371bc9f90249d51eb07d7f8a61e8d829294f16/plugins/mwdat-android/skills/camera-streaming/SKILL.md",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "M07",
+      "title": "Registration SDK guide",
+      "publisher": "Meta",
+      "publication_or_revision": "f4371bc9f90249d51eb07d7f8a61e8d829294f16",
+      "url": "https://github.com/meta/meta-wearables-dat-android/blob/f4371bc9f90249d51eb07d7f8a61e8d829294f16/plugins/mwdat-android/skills/permissions-registration/SKILL.md",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "M08",
+      "title": "DAT maintainer response 231",
+      "publisher": "Meta maintainer",
+      "publication_or_revision": "2026-11-09",
+      "url": "https://github.com/meta/meta-wearables-dat-android/discussions/231",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "M09",
+      "title": "DAT maintainer response 236",
+      "publisher": "Meta maintainer",
+      "publication_or_revision": "2026-11-12",
+      "url": "https://github.com/meta/meta-wearables-dat-android/discussions/236",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "M10",
+      "title": "Web Apps overview",
+      "publisher": "Meta",
+      "publication_or_revision": null,
+      "url": "https://developers.meta.com/wearables/web-apps/",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "M11",
+      "title": "Web Apps source",
+      "publisher": "Meta",
+      "publication_or_revision": null,
+      "url": "https://github.com/meta/meta-wearables-webapp/blob/main/README.md",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "M12",
+      "title": "AI Connectors preview",
+      "publisher": "Meta",
+      "publication_or_revision": null,
+      "url": "https://dev.meta.ai/products/connectors",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "M13",
+      "title": "Product-specific country support",
+      "publisher": "Meta",
+      "publication_or_revision": "2026-11-13 retrieval",
+      "url": "https://www.meta.com/help/ai-glasses/4961066940605960/",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "M14",
+      "title": "iOS SDK source",
+      "publisher": "Meta",
+      "publication_or_revision": "2026-10-09",
+      "url": "https://github.com/meta/meta-wearables-dat-ios/blob/main/README.md",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "R01",
+      "title": "Samsung Newsroom usage terms",
+      "publisher": "Samsung",
+      "publication_or_revision": null,
+      "url": "https://news.samsung.com/global/terms",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "V01",
+      "title": "Official eyewear keynote video",
+      "publisher": "Google",
+      "publication_or_revision": "2026-05-22",
+      "url": "https://www.youtube.com/watch?v=xxY0yuzxzLY",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "I01",
+      "title": "Image input guide",
+      "publisher": "OpenAI",
+      "publication_or_revision": null,
+      "url": "https://developers.openai.com/api/docs/guides/images-vision",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "I02",
+      "title": "Responses create reference",
+      "publisher": "OpenAI",
+      "publication_or_revision": null,
+      "url": "https://developers.openai.com/api/reference/resources/responses/methods/create",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "D01",
+      "title": "Node runtime",
+      "publisher": "Vercel",
+      "publication_or_revision": "2026-08-11",
+      "url": "https://vercel.com/docs/functions/runtimes/node-js",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "D02",
+      "title": "Function limits",
+      "publisher": "Vercel",
+      "publication_or_revision": "2026-08-24",
+      "url": "https://vercel.com/docs/functions/limitations",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "E01",
+      "title": "SIS public source audit",
+      "publisher": "Starlight Intelligence",
+      "publication_or_revision": "e159af3f94e93190c4a8ae127884d8f0d560dd5a",
+      "url": "https://github.com/Starlight-Intelligence/Starlight-Intelligence-System/tree/e159af3f94e93190c4a8ae127884d8f0d560dd5a",
+      "retrieved": "2026-11-13",
+      "scope": "primary",
+      "rights": "facts paraphrased; no implied binary/media reproduction license",
+      "source_type": "primary documentation/source",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "L01",
+      "title": "Original local starter test receipt",
+      "publisher": "FrankX",
+      "source_type": "original artifact",
+      "repository_path": "examples/wearable-ai-founder-starter/docs/validation.md",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "L02",
+      "title": "Original commercial assumptions and arithmetic",
+      "publisher": "FrankX",
+      "source_type": "original artifact",
+      "repository_path": "docs/research/wearable-ai/commercial-and-distribution.md",
+      "retrieved_at": "2026-11-13"
+    },
+    {
+      "source_id": "L03",
+      "title": "Original roadmap and scenario assumptions",
+      "publisher": "FrankX",
+      "source_type": "original artifact",
+      "repository_path": "docs/research/wearable-ai/implementation-roadmap.md",
+      "retrieved_at": "2026-11-13"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "C01",
+      "text": "Preorders and planned December 10 market launch",
+      "type": "fact",
+      "source_ids": [
+        "S01",
+        "S02"
+      ],
+      "confidence": "high",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Preorders and planned December 10 market launch"
+    },
+    {
+      "claim_id": "C02",
+      "text": "Launch prices and mixed-use hardware specification",
+      "type": "fact",
+      "source_ids": [
+        "S01",
+        "S02"
+      ],
+      "confidence": "high",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Launch prices and mixed-use hardware specification"
+    },
+    {
+      "claim_id": "C03",
+      "text": "Consumer Gemini workflows differ from API entitlement",
+      "type": "inference",
+      "source_ids": [
+        "S02",
+        "A01"
+      ],
+      "confidence": "high",
+      "as_of": "2026-11-13",
+      "support": "derived",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Consumer Gemini workflows differ from API entitlement"
+    },
+    {
+      "claim_id": "C04",
+      "text": "Phone pairing is not cross-platform projected-app proof",
+      "type": "inference",
+      "source_ids": [
+        "S01",
+        "A05"
+      ],
+      "confidence": "high",
+      "as_of": "2026-11-13",
+      "support": "derived",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Phone pairing is not cross-platform projected-app proof"
+    },
+    {
+      "claim_id": "C05",
+      "text": "Immersive and projected device classes have different APIs",
+      "type": "fact",
+      "source_ids": [
+        "A01"
+      ],
+      "confidence": "high",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Immersive and projected device classes have different APIs"
+    },
+    {
+      "claim_id": "C06",
+      "text": "Projected alpha14/Glimmer alpha22/Compose beta02 version snapshot",
+      "type": "fact",
+      "source_ids": [
+        "A02",
+        "A03",
+        "A04"
+      ],
+      "confidence": "high",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Projected alpha14/Glimmer alpha22/Compose beta02 version snapshot"
+    },
+    {
+      "claim_id": "C07",
+      "text": "Current projected manifest/lifecycle setup",
+      "type": "fact",
+      "source_ids": [
+        "A05"
+      ],
+      "confidence": "high-source-only",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Current projected manifest/lifecycle setup"
+    },
+    {
+      "claim_id": "C08",
+      "text": "Canonical distribution permits audio mobile track; display pending",
+      "type": "fact",
+      "source_ids": [
+        "A08"
+      ],
+      "confidence": "medium-freshness",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Canonical distribution permits audio mobile track; display pending"
+    },
+    {
+      "claim_id": "C09",
+      "text": "Glasses emulator does not validate camera capture",
+      "type": "fact",
+      "source_ids": [
+        "A07"
+      ],
+      "confidence": "high",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Glasses emulator does not validate camera capture"
+    },
+    {
+      "claim_id": "C10",
+      "text": "Pinned prototype differs from current projected template",
+      "type": "fact",
+      "source_ids": [
+        "A09",
+        "A05"
+      ],
+      "confidence": "high",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Pinned prototype differs from current projected template"
+    },
+    {
+      "claim_id": "C11",
+      "text": "XR spatial sample is a different device surface",
+      "type": "fact",
+      "source_ids": [
+        "A10",
+        "A01"
+      ],
+      "confidence": "high",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "XR spatial sample is a different device surface"
+    },
+    {
+      "claim_id": "C12",
+      "text": "DAT 1.0.1 source version and experimental restrictions",
+      "type": "fact",
+      "source_ids": [
+        "M02",
+        "M03"
+      ],
+      "confidence": "high",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "DAT 1.0.1 source version and experimental restrictions"
+    },
+    {
+      "claim_id": "C13",
+      "text": "Native sample setup and mock camera workflow",
+      "type": "fact",
+      "source_ids": [
+        "M04",
+        "M05",
+        "M06",
+        "M07"
+      ],
+      "confidence": "high-source-only",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Native sample setup and mock camera workflow"
+    },
+    {
+      "claim_id": "C14",
+      "text": "General Meta publishing gated; paid pilots unresolved",
+      "type": "fact",
+      "source_ids": [
+        "M09"
+      ],
+      "confidence": "high-as-of",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "General Meta publishing gated; paid pilots unresolved"
+    },
+    {
+      "claim_id": "C15",
+      "text": "Hazardous activities need separate terms clearance",
+      "type": "fact",
+      "source_ids": [
+        "M08",
+        "M09"
+      ],
+      "confidence": "medium-terms-auth-wall",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Hazardous activities need separate terms clearance"
+    },
+    {
+      "claim_id": "C16",
+      "text": "Web Apps display-only; camera permission not established",
+      "type": "fact",
+      "source_ids": [
+        "M10",
+        "M11"
+      ],
+      "confidence": "high/unknown-camera",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Web Apps display-only; camera permission not established"
+    },
+    {
+      "claim_id": "C17",
+      "text": "Connectors limited preview",
+      "type": "fact",
+      "source_ids": [
+        "M12"
+      ],
+      "confidence": "high",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Connectors limited preview"
+    },
+    {
+      "claim_id": "C18",
+      "text": "Country/device eligibility differs",
+      "type": "fact",
+      "source_ids": [
+        "M13",
+        "S01"
+      ],
+      "confidence": "high-as-of",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Country/device eligibility differs"
+    },
+    {
+      "claim_id": "C19",
+      "text": "FAQ and changelog conflict on display mocks",
+      "type": "fact",
+      "source_ids": [
+        "M01",
+        "M03"
+      ],
+      "confidence": "high-conflict",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "FAQ and changelog conflict on display mocks"
+    },
+    {
+      "claim_id": "C20",
+      "text": "Gemini privacy assurances do not cover arbitrary inference",
+      "type": "inference",
+      "source_ids": [
+        "S03"
+      ],
+      "confidence": "high",
+      "as_of": "2026-11-13",
+      "support": "derived",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Gemini privacy assurances do not cover arbitrary inference"
+    },
+    {
+      "claim_id": "C21",
+      "text": "SIS provides source candidates, not proven wearable integration",
+      "type": "first_party",
+      "source_ids": [
+        "E01"
+      ],
+      "confidence": "source-only",
+      "as_of": "2026-11-13",
+      "support": "derived",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "SIS provides source candidates, not proven wearable integration"
+    },
+    {
+      "claim_id": "C22",
+      "text": "Ranked opportunities and prices are editorial hypotheses",
+      "type": "opinion",
+      "source_ids": [],
+      "confidence": "unvalidated-demand",
+      "as_of": "2026-11-13",
+      "support": "derived",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Ranked opportunities and prices are editorial hypotheses"
+    },
+    {
+      "claim_id": "C23",
+      "text": "Illustrative cost arithmetic, not actual vendor pricing",
+      "type": "inference",
+      "source_ids": [
+        "L02"
+      ],
+      "confidence": "arithmetic-only",
+      "as_of": "2026-11-13",
+      "support": "derived",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Illustrative cost arithmetic, not actual vendor pricing"
+    },
+    {
+      "claim_id": "C24",
+      "text": "Adoption scenarios and milestones are planning assumptions",
+      "type": "forecast",
+      "source_ids": [
+        "L03"
+      ],
+      "confidence": "scenario-only",
+      "as_of": "2026-11-13",
+      "support": "derived",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Adoption scenarios and milestones are planning assumptions"
+    },
+    {
+      "claim_id": "C25",
+      "text": "Local tests establish software flow, not native/hardware capability",
+      "type": "first_party",
+      "source_ids": [
+        "L01"
+      ],
+      "confidence": "local-tested",
+      "as_of": "2026-11-13",
+      "support": "derived",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Local tests establish software flow, not native/hardware capability"
+    },
+    {
+      "claim_id": "C26",
+      "text": "Vercel preview has no executable confirmation",
+      "type": "first_party",
+      "source_ids": [
+        "D01"
+      ],
+      "confidence": "local-tested-cloud-unverified",
+      "as_of": "2026-11-13",
+      "support": "derived",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Vercel preview has no executable confirmation"
+    },
+    {
+      "claim_id": "C27",
+      "text": "Official image reuse is rights-pending",
+      "type": "fact",
+      "source_ids": [
+        "R01"
+      ],
+      "confidence": "high",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Official image reuse is rights-pending"
+    },
+    {
+      "claim_id": "C28",
+      "text": "Earlier official video is dated context, not launch proof",
+      "type": "fact",
+      "source_ids": [
+        "V01"
+      ],
+      "confidence": "source-verified-embed-playback-pending",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Earlier official video is dated context, not launch proof"
+    },
+    {
+      "claim_id": "C29",
+      "text": "Optional multimodal transport follows official HTTP envelope",
+      "type": "fact",
+      "source_ids": [
+        "I01",
+        "I02"
+      ],
+      "confidence": "contract-tested-no-live-call",
+      "as_of": "2026-11-13",
+      "support": "direct",
+      "freshness": "Recheck immediately before publication; SDK/publishing changes invalidate snapshot",
+      "reviewer": "independent preflight; see validation receipt",
+      "public_wording": "Optional multimodal transport follows official HTTP envelope"
+    }
+  ],
+  "article": {
+    "source_path": "content/blog/samsung-google-meta-wearable-ai-founder-guide.mdx",
+    "canonical_title": "Samsung and Google’s AI Glasses: What Founders Can Build Now",
+    "description": "Verified device APIs, tutorials, architecture and business models for wearable AI founders.",
+    "author_id": "frank-riemer",
+    "published_at": null,
+    "modified_at": "2026-11-13"
+  },
+  "visual_plan": {
+    "tier": "FLAGSHIP",
+    "reason": "Named-platform comparison and original architecture with commercial tutorial",
+    "status": "IN_PRODUCTION",
+    "visual_packet_ref": "docs/research/wearable-ai/visual-packet.json",
+    "competitive_snapshot_at": "2026-11-13 source/structure inspection; viewport benchmark pending",
+    "character_mode": "NOT_APPLICABLE",
+    "character_exemption": "Physical task metaphor is stronger; no approved canonical crew references established",
+    "canonical_character_refs": [],
+    "required_roles": [
+      "hero",
+      "architecture",
+      "comparison",
+      "workflow",
+      "og",
+      "mobile_native"
+    ]
+  },
+  "media": [
+    {
+      "asset_id": "fx-wearable-hero",
+      "version_id": "v1-20261113",
+      "rendition_id": "wearable-ai-founder-guide-hero",
+      "path": "public/images/blog/editorial/headers/wearable-ai-founder-guide-hero.webp",
+      "placement": "hero",
+      "media_type": "image",
+      "rights": "original; no vendor marks",
+      "alt": "Original conceptual illustration of camera glasses, an inspection and a notebook on a workshop bench.",
+      "sha256": "07de43c3d3ecf3b6a49bbac43a08d76d1c0f088b589ed76376689cd96c006af6",
+      "approval_state": "DRAFT",
+      "created_at": "2026-11-13",
+      "production_approved": false
+    },
+    {
+      "asset_id": "fx-wearable-mobile",
+      "version_id": "v1-20261113",
+      "rendition_id": "wearable-ai-founder-mobile",
+      "path": "public/images/editorial/wearable-ai-founder-mobile.webp",
+      "placement": "mobile_native",
+      "media_type": "image",
+      "rights": "original; no vendor marks",
+      "alt": "Portrait composition of unbranded camera glasses and a human-reviewed inspection.",
+      "sha256": "6d03c7e217abf3ca68e51650d9fee761746c59694bcf2ee68c9be4f14ef537af",
+      "approval_state": "DRAFT",
+      "created_at": "2026-11-13",
+      "production_approved": false
+    },
+    {
+      "asset_id": "fx-wearable-og",
+      "version_id": "v1-20261113",
+      "rendition_id": "wearable-ai-founder-og",
+      "path": "public/images/editorial/wearable-ai-founder-og.webp",
+      "placement": "og",
+      "media_type": "image",
+      "rights": "original; no vendor marks",
+      "alt": "Build for wearable AI: Samsung, Google and Meta.",
+      "sha256": "e13e6dbef7f3f12a7eb60a2e29318216afa342c3eb47e0c132a2dc952693aef9",
+      "approval_state": "DRAFT",
+      "created_at": "2026-11-13",
+      "production_approved": false
+    },
+    {
+      "asset_id": "fx-wearable-architecture",
+      "version_id": "v1-20261113",
+      "rendition_id": "wearable-capability-architecture",
+      "path": "public/images/editorial/wearable-capability-architecture.svg",
+      "placement": "architecture",
+      "media_type": "image",
+      "rights": "original; no vendor marks",
+      "alt": "Proposed capability-negotiating wearable AI backend.",
+      "sha256": "495b9683448ed2ca2afd9db2be72de3f90534304400d1ab687e3080935317788",
+      "approval_state": "DRAFT",
+      "created_at": "2026-11-13",
+      "production_approved": false
+    },
+    {
+      "asset_id": "fx-wearable-workflow",
+      "version_id": "v1-20261113",
+      "rendition_id": "wearable-governed-action",
+      "path": "public/images/editorial/wearable-governed-action.svg",
+      "placement": "workflow",
+      "media_type": "image",
+      "rights": "original; no vendor marks",
+      "alt": "Proposed consent, proposal and explicit confirmation flow.",
+      "sha256": "602df43627f1e8de3c218de4e4ca31ea411cb79ff3ba83f8b889b5e46eadaf59",
+      "approval_state": "DRAFT",
+      "created_at": "2026-11-13",
+      "production_approved": false
+    }
+  ],
+  "affiliates": [],
+  "distribution": [
+    {
+      "channel": "LinkedIn",
+      "state": "draft",
+      "source_path": "docs/research/wearable-ai/commercial-and-distribution.md"
+    },
+    {
+      "channel": "X",
+      "state": "draft",
+      "source_path": "docs/research/wearable-ai/commercial-and-distribution.md"
+    },
+    {
+      "channel": "newsletter",
+      "state": "draft",
+      "source_path": "docs/research/wearable-ai/commercial-and-distribution.md"
+    }
+  ],
+  "reviews": [
+    {
+      "lane": "truth_rights",
+      "verdict": "pass",
+      "reviewer": "meta_evidence preflight",
+      "reason": "Required tutorial wording corrections applied; Samsung photography omitted pending rights"
+    },
+    {
+      "lane": "commissioning_editor",
+      "verdict": "pass",
+      "reviewer": "meta_evidence preflight",
+      "reason": "Specific commercial task and executable original starter; no invented device testing"
+    },
+    {
+      "lane": "seo_geo",
+      "verdict": "blocked",
+      "reason": "Source metadata/FAQ/internal links present; rendered schema and canonical pending"
+    },
+    {
+      "lane": "production_verifier",
+      "verdict": "blocked",
+      "reason": "17 local tests and MDX checks pass; full production build and remote preview incomplete"
+    }
+  ],
+  "publication": {
+    "branch": "agent/codex/wearable-ai-founder-guide",
+    "pull_request": "https://github.com/frankxai/frankx.ai-vercel-website/pull/1234",
+    "preview_url": "blocked",
+    "live_url": "blocked",
+    "verified_at": null,
+    "rollback": "Close unmerged draft PR; after approved release revert its merge commit",
+    "validated_content_tree": "d9203189218221d4219d2f4b50c93d9f17decab3",
+    "initial_deployment": "dpl_2gSP6QVuZtAJdvErBHWeLYb2Gb1A",
+    "initial_deployment_state": "CANCELED: draft preview policy; documented [preview] opt-in requested in next metadata commit"
+  },
+  "measurement": {
+    "hypothesis": "A verified guide and mock workflow qualify buyers for a phone-first documentation product",
+    "primary_metric": "Starter activation and qualified workflow enquiries",
+    "guardrails": [
+      "No unsupported SDK claim",
+      "No unapproved publication",
+      "No paid product until deliverable acceptance"
+    ],
+    "snapshots": [],
+    "freshness_review_at": "Immediately before publication",
+    "freshness_triggers": [
+      "SDK releases",
+      "Distribution gate changes",
+      "December10 retail launch"
+    ]
+  },
+  "blocked": [
+    "Full build/rendered preview still incomplete",
+    "Physical device/native compilation not executed (explicit tutorial boundary)",
+    "Official video playback eligibility unverified",
+    "Samsung press-photo reuse rights pending; source-link treatment used",
+    "Flagship visual production approval pending",
+    "Different-provider merge review and Frank production publication approval not yet requested"
+  ]
+}

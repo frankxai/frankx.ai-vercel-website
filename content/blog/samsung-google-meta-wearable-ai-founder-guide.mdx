@@ -1,0 +1,212 @@
+---
+title: "Samsung and Google’s AI Glasses: What Founders Can Build Now"
+description: "A verified founder guide to Samsung, Android XR and Meta glasses: real SDK boundaries, practical tutorials, wearable AI architecture and business models."
+date: "2026-11-13"
+lastUpdated: "2026-11-13"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["ai-architecture", "wearable-ai", "android-xr", "founder-strategy", "multimodal-ai"]
+image: "/images/blog/editorial/headers/wearable-ai-founder-guide-hero.webp"
+ogImage: "/images/editorial/wearable-ai-founder-og.webp"
+featured: false
+readingGoal: "Choose a supported device surface, run one captured-observation workflow, and test a commercial offer without assuming APIs or distribution rights."
+tldr: "Samsung’s November announcement creates a concrete hardware launch, while developer access remains fragmented. Build a valuable phone-first workflow with optional glasses input. Meta’s stable camera toolkit supports experiments; publishing and experimental features remain gated. Android XR separates projected audio glasses from immersive headsets. The strongest early products own evidence, integration and verified completion rather than competing with built-in assistants."
+keywords: ["Samsung AI glasses developers", "Android XR glasses tutorial", "Meta Wearables Device Access Toolkit", "wearable AI business models"]
+faqSource: "body"
+---
+
+Samsung’s November 12 intelligent-eyewear announcement gives founders a concrete product deadline: December 10. The consequential deadline is commercial. Builders need to choose which useful workflow they can deliver through the APIs and distribution channels actually available today.
+
+A camera on your face changes when software receives context. A technician can document an inspection without putting down a tool. A founder can deliberately capture an idea while walking. A creator can collect a useful point of view without holding a phone. Each becomes a business when that moment reaches an existing record, decision or production workflow.
+
+The opportunity is specific: own the task, its evidence and its completion. Google and Meta already supply general assistants. This guide separates their device families, verifies the developer boundaries, and gives you a small implementation to test. Start with one captured observation and one approved action. Earn expansion through results before investing in continuous awareness.
+
+*Verified November 13, 2026. Tutorials distinguish locally tested software, source-checked native integrations and hardware work still required. Hero artwork is a generated conceptual illustration of generic eyewear. Manufacturer photography appears at the linked official sources.*
+
+## What Samsung actually announced
+
+Samsung’s [November 12 global announcement](https://news.samsung.com/global/samsung-announces-december-release-for-intelligent-eyewear-bringing-a-smarter-way-to-see-the-world) schedules December 10 availability, with preorders already open. Both Warby Parker and Gentle Monster collections are planned for the U.S.; Gentle Monster also launches in South Korea. U.S. pricing starts at $395 for Warby Parker and ranges from $449–$489 for Gentle Monster.
+
+These are lightweight camera/audio glasses. Samsung specifies roughly 41 grams, a 12MP HDR camera, two open-ear speakers, four microphones and Snapdragon AR1 Gen 1. Its advertised battery ceilings are nine hours per charge and 72 hours including the case, under a mixed-use test rather than continuous inference.
+
+The [U.S. release](https://news.samsung.com/us/samsung-announces-u-s-release-intelligent-eyewear-bringing-smart-way-world/) describes Gemini answering visual questions, translating, providing Maps directions, handling communications and saving whiteboard summaries to Samsung Notes. Those are announced consumer experiences. They do not establish an equivalent third-party API for every feature.
+
+The compatibility table names selected Galaxy phones on One UI 9, Pixel 7 or later on the September Android 17 update, and qualifying iPhone 13 or later devices on iOS 26.6. Consumer pairing support does not prove Android projected apps run through an iPhone.
+
+[View Samsung’s official launch photographs and specifications](https://news.samsung.com/global/samsung-announces-december-release-for-intelligent-eyewear-bringing-a-smarter-way-to-see-the-world). Product photography remains on the source site; this article does not imply manufacturer endorsement.
+
+<YouTubeEmbed id="xxY0yuzxzLY" title="Intelligent Eyewear | Google I/O 2026 Keynote" structuredData={false} />
+
+*Official Google demonstration from May 22, 2026, providing earlier product context rather than November retail-firmware evidence. [Watch at the source](https://www.youtube.com/watch?v=xxY0yuzxzLY) when the embedded player is unavailable.*
+
+## Meta competes through three developer surfaces
+
+Meta offers a mobile companion integration, display-native web experiences, and service integration through its assistant. These create different businesses.
+
+The official [Android SDK](https://github.com/meta/meta-wearables-dat-android/blob/f4371bc9f90249d51eb07d7f8a61e8d829294f16/README.md) and [changelog](https://github.com/meta/meta-wearables-dat-android/blob/f4371bc9f90249d51eb07d7f8a61e8d829294f16/CHANGELOG.md) identify DAT 1.0.1, released October 9. Camera streaming and an in-stream still capture are the useful starting point. The changelog marks several additional capabilities experimental, including speech, voice invocation, motion, standalone high-quality photos and synchronized camera audio; integrations using experimental features cannot yet be published.
+
+Distribution is a separate constraint. In a [November 12 maintainer response](https://github.com/meta/meta-wearables-dat-android/discussions/236), Meta says general publishing is not open and integrations require Integration Review. Private channels support invited testers; permission for paid pilots remains unanswered there. Treat commercial clearance as a dependency before selling a glasses-dependent deployment.
+
+[Web Apps](https://developers.meta.com/wearables/web-apps/) run on Meta Ray-Ban Display using HTML, CSS and JavaScript. Its browser simulator is useful without hardware. This does not establish camera access from a Web App. [Meta AI Connectors](https://dev.meta.ai/products/connectors) remain a gated developer preview for connecting existing services to the assistant.
+
+## The device matrix that prevents expensive mistakes
+
+SDK maturity describes a library. Distribution maturity describes who can receive your integration. Keep both in the product specification.
+
+| Device family | OS/runtime and SDK | Input and sensors | Display | Distribution and maturity | Boundary |
+| --- | --- | --- | --- | --- | --- |
+| Samsung Intelligent Eyewear | Android XR augmented/projected path; device validation pending | Camera, microphones, touch; audio response | Camera/audio class, no spatial canvas assumed | Hardware announced; Android audio-app distribution documented | Headset SceneCore/ARCore access is not established for this model |
+| Samsung Galaxy XR headset | Android XR immersive; Compose XR, SceneCore, ARCore | Spatial tracking and headset interaction | Immersive spatial display | Play distribution for supported immersive apps | Headset camera/perception permissions are separate from eyewear |
+| XREAL Android XR wired glasses | Android XR immersive/wired path on supported models | Model-dependent tracking and input | Spatial display | SDK and Play path documented by device class | Ordinary XREAL display accessories do not automatically share this runtime |
+| Ray-Ban Meta and Oakley Meta | Meta companion runtime; Android/iOS DAT 1.0.1 | Camera stream, in-stream photo; other features gated | Displayless | Stable base SDK; invited development and reviewed publishing | No browser UI on the lens; negotiate actual capabilities |
+| Meta Ray-Ban Display | Meta runtime; DAT or separate Web Apps | Camera via native DAT; web input/context differs | Display; web simulator uses 600×600 | Developer-mode web URL; broader discovery gated | Web camera access unverified; country support differs |
+
+Google’s [XR device guidance](https://developer.android.com/develop/xr/jetpack-xr-sdk) distinguishes immersive headsets/wired glasses from projected audio/display experiences. Its [distribution guide](https://developer.android.com/develop/xr/package-and-distribute) documents audio glasses through a companion mobile app while display-glasses distribution remains pending. Recheck both before release.
+
+Availability also changes the reachable buyer. Samsung’s launch list does not include the Netherlands. Meta’s [country support page](https://www.meta.com/help/ai-glasses/4961066940605960/) lists the Netherlands for displayless products; its Display list includes the U.S., Canada, France, Germany, Italy and the U.K. Hardware availability never guarantees every AI feature or publishing permission.
+
+## Where a founder can own value
+
+The value chain starts with hardware and OS vendors, then device APIs, multimodal inference, an agent runtime, memory and retrieval, tool integrations, vertical workflows, distribution and payment. A business needs control over enough of that chain to survive a platform feature release.
+
+My preferred ownership point is the verified work record: what was observed, which source supported a suggestion, what the user approved and whether the receiving system accepted it. The hardware can change while that record remains valuable.
+
+<ArticleFigure id="wearable-capability-architecture" />
+
+A generic visual question-answering wrapper competes directly with the default assistant. An inspection report tied to an asset register, or a creator’s approved shot log tied to an edit, has a customer-specific destination. That integration produces retention and a reason to pay.
+
+For the backend patterns, see [production agent architecture](/blog/production-agentic-ai-systems), [persistent memory](/blog/ai-agent-memory-persistent-systems) and [MCP integration](/blog/mcp-server-integration-guide).
+
+## Ten opportunities, ranked for a small founding team
+
+These are editorial estimates for an experienced builder with an existing backend. Days mean a demonstrable phone/mock prototype, excluding platform approval. Scores are editorial hypotheses requiring customer validation: 1–5, higher is stronger; priority weights customer value 30%, API feasibility 25%, speed 20%, defensibility 15% and willingness to pay 10%. API scores concern a phone-first prototype, not unrestricted glasses distribution. Proposed prices require buyer validation.
+
+| Rank and buyer opportunity | Days | Value / API / speed / moat / pay | Weighted | Price hypothesis | First measurable result |
+| --- | --- | --- | --- | --- | --- |
+| 1. Inspection report drafter for service firms | 7–14 | 5/4/4/4/5 | 4.40 | €49–99/seat/month | Accepted report completion time |
+| 2. Inventory evidence capture for operators | 7–14 | 5/4/4/3/4 | 4.15 | €39–79/seat/month | Correct asset-to-record matches |
+| 3. Creator POV shot logger for agencies | 3–7 | 4/4/5/3/3 | 3.95 | €19–39/month | Useful selects per capture session |
+| 4. Training observation workbook for instructors | 7–14 | 4/4/4/4/3 | 3.90 | €49–149/team/month | Reviewed observations captured |
+| 5. Developer compatibility/test kit for agencies | 10–21 | 4/4/3/4/4 | 3.80 | €149–399/license | Time to first tested adapter |
+| 6. Deliberate founder memory for consultants | 3–7 | 3/4/5/2/3 | 3.50 | €12–29/month | Useful retrievals a week later |
+| 7. Equipment handover checklist for rental firms | 7–14 | 4/3/4/3/3 | 3.50 | €49–199/site/month | Complete returned-asset records |
+| 8. Research specimen notes for field teams | 10–21 | 4/3/3/4/3 | 3.45 | €49–99/seat/month | Provenance-complete observations |
+| 9. Service-to-assistant connector for SaaS vendors | 7–14 | 4/2/4/3/4 | 3.35 | €500+ integration project | Approved end-to-end sandbox task |
+| 10. Glanceable venue companion for operators | 7–14 | 3/2/4/2/2 | 2.70 | €99–299/venue/month | Completed supported visitor task |
+
+The first two win when documentation is costly and the receiving system is already budgeted. Avoid hazardous guidance: make the first scope human-reviewed recording and drafting. Restricted pilot terms can still move a high-scoring opportunity behind a developer kit that can be delivered immediately.
+
+## Three startup theses worth testing
+
+**Field-service copilot:** Start after the technical decision has been made. Capture an equipment label and a technician’s observation, retrieve the approved manual revision, and draft a service record. The buyer is a service manager who measures administration and rework. Sell a phone-first documentation pilot; add glasses only after terms and distribution clearance. Stop when image quality or report correction consumes the saved time.
+
+**Founder memory agent:** Deliberate capture beats an ambient archive as a first product. The wearer chooses an observation, assigns a project, and later retrieves it with source evidence and deletion controls. Its hard problem is useful recall. Measure whether ten captured notes improve a real weekly review. A founder who never revisits the result has no recurring-value reason to subscribe.
+
+**Wearable developer kit:** Sell capability contracts, simulators, policy tests, reference integrations and maintenance. A universal wrapper needs explicit unsupported states and device-version fixtures. The moat would come from tested compatibility evidence and update speed. Start with two supported paths and publish what fails. A directory of SDK links alone does not justify a subscription.
+
+## Build a Meta camera-to-record prototype
+
+Use the official CameraAccess sample to preserve SDK lifecycle and permissions. The companion starter linked below supplies a locally runnable mock capture, multimodal HTTP boundary and a confirmed local action. Native compilation and hardware testing remain separate checks.
+
+1. Install Android Studio, JDK 17+ and Android SDK 36. Clone and pin the inspected upstream sample:
+
+```bash
+git clone https://github.com/meta/meta-wearables-dat-android.git
+cd meta-wearables-dat-android
+git checkout f4371bc9f90249d51eb07d7f8a61e8d829294f16
+cd samples/CameraAccess
+./gradlew :app:assembleDebug
+```
+
+2. Follow the sample’s [setup](https://github.com/meta/meta-wearables-dat-android/blob/f4371bc9f90249d51eb07d7f8a61e8d829294f16/samples/CameraAccess/README.md). The SDK’s [registration guidance](https://github.com/meta/meta-wearables-dat-android/blob/f4371bc9f90249d51eb07d7f8a61e8d829294f16/plugins/mwdat-android/skills/permissions-registration/SKILL.md) permits application/client values of `0` for local Developer Mode; production requires assigned credentials. Never treat those placeholders as production authentication.
+
+3. Use the sample’s Debug menu to enable MockDeviceKit, pair displayless Ray-Ban Meta, power on, unfold and don it. Select the packaged feed, start a session and preview. Physical testing additionally needs Meta AI pairing and the relevant permissions.
+
+4. Trigger an in-stream photo. At the wearer-triggered callback, encode supported image bytes and submit them to your authenticated backend. Registration, camera permission and an active session must precede capture. The appendix identifies the upstream callback and upload boundary; it does not invent an SDK method.
+
+5. Let multimodal inference draft a record. Show the exact proposed destination and content, then require an independent confirmation. The starter commits only a local receipt. Connecting a real CRM requires separate OAuth scope, authorization and idempotency tests.
+
+6. Test denial, disconnect, malformed input, model failure, expired approval and replay. A passed mocked workflow proves those software paths. It does not prove radio reliability, capture quality or permission to distribute.
+
+## Build the Android XR experience on the correct surface
+
+For lightweight eyewear, use the current Android Studio **Basic Display Glasses Activity** template and Google’s [first projected activity guide](https://developer.android.com/develop/xr/jetpack-xr-sdk/glasses/first-activity). Despite the template name, test the audio-only path explicitly. The activity runs in the phone application and projects to glasses.
+
+As of November 13, [Jetpack Projected](https://developer.android.com/jetpack/androidx/releases/xr-projected) is `1.0.0-alpha14`; the [AndroidX version index](https://developer.android.com/jetpack/androidx/versions) lists Glimmer `1.0.0-alpha22` and Compose XR `1.0.0-beta02`. They serve different surfaces and should not be substituted for one another.
+
+1. Create the template and retain its compatible Gradle/toolchain versions. Use current projected dependencies rather than copying older tutorial version blocks.
+2. Declare the projected activity with `android.hardware.display.category.XR_PROJECTED` and the `android.intent.category.XR_PROJECTED_LAUNCHER` category, following the current manifest example.
+3. Pair phone and glasses AVDs. To test audio-only, enable Audio-only mode in the phone’s Glasses app, stop both AVDs, cold-boot the phone and relaunch. Run the app on the **phone** target. Return the proposed record through audio, with phone confirmation as a fallback.
+4. Test display-off and audio-only states. The [emulator guide](https://developer.android.com/develop/xr/jetpack-xr-sdk/run/emulator/glasses) says camera capture is unavailable; use an injected fixture to exercise inference. An environment background is not camera-pipeline validation.
+
+This is a verified development path for Android XR projected experiences. It is not a claim that this build has run on Samsung’s December retail firmware. The appendix separately pins an official prototype sample and records its version drift. Headset spatial panels belong in a separate headset/wired-glasses tutorial.
+
+## A reusable backend should negotiate, then act
+
+Treat capabilities as a contract between an authenticated device adapter and a policy service. Record device model, firmware, adapter version, granted permissions and tested features. Intersect adapter assertions with a server-controlled allowlist. Missing evidence means unsupported.
+
+Keep raw capture brief and optional. Send a selected frame rather than a permanent stream; minimize bystanders and sensitive material before upload. Store project-scoped observations with provenance and retention dates. Authenticate people independently from device pairing. Use tenant-scoped retrieval and scoped OAuth connections; never place service credentials in the glasses or browser bundle.
+
+Inference returns a proposal, which is untrusted data. Validation binds its allowlisted action, payload, target, actor and expiry to an approval. A separate confirmation consumes it once, then creates a receipt. Track capture, inference, correction, tool success, latency and billable units separately. Charge for accepted work rather than attempted tokens.
+
+<ArticleFigure id="wearable-governed-action" />
+
+For Starlight, the inspected repositories contain candidate gateway, policy, MCP and memory components. Their existence does not establish an integrated wearable runtime or deployed memory service. Reuse should start with adapter contracts and a tenant-isolation review. GenCreator could turn wearer-selected POV material into shot logs and edit briefs; that is a proposed integration. FrankX supplies the tested guide, education and distribution. The downloadable example is intentionally self-contained, with no claim that those integrations already ship.
+
+## Sell completion with bounded economics
+
+An illustrative €49 monthly documentation seat includes 600 completed jobs. Assume one selected frame and a short response cost €0.003 per job, infrastructure/storage €2 monthly, support €5, and payment costs 3% plus €0.30. Contribution is €38.43, or 78.4%, before acquisition, salaries, tax and hardware. These planning assumptions need measurement against current provider charges. Ten frames per job reduce it to €22.23, or 45.4%, before extra support. Continuous processing changes the business.
+
+Offer subscriptions for recurring personal use, vertical SaaS per seat/site, metered APIs for integrations and a developer license for reusable implementation assets. Enterprise pilots should price implementation separately and agree permitted deployment first. Marketplace discovery is contingent on platform admission. Affiliates can support education only when a relevant program is verified and disclosed; no manufacturer affiliate relationship is asserted here.
+
+The proposed paid kit is €149 individual or €399 agency, including tested adapters, fixtures, policy examples and a defined update window. Those deliverables require completion before checkout opens. The free starter establishes the approach and exposes its limits.
+
+## The risks should change the design
+
+Platform gatekeeping makes phone-first delivery valuable. Built-in assistants compress generic features, so own a vertical record and integration. Latency requires immediate capture acknowledgement and a recoverable pending state. Battery limits favor explicit, sparse capture. Hardware adoption calls for keeping the workflow useful on phones.
+
+Privacy needs a product decision at capture time. Google’s [November 12 privacy statement](https://blog.google/innovation-and-ai/technology/safety-security/intelligent-eyewear-privacy-protections/) describes recording indicators and protections for Gemini visuals, alongside restrictions on social livestreaming and facial identification. Do not assume those safeguards automatically cover your external inference provider. Review actual data handling, bystander notice, workplace policy and deletion behavior for the deployment.
+
+Meta’s hazardous-use and paid-pilot questions remain material constraints. General publishing, country eligibility, experimental APIs and downstream model terms belong in release acceptance, with named evidence and dates.
+
+## Thirty days to a commercial decision
+
+| Period | Work | Acceptance target |
+| --- | --- | --- |
+| Days 1–3 | Select one buyer and existing record; interview five operators | Three confirm the same costly documentation step |
+| Days 4–7 | Run mock capture, proposed record and local confirmation | Twenty fixtures; denied and replayed actions rejected |
+| Days 8–14 | Add one official native adapter; review platform terms | Ten controlled end-to-end runs; eligibility resolved or phone-only scope |
+| Days 15–21 | Test five consenting users on a permitted workflow | At least 80% of drafts accepted with minor edits; measure actual cost and latency |
+| Days 22–30 | Refine correction/deletion; propose priced deployment | Two written paid-pilot commitments, conditional on required clearance |
+
+Those thresholds are proposed validation gates. Missing them changes the offer or pauses the adapter; it does not justify more speculative infrastructure.
+
+## Three adoption scenarios, one durable investment
+
+These hypothetical planning scenarios cover the next twelve months and make no market-size projection.
+
+| Scenario | Assumption | Product response | Trigger to watch |
+| --- | --- | --- | --- |
+| Optimistic | Comfortable hardware and broader publishing enable repeated workplace use | Expand proven adapters and vertical integrations | Your users complete three useful sessions a week and paid retention holds |
+| Base | Enthusiasts and selected teams adopt; platform access stays uneven | Sell a phone-first product with optional wearable input | Buyers renew for accepted records across both interfaces |
+| Downside | Low usage, review delays or built-in assistants absorb the proposed feature | Retain the backend workflow; stop marginal device work | Four weeks of poor repeat use or no willingness to pay |
+
+Each scenario rewards owning the workflow and its evidence. None requires a prediction about billions of devices.
+
+## Frequently asked questions
+
+### Can I publish a Meta glasses app immediately?
+
+Public integration publishing is not open as of November 13, 2026. Development and invited testing are available within applicable terms; general release requires Meta review. Paid private pilots need explicit clearance.
+
+### Can a Samsung audio-glasses app use headset spatial APIs?
+
+This guide does not establish that compatibility. Use the projected audio-glasses path and verify the exact device, firmware, permissions and supported SDK features.
+
+### Can I start without glasses?
+
+Yes. The supplied mock backend runs locally. Meta provides native mock tooling and a separate Display web simulator; Android supplies paired glasses/phone AVDs. Their coverage does not replace physical-device validation.
+
+## Build the first useful workflow now
+
+Download the [Wearable AI Founder Starter Kit](/downloads/wearable-ai-founder-starter-kit.zip), run its tests and replace the mock observation with a permitted capture. Bring one receiving system and one buyer into the experiment. Measure the time from observation to an accepted record, including corrections. That result will tell you which device adapter deserves the next month of work.

@@ -1,0 +1,7 @@
+{
+  "deviceId": "mock-audio-camera",
+  "capabilities": { "camera": true, "audioOutput": true, "display": false },
+  "instruction": "Draft a repair observation. State uncertainty and do not diagnose safety.",
+  "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Wl6X8sAAAAASUVORK5CYII=",
+  "consent": { "capture": true, "cloudInference": false, "purpose": "repair-note", "grantedAt": "REPLACED_BY_DEMO_SCRIPT" }
+}

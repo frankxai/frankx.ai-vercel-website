@@ -98,5 +98,29 @@
     "rights": "original",
     "createdOn": "2026-11-07",
     "kind": "diagram"
+  },
+  "wearable-capability-architecture": {
+    "src": "/images/editorial/wearable-capability-architecture.svg",
+    "width": 960,
+    "height": 1120,
+    "alt": "Proposed architecture: device adapters negotiate capabilities before authenticated inference, scoped context and reviewed tools.",
+    "caption": "Proposed integration architecture. The device-adapter and shared-runtime components require integration; this article tests a separate mock backend.",
+    "credit": "Original diagram by FrankX",
+    "sourceUrl": "https://github.com/frankxai/frankx.ai-vercel-website/tree/agent/codex/wearable-ai-founder-guide/examples/wearable-ai-founder-starter",
+    "rights": "original",
+    "createdOn": "2026-11-13",
+    "kind": "diagram"
+  },
+  "wearable-governed-action": {
+    "src": "/images/editorial/wearable-governed-action.svg",
+    "width": 960,
+    "height": 1270,
+    "alt": "Proposed workflow: capture consent, policy checks and inference produce a proposal; explicit approval precedes a local receipt.",
+    "caption": "Proposed action boundary. The starter saves a process-local note only; production tools require durable approval and scoped credentials.",
+    "credit": "Original diagram by FrankX",
+    "sourceUrl": "https://github.com/frankxai/frankx.ai-vercel-website/tree/agent/codex/wearable-ai-founder-guide/examples/wearable-ai-founder-starter",
+    "rights": "original",
+    "createdOn": "2026-11-13",
+    "kind": "diagram"
   }
 }

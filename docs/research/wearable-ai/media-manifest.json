@@ -1,0 +1,81 @@
+{
+  "assets": [
+    {
+      "asset_id": "fx-wearable-hero",
+      "version_id": "v1-20261113",
+      "rendition_id": "wearable-ai-founder-guide-hero",
+      "path": "public/images/blog/editorial/headers/wearable-ai-founder-guide-hero.webp",
+      "placement": "hero",
+      "media_type": "image",
+      "rights": "original; no vendor marks",
+      "alt": "Original conceptual illustration of camera glasses, an inspection and a notebook on a workshop bench.",
+      "sha256": "07de43c3d3ecf3b6a49bbac43a08d76d1c0f088b589ed76376689cd96c006af6",
+      "approval_state": "DRAFT",
+      "created_at": "2026-11-13",
+      "production_approved": false
+    },
+    {
+      "asset_id": "fx-wearable-mobile",
+      "version_id": "v1-20261113",
+      "rendition_id": "wearable-ai-founder-mobile",
+      "path": "public/images/editorial/wearable-ai-founder-mobile.webp",
+      "placement": "mobile_native",
+      "media_type": "image",
+      "rights": "original; no vendor marks",
+      "alt": "Portrait composition of unbranded camera glasses and a human-reviewed inspection.",
+      "sha256": "6d03c7e217abf3ca68e51650d9fee761746c59694bcf2ee68c9be4f14ef537af",
+      "approval_state": "DRAFT",
+      "created_at": "2026-11-13",
+      "production_approved": false
+    },
+    {
+      "asset_id": "fx-wearable-og",
+      "version_id": "v1-20261113",
+      "rendition_id": "wearable-ai-founder-og",
+      "path": "public/images/editorial/wearable-ai-founder-og.webp",
+      "placement": "og",
+      "media_type": "image",
+      "rights": "original; no vendor marks",
+      "alt": "Build for wearable AI: Samsung, Google and Meta.",
+      "sha256": "e13e6dbef7f3f12a7eb60a2e29318216afa342c3eb47e0c132a2dc952693aef9",
+      "approval_state": "DRAFT",
+      "created_at": "2026-11-13",
+      "production_approved": false
+    },
+    {
+      "asset_id": "fx-wearable-architecture",
+      "version_id": "v1-20261113",
+      "rendition_id": "wearable-capability-architecture",
+      "path": "public/images/editorial/wearable-capability-architecture.svg",
+      "placement": "architecture",
+      "media_type": "image",
+      "rights": "original; no vendor marks",
+      "alt": "Proposed capability-negotiating wearable AI backend.",
+      "sha256": "495b9683448ed2ca2afd9db2be72de3f90534304400d1ab687e3080935317788",
+      "approval_state": "DRAFT",
+      "created_at": "2026-11-13",
+      "production_approved": false
+    },
+    {
+      "asset_id": "fx-wearable-workflow",
+      "version_id": "v1-20261113",
+      "rendition_id": "wearable-governed-action",
+      "path": "public/images/editorial/wearable-governed-action.svg",
+      "placement": "workflow",
+      "media_type": "image",
+      "rights": "original; no vendor marks",
+      "alt": "Proposed consent, proposal and explicit confirmation flow.",
+      "sha256": "602df43627f1e8de3c218de4e4ca31ea411cb79ff3ba83f8b889b5e46eadaf59",
+      "approval_state": "DRAFT",
+      "created_at": "2026-11-13",
+      "production_approved": false
+    }
+  ],
+  "official_media": {
+    "video": "xxY0yuzxzLY",
+    "date": "2026-05-22",
+    "playback": "pending",
+    "Samsung_images": "rights-pending; official-source link only"
+  },
+  "master_class": "repository preview exception for bounded original editorial assets; use existing registry; no new media backend"
+}
