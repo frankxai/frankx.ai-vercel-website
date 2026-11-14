@@ -1,6 +1,6 @@
 import 'server-only'
 import manifest from '@/data/repos-manifest.json'
-import { classifyRepo, manifestRepoToPublicRepo, type MapSnapshot, type PublicMapRepo } from './model'
+import { manifestRepoToPublicRepo, type MapSnapshot, type PublicMapRepo } from './model'
 import { readPublicSource } from './source'
 
 // Public endpoints only. Never attach GITHUB_TOKEN: this data is rendered publicly.
