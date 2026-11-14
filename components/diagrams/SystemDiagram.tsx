@@ -176,6 +176,8 @@ export function SystemDiagram({
             <img
               src={darkSrc}
               alt={alt}
+              width={1600}
+              height={900}
               loading="eager"
               className="w-full h-auto rounded-xl"
             />
@@ -191,6 +193,8 @@ export function SystemDiagram({
           <img
             src={activeSvgSrc}
             alt={alt}
+            width={1600}
+            height={900}
             loading="eager"
             className="w-full h-auto rounded-xl mx-auto block"
           />
@@ -211,12 +215,16 @@ export function SystemDiagram({
           role="dialog"
           aria-modal="true"
           aria-label={title || alt}
-          onClick={() => setExpanded(false)}
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-4 sm:p-8"
         >
+          <button
+            type="button"
+            aria-label="Close diagram modal"
+            onClick={() => setExpanded(false)}
+            className="fixed inset-0 cursor-default bg-transparent focus-visible:outline-none"
+          />
           <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative max-h-[92vh] max-w-7xl w-full overflow-auto rounded-2xl border border-white/15 bg-[#0a0a0b] p-4 sm:p-6 shadow-2xl"
+            className="relative z-10 max-h-[92vh] max-w-7xl w-full overflow-auto rounded-2xl border border-white/15 bg-[#0a0a0b] p-4 sm:p-6 shadow-2xl"
           >
             <div className="flex items-center justify-between gap-4 pb-4 mb-4 border-b border-white/10">
               <div>
@@ -236,6 +244,8 @@ export function SystemDiagram({
             <img
               src={activeSvgSrc}
               alt={alt}
+              width={1600}
+              height={900}
               className="w-full h-auto rounded-xl"
             />
           </div>

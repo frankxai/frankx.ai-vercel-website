@@ -113,7 +113,7 @@ export function LivingWorldHudGallery() {
               role="tab"
               aria-selected={isSelected}
               onClick={() => setActiveIndex(idx)}
-              className={`text-left rounded-xl border p-3.5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 ${
+              className={`text-left rounded-xl border p-3.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 ${
                 isSelected
                   ? 'border-violet-400/50 bg-violet-500/15 shadow-lg shadow-violet-950/30'
                   : 'border-white/10 bg-white/[0.02] hover:border-white/25 hover:bg-white/[0.04]'

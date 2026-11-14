@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import {
   Sparkles,
   Search,
@@ -9,6 +9,8 @@ import {
   Check,
   Download,
   Volume2,
+  Play,
+  Square,
   Terminal,
   FileJson,
   ExternalLink,
@@ -214,8 +216,30 @@ export default function InfoGeniusStudioWorkbench() {
   const [result, setResult] = useState<StudioResult | null>(null)
   const [packResult, setPackResult] = useState<DecomposedPackResult | null>(null)
   const [audioDataUrl, setAudioDataUrl] = useState<string | null>(null)
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false)
   const [isNarrating, setIsNarrating] = useState(false)
   const [copiedTab, setCopiedTab] = useState<string | null>(null)
+  const audioCtxRef = useRef<AudioContext | null>(null)
+  const audioSourceRef = useRef<AudioBufferSourceNode | null>(null)
+
+  const stopNarrationPlayback = () => {
+    try {
+      audioSourceRef.current?.stop()
+    } catch {
+      // source already stopped
+    }
+    audioSourceRef.current = null
+    setIsPlayingAudio(false)
+  }
+
+  useEffect(() => {
+    return () => {
+      stopNarrationPlayback()
+      if (audioCtxRef.current && audioCtxRef.current.state !== 'closed') {
+        void audioCtxRef.current.close().catch(() => {})
+      }
+    }
+  }, [])
 
   useEffect(() => {
     try {
@@ -258,6 +282,7 @@ export default function InfoGeniusStudioWorkbench() {
     if (!topic.trim() || isLoading) return
     setIsLoading(true)
     setError(null)
+    stopNarrationPlayback()
     setAudioDataUrl(null)
     setLoadingStage(
       action === 'generate'
@@ -351,9 +376,17 @@ export default function InfoGeniusStudioWorkbench() {
     }
 
     const targetSlide = packResult.slides[slideIndex]
-    const updatedSlides = [...packResult.slides]
-    updatedSlides[slideIndex] = { ...targetSlide, isRendering: true }
-    setPackResult({ ...packResult, slides: updatedSlides })
+    if (!targetSlide) return
+    setPackResult((prev) =>
+      prev
+        ? {
+            ...prev,
+            slides: prev.slides.map((s, idx) =>
+              idx === slideIndex ? { ...s, isRendering: true } : s
+            ),
+          }
+        : prev
+    )
     setError(null)
 
     try {
@@ -381,18 +414,72 @@ export default function InfoGeniusStudioWorkbench() {
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Failed to render slide')
 
-      const nextSlides = [...packResult.slides]
-      nextSlides[slideIndex] = {
-        ...targetSlide,
-        isRendering: false,
-        renderedImageUrl: data.imageDataUrl,
-      }
-      setPackResult({ ...packResult, slides: nextSlides })
+      setPackResult((prev) =>
+        prev
+          ? {
+              ...prev,
+              slides: prev.slides.map((s, idx) =>
+                idx === slideIndex
+                  ? { ...s, isRendering: false, renderedImageUrl: data.imageDataUrl }
+                  : s
+              ),
+            }
+          : prev
+      )
     } catch (err) {
-      const nextSlides = [...packResult.slides]
-      nextSlides[slideIndex] = { ...targetSlide, isRendering: false }
-      setPackResult({ ...packResult, slides: nextSlides })
+      setPackResult((prev) =>
+        prev
+          ? {
+              ...prev,
+              slides: prev.slides.map((s, idx) =>
+                idx === slideIndex ? { ...s, isRendering: false } : s
+              ),
+            }
+          : prev
+      )
       setError(err instanceof Error ? err.message : 'Failed to render slide')
+    }
+  }
+
+  const toggleNarrationPlayback = async () => {
+    if (!audioDataUrl) return
+    if (isPlayingAudio) {
+      stopNarrationPlayback()
+      return
+    }
+    try {
+      const base64 = audioDataUrl.split(',')[1] || ''
+      const binary = window.atob(base64)
+      const bytes = new Uint8Array(binary.length)
+      for (let i = 0; i < binary.length; i += 1) {
+        bytes[i] = binary.charCodeAt(i)
+      }
+      const AudioCtx =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+      const ctx =
+        audioCtxRef.current && audioCtxRef.current.state !== 'closed'
+          ? audioCtxRef.current
+          : new AudioCtx()
+      audioCtxRef.current = ctx
+      if (ctx.state === 'suspended') await ctx.resume()
+      const decoded = await ctx.decodeAudioData(bytes.buffer.slice(0))
+      stopNarrationPlayback()
+      const source = ctx.createBufferSource()
+      source.buffer = decoded
+      source.connect(ctx.destination)
+      source.onended = () => {
+        if (audioSourceRef.current === source) {
+          audioSourceRef.current = null
+          setIsPlayingAudio(false)
+        }
+      }
+      audioSourceRef.current = source
+      setIsPlayingAudio(true)
+      source.start(0)
+    } catch (err) {
+      setIsPlayingAudio(false)
+      setError(err instanceof Error ? err.message : 'Unable to play narration audio.')
     }
   }
 
@@ -405,6 +492,7 @@ export default function InfoGeniusStudioWorkbench() {
     }
     setIsNarrating(true)
     setError(null)
+    stopNarrationPlayback()
     try {
       const res = await fetch('/api/byok/infogenius', {
         method: 'POST',
@@ -500,7 +588,7 @@ export default function InfoGeniusStudioWorkbench() {
           <button
             type="button"
             onClick={() => setShowKeyInput(!showKeyInput)}
-            className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-xs font-semibold transition-all ${
+            className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-xs font-semibold transition-colors ${
               apiKey.trim()
                 ? 'border-emerald-400/40 bg-emerald-500/10 text-emerald-200'
                 : 'border-white/15 bg-white/5 text-white/70 hover:text-white hover:border-white/30'
@@ -517,7 +605,7 @@ export default function InfoGeniusStudioWorkbench() {
         <button
           type="button"
           onClick={() => setActiveTab('single')}
-          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all ${
+          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-colors ${
             activeTab === 'single'
               ? 'bg-teal-500/20 border border-teal-400/50 text-teal-200'
               : 'bg-white/[0.03] border border-white/10 text-white/60 hover:text-white'
@@ -529,7 +617,7 @@ export default function InfoGeniusStudioWorkbench() {
         <button
           type="button"
           onClick={() => setActiveTab('decompose')}
-          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all ${
+          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-colors ${
             activeTab === 'decompose'
               ? 'bg-violet-500/20 border border-violet-400/50 text-violet-200'
               : 'bg-white/[0.03] border border-white/10 text-white/60 hover:text-white'
@@ -541,7 +629,7 @@ export default function InfoGeniusStudioWorkbench() {
         <button
           type="button"
           onClick={() => setActiveTab('brand')}
-          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all ${
+          className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-colors ${
             activeTab === 'brand'
               ? 'bg-amber-500/20 border border-amber-400/50 text-amber-200'
               : 'bg-white/[0.03] border border-white/10 text-white/60 hover:text-white'
@@ -585,7 +673,7 @@ export default function InfoGeniusStudioWorkbench() {
               value={apiKey}
               onChange={(e) => handleSaveKey(e.target.value)}
               placeholder="Paste GEMINI_API_KEY or OPENROUTER_API_KEY (sk-or-v1-...)"
-              className="flex-1 rounded-xl border border-white/15 bg-black/50 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:border-teal-400 focus:outline-none font-mono"
+              className="flex-1 rounded-xl border border-white/15 bg-black/50 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:border-teal-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400/70 font-mono"
             />
             {apiKey && (
               <button
@@ -670,7 +758,7 @@ export default function InfoGeniusStudioWorkbench() {
                     type="text"
                     value={c.val}
                     onChange={(e) => c.set(e.target.value)}
-                    className="w-full bg-transparent font-mono text-xs text-white focus:outline-none"
+                    className="w-full bg-transparent font-mono text-xs text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-teal-400/70 rounded"
                   />
                 </div>
               </div>
@@ -748,7 +836,7 @@ export default function InfoGeniusStudioWorkbench() {
                   value={topic}
                   onChange={(e) => setTopic(e.target.value)}
                   placeholder="e.g., Sovereign AI Swarm Architecture, How Zero-Knowledge Proofs Work..."
-                  className="w-full rounded-2xl border border-white/15 bg-black/40 pl-12 pr-4 py-4 text-base font-medium text-white placeholder:text-white/30 focus:border-teal-400 focus:outline-none"
+                  className="w-full rounded-2xl border border-white/15 bg-black/40 pl-12 pr-4 py-4 text-base font-medium text-white placeholder:text-white/30 focus:border-teal-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400/70"
                 />
               </div>
               <div className="flex flex-wrap gap-2 pt-1">
@@ -757,7 +845,7 @@ export default function InfoGeniusStudioWorkbench() {
                     key={sample}
                     type="button"
                     onClick={() => setTopic(sample)}
-                    className={`rounded-full border px-3 py-1 text-xs transition-all ${
+                    className={`rounded-full border px-3 py-1 text-xs transition-colors ${
                       topic === sample
                         ? 'border-teal-400/50 bg-teal-400/15 text-teal-200 font-semibold'
                         : 'border-white/10 bg-white/[0.03] text-white/50 hover:text-white/80 hover:border-white/20'
@@ -787,7 +875,7 @@ export default function InfoGeniusStudioWorkbench() {
                 value={articleText}
                 onChange={(e) => setArticleText(e.target.value)}
                 placeholder="Paste your markdown or article text here..."
-                className="w-full rounded-2xl border border-white/15 bg-black/40 p-4 text-xs font-mono text-white/90 placeholder:text-white/30 focus:border-violet-400 focus:outline-none leading-relaxed"
+                className="w-full rounded-2xl border border-white/15 bg-black/40 p-4 text-xs font-mono text-white/90 placeholder:text-white/30 focus:border-violet-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 leading-relaxed"
               />
             </div>
           )}
@@ -819,7 +907,7 @@ export default function InfoGeniusStudioWorkbench() {
                       setUseCustomBrand(false)
                       setStyle(opt.key)
                     }}
-                    className={`text-left rounded-2xl border p-3.5 transition-all ${
+                    className={`text-left rounded-2xl border p-3.5 transition-[transform,background-color,border-color,box-shadow] ${
                       active
                         ? `${opt.accent} shadow-lg scale-[1.01]`
                         : 'border-white/10 bg-white/[0.02] text-white/70 hover:bg-white/[0.05] hover:border-white/20'
@@ -842,7 +930,7 @@ export default function InfoGeniusStudioWorkbench() {
               <select
                 value={audience}
                 onChange={(e) => setAudience(e.target.value as 'elementary' | 'highschool' | 'college' | 'expert')}
-                className="w-full rounded-xl border border-white/15 bg-black/50 px-3.5 py-2.5 text-xs font-semibold text-white focus:border-teal-400 focus:outline-none"
+                className="w-full rounded-xl border border-white/15 bg-black/50 px-3.5 py-2.5 text-xs font-semibold text-white focus:border-teal-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400/70"
               >
                 <option value="elementary">Elementary (Ages 6-10 · Minimal)</option>
                 <option value="highschool">High School (Textbook · Moderate)</option>
@@ -858,7 +946,7 @@ export default function InfoGeniusStudioWorkbench() {
               <select
                 value={aspectRatio}
                 onChange={(e) => setAspectRatio(e.target.value as '16:9' | '1:1' | '9:16')}
-                className="w-full rounded-xl border border-white/15 bg-black/50 px-3.5 py-2.5 text-xs font-semibold text-white focus:border-teal-400 focus:outline-none"
+                className="w-full rounded-xl border border-white/15 bg-black/50 px-3.5 py-2.5 text-xs font-semibold text-white focus:border-teal-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400/70"
               >
                 <option value="16:9">16:9 Landscape (Blog hero or deck)</option>
                 <option value="1:1">1:1 Square (Carousel or LinkedIn)</option>
@@ -873,7 +961,7 @@ export default function InfoGeniusStudioWorkbench() {
               <select
                 value={imageSize}
                 onChange={(e) => setImageSize(e.target.value as '1K' | '2K' | '4K')}
-                className="w-full rounded-xl border border-white/15 bg-black/50 px-3.5 py-2.5 text-xs font-semibold text-white focus:border-teal-400 focus:outline-none"
+                className="w-full rounded-xl border border-white/15 bg-black/50 px-3.5 py-2.5 text-xs font-semibold text-white focus:border-teal-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400/70"
               >
                 <option value="1K">1K Fast Preview</option>
                 <option value="2K">2K Production (Recommended)</option>
@@ -890,7 +978,7 @@ export default function InfoGeniusStudioWorkbench() {
                 value={label}
                 onChange={(e) => setLabel(e.target.value)}
                 placeholder="Custom banner title..."
-                className="w-full rounded-xl border border-white/15 bg-black/50 px-3.5 py-2.5 text-xs text-white placeholder:text-white/30 focus:border-teal-400 focus:outline-none"
+                className="w-full rounded-xl border border-white/15 bg-black/50 px-3.5 py-2.5 text-xs text-white placeholder:text-white/30 focus:border-teal-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400/70"
               />
             </div>
           </div>
@@ -907,7 +995,7 @@ export default function InfoGeniusStudioWorkbench() {
                   type="button"
                   disabled={isLoading}
                   onClick={() => runAction('architect')}
-                  className="inline-flex items-center gap-2 rounded-full border border-teal-400/40 bg-teal-500/10 hover:bg-teal-500/20 px-6 py-3 text-xs font-bold text-teal-200 transition-all disabled:opacity-50"
+                  className="inline-flex items-center gap-2 rounded-full border border-teal-400/40 bg-teal-500/10 hover:bg-teal-500/20 px-6 py-3 text-xs font-bold text-teal-200 transition-colors disabled:opacity-50"
                 >
                   {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Terminal className="w-4 h-4" />}
                   {apiKey.trim() ? 'Research & Architect Prompt' : 'Architect Prompt & CLI (Free)'}
@@ -924,7 +1012,7 @@ export default function InfoGeniusStudioWorkbench() {
                     }
                     runAction('generate')
                   }}
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-teal-500 hover:from-violet-500 hover:to-teal-400 px-7 py-3 text-xs font-bold text-white shadow-lg shadow-violet-600/25 transition-all disabled:opacity-50"
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-teal-500 hover:from-violet-500 hover:to-teal-400 px-7 py-3 text-xs font-bold text-white shadow-lg shadow-violet-600/25 transition-[background-color,box-shadow,opacity] disabled:opacity-50"
                 >
                   {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
                   Research &amp; Render {imageSize} Infographic
@@ -936,7 +1024,7 @@ export default function InfoGeniusStudioWorkbench() {
                   type="button"
                   disabled={isLoading}
                   onClick={runDecomposeArticle}
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-teal-500 hover:from-violet-500 hover:to-teal-400 px-7 py-3 text-xs font-bold text-white shadow-lg shadow-violet-600/25 transition-all disabled:opacity-50"
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-teal-500 hover:from-violet-500 hover:to-teal-400 px-7 py-3 text-xs font-bold text-white shadow-lg shadow-violet-600/25 transition-[background-color,box-shadow,opacity] disabled:opacity-50"
                 >
                   {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Wand2 className="w-4 h-4" />}
                   Decompose into 5-Slide Visual Pack {apiKey.trim() ? '(AI Grounded)' : '(Free Instant)'}
@@ -1039,6 +1127,8 @@ export default function InfoGeniusStudioWorkbench() {
                     <img
                       src={slide.renderedImageUrl}
                       alt={slide.title}
+                      width={1280}
+                      height={720}
                       className="w-full h-auto object-contain max-h-[520px] mx-auto"
                     />
                   </div>
@@ -1091,11 +1181,37 @@ export default function InfoGeniusStudioWorkbench() {
               </div>
 
               {audioDataUrl && (
-                <div className="rounded-xl border border-teal-500/30 bg-teal-500/10 p-3 flex items-center justify-between gap-4">
+                <div className="rounded-xl border border-teal-500/30 bg-teal-500/10 p-3 flex flex-wrap items-center justify-between gap-4">
                   <span className="text-xs font-semibold text-teal-200">
                     Gemini 2.5 Flash TTS Narration (Voice: Kore)
                   </span>
-                  <audio controls src={audioDataUrl} className="h-8" />
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => void toggleNarrationPlayback()}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-teal-400/40 bg-teal-500/20 hover:bg-teal-500/30 px-3 py-1.5 text-xs font-semibold text-teal-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+                    >
+                      {isPlayingAudio ? (
+                        <>
+                          <Square className="w-3 h-3" />
+                          Stop Narration
+                        </>
+                      ) : (
+                        <>
+                          <Play className="w-3 h-3" />
+                          Play Narration
+                        </>
+                      )}
+                    </button>
+                    <a
+                      href={audioDataUrl}
+                      download="infogenius-narration.wav"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+                    >
+                      <Download className="w-3 h-3" />
+                      WAV
+                    </a>
+                  </div>
                 </div>
               )}
 
@@ -1104,6 +1220,8 @@ export default function InfoGeniusStudioWorkbench() {
                 <img
                   src={result.imageDataUrl}
                   alt={result.topic}
+                  width={1280}
+                  height={720}
                   className="w-full h-auto object-contain max-h-[680px] mx-auto"
                 />
               </div>

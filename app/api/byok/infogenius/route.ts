@@ -2,6 +2,15 @@ import { NextRequest } from 'next/server'
 
 export const maxDuration = 120
 
+/**
+ * Wrap a user-supplied string for POSIX shell display without allowing
+ * double-quote `$()` / backtick command substitution or newlines.
+ */
+function quotePosixArg(value: string): string {
+  const sanitized = value.replace(/[\r\n\0]+/g, ' ').trim()
+  return `'${sanitized.replace(/'/g, "'\\''")}'`
+}
+
 interface StyleDefinition {
   key: string
   name: string
@@ -529,7 +538,7 @@ export async function POST(req: NextRequest) {
           visualElements: slideVisuals,
           labels: slideLabels,
           imagePrompt: slidePrompt,
-          cliCommand: `npm run infogenius -- "${sr.defaultTitle.replace(/"/g, '\\"')}" --style ${styleObj.key} --audience ${audience} --aspect ${aspectRatio} --size ${imageSize} --out public/images/blog/generated/slide-0${idx + 1}-${slideSlug}.png`,
+          cliCommand: `node scripts/infogenius.mjs ${quotePosixArg(sr.defaultTitle)} --style ${quotePosixArg(styleObj.key)} --audience ${quotePosixArg(audience)} --aspect ${quotePosixArg(aspectRatio)} --size ${quotePosixArg(imageSize)} --out ${quotePosixArg(`public/images/blog/generated/slide-0${idx + 1}-${slideSlug}.png`)}`,
         }
       })
 
@@ -628,7 +637,7 @@ ${rawArticle.slice(0, 6000)}`
                   visualElements,
                   labels,
                   imagePrompt: slidePrompt,
-                  cliCommand: `npm run infogenius -- "${title.replace(/"/g, '\\"')}" --style ${styleObj.key} --audience ${audience} --aspect ${aspectRatio} --size ${imageSize} --out public/images/blog/generated/slide-0${idx + 1}-${slideSlug}.png`,
+                  cliCommand: `node scripts/infogenius.mjs ${quotePosixArg(title)} --style ${quotePosixArg(styleObj.key)} --audience ${quotePosixArg(audience)} --aspect ${quotePosixArg(aspectRatio)} --size ${quotePosixArg(imageSize)} --out ${quotePosixArg(`public/images/blog/generated/slide-0${idx + 1}-${slideSlug}.png`)}`,
                 }
               })
             }
@@ -768,7 +777,7 @@ ${rawArticle.slice(0, 6000)}`
       label: label || undefined,
     })
 
-    const cliCommand = `npm run infogenius -- "${cleanTopic.replace(/"/g, '\\"')}" --style ${styleObj.key} --audience ${audience} --aspect ${aspectRatio} --size ${imageSize}`
+    const cliCommand = `node scripts/infogenius.mjs ${quotePosixArg(cleanTopic)} --style ${quotePosixArg(styleObj.key)} --audience ${quotePosixArg(audience)} --aspect ${quotePosixArg(aspectRatio)} --size ${quotePosixArg(imageSize)}`
     const publicSrc = `/images/blog/generated/infogenius-${styleObj.key}-${slug}.png`
     const mdxSnippet = `<LiquidGlassZoom\n  src="${publicSrc}"\n  alt="${cleanTopic} — ${styleObj.name} Infographic"\n  caption="${cleanTopic}"\n/>`
 
@@ -833,6 +842,19 @@ ${rawArticle.slice(0, 6000)}`
         (Array.isArray(msg?.content)
           ? msg.content.find((c: { type?: string }) => c.type === 'image_url')?.image_url?.url
           : null)
+      if (!imageDataUrl) {
+        const explanation =
+          typeof msg?.content === 'string'
+            ? msg.content
+            : Array.isArray(msg?.content)
+              ? msg.content.map((c: { text?: string }) => c.text || '').join(' ').trim()
+              : ''
+        throw new Error(
+          explanation
+            ? `OpenRouter returned no image: ${explanation.slice(0, 240)}`
+            : 'OpenRouter returned no image for this prompt.'
+        )
+      }
     } else {
       const modelsToTry = [
         'gemini-3-pro-image-preview',

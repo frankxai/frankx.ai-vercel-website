@@ -127,7 +127,7 @@ export default function InfoGeniusPage() {
               <div className="flex flex-wrap gap-4">
                 <a
                   href="#studio"
-                  className="inline-flex items-center gap-2 rounded-full bg-violet-600 hover:bg-violet-500 px-7 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_30px_rgba(139,92,246,0.5)]"
+                  className="inline-flex items-center gap-2 rounded-full bg-violet-600 hover:bg-violet-500 px-7 py-3.5 text-sm font-semibold text-white transition-[background-color,box-shadow] duration-200 hover:shadow-[0_0_30px_rgba(139,92,246,0.5)]"
                 >
                   Launch Studio Workbench
                   <span className="text-base" aria-hidden="true">↓</span>
@@ -136,7 +136,7 @@ export default function InfoGeniusPage() {
                   href={INFOGENIUS_APP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-white/80 hover:text-white hover:border-white/30 transition-all duration-200"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-white/80 hover:text-white hover:border-white/30 transition-colors duration-200"
                 >
                   Hosted App
                   <span className="text-base" aria-hidden="true">↗</span>
@@ -145,7 +145,7 @@ export default function InfoGeniusPage() {
                   href={INFOGENIUS_REPO_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-white/70 hover:text-white hover:border-white/30 transition-all duration-200"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-white/70 hover:text-white hover:border-white/30 transition-colors duration-200"
                 >
                   Skill and source on GitHub
                 </a>
@@ -284,7 +284,7 @@ export default function InfoGeniusPage() {
             {pipeline.map((step, i) => (
               <div
                 key={step.step}
-                className="flex gap-6 items-start rounded-2xl border border-white/8 bg-white/3 p-6 hover:border-violet-500/30 hover:bg-violet-500/5 transition-all duration-200"
+                className="flex gap-6 items-start rounded-2xl border border-white/8 bg-white/3 p-6 hover:border-violet-500/30 hover:bg-violet-500/5 transition-colors duration-200"
               >
                 <div className="font-mono text-4xl font-black text-violet-500/30 flex-shrink-0 w-14 leading-none">
                   {step.step}
@@ -318,7 +318,7 @@ export default function InfoGeniusPage() {
             {styles.map((s) => (
               <div
                 key={s.label}
-                className={`rounded-2xl bg-gradient-to-br ${s.color} border border-white/8 p-5 hover:border-white/20 transition-all duration-200 cursor-default`}
+                className={`rounded-2xl bg-gradient-to-br ${s.color} border border-white/8 p-5 hover:border-white/20 transition-colors duration-200 cursor-default`}
               >
                 <div className="text-sm font-bold text-white">{s.label}</div>
                 <div className="text-xs text-white/40 mt-1">{s.tag}</div>
@@ -383,7 +383,7 @@ export default function InfoGeniusPage() {
             ].map((v) => (
               <div
                 key={v.label}
-                className={`group relative rounded-2xl bg-gradient-to-b ${v.bg} border border-white/8 hover:border-violet-500/30 overflow-hidden transition-all duration-300 hover:scale-[1.02] cursor-pointer`}
+                className={`group relative rounded-2xl bg-gradient-to-b ${v.bg} border border-white/8 hover:border-violet-500/30 overflow-hidden transition-[transform,border-color] duration-300 hover:scale-[1.02] cursor-pointer`}
               >
                 <div className="aspect-square relative">
                   <Image
@@ -397,7 +397,7 @@ export default function InfoGeniusPage() {
                   <div className="text-sm font-bold text-white">{v.label}</div>
                   <div className="text-xs text-violet-400 mt-0.5">{v.tag}</div>
                 </div>
-                <div className="absolute inset-0 bg-violet-600/0 group-hover:bg-violet-600/5 transition-all duration-300 pointer-events-none" />
+                <div className="absolute inset-0 bg-violet-600/0 group-hover:bg-violet-600/5 transition-colors duration-300 pointer-events-none" />
               </div>
             ))}
           </div>
@@ -435,20 +435,20 @@ export default function InfoGeniusPage() {
             <div className="flex flex-wrap gap-4 justify-center">
               <a
                 href="#studio"
-                className="inline-flex items-center gap-2 rounded-full bg-violet-600 hover:bg-violet-500 px-8 py-4 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_40px_rgba(139,92,246,0.5)]"
+                className="inline-flex items-center gap-2 rounded-full bg-violet-600 hover:bg-violet-500 px-8 py-4 text-sm font-semibold text-white transition-[background-color,box-shadow] duration-200 hover:shadow-[0_0_40px_rgba(139,92,246,0.5)]"
               >
                 Open Interactive Studio
                 <span aria-hidden="true">↑</span>
               </a>
               <Link
                 href="/waitlist?intent=infogenius-pro"
-                className="inline-flex items-center gap-2 rounded-full border border-teal-400/30 bg-teal-500/10 hover:bg-teal-500/20 px-8 py-4 text-sm font-semibold text-teal-200 transition-all duration-200"
+                className="inline-flex items-center gap-2 rounded-full border border-teal-400/30 bg-teal-500/10 hover:bg-teal-500/20 px-8 py-4 text-sm font-semibold text-teal-200 transition-colors duration-200"
               >
                 Join CLI &amp; MCP Pack Waitlist
               </Link>
               <Link
                 href="/agents"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 px-8 py-4 text-sm font-semibold text-white/70 hover:text-white hover:border-white/30 transition-all duration-200"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 px-8 py-4 text-sm font-semibold text-white/70 hover:text-white hover:border-white/30 transition-colors duration-200"
               >
                 Meet the full team
               </Link>
