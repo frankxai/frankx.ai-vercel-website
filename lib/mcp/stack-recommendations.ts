@@ -216,7 +216,8 @@ export function recommendFrankxStack(
           entry.tool.toLowerCase() === candidate.partnerSlug ||
           entry.aliases?.some((alias) => alias.toLowerCase() === candidate.partnerSlug),
       )
-      const isBlockedStatus = program?.status === 'hold' || program?.status === 'deprioritized' || program?.status === 'closed'
+      // Fail closed: only programs explicitly marked active may produce a sponsored link.
+      const isBlockedStatus = program?.status !== 'active'
       if (program && !isBlockedStatus) {
         const resolved = resolveProgramDestination(
           candidate.partnerSlug,

@@ -240,16 +240,11 @@ export default function DevelopersPage() {
       "url": "https://frankx.ai/api/mcp"
     }
   }
-}
-
-# Available tools:
-# - frankx_list_skills
-# - frankx_list_blueprints
-# - frankx_recommend_stack
-# - frankx_search_site
-# - frankx_get_article
-# - frankx_list_products`}</code>
+}`}</code>
             </pre>
+            <p className="mt-3 font-mono text-[11px] leading-relaxed text-zinc-500">
+              Tools: frankx_list_skills, frankx_list_blueprints, frankx_recommend_stack, frankx_search_site, frankx_get_article, frankx_list_products
+            </p>
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <Link
                 href="/mcp"
