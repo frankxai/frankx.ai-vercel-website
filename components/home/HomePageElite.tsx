@@ -21,6 +21,8 @@ import { FounderStory } from '@/components/home/FounderStory'
 import { MindPalaceAtlas } from '@/components/home/MindPalaceAtlas'
 import { SignalRouteSelector } from '@/components/home/SignalRouteSelector'
 import { FeaturedTrackPlayer } from '@/components/home/FeaturedTrackPlayer'
+import { HomeAgentCommandBar } from '@/components/home/HomeAgentCommandBar'
+import { HomeShaderAtmosphere } from '@/components/home/HomeShaderAtmosphere'
 import { homepageFeaturedRelease } from '@/data/homepage-featured-release'
 
 // ============================================================================
@@ -1555,6 +1557,7 @@ export default function HomePageElite({
   return (
     <main className="relative min-h-screen text-white overflow-x-hidden">
       <AuroraBackground />
+      <HomeShaderAtmosphere />
 
       <div className="relative z-10 overflow-x-hidden">
         {/* 1-3. Hero with featured track */}
@@ -1562,6 +1565,9 @@ export default function HomePageElite({
 
         {/* 4. Authority bar */}
         <AuthorityBar />
+
+        {/* Dual-surface MCP & developer index */}
+        <HomeAgentCommandBar />
 
         {/* Personal authorship and the existing miniature studio */}
         <FounderStory />
