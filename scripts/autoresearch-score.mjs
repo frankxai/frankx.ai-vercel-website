@@ -204,7 +204,8 @@ function scoreRecency(body) {
 
 function scoreAeo(fm, body) {
   let points = 0
-  const first100 = body.split(/\s+/).slice(0, 100).join(' ')
+  // Keep original line breaks: the TL;DR markers below are line-anchored.
+  const first100 = (body.match(/^(?:\s*\S+){0,100}/) ?? [''])[0]
   const hasBodyTldr = /^\s*(?:\*\*TL;?DR|\#\#\s*TL;?DR)/im.test(first100)
   // Single clear summary in metadata or opening paragraph, without duplicating TL;DR twice
   if (fm.tldr && !hasBodyTldr) points++

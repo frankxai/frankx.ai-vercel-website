@@ -28,12 +28,14 @@ function collectHeadings(): Heading[] {
 const groupSections = groupTocSections
 
 function TocList({
+  idPrefix,
   sections,
   activeId,
   expandedIds,
   onToggleSection,
   onNavigate,
 }: {
+  idPrefix: string
   sections: TocSection[]
   activeId: string
   expandedIds: Record<string, boolean>
@@ -47,7 +49,7 @@ function TocList({
         const isActive = activeId === section.id || hasChildActive
         const hasChildren = section.children.length > 0
         const isExpanded = Boolean(expandedIds[section.id])
-        const sublistId = `toc-sub-${section.id}`
+        const sublistId = `${idPrefix}-toc-sub-${section.id}`
 
         return (
           <li key={section.id}>
@@ -207,6 +209,7 @@ export default function TableOfContents({ variant = 'rail' }: { variant?: Varian
                 <span className="text-[11px] font-mono text-zinc-500">{sections.length} sections</span>
               </div>
               <TocList
+                idPrefix={panelId}
                 sections={sections}
                 activeId={activeId}
                 expandedIds={expandedIds}
@@ -236,6 +239,7 @@ export default function TableOfContents({ variant = 'rail' }: { variant?: Varian
       </div>
       <div className="overflow-y-auto overscroll-contain pr-1 custom-scrollbar flex-1">
         <TocList
+          idPrefix={panelId}
           sections={sections}
           activeId={activeId}
           expandedIds={expandedIds}

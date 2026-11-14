@@ -147,6 +147,23 @@ test('autoresearch scorer accepts concise essay without FAQ quotas and penalizes
   assert.ok(cleanResult.score > 0)
   assert.equal(cleanResult.components.aeo_score, 1)
   assert.ok(dupResult.components.aeo_score < cleanResult.components.aeo_score)
+
+  const duplicateAfterIntro = [
+    '---',
+    'title: "Concise benchmark note"',
+    'description: "Short empirical note without synthetic FAQ quotas."',
+    'tldr: "Single-slot frontmatter summary."',
+    '---',
+    '',
+    'Opening paragraph that sets the scene before any summary block appears.',
+    '',
+    '## TL;DR',
+    '',
+    'Duplicate summary repeated after an introductory paragraph.',
+    '',
+    baseBody,
+  ].join('\n')
+  assert.ok(scoreBrief(duplicateAfterIntro).components.aeo_score < cleanResult.components.aeo_score)
 })
 
 test('groupTocSections counts top-level H2 sections only and nests H3 items beneath them', () => {
