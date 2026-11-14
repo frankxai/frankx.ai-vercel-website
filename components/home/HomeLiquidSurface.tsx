@@ -24,7 +24,8 @@ const TONE_BORDER: Record<HomeLiquidTone, string> = {
 }
 
 /**
- * Obsidian frosted glass surface with subtle top specular hairline and reduced-motion-safe highlight.
+ * Obsidian glass surface with a top specular hairline and a reduced-motion-safe pointer highlight.
+ * One surface treatment only (border): no drop shadow or backdrop blur, per taste.md.
  */
 export function HomeLiquidSurface({
   children,
@@ -64,7 +65,7 @@ export function HomeLiquidSurface({
       ref={containerRef}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className={`relative overflow-hidden rounded-2xl border border-white/[0.1] bg-[#0B0E17]/75 shadow-[0_20px_56px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl transition-[border-color,background-color,box-shadow,transform] duration-300 ${TONE_BORDER[tone]} ${className}`}
+      className={`relative overflow-hidden rounded-2xl border border-white/[0.1] bg-[#0B0E17]/90 transition-[border-color,background-color] duration-300 ${TONE_BORDER[tone]} ${className}`}
     >
       <div
         aria-hidden="true"
