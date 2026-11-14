@@ -218,11 +218,16 @@ export default async function BlogPostPage({
               {post.title}
             </h1>
 
-            {/* Description / TL;DR */}
+            {/* Opening Summary (one visible block max; retains JSON-LD abstract) */}
             {post.tldr ? (
               <div className="max-w-3xl rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/10 via-cyan-500/5 to-transparent p-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan-400">TL;DR</p>
                 <p className="mt-2 text-base leading-relaxed text-white/80 md:text-lg">{post.tldr}</p>
+              </div>
+            ) : post.readingGoal ? (
+              <div className="max-w-3xl rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-400">Reading Goal</p>
+                <p className="mt-2 text-base leading-relaxed text-white/80 md:text-lg">{post.readingGoal}</p>
               </div>
             ) : (
               <p className="max-w-3xl text-lg md:text-xl leading-relaxed text-white/70">
@@ -245,13 +250,13 @@ export default async function BlogPostPage({
               <ArticleHeaderActions title={post.title} url={canonicalUrl} />
             </div>
 
-            {/* Hero Image - 16/9 premium with proper margins, padding, sizing for overlays */}
+            {/* Hero Image - 16/9 editorial frame; only supply caption when image-specific */}
             <div className="mt-8 mb-8">
               <HeroImage
                 src={post.image}
                 title={post.title}
-                subtitle={post.description}
-                alt={post.title}
+                subtitle={post.image ? post.imageCaption : post.description}
+                alt={post.coverAlt || post.title}
                 priority
               />
             </div>
@@ -261,26 +266,6 @@ export default async function BlogPostPage({
           <div className="mt-10 xl:grid xl:grid-cols-[minmax(0,1fr)_18rem] xl:gap-12 xl:items-start">
             {/* Main Reading Column */}
             <div className="min-w-0 max-w-3xl xl:max-w-none">
-              {/* Reading Goal */}
-              {post.readingGoal && (
-                <div className="mb-8 rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent p-6">
-                  <div className="flex items-start gap-3">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500/20">
-                      {/* Target / aim SVG — avoids emoji rendering inconsistency */}
-                      <svg className="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                        <circle cx="12" cy="12" r="10" />
-                        <circle cx="12" cy="12" r="6" />
-                        <circle cx="12" cy="12" r="2" />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <span className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-400">Reading Goal</span>
-                      <p className="mt-2 text-sm leading-relaxed text-white/65">{post.readingGoal}</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-
               {/* AI Architect Recommendation — the signature routing box */}
               {post.architectNote && (
                 <div className="mb-10 rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/10 via-cyan-500/5 to-transparent p-6">
@@ -345,17 +330,10 @@ export default async function BlogPostPage({
               <RelatedResearch blogSlug={slug} />
               <RelatedQualities href={`/blog/${post.slug}`} />
 
-              {/* Axi article footer accent */}
-              <div className="mt-12 flex items-center gap-4 border-t border-white/10 pt-8">
-                <Image
-                  src="/images/mascot/axi-v3-icon.png"
-                  alt="Axi"
-                  width={36}
-                  height={36}
-                  className="rounded-lg opacity-60"
-                />
-                <p className="text-xs text-white/30">
-                  Read on <span className="text-white/50">FrankX.AI</span> — AI Architecture, Music & Creator Intelligence
+              {/* Editorial imprint footer */}
+              <div className="mt-12 border-t border-white/10 pt-6">
+                <p className="text-xs text-white/40">
+                  Published on <span className="text-white/65">FrankX.AI</span> · AI Architecture &amp; Creator Systems
                 </p>
               </div>
             </div>

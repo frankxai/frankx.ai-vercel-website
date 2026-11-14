@@ -1,12 +1,9 @@
 'use client'
 
 import { useEffect, useId, useState } from 'react'
+import { groupTocSections, type TocHeading, type TocSection } from '@/lib/blog-toc'
 
-type Heading = {
-  id: string
-  text: string
-  level: 2 | 3
-}
+type Heading = TocHeading
 
 type Variant = 'rail' | 'mobile'
 
@@ -28,35 +25,90 @@ function collectHeadings(): Heading[] {
     .filter((heading): heading is Heading => heading !== null)
 }
 
+const groupSections = groupTocSections
+
 function TocList({
-  headings,
+  sections,
   activeId,
+  expandedIds,
+  onToggleSection,
   onNavigate,
 }: {
-  headings: Heading[]
+  sections: TocSection[]
   activeId: string
+  expandedIds: Record<string, boolean>
+  onToggleSection: (sectionId: string) => void
   onNavigate?: () => void
 }) {
   return (
     <ol className="space-y-1">
-      {headings.map((heading) => {
-        const isActive = activeId === heading.id
+      {sections.map((section) => {
+        const hasChildActive = section.children.some((child) => child.id === activeId)
+        const isActive = activeId === section.id || hasChildActive
+        const hasChildren = section.children.length > 0
+        const isExpanded = Boolean(expandedIds[section.id])
+        const sublistId = `toc-sub-${section.id}`
+
         return (
-          <li key={heading.id}>
-            <a
-              href={`#${heading.id}`}
-              aria-current={isActive ? 'location' : undefined}
-              onClick={onNavigate}
-              className={`group flex items-center py-1.5 px-2.5 rounded-lg leading-snug transition-[background-color,border-color,color,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
-                heading.level === 3 ? 'ml-3 text-[12.5px]' : 'text-[13.5px] font-medium'
-              } ${
-                isActive
-                  ? 'bg-emerald-500/15 text-emerald-300 font-semibold shadow-sm border-l-2 border-emerald-400'
-                  : 'text-zinc-400 hover:text-white hover:bg-white/[0.04] border-l-2 border-transparent'
-              }`}
-            >
-              <span className="truncate">{heading.text}</span>
-            </a>
+          <li key={section.id}>
+            <div className="flex items-start gap-1">
+              <a
+                href={`#${section.id}`}
+                aria-current={activeId === section.id ? 'location' : undefined}
+                onClick={onNavigate}
+                className={`group flex-1 flex items-center py-1.5 px-2.5 rounded-lg text-[13.5px] font-medium leading-snug transition-[background-color,border-color,color,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
+                  isActive
+                    ? 'bg-emerald-500/15 text-emerald-300 font-semibold shadow-sm border-l-2 border-emerald-400'
+                    : 'text-zinc-400 hover:text-white hover:bg-white/[0.04] border-l-2 border-transparent'
+                }`}
+              >
+                <span className="line-clamp-2">{section.text}</span>
+              </a>
+              {hasChildren && (
+                <button
+                  type="button"
+                  aria-expanded={isExpanded}
+                  aria-controls={sublistId}
+                  aria-label={`${isExpanded ? 'Collapse' : 'Expand'} subsections for ${section.text}`}
+                  onClick={() => onToggleSection(section.id)}
+                  className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-zinc-500 transition-colors hover:bg-white/[0.06] hover:text-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60"
+                >
+                  <svg
+                    className={`h-3.5 w-3.5 transition-transform duration-150 ${isExpanded ? 'rotate-90' : ''}`}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m9 18 6-6-6-6" />
+                  </svg>
+                </button>
+              )}
+            </div>
+            {hasChildren && isExpanded && (
+              <ol id={sublistId} className="mt-1 space-y-0.5 pl-3 border-l border-white/[0.08] ml-2.5">
+                {section.children.map((child) => {
+                  const childActive = activeId === child.id
+                  return (
+                    <li key={child.id}>
+                      <a
+                        href={`#${child.id}`}
+                        aria-current={childActive ? 'location' : undefined}
+                        onClick={onNavigate}
+                        className={`block py-1 px-2 rounded-md text-[12px] leading-snug transition-[background-color,color] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 ${
+                          childActive
+                            ? 'bg-emerald-500/10 text-emerald-300 font-medium'
+                            : 'text-zinc-500 hover:text-zinc-200 hover:bg-white/[0.03]'
+                        }`}
+                      >
+                        <span className="line-clamp-2">{child.text}</span>
+                      </a>
+                    </li>
+                  )
+                })}
+              </ol>
+            )}
           </li>
         )
       })}
@@ -69,6 +121,11 @@ export default function TableOfContents({ variant = 'rail' }: { variant?: Varian
   const [headings, setHeadings] = useState<Heading[]>([])
   const [activeId, setActiveId] = useState('')
   const [open, setOpen] = useState(false)
+  const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({})
+
+  const toggleSection = (sectionId: string) => {
+    setExpandedIds((prev) => ({ ...prev, [sectionId]: !prev[sectionId] }))
+  }
 
   useEffect(() => {
     const collected = collectHeadings()
@@ -101,7 +158,9 @@ export default function TableOfContents({ variant = 'rail' }: { variant?: Varian
     return () => window.removeEventListener('keydown', onKey)
   }, [open])
 
-  if (headings.length < 2) return null
+  const sections = groupSections(headings)
+
+  if (sections.length < 3) return null
 
   if (variant === 'mobile') {
     return (
@@ -145,9 +204,15 @@ export default function TableOfContents({ variant = 'rail' }: { variant?: Varian
                     Table of Contents
                   </span>
                 </div>
-                <span className="text-[11px] font-mono text-zinc-500">{headings.length} sections</span>
+                <span className="text-[11px] font-mono text-zinc-500">{sections.length} sections</span>
               </div>
-              <TocList headings={headings} activeId={activeId} onNavigate={() => setOpen(false)} />
+              <TocList
+                sections={sections}
+                activeId={activeId}
+                expandedIds={expandedIds}
+                onToggleSection={toggleSection}
+                onNavigate={() => setOpen(false)}
+              />
             </nav>
           </div>
         ) : null}
@@ -167,10 +232,15 @@ export default function TableOfContents({ variant = 'rail' }: { variant?: Varian
             Table of Contents
           </span>
         </div>
-        <span className="text-[11px] font-mono text-zinc-500">{headings.length} sections</span>
+        <span className="text-[11px] font-mono text-zinc-500">{sections.length} sections</span>
       </div>
       <div className="overflow-y-auto overscroll-contain pr-1 custom-scrollbar flex-1">
-        <TocList headings={headings} activeId={activeId} />
+        <TocList
+          sections={sections}
+          activeId={activeId}
+          expandedIds={expandedIds}
+          onToggleSection={toggleSection}
+        />
       </div>
       <div className="mt-3 pt-2.5 border-t border-white/[0.06] flex items-center justify-between shrink-0 text-[11px]">
         <button
