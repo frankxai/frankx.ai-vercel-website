@@ -1,6 +1,6 @@
 import 'server-only'
 import manifest from '@/data/repos-manifest.json'
-import { classifyRepo, type MapSnapshot, type PublicMapRepo } from './model'
+import { classifyRepo, manifestRepoToPublicRepo, type MapSnapshot, type PublicMapRepo } from './model'
 import { readPublicSource } from './source'
 
 // Public endpoints only. Never attach GITHUB_TOKEN: this data is rendered publicly.
@@ -21,14 +21,8 @@ export async function getMapSnapshot(): Promise<MapSnapshot> {
   const repos = new Map<string, PublicMapRepo>()
   // Historical navigation fallback. Never serialize notes, priorities or private records.
   for (const repo of manifest.repos) {
-    if (repo.private || !/^[\w.-]+$/.test(repo.name) || repo.org !== 'frankxai') continue
-    const id = `${repo.org}/${repo.name}`
-    repos.set(id.toLowerCase(), {
-      id, name: repo.name, owner: repo.org, description: repo.description,
-      url: `https://github.com/${id}`, group: classifyRepo(repo.org, repo.name),
-      pushedAt: null, observedAt: manifest.lastUpdated, source: 'snapshot',
-      archived: repo.status === 'archived', stars: null,
-    })
+    const entry = manifestRepoToPublicRepo(repo, manifest.lastUpdated)
+    if (entry) repos.set(entry.id.toLowerCase(), entry)
   }
   for (const result of results) for (const repo of result.repos) repos.set(repo.id.toLowerCase(), repo)
   return { repos: [...repos.values()].sort((a, b) => a.id.localeCompare(b.id)), sources: results.map(result => result.source), snapshotDate: manifest.lastUpdated }

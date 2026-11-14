@@ -1,6 +1,9 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { normalizePublicRepo, recentActivity, filterRepos } from '../../lib/ecosystem/model.ts'
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { manifestRepoToPublicRepo, normalizePublicRepo, recentActivity, filterRepos } from '../../lib/ecosystem/model.ts'
 const observed = '2026-11-14T00:00:00Z'
 const raw = { name: 'skills', full_name: 'frankxai/skills', owner: { login: 'frankxai' }, private: false, fork: false, archived: false, pushed_at: '2026-11-13T12:00:00Z', description: 'Architecture methods', stargazers_count: 3 }
 const repo = () => normalizePublicRepo(raw, observed)
@@ -54,4 +57,23 @@ test('successful source retains upstream date, filters private records and accep
   const empty = await readPublicSource('frankxai', url, async () => new Response('[]', { headers: { date: observed } }))
   assert.equal(empty.source.state, 'available')
   assert.equal(empty.repos.length, 0)
+})
+test('manifest fallback excludes private, fork-tagged, unexpected-owner and invalid-name entries', () => {
+  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
+  const manifest = JSON.parse(fs.readFileSync(path.join(root, 'data/repos-manifest.json'), 'utf8'))
+  const base = { name: 'skills', org: 'frankxai', description: 'Skills library', private: false, status: 'active', tags: ['skills'] }
+  assert.equal(manifestRepoToPublicRepo(base, observed)?.id, 'frankxai/skills')
+  for (const bad of [{ private: true }, { private: undefined }, { fork: true }, { tags: ['orchestration', 'fork'] }, { org: 'other' }, { name: '../secret' }]) {
+    assert.equal(manifestRepoToPublicRepo({ ...base, ...bad }, observed), null)
+  }
+  const projected = manifest.repos.map(r => manifestRepoToPublicRepo(r, manifest.lastUpdated)).filter(Boolean).map(r => r.name)
+  assert.equal(projected.includes('arcanea-flow'), false)
+  assert.equal(projected.includes('arcanea-opencode'), false)
+})
+test('mobile map layout reserves at least 64px top padding for fixed NavigationMega', () => {
+  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
+  const css = fs.readFileSync(path.join(root, 'app/map/map.module.css'), 'utf8')
+  const match = css.match(/@media\s*\(max-width:\s*760px\)\s*\{[^}]*\.wrap\s*\{[^}]*padding:\s*(\d+)px/)
+  assert.ok(match, 'expected @media (max-width: 760px) .wrap padding')
+  assert.ok(Number(match[1]) >= 64, `expected mobile .wrap padding-top >= 64px, got ${match[1]}px`)
 })

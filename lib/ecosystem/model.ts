@@ -46,3 +46,18 @@ export function filterRepos(repos: PublicMapRepo[], query: string, group: MapGro
   return repos.filter(repo => (group === 'all' || repo.group === group) && (!activeOnly || !repo.archived) &&
     `${repo.id} ${repo.description}`.toLowerCase().includes(term))
 }
+export interface ManifestRepoInput {
+  name: string; org: string; description: string
+  private?: boolean; fork?: boolean; status?: string; tags?: readonly string[]
+}
+export function manifestRepoToPublicRepo(repo: ManifestRepoInput, observedAt: string): PublicMapRepo | null {
+  if (repo.private !== false || repo.fork === true || repo.tags?.includes('fork')) return null
+  if (!/^[\w.-]+$/.test(repo.name) || repo.org !== 'frankxai') return null
+  const id = `${repo.org}/${repo.name}`
+  return {
+    id, name: repo.name, owner: repo.org, description: repo.description,
+    url: `https://github.com/${id}`, group: classifyRepo(repo.org, repo.name),
+    pushedAt: null, observedAt, source: 'snapshot',
+    archived: repo.status === 'archived', stars: null,
+  }
+}
