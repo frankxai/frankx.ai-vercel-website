@@ -32,11 +32,12 @@ const CLIENT_SNIPPETS: Record<ClientTab, { label: string; note: string; code: st
     code: 'claude mcp add --transport http frankx https://frankx.ai/api/mcp',
   },
   cursor: {
-    label: 'Cursor / .mcp.json',
-    note: 'Drop into .cursor/mcp.json or project-root .mcp.json.',
+    label: 'Project .mcp.json',
+    note: 'Project-root .mcp.json for Claude Code, which needs "type": "http" for a remote server. In Cursor .cursor/mcp.json keep only the url field.',
     code: `{
   "mcpServers": {
     "frankx": {
+      "type": "http",
       "url": "https://frankx.ai/api/mcp"
     }
   }

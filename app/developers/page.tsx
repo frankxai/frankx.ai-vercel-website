@@ -236,6 +236,7 @@ export default function DevelopersPage() {
               <code>{`{
   "mcpServers": {
     "frankx": {
+      "type": "http",
       "url": "https://frankx.ai/api/mcp"
     }
   }
