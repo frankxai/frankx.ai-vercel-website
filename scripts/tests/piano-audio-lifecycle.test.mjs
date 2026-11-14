@@ -159,6 +159,34 @@ test('guided piano ensureCtx coalesces concurrent playNote calls into one resume
   assert.equal(mock.get().started.length, 4)
 })
 
+test('guided piano ensureCtx handles sequential playNote calls once running without TDZ errors', async () => {
+  const mock = mockContext()
+  const source = guided.slice(guided.indexOf('interface AudioEngine'), guided.indexOf('// ── Helper: stars badge'))
+  const hook = vm.runInNewContext(stripTypeScriptTypes(source) + '\nuseAudio', {
+    AudioContext: mock.Context,
+    useRef: value => ({ current: value }), useCallback: callback => callback,
+    useEffect() {}, useState: value => [value, () => {}],
+    getVolume: () => 1, AbortController,
+    GUIDED_PIANO_SAMPLES: [{ name: 'C4', frequency: 261.63 }],
+    fetch: async () => { throw new Error('offline') }, GUIDED_SAMPLE_CDN: '',
+  })
+  const audio = hook()
+  assert.equal(await audio.playNote(261.63), true)
+  assert.equal(await audio.playNote(293.66), true)
+  assert.equal(await audio.playNote(329.63), true)
+  assert.equal(mock.get().resumeCalls, 1)
+  assert.equal(mock.get().started.length, 6)
+  const ensureStart = source.indexOf('const ensureCtx = useCallback(')
+  const ensureEnd = source.indexOf('const playNote = useCallback(', ensureStart)
+  const ensureBody = source.slice(ensureStart, ensureEnd)
+  assert.match(ensureBody, /ensurePromiseRef\.current = pending/)
+  assert.match(ensureBody, /void pending\.finally\(/)
+  const iifeStart = ensureBody.indexOf('const pending = (async () => {')
+  const iifeEnd = ensureBody.indexOf('})()')
+  assert.ok(iifeStart !== -1 && iifeEnd > iifeStart)
+  assert.doesNotMatch(ensureBody.slice(iifeStart + 'const pending ='.length, iifeEnd), /\bpending\b/)
+})
+
 test('guided handleKeyPress allows rapid concurrent notes and drops stale guided updates on epoch change', async () => {
   const guidedEpochRef = { current: 1 }
   const modeRef = { current: 'guided' }

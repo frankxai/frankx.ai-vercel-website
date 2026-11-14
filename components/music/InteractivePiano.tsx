@@ -402,8 +402,11 @@ function useAudio(): AudioEngine {
   const ensurePromiseRef = useRef<Promise<AudioContext | null> | null>(null)
 
   const ensureCtx = useCallback(async () => {
+    if (ctxRef.current?.state === 'running') {
+      setStatus('ready')
+      return ctxRef.current
+    }
     if (ensurePromiseRef.current) return ensurePromiseRef.current
-    let settled = false
     const pending = (async () => {
       try {
         if (!ctxRef.current || ctxRef.current.state === 'closed') {
@@ -474,14 +477,14 @@ function useAudio(): AudioEngine {
       } catch {
         setStatus('error')
         return null
-      } finally {
-        settled = true
-        if (ensurePromiseRef.current === pending) {
-          ensurePromiseRef.current = null
-        }
       }
     })()
-    if (!settled) ensurePromiseRef.current = pending
+    ensurePromiseRef.current = pending
+    void pending.finally(() => {
+      if (ensurePromiseRef.current === pending) {
+        ensurePromiseRef.current = null
+      }
+    })
     return pending
   }, [])
 
