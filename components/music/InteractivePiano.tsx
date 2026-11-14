@@ -679,16 +679,18 @@ export default function InteractivePiano({
   // Progress (lazy-init from localStorage)
   const [progress, setProgress] = useState<Record<string, SongProgress>>({})
   const modeRef = useRef<Mode>(mode)
-  modeRef.current = mode
   const guidedRef = useRef<GuidedState | null>(guided)
-  guidedRef.current = guided
   const progressRef = useRef<Record<string, SongProgress>>(progress)
-  progressRef.current = progress
+  const guidedQueueRef = useRef<Promise<void>>(Promise.resolve())
   const [todayMins, setTodayMins] = useState(0)
   const [totalStarsCount, setTotalStarsCount] = useState(0)
 
   const whiteKeys = NOTES.filter((n) => !n.black)
   const blackKeys = NOTES.filter((n) => n.black)
+
+  useEffect(() => { modeRef.current = mode }, [mode])
+  useEffect(() => { guidedRef.current = guided }, [guided])
+  useEffect(() => { progressRef.current = progress }, [progress])
 
   // Hydrate progress from localStorage on mount
   useEffect(() => {
@@ -697,6 +699,7 @@ export default function InteractivePiano({
       const p = getSongProgress(id)
       if (p) all[id] = p
     }
+    progressRef.current = all
     setProgress(all)
     setTotalStarsCount(totalStars(all))
     const session = getDailySession()
@@ -725,41 +728,53 @@ export default function InteractivePiano({
   const handleKeyPress = useCallback(
     async (note: NoteDef) => {
       const epoch = guidedEpochRef.current
-      const played = await audio.playNote(note.freq, modeRef.current === 'guided' ? 0.7 : 0.6)
-      if (!played) return
-      setActiveNote(note.note)
-      window.setTimeout(() => setActiveNote((cur) => (cur === note.note ? null : cur)), 220)
+      const prevTurn = guidedQueueRef.current
+      let releaseTurn!: () => void
+      guidedQueueRef.current = new Promise<void>((resolve) => {
+        releaseTurn = resolve
+      })
+      try {
+        const played = await audio.playNote(note.freq, modeRef.current === 'guided' ? 0.7 : 0.6)
+        await prevTurn
+        if (!played) return
+        setActiveNote(note.note)
+        window.setTimeout(() => setActiveNote((cur) => (cur === note.note ? null : cur)), 220)
 
-      // In guided mode, advance song state when correct note hit
-      const currentGuided = guidedRef.current
-      if (guidedEpochRef.current !== epoch || modeRef.current !== 'guided' || !currentGuided) return
-      const song = SONGS[currentGuided.songId]
-      const expected = song.notes[currentGuided.step]?.note
-      if (note.note === expected) {
-        window.setTimeout(() => { void audio.playChime() }, 120)
-        const nextStep = currentGuided.step + 1
-        if (nextStep >= song.notes.length) {
-          // Song complete!
-          const result = recordAttempt(currentGuided.songId, currentGuided.misses)
-          const nextProgress = { ...progressRef.current, [currentGuided.songId]: result }
-          progressRef.current = nextProgress
-          setProgress(nextProgress)
-          setTotalStarsCount(totalStars(nextProgress))
-          setCompletion({ songId: currentGuided.songId, stars: result.lastStars })
-          guidedRef.current = null
-          setGuided(null)
-          setHighlightedNote(null)
+        // In guided mode, advance song state when correct note hit
+        const currentGuided = guidedRef.current
+        if (guidedEpochRef.current !== epoch || modeRef.current !== 'guided' || !currentGuided) return
+        const song = SONGS[currentGuided.songId]
+        const expected = song.notes[currentGuided.step]?.note
+        if (note.note === expected) {
+          window.setTimeout(() => {
+            if (guidedEpochRef.current === epoch) void audio.playChime()
+          }, 120)
+          const nextStep = currentGuided.step + 1
+          if (nextStep >= song.notes.length) {
+            // Song complete!
+            const result = recordAttempt(currentGuided.songId, currentGuided.misses)
+            const nextProgress = { ...progressRef.current, [currentGuided.songId]: result }
+            progressRef.current = nextProgress
+            setProgress(nextProgress)
+            setTotalStarsCount(totalStars(nextProgress))
+            setCompletion({ songId: currentGuided.songId, stars: result.lastStars })
+            guidedRef.current = null
+            setGuided(null)
+            setHighlightedNote(null)
+          } else {
+            const updatedGuided = { ...currentGuided, step: nextStep }
+            guidedRef.current = updatedGuided
+            setGuided(updatedGuided)
+            setHighlightedNote(song.notes[nextStep].note)
+          }
         } else {
-          const updatedGuided = { ...currentGuided, step: nextStep }
+          // Wrong note — count miss but don't punish; the highlight teaches
+          const updatedGuided = { ...currentGuided, misses: currentGuided.misses + 1 }
           guidedRef.current = updatedGuided
           setGuided(updatedGuided)
-          setHighlightedNote(song.notes[nextStep].note)
         }
-      } else {
-        // Wrong note — count miss but don't punish; the highlight teaches
-        const updatedGuided = { ...currentGuided, misses: currentGuided.misses + 1 }
-        guidedRef.current = updatedGuided
-        setGuided(updatedGuided)
+      } finally {
+        releaseTurn()
       }
     },
     [audio]
@@ -952,7 +967,7 @@ export default function InteractivePiano({
                 </span>
               </p>
               <p className="mt-2 text-xs opacity-80">
-                {labels.keyboardKey}: {Object.entries(KEY_TO_NOTE).find(([, note]) => note === expectedNote)?.[0].toUpperCase()}
+                {labels.keyboardKey}: {Object.entries(KEY_TO_NOTE).find(([, note]) => note === expectedNote)?.[0].toUpperCase() ?? '—'}
                 {' · '}{guidedSong.notes.slice(guided.step, guided.step + 5).map(step => step.note).join(' → ')}
               </p>
               <progress className="mt-2 h-1 w-full accent-emerald-500" aria-label={labels.progress} value={guided.step} max={guidedSong.notes.length} />

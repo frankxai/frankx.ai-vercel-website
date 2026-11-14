@@ -333,7 +333,6 @@ export default function PianoPage() {
   const pendingNotes = useRef(new Map<number, symbol>())
   const [volume, setVolume] = useState(1.15)
   const volumeRef = useRef(volume)
-  volumeRef.current = volume
   const touchMap = useRef<Map<number, number>>(new Map())
   const pianoRef = useRef<HTMLDivElement>(null)
 
@@ -358,7 +357,11 @@ export default function PianoPage() {
   useEffect(() => () => { engineRef.current?.destroy() }, [])
 
   // Hydrate volume from localStorage once
-  useEffect(() => { setVolume(getVolume() * 1.15) }, [])
+  useEffect(() => {
+    const next = getVolume() * 1.15
+    volumeRef.current = next
+    setVolume(next)
+  }, [])
 
   // Persist + apply volume changes
   useEffect(() => {
@@ -379,7 +382,9 @@ export default function PianoPage() {
       setPressed(prev => new Set(prev).add(midi))
       setLastNote(midiToDisplay(midi))
     } catch {
-      pendingNotes.current.delete(midi)
+      if (pendingNotes.current.get(midi) === request) {
+        pendingNotes.current.delete(midi)
+      }
       setAudioError(true)
     }
   }, [getEngine])
@@ -563,7 +568,7 @@ export default function PianoPage() {
             max="1.8"
             step="0.05"
             value={volume}
-            onChange={(e) => setVolume(parseFloat(e.target.value))}
+            onChange={(e) => { const next = parseFloat(e.target.value); volumeRef.current = next; setVolume(next) }}
             className="h-1 w-24 cursor-pointer accent-cyan-400"
             aria-label="Master volume"
           />

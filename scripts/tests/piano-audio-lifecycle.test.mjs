@@ -192,6 +192,7 @@ test('guided handleKeyPress allows rapid concurrent notes and drops stale guided
   const modeRef = { current: 'guided' }
   const guidedRef = { current: { songId: 'test', step: 0, misses: 0, startedAt: 0 } }
   const progressRef = { current: {} }
+  const guidedQueueRef = { current: Promise.resolve() }
   const guidedStates = []
   const highlighted = []
   let playedCount = 0
@@ -205,6 +206,7 @@ test('guided handleKeyPress allows rapid concurrent notes and drops stale guided
     modeRef,
     guidedRef,
     progressRef,
+    guidedQueueRef,
     SONGS: { test: { notes: [{ note: 'C4' }, { note: 'D4' }, { note: 'E4' }] } },
     audio: {
       playNote: () => new Promise(resolve => { playedCount++; pendingResolvers.push(resolve) }),
@@ -221,14 +223,15 @@ test('guided handleKeyPress allows rapid concurrent notes and drops stale guided
     totalStars: () => 3,
   })
 
+  // Resolve second note before first to prove FIFO guided step serialization
   const p1 = handleKeyPress({ note: 'C4', freq: 261.63 })
   const p2 = handleKeyPress({ note: 'D4', freq: 293.66 })
   assert.equal(playedCount, 2)
-  pendingResolvers[0](true)
-  await p1
   pendingResolvers[1](true)
-  await p2
+  pendingResolvers[0](true)
+  await Promise.all([p1, p2])
   assert.equal(guidedRef.current.step, 2)
+  assert.equal(guidedRef.current.misses, 0)
   assert.equal(highlighted.at(-1), 'E4')
 
   const p3 = handleKeyPress({ note: 'E4', freq: 329.63 })
