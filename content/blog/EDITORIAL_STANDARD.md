@@ -55,7 +55,7 @@ Google does **not** penalize AI assistance; it penalizes *low-value, unhelpful* 
 2. **Identified, credentialed author.** Real byline, portrait, bio with the ex-Oracle credential, and `sameAs` links to real profiles. (Wired into the Article schema — keep it intact.)
 3. **Specificity over generality.** Numbers, named systems, dated facts, screenshots/diagrams. Originality beats coverage.
 4. **Freshness honesty.** Use `lastUpdated` when revised; date-stamped claims age gracefully. Don't leave "2025 roadmap" framing live in 2026 without a pointer to the current version.
-5. **Structure for humans and answer engines.** TL;DR in the first 100 words, question-based H2s, a real FAQ (feeds FAQPage schema), 3+ genuine internal links.
+5. **Structure for the reader.** Choose headings that follow the argument or task. A summary appears once; frontmatter `tldr` already supplies the article-shell summary. An FAQ is optional and answers useful questions the body leaves open. Emit FAQPage schema only when it matches a visible FAQ. Link to related work when it helps the reader.
 6. **Substance length.** Match depth to the topic; never pad to hit a word count. A tight 1,200 useful words beats 3,000 of filler.
 
 If a piece has real experience + a real author + real specifics, it reads human *because it is* — and that's exactly what ranks.
@@ -66,7 +66,8 @@ If a piece has real experience + a real author + real specifics, it reads human 
 
 - [ ] Frontmatter: `title`, `description`, `date`, `category`, `tags`, `image` all present
 - [ ] Hero image exists on disk (no broken refs) — see `scripts/visuals/generate-hero-art.mjs`
-- [ ] TL;DR in first 100 words · question-based H2s · FAQ (5+) · 3+ internal links
+- [ ] One clear argument or outcome; no repeated summary, heading quota or padded FAQ
+- [ ] Any FAQ schema matches a useful visible FAQ; related links serve the reader
 - [ ] Author canon respected (no present-tense Oracle employment)
 - [ ] Anti-slop checklist passes
 - [ ] One thing only Frank could have written
