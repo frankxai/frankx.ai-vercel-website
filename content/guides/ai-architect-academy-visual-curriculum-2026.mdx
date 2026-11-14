@@ -1,0 +1,166 @@
+---
+title: "AI Architect Academy visual curriculum: 12 weeks from guide to verified system"
+description: "How the 12-week curriculum connects free FrankX guides, offline Python and TypeScript labs, Starlight Intelligence Academy studio missions, and peer review."
+date: "2026-11-14"
+updated: "2026-11-14"
+author: "Frank Riemer"
+category: "AI Architecture"
+image: "/images/diagrams/academy/guide-to-academy-funnel.svg"
+tags:
+  - "ai-architect-academy"
+  - "curriculum"
+  - "agentic-engineering"
+  - "evaluations"
+  - "mcp"
+  - "system-design"
+keywords:
+  - "AI Architect Academy curriculum"
+  - "agentic engineering course"
+  - "MCP server lab"
+  - "AI evaluation gates"
+  - "Starlight Intelligence Academy"
+decisions:
+  - audience: "Enterprise architects"
+    call: "adopt"
+    because: "Start at Weeks 01 to 04 and Weeks 11 to 12. Use the trust-boundary firewall and eval admission labs to formalize architecture decision records, model gateway ownership, and dry-run restore runbooks."
+    source: "https://github.com/frankxai/ai-architect-academy"
+  - audience: "Production AI builders"
+    call: "adopt"
+    because: "Run Labs 01 through 05 locally in Python and TypeScript with zero API keys. Repair broken chunking, MCP tool schemas, multi-agent loop bounds, and golden trajectory checks."
+    source: "https://github.com/frankxai/ai-architect-academy/tree/main/labs"
+  - audience: "Technical creators"
+    call: "adopt"
+    because: "Enter at Week 05 and Weeks 09 to 10 to pair design.md visual contracts, stem-level audio provenance, and captioned Remotion launch video specs with explicit credit ceilings."
+    source: "https://starlightintelligence.academy/academy/create"
+  - audience: "Workflow operators"
+    call: "adopt"
+    because: "Begin with Week 01 workflow triage before writing code. Separate automate, assist-only, and do-not-automate decisions while keeping spend and outbound communication behind human approval."
+    source: "https://starlightintelligence.academy/academy/founder-operations"
+faqs:
+  - question: "Do the open-source CLI labs require paid model API keys?"
+    answer: "No. Every core Python and TypeScript lab in frankxai/ai-architect-academy runs deterministically offline against local fixtures and standard test runners so you can verify retrieval, trust firewalls, MCP schemas, and evaluation gates without network spend."
+  - question: "What does a non-compensable red gate mean?"
+    answer: "A high style or documentation score cannot offset a safety, authority, or operational failure. If an agent can send external messages without human sign-off, leak untrusted prompt payloads into tool execution, self-attest its own review, or skip a restore dry-run, the submission halts until that specific defect is fixed."
+  - question: "How do coding agents read FrankX guides through MCP?"
+    answer: "FrankX exposes a stateless, read-only Streamable HTTP server at POST https://www.frankx.ai/api/mcp with discovery metadata at GET /api/mcp/server-card. Agents can call frankx_search_site, frankx_get_article, and frankx_list_products without authentication."
+  - question: "Do I have to finish all 12 weeks in strict linear order?"
+    answer: "No. Every guide on FrankX maps to a primary and secondary ICP track with recommended entry weeks. You can jump straight into the lab matching your active production bottleneck, though full capstone verification checks all core red gates."
+---
+
+_Verified against the open-source `frankxai/ai-architect-academy` repository, `starlightintelligence.academy` studio routes, and `frankx.ai/api/mcp` on 14 Nov 2026._
+
+Engineers and technical founders read architecture guides, run a clean notebook example, and still hit a wall the afternoon an agent touches messy retrieval chunks, external APIs, or real company money. Across the implementation guides on FrankX and the broken-system labs in [AI Architect Academy](/ai-architect-academy), I kept seeing the same pattern: projects rarely fail from weak model reasoning alone. They fail at unowned seams, such as dropped document boundaries, unvalidated MCP tool arguments, self-approved agent loops, and backup scripts nobody ever tested on a blank directory. Pick your primary track below, clone the open-source lab repository, and try one 15-minute unaided diagnosis before asking your coding agent for hints.
+
+## Why happy-path demos fail after the chat window closes
+
+Two empirical findings from learning science shaped how this curriculum is wired.
+
+First, unrestricted AI assistance during practice inflates short-term output while weakening independent judgment. In a randomized field experiment of roughly 1,000 students published by [Bastani et al. in PNAS (2025)](https://www.pnas.org/doi/10.1073/pnas.2422633122), learners given an unguarded chat model scored 48 percent higher during practice exercises yet dropped 17 percent below the no-AI control group once the tool was removed. Learners using a guarded Socratic tutor that withheld direct answers gained 127 percent during practice without suffering that post-removal drop.
+
+Second, diagnosing a broken system before reading the canonical solution builds stronger transfer than watching a polished lecture first. Across 53 studies and 166 comparisons synthesized by [Sinha and Kapur in Review of Educational Research (2021)](https://journals.sagepub.com/doi/10.3102/00346543211019105), Productive Failure showed a reliable conceptual transfer advantage (`Hedges' g = 0.36` overall, rising to `0.58` in high-fidelity designs). Struggling with a concrete fault activates your existing mental model and reveals the exact boundary you misunderstood.
+
+<Callout type="info">
+Every week in the curriculum opens with an ungraded 15-minute unaided diagnostic (`assistance = "none"`). You inspect the failing code or incident trace and record your root-cause hypothesis before Socratic `/hint` prompts or reference patterns open.
+</Callout>
+
+## Stage 1 to Stage 5: the guide-to-academy progression
+
+Free articles explain trade-offs well, yet reading alone cannot verify that your runbook survives contact with an adversarial input. Every guide on `frankx.ai` now connects directly into a five-stage progression that raises verification rigor one rung at a time.
+
+<Diagram
+  src="/images/diagrams/academy/guide-to-academy-funnel.svg"
+  alt="Five-stage builder progression from free FrankX guides to unaided diagnostic, open-source CLI lab, Starlight Intelligence Academy studio mission, and Circle peer review with a Day-7 transfer loop"
+  width={1200}
+  height={620}
+  caption="Figure 1: Each guide routes into an unaided diagnostic, an offline repository lab, a browser mission check, and peer critique."
+/>
+
+1. **Free guide and source call (`frankx.ai/guides`)**: Read the architectural trade-off, inspect linked primary changelogs, and check the [audience decision matrix](#decision-matrix) at the bottom of the guide.
+2. **Unaided Monday diagnostic (15 minutes)**: Inspect the broken baseline or incident log without agent autocomplete. Write down the suspected failure mechanism and save its digest (`priorAttemptDigest`).
+3. **Open-source terminal lab ([`frankxai/ai-architect-academy`](https://github.com/frankxai/ai-architect-academy))**: Repair the fault-injected Python or TypeScript module locally. Run the offline unit test suite until every case passes.
+4. **Interactive studio mission ([`starlightintelligence.academy`](https://starlightintelligence.academy/academy/studio))**: Open the local-first browser workbench and curriculum atlas to check your architecture packet against non-compensable red gates.
+5. **Weekly 20-minute peer critique and Day-7 transfer**: In cohort and community clinic sessions, a partner restates your kill criterion and rollback command cold. Seven days later, one operating constraint changes (such as strict regional VPC residency or a fourfold provider latency spike) to verify your architecture adapts cleanly.
+
+## Four role tracks on one shared spine
+
+A principal enterprise architect and a solo technical creator share the same reliability bar, yet they enter from different daily bottlenecks. Instead of forcing everyone through identical introductory exercises, every guide on FrankX names a **primary** and **secondary** ICP track.
+
+<Diagram
+  src="/images/diagrams/academy/multi-icp-routing-matrix.svg"
+  alt="Multi-ICP routing matrix mapping Enterprise architect, Production builder, Technical creator, and Workflow operator to entry weeks, CLI labs, SIA mission routes, and red-gate artifacts"
+  width={1200}
+  height={680}
+  caption="Figure 2: Four role tracks enter the 12-week spine at the specific lab and studio surface their daily work demands."
+/>
+
+- **Enterprise architect (`enterprise-architect`)**: Focuses on Weeks 01 to 04 and Weeks 11 to 12. Starts in `labs/04-trust-boundary-firewall` and `labs/05-eval-admission-gate`, pairs with [`/academy/systems`](https://starlightintelligence.academy/academy/systems) and [`/academy/curriculum-atlas`](https://starlightintelligence.academy/academy/curriculum-atlas), and ships `ADR-0001..0006` plus a dry-run verified `07-runbook.md`.
+- **Production builder (`production-builder`)**: Focuses on Weeks 02 to 08. Repairs `labs/01-rag-pipeline`, `labs/02-multi-agent-system`, and `labs/03-mcp-server`, verifies trajectories in [`/academy/studio`](https://starlightintelligence.academy/academy/studio) and [`/academy/evaluation`](https://starlightintelligence.academy/academy/evaluation), and ships hybrid RRF retrieval, scoped MCP servers, and bounded state machines.
+- **Technical creator (`technical-creator`)**: Focuses on Week 05 and Weeks 09 to 10. Combines `05-projects/creator-evals` and `01-design-patterns/creator-studio-automation.md` with [`/academy/create`](https://starlightintelligence.academy/academy/create) to ship `design.md` contracts, `-18 LUFS` audio stems with documented rights, and WebVTT-captioned Remotion launch films.
+- **Workflow operator (`workflow-operator`)**: Focuses on Weeks 01, 05, 07, and 11. Uses [`/academy/founder-operations`](https://starlightintelligence.academy/academy/founder-operations) and [`/academy/departments`](https://starlightintelligence.academy/academy/departments) to triage candidate processes into `automate`, `assist-only`, or `do-not-automate` contracts with hard spend ceilings.
+
+## The 12-week three-act architecture
+
+The full curriculum spans three four-week acts at roughly six to seven hours of focused practice per week across Monday through Friday.
+
+### Act I (Weeks 01 to 04): Triage, retrieval geometry, trust boundaries, and MCP
+
+| Week | Focus & thesis | Paired FrankX guide | Open-source lab or pattern | Non-compensable red gate |
+| --- | --- | --- | --- | --- |
+| **W01** | Workflow triage and kill criteria | [AI operating systems workshop](/guides/ai-operating-systems-workshop) | `02-learning-paths/self-assessment.md` | Halts any workflow lacking a human owner, step cap, or numeric shut-off rule |
+| **W02** | Chunk geometry and hybrid RRF retrieval | [Obsidian second brain](/guides/agentic-obsidian-second-brain) | `labs/01-rag-pipeline` | Fails on silent character drops above `10,000` chars or zero chunk overlap |
+| **W03** | Prompt-injection firewalls and citations | [Perplexity research guide](/guides/perplexity-ai-guide) | `labs/04-trust-boundary-firewall` | Blocks untrusted retrieval payloads from crossing into tool instructions |
+| **W04** | Scoped MCP servers and idempotent tools | [MCP servers for Claude Code](/guides/mcp-servers-claude-code-business) | `labs/03-mcp-server` | Rejects inline secrets, missing input schemas, or unguarded outbound sends |
+
+### Act II (Weeks 05 to 08): Portable skills, multi-agent FSMs, governance, and evals
+
+| Week | Focus & thesis | Paired FrankX guide | Open-source lab or pattern | Non-compensable red gate |
+| --- | --- | --- | --- | --- |
+| **W05** | Portable `SKILL.md` compilation | [Anatomy of a production skill](/guides/anatomy-of-a-production-skill) | `claude-ai-architect/skills` | Blocks raw positional shell expansion bugs or missing trigger boundaries |
+| **W06** | Finite state machines and maker-checker loops | [Agentic engineering mastery](/guides/agentic-engineering-mastery-2026) | `labs/02-multi-agent-system` | Halts unbounded chat loops or runs where `Maker == Checker` |
+| **W07** | Protector vetoes and quarantined context | [IFS agent architecture](/guides/ifs-ai-agent-architecture) | `08-governance/human-review-checklist.md` | Blocks worker agents that bypass safety vetoes or clinical boundary rules |
+| **W08** | Golden datasets and admission gates | [Vercel AI SDK for builders](/guides/vercel-ai-sdk) | `labs/05-eval-admission-gate` | Fails closed on trajectory regression, schema drift, or stale approval digests |
+
+### Act III (Weeks 09 to 12): Multimodal studio, department economics, and capstone defense
+
+| Week | Focus & thesis | Paired FrankX guide | Open-source lab or pattern | Non-compensable red gate |
+| --- | --- | --- | --- | --- |
+| **W09** | Visual contracts (`design.md`) and sonic stems | [Suno prompt playbook](/guides/suno-prompt-playbook) | `05-projects/creator-evals` | Rejects unknown rights provenance or garbled raster-baked typography |
+| **W10** | Programmatic video, credit caps, and captions | [Higgsfield AI video guide](/guides/higgsfield-ai-video-guide) | `01-design-patterns/creator-studio-automation.md` | Blocks paid rendering without an approved shot plan, credit cap, and `.vtt` file |
+| **W11** | AI departments, gateways, and token economics | [Founder AI stack 2026](/guides/founder-ai-stack-2026) | `06-toolchains/vercel-ai-sdk.md` | Halts when any runtime plane is unowned or vendor token prices lack dates |
+| **W12** | Disaster recovery dry-run and peer defense | [Vercel agent runtime decisions](/guides/vercel-agent-runtime-decisions) | `08-governance/incident-response-checklist.md` | Withholds receipt if restore step `exit 0` is unrecorded or self-attested |
+
+## Human and agent dual-mode verification
+
+Modern builders work alongside terminal agents such as Claude Code, Codex, and Antigravity. Pretending learners code in isolation makes an assessment unrealistic; letting an agent grade its own homework makes a credential meaningless.
+
+<Diagram
+  src="/images/diagrams/academy/dual-mode-verification-loop.svg"
+  alt="Dual-mode verification architecture showing Human Principal reading guides and Sponsored Agent calling POST /api/mcp, separated from the Independent Examiner Kernel by an acoustic wall"
+  width={1200}
+  height={640}
+  caption="Figure 3: Agents assist via Socratic hints and local test runs, while an acoustic wall prevents self-attestation at the examiner gate."
+/>
+
+We solve that tension by giving coding agents a clean read-only entrypoint while enforcing strict role separation at verification time:
+
+1. **Read-only context discovery (`/api/mcp`)**: Your coding agent can query public FrankX guides, articles, and product pages directly over stateless Streamable HTTP (`POST https://www.frankx.ai/api/mcp`, documented on [`/developers`](/developers) with machine discovery at `/api/mcp/server-card`). The server exposes three read-only tools: `frankx_search_site`, `frankx_get_article`, and `frankx_list_products`. `GET` requests to `/api/mcp` return `405` by design so serverless streams never hang open.
+2. **Socratic coach boundary**: Inside `frankxai/ai-architect-academy`, repository instructions configure your coding agent as a diagnostic coach. During Wednesday lab sessions, `/hint` escalates across three levels of structural questions without dumping finished answers on top of an unwritten `priorAttemptDigest`.
+3. **Independent examiner and capability receipts**: An acoustic wall separates coaching hints from examination. Capability receipts in the Starlight Intelligence Academy passport surface ([`/academy/passport`](https://starlightintelligence.academy/academy/passport)) require passing offline test exit codes, zero non-compensable red-gate violations, and a reviewer identity distinct from the learner (`Reviewer != Learner`).
+
+```bash
+# 1. Register the read-only FrankX MCP endpoint in Claude Code
+claude mcp add --transport http frankx https://www.frankx.ai/api/mcp
+
+# 2. Clone the open-source labs repository
+git clone https://github.com/frankxai/ai-architect-academy.git
+cd ai-architect-academy
+
+# 3. Run an offline lab test suite locally (zero API keys required)
+pytest labs/01-rag-pipeline/tests/ -v
+python -m unittest discover -s labs/04-trust-boundary-firewall/tests -v
+python -m unittest discover -s labs/05-eval-admission-gate/tests -v
+```
+
+## Choose your starting point today
+
+Every guide across [the FrankX guides library](/guides) now includes a live **Hands-on practice** bridge card directly above the [Learn hub](/learn) portals. Pick the guide closest to the system you are shipping this week, inspect its mapped ICP track and red-gate check, and run the paired terminal lab on your own machine.

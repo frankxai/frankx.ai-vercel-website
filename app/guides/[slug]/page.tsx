@@ -6,6 +6,8 @@ import HeroImage from '@/components/ui/HeroImage'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import LearnHubSection from '@/components/learn/LearnHubSection'
 import { portalsForGuide } from '@/lib/learn/related-portals'
+import { academyBridgeForGuide } from '@/lib/learn/academy-missions'
+import AcademyMissionBridge from '@/components/guides/AcademyMissionBridge'
 import JsonLd, { buildFAQPageData } from '@/components/seo/JsonLd'
 import AudienceDecisionMatrix from '@/components/guides/AudienceDecisionMatrix'
 import { createMetadata, siteConfig } from '@/lib/seo'
@@ -135,6 +137,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
               </section>
             ) : null}
           </div>
+          <AcademyMissionBridge bridge={academyBridgeForGuide(guide.slug)} />
           <LearnHubSection
             relatedPortals={portalsForGuide(guide.slug)}
             variant="compact"
