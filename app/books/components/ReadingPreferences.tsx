@@ -25,20 +25,26 @@ export default function ReadingPreferences({ children, bookSlug, chapterSlug, ch
     } catch { /* Reading still works without storage. */ }
     let timer: ReturnType<typeof setTimeout> | undefined;
     let scrolled = false;
-    function save() {
-      if (!scrolled) return;
+    let scrollPct = 0;
+    function measurePosition() {
       const article = surface.current?.querySelector('article');
       if (!article) return;
       const rect = article.getBoundingClientRect();
       const available = Math.max(1, rect.height - window.innerHeight);
-      const scrollPct = Math.max(0, Math.min(100, -rect.top / available * 100));
+      scrollPct = Math.max(0, Math.min(100, -rect.top / available * 100));
+    }
+    function save() {
+      if (!scrolled) return;
       try { window.localStorage.setItem(key, JSON.stringify({ chapterSlug, chapterNumber, chapterTitle, scrollPct, updatedAt: Date.now() })); }
       catch { setStorageAvailable(false); }
     }
-    function onScroll() { scrolled = true; clearTimeout(timer); timer = setTimeout(save, 300); }
+    // Capture while this chapter is on screen. React may replace the article DOM
+    // before cleanup runs during a client navigation; cleanup only persists the captured value.
+    function onScroll() { scrolled = true; measurePosition(); clearTimeout(timer); timer = setTimeout(save, 300); }
+    function onPageHide() { measurePosition(); save(); }
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('pagehide', save);
-    return () => { clearTimeout(timer); save(); window.removeEventListener('scroll', onScroll); window.removeEventListener('pagehide', save); };
+    window.addEventListener('pagehide', onPageHide);
+    return () => { clearTimeout(timer); save(); window.removeEventListener('scroll', onScroll); window.removeEventListener('pagehide', onPageHide); };
   }, [bookSlug, chapterSlug, chapterNumber, chapterTitle]);
   function resume() {
     const article = surface.current?.querySelector('article');

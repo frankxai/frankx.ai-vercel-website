@@ -294,8 +294,8 @@ try {
 
       await phase('Book discovery, illustrated jacket and persistent reading preferences')
       await navigate('/books')
-      await page.type('#book-search', 'wordless')
-      await page.waitForFunction(() => document.querySelectorAll('#shelf li').length === 2)
+      await page.type('#book-search', 'wordless practice')
+      await page.waitForFunction(() => document.querySelectorAll('#shelf li').length === 1)
       await clickTarget('[aria-label="Book subjects"] button:last-child')
       await page.waitForFunction(() => document.querySelectorAll('#shelf li').length === 0)
       await clickTarget('button[name="reset-book-search"]')
@@ -328,6 +328,12 @@ try {
       await clickTarget(resumeSelector)
       assert.equal(await page.$(resumeSelector), null, 'Restoring the saved position dismisses its prompt')
       assert.ok(await page.evaluate(() => scrollY > 100), 'Restoring saved position moves into the chapter')
+      // A client chapter transition must not recompute the previous chapter's position from replacement DOM.
+      const nextPracticeChapter = practice.chapters.filter(chapter => chapter.published)[1]
+      const nextPracticePath = `/books/${practice.slug}/${nextPracticeChapter.slug}`
+      await follow(`a[href="${nextPracticePath}"]`, nextPracticePath)
+      const afterChapterChange = await page.evaluate(key => JSON.parse(localStorage.getItem(key) || 'null'), `frankx:reading:${practice.slug}`)
+      assert.ok(afterChapterChange?.chapterSlug === nextPracticeChapter.slug || (afterChapterChange?.chapterSlug === practiceChapter.slug && afterChapterChange.scrollPct >= 95), 'Client navigation preserves the completed position or records the next chapter')
       // Restore preferences through the actual controls so later fixtures have their default state.
       await clickTarget('[data-reading-settings] summary')
       await page.select('select[name="reading-size"]', 'standard')
