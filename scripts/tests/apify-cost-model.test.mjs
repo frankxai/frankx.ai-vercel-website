@@ -24,3 +24,12 @@ test('embedded request artifacts stay identical to the tested offline planner', 
   const embedded = JSON.parse(readFileSync(new URL('../../data/guides/apify-research-plan.json', import.meta.url)))
   assert.deepEqual(embedded, makeResearchPlan(fixture))
 })
+
+test('public download and shipped client evidence template preserve the source contract', () => {
+  const read = path => JSON.parse(readFileSync(new URL(path, import.meta.url)))
+  const canonical = read('../../docs/ops/apify-product-lane/evaluation.template.json')
+  assert.deepEqual(read('../../data/guides/apify-evidence-template.json'), canonical)
+  assert.deepEqual(read('../../public/downloads/apify-research/evidence-receipt.json'), canonical)
+  assert.equal(canonical.actorRunId, null)
+  assert.equal(canonical.evidenceClass, 'template_not_a_run')
+})

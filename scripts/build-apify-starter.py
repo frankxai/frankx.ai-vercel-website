@@ -36,5 +36,7 @@ folder = root / 'public/downloads/apify-research'
 folder.mkdir(parents=True, exist_ok=True)
 (folder / 'offline-starter.mjs').write_text(output)
 (folder / 'LICENSE.txt').write_text((root / 'examples/apify-research/LICENSE').read_text())
-(folder / 'evidence-receipt.json').write_text((root / 'docs/ops/apify-product-lane/evaluation.template.json').read_text())
+evidence = (root / 'docs/ops/apify-product-lane/evaluation.template.json').read_text()
+(folder / 'evidence-receipt.json').write_text(evidence)
+(root / 'data/guides/apify-evidence-template.json').write_text(evidence)
 print(f'offline-starter.mjs: {len(output.encode())} bytes')

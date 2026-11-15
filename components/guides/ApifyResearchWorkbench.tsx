@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { ArrowDownToLine, Check, Copy, FileJson, FlaskConical } from 'lucide-react'
 import plan from '@/data/guides/apify-research-plan.json'
-import evidence from '@/docs/ops/apify-product-lane/evaluation.template.json'
+import evidence from '@/data/guides/apify-evidence-template.json'
 import { estimateAcceptedCost, estimateApifyEvents } from '@/lib/apify-cost-model'
 import { trackEvent } from '@/lib/analytics'
 
