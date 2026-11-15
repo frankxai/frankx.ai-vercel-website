@@ -1,7 +1,7 @@
 # Apify research starter kit: proposed product specification
 
 State: specification proposal, unpriced and unavailable for purchase.
-Prepared: 2026-11-13. Version: 0.1. Owning editorial issue: #1149.
+Prepared: 2026-11-13. Updated: 2026-11-15. Version: 0.2. Owning editorial issue: #1149.
 Partner eligibility: #1175. Runtime integration remains with the existing Starlight lane.
 
 ## Buyer, job and promise
@@ -32,7 +32,10 @@ no new repository or second MCP server is authorized. Resolve a canonical produc
 record, license and source repository through the reviewed Registry before sale.
 Primary production capability: Publishing, with bounded software verification.
 
-Free proof candidate: article, request planner, mission fixture and acceptance rubric.
+Free editorial companion: article, request planner, mission fixture, local tests,
+blank evidence receipt and an standalone offline file. The original example and templates
+have a scoped MIT license in `examples/apify-research/LICENSE`; article, artwork,
+third-party data and the commercial runtime edition are excluded.
 Paid edition candidate: reviewed runtime adapter, migration/configuration guide,
 validated failure fixtures and an operator runbook. Sell the ability to inspect and
 adapt a complete method; do not repackage a vendor referral as the product.
@@ -59,9 +62,9 @@ synthetic output, cost worksheet, rights notes, changelog and support boundary.
 An execution edition additionally needs a supported-runtime matrix and reviewed
 adapter. A model prompt alone is not the paid deliverable.
 
-The current draft includes only the planner, its tests, a synthetic mission,
-evaluation template, article and this specification. It does not contain the
-production adapter, deployed storage, licensed commercial archive or checkout.
+The current release candidate includes the planner, its tests, synthetic mission,
+evaluation template, article, embedded request/cost workbench and free standalone offline file. A production adapter, deployed storage, commercial delivery and checkout
+remain unimplemented.
 
 The exported research package contains `mission.json`, `sources.jsonl`, normalized
 records, differences, `claims.json`, `costs.json`, `review.md` and a checksum manifest.

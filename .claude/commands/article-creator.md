@@ -35,7 +35,7 @@ Ask user to select or propose new idea
 - Ask about angle (beginner/advanced/etc)
 - Ask about length (quick/medium/pillar)
 - Create draft in `content/drafts/frankx/blog/[slug].mdx`
-- Include: TL;DR, question-based H2s, FAQ section
+- Structure around one reader outcome. Use a single summary, headings that follow the argument, and an FAQ only for useful unanswered questions.
 
 ## Step 3: Generate Images (Optional)
 

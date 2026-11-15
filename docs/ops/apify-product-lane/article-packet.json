@@ -20,11 +20,11 @@
     "reader_delta": "Can prepare equivalent bounded requests and separate completed runs from accepted evidence and reconciled charges",
     "stakes": "Avoid duplicate starts, unsupported product claims, lost provenance and misleading cost estimates",
     "strongest_objection": "For a single static page a manual check or direct fetch can be simpler and cheaper.",
-    "commercial_relationship": "Confirmed affiliate enrollment; referral publication held; proposed starter kit unpriced"
+    "commercial_relationship": "Affiliate enrollment verified; owner authorized publication 2026-11-15; proposed paid kit remains unpriced"
   },
   "content_graph": {
     "cluster_id": "cluster_ai_architecture_research_agents",
-    "canonical_url": "https://frankx.ai/blog/apify-mcp-vs-actor-api",
+    "canonical_url": "https://www.frankx.ai/blog/apify-mcp-vs-actor-api",
     "existing_related_urls": [
       "/ai-architecture",
       "/resources/seo-aeo",
@@ -72,7 +72,7 @@
     "structured_data": [
       "Article"
     ],
-    "indexation": "unlisted_draft",
+    "indexation": "publication_candidate",
     "crawler_policy_checked": false,
     "volume_and_ranking": "unmeasured"
   },
@@ -304,21 +304,21 @@
     }
   ],
   "article": {
-    "source_path": "content/blog/_drafts/apify-mcp-vs-actor-api.mdx",
+    "source_path": "content/blog/apify-mcp-vs-actor-api.mdx",
     "canonical_title": "Apify MCP vs Actor API: a research-agent blueprint",
     "description": "Choose Apify MCP or the Actor API for agent research, with an offline code example, source provenance, cost controls and a Starlight architecture review.",
     "author_id": "frank-riemer",
     "published_at": null,
-    "modified_at": "2026-11-13"
+    "modified_at": "2026-11-15"
   },
   "visual_plan": {
     "tier": "FLAGSHIP",
     "reason": "Named-platform architecture comparison; final publication needs a governed visual packet. Current deliverable is a source-complete text/code draft.",
-    "status": "PLANNED",
-    "visual_packet_ref": "blocked",
+    "status": "IMPLEMENTED_REVIEW_PENDING",
+    "visual_packet_ref": "docs/ops/apify-product-lane/visual-and-experience.md",
     "competitive_snapshot_at": "blocked",
     "character_mode": "OPTIONAL",
-    "character_exemption": null,
+    "character_exemption": "Technical evidence metaphor and code-native diagram serve this task. No new mascot identity or vendor logo.",
     "canonical_character_refs": [],
     "required_roles": [
       "hero",
@@ -330,30 +330,46 @@
     ],
     "directions": [
       {
-        "name": "Annotated execution map",
-        "purpose": "Preferred proposal: separate observed source layers from proposed Apify edges; deterministic topology and labels."
+        "name": "Annotated evidence observatory",
+        "purpose": "Selected: cinematic glass-and-paper source metaphor, exact existing/proposed architecture, inspectable request and cost controls."
       },
       {
-        "name": "Same input, two interfaces",
-        "purpose": "Side-by-side verified request construction; show shared evidence contract below."
+        "name": "Run desk",
+        "purpose": "Rejected: pure monospace instrumentation emphasizes controls but loses the article's editorial warmth."
       },
       {
-        "name": "Research evidence sheet",
-        "purpose": "Source snapshot, claim locator and cost state as an inspectable editorial spread."
+        "name": "Field notebook",
+        "purpose": "Rejected: warm research notebook composition has less immediate clarity about the two execution interfaces."
       }
     ],
-    "release_note": "No fabricated screenshots, partner logos, benchmark charts or production run receipts. Render and independently review exact topology and OG/mobile treatments before promotion."
+    "release_note": "Hero/OG use one original generated still life. Diagram and table remain exact text. Mobile uses wrapping controls, readable vertical flow and full-width input fields; rendered review pending."
   },
-  "media": [],
+  "media": [
+    {
+      "asset_id": "apify-research-evidence",
+      "registry_path": "data/editorial-visuals.json",
+      "path": "public/images/blog/apify-research-evidence-hero.webp",
+      "role": [
+        "hero",
+        "og"
+      ],
+      "sha256": "b53960c9276b90f89eb2efd688d6d05e8e0487cb69d719ed7df1a601102ba8c9",
+      "bytes": 117832,
+      "width": 1672,
+      "height": 941,
+      "mime_type": "image/webp",
+      "provenance": "Original generated illustration, OpenAI image generation, 2026-11-15"
+    }
+  ],
   "affiliates": [
     {
       "program": "Apify",
       "destination": "https://www.apify.com?fpr=vzmwk5",
       "disclosure": "FrankX is an Apify affiliate. I may earn a commission when you subscribe through a referral link, at no extra cost to you.",
       "rel": "sponsored noopener",
-      "status": "hold",
+      "status": "active",
       "registry_path": "data/affiliate/programs.json",
-      "link_activation": "ourLink remains null; candidate destination only",
+      "link_activation": "Issued referral activated in candidate through existing /go/apify resolver; conversion attribution untested",
       "vendor_test_credit_used": false
     }
   ],
@@ -396,7 +412,7 @@
     "preview_url": "blocked",
     "live_url": "blocked",
     "verified_at": null,
-    "rollback": "Draft remains outside the immediate blog directory; registry remains held. Revert this isolated change before release if rejected."
+    "rollback": "Revert the isolated PR merge via a reviewed revert PR. Preserve existing route contracts; do not remove the route after traffic without owner approval."
   },
   "measurement": {
     "hypothesis": "A same-input comparison plus portable evidence contract helps technical readers produce a reviewable research brief.",
@@ -422,7 +438,6 @@
     "Real authorized Actor execution, evidence retention, cost reconciliation and QA acceptance remain unproved.",
     "Independent exact-head editorial and technical review pending.",
     "Final governed visual/OG/mobile packet and rendered page review pending.",
-    "Owner approval required before publication or referral activation.",
     "Account entitlement, dashboard tier, remaining platform credit and attribution conversion unverified.",
     "No admitted product SKU, price, license, checkout or paid delivery evidence."
   ],
@@ -454,5 +469,9 @@
     "independent_review": "pending",
     "preview": "not inspected",
     "shared_editorial_policy": "Pinned policy 851a11be31a0640df64baabcf2b1fc1afb9ce849: zero hard failures/review signals on changed content/data lines after fixture-boundary sentence correction"
+  },
+  "owner_authorization": {
+    "date": "2026-11-15",
+    "scope": "Publish improved editorial resource and disclosed referral; no paid Actor execution or paid product launch"
   }
 }

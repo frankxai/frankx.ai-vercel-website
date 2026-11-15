@@ -10,6 +10,7 @@ export const metadata = createMetadata({
 })
 
 const reading = [
+  { href: '/blog/apify-mcp-vs-actor-api', label: 'Page research', title: 'Choose Apify MCP or the Actor API', detail: 'Inspect equivalent requests, model event costs and download an offline starter. The live integration remains untested.' },
   { href: '/resources/seo-aeo/workflow', label: 'The complete workflow', title: 'From search data to a reviewed website change', detail: 'Choose a page, collect the evidence, brief your assistant and check what it produces.' },
   { href: '/resources/seo-aeo/semrush-mcp', label: 'Data access', title: 'Connect Semrush MCP with a bounded research task', detail: 'Check access, discover reports and preserve the result. Documentation reviewed; paid-account execution is untested.' },
   { href: '/blog/aeo-playbook-get-cited-by-ai-2026', label: 'Measurement', title: 'Investigate AI citations with a repeatable question panel', detail: 'Keep mentions, citations, recommendations and referrals distinguishable.' },

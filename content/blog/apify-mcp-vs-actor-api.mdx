@@ -1,17 +1,19 @@
 ---
 title: "Apify MCP vs Actor API: a research-agent blueprint"
 description: "Choose Apify MCP or the Actor API for agent research, with an offline code example, source provenance, cost controls and a Starlight architecture review."
-date: "2026-11-13"
-lastUpdated: "2026-11-13"
+date: "2026-11-15"
+lastUpdated: "2026-11-15"
 author: "FrankX"
 category: "AI Architecture"
 tags: ["mcp", "ai-agents", "automation", "ai-architecture"]
 keywords: ["Apify MCP vs API", "Apify Actor API", "Apify research agent", "Apify cost controls"]
 featured: false
-published: false
-canonical: "https://frankx.ai/blog/apify-mcp-vs-actor-api"
+image: "/images/blog/apify-research-evidence-hero.webp"
+imageAlt: "AI-generated editorial still life: glass channels carry paper source folios into an emerald-edged evidence tray."
+ogImage: "/images/blog/apify-research-evidence-hero.webp"
+canonical: "https://www.frankx.ai/blog/apify-mcp-vs-actor-api"
 readingGoal: "Choose an interface and design a research job whose sources, failures and costs another person can inspect."
-tldr: "Use Apify MCP for interactive Actor discovery and bounded tool use. Use the Actor API when recurring research needs an explicit run lifecycle. Preserve source URLs, timestamps, build and input hashes, run and dataset IDs, and reconciled costs. The Starlight extension described here is a source-checked design with an offline example. It has not passed a live Apify mission."
+tldr: "Use MCP for interactive Actor discovery. Use the Actor API for recurring research with explicit run recovery. Compare requests, export an evidence receipt and model event costs below. This source-checked Starlight blueprint includes an offline starter; its live Apify integration remains untested."
 schema: ["Article"]
 ---
 
@@ -20,6 +22,10 @@ Use **Apify MCP for interactive research** and the **Actor API for recurring job
 For this guide, we checked Apify's documentation and Actor metadata, inspected Starlight's existing research and mission code, and prepared an offline request planner. **No live Actor run or performance benchmark is reported.** The proposed Starlight integration still needs an authorized end-to-end test.
 
 **Affiliate disclosure:** FrankX is an Apify affiliate. I may earn a commission when you subscribe through a referral link, at no extra cost to you. This guide uses documentation, source inspection and synthetic fixtures. No vendor-provided test credit was used for it. Product selection follows the research job and its evidence requirements.
+
+[Inspect the requests](#code-example-prepare-equivalent-requests-without-spending) · [Model the cost](#cost-model-usage-invoice-and-accepted-work) · [Download the offline starter](#take-the-offline-example-with-you)
+
+*Hero: original AI-generated editorial illustration by FrankX. The glass channels are a visual metaphor for two interfaces reaching the same evidence.*
 
 ## Where MCP and the Actor API differ
 
@@ -53,7 +59,7 @@ The smallest useful result is a source-linked difference a reviewer can confirm.
 
 ## The Starlight architecture: what source inspection establishes
 
-Starlight already has an operator-gated mission entry point, a researcher that searches saved evidence and reads allowlisted pages, tenant-scoped evidence retrieval, and a budget-ledger interface that fails closed when admission is unavailable. Those are source observations from 13 November 2026. They are not a claim that every production binding is enabled.
+Starlight already has an operator-gated mission entry point, a researcher that searches saved evidence and reads allowlisted pages, tenant-scoped evidence retrieval, and a budget-ledger interface that fails closed when admission is unavailable. Those are source observations from 13 November 2026. Apify metadata and public pricing were rechecked on 15 November. They are not a claim that every production binding is enabled.
 
 The Apify extension below is a **proposed connection to those existing parts**. The source inspection did not establish a completed mission-to-Apify-to-storage pipeline.
 
@@ -66,6 +72,8 @@ The Apify extension below is a **proposed connection to those existing parts**. 
 | Evidence storage | Proposed ingestion through existing R2 and metadata adapters | Preserve a permitted snapshot, checksum and traceable receipt |
 | Review | Proposed research-to-draft handoff | Accept or reject claims before a publication decision |
 
+<ApifyResearchArchitecture />
+
 The existing agent-plane configuration assigns D1 to a receipt index and Supabase to the budget ledger. Keep one spending authority. A second D1 budget implementation would introduce reconciliation work before the first Apify mission has been proved.
 
 Likewise, keep one durable execution owner. Extend the admitted mission runtime after confirming its actual deployment and bindings. A separate cron, queue consumer and chat retry loop can otherwise start the same chargeable job several times.
@@ -73,6 +81,8 @@ Likewise, keep one durable execution owner. Extend the admitted mission runtime 
 The model should receive a compact review bundle: status, counts, cited excerpts, failures and cost state. Move the full permitted dataset between storage adapters. Sample rows help inspection, but acceptance still needs deterministic checks across the complete bounded output.
 
 ## Code example: prepare equivalent requests without spending
+
+<ApifyResearchWorkbench />
 
 The companion planner is dependency-free JavaScript. It emits both interfaces for the documented `apify/rag-web-browser` Actor. It sends no requests and reads no credentials.
 
@@ -188,6 +198,23 @@ Final cost fields can lag process completion. Re-read the authenticated run reco
 Limited-permission Actors can still invoke other limited-permission Actors. Permission level therefore cannot replace mission-wide budget control. Full-permission Actors require separate scrutiny and explicit approval; changing to the API must not bypass that decision. [Actor permissions](https://docs.apify.com/platform/actors/development/permissions).
 
 Finally, a process marked `SUCCEEDED` may have extracted a challenge page, missed annual-billing qualifications or returned stale content. Check required fields, authorized final URLs, duplicate records, source freshness and unsupported claims before accepting the result.
+
+## Take the offline example with you
+
+[Download the offline starter](/downloads/apify-research/offline-starter.mjs), its [scoped MIT license](/downloads/apify-research/LICENSE.txt) and a [blank evidence receipt](/downloads/apify-research/evidence-receipt.json). The starter is one inspectable JavaScript file containing the planner, synthetic mission and six local checks. Node 22 or later is the only prerequisite. No token or package install is needed.
+
+Save the starter, then run:
+
+```bash
+node offline-starter.mjs
+node offline-starter.mjs --verify
+```
+
+The first command prints a request plan with execution disabled. The second checks its local behavior. Inspect the [canonical planner and tests](https://github.com/frankxai/frankx.ai-vercel-website/tree/main/examples/apify-research) and [starter-kit specification](https://github.com/frankxai/frankx.ai-vercel-website/blob/main/docs/ops/apify-product-lane/starter-kit-spec.md) before extending it. The specification describes the further runtime, delivery and support work required for a sellable kit. No paid kit is offered here.
+
+Try changing the source path while keeping its host approved. The input hash and dispatch key should change. Then change the host without adding it to the allowlist: the planner should refuse it. Those two checks make a useful starting exercise for your own mission contract.
+
+For an authorized live integration, <AffiliateLink affiliateId="apify" trackingId="apify-research-guide" data-context="article-next-step">inspect Apify and its current plans</AffiliateLink>. This is an affiliate link. Confirm the selected Actor's price, permissions and account entitlement before spending.
 
 ## FAQ
 

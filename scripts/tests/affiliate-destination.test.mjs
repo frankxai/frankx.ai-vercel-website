@@ -26,17 +26,18 @@ test('catalog-only programs do not invent a hop without a checked record', () =>
   assert.equal(resolveProgramDestination('Example', [partner]), undefined)
 })
 
-test('held Apify enrollment never resolves to the staged referral destination', () => {
+test('approved Apify referral uses the issued destination only while verification is fresh', () => {
   const { programs } = JSON.parse(readFileSync(new URL('../../data/affiliate/programs.json', import.meta.url), 'utf8'))
   const apify = programs.find(program => program.tool === 'Apify')
   assert.ok(apify)
-  assert.equal(apify.status, 'hold')
-  assert.equal(apify.ourLink, null)
-  const destination = resolveProgramDestination('apify', programs, undefined, new Date('2026-11-13T12:00:00Z'))
-  assert.deepEqual(destination, { href: '/go/apify', sponsored: false })
-  assert.equal(apify.candidateUrls.includes(destination.href), false)
-  const hop = resolveGoDestination({ slug: 'apify', records: recordsFromPrograms(programs), now: new Date('2026-11-13T12:00:00Z') })
-  assert.equal(hop.action, 'stack')
+  assert.equal(apify.status, 'active')
+  assert.equal(apify.ourLink, 'https://www.apify.com?fpr=vzmwk5')
+  const now = new Date('2026-11-15T12:00:00Z')
+  assert.deepEqual(resolveProgramDestination('apify', programs, undefined, now), { href: '/go/apify', sponsored: true })
+  assert.deepEqual(resolveGoDestination({ slug: 'apify', records: recordsFromPrograms(programs), now }), { action: 'hop', href: apify.ourLink })
+  const expired = new Date('2027-03-01T12:00:00Z')
+  assert.equal(resolveProgramDestination('apify', programs, undefined, expired).sponsored, false)
+  assert.equal(resolveGoDestination({ slug: 'apify', records: recordsFromPrograms(programs), now: expired }).action, 'stack')
 })
 
 

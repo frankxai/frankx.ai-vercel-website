@@ -13,7 +13,7 @@ The standard `/publish-content` pipeline is good enough for Intelligence Dispatc
 
 - User says "flagship blog", "manifesto", "definitive piece on X", "long-form on Y"
 - Frontmatter will have `category: "Flagship"` or `flagship: true`
-- Target length ≥ 2,500 words
+- The topic needs sustained evidence and analysis; length follows that need
 
 ## Pre-flight checklist (must answer YES before drafting)
 
@@ -31,19 +31,19 @@ The standard `/publish-content` pipeline is good enough for Intelligence Dispatc
 - Verify every direct quote against a primary source. No paraphrase-as-quote.
 - Find the brand-voice and SEO conventions from sibling Flagship posts in `content/blog/*.mdx` with `category: "Flagship"`.
 
-### 2. Draft (≥ 2,500 words, target 3,000)
+### 2. Draft to the argument
 
 **Required structure:**
 
-- Personal hook (200–300 words). Concrete detail. No "I was thinking about…".
-- TL;DR `<Callout type="insight">` in the first 100 words. AEO-extractable.
+- Open with a concrete finding, scene or result. Never invent personal experience.
+- Use the frontmatter `tldr` for the shell summary. Do not repeat it in a body callout or a second TL;DR.
 - 1-line **author's note** under the byline if AI was in the loop. Disclose now, link to a transparency section near the end.
-- Body sections with **≥ 3 question-format H2s** (e.g. "What did Olah actually say?").
+- Use headings that follow the argument. Questions are appropriate when the section answers one; there is no heading count or question quota.
 - **Counter-argument section** — explicit. Don't bury the objection in a parenthetical.
 - "What to do this week" section — 3 numbered, verb-led invitations.
 - "How this post was made" — transparency note if AI assisted.
-- `## FAQ` — exactly 5 `### Question?` Q&As. Each answer ≤ 60 words for AI-engine extraction.
-- Brand close: `The studio lights are on.`
+- Add an FAQ only when readers have useful unanswered questions. Do not repeat the body or add questions to satisfy a count.
+- End when the argument is complete; no mandatory slogan.
 
 **Required frontmatter:**
 
@@ -59,10 +59,10 @@ tags: [...]
 keywords: [...]
 image: "/images/blog/<slug>-hero.png"
 coverAlt: "..."             # accessibility + AI image-caption fallback
-tldr: "50-word AI-engine summary, distinct from the body Callout"
+tldr: "Concise summary displayed once by the article shell"
 readingGoal: "..."
 featured: true
-schema: ["Article", "FAQPage"]
+schema: ["Article"]         # FAQPage only for a genuine, visible FAQ
 ```
 
 ### 3. Gate: `@integrity-guard <file>`
@@ -108,8 +108,8 @@ gh pr create --draft --title "feat(blog): <title>" --body "<...>"
 | ----------------------- | ---------------------------------------------------------- |
 | Title > 60              | Tighten. The brand name doesn't need to be in the title.   |
 | Description > 155       | Treat as a snippet, not a summary. One sentence, no comma. |
-| < 3 question H2s        | Reframe statement H2s as questions where natural.          |
-| < 5 FAQ entries         | Add the 5 questions Perplexity / ChatGPT actually ask.     |
+| Unclear structure      | Use headings that help the reader follow the argument.   |
+| Repetitive FAQ          | Remove repeated answers; keep only useful open questions. |
 | Voice-audit hits        | Read `scripts/voice-audit.sh` for the ban list.            |
 | No counter-argument     | Add one. ≥ 150 words. Steelman the strongest objection.    |
 | Missing tldr            | Add a 50-word, AEO-extractable summary.                    |

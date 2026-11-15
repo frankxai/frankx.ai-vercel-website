@@ -98,5 +98,17 @@
     "rights": "original",
     "createdOn": "2026-11-07",
     "kind": "diagram"
+  },
+  "apify-research-evidence": {
+    "src": "/images/blog/apify-research-evidence-hero.webp",
+    "width": 1672,
+    "height": 941,
+    "alt": "Two glass channels carry paper source folios into an emerald-edged evidence tray. Symbolic illustration of research paths converging on retained evidence.",
+    "caption": "Original AI-generated editorial illustration. The architecture map below distinguishes existing source from proposed integration.",
+    "credit": "FrankX · generated with OpenAI image generation",
+    "sourceUrl": "https://www.frankx.ai/blog/apify-mcp-vs-actor-api",
+    "rights": "Original generated editorial asset; no vendor logos or screenshots",
+    "createdOn": "2026-11-15",
+    "kind": "illustration"
   }
 }

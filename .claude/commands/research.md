@@ -275,14 +275,14 @@ CONTENT TYPES (by GEO optimization):
 
 1. **Pillar Article** (2500-4000 words)
    - Comprehensive topic coverage
-   - FAQ section (5+ questions)
-   - Schema: Article + FAQPage + HowTo
+   - Optional FAQ for useful unanswered questions; no minimum count
+   - Schema: Article; FAQPage or HowTo only when supported by visible content
    - Internal links: 5+ to related content
 
 2. **Research Brief** (800-1200 words)
    - Focused insight on single concept
    - Quick-read format
-   - Schema: Article + FAQPage
+   - Schema: Article; FAQPage only when supported by a visible FAQ
 
 3. **Twitter Thread** (10-15 tweets)
    - Hook → Value → CTA pattern
@@ -313,19 +313,21 @@ tags: ["[tag1]", "[tag2]", "[tag3]"]
 keywords: ['[primary]', '[secondary]', '[tertiary]']
 ---
 
-**TL;DR**: [50-word summary for AI extraction in first 100 words]
+[Use a frontmatter tldr for the shell summary when helpful; do not repeat it here.]
 
-## [Question-based H2 matching search intent]
+## [Heading that follows the argument]
 
 [Content with clear, quotable definitions]
 
-## [Another question-based H2]
+## [Next useful heading]
 
 [Content...]
 
+[Optional FAQ below, only for useful questions the body leaves open; no minimum count.]
+
 ## Frequently Asked Questions
 
-### [Question 1 matching "People Also Ask"]
+### [Useful unanswered question]
 [Clear, concise answer]
 
 ### [Question 2]
@@ -345,7 +347,7 @@ keywords: ['[primary]', '[secondary]', '[tertiary]']
 
 Generate JSON-LD recommendations:
 - Article schema
-- FAQPage schema
+- FAQPage schema only when it matches a visible FAQ
 - HowTo schema (if applicable)
 - Person schema (for author)
 

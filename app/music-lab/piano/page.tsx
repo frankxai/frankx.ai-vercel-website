@@ -67,7 +67,8 @@ class GrandPianoEngine {
 
   async init() {
     if (this.ctx) {
-      if (this.ctx.state === 'suspended') await this.ctx.resume()
+      if (this.ctx.state !== 'running') await this.ctx.resume()
+      if (this.ctx.state !== 'running') throw new Error('Audio unavailable')
       return
     }
 
@@ -112,7 +113,10 @@ class GrandPianoEngine {
     dry.connect(hiRolloff)
     wet.connect(hiRolloff)
 
-    this.loadAllSamples()
+    // Resume during the initiating gesture, including the first note.
+    void this.loadAllSamples()
+    await this.ctx.resume()
+    if (this.ctx.state !== 'running') throw new Error('Audio unavailable')
   }
 
   private buildIR(): AudioBuffer {
@@ -325,7 +329,10 @@ export default function PianoPage() {
   const [lastNote, setLastNote] = useState<string | null>(null)
   const [loadCount, setLoadCount] = useState(0)
   const [samplesReady, setSamplesReady] = useState(false)
+  const [audioError, setAudioError] = useState(false)
+  const pendingNotes = useRef(new Map<number, symbol>())
   const [volume, setVolume] = useState(1.15)
+  const volumeRef = useRef(volume)
   const touchMap = useRef<Map<number, number>>(new Map())
   const pianoRef = useRef<HTMLDivElement>(null)
 
@@ -350,22 +357,40 @@ export default function PianoPage() {
   useEffect(() => () => { engineRef.current?.destroy() }, [])
 
   // Hydrate volume from localStorage once
-  useEffect(() => { setVolume(getVolume() * 1.15) }, [])
+  useEffect(() => {
+    const next = getVolume() * 1.15
+    volumeRef.current = next
+    setVolume(next)
+  }, [])
 
   // Persist + apply volume changes
   useEffect(() => {
+    volumeRef.current = volume
     persistVolume(volume / 1.15)
     engineRef.current?.setMasterVolume(volume)
   }, [volume])
 
   const noteOn = useCallback(async (midi: number, vel?: number) => {
-    const eng = await getEngine()
-    eng.noteOn(midi, vel)
-    setPressed(prev => new Set(prev).add(midi))
-    setLastNote(midiToDisplay(midi))
+    const request = Symbol()
+    pendingNotes.current.set(midi, request)
+    try {
+      const eng = await getEngine()
+      if (pendingNotes.current.get(midi) !== request) return
+      eng.setMasterVolume(volumeRef.current)
+      eng.noteOn(midi, vel)
+      setAudioError(false)
+      setPressed(prev => new Set(prev).add(midi))
+      setLastNote(midiToDisplay(midi))
+    } catch {
+      if (pendingNotes.current.get(midi) === request) {
+        pendingNotes.current.delete(midi)
+      }
+      setAudioError(true)
+    }
   }, [getEngine])
 
   const noteOff = useCallback((midi: number) => {
+    pendingNotes.current.delete(midi)
     engineRef.current?.noteOff(midi)
     if (!engineRef.current?.sustain) {
       setPressed(prev => { const n = new Set(prev); n.delete(midi); return n })
@@ -373,7 +398,8 @@ export default function PianoPage() {
   }, [])
 
   const toggleSustain = useCallback(async () => {
-    const eng = await getEngine()
+    let eng: GrandPianoEngine
+    try { eng = await getEngine(); setAudioError(false) } catch { setAudioError(true); return }
     eng.sustain = !eng.sustain
     setSustainOn(eng.sustain)
     if (!eng.sustain) {
@@ -385,7 +411,9 @@ export default function PianoPage() {
   useEffect(() => {
     const held = new Set<string>()
     function down(e: KeyboardEvent) {
-      if (e.repeat || e.metaKey || e.ctrlKey) return
+      if (e.repeat || e.metaKey || e.ctrlKey || e.altKey) return
+      const target = e.target as HTMLElement | null
+      if (target?.closest('input, textarea, select, [contenteditable]')) return
       const k = e.key.toLowerCase()
       if (k in KEY_MAP && !held.has(k)) {
         e.preventDefault(); held.add(k)
@@ -493,6 +521,10 @@ export default function PianoPage() {
         )}
       </div>
 
+      {audioError && <p role="alert" className="relative z-10 px-4 py-2 text-center text-sm text-amber-200">
+        Audio could not start. Press a piano key to retry.
+      </p>}
+
       {/* Controls */}
       <div className="relative z-10 flex flex-wrap items-center justify-center gap-2 px-4 py-2 sm:gap-3">
         <button
@@ -536,7 +568,7 @@ export default function PianoPage() {
             max="1.8"
             step="0.05"
             value={volume}
-            onChange={(e) => setVolume(parseFloat(e.target.value))}
+            onChange={(e) => { const next = parseFloat(e.target.value); volumeRef.current = next; setVolume(next) }}
             className="h-1 w-24 cursor-pointer accent-cyan-400"
             aria-label="Master volume"
           />
@@ -645,3 +677,4 @@ export default function PianoPage() {
     </div>
   )
 }
+

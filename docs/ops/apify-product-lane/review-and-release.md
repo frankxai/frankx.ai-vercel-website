@@ -1,74 +1,68 @@
-# Apify product lane: maker verification and release handoff
+# Apify product lane: publication candidate
 
-Prepared 2026-11-13. State: DRAFT, with release gates pending.
-Maker: OpenAI Codex. Independent verifier: not yet assigned or completed.
-Website base: `baea0d3f51e3e6aed77f7d389f21c1f11b5697e1`.
+Updated 2026-11-15. Maker: OpenAI Codex. Independent review and production
+verification remain pending. Existing PR: #1235. Integration: agentic-ops#600.
+Website base integrated: `c7863f247d9f72e916dd628c2dbba6f4f126cea6`.
 
-## Reviewable outputs
+Frank authorized publication in the continuation request on 15 November:
+“Get it into prod higher quality embedding and value and vibes and visual aesthetics”.
+That approval covers the improved editorial resource. Paid Actor execution and a
+commercial starter-kit launch remain outside this release.
 
-| Artifact | Location |
-| --- | --- |
-| Article | `content/blog/_drafts/apify-mcp-vs-actor-api.mdx` |
-| Editorial/source ledger | `docs/ops/apify-product-lane/brief-and-evidence.md` |
-| Machine-readable article packet | `docs/ops/apify-product-lane/article-packet.json` |
-| Product specification | `docs/ops/apify-product-lane/starter-kit-spec.md` |
-| Evaluation contract | `docs/ops/apify-product-lane/evaluation.template.json` |
-| Task envelope | `docs/ops/apify-product-lane/task-envelope.json` |
-| Offline planner, fixture and tests | `examples/apify-research/` |
-| Held enrollment record | `data/affiliate/programs.json` |
+## Candidate
 
-## Executed checks
+- Publish `content/blog/apify-mcp-vs-actor-api.mdx` through the existing blog loader.
+- Embed a precise existing/proposed architecture map, equivalent request inspector,
+  blank evidence receipt, dated cost calculator and a portable offline starter.
+- Add one 118 kB generated editorial illustration with provenance, descriptive alt
+  text and shared image optimization. See `visual-and-experience.md` for the
+  narrowly scoped media-delivery exception and exactly three considered directions.
+- License only the original educational example/templates under the scoped MIT
+  license in `examples/apify-research/LICENSE`. The site, article, art, vendor
+  material and proposed commercial runtime remain outside that grant.
+- Activate the privately verified issued referral through the canonical registry
+  and existing sponsored `/go/apify` route. Disclose it at opening and next action.
+- Link the guide from the existing SEO/AEO resource hub.
 
-| Check | Observed result |
-| --- | --- |
-| Dependency install from lockfile | Completed; no dependency/lockfile change retained |
-| Offline planner suite | 6 tests passed; no live Actor run |
-| Affiliate destination + tool-record + public-claims tests | 175 tests passed on the draft; focused affiliate test rerun passed after adding final `/go` fallback assertion |
-| Full affiliate suite | 29 tests passed, including final held-referral and `/go` fallback assertion |
-| Article packet validator | Passed at DRAFT; blocked review and visual fields are retained |
-| MDX compilation with GFM | Passed; draft title 50 characters, description 153 |
-| Internal article routes | 3 resolve in source |
-| Draft exclusion | Immediate blog enumeration and direct lookup cannot select the nested draft |
-| Changed-copy editorial audits | Local signal score 0; pinned shared language policy: zero hard failures/review signals on changed content/data lines after fixing a remote finding |
-| `pnpm run type-check` | Passed |
-| `pnpm run lint` | Passed with 12 warnings in unchanged files, zero errors |
-| `pnpm run ai-slop:audit:strict` | Passed; 2685 files scanned, zero hits |
-| `pnpm run claims:audit:strict` | Passed |
-| MDX safety, content integrity, publish-hold checks | Passed; existing large-hero warnings remain outside this change |
-| `CI=1 pnpm run build` | Failed: process killed during optimized compilation, exit 137. No completed build or rendered preview is claimed |
-| `git diff --check` | Passed |
+## Evidence boundary
 
-Prebuild regenerated unrelated indexes and changed a vendored file's executable
-bit; those generated changes were removed from this candidate. No application,
-component, infrastructure configuration, dependency or live publication path changes.
+Documentation, source inspection and synthetic fixtures support this blueprint.
+No live Actor run, benchmark, real accepted dataset, storage ingestion, runtime
+budget enforcement, account entitlement, awarded credit, conversion or revenue
+is reported. The paid starter kit remains an unpriced specification with no SKU
+or checkout. A successful live pilot is a separate runtime acceptance gate; it is
+not required to publish an explicitly labeled architectural blueprint.
 
-## Release decision
+## Maker checks
 
-Keep the manuscript in `_drafts/` and the registry at `status: hold` with no active
-`ourLink`. The issued destination is staged only as a candidate. Existing sponsor
-and `/go` logic remains responsible for expiry, link qualification and privacy-aware
-click recording. Marketing click ingestion and conversions were not exercised.
+The original six planner checks pass. Three additional checks cover dated cost
+arithmetic, invalid/unknown assumptions and equivalence of embedded requests to
+the tested planner. The original archive restore passed, but the repository bans archive binaries.
+The delivered replacement is a single text-only JavaScript file; its planner
+completed and all six included checks passed with no install, credentials or
+network request. A separate blank receipt and license are directly downloadable. Affiliate tests check the issued URL while
+fresh and the existing expired-verification fallback.
 
-The artifact is a technical/editorial draft with a runnable offline example. It
-does not establish successful Actor execution, live storage ingestion, runtime
-budget enforcement, account entitlement, comparative latency, quality, revenue,
-awarded platform credits or customer acceptance.
+Type-check passed. Lint passed with zero errors and twelve pre-existing warnings.
+Strict claims/language and content integrity checks passed. Full-build first
+attempt compiled successfully, then was killed during TypeScript (exit 137).
+The bounded-heap retry passed the complete build and post-build checks.
+The broad merge gate then exposed an unrelated existing registry freshness
+failure: the agentic-life registry is 121 days old against its 120-day limit.
+Do not alter its verification date without rechecking its 29 source records.
+Final exact-head test, preview and independent review evidence belongs in the PR
+and a later release receipt. Updating these results does not create independence.
 
-Before release, the runtime lane must supply a separately authorized real mission
-with run/dataset IDs, retained evidence, all-attempt costs and human acceptance.
-Resolve numbered build/schema and permission checks, actual orchestration/bindings,
-single budget authority, current prices, final schema discrepancy, independent
-exact-head review, governed visual/OG/mobile treatments, code reuse license and
-completed build/rendered preview. Frank approves publication and referral activation.
-No paid execution or publication permission is sought by this draft itself.
+## Remaining release checks
 
-Recovery: close the draft PR or revert its isolated changes. No deploy, storage
-migration or provider-side rollback is required by the work performed here.
+Complete the required build/checks, inspect desktop/narrow rendering, copy/save
+and calculator states, request a substantive different-provider exact-head review,
+answer all findings and verify the Git-integrated deployment before claiming
+production. A request or bot reaction alone cannot prove completed review.
 
-## Source confidentiality
+After deploy, bind the stable URL, deployment/project, source revision, observed
+behavior and rollback in a receipt outside the commit being proved. Recovery is a
+reviewed revert PR of the isolated merge. Never delete a route with traffic.
 
-Private Registry, Starlight source and correspondence were inspected through the
-authorized connections. Full source refs and loaded-policy hashes are recorded in
-the private coordination receipt. Public files carry sanitized judgments and
-public vendor sources. No private records, raw email, account IDs, secrets, contacts
-or third-party scraped content are included.
+Private source refs, account-specific correspondence and authority hashes remain
+in private coordination tracking; they are not copied into this public repository.

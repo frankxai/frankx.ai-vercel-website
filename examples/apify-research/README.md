@@ -1,8 +1,8 @@
 # Apify research request planner
 
 Original teaching example. Node 22 or later; no package install or token required.
-This folder is an offline companion to the draft comparison, not a production
-Apify integration, installable MCP server or completed paid starter kit.
+This folder is an offline companion to the interface comparison. It prepares requests locally.
+The production Apify adapter and paid starter kit remain proposed.
 
 ```bash
 node examples/apify-research/request-plan.mjs examples/apify-research/fixtures/mission.json
@@ -37,5 +37,6 @@ Limits in the example are design examples, not authorization to spend. Passing
 the tests proves local planning behavior only. See the [starter-kit specification](../../docs/ops/apify-product-lane/starter-kit-spec.md)
 and [evaluation template](../../docs/ops/apify-product-lane/evaluation.template.json).
 
-The repository's existing reserved-rights license applies. No separate code,
-content, resale or third-party data license is granted by this example.
+The original example code and blank templates use the scoped MIT license in
+[LICENSE](./LICENSE). Article text, artwork, brands and third-party content are
+excluded from that grant. No paid services or support are included.
