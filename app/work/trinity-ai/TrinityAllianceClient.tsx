@@ -619,7 +619,7 @@ export default function TrinityAllianceClient() {
           <div className="mt-14 space-y-2">
             <div className="text-lg font-light text-white">Frank Riemer</div>
             <div className="text-sm text-zinc-500">
-              Founder & Chief Architect — Arcanea BV
+              Founder &amp; AI Architect — Arcanea
             </div>
             <div className="mt-4 text-xs" style={{ color: goldMuted }}>
               frankx.ai · arcanea.ai

@@ -22,7 +22,7 @@ export default function ImprintPage() {
               <Row label="Trading as" value="FrankX / frankx.ai" />
               <Row label="Business address" value="Amsterdam, Netherlands" />
               <Row label="KvK number" value="42186809" />
-              <Row label="BTW-id" value="[PENDING — update after registration]" pending />
+              <Row label="BTW-id" value="NL005565287B89" />
               <Row label="Owner" value="Frank Riemer" />
             </tbody>
           </table>
@@ -64,16 +64,16 @@ export default function ImprintPage() {
         </div>
       </section>
 
-      <p className="text-zinc-600 text-xs mt-12">Last updated: March 2026</p>
+      <p className="text-zinc-600 text-xs mt-12">Last updated: November 2026</p>
     </article>
   )
 }
 
-function Row({ label, value, pending }: { label: string; value: string; pending?: boolean }) {
+function Row({ label, value }: { label: string; value: string }) {
   return (
     <tr>
       <td className="py-2 pr-4 text-zinc-500 w-40">{label}</td>
-      <td className={`py-2 ${pending ? 'text-amber-500/70 italic' : 'text-zinc-300'}`}>{value}</td>
+      <td className="py-2 text-zinc-300">{value}</td>
     </tr>
   )
 }
