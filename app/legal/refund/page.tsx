@@ -9,7 +9,7 @@ export default function RefundPage() {
   return (
     <article className="prose prose-invert prose-zinc max-w-none">
       <h1 className="text-3xl font-bold text-white mb-2">Refund Policy</h1>
-      <p className="text-zinc-500 text-sm mb-8">Effective: [DATE] &bull; Last updated: March 2026</p>
+      <p className="text-zinc-500 text-sm mb-8">Effective: October 7, 2026 &bull; Last updated: November 2026</p>
 
       <Section title="Digital Products (Downloads)">
         <p>Under the EU Consumer Rights Directive, you have a 14-day right of withdrawal for online purchases. However, for digital products with immediate delivery, this right is waived when you:</p>
@@ -62,7 +62,7 @@ export default function RefundPage() {
         </p>
       </Section>
 
-      <p className="text-zinc-600 text-xs mt-12">Last updated: March 2026</p>
+      <p className="text-zinc-600 text-xs mt-12">Last updated: November 2026</p>
     </article>
   )
 }

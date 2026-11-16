@@ -22,7 +22,7 @@ export default function ImprintPage() {
               <Row label="Trading as" value="FrankX / frankx.ai" />
               <Row label="Business address" value="Amsterdam, Netherlands" />
               <Row label="KvK number" value="42186809" />
-              <Row label="BTW-id" value="[PENDING — update after registration]" pending />
+              <Row label="BTW-id" value="NL005565287B89" />
               <Row label="Owner" value="Frank Riemer" />
             </tbody>
           </table>
@@ -64,7 +64,7 @@ export default function ImprintPage() {
         </div>
       </section>
 
-      <p className="text-zinc-600 text-xs mt-12">Last updated: March 2026</p>
+      <p className="text-zinc-600 text-xs mt-12">Last updated: November 2026</p>
     </article>
   )
 }
