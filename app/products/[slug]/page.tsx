@@ -10,6 +10,8 @@ import JsonLd from '@/components/seo/JsonLd'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import ProductFileInspector from '@/components/products/ProductFileInspector'
 import type { ProductRecord } from '@/types/products'
+import { PackageGuide, TrustAndOwnership } from '@/components/founder-identity/FounderIdentity'
+import { founderBrands } from '@/lib/founder-identity/brands'
 
 // Some registry entries (e.g. golden-age) predate the full ProductRecord shape:
 // they carry title/description/cta/price instead of name/headline/offer.
@@ -297,6 +299,20 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </div>
           </section>
         ) : null}
+        <PackageGuide brand={founderBrands.frankx} content={{
+          id: product.id,
+          name,
+          audience: headline || null,
+          includes: (product.modules ?? []).map(module => module.title),
+          limitations: liveFreeCta
+            ? ['The linked public material is available to inspect. This does not include a paid service or personal support.']
+            : ['Paid delivery is not open on this page. The waitlist records interest; it does not buy access.'],
+          availability: liveFreeCta ? 'available' : 'waitlist',
+          price: null,
+          evidenceRef: `data/products.json#${product.id}`,
+          detailsHref: `/products/${product.slug}`,
+        }} />
+        <TrustAndOwnership brand={founderBrands.frankx} />
       </main>
     </div>
   )
