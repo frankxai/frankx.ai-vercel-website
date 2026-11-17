@@ -1,6 +1,6 @@
 # UvA collaboration experience: review handoff
 
-17 November 2026. Implementation owner: OpenAI Codex, ChatGPT Work Mode. Draft only; production release is not authorized.
+17 November 2026. Implementation owner: OpenAI Codex, ChatGPT Work Mode. Production release was explicitly authorized by Frank’s follow-up request, subject to the repository’s exact-head checks and independent review.
 
 ## Destination and scope
 
@@ -36,14 +36,30 @@ The existing partnerships page was inspected at desktop and narrow responsive wi
 
 Six readable chapters remain available without opening presentation mode. A native modal dialog provides focus containment and progressive browser fullscreen; unsupported fullscreen leaves a window-filling presentation. Arrow/Page keys move between chapters; Home/End jump; Escape/Exit return focus to the launcher. Interactive controls retain native keyboard behavior. Reduced motion removes transitions. No new network execution, telemetry, forms, persistence, paid services or backend was added. External links inspect public source; nothing runs an agent. Print offers a dedicated one-page summary. Closing/reloading loses only local view selections.
 
-## Validation and blockers
+## Experience revision
 
-- Type checking and full lint passed; unrelated existing lint warnings remain.
-- Strict AI-language audit and targeted editorial audit passed.
-- Route compiled and served HTTP 200 in Next development. Existing Anthropic proposal remained HTTP 307 to sign-in.
-- Route enumeration recognizes the URL but excludes it from public discovery.
-- The initial default build stopped at the missing optional sibling checkout. `CI=1 npm run build` passed prebuild gates but the local runtime killed the full Turbopack compilation. A successful full production build is still required.
-- Browser interactions, print pagination and responsive preview acceptance remain to be recorded against the final candidate.
-- Different-provider review, exact-head CI and explicit production approval remain release blockers. No independent review is claimed.
+The founder narrative now reads “From enterprise AI adoption to building the next generation of AI founders.” Seven interactive cases separate technical contribution, personal delivery, shared programme speaking, event contribution and independent engineering. The three collaboration areas are applied engineering/evaluation, entrepreneurship/adoption, and interdisciplinary programme design.
 
-Next action: inspect the draft preview at the exact head, rehearse all six chapters and print, then attach the observations to the PR. Do not merge or promote to production.
+The public URLs and the limits of each record are colocated in `experienceCases` in the proposal content file. The sources comprise the official NLdigital NextGen speaker/event record, organiser follow-up, Frank’s public MCI and career accounts, the Oracle Amsterdam programme recap in Koen van den Berg’s post, an indexed Utrecht forum attendee account, a teammate’s repost of the NLdigital challenge account, and pinned public Starlight source. LinkedIn can require sign-in; no private deck or correspondence is linked from the page. The public challenge build log was also inspected; its weekday/date mismatch and aspirational production language are not repeated.
+
+Claims held out of publication:
+
+| Claim | Evidence needed before use |
+| --- | --- |
+| 60+ direct engagements | Period, unit of engagement, personal role and deduplicated source record |
+| 500 wider CoE engagements | Programme denominator, period, oversight responsibility and public-safe source |
+| Four university sessions, 50–70 participants | Per-session institution/date/degree level and whether attendance is per session or total |
+| KPN / BMW customer delivery | Public attribution of Frank’s responsibility and permission to disclose the case |
+| Utrecht keynote | Agenda, recording or organiser attribution establishing keynote status |
+| Joint NVIDIA presentation | Record establishing a jointly delivered talk, beyond appearing in the same programme |
+| CoE process creation / architect onboarding / programme oversight | Approved public methodology or attributable record of contribution and responsibility |
+
+The case selection does not deny the founder’s account; it limits publication to the recovered evidence. Proposed teaching and programme methods are Frank’s independent contribution, not reproduced Oracle internal methodology.
+
+## Validation and release record
+
+Implementation owner/provider: OpenAI Codex. PR: https://github.com/frankxai/frankx.ai-vercel-website/pull/1264 . Earlier candidate `8ae86d9932788e237d594d289708a729172a79b1` passed a complete Vercel build; its first candidate deployment was cancelled after replacing deployment-excluded agent files with bundled exact snapshots. Local default build stopped at an optional missing sibling checkout; CI-mode local compilation was killed by the runtime. Vercel successfully completed compilation, TypeScript and postbuild checks.
+
+Desktop preview rehearsal verified guided navigation, source contract selection/expansion, map selection, Escape focus restoration and absence of horizontal overflow. Narrow responsive layout was inspected at 454 CSS pixels. Browser-managed native fullscreen and print dialogs were unavailable; those capabilities must be distinguished from the verified window-filling modal and print stylesheet. Final revision evidence belongs in the PR receipt with its full SHA; earlier screenshots are not final acceptance.
+
+Different-provider substantive review is required for the final head. A green Review Gate on a draft PR does not supply that review. No merge or production promotion has occurred at this checkpoint.

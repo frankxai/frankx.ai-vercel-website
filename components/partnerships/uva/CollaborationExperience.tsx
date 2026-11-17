@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Check, Code2, Compass, FileText, Play, Printer, X } from 'lucide-react'
-import { agentContracts, chapters, collaborationAreas, pilotSteps, proposal, sourceProjects } from '@/content/partnerships/proposals/uva-rec-impact'
+import { agentContracts, chapters, collaborationAreas, experienceCases, pilotSteps, proposal, sourceProjects } from '@/content/partnerships/proposals/uva-rec-impact'
 import s from './collaboration.module.css'
 
 type Contract = (typeof agentContracts)[number] & { markdown: string }
@@ -24,6 +24,7 @@ export default function CollaborationExperience({ contracts }: { contracts: Cont
   const [active, setActive] = useState(0)
   const [area, setArea] = useState(0)
   const [agent, setAgent] = useState(0)
+  const [experience, setExperience] = useState(0)
   const [fullscreenNote, setFullscreenNote] = useState('')
   const dialog = useRef<HTMLDialogElement>(null)
   const stage = useRef<HTMLDivElement>(null)
@@ -52,7 +53,10 @@ export default function CollaborationExperience({ contracts }: { contracts: Cont
     focusStage()
     // Fullscreen is progressive enhancement; the modal remains usable on iOS and when denied.
     if (document.documentElement.requestFullscreen && !document.fullscreenElement) {
-      void document.documentElement.requestFullscreen().then(() => { ownsFullscreen.current = true }).catch(() => setFullscreenNote('Presentation fills this window. Browser fullscreen is unavailable.'))
+      void document.documentElement.requestFullscreen().then(() => {
+        ownsFullscreen.current = Boolean(document.fullscreenElement)
+        if (!ownsFullscreen.current) setFullscreenNote('Presentation fills this window. Browser fullscreen is unavailable.')
+      }).catch(() => setFullscreenNote('Presentation fills this window. Browser fullscreen is unavailable.'))
     } else setFullscreenNote('Presentation fills this window. Browser fullscreen is unavailable.')
   }
 
@@ -77,6 +81,7 @@ export default function CollaborationExperience({ contracts }: { contracts: Cont
     return () => { if (element?.open) document.body.style.overflow = previousOverflow.current }
   }, [])
 
+  const selectedExperience = experienceCases[experience]
   const selected = collaborationAreas[area]
   const selectedAgent = contracts[agent]
 
@@ -102,14 +107,19 @@ export default function CollaborationExperience({ contracts }: { contracts: Cont
         <div className={s.opportunityLine}><span>The shared opportunity</span><p>Give a promising idea a place to be built, questioned and improved by people who see it differently.</p></div>
       </>
       case 1: return <>
-        <Heading number="02" title="From cloud conversations to systems you can inspect.">A founder’s practice, open to a university’s questions.</Heading>
+        <Heading number="02" title="From enterprise AI adoption to building the next generation of AI founders.">Experience to build on. A new direction to shape together.</Heading>
         <div className={s.founderGrid}>
-          <div className={s.story}><p>I’m Frank Riemer, an AI Architect and founder based in Amsterdam. My background includes work at Oracle Cloud. Today I’m building Starlight Intelligence and sharing the methods, source files and design decisions through FrankX.</p><p>The question behind the work is practical: how can people keep control of the tools they build with, understand their limits, and leave something another person can use?</p><p>That is what I would bring into a collaboration: examples to take apart, engineering judgment, and time alongside people building their own ideas.</p><External href="https://www.frankx.ai/about">Read Frank’s background</External><span className={s.caption}>Founder-authored account. Former Oracle role; no current Oracle endorsement implied.</span></div>
+          <div className={s.story}><p>I’m Frank Riemer, an Amsterdam-based founder and former AI Architect in Oracle’s EMEA AI Center of Excellence. My work has connected enterprise AI, technology partners, student sessions and practical workshops.</p><p>Now I’m building Starlight Intelligence. I want to bring the questions that matter in enterprise adoption into the earliest stages of a founder’s work: what is useful, what can be trusted, and what will it take for someone else to use it?</p><p>A university brings different strengths: research depth, critical inquiry and people approaching the same problem from different disciplines. I’d like to explore what we could build at that intersection.</p><span className={s.caption}>Former Oracle role. This independent proposal carries no employer, client or institutional endorsement.</span></div>
           <div className={s.workIndex}>
             <a href="https://starlightintelligence.ai" target="_blank" rel="noopener noreferrer"><span>01 / Build</span><h3>Starlight Intelligence <ArrowUpRight size={20} /></h3><p>Shared memory, agent contracts and reference tools. Inspect the public source in the next chapter.</p></a>
             <a href="https://www.frankx.ai" target="_blank" rel="noopener noreferrer"><span>02 / Explain</span><h3>FrankX <ArrowUpRight size={20} /></h3><p>The founder’s public home for writing, teaching and showing the work.</p></a>
             <a href="https://agenticincome.ai" target="_blank" rel="noopener noreferrer"><span>03 / Explore commercial use</span><h3>Agentic Income <ArrowUpRight size={20} /></h3><p>A separate venture exploring how useful AI services become businesses. No earnings or adoption claims are made here.</p></a>
           </div>
+        </div>
+        <div className={s.experienceIntro}><p className={s.eyebrow}>Selected experience / inspect the record</p><h3>Experience across enterprise, education and the AI ecosystem.</h3><p>Different settings, different responsibilities. Choose a moment to see the work, its source and what it could contribute here.</p></div>
+        <div className={s.experienceLayout}>
+          <nav className={s.experienceTimeline} aria-label="Experience timeline">{experienceCases.map((item, i) => <button key={item.id} aria-pressed={experience === i} aria-controls={`${prefix}-experience`} className={experience === i ? s.experienceSelected : ''} onClick={() => setExperience(i)}><span className={s.experiencePoint} /><span><small>{item.period}</small><strong>{item.title}</strong></span><ArrowUpRight size={15} aria-hidden="true" /></button>)}</nav>
+          <article id={`${prefix}-experience`} className={s.experienceCase} aria-live="polite"><div className={s.caseMeta}><span className={s.verified}>{selectedExperience.role}</span><span>{String(experience + 1).padStart(2, '0')} / 07</span></div><p className={s.eyebrow}>{selectedExperience.setting}</p><h4>{selectedExperience.title}</h4><p>{selectedExperience.text}</p><div className={s.caseTransfer}><span className={s.eyebrow}>What I would bring to a university</span><p>{selectedExperience.transfer}</p></div><p className={s.caption}>{selectedExperience.proof}</p><div className={s.linkRow}>{selectedExperience.links.map(link => <External key={link.url} href={link.url}>{link.label}</External>)}</div><p className={s.boundary}>{selectedExperience.boundary}</p></article>
         </div>
         <div className={s.statusStrip}><div><span className={s.verified}>Working in this page</span><p>Chapter navigation, source inspection and a printable brief.</p></div><div><span className={s.prototype}>Prototype / source review</span><p>Agent profiles and reference systems; runtime rehearsal pending.</p></div><div><span className={s.ambition}>Research ambition</span><p>Better learning, reproducible agent evaluations and measurable public benefit.</p></div></div>
       </>
@@ -125,10 +135,10 @@ export default function CollaborationExperience({ contracts }: { contracts: Cont
         </div>
       </>
       case 3: return <>
-        <Heading number="04" title="Different starting points. A shared way to work.">These are invitations to explore. The right question should come from the people doing the work.</Heading>
+        <Heading number="04" title="Three ways this experience could become useful.">Engineering, entrepreneurship and programme design. The right starting point should come from the people doing the work.</Heading>
         <div className={s.mapLayout}>
           <div className={s.map} aria-label="Explore possible collaboration areas"><span className={s.mapCaption}><Compass size={17} aria-hidden="true" />Choose a starting point</span><div className={s.mapCenter}><span>One useful</span><strong>question.</strong></div>{collaborationAreas.map((item, i) => <button key={item.id} className={`${s.mapNode} ${s[`node${i}`]} ${area === i ? s.mapSelected : ''}`} aria-pressed={area === i} aria-controls={`${prefix}-area`} onClick={() => setArea(i)}><span>0{i + 1}</span><strong>{item.title}</strong><ArrowUpRight size={16} aria-hidden="true" /></button>)}</div>
-          <div id={`${prefix}-area`} className={s.areaDetail}><p className={s.eyebrow}>Possibility / {selected.title}</p><h3>{selected.question}</h3><p>{selected.idea}</p><dl><dt>Something to leave behind</dt><dd>{selected.artifact}</dd><dt>A question to evaluate</dt><dd>{selected.measure}</dd></dl><p className={s.boundary}>{selected.boundary}</p></div>
+          <div id={`${prefix}-area`} className={s.areaDetail}><p className={s.eyebrow}>{selected.contribution}</p><h3>{selected.question}</h3><p>{selected.idea}</p><dl><dt>Something to leave behind</dt><dd>{selected.artifact}</dd><dt>A question to evaluate</dt><dd>{selected.measure}</dd></dl><p className={s.boundary}>{selected.boundary}</p></div>
         </div>
       </>
       case 4: return <>
@@ -159,6 +169,6 @@ export default function CollaborationExperience({ contracts }: { contracts: Cont
       <div className={s.presentationControls}><button className={s.secondary} disabled={active === 0} onClick={() => move(active - 1)} aria-label="Previous chapter"><ArrowLeft size={17} /> <span>Previous</span></button><div><p aria-live="polite" aria-atomic="true">{active + 1} / 6 <span>{chapters[active].short}</span></p><div className={s.dots}>{chapters.map((item, i) => <button key={item.id} aria-label={`Go to chapter ${i + 1}: ${item.label}`} aria-current={active === i ? 'step' : undefined} onClick={() => move(i)} />)}</div></div>{active === 5 ? <button className={s.primary} onClick={closePresentation}>Finish <Check size={17} /></button> : <button className={s.primary} onClick={() => move(active + 1)} aria-label="Next chapter"><span>Next</span> <ArrowRight size={17} /></button>}</div>
       <p className={s.keyboardHint}>{fullscreenNote || '← → to navigate · Home / End to jump · Esc to exit'}</p>
     </dialog>
-    <article className={s.printBrief} aria-label="Printable one-page collaboration summary"><header><span>Frank Riemer / Starlight Intelligence</span><span>{proposal.date}</span></header><h1>What becomes possible<br />when we build together?</h1><p className={s.printDeck}>{proposal.subtitle}</p><p><strong>Independent founder-authored discussion draft. Not an official UvA partnership.</strong></p><div className={s.printColumns}><section><h2>The opportunity</h2><p>Connect university talent with inspectable tools and a practical setting to build, question and improve a useful idea.</p><h2>What Frank brings</h2><p>An Amsterdam-based founder and AI Architect with a background at Oracle Cloud; public Starlight protocol and reference source, and reusable working practices in Agentic Creator OS. Former role; no current Oracle endorsement implied.</p><h2>Where to explore</h2><p>Education: reproducible teaching examples. Research: compare bounded agent workflows. Entrepreneurship: test a prototype with a user. Impact: agree an outcome with the people affected.</p></section><section><h2>A bounded pilot, proposed</h2><p>Two weeks. Two to four small teams. A 90-minute workshop and a 60-minute review. Leave an inspectable prototype, evaluation and reusable teaching note.</p><h2>Agree before starting</h2><p>University contact, supervision, participants, dates, IP, consent and compute ceiling. Public or synthetic data only. No funding, institutional approval or academic credit assumed.</p><h2>The conversation with Erik</h2><p>Where is the strongest fit? What should change? Who should we learn from at UvA or elsewhere? Would occasional mentorship be useful? Leave with one next step and its owner.</p></section></div><h2>Inspect the source</h2><p className={s.printSources}>github.com/Starlight-Intelligence/Starlight-Intelligence-System<br />github.com/frankxai/agentic-creator-os</p><p><strong>Evidence status:</strong> source and interface audit reviewed; runtime rehearsal pending. No adoption, performance or impact claims.</p><footer>UvA and Founder Space have not approved or endorsed this proposal. Original crew supplied by Frank. frankx.ai/partnerships/proposal/uva-rec-impact</footer></article>
+    <article className={s.printBrief} aria-label="Printable one-page collaboration summary"><header><span>Frank Riemer / Starlight Intelligence</span><span>{proposal.date}</span></header><h1>What becomes possible<br />when we build together?</h1><p className={s.printDeck}>{proposal.subtitle}</p><p><strong>Independent founder-authored discussion draft. Not an official UvA partnership.</strong></p><div className={s.printColumns}><section><h2>The opportunity</h2><p>Connect university talent with inspectable tools and a practical setting to build, question and improve a useful idea.</p><h2>What Frank brings</h2><p>Former Oracle EMEA AI CoE architect, with publicly documented student teaching, NLdigital workshop delivery and technology partner programme contributions. Now building independent Starlight systems with inspectable source. No employer or institutional endorsement implied.</p><h2>Where to explore</h2><p>Applied AI engineering and evaluation. Entrepreneurship and enterprise adoption. Designing and operating interdisciplinary AI programmes. Start with a question that matters to the people involved.</p></section><section><h2>A bounded pilot, proposed</h2><p>Two weeks. Two to four small teams. A 90-minute workshop and a 60-minute review. Leave an inspectable prototype, evaluation and reusable teaching note.</p><h2>Agree before starting</h2><p>University contact, supervision, participants, dates, IP, consent and compute ceiling. Public or synthetic data only. No funding, institutional approval or academic credit assumed.</p><h2>The conversation with Erik</h2><p>Where is the strongest fit? What should change? Who should we learn from at UvA or elsewhere? Would occasional mentorship be useful? Leave with one next step and its owner.</p></section></div><h2>Inspect the source</h2><p className={s.printSources}>github.com/Starlight-Intelligence/Starlight-Intelligence-System<br />github.com/frankxai/agentic-creator-os</p><p><strong>Evidence status:</strong> source and interface audit reviewed; runtime rehearsal pending. No adoption, performance or impact claims.</p><footer>UvA and Founder Space have not approved or endorsed this proposal. Original crew supplied by Frank. frankx.ai/partnerships/proposal/uva-rec-impact</footer></article>
   </main>
 }

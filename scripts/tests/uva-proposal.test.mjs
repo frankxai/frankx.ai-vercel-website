@@ -1,6 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
+import { experienceCases, collaborationAreas } from '../../content/partnerships/proposals/uva-rec-impact.ts'
 import { contractMarkdown } from '../../content/partnerships/proposals/uva-contract-snapshots.ts'
 import { enumerateRoutes, hasAppRoute } from '../../lib/route-enumeration.mjs'
 
@@ -28,4 +29,15 @@ test('deployed snapshots preserve every byte of the reviewed public contracts', 
   for (const [index, name] of names.entries()) {
     assert.equal(contractMarkdown[index], fs.readFileSync(`.claude/agents/${name}.md`, 'utf8'))
   }
+})
+
+
+test('experience publication separates attribution and withholds unverified scale', () => {
+  const publicCopy = JSON.stringify({ experienceCases, collaborationAreas })
+  assert.doesNotMatch(publicCopy, /60\+|500|50[–-]70|BMW|KPN/)
+  for (const item of experienceCases) {
+    assert.ok(item.boundary && item.proof && item.role)
+    assert.ok(item.links.every(link => new URL(link.url).protocol === 'https:'))
+  }
+  assert.equal(collaborationAreas.length, 3)
 })
