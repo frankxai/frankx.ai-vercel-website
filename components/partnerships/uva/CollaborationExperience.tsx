@@ -29,11 +29,13 @@ export default function CollaborationExperience({ contracts }: { contracts: Cont
   const stage = useRef<HTMLDivElement>(null)
   const launch = useRef<HTMLButtonElement>(null)
   const previousOverflow = useRef('')
+  const ownsFullscreen = useRef(false)
   const focusStage = useCallback(() => { stage.current?.scrollTo({ top: 0 }); stage.current?.focus() }, [])
   const move = useCallback((index: number) => { setActive(Math.max(0, Math.min(chapters.length - 1, index))); focusStage() }, [focusStage])
 
   const closePresentation = useCallback(() => {
-    if (document.fullscreenElement === dialog.current) void document.exitFullscreen().catch(() => {})
+    if (ownsFullscreen.current && document.fullscreenElement) void document.exitFullscreen().catch(() => {})
+    ownsFullscreen.current = false
     dialog.current?.close()
     setPresenting(false)
     document.body.style.overflow = previousOverflow.current
@@ -49,8 +51,8 @@ export default function CollaborationExperience({ contracts }: { contracts: Cont
     setPresenting(true)
     focusStage()
     // Fullscreen is progressive enhancement; the modal remains usable on iOS and when denied.
-    if (dialog.current?.requestFullscreen) {
-      void dialog.current.requestFullscreen().catch(() => setFullscreenNote('Presentation fills this window. Browser fullscreen is unavailable.'))
+    if (document.documentElement.requestFullscreen && !document.fullscreenElement) {
+      void document.documentElement.requestFullscreen().then(() => { ownsFullscreen.current = true }).catch(() => setFullscreenNote('Presentation fills this window. Browser fullscreen is unavailable.'))
     } else setFullscreenNote('Presentation fills this window. Browser fullscreen is unavailable.')
   }
 

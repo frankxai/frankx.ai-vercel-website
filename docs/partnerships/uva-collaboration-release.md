@@ -14,7 +14,7 @@ The exact new URL is a public-safe, unlisted exception to the existing proposal 
 
 Canonical technical evidence belongs to [the operations audit, PR 633](https://github.com/frankxai/agentic-ops/pull/633), inspected at `f3914cf6c816f9080d6cebdaf327e60be9e4d647`. Its five-file report remains the evidence owner; this document is a release receipt, not a duplicate ledger. No private correspondence or provider credentials are embedded in the app.
 
-The page includes pinned public SIS and ACOS source/license links, a labeled recorded mission, a public read-only department catalog, and three actual FrankX Markdown agent profiles. Their aspirational language is disclosed. The crew provide visual guidance; they are not asserted to be operating agents. No audience, adoption, income, research validation, sponsorship or institutional partnership is claimed. External system tests were not rerun by this implementation session.
+The page includes pinned public SIS and ACOS source/license links, a labeled recorded mission, a public read-only department catalog, and three actual FrankX Markdown agent profiles. Their exact bytes are bundled from the pinned production revision because the deployment deliberately excludes `.claude`; a regression test checks snapshot fidelity. Their aspirational language is disclosed. The crew provide visual guidance; they are not asserted to be operating agents. No audience, adoption, income, research validation, sponsorship or institutional partnership is claimed. External system tests were not rerun by this implementation session.
 
 ## Visual decision
 

@@ -1,6 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
+import { contractMarkdown } from '../../content/partnerships/proposals/uva-contract-snapshots.ts'
 import { enumerateRoutes, hasAppRoute } from '../../lib/route-enumeration.mjs'
 
 const route = '/partnerships/proposal/uva-rec-impact'
@@ -20,4 +21,11 @@ test('rendered proposal preserves public-safe disclosure and inspectable source'
   assert.match(html, /\.claude\/agents\/starlight-architecture-design\.md/)
   assert.match(html, /Source and interface audit/)
   assert.doesNotMatch(html, /mail\.google\.com|agentic-ops\/|x-vercel-protection-bypass|vercel\.com\/api/)
+})
+
+test('deployed snapshots preserve every byte of the reviewed public contracts', () => {
+  const names = ['starlight-architecture-design', 'research-guardian', 'integrity-guard']
+  for (const [index, name] of names.entries()) {
+    assert.equal(contractMarkdown[index], fs.readFileSync(`.claude/agents/${name}.md`, 'utf8'))
+  }
 })
