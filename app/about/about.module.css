@@ -1,0 +1,579 @@
+.page {
+  --ground: #0a0a0b;
+  --surface: #111817;
+  --ink: #f4f5f2;
+  --muted: #b7c2bd;
+  --accent: #6ee7b7;
+  background: var(--ground);
+  color: var(--ink);
+  overflow: clip;
+}
+.page ::selection {
+  background: var(--accent);
+  color: var(--ground);
+}
+.page a:focus-visible,
+.page summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 7px;
+  border-radius: 4px;
+}
+.page h1,
+.page h2,
+.page h3 {
+  font-family: var(--font-poppins), sans-serif;
+  text-wrap: balance;
+  letter-spacing: -0.035em;
+}
+.page h2 {
+  font-size: clamp(2rem, 4vw, 3.7rem);
+  font-weight: 600;
+  line-height: 1.12;
+}
+.page p {
+  line-height: 1.8;
+}
+.page section {
+  scroll-margin-top: 100px;
+}
+.hero,
+.story,
+.work,
+.character,
+.principles,
+.questions,
+.connect {
+  width: min(1240px, calc(100% - 80px));
+  margin-inline: auto;
+}
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px;
+  align-items: center;
+  padding-block: 72px 88px;
+}
+.heroCopy {
+  padding-block: 16px;
+}
+.byline {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.byline span {
+  color: var(--muted);
+}
+.hero h1 {
+  font-size: clamp(2.8rem, 5.8vw, 5.2rem);
+  font-weight: 700;
+  line-height: 1.04;
+  margin-bottom: 25px;
+}
+.role {
+  font-size: 18px;
+  color: var(--accent);
+  margin-bottom: 22px;
+}
+.intro {
+  font-size: 17px;
+  max-width: 49ch;
+  color: var(--muted);
+  margin-top: 14px;
+}
+.primary {
+  display: inline-flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 13px 25px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #10231a;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 30px;
+  transition: background 0.2s;
+}
+.primary:hover {
+  background: #a7f3d0;
+}
+.chapterNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 30px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.chapterNav a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-color: #40534a;
+}
+.heroArt {
+  width: 100%;
+  max-width: 440px;
+  justify-self: end;
+}
+.heroArt img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  aspect-ratio: 941/1672;
+  object-fit: contain;
+}
+.page figcaption,
+.caption {
+  font-size: 12px !important;
+  color: var(--muted);
+  line-height: 1.7 !important;
+  margin-top: 14px;
+}
+.story {
+  padding-block: 100px;
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 100px;
+  border-top: 1px solid #29312d;
+}
+.label {
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.portrait {
+  margin-top: 42px;
+}
+.portrait img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+.storyCopy {
+  padding-top: 40px;
+}
+.storyCopy p,
+.characterCopy > p:not(.label):not(.caption) {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+.page .lead {
+  font-size: 23px !important;
+  line-height: 1.6 !important;
+  color: var(--ink) !important;
+}
+.textLink {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  min-height: 44px;
+  font-size: 14px;
+  color: var(--accent);
+  margin-top: 18px;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-color: #40534a;
+}
+.work {
+  padding-block: 90px 70px;
+  border-top: 1px solid #29312d;
+}
+.sectionHeading {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 52px;
+}
+.sectionHeading > p {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 42ch;
+}
+.workSpread {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.musicArt img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+.workLinks > a {
+  display: block;
+  padding-block: 28px;
+  border-bottom: 1px solid #29312d;
+}
+.workLinks > a:first-child {
+  padding-top: 0;
+}
+.workCategory {
+  font-size: 12px;
+  color: var(--accent);
+}
+.workLinks h3 {
+  font-size: 25px;
+  line-height: 1.35;
+  margin-top: 10px;
+}
+.workLinks p {
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 14px;
+  max-width: 46ch;
+}
+.linkLabel {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  margin-top: 20px;
+  color: var(--ink);
+}
+.workLinks a:hover .linkLabel,
+.worlds a:hover h3 {
+  color: var(--accent);
+}
+.worlds {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  margin-top: 64px;
+  padding: 32px;
+  background: var(--surface);
+  border-radius: 16px;
+}
+.worlds > p {
+  grid-column: 1/-1;
+  color: var(--muted);
+  font-size: 13px;
+}
+.worlds h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+}
+.worlds span {
+  display: block;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 12px;
+}
+.character {
+  padding-block: 100px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 100px;
+  align-items: center;
+}
+.character h2 {
+  margin-bottom: 32px;
+}
+.characterCopy .caption {
+  max-width: 55ch;
+  margin-top: 24px;
+}
+.comicArt {
+  max-width: 400px;
+  justify-self: end;
+}
+.comicArt img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+.principles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  padding-block: 90px;
+  border-top: 1px solid #29312d;
+}
+.principles article {
+  padding-bottom: 28px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid #29312d;
+}
+.principles article:last-child {
+  margin: 0;
+}
+.principles h3 {
+  font-size: 23px;
+  margin-bottom: 12px;
+}
+.principles article p {
+  color: var(--muted);
+  font-size: 16px;
+}
+.questions {
+  max-width: 820px;
+  padding-block: 40px 90px;
+}
+.questions h2 {
+  font-size: 32px;
+  margin-bottom: 32px;
+}
+.questions details {
+  border-bottom: 1px solid #29312d;
+}
+.questions summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  font-size: 17px;
+  cursor: pointer;
+  padding-block: 23px;
+  min-height: 60px;
+}
+.questions summary::-webkit-details-marker {
+  display: none;
+}
+.questions summary span {
+  font-size: 24px;
+  color: var(--accent);
+}
+.questions details[open] summary span {
+  transform: rotate(45deg);
+}
+.questions details > p {
+  color: var(--muted);
+  font-size: 16px;
+  max-width: 70ch;
+  padding-bottom: 24px;
+}
+.questions > .caption {
+  margin-top: 28px;
+}
+.questions > .caption a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.connect {
+  background: var(--surface);
+  padding: 64px;
+  margin-bottom: 80px;
+  border-radius: 24px;
+}
+.connect h2 {
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+}
+.connect > p:not(.label) {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 50ch;
+  margin-top: 28px;
+}
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 32px;
+}
+.socials a {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 44px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.socials a:hover,
+.chapterNav a:hover {
+  color: var(--ink);
+}
+@media (max-width: 1000px) {
+  .hero,
+  .story,
+  .workSpread,
+  .character,
+  .principles {
+    gap: 40px;
+  }
+  .hero {
+    padding-top: 48px;
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 5.5vw, 4rem);
+  }
+  .storyCopy {
+    padding-top: 0;
+  }
+  .sectionHeading {
+    gap: 40px;
+  }
+  .worlds {
+    gap: 24px;
+    padding: 25px;
+  }
+}
+@media (max-width: 700px) {
+  .hero,
+  .story,
+  .work,
+  .character,
+  .principles,
+  .questions,
+  .connect {
+    width: calc(100% - 40px);
+  }
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-block: 32px 56px;
+  }
+  .heroCopy {
+    padding: 0;
+  }
+  .byline {
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+  .hero h1 {
+    font-size: clamp(2.65rem, 10.8vw, 4rem);
+    margin-bottom: 20px;
+  }
+  .role {
+    font-size: 16px;
+    margin-bottom: 18px;
+  }
+  .intro {
+    font-size: 15px;
+    line-height: 1.75 !important;
+  }
+  .hero .primary {
+    margin-top: 22px;
+  }
+  .chapterNav {
+    gap: 24px;
+    margin-top: 14px;
+  }
+  .heroArt {
+    max-width: none;
+    justify-self: stretch;
+    display: block;
+  }
+  .heroArt img {
+    object-fit: contain;
+    object-position: center;
+    border-radius: 12px;
+  }
+  .heroArt figcaption {
+    font-size: 13px !important;
+    margin-bottom: 8px;
+  }
+  .story,
+  .character,
+  .principles {
+    grid-template-columns: 1fr;
+    padding-block: 56px;
+    gap: 30px;
+  }
+  .portrait {
+    margin-top: 28px;
+  }
+  .page .lead {
+    font-size: 21px !important;
+  }
+  .storyCopy p {
+    font-size: 15px;
+  }
+  .work {
+    padding-block: 56px;
+  }
+  .sectionHeading {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 30px;
+  }
+  .sectionHeading > p {
+    font-size: 16px;
+  }
+  .workSpread {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .musicArt {
+    max-width: 440px;
+  }
+  .workLinks h3 {
+    font-size: 23px;
+  }
+  .workLinks p {
+    font-size: 15px;
+  }
+  .worlds {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 36px;
+  }
+  .worlds a {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #33423a;
+  }
+  .worlds a:last-child {
+    border: 0;
+    padding-bottom: 0;
+  }
+  .worlds > p {
+    margin: 0;
+  }
+  .comicArt {
+    max-width: 360px;
+    justify-self: center;
+  }
+  .character .primary {
+    margin-top: 8px;
+  }
+  .questions {
+    padding-block: 30px 56px;
+  }
+  .questions h2 {
+    font-size: 27px;
+  }
+  .questions summary {
+    font-size: 15px;
+  }
+  .connect {
+    padding: 32px 24px;
+    margin-bottom: 48px;
+    border-radius: 16px;
+  }
+  .connect .label {
+    font-size: 10px;
+  }
+  .connect > p:not(.label) {
+    font-size: 16px;
+  }
+  .socials {
+    gap: 16px;
+  }
+  .socials a {
+    font-size: 13px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

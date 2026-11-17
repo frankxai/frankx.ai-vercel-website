@@ -1,337 +1,430 @@
-import Link from 'next/link'
+import Image from "next/image";
+import Link from "next/link";
 import {
+  ArrowDown,
   ArrowRight,
-  Bot,
+  ArrowUpRight,
   Github,
   Linkedin,
-  MapPin,
-  Music,
-  Network,
-  ShieldCheck,
-} from 'lucide-react'
-
-import { TrackedLink } from '@/components/analytics/TrackedLink'
-import { FAQPageJsonLd } from '@/components/seo/JsonLd'
-import { sitePositioning } from '@/data/site-positioning'
-import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
-import { createMetadata } from '@/lib/seo'
-import { socialLinks } from '@/lib/social-links'
+} from "lucide-react";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
+import { FAQPageJsonLd } from "@/components/seo/JsonLd";
+import { coreQualitiesNavigationEvent } from "@/lib/core-qualities-analytics";
+import { createMetadata } from "@/lib/seo";
+import { socialLinks } from "@/lib/social-links";
+import styles from "./about.module.css";
 
 export const metadata = createMetadata({
-  title: 'About Frank Riemer',
+  title: "About Frank Riemer",
   description:
-    'Meet Frank Riemer, the AI architect and creator behind FrankX, and see how he directs a specialist agent team without outsourcing judgment or accountability.',
-  path: '/about',
-  image: '/images/portraits/frank-presenting-oracle-2025.jpg',
-})
+    "AI Architect, founder and musician in Amsterdam. Meet Frank Riemer through the systems, music and miniature worlds he creates, and the ideas behind them.",
+  path: "/about",
+  image: "/images/portraits/frank-presenting-oracle-2025.jpg",
+});
 
-const aboutFaqs = [
+const questions = [
   {
-    question: 'Who is Frank Riemer?',
+    question: "Who is Frank Riemer?",
     answer:
-      'Frank Riemer is an AI architect and creator based in Amsterdam. His work spans AI architecture, multi-agent workflows, research, books, software, music, and public learning systems.',
+      "I’m an AI Architect, founder and musician based in Amsterdam. My work connects AI systems, software, research, books and music. FrankX is where I share what I’m building and what I learn along the way.",
   },
   {
-    question: 'What is FrankX?',
+    question: "How do you work with AI agents?",
     answer:
-      'FrankX is Frank’s public agentic workspace. Frank sets the question, context, standard, and final decision while specialist agents support research, critique, synthesis, implementation, and verification.',
+      "I give specialist agents context and a concrete job: research a question, challenge a design, build a feature or check a result. I direct the work and own the final judgment. The workspace page shows the method.",
   },
   {
-    question: 'Are the agents the authors of FrankX?',
+    question: "Who is Mini Frank?",
     answer:
-      'No. Agents complete many specialist passes and produce first versions, but they cannot define Frank’s position or publish on their own. Frank owns the final published position and the standard the work is expected to meet.',
+      "Mini Frank is my illustrated counterpart. I use miniature scenes to tell stories about making things, working with AI and exploring ideas. The Mini Me Storyboard guide shares the character references, scene decisions and reusable prompts.",
   },
   {
-    question: 'What can I find on the site?',
+    question: "Can we work together?",
     answer:
-      'The public work includes source-led research, book intelligence, AI architectures, field guides, open agent systems, creative workflows, music, products, partnership briefs, and dated working notes.',
+      "Yes. Bring a product you want to build, a question worth researching or a room of people who want to learn. The Connect page is the place to start a conversation.",
+  },
+];
+const practices = [
+  {
+    title: "Build something useful.",
+    text: "Start with the person who will use it. Make a working version. Find where it breaks. Improve the part that matters.",
   },
   {
-    question: 'Can I work with Frank?',
-    answer:
-      'Frank considers bounded architecture and partnership work when there is a real problem, useful source context, a decision owner, and a concrete result worth building. The Connect page is the direct route.',
-  },
-]
-
-const workingModes = [
-  {
-    title: 'AI architecture',
-    detail:
-      'I translate enterprise experience into inspectable architectures, agent workflows, evaluation boundaries, and practical build decisions.',
-    Icon: Network,
+    title: "Keep the ability to choose.",
+    text: "Own your work, understand your tools and keep your data portable. A system should give you more room to act.",
   },
   {
-    title: 'The agentic workspace',
-    detail:
-      'Specialist agents expand how deeply and quickly I can research, challenge, structure, build, and verify. I keep the mandate and final judgment.',
-    Icon: Bot,
+    title: "Make room for feeling.",
+    text: "A song, a character or a carefully designed interface can make an idea stay with someone. That deserves as much care as the engineering.",
   },
   {
-    title: 'Creative practice',
-    detail:
-      'Books, software, music, and story work keep the technical systems connected to taste, repetition, emotion, and the difficulty of actually shipping.',
-    Icon: Music,
+    title: "Pass the method on.",
+    text: "Share enough of the process that someone else can make their own version. Teaching is part of building.",
   },
-] as const
-
-const principles = [
-  'Build something inspectable before making a large claim.',
-  'Keep sources, synthesis, and personal judgment visibly distinct.',
-  'Use AI to expand human capacity—not to disguise the absence of a human point of view.',
-  'Share the method generously, then let the work earn the invitation.',
-] as const
-
-const boundaries = [
-  'A generated draft is not a FrankX position.',
-  'Using a platform is not the same as being endorsed by that company.',
-  'A proposed partnership is labeled differently from an active relationship.',
-  'Former Oracle experience informs the work; FrankX is independent from Oracle.',
-] as const
+];
+const worlds = [
+  {
+    name: "Starlight Intelligence",
+    detail: "The systems I’m building to work with AI agents.",
+    href: "https://starlightintelligence.ai",
+  },
+  {
+    name: "GenCreator",
+    detail: "Creative workflows from an idea to a finished piece.",
+    href: "https://gencreator.ai",
+  },
+  {
+    name: "Arcanea",
+    detail: "An original world for stories, characters and music.",
+    href: "https://arcanea.ai",
+  },
+];
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-[#0a0a0b] text-white">
-      <FAQPageJsonLd faqs={aboutFaqs} id="about-faq" />
-
-      <section className="relative overflow-hidden border-b border-white/[0.07]">
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_16%,rgba(16,185,129,0.12),transparent_32%),radial-gradient(circle_at_10%_0%,rgba(6,182,212,0.07),transparent_28%)]"
-          aria-hidden="true"
-        />
-        <div className="relative mx-auto grid min-h-[86svh] max-w-7xl items-center gap-14 px-5 pb-20 pt-28 sm:px-8 lg:grid-cols-[1.04fr_0.96fr] lg:px-10">
-          <div className="max-w-3xl">
-            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.24em] text-emerald-300/80">
-              Frank Riemer · Amsterdam · AI Architect &amp; Musician
-            </p>
-            <h1 className="mt-6 font-display text-5xl font-bold leading-[0.98] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
-              I build agent workflows,
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">research, books and music.</span>
-            </h1>
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-white/80 sm:text-xl font-medium">
-              Builder since age 5. Former AI architect at Oracle. I make music.
-            </p>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-white/60">
-              I translate enterprise experience into inspectable architectures, agent workflows, evaluation boundaries, and practical build decisions, and I publish the work.
-            </p>
-            <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <Link
-                href="/#current-work"
-                className="inline-flex min-h-12 items-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#07120d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
-              >
-                See current work
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link
-                href="/workspace"
-                className="inline-flex min-h-11 items-center gap-2 px-1 text-sm font-medium text-white/72 underline decoration-white/25 underline-offset-8 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
-              >
-                See how the workspace runs
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-            </div>
-          </div>
-
-          <aside className="relative w-full max-w-[560px] lg:justify-self-end" aria-label="Why Frank builds">
-            <div className="absolute -inset-10 bg-emerald-400/[0.08] blur-[100px]" aria-hidden="true" />
-            <div className="relative rounded-[2rem] border border-white/10 bg-[#0d1111] p-7 shadow-[0_40px_120px_rgba(0,0,0,0.38)] sm:p-10">
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-emerald-200/80">
-                Why I build
-              </p>
-              <p className="mt-7 text-3xl font-semibold leading-tight tracking-[-0.03em] text-white sm:text-4xl">
-                The lesson I carried forward: make something sturdy enough that other people can
-                stand on it.
-              </p>
-              <p className="mt-7 text-base leading-7 text-white/66">
-                I learned that posture from my father, who built houses and helped displaced
-                families find footing. My materials are different. The responsibility is not.
-              </p>
-              <div className="mt-9 border-y border-white/[0.09]">
-                {[
-                  ['Inheritance', 'Migration, rebuilding, and practical care'],
-                  ['Craft', 'Architecture, software, books, and music'],
-                  ['Purpose', 'Human agency that grows with the systems'],
-                ].map(([label, detail]) => (
-                  <div
-                    key={label}
-                    className="grid gap-2 border-b border-white/[0.08] py-4 last:border-b-0 sm:grid-cols-[110px_1fr]"
-                  >
-                    <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-cyan-300/70">
-                      {label}
-                    </p>
-                    <p className="text-sm leading-6 text-white/68">{detail}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </aside>
+    <main className={styles.page}>
+      <FAQPageJsonLd faqs={questions} id="about-faq" />
+      <section className={styles.hero} aria-labelledby="about-title">
+        <div className={styles.heroCopy}>
+          <p className={styles.byline}>
+            Frank Riemer <span>Amsterdam</span>
+          </p>
+          <h1 id="about-title">
+            AI, music &amp;
+            <br />
+            imagination.
+          </h1>
+          <p className={styles.role}>AI Architect. Founder. Musician.</p>
+          <p className={styles.intro}>
+            I build AI systems, make music and create worlds. FrankX is where I
+            share the work, the experiments and what I learn along the way.
+          </p>
+          <p className={styles.intro}>
+            The question behind it all: how much can we create when we have
+            better tools, more freedom and people we love building with?
+          </p>
+          <TrackedLink
+            href="#the-work"
+            eventName="about_explore_work"
+            eventProperties={{ placement: "hero" }}
+            className={styles.primary}
+          >
+            Explore my work <ArrowDown size={17} aria-hidden="true" />
+          </TrackedLink>
+          <nav className={styles.chapterNav} aria-label="About page chapters">
+            <a href="#my-story">My story</a>
+            <a href="#mini-frank">Mini Frank</a>
+            <a href="#connect">Build together</a>
+          </nav>
         </div>
+        <figure className={styles.heroArt}>
+          <Image
+            src="/images/guides/mini-me/collection-02-01.svg"
+            alt="Mini Frank standing on a travel bag at a station, with illustrated coding companions. The artwork reads: I brought backup."
+            width={941}
+            height={1672}
+            priority
+            sizes="(max-width: 700px) 90vw, 44vw"
+          />
+          <figcaption>
+            Mini Frank · A little imagination, out in the world.
+          </figcaption>
+        </figure>
       </section>
 
-      <section className="py-24 lg:py-32" aria-labelledby="story-title">
-        <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
-          <div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-cyan-300/70">
-              The human thread
-            </p>
-            <h2 id="story-title" className="mt-5 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
-              Building is the family language.
-            </h2>
-          </div>
-          <div className="space-y-6 text-base leading-8 text-white/68">
-            <p>
-              I come from a Volga German family shaped by migration and rebuilding. My
-              grandparents survived displacement in Kazakhstan. My parents came to Germany in
-              the 1990s and started again with very little.
-            </p>
-            <p>
-              My father, Witali, built houses and helped displaced families find footing. He died
-              from cancer in 2019, but the lesson stayed: make something sturdy enough that other
-              people can stand on it.
-            </p>
-            <p>
-              My medium became AI systems, software, books, and music. Years in enterprise AI
-              taught me how architecture survives contact with consequence. Travel and creative
-              practice taught me that a technically correct system can still be lifeless. FrankX
-              is my attempt to hold both truths at once.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-white/[0.07] bg-white/[0.018] py-24 lg:py-32" aria-labelledby="work-title">
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
-          <div className="max-w-3xl">
-            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-emerald-300/70">
-              How I work
-            </p>
-            <h2 id="work-title" className="mt-5 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
-              One practice, three modes.
-            </h2>
-            <p className="mt-6 text-base leading-7 text-white/65">
-              The site looks broad because these modes constantly inform one another.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
-            {workingModes.map(({ Icon, ...mode }) => (
-              <article
-                key={mode.title}
-                className="rounded-[1.5rem] border border-white/[0.1] bg-[#0c0e0e] p-7"
-              >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-300/[0.15] bg-emerald-300/[0.055] text-emerald-300">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
-                </div>
-                <h3 className="mt-7 text-xl font-semibold">{mode.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-white/65">{mode.detail}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 lg:py-32" aria-labelledby="principles-title">
-        <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
-          <div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-cyan-300/70">
-              Principles
-            </p>
-            <h2 id="principles-title" className="mt-5 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
-              What I want the work to prove.
-            </h2>
-          </div>
-          <ol className="divide-y divide-white/[0.09] border-y border-white/[0.09]">
-            {principles.map((principle, index) => (
-              <li key={principle} className="grid gap-3 py-6 sm:grid-cols-[48px_1fr]">
-                <span className="font-mono text-xs text-emerald-300/80">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <p className="text-lg leading-8 text-white/75">{principle}</p>
-              </li>
-            ))}
-          </ol>
-          <div className="lg:col-start-2">
-            <TrackedLink
-              href="/qualities"
-              {...coreQualitiesNavigationEvent({
-                source: 'about',
-                placement: 'principles',
-                destination: 'overview',
-              })}
-              className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-emerald-300 underline decoration-emerald-300/30 underline-offset-8 transition-colors hover:text-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
-            >
-              Read the four governing qualities
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </TrackedLink>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-white/[0.07] bg-[#0c0e0e] py-24" aria-labelledby="boundaries-title">
-        <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
-          <div>
-            <ShieldCheck className="h-6 w-6 text-emerald-300" aria-hidden="true" />
-            <h2 id="boundaries-title" className="mt-6 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
-              Trust needs clear boundaries.
-            </h2>
-            <p className="mt-6 max-w-md text-base leading-7 text-white/65">
-              The workspace becomes less useful when automation, affiliation, or intent is left
-              ambiguous.
-            </p>
-          </div>
-          <ul className="space-y-4">
-            {boundaries.map((boundary) => (
-              <li
-                key={boundary}
-                className="rounded-2xl border border-white/[0.09] bg-white/[0.025] px-6 py-5 text-base leading-7 text-white/72"
-              >
-                {boundary}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="py-24 lg:py-32">
-        <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
-          <MapPin className="mx-auto h-6 w-6 text-cyan-300" aria-hidden="true" />
-          <h2 className="mt-6 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
-            The best introduction is still the work.
+      <section
+        id="my-story"
+        className={styles.story}
+        aria-labelledby="story-title"
+      >
+        <div>
+          <p className={styles.label}>The person behind the work</p>
+          <h2 id="story-title">
+            Building runs
+            <br />
+            in the family.
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/65">
-            Read something. Inspect a system. If the way I think is useful to a real question you
-            are carrying, bring the material and we can see whether there is a fit.
+          <figure className={styles.portrait}>
+            <Image
+              src="/images/portraits/frank-presenting-oracle-2025.jpg"
+              alt="Frank presenting during his time at Oracle"
+              width={1200}
+              height={800}
+              sizes="(max-width: 700px) 90vw, 40vw"
+            />
+            <figcaption>
+              From enterprise AI to building independently.
+            </figcaption>
+          </figure>
+        </div>
+        <div className={styles.storyCopy}>
+          <p className={styles.lead}>
+            My father built houses. I grew up with the idea that you could make
+            something other people would build their lives around.
           </p>
-          <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
-              href="/connect"
-              className="inline-flex min-h-12 items-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#07120d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
-            >
-              Tell me what you’re working on
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-            <a
-              href={socialLinks.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 px-1 text-sm font-medium text-white/72 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
-            >
-              <Linkedin className="h-4 w-4" aria-hidden="true" />
-              LinkedIn
-            </a>
-            <a
-              href={socialLinks.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 px-1 text-sm font-medium text-white/72 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
-            >
-              <Github className="h-4 w-4" aria-hidden="true" />
-              GitHub
-            </a>
+          <p>
+            I come from a Volga German family shaped by migration and
+            rebuilding. My grandparents survived displacement in Kazakhstan. My
+            parents came to Germany in the 1990s and started again with very
+            little.
+          </p>
+          <p>
+            My father, Witali, helped displaced families find their footing. He
+            died from cancer in 2019. His example stays with me in the work I
+            choose to do.
+          </p>
+          <p>
+            My materials became software, music and stories. Working in
+            enterprise AI at Oracle gave me experience with the questions
+            companies face when they put these tools to work. Now, in Amsterdam,
+            I’m building my own products and sharing the process.
+          </p>
+          <p>
+            I want this work to give people more independence: the ability to
+            build an idea, understand the systems they use and make something of
+            their own.
+          </p>
+          <Link href="/journal" className={styles.textLink}>
+            Read my founder journal{" "}
+            <ArrowUpRight size={17} aria-hidden="true" />
+          </Link>
+        </div>
+      </section>
+
+      <section
+        id="the-work"
+        className={styles.work}
+        aria-labelledby="work-title"
+      >
+        <div className={styles.sectionHeading}>
+          <div>
+            <p className={styles.label}>What I spend my days making</p>
+            <h2 id="work-title">
+              Code, sound
+              <br />
+              and stories.
+            </h2>
           </div>
-          <p className="mt-10 font-mono text-[10px] uppercase tracking-[0.18em] text-white/50">
-            {sitePositioning.shortDescription}
+          <p>
+            Engineering teaches me to make things work. Music teaches me to
+            listen. Worldbuilding gives my imagination somewhere to go.
           </p>
+        </div>
+        <div className={styles.workSpread}>
+          <figure className={styles.musicArt}>
+            <Image
+              src="/images/guides/mini-me/collection-01-01.svg"
+              alt="Mini Frank and Echo, an original music companion, making music on oversized piano keys. The artwork reads: A feeling. Then a song."
+              width={1122}
+              height={1402}
+              sizes="(max-width: 700px) 90vw, 48vw"
+            />
+            <figcaption>
+              Echo · An original FrankX character from the Mini Me series.
+            </figcaption>
+          </figure>
+          <div className={styles.workLinks}>
+            <Link href="/ai-architecture">
+              <span className={styles.workCategory}>AI architecture</span>
+              <h3>From idea to working system.</h3>
+              <p>
+                Architectures, agent workflows and practical decisions you can
+                use in your own builds.
+              </p>
+              <span className={styles.linkLabel}>
+                Explore the architectures{" "}
+                <ArrowUpRight size={19} aria-hidden="true" />
+              </span>
+            </Link>
+            <Link href="/music">
+              <span className={styles.workCategory}>Music</span>
+              <h3>A feeling becomes a song.</h3>
+              <p>
+                My music lives here alongside the experiments and creative
+                process behind it. Put something on while you explore.
+              </p>
+              <span className={styles.linkLabel}>
+                Find your soundtrack{" "}
+                <ArrowUpRight size={19} aria-hidden="true" />
+              </span>
+            </Link>
+            <Link href="/books">
+              <span className={styles.workCategory}>Writing</span>
+              <h3>Give an idea room to grow.</h3>
+              <p>
+                Books and essays let me stay with a question longer, follow its
+                connections and put what I learn into words.
+              </p>
+              <span className={styles.linkLabel}>
+                Browse the books <ArrowUpRight size={19} aria-hidden="true" />
+              </span>
+            </Link>
+          </div>
+        </div>
+        <div className={styles.worlds} aria-label="Projects founded by Frank">
+          <p>The projects I’m building</p>
+          {worlds.map((world) => (
+            <a
+              key={world.name}
+              href={world.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <h3>
+                {world.name}
+                <ArrowUpRight size={18} aria-hidden="true" />
+              </h3>
+              <span>{world.detail}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section
+        id="mini-frank"
+        className={styles.character}
+        aria-labelledby="character-title"
+      >
+        <div className={styles.characterCopy}>
+          <p className={styles.label}>Meet my illustrated counterpart</p>
+          <h2 id="character-title">
+            Same curiosity.
+            <br />
+            Smaller shoes.
+          </h2>
+          <p className={styles.lead}>
+            It started with a photo and a thought: what would a tiny version of
+            me get up to?
+          </p>
+          <p>
+            Mini Frank climbs into the work. He makes music on enormous piano
+            keys, travels with little companions and untangles the occasional
+            coding disaster.
+          </p>
+          <p>
+            The scenes let me give an idea a face, a setting and a little
+            humour. The character stays recognisably me. The world around him
+            can change.
+          </p>
+          <Link href="/guides/mini-me-storyboard" className={styles.primary}>
+            Make your own Mini Me <ArrowRight size={17} aria-hidden="true" />
+          </Link>
+          <p className={styles.caption}>
+            The storyboard guide includes the process, character decisions and
+            prompts from the original series. The companions are illustrations;
+            their appearance does not imply endorsement by their source brands.
+          </p>
+        </div>
+        <figure className={styles.comicArt}>
+          <Image
+            src="/images/guides/mini-me/collection-02-03.svg"
+            alt="A three-panel Mini Frank comic: a small code change becomes a tangled red knot, then Frank and his coding companions work through it together."
+            width={941}
+            height={1672}
+            sizes="(max-width: 700px) 90vw, 40vw"
+          />
+          <figcaption>
+            A small change. One more thing. Then a closer look.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section className={styles.principles} aria-labelledby="principles-title">
+        <div>
+          <p className={styles.label}>How I think</p>
+          <h2 id="principles-title">
+            What matters
+            <br />
+            in the making.
+          </h2>
+          <TrackedLink
+            href="/qualities"
+            {...coreQualitiesNavigationEvent({
+              source: "about",
+              placement: "principles",
+              destination: "overview",
+            })}
+            className={styles.textLink}
+          >
+            The four governing qualities{" "}
+            <ArrowUpRight size={17} aria-hidden="true" />
+          </TrackedLink>
+        </div>
+        <div>
+          {practices.map((practice) => (
+            <article key={practice.title}>
+              <h3>{practice.title}</h3>
+              <p>{practice.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.questions} aria-labelledby="questions-title">
+        <h2 id="questions-title">A little more context.</h2>
+        {questions.map((item) => (
+          <details key={item.question}>
+            <summary>
+              {item.question}
+              <span aria-hidden="true">+</span>
+            </summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+        <p className={styles.caption}>
+          FrankX is independent from Oracle. My former role informs the work.
+          Published positions and final decisions are mine.{" "}
+          <Link href="/workspace">See how the workspace runs.</Link>
+        </p>
+      </section>
+
+      <section
+        id="connect"
+        className={styles.connect}
+        aria-labelledby="connect-title"
+      >
+        <p className={styles.label}>
+          Based in Amsterdam. Open to a good conversation.
+        </p>
+        <h2 id="connect-title">
+          What are you
+          <br />
+          building?
+        </h2>
+        <p>
+          A product, a research question, a creative project or a room full of
+          curious people. Tell me what you have in mind.
+        </p>
+        <TrackedLink
+          href="/connect"
+          eventName="about_connect"
+          eventProperties={{ placement: "closing" }}
+          className={styles.primary}
+        >
+          Let’s talk <ArrowUpRight size={18} aria-hidden="true" />
+        </TrackedLink>
+        <div className={styles.socials}>
+          <a
+            href={socialLinks.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Linkedin size={17} aria-hidden="true" />
+            LinkedIn
+          </a>
+          <a
+            href={socialLinks.github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Github size={17} aria-hidden="true" />
+            GitHub
+          </a>
+          <Link href="/partnerships">
+            Explore collaborations <ArrowUpRight size={17} aria-hidden="true" />
+          </Link>
         </div>
       </section>
     </main>
-  )
+  );
 }
