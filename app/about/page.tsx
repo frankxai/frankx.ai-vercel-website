@@ -148,8 +148,8 @@ export default function AboutPage() {
             <Image
               src="/images/portraits/frank-presenting-oracle-2025.jpg"
               alt="Frank presenting during his time at Oracle"
-              width={1200}
-              height={800}
+              width={1920}
+              height={1440}
               sizes="(max-width: 700px) 90vw, 40vw"
             />
             <figcaption>
