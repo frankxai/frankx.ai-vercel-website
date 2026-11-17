@@ -16,9 +16,9 @@ export const chapters = [
   { id: 'opportunity', label: 'The shared opportunity', short: 'Opportunity' },
   { id: 'founder', label: 'Frank & Starlight', short: 'The work' },
   { id: 'systems', label: 'Inside the systems', short: 'Explore' },
-  { id: 'possibilities', label: 'Places to collaborate', short: 'Possibilities' },
-  { id: 'pilot', label: 'One bounded pilot', short: 'The pilot' },
-  { id: 'conversation', label: 'Erik’s perspective', short: 'Conversation' },
+  { id: 'possibilities', label: 'Research questions', short: 'Research' },
+  { id: 'pilot', label: 'Challenges and teaching', short: 'Challenges' },
+  { id: 'conversation', label: 'Join the collaboration', short: 'Get involved' },
 ] as const
 
 // Public-safe selections. Dates describe only what the linked record establishes.
