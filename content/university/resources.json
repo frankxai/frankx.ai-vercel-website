@@ -1,29 +1,324 @@
-{
-  "edition": "2026.11.1",
-  "reviewedAt": "2026-11-18",
-  "resources": [
-    {
-      "id": "uc-0001",
-      "title": "The Agent Thesis",
+[
+  {
+    "id": "workbook",
+    "title": "AI operating systems workbook",
+    "href": "/workshops/ai-operating-systems/workbook.md",
+    "kind": "Workbook",
+    "task": "Use the ownership lesson to write a task contract. Compare review time against the time the task takes by hand.",
+    "publisher": "FrankX",
+    "access": "Free Markdown",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "offline-lab",
+    "title": "Run the offline agent lab",
+    "href": "/workshops/ai-operating-systems/lab.mjs",
+    "kind": "Lab",
+    "task": "Save the file and run node --test lab.mjs with Node 22 or later. Inspect how a stale record is excluded. The fixtures run locally without a model account.",
+    "publisher": "FrankX",
+    "access": "Free offline file",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "rubric",
+    "title": "Evaluation rubric",
+    "href": "/templates/evaluation-rubric.html",
+    "kind": "Template",
+    "task": "Score one output for correctness, relevance, clarity and safety. Ask a peer to score it independently and discuss the largest disagreement.",
+    "publisher": "FrankX",
+    "access": "Free printable HTML",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "agent-blueprint",
+    "title": "Agent blueprint",
+    "href": "/templates/agent-blueprint.json",
+    "kind": "Template",
+    "task": "Edit a local copy of the JSON. Replace the example goal, allowed tools and acceptance threshold with those for your task.",
+    "publisher": "FrankX",
+    "access": "Free JSON",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "risk-register",
+    "title": "Workflow risk register",
+    "href": "/templates/risk-register.html",
+    "kind": "Template",
+    "task": "Use a row to record one likely failure, its owner and the evidence you will review before expanding a pilot.",
+    "publisher": "FrankX",
+    "access": "Free printable HTML",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "workflow-lab",
+    "title": "Build a source-based AI workflow",
+    "href": "/courses/build-your-ai-creator-os/reliable-workflow",
+    "kind": "Lab",
+    "task": "Write a workflow, remove a necessary source and record what happens. Export the packet for a peer to review.",
+    "publisher": "FrankX",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "skill-anatomy",
+    "title": "Anatomy of a production skill",
+    "href": "/guides/anatomy-of-a-production-skill",
+    "kind": "Guide",
+    "task": "Trace a customer-discovery skill from its trigger to its evaluation fixtures. Sketch the smallest folder your own skill needs.",
+    "publisher": "FrankX",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "teaching-contract",
+    "title": "Research to Working Agent: facilitator notes",
+    "href": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/LAB.md",
+    "kind": "Workshop",
+    "task": "Choose a paper and a no-paid-API fallback. Assign the host and producer, then rehearse the peer review before inviting learners.",
+    "publisher": "Research Intelligence OS",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "Timed agenda, rehearsal gates and no-paid-API fallback are explicit. The inspected artifact is a delivery contract. Host confirmation, classroom rehearsal and teaching outcomes remain open.",
+      "audiences": [
+        "professors",
+        "researchers"
+      ],
+      "topic": "education",
+      "reviewLane": "research methods",
+      "level": "intermediate",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "workshop plan",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Design a 90-minute class that moves from one sourced claim to a bounded test and a peer review."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/LICENSE"
+      },
+      "sourceUrl": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/LAB.md",
+      "currentVersion": "da3ecf6983e71c81788efc887059264528fa82a5",
+      "sourceEdition": "0.1",
+      "gitBlob": "f8dfa4f9c11b07dac34cd423eee57107f0a911e2",
+      "sourceSha256": "ec257b7a542ff22acd85ae56aee58bc6f7d1c1910a3f7108ce9e21b4834158d2",
+      "sourceState": "Proposed workshop",
+      "reviewScope": "reading",
+      "prerequisiteCosts": "Free planning document. Delivery requires facilitator time, a second person for rehearsal and an accessible setting.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [],
+      "reviewId": "uc-0007",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "research-record",
+    "title": "Research translation record",
+    "href": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/example.json",
+    "kind": "Template",
+    "task": "Inspect the synthetic JSON example. Draft a hypothesis, baseline, rights decision and cost ceiling before recording a result.",
+    "publisher": "Research Intelligence OS",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "starlight-skills",
+    "title": "Inside the Starlight skill pack",
+    "href": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/SKILLPACK.md",
+    "kind": "Skill pack",
+    "task": "Inspect one skill in the pack and identify its trigger, tools and permissions. Check its terms before adapting it.",
+    "publisher": "Starlight Intelligence",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "quote-protocol",
+    "title": "One agent or a quote-writing team?",
+    "href": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/docs/quote-desk-experiment.md",
+    "kind": "Protocol",
+    "task": "Inspect the proposed experiment. Choose the same synthetic cases for both arms and account for reviewer time. The comparison is unrun.",
+    "publisher": "Agentic Income",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "Protocol explicitly reports the comparison as unrun. Use synthetic requests and serialise the evaluation plan. No benefit, revenue, model performance or customer acceptance is established.",
+      "audiences": [
+        "researchers",
+        "founders",
+        "professors"
+      ],
+      "topic": "evaluation",
+      "reviewLane": "research methods",
+      "level": "intermediate",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "research protocol",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Pre-register two comparable arms, blinded review, exclusions and an outcome that would count against the team."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/LICENSE"
+      },
+      "sourceUrl": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/docs/quote-desk-experiment.md",
+      "currentVersion": "a9e4ea02284116d1c25a89b13729219b276ec49a",
+      "sourceEdition": null,
+      "gitBlob": "a5b453e6099802b6dff1972e2f6336c1e4ec5243",
+      "sourceSha256": "fd001016fefeb6627c486af0eabbeda5570e39549bccc60c1859f55273a5a29a",
+      "sourceState": "Proposed experiment",
+      "reviewScope": "reading",
+      "prerequisiteCosts": "Free reading and manual exercise. Browser or plain-text editor on an existing device. Optional model execution is outside the assignment.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [
+        "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/tests/fixtures/quote-desk-ten.json",
+        "https://github.com/frankxai/agentic-income-skills/blob/d0346f9392772ec5d2a32d33456831c34640dd95/docs/quote-desk-experiment.md"
+      ],
+      "reviewId": "uc-0020",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "founder-stack",
+    "title": "The founder’s AI stack",
+    "href": "/guides/founder-ai-stack-2026",
+    "kind": "Guide",
+    "task": "Use the weekly audit to identify one recurring job and an existing tool to test on it. Record the cost before adding a subscription.",
+    "publisher": "FrankX",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "purpose-fable",
+    "title": "The Cartographer and the Coastline",
+    "href": "/books/fable/01-the-cartographer-and-the-coastline",
+    "kind": "Book chapter",
+    "task": "Read the five-minute fable aloud. Discuss what a model of your own problem should leave out, and who gets to decide.",
+    "publisher": "FrankX",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "community-checklist",
+    "title": "Community platform due-diligence worksheet",
+    "href": "/downloads/community-platform-vendor-due-diligence-checklist.csv",
+    "kind": "Template",
+    "task": "Open the CSV in a spreadsheet. Choose one member outcome and use its evidence and pass-condition columns to compare two options.",
+    "publisher": "FrankX",
+    "access": "Free CSV",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "community-blueprint",
+    "title": "Starlight Community OS blueprint",
+    "href": "/downloads/starlight-community-os-blueprint.md",
+    "kind": "Guide",
+    "task": "Use the reference architecture to map which member records a group should be able to export. Identify the person responsible for consent.",
+    "publisher": "FrankX",
+    "access": "Free Markdown",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "educator-guide",
+    "title": "Workshop adaptation guide",
+    "href": "/workshops/for-educators",
+    "kind": "Guide",
+    "task": "Choose a workshop template, review its agenda and substitute examples that fit your course before setting the assessment.",
+    "publisher": "FrankX",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "community-project",
+    "title": "Collaborate with students at REC Impact",
+    "href": "https://recimpact.uva.nl/voor-partners/samenwerken-met-studenten",
+    "kind": "Programme",
+    "task": "Review the university’s routes for organisations bringing a real-world problem. Check its current requirements before offering a brief.",
+    "publisher": "REC Impact, University of Amsterdam",
+    "access": "Free to read",
+    "language": "nl",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "student-networks",
+    "title": "Student networks at REC Impact",
+    "href": "https://recimpact.uva.nl/voor-studenten/bouw-aan-je-netwerk",
+    "kind": "Directory",
+    "task": "Find a student society whose interests match your brief. Follow its own participation route and check its current requirements.",
+    "publisher": "REC Impact, University of Amsterdam",
+    "access": "Free to read",
+    "language": "nl",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "accessibility",
+    "title": "A first accessibility review",
+    "href": "https://www.w3.org/WAI/test-evaluate/easy-checks/",
+    "kind": "Guide",
+    "task": "Try the keyboard, headings and zoom checks on your prototype. Record a barrier and retest the correction with the person who encountered it.",
+    "publisher": "W3C WAI",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "uc-0001",
+    "title": "The Agent Thesis",
+    "kind": "book chapter",
+    "task": "Distinguish a scripted workflow from an agent using the chapter’s four capabilities.",
+    "publisher": "FrankX",
+    "language": "en",
+    "access": "Free book chapter",
+    "placement": "supplement",
+    "href": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/content/books/agentic-builder/chapter-01-the-agent-thesis.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "The source chapter exists. The tested book and chapter URLs returned 404. Confirm the intended reader route and qualify the time-sensitive adoption claims.",
-      "href": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/content/books/agentic-builder/chapter-01-the-agent-thesis.md",
       "audiences": [
         "students",
         "founders"
       ],
-      "kind": "research",
       "topic": "research",
       "reviewLane": "agent systems",
       "level": "all",
-      "access": "free",
-      "publisher": "FrankX",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "link-only",
       "status": "review-needed",
-      "nextAction": "Distinguish a scripted workflow from an agent using the chapter’s four capabilities.",
-      "external": true,
       "format": "book chapter",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -54,30 +349,35 @@
         "http": 404,
         "url": "https://www.frankx.ai/books/agentic-builder/chapter-01-the-agent-thesis",
         "title": null
-      }
-    },
-    {
-      "id": "uc-0002",
-      "title": "Getting Started with Claude Code",
+      },
+      "reviewId": "uc-0001",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0002",
+    "title": "Getting Started with Claude Code",
+    "kind": "setup guide",
+    "task": "Audit a CLI quickstart by comparing its executable, authentication and prerequisites with upstream instructions.",
+    "publisher": "FrankX",
+    "language": "en",
+    "access": "Free setup guide",
+    "placement": "supplement",
+    "href": "https://www.frankx.ai/guides/claude-code-getting-started",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "The guide calls claude-code --version. The official quickstart uses claude --version. Repair the install, login and entitlement sections and replay on a clean machine.",
-      "href": "https://www.frankx.ai/guides/claude-code-getting-started",
       "audiences": [
         "students",
         "professors"
       ],
-      "kind": "guide",
       "topic": "ai-systems",
       "reviewLane": "Claude Code",
       "level": "all",
-      "access": "free",
-      "publisher": "FrankX",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "link-only",
       "status": "review-needed",
-      "nextAction": "Audit a CLI quickstart by comparing its executable, authentication and prerequisites with upstream instructions.",
-      "external": true,
       "format": "setup guide",
       "author": "Frank",
       "authorEvidence": "Source byline or book registry",
@@ -110,31 +410,36 @@
         "http": 200,
         "url": "https://www.frankx.ai/guides/claude-code-getting-started",
         "title": "Getting Started with Claude Code | FrankX"
-      }
-    },
-    {
-      "id": "uc-0003",
-      "title": "Codex Plugins for Teams",
+      },
+      "reviewId": "uc-0002",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0003",
+    "title": "Codex Plugins for Teams",
+    "kind": "operating guide",
+    "task": "Write a release checklist assigning one owner, one permission boundary and one rollback condition to a team workflow.",
+    "publisher": "FrankX",
+    "language": "en",
+    "access": "Free operating guide",
+    "placement": "supplement",
+    "href": "https://www.frankx.ai/blog/codex-plugins-for-teams",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "Use the governance exercise on paper. The article’s August edition describes product surfaces and plans that require a fresh tenant-specific check before live instruction.",
-      "href": "https://www.frankx.ai/blog/codex-plugins-for-teams",
       "audiences": [
         "professors",
         "founders",
         "researchers"
       ],
-      "kind": "guide",
       "topic": "ai-systems",
       "reviewLane": "ChatGPT/Codex",
       "level": "intermediate",
-      "access": "free",
-      "publisher": "FrankX",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "link-only",
       "status": "verified",
-      "nextAction": "Write a release checklist assigning one owner, one permission boundary and one rollback condition to a team workflow.",
-      "external": true,
       "format": "operating guide",
       "author": "FrankX",
       "authorEvidence": "Source byline or book registry",
@@ -165,30 +470,35 @@
         "http": 200,
         "url": "https://www.frankx.ai/blog/codex-plugins-for-teams",
         "title": "Codex Plugins for Teams: A Practical Operating Guide | FrankX"
-      }
-    },
-    {
-      "id": "uc-0004",
-      "title": "Soulbook seven pillars framework",
+      },
+      "reviewId": "uc-0003",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0004",
+    "title": "Soulbook seven pillars framework",
+    "kind": "PDF workbook",
+    "task": "Use a reflection prompt to write one self-chosen priority and a private action for the week.",
+    "publisher": "FrankX",
+    "language": "en",
+    "access": "Free PDF workbook",
+    "placement": "supplement",
+    "href": "https://www.frankx.ai/products/soulbook-7-pillars-framework.pdf",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "Direct PDF opened without email. Four tagged pages, title about:blank, difficult text extraction order in the multi-column worksheet. Require equivalent linear text and reading-order review before core assignment.",
-      "href": "https://www.frankx.ai/products/soulbook-7-pillars-framework.pdf",
       "audiences": [
         "students",
         "professors"
       ],
-      "kind": "guide",
       "topic": "education",
       "reviewLane": "learning design",
       "level": "all",
-      "access": "free",
-      "publisher": "FrankX",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "link-only",
       "status": "review-needed",
-      "nextAction": "Use a reflection prompt to write one self-chosen priority and a private action for the week.",
-      "external": true,
       "format": "PDF workbook",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -222,31 +532,36 @@
         "url": "https://www.frankx.ai/products/soulbook-7-pillars-framework.pdf",
         "title": null
       },
-      "catalogueId": "creators-soulbook"
-    },
-    {
-      "id": "uc-0005",
-      "title": "University challenge briefs",
+      "catalogueId": "creators-soulbook",
+      "reviewId": "uc-0004",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0005",
+    "title": "University challenge briefs",
+    "kind": "challenge collection",
+    "task": "Turn one brief into a falsifiable question, a bounded deliverable and an acceptance test.",
+    "publisher": "FrankX",
+    "language": "en",
+    "access": "Free challenge collection",
+    "placement": "supplement",
+    "href": "https://www.frankx.ai/partnerships/universities",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "Three briefs cover a product hypothesis, evidence-grounded answers and a public-interest problem. Select one. Community deployment and classroom outcomes have not been tested here.",
-      "href": "https://www.frankx.ai/partnerships/universities",
       "audiences": [
         "students",
         "professors",
         "founders"
       ],
-      "kind": "challenge",
       "topic": "education",
       "reviewLane": "research methods",
       "level": "all",
-      "access": "free",
-      "publisher": "FrankX",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "link-only",
       "status": "verified",
-      "nextAction": "Turn one brief into a falsifiable question, a bounded deliverable and an acceptance test.",
-      "external": true,
       "format": "challenge collection",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -277,31 +592,36 @@
         "http": 200,
         "url": "https://www.frankx.ai/partnerships/universities",
         "title": "University collaborations | FrankX & Starlight Intelligence"
-      }
-    },
-    {
-      "id": "uc-0006",
-      "title": "Research to Working Systems",
+      },
+      "reviewId": "uc-0005",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0006",
+    "title": "Research to Working Systems",
+    "kind": "method pack",
+    "task": "Scope one contribution with an inspectable source, rights, experiment, owner and upstream acceptance criterion.",
+    "publisher": "Starlight Intelligence",
+    "language": "en",
+    "access": "Free method pack",
+    "placement": "supplement",
+    "href": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/README.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "Folder-specific licence covers the authored method. Example research is synthetic. Use the submission checklist without posting publicly.",
-      "href": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/README.md",
       "audiences": [
         "students",
         "professors",
         "researchers"
       ],
-      "kind": "research",
       "topic": "research",
       "reviewLane": "research methods",
       "level": "intermediate",
-      "access": "free",
-      "publisher": "Starlight Intelligence",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "licensed",
       "status": "verified",
-      "nextAction": "Scope one contribution with an inspectable source, rights, experiment, owner and upstream acceptance criterion.",
-      "external": true,
       "format": "method pack",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -327,79 +647,35 @@
         "anonymousHttp": 200,
         "matchesPinnedBlob": true
       },
-      "supportingSources": []
-    },
-    {
-      "id": "uc-0007",
-      "title": "Research → Working Agent",
-      "summary": "Timed agenda, rehearsal gates and no-paid-API fallback are explicit. The inspected artifact is a delivery contract. Host confirmation, classroom rehearsal and teaching outcomes remain open.",
-      "href": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/LAB.md",
-      "audiences": [
-        "professors",
-        "researchers"
-      ],
-      "kind": "workshop",
-      "topic": "education",
-      "reviewLane": "research methods",
-      "level": "intermediate",
-      "access": "free",
-      "publisher": "Starlight Intelligence",
-      "language": "en",
-      "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
-      "rights": "licensed",
-      "status": "verified",
-      "nextAction": "Design a 90-minute class that moves from one sourced claim to a bounded test and a peer review.",
-      "external": true,
-      "format": "workshop plan",
-      "author": null,
-      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
-      "learningObjectives": [
-        "Design a 90-minute class that moves from one sourced claim to a bounded test and a peer review."
-      ],
-      "licence": {
-        "label": "MIT",
-        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
-        "url": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/LICENSE"
-      },
-      "sourceUrl": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/LAB.md",
-      "currentVersion": "da3ecf6983e71c81788efc887059264528fa82a5",
-      "sourceEdition": "0.1",
-      "gitBlob": "f8dfa4f9c11b07dac34cd423eee57107f0a911e2",
-      "sourceSha256": "ec257b7a542ff22acd85ae56aee58bc6f7d1c1910a3f7108ce9e21b4834158d2",
-      "sourceState": "Proposed workshop",
-      "reviewScope": "reading",
-      "prerequisiteCosts": "Free planning document. Delivery requires facilitator time, a second person for rehearsal and an accessible setting.",
-      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
-      "publicationStatus": "proposed-for-commons",
-      "sourceCheck": {
-        "anonymousHttp": 200,
-        "matchesPinnedBlob": true
-      },
-      "supportingSources": []
-    },
-    {
-      "id": "uc-0008",
-      "title": "Research translation record",
+      "supportingSources": [],
+      "reviewId": "uc-0006",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0008",
+    "title": "Research translation record",
+    "kind": "JSON Schema",
+    "task": "Model the evidence required to move a proposed experiment through evaluation, submission and acceptance.",
+    "publisher": "Starlight Intelligence",
+    "language": "en",
+    "access": "Free JSON Schema",
+    "placement": "supplement",
+    "href": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/translation.schema.json",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "Draft 2020-12 schema inspected. Validated with the paired synthetic contract tests. Human reviewers must still authenticate any cited receipt.",
-      "href": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/translation.schema.json",
       "audiences": [
         "researchers",
         "students"
       ],
-      "kind": "tool",
       "topic": "research",
       "reviewLane": "research methods",
       "level": "intermediate",
-      "access": "free",
-      "publisher": "Starlight Intelligence",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "licensed",
       "status": "verified",
-      "nextAction": "Model the evidence required to move a proposed experiment through evaluation, submission and acceptance.",
-      "external": true,
       "format": "JSON Schema",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -427,31 +703,36 @@
       },
       "supportingSources": [
         "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/example.json"
-      ]
-    },
-    {
-      "id": "uc-0009",
-      "title": "Research translation contract checks",
+      ],
+      "reviewId": "uc-0008",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0009",
+    "title": "Research translation contract checks",
+    "kind": "Python tests and fixture",
+    "task": "Run the synthetic example, then demonstrate which unsupported status changes fail validation.",
+    "publisher": "Starlight Intelligence",
+    "language": "en",
+    "access": "Free Python tests and fixture",
+    "placement": "supplement",
+    "href": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/test_contract.py",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "Five upstream unittest cases passed with Python 3.12.14 and jsonschema 4.26.0. They exercise structure, source URLs, rerun evidence and status promotion. No scientific comparison was run.",
-      "href": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/test_contract.py",
       "audiences": [
         "researchers",
         "professors",
         "students"
       ],
-      "kind": "tool",
       "topic": "evaluation",
       "reviewLane": "research methods",
       "level": "intermediate",
-      "access": "free",
-      "publisher": "Starlight Intelligence",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "licensed",
       "status": "verified",
-      "nextAction": "Run the synthetic example, then demonstrate which unsupported status changes fail validation.",
-      "external": true,
       "format": "Python tests and fixture",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -480,31 +761,36 @@
       "supportingSources": [
         "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/example.json",
         "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/translation.schema.json"
-      ]
-    },
-    {
-      "id": "uc-0010",
-      "title": "Claim Verification",
+      ],
+      "reviewId": "uc-0009",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0010",
+    "title": "Claim Verification",
+    "kind": "research skill",
+    "task": "Record a verdict, evidence location and uncertainty for a single falsifiable statement.",
+    "publisher": "Starlight Intelligence",
+    "language": "en",
+    "access": "Free research skill",
+    "placement": "supplement",
+    "href": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/skills/research/claim-verification/SKILL.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "The four verdicts and required evidence fields are explicit. Use as a manual worksheet with two supplied sources. Automated search and trigger behaviour remain untested.",
-      "href": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/skills/research/claim-verification/SKILL.md",
       "audiences": [
         "students",
         "professors",
         "researchers"
       ],
-      "kind": "tool",
       "topic": "evaluation",
       "reviewLane": "research methods",
       "level": "all",
-      "access": "free",
-      "publisher": "Starlight Intelligence",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "licensed",
       "status": "verified",
-      "nextAction": "Record a verdict, evidence location and uncertainty for a single falsifiable statement.",
-      "external": true,
       "format": "research skill",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -530,30 +816,35 @@
         "anonymousHttp": 200,
         "matchesPinnedBlob": true
       },
-      "supportingSources": []
-    },
-    {
-      "id": "uc-0011",
-      "title": "arXiv Paper to Brief",
+      "supportingSources": [],
+      "reviewId": "uc-0010",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0011",
+    "title": "arXiv Paper to Brief",
+    "kind": "research skill",
+    "task": "Write a paper brief separating method, reported result, limitation and interpretation, with source locations.",
+    "publisher": "Starlight Intelligence",
+    "language": "en",
+    "access": "Free research skill",
+    "placement": "supplement",
+    "href": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/skills/research/arxiv-paper-to-brief/SKILL.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "Use a paper the reader can access lawfully. Check citations against its full text. No inference runtime or paper redistribution is required for the reading exercise.",
-      "href": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/skills/research/arxiv-paper-to-brief/SKILL.md",
       "audiences": [
         "researchers",
         "students"
       ],
-      "kind": "guide",
       "topic": "research",
       "reviewLane": "research methods",
       "level": "intermediate",
-      "access": "free",
-      "publisher": "Starlight Intelligence",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "licensed",
       "status": "verified",
-      "nextAction": "Write a paper brief separating method, reported result, limitation and interpretation, with source locations.",
-      "external": true,
       "format": "research skill",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -579,30 +870,35 @@
         "anonymousHttp": 200,
         "matchesPinnedBlob": true
       },
-      "supportingSources": []
-    },
-    {
-      "id": "uc-0012",
-      "title": "Coding Challenge Generator",
+      "supportingSources": [],
+      "reviewId": "uc-0011",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0012",
+    "title": "Coding Challenge Generator",
+    "kind": "teaching skill",
+    "task": "Design a progression of exercises with constraints, an edge case and a separately kept solution.",
+    "publisher": "Starlight Intelligence",
+    "language": "en",
+    "access": "Free teaching skill",
+    "placement": "supplement",
+    "href": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/skills/education/coding-challenge-generator/SKILL.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "The source specifies a graded ladder and tests. Instructor can author a small ladder manually. Generated problem difficulty and hidden-test quality have not been validated.",
-      "href": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/skills/education/coding-challenge-generator/SKILL.md",
       "audiences": [
         "professors",
         "students"
       ],
-      "kind": "challenge",
       "topic": "education",
       "reviewLane": "agent systems",
       "level": "all",
-      "access": "free",
-      "publisher": "Starlight Intelligence",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "licensed",
       "status": "verified",
-      "nextAction": "Design a progression of exercises with constraints, an edge case and a separately kept solution.",
-      "external": true,
       "format": "teaching skill",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -628,31 +924,36 @@
         "anonymousHttp": 200,
         "matchesPinnedBlob": true
       },
-      "supportingSources": []
-    },
-    {
-      "id": "uc-0013",
-      "title": "Starlight skill template",
+      "supportingSources": [],
+      "reviewId": "uc-0012",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0013",
+    "title": "Starlight skill template",
+    "kind": "Markdown template",
+    "task": "Specify a skill’s trigger, inputs, workflow, output and a check that could fail.",
+    "publisher": "Starlight Intelligence",
+    "language": "en",
+    "access": "Free Markdown template",
+    "placement": "supplement",
+    "href": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/templates/skill-template/SKILL.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "Placeholders are intentional. A completed Markdown specification can be assessed manually. No execution or compatibility across agent runtimes is implied.",
-      "href": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/templates/skill-template/SKILL.md",
       "audiences": [
         "students",
         "professors",
         "founders"
       ],
-      "kind": "tool",
       "topic": "ai-systems",
       "reviewLane": "agent systems",
       "level": "all",
-      "access": "free",
-      "publisher": "Starlight Intelligence",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "licensed",
       "status": "verified",
-      "nextAction": "Specify a skill’s trigger, inputs, workflow, output and a check that could fail.",
-      "external": true,
       "format": "Markdown template",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -678,30 +979,35 @@
         "anonymousHttp": 200,
         "matchesPinnedBlob": true
       },
-      "supportingSources": []
-    },
-    {
-      "id": "uc-0014",
-      "title": "The First Dawn",
+      "supportingSources": [],
+      "reviewId": "uc-0013",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0014",
+    "title": "The First Dawn",
+    "kind": "fiction chapter",
+    "task": "Trace a recurring motif to two passages and distinguish close reading from a proposed addition to the story.",
+    "publisher": "Arcanea",
+    "language": "en",
+    "access": "Free fiction chapter",
+    "placement": "supplement",
+    "href": "https://www.frankx.ai/books/arcanea-legends/chapter-01-the-first-dawn",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "The Legends of Arcanea reader opened at the exact chapter. Use for close reading. Keep learner work original and seek separate permission before reproducing text or characters.",
-      "href": "https://www.frankx.ai/books/arcanea-legends/chapter-01-the-first-dawn",
       "audiences": [
         "students",
         "professors"
       ],
-      "kind": "guide",
       "topic": "education",
       "reviewLane": "creative AI",
       "level": "all",
-      "access": "free",
-      "publisher": "Arcanea",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "link-only",
       "status": "verified",
-      "nextAction": "Trace a recurring motif to two passages and distinguish close reading from a proposed addition to the story.",
-      "external": true,
       "format": "fiction chapter",
       "author": "Frank",
       "authorEvidence": "Source byline or book registry",
@@ -734,30 +1040,35 @@
         "http": 200,
         "url": "https://www.frankx.ai/books/arcanea-legends/chapter-01-the-first-dawn",
         "title": "The First Dawn | The Legends of Arcanea | FrankX Books"
-      }
-    },
-    {
-      "id": "uc-0015",
-      "title": "Firstlight II · The Kindred Realms",
+      },
+      "reviewId": "uc-0014",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0015",
+    "title": "Firstlight II · The Kindred Realms",
+    "kind": "story bible",
+    "task": "Distinguish permission for concept review from approval of a character for canon or classroom reuse.",
+    "publisher": "Arcanea",
+    "language": "en",
+    "access": "Free story bible",
+    "placement": "supplement",
+    "href": "https://github.com/Arcanea-Labs/arcanean-library/blob/1c97f7e45c01dde93143b685824ce7b41f38e85a/content/proposals/firstlight-02/STORY-BIBLE.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "The story bible labels the characters proposed and distinguishes exhibition review from canon. Rights are reserved. Obtain a scoped teaching permission before adapting or distributing the material.",
-      "href": "https://github.com/Arcanea-Labs/arcanean-library/blob/1c97f7e45c01dde93143b685824ce7b41f38e85a/content/proposals/firstlight-02/STORY-BIBLE.md",
       "audiences": [
         "professors",
         "students"
       ],
-      "kind": "guide",
       "topic": "education",
       "reviewLane": "creative AI",
       "level": "all",
-      "access": "free",
-      "publisher": "Arcanea",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "link-only",
       "status": "review-needed",
-      "nextAction": "Distinguish permission for concept review from approval of a character for canon or classroom reuse.",
-      "external": true,
       "format": "story bible",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -783,30 +1094,35 @@
         "anonymousHttp": 200,
         "matchesPinnedBlob": true
       },
-      "supportingSources": []
-    },
-    {
-      "id": "uc-0016",
-      "title": "The One-Person Studio",
+      "supportingSources": [],
+      "reviewId": "uc-0015",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0016",
+    "title": "The One-Person Studio",
+    "kind": "book chapter",
+    "task": "Identify a production assumption in the studio model and specify the evidence needed to test it.",
+    "publisher": "GenCreator",
+    "language": "en",
+    "access": "Free book chapter",
+    "placement": "supplement",
+    "href": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/content/books/gencreator/chapter-01-the-one-person-studio.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "The chapter exists in the FrankX books directory. The tested reader route returned 404. Treat the chapter’s numerical examples as claims until sourced.",
-      "href": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/content/books/gencreator/chapter-01-the-one-person-studio.md",
       "audiences": [
         "founders",
         "students"
       ],
-      "kind": "guide",
       "topic": "entrepreneurship",
       "reviewLane": "creative AI",
       "level": "all",
-      "access": "free",
-      "publisher": "GenCreator",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "link-only",
       "status": "review-needed",
-      "nextAction": "Identify a production assumption in the studio model and specify the evidence needed to test it.",
-      "external": true,
       "format": "book chapter",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -837,31 +1153,36 @@
         "http": 404,
         "url": "https://www.frankx.ai/books/gencreator/chapter-01-the-one-person-studio",
         "title": null
-      }
-    },
-    {
-      "id": "uc-0017",
-      "title": "Review and learn",
+      },
+      "reviewId": "uc-0016",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0017",
+    "title": "Review and learn",
+    "kind": "creative review skill",
+    "task": "Give a reviewer a brief and an artifact, record one located defect, then recheck the corrected version.",
+    "publisher": "GenCreator",
+    "language": "en",
+    "access": "Free creative review skill",
+    "placement": "supplement",
+    "href": "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/gencreator-native/skills/review-and-learn/SKILL.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "Includes reviewer independence, artifact revisions and a keep/revise/reject decision. Exercise uses two human reviewers or records self-review explicitly.",
-      "href": "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/gencreator-native/skills/review-and-learn/SKILL.md",
       "audiences": [
         "professors",
         "researchers",
         "students"
       ],
-      "kind": "tool",
       "topic": "evaluation",
       "reviewLane": "creative AI",
       "level": "all",
-      "access": "free",
-      "publisher": "GenCreator",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "licensed",
       "status": "verified",
-      "nextAction": "Give a reviewer a brief and an artifact, record one located defect, then recheck the corrected version.",
-      "external": true,
       "format": "creative review skill",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -889,30 +1210,35 @@
       },
       "supportingSources": [
         "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/THIRD_PARTY_NOTICES.md"
-      ]
-    },
-    {
-      "id": "uc-0018",
-      "title": "Run workflow experiment",
+      ],
+      "reviewId": "uc-0017",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0018",
+    "title": "Run workflow experiment",
+    "kind": "experiment skill",
+    "task": "Compare an existing workflow with one change on the same input and capture before, after and rollback.",
+    "publisher": "GenCreator",
+    "language": "en",
+    "access": "Free experiment skill",
+    "placement": "supplement",
+    "href": "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/gencreator-native/skills/run-workflow-experiment/SKILL.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "The procedure retains failures, cost and reversibility. A manual comparison on learner-authored materials supplies the free path. Hosted agent operation was not exercised.",
-      "href": "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/gencreator-native/skills/run-workflow-experiment/SKILL.md",
       "audiences": [
         "researchers",
         "founders"
       ],
-      "kind": "tool",
       "topic": "evaluation",
       "reviewLane": "research methods",
       "level": "intermediate",
-      "access": "free",
-      "publisher": "GenCreator",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "licensed",
       "status": "verified",
-      "nextAction": "Compare an existing workflow with one change on the same input and capture before, after and rollback.",
-      "external": true,
       "format": "experiment skill",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -940,30 +1266,35 @@
       },
       "supportingSources": [
         "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/THIRD_PARTY_NOTICES.md"
-      ]
-    },
-    {
-      "id": "uc-0019",
-      "title": "Captions",
+      ],
+      "reviewId": "uc-0018",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0019",
+    "title": "Captions",
+    "kind": "creative AI guide",
+    "task": "Correct a timed subtitle against a short transcript and keep an editable SRT alongside the video.",
+    "publisher": "GenCreator",
+    "language": "en",
+    "access": "Free creative AI guide",
+    "placement": "supplement",
+    "href": "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/video-social-studio/skills/captions/SKILL.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "The full workflow refers to a sibling Node script, FFmpeg or whisper.cpp and a model download. A transcript and hand-edited SRT suffice for the teaching objective. Transcription and burn-in were not replayed.",
-      "href": "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/video-social-studio/skills/captions/SKILL.md",
       "audiences": [
         "students",
         "professors"
       ],
-      "kind": "guide",
       "topic": "education",
       "reviewLane": "creative AI",
       "level": "all",
-      "access": "free",
-      "publisher": "GenCreator",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "licensed",
       "status": "verified",
-      "nextAction": "Correct a timed subtitle against a short transcript and keep an editable SRT alongside the video.",
-      "external": true,
       "format": "creative AI guide",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -992,83 +1323,36 @@
       "supportingSources": [
         "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/THIRD_PARTY_NOTICES.md",
         "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/video-social-studio/skills/video-engine/scripts/vid.mjs"
-      ]
-    },
-    {
-      "id": "uc-0020",
-      "title": "Does a specialist team improve a quote draft?",
-      "summary": "Protocol explicitly reports the comparison as unrun. Use synthetic requests and serialise the evaluation plan. No benefit, revenue, model performance or customer acceptance is established.",
-      "href": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/docs/quote-desk-experiment.md",
-      "audiences": [
-        "researchers",
-        "founders",
-        "professors"
       ],
-      "kind": "research",
-      "topic": "evaluation",
-      "reviewLane": "research methods",
-      "level": "intermediate",
-      "access": "free",
-      "publisher": "Agentic Income",
-      "language": "en",
-      "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
-      "rights": "licensed",
-      "status": "verified",
-      "nextAction": "Pre-register two comparable arms, blinded review, exclusions and an outcome that would count against the team.",
-      "external": true,
-      "format": "research protocol",
-      "author": null,
-      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
-      "learningObjectives": [
-        "Pre-register two comparable arms, blinded review, exclusions and an outcome that would count against the team."
-      ],
-      "licence": {
-        "label": "MIT",
-        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
-        "url": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/LICENSE"
-      },
-      "sourceUrl": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/docs/quote-desk-experiment.md",
-      "currentVersion": "a9e4ea02284116d1c25a89b13729219b276ec49a",
-      "sourceEdition": null,
-      "gitBlob": "a5b453e6099802b6dff1972e2f6336c1e4ec5243",
-      "sourceSha256": "fd001016fefeb6627c486af0eabbeda5570e39549bccc60c1859f55273a5a29a",
-      "sourceState": "Proposed experiment",
-      "reviewScope": "reading",
-      "prerequisiteCosts": "Free reading and manual exercise. Browser or plain-text editor on an existing device. Optional model execution is outside the assignment.",
-      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
-      "publicationStatus": "proposed-for-commons",
-      "sourceCheck": {
-        "anonymousHttp": 200,
-        "matchesPinnedBlob": true
-      },
-      "supportingSources": [
-        "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/tests/fixtures/quote-desk-ten.json"
-      ]
-    },
-    {
-      "id": "uc-0021",
-      "title": "Local request-to-quote workflow",
+      "reviewId": "uc-0019",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0021",
+    "title": "Local request-to-quote workflow",
+    "kind": "local CLI lab",
+    "task": "Create a synthetic draft, repeat intake, reopen it and inspect an owner-only export.",
+    "publisher": "Agentic Income",
+    "language": "en",
+    "access": "Free local CLI lab",
+    "placement": "supplement",
+    "href": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/docs/quote-desk.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "Init, intake, duplicate intake, show and owner export replayed. Duplicate retained ID and revision 1. Export includes internal notes. No account, paid inference or outbound action.",
-      "href": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/docs/quote-desk.md",
       "audiences": [
         "founders",
         "students",
         "researchers"
       ],
-      "kind": "tool",
       "topic": "entrepreneurship",
       "reviewLane": "agent systems",
       "level": "intermediate",
-      "access": "free",
-      "publisher": "Agentic Income",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "licensed",
       "status": "verified",
-      "nextAction": "Create a synthetic draft, repeat intake, reopen it and inspect an owner-only export.",
-      "external": true,
       "format": "local CLI lab",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -1098,30 +1382,35 @@
         "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/skills/quote-desk/scripts/quote-desk.mjs",
         "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/skills/quote-desk/LICENSE",
         "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/skills/quote-desk/examples/request.json"
-      ]
-    },
-    {
-      "id": "uc-0022",
-      "title": "IncomeSystem v1",
+      ],
+      "reviewId": "uc-0021",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0022",
+    "title": "IncomeSystem v1",
+    "kind": "contract guide",
+    "task": "Draw the boundaries between an owner, agent, credentials, spend policy and evidence for a service.",
+    "publisher": "Agentic Income",
+    "language": "en",
+    "access": "Free contract guide",
+    "placement": "supplement",
+    "href": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/docs/income-system-v1.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "Read as a model of responsibilities. Production integrations, legal authority and credential rotation are declarations that require separate evidence.",
-      "href": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/docs/income-system-v1.md",
       "audiences": [
         "founders",
         "researchers"
       ],
-      "kind": "guide",
       "topic": "ai-systems",
       "reviewLane": "agent systems",
       "level": "intermediate",
-      "access": "free",
-      "publisher": "Agentic Income",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "licensed",
       "status": "verified",
-      "nextAction": "Draw the boundaries between an owner, agent, credentials, spend policy and evidence for a service.",
-      "external": true,
       "format": "contract guide",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -1147,30 +1436,35 @@
         "anonymousHttp": 200,
         "matchesPinnedBlob": true
       },
-      "supportingSources": []
-    },
-    {
-      "id": "uc-0023",
-      "title": "Request-to-Quote Agent Desk manifest",
+      "supportingSources": [],
+      "reviewId": "uc-0022",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0023",
+    "title": "Request-to-Quote Agent Desk manifest",
+    "kind": "reference template",
+    "task": "Identify placeholders in a service manifest and check its structure before proposing a deployment.",
+    "publisher": "Agentic Income",
+    "language": "en",
+    "access": "Free reference template",
+    "placement": "supplement",
+    "href": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/examples/request-to-quote-desk/README.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "The example manifest validated in a fresh pinned checkout after installing locked dependencies. The pack declares connectors and human approvals. Runtime interoperability was not tested.",
-      "href": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/examples/request-to-quote-desk/README.md",
       "audiences": [
         "founders",
         "students"
       ],
-      "kind": "tool",
       "topic": "entrepreneurship",
       "reviewLane": "agent systems",
       "level": "intermediate",
-      "access": "free",
-      "publisher": "Agentic Income",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "licensed",
       "status": "verified",
-      "nextAction": "Identify placeholders in a service manifest and check its structure before proposing a deployment.",
-      "external": true,
       "format": "reference template",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -1199,30 +1493,35 @@
       "supportingSources": [
         "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/examples/request-to-quote-desk/income-system.json",
         "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/scripts/validate-income-system.mjs"
-      ]
-    },
-    {
-      "id": "uc-0024",
-      "title": "The Creative AI Toolkit",
+      ],
+      "reviewId": "uc-0023",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0024",
+    "title": "The Creative AI Toolkit",
+    "kind": "digital product listing",
+    "task": "Assess whether a catalogue listing provides enough information for a learner to obtain the promised toolkit.",
+    "publisher": "FrankX",
+    "language": "en",
+    "access": "Paid listing · held",
+    "placement": "supplement",
+    "href": "https://www.frankx.ai/products/creative-ai-toolkit",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
       "summary": "Product page responds. Current catalogue has no delivery block for this ID. A historical delivery audit flagged the missing mapping. External fulfilment and the buyer file remain unverified.",
-      "href": "https://www.frankx.ai/products/creative-ai-toolkit",
       "audiences": [
         "students",
         "founders"
       ],
-      "kind": "guide",
       "topic": "education",
       "reviewLane": "creative AI",
       "level": "all",
-      "access": "paid",
-      "publisher": "FrankX",
-      "language": "en",
       "provenance": "first-party",
-      "reviewedAt": "2026-11-18",
       "rights": "link-only",
       "status": "review-needed",
-      "nextAction": "Assess whether a catalogue listing provides enough information for a learner to obtain the promised toolkit.",
-      "external": true,
       "format": "digital product listing",
       "author": null,
       "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
@@ -1256,65 +1555,10 @@
         "url": "https://www.frankx.ai/products/creative-ai-toolkit",
         "title": "The Creative AI Toolkit"
       },
-      "catalogueId": "creative-ai-toolkit"
+      "catalogueId": "creative-ai-toolkit",
+      "reviewId": "uc-0024",
+      "edition": "2026.11.1",
+      "accessModel": "paid"
     }
-  ],
-  "paths": [
-    {
-      "id": "students",
-      "title": "Build an answer you can defend",
-      "estimatedMinutes": 60,
-      "resourceIds": [
-        "uc-0005",
-        "uc-0010",
-        "uc-0013",
-        "uc-0017"
-      ],
-      "exercise": "Choose the evidence brief. Use two paragraphs you wrote about a fictional campus event. Ask one answerable question and one whose answer is absent. Complete a skill specification and exchange it with a peer.",
-      "deliverable": "A one-page evidence card, two questions, one cited answer, one justified abstention and a revision after review.",
-      "acceptance": "A second reader can locate the supported answer and explain why the other question has to remain open."
-    },
-    {
-      "id": "professors",
-      "title": "Design and mark a reproducible class exercise",
-      "estimatedMinutes": 75,
-      "resourceIds": [
-        "uc-0007",
-        "uc-0012",
-        "uc-0010",
-        "uc-0017"
-      ],
-      "exercise": "Use the 90-minute delivery contract as planning material. Draft three levels of the same exercise on classifying a source claim. Write a hidden edge case and a marking guide. Exchange the exercise with a colleague.",
-      "deliverable": "A dated lesson plan, learner handout, marking guide and one change after peer marking.",
-      "acceptance": "Two markers can apply the guide to the same synthetic answer, identify a disagreement and record how they resolved it."
-    },
-    {
-      "id": "researchers",
-      "title": "Test when a result can be called accepted",
-      "estimatedMinutes": 60,
-      "resourceIds": [
-        "uc-0006",
-        "uc-0008",
-        "uc-0009",
-        "uc-0020"
-      ],
-      "exercise": "Inspect the synthetic research record. Run the five upstream checks. Try promoting the example to accepted without evidence and explain the rejection. Use the quote protocol to plan a blinded comparison that could fail.",
-      "deliverable": "Environment and revision, test output, one negative case and a one-page protocol with an explicit stop condition.",
-      "acceptance": "Another reader can rerun the fixture and tell which claims the schema can check and which require an actual experiment."
-    },
-    {
-      "id": "founders",
-      "title": "Produce an auditable service quote",
-      "estimatedMinutes": 60,
-      "resourceIds": [
-        "uc-0022",
-        "uc-0023",
-        "uc-0021",
-        "uc-0018"
-      ],
-      "exercise": "Use the supplied synthetic catalogue and request. Draft a quote for one inspection, submit the same request twice, then reopen and export the draft locally. Inspect which files contain owner-only information.",
-      "deliverable": "A local owner packet, the duplicate-intake result and a short decision on what requires human review.",
-      "acceptance": "Both intakes resolve to the same ID and revision. The reviewer can trace the amount to the fixture and identify exactly which files are private."
-    }
-  ]
-}
+  }
+]

@@ -59,7 +59,7 @@
     "research:agentic-life:audit": "node scripts/audit-agentic-life-research.mjs",
     "research:agentic-life:receipt": "node scripts/audit-agentic-life-research.mjs --write",
     "research:agentic-life:json": "node scripts/audit-agentic-life-research.mjs --json",
-    "test:collaboration-release": "node --test scripts/tests/tallinn-experience-foundry-contract.test.mjs scripts/tests/mvu-field-record-contract.test.mjs",
+    "test:collaboration-release": "node --experimental-strip-types --test scripts/tests/university-commons.test.mjs scripts/tests/tallinn-experience-foundry-contract.test.mjs scripts/tests/mvu-field-record-contract.test.mjs",
     "test:mvu-field-record": "node --test scripts/tests/mvu-field-record-contract.test.mjs",
     "test:expert-authority": "node --experimental-strip-types --test scripts/tests/expert-authority-model.test.mjs && node --test scripts/tests/expert-authority-intelligence-contract.test.mjs",
     "test:homepage-release": "node --test scripts/tests/homepage-release-contract.test.mjs scripts/tests/homepage-mind-palace-contract.test.mjs scripts/tests/navigation-mobile-contract.test.mjs scripts/tests/release-foundation-contract.test.mjs",

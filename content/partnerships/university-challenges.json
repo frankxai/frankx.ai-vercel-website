@@ -1,0 +1,29 @@
+[
+  {
+    "id": "product",
+    "title": "From idea to a testable product",
+    "discipline": "Entrepreneurship × engineering",
+    "task": "Choose one user problem. Build a small digital prototype and a test that could show the idea is wrong.",
+    "deliverable": "Problem brief, working prototype, acceptance criteria and a decision log.",
+    "data": "Public examples or an explicitly licensed, synthetic brief.",
+    "review": "Can another person run it, explain its limitations and test the central assumption?"
+  },
+  {
+    "id": "evidence",
+    "title": "An assistant that shows its evidence",
+    "discipline": "Information science × responsible AI",
+    "task": "Build a bounded research assistant that cites a fixed document set and identifies questions it cannot answer.",
+    "deliverable": "Source list, answer rubric, failure cases and an inspectable workflow.",
+    "data": "A small corpus with documented reuse rights. No private student or client records.",
+    "review": "Can independent reviewers distinguish supported answers, errors and justified abstentions?"
+  },
+  {
+    "id": "impact",
+    "title": "A small tool for a public-interest problem",
+    "discipline": "Social science × design × technology",
+    "task": "Co-define an information or coordination problem with a community organisation. Prototype one low-risk workflow.",
+    "deliverable": "Stakeholder brief, accessible prototype and a method for evaluating usefulness.",
+    "data": "Public or synthetic information; no automated eligibility or individual decisions.",
+    "review": "Does the intended user find it useful, accessible and understandable? Report unmet needs too."
+  }
+]
