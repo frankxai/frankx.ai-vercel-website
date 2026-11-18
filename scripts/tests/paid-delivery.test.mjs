@@ -153,9 +153,12 @@ test('a paid session that cannot be delivered is never acknowledged', async () =
   }
 })
 
-test('an email already accepted under this purchase counts as delivered', async () => {
-  const { result } = await fulfil({}, { resend: () => Response.json({ name: 'invalid_idempotent_request' }, { status: 409 }) })
-  assert.deepEqual(result, { status: 200, delivered: true })
+test('an idempotency conflict is not proof of delivery', async () => {
+  for (const name of ['concurrent_idempotent_requests', 'invalid_idempotent_request']) {
+    const { result, calls } = await fulfil({}, { resend: () => Response.json({ name }, { status: 409 }) })
+    assert.deepEqual(result, { status: 500, delivered: false, failure: 'email_rejected' }, name)
+    assert.equal(calls.length, 1, 'the audience is not written for an undelivered purchase')
+  }
 })
 
 test('a failed audience write does not undo a delivery', async () => {

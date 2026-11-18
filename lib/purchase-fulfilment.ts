@@ -56,8 +56,9 @@ export async function fulfilCheckoutSession(session: PaidSession, deps: Fulfilme
   const headers = { Authorization: `Bearer ${deps.resendApiKey}`, 'Content-Type': 'application/json' }
   const sent = await deps.fetch('https://api.resend.com/emails', {
     method: 'POST',
-    // One email per session: Resend replays its first answer for a repeated key
-    // and answers 409 if an earlier request under this key had a different body.
+    // One email per session: Resend replays its first answer for a repeated key.
+    // It answers 409 while an earlier request under the key is still in flight,
+    // which proves nothing was sent yet, so a 409 is a failure Stripe retries.
     headers: { ...headers, 'Idempotency-Key': `purchase-confirmation/${session.id}` },
     body: JSON.stringify({
       from: 'FrankX <frank@mail.frankx.ai>',
@@ -66,7 +67,7 @@ export async function fulfilCheckoutSession(session: PaidSession, deps: Fulfilme
       html: email.html,
     }),
   })
-  if (!sent.ok && sent.status !== 409) return fail('email_rejected')
+  if (!sent.ok) return fail('email_rejected')
 
   // The buyer has the product. A failed audience write must not make Stripe retry.
   try {
