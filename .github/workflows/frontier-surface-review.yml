@@ -1,0 +1,27 @@
+name: Frontier surface review
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited, ready_for_review, labeled, unlabeled]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: frontier-owned-surface-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    uses: Starlight-Intelligence/starlight-design-intelligence/.github/workflows/frontier-scoped-review.yml@ea32a7fb08a4a969a51f6386a556c0c23ab47ce7
+    with:
+      surface-paths: |
+        app/research/
+        lib/research/
+        app/page.tsx
+        components/home/
+        app/layout.tsx
+        app/globals.css
+      evidence-location: external
