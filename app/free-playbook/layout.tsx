@@ -34,7 +34,7 @@ const jsonLdGraph = {
   '@graph': [
     {
       '@type': 'CollectionPage',
-      name: 'Free AI Creator Toolkit — 3 Playbooks Worth $111',
+      name: 'Free AI Creator Toolkit — 3 Playbooks',
       description:
         'Download three battle-tested AI playbooks: Suno AI Prompt Playbook, Top 50 AI Prompts, and Claude Code Quick Start. Free instant access.',
       url: `${siteConfig.url}/free-playbook`,
@@ -54,7 +54,7 @@ const jsonLdGraph = {
           name: 'What is included in the free AI creator toolkit?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'The toolkit includes three playbooks: the Suno AI Prompt Playbook for music generation, the Top 50 AI Prompts for creators and builders, and the Claude Code Quick Start guide. Combined retail value is $111.',
+            text: 'The toolkit includes three playbooks: the Suno AI Prompt Playbook for music generation, the Top 50 AI Prompts for creators and builders, and the Claude Code Quick Start guide.',
           },
         },
         {
@@ -100,7 +100,7 @@ const jsonLdString = JSON.stringify(jsonLdGraph)
 
 export const metadata: Metadata = createMetadata({
   canonical: './',
-  title: 'Free AI Creator Toolkit — 3 Playbooks Worth $111 | FrankX',
+  title: 'Free AI Creator Toolkit — 3 Playbooks | FrankX',
   description:
     'Download three battle-tested AI playbooks: Suno AI Prompt Playbook, Top 50 AI Prompts, and Claude Code Quick Start. Free instant access.',
   path: '/free-playbook',

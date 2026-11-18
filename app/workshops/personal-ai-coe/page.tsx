@@ -104,7 +104,7 @@ export default function PersonalAICoEPage() {
               <p className="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">
                 Enterprise CoE
               </p>
-              <p className="text-2xl font-bold text-white mb-1">~ €500k</p>
+              <p className="text-2xl font-bold text-white mb-1">A team and a budget</p>
               <p className="text-sm text-zinc-400">
                 6-12 month rollout. Cross-functional program team. Enterprise scale.
               </p>
@@ -113,7 +113,7 @@ export default function PersonalAICoEPage() {
               <p className="text-xs font-medium text-amber-400/80 uppercase tracking-wider mb-2">
                 Personal CoE
               </p>
-              <p className="text-2xl font-bold text-white mb-1">1/5000th the cost</p>
+              <p className="text-2xl font-bold text-white mb-1">One person, one session</p>
               <p className="text-sm text-zinc-300">
                 90 minutes in this workshop. Same 6-pillar architecture. Running by the time you leave.
               </p>

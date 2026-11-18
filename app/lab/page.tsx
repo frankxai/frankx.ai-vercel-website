@@ -317,7 +317,7 @@ export default function LabPage() {
             </h2>
             <p className="relative text-white/50 mb-8 max-w-lg mx-auto leading-relaxed">
               One subscription. All tools. Frank&apos;s API infrastructure handles the keys,
-              billing, and rate limits. You just generate. €19/month when it launches.
+              billing, and rate limits. You just generate. No price or launch date is set yet.
             </p>
             <Link
               href="/newsletter"
