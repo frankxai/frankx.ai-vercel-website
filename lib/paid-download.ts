@@ -46,8 +46,9 @@ export function resolvePaidBlobKey(productId: string, file: string): string | nu
 }
 
 /**
- * `issuedAt` is the purchase time, not the clock. A retried webhook must
- * produce the same link, or the email provider's idempotency check rejects it.
+ * `issuedAt` is when the purchase happened. Reading the clock here would change
+ * the link on a retried webhook, and the email provider's idempotency check
+ * rejects a changed email.
  */
 export function buildPaidDownloadUrl(productId: string, file: string, issuedAt: number, baseUrl: string): string {
   const expiresAt = issuedAt + PAID_DOWNLOAD_TTL_MS

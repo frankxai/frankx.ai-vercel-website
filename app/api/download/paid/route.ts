@@ -17,7 +17,7 @@ const refuse = (error: string, status: number) => Response.json({ error }, { sta
  * GET /api/download/paid?product={id}&file={name}&exp={ms}&sig={hmac}
  *
  * The link comes from a purchase email (lib/delivery.ts). The file is streamed
- * through this route, not redirected, so the storage URL is never handed out.
+ * through this route, so the storage URL is never handed out.
  */
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
