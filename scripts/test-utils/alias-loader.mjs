@@ -18,17 +18,28 @@ export async function resolve(specifier, context, nextResolve) {
     if (mapped.endsWith('.json')) {
       return { url: mapped, format: 'json', shortCircuit: true }
     }
-    return nextResolve(mapped, context)
+    // '@/lib/social-links' names a .ts file the same way a relative import does.
+    if (/\.[a-z]+$/i.test(mapped)) return nextResolve(mapped, context)
+    try {
+      return await nextResolve(mapped, context)
+    } catch (err) {
+      if (err?.code === 'ERR_MODULE_NOT_FOUND' || err?.code === 'ERR_UNSUPPORTED_DIR_IMPORT') {
+        return nextResolve(`${mapped}.ts`, context)
+      }
+      throw err
+    }
   }
 
   // Relative TS imports in this repo omit the extension (resolved by
   // tsc/webpack module resolution). Plain node ESM requires an explicit
   // extension, so retry with '.ts' appended when the bare specifier 404s.
+  // A directory beside a same-named file (lib/products/ and lib/products.ts)
+  // fails differently; TypeScript picks the file there, so this does too.
   if (specifier.startsWith('.') && !/\.[a-z]+$/i.test(specifier)) {
     try {
       return await nextResolve(specifier, context)
     } catch (err) {
-      if (err?.code === 'ERR_MODULE_NOT_FOUND') {
+      if (err?.code === 'ERR_MODULE_NOT_FOUND' || err?.code === 'ERR_UNSUPPORTED_DIR_IMPORT') {
         return nextResolve(`${specifier}.ts`, context)
       }
       throw err
