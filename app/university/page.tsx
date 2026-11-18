@@ -25,6 +25,7 @@ export default function UniversityCommonsPage() {
         <p className="mt-6 text-lg leading-relaxed text-zinc-300">An independent collection of practical AI challenges and research foundations for students, educators, researchers, founders and communities.</p>
         <p className="mt-3 text-sm text-zinc-400">Independent FrankX initiative. No university affiliation, accreditation or research endorsement is implied.</p>
       </header>
+      <p className="mt-6"><Link href="/university/resources" className="text-emerald-300 underline underline-offset-4 focus-visible:outline">Explore the learning paths and reviewed resources</Link></p>
       <nav aria-label="Choose your experience" className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {paths.map(path => <a key={path.id} href={`#${path.id}`} className="rounded-2xl border border-zinc-700 p-6 transition-colors hover:border-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-400">
           <h2 className="text-xl font-semibold">{path.title}</h2><p className="mt-2 text-sm text-zinc-300">{path.description}</p><span className="mt-4 inline-block text-sm font-medium text-emerald-300">{path.action} →</span>
