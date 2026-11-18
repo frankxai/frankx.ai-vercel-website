@@ -183,7 +183,7 @@ Multiple harnesses (Claude, Codex, Gemini, Grok, Cursor, Cline) may work this re
 
 ## Frontier Experience Constitution
 
-Before work on interfaces, editorial experiences, or brand and media assets, read the [Frontier Experience Constitution](https://github.com/Starlight-Intelligence/starlight-design-intelligence/blob/abdd67b0e337a1963a2caacb0323e8cdd0fe57d8/portfolio/frontier-experience-constitution.md) and record the revision in the handoff. Resolve the owning product, Figma, brand pack, and VIS authorities for the change. Hold generation and release of owned identity when its source or approval is unresolved. Apply the repository's existing checks and attach the workflow, responsive, provenance, and independent review evidence the constitution requires.
+Before work on interfaces, editorial experiences, or brand and media assets, read the [Frontier Experience Constitution](https://github.com/Starlight-Intelligence/starlight-design-intelligence/blob/e25fab4c5a0dac2ea8c7b91e9397972f5af4b454/portfolio/frontier-experience-constitution.md) and record the revision in the handoff. Resolve the owning product, Figma, brand pack, and VIS authorities for the change. Hold generation and release of owned identity when its source or approval is unresolved. Apply the repository's existing checks and attach the workflow, responsive, provenance, and independent review evidence the constitution requires.
 
 ## 4. Brand + content discipline
 
