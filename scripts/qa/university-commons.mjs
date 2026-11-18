@@ -45,6 +45,11 @@ export async function verifyCommons(browser, origin, output) {
     assert.equal(new URL(page.url()).search, '')
     assert.deepEqual(leaked, [])
     await page.goto(origin + '/university', { waitUntil: 'networkidle2' })
+    const headerClearance = await page.$eval('main header p', firstLine => {
+      const header = [...document.querySelectorAll('header')].find(el => getComputedStyle(el).position === 'fixed')
+      return firstLine.getBoundingClientRect().top - header.getBoundingClientRect().bottom
+    })
+    assert.ok(headerClearance >= 8, 'Mobile introduction clears the fixed site header')
     await page.screenshot({ path: resolve(output, 'commons-mobile.png') })
     await page.setViewport({ width: 1440, height: 900 })
     await page.screenshot({ path: resolve(output, 'commons-desktop.png') })

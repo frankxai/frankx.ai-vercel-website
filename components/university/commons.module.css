@@ -1,4 +1,4 @@
-.commons { max-width: 72rem; margin-inline: auto; padding: clamp(3rem,7vw,6rem) clamp(1.25rem,5vw,4rem); color: #eff3f2; }
+.commons { max-width: 72rem; margin-inline: auto; padding: clamp(3rem,7vw,6rem) clamp(1.25rem,5vw,4rem); padding-top: clamp(5.25rem,7vw,6rem); color: #eff3f2; }
 .commons h1 { max-width: 19ch; margin: .65rem 0 1.25rem; font: 600 clamp(2.75rem,6vw,5.2rem)/1.03 var(--font-poppins),sans-serif; letter-spacing: -.055em; overflow-wrap: break-word; }
 .commons h2 { font: 600 clamp(1.5rem,3vw,2.1rem)/1.2 var(--font-poppins),sans-serif; letter-spacing: -.035em; }
 .commons p { line-height: 1.65; }
