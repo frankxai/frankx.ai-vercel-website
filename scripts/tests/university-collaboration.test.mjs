@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
-import { audiences, buildCollaborationMessage, challengeBriefs, researchTracks } from '../../content/partnerships/university-collaboration.ts'
+import { audiences, buildCollaborationMessage, challengeBriefs, contextDisclosure, researchTracks } from '../../content/partnerships/university-collaboration.ts'
 import { enumerateRoutes, hasAppRoute } from '../../lib/route-enumeration.mjs'
 
 test('public collaboration route is discoverable while the meeting proposal remains unlisted', () => {
@@ -9,6 +9,16 @@ test('public collaboration route is discoverable while the meeting proposal rema
   const routes = enumerateRoutes().map(item => item.href)
   assert.ok(routes.includes('/partnerships/universities'))
   assert.ok(!routes.includes('/partnerships/proposal/uva-rec-impact'))
+})
+
+test('public disclosure names no institution; unlisted draft keeps its status label', () => {
+  for (const text of Object.values(contextDisclosure.public)) {
+    assert.doesNotMatch(text, /UvA|Founder Space|University of Amsterdam/)
+  }
+  assert.match(contextDisclosure.public.banner, /Independent founder-authored proposal/)
+  assert.match(contextDisclosure.public.banner, /No institutional endorsement/)
+  assert.equal(contextDisclosure.proposal.status, 'Unlisted discussion draft')
+  assert.match(contextDisclosure.proposal.banner, /Not an official UvA partnership/)
 })
 
 test('every audience and challenge produces an attributable inquiry within the intake limit', () => {

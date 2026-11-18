@@ -339,3 +339,23 @@
   .intake { gap:28px; padding-top:0; }.formRow { grid-template-columns:1fr; gap:0; }.intakeForm :is(input:not([type=checkbox]),select,textarea) { font-size:16px; }
   .continueLinks { gap:20px; }.experienceTimeline strong { font-size:12px; }.experienceTimeline small { font-size:10px; }.experienceCase>.eyebrow { font-size:11px; }
 }
+
+/* Design QA 18 Nov: legible disclosure and labels, mobile status, presentation scroll cue. */
+.disclosure p { font-size:14px; line-height:1.5; }
+.disclosure>span.disclosureStatus:last-child { margin-left:auto; font-size:12px; letter-spacing:.06em; flex-shrink:0; }
+.eyebrow,.founderArt .eyebrow,.sourceCard>.eyebrow,.timeline .eyebrow,.experienceCase>.eyebrow,.agentDetail .eyebrow { font-size:12px; }
+.presentationStatus { font-size:14px; }
+.footer p { font-size:14px; }
+.stageWrap { position:relative; flex:1; min-height:0; display:flex; flex-direction:column; }
+.stageWrap>.stage { flex:1; }
+.scrollCue { position:absolute; left:50%; bottom:12px; transform:translateX(-50%); display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:10px 18px; border-radius:999px; border:1px solid #3b5145; background:#17251e; color:var(--ink); font-size:13px; font-weight:600; box-shadow:0 -18px 30px 12px rgba(12,21,17,.85); }
+.scrollCue:hover { background:#253b2f; }
+@media (max-width:760px) {
+  .disclosure { flex-wrap:wrap; row-gap:6px; }
+  .disclosure p { font-size:14px; max-width:none; flex:1 1 0; }
+  .disclosure>span.disclosureStatus:last-child { display:block; flex-basis:100%; margin-left:16px; }
+  .eyebrow,.founderArt .eyebrow,.sourceCard>.eyebrow,.timeline .eyebrow,.experienceCase>.eyebrow,.agentDetail .eyebrow { font-size:12px; }
+  .presentationBar { flex-wrap:wrap; row-gap:4px; }
+  .presentationStatus { display:block; order:3; flex-basis:100%; font-size:14px; line-height:1.4; }
+}
+@media print { .stageWrap,.scrollCue { display:none!important; } }

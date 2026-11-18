@@ -1,6 +1,27 @@
 // Public invitation, proposed study designs and challenge briefs. No results implied.
 export const fellowshipUrl = 'https://recimpact.uva.nl/voor-partners/word-onderdeel-van-onze-community/word-impact-fellow'
 
+// Disclosure copy per page context. The public invitation names no institution;
+// the unlisted UvA draft keeps its own context-specific disclosure.
+export const contextDisclosure = {
+  public: {
+    banner: 'Independent founder-authored proposal. No institutional endorsement or partnership is implied.',
+    status: 'Open invitation · proposed collaborations',
+    footerTitle: 'An independent invitation from Frank Riemer.',
+    footer: 'Independent founder-authored proposal. No university or other institution has approved or endorsed it. No institutional logos are used.',
+    print: 'Independent founder-authored proposal. No institutional endorsement or partnership is implied.',
+    printFooter: 'No university or other institution has approved or endorsed this proposal.',
+  },
+  proposal: {
+    banner: 'Independent founder-authored proposal. Not an official UvA partnership.',
+    status: 'Unlisted discussion draft',
+    footerTitle: 'A conversation proposed by Frank Riemer.',
+    footer: 'UvA and Founder Space are named as the context for discussion. Neither has approved or endorsed this proposal. No institutional logos are used.',
+    print: 'Independent founder-authored discussion draft. Not an official UvA partnership.',
+    printFooter: 'UvA and Founder Space have not approved or endorsed this proposal.',
+  },
+} as const
+
 export const audiences = [
   { id: 'student', label: 'Student', title: 'Build something you can explain.', offer: 'Explore a supervised challenge, test a workflow or bring your own product question.', bring: 'Your course or discipline, the question you want to explore and your availability.', next: 'We check fit with an academic supervisor before agreeing a student project.' },
   { id: 'academic', label: 'Academic lead', title: 'Turn a question into a study.', offer: 'Shape a guest lecture, a course challenge or a research protocol with inspectable tools.', bring: 'Learning or research objectives, a course or group, and the proposed timing.', next: 'We draft a short scope together. The institution retains supervision, assessment and ethics decisions.' },
