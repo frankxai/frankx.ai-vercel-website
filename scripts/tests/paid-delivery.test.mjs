@@ -15,6 +15,11 @@ const load = (path) => import(pathToFileURL(resolve(ROOT, path)).href)
 
 process.env.EMAIL_TOKEN_SECRET = 'test-only-secret'
 process.env.NEXT_PUBLIC_SITE_URL = 'https://www.frankx.ai'
+// The Lemon Squeezy library reads its store config when it loads.
+process.env.LEMON_SQUEEZY_API_KEY = 'test-only-key'
+process.env.LEMON_SQUEEZY_STORE_ID = 'test-store'
+process.env.LEMON_SQUEEZY_VARIANT_STARTER_KIT = '111'
+process.env.LEMON_SQUEEZY_VARIANT_COMMAND_CENTER_TEMPLATE = '222'
 
 const { buildPaidDownloadUrl, verifyPaidDownload, resolvePaidBlobKey, PaidDownloadConfigError, PAID_DOWNLOAD_TTL_MS } =
   await load('lib/paid-download.ts')
@@ -23,6 +28,8 @@ const { fulfilCheckoutSession } = await load('lib/purchase-fulfilment.ts')
 const { CHECKOUT_PRODUCTS } = await load('lib/checkout-products.ts')
 const { PURCHASABLE_STATUS_PREFIX } = await load('lib/checkout-gate.ts')
 const { GET } = await load('app/api/download/paid/route.ts')
+const { lemonSqueezyCheckoutUrl, LEMON_SQUEEZY_VARIANT_ENV_KEYS } = await load('lib/lemon-squeezy.ts')
+const { getProductBySlug } = await load('lib/products.ts')
 
 // A product whose file has a blob registered in data/products.json, and one whose file has none.
 const DELIVERABLE = { id: 'system-architect-starter-kit', file: 'starter-kit-v1.zip', blobKey: 'products/starter-kit/starter-kit-v1.zip' }
@@ -183,3 +190,24 @@ test('no product is marked for sale unless every one of its files can be deliver
     assert.deepEqual(data.undeliverableFiles, [], `${id} is for sale but these files have no stored blob`)
   }
 })
+
+test('a configured Lemon Squeezy store does not open a buy button on its own', () => {
+  // Every env var the buy page reads is set above, and no product is marked for sale.
+  for (const slug of Object.keys(LEMON_SQUEEZY_VARIANT_ENV_KEYS)) {
+    const product = getProductBySlug(slug)
+    assert.ok(product, `${slug} is wired for checkout and missing from the catalog`)
+    assert.ok(CHECKOUT_PRODUCTS[product.id], `${slug} has no row in the for-sale registry`)
+    const buyable = { id: product.id, slug, primaryPrice: product.offer.primaryPrice }
+    assert.equal(lemonSqueezyCheckoutUrl(buyable), null)
+  }
+})
+
+test('a buy button opens only for a wired, paid product that a reviewed edit marked for sale', () => {
+  const kit = { id: 'system-architect-starter-kit', slug: 'starter-kit', primaryPrice: 97 }
+  const open = { [kit.id]: { ...CHECKOUT_PRODUCTS[kit.id], status: `${PURCHASABLE_STATUS_PREFIX} (test)` } }
+  assert.equal(lemonSqueezyCheckoutUrl(kit, open), 'https://test-store.lemonsqueezy.com/checkout/buy/111')
+  assert.equal(lemonSqueezyCheckoutUrl({ ...kit, primaryPrice: 0 }, open), null)
+  assert.equal(lemonSqueezyCheckoutUrl({ ...kit, slug: 'not-wired' }, open), null)
+  assert.equal(lemonSqueezyCheckoutUrl({ ...kit, id: 'not-in-the-registry' }, open), null)
+})
+
