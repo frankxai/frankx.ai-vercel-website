@@ -1,4 +1,6 @@
 # Gemini - Guardian Engineer
+
+@./AGENTS.md
 *The Technical Implementer of the FrankX Creator System*
 
 ## Mission
