@@ -10,7 +10,7 @@ export type Path = typeof paths[number]
 const reviewed = { language: 'en', reviewedAt: '2026-11-18' }
 export const resources: Resource[] = [
   ...challengeBriefs.map(brief => ({
-    ...reviewed, id: brief.id, title: brief.title, href: '/university/challenges/' + brief.id,
+    ...reviewed, id: brief.id, title: brief.title, href: `/university/challenges/${brief.id}`,
     kind: 'Challenge', publisher: 'FrankX', access: 'Free brief', task: brief.task,
   })),
   ...entries,

@@ -4,6 +4,7 @@ import { execFileSync, spawn } from 'node:child_process'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import puppeteer from 'puppeteer'
+import { verifyCommons } from './university-commons.mjs'
 import { enumerateRoutes } from '../../lib/route-enumeration.mjs'
 
 assert.equal(process.env.GITHUB_ACTIONS, 'true', 'Use the connected browser for local interactive QA; this disposable runner belongs to CI.')
@@ -134,6 +135,7 @@ try {
     if (file.endsWith('.json')) assert.equal(JSON.parse(body).metrics.estimatedVolume, null)
     manifest.checks.push({ download: file, status: 200 })
   }
+  manifest.checks.push(await verifyCommons(browser, origin, output))
   await writeFile(resolve(output, 'manifest.json'), JSON.stringify(manifest, null, 2))
 } finally {
   await writeFile(resolve(output, 'server.log'), logs.join(''))
