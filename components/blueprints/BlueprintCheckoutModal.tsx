@@ -89,24 +89,10 @@ export function BlueprintCheckoutModal({
 
       // If checkout is gated under doctrine 0 staging gate or in pre-stage
       if (res.status === 503 || data?.refusal) {
-        try {
-          const waitlistRes = await fetch('/api/waitlist', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              email,
-              source: `blueprint-${product.id}`,
-            }),
-          })
-          if (waitlistRes.ok) {
-            setIsSuccess(true)
-            setStatusMessage('priority list joined: you will be notified the moment checkout goes live')
-          } else {
-            setStatusMessage('unable to join priority list: please retry in a moment.')
-          }
-        } catch {
-          setStatusMessage('network error: unable to reach notification service.')
-        }
+        // This modal has no waitlist of its own: /api/waitlist only knows the
+        // products in WAITLIST_PRODUCTS and rejects blueprint ids with a 404, and
+        // a signup needs explicit consent. Say plainly that checkout is closed.
+        setStatusMessage('checkout is not open yet. nothing was charged and no email was saved.')
       } else {
         setStatusMessage(data?.error || 'checkout unavailable: please try again later.')
       }
