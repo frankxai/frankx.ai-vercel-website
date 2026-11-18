@@ -1,5 +1,8 @@
 # frankx.ai-vercel-website — Claude Code operating contract
 
+@AGENTS.md
+
+
 _Elite Creator. AI Architect. Humble Excellence._
 
 Read `@AGENTS.md` first for repo identity and the cross-harness branch/PR protocol. This file adds Claude-specific detail.

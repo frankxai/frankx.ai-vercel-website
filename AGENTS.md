@@ -318,3 +318,7 @@ A review request, green unrelated job or resolved thread is not production appro
 No review rule here grants merge, deployment, billing or permission authority.
 
 Shared measured rollout: https://github.com/frankxai/agentic-ops/pull/439.
+
+## Frontier Experience Constitution
+
+Before product UI, branded media, editorial experiences or creative workflow work, load the [Frontier Experience Constitution](https://github.com/Starlight-Intelligence/starlight-design-intelligence/blob/e25fab4c5a0dac2ea8c7b91e9397972f5af4b454/portfolio/frontier-experience-constitution.md) and [candidate review](https://github.com/Starlight-Intelligence/starlight-design-intelligence/blob/e25fab4c5a0dac2ea8c7b91e9397972f5af4b454/evals/frontier-experience-review.md). Apply the owning product's design system, resolved identities and release checks. Record the real task, exact source revisions and candidate evidence before review.
