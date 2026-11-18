@@ -1,0 +1,56 @@
+.commons { max-width: 72rem; margin-inline: auto; padding: clamp(3rem,7vw,6rem) clamp(1.25rem,5vw,4rem); color: #eff3f2; }
+.commons h1 { max-width: 19ch; margin: .65rem 0 1.25rem; font: 600 clamp(2.75rem,6vw,5.2rem)/1.03 var(--font-poppins),sans-serif; letter-spacing: -.055em; overflow-wrap: break-word; }
+.commons h2 { font: 600 clamp(1.5rem,3vw,2.1rem)/1.2 var(--font-poppins),sans-serif; letter-spacing: -.035em; }
+.commons p { line-height: 1.65; }
+.commons a:focus-visible, .commons input:focus-visible, .commons select:focus-visible, .commons button:focus-visible { outline: 3px solid #6ee7b7; outline-offset: 4px; }
+.commons a:hover { text-decoration: underline; text-underline-offset: .2em; }
+.kicker, .meta { color: #89e3bf; font-size: .78rem; font-weight: 600; }
+.kicker { letter-spacing: .09em; text-transform: uppercase; }
+.lead { max-width: 53ch; font-size: clamp(1.08rem,2vw,1.24rem); color: #c6d3ce; }
+.hero { display: grid; grid-template-columns: minmax(0,1.55fr) minmax(15rem,1fr); gap: 3rem; align-items: center; }
+.primary, .secondary, .back, .note a { display: inline-block; padding-block: .75rem; font-weight: 600; }
+.primary { margin: 1.35rem 1.4rem 0 0; background: #a7f3d0; color: #09251b; border-radius: 2rem; padding-inline: 1.3rem; }
+.secondary, .back, .note a, .list a, .steps a, .feature a { text-decoration: underline; text-underline-offset: .22em; text-decoration-color: #658c7d; }
+.back { margin-bottom: 2rem; color: #a7eacc; }
+.feature { display: flex; flex-wrap: wrap; gap: 1.2rem; padding: 1.5rem; border: 1px solid #35463f; border-radius: 1.75rem; background: #121917; }
+.feature img { width: 8.6rem; height: auto; object-fit: contain; align-self: flex-start; border-radius: .35rem; }
+.feature h2 { font-size: 1.4rem; margin: .4rem 0 .65rem; }
+.feature p:last-child, .list p, .steps p { color: #c4cfca; }
+.section { margin-block: 3.75rem; scroll-margin-top: 7rem; }
+.pathList { margin-top: 1.3rem; border-top: 1px solid #37433e; }
+.pathList a { display: grid; grid-template-columns: minmax(8rem,1fr) 3fr auto; align-items: baseline; gap: 1rem; padding: 1.2rem .2rem; border-bottom: 1px solid #37433e; }
+.pathList strong { font-size: 1.15rem; }
+.pathList span { color: #b8d1c5; }
+.note { margin-top: 2.5rem; padding: 1.7rem 0; border-top: 1px solid #37433e; }
+.note p { max-width: 64ch; margin-top: .7rem; color: #c4cfca; }
+.note a { color: #a7eacc; margin-right: 1.4rem; }
+.list, .steps { margin: 1.1rem 0 2rem; }
+.list li, .steps li { border-top: 1px solid #35423c; padding: 1.25rem 0; }
+.steps { list-style: decimal-leading-zero; padding-left: 2.5rem; }
+.steps li { padding-left: .5rem; }
+.steps li::marker { color: #8cbaaa; font: 500 1rem var(--font-mono),monospace; }
+.list h3, .steps h3 { font-size: 1.25rem; font-weight: 600; margin: .2rem 0; }
+.list p, .steps p { max-width: 77ch; }
+.list .meta, .steps .meta { color: #89e3bf; }
+.list small, .steps small { display: block; color: #abbcb4; margin-top: .5rem; }
+.filters { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin: 2rem 0; }
+.filters label { display: grid; gap: .4rem; font-weight: 600; max-width: 100%; }
+.filters input, .filters select, .filters button { min-height: 2.8rem; max-width: 100%; border-radius: .55rem; padding: .55rem .85rem; background: #18231e; color: #f5faf7; border: 1px solid #758b81; }
+.filters input::placeholder { color: #bdccc4; }
+.count { margin-top: 2rem; }
+.brief { margin: 3rem 0; }
+.brief div { border-top: 1px solid #35423c; padding-block: 1.05rem; }
+.brief dt { font-weight: 600; color: #a7eacc; }
+.brief dd { margin-top: .45rem; max-width: 64ch; }
+@media (max-width: 48rem) {
+  .hero { grid-template-columns: 1fr; gap: 2rem; }
+  .feature { flex-wrap: nowrap; align-items: center; }
+  .feature img { width: 5.4rem; }
+  .pathList a { grid-template-columns: 1fr auto; gap: .25rem .7rem; }
+  .pathList a span:nth-child(2) { grid-row: 2; grid-column: 1 / -1; }
+}
+@media print {
+  .commons, .commons * { color: black !important; background: white !important; }
+  .filters, .back { display: none; }
+  .list li, .steps li, .brief div { break-inside: avoid; }
+}

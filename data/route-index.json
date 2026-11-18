@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1082,
+    "total": 1092,
     "aliases": 61,
     "byType": {
       "core": 24,
@@ -11,7 +11,7 @@
       "static": 15,
       "blog": 279,
       "research": 23,
-      "guide": 46,
+      "guide": 56,
       "library": 88,
       "newsletter": 1,
       "os": 11,
@@ -10634,6 +10634,65 @@
         "tribe"
       ],
       "type": "section"
+    },
+    {
+      "href": "/university",
+      "title": "University Commons",
+      "description": "Learning paths for students, professors, researchers, founders and community organisers",
+      "type": "guide"
+    },
+    {
+      "href": "/university/challenges/evidence",
+      "title": "An assistant that shows its evidence",
+      "description": "Build a bounded research assistant that cites a fixed document set and identifies questions it cannot answer.",
+      "type": "guide"
+    },
+    {
+      "href": "/university/challenges/impact",
+      "title": "A small tool for a public-interest problem",
+      "description": "Co-define an information or coordination problem with a community organisation. Prototype one low-risk workflow.",
+      "type": "guide"
+    },
+    {
+      "href": "/university/challenges/product",
+      "title": "From idea to a testable product",
+      "description": "Choose one user problem. Build a small digital prototype and a test that could show the idea is wrong.",
+      "type": "guide"
+    },
+    {
+      "href": "/university/community",
+      "title": "Community | University Commons",
+      "description": "Prepare a brief that names who benefits, who reviews the prototype and how someone can participate without buying a tool.",
+      "type": "guide"
+    },
+    {
+      "href": "/university/founders",
+      "title": "Founders | University Commons",
+      "description": "Take one customer problem through a prototype brief, a costed comparison and a decision about the next week of work.",
+      "type": "guide"
+    },
+    {
+      "href": "/university/professors",
+      "title": "Professors | University Commons",
+      "description": "Choose a learning objective, plan a 90-minute session and take away a rubric for reviewing student work.",
+      "type": "guide"
+    },
+    {
+      "href": "/university/researchers",
+      "title": "Researchers | University Commons",
+      "description": "Write down the baseline, the failure you expect and the observation that would change your conclusion.",
+      "type": "guide"
+    },
+    {
+      "href": "/university/resources",
+      "title": "University Commons resource catalogue",
+      "type": "guide"
+    },
+    {
+      "href": "/university/students",
+      "title": "Students | University Commons",
+      "description": "Leave with a small source set, a working test and one example of when your assistant should decline to answer.",
+      "type": "guide"
     },
     {
       "href": "/unsubscribe",

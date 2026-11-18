@@ -1,0 +1,211 @@
+[
+  {
+    "id": "workbook",
+    "title": "AI operating systems workbook",
+    "href": "/workshops/ai-operating-systems/workbook.md",
+    "kind": "Workbook",
+    "task": "Use the ownership lesson to write a task contract. Compare review time against the time the task takes by hand.",
+    "publisher": "FrankX",
+    "access": "Free Markdown",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "offline-lab",
+    "title": "Run the offline agent lab",
+    "href": "/workshops/ai-operating-systems/lab.mjs",
+    "kind": "Lab",
+    "task": "Save the file and run node --test lab.mjs with Node 22 or later. Inspect how a stale record is excluded. The fixtures run locally without a model account.",
+    "publisher": "FrankX",
+    "access": "Free offline file",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "rubric",
+    "title": "Evaluation rubric",
+    "href": "/templates/evaluation-rubric.html",
+    "kind": "Template",
+    "task": "Score one output for correctness, relevance, clarity and safety. Ask a peer to score it independently and discuss the largest disagreement.",
+    "publisher": "FrankX",
+    "access": "Free printable HTML",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "agent-blueprint",
+    "title": "Agent blueprint",
+    "href": "/templates/agent-blueprint.json",
+    "kind": "Template",
+    "task": "Edit a local copy of the JSON. Replace the example goal, allowed tools and acceptance threshold with those for your task.",
+    "publisher": "FrankX",
+    "access": "Free JSON",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "risk-register",
+    "title": "Workflow risk register",
+    "href": "/templates/risk-register.html",
+    "kind": "Template",
+    "task": "Use a row to record one likely failure, its owner and the evidence you will review before expanding a pilot.",
+    "publisher": "FrankX",
+    "access": "Free printable HTML",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "workflow-lab",
+    "title": "Build a source-based AI workflow",
+    "href": "/courses/build-your-ai-creator-os/reliable-workflow",
+    "kind": "Lab",
+    "task": "Write a workflow, remove a necessary source and record what happens. Export the packet for a peer to review.",
+    "publisher": "FrankX",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "skill-anatomy",
+    "title": "Anatomy of a production skill",
+    "href": "/guides/anatomy-of-a-production-skill",
+    "kind": "Guide",
+    "task": "Trace a customer-discovery skill from its trigger to its evaluation fixtures. Sketch the smallest folder your own skill needs.",
+    "publisher": "FrankX",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "teaching-contract",
+    "title": "Research to Working Agent: facilitator notes",
+    "href": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/LAB.md",
+    "kind": "Workshop",
+    "task": "Choose a paper and a no-paid-API fallback. Assign the host and producer, then rehearse the peer review before inviting learners.",
+    "publisher": "Research Intelligence OS",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "research-record",
+    "title": "Research translation record",
+    "href": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/example.json",
+    "kind": "Template",
+    "task": "Inspect the synthetic JSON example. Draft a hypothesis, baseline, rights decision and cost ceiling before recording a result.",
+    "publisher": "Research Intelligence OS",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "starlight-skills",
+    "title": "Inside the Starlight skill pack",
+    "href": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/SKILLPACK.md",
+    "kind": "Skill pack",
+    "task": "Inspect one skill in the pack and identify its trigger, tools and permissions. Check its terms before adapting it.",
+    "publisher": "Starlight Intelligence",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "quote-protocol",
+    "title": "One agent or a quote-writing team?",
+    "href": "https://github.com/frankxai/agentic-income-skills/blob/d0346f9392772ec5d2a32d33456831c34640dd95/docs/quote-desk-experiment.md",
+    "kind": "Protocol",
+    "task": "Inspect the proposed experiment. Choose the same synthetic cases for both arms and account for reviewer time. The comparison is unrun.",
+    "publisher": "Agentic Income",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "founder-stack",
+    "title": "The founder’s AI stack",
+    "href": "/guides/founder-ai-stack-2026",
+    "kind": "Guide",
+    "task": "Use the weekly audit to identify one recurring job and an existing tool to test on it. Record the cost before adding a subscription.",
+    "publisher": "FrankX",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "purpose-fable",
+    "title": "The Cartographer and the Coastline",
+    "href": "/books/fable/01-the-cartographer-and-the-coastline",
+    "kind": "Book chapter",
+    "task": "Read the five-minute fable aloud. Discuss what a model of your own problem should leave out, and who gets to decide.",
+    "publisher": "FrankX",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "community-checklist",
+    "title": "Community platform due-diligence worksheet",
+    "href": "/downloads/community-platform-vendor-due-diligence-checklist.csv",
+    "kind": "Template",
+    "task": "Open the CSV in a spreadsheet. Choose one member outcome and use its evidence and pass-condition columns to compare two options.",
+    "publisher": "FrankX",
+    "access": "Free CSV",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "community-blueprint",
+    "title": "Starlight Community OS blueprint",
+    "href": "/downloads/starlight-community-os-blueprint.md",
+    "kind": "Guide",
+    "task": "Use the reference architecture to map which member records a group should be able to export. Identify the person responsible for consent.",
+    "publisher": "FrankX",
+    "access": "Free Markdown",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "educator-guide",
+    "title": "Workshop adaptation guide",
+    "href": "/workshops/for-educators",
+    "kind": "Guide",
+    "task": "Choose a workshop template, review its agenda and substitute examples that fit your course before setting the assessment.",
+    "publisher": "FrankX",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "community-project",
+    "title": "Collaborate with students at REC Impact",
+    "href": "https://recimpact.uva.nl/voor-partners/samenwerken-met-studenten",
+    "kind": "Programme",
+    "task": "Review the university’s routes for organisations bringing a real-world problem. Check its current requirements before offering a brief.",
+    "publisher": "REC Impact, University of Amsterdam",
+    "access": "Free to read",
+    "language": "nl",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "student-networks",
+    "title": "Student networks at REC Impact",
+    "href": "https://recimpact.uva.nl/voor-studenten/bouw-aan-je-netwerk",
+    "kind": "Directory",
+    "task": "Find a student society whose interests match your brief. Follow its own participation route and check its current requirements.",
+    "publisher": "REC Impact, University of Amsterdam",
+    "access": "Free to read",
+    "language": "nl",
+    "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "accessibility",
+    "title": "A first accessibility review",
+    "href": "https://www.w3.org/WAI/test-evaluate/easy-checks/",
+    "kind": "Guide",
+    "task": "Try the keyboard, headings and zoom checks on your prototype. Record a barrier and retest the correction with the person who encountered it.",
+    "publisher": "W3C WAI",
+    "access": "Free to read",
+    "language": "en",
+    "reviewedAt": "2026-11-18"
+  }
+]
