@@ -1,37 +1,152 @@
 [
   {
-    "slug": "students", "title": "Students", "headline": "Build an assistant you can defend.",
+    "slug": "students",
+    "title": "Students",
+    "headline": "Build an assistant you can defend.",
     "outcome": "Leave with a small source set, a working test and one example of when your assistant should decline to answer.",
-    "sequence": ["evidence", "agent-blueprint", "offline-lab", "rubric"],
-    "also": ["workflow-lab", "skill-anatomy", "starlight-skills", "purpose-fable"],
-    "invitation": "Discuss a supervised student challenge"
+    "sequence": [
+      "evidence",
+      "agent-blueprint",
+      "offline-lab",
+      "rubric"
+    ],
+    "also": [
+      "workflow-lab",
+      "skill-anatomy",
+      "starlight-skills",
+      "purpose-fable"
+    ],
+    "invitation": "Discuss a supervised student challenge",
+    "practicum": {
+      "title": "Build an answer you can defend",
+      "estimatedMinutes": 60,
+      "resourceIds": [
+        "uc-0005",
+        "uc-0010",
+        "uc-0013",
+        "uc-0017"
+      ],
+      "exercise": "Choose the evidence brief. Use two paragraphs you wrote about a fictional campus event. Ask one answerable question and one whose answer is absent. Complete a skill specification and exchange it with a peer.",
+      "deliverable": "A one-page evidence card, two questions, one cited answer, one justified abstention and a revision after review.",
+      "acceptance": "A second reader can locate the supported answer and explain why the other question has to remain open."
+    }
   },
   {
-    "slug": "professors", "title": "Professors", "headline": "Teach a lab another lecturer can repeat.",
+    "slug": "professors",
+    "title": "Professors",
+    "headline": "Teach a lab another lecturer can repeat.",
     "outcome": "Choose a learning objective, plan a 90-minute session and take away a rubric for reviewing student work.",
-    "sequence": ["teaching-contract", "workbook", "rubric", "educator-guide"],
-    "also": ["evidence", "offline-lab", "teamwork", "purpose-fable", "accessibility"],
-    "invitation": "Discuss a guest lecture or facilitated lab"
+    "sequence": [
+      "teaching-contract",
+      "workbook",
+      "rubric",
+      "educator-guide"
+    ],
+    "also": [
+      "evidence",
+      "offline-lab",
+      "teamwork",
+      "purpose-fable",
+      "accessibility"
+    ],
+    "invitation": "Discuss a guest lecture or facilitated lab",
+    "practicum": {
+      "title": "Design and mark a reproducible class exercise",
+      "estimatedMinutes": 75,
+      "resourceIds": [
+        "teaching-contract",
+        "uc-0012",
+        "uc-0010",
+        "uc-0017"
+      ],
+      "exercise": "Use the 90-minute delivery contract as planning material. Draft three levels of the same exercise on classifying a source claim. Write a hidden edge case and a marking guide. Exchange the exercise with a colleague.",
+      "deliverable": "A dated lesson plan, learner handout, marking guide and one change after peer marking.",
+      "acceptance": "Two markers can apply the guide to the same synthetic answer, identify a disagreement and record how they resolved it."
+    }
   },
   {
-    "slug": "researchers", "title": "Researchers", "headline": "Design a comparison someone else can rerun.",
+    "slug": "researchers",
+    "title": "Researchers",
+    "headline": "Design a comparison someone else can rerun.",
     "outcome": "Write down the baseline, the failure you expect and the observation that would change your conclusion.",
-    "sequence": ["observed-work", "selection", "research-record", "quote-protocol"],
-    "also": ["teamwork", "evidence", "teaching-contract", "offline-lab", "rubric"],
-    "invitation": "Propose a reproduction or research question"
+    "sequence": [
+      "observed-work",
+      "selection",
+      "research-record",
+      "quote-protocol"
+    ],
+    "also": [
+      "teamwork",
+      "evidence",
+      "teaching-contract",
+      "offline-lab",
+      "rubric"
+    ],
+    "invitation": "Propose a reproduction or research question",
+    "practicum": {
+      "title": "Test when a result can be called accepted",
+      "estimatedMinutes": 60,
+      "resourceIds": [
+        "uc-0006",
+        "uc-0008",
+        "uc-0009",
+        "quote-protocol"
+      ],
+      "exercise": "Inspect the synthetic research record. Run the five upstream checks. Try promoting the example to accepted without evidence and explain the rejection. Use the quote protocol to plan a blinded comparison that could fail.",
+      "deliverable": "Environment and revision, test output, one negative case and a one-page protocol with an explicit stop condition.",
+      "acceptance": "Another reader can rerun the fixture and tell which claims the schema can check and which require an actual experiment."
+    }
   },
   {
-    "slug": "founders", "title": "Founders", "headline": "Find the assumption that could end your pilot.",
+    "slug": "founders",
+    "title": "Founders",
+    "headline": "Find the assumption that could end your pilot.",
     "outcome": "Take one customer problem through a prototype brief, a costed comparison and a decision about the next week of work.",
-    "sequence": ["product", "quote-protocol", "founder-stack", "risk-register"],
-    "also": ["agent-blueprint", "observed-work", "skill-anatomy", "community-checklist", "starlight-skills"],
-    "invitation": "Bring a bounded founder challenge"
+    "sequence": [
+      "product",
+      "quote-protocol",
+      "founder-stack",
+      "risk-register"
+    ],
+    "also": [
+      "agent-blueprint",
+      "observed-work",
+      "skill-anatomy",
+      "community-checklist",
+      "starlight-skills"
+    ],
+    "invitation": "Bring a bounded founder challenge",
+    "practicum": {
+      "title": "Produce an auditable service quote",
+      "estimatedMinutes": 60,
+      "resourceIds": [
+        "uc-0022",
+        "uc-0023",
+        "uc-0021",
+        "uc-0018"
+      ],
+      "exercise": "Use the supplied synthetic catalogue and request. Draft a quote for one inspection, submit the same request twice, then reopen and export the draft locally. Inspect which files contain owner-only information.",
+      "deliverable": "A local owner packet, the duplicate-intake result and a short decision on what requires human review.",
+      "acceptance": "Both intakes resolve to the same ID and revision. The reviewer can trace the amount to the fixture and identify exactly which files are private."
+    }
   },
   {
-    "slug": "community", "title": "Community", "headline": "Start with a problem your community recognises.",
+    "slug": "community",
+    "title": "Community",
+    "headline": "Start with a problem your community recognises.",
     "outcome": "Prepare a brief that names who benefits, who reviews the prototype and how someone can participate without buying a tool.",
-    "sequence": ["impact", "accessibility", "community-checklist", "student-networks"],
-    "also": ["community-project", "community-blueprint", "purpose-fable", "risk-register"],
+    "sequence": [
+      "impact",
+      "accessibility",
+      "community-checklist",
+      "student-networks"
+    ],
+    "also": [
+      "community-project",
+      "community-blueprint",
+      "purpose-fable",
+      "risk-register"
+    ],
     "invitation": "Discuss hosting a community challenge"
   }
 ]

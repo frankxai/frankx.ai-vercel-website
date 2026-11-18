@@ -85,7 +85,49 @@
     "publisher": "Research Intelligence OS",
     "access": "Free to read",
     "language": "en",
-    "reviewedAt": "2026-11-18"
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "Timed agenda, rehearsal gates and no-paid-API fallback are explicit. The inspected artifact is a delivery contract. Host confirmation, classroom rehearsal and teaching outcomes remain open.",
+      "audiences": [
+        "professors",
+        "researchers"
+      ],
+      "topic": "education",
+      "reviewLane": "research methods",
+      "level": "intermediate",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "workshop plan",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Design a 90-minute class that moves from one sourced claim to a bounded test and a peer review."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/LICENSE"
+      },
+      "sourceUrl": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/LAB.md",
+      "currentVersion": "da3ecf6983e71c81788efc887059264528fa82a5",
+      "sourceEdition": "0.1",
+      "gitBlob": "f8dfa4f9c11b07dac34cd423eee57107f0a911e2",
+      "sourceSha256": "ec257b7a542ff22acd85ae56aee58bc6f7d1c1910a3f7108ce9e21b4834158d2",
+      "sourceState": "Proposed workshop",
+      "reviewScope": "reading",
+      "prerequisiteCosts": "Free planning document. Delivery requires facilitator time, a second person for rehearsal and an accessible setting.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [],
+      "reviewId": "uc-0007",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
   },
   {
     "id": "research-record",
@@ -112,13 +154,59 @@
   {
     "id": "quote-protocol",
     "title": "One agent or a quote-writing team?",
-    "href": "https://github.com/frankxai/agentic-income-skills/blob/d0346f9392772ec5d2a32d33456831c34640dd95/docs/quote-desk-experiment.md",
+    "href": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/docs/quote-desk-experiment.md",
     "kind": "Protocol",
     "task": "Inspect the proposed experiment. Choose the same synthetic cases for both arms and account for reviewer time. The comparison is unrun.",
     "publisher": "Agentic Income",
     "access": "Free to read",
     "language": "en",
-    "reviewedAt": "2026-11-18"
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "Protocol explicitly reports the comparison as unrun. Use synthetic requests and serialise the evaluation plan. No benefit, revenue, model performance or customer acceptance is established.",
+      "audiences": [
+        "researchers",
+        "founders",
+        "professors"
+      ],
+      "topic": "evaluation",
+      "reviewLane": "research methods",
+      "level": "intermediate",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "research protocol",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Pre-register two comparable arms, blinded review, exclusions and an outcome that would count against the team."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/LICENSE"
+      },
+      "sourceUrl": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/docs/quote-desk-experiment.md",
+      "currentVersion": "a9e4ea02284116d1c25a89b13729219b276ec49a",
+      "sourceEdition": null,
+      "gitBlob": "a5b453e6099802b6dff1972e2f6336c1e4ec5243",
+      "sourceSha256": "fd001016fefeb6627c486af0eabbeda5570e39549bccc60c1859f55273a5a29a",
+      "sourceState": "Proposed experiment",
+      "reviewScope": "reading",
+      "prerequisiteCosts": "Free reading and manual exercise. Browser or plain-text editor on an existing device. Optional model execution is outside the assignment.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [
+        "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/tests/fixtures/quote-desk-ten.json",
+        "https://github.com/frankxai/agentic-income-skills/blob/d0346f9392772ec5d2a32d33456831c34640dd95/docs/quote-desk-experiment.md"
+      ],
+      "reviewId": "uc-0020",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
   },
   {
     "id": "founder-stack",
@@ -207,5 +295,1270 @@
     "access": "Free to read",
     "language": "en",
     "reviewedAt": "2026-11-18"
+  },
+  {
+    "id": "uc-0001",
+    "title": "The Agent Thesis",
+    "kind": "book chapter",
+    "task": "Distinguish a scripted workflow from an agent using the chapter’s four capabilities.",
+    "publisher": "FrankX",
+    "language": "en",
+    "access": "Free book chapter",
+    "placement": "supplement",
+    "href": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/content/books/agentic-builder/chapter-01-the-agent-thesis.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "The source chapter exists. The tested book and chapter URLs returned 404. Confirm the intended reader route and qualify the time-sensitive adoption claims.",
+      "audiences": [
+        "students",
+        "founders"
+      ],
+      "topic": "research",
+      "reviewLane": "agent systems",
+      "level": "all",
+      "provenance": "first-party",
+      "rights": "link-only",
+      "status": "review-needed",
+      "format": "book chapter",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Distinguish a scripted workflow from an agent using the chapter’s four capabilities."
+      ],
+      "licence": {
+        "label": "All rights reserved",
+        "scope": "All rights reserved. Link to the reading only.",
+        "url": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/LICENSE"
+      },
+      "sourceUrl": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/content/books/agentic-builder/chapter-01-the-agent-thesis.md",
+      "currentVersion": "9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f",
+      "sourceEdition": null,
+      "gitBlob": "94c893d53d7c399c03d254be546bd04f7a158d2e",
+      "sourceSha256": "c03e957bbb86956b54fd297625721951e52d42a1af35bdce6bfdf2a588642777",
+      "sourceState": "Manuscript",
+      "reviewScope": "hold",
+      "prerequisiteCosts": "Free reading and manual exercise. Browser or plain-text editor on an existing device. Optional model execution is outside the assignment.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "held",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [],
+      "readerCheck": {
+        "http": 404,
+        "url": "https://www.frankx.ai/books/agentic-builder/chapter-01-the-agent-thesis",
+        "title": null
+      },
+      "reviewId": "uc-0001",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0002",
+    "title": "Getting Started with Claude Code",
+    "kind": "setup guide",
+    "task": "Audit a CLI quickstart by comparing its executable, authentication and prerequisites with upstream instructions.",
+    "publisher": "FrankX",
+    "language": "en",
+    "access": "Free setup guide",
+    "placement": "supplement",
+    "href": "https://www.frankx.ai/guides/claude-code-getting-started",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "The guide calls claude-code --version. The official quickstart uses claude --version. Repair the install, login and entitlement sections and replay on a clean machine.",
+      "audiences": [
+        "students",
+        "professors"
+      ],
+      "topic": "ai-systems",
+      "reviewLane": "Claude Code",
+      "level": "all",
+      "provenance": "first-party",
+      "rights": "link-only",
+      "status": "review-needed",
+      "format": "setup guide",
+      "author": "Frank",
+      "authorEvidence": "Source byline or book registry",
+      "learningObjectives": [
+        "Audit a CLI quickstart by comparing its executable, authentication and prerequisites with upstream instructions."
+      ],
+      "licence": {
+        "label": "All rights reserved",
+        "scope": "All rights reserved. Link to the reading only.",
+        "url": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/LICENSE"
+      },
+      "sourceUrl": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/content/guides/claude-code-getting-started.mdx",
+      "currentVersion": "9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f",
+      "sourceEdition": "2025-01-02 byline date",
+      "gitBlob": "709200659fadd4b494f78debda6b48b04446150b",
+      "sourceSha256": "d6af0b0f23c5c3862a864a2bf2a38720bef376d401b7f2cf69a640e946e1baf7",
+      "sourceState": "Published guide",
+      "reviewScope": "hold",
+      "prerequisiteCosts": "Free article. Live CLI requires a supported entitlement or paid API access; amount depends on provider and account.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "held",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [
+        "https://code.claude.com/docs/en/quickstart"
+      ],
+      "readerCheck": {
+        "http": 200,
+        "url": "https://www.frankx.ai/guides/claude-code-getting-started",
+        "title": "Getting Started with Claude Code | FrankX"
+      },
+      "reviewId": "uc-0002",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0003",
+    "title": "Codex Plugins for Teams",
+    "kind": "operating guide",
+    "task": "Write a release checklist assigning one owner, one permission boundary and one rollback condition to a team workflow.",
+    "publisher": "FrankX",
+    "language": "en",
+    "access": "Free operating guide",
+    "placement": "supplement",
+    "href": "https://www.frankx.ai/blog/codex-plugins-for-teams",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "Use the governance exercise on paper. The article’s August edition describes product surfaces and plans that require a fresh tenant-specific check before live instruction.",
+      "audiences": [
+        "professors",
+        "founders",
+        "researchers"
+      ],
+      "topic": "ai-systems",
+      "reviewLane": "ChatGPT/Codex",
+      "level": "intermediate",
+      "provenance": "first-party",
+      "rights": "link-only",
+      "status": "verified",
+      "format": "operating guide",
+      "author": "FrankX",
+      "authorEvidence": "Source byline or book registry",
+      "learningObjectives": [
+        "Write a release checklist assigning one owner, one permission boundary and one rollback condition to a team workflow."
+      ],
+      "licence": {
+        "label": "All rights reserved",
+        "scope": "All rights reserved. Link to the reading only.",
+        "url": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/LICENSE"
+      },
+      "sourceUrl": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/content/blog/codex-plugins-for-teams.mdx",
+      "currentVersion": "9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f",
+      "sourceEdition": "2026-08-18 lastUpdated",
+      "gitBlob": "5eeb9117b22637f5d7e3a05a03102863321ebf38",
+      "sourceSha256": "7108046f83f45880299fd7ed81d642f1dc067016a46e4912b0c7d623436a0403",
+      "sourceState": "Published guide",
+      "reviewScope": "reading",
+      "prerequisiteCosts": "Free article. Use paper for governance design. Live workspace administration requires appropriate account permissions; plan costs not verified.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [],
+      "readerCheck": {
+        "http": 200,
+        "url": "https://www.frankx.ai/blog/codex-plugins-for-teams",
+        "title": "Codex Plugins for Teams: A Practical Operating Guide | FrankX"
+      },
+      "reviewId": "uc-0003",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0004",
+    "title": "Soulbook seven pillars framework",
+    "kind": "PDF workbook",
+    "task": "Use a reflection prompt to write one self-chosen priority and a private action for the week.",
+    "publisher": "FrankX",
+    "language": "en",
+    "access": "Free PDF workbook",
+    "placement": "supplement",
+    "href": "https://www.frankx.ai/products/soulbook-7-pillars-framework.pdf",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "Direct PDF opened without email. Four tagged pages, title about:blank, difficult text extraction order in the multi-column worksheet. Require equivalent linear text and reading-order review before core assignment.",
+      "audiences": [
+        "students",
+        "professors"
+      ],
+      "topic": "education",
+      "reviewLane": "learning design",
+      "level": "all",
+      "provenance": "first-party",
+      "rights": "link-only",
+      "status": "review-needed",
+      "format": "PDF workbook",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Use a reflection prompt to write one self-chosen priority and a private action for the week."
+      ],
+      "licence": {
+        "label": "All rights reserved",
+        "scope": "All rights reserved. Link to the reading only.",
+        "url": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/LICENSE"
+      },
+      "sourceUrl": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/public/products/soulbook-7-pillars-framework.pdf",
+      "currentVersion": "9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f",
+      "sourceEdition": null,
+      "gitBlob": "9bc5668974372da58762306e8399fbea242740f6",
+      "sourceSha256": "489f97815a9a296e16612aec7a11094cfcfa4c046350861e3e4a5d5cf233b1fb",
+      "sourceState": "Downloadable product",
+      "reviewScope": "hold",
+      "prerequisiteCosts": "Direct PDF, free without form. A PDF reader is required.",
+      "accessibility": "Tagged four-page PDF. Reading order and document title need remediation. Assistive-technology testing pending.",
+      "publicationStatus": "held",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [
+        "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/data/products.json"
+      ],
+      "readerCheck": {
+        "http": 200,
+        "url": "https://www.frankx.ai/products/soulbook-7-pillars-framework.pdf",
+        "title": null
+      },
+      "catalogueId": "creators-soulbook",
+      "reviewId": "uc-0004",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0005",
+    "title": "University challenge briefs",
+    "kind": "challenge collection",
+    "task": "Turn one brief into a falsifiable question, a bounded deliverable and an acceptance test.",
+    "publisher": "FrankX",
+    "language": "en",
+    "access": "Free challenge collection",
+    "placement": "supplement",
+    "href": "https://www.frankx.ai/partnerships/universities",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "Three briefs cover a product hypothesis, evidence-grounded answers and a public-interest problem. Select one. Community deployment and classroom outcomes have not been tested here.",
+      "audiences": [
+        "students",
+        "professors",
+        "founders"
+      ],
+      "topic": "education",
+      "reviewLane": "research methods",
+      "level": "all",
+      "provenance": "first-party",
+      "rights": "link-only",
+      "status": "verified",
+      "format": "challenge collection",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Turn one brief into a falsifiable question, a bounded deliverable and an acceptance test."
+      ],
+      "licence": {
+        "label": "All rights reserved",
+        "scope": "All rights reserved. Link to the reading only.",
+        "url": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/LICENSE"
+      },
+      "sourceUrl": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/content/partnerships/university-collaboration.ts",
+      "currentVersion": "9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f",
+      "sourceEdition": null,
+      "gitBlob": "4604fa93342c7a271b27717844951499ea69bb86",
+      "sourceSha256": "7a232cabce40d403b2671ef2d42335cc745a47a904ae58f4c3f5c844b9e59608",
+      "sourceState": "Published briefs",
+      "reviewScope": "reading",
+      "prerequisiteCosts": "Free reading and manual exercise. Browser or plain-text editor on an existing device. Optional model execution is outside the assignment.",
+      "accessibility": "HTML reader plus TypeScript source. Three briefs have separate headings on the site. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [],
+      "readerCheck": {
+        "http": 200,
+        "url": "https://www.frankx.ai/partnerships/universities",
+        "title": "University collaborations | FrankX & Starlight Intelligence"
+      },
+      "reviewId": "uc-0005",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0006",
+    "title": "Research to Working Systems",
+    "kind": "method pack",
+    "task": "Scope one contribution with an inspectable source, rights, experiment, owner and upstream acceptance criterion.",
+    "publisher": "Starlight Intelligence",
+    "language": "en",
+    "access": "Free method pack",
+    "placement": "supplement",
+    "href": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/README.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "Folder-specific licence covers the authored method. Example research is synthetic. Use the submission checklist without posting publicly.",
+      "audiences": [
+        "students",
+        "professors",
+        "researchers"
+      ],
+      "topic": "research",
+      "reviewLane": "research methods",
+      "level": "intermediate",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "method pack",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Scope one contribution with an inspectable source, rights, experiment, owner and upstream acceptance criterion."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/LICENSE"
+      },
+      "sourceUrl": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/README.md",
+      "currentVersion": "da3ecf6983e71c81788efc887059264528fa82a5",
+      "sourceEdition": null,
+      "gitBlob": "c001c503924461d0a2a0c3c10386469aa7e3549e",
+      "sourceSha256": "909f322e25c3091301937a70cbf4780a18b730f3ed6672201d0e4c182580b101",
+      "sourceState": "Method pack",
+      "reviewScope": "reading",
+      "prerequisiteCosts": "Free reading and manual exercise. Browser or plain-text editor on an existing device. Optional model execution is outside the assignment.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [],
+      "reviewId": "uc-0006",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0008",
+    "title": "Research translation record",
+    "kind": "JSON Schema",
+    "task": "Model the evidence required to move a proposed experiment through evaluation, submission and acceptance.",
+    "publisher": "Starlight Intelligence",
+    "language": "en",
+    "access": "Free JSON Schema",
+    "placement": "supplement",
+    "href": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/translation.schema.json",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "Draft 2020-12 schema inspected. Validated with the paired synthetic contract tests. Human reviewers must still authenticate any cited receipt.",
+      "audiences": [
+        "researchers",
+        "students"
+      ],
+      "topic": "research",
+      "reviewLane": "research methods",
+      "level": "intermediate",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "JSON Schema",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Model the evidence required to move a proposed experiment through evaluation, submission and acceptance."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/LICENSE"
+      },
+      "sourceUrl": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/translation.schema.json",
+      "currentVersion": "da3ecf6983e71c81788efc887059264528fa82a5",
+      "sourceEdition": "1.0.0 schema version",
+      "gitBlob": "1f4e9406ed450451479d63f6a4fb8230903ef7cd",
+      "sourceSha256": "e75f2d5248688813de2d028dea893da67134ade9b0930f9e5aa0e45a079d7ee5",
+      "sourceState": "Versioned schema",
+      "reviewScope": "replayed",
+      "prerequisiteCosts": "Free JSON. Replay uses Python and jsonschema 4.26.0.",
+      "accessibility": "JSON with named fields; a text editor or schema-aware viewer is useful. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [
+        "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/example.json"
+      ],
+      "reviewId": "uc-0008",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0009",
+    "title": "Research translation contract checks",
+    "kind": "Python tests and fixture",
+    "task": "Run the synthetic example, then demonstrate which unsupported status changes fail validation.",
+    "publisher": "Starlight Intelligence",
+    "language": "en",
+    "access": "Free Python tests and fixture",
+    "placement": "supplement",
+    "href": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/test_contract.py",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "Five upstream unittest cases passed with Python 3.12.14 and jsonschema 4.26.0. They exercise structure, source URLs, rerun evidence and status promotion. No scientific comparison was run.",
+      "audiences": [
+        "researchers",
+        "professors",
+        "students"
+      ],
+      "topic": "evaluation",
+      "reviewLane": "research methods",
+      "level": "intermediate",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "Python tests and fixture",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Run the synthetic example, then demonstrate which unsupported status changes fail validation."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/LICENSE"
+      },
+      "sourceUrl": "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/test_contract.py",
+      "currentVersion": "da3ecf6983e71c81788efc887059264528fa82a5",
+      "sourceEdition": null,
+      "gitBlob": "87813991f6ece10538f595805ca5cc041153ceda",
+      "sourceSha256": "7c18ec30e99ea05b7cc690fda2196c8aa924340e262a7c7f5479a0b5e0cd902c",
+      "sourceState": "Executable fixture",
+      "reviewScope": "replayed",
+      "prerequisiteCosts": "Python 3 and jsonschema 4.26.0. One-time dependency download or an instructor-provided environment.",
+      "accessibility": "Python source and JSON. A terminal and text editor are needed for replay. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [
+        "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/example.json",
+        "https://github.com/frankxai/research-intelligence-os/blob/da3ecf6983e71c81788efc887059264528fa82a5/collaboration/translation.schema.json"
+      ],
+      "reviewId": "uc-0009",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0010",
+    "title": "Claim Verification",
+    "kind": "research skill",
+    "task": "Record a verdict, evidence location and uncertainty for a single falsifiable statement.",
+    "publisher": "Starlight Intelligence",
+    "language": "en",
+    "access": "Free research skill",
+    "placement": "supplement",
+    "href": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/skills/research/claim-verification/SKILL.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "The four verdicts and required evidence fields are explicit. Use as a manual worksheet with two supplied sources. Automated search and trigger behaviour remain untested.",
+      "audiences": [
+        "students",
+        "professors",
+        "researchers"
+      ],
+      "topic": "evaluation",
+      "reviewLane": "research methods",
+      "level": "all",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "research skill",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Record a verdict, evidence location and uncertainty for a single falsifiable statement."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/LICENSE"
+      },
+      "sourceUrl": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/skills/research/claim-verification/SKILL.md",
+      "currentVersion": "1e5577124c7c8ff48fceaf66037e0d5723cb41cf",
+      "sourceEdition": "0.1.0",
+      "gitBlob": "ee5f8cc53c77011c6b669270445cf39fa6a47329",
+      "sourceSha256": "65e4699a854d13413365652298f5f0668ca2537c926f8583e5f8a3cfb78a42a3",
+      "sourceState": "Versioned skill",
+      "reviewScope": "reading",
+      "prerequisiteCosts": "Free reading and manual exercise. Browser or plain-text editor on an existing device. Optional model execution is outside the assignment.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [],
+      "reviewId": "uc-0010",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0011",
+    "title": "arXiv Paper to Brief",
+    "kind": "research skill",
+    "task": "Write a paper brief separating method, reported result, limitation and interpretation, with source locations.",
+    "publisher": "Starlight Intelligence",
+    "language": "en",
+    "access": "Free research skill",
+    "placement": "supplement",
+    "href": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/skills/research/arxiv-paper-to-brief/SKILL.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "Use a paper the reader can access lawfully. Check citations against its full text. No inference runtime or paper redistribution is required for the reading exercise.",
+      "audiences": [
+        "researchers",
+        "students"
+      ],
+      "topic": "research",
+      "reviewLane": "research methods",
+      "level": "intermediate",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "research skill",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Write a paper brief separating method, reported result, limitation and interpretation, with source locations."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/LICENSE"
+      },
+      "sourceUrl": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/skills/research/arxiv-paper-to-brief/SKILL.md",
+      "currentVersion": "1e5577124c7c8ff48fceaf66037e0d5723cb41cf",
+      "sourceEdition": "0.1.0",
+      "gitBlob": "03eff8d298be833e102eb7fe8b3bb66ebd25ff64",
+      "sourceSha256": "49806cece78777fddaae361c45595efbae13459fe2f8df4cf5ada416e4e86a10",
+      "sourceState": "Versioned skill",
+      "reviewScope": "reading",
+      "prerequisiteCosts": "Free reading and manual exercise. Browser or plain-text editor on an existing device. Optional model execution is outside the assignment.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [],
+      "reviewId": "uc-0011",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0012",
+    "title": "Coding Challenge Generator",
+    "kind": "teaching skill",
+    "task": "Design a progression of exercises with constraints, an edge case and a separately kept solution.",
+    "publisher": "Starlight Intelligence",
+    "language": "en",
+    "access": "Free teaching skill",
+    "placement": "supplement",
+    "href": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/skills/education/coding-challenge-generator/SKILL.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "The source specifies a graded ladder and tests. Instructor can author a small ladder manually. Generated problem difficulty and hidden-test quality have not been validated.",
+      "audiences": [
+        "professors",
+        "students"
+      ],
+      "topic": "education",
+      "reviewLane": "agent systems",
+      "level": "all",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "teaching skill",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Design a progression of exercises with constraints, an edge case and a separately kept solution."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/LICENSE"
+      },
+      "sourceUrl": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/skills/education/coding-challenge-generator/SKILL.md",
+      "currentVersion": "1e5577124c7c8ff48fceaf66037e0d5723cb41cf",
+      "sourceEdition": "0.1.0",
+      "gitBlob": "1e6ef589424730dd9ac830ed2a6278b6844d1fe2",
+      "sourceSha256": "482c7db337ab27b2b78ef44b00daf7c6c7f6acb54876a0dbf5902119a90aab63",
+      "sourceState": "Versioned skill",
+      "reviewScope": "reading",
+      "prerequisiteCosts": "Free reading and manual exercise. Browser or plain-text editor on an existing device. Optional model execution is outside the assignment.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [],
+      "reviewId": "uc-0012",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0013",
+    "title": "Starlight skill template",
+    "kind": "Markdown template",
+    "task": "Specify a skill’s trigger, inputs, workflow, output and a check that could fail.",
+    "publisher": "Starlight Intelligence",
+    "language": "en",
+    "access": "Free Markdown template",
+    "placement": "supplement",
+    "href": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/templates/skill-template/SKILL.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "Placeholders are intentional. A completed Markdown specification can be assessed manually. No execution or compatibility across agent runtimes is implied.",
+      "audiences": [
+        "students",
+        "professors",
+        "founders"
+      ],
+      "topic": "ai-systems",
+      "reviewLane": "agent systems",
+      "level": "all",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "Markdown template",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Specify a skill’s trigger, inputs, workflow, output and a check that could fail."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/LICENSE"
+      },
+      "sourceUrl": "https://github.com/Starlight-Intelligence/starlight-agent-skills/blob/1e5577124c7c8ff48fceaf66037e0d5723cb41cf/templates/skill-template/SKILL.md",
+      "currentVersion": "1e5577124c7c8ff48fceaf66037e0d5723cb41cf",
+      "sourceEdition": null,
+      "gitBlob": "91597746133e57b95dc612c0c4e4686ed6bc8163",
+      "sourceSha256": "d964e484f7bc1efec8ee29e099584c7e46c5ccf6cbd34e4c51da7d124cb09b84",
+      "sourceState": "Template",
+      "reviewScope": "reading",
+      "prerequisiteCosts": "Free reading and manual exercise. Browser or plain-text editor on an existing device. Optional model execution is outside the assignment.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [],
+      "reviewId": "uc-0013",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0014",
+    "title": "The First Dawn",
+    "kind": "fiction chapter",
+    "task": "Trace a recurring motif to two passages and distinguish close reading from a proposed addition to the story.",
+    "publisher": "Arcanea",
+    "language": "en",
+    "access": "Free fiction chapter",
+    "placement": "supplement",
+    "href": "https://www.frankx.ai/books/arcanea-legends/chapter-01-the-first-dawn",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "The Legends of Arcanea reader opened at the exact chapter. Use for close reading. Keep learner work original and seek separate permission before reproducing text or characters.",
+      "audiences": [
+        "students",
+        "professors"
+      ],
+      "topic": "education",
+      "reviewLane": "creative AI",
+      "level": "all",
+      "provenance": "first-party",
+      "rights": "link-only",
+      "status": "verified",
+      "format": "fiction chapter",
+      "author": "Frank",
+      "authorEvidence": "Source byline or book registry",
+      "learningObjectives": [
+        "Trace a recurring motif to two passages and distinguish close reading from a proposed addition to the story."
+      ],
+      "licence": {
+        "label": "All rights reserved",
+        "scope": "All rights reserved. Link to the reading only.",
+        "url": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/LICENSE"
+      },
+      "sourceUrl": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/content/books/arcanea-legends/chapter-01-the-first-dawn.md",
+      "currentVersion": "9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f",
+      "sourceEdition": null,
+      "gitBlob": "f3aa1346c17be6a7fc6a41f2b69e4f78388ec569",
+      "sourceSha256": "cfcc1a5259166d65f15c6c934bb003d545bf52dc592d54212002e81523ae30dd",
+      "sourceState": "Published chapter",
+      "reviewScope": "reading",
+      "prerequisiteCosts": "Free reading and manual exercise. Browser or plain-text editor on an existing device. Optional model execution is outside the assignment.",
+      "accessibility": "Chapter available in an HTML reader; pinned source is Markdown. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [
+        "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/app/books/lib/books-registry.ts"
+      ],
+      "readerCheck": {
+        "http": 200,
+        "url": "https://www.frankx.ai/books/arcanea-legends/chapter-01-the-first-dawn",
+        "title": "The First Dawn | The Legends of Arcanea | FrankX Books"
+      },
+      "reviewId": "uc-0014",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0015",
+    "title": "Firstlight II · The Kindred Realms",
+    "kind": "story bible",
+    "task": "Distinguish permission for concept review from approval of a character for canon or classroom reuse.",
+    "publisher": "Arcanea",
+    "language": "en",
+    "access": "Free story bible",
+    "placement": "supplement",
+    "href": "https://github.com/Arcanea-Labs/arcanean-library/blob/1c97f7e45c01dde93143b685824ce7b41f38e85a/content/proposals/firstlight-02/STORY-BIBLE.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "The story bible labels the characters proposed and distinguishes exhibition review from canon. Rights are reserved. Obtain a scoped teaching permission before adapting or distributing the material.",
+      "audiences": [
+        "professors",
+        "students"
+      ],
+      "topic": "education",
+      "reviewLane": "creative AI",
+      "level": "all",
+      "provenance": "first-party",
+      "rights": "link-only",
+      "status": "review-needed",
+      "format": "story bible",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Distinguish permission for concept review from approval of a character for canon or classroom reuse."
+      ],
+      "licence": {
+        "label": "All rights reserved",
+        "scope": "All rights reserved. Link to the reading only.",
+        "url": "https://github.com/Arcanea-Labs/arcanean-library/blob/1c97f7e45c01dde93143b685824ce7b41f38e85a/LICENSING.md"
+      },
+      "sourceUrl": "https://github.com/Arcanea-Labs/arcanean-library/blob/1c97f7e45c01dde93143b685824ce7b41f38e85a/content/proposals/firstlight-02/STORY-BIBLE.md",
+      "currentVersion": "1c97f7e45c01dde93143b685824ce7b41f38e85a",
+      "sourceEdition": null,
+      "gitBlob": "699eee18f1bb2a27766c0f32f5948dde60094964",
+      "sourceSha256": "0ce23d1f16028b108c45e006970d2e71917a67c6e3c899ee96ee1687dcb80003",
+      "sourceState": "Public design proposal",
+      "reviewScope": "hold",
+      "prerequisiteCosts": "Free reading and manual exercise. Browser or plain-text editor on an existing device. Optional model execution is outside the assignment.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "held",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [],
+      "reviewId": "uc-0015",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0016",
+    "title": "The One-Person Studio",
+    "kind": "book chapter",
+    "task": "Identify a production assumption in the studio model and specify the evidence needed to test it.",
+    "publisher": "GenCreator",
+    "language": "en",
+    "access": "Free book chapter",
+    "placement": "supplement",
+    "href": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/content/books/gencreator/chapter-01-the-one-person-studio.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "The chapter exists in the FrankX books directory. The tested reader route returned 404. Treat the chapter’s numerical examples as claims until sourced.",
+      "audiences": [
+        "founders",
+        "students"
+      ],
+      "topic": "entrepreneurship",
+      "reviewLane": "creative AI",
+      "level": "all",
+      "provenance": "first-party",
+      "rights": "link-only",
+      "status": "review-needed",
+      "format": "book chapter",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Identify a production assumption in the studio model and specify the evidence needed to test it."
+      ],
+      "licence": {
+        "label": "All rights reserved",
+        "scope": "All rights reserved. Link to the reading only.",
+        "url": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/LICENSE"
+      },
+      "sourceUrl": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/content/books/gencreator/chapter-01-the-one-person-studio.md",
+      "currentVersion": "9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f",
+      "sourceEdition": null,
+      "gitBlob": "dee55716f56a1ca5687aa28acbd8664d9e258cbc",
+      "sourceSha256": "f9fdbdc9ebb48f49787aa15a543cb93da1278af0b4c3f0551bb023655ac4a125",
+      "sourceState": "Manuscript",
+      "reviewScope": "hold",
+      "prerequisiteCosts": "Free reading and manual exercise. Browser or plain-text editor on an existing device. Optional model execution is outside the assignment.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "held",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [],
+      "readerCheck": {
+        "http": 404,
+        "url": "https://www.frankx.ai/books/gencreator/chapter-01-the-one-person-studio",
+        "title": null
+      },
+      "reviewId": "uc-0016",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0017",
+    "title": "Review and learn",
+    "kind": "creative review skill",
+    "task": "Give a reviewer a brief and an artifact, record one located defect, then recheck the corrected version.",
+    "publisher": "GenCreator",
+    "language": "en",
+    "access": "Free creative review skill",
+    "placement": "supplement",
+    "href": "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/gencreator-native/skills/review-and-learn/SKILL.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "Includes reviewer independence, artifact revisions and a keep/revise/reject decision. Exercise uses two human reviewers or records self-review explicitly.",
+      "audiences": [
+        "professors",
+        "researchers",
+        "students"
+      ],
+      "topic": "evaluation",
+      "reviewLane": "creative AI",
+      "level": "all",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "creative review skill",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Give a reviewer a brief and an artifact, record one located defect, then recheck the corrected version."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/gencreator-native/LICENSE"
+      },
+      "sourceUrl": "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/gencreator-native/skills/review-and-learn/SKILL.md",
+      "currentVersion": "756296a87e4d13ee8cb74644a2527c9a6c856761",
+      "sourceEdition": null,
+      "gitBlob": "35ab7981a1f3932adaacc8d98a754f498c0f461a",
+      "sourceSha256": "2441a14252536b7590f3dfe4181acad56ce464d344d71c96c12a78e9665bad83",
+      "sourceState": "Skill specification",
+      "reviewScope": "reading",
+      "prerequisiteCosts": "Free reading and manual exercise. Browser or plain-text editor on an existing device. Optional model execution is outside the assignment.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [
+        "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/THIRD_PARTY_NOTICES.md"
+      ],
+      "reviewId": "uc-0017",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0018",
+    "title": "Run workflow experiment",
+    "kind": "experiment skill",
+    "task": "Compare an existing workflow with one change on the same input and capture before, after and rollback.",
+    "publisher": "GenCreator",
+    "language": "en",
+    "access": "Free experiment skill",
+    "placement": "supplement",
+    "href": "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/gencreator-native/skills/run-workflow-experiment/SKILL.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "The procedure retains failures, cost and reversibility. A manual comparison on learner-authored materials supplies the free path. Hosted agent operation was not exercised.",
+      "audiences": [
+        "researchers",
+        "founders"
+      ],
+      "topic": "evaluation",
+      "reviewLane": "research methods",
+      "level": "intermediate",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "experiment skill",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Compare an existing workflow with one change on the same input and capture before, after and rollback."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/gencreator-native/LICENSE"
+      },
+      "sourceUrl": "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/gencreator-native/skills/run-workflow-experiment/SKILL.md",
+      "currentVersion": "756296a87e4d13ee8cb74644a2527c9a6c856761",
+      "sourceEdition": null,
+      "gitBlob": "af39c8947c70f24ee04d08b00a3d38fe6630dcc4",
+      "sourceSha256": "3c67b4b57942dd062857bde42295d3cfdcc6f219933a6fb3998d10974530940f",
+      "sourceState": "Skill specification",
+      "reviewScope": "reading",
+      "prerequisiteCosts": "Free reading and manual exercise. Browser or plain-text editor on an existing device. Optional model execution is outside the assignment.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [
+        "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/THIRD_PARTY_NOTICES.md"
+      ],
+      "reviewId": "uc-0018",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0019",
+    "title": "Captions",
+    "kind": "creative AI guide",
+    "task": "Correct a timed subtitle against a short transcript and keep an editable SRT alongside the video.",
+    "publisher": "GenCreator",
+    "language": "en",
+    "access": "Free creative AI guide",
+    "placement": "supplement",
+    "href": "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/video-social-studio/skills/captions/SKILL.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "The full workflow refers to a sibling Node script, FFmpeg or whisper.cpp and a model download. A transcript and hand-edited SRT suffice for the teaching objective. Transcription and burn-in were not replayed.",
+      "audiences": [
+        "students",
+        "professors"
+      ],
+      "topic": "education",
+      "reviewLane": "creative AI",
+      "level": "all",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "creative AI guide",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Correct a timed subtitle against a short transcript and keep an editable SRT alongside the video."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/video-social-studio/LICENSE"
+      },
+      "sourceUrl": "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/video-social-studio/skills/captions/SKILL.md",
+      "currentVersion": "756296a87e4d13ee8cb74644a2527c9a6c856761",
+      "sourceEdition": null,
+      "gitBlob": "12526f2f03dc2c6de46714e1d125d60cb5fbc19a",
+      "sourceSha256": "9634b7c7a2db3170d92b1386b9c085c76094bf8e3dc6c6b6ff5e44f86c50a934",
+      "sourceState": "Skill and local workflow guide",
+      "reviewScope": "reading",
+      "prerequisiteCosts": "Free to read and manually correct subtitles. Local rendering needs Node, media tools, a speech model, storage and compute; optional workflow unpriced.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [
+        "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/THIRD_PARTY_NOTICES.md",
+        "https://github.com/frankxai/gencreator-skills/blob/756296a87e4d13ee8cb74644a2527c9a6c856761/video-social-studio/skills/video-engine/scripts/vid.mjs"
+      ],
+      "reviewId": "uc-0019",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0021",
+    "title": "Local request-to-quote workflow",
+    "kind": "local CLI lab",
+    "task": "Create a synthetic draft, repeat intake, reopen it and inspect an owner-only export.",
+    "publisher": "Agentic Income",
+    "language": "en",
+    "access": "Free local CLI lab",
+    "placement": "supplement",
+    "href": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/docs/quote-desk.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "Init, intake, duplicate intake, show and owner export replayed. Duplicate retained ID and revision 1. Export includes internal notes. No account, paid inference or outbound action.",
+      "audiences": [
+        "founders",
+        "students",
+        "researchers"
+      ],
+      "topic": "entrepreneurship",
+      "reviewLane": "agent systems",
+      "level": "intermediate",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "local CLI lab",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Create a synthetic draft, repeat intake, reopen it and inspect an owner-only export."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/LICENSE"
+      },
+      "sourceUrl": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/docs/quote-desk.md",
+      "currentVersion": "a9e4ea02284116d1c25a89b13729219b276ec49a",
+      "sourceEdition": null,
+      "gitBlob": "90e1bb115bc70537ecc45bdd78e85dccdbe5aa39",
+      "sourceSha256": "48c4a5025b75238c4258e98c61ef6fe7bc27dafdc0ecb34cfc10715c08c27f2b",
+      "sourceState": "Executable local workflow",
+      "reviewScope": "replayed",
+      "prerequisiteCosts": "Node 20+ and writable local storage; synthetic fixtures supplied. No npm install, subscription or model call needed for this exercise.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [
+        "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/skills/quote-desk/scripts/quote-desk.mjs",
+        "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/skills/quote-desk/LICENSE",
+        "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/skills/quote-desk/examples/request.json"
+      ],
+      "reviewId": "uc-0021",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0022",
+    "title": "IncomeSystem v1",
+    "kind": "contract guide",
+    "task": "Draw the boundaries between an owner, agent, credentials, spend policy and evidence for a service.",
+    "publisher": "Agentic Income",
+    "language": "en",
+    "access": "Free contract guide",
+    "placement": "supplement",
+    "href": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/docs/income-system-v1.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "Read as a model of responsibilities. Production integrations, legal authority and credential rotation are declarations that require separate evidence.",
+      "audiences": [
+        "founders",
+        "researchers"
+      ],
+      "topic": "ai-systems",
+      "reviewLane": "agent systems",
+      "level": "intermediate",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "contract guide",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Draw the boundaries between an owner, agent, credentials, spend policy and evidence for a service."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/LICENSE"
+      },
+      "sourceUrl": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/docs/income-system-v1.md",
+      "currentVersion": "a9e4ea02284116d1c25a89b13729219b276ec49a",
+      "sourceEdition": "IncomeSystem v1",
+      "gitBlob": "4676c9b218f11b115b5c323652150957b2f77662",
+      "sourceSha256": "0bf9790ecc420fb9420508f93633f296f14ddfd0a977384904152adf036cbf11",
+      "sourceState": "Contract specification",
+      "reviewScope": "reading",
+      "prerequisiteCosts": "Free reading and manual exercise. Browser or plain-text editor on an existing device. Optional model execution is outside the assignment.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [],
+      "reviewId": "uc-0022",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0023",
+    "title": "Request-to-Quote Agent Desk manifest",
+    "kind": "reference template",
+    "task": "Identify placeholders in a service manifest and check its structure before proposing a deployment.",
+    "publisher": "Agentic Income",
+    "language": "en",
+    "access": "Free reference template",
+    "placement": "supplement",
+    "href": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/examples/request-to-quote-desk/README.md",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "The example manifest validated in a fresh pinned checkout after installing locked dependencies. The pack declares connectors and human approvals. Runtime interoperability was not tested.",
+      "audiences": [
+        "founders",
+        "students"
+      ],
+      "topic": "entrepreneurship",
+      "reviewLane": "agent systems",
+      "level": "intermediate",
+      "provenance": "first-party",
+      "rights": "licensed",
+      "status": "verified",
+      "format": "reference template",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Identify placeholders in a service manifest and check its structure before proposing a deployment."
+      ],
+      "licence": {
+        "label": "MIT",
+        "scope": "MIT for the cited file; retain the notice. Review separate terms for third-party material.",
+        "url": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/LICENSE"
+      },
+      "sourceUrl": "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/examples/request-to-quote-desk/README.md",
+      "currentVersion": "a9e4ea02284116d1c25a89b13729219b276ec49a",
+      "sourceEdition": "0.1.0 example manifest",
+      "gitBlob": "087e40a3a8f2efb5a3435451ebfef007778326d5",
+      "sourceSha256": "12a03ac850f027c4ba2f0786d7625c7a82127d90b90d88e8c5e695f370460d1b",
+      "sourceState": "Example Outcome Pack",
+      "reviewScope": "replayed",
+      "prerequisiteCosts": "Node, npm and one locked dependency install. No remote service or live credentials for manifest validation.",
+      "accessibility": "Text source with headings or structured fields. No audio or video required for the assigned reading. Assistive-technology testing pending.",
+      "publicationStatus": "proposed-for-commons",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [
+        "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/examples/request-to-quote-desk/income-system.json",
+        "https://github.com/Agentic-Income/agentic-income-skills/blob/a9e4ea02284116d1c25a89b13729219b276ec49a/scripts/validate-income-system.mjs"
+      ],
+      "reviewId": "uc-0023",
+      "edition": "2026.11.1",
+      "accessModel": "free"
+    }
+  },
+  {
+    "id": "uc-0024",
+    "title": "The Creative AI Toolkit",
+    "kind": "digital product listing",
+    "task": "Assess whether a catalogue listing provides enough information for a learner to obtain the promised toolkit.",
+    "publisher": "FrankX",
+    "language": "en",
+    "access": "Paid listing · held",
+    "placement": "supplement",
+    "href": "https://www.frankx.ai/products/creative-ai-toolkit",
+    "reviewedAt": "2026-11-18",
+    "editorialReview": {
+      "summary": "Product page responds. Current catalogue has no delivery block for this ID. A historical delivery audit flagged the missing mapping. External fulfilment and the buyer file remain unverified.",
+      "audiences": [
+        "students",
+        "founders"
+      ],
+      "topic": "education",
+      "reviewLane": "creative AI",
+      "level": "all",
+      "provenance": "first-party",
+      "rights": "link-only",
+      "status": "review-needed",
+      "format": "digital product listing",
+      "author": null,
+      "authorEvidence": "Individual byline unverified. Publisher and rights holder are separate fields.",
+      "learningObjectives": [
+        "Assess whether a catalogue listing provides enough information for a learner to obtain the promised toolkit."
+      ],
+      "licence": {
+        "label": "All rights reserved",
+        "scope": "All rights reserved. Link to the reading only.",
+        "url": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/LICENSE"
+      },
+      "sourceUrl": "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/data/products.json",
+      "currentVersion": "9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f",
+      "sourceEdition": null,
+      "gitBlob": "a4f932a5feaf45595187aeb6497f27dc9546cdce",
+      "sourceSha256": "16290fe99136f3b2840402de4938447efadf88f7d6661fed6f2007001dc1b088",
+      "sourceState": "Catalogue listing",
+      "reviewScope": "hold",
+      "prerequisiteCosts": "Paid listing. Price and fulfilment unverified; excluded from the free path.",
+      "accessibility": "Product landing page only. Accessibility of the promised files is unknown. Assistive-technology testing pending.",
+      "publicationStatus": "held",
+      "sourceCheck": {
+        "anonymousHttp": 200,
+        "matchesPinnedBlob": true
+      },
+      "supportingSources": [
+        "https://github.com/frankxai/frankx.ai-vercel-website/blob/9cb1a0c8db302234b3fffd68a0eeadc84f58cb0f/data/audit/product-delivery.json"
+      ],
+      "readerCheck": {
+        "http": 200,
+        "url": "https://www.frankx.ai/products/creative-ai-toolkit",
+        "title": "The Creative AI Toolkit"
+      },
+      "catalogueId": "creative-ai-toolkit",
+      "reviewId": "uc-0024",
+      "edition": "2026.11.1",
+      "accessModel": "paid"
+    }
   }
 ]
