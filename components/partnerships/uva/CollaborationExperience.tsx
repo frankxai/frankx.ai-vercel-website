@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Check, Code2, FileText, Play, Printer, X } from 'lucide-react'
 import { agentContracts, chapters, experienceCases, pilotSteps, proposal, sourceProjects } from '@/content/partnerships/proposals/uva-rec-impact'
-import { audiences, challengeBriefs, fellowshipUrl, researchReadings, researchTracks, type AudienceId } from '@/content/partnerships/university-collaboration'
+import { audiences, challengeBriefs, contextDisclosure, fellowshipUrl, researchReadings, researchTracks, type AudienceId } from '@/content/partnerships/university-collaboration'
 import CollaborationIntake from './CollaborationIntake'
 import s from './collaboration.module.css'
 
@@ -22,7 +22,9 @@ function Heading({ number, title, children }: { number: string; title: string; c
 }
 
 export default function CollaborationExperience({ contracts, context = 'proposal' }: { contracts: Contract[]; context?: 'public' | 'proposal' }) {
+  const disclosure = contextDisclosure[context]
   const [presenting, setPresenting] = useState(false)
+  const [moreBelow, setMoreBelow] = useState(false)
   const [active, setActive] = useState(0)
   const [track, setTrack] = useState(0)
   const [challenge, setChallenge] = useState(0)
@@ -35,6 +37,11 @@ export default function CollaborationExperience({ contracts, context = 'proposal
   const launch = useRef<HTMLButtonElement>(null)
   const previousOverflow = useRef('')
   const ownsFullscreen = useRef(false)
+  // Visible cue when the current chapter extends below the stage (small screens).
+  const updateScrollCue = useCallback(() => {
+    const element = stage.current
+    setMoreBelow(Boolean(element && element.scrollHeight - element.clientHeight - element.scrollTop > 24))
+  }, [])
   const focusStage = useCallback(() => { stage.current?.scrollTo({ top: 0 }); stage.current?.focus() }, [])
   const move = useCallback((index: number) => { setActive(Math.max(0, Math.min(chapters.length - 1, index))); focusStage() }, [focusStage])
 
@@ -79,6 +86,13 @@ export default function CollaborationExperience({ contracts, context = 'proposal
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [presenting, active, closePresentation, move])
+
+  useEffect(() => {
+    if (!presenting) { setMoreBelow(false); return }
+    const frame = requestAnimationFrame(updateScrollCue)
+    window.addEventListener('resize', updateScrollCue)
+    return () => { cancelAnimationFrame(frame); window.removeEventListener('resize', updateScrollCue) }
+  }, [presenting, active, updateScrollCue])
 
   useEffect(() => {
     const element = dialog.current
@@ -177,19 +191,19 @@ export default function CollaborationExperience({ contracts, context = 'proposal
 
   return <main className={s.root} data-uva-proposal="true">
     <div className={s.topbar}><a href="/partnerships" className={s.wordmark}>FrankX<span> / Starlight Intelligence</span></a><span className={s.edition}>Research, learning & entrepreneurship</span><button className={s.iconButton} aria-label="Print one-page summary" onClick={() => window.print()}><Printer size={18} /></button></div>
-    <div className={s.disclosure}><span className={s.dot} /><p>Independent founder-authored proposal. Not an official UvA partnership.</p><span>{context === 'proposal' ? 'Unlisted discussion draft' : 'Open invitation · proposed collaborations'}</span></div>
+    <div className={s.disclosure}><span className={s.dot} /><p>{disclosure.banner}</p><span className={s.disclosureStatus}>{disclosure.status}</span></div>
     <div className={s.explore}>
       <section id="opportunity" className={`${s.section} ${s.hero}`}>{chapter(0, 'page')}</section>
       <nav className={s.chapterNav} aria-label="Presentation chapters">{chapters.map((item, i) => <a key={item.id} href={`#${item.id}`}><span>0{i + 1}</span>{item.short}</a>)}</nav>
       {chapters.slice(1).map((item, i) => <section key={item.id} id={item.id} className={s.section} aria-label={item.label}>{chapter(i + 1, 'page')}</section>)}
-      <footer className={s.footer}><div><strong>A conversation proposed by Frank Riemer.</strong><p>UvA and Founder Space are named as the context for discussion. Neither has approved or endorsed this proposal. No institutional logos are used.</p></div><div><a href="/partnerships/universities">Public collaboration invitation <ArrowUpRight size={14} aria-hidden="true" /></a><External href="https://www.uva.nl/en">University of Amsterdam</External><a href="/partnerships">FrankX partnership context <ArrowUpRight size={14} aria-hidden="true" /></a><span>Source review: {proposal.date} · Runtime rehearsal pending</span></div></footer>
+      <footer className={s.footer}><div><strong>{disclosure.footerTitle}</strong><p>{disclosure.footer}</p></div><div>{context === 'proposal' && <><a href="/partnerships/universities">Public collaboration invitation <ArrowUpRight size={14} aria-hidden="true" /></a><External href="https://www.uva.nl/en">University of Amsterdam</External></>}<a href="/partnerships">FrankX partnership context <ArrowUpRight size={14} aria-hidden="true" /></a><span>Source review: {proposal.date} · Runtime rehearsal pending</span></div></footer>
     </div>
     <dialog ref={dialog} className={s.presentation} aria-label="Guided collaboration presentation" onCancel={event => { event.preventDefault(); closePresentation() }} onClose={() => { document.body.style.overflow = previousOverflow.current; setPresenting(false) }}>
       <div className={s.presentationBar}><span className={s.wordmark}>FrankX <span>/ A university conversation</span></span><span className={s.presentationStatus}>Independent proposal · no institutional endorsement</span><button className={s.iconButton} onClick={closePresentation} aria-label="Exit presentation"><X size={21} /></button></div>
-      <div ref={stage} tabIndex={-1} className={s.stage} aria-label={`Chapter ${active + 1}: ${chapters[active].label}`}>{presenting && chapter(active, 'stage')}</div>
+      <div className={s.stageWrap}><div ref={stage} tabIndex={-1} className={s.stage} onScroll={updateScrollCue} aria-label={`Chapter ${active + 1}: ${chapters[active].label}`}>{presenting && chapter(active, 'stage')}</div>{moreBelow && <button type="button" className={s.scrollCue} onClick={() => { const element = stage.current; if (element) element.scrollBy({ top: element.clientHeight * 0.8, behavior: 'smooth' }) }}>More below <ArrowDown size={15} aria-hidden="true" /></button>}</div>
       <div className={s.presentationControls}><button className={s.secondary} disabled={active === 0} onClick={() => move(active - 1)} aria-label="Previous chapter"><ArrowLeft size={17} /> <span>Previous</span></button><div><p aria-live="polite" aria-atomic="true">{active + 1} / 6 <span>{chapters[active].short}</span></p><div className={s.dots}>{chapters.map((item, i) => <button key={item.id} aria-label={`Go to chapter ${i + 1}: ${item.label}`} aria-current={active === i ? 'step' : undefined} onClick={() => move(i)} />)}</div></div>{active === 5 ? <button className={s.primary} onClick={closePresentation}>Finish <Check size={17} /></button> : <button className={s.primary} onClick={() => move(active + 1)} aria-label="Next chapter"><span>Next</span> <ArrowRight size={17} /></button>}</div>
       <p className={s.keyboardHint}>{fullscreenNote || '← → to navigate · Home / End to jump · Esc to exit'}</p>
     </dialog>
-    <article className={s.printBrief} aria-label="Printable one-page collaboration summary"><header><span>Frank Riemer / Starlight Intelligence</span><span>{proposal.date}</span></header><h1>What becomes possible<br />when we build together?</h1><p className={s.printDeck}>{proposal.subtitle}</p><p><strong>Independent founder-authored discussion draft. Not an official UvA partnership.</strong></p><div className={s.printColumns}><section><h2>The opportunity</h2><p>Connect university talent with inspectable tools and a practical setting to build, question and improve a useful idea.</p><h2>What Frank brings</h2><p>Former Oracle EMEA AI CoE architect, with publicly documented student teaching, NLdigital workshop delivery and technology partner programme contributions. Now building independent Starlight systems with inspectable source. No employer or institutional endorsement implied.</p><h2>The research question</h2><p>When can professional AI assistants help a solo founder build a better digital product? Compare accepted quality, human effort, rework, compute cost and retained understanding. Proposed studies; no findings claimed.</p></section><section><h2>A bounded pilot, proposed</h2><p>Two weeks. Two to four small teams. A 90-minute workshop and a 60-minute review. Leave an inspectable prototype, evaluation and reusable teaching note.</p><h2>Agree before starting</h2><p>University contact, supervision, participants, dates, IP, consent and compute ceiling. Public or synthetic data only. No funding, institutional approval or academic credit assumed.</p><h2>Join the conversation</h2><p>Students, academic leads, technology providers, founders and impact partners: bring a question, your context and a useful next step. REC Impact Fellowship participation is under exploration; no appointment or agreement is confirmed.</p></section></div><h2>Inspect the source</h2><p className={s.printSources}>github.com/Starlight-Intelligence/Starlight-Intelligence-System<br />github.com/frankxai/agentic-creator-os</p><p><strong>Evidence status:</strong> source and interface audit reviewed; runtime rehearsal pending. No adoption, performance or impact claims.</p><footer>UvA and Founder Space have not approved or endorsed this proposal. Original crew supplied by Frank. frankx.ai/partnerships/universities · frank@frankx.ai</footer></article>
+    <article className={s.printBrief} aria-hidden="true"><header><span>Frank Riemer / Starlight Intelligence</span><span>{proposal.date}</span></header><h1>What becomes possible<br />when we build together?</h1><p className={s.printDeck}>{proposal.subtitle}</p><p><strong>{disclosure.print}</strong></p><div className={s.printColumns}><section><h2>The opportunity</h2><p>Connect university talent with inspectable tools and a practical setting to build, question and improve a useful idea.</p><h2>What Frank brings</h2><p>Former Oracle EMEA AI CoE architect, with publicly documented student teaching, NLdigital workshop delivery and technology partner programme contributions. Now building independent Starlight systems with inspectable source. No employer or institutional endorsement implied.</p><h2>The research question</h2><p>When can professional AI assistants help a solo founder build a better digital product? Compare accepted quality, human effort, rework, compute cost and retained understanding. Proposed studies; no findings claimed.</p></section><section><h2>A bounded pilot, proposed</h2><p>Two weeks. Two to four small teams. A 90-minute workshop and a 60-minute review. Leave an inspectable prototype, evaluation and reusable teaching note.</p><h2>Agree before starting</h2><p>University contact, supervision, participants, dates, IP, consent and compute ceiling. Public or synthetic data only. No funding, institutional approval or academic credit assumed.</p><h2>Join the conversation</h2><p>Students, academic leads, technology providers, founders and impact partners: bring a question, your context and a useful next step. REC Impact Fellowship participation is under exploration; no appointment or agreement is confirmed.</p></section></div><h2>Inspect the source</h2><p className={s.printSources}>github.com/Starlight-Intelligence/Starlight-Intelligence-System<br />github.com/frankxai/agentic-creator-os</p><p><strong>Evidence status:</strong> source and interface audit reviewed; runtime rehearsal pending. No adoption, performance or impact claims.</p><footer>{disclosure.printFooter} Original crew supplied by Frank. frankx.ai/partnerships/universities · frank@frankx.ai</footer></article>
   </main>
 }
