@@ -55,7 +55,6 @@ const playbooks = [
     description: 'Master AI music generation with structured prompts, genre templates, and production techniques.',
     icon: Music,
     color: 'emerald',
-    pages: '15+',
     includes: [
       'Genre-specific prompt templates',
       'Structure tags reference guide',
@@ -70,7 +69,6 @@ const playbooks = [
     description: 'Battle-tested prompts for ChatGPT, Claude, Midjourney, and Suno across all creative domains.',
     icon: FileText,
     color: 'cyan',
-    pages: '20+',
     includes: [
       'Writing & content prompts',
       'Coding & development prompts',
@@ -85,7 +83,6 @@ const playbooks = [
     description: 'Get productive with Claude Code in 30 minutes. CLAUDE.md setup, workflows, and best practices.',
     icon: Zap,
     color: 'violet',
-    pages: '12+',
     includes: [
       'CLAUDE.md configuration guide',
       'Multi-file editing patterns',
@@ -180,7 +177,7 @@ export default function FreePlaybookPage() {
             </h1>
 
             <p className="mx-auto max-w-2xl text-lg text-slate-400 mb-8">
-              Three battle-tested playbooks from Suno songs and years of Claude Code mastery.
+              Three playbooks covering Suno prompts, a prompt collection, and a Claude Code getting-started guide.
               <span className="text-emerald-400 font-semibold"> All three are free.</span>
             </p>
 
@@ -255,13 +252,6 @@ export default function FreePlaybookPage() {
                   <h3 className="mb-2 text-lg font-bold text-white">{playbook.title}</h3>
                   <p className="mb-4 text-sm text-slate-400">{playbook.description}</p>
 
-                  <div className="mb-4 text-xs text-slate-500">
-                    <span className="inline-flex items-center gap-1">
-                      <FileText className="h-3 w-3" />
-                      {playbook.pages} pages
-                    </span>
-                  </div>
-
                   <ul className="mb-6 space-y-2">
                     {playbook.includes.map((item) => (
                       <li key={item} className="flex items-start gap-2 text-sm text-slate-300">
@@ -289,26 +279,6 @@ export default function FreePlaybookPage() {
               )
             })}
           </div>
-
-          {/* Social Proof */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="flex flex-wrap items-center justify-center gap-8 text-slate-400">
-              {[
-                { value: '74', label: 'Prompts Included' },
-                { value: '5+', label: 'Years Experience' },
-              ].map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <p className="text-2xl font-bold text-white">{stat.value}</p>
-                  <p className="text-sm">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
 
           {/* Ecosystem Links */}
           <motion.div

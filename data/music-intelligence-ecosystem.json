@@ -39,10 +39,10 @@
     {
       "id": "ai-music-academy",
       "name": "AI Music Academy",
-      "scope": "github",
-      "href": "https://github.com/frankxai/ai-music-academy",
-      "external": true,
-      "linkLabel": "View on GitHub",
+      "scope": "private",
+      "href": "",
+      "external": false,
+      "linkLabel": "",
       "description": "Structured education for AI-era music creation — from first prompt to a finished, released track. Built for self-paced learners and classrooms alike.",
       "tags": ["Education", "Private repository"],
       "secondaryLinks": []
@@ -54,7 +54,7 @@
       "href": "https://github.com/frankxai/awesome-music-agent-skills",
       "external": true,
       "linkLabel": "View on GitHub",
-      "description": "150+ curated tools, APIs, and MCP servers for music agents — generation, analysis, mixing, metadata, distribution. The map of what exists.",
+      "description": "A curated list of tools, APIs, and MCP servers for music agents — generation, analysis, mixing, metadata, distribution. The map of what exists.",
       "tags": ["Curated list", "MCP"],
       "secondaryLinks": []
     },
@@ -65,7 +65,7 @@
       "href": "https://github.com/frankxai/claude-skills-library",
       "external": true,
       "linkLabel": "View on GitHub",
-      "description": "Suno prompting skills for Claude — genre patterns, style stacking, and production checklists, distilled from years of daily production work.",
+      "description": "Suno prompting skills for Claude — genre patterns, style stacking, and production checklists.",
       "tags": ["Claude skills", "Suno"],
       "secondaryLinks": [
         { "label": "Free prompt templates", "href": "/music/templates", "external": false },
