@@ -89,7 +89,7 @@ export function BlueprintCheckoutModal({
 
       // If checkout is gated under doctrine 0 staging gate or in pre-stage
       if (res.status === 503 || data?.refusal) {
-        // This modal has no waitlist of its own: /api/waitlist only knows the
+        // This modal has no waitlist of its own: the waitlist route only knows the
         // products in WAITLIST_PRODUCTS and rejects blueprint ids with a 404, and
         // a signup needs explicit consent. Say plainly that checkout is closed.
         setStatusMessage('checkout is not open yet. nothing was charged and no email was saved.')
