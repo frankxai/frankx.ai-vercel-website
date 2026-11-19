@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { ArrowDown, ArrowRight, ArrowUpRight, CheckCheck, FileText, FlaskConical, GitCompareArrows, MapPin, Printer } from 'lucide-react'
-import { type ReactNode } from 'react'
+import { type MouseEvent, type ReactNode, useEffect, useRef } from 'react'
 import { experienceCases } from '@/content/partnerships/proposals/uva-rec-impact'
 import { campusIdeas, teachingTracks, universityProgrammes, type UniversityProgramme } from '@/content/partnerships/university-programmes'
 import { trackEvent } from '@/lib/analytics'
@@ -19,9 +19,23 @@ const programmeLabels: Record<UniversityProgramme['id'], string> = {
   research: 'Research collaboration', cohort: 'Faculty cohort licence', executive: 'Executive lab',
 }
 
+const teachingPath = [
+  { programme: 'lecture', format: 'A guest lecture', title: 'Give the room a decision.', detail: 'I bring two AI answers to a question from your syllabus. Students decide which answer they would put their name to. You keep the seminar prompts and marking rubric.', link: 'Read the lecture brief' },
+  { programme: 'workshop', format: 'A half-day workshop', title: 'Let the teams build it.', detail: 'Bring a brief from a founder or a research group. Each team builds an assistant, takes away a source and hands its work to a second team to test.', link: 'See what the workshop involves' },
+  { programme: 'cohort', format: 'A faculty-led series', title: 'Teach the next cohort yourself.', detail: 'Your lecturers rehearse three labs with me, then teach the first cohort using the same cases and marking rubric. We agree how the materials can be reused on campus.', link: 'Explore faculty delivery' },
+] as const
+
+const continuation = {
+  lecture: { to: 'workshop', prompt: 'Ready to have the class build its own assistant?', link: 'See the half-day workshop' },
+  student: { to: 'workshop', prompt: 'Have a course brief the teams could work on?', link: 'See the half-day workshop' },
+  workshop: { to: 'cohort', prompt: 'Want your faculty to run the next lab?', link: 'See the faculty series' },
+} as const
+
 type Props = {
   selected: UniversityProgramme
-  onSelect: (programme: UniversityProgramme) => void
+  onSelect: (programme: UniversityProgramme, anchor?: string) => void
+  guideInitiallyOpen: boolean
+  fromSourceCheck: boolean
   onBook: () => void
   intake: ReactNode
   research: ReactNode
@@ -39,8 +53,39 @@ export function HostBrief({ selected }: { selected: UniversityProgramme }) {
   </>
 }
 
-export default function CampusEdition({ selected, onSelect, onBook, intake, research, presentation }: Props) {
+export default function CampusEdition({ selected, onSelect, guideInitiallyOpen, fromSourceCheck, onBook, intake, research, presentation }: Props) {
   const studentSession = experienceCases.find(item => item.id === 'students')!.links[0]
+  const guide = useRef<HTMLDetailsElement>(null)
+  const scope = useRef<HTMLElement>(null)
+  const next = selected.id === 'lecture' || selected.id === 'student' || selected.id === 'workshop' ? continuation[selected.id] : undefined
+  const referral = fromSourceCheck ? '&via=source-check' : ''
+
+  useEffect(() => {
+    function openLinkedGuide() {
+      if (['#programmes', '#programme-scope'].includes(window.location.hash) && guide.current) {
+        guide.current.open = true
+        if (window.location.hash === '#programme-scope') scope.current?.scrollIntoView({ block: 'start' })
+      }
+    }
+    openLinkedGuide()
+    window.addEventListener('hashchange', openLinkedGuide)
+    return () => window.removeEventListener('hashchange', openLinkedGuide)
+  }, [])
+
+  function openBrief(event: MouseEvent<HTMLAnchorElement>, id: UniversityProgramme['id'], placement: 'teaching_path' | 'continuation') {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return
+    const item = universityProgrammes.find(programme => programme.id === id)
+    if (!item || !guide.current) return
+    event.preventDefault()
+    guide.current.open = true
+    onSelect(item, 'programme-scope')
+    trackEvent('university_host_brief_open', { placement, programme: id, ...(placement === 'continuation' ? { previous_programme: selected.id } : {}) })
+    requestAnimationFrame(() => {
+      scope.current?.focus({ preventScroll: true })
+      scope.current?.scrollIntoView({ block: 'start' })
+    })
+  }
+
   return <div className={s.edition}>
     <section id="opportunity" className={s.hero} aria-labelledby="campus-title">
       <div className={s.art}>
@@ -48,39 +93,32 @@ export default function CampusEdition({ selected, onSelect, onBook, intake, rese
         <CampusLight className={s.light} />
       </div>
       <div className={s.heroContent}>
-        <p className={s.kicker}><span className={s.line} />Frank Riemer <span>/</span> University programmes</p>
-        <h1 id="campus-title">Teach AI by<br/><em>building it.</em></h1>
-        <p className={s.intro}>Bring a question from your course. I’ll help your students build an assistant, find where it fails, and hand the evidence to someone else.</p>
-        <div className={s.actions}><a href="/partnerships/universities/source-check" className={s.cta} onClick={() => trackEvent('university_case_open', { placement: 'hero', case_id: 'source-check' })}>Try the free teaching case <ArrowRight size={17}/></a><a href="#programmes" className={s.quiet}>Compare programmes <ArrowDown size={16}/></a></div>
+        <p className={s.kicker}><span className={s.line} />Frank Riemer <span>/</span> Applied AI for universities</p>
+        <h1 id="campus-title">Let the class<br/><em>decide.</em></h1>
+        <p className={s.intro}>Put an AI-written memo on the projector. Ask who would sign it. Then take away the source behind its strongest claim.</p>
+        <div className={s.actions}><a href="/partnerships/universities/source-check" className={s.cta} onClick={() => trackEvent('university_case_open', { placement: 'hero', case_id: 'source-check' })}>Try the free six-minute case <ArrowRight size={17}/></a><a href="#teaching-path" className={s.quiet}>Bring this to my course <ArrowDown size={16}/></a></div>
       </div>
       <div className={s.heroCaption}><span className={s.dot}/><span>Mini Frank storyboard</span><i/>Amsterdam studio study</div>
     </section>
 
     <nav className={s.nav} aria-label="University programmes"><div>
-      <a href="#programmes">Programmes &amp; fees</a><a href="#inside-the-lab">Sample lab</a><a href="#your-host">Teaching record</a><a href="#join">Request dates <ArrowUpRight size={14}/></a>
+      <a href="#inside-the-lab">Inside the lab</a><a href="#your-host">Meet Frank</a><a href="#programmes" onClick={() => { if (guide.current) guide.current.open = true; trackEvent('university_host_guide_open', { placement: 'navigation' }) }}>Host briefs &amp; fees</a><a href="#join">Request dates <ArrowUpRight size={14}/></a>
     </div></nav>
 
-    <section id="programmes" className={s.section} aria-labelledby="formats-heading">
-      <p className={s.kicker}><span className={s.line}/> Host guide</p>
-      <div className={s.spreadHead}><h2 id="formats-heading">Choose a programme.</h2><p>Compare the work, the preparation and the indicative fee before you request dates.</p></div>
-      <div className={s.desk}>
-        <div className={s.choices} aria-label="Programme formats">
-          {universityProgrammes.map(item => <a key={item.id} href={`?programme=${item.id}#programmes`} aria-current={selected.id === item.id ? 'true' : undefined}
-            onClick={event => { if (!event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); onSelect(item) } }}>
-            <span>{programmeLabels[item.id]}</span><small>{item.id === 'student' ? 'Selected hosts · €0' : item.fee}</small><ArrowRight size={16}/></a>)}
-        </div>
-        <article className={s.scope} id="programme-scope" aria-live="polite" aria-atomic="true">
-          <div className={s.scopeTop}><span>{selected.format}</span><span>Programme brief</span></div>
-          <h3>{selected.name}</h3><p>{selected.session}</p>
-          <dl><div><dt>Who it’s for</dt><dd>{selected.audience}</dd></div><div><dt>What you take away</dt><dd>{selected.output}</dd></div><div><dt>Host prepares</dt><dd>{selected.host}</dd></div><div><dt>Budget owner</dt><dd>{selected.buyer}</dd></div></dl>
-          <div className={s.scopeFoot}><div><small>Indicative host fee</small><strong>{selected.fee}</strong></div><a href="#join" className={s.book} onClick={onBook}>Request dates <ArrowRight size={16}/></a></div>
-        </article>
+    <section id="teaching-path" className={s.path} aria-labelledby="path-heading">
+      <div className={s.pathLead}><p className={s.kicker}><span className={s.line}/> Teaching with Frank</p>
+        <h2 id="path-heading">What could your class<br/><em>do with that question?</em></h2>
+        <p>A lecturer can run the free case tomorrow. When you bring me into the room, we start with a decision that belongs to your course.</p>
+        <Image src="/images/partnerships/universities/source-check.webp" alt="Mini Frank and a small orange robot examining a response slip at the classroom worktable" width={1440} height={960} sizes="(max-width: 740px) 100vw, 37vw"/>
       </div>
-      <div className={s.terms}><p>Fees are per engagement in EUR. Your written quote covers preparation, materials, tax, travel and recording rights. Dates are reserved by agreement.</p><button onClick={() => { trackEvent('university_brief_print', { programme: selected.id }); window.print() }}><Printer size={15}/> Print this brief</button></div>
+      <ol className={s.chapters}>{teachingPath.map(stage => <li key={stage.programme}>
+        <span>{stage.format}</span><h3>{stage.title}</h3><p>{stage.detail}</p>
+        <a href={`?programme=${stage.programme}${referral}#programme-scope`} onClick={event => openBrief(event, stage.programme, 'teaching_path')}>{stage.link} <ArrowRight size={15}/></a>
+      </li>)}</ol>
     </section>
 
     <section id="inside-the-lab" className={s.lab} aria-labelledby="lab-heading">
-      <div className={s.labFrame}><div className={s.labIntro}><p className={s.kicker}><span className={s.line}/> Inside the student lab</p><h2 id="lab-heading">What happens when<br/><em>a source disappears?</em></h2><p>A sample 90-minute session. Students use a decision memo to test whether an assistant knows when its evidence runs out.</p></div>
+      <div className={s.labFrame}><div className={s.labIntro}><p className={s.kicker}><span className={s.line}/> Inside the student lab</p><h2 id="lab-heading">What happens when<br/><em>a source disappears?</em></h2><p>In this 90-minute student lab, one team writes a memo with an assistant. A second team gets the evidence and tries to reproduce the finding.</p></div>
         <div className={s.clock} aria-hidden="true"><strong>90</strong><span>minutes</span></div></div>
       <ol className={s.timeline}>{phases.map(({time,title,detail,icon:Icon}) => <li key={time}><span className={s.time}><Icon size={20}/>{time}</span><h3>{title}</h3><p>{detail}</p></li>)}</ol>
       <div className={s.labLinks}><a href="/partnerships/universities/source-check" onClick={() => trackEvent('university_case_open', { placement: 'lab', case_id: 'source-check' })}>Try the six-minute memo case <ArrowRight size={16}/></a><a href="/workshops/ai-operating-systems/lab.mjs" download>Download the offline exercise <ArrowDown size={16}/></a><a href="/workshops/ai-operating-systems/workbook.md" download>Facilitator workbook <ArrowDown size={16}/></a></div>
@@ -93,6 +131,25 @@ export default function CampusEdition({ selected, onSelect, onBook, intake, rese
         <div className={s.evidence}><a href={studentSession.url}>MCI session account <ArrowUpRight size={15}/></a><a href="/workshops/ikigai-branding">NLdigital workshop material <ArrowUpRight size={15}/></a><a href="/bio">Speaker bio <ArrowUpRight size={15}/></a></div>
       </div>
     </section>
+
+    <details id="programmes" className={s.guide} ref={guide} open={guideInitiallyOpen || undefined}>
+      <summary onClick={() => { if (!guide.current?.open) trackEvent('university_host_guide_open', { placement: 'disclosure' }) }}><span><strong>Host briefs &amp; fees</strong><small>Planning dates or preparing a budget? Find the scope, preparation and fee for each format.</small></span><span className={s.disclose} aria-hidden="true">+</span></summary>
+      <div className={s.desk}>
+        <div className={s.choices} aria-label="Programme formats">
+          {universityProgrammes.map(item => <a key={item.id} href={`?programme=${item.id}${referral}#programmes`} aria-current={selected.id === item.id ? 'true' : undefined}
+            onClick={event => { if (!event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); onSelect(item) } }}>
+            <span>{programmeLabels[item.id]}</span><small>{item.id === 'student' ? 'Selected hosts · €0' : item.fee}</small><ArrowRight size={16}/></a>)}
+        </div>
+        <article ref={scope} tabIndex={-1} className={s.scope} id="programme-scope" aria-live="polite" aria-atomic="true">
+          <div className={s.scopeTop}><span>{selected.format}</span><span>Programme brief</span></div>
+          <h3>{selected.name}</h3><p>{selected.session}</p>
+          <dl><div><dt>Who it’s for</dt><dd>{selected.audience}</dd></div><div><dt>What you take away</dt><dd>{selected.output}</dd></div><div><dt>Host prepares</dt><dd>{selected.host}</dd></div><div><dt>Budget owner</dt><dd>{selected.buyer}</dd></div></dl>
+          <div className={s.scopeFoot}><div><small>Indicative host fee</small><strong>{selected.fee}</strong></div><a href="#join" className={s.book} onClick={onBook}>Request dates <ArrowRight size={16}/></a></div>
+          {next && <div className={s.followOn}><p>{next.prompt}</p><a href={`?programme=${next.to}${referral}#programme-scope`} onClick={event => openBrief(event, next.to, 'continuation')}>{next.link} <ArrowRight size={15}/></a></div>}
+        </article>
+      </div>
+      <div className={s.terms}><p>Fees are per engagement in EUR. Your written quote covers preparation, materials, tax, travel and recording rights. Dates are reserved by agreement.</p><button onClick={() => { trackEvent('university_brief_print', { programme: selected.id }); window.print() }}><Printer size={15}/> Print this brief</button></div>
+    </details>
 
     <section className={s.booking} aria-label="Book a university programme">
       <div className={s.bookingPath}><span><FileText/> Choose a format</span><i/><span><MapPin/> Share campus &amp; dates</span><i/><span><CheckCheck/> Agree the scope</span></div>
