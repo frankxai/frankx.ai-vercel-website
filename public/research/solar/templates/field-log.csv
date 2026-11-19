@@ -1,0 +1,1 @@
+timestamp_utc,interval_s,site_id,array_id,reference_id,front_poa_w_m2,rear_poa_sensor_id,rear_poa_w_m2,module_temp_c,ambient_temp_c,ac_energy_wh,occupied_bays,surface_condition,clipping_flag,curtailment_flag,maintenance_flag,quality_flag,notes
