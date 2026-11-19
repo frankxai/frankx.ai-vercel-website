@@ -1,19 +1,18 @@
 import type { Metadata } from 'next'
 import CollaborationExperience from '@/components/partnerships/uva/CollaborationExperience'
-import { agentContracts, proposal } from '@/content/partnerships/proposals/uva-rec-impact'
+import { agentContracts } from '@/content/partnerships/proposals/uva-rec-impact'
 import { contractMarkdown } from '@/content/partnerships/proposals/uva-contract-snapshots'
 
+const title = 'AI architecture lectures & university workshops | Frank Riemer'
+const description = 'Invite Frank Riemer, founder of Starlight Intelligence, to teach an AI architecture lecture, founder workshop or research lab. Explore programmes, host fees and teaching evidence.'
+const image = '/images/portraits/frank-presenting-oracle-2025.jpg'
+
 export const metadata: Metadata = {
-  title: { absolute: 'University collaborations | FrankX & Starlight Intelligence' },
-  description: 'Explore applied AI research, guest lectures and student challenges with Frank Riemer. An independent invitation to universities, founders and technology partners.',
+  title: { absolute: title },
+  description,
   alternates: { canonical: '/partnerships/universities' },
-  openGraph: {
-    title: proposal.title,
-    description: 'Research, learning and entrepreneurship. An independent invitation from Frank Riemer, founder of Starlight Intelligence.',
-    url: '/partnerships/universities',
-    images: [],
-  },
-  twitter: { card: 'summary', title: 'University collaborations | FrankX', description: 'Applied AI research, student challenges and guest lectures. Explore a collaboration.', images: [] },
+  openGraph: { title, description, url: '/partnerships/universities', images: [{ url: image, alt: 'Frank Riemer presenting at Oracle' }] },
+  twitter: { card: 'summary_large_image', title, description, images: [image] },
 }
 
 export default function UniversityCollaborationPage() {

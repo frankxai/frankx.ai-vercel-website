@@ -1,0 +1,37 @@
+.portrait { position:relative; margin:0; overflow:hidden; border-radius:18px; background:#212938; border:1px solid #526174; }
+.portrait img { width:100%; height:clamp(290px,28vw,440px); display:block; object-fit:cover; object-position:36% 48%; }
+.portrait figcaption { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:17px 21px; color:#f5f1e8; background:#202a39; }
+.portrait strong { font:italic 27px/1.1 var(--font-serif),Georgia,serif; }.portrait figcaption span { font-size:11px; line-height:1.5; }
+.record,.curriculum>div,.campuses { display:grid; gap:24px; }
+.record { grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:44px; }
+.record article,.curriculum article,.campuses article { border-top:1px solid #576174; padding-top:17px; }
+.record small,.scope small,.curriculum small,.campuses small,.overline,.heading>p { font: 500 11px/1.5 var(--font-mono),ui-monospace,monospace; letter-spacing:.07em; color:#ebcd9d; }
+.record h3,.curriculum h4,.campuses h4 { font-size:18px; line-height:1.3; margin:9px 0; }
+.record p,.curriculum p,.campuses p { color:#c0cad4; font-size:14px; margin:6px 0 9px; }
+.record a,.curriculum a { display:inline-flex; align-items:center; gap:5px; font-size:13px; }
+.desk { max-width:1380px; padding:50px 48px 64px; margin:auto; scroll-margin-top:75px; }
+.heading { border-top:1px solid #596578; padding-top:28px; margin-bottom:25px; }
+.heading h2,.international h3 { font-size:clamp(30px,4.2vw,55px); line-height:1.09; letter-spacing:-.05em; margin:10px 0 16px; }
+.heading span,.international>p { display:block; max-width:76ch; color:#c8d0da; font-size:16px; line-height:1.65; }
+.menu { display:grid; grid-template-columns:minmax(235px,.85fr) minmax(0,1.55fr); gap:18px; align-items:start; }
+.choices { display:grid; gap:4px; }
+.choices button { background:#1a2634; border:1px solid transparent; border-radius:7px; text-align:left; color:#d5dce4; padding:14px 16px; display:flex; align-items:baseline; flex-wrap:wrap; justify-content:space-between; gap:3px 12px; }
+.choices button span { font-size:13px; }.choices button strong { font-size:12px; font-weight:550; color:#e9cfab; }
+.choices button[aria-pressed=true] { border-color:#c9a87b; background:#2c3744; }.choices button:hover { border-color:#9aa4ba; }
+.scope { padding:clamp(18px,3vw,38px); background:#ebe7df; color:#202736; border-radius:12px; }
+.scope small { color:#675137; }.scope h3 { font:500 clamp(26px,3vw,43px)/1.08 var(--font-serif),Georgia,serif; letter-spacing:-.035em; margin:13px 0; }
+.scope p,.scope dd { font-size:14px; line-height:1.6; }.scope dl { display:grid; grid-template-columns:120px 1fr; gap:10px 18px; border-top:1px solid #b8b7b1; padding-top:15px; }
+.scope dt { font-size:12px; font-weight:650; }.scope dd { margin:0; }.scope button { display:inline-flex; align-items:center; gap:12px; background:#263345; color:white; border:0; border-radius:999px; padding:12px 18px; margin-top:10px; }
+.scope button:hover { background:#3c4b61; }.scope button:focus-visible { outline:3px solid #60408d!important; }
+.terms,.international>p.terms { font-size:12px; color:#bac5d0; max-width:94ch; margin:14px 0; }
+.curriculum { margin-top:42px; }.curriculum h3 { font-size:26px; margin-bottom:18px; }.curriculum>div { grid-template-columns:repeat(4,1fr); }
+.international { margin:44px 0; border-block:1px solid #566172; padding:25px 0; }
+.international details { margin:20px 0; }.international summary { color:#ded7ff; cursor:pointer; padding:10px 0; }
+.international details>p { font-size:14px; color:#cad3df; max-width:76ch; }.campuses { grid-template-columns:repeat(2,1fr); margin:20px 0; }
+@media(max-width:900px){.curriculum>div{grid-template-columns:1fr 1fr}.desk{padding-inline:32px}}
+@media(max-width:760px){.desk{padding:32px 22px}.menu,.record{grid-template-columns:1fr}.record{gap:18px}.scope dl{grid-template-columns:1fr;gap:3px}.scope dd{margin-bottom:8px}.portrait img{height:290px}.campuses{grid-template-columns:1fr}}
+@media(max-width:490px){.curriculum>div{grid-template-columns:1fr}.choices button{min-height:44px}.portrait figcaption{padding:13px}}
+.sample { margin-top:32px; border:1px solid #56647b; border-radius:14px; padding:clamp(19px,3vw,32px); display:grid; grid-template-columns:1.65fr 1fr; gap:30px; background:#1a2532; }
+.sample small { color:#ebcd9d; }.sample h3 { margin:8px 0; font-size:22px; }.sample p { font-size:14px; color:#c4cfda; margin:0; }
+.sample>div:last-child { display:grid; gap:8px; align-content:center; font-size:13px; }.sample code { color:#e6d5bc; }
+@media(max-width:650px){.sample{grid-template-columns:1fr;gap:16px}}

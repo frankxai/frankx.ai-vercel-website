@@ -359,3 +359,4 @@ body:has(.root) [aria-label="Music player"] { display:none; }
   .rec a:is(:hover,:focus-visible) { background-size:100% 2px; }
 }
 .rec .workIndex a:is(:hover,:focus-visible) h3 { color:var(--link-active); }
+.rec a.programmeLink { --link-ink:#17202e; --link-active:#27354a; background-color:#eaddca; display:inline-flex; align-items:center; gap:12px; padding:14px 20px; min-height:46px; border-radius:999px; text-decoration:none; font-size:13px; font-weight:650; }
