@@ -166,7 +166,7 @@
 .keyboardHint { text-align:center; color:#a1b7a9; font-size:9px; margin:2px 15px 10px; flex-shrink:0; }
 .printBrief { display:none; }
 .srOnly { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
-:global(body:has([data-uva-proposal="true"]) [aria-label="Music player"]) { display:none; }
+body:has(.root) [aria-label="Music player"] { display:none; }
 @media (max-width:1100px) {
   .disclosure { padding:15px 32px; }.section { padding:75px 32px; }.hero { padding-top:40px; }.heroGrid { gap:35px; grid-template-columns:1.25fr 1fr; }.topbar { padding:18px 32px; }.chapterNav { margin:0 32px; }.chapterNav a { flex-direction:column; align-items:start; gap:5px; }.founderGrid,.mapLayout { gap:38px; }.founderArt { grid-template-columns:1fr; }.founderArt .crew { width:160px; margin:auto; }.founderArt>div { padding:6px 20px 18px; text-align:center; }.heroVisual { padding:20px; }.visualTop { margin-bottom:20px; }.founderArt .eyebrow { display:none; }.conversationGrid { gap:35px; }.heroVisual figcaption { font-size:11px; }.map { min-height:440px; }.node0,.node2 { left:15px; }.node1,.node3 { right:15px; }.mapNode { padding:14px 10px; gap:5px; }.mapNode strong { font-size:11px; }.mapNode svg { display:none; }
 }
@@ -178,11 +178,11 @@
 }
 @page { size:A4; margin:13mm 14mm; }
 @media print {
-  :global(body:has([data-uva-proposal="true"])) { background:white!important; color:#15251b!important; }
-  :global(body:has([data-uva-proposal="true"]) > :not(#main)) { display:none!important; }
+  body:has(.root) { background:white!important; color:#15251b!important; }
+  body:has(.root) > :not(:global(#main)) { display:none!important; }
   .root { visibility:visible; padding:0!important; background:white!important; color:#15251b!important; }
   .root :is(.topbar,.disclosure,.explore,.presentation) { display:none!important; }
-  :global(body:has([data-uva-proposal="true"]) #main) { position:static!important; min-height:0!important; overflow:visible!important; }
+  body:has(.root) :global(#main) { position:static!important; min-height:0!important; overflow:visible!important; }
   .printBrief { display:block!important; visibility:visible; color:#15251b; background:white; font-size:9pt; }
   .printBrief header { display:flex; justify-content:space-between; border-bottom:1px solid #526a5a; padding-bottom:9pt; font-size:8pt; }
   .printBrief h1 { font-size:29pt; line-height:1.12; margin:16pt 0 11pt; letter-spacing:-1.1pt; }
