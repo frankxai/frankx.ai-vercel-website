@@ -52,6 +52,14 @@ export const featuredInvestigations: FeaturedInvestigation[] = [
     meta: '12-minute read',
   },
   {
+    href: '/research/solar',
+    title: 'Solar after the panel',
+    kind: 'Field guide and interactive comparison',
+    blurb:
+      'Two real modules, one roof and a layout that changes the answer. Follow the research from silicon and tandems to solar carports in Seesen.',
+    meta: 'Module comparison and sources',
+  },
+  {
     href: '/research/economy',
     title: 'Economic atlas',
     kind: 'Working atlas',
