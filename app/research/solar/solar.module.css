@@ -176,3 +176,11 @@
 .evidenceNotes dl { display: grid; gap: .65rem 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); margin-top: 1rem; }
 .evidenceNotes dt { font-weight: 700; }
 .evidenceNotes dd { margin: 0; color: var(--solar-muted); }
+
+.projectTitle {
+  max-width: 15em;
+  margin: 1rem 0 1.2rem;
+  font-size: clamp(2.65rem, 7vw, 6rem);
+  line-height: 1;
+  letter-spacing: -.06em;
+}

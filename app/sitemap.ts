@@ -406,6 +406,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: '/research/agentic-life-observatory', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/research/methodology', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/research/solar', priority: 0.7, changeFrequency: 'monthly' as const, lastModified: '2026-11-19' },
+    { url: '/research/solar/projekt', priority: 0.7, changeFrequency: 'monthly' as const, lastModified: '2026-11-19' },
     { url: '/signals', priority: 0.9, changeFrequency: 'daily' as const },
     { url: '/dream-100', priority: 0.82, changeFrequency: 'weekly' as const },
   ]

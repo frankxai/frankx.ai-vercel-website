@@ -37,3 +37,17 @@ Suggested owner view: source and cohort date, template, offer selected, lead qua
 Register one primary hypothesis, an outcome, and eligibility rules before collection. Recruit a comparison with controllable rear exposure and document module, wiring and reference equivalence. Where matching is impossible, publish the time series and associations with narrower claims. Invite academic input on the protocol as a proposal. A university affiliation or commitment requires explicit agreement from the institution.
 
 Distribute the first measured memo with the site drawing, pre-specified outcome, exclusions, paired-period chart, data dictionary and releasable aggregate data. One good measured project can improve the next quote, give installers a useful reference and give the editorial work a reason to exist.
+
+## Sites, URLs and ownership
+
+| Surface | Canonical destination | Job |
+|---|---|---|
+| FrankX Research | https://www.frankx.ai/research | Discovery for the editorial series |
+| Solar field guide | https://www.frankx.ai/research/solar | English engineering and research, tools and templates |
+| German project guide | https://www.frankx.ai/research/solar/projekt | Scope preparation and routing by buyer intent |
+| SolarCarport.tech application | https://solarcarport.tech/planung | Vendor planning hub after the domain points to the application |
+| Current public seller site | https://www.solarcarport.tech/solarcarport | Live canopy offers and contact |
+| PV Lager marketplace | https://www.kleinanzeigen.de/pro/pvlager | Dated seller advertisements and stock inquiries |
+| VR Gebäudetechnik | https://www.vr-gebaeudetechnik.de/ | Regional installation discussions |
+
+Each host publishes its own sitemap. Link German campaigns to the project guide and English campaigns to the research feature. Use campaign parameters on distribution URLs and plain canonical URLs in the sitemaps. Keep documents addressable through their parent hub. The live seller site and the application can coexist during review. Confirm the production domain binding and release order before linking to the application’s planned route from public materials. Keep lead capture at the seller or installer. Pass only campaign tags between domains, with no lead details in URLs.

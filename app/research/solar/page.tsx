@@ -75,7 +75,7 @@ export default function SolarResearchPage() {
             <a className={styles.button} href="#module-fit">Compare module fit</a>
             <a className={styles.textLink} href="#field-kit">Download templates</a>
             <a className={styles.textLink} href="#frontier">Research frontier</a>
-            <a lang="de" className={styles.textLink} href="#seesen">Praxis in Seesen</a>
+            <Link lang="de" className={styles.textLink} href="/research/solar/projekt">Solarprojekt planen</Link>
           </nav>
         </div>
         <p className={styles.imageNote}>Concept illustration</p>
@@ -154,6 +154,7 @@ export default function SolarResearchPage() {
           <p className={styles.eyebrow}>Praxis in Seesen</p>
           <h2>Welche Überdachung passt zu deiner Fläche?</h2>
           <p className={styles.intro}>Mein Bruder Alexander arbeitet im Solargeschäft in Seesen. Seine Praxis ist für mich der Grund, diese Technik genauer anzuschauen. Bei Solarcarport.tech kannst du dir ansehen, wie die Konstruktion, das Modulraster und die Regenführung zusammenkommen.</p>
+          <Link className={styles.textLink} href="/research/solar/projekt">Zum deutschen Projektleitfaden und den Anbietern</Link>
           <CarportWalkthrough />
           <p className={styles.note}><Source id="dib">DIBt-Unterlagen zu Überkopfverglasungen</Source>. Bei Angeboten Modul, Profil und vorgesehenen Einbau gemeinsam prüfen lassen.</p>
           <div className={styles.offer}>
