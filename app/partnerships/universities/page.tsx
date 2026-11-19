@@ -4,7 +4,7 @@ import { agentContracts } from '@/content/partnerships/proposals/uva-rec-impact'
 import { contractMarkdown } from '@/content/partnerships/proposals/uva-contract-snapshots'
 
 const title = 'University AI lectures, workshops and research labs | Frank Riemer'
-const description = 'Compare seven university programmes with Frank Riemer. See a sample student lab, host preparation and indicative fees, then request dates and a written scope.'
+const description = 'Compare seven university programmes with Frank Riemer. Try a free classroom case, inspect the teaching record and indicative fees, then request dates and a written scope.'
 const image = '/images/partnerships/universities/campus-studio.webp'
 
 export const metadata: Metadata = {
@@ -14,8 +14,8 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title, description, images: [image] },
 }
 
-export default async function UniversityCollaborationPage({ searchParams }: { searchParams: Promise<{ programme?: string | string[] }> }) {
-  const { programme } = await searchParams
+export default async function UniversityCollaborationPage({ searchParams }: { searchParams: Promise<{ programme?: string | string[]; via?: string | string[] }> }) {
+  const { programme, via } = await searchParams
   const contracts = agentContracts.map((agent, index) => ({ ...agent, markdown: contractMarkdown[index] }))
-  return <CollaborationExperience contracts={contracts} context="public" initialProgrammeId={typeof programme === 'string' ? programme : undefined} />
+  return <CollaborationExperience contracts={contracts} context="public" fromSourceCheck={via === 'source-check'} initialProgrammeId={typeof programme === 'string' ? programme : undefined} />
 }

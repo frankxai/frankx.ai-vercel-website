@@ -8,7 +8,7 @@ import { MEET_AND_GROW_URL } from '@/lib/cta-links'
 import { trackEvent } from '@/lib/analytics'
 import s from './collaboration.module.css'
 
-export default function CollaborationIntake({ audience, onAudienceChange, challenge, publicBooking, programme, onProgrammeChange }: { audience: AudienceId; onAudienceChange: (value: AudienceId) => void; challenge: string; publicBooking?: boolean; programme?: UniversityProgramme; onProgrammeChange?: (value?: UniversityProgramme) => void }) {
+export default function CollaborationIntake({ audience, onAudienceChange, challenge, publicBooking, fromSourceCheck = false, programme, onProgrammeChange }: { audience: AudienceId; onAudienceChange: (value: AudienceId) => void; challenge: string; publicBooking?: boolean; fromSourceCheck?: boolean; programme?: UniversityProgramme; onProgrammeChange?: (value?: UniversityProgramme) => void }) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle')
   const [error, setError] = useState('')
   const [ackSent, setAckSent] = useState(false)
@@ -27,7 +27,7 @@ export default function CollaborationIntake({ audience, onAudienceChange, challe
     setError('')
     const format = programme ? programme.name + ' · ' + programme.format + ' · ' + programme.fee : publicBooking ? 'Open collaboration' : String(data.get('format'))
     const hostContext = publicBooking ? [String(data.get('place') || '').trim(), String(data.get('timing') || '').trim()].filter(Boolean).join(' · ') : ''
-    const detail = hostContext ? hostContext + '\n\n' + message : message
+    const detail = [fromSourceCheck ? 'Teaching case: Source check' : '', hostContext, message].filter(Boolean).join('\n\n')
     const controller = new AbortController()
     const timer = window.setTimeout(() => controller.abort(), 30000)
     try {
@@ -42,7 +42,7 @@ export default function CollaborationIntake({ audience, onAudienceChange, challe
       })
       const result = await response.json().catch(() => ({}))
       if (!response.ok || !result.ok) throw new Error(result.error || 'Your inquiry could not be confirmed. Please try again or email Frank directly.')
-      if (publicBooking) trackEvent('university_inquiry_accepted', { programme: programme?.id ?? 'open' })
+      if (publicBooking) trackEvent('university_inquiry_accepted', { programme: programme?.id ?? 'open', ...(fromSourceCheck ? { case_id: 'source-check' } : {}) })
       setAckSent(Boolean(result.ackSent))
       setStatus('done')
       form.reset()

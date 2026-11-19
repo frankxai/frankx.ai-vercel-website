@@ -24,7 +24,7 @@ function Heading({ number, title, children }: { number: string; title: string; c
   return <header className={s.chapterHeading}><p className={s.eyebrow}>{number} / A conversation about building together</p><h2>{title}</h2>{children && <p className={s.lead}>{children}</p>}</header>
 }
 
-export default function CollaborationExperience({ contracts, context = 'proposal', initialProgrammeId }: { contracts: Contract[]; context?: 'public' | 'proposal'; initialProgrammeId?: string }) {
+export default function CollaborationExperience({ contracts, context = 'proposal', initialProgrammeId, fromSourceCheck = false }: { contracts: Contract[]; context?: 'public' | 'proposal'; initialProgrammeId?: string; fromSourceCheck?: boolean }) {
   const isPublic = context === 'public'
   const [programme, setProgramme] = useState<UniversityProgramme>(() => universityProgrammes.find(item => item.id === initialProgrammeId) ?? universityProgrammes[0])
   const [bookProgramme, setBookProgramme] = useState(true)
@@ -196,7 +196,7 @@ export default function CollaborationExperience({ contracts, context = 'proposal
     {isPublic ? <div className={s.explore}>
       <CampusEdition selected={programme} onSelect={chooseProgramme}
         onBook={() => { trackEvent('university_dates_request', { programme: programme.id }); setChallengeChosen(false); joinAs(audience, true) }}
-        intake={<CollaborationIntake publicBooking audience={audience} onAudienceChange={setAudience}
+        intake={<CollaborationIntake publicBooking fromSourceCheck={fromSourceCheck} audience={audience} onAudienceChange={setAudience}
           challenge={challengeChosen ? selectedChallenge.title : ''} programme={bookProgramme ? programme : undefined}
           onProgrammeChange={item => { if (item) chooseProgramme(item); else setBookProgramme(false) }} />}
         presentation={<button ref={launch} onClick={startPresentation}><Play size={16} aria-hidden="true"/> Start guided presentation</button>}

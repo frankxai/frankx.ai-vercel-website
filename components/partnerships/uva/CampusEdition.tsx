@@ -51,7 +51,7 @@ export default function CampusEdition({ selected, onSelect, onBook, intake, rese
         <p className={s.kicker}><span className={s.line} />Frank Riemer <span>/</span> University programmes</p>
         <h1 id="campus-title">Teach AI by<br/><em>building it.</em></h1>
         <p className={s.intro}>Bring a question from your course. I’ll help your students build an assistant, find where it fails, and hand the evidence to someone else.</p>
-        <div className={s.actions}><a href="#programmes" className={s.cta}>Compare programmes <ArrowDown size={17}/></a><a href="#inside-the-lab" className={s.quiet}>Inside a student lab <ArrowRight size={16}/></a></div>
+        <div className={s.actions}><a href="/partnerships/universities/source-check" className={s.cta} onClick={() => trackEvent('university_case_open', { placement: 'hero', case_id: 'source-check' })}>Try the free teaching case <ArrowRight size={17}/></a><a href="#programmes" className={s.quiet}>Compare programmes <ArrowDown size={16}/></a></div>
       </div>
       <div className={s.heroCaption}><span className={s.dot}/><span>Mini Frank storyboard</span><i/>Amsterdam studio study</div>
     </section>
@@ -83,7 +83,7 @@ export default function CampusEdition({ selected, onSelect, onBook, intake, rese
       <div className={s.labFrame}><div className={s.labIntro}><p className={s.kicker}><span className={s.line}/> Inside the student lab</p><h2 id="lab-heading">What happens when<br/><em>a source disappears?</em></h2><p>A sample 90-minute session. Students use a decision memo to test whether an assistant knows when its evidence runs out.</p></div>
         <div className={s.clock} aria-hidden="true"><strong>90</strong><span>minutes</span></div></div>
       <ol className={s.timeline}>{phases.map(({time,title,detail,icon:Icon}) => <li key={time}><span className={s.time}><Icon size={20}/>{time}</span><h3>{title}</h3><p>{detail}</p></li>)}</ol>
-      <div className={s.labLinks}><a href="/workshops/ai-operating-systems/lab.mjs" download>Download the offline exercise <ArrowDown size={16}/></a><a href="/workshops/ai-operating-systems/workbook.md" download>Facilitator workbook <ArrowDown size={16}/></a></div>
+      <div className={s.labLinks}><a href="/partnerships/universities/source-check" onClick={() => trackEvent('university_case_open', { placement: 'lab', case_id: 'source-check' })}>Try the six-minute memo case <ArrowRight size={16}/></a><a href="/workshops/ai-operating-systems/lab.mjs" download>Download the offline exercise <ArrowDown size={16}/></a><a href="/workshops/ai-operating-systems/workbook.md" download>Facilitator workbook <ArrowDown size={16}/></a></div>
     </section>
 
     <section id="your-host" className={s.host}>

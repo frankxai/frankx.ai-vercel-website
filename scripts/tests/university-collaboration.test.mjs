@@ -60,3 +60,15 @@ test('rendered public page exposes functional intake without personal meeting co
   assert.match(html, /Conceptual study design\. No measured results are shown/)
   assert.doesNotMatch(html, /Following the conversation with Erik Boer|mail\.google\.com|agentic-ops\/|x-vercel-protection-bypass/)
 })
+
+test('source-check replay removes the response record while retaining independent attendance evidence', async () => {
+  const { evidence, rounds, samplePath, teachingKit } = await import('../../app/partnerships/universities/source-check/case.ts')
+  assert.ok(enumerateRoutes().some(item => item.href === samplePath))
+  assert.deepEqual(rounds.map(round => round.sources), [['REG', 'ATT', 'EXIT'], ['REG', 'ATT']])
+  assert.deepEqual(rounds.map(round => round.expected), ['revise', 'request'])
+  for (const round of rounds) {
+    assert.ok(round.citations.every(id => round.sources.includes(id)))
+    assert.ok(teachingKit().includes(round.finding))
+  }
+  assert.ok(evidence.every(record => teachingKit().includes(record.file)))
+})
