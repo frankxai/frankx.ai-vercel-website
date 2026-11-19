@@ -24,7 +24,7 @@
   },
   "content_graph": {
     "cluster_id": "cluster_frankx_founder_ai_operations",
-    "canonical_url": "blocked",
+    "canonical_url": "https://www.frankx.ai/blog/founder-ai-stack-mobile-to-production",
     "proposed_canonical_url": "https://www.frankx.ai/blog/founder-ai-stack-mobile-to-production",
     "existing_related_urls": [
       "https://www.frankx.ai/blog/chatgpt-vs-claude-vs-gemini-2026"
@@ -65,7 +65,7 @@
     "structured_data": [
       "Article"
     ],
-    "indexation": "noindex",
+    "indexation": "index",
     "crawler_policy_checked": false
   },
   "sources": [
@@ -525,14 +525,24 @@
     }
   ],
   "publication": {
-    "branch": "agent/codex/founder-ai-stack-review-20261102",
-    "pull_request": "https://github.com/frankxai/frankx.ai-vercel-website/pull/1153",
-    "preview_url": "https://frankx-ai-vercel-website-5d0d72wqh-starlight-intelligence.vercel.app/design-lab/founder-ai-stack",
+    "branch": "agent/claude/publish-founder-ai-stack",
+    "pull_request": "https://github.com/frankxai/frankx.ai-vercel-website/pull/1282",
+    "preview_url": "https://frankx-ai-vercel-website-1sfls1dt5-starlight-intelligence.vercel.app/blog/founder-ai-stack-mobile-to-production",
     "live_url": "blocked",
-    "verified_at": "2026-11-02T15:50:00Z",
-    "rollback": "Remove this isolated draft branch; no production source or alias is changed",
-    "deployment_id": "dpl_CDL3tfcwQRfNm96E3VAYcU1zN1Cb",
-    "deployed_source_sha": "532a8e239bdc0edaf96964569dbf411a773b2917"
+    "verified_at": "2026-11-19T18:27:00Z",
+    "rollback": "Before merge: leave PR 1282 unmerged. After merge: revert the merge commit on main, which removes the article from the blog loader",
+    "deployment_id": "dpl_AUXKmfdscYGc7Pi2gXibNP8Q4cSq",
+    "deployed_source_sha": "897b439ad1e1546381f02e2f0b0f68dbf57a10a7",
+    "reading_proof_20261102": {
+      "branch": "agent/codex/founder-ai-stack-review-20261102",
+      "pull_request": "https://github.com/frankxai/frankx.ai-vercel-website/pull/1153",
+      "preview_url": "https://frankx-ai-vercel-website-5d0d72wqh-starlight-intelligence.vercel.app/design-lab/founder-ai-stack",
+      "live_url": "blocked",
+      "verified_at": "2026-11-02T15:50:00Z",
+      "rollback": "Remove this isolated draft branch; no production source or alias is changed",
+      "deployment_id": "dpl_CDL3tfcwQRfNm96E3VAYcU1zN1Cb",
+      "deployed_source_sha": "532a8e239bdc0edaf96964569dbf411a773b2917"
+    }
   },
   "measurement": {
     "hypothesis": "Source-linked operating examples lead to qualified builder engagement",
@@ -559,7 +569,6 @@
   ],
   "scope": {
     "base_sha": "ffd466b45b38072d49cbf075673133a4166537be",
-    "preview_route": "/design-lab/founder-ai-stack",
     "source_of_review": "Exact Library draft libfile_ac7f143b11288191976f7a02b6c0fe9b read this turn",
     "original_verdict": "revise",
     "revised_text_verdict": "accept_within_scoped_self_review",
@@ -570,6 +579,8 @@
       "Duplicate main ID",
       "Inherited Twitter metadata",
       "Width iframe blocked by existing frame policy"
-    ]
+    ],
+    "reading_proof_route_removed": "/design-lab/founder-ai-stack",
+    "preview_route": "/blog/founder-ai-stack-mobile-to-production"
   }
 }
