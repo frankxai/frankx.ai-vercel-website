@@ -1,22 +1,21 @@
 import type { Metadata } from 'next'
 import CollaborationExperience from '@/components/partnerships/uva/CollaborationExperience'
-import { agentContracts, proposal } from '@/content/partnerships/proposals/uva-rec-impact'
+import { agentContracts } from '@/content/partnerships/proposals/uva-rec-impact'
 import { contractMarkdown } from '@/content/partnerships/proposals/uva-contract-snapshots'
 
+const title = 'University AI lectures, workshops and research labs | Frank Riemer'
+const description = 'Compare seven university programmes with Frank Riemer. See a sample student lab, host preparation and indicative fees, then request dates and a written scope.'
+const image = '/images/partnerships/universities/campus-studio.webp'
+
 export const metadata: Metadata = {
-  title: { absolute: 'University collaborations | FrankX & Starlight Intelligence' },
-  description: 'Explore applied AI research, guest lectures and student challenges with Frank Riemer. An independent invitation to universities, founders and technology partners.',
+  title: { absolute: title }, description,
   alternates: { canonical: '/partnerships/universities' },
-  openGraph: {
-    title: proposal.title,
-    description: 'Research, learning and entrepreneurship. An independent invitation from Frank Riemer, founder of Starlight Intelligence.',
-    url: '/partnerships/universities',
-    images: [],
-  },
-  twitter: { card: 'summary', title: 'University collaborations | FrankX', description: 'Applied AI research, student challenges and guest lectures. Explore a collaboration.', images: [] },
+  openGraph: { title, description, url: '/partnerships/universities', images: [{ url: image, alt: 'Mini Frank and students in an Amsterdam teaching studio' }] },
+  twitter: { card: 'summary_large_image', title, description, images: [image] },
 }
 
-export default function UniversityCollaborationPage() {
+export default async function UniversityCollaborationPage({ searchParams }: { searchParams: Promise<{ programme?: string | string[] }> }) {
+  const { programme } = await searchParams
   const contracts = agentContracts.map((agent, index) => ({ ...agent, markdown: contractMarkdown[index] }))
-  return <CollaborationExperience contracts={contracts} context="public" />
+  return <CollaborationExperience contracts={contracts} context="public" initialProgrammeId={typeof programme === 'string' ? programme : undefined} />
 }
