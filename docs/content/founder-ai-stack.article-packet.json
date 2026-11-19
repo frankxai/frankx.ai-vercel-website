@@ -84,7 +84,7 @@
     },
     {
       "source_id": "E2",
-      "title": "Build Starlight\u2019s mobile mission workspace with portable drafts and editable copies",
+      "title": "Build Starlight’s mobile mission workspace with portable drafts and editable copies",
       "publisher": "frankxai/starlightintelligence.ai",
       "source_type": "repository_pr",
       "url": "https://github.com/frankxai/starlightintelligence.ai/pull/249",
@@ -136,7 +136,7 @@
     },
     {
       "source_id": "E6",
-      "title": "\ud83d\udee1\ufe0f Sentinel: [HIGH] Fix timing attack in CRON_SECRET verification",
+      "title": "🛡️ Sentinel: [HIGH] Fix timing attack in CRON_SECRET verification",
       "publisher": "frankxai/gencreator.ai",
       "source_type": "repository_pr",
       "url": "https://github.com/frankxai/gencreator.ai/pull/312",
@@ -149,7 +149,7 @@
     },
     {
       "source_id": "E7",
-      "title": "\ud83d\udee1\ufe0f Sentinel: [CRITICAL] Fix timing attack vulnerability in `CRON_SECRET` verification",
+      "title": "🛡️ Sentinel: [CRITICAL] Fix timing attack vulnerability in `CRON_SECRET` verification",
       "publisher": "frankxai/gencreator.ai",
       "source_type": "repository_pr",
       "url": "https://github.com/frankxai/gencreator.ai/pull/315",
@@ -471,12 +471,12 @@
     }
   ],
   "article": {
-    "source_path": "content/blog/_drafts/founder-ai-stack-mobile-to-production.mdx",
+    "source_path": "content/blog/founder-ai-stack-mobile-to-production.mdx",
     "canonical_title": "My founder AI stack: how I assign work and check the result",
     "description": "First-party multi-application founder workflow with concrete repository evidence and calibrated attribution.",
     "author_id": "frank-riemer",
     "published_at": null,
-    "modified_at": "2026-11-02"
+    "modified_at": "2026-11-19"
   },
   "visual_plan": {
     "tier": "FLAGSHIP",
@@ -517,6 +517,11 @@
       "lane": "production_verifier",
       "verdict": "blocked",
       "reason": "Exercised reading, keyboard, return and refresh journeys pass; full responsive, runtime/network, screen-reader and reduced-motion acceptance remain pending."
+    },
+    {
+      "lane": "independent_provider_review",
+      "verdict": "pass_with_corrections",
+      "reason": "Different-provider review by Claude (Fable 5.2) on 19 November 2026. Corrections applied: ten links to private repositories replaced with named, unlinked references; plugin availability narrowed to web and desktop as confirmed from the plugin documentation; starlight-evals link moved to its current organisation; related internal links, keywords and summary added. PR1146 merge re-confirmed. States of private-repository records were not re-read and remain as of the 2 November snapshot."
     }
   ],
   "publication": {
@@ -544,13 +549,13 @@
     ]
   },
   "blocked": [
-    "Independent different-provider article review has not run",
     "Final flagship media packet and rights/visual review pending",
     "Physical-device/browser-engine/performance checks pending",
     "No production publication authorized by this preview task",
-    "Local full-repository lint/typecheck/build not run; initial hosted build passed",
     "Narrow-screen browser validation pending; available browser API has no viewport resize control",
-    "Full network/runtime, screen-reader and reduced-motion audits not performed"
+    "Full network/runtime, screen-reader and reduced-motion audits not performed",
+    "Founder approval of the exact 19 November candidate and merge to main pending",
+    "Antigravity artifact documentation link was not re-opened on 19 November"
   ],
   "scope": {
     "base_sha": "ffd466b45b38072d49cbf075673133a4166537be",
