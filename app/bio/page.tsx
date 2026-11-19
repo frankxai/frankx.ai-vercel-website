@@ -292,7 +292,10 @@ export default function BioPage() {
               ))}
             </div>
 
-            <div className="mt-10">
+            <div className="mt-10 flex flex-wrap items-center gap-6">
+              <Link href="/partnerships/universities#programmes" className="text-sm font-medium text-violet-200 underline underline-offset-4 hover:text-amber-200">
+                University programmes and host fees
+              </Link>
               <a
                 href="mailto:frank@frankx.ai?subject=Speaking%20invitation"
                 className="inline-flex items-center gap-2 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"

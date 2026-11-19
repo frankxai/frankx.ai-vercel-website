@@ -166,7 +166,7 @@
 .keyboardHint { text-align:center; color:#a1b7a9; font-size:9px; margin:2px 15px 10px; flex-shrink:0; }
 .printBrief { display:none; }
 .srOnly { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
-:global(body:has([data-uva-proposal="true"]) [aria-label="Music player"]) { display:none; }
+body:has(.root) [aria-label="Music player"] { display:none; }
 @media (max-width:1100px) {
   .disclosure { padding:15px 32px; }.section { padding:75px 32px; }.hero { padding-top:40px; }.heroGrid { gap:35px; grid-template-columns:1.25fr 1fr; }.topbar { padding:18px 32px; }.chapterNav { margin:0 32px; }.chapterNav a { flex-direction:column; align-items:start; gap:5px; }.founderGrid,.mapLayout { gap:38px; }.founderArt { grid-template-columns:1fr; }.founderArt .crew { width:160px; margin:auto; }.founderArt>div { padding:6px 20px 18px; text-align:center; }.heroVisual { padding:20px; }.visualTop { margin-bottom:20px; }.founderArt .eyebrow { display:none; }.conversationGrid { gap:35px; }.heroVisual figcaption { font-size:11px; }.map { min-height:440px; }.node0,.node2 { left:15px; }.node1,.node3 { right:15px; }.mapNode { padding:14px 10px; gap:5px; }.mapNode strong { font-size:11px; }.mapNode svg { display:none; }
 }
@@ -178,11 +178,11 @@
 }
 @page { size:A4; margin:13mm 14mm; }
 @media print {
-  :global(body:has([data-uva-proposal="true"])) { background:white!important; color:#15251b!important; }
-  :global(body:has([data-uva-proposal="true"]) > :not(#main)) { display:none!important; }
+  body:has(.root) { background:white!important; color:#15251b!important; }
+  body:has(.root) > :not(:global(#main)) { display:none!important; }
   .root { visibility:visible; padding:0!important; background:white!important; color:#15251b!important; }
   .root :is(.topbar,.disclosure,.explore,.presentation) { display:none!important; }
-  :global(body:has([data-uva-proposal="true"]) #main) { position:static!important; min-height:0!important; overflow:visible!important; }
+  body:has(.root) :global(#main) { position:static!important; min-height:0!important; overflow:visible!important; }
   .printBrief { display:block!important; visibility:visible; color:#15251b; background:white; font-size:9pt; }
   .printBrief header { display:flex; justify-content:space-between; border-bottom:1px solid #526a5a; padding-bottom:9pt; font-size:8pt; }
   .printBrief h1 { font-size:29pt; line-height:1.12; margin:16pt 0 11pt; letter-spacing:-1.1pt; }
@@ -339,3 +339,24 @@
   .intake { gap:28px; padding-top:0; }.formRow { grid-template-columns:1fr; gap:0; }.intakeForm :is(input:not([type=checkbox]),select,textarea) { font-size:16px; }
   .continueLinks { gap:20px; }.experienceTimeline strong { font-size:12px; }.experienceTimeline small { font-size:10px; }.experienceCase>.eyebrow { font-size:11px; }
 }
+
+/* Reading and presentation modes share the proposal's ink and interaction palette. */
+.rec { --green:#d4c4ed; --ink:#f1efe9; --muted:#bdc4cc; --line:#38444e; background:#111a22; }
+.rec .presentation { background:#111a22; }
+.rec .heroGrid { gap:clamp(24px,5vw,72px); }
+.rec h1 em,.rec .heroTitle em { color:#decaad; }
+.rec .primary { color:#171a26!important; background:#e9ddd0; }
+.rec .primary:hover { background:#fff0da; }
+.rec a { --link-ink:#d8dcf6; --link-active:#ffe0af; color:var(--link-ink)!important; }
+.rec a:is(:hover,:focus-visible) { color:var(--link-active)!important; }
+.rec a:focus-visible, .rec :is(button,summary):focus-visible { outline-color:#e2ccff; }
+.rec figure a { --link-ink:#303e6d; --link-active:#774017; }
+.rec a:not(.wordmark) { text-decoration-line:underline; text-decoration-color:currentColor; text-decoration-thickness:1px; text-underline-offset:.25em; }
+.rec :is(.workIndex,.chapterNav) a { text-decoration:none; }
+@media (prefers-reduced-motion:no-preference) {
+  .rec a { transition:color 220ms ease; }
+  .rec a:not(.wordmark) { background-image:linear-gradient(90deg,#acb9fa,#d9adf1 60%,#f8d09c); background-position:left bottom; background-repeat:no-repeat; background-size:0 2px; transition:color 220ms ease,background-size 300ms cubic-bezier(.2,.7,.3,1); }
+  .rec a:is(:hover,:focus-visible) { background-size:100% 2px; }
+}
+.rec .workIndex a:is(:hover,:focus-visible) h3 { color:var(--link-active); }
+.rec a.programmeLink { --link-ink:#17202e; --link-active:#27354a; background-color:#eaddca; display:inline-flex; align-items:center; gap:12px; padding:14px 20px; min-height:46px; border-radius:999px; text-decoration:none; font-size:13px; font-weight:650; }

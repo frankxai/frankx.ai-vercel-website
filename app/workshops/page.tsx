@@ -278,6 +278,9 @@ export default function WorkshopsPage() {
                 <p className="mt-5 max-w-2xl text-base leading-7 text-slate-400">
                   Share the room, the people, and the result they should carry home. Frank will reply with the right format—or tell you plainly when it is not a fit.
                 </p>
+                <Link href="/partnerships/universities#programmes" className="mt-4 inline-flex text-sm font-medium text-violet-200 underline underline-offset-4 hover:text-amber-200">
+                  Hosting at a university? Explore programmes and fees
+                </Link>
               </div>
               <TrackedGlowButton
                 href="/contact?intent=workshop"

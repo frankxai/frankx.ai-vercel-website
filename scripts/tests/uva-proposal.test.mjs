@@ -18,6 +18,10 @@ test('rendered proposal preserves public-safe disclosure and inspectable source'
     assert.match(html, new RegExp(`id="${id}"`))
   }
   assert.match(html, /Independent founder-authored proposal\. Not an official UvA partnership\./)
+  for (const label of ['What can AI do for', 'Campus lab', 'Blind review of both answer sets', 'Affiliate member', 'Past event credits', 'Which canal rules apply here?', 'Can listeners hear the brief?', 'What does one accepted job cost?']) {
+    assert.ok(html.includes(label), label)
+  }
+  assert.doesNotMatch(html, /try\.elevenlabs\.io|[?&]fpr=/)
   assert.match(html, /Read the complete Markdown contract/)
   assert.match(html, /\.claude\/agents\/starlight-architecture-design\.md/)
   assert.match(html, /Source and interface audit/)
