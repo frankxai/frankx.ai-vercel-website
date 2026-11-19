@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 import { contractMarkdown } from '@/content/partnerships/proposals/uva-contract-snapshots'
 import CollaborationExperience from '@/components/partnerships/uva/CollaborationExperience'
-import { agentContracts, proposal } from '@/content/partnerships/proposals/uva-rec-impact'
+import { agentContracts } from '@/content/partnerships/proposals/uva-rec-impact'
 
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: { absolute: 'What becomes possible when we build together? | FrankX' },
-  description: proposal.subtitle,
+  title: { absolute: 'What can AI do for Amsterdam? | FrankX' },
+  description: 'A proposed REC Impact field lab where students, researchers and Amsterdam practitioners test AI on public water data, music and service economics.',
   robots: {
     index: false, follow: false, noarchive: true, nosnippet: true,
     googleBot: { index: false, follow: false, noarchive: true, nosnippet: true },

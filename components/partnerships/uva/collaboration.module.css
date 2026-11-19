@@ -339,3 +339,23 @@
   .intake { gap:28px; padding-top:0; }.formRow { grid-template-columns:1fr; gap:0; }.intakeForm :is(input:not([type=checkbox]),select,textarea) { font-size:16px; }
   .continueLinks { gap:20px; }.experienceTimeline strong { font-size:12px; }.experienceTimeline small { font-size:10px; }.experienceCase>.eyebrow { font-size:11px; }
 }
+
+/* Reading and presentation modes share the proposal's ink and interaction palette. */
+.rec { --green:#d4c4ed; --ink:#f1efe9; --muted:#bdc4cc; --line:#38444e; background:#111a22; }
+.rec .presentation { background:#111a22; }
+.rec .heroGrid { gap:clamp(24px,5vw,72px); }
+.rec h1 em,.rec .heroTitle em { color:#decaad; }
+.rec .primary { color:#171a26!important; background:#e9ddd0; }
+.rec .primary:hover { background:#fff0da; }
+.rec a { --link-ink:#d8dcf6; --link-active:#ffe0af; color:var(--link-ink)!important; }
+.rec a:is(:hover,:focus-visible) { color:var(--link-active)!important; }
+.rec a:focus-visible, .rec :is(button,summary):focus-visible { outline-color:#e2ccff; }
+.rec figure a { --link-ink:#303e6d; --link-active:#774017; }
+.rec a:not(.wordmark) { text-decoration-line:underline; text-decoration-color:currentColor; text-decoration-thickness:1px; text-underline-offset:.25em; }
+.rec :is(.workIndex,.chapterNav) a { text-decoration:none; }
+@media (prefers-reduced-motion:no-preference) {
+  .rec a { transition:color 220ms ease; }
+  .rec a:not(.wordmark) { background-image:linear-gradient(90deg,#acb9fa,#d9adf1 60%,#f8d09c); background-position:left bottom; background-repeat:no-repeat; background-size:0 2px; transition:color 220ms ease,background-size 300ms cubic-bezier(.2,.7,.3,1); }
+  .rec a:is(:hover,:focus-visible) { background-size:100% 2px; }
+}
+.rec .workIndex a:is(:hover,:focus-visible) h3 { color:var(--link-active); }
