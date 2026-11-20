@@ -1,0 +1,381 @@
+.edition {
+  --ground: #101719;
+  --ink: #f4f3e9;
+  --subtle: #bdc7c3;
+  --mint: #b4e2d3;
+  --rule: #344346;
+  background: var(--ground);
+  color: var(--ink);
+}
+
+.shell {
+  width: min(100% - clamp(2.25rem, 7vw, 8rem), 76rem);
+  margin-inline: auto;
+}
+
+.edition :is(h1, h2, h3) {
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  letter-spacing: -.05em;
+  font-weight: 600;
+  margin: 0;
+}
+
+.edition a:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 5px;
+}
+
+.edition [id] {
+  scroll-margin-top: 6rem;
+}
+
+.masthead {
+  padding-top: clamp(5.8rem, 10vw, 9rem);
+  background: #0d1518;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, .83fr) minmax(0, 1.17fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4.2vw, 4.25rem);
+}
+
+.heroCopy {
+  padding-bottom: 2.3rem;
+}
+
+.kicker, .byline, .photo figcaption {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: .75rem;
+  line-height: 1.5;
+  color: var(--mint);
+}
+
+.kicker {
+  letter-spacing: .065em;
+  margin: 0 0 1rem;
+}
+
+.hero h1 {
+  font-size: clamp(3.15rem, 6.9vw, 6.2rem);
+  line-height: 1.03;
+  letter-spacing: -.082em;
+}
+
+.lead {
+  max-width: 35rem;
+  margin: 1.35rem 0 1.75rem;
+  color: var(--subtle);
+  font-size: clamp(1.05rem, 1.45vw, 1.28rem);
+  line-height: 1.66;
+}
+
+.primary, .textLink, .backLink {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 2.75rem;
+  gap: .65rem;
+  font-weight: 600;
+  font-size: .94rem;
+}
+
+.primary svg, .textLink svg, .ledgerRow svg, .backLink svg {
+  flex-shrink: 0;
+}
+
+.primary {
+  color: #102522;
+  background: var(--mint);
+  padding: .65rem 1.05rem .65rem 1.2rem;
+  border-radius: 999px;
+}
+
+.primary:hover {
+  background: #dcf4ec;
+}
+
+.textLink, .backLink {
+  color: var(--mint);
+  text-decoration: underline;
+  text-underline-offset: .27em;
+}
+
+.textLink:hover, .backLink:hover {
+  color: var(--ink);
+}
+
+.photo, .photo figcaption {
+  margin: 0;
+}
+
+.photoFrame {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #263137;
+}
+
+.photoFrame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1rem;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--rule);
+  padding: .8rem 0;
+  color: var(--subtle);
+}
+
+.photo a {
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+
+.index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .2rem clamp(1.2rem, 4vw, 3.5rem);
+  margin-top: clamp(1.65rem, 4vw, 3.5rem);
+  border-top: 1px solid var(--rule);
+  color: var(--subtle);
+  font-size: .9rem;
+}
+
+.index a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3.25rem;
+}
+
+.index a:hover {
+  color: var(--mint);
+  text-decoration: underline;
+  text-underline-offset: .25em;
+}
+
+.university, .ledger, .closing {
+  padding-block: clamp(3.3rem, 8vw, 7rem);
+}
+
+.university {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  gap: clamp(1.5rem, 9vw, 8rem);
+}
+
+.university h2, .ledger h2, .closing h2 {
+  font-size: clamp(2rem, 4.9vw, 4.1rem);
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.universityIntro > p:not(.kicker), .ledgerIntro > p, .closing p:not(.kicker) {
+  color: var(--subtle);
+  max-width: 34rem;
+  margin: 1.15rem 0 .8rem;
+  font-size: 1.04rem;
+  line-height: 1.7;
+}
+
+.pathways {
+  margin: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.pathways > div {
+  padding: 1.05rem 0 1.12rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.pathways dt {
+  font-weight: 650;
+  margin-bottom: .22rem;
+}
+
+.pathways dd {
+  margin: 0;
+  color: var(--subtle);
+  line-height: 1.65;
+}
+
+.pathways a, .inlineLink {
+  color: var(--mint);
+  text-decoration: underline;
+  text-underline-offset: .22em;
+}
+
+.ledger {
+  display: grid;
+  grid-template-columns: minmax(0, .63fr) minmax(0, 1.37fr);
+  gap: clamp(1.5rem, 6vw, 6rem);
+  border-top: 1px solid var(--rule);
+}
+
+.ledgerRows {
+  border-top: 1px solid var(--rule);
+}
+
+.ledgerRow {
+  border-bottom: 1px solid var(--rule);
+  padding: 1.35rem 0;
+}
+
+.ledgerRow .kicker {
+  margin-bottom: .38rem;
+}
+
+.ledgerRow h3 {
+  font-size: clamp(1.15rem, 2.3vw, 1.6rem);
+  line-height: 1.35;
+  letter-spacing: -.035em;
+}
+
+.ledgerRow h3 a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 2.5rem;
+}
+
+.ledgerRow h3 a:hover {
+  color: var(--mint);
+  text-decoration: underline;
+  text-underline-offset: .22em;
+}
+
+.ledgerRow > p:last-child {
+  color: var(--subtle);
+  margin: .25rem 1.75rem 0 0;
+  line-height: 1.6;
+}
+
+.closing {
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.closing h2 {
+  text-wrap: initial;
+}
+
+.closing .primary {
+  flex-shrink: 0;
+}
+
+.note {
+  padding: clamp(5.3rem, 9vw, 8rem) 0 clamp(4rem, 9vw, 8rem);
+}
+
+.noteHeader {
+  max-width: 56rem;
+}
+
+.backLink {
+  margin-bottom: 1.35rem;
+}
+
+.noteHeader h1 {
+  max-width: 50rem;
+  font-size: clamp(2.6rem, 7vw, 5.6rem);
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.noteHeader .byline {
+  display: flex;
+  gap: .75rem;
+  color: var(--subtle);
+  margin-bottom: 2rem;
+}
+
+.noteHeader .photoFrame {
+  aspect-ratio: 16 / 9;
+}
+
+.prose {
+  width: min(100% - 2.25rem, 43rem);
+  margin: 2.45rem auto 0;
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  line-height: 1.78;
+}
+
+.prose p, .prose ol {
+  color: var(--subtle);
+}
+
+.prose h2 {
+  margin-top: 2.6rem;
+  font-size: clamp(1.55rem, 4vw, 2.3rem);
+  line-height: 1.18;
+  text-wrap: balance;
+}
+
+.prose p, .prose ol {
+  margin-block: .9rem;
+}
+
+.prose a {
+  color: var(--mint);
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+
+.prose strong {
+  color: var(--ink);
+}
+
+.noteAction {
+  border-top: 1px solid var(--rule);
+  margin-top: 3.1rem;
+}
+
+@media (max-width: 760px) {
+  .hero, .university, .ledger {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero {
+    gap: 1.6rem;
+  }
+
+  .heroCopy {
+    padding: 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.15rem, 12.7vw, 4.8rem);
+  }
+
+  .lead {
+    margin: 1rem 0 1.15rem;
+  }
+
+  .hero .photoFrame {
+    aspect-ratio: 6 / 5;
+  }
+
+  .noteHeader .photoFrame {
+    aspect-ratio: 4 / 3;
+  }
+
+  .index {
+    margin-top: 1.15rem;
+  }
+
+  .closing {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .85rem;
+  }
+}

@@ -6,6 +6,7 @@ import { cache } from 'react'
 import imageNeeds from '@/data/tools/image-needs.json'
 import blogHeroManifest from '@/data/blog-hero-manifest.json'
 import { isCanonicalBlogSlug } from './blog-redirects.mjs'
+import { amsterdamDraftIsVisible, fieldNoteSlug } from '@/content/amsterdam/editorial'
 
 const blogDirectory = path.join(process.cwd(), 'content/blog')
 const blogImageFallback = '/images/blog/editorial/headers/best-ai-tools-for-creators-2026-hero.webp'
@@ -199,15 +200,28 @@ export function getAllBlogPostSummaries(): BlogPostSummary[] {
   return summaries
 }
 
+function readBlogPost(fullPath: string, slug: string): BlogPost | null {
+  try {
+    const { data, content } = matter(fs.readFileSync(fullPath, 'utf8'))
+    return buildBlogPost(slug, data, content)
+  } catch {
+    return null
+  }
+}
+
 export const getBlogPost = cache((slug: string): BlogPost | null => {
   if (!isCanonicalBlogSlug(slug)) return null
+  return readBlogPost(path.join(blogDirectory, slug + '.mdx'), slug)
+})
+
+export const getAmsterdamDraft = cache((): BlogPost | null => {
+  const encodedDraft = process.env.FRANKX_AMSTERDAM_EDITORIAL_DRAFT
+  if (!amsterdamDraftIsVisible() || !encodedDraft) return null
 
   try {
-    const fullPath = path.join(blogDirectory, `${slug}.mdx`)
-
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const { data, content } = matter(fileContents)
-    return buildBlogPost(slug, data, content)
+    const { data, content } = matter(Buffer.from(encodedDraft, 'base64').toString('utf8'))
+    if (!content.trim() || !data.title || !data.description || !data.author || !data.date) return null
+    return buildBlogPost(fieldNoteSlug, data, content)
   } catch {
     return null
   }
