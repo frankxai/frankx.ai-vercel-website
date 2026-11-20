@@ -1,10 +1,11 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Copy } from 'lucide-react'
+import { Copy, Download, Save, Trash2 } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 import { copyReviewReport, createCopyAttemptGuard, withReportProvenance } from '@/lib/ai-architect/report-export'
+import { loadReview, saveReview, removeReview, type ReviewLoadResult } from '@/lib/ai-architect/report-store'
 
 const FOCUS_RING =
   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-void'
@@ -129,6 +130,58 @@ export default function ReviewRunner() {
   const [copyState, setCopyState] = useState<'idle' | 'copied' | 'manual'>('idle')
   const [report, setReport] = useState('')
   const copyAttempt = useRef(createCopyAttemptGuard())
+  const [saved, setSaved] = useState<ReviewLoadResult>({ status: 'empty' })
+  const [storageNotice, setStorageNotice] = useState('')
+
+  useEffect(() => {
+    try { setSaved(loadReview(window.localStorage)) }
+    catch { setSaved({ status: 'unavailable' }) }
+  }, [])
+
+  const saveReport = () => {
+    let result: ReviewLoadResult
+    try { result = saveReview(window.localStorage, report, new Date().toISOString()) }
+    catch { result = { status: 'unavailable' } }
+    if (result.status === 'saved') {
+      setSaved(result)
+      setStorageNotice('Review saved on this device.')
+      trackEvent('ai_architect_review_saved', { destination: 'device' })
+    } else {
+      setStorageNotice('This browser could not save the review. Download the Markdown to keep a copy.')
+    }
+  }
+
+  const deleteSavedReport = () => {
+    let removed = false
+    try { removed = removeReview(window.localStorage) } catch { /* Storage can be blocked. */ }
+    if (!removed) {
+      setStorageNotice('This browser could not remove the saved review. Try again or clear this site’s stored data in browser settings.')
+      return
+    }
+    setSaved({ status: 'empty' })
+    setStorageNotice('Saved review removed from this device.')
+    trackEvent('ai_architect_review_removed', { destination: 'device' })
+  }
+
+  const downloadReport = (markdown: string) => {
+    if (!markdown) return
+    let url: string | undefined
+    let link: HTMLAnchorElement | undefined
+    try {
+      url = URL.createObjectURL(new Blob([markdown], { type: 'text/markdown;charset=utf-8' }))
+      link = document.createElement('a')
+      link.href = url
+      link.download = 'frankx-architecture-review.md'
+      document.body.appendChild(link)
+      link.click()
+      trackEvent('ai_architect_review_download_requested', {})
+    } catch {
+      setStorageNotice('The download could not start. Copy the Markdown from the report instead.')
+    } finally {
+      link?.remove()
+      if (url) setTimeout(() => URL.revokeObjectURL(url!), 1000)
+    }
+  }
 
   const answered = DECISIONS.filter((d) => answers[d.id] !== null).length
   const complete = answered === DECISIONS.length
@@ -185,6 +238,35 @@ export default function ReviewRunner() {
 
   return (
     <div>
+      <div className="mb-10 rounded-2xl border border-white/10 p-5">
+        <p className="text-sm leading-6 text-slate-400">Save one completed review on this device, or download a Markdown copy. Device storage is shared with anyone using this browser and can be cleared by browser settings. Saving again replaces the previous review.</p>
+        {saved.status === 'saved' ? (
+          <details className="mt-4" onToggle={(event) => {
+            if (event.currentTarget.open) trackEvent('ai_architect_review_reopened', { destination: 'device' })
+          }}>
+            <summary className={`cursor-pointer rounded-lg py-2 text-sm text-emerald-300 ${FOCUS_RING}`}>
+              Open saved review ({saved.review.savedAt.slice(0, 10)})
+            </summary>
+            <pre className="mt-3 max-h-96 overflow-auto whitespace-pre-wrap break-words rounded-xl border border-white/10 bg-black/40 p-4 font-mono text-xs leading-6 text-slate-300">{saved.review.report}</pre>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <button type="button" onClick={() => downloadReport(saved.review.report)} className={`inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 px-4 text-sm text-white ${FOCUS_RING}`}>
+                <Download className="h-4 w-4" aria-hidden="true" />Download saved review
+              </button>
+              <button type="button" onClick={deleteSavedReport} className={`inline-flex min-h-11 items-center gap-2 rounded-full px-4 text-sm text-slate-300 ${FOCUS_RING}`}>
+                <Trash2 className="h-4 w-4" aria-hidden="true" />Remove saved review
+              </button>
+            </div>
+          </details>
+        ) : saved.status === 'invalid' ? (
+          <div className="mt-3">
+            <p className="text-sm text-amber-300">The saved review could not be read. Your current answers are unchanged.</p>
+            <button type="button" onClick={deleteSavedReport} className={`mt-2 min-h-11 rounded-full px-4 text-sm text-slate-300 ${FOCUS_RING}`}>Remove unreadable saved review</button>
+          </div>
+        ) : saved.status === 'unavailable' ? (
+          <p className="mt-3 text-sm text-amber-300">Device storage is unavailable. You can still complete and download your review.</p>
+        ) : null}
+        <p role="status" className="mt-3 text-sm text-slate-300">{storageNotice}</p>
+      </div>
       <div className="space-y-10">
         {DECISIONS.map((decision) => (
           <fieldset key={decision.id}>
@@ -265,6 +347,13 @@ export default function ReviewRunner() {
               >
                 <Copy className="h-4 w-4" aria-hidden="true" />
                 {copyState === 'copied' ? 'Copied' : 'Copy the report'}
+              </button>
+              <button type="button" onClick={saveReport} disabled={!report} className={`inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 px-4 text-sm text-white disabled:opacity-50 ${FOCUS_RING}`}>
+                <Save className="h-4 w-4" aria-hidden="true" />
+                {saved.status === 'saved' && saved.review.report === report ? 'Saved on this device' : 'Save on this device'}
+              </button>
+              <button type="button" onClick={() => downloadReport(report)} disabled={!report} className={`inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 px-4 text-sm text-white disabled:opacity-50 ${FOCUS_RING}`}>
+                <Download className="h-4 w-4" aria-hidden="true" />Download Markdown
               </button>
               <button
                 type="button"
