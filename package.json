@@ -185,6 +185,7 @@
     "test:blog-schema": "node --experimental-strip-types --test scripts/tests/blog-schema.test.mjs",
     "test:contract-guard": "node scripts/check-contract-guard.mjs",
     "test:media-guard": "node --test scripts/tests/media-guard.contract.mjs",
+    "test:companion-selection": "node --test scripts/media/companion-selection.test.mjs scripts/media/companion-studio.test.mjs && tsc -p tsconfig.companion.json --noEmit",
     "test:syntax": "node scripts/check-test-syntax.mjs",
     "test:noopener": "node --test scripts/tests/visual-catalog-noopener.test.mjs scripts/tests/ikigai-speaker-noopener.test.mjs scripts/tests/ikigai-return-noopener.test.mjs scripts/tests/skills-library-url.test.mjs scripts/tests/content-studio-noopener.test.mjs",
     "test:glow-button": "node --test scripts/tests/glow-button-behavior.test.mjs",
