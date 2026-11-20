@@ -16,7 +16,7 @@ const phases = [
 ]
 const programmeLabels: Record<UniversityProgramme['id'], string> = {
   lecture: 'Guest lecture', keynote: 'Keynote & discussion', student: 'Student lab', workshop: 'Half-day workshop',
-  research: 'Research collaboration', cohort: 'Faculty cohort licence', executive: 'Executive lab',
+  research: 'Research translation', cohort: 'Faculty cohort licence', executive: 'Executive lab',
 }
 
 const teachingPath = [
@@ -48,13 +48,14 @@ export function HostBrief({ selected }: { selected: UniversityProgramme }) {
     <h1>{selected.name}</h1><p><strong>{selected.format} · {selected.fee}</strong></p><p>{selected.session}</p>
     <h2>Participants</h2><p>{selected.audience}</p><h2>What you take away</h2><p>{selected.output}</p>
     <h2>Host preparation</h2><p>{selected.host}</p><h2>Budget owner</h2><p>{selected.buyer}</p>
-    <h2>Booking</h2><p>Send your preferred dates, delivery location and course context to frank@frankx.ai. The written quote confirms scope, fees, applicable tax, travel and recording rights.</p>
+    <h2>Booking</h2><p>Fees are indicative. A booking is agreed in a written scope. Send your preferred dates, delivery location and course context to frank@frankx.ai. The written quote confirms scope, fees, applicable tax, travel and recording rights.</p>
     <footer>frankx.ai/partnerships/universities?programme={selected.id} · Independent teaching by Frank Riemer.</footer>
   </>
 }
 
 export default function CampusEdition({ selected, onSelect, guideInitiallyOpen, fromSourceCheck, onBook, intake, research, presentation }: Props) {
   const studentSession = experienceCases.find(item => item.id === 'students')!.links[0]
+  const nldigitalProof = experienceCases.find(item => item.id === 'nldigital')!.links[1]
   const guide = useRef<HTMLDetailsElement>(null)
   const scope = useRef<HTMLElement>(null)
   const next = selected.id === 'lecture' || selected.id === 'student' || selected.id === 'workshop' ? continuation[selected.id] : undefined
@@ -128,7 +129,7 @@ export default function CampusEdition({ selected, onSelect, guideInitiallyOpen, 
       <figure><Image src="/images/portraits/frank-presenting-oracle-2025.jpg" alt="Frank Riemer presenting at Oracle" width={960} height={720} sizes="(max-width: 740px) 100vw, 38vw"/><figcaption><MapPin size={14}/> From Frank’s time at Oracle</figcaption></figure>
       <div><p className={s.kicker}><span className={s.line}/> Your host</p><h2>Frank Riemer</h2><p className={s.byline}>AI Architect · Founder, Starlight Intelligence</p>
         <p>I worked in Oracle’s EMEA AI Center of Excellence. With MCI students, I taught a session on applying AI to their own skills and career choices. In Amsterdam, I facilitated an AI &amp; Ikigai workshop for NLdigital NextGen and the Young Oracle Board.</p>
-        <div className={s.evidence}><a href={studentSession.url}>MCI session account <ArrowUpRight size={15}/></a><a href="/workshops/ikigai-branding">NLdigital workshop material <ArrowUpRight size={15}/></a><a href="/bio">Speaker bio <ArrowUpRight size={15}/></a></div>
+        <div className={s.evidence}><a href={studentSession.url}>MCI session account <ArrowUpRight size={15}/></a><a href={nldigitalProof.url}>NLdigital workshop record <ArrowUpRight size={15}/></a><a href="/bio">Speaker bio <ArrowUpRight size={15}/></a></div>
       </div>
     </section>
 
@@ -148,7 +149,7 @@ export default function CampusEdition({ selected, onSelect, guideInitiallyOpen, 
           {next && <div className={s.followOn}><p>{next.prompt}</p><a href={`?programme=${next.to}${referral}#programme-scope`} onClick={event => openBrief(event, next.to, 'continuation')}>{next.link} <ArrowRight size={15}/></a></div>}
         </article>
       </div>
-      <div className={s.terms}><p>Fees are per engagement in EUR. Your written quote covers preparation, materials, tax, travel and recording rights. Dates are reserved by agreement.</p><button onClick={() => { trackEvent('university_brief_print', { programme: selected.id }); window.print() }}><Printer size={15}/> Print this brief</button></div>
+      <div className={s.terms}><p>Fees are indicative and per engagement in EUR. A booking is agreed in a written scope. Your written quote covers preparation, materials, tax, travel and recording rights. Dates are reserved by agreement.</p><button onClick={() => { trackEvent('university_brief_print', { programme: selected.id }); window.print() }}><Printer size={15}/> Print this brief</button></div>
     </details>
 
     <section className={s.booking} aria-label="Book a university programme">
