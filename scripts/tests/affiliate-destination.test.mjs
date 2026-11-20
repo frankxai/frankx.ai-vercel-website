@@ -35,3 +35,21 @@ test('cached Higgsfield recommendations keep the hop route before and after expi
       { href: '/go/higgsfield', sponsored: false })
   }
 })
+
+test('Apify and Riverside referrals preserve issued URLs and expire to official destinations', async () => {
+  const { getOutboundLink } = await import('../../data/outbound-links.ts')
+  const { resolveGoDestination } = await import('../../lib/tools/go-destination.ts')
+  const { recordsFromPrograms } = await import('../../lib/tools/record.ts')
+  const { programs } = JSON.parse(readFileSync(new URL('../../data/affiliate/programs.json', import.meta.url), 'utf8'))
+  const records = recordsFromPrograms(programs)
+  for (const [slug, issued, officialUrl] of [
+    ['apify', 'https://www.apify.com?fpr=vzmwk5', 'https://apify.com'],
+    ['riverside', 'https://affiliate.riverside.com/ib1bb4b5kgal', 'https://riverside.com'],
+  ]) {
+    const outboundDestination = getOutboundLink(slug)?.destination
+    assert.equal(outboundDestination, officialUrl)
+    assert.deepEqual(resolveProgramDestination(slug, programs, undefined, new Date('2026-11-17T12:00:00Z')), { href: `/go/${slug}`, sponsored: true })
+    assert.deepEqual(resolveGoDestination({ slug, records, outboundDestination, now: new Date('2026-11-17T12:00:00Z') }), { action: 'hop', href: issued })
+    assert.deepEqual(resolveGoDestination({ slug, records, outboundDestination, now: new Date('2027-02-01T12:00:00Z') }), { action: 'outbound', href: officialUrl })
+  }
+})

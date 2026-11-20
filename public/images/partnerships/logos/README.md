@@ -27,3 +27,17 @@ Simple-Icons / Wikipedia-sourced logo for the official press-kit asset:
 
 When swapping, update this README's row with the new source URL and license
 note. Keep the per-slug filename so partner configs don't need to change.
+
+## Current affiliate programme assets (17 November 2026)
+
+The hub uses these unmodified official wordmarks to identify the disclosed affiliate programmes. Logos do not imply endorsement, joint delivery or a strategic alliance. Programme status and referral links are maintained in `data/affiliate/programs.json`.
+
+| File | Official source | Usage |
+|---|---|---|
+| `elevenlabs-official.svg` | https://elevenlabs.io/brand (asset: https://11labs-nonprd-15f22c1d.s3.eu-west-3.amazonaws.com/0b9cd3e1-9fad-4a5b-b3a0-c96b0a1f1d2b/elevenlabs-logo-white.svg) | White wordmark on dark surface, clear space surrounding mark. |
+| `apify-wordmark.svg` | https://apify.com/img/apify-logo/wordmark-white.svg | Official white wordmark; linked from Apify brand assets. |
+| `riverside.svg` | https://cdn.prod.website-files.com/685be7dcd32275d3830651d3/685be7dcd32275d3830660f6_navbar-logo-updated-white.svg | Official white wordmark served on Riverside's website. |
+
+Cloudflare is identified in text. No new Cloudflare logo is used; its trademark guidance requires written logo permission. The programme member is Starlight Intelligence.
+
+Crew illustrations reuse the existing `uva-rec-impact/original-crew.jpg` source sheet as CSS sprites without redrawing, AI enhancement or identity changes. The original 640 × 427 source limits individual poses to 160 × 106.75 pixels; rendered sizes stay within that resolution.

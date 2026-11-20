@@ -20,6 +20,20 @@ export interface OutboundLink {
 
 export const outboundLinks: OutboundLink[] = [
   {
+    slug: 'apify',
+    destination: 'https://apify.com',
+    label: 'Apify',
+    category: 'tool',
+    description: 'Official fallback. Issued affiliate destination lives only in data/affiliate/programs.json.',
+  },
+  {
+    slug: 'riverside',
+    destination: 'https://riverside.com',
+    label: 'Riverside',
+    category: 'tool',
+    description: 'Official fallback. Issued affiliate destination lives only in data/affiliate/programs.json.',
+  },
+  {
     slug: 'higgsfield',
     destination: 'https://higgsfield.ai',
     label: 'Higgsfield',
