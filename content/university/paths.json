@@ -1,0 +1,37 @@
+[
+  {
+    "slug": "students", "title": "Students", "headline": "Build an assistant you can defend.",
+    "outcome": "Leave with a small source set, a working test and one example of when your assistant should decline to answer.",
+    "sequence": ["evidence", "agent-blueprint", "offline-lab", "rubric"],
+    "also": ["workflow-lab", "skill-anatomy", "starlight-skills", "purpose-fable"],
+    "invitation": "Discuss a supervised student challenge"
+  },
+  {
+    "slug": "professors", "title": "Professors", "headline": "Teach a lab another lecturer can repeat.",
+    "outcome": "Choose a learning objective, plan a 90-minute session and take away a rubric for reviewing student work.",
+    "sequence": ["teaching-contract", "workbook", "rubric", "educator-guide"],
+    "also": ["evidence", "offline-lab", "teamwork", "purpose-fable", "accessibility"],
+    "invitation": "Discuss a guest lecture or facilitated lab"
+  },
+  {
+    "slug": "researchers", "title": "Researchers", "headline": "Design a comparison someone else can rerun.",
+    "outcome": "Write down the baseline, the failure you expect and the observation that would change your conclusion.",
+    "sequence": ["observed-work", "selection", "research-record", "quote-protocol"],
+    "also": ["teamwork", "evidence", "teaching-contract", "offline-lab", "rubric"],
+    "invitation": "Propose a reproduction or research question"
+  },
+  {
+    "slug": "founders", "title": "Founders", "headline": "Find the assumption that could end your pilot.",
+    "outcome": "Take one customer problem through a prototype brief, a costed comparison and a decision about the next week of work.",
+    "sequence": ["product", "quote-protocol", "founder-stack", "risk-register"],
+    "also": ["agent-blueprint", "observed-work", "skill-anatomy", "community-checklist", "starlight-skills"],
+    "invitation": "Bring a bounded founder challenge"
+  },
+  {
+    "slug": "community", "title": "Community", "headline": "Start with a problem your community recognises.",
+    "outcome": "Prepare a brief that names who benefits, who reviews the prototype and how someone can participate without buying a tool.",
+    "sequence": ["impact", "accessibility", "community-checklist", "student-networks"],
+    "also": ["community-project", "community-blueprint", "purpose-fable", "risk-register"],
+    "invitation": "Discuss hosting a community challenge"
+  }
+]

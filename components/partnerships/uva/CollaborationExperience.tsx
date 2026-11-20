@@ -126,6 +126,7 @@ export default function CollaborationExperience({ contracts, context = 'proposal
             <p className={s.subtitle}>{proposal.subtitle}</p>
             <p className={s.opening}>A place to connect hands-on AI engineering with research, teaching and the next generation of founders.</p>
             {mode === 'page' && <div className={s.heroActions}><button ref={launch} className={s.primary} onClick={startPresentation}><Play size={17} aria-hidden="true" />Start guided presentation</button><a className={s.textLink} href="#conversation">Find your way in <ArrowDown size={16} aria-hidden="true" /></a></div>}
+            {context === 'public' && mode === 'page' && <a className={s.textLink} href="/university">Explore the University Commons <ArrowUpRight size={16} aria-hidden="true" /></a>}
           </div>
           <figure className={s.heroVisual}>
             <div className={s.visualTop}><span className={s.dot} />People, questions, working systems<span>01—06</span></div>

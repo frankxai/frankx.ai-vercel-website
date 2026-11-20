@@ -1,3 +1,5 @@
+import challengeBriefs from './university-challenges.json' with { type: 'json' }
+
 // Public invitation, proposed study designs and challenge briefs. No results implied.
 export const fellowshipUrl = 'https://recimpact.uva.nl/voor-partners/word-onderdeel-van-onze-community/word-impact-fellow'
 
@@ -42,16 +44,12 @@ export const researchTracks = [
   },
 ] as const
 
-export const challengeBriefs = [
-  { id: 'product', title: 'From idea to a testable product', discipline: 'Entrepreneurship × engineering', task: 'Choose one user problem. Build a small digital prototype and a test that could show the idea is wrong.', deliverable: 'Problem brief, working prototype, acceptance criteria and a decision log.', data: 'Public examples or an explicitly licensed, synthetic brief.', review: 'Can another person run it, explain its limitations and test the central assumption?' },
-  { id: 'evidence', title: 'An assistant that shows its evidence', discipline: 'Information science × responsible AI', task: 'Build a bounded research assistant that cites a fixed document set and identifies questions it cannot answer.', deliverable: 'Source list, answer rubric, failure cases and an inspectable workflow.', data: 'A small corpus with documented reuse rights. No private student or client records.', review: 'Can independent reviewers distinguish supported answers, errors and justified abstentions?' },
-  { id: 'impact', title: 'A small tool for a public-interest problem', discipline: 'Social science × design × technology', task: 'Co-define an information or coordination problem with a community organisation. Prototype one low-risk workflow.', deliverable: 'Stakeholder brief, accessible prototype and a method for evaluating usefulness.', data: 'Public or synthetic information; no automated eligibility or individual decisions.', review: 'Does the intended user find it useful, accessible and understandable? Report unmet needs too.' },
-] as const
+export { challengeBriefs }
 
 export const researchReadings = [
-  { title: 'AI and teamwork', citation: 'Dell’Acqua et al. · Organization Science, 2026', href: 'https://doi.org/10.1287/orsc.2025.20702', detail: 'A field experiment on product innovation motivates comparisons between individual and team configurations. Its setting does not establish outcomes for solo startups.' },
-  { title: 'Compare observed work with perceived progress', citation: 'Becker et al. · METR, July 2025', href: 'https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/', detail: 'A randomised study of experienced open-source developers found a slowdown in that setting, despite perceived gains. Include review time and observed performance.' },
-  { title: 'Account for selection and changing tools', citation: 'METR · February 2026 follow-up', href: 'https://metr.org/blog/2026-02-24-uplift-update/', detail: 'The follow-up discusses selection and measurement difficulties as AI use changes. Record who participates, which tasks are selected and what tools are used.' },
+  { id: 'teamwork', title: 'AI and teamwork', citation: 'Dell’Acqua et al. · Organization Science, 2026', href: 'https://doi.org/10.1287/orsc.2025.20702', detail: 'A field experiment on product innovation motivates comparisons between individual and team configurations. Its setting does not establish outcomes for solo startups.' },
+  { id: 'observed-work', title: 'Compare observed work with perceived progress', citation: 'Becker et al. · METR, July 2025', href: 'https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/', detail: 'A randomised study of experienced open-source developers found a slowdown in that setting, despite perceived gains. Include review time and observed performance.' },
+  { id: 'selection', title: 'Account for selection and changing tools', citation: 'METR · February 2026 follow-up', href: 'https://metr.org/blog/2026-02-24-uplift-update/', detail: 'The follow-up discusses selection and measurement difficulties as AI use changes. Record who participates, which tasks are selected and what tools are used.' },
 ] as const
 
 export function buildCollaborationMessage(audience: AudienceId, format: string, challenge: string, message: string) {
