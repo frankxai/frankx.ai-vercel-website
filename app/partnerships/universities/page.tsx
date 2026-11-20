@@ -4,7 +4,7 @@ import { agentContracts } from '@/content/partnerships/proposals/uva-rec-impact'
 import { contractMarkdown } from '@/content/partnerships/proposals/uva-contract-snapshots'
 
 const title = 'University AI lectures, workshops and research labs | Frank Riemer'
-const description = 'Compare seven university programmes with Frank Riemer. Try a free classroom case, inspect the teaching record and indicative fees, then request dates and a written scope.'
+const description = 'Teach a six-minute AI case, bring Frank Riemer into your seminar, or prepare your faculty to teach the lab. Explore host briefs and request dates.'
 const image = '/images/partnerships/universities/campus-studio.webp'
 
 export const metadata: Metadata = {

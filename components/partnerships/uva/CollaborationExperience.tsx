@@ -26,15 +26,17 @@ function Heading({ number, title, children }: { number: string; title: string; c
 
 export default function CollaborationExperience({ contracts, context = 'proposal', initialProgrammeId, fromSourceCheck = false }: { contracts: Contract[]; context?: 'public' | 'proposal'; initialProgrammeId?: string; fromSourceCheck?: boolean }) {
   const isPublic = context === 'public'
-  const [programme, setProgramme] = useState<UniversityProgramme>(() => universityProgrammes.find(item => item.id === initialProgrammeId) ?? universityProgrammes[0])
-  const [bookProgramme, setBookProgramme] = useState(true)
+  const initialProgramme = universityProgrammes.find(item => item.id === initialProgrammeId)
+  const [programme, setProgramme] = useState<UniversityProgramme>(initialProgramme ?? (isPublic ? universityProgrammes.find(item => item.id === 'lecture')! : universityProgrammes[0]))
+  const [bookProgramme, setBookProgramme] = useState(Boolean(initialProgramme) || !isPublic)
   const [challengeChosen, setChallengeChosen] = useState(false)
-  function chooseProgramme(item: UniversityProgramme) {
+  function chooseProgramme(item: UniversityProgramme, anchor?: string) {
     setProgramme(item)
     setBookProgramme(true)
     setChallengeChosen(false)
     const url = new URL(window.location.href)
     url.searchParams.set('programme', item.id)
+    if (anchor) url.hash = anchor
     window.history.replaceState(window.history.state, '', url)
     trackEvent('university_programme_select', { programme: item.id })
   }
@@ -194,7 +196,7 @@ export default function CollaborationExperience({ contracts, context = 'proposal
 
   return <main className={s.root} data-uva-proposal="true">
     {isPublic ? <div className={s.explore}>
-      <CampusEdition selected={programme} onSelect={chooseProgramme}
+      <CampusEdition selected={programme} onSelect={chooseProgramme} guideInitiallyOpen={Boolean(initialProgramme)} fromSourceCheck={fromSourceCheck}
         onBook={() => { trackEvent('university_dates_request', { programme: programme.id }); setChallengeChosen(false); joinAs(audience, true) }}
         intake={<CollaborationIntake publicBooking fromSourceCheck={fromSourceCheck} audience={audience} onAudienceChange={setAudience}
           challenge={challengeChosen ? selectedChallenge.title : ''} programme={bookProgramme ? programme : undefined}

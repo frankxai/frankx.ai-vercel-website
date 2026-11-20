@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowDownToLine, ArrowRight, Check, FileText, FolderOpen } from 'lucide-react'
 import { trackEvent } from '@/lib/analytics'
-import { universityProgrammes } from '@/content/partnerships/university-programmes'
 import { claim, decisions, evidence, rounds, samplePath, type Decision } from './case'
 import s from './sample.module.css'
 
@@ -34,7 +33,12 @@ export default function SourceDesk() {
       reference_decision: rounds[index].expected, cited_sources: rounds[index].citations, supported_wording: rounds[index].finding,
     })),
   }
-  const hostProgrammes = universityProgrammes.filter(item => item.id === 'lecture' || item.id === 'workshop')
+  function hostLink(programme: 'lecture' | 'workshop') {
+    return {
+      href: '/partnerships/universities?programme=' + programme + '&via=source-check#programme-scope',
+      onClick: () => trackEvent('university_case_host_click', { programme, case_id: 'source-check', completed: complete }),
+    }
+  }
 
   return <>
     <section id="source-desk" className={s.desk}>
@@ -68,6 +72,7 @@ export default function SourceDesk() {
               <figcaption>18 attendees <span>9 yes · 3 no · 6 unknown</span></figcaption></figure>
             <button type="button" className={s.primary} onClick={() => setStep(1)}>Remove the exit slips and replay <ArrowRight size={16}/></button></> :
             <div className={s.resultLinks}><a className={s.primary} href={'data:application/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(trace, null, 2))} download="source-check-review.json">Save your review trace <ArrowDownToLine size={16}/></a>
+              <a className={s.textLink} href="#faculty-kit">Teach this with your class <ArrowRight size={15}/></a>
               <button className={s.textLink} type="button" onClick={() => { setAnswers([]); setStep(0); roundTitle.current?.focus() }}>Start again</button></div>}
         </div>}
       </div>
@@ -81,13 +86,13 @@ export default function SourceDesk() {
           <div className={s.techLinks}><a className={s.inkLink} href={samplePath + '/eval-fixtures'} download>Download evaluation fixtures (.json) <ArrowDownToLine size={15}/></a><a className={s.inkLink} href="/guides/ai-operating-systems-workshop">Read the engineering curriculum <ArrowRight size={15}/></a></div></aside>
       </div>
     </div></section>
-    <section className={s.host}><div className={s.inner}><p className={s.kicker}>Bring Frank to your course</p>
-      <h2>What decision should <em>your students</em> be able to defend?</h2>
-      <p>Send a syllabus and one decision from the field. I’ll adapt the case to your course and give the next reviewer a way to check the work.</p>
-      <div className={s.programmes}>{hostProgrammes.map(item => <a key={item.id} href={'/partnerships/universities?programme=' + item.id + '&via=source-check#programmes'}
-        onClick={() => trackEvent('university_case_host_click', { programme: item.id, case_id: 'source-check', completed: complete })}>
-        <span>{item.format}</span><strong>{item.name}</strong><p>{item.output}</p><b>{item.fee} <ArrowRight size={17}/></b></a>)}</div>
-      <a className={s.textLink} href="/partnerships/universities#your-host">See Frank’s teaching record <ArrowRight size={15}/></a>
+    <section className={s.host}><div className={s.inner}><p className={s.kicker}>A guest seminar with Frank</p>
+      <h2>What would this debate sound like <em>in your field?</em></h2>
+      <p>Give me one decision from your syllabus. I’ll bring two AI answers to the seminar. Your students choose which one they would defend, and you keep the rubric for their next assignment.</p>
+      <div className={s.heroLinks}><a className={s.primary} {...hostLink('lecture')}>Read the guest lecture brief <ArrowRight size={16}/></a>
+        <a className={s.textLink} href="/partnerships/universities#your-host">Meet Frank</a></div>
+      <div className={s.buildInvite}><p>Already teaching AI evaluation? Give teams a half-day to build and test their own assistant.</p>
+        <a className={s.textLink} {...hostLink('workshop')}>Explore the build workshop <ArrowRight size={15}/></a></div>
     </div></section>
   </>
 }
