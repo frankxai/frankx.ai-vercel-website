@@ -81,19 +81,16 @@ const tools = [
     name: 'Music Lab',
     tagline: 'AI prompt architecture for Suno mastery',
     description:
-      'Songs made with Suno. 65 tracks indexed. Access the prompt library, album curation system, and production patterns.',
+      'Songs made with Suno. Access the prompt library, album curation system, and production patterns.',
     href: '/music-lab',
     hrefLabel: 'Explore Music Lab',
     externalHref: false,
-    status: 'Coming Soon' as const,
-    statusColor: 'text-white/40 bg-white/5 border-white/10',
+    status: 'Live' as const,
+    statusColor: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
     color: 'emerald' as const,
     icon: '🎵',
     keyRequired: null,
-    stats: [
-      { n: '65', label: 'Indexed tracks' },
-      { n: '5', label: 'Album concepts' },
-    ],
+    stats: [],
   },
 ]
 
@@ -288,9 +285,7 @@ export default function LabPage() {
                   FRANK-Ω · Message
                 </div>
                 <p className="text-white/70 text-sm leading-relaxed">
-                  &ldquo;Hello. Your key, your data, your bill — I touch nothing I shouldn&apos;t.
-                  Gemini Pro models run about $0.001 per image. Generate 1,000 infographics
-                  for a dollar. You&apos;re welcome.&rdquo;
+                  &ldquo;Hello. Your key, your data, your bill — I touch nothing I shouldn&apos;t.&rdquo;
                 </p>
               </div>
             </div>
