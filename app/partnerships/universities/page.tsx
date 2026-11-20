@@ -17,5 +17,5 @@ export const metadata: Metadata = {
 export default async function UniversityCollaborationPage({ searchParams }: { searchParams: Promise<{ programme?: string | string[]; via?: string | string[] }> }) {
   const { programme, via } = await searchParams
   const contracts = agentContracts.map((agent, index) => ({ ...agent, markdown: contractMarkdown[index] }))
-  return <CollaborationExperience contracts={contracts} context="public" fromSourceCheck={via === 'source-check'} initialProgrammeId={typeof programme === 'string' ? programme : undefined} />
+  return <CollaborationExperience contracts={contracts} context="public" fromSourceCheck={via === 'source-check'} fromAmsterdam={via === 'amsterdam'} initialProgrammeId={typeof programme === 'string' ? programme : undefined} />
 }

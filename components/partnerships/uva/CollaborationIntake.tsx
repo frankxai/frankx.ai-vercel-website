@@ -8,7 +8,7 @@ import { MEET_AND_GROW_URL } from '@/lib/cta-links'
 import { trackEvent } from '@/lib/analytics'
 import s from './collaboration.module.css'
 
-export default function CollaborationIntake({ audience, onAudienceChange, challenge, publicBooking, fromSourceCheck = false, programme, onProgrammeChange }: { audience: AudienceId; onAudienceChange: (value: AudienceId) => void; challenge: string; publicBooking?: boolean; fromSourceCheck?: boolean; programme?: UniversityProgramme; onProgrammeChange?: (value?: UniversityProgramme) => void }) {
+export default function CollaborationIntake({ audience, onAudienceChange, challenge, publicBooking, fromSourceCheck = false, fromAmsterdam = false, programme, onProgrammeChange }: { audience: AudienceId; onAudienceChange: (value: AudienceId) => void; challenge: string; publicBooking?: boolean; fromSourceCheck?: boolean; fromAmsterdam?: boolean; programme?: UniversityProgramme; onProgrammeChange?: (value?: UniversityProgramme) => void }) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle')
   const [error, setError] = useState('')
   const [ackSent, setAckSent] = useState(false)
@@ -37,12 +37,13 @@ export default function CollaborationIntake({ audience, onAudienceChange, challe
           intent: 'partnership', name, email: String(data.get('email') || '').trim(),
           company: String(data.get('company') || '').trim(),
           message: buildCollaborationMessage(audience, format, challenge, detail),
-          source: window.location.pathname, website: String(data.get('website') || ''), consent: data.get('consent') === 'on',
+          source: window.location.pathname + (fromAmsterdam ? '?via=amsterdam' : ''),
+          website: String(data.get('website') || ''), consent: data.get('consent') === 'on',
         }),
       })
       const result = await response.json().catch(() => ({}))
       if (!response.ok || !result.ok) throw new Error(result.error || 'Your inquiry could not be confirmed. Please try again or email Frank directly.')
-      if (publicBooking) trackEvent('university_inquiry_accepted', { programme: programme?.id ?? 'open', ...(fromSourceCheck ? { case_id: 'source-check' } : {}) })
+      if (publicBooking) trackEvent('university_inquiry_accepted', { programme: programme?.id ?? 'open', ...(fromSourceCheck ? { case_id: 'source-check' } : {}), ...(fromAmsterdam ? { entry: 'amsterdam' } : {}) })
       setAckSent(Boolean(result.ackSent))
       setStatus('done')
       form.reset()

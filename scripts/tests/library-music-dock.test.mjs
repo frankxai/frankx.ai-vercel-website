@@ -5,7 +5,7 @@ import test from 'node:test'
 const source = fs.readFileSync('components/music/MusicRuntime.tsx', 'utf8')
 const clearanceCss = fs.readFileSync('app/qa-overlay-clearance.css', 'utf8')
 
-test('the library uses the corner music chip until the player is opened', () => {
+test('reading routes use the corner music chip until the player is opened', () => {
   assert.match(
     source,
     /pathname === '\/library' \|\| pathname\.startsWith\('\/library\/'\)/,
@@ -14,9 +14,10 @@ test('the library uses the corner music chip until the player is opened', () => 
     source,
     /pathname === '\/blueprints'/,
   )
+  assert.match(source, /pathname === amsterdamPath \|\| pathname === fieldNotePath/)
   assert.match(
     source,
-    /const collapsedChip = \(isHome \|\| onLibrary \|\| onBooks \|\| onBlueprints\) && !expanded/,
+    /const collapsedChip = \(isHome \|\| onLibrary \|\| onBooks \|\| onBlueprints \|\| onAmsterdamEdition\) && !expanded/,
   )
   assert.match(
     source,
