@@ -262,13 +262,6 @@ const githubRepoItems = [
     external: true,
   },
   {
-    name: 'FrankX Repo',
-    description: 'Private dev and content-authoring source repository.',
-    href: 'https://github.com/frankxai/FrankX',
-    icon: Layers,
-    external: true,
-  },
-  {
     name: 'Agent Input Loop',
     description: 'Route decisions through the agent stack before major implementation.',
     href: '/agents',
