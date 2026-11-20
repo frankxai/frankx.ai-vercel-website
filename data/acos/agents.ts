@@ -301,6 +301,24 @@ export function pillarCounts() {
   return { total, shipped, inProgress, gap }
 }
 
+/**
+ * Audited inventory from the external frankxai/agentic-creator-os repository.
+ * Source: frankxai/agentic-creator-os/README.md (lines 28-35) at commit f60b0a5de9a8,
+ * verified 2026-10-23. Keep external repository counts in this single record
+ * with source and date so /acos routes never drift or contradict one another.
+ */
+export const ACOS_REPO_SNAPSHOT = {
+  repo: 'frankxai/agentic-creator-os',
+  sourcePath: 'README.md',
+  commit: 'f60b0a5de9a8',
+  verifiedOn: '2026-10-23',
+  skills: 176,
+  commands: 85,
+  agents: 81,
+  activationRules: 32,
+  safetyHooks: 5,
+} as const
+
 // ────────────────────────────────────────────────────────────────────────────
 // L99 LAYER — tier + gates as side-tables (keep slot definitions diff-stable)
 // ────────────────────────────────────────────────────────────────────────────

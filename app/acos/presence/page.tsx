@@ -20,40 +20,41 @@ import {
   GitBranch,
   Layers,
 } from 'lucide-react'
+import { ACOS_REPO_SNAPSHOT } from '@/data/acos/agents'
 
 // ── Gate questions — compact form for ACOS module doc ──────────────────────
 
 const gates = [
-  { roman: 'I',    title: 'SEE',     question: 'What do you see?',                          icon: Eye,          color: '#43BFE3' },
-  { roman: 'II',   title: 'HEAR',    question: 'What do you hear?',                         icon: Volume2,      color: '#7C3AED' },
-  { roman: 'III',  title: 'SMELL',   question: 'What do you smell?',                        icon: Wind,         color: '#10B981' },
-  { roman: 'IV',   title: 'TASTE',   question: 'What do you taste?',                        icon: Droplets,     color: '#F59E0B' },
-  { roman: 'V',    title: 'FEEL',    question: 'What does your body feel?',                 icon: Hand,         color: '#F43F5E' },
-  { roman: 'VI',   title: 'SENSE',   question: 'What does your whole body sense?',          icon: Waves,        color: '#14B8A6' },
-  { roman: 'VII',  title: 'MIND',    question: 'What thought is here right now?',           icon: Brain,        color: '#6366F1' },
-  { roman: 'VIII', title: 'WITNESS', question: 'What remains when thought is quiet?',       icon: InfinityIcon, color: '#CBD5E1' },
+  { roman: 'I',    title: 'See',     question: 'What do you see?',                          icon: Eye,          color: '#43BFE3' },
+  { roman: 'II',   title: 'Hear',    question: 'What do you hear?',                         icon: Volume2,      color: '#7C3AED' },
+  { roman: 'III',  title: 'Smell',   question: 'What do you smell?',                        icon: Wind,         color: '#10B981' },
+  { roman: 'IV',   title: 'Taste',   question: 'What do you taste?',                        icon: Droplets,     color: '#F59E0B' },
+  { roman: 'V',    title: 'Feel',    question: 'What does your body feel?',                 icon: Hand,         color: '#F43F5E' },
+  { roman: 'VI',   title: 'Sense',   question: 'What does your whole body sense?',          icon: Waves,        color: '#14B8A6' },
+  { roman: 'VII',  title: 'Mind',    question: 'What thought is here right now?',           icon: Brain,        color: '#6366F1' },
+  { roman: 'VIII', title: 'Witness', question: 'What remains when thought is quiet?',       icon: InfinityIcon, color: '#CBD5E1' },
 ]
 
 // ── Integration points ─────────────────────────────────────────────────────
 
 const integrations = [
   {
-    label: 'Pre-Session Gate',
+    label: 'Pre-session gate',
     timing: 'Before every work block',
     description: 'Runs automatically when you open ACOS. The minimum viable version (Gates I + V) takes 30 seconds. Cannot be skipped — can be compressed.',
-    level: 'Level 0 — The Gate',
+    level: 'Level 0 — The gate',
     color: '#10B981',
     rgb: '16, 185, 129',
     code: `$ claude
 /acos
 
-> ACOS v10 loaded. Starting session...
+> ACOS loaded. Starting session...
 
 ⬟ Full Presence Activation — Level 0
   I   What do you see?           [5s]
   V   What does your body feel?  [8s]
 
-> Presence confirmed. 38 agents ready.
+> Presence confirmed. ${ACOS_REPO_SNAPSHOT.agents} agent profiles ready.
   What are you building today?`,
   },
   {
@@ -122,7 +123,7 @@ export default function ACOSPresencePage() {
 
           {/* Badge */}
           <div className="flex flex-wrap items-center gap-3 mb-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.3em] text-emerald-300">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-emerald-300">
               <Circle className="w-2 h-2 fill-emerald-400 text-emerald-400" />
               Module · FPA v1.0
             </div>
@@ -133,10 +134,10 @@ export default function ACOSPresencePage() {
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6">
             <span className="bg-gradient-to-r from-white via-emerald-100 to-cyan-100 bg-clip-text text-transparent">
-              Full Presence
+              Full presence
             </span>
             <br />
-            <span className="text-white/40 font-light">Activation</span>
+            <span className="text-white/40 font-light">activation</span>
           </h1>
 
           <p className="text-white/60 text-lg md:text-xl max-w-2xl leading-relaxed mb-8">
@@ -153,7 +154,7 @@ export default function ACOSPresencePage() {
               Most sessions start mid-scatter — three browser tabs open, Slack half-read,
               yesterday's problem still running in the background.
               <br /><br />
-              ACOS can load 75 skills and route 38 agents.
+              ACOS can load {ACOS_REPO_SNAPSHOT.skills} skill modules and route {ACOS_REPO_SNAPSHOT.agents} agent profiles ({ACOS_REPO_SNAPSHOT.repo}, verified {ACOS_REPO_SNAPSHOT.verifiedOn}).
               But if the operator is absent, none of it reaches its depth.
               <br /><br />
               FPA is 30 seconds minimum. It is the only ACOS protocol that cannot be automated.
@@ -174,7 +175,7 @@ export default function ACOSPresencePage() {
         >
           <div className="flex items-center gap-3 mb-2">
             <GitBranch className="w-5 h-5 text-white/30" />
-            <h2 className="text-2xl font-semibold text-white/80">Three Integration Points</h2>
+            <h2 className="text-2xl font-semibold text-white/80">Three integration points</h2>
           </div>
           <p className="text-white/30 ml-8">How FPA runs inside every ACOS work block.</p>
         </motion.div>
@@ -194,7 +195,7 @@ export default function ACOSPresencePage() {
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <span
-                    className="text-xs font-semibold tracking-widest uppercase"
+                    className="text-xs font-semibold tracking-wide"
                     style={{ color: point.color }}
                   >
                     {String(i + 1).padStart(2, '0')} — {point.label}
@@ -247,7 +248,7 @@ export default function ACOSPresencePage() {
         >
           <div className="flex items-center gap-3 mb-2">
             <Layers className="w-5 h-5 text-white/30" />
-            <h2 className="text-2xl font-semibold text-white/80">Depth Level Routing</h2>
+            <h2 className="text-2xl font-semibold text-white/80">Depth level routing</h2>
           </div>
           <p className="text-white/30 ml-8">ACOS selects the level based on session context. Override manually with the command.</p>
         </motion.div>
@@ -255,7 +256,7 @@ export default function ACOSPresencePage() {
         {/* Routing table */}
         <div className="rounded-2xl border border-white/[0.07] bg-white/[0.02] overflow-hidden">
           {/* Header */}
-          <div className="grid grid-cols-[auto_1fr_auto_1fr] gap-4 px-6 py-3 border-b border-white/[0.06] text-xs font-mono text-white/25 uppercase tracking-widest">
+          <div className="grid grid-cols-[auto_1fr_auto_1fr] gap-4 px-6 py-3 border-b border-white/[0.06] text-xs font-mono text-white/25 tracking-wide">
             <span>Command</span>
             <span>Level</span>
             <span>Duration</span>
@@ -313,7 +314,7 @@ export default function ACOSPresencePage() {
         >
           <div className="flex items-center gap-3 mb-2">
             <Eye className="w-5 h-5 text-white/30" />
-            <h2 className="text-2xl font-semibold text-white/80">The Eight Gates</h2>
+            <h2 className="text-2xl font-semibold text-white/80">The eight gates</h2>
           </div>
           <p className="text-white/30 ml-8">
             Based on the Buddhist six sense-bases (āyatana) + Eckhart Tolle's Now + Tantric somatic awakening.
@@ -368,7 +369,7 @@ export default function ACOSPresencePage() {
             &ldquo;You cannot create from depth if you arrive scattered.
             The first protocol of ACOS is not a command. It is an arrival.&rdquo;
           </blockquote>
-          <p className="text-white/20 text-sm tracking-widest uppercase">FrankX — ACOS v10 Design Notes</p>
+          <p className="text-white/20 text-sm tracking-wide">FrankX — ACOS design notes</p>
         </motion.div>
       </section>
 
@@ -386,7 +387,7 @@ export default function ACOSPresencePage() {
                 <Eye className="w-4 h-4 text-violet-400" />
               </div>
               <h3 className="font-semibold text-white/70 mb-2 group-hover:text-white transition-colors">
-                Open the Practice
+                Open the practice
               </h3>
               <p className="text-white/30 text-sm mb-4">
                 The full /presence experience — all 8 gates with instructions, silence guides, and five depth levels.
@@ -405,7 +406,7 @@ export default function ACOSPresencePage() {
                 <Clock className="w-4 h-4 text-amber-400" />
               </div>
               <h3 className="font-semibold text-white/70 mb-2 group-hover:text-white transition-colors">
-                Daily Rituals
+                Daily rituals
               </h3>
               <p className="text-white/30 text-sm mb-4">
                 How FPA fits into Morning Prime, Deep Build, Studio Session, and Evening Review.
@@ -427,7 +428,7 @@ export default function ACOSPresencePage() {
                 Back to ACOS
               </h3>
               <p className="text-white/30 text-sm mb-4">
-                75+ skills, 38 agents, 35+ commands. FPA is one module in the full operating system.
+                {ACOS_REPO_SNAPSHOT.skills} skill modules, {ACOS_REPO_SNAPSHOT.agents} agent profiles, and {ACOS_REPO_SNAPSHOT.commands} slash commands ({ACOS_REPO_SNAPSHOT.repo}, verified {ACOS_REPO_SNAPSHOT.verifiedOn}).
               </p>
               <div className="flex items-center gap-1 text-emerald-400/50 text-sm group-hover:text-emerald-400 transition-colors">
                 Explore ACOS <ArrowRight className="w-3 h-3" />
