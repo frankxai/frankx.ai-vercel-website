@@ -2,15 +2,16 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import test from 'node:test'
 
+import { heroOf, normalise, renderedTest, textContent } from './helpers/homepage-rendered.mjs'
+
 const read = (relative) => readFileSync(new URL(relative, import.meta.url), 'utf8')
-const homepage = read('../../components/home/HomePageElite.tsx')
 const routes = read('../../components/home/SignalRouteSelector.tsx')
 
-test('homepage hero drops the unsourced track count', () => {
-  assert.ok(homepage.length > 1000)
-  assert.ok(!homepage.startsWith('$file:'))
-  assert.ok(homepage.includes('Excellence and agentic operating systems\u2014built'))
-  assert.ok(!homepage.includes('twelve thousand tracks of studio craft'))
+renderedTest('homepage hero drops the unsourced track count', (document) => {
+  const { hero } = heroOf(document)
+  const heroText = normalise(textContent(hero))
+  assert.ok(heroText.includes('Excellence and agentic operating systems\u2014built'))
+  assert.ok(!normalise(textContent(document)).includes('twelve thousand tracks of studio craft'))
 })
 
 test('signal routes carry no unsourced proof figures', () => {
