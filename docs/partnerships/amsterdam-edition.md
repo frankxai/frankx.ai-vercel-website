@@ -33,7 +33,7 @@ For the article release, place the approved MDX into the public blog corpus, set
 
 The three directions considered were a documentary spread, a classroom-first case page and a city field index. The spread gives Amsterdam a recognisable place and makes the teaching decision legible in the same viewport. A classroom-first layout would repeat the job of the existing programme page. A dense city index fits the older founder workspace guide.
 
-Use the FrankX Poppins, Inter and JetBrains Mono roles. The existing campus page establishes the dark teal ground and pale mint actions. The city treatment uses quiet rules, tightly set headings and visible photographic credits. The campus page keeps its distinct teaching illustration. Use the asymmetrical spread to give the photograph room on desktop and a separately proportioned panel on mobile. The field note narrows the reading measure and uses a different waterfront image. No authored animation. Anchors move at the browser’s default speed and focus stays visible.
+Use the FrankX Poppins, Inter and JetBrains Mono roles. The existing campus page establishes the dark teal ground and pale mint actions. The city treatment uses quiet rules, tightly set headings and visible photographic credits. The campus page keeps its distinct teaching illustration. Use the asymmetrical spread to give the photograph room on desktop and a separately proportioned panel on mobile. The field note narrows the reading measure and uses a different waterfront image. Both new reading surfaces use the existing compact music control so it leaves the viewport available for the page. No authored animation. Anchors move at the browser’s default speed and focus stays visible.
 
 References consulted include the Starlight Identity Foundations material board, FrankX partner and education deck, FrankX design and taste documents, the Visual Studio registry, [Nieuwe Instituut](https://nieuweinstituut.nl/en), [Canadian Centre for Architecture](https://www.cca.qc.ca/en/) and [Failed Architecture](https://failedarchitecture.com/). The transferable decisions are clear article credits, a readable distinction between collections and articles, and modest navigation chrome.
 
@@ -72,7 +72,14 @@ Count qualified leads in the existing operations workflow. A university lead nee
 | 4 · Thursday 26 Nov | Acquisition and Workshop Operations | Review mock form traces and the intake tagging, agree a qualified-lead definition, and confirm reporting access. Validate at least one visitor per primary audience can find the correct next action in the preview. |
 | 5 · Friday 27 Nov | Frank plus release verifier | Accept, return for revision or hold the draft. Record reviewed head, check results, image rights and exactly which article or site change is approved. Production release needs a separate approval. |
 
-Backlog order after this draft: P0 independent editorial and accessible browser review; P0 verify intake delivery with an approved internal test; P1 report the rooftop forecast case only when [#1291](https://github.com/frankxai/frankx.ai-vercel-website/issues/1291) has a reproducible protocol; P1 make a second teaching field note after a peer reruns the source-check case; P2 commission a maker profile at NDSM after a consented interview and credited shoot. A dated, hosted local workshop can earn its own published listing when the offer and logistics are confirmed.
+The editorial backlog starts with verification and advances with evidence.
+
+- P0. Complete independent editorial and accessible browser review. Verify intake delivery with an approved internal test.
+- P1. Report the rooftop forecast case once [#1291](https://github.com/frankxai/frankx.ai-vercel-website/issues/1291) has a reproducible protocol.
+- P1. Make a second teaching field note after a peer reruns the source-check case.
+- P2. Commission a maker profile at NDSM after a consented interview and credited shoot.
+
+A dated, hosted local workshop can earn its own published listing when the offer and logistics are confirmed.
 
 GitHub owns changes. [University operations #263](https://github.com/frankxai/agentic-ops/issues/263) owns the institutional work. [Experience operations #598](https://github.com/frankxai/agentic-ops/issues/598) owns venue and event dependencies. The existing FrankX planning view and editorial calendar retain status and review dates. No new tracking database.
 

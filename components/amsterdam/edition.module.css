@@ -58,9 +58,9 @@
 }
 
 .hero h1 {
-  font-size: clamp(3.15rem, 6.9vw, 6.2rem);
+  font-size: clamp(3.15rem, 6.1vw, 5.4rem);
   line-height: 1.03;
-  letter-spacing: -.082em;
+  letter-spacing: -.073em;
 }
 
 .lead {
