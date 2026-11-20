@@ -1,0 +1,76 @@
+---
+title: 'Turning an Internal Tool Into an Apify Actor'
+description: >-
+  How a script you already run for yourself can become a paid tool other
+  people's agents call: Apify's two pricing models, the 80 percent revenue
+  share, payouts, and what to check before you publish.
+date: '2026-11-12'
+lastModified: '2026-11-12'
+author: Frank
+tags:
+  - Agents
+  - Creator Economy
+  - Apify
+  - Monetization
+keywords:
+  - monetize apify actor
+  - apify pay per event
+  - sell scraper as a service
+  - apify store developer revenue
+  - agent tools income
+category: Intelligence Dispatches
+featured: false
+readingGoal: >-
+  Decide whether an internal tool is worth publishing as a paid Apify Actor and
+  understand how the money works before you start.
+readingTime: 8 min
+tldr: >-
+  Apify lets you publish a tool as an Actor and charge for it in two ways: pay
+  per event, where users pay for actions your code triggers, or pay per usage,
+  where they pay only platform costs. Apify keeps 20 percent of revenue as
+  commission. Payouts are monthly once you pass a minimum. The real work is
+  picking a tool other agents will call repeatedly and keeping it maintained.
+---
+
+Every builder I know has a drawer of small tools. A script that pulls a job board into a spreadsheet. A checker that flags when a competitor changes a page. They were written for one person and they work.
+
+Some of those tools are worth more as a product other people's agents call than as a file on your laptop. Apify's store is one place that turns them into one. Disclosure: I'm an Apify affiliate, which pays me when someone I refer buys a plan. Publishing your own Actor is a separate program with its own terms, quoted below from Apify's documentation.
+
+## What an Actor is
+
+An Actor is a program hosted on Apify that takes a small input, does its job, and writes the output somewhere the caller can read it, usually a dataset of rows. Agents call Actors through Apify's MCP server, so a well-described Actor becomes a tool any MCP client can discover and run. When the caller is an agent acting for a person, the Actor's description is what the agent reads when it decides whether to use it, so write it for that reader.
+
+## The two ways to charge
+
+Apify's monetization docs list two pricing models for a public Actor:
+
+- **Pay per event.** Users pay for specific events your code triggers, for example per result returned or per page processed. You decide whether to pass the platform usage costs on to users.
+- **Pay per usage.** Users pay only the platform usage their runs generate, with no extra charge from you.
+
+Pay per event is the model that earns you money directly, so it is the one to understand.
+
+## How the money works
+
+From Apify's docs, verbatim where it matters:
+
+- Apify keeps **20 percent** of your Actor's revenue as commission, and "will never charge you if your Actor doesn't earn anything."
+- You receive 80 percent, and for pay-per-event Actors Apify deducts platform usage costs from your payout. The docs put it as profit equals 0.8 times revenue, minus platform costs, counted on users with paid plans.
+- If an Actor's profit for a month comes out negative, Apify sets it to zero for that month.
+- Payout invoices are generated on the **11th of each month** for the previous month. You have three days to review, and payouts go out between the 21st and 25th.
+- The minimum payout is **$20 for PayPal and Wise** and **$100 for other methods**. Below that, the balance rolls over. You need billing details, a payment method and identity verification before you can be paid.
+- Significant pricing changes, such as raising prices or adding a paid event, take effect after **14 days' notice**, and you can submit them once per month per Actor.
+
+## Which tools are worth publishing
+
+The economics reward tools that agents call often and that need little attention from you. Before I would publish anything, I would want yes on four questions:
+
+1. **Does it repeat?** A tool someone runs weekly earns again. A one-off lookup earns once.
+2. **Is the output structured?** Rows an agent can read beat a blob of text.
+3. **Can I keep it working?** If the site it scrapes changes monthly, maintenance is the job. Budget for it or pick another tool.
+4. **Is collection allowed?** The site's terms and data-protection law apply to your users' runs as much as to your own.
+
+## A first step that costs nothing
+
+Take the internal tool you use most and write the README you would need if a stranger's agent had to choose it: what input it takes, what it returns, what it costs per event, and what it will not do. If that README is hard to write, the tool is not ready. If it is easy, you have most of an Actor listing already.
+
+For the other side of this, choosing Actors as a user and keeping their data out of your model's context, see [how my agents get the web](/blog/how-my-agents-get-the-web).

@@ -1,0 +1,68 @@
+---
+title: 'The Context Boundary: Why My Agents Never Read the Data'
+description: >-
+  A design rule for agent systems: the model sees job status, counts and a
+  small sample, and the data itself moves between systems without passing
+  through the context window.
+date: '2026-11-12'
+lastModified: '2026-11-12'
+author: Frank
+tags:
+  - Agents
+  - AI Architecture
+  - Context Engineering
+keywords:
+  - context window cost agents
+  - agent architecture data pipeline
+  - keep data out of llm context
+  - context engineering
+category: Intelligence Dispatches
+featured: false
+readingGoal: >-
+  Apply one architectural rule that keeps agent jobs cheap, fast and reviewable
+  as the data grows.
+readingTime: 5 min
+tldr: >-
+  A model pays for every token that passes through its context. If an agent
+  reads the data it handles, cost and latency grow with the job and the context
+  eventually runs out. Draw a line: above it the agent sees status, counts and a
+  five-row sample; below it data moves by API between systems. The sample is
+  also where a person checks the work.
+---
+
+There is a line in every agent system I build now. I call it the context boundary.
+
+Above the line is everything the model reads: the instruction, the plan, tool results. Below it is everything the model handles without reading: the rows a scraper returned, the files a job produced, the records it moved from one system to another.
+
+The rule is that data stays below the line.
+
+## Why the line exists
+
+A language model pays for every token that passes through its context, and it can only hold so many. An agent that reads every row it touches gets slower and more expensive as the job grows, and at some size it stops working entirely because the rows no longer fit.
+
+The work the agent actually needs to do is small. It needs to know whether the job ran, whether it returned roughly what was expected, and whether the output looks right. None of that requires reading the whole thing.
+
+## What crosses the line
+
+Four things go up to the model:
+
+1. **Status.** Running, succeeded, failed.
+2. **A count.** How many rows, files or records.
+3. **A sample.** About five items, enough to see whether the right field was captured.
+4. **A pointer.** A dataset ID or a file path, so the next step knows where to look.
+
+Everything else moves sideways, API to API, from the system that produced it to the system that stores it.
+
+## Where I first got this wrong
+
+I harvested my own music catalog with an agent. The first version had the agent scroll the page and read every entry, so each row passed through the model. The version that worked had the agent write a small harvester once; the harvester saved rows to disk and the agent only ever saw a count and whether the run was done. Same result, and the model's work stopped growing with the catalog.
+
+## The boundary is also the review point
+
+The five-row sample does a second job. It is the cheapest possible human check. A person can look at five rows in a few seconds and say "wrong field" or "looks right" before anything acts on the data. Put the review there, at the boundary, and you get oversight that does not slow the system down.
+
+## Where it applies
+
+Any agent job that handles more data than it reasons about: scraping, exports, migrations, log analysis, inbox triage, research pulls. The more the data grows relative to the decision, the more the boundary pays.
+
+I applied it to web data in [how my agents get the web](/blog/how-my-agents-get-the-web). The builder's version, with the step-by-step sequence and a diagram, is on Agentic Passive Income: [when Apify is the right layer](https://www.agenticpassiveincome.com/blog/apify-agent-web-layer).
