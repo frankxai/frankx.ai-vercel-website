@@ -286,11 +286,10 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'the-wordless-laws',
     title: 'The Wordless Laws',
-    subtitle: 'Twelve Forces That Shape Every Life',
+    subtitle: 'Stories of attention, choice and change',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'Twelve timeless forces of how a life is made — shown through story, insight, and a distilled passage, but never named. The reader recognizes each one and feels they discovered it. Book One of The Wordless Laws.',
+    description: 'Twelve contemplative essays on decision, imagination, persistence and the patterns we notice in a life. Book One approaches its themes through story and reflection.',
     keywords: [
       'the wordless laws',
       'laws of life',
@@ -336,12 +335,11 @@ export const booksRegistry: BookConfig[] = [
   // ─── The Wordless Laws · Book Two: The Practice (named) ──────────
   {
     slug: 'the-wordless-laws-book-two',
-    title: 'The Wordless Laws, Book Two: The Practice',
-    subtitle: 'The Forces Named — and How to Work Them',
+    title: 'The Wordless Laws: In Practice',
+    subtitle: 'Attention, expectation and the habits we rehearse',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'Book One showed twelve forces and refused to name them. Book Two names every one, traces it through ancient traditions and modern science, and hands you a tested practice and a do-it-yourself experiment to feel it work within days.',
+    description: 'The practical companion to The Wordless Laws, with chapters on self-talk, mental rehearsal, gratitude and persistence. Read the traditions as traditions, examine the research claims, and treat personal exercises as observations rather than proof.',
     keywords: [
       'the wordless laws book two',
       'law of attraction',
@@ -354,7 +352,8 @@ export const booksRegistry: BookConfig[] = [
       'frank riemer',
       'experiments',
     ],
-    coverImage: '/images/books/the-wordless-laws-book-two-cover.png',
+    coverImage: '/images/books/wordless-practice-nilo-brio-v1.webp',
+    coverTreatment: 'illustrated',
     theme: {
       id: 'the-wordless-laws-book-two',
       name: 'The Wordless Laws, Book Two',
@@ -368,31 +367,30 @@ export const booksRegistry: BookConfig[] = [
     categories: ['Self-Development', 'Manifestation', 'Meditation', 'Personal Growth'],
     contentDir: 'content/books/the-wordless-laws-book-two',
     chapters: [
-      { slug: 'introduction', title: 'The Words for the Wordless', number: 1, readingTime: '8 min', description: 'Why Book Two names what Book One hid — and the honesty promise: tradition, science, and what you must test yourself.', published: true, type: 'prose' },
-      { slug: 'the-power-of-decision', title: 'The Power of Decision', number: 2, readingTime: '14 min', description: 'Definite purpose, named — write the one-sentence aim and live from it.', published: true, type: 'prose' },
-      { slug: 'the-state-that-attracts', title: 'The State That Attracts', number: 3, readingTime: '14 min', description: 'The law of attraction, named honestly — state, expectation, and the attention that finds what you carry.', published: true, type: 'prose' },
-      { slug: 'the-voice-you-rehearse', title: 'The Voice You Rehearse', number: 4, readingTime: '14 min', description: 'Self-talk as a tool — the affirmation and incantation protocol.', published: true, type: 'prose' },
-      { slug: 'the-rehearsal-of-the-real', title: 'The Rehearsal of the Real', number: 5, readingTime: '14 min', description: 'Visualization and mental rehearsal — what athletes know, turned into a nightly script.', published: true, type: 'prose' },
-      { slug: 'the-belief-that-comes-first', title: 'The Belief That Comes First', number: 6, readingTime: '14 min', description: 'Faith and expectation — grounded in the science of the placebo.', published: true, type: 'prose' },
-      { slug: 'the-gratitude-engine', title: 'The Gratitude Engine', number: 7, readingTime: '14 min', description: 'Gratitude as a practice — and thanks given in advance.', published: true, type: 'prose' },
-      { slug: 'the-imagination-workshop', title: 'The Imagination Workshop', number: 8, readingTime: '14 min', description: 'Creative imagination — capturing ideas and rehearsing the unbuilt.', published: true, type: 'prose' },
-      { slug: 'the-unbending-will', title: 'The Unbending Will', number: 9, readingTime: '14 min', description: 'Persistence and grit — streaks, identity, and the science of not quitting.', published: true, type: 'prose' },
-      { slug: 'the-third-mind', title: 'The Third Mind', number: 10, readingTime: '14 min', description: 'The mastermind — how two aligned minds make a third.', published: true, type: 'prose' },
-      { slug: 'the-law-of-circulation', title: 'The Law of Circulation', number: 11, readingTime: '14 min', description: 'Giving and reciprocity — the open hand that gives and receives.', published: true, type: 'prose' },
-      { slug: 'the-deeper-mind', title: 'The Deeper Mind', number: 12, readingTime: '14 min', description: 'The subconscious, breathwork, and inner stillness — handing the problem to the worker in the dark.', published: true, type: 'prose' },
-      { slug: 'the-art-of-allowing', title: 'The Art of Allowing', number: 13, readingTime: '14 min', description: 'Surrender and letting go — wanting fully while releasing the how.', published: true, type: 'prose' },
-      { slug: 'the-closing', title: 'The Last Word', number: 14, readingTime: '6 min', description: 'The script on the wall, now legible. Go and live one law at a time.', published: true, type: 'prose' },
+      { slug: 'introduction', title: 'From Intention to Practice', number: 1, readingTime: '5 min', description: 'A reading method for separating inherited teachings, research claims and personal observations.', published: true, type: 'prose' },
+      { slug: 'the-power-of-decision', title: 'The Power of Decision', number: 2, readingTime: '14 min', description: 'Choosing a goal and giving the next action a place in the day.', published: true, type: 'prose' },
+      { slug: 'the-state-that-attracts', title: 'The State That Attracts', number: 3, readingTime: '14 min', description: 'Attention and expectation: what you notice, how you interpret it and what remains outside your control.', published: true, type: 'prose' },
+      { slug: 'the-voice-you-rehearse', title: 'The Voice You Rehearse', number: 4, readingTime: '14 min', description: 'The language of inner speech and a practice for noticing recurring thoughts.', published: true, type: 'prose' },
+      { slug: 'the-rehearsal-of-the-real', title: 'The Rehearsal of the Real', number: 5, readingTime: '14 min', description: 'Mental rehearsal, preparation and the limits of imagining an outcome.', published: true, type: 'prose' },
+      { slug: 'the-belief-that-comes-first', title: 'The Belief That Comes First', number: 6, readingTime: '14 min', description: 'Belief and expectation, with attention to what the evidence can establish.', published: true, type: 'prose' },
+      { slug: 'the-gratitude-engine', title: 'The Gratitude Engine', number: 7, readingTime: '14 min', description: 'A reflection practice for recording appreciation without promising a result.', published: true, type: 'prose' },
+      { slug: 'the-imagination-workshop', title: 'The Imagination Workshop', number: 8, readingTime: '14 min', description: 'Capturing ideas and giving an imagined possibility an external form.', published: true, type: 'prose' },
+      { slug: 'the-unbending-will', title: 'The Unbending Will', number: 9, readingTime: '14 min', description: 'Persistence, setbacks and the decision to continue or change course.', published: true, type: 'prose' },
+      { slug: 'the-third-mind', title: 'The Third Mind', number: 10, readingTime: '14 min', description: 'Collaboration, shared attention and the work of thinking with another person.', published: true, type: 'prose' },
+      { slug: 'the-law-of-circulation', title: 'The Law of Circulation', number: 11, readingTime: '14 min', description: 'Giving, reciprocity and the limits of expecting a return.', published: true, type: 'prose' },
+      { slug: 'the-deeper-mind', title: 'The Deeper Mind', number: 12, readingTime: '14 min', description: 'Reflection, stillness and the experience of returning to an unresolved question.', published: true, type: 'prose' },
+      { slug: 'the-art-of-allowing', title: 'The Art of Allowing', number: 13, readingTime: '14 min', description: 'Acting on a commitment while accepting uncertainty about its outcome.', published: true, type: 'prose' },
+      { slug: 'the-closing', title: 'The Last Word', number: 14, readingTime: '6 min', description: 'Choosing one practice to examine in the days after the book.', published: true, type: 'prose' },
     ],
   },
   // ─── 0. The Golden Age of Intelligence (Flagship Manifesto) ─────
   {
     slug: 'golden-age-of-intelligence',
     title: 'The Golden Age of Intelligence',
-    subtitle: 'Awakening the Two Most Powerful Devices Ever Created',
+    subtitle: 'Human judgment in a world of capable machines',
     author: 'Frank Riemer',
     publishDate: '2026',
-    description:
-      'A visionary manifesto on the convergence of human and artificial intelligence — what neuroscience now confirms, what the ancients always knew, and how to deploy both. The flagship work of the FrankX library.',
+    description: 'An ongoing essay collection on human and artificial intelligence: attention, creative tools, collaboration and the choices involved in building with them. Its scientific and philosophical arguments require different kinds of evidence.',
     keywords: [
       'golden age of intelligence',
       'human intelligence',
@@ -582,11 +580,10 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'love-and-poetry',
     title: 'Love & Poetry',
-    subtitle: 'Verses That Move the Soul',
+    subtitle: 'Across distance, devotion and ordinary days',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'A curated collection of the world\'s most beautiful love poetry — Rumi, Rilke, Goethe, Gibran — woven with original verse. Spanning centuries, cultures, and languages.',
+    description: 'A collection bringing Rumi, Rilke, Goethe and Gibran into conversation with original verse. Five chapters move through desire, devotion, language and the details of loving someone.',
     keywords: ['love poetry', 'Rumi', 'Rilke', 'Goethe', 'poetry collection', 'romantic poetry'],
     coverImage: '/images/books/love-and-poetry-cover.png',
     theme: {
@@ -661,12 +658,11 @@ export const booksRegistry: BookConfig[] = [
   // ─── 2. Spartan Mindset ─────────────────────────────────────────
   {
     slug: 'spartan-mindset',
-    title: 'Spartan Mindset',
-    subtitle: 'The Discipline of One More',
+    title: 'The Next Repetition',
+    subtitle: 'Training, discipline and the decision to return',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'A manual for the relentless. Discipline, training, and the philosophy of pushing past limits. Every chapter is a rep you didn\'t think you had.',
+    description: 'Five chapters on training, consistency, recovery and the decisions that sustain a practice. A working notebook for returning to difficult work.',
     keywords: ['discipline', 'gym training', 'mental toughness', 'spartan', 'mindset', 'fitness philosophy'],
     coverImage: '/images/books/spartan-mindset-cover.png',
     theme: {
@@ -742,11 +738,10 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'golden-age',
     title: 'The Golden Age of Creators',
-    subtitle: 'The Democratization of Creative Capability and Distribution',
+    subtitle: 'Making work and finding an audience',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'A transformative exploration of how the creator economy crossed $250 billion, how 45 million people now create professionally, and how the barriers to creative expression have evaporated.',
+    description: 'Three essays on the creator economy, access to creative tools, and the changing relationship between making something and distributing it.',
     keywords: ['creator economy', 'AI and creativity', 'golden age of intelligence', 'creative entrepreneurship'],
     coverImage: '/images/golden-age/hero-golden-age.png',
     theme: {
@@ -795,12 +790,11 @@ export const booksRegistry: BookConfig[] = [
   // ─── 4. The Art of Self-Development ─────────────────────────────
   {
     slug: 'self-development',
-    title: 'The Art of Self-Development',
-    subtitle: 'Seven Pillars of a Complete Life',
+    title: 'A Life You Can Sustain',
+    subtitle: 'Energy, work, money and the people around you',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'A systematic approach to building every dimension of your life — energy, mind, soul, craft, capital, circle, and legacy. Not theory. Routines that work.',
+    description: 'An ongoing collection about energy, attention, craft, money, relationships and what remains after the work. Each chapter takes one part of daily life seriously.',
     keywords: ['self-development', 'personal growth', 'routines', 'habits', 'life design'],
     coverImage: '/images/books/self-development-cover.png',
     theme: {
@@ -829,12 +823,11 @@ export const booksRegistry: BookConfig[] = [
   // ─── 5. Imagination ─────────────────────────────────────────────
   {
     slug: 'imagination',
-    title: 'Imagination',
-    subtitle: 'Unlocking the Power of the Mind',
+    title: 'Before It Exists',
+    subtitle: 'Imagination, mental models and creative work',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'Your imagination is the most powerful technology you possess. This book teaches you how to wield it — creative visualization, mental models, and the architecture of thought.',
+    description: 'Five chapters on forming an idea, rehearsing possibilities and giving thought an external form. An exploration of imagination as part of creative practice.',
     keywords: ['imagination', 'creative visualization', 'mental models', 'cognitive expansion', 'mind power'],
     coverImage: '/images/books/imagination-cover.png',
     theme: {
@@ -861,12 +854,11 @@ export const booksRegistry: BookConfig[] = [
   // ─── 6. Manifestation ───────────────────────────────────────────
   {
     slug: 'manifestation',
-    title: 'Manifestation',
-    subtitle: 'The Architecture of Reality',
+    title: 'From Intention to Action',
+    subtitle: 'Attention, belief and what you actually do',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'Not wishful thinking. Not magic. The grounded, psychological, and strategic approach to turning thought into reality — updated for the AI age.',
+    description: 'An examination of manifestation through goals, expectation, behavior and sustained effort. Spiritual interpretations and claims about physical causation need to be read separately.',
     keywords: ['manifestation', 'law of attraction', 'psychology of intention', 'goal achievement', 'mental architecture'],
     coverImage: '/images/books/manifestation-cover.png',
     theme: {
@@ -895,11 +887,10 @@ export const booksRegistry: BookConfig[] = [
     variantGroup: 'hope-book',
     alternateSlug: 'hope',
     title: 'Hoffnung',
-    subtitle: 'Ein Licht in der Dunkelheit',
+    subtitle: 'Worte für Abschied, Wandel und Nähe',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'Poesie, Meditation und heilsame Texte für Zeiten von Trauer, Übergang und Neubeginn. Für Familien, die Halt, Sprache und leise Stärke suchen.',
+    description: 'Gedichte, Briefe und nachdenkliche Texte über Trauer, Unsicherheit und die Rückkehr in den Alltag. Zum stillen Lesen, allein oder mit einem geliebten Menschen.',
     keywords: ['hoffnung buch', 'trauerbegleitung', 'poesie', 'heilung', 'meditation'],
     coverImage: '/images/books/hoffnung-cover.png',
     theme: {
@@ -922,11 +913,10 @@ export const booksRegistry: BookConfig[] = [
     variantGroup: 'hope-book',
     alternateSlug: 'hoffnung',
     title: 'Hope',
-    subtitle: 'A Light in the Dark',
+    subtitle: 'Words for grief, change and staying close',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'Poetry, meditations, and healing reflections for seasons of grief, transition, and renewal. A companion book for families who need language, calm, and strength.',
+    description: 'Poetry, letters and contemplative passages for grief, uncertainty and the return to ordinary life. A companion for quiet reading, alone or with someone you love.',
     keywords: ['hope poetry book', 'grief support', 'healing writing', 'meditation', 'compassion'],
     coverImage: '/images/books/hoffnung-cover.png',
     theme: {
@@ -945,115 +935,12 @@ export const booksRegistry: BookConfig[] = [
   },
   // ─── 7. The Wordless Laws · Book One (concealed) ────────────────
   {
-    slug: 'the-wordless-laws',
-    title: 'The Wordless Laws',
-    subtitle: 'Twelve Forces That Shape Every Life',
-    author: 'Frank',
-    publishDate: '2026',
-    description:
-      'Twelve timeless forces of how a life is made — shown through story, insight, and a distilled passage, but never named. The reader recognizes each one and feels they discovered it. Book One of The Wordless Laws.',
-    keywords: [
-      'the wordless laws',
-      'laws of life',
-      'success principles',
-      'think and grow rich',
-      'the secret',
-      'manifestation',
-      'self-development',
-      'wisdom',
-      'frank riemer',
-      'personal growth',
-    ],
-    coverImage: '/images/books/the-wordless-laws-cover.png',
-    theme: {
-      id: 'the-wordless-laws',
-      name: 'The Wordless Laws',
-      primary: 'indigo',
-      accent: 'amber',
-      bgDark: '#08080f',
-      headingFont: 'serif',
-      bodyFont: 'serif',
-    },
-    status: 'published',
-    categories: ['Wisdom', 'Self-Development', 'Manifestation', 'Personal Growth'],
-    contentDir: 'content/books/the-wordless-laws',
-    chapters: [
-      { slug: 'invitation', title: 'An Invitation', number: 1, readingTime: '5 min', description: 'Why the most powerful laws of life hide in plain sight — and how to read them.', published: true, type: 'prose' },
-      { slug: 'the-one-who-decides', title: 'The One Who Decides', number: 2, readingTime: '13 min', description: 'A single, total decision rearranges everything downstream. The undecided life stays formless.', published: true, type: 'prose' },
-      { slug: 'the-tuning-of-a-life', title: 'The Tuning of a Life', number: 3, readingTime: '13 min', description: 'What you hold steadily inside begins to meet you outside. State precedes circumstance.', published: true, type: 'prose' },
-      { slug: 'the-words-said-in-the-dark', title: 'The Words Said in the Dark', number: 4, readingTime: '13 min', description: 'Repeated inner speech pours the floor you stand on. You become the sentence you say most.', published: true, type: 'prose', epigraph: { text: 'A man is what he thinks about all day long.', author: 'Ralph Waldo Emerson' } },
-      { slug: 'the-picture-before-the-thing', title: 'The Picture Before the Thing', number: 5, readingTime: '13 min', description: 'Hold the finished image first, and the hands and the world arrange toward it.', published: true, type: 'prose' },
-      { slug: 'the-leap-taken-before-the-bridge', title: 'The Leap Taken Before the Bridge', number: 6, readingTime: '13 min', description: 'You must act as if it is already true before the proof exists — or the proof never comes.', published: true, type: 'prose' },
-      { slug: 'thanks-given-in-advance', title: 'Thanks Given in Advance', number: 7, readingTime: '13 min', description: 'Thanks given before the gift opens the channel for the gift. Lack repels; fullness draws.', published: true, type: 'prose' },
-      { slug: 'the-spark-that-becomes-the-world', title: 'The Spark That Becomes the World', number: 8, readingTime: '13 min', description: 'Everything ever built was first an invisible thing in one mind. The idea is the asset.', published: true, type: 'prose' },
-      { slug: 'the-mind-that-will-not-bend', title: 'The Mind That Will Not Bend', number: 9, readingTime: '13 min', description: 'The world tests every desire with delay and refusal. The one who will not quit is rare — and rarity is rewarded.', published: true, type: 'prose', epigraph: { text: 'Energy and persistence conquer all things.', author: 'Benjamin Franklin' } },
-      { slug: 'the-minds-that-become-one', title: 'The Minds That Become One', number: 10, readingTime: '13 min', description: 'Two minds in true alignment create a third, more capable than either alone.', published: true, type: 'prose' },
-      { slug: 'the-river-that-returns', title: 'The River That Returns', number: 11, readingTime: '13 min', description: 'What you release in the right spirit returns enlarged. The closed hand can neither give nor receive.', published: true, type: 'prose', epigraph: { text: 'Give, and it shall be given unto you.', author: 'Luke 6:38' } },
-      { slug: 'the-knowing-that-sleeps', title: 'The Knowing That Sleeps', number: 12, readingTime: '13 min', description: 'Hand the problem to the deeper mind and stop forcing; the answer surfaces when you let go.', published: true, type: 'prose' },
-      { slug: 'the-open-hand', title: 'The Open Hand', number: 13, readingTime: '13 min', description: 'Decide fully — then release the grip on how and when. Tension blocks; allowing completes.', published: true, type: 'prose', epigraph: { text: 'Nature does not hurry, yet everything is accomplished.', author: 'Lao Tzu' } },
-      { slug: 'the-last-page', title: 'The Last Page', number: 14, readingTime: '6 min', description: 'The laws were in the reader the whole time.', published: true, type: 'prose' },
-    ],
-  },
-  // ─── 8. The Wordless Laws · Book Two: The Practice (named) ──────
-  {
-    slug: 'the-wordless-laws-book-two',
-    title: 'The Wordless Laws, Book Two: The Practice',
-    subtitle: 'The Forces Named — and How to Work Them',
-    author: 'Frank',
-    publishDate: '2026',
-    description:
-      'Book One showed twelve forces and refused to name them. Book Two names every one, traces it through ancient traditions and modern science, and hands you a tested practice and a do-it-yourself experiment to feel it work within days.',
-    keywords: [
-      'the wordless laws book two',
-      'law of attraction',
-      'manifestation techniques',
-      'breathwork',
-      'meditation',
-      'visualization',
-      'gratitude practice',
-      'self-development',
-      'frank riemer',
-      'experiments',
-    ],
-    coverImage: '/images/books/the-wordless-laws-book-two-cover.png',
-    theme: {
-      id: 'the-wordless-laws-book-two',
-      name: 'The Wordless Laws, Book Two',
-      primary: 'amber',
-      accent: 'indigo',
-      bgDark: '#0b0a07',
-      headingFont: 'serif',
-      bodyFont: 'serif',
-    },
-    status: 'published',
-    categories: ['Self-Development', 'Manifestation', 'Meditation', 'Personal Growth'],
-    contentDir: 'content/books/the-wordless-laws-book-two',
-    chapters: [
-      { slug: 'introduction', title: 'The Words for the Wordless', number: 1, readingTime: '8 min', description: 'Why Book Two names what Book One hid — and the honesty promise: tradition, science, and what you must test yourself.', published: true, type: 'prose' },
-      { slug: 'the-power-of-decision', title: 'The Power of Decision', number: 2, readingTime: '14 min', description: 'Definite purpose, named — write the one-sentence aim and live from it.', published: true, type: 'prose' },
-      { slug: 'the-state-that-attracts', title: 'The State That Attracts', number: 3, readingTime: '14 min', description: 'The law of attraction, named honestly — state, expectation, and the attention that finds what you carry.', published: true, type: 'prose' },
-      { slug: 'the-voice-you-rehearse', title: 'The Voice You Rehearse', number: 4, readingTime: '14 min', description: 'Self-talk as a tool — the affirmation and incantation protocol.', published: true, type: 'prose' },
-      { slug: 'the-rehearsal-of-the-real', title: 'The Rehearsal of the Real', number: 5, readingTime: '14 min', description: 'Visualization and mental rehearsal — what athletes know, turned into a nightly script.', published: true, type: 'prose' },
-      { slug: 'the-belief-that-comes-first', title: 'The Belief That Comes First', number: 6, readingTime: '14 min', description: 'Faith and expectation — grounded in the science of the placebo.', published: true, type: 'prose' },
-      { slug: 'the-gratitude-engine', title: 'The Gratitude Engine', number: 7, readingTime: '14 min', description: 'Gratitude as a practice — and thanks given in advance.', published: true, type: 'prose' },
-      { slug: 'the-imagination-workshop', title: 'The Imagination Workshop', number: 8, readingTime: '14 min', description: 'Creative imagination — capturing ideas and rehearsing the unbuilt.', published: true, type: 'prose' },
-      { slug: 'the-unbending-will', title: 'The Unbending Will', number: 9, readingTime: '14 min', description: 'Persistence and grit — streaks, identity, and the science of not quitting.', published: true, type: 'prose' },
-      { slug: 'the-third-mind', title: 'The Third Mind', number: 10, readingTime: '14 min', description: 'The mastermind — how two aligned minds make a third.', published: true, type: 'prose' },
-      { slug: 'the-law-of-circulation', title: 'The Law of Circulation', number: 11, readingTime: '14 min', description: 'Giving and reciprocity — the open hand that gives and receives.', published: true, type: 'prose' },
-      { slug: 'the-deeper-mind', title: 'The Deeper Mind', number: 12, readingTime: '14 min', description: 'The subconscious, breathwork, and inner stillness — handing the problem to the worker in the dark.', published: true, type: 'prose' },
-      { slug: 'the-art-of-allowing', title: 'The Art of Allowing', number: 13, readingTime: '14 min', description: 'Surrender and letting go — wanting fully while releasing the how.', published: true, type: 'prose' },
-      { slug: 'the-closing', title: 'The Last Word', number: 14, readingTime: '6 min', description: 'The script on the wall, now legible. Go and live one law at a time.', published: true, type: 'prose' },
-    ],
-  },
-  // ─── The Book of Secrets (craft companion to The Wordless Laws) ─
-  {
     slug: 'the-book-of-secrets',
-    title: 'The Book of Secrets',
-    subtitle: 'What Every Maker Learns Too Late',
+    title: 'The Work Behind the Work',
+    subtitle: 'On starting, revising and finishing',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'Twelve secrets of how great work actually gets made — the plain, unglamorous truths every working maker knows and almost no one is told at the start. The craft companion to The Wordless Laws: where that book is how a life is made, this is how the work is made.',
+    description: 'Twelve essays on the less visible parts of making something: beginning, practicing, revising and finishing. A craft companion to The Wordless Laws.',
     keywords: [
       'the book of secrets',
       'creativity',
@@ -1101,11 +988,10 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'arcanea-bestiary',
     title: 'The Bestiary of Creation',
-    subtitle: 'Creatures of the Creative Mind',
+    subtitle: 'An Arcanea field guide',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'A field guide to the psychological creatures every creator encounters — the Blank Terror, the Perfect Phantom, and the beings of light and dark that inhabit the creative journey.',
+    description: 'A literary field guide to creatures of the creative mind, including the Blank Terror and the Perfect Phantom. These beings belong to the fictional world of Arcanea.',
     keywords: ['creativity', 'psychology', 'bestiary', 'arcanea', 'creative process', 'inner critic'],
     coverImage: '/images/books/arcanea-bestiary-cover.png',
     theme: {
@@ -1133,11 +1019,10 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'arcanea-chronicles',
     title: 'The Chronicles of Arcanea',
-    subtitle: 'Stories of the Ten Guardians',
+    subtitle: 'Origin stories of the Ten Guardians',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'Ten origin stories of the Guardians of Arcanea — Lyssandria, Leyla, Draconia, and more — each revealing how fear, doubt, and imperfection became the foundation of their power.',
+    description: 'Ten stories about the Guardians of Arcanea and the choices behind their beginnings. Fantasy from the Arcanea collection.',
     keywords: ['arcanea', 'guardians', 'mythology', 'origin stories', 'fantasy', 'courage'],
     coverImage: '/images/books/arcanea-chronicles-cover.png',
     theme: {
@@ -1170,11 +1055,10 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'arcanea-creator-principles',
     title: 'The Arcanean Creator Principles',
-    subtitle: 'Ancient Teachings on Creation and Partnership',
+    subtitle: 'Creation and partnership in the world of Arcanea',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'The seven foundational doctrines of creation from the world of Arcanea — partnership over solitude, complementary strengths, trust calibration, and the art of the generator-editor dance.',
+    description: 'Seven fictional teachings on creation, complementary strengths and partnership. Read as philosophy within the world of Arcanea.',
     keywords: ['arcanea', 'creation principles', 'partnership', 'AI collaboration', 'creative philosophy'],
     coverImage: '/images/books/arcanea-creator-principles-cover.png',
     theme: {
@@ -1204,11 +1088,10 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'arcanea-legends',
     title: 'The Legends of Arcanea',
-    subtitle: 'Myths of the First Dawn and Beyond',
+    subtitle: 'Creation myths from the First Dawn',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'The creation mythology of Arcanea — from the primordial duality of Lumina and Nero, through the Ten Guardians, the Great Darkness, and into the Ultraworld beyond all gates.',
+    description: 'The mythology of Arcanea: Lumina and Nero, the Ten Guardians, the Great Darkness and the Ultraworld. A fictional account of the world and its beginnings.',
     keywords: ['arcanea', 'mythology', 'creation myth', 'fantasy', 'worldbuilding', 'legends'],
     coverImage: '/images/books/arcanea-legends-cover.png',
     theme: {
@@ -1238,11 +1121,10 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'arcanea-wisdom-scrolls',
     title: 'The Wisdom Scrolls of Arcanea',
-    subtitle: 'Meditations, Aphorisms, and Letters',
+    subtitle: 'Reflections and letters from a fictional world',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'Morning meditations, evening reflections, aphorisms of the masters, and letters to the seeker — the collected wisdom of Arcanea for daily contemplation and creative renewal.',
+    description: 'Meditations, aphorisms and letters from the world of Arcanea, arranged for short reading sessions. A literary collection for contemplation.',
     keywords: ['arcanea', 'wisdom', 'meditations', 'aphorisms', 'contemplation', 'morning ritual'],
     coverImage: '/images/books/arcanea-wisdom-scrolls-cover.png',
     theme: {
@@ -1269,11 +1151,10 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'fire-horse-poems',
     title: 'Fire Horse Poems',
-    subtitle: 'Verses for the Year of the Fire Horse',
+    subtitle: 'On movement, resolve and beginning again',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'A cycle of poems for the Year of the Fire Horse — on building, shipping, burning bright, and refusing to wait for permission. The horse arrives. The answer is yes.',
+    description: 'A cycle of poems for the Year of the Fire Horse, moving between work, impatience, resolve and the wish to begin again.',
     keywords: ['poetry', 'fire horse', 'Chinese zodiac', 'motivation', 'builder poetry', 'action'],
     coverImage: '/images/books/fire-horse-poems-cover.png',
     theme: {
@@ -1301,11 +1182,10 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'great-transition',
     title: 'The Great Transition',
-    subtitle: 'Building in the Age of AI',
+    subtitle: 'Work, ownership and building with AI',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'A clear-eyed guide to the shift happening now — from employment to ownership, from credentials to capability. Eight chapters on what to build, why now, and how to position yourself.',
+    description: 'Eight chapters on work, ownership, capability and building a business as AI tools change what a small team can attempt.',
     keywords: ['AI transition', 'creator economy', 'solopreneurship', 'building', 'leverage', 'independence'],
     coverImage: '/images/books/great-transition-cover.png',
     theme: {
@@ -1336,11 +1216,10 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'fable',
     title: 'Fable',
-    subtitle: 'New Fables for the Age of Intelligence',
+    subtitle: 'Stories of human and machine judgment',
     author: 'Frank Riemer',
     publishDate: '2026',
-    description:
-      'A book of fables, co-made by a human and the machine he named Fable. Each is a self-contained story — a cartographer, a forger, a deaf composer, a tower that rents the rain — carrying one true thing about how minds work, human and machine. Under all of them runs one question: which of us made this one? No jargon. Nothing to sell. The oldest form there is, turned on the newest thing we have built.',
+    description: 'Short fables about mapmakers, composers, makers and machines. Created through a human and AI collaboration, the collection asks how we recognize judgment and responsibility in the things we make.',
     keywords: ['fables', 'AI fables', 'age of intelligence', 'human and machine minds', 'authorship and AI', 'Claude Fable 5', 'literary fiction'],
     coverImage: '/images/books/fable-cover.jpg',
     theme: {
@@ -1390,11 +1269,10 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'wonderproof',
     title: 'Wonderproof',
-    subtitle: 'Nine Experiments to Prove What Your Mind Can Do',
+    subtitle: 'A notebook for attention and expectation',
     author: 'Frank',
     publishDate: '2026',
-    description:
-      'A lab manual for human potential. Nine experiments designed to give you direct, personal evidence of what attention, expectation, and perception can do. No belief required. Run the test, record the result, draw your own conclusion.',
+    description: 'An ongoing collection of reading and personal observation exercises about attention, expectation and perception. Individual observations can suggest questions; they cannot establish a general scientific result.',
     keywords: ['human potential', 'experiments', 'attention', 'neuroscience', 'evidence-based', 'RAS', 'expectation'],
     coverImage: '',
     theme: {
