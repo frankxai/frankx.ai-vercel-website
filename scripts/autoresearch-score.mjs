@@ -148,7 +148,7 @@ function detectHardFails(fm, body) {
   if (!body.trim()) fails.push('empty body')
   if (countSections(body) === 0) fails.push('no ## sections')
   if (!fm.title) fails.push('frontmatter missing title')
-  if (!fm.tldr && !/##\s*tl;?dr/i.test(body)) fails.push('no TL;DR')
+  if (!fm.tldr && !fm.description && !/##\s*tl;?dr/i.test(body)) fails.push('no TL;DR or description')
   return fails
 }
 
@@ -204,18 +204,33 @@ function scoreRecency(body) {
 
 function scoreAeo(fm, body) {
   let points = 0
-  const first100 = body.split(/\s+/).slice(0, 100).join(' ')
-  if (/tl;?dr/i.test(first100) || fm.tldr) points++
-  const questionHeadings = (body.match(/^#{2,3}\s+[^\n?]*\?\s*$/gm) || []).length
-  if (questionHeadings >= 5) points++
-  const faqEntries = (body.match(/^###\s+.+\?\s*$/gm) || []).length + (body.match(/^\*\*Q:/gm) || []).length
-  if (faqEntries >= 5) points++
-  // per-FAQ answer length is approximated: assume good if ≥5 entries and section exists
-  if (faqEntries >= 5 && /##\s+FAQ/i.test(body)) points++
+  // Keep original line breaks: the TL;DR markers below are line-anchored.
+  const first100 = (body.match(/^(?:\s*\S+){0,100}/) ?? [''])[0]
+  const hasBodyTldr = /^\s*(?:\*\*TL;?DR|\#\#\s*TL;?DR)/im.test(first100)
+  // Single clear summary in metadata or opening paragraph, without duplicating TL;DR twice
+  if (fm.tldr && !hasBodyTldr) points++
+  else if (!fm.tldr && hasBodyTldr) points++
+  else if (fm.tldr || fm.description) points += 0.5
+
+  // Concise scannable top-level H2 structure sized to the piece rather than question-heading quotas
+  const h2Count = countSections(body)
+  if (h2Count >= 3) points++
+
+  // Inspectable proof artifacts: tables, code/commands, or structured steps
+  const hasStructuredProof =
+    /^\|.*\|$/m.test(body) || /```/.test(body) || /^\d+\.\s+\S/m.test(body)
+  if (hasStructuredProof) points++
+
+  // Explicit boundaries, limitations, counter-arguments, or an authentic concise FAQ
+  const hasBoundariesOrFaq =
+    /limit|untested|trade-off|counter|objection|fail|caution/i.test(body) ||
+    /^###\s+.+\?\s*$/m.test(body)
+  if (hasBoundariesOrFaq) points++
+
   if (fm.title && fm.description && fm.description.length <= 160) points++
   else if (fm.title && fm.description) points += 0.5
-  if (/##\s+Key Takeaways/i.test(body) || /##\s+Summary/i.test(body)) points++
-  return Math.min(points / 6, 1.0)
+
+  return Math.min(points / 5, 1.0)
 }
 
 function scoreVoice(body) {

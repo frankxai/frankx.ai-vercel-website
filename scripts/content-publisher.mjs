@@ -17,11 +17,10 @@ import { glob } from 'glob'
 import matter from 'gray-matter'
 
 const REQUIRED_FIELDS = ['title', 'description', 'date', 'author']
-const AI_FIRST_FIELDS = ['tldr', 'faq', 'keywords']
-const MIN_FAQ_COUNT = 5
+const AI_FIRST_FIELDS = ['tldr', 'keywords']
 const MIN_INTERNAL_LINKS = 3
 const MAX_DESCRIPTION_LENGTH = 155
-const TLDR_WORD_RANGE = { min: 40, max: 60 }
+const TLDR_WORD_RANGE = { min: 20, max: 90 }
 
 function toArray(value) {
   if (Array.isArray(value)) {
@@ -161,14 +160,11 @@ async function validateFile(filepath) {
   }
 
   const faqCount = Array.isArray(frontmatter.faq) ? frontmatter.faq.length : 0
-  results.stats.faqCountFrontmatter = faqCount
-  if (faqCount < MIN_FAQ_COUNT) {
-    results.warnings.push(`FAQ count in frontmatter: ${faqCount} (minimum ${MIN_FAQ_COUNT})`)
+  if (faqCount > 0) {
+    results.stats.faqCountFrontmatter = faqCount
   }
 
-  if (!hasFAQSection(body)) {
-    results.warnings.push('No FAQ section found in body')
-  } else {
+  if (hasFAQSection(body)) {
     results.stats.faqCountBody = countFAQInBody(body)
   }
 
