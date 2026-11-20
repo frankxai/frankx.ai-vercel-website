@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680" role="img" aria-labelledby="matrix-title matrix-desc">
+  <title id="matrix-title">Multi-ICP routing matrix across the four builder tracks</title>
+  <desc id="matrix-desc">Four horizontal routing lanes mapping Enterprise architect, Production builder, Technical creator, and Workflow operator to entry cadence weeks, open-source CLI labs, Starlight Intelligence Academy mission routes, and non-compensable red-gate artifacts.</desc>
+  <defs>
+    <linearGradient id="rowSurface" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#121723"/>
+      <stop offset="100%" stop-color="#0d111a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="680" fill="#0a0a0b"/>
+
+  <text x="40" y="50" fill="#34d399" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12" font-weight="600" letter-spacing="1.8">ROLE-SPECIFIC ROUTING · FOUR ICP TRACKS ON ONE TWELVE-WEEK SPINE</text>
+  <text x="40" y="82" fill="#ffffff" font-family="Poppins, Inter, system-ui, sans-serif" font-size="26" font-weight="700">Four tracks, one verifiable architecture bar</text>
+  <text x="40" y="110" fill="#cbd5e1" font-family="Inter, system-ui, sans-serif" font-size="15">Every FrankX guide declares a primary and secondary track so each reader starts at the decision their work actually requires.</text>
+
+  <!-- Column headers -->
+  <g transform="translate(40, 134)" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11.5" font-weight="600">
+    <rect width="1120" height="40" rx="10" fill="#141926" stroke="#ffffff" stroke-opacity="0.1"/>
+    <text x="20" y="25" fill="#e2e8f0">ICP TRACK &amp; ENTRY CADENCE</text>
+    <text x="284" y="25" fill="#e2e8f0">OPEN-SOURCE CLI LABS</text>
+    <text x="572" y="25" fill="#e2e8f0">SIA MISSION SURFACE</text>
+    <text x="840" y="25" fill="#e2e8f0">ARTIFACT &amp; RED-GATE BLOCK</text>
+  </g>
+
+  <!-- Lane 1: Enterprise Architect -->
+  <g transform="translate(40, 190)" font-family="Inter, system-ui, sans-serif">
+    <rect width="1120" height="106" rx="14" fill="url(#rowSurface)" stroke="#34d399" stroke-opacity="0.35"/>
+    <rect x="0" y="18" width="4" height="70" rx="2" fill="#34d399"/>
+
+    <text x="20" y="34" fill="#ffffff" font-size="17" font-weight="700">Enterprise architect</text>
+    <text x="20" y="56" fill="#34d399" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12">enterprise-architect</text>
+    <text x="20" y="80" fill="#cbd5e1" font-size="13">Entry focus: Weeks 01-04 &amp; 11-12</text>
+
+    <text x="284" y="36" fill="#f8fafc" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">labs/04-trust-boundary-firewall</text>
+    <text x="284" y="58" fill="#f8fafc" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">labs/05-eval-admission-gate</text>
+    <text x="284" y="80" fill="#94a3b8" font-size="12.5">Governance &amp; multi-cloud patterns</text>
+
+    <text x="572" y="36" fill="#93c5fd" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">/academy/systems</text>
+    <text x="572" y="58" fill="#93c5fd" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">/academy/curriculum-atlas</text>
+    <text x="572" y="80" fill="#cbd5e1" font-size="12.5">School S-01 + Department Lab</text>
+
+    <text x="840" y="36" fill="#ffffff" font-size="13.5" font-weight="600">ADR-0001..0006 + 07-runbook.md</text>
+    <text x="840" y="58" fill="#fbbf24" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11.5">RED GATE: unowned model plane or</text>
+    <text x="840" y="77" fill="#fbbf24" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11.5">untested restore step halts pass</text>
+  </g>
+
+  <!-- Lane 2: Production Builder -->
+  <g transform="translate(40, 310)" font-family="Inter, system-ui, sans-serif">
+    <rect width="1120" height="106" rx="14" fill="url(#rowSurface)" stroke="#38bdf8" stroke-opacity="0.35"/>
+    <rect x="0" y="18" width="4" height="70" rx="2" fill="#38bdf8"/>
+
+    <text x="20" y="34" fill="#ffffff" font-size="17" font-weight="700">Production builder</text>
+    <text x="20" y="56" fill="#38bdf8" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12">production-builder</text>
+    <text x="20" y="80" fill="#cbd5e1" font-size="13">Entry focus: Weeks 02-08 core</text>
+
+    <text x="284" y="36" fill="#f8fafc" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">labs/01-rag-pipeline</text>
+    <text x="284" y="58" fill="#f8fafc" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">labs/02-multi-agent-system</text>
+    <text x="284" y="80" fill="#f8fafc" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">labs/03-mcp-server</text>
+
+    <text x="572" y="36" fill="#93c5fd" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">/academy/studio</text>
+    <text x="572" y="58" fill="#93c5fd" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">/academy/evaluation</text>
+    <text x="572" y="80" fill="#cbd5e1" font-size="12.5">Local-first workbench + Eval Lab</text>
+
+    <text x="840" y="36" fill="#ffffff" font-size="13.5" font-weight="600">Hybrid RRF + MCP + FSM loop</text>
+    <text x="840" y="58" fill="#fbbf24" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11.5">RED GATE: injection leak, chunk</text>
+    <text x="840" y="77" fill="#fbbf24" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11.5">drop, or Maker == Checker halts</text>
+  </g>
+
+  <!-- Lane 3: Technical Creator -->
+  <g transform="translate(40, 430)" font-family="Inter, system-ui, sans-serif">
+    <rect width="1120" height="106" rx="14" fill="url(#rowSurface)" stroke="#fbbf24" stroke-opacity="0.35"/>
+    <rect x="0" y="18" width="4" height="70" rx="2" fill="#fbbf24"/>
+
+    <text x="20" y="34" fill="#ffffff" font-size="17" font-weight="700">Technical creator</text>
+    <text x="20" y="56" fill="#fbbf24" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12">technical-creator</text>
+    <text x="20" y="80" fill="#cbd5e1" font-size="13">Entry focus: Weeks 05 &amp; 09-10</text>
+
+    <text x="284" y="36" fill="#f8fafc" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">05-projects/creator-evals</text>
+    <text x="284" y="58" fill="#f8fafc" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">creator-studio-automation.md</text>
+    <text x="284" y="80" fill="#94a3b8" font-size="12.5">Visual, voice, music &amp; video</text>
+
+    <text x="572" y="36" fill="#93c5fd" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">/academy/create</text>
+    <text x="572" y="58" fill="#93c5fd" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">/academy/curriculum-atlas</text>
+    <text x="572" y="80" fill="#cbd5e1" font-size="12.5">12-module Multimodal Studio</text>
+
+    <text x="840" y="36" fill="#ffffff" font-size="13.5" font-weight="600">design.md + stems + .vtt film</text>
+    <text x="840" y="58" fill="#fbbf24" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11.5">RED GATE: unknown rights, baked</text>
+    <text x="840" y="77" fill="#fbbf24" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11.5">raster text, or missing captions</text>
+  </g>
+
+  <!-- Lane 4: Workflow Operator -->
+  <g transform="translate(40, 550)" font-family="Inter, system-ui, sans-serif">
+    <rect width="1120" height="106" rx="14" fill="url(#rowSurface)" stroke="#93c5fd" stroke-opacity="0.35"/>
+    <rect x="0" y="18" width="4" height="70" rx="2" fill="#93c5fd"/>
+
+    <text x="20" y="34" fill="#ffffff" font-size="17" font-weight="700">Workflow operator</text>
+    <text x="20" y="56" fill="#93c5fd" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12">workflow-operator</text>
+    <text x="20" y="80" fill="#cbd5e1" font-size="13">Entry focus: Weeks 01, 05, 07, 11</text>
+
+    <text x="284" y="36" fill="#f8fafc" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">06-agent-workflows/claude-code</text>
+    <text x="284" y="58" fill="#f8fafc" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">human-review-checklist.md</text>
+    <text x="284" y="80" fill="#94a3b8" font-size="12.5">Triage, skills &amp; team boundaries</text>
+
+    <text x="572" y="36" fill="#93c5fd" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">/academy/founder-operations</text>
+    <text x="572" y="58" fill="#93c5fd" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12.5">/academy/departments</text>
+    <text x="572" y="80" fill="#cbd5e1" font-size="12.5">Operator Lab + Department Lab</text>
+
+    <text x="840" y="36" fill="#ffffff" font-size="13.5" font-weight="600">Constitution + SKILL.md + Packet</text>
+    <text x="840" y="58" fill="#fbbf24" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11.5">RED GATE: unguarded spend or</text>
+    <text x="840" y="77" fill="#fbbf24" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11.5">outbound send without approval</text>
+  </g>
+</svg>

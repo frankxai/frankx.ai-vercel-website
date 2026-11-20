@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="1200" height="620" role="img" aria-labelledby="funnel-title funnel-desc">
+  <title id="funnel-title">Five-stage progression from free FrankX guides to verified capability receipt</title>
+  <desc id="funnel-desc">Five connected stages: 01 Free Guide on frankx.ai, 02 Unaided Diagnostic on Monday, 03 Open-Source CLI Lab in ai-architect-academy, 04 Interactive Studio Mission on starlightintelligence.academy, and 05 Circle Peer Review with a Day-7 changed-context transfer loop.</desc>
+  <defs>
+    <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#131824"/>
+      <stop offset="100%" stop-color="#0d1119"/>
+    </linearGradient>
+    <linearGradient id="emeraldGlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.22"/>
+      <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#d4af37" stop-opacity="0.2"/>
+    </linearGradient>
+    <marker id="arrowEmerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#34d399"/>
+    </marker>
+    <marker id="arrowCyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="620" fill="#0a0a0b"/>
+  <rect x="40" y="24" width="1120" height="4" rx="2" fill="url(#emeraldGlow)"/>
+
+  <text x="40" y="54" fill="#34d399" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12" font-weight="600" letter-spacing="1.8">COMPOUND BUILDER FUNNEL · FIVE VERIFIED STAGES</text>
+  <text x="40" y="86" fill="#ffffff" font-family="Poppins, Inter, system-ui, sans-serif" font-size="26" font-weight="700">From free implementation guide to verified capability receipt</text>
+  <text x="40" y="114" fill="#cbd5e1" font-family="Inter, system-ui, sans-serif" font-size="15">Each step trades passive reading for inspectable proof: read the source, diagnose unaided, repair local code, clear red gates, and defend.</text>
+
+  <!-- Stage 01 -->
+  <g transform="translate(40, 142)" font-family="Inter, system-ui, sans-serif">
+    <rect width="200" height="316" rx="16" fill="url(#cardBg)" stroke="#34d399" stroke-opacity="0.35"/>
+    <text x="16" y="30" fill="#34d399" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12" font-weight="600">01 · DISCOVER</text>
+    <text x="16" y="60" fill="#ffffff" font-size="17" font-weight="700">Free Guide</text>
+    <text x="16" y="82" fill="#ffffff" font-size="17" font-weight="700">&amp; Source Call</text>
+    <text x="16" y="108" fill="#38bdf8" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11.5">frankx.ai/guides</text>
+    <line x1="16" y1="124" x2="184" y2="124" stroke="#ffffff" stroke-opacity="0.1"/>
+    <text x="16" y="150" fill="#cbd5e1" font-size="13">Inspect architecture</text>
+    <text x="16" y="170" fill="#cbd5e1" font-size="13">trade-offs, primary</text>
+    <text x="16" y="190" fill="#cbd5e1" font-size="13">changelogs, and ICP</text>
+    <text x="16" y="210" fill="#cbd5e1" font-size="13">adopt or wait calls.</text>
+    <rect x="14" y="232" width="172" height="68" rx="10" fill="#090d14" stroke="#ffffff" stroke-opacity="0.09"/>
+    <text x="26" y="252" fill="#94a3b8" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10.5">EXIT EVIDENCE</text>
+    <text x="26" y="272" fill="#f8fafc" font-size="12.5" font-weight="600">Scoped workflow +</text>
+    <text x="26" y="289" fill="#f8fafc" font-size="12.5" font-weight="600">named kill criterion</text>
+  </g>
+
+  <line x1="244" y1="300" x2="265" y2="300" stroke="#34d399" stroke-width="2" marker-end="url(#arrowEmerald)"/>
+
+  <!-- Stage 02 -->
+  <g transform="translate(270, 142)" font-family="Inter, system-ui, sans-serif">
+    <rect width="200" height="316" rx="16" fill="url(#cardBg)" stroke="#38bdf8" stroke-opacity="0.35"/>
+    <text x="16" y="30" fill="#38bdf8" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12" font-weight="600">02 · DIAGNOSE</text>
+    <text x="16" y="60" fill="#ffffff" font-size="17" font-weight="700">Unaided</text>
+    <text x="16" y="82" fill="#ffffff" font-size="17" font-weight="700">Diagnostic</text>
+    <text x="16" y="108" fill="#38bdf8" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11.5">15m Monday triage</text>
+    <line x1="16" y1="124" x2="184" y2="124" stroke="#ffffff" stroke-opacity="0.1"/>
+    <text x="16" y="150" fill="#cbd5e1" font-size="13">Inspect broken code</text>
+    <text x="16" y="170" fill="#cbd5e1" font-size="13">for 15 minutes with</text>
+    <text x="16" y="190" fill="#cbd5e1" font-size="13">zero AI hints to</text>
+    <text x="16" y="210" fill="#cbd5e1" font-size="13">expose mental gaps.</text>
+    <rect x="14" y="232" width="172" height="68" rx="10" fill="#090d14" stroke="#ffffff" stroke-opacity="0.09"/>
+    <text x="26" y="252" fill="#94a3b8" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10.5">EXIT EVIDENCE</text>
+    <text x="26" y="272" fill="#f8fafc" font-size="12.5" font-weight="600">Locked hypothesis</text>
+    <text x="26" y="289" fill="#f8fafc" font-size="12.5" font-weight="600">priorAttemptDigest</text>
+  </g>
+
+  <line x1="474" y1="300" x2="495" y2="300" stroke="#34d399" stroke-width="2" marker-end="url(#arrowEmerald)"/>
+
+  <!-- Stage 03 -->
+  <g transform="translate(500, 142)" font-family="Inter, system-ui, sans-serif">
+    <rect width="200" height="316" rx="16" fill="url(#cardBg)" stroke="#34d399" stroke-opacity="0.4"/>
+    <text x="16" y="30" fill="#34d399" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12" font-weight="600">03 · REPAIR</text>
+    <text x="16" y="60" fill="#ffffff" font-size="17" font-weight="700">Open-Source</text>
+    <text x="16" y="82" fill="#ffffff" font-size="17" font-weight="700">Terminal Lab</text>
+    <text x="16" y="108" fill="#34d399" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11.5">ai-architect-academy</text>
+    <line x1="16" y1="124" x2="184" y2="124" stroke="#ffffff" stroke-opacity="0.1"/>
+    <text x="16" y="150" fill="#cbd5e1" font-size="13">Clone Python or TS</text>
+    <text x="16" y="170" fill="#cbd5e1" font-size="13">fault-injection lab,</text>
+    <text x="16" y="190" fill="#cbd5e1" font-size="13">use Socratic /hint,</text>
+    <text x="16" y="210" fill="#cbd5e1" font-size="13">and pass offline tests.</text>
+    <rect x="14" y="232" width="172" height="68" rx="10" fill="#090d14" stroke="#ffffff" stroke-opacity="0.09"/>
+    <text x="26" y="252" fill="#94a3b8" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10.5">EXIT EVIDENCE</text>
+    <text x="26" y="272" fill="#f8fafc" font-size="12.5" font-weight="600">Offline pytest green</text>
+    <text x="26" y="289" fill="#f8fafc" font-size="12.5" font-weight="600">+ signed ADR commit</text>
+  </g>
+
+  <line x1="704" y1="300" x2="725" y2="300" stroke="#34d399" stroke-width="2" marker-end="url(#arrowEmerald)"/>
+
+  <!-- Stage 04 -->
+  <g transform="translate(730, 142)" font-family="Inter, system-ui, sans-serif">
+    <rect width="200" height="316" rx="16" fill="url(#cardBg)" stroke="#7caeff" stroke-opacity="0.4"/>
+    <text x="16" y="30" fill="#93c5fd" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12" font-weight="600">04 · VERIFY</text>
+    <text x="16" y="60" fill="#ffffff" font-size="17" font-weight="700">SIA Studio</text>
+    <text x="16" y="82" fill="#ffffff" font-size="17" font-weight="700">&amp; Red Gates</text>
+    <text x="16" y="108" fill="#93c5fd" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11.5">/academy/studio</text>
+    <line x1="16" y1="124" x2="184" y2="124" stroke="#ffffff" stroke-opacity="0.1"/>
+    <text x="16" y="150" fill="#cbd5e1" font-size="13">Submit packet into</text>
+    <text x="16" y="170" fill="#cbd5e1" font-size="13">non-compensable</text>
+    <text x="16" y="190" fill="#cbd5e1" font-size="13">trust, eval, budget,</text>
+    <text x="16" y="210" fill="#cbd5e1" font-size="13">and restore checks.</text>
+    <rect x="14" y="232" width="172" height="68" rx="10" fill="#090d14" stroke="#ffffff" stroke-opacity="0.09"/>
+    <text x="26" y="252" fill="#94a3b8" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10.5">EXIT EVIDENCE</text>
+    <text x="26" y="272" fill="#f8fafc" font-size="12.5" font-weight="600">Zero red-gate blocks</text>
+    <text x="26" y="289" fill="#f8fafc" font-size="12.5" font-weight="600">on MissionPacket</text>
+  </g>
+
+  <line x1="934" y1="300" x2="955" y2="300" stroke="#34d399" stroke-width="2" marker-end="url(#arrowEmerald)"/>
+
+  <!-- Stage 05 -->
+  <g transform="translate(960, 142)" font-family="Inter, system-ui, sans-serif">
+    <rect width="200" height="316" rx="16" fill="url(#cardBg)" stroke="#fbbf24" stroke-opacity="0.45"/>
+    <text x="16" y="30" fill="#fbbf24" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12" font-weight="600">05 · DEFEND</text>
+    <text x="16" y="60" fill="#ffffff" font-size="17" font-weight="700">Circle Peer</text>
+    <text x="16" y="82" fill="#ffffff" font-size="17" font-weight="700">Critique</text>
+    <text x="16" y="108" fill="#fbbf24" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11.5">20m weekly rubric</text>
+    <line x1="16" y1="124" x2="184" y2="124" stroke="#ffffff" stroke-opacity="0.1"/>
+    <text x="16" y="150" fill="#cbd5e1" font-size="13">Independent peer</text>
+    <text x="16" y="170" fill="#cbd5e1" font-size="13">restates failure mode</text>
+    <text x="16" y="190" fill="#cbd5e1" font-size="13">and verifies fresh</text>
+    <text x="16" y="210" fill="#cbd5e1" font-size="13">runbook commands.</text>
+    <rect x="14" y="232" width="172" height="68" rx="10" fill="#090d14" stroke="#fbbf24" stroke-opacity="0.28"/>
+    <text x="26" y="252" fill="#fbbf24" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10.5">EXIT EVIDENCE</text>
+    <text x="26" y="272" fill="#ffffff" font-size="12.5" font-weight="600">Capability Receipt</text>
+    <text x="26" y="289" fill="#cbd5e1" font-size="12">Maker != Checker</text>
+  </g>
+
+  <!-- Return transfer loop -->
+  <path d="M 1060 458 L 1060 480 L 140 480 L 140 462" fill="none" stroke="#38bdf8" stroke-width="1.75" stroke-dasharray="5 5" marker-end="url(#arrowCyan)"/>
+
+  <g transform="translate(40, 498)" font-family="Inter, system-ui, sans-serif">
+    <rect width="1120" height="88" rx="14" fill="#101520" stroke="#ffffff" stroke-opacity="0.1"/>
+    <text x="24" y="32" fill="#38bdf8" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12" font-weight="600">DAY-7 CHANGED-CONTEXT TRANSFER &amp; OPEN-SOURCE COMPOUNDING</text>
+    <text x="24" y="56" fill="#e2e8f0" font-size="14">Seven days after review, one constraint shifts (for example strict EU VPC residency or a 4x provider latency spike).</text>
+    <text x="24" y="75" fill="#94a3b8" font-size="13">Builders adapt their ADR without starting from scratch; redacted field notes return to improve public guides and labs.</text>
+  </g>
+</svg>
