@@ -197,6 +197,10 @@ function HeroSection() {
           </p>
 
           <div className="flex flex-wrap gap-4">
+            <PremiumButton href="/work-with-me/decision-review" variant="secondary" size="lg">
+              Review an AI decision
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </PremiumButton>
             <PremiumButton href="#contact" variant="primary" size="lg" glow>
               Let&apos;s Build Something
               <ArrowRight className="ml-2 h-5 w-5" />
