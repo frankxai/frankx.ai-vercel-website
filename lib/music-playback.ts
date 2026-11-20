@@ -153,3 +153,14 @@ export function formatClock(seconds: number): string {
   const whole = Math.floor(seconds)
   return `${Math.floor(whole / 60)}:${String(whole % 60).padStart(2, '0')}`
 }
+
+/**
+ * Bottom clearance the music dock needs, in px: viewport height minus the dock's top edge.
+ * A dock with no rendered box (a page hides it with display:none) needs none. Its rect is all
+ * zeros, so top 0 would otherwise reserve a full viewport of blank scroll below the footer.
+ */
+export function dockClearance(rect: { top: number; width: number; height: number }, viewportHeight: number): number {
+  if (!(rect.width > 0 && rect.height > 0)) return 0
+  if (!Number.isFinite(rect.top) || !Number.isFinite(viewportHeight) || viewportHeight <= 0) return 0
+  return Math.min(viewportHeight, Math.max(0, Math.ceil(viewportHeight - rect.top)))
+}
