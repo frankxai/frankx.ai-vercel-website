@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Play, X } from 'lucide-react'
 import { YouTubeEmbed } from '@/components/embeds/UniversalEmbed'
 import { trackEvent } from '@/lib/analytics'
@@ -11,9 +11,12 @@ export default function ScreeningRoom() {
   const [current, setCurrent] = useState<AlchemyFilm | null>(null)
   const dialog = useRef<HTMLDialogElement>(null)
 
+  useEffect(() => {
+    if (current && dialog.current && !dialog.current.open) dialog.current.showModal()
+  }, [current])
+
   function play(film: AlchemyFilm) {
     setCurrent(film)
-    dialog.current?.showModal()
     trackEvent('alchemy_film_open', { video_id: film.id, format: film.format })
   }
 
