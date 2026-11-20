@@ -106,3 +106,20 @@ Functional verdict: accept for the exercised reading, keyboard, refresh and retu
 Prioritized corrections completed: remove duplicate main ID; override inherited social title; remove the blocked width fixture while preserving frame security. The narrower headline and research-pilot wording also avoid claims beyond the record.
 
 Untested boundaries: phone/tablet, physical-device behavior, alternate browser engines, full screen-reader audit, reduced-motion preference, measured performance, full runtime/network inspection, independent different-provider editorial review and finished flagship visual acceptance. No production release is claimed.
+
+## Publication candidate, 19 November 2026
+
+Reviewer: Claude (Fable 5.2), a different provider from the one that wrote and first reviewed the article. Requested by the owner from mobile with the instruction to take the post to production.
+
+Changes to the article:
+
+- Moved from `content/blog/_drafts/` to `content/blog/`, so the blog loader now enumerates it at `/blog/founder-ai-stack-mobile-to-production`. `published: false` removed. Date set to 19 November 2026; the reporting snapshot stays 2 November.
+- Ten links pointed at private repositories and would return 404 for a reader. Each is now a named, unlinked reference, and the introduction says so. Three GitHub links remain: PR1146 in this repository, research-intelligence-os PR7 and starlight-evals PR32 (now under Starlight-Intelligence). All three were confirmed to exist today.
+- "The source is inspectable" was changed for the Opus-credited commit, because a reader cannot open a private commit.
+- The plugin sentence claimed web, desktop and mobile. The plugin documentation read today describes Work on the web and the desktop app, so the sentence now says that. The owner's own account of working from his phone is unchanged.
+- Added `keywords`, `tldr` and a three-link "Keep reading" list of existing articles.
+- The reading-proof route `app/design-lab/founder-ai-stack` is removed. It read the draft path and its purpose ends with publication.
+
+Not re-verified today: the states of records in private repositories, and the Antigravity artifact documentation link. No hero image is added; the article uses the blog's category fallback. The flagship visual packet remains pending and is not claimed.
+
+Merge to `main` is the publication step and waits for the owner's approval of this exact candidate.
