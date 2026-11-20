@@ -52,6 +52,13 @@ export const featuredInvestigations: FeaturedInvestigation[] = [
     meta: '12-minute read',
   },
   {
+    href: '/alchemy#source-notes',
+    title: 'Alchemy in motion',
+    kind: 'Materials field notes',
+    blurb: 'Follow a painter’s surviving pigment and an AI-designed crystal back to the image or measurement behind each claim.',
+    meta: 'Two source notes and seven films',
+  },
+  {
     href: '/research/economy',
     title: 'Economic atlas',
     kind: 'Working atlas',

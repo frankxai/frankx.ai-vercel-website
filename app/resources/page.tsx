@@ -115,6 +115,12 @@ const productItems = [
 
 const foundationItems = [
   {
+    name: 'Alchemy field kit',
+    description: 'A viewing worksheet, twelve source records and twelve prompts for Gemini Deep Research.',
+    href: '/alchemy#field-register',
+    icon: BookOpen,
+  },
+  {
     name: 'Free Playbooks',
     description: 'Downloadable AI playbooks to get started fast.',
     href: '/free-playbook',
