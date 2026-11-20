@@ -3,42 +3,13 @@ import { notFound } from 'next/navigation'
 import { ArrowRight, ShieldCheck, Clock } from 'lucide-react'
 
 import { getProductBySlug } from '@/lib/products'
-import { isConfigured, buildDirectCheckoutUrl } from '@/lib/lemon-squeezy'
+import { lemonSqueezyCheckoutUrl } from '@/lib/lemon-squeezy'
 import { createMetadata } from '@/lib/seo'
 import type { ProductRecord } from '@/types/products'
-
-/**
- * Gate (b) of the triple gate: only slugs listed here can ever render a live
- * buy button. The value is the env var that must hold the Lemon Squeezy
- * variant ID for that product. Opening checkout for a product means adding a
- * row here AND setting that env var — nothing goes live by accident.
- */
-const PRODUCT_VARIANT_ENV_KEYS: Record<string, string> = {
-  'starter-kit': 'LEMON_SQUEEZY_VARIANT_STARTER_KIT',
-  'command-center-template': 'LEMON_SQUEEZY_VARIANT_COMMAND_CENTER_TEMPLATE',
-}
 
 // Some registry entries (e.g. golden-age) predate the full ProductRecord
 // shape and carry no offer. Treat offer as optional at runtime.
 type Offer = ProductRecord['offer'] | undefined
-
-/**
- * The triple gate. Returns a hosted-checkout URL only when every gate passes:
- * (a) the product is a real paid product in data/products.json,
- * (b) its slug is explicitly wired in PRODUCT_VARIANT_ENV_KEYS,
- * (c) the Lemon Squeezy store config and the per-product variant ID env
- *     var are both present.
- * Any failure returns null and the page falls back to the honest
- * checkout-not-open state. Fail closed.
- */
-function getLiveCheckoutUrl(slug: string, offer: Offer): string | null {
-  if (!offer || offer.primaryPrice <= 0) return null
-  const envKey = PRODUCT_VARIANT_ENV_KEYS[slug]
-  if (!envKey) return null
-  const variantId = process.env[envKey]
-  if (!variantId || !isConfigured()) return null
-  return buildDirectCheckoutUrl(variantId)
-}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -73,7 +44,7 @@ export default async function CheckoutPage({ params }: { params: Promise<{ slug:
   const priceDisplay =
     offer?.primaryPriceDisplay || (offer && offer.primaryPrice === 0 ? 'Free' : undefined)
   const isPaid = Boolean(offer && offer.primaryPrice > 0)
-  const checkoutUrl = getLiveCheckoutUrl(product.slug, offer)
+  const checkoutUrl = lemonSqueezyCheckoutUrl({ id: product.id, slug: product.slug, primaryPrice: offer?.primaryPrice })
   const productHref = `/products/${product.slug}`
 
   return (

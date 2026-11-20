@@ -3,6 +3,7 @@
  * Handles digital product delivery via email and access codes
  */
 
+import { buildPaidDownloadUrl, resolvePaidBlobKey } from './paid-download'
 import { getProductById } from './products'
 
 // Product delivery configuration
@@ -139,14 +140,12 @@ export function generateAccessCode(productId: string): string {
 }
 
 /**
- * Get product download URL (stored in /public/products/)
+ * Signed link to a paid file, served by /api/download/paid.
+ * `issuedAt` is the purchase time so a retried delivery builds the same link.
  */
-export function getProductDownloadUrl(filename: string): string {
+export function getProductDownloadUrl(productId: string, filename: string, issuedAt: number): string {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.frankx.ai'
-  // Files would be stored in a protected location or CDN
-  // For now, using a signed URL pattern
-  const token = generateAccessCode('download')
-  return `${baseUrl}/api/download/${filename}?token=${token}`
+  return buildPaidDownloadUrl(productId, filename, issuedAt, baseUrl)
 }
 
 /**
@@ -165,6 +164,8 @@ export interface ProductEmailData {
   productName: string
   productId: string
   downloadLinks: Array<{ name: string; url: string }>
+  /** Configured files with no stored blob in data/products.json. Non-empty means the product cannot be delivered. */
+  undeliverableFiles: string[]
   accessCode?: string
   bonusContent?: string[]
 }
@@ -175,7 +176,8 @@ export interface ProductEmailData {
 export function generateProductEmailData(
   productId: string,
   customerName: string,
-  customerEmail: string
+  customerEmail: string,
+  issuedAt: number = Date.now()
 ): ProductEmailData | null {
   const product = getProductById(productId)
   const config = getDeliveryConfig(productId)
@@ -184,9 +186,10 @@ export function generateProductEmailData(
     return null
   }
 
-  const downloadLinks = (config.files || []).map((file) => ({
+  const files = config.files || []
+  const downloadLinks = files.map((file) => ({
     name: file.replace('.pdf', '').replace(/-/g, ' '),
-    url: getProductDownloadUrl(file),
+    url: getProductDownloadUrl(productId, file, issuedAt),
   }))
 
   return {
@@ -195,6 +198,7 @@ export function generateProductEmailData(
     productName: product.name,
     productId,
     downloadLinks,
+    undeliverableFiles: files.filter((file) => !resolvePaidBlobKey(productId, file)),
     accessCode: config.deliveryType === 'access-code' ? generateAccessCode(productId) : undefined,
     bonusContent: config.accessCategories,
   }

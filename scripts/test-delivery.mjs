@@ -33,6 +33,9 @@ register(
   { data: { root: ROOT } }
 )
 
+// Download links are signed; lib/paid-download.ts refuses to build one without a secret.
+process.env.EMAIL_TOKEN_SECRET ??= 'test-only-secret'
+
 const { generateProductEmailData } = await import(pathToFileURL(resolve(ROOT, 'lib/delivery.ts')).href)
 
 // Must match the PRODUCTS map keys in app/api/checkout/route.ts exactly.
