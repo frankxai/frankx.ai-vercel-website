@@ -3,7 +3,7 @@
 import { createContext, useCallback, useContext, useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
 import { bindMusicMediaSession, updateMusicMediaSessionState } from '@/lib/music-media-session'
-import { SUNO_ID, formatClock, queueNeighbor, routeMusicSuggestion, safeMediaUrl, suggestTracks, type PlaybackTrack } from '@/lib/music-playback'
+import { SUNO_ID, dockClearance, formatClock, queueNeighbor, routeMusicSuggestion, safeMediaUrl, suggestTracks, type PlaybackTrack } from '@/lib/music-playback'
 
 type PlaybackState = 'idle' | 'loading' | 'playing' | 'paused' | 'error'
 interface MusicContextValue {
@@ -304,8 +304,8 @@ export function MusicRuntime({ children, catalog }: { children: ReactNode; catal
     const el = dockRef.current
     if (!el || typeof window === 'undefined') return
     const publish = () => {
-      const rect = el.getBoundingClientRect()
-      const clearance = Math.max(0, Math.ceil(window.innerHeight - rect.top))
+      // A hidden dock (display:none) measures as an all-zero rect; it needs no clearance.
+      const clearance = dockClearance(el.getBoundingClientRect(), window.innerHeight)
       document.documentElement.style.setProperty('--music-dock-height', `${clearance}px`)
       document.documentElement.style.scrollPaddingBottom = `${clearance}px`
       if (collapsedChip) {

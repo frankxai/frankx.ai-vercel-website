@@ -2,7 +2,7 @@
 title: "Apify MCP vs Actor API: a research-agent blueprint"
 description: "Choose Apify MCP or the Actor API for agent research, with an offline code example, source provenance, cost controls and a Starlight architecture review."
 date: "2026-11-15"
-lastUpdated: "2026-11-15"
+lastUpdated: "2026-11-22"
 author: "FrankX"
 category: "AI Architecture"
 tags: ["mcp", "ai-agents", "automation", "ai-architecture"]
@@ -46,6 +46,14 @@ The Actor API gives application code an explicit lifecycle: start a run, retain 
 There is no measured basis here to call one interface faster or cheaper. Actor choice, page behavior, retries, model context and review effort can dominate the outcome. Changing the interface while also changing the Actor would produce a poor comparison.
 
 Start with a normal HTTP fetch when one permitted static page answers the question. Adopt an Actor when its extraction behavior, browser support or repeatability earns the extra dependency.
+
+## See how the MCP tool set is configured
+
+Apify's Configurator walkthrough shows how to choose Actors and supporting tools for an MCP client. Use the demo to see how tool selection changes what the client can discover. For a recurring job, keep the run ID, retries and dataset retrieval in the application that owns the job.
+
+<YouTubeEmbed id="jREWahDGhJM" title="Apify MCP Configurator walkthrough" structuredData={false} />
+
+[Watch on YouTube](https://www.youtube.com/watch?v=jREWahDGhJM).
 
 ## A useful research job: changes to an approved pricing page
 
@@ -235,3 +243,8 @@ Documentation and source inspection support the design, and the offline planner 
 One approved mission needs a real run ID, retained evidence, validated fields, reconciled costs and a human acceptance decision. Repeat the comparison with the same Actor/build and inputs through each interface before making comparative performance claims.
 
 For the surrounding decisions, inspect the [AI architecture resources](/ai-architecture), distinguish extraction from search-demand evidence in [SEO and AEO research](/resources/seo-aeo), and read the [affiliate policy](/affiliates). Start by changing one assumption in the offline mission and inspecting how its request and dispatch key change.
+
+
+## Continue with an Actor run
+
+[Run your first Apify Actor and verify its dataset](/blog/apify-actor-api-first-run) to practice the handoff from run ID to a source you can inspect. When the fixture holds up, [turn the same process into a weekly changelog watch](/blog/apify-scheduled-changelog-monitor).

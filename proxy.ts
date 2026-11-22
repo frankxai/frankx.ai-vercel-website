@@ -74,7 +74,11 @@ export async function proxy(request: NextRequest) {
   // Exact-segment match — `startsWith` alone would also catch a future
   // public route like /admin-settings or /dashboard-assets.
   const matchesPath = (path: string) => pathname === path || pathname.startsWith(path + '/')
+  // This exact, public-safe discussion draft is unlisted rather than session-private.
+  // Preserve authentication for every other proposal and all descendant paths.
+  const isPublicDiscussionDraft = pathname === '/partnerships/proposal/uva-rec-impact'
   const isProtectedRoute =
+    !isPublicDiscussionDraft &&
     !selfGatedApiPaths.some(matchesPath) &&
     protectedPaths.some(matchesPath)
 

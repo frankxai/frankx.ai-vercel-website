@@ -110,5 +110,29 @@
     "rights": "Original generated editorial asset; no vendor logos or screenshots",
     "createdOn": "2026-11-15",
     "kind": "illustration"
+  },
+  "apify-actor-api-first-run": {
+    "src": "/images/blog/apify-actor-first-run-v1.webp",
+    "width": 1536,
+    "height": 864,
+    "alt": "An amber beam reveals rows of etched dots in three stacked smoked-glass plates.",
+    "caption": "Original editorial illustration for the Actor run and dataset guide.",
+    "credit": "FrankX · generated with OpenAI image generation",
+    "sourceUrl": "https://www.frankx.ai/blog/apify-actor-api-first-run",
+    "rights": "Original generated editorial asset; no vendor logos or screenshots",
+    "createdOn": "2026-11-22",
+    "kind": "illustration"
+  },
+  "apify-scheduled-changelog-monitor": {
+    "src": "/images/blog/apify-scheduled-changelog-v1.webp",
+    "width": 1536,
+    "height": 864,
+    "alt": "A lavender beam meets one brass index pin on a dark-blue laboratory timing wheel.",
+    "caption": "Original editorial illustration for the scheduled changelog watch.",
+    "credit": "FrankX · generated with OpenAI image generation",
+    "sourceUrl": "https://www.frankx.ai/blog/apify-scheduled-changelog-monitor",
+    "rights": "Original generated editorial asset; no vendor logos or screenshots",
+    "createdOn": "2026-11-22",
+    "kind": "illustration"
   }
 }

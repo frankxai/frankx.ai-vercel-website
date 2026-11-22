@@ -91,3 +91,21 @@ no-network planning, admission boundaries and the portable downloaded starter. R
 wide/narrow, interactions, computed fonts, accessibility and preview/production
 checks must be recorded against the final candidate outside its production commit.
 Independent review is still pending. No production acceptance is asserted here.
+
+## Companion guide media, 22 November 2026
+
+Both covers use the same existing Next.js optimization path. The original
+OpenAI-generated masters depict an optical stack for inspecting source evidence
+and a laboratory timing wheel for scheduling a repeatable job. No vendor marks
+or UI appear in either cover. The derivatives are center-cropped 16:9 WebPs.
+
+| Asset ID | WebP dimensions and bytes | SHA-256 |
+| --- | --- | --- |
+| `apify-actor-api-first-run`, v1 | 1536 × 864, 86,874 B | `f21191e3277605f4feb390d36e7f7f2920a9cfa4e1a13f4219b62cdd59634e32` |
+| `apify-scheduled-changelog-monitor`, v1 | 1536 × 864, 107,478 B | `0e94966802493e210bf8146548858a9b45d218bf57c46f019fc023a7bc2660ce` |
+
+All three articles embed videos from Apify's official YouTube channel through
+the existing click-to-play component. The first-run and schedule guides include
+timestamps and direct fallback links. The videos are third-party demonstrations,
+and the articles supply the fixture and acceptance test independently. The
+embedded players are supporting material, so VideoObject metadata is disabled.
