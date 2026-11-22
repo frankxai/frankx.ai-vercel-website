@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { CSSProperties, ReactNode } from 'react';
-import { ArrowDown, ArrowRight, ArrowUpRight, Plus } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Plus } from 'lucide-react';
 import { listActivePartners, listOpenOpportunities, listStrategicAlignment } from '@/content/partnerships';
 import { cloudflareProgramme, listTechnologyAffiliates } from '@/content/partnerships/technology';
 import type { Partner } from '@/content/partnerships/types';
@@ -51,7 +51,14 @@ export default function PartnershipsHubPage() {
           <h1 id="partnership-title">What can we<br />build together?</h1>
           <p className={s.lead}>A useful prototype. A workshop that stays with people. A question worth researching.</p>
           <p className={s.intro}>I bring enterprise workshop experience and the systems I build through FrankX and Starlight Intelligence. You bring the problem, the perspective and the people it matters to.</p>
-          <div className={s.actions}><External href={MEET_AND_GROW_URL} className={s.primary}>Start a conversation</External><a href="#documented-work" className={s.textLink}>Explore the work <ArrowDown size={16} aria-hidden="true"/></a></div>
+          <div className={s.actions}>
+            <Link href="/contact?intent=partnership" className={s.primary}>
+              Discuss a partnership <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+            <External href="https://github.com/frankxai/frankx.ai-vercel-website/issues/1297" className={s.textLink}>
+              See open partner briefs
+            </External>
+          </div>
           <div className={s.founderNote}><Crew row={0} column={2} name="Mini Frank, the original illustrated founder"/><p>Human judgment.<br /><strong>Room for imagination.</strong></p></div>
         </div>
         <figure className={s.heroFigure}>
