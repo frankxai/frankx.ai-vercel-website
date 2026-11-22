@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1180" width="720" height="1180" role="img" aria-labelledby="title desc">
+  <title id="title">Three ways to hand off agent work</title>
+  <desc id="desc">Choose Google Antigravity for a divisible task, Replit Missions for a bounded goal, or Vercel Board for recurring agent handoffs. Each ends with a founder reviewing a preview, source and checks.</desc>
+  <defs>
+    <linearGradient id="page" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#14251e"/>
+      <stop offset=".62" stop-color="#0e1516"/>
+      <stop offset="1" stop-color="#111322"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="1180" rx="28" fill="url(#page)"/>
+  <g font-family="system-ui, sans-serif">
+    <text x="46" y="58" font-size="21" font-weight="650" letter-spacing="3" fill="#9de8cd">FRANKX / FIELD GUIDE</text>
+    <text x="44" y="116" font-size="42" font-weight="720" fill="#f4f8f6">Three ways to hand off</text>
+    <text x="44" y="164" font-size="42" font-weight="720" fill="#f4f8f6">agent work</text>
+    <text x="46" y="211" font-size="23" fill="#c2d3ce">One example · a workshop signup preview</text>
+
+    <path d="M64 258V967" stroke="#526964" stroke-width="2"/>
+    <path d="M64 290h30M64 522h30M64 754h30" stroke="#526964" stroke-width="2"/>
+    <circle cx="64" cy="290" r="6" fill="#8dd8ff"/>
+    <circle cx="64" cy="522" r="6" fill="#ffd49e"/>
+    <circle cx="64" cy="754" r="6" fill="#d3c2ff"/>
+
+    <rect x="95" y="249" width="578" height="211" rx="16" fill="#151f24" stroke="#3d6071"/>
+    <text x="118" y="287" font-size="22" font-weight="660" fill="#8dd8ff">A task with independent parts</text>
+    <text x="118" y="329" font-size="31" font-weight="710" fill="#f4f8f6">Google Antigravity /swarm</text>
+    <g font-size="23" fill="#e2ecea">
+      <text x="118" y="368"><tspan font-weight="670">Give</tspan><tspan x="206">File boundaries and a test command</tspan></text>
+      <text x="118" y="401"><tspan font-weight="670">Get</tspan><tspan x="206">Worker diffs and verifier findings</tspan></text>
+      <text x="118" y="434"><tspan font-weight="670">Check</tspan><tspan x="206">Run tests on the combined change</tspan></text>
+    </g>
+
+    <rect x="95" y="481" width="578" height="211" rx="16" fill="#251e18" stroke="#6f552f"/>
+    <text x="118" y="519" font-size="22" font-weight="660" fill="#ffd49e">A goal you can judge</text>
+    <text x="118" y="561" font-size="31" font-weight="710" fill="#f4f8f6">Replit Missions</text>
+    <g font-size="23" fill="#ede9e1">
+      <text x="118" y="600"><tspan font-weight="670">Give</tspan><tspan x="206">Outcome, criteria, cap and approvals</tspan></text>
+      <text x="118" y="633"><tspan font-weight="670">Get</tspan><tspan x="206">Cloud execution and judge feedback</tspan></text>
+      <text x="118" y="666"><tspan font-weight="670">Check</tspan><tspan x="206">Open the demo and run the export</tspan></text>
+    </g>
+
+    <rect x="95" y="713" width="578" height="211" rx="16" fill="#211e2a" stroke="#625481"/>
+    <text x="118" y="751" font-size="22" font-weight="660" fill="#d3c2ff">A handoff that keeps recurring</text>
+    <text x="118" y="793" font-size="31" font-weight="710" fill="#f4f8f6">Vercel Board</text>
+    <g font-size="23" fill="#eeeaf4">
+      <text x="118" y="832"><tspan font-weight="670">Give</tspan><tspan x="206">Existing agents and scoped tasks</tspan></text>
+      <text x="118" y="865"><tspan font-weight="670">Get</tspan><tspan x="206">Claims, thread history and evidence</tspan></text>
+      <text x="118" y="898"><tspan font-weight="670">Check</tspan><tspan x="206">Can the next agent pick up the work?</tspan></text>
+    </g>
+
+    <rect x="46" y="962" width="627" height="166" rx="16" fill="#172b25" stroke="#588272"/>
+    <text x="70" y="1005" font-size="29" font-weight="710" fill="#b4f0d8">Founder acceptance</text>
+    <text x="70" y="1045" font-size="23" fill="#e1f0ec">Open the preview. Reproduce the checks.</text>
+    <text x="70" y="1081" font-size="23" fill="#e1f0ec">Record review time, spend or quota, and rework.</text>
+  </g>
+</svg>
