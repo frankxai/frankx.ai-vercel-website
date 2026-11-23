@@ -99,7 +99,7 @@ export default function CampusEdition({ selected, onSelect, guideInitiallyOpen, 
         <p className={s.intro}>Put an AI-written memo on the projector. Ask who would sign it. Then take away the source behind its strongest claim.</p>
         <div className={s.actions}><a href="/partnerships/universities/source-check" className={s.cta} onClick={() => trackEvent('university_case_open', { placement: 'hero', case_id: 'source-check' })}>Try the free six-minute case <ArrowRight size={17}/></a><a href="#teaching-path" className={s.quiet}>Bring this to my course <ArrowDown size={16}/></a></div>
       </div>
-      <div className={s.heroCaption}><span className={s.dot}/><span>Mini Frank storyboard</span><i/>Amsterdam studio study</div>
+      <div className={s.heroCaption}><span className={s.dot}/><span>Mini Frank with a student team in a miniature Amsterdam studio</span><i/>Amsterdam studio study</div>
     </section>
 
     <nav className={s.nav} aria-label="University programmes"><div>
@@ -128,7 +128,7 @@ export default function CampusEdition({ selected, onSelect, guideInitiallyOpen, 
     <section id="your-host" className={s.host}>
       <figure><Image src="/images/portraits/frank-presenting-oracle-2025.jpg" alt="Frank Riemer presenting at Oracle" width={960} height={720} sizes="(max-width: 740px) 100vw, 38vw"/><figcaption><MapPin size={14}/> From Frank’s time at Oracle</figcaption></figure>
       <div><p className={s.kicker}><span className={s.line}/> Your host</p><h2>Frank Riemer</h2><p className={s.byline}>AI Architect · Founder, Starlight Intelligence</p>
-        <p>I worked in Oracle’s EMEA AI Center of Excellence. With MCI students, I taught a session on applying AI to their own skills and career choices. In Amsterdam, I facilitated an AI &amp; Ikigai workshop for NLdigital NextGen and the Young Oracle Board.</p>
+        <p>I worked in Oracle’s EMEA AI Center of Excellence. With students at MCI, The Entrepreneurial School, I taught a session on applying AI to their own skills and career choices. In Amsterdam, I facilitated an AI &amp; Ikigai workshop for NLdigital NextGen and the Young Oracle Board.</p>
         <div className={s.evidence}><a href={studentSession.url}>MCI session account <ArrowUpRight size={15}/></a><a href={nldigitalProof.url}>NLdigital workshop record <ArrowUpRight size={15}/></a><a href="/bio">Speaker bio <ArrowUpRight size={15}/></a></div>
       </div>
     </section>
@@ -159,7 +159,7 @@ export default function CampusEdition({ selected, onSelect, guideInitiallyOpen, 
     <details className={s.dossier} id="university-dossier"><summary>Research, challenges &amp; teaching materials <span aria-hidden="true">+</span></summary>
       <div className={s.dossierLinks}>{presentation}<div>{teachingTracks.map(([label,, ,url]) => <a key={label} href={url}>{label}<ArrowUpRight size={14}/></a>)}</div></div>
       {research}
-      <div className={s.international}><h3>Ideas for international hosts</h3><p>These are proposed campus briefs. A local organiser and Frank would agree participation and scope.</p>{campusIdeas.map(([region,name,brief,href]) => <details key={region}><summary>{region}</summary><p>{brief} <a href={href}>{name} ↗</a></p></details>)}</div>
+      <div className={s.international}><h3>Ideas for international hosts</h3><p>These are proposed campus briefs. A local organiser and Frank would agree participation and scope. Unsolicited proposals. None of these institutions has reviewed or endorsed them.</p>{campusIdeas.map(([region,name,brief,href]) => <details key={region}><summary>{region}</summary><p>{brief} <a href={href}>{name} ↗</a></p></details>)}</div>
     </details>
   </div>
 }
