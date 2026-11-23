@@ -27,13 +27,18 @@ const refund = {
 }
 const event = (object, previous_attributes = {}) => ({
   id: 'evt_fixture',
-  created: 1795388400,
+  created: Date.parse('2026-11-22T12:00:00Z') / 1000,
   livemode: false,
   data: { object, previous_attributes },
 })
 function provider(groups, legacy = []) {
   return {
-    events: { list: ({ type }) => groups[type] || [] },
+    events: {
+      list: ({ type, created }) =>
+        (groups[type] || []).filter(
+          (event) => event.created >= created.gte && event.created < created.lt,
+        ),
+    },
     paymentIntents: { retrieve: async () => paid },
     checkout: {
       sessions: { list: async () => ({ has_more: false, data: legacy }) },
@@ -87,6 +92,23 @@ test('successful purchase, duplicate event, delayed refund and pending refund re
   assert.equal(r.purchase_events.length, 1)
   assert.equal(r.purchase_events[0].name, 'purchase')
   assert.equal(r.purchase_events[0].transaction_id, paid.id)
+})
+test('Amsterdam midnight belongs to the following revenue report', async () => {
+  const atBoundary = {
+    ...event(paid),
+    created: Date.parse('2026-11-22T23:00:00Z') / 1000,
+  }
+  const api = provider({ 'payment_intent.succeeded': [atBoundary] })
+  const closed = Date.parse('2026-11-24T03:00:00Z')
+  assert.equal(
+    (await dailyReport(api, day, false, closed)).purchase_events.length,
+    0,
+  )
+  assert.equal(
+    (await dailyReport(api, '2026-11-23', false, closed)).purchase_events
+      .length,
+    1,
+  )
 })
 test('legacy Session metadata identifies sale, and unknown product counts stay partial', async () => {
   const groups = {
