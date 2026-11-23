@@ -1,125 +1,171 @@
 #!/usr/bin/env node
-// Affiliate monetization audit — connects the affiliate catalog to the actual content.
-//
-// The question: "Which blog posts mention tools that PAY, but carry no affiliate link —
-// and which of those should I monetize first (by traffic)?"
-//
-// Joins three sources:
-//   data/affiliate/programs.json      — the program catalog (which tools pay, ourLink)
-//   content/blog/*.mdx                — what each post actually mentions
-//   docs/ops/analytics/traffic-latest — visitors per post (to rank the gaps)
-//
-// Output: ranked "join these programs first" + "add links to these posts first".
-//
-// Usage:
-//   node scripts/affiliate-audit.mjs            # print report
-//   node scripts/affiliate-audit.mjs --write    # also write docs/ops/affiliate/AUDIT.md
+// Run from Node 24+. Optional input: --traffic=/absolute/path/to/traffic.json.
 
-import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 'node:fs'
-import { join, dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { fileURLToPath, pathToFileURL } from 'node:url'
+import { resolveProgramDestination } from '../lib/affiliates/resolve-destination.ts'
+import { isCanonicalBlogSlug } from '../lib/blog-redirects.mjs'
+import { programToRecord, sponsorDecision, toolSlug } from '../lib/tools/record.ts'
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
-const BLOG_DIR = join(ROOT, 'content', 'blog')
-const CATALOG = join(ROOT, 'data', 'affiliate', 'programs.json')
-const TRAFFIC = join(ROOT, 'docs', 'ops', 'analytics', 'traffic-latest.json')
-const OUT_DIR = join(ROOT, 'docs', 'ops', 'affiliate')
-const OUT = join(OUT_DIR, 'AUDIT.md')
+const root = fileURLToPath(new URL('..', import.meta.url))
+const canonicalOrigin = 'https://www.frankx.ai'
+const siteHosts = new Set(['frankx.ai', 'www.frankx.ai'])
 
-const doWrite = process.argv.includes('--write')
-
-const catalog = JSON.parse(readFileSync(CATALOG, 'utf8'))
-const programs = catalog.programs
-const visitorsByPath = existsSync(TRAFFIC)
-  ? new Map((JSON.parse(readFileSync(TRAFFIC, 'utf8')).pages || []).map((p) => [p.path.replace(/\/$/, ''), p.visitors]))
-  : new Map()
-
-// Build an alias → program lookup. Match on word-boundary, case-insensitive.
-const aliasHits = programs.map((p) => ({
-  program: p,
-  rx: new RegExp(`\\b(${(p.aliases || [p.tool]).map((a) => a.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\b`, 'i'),
-}))
-
-const rows = []
-for (const file of readdirSync(BLOG_DIR)) {
-  if (!file.endsWith('.mdx')) continue
-  const slug = file.replace(/\.mdx$/, '')
-  const body = readFileSync(join(BLOG_DIR, file), 'utf8')
-  const path = `/blog/${slug}`
-  const visitors = visitorsByPath.get(path) || 0
-
-  const payers = []   // mentioned tools that HAVE a program
-  const deadends = [] // mentioned tools with NO program (traffic we can't monetize directly)
-  for (const { program, rx } of aliasHits) {
-    if (!rx.test(body)) continue
-    if (program.hasProgram) payers.push(program)
-    else deadends.push(program.tool)
-  }
-  if (!payers.length && !deadends.length) continue
-
-  const hasAnyLink = payers.some((p) => p.ourLink)
-  const monetizableNoLink = payers.filter((p) => p.status === 'active' && !p.ourLink)
-  rows.push({ slug, path, visitors, payers, deadends, hasAnyLink, monetizableNoLink })
-}
-
-// ── Ranked: which PROGRAMS to join first (priority × total traffic of posts that mention them) ──
-const programScore = new Map()
-for (const r of rows) {
-  for (const p of r.payers) {
-    if (p.status !== 'active' || p.ourLink) continue
-    const cur = programScore.get(p.tool) || { program: p, traffic: 0, posts: 0 }
-    cur.traffic += r.visitors
-    cur.posts += 1
-    programScore.set(p.tool, cur)
+function normalizePage(value) {
+  if (typeof value !== 'string' || !/^(?:\/|https:\/\/)/.test(value)) return null
+  try {
+    const url = new URL(value, canonicalOrigin)
+    if (!siteHosts.has(url.hostname)) return null
+    return url.pathname.replace(/\/$/, '') || '/'
+  } catch {
+    return null
   }
 }
-const joinFirst = [...programScore.values()].sort(
-  (a, b) => a.program.priority - b.program.priority || b.traffic - a.traffic
-)
 
-// ── Ranked: which POSTS to add links to first (by traffic, among those mentioning a payer) ──
-const addLinks = rows
-  .filter((r) => r.monetizableNoLink.length)
-  .sort((a, b) => b.visitors - a.visitors)
-
-const fmtPosts = addLinks
-  .map((r, i) => `| ${i + 1} | \`${r.slug}\` | ${r.visitors || '—'} | ${r.monetizableNoLink.map((p) => p.tool).join(', ')} |`)
-  .join('\n')
-
-const fmtJoin = joinFirst
-  .map((j, i) => `| ${i + 1} | ${j.program.tool} | ${j.program.commission} | ${j.program.recurring || '—'} | ${j.traffic} | ${j.posts} | ${j.program.signupUrl} |`)
-  .join('\n')
-
-const md = `# Affiliate Monetization Audit
-
-_Generated by \`scripts/affiliate-audit.mjs\` from \`data/affiliate/programs.json\` + \`traffic-latest.json\`. Re-run after signing up for a program (set its \`ourLink\`) or after the weekly traffic paste._
-
-## 1. Join these programs first
-
-Ranked by program priority, then by the total traffic of the posts that already mention the tool. Sign up → set \`ourLink\` in \`programs.json\` → re-run.
-
-| # | Program | Commission | Recurring | Traffic of mentioning posts | # posts | Signup |
-|---|---------|-----------|-----------|------------------------------|---------|--------|
-${fmtJoin || '| — | (all mentioned programs already have ourLink) | | | | | |'}
-
-## 2. Add affiliate links to these posts first
-
-Posts that mention an active payer but carry no link yet, ranked by traffic.
-
-| # | Post | Visitors | Monetizable mentions (no link yet) |
-|---|------|----------|-------------------------------------|
-${fmtPosts || '| — | (no gaps) | | |'}
-
-## 3. The honest reality
-
-Frontier names drive the traffic but **don't pay** (OpenAI, Anthropic, Google, Runway, Luma, Midjourney = no programs). The play: keep ranking for those big names, but place affiliate links on the **adjacent recurring payers** the post naturally mentions. Lead with Higgsfield (you use it), then the recurring spine (Systeme.io / CapCut / ElevenLabs / Copy.ai).
-
-> Disclosure to add near any affiliate link: _"${catalog.disclosure}"_
-`
-
-console.log(md)
-if (doWrite) {
-  if (!existsSync(OUT_DIR)) mkdirSync(OUT_DIR, { recursive: true })
-  writeFileSync(OUT, md)
-  console.log(`\n[affiliate-audit] wrote ${OUT}`)
+function auditedProse(source) {
+  const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/)
+  if (frontmatter && /^(?:draft|noindex):\s*true\s*(?:#.*)?$/m.test(frontmatter[1])) return null
+  const body = frontmatter ? source.slice(frontmatter[0].length) : source
+  return body
+    .replace(/\r\n/g, '\n')
+    .replace(/^[ \t]{0,3}([~]{3,}|[\x60]{3,})[^\n]*\n[\s\S]*?(?:^[ \t]{0,3}\1[ \t]*$|(?![\s\S]))/gm, '')
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/{\/\*[\s\S]*?\*\/}/g, '')
+    .replace(/([\x60]+)[^\n]*?\1/g, '')
 }
+
+export function inspectArticle(source, programs, now = new Date()) {
+  const prose = auditedProse(source)
+  if (prose === null) return null
+
+  const targets = new Set(Array.from(
+    prose.matchAll(/(?<!!)\[[^\]\n]*\]\(\s*<?([^\s)>]+)>?|(?:href|url)\s*=\s*["']([^"']+)["']/g),
+    ([, markdown, jsx]) => markdown ?? jsx,
+  ))
+  const componentIds = Array.from(
+    prose.matchAll(/<(?:ArticleRecommendation|AffiliateCTA|AffiliateLink)\b[^>]*?\baffiliateId\s*=\s*["']([^"']+)["']/gs),
+    ([, id]) => id,
+  )
+  const localTargets = new Set([...targets].map(normalizePage).filter(Boolean))
+  const placements = []
+  const opportunities = []
+  const enrollmentCandidates = []
+
+  for (const program of programs) {
+    if (!program.hasProgram) continue
+    const decision = sponsorDecision(programToRecord(program), now)
+    const aliases = [program.tool, ...(program.aliases ?? [])]
+    const component = componentIds.some(id => {
+      if (!aliases.some(alias => alias.toLowerCase() === id.toLowerCase())) return false
+      return resolveProgramDestination(id, [program], undefined, now)?.sponsored === true
+    })
+    const hop = localTargets.has('/go/' + toolSlug(program.tool))
+    const issued = Boolean(program.ourLink && targets.has(program.ourLink))
+    const forms = [hop && 'hop', issued && 'issued URL', component && 'component'].filter(Boolean)
+    if (forms.length) {
+      const state = decision.sponsored ? 'eligible' : 'review destination'
+      placements.push({ tool: program.tool, forms, state })
+      continue
+    }
+    const mentioned = aliases.some(alias => new RegExp(
+      '(?<![\\p{L}\\p{N}_])' + RegExp.escape(alias) + '(?![\\p{L}\\p{N}_])',
+      'iu',
+    ).test(prose))
+    if (!mentioned) continue
+    if (decision.sponsored) opportunities.push(program.tool)
+    else if (program.status === 'active' && !program.ourLink) enrollmentCandidates.push(program.tool)
+  }
+  return { placements, opportunities, enrollmentCandidates }
+}
+
+function readTraffic(path, explicit) {
+  if (!existsSync(path)) {
+    if (explicit) throw new Error('Traffic file could not be found: ' + path)
+    return { byPath: new Map(), source: 'No traffic file supplied', metric: 'Visitors' }
+  }
+  const data = JSON.parse(readFileSync(path, 'utf8'))
+  if (!Array.isArray(data.pages)) throw new Error('Traffic file must contain a pages array')
+  const metric = data.metric ?? 'visitors'
+  if (!['visitors', 'pageviews', 'clicks'].includes(metric)) {
+    throw new Error('Traffic metric must be visitors, pageviews or clicks')
+  }
+  const byPath = new Map()
+  for (const page of data.pages) {
+    const path = normalizePage(page.path)
+    const value = page[metric]
+    if (path && typeof value === 'number' && Number.isFinite(value) && value >= 0) {
+      if (byPath.has(path)) throw new Error('Duplicate traffic path: ' + path)
+      byPath.set(path, value)
+    }
+  }
+  const window = data.window?.since && data.window?.until
+    ? ' (' + data.window.since + ' to ' + data.window.until + ')'
+    : ''
+  return {
+    byPath,
+    source: (data.source ?? 'Traffic file, provider unspecified') + window,
+    metric: metric[0].toUpperCase() + metric.slice(1),
+  }
+}
+
+function collectArticles(programs, byPath, now) {
+  return ['blog', 'guides'].flatMap(section => {
+    const dir = join(root, 'content', section)
+    return readdirSync(dir).sort().flatMap(file => {
+      if (!file.endsWith('.mdx')) return []
+      const slug = file.slice(0, -4)
+      if (section === 'blog' && !isCanonicalBlogSlug(slug)) return []
+      const evidence = inspectArticle(readFileSync(join(dir, file), 'utf8'), programs, now)
+      if (!evidence) return []
+      const path = '/' + section + '/' + slug
+      return [{ path, traffic: byPath.get(path) ?? null, ...evidence }]
+    })
+  }).sort((a, b) => (b.traffic ?? -1) - (a.traffic ?? -1) || a.path.localeCompare(b.path))
+}
+
+function tableRows(rows, getValues) {
+  return rows.map(row => '| ' + getValues(row).join(' | ') + ' |').join('\n') || '| — | — | — |'
+}
+
+function main(args) {
+  const explicitTraffic = args.find(arg => arg.startsWith('--traffic='))?.slice('--traffic='.length)
+  const trafficFile = explicitTraffic ?? join(root, 'docs', 'ops', 'analytics', 'traffic-latest.json')
+  const { byPath, metric, source } = readTraffic(trafficFile, Boolean(explicitTraffic))
+  const { programs } = JSON.parse(readFileSync(join(root, 'data', 'affiliate', 'programs.json'), 'utf8'))
+  const now = new Date()
+  const rows = collectArticles(programs, byPath, now)
+  const displayTraffic = row => row.traffic ?? '—'
+  const placementRows = tableRows(rows.filter(row => row.placements.length), row => [
+    row.path, displayTraffic(row), row.placements.map(placement =>
+      placement.tool + ' (' + placement.forms.join(', ') + '; ' + placement.state + ')',
+    ).join(', '),
+  ])
+  const opportunityRows = tableRows(rows.filter(row => row.opportunities.length), row => [
+    row.path, displayTraffic(row), row.opportunities.join(', '),
+  ])
+  const enrollmentRows = tableRows(rows.filter(row => row.enrollmentCandidates.length), row => [
+    row.path, displayTraffic(row), row.enrollmentCandidates.join(', '),
+  ])
+
+  const report = [
+    '# Affiliate placement audit', '',
+    'Checked ' + now.toISOString().slice(0, 10) + ' against the local blog and guide sources.', '',
+    'Traffic source — ' + source + '. A dash means traffic was unavailable for the route.', '',
+    'Source placements require a rendered-page check for the disclosure and link attributes. ' +
+      'Program eligibility depends on the catalog evidence and its review date.', '',
+    '## Existing placements', '', '| Page | ' + metric + ' | Tool and placement |', '| --- | ---: | --- |', placementRows, '',
+    '## Mentions of eligible programs without a recognized placement', '',
+    '| Page | ' + metric + ' | Check editorial fit |', '| --- | ---: | --- |', opportunityRows, '',
+    '## Mentions of programs without a recorded issued link', '',
+    '| Page | ' + metric + ' | Check enrollment |', '| --- | ---: | --- |', enrollmentRows, '',
+  ].join('\n')
+  console.log(report)
+  if (args.includes('--write')) {
+    const out = join(root, 'docs', 'ops', 'affiliate', 'AUDIT.md')
+    mkdirSync(dirname(out), { recursive: true })
+    writeFileSync(out, report)
+  }
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main(process.argv.slice(2))
