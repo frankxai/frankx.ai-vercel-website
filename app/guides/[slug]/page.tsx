@@ -98,7 +98,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             <div className="text-sm text-slate-400 mb-8 flex items-center gap-3">
               <span>{guide.readingTime}</span>
               <span className="text-slate-600">•</span>
-              <span>{new Date(guide.date).toLocaleDateString()}</span>
+              <span>{new Date(guide.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
               <span className="text-slate-600">•</span>
               <span>{guide.author}</span>
             </div>
