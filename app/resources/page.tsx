@@ -490,7 +490,7 @@ export default function ResourcesPage() {
         <ResourceGrid title="Interactive Tools" subtitle="Built By FrankX" items={toolItems} />
         <ResourceGrid title="Products" subtitle="Systems" items={productItems} />
         <ResourceGrid title="Intelligence" subtitle="Research + Hubs" items={intelligenceItems} />
-        <ResourceGrid title="Affiliate Programs" subtitle="Agent-Vetted Picks" items={affiliateProgramItems} />
+        <ResourceGrid title="Affiliate Programs" subtitle="Partner links" items={affiliateProgramItems} />
         <ResourceGrid title="GitHub Repos" subtitle="Build In Public" items={githubRepoItems} />
         <ResourceGrid title="Learning" subtitle="Guides" items={learningItems} />
         <ResourceGrid title="Arcanea" subtitle="Worldbuilding" items={arcaneaItems} />

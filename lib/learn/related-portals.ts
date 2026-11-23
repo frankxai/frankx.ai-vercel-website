@@ -42,6 +42,7 @@ const GUIDE_PORTALS: Record<string, string[]> = {
   'skills-library-playbook': ['claude-mastery'],
   'frankx-skill-creation-methodology': ['claude-mastery'],
   'founder-ai-stack-2026': ['claude-mastery', 'chatgpt-mastery', 'gemini-mastery'],
+  alchemy: [],
 }
 
 /** lib/research/domains.ts <slug> → portal slugs. Omitted domains get the default set. */
