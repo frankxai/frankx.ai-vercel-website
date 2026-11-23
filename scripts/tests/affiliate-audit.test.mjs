@@ -25,6 +25,12 @@ test('a catalog link does not count as an article placement', () => {
   assert.deepEqual(result.opportunities, ['ElevenLabs'])
 })
 
+test('matches literal tool aliases that contain regex punctuation', () => {
+  const program = { ...elevenLabs, aliases: ['Voice AI (Pro)'] }
+  const result = inspectArticle('I tested Voice AI (Pro).', [program], now)
+  assert.deepEqual(result.opportunities, ['ElevenLabs'])
+})
+
 test('recognizes the published hop, exact issued URL and configured MDX component', () => {
   const source = [
     '[Try ElevenLabs](https://www.frankx.ai/go/elevenlabs?src=guide)',

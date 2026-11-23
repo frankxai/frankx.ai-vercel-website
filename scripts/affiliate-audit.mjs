@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Run from Node 24+. Optional input: --traffic=/absolute/path/to/traffic.json.
+// Run with Node 22 and type stripping enabled. Optional input: --traffic=/absolute/path/to/traffic.json.
 
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
@@ -33,6 +33,10 @@ function auditedProse(source) {
     .replace(/<!--[\s\S]*?-->/g, '')
     .replace(/{\/\*[\s\S]*?\*\/}/g, '')
     .replace(/([\x60]+)[^\n]*?\1/g, '')
+}
+
+function escapeAlias(alias) {
+  return alias.replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
 }
 
 export function inspectArticle(source, programs, now = new Date()) {
@@ -69,7 +73,7 @@ export function inspectArticle(source, programs, now = new Date()) {
       continue
     }
     const mentioned = aliases.some(alias => new RegExp(
-      '(?<![\\p{L}\\p{N}_])' + RegExp.escape(alias) + '(?![\\p{L}\\p{N}_])',
+      '(?<![\\p{L}\\p{N}_])' + escapeAlias(alias) + '(?![\\p{L}\\p{N}_])',
       'iu',
     ).test(prose))
     if (!mentioned) continue
