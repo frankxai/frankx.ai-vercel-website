@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { acosCampaign } from '@/lib/commerce/acos-campaign'
+import { allowsAnalyticsMeasurement } from '@/lib/analytics-policy'
 import { stripeCheckoutGate } from '@/lib/checkout-gate'
 import { CHECKOUT_PRODUCTS } from '@/lib/checkout-products'
 
@@ -9,7 +11,7 @@ const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
 // lib/delivery.ts's getProductById()/getDeliveryConfig().
 export async function POST(request: NextRequest) {
   try {
-    const { productId, email } = await request.json()
+    const { productId, email, attribution } = await request.json()
 
     const product = CHECKOUT_PRODUCTS[productId]
     if (!product) {
@@ -34,7 +36,6 @@ export async function POST(request: NextRequest) {
     params.append('cancel_url', `${request.nextUrl.origin}/checkout/cancel`)
     params.append('line_items[0][price]', gate.priceId)
     params.append('line_items[0][quantity]', '1')
-    params.append('metadata[productSlug]', productId)
     if (email) {
       params.append('customer_email', email)
     }
@@ -43,6 +44,15 @@ export async function POST(request: NextRequest) {
     // charged but never receive their product email.
     params.append('metadata[productSlug]', productId)
     params.append('payment_intent_data[metadata][productSlug]', productId)
+
+    const measure = allowsAnalyticsMeasurement(request.headers.get('dnt'), request.headers.get('sec-gpc') === '1')
+    const campaign = measure && productId === 'agentic-creator-os' ? acosCampaign(attribution) : null
+    if (campaign) {
+      for (const [field, value] of Object.entries(campaign)) {
+        params.set(`metadata[${field}]`, value)
+        params.set(`payment_intent_data[metadata][${field}]`, value)
+      }
+    }
 
     const response = await fetch('https://api.stripe.com/v1/checkout/sessions', {
       method: 'POST',

@@ -657,6 +657,12 @@
       "requiresEmail": true,
       "files": [
         {
+          "name": "ACOS Release Desk",
+          "format": "zip",
+          "blobKey": "products/agentic-creator-os/ACOS-Release-Desk-v1.zip",
+          "description": "Offline release worksheet with three worked cases and Markdown export"
+        },
+        {
           "name": "ACOS Product Guide v2",
           "format": "pdf",
           "blobKey": "products/agentic-creator-os/ACOS-Product-Guide-v2.pdf",

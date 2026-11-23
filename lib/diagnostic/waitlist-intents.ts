@@ -23,6 +23,7 @@ export interface WaitlistIntent {
 
 export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
   // Product launch lists linked from their existing product pages.
+  'agentic-creator-os': { label: 'ACOS Creator Kit', listType: 'premium-packs' },
   'bv-kit': { label: 'Creator BV Kit', listType: 'premium-packs' },
   'prompt-vault': { label: 'Prompt Vault', listType: 'premium-packs' },
   // Launch lists for products whose checkout or download is not open yet.
@@ -63,6 +64,7 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
 
 /** Launch-list intents the /waitlist page routes through this registry (product-launch flow). */
 export const LAUNCH_LIST_INTENTS: ReadonlySet<string> = new Set([
+  'agentic-creator-os',
   'bv-kit',
   'prompt-vault',
   'starter-kit',

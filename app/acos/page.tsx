@@ -18,20 +18,16 @@ import {
 import PremiumButton from '@/components/ui/PremiumButton'
 import { GlowCard } from '@/components/ui/glow-card'
 
-/* ──────────────────────────────────────────────
-   CHECKOUT — both tiers are waitlist, on purpose.
-   The Stripe rail exists in code (app/api/checkout/route.ts knows the
-   'agentic-creator-os' SKU at $47), but the Vercel production project has
-   no STRIPE_SECRET_KEY and no STRIPE_PRICE_ACOS, so /api/checkout answers
-   503 for every SKU. Swapping these hrefs for a CheckoutButton before those
-   two vars are set would replace an honest email capture with a button that
-   fails in an alert().
-   To wire it: set STRIPE_SECRET_KEY + STRIPE_PRICE_ACOS in Vercel, confirm
-   the price ID is the real $47 one, then use CheckoutButton with
-   productId="agentic-creator-os" (the key that test:checkout-sku enforces).
-   ────────────────────────────────────────────── */
+import CheckoutButton from '@/components/commerce/CheckoutButton'
+import { CHECKOUT_PRODUCTS } from '@/lib/checkout-products'
+import { stripeCheckoutGate } from '@/lib/checkout-gate'
+
+const kit = CHECKOUT_PRODUCTS['agentic-creator-os']
+const kitOpen = stripeCheckoutGate({
+  status: kit.status, priceId: process.env[kit.priceEnv] || '',
+}, process.env.STRIPE_SECRET_KEY).ok
 const CHECKOUT = {
-  starter: '/newsletter?ref=acos-creator-kit',
+  starter: '/waitlist?intent=agentic-creator-os',
   pro: '/newsletter?ref=acos-pro-system',
 }
 
@@ -65,18 +61,15 @@ const tiers = [
   },
   {
     name: 'Creator Kit',
-    price: '$47',
+    price: `$${kit.amount / 100}`,
     priceNote: 'One-time',
-    description: 'Everything open-source + premium templates, video walkthroughs, and direct support.',
+    description: 'Release Desk is an offline worksheet for the person or agent reviewing your next launch.',
     features: [
-      'Everything in Open Source',
-      'Video quickstart guide (45 min)',
-      'Premium template library (20+)',
-      'Curated skill pack presets',
-      'Priority email support',
-      'Private Discord community',
+      'Three cases covering delivery, attribution and refunds',
+      'An editable worksheet with an owner, evidence and stop condition',
+      'Markdown export for the next operator',
     ],
-    cta: 'Join Waitlist',
+    cta: 'Join the kit launch list',
     ctaHref: CHECKOUT.starter,
     variant: 'primary' as const,
     featured: true,
@@ -108,7 +101,7 @@ const faq = [
   },
   {
     q: 'Is the open-source version the full product?',
-    a: 'Yes. The MIT-licensed version on GitHub contains the complete ACOS system — every command, skill, agent, and workflow. The paid tiers add premium templates, video guides, direct support, and custom configuration help. The code itself is 100% free.',
+    a: 'Yes. The MIT-licensed version on GitHub contains the complete ACOS system — every command, skill, agent, and workflow. The Creator Kit has a public worked example and a launch list for the paid edition. The code itself is 100% free.',
   },
   {
     q: 'Do I need Claude Code to use ACOS?',
@@ -120,7 +113,7 @@ const faq = [
   },
   {
     q: 'What\'s different about the paid tiers?',
-    a: 'The paid tiers provide guided setup (video walkthroughs), premium templates (20+ pre-built content patterns), curated presets, and direct support from the creator. The Pro tier adds quarterly skill pack updates, custom agent configuration, and 1:1 async support for 30 days.',
+    a: 'The $47 Creator Kit is planned for founders preparing a release. You can inspect its public handoff example below. The Pro tier adds quarterly skill pack updates, custom agent configuration, and 1:1 async support for 30 days.',
   },
   {
     q: 'Can I customize the agents and skills?',
@@ -151,7 +144,7 @@ const structuredData = {
       price: '47',
       priceCurrency: 'USD',
       name: 'Creator Kit',
-      availability: 'https://schema.org/PreOrder',
+      availability: kitOpen ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
     },
     {
       '@type': 'Offer',
@@ -200,9 +193,9 @@ export default function ACOSPage() {
             </span>
           </h1>
           <p className="mt-6 text-lg text-white/60 sm:text-xl md:text-2xl">
-            The operating system for generative creators.
+            A local workspace for your next creative release.
             <br className="hidden sm:block" />
-            99 agents. 35+ skills. 117+ commands. 11 pillars. One entry point.
+            Inspect the commands, try a worked brief, then decide what to hand off.
           </p>
 
           <div className="mt-4 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-2 text-xs text-emerald-200">
@@ -252,9 +245,9 @@ export default function ACOSPage() {
               Star on GitHub
               <ArrowRight className="h-5 w-5" />
             </PremiumButton>
-            <PremiumButton variant="ghost" size="lg" href="#pricing">
+            <PremiumButton variant="ghost" size="lg" href="#creator-kit">
               <Download className="h-5 w-5" />
-              See Pricing
+              Read the Creator Kit example
             </PremiumButton>
           </div>
         </div>
@@ -439,6 +432,25 @@ export default function ACOSPage() {
         </div>
       </section>
 
+      <section id="creator-kit" aria-labelledby="kit-title" className="scroll-mt-24 border-y border-white/10 bg-[#0c1112] py-20">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-2">
+          <div>
+            <p className="font-mono text-xs tracking-widest text-emerald-300">ACOS Creator Kit · Worked example</p>
+            <h2 id="kit-title" className="mt-5 max-w-md text-4xl font-semibold leading-tight text-white sm:text-5xl">Give the next agent a brief it can finish.</h2>
+            <p className="mt-5 max-w-md leading-relaxed text-slate-300">A build note says the checkout works. A release editor needs to know what the buyer actually received. Try the handoff on your last release.</p>
+            <a href="/samples/acos-release-handoff.md" className="mt-7 inline-flex rounded-full bg-emerald-200 px-5 py-3 font-semibold text-slate-950 hover:bg-emerald-100 focus-visible:outline focus-visible:outline-offset-4">Read the worked brief</a>
+          </div>
+          <figure className="self-center border-l-2 border-emerald-300/70 pl-6 sm:pl-10">
+            <figcaption className="mb-5 font-mono text-xs uppercase tracking-widest text-slate-300">Excerpt · Release handoff</figcaption>
+            <dl className="space-y-5">
+              <div><dt className="text-sm text-emerald-300">Build note</dt><dd className="mt-1 text-xl text-white">“The order email arrived.”</dd></div>
+              <div><dt className="text-sm text-emerald-300">Editor’s question</dt><dd className="mt-1 text-xl text-white">Did the buyer open the promised file?</dd></div>
+              <div><dt className="text-sm text-emerald-300">Next action</dt><dd className="mt-1 text-base text-slate-200">Open the receipt as the test buyer. Match the downloaded file to the release. Hand the result to the person writing the launch note.</dd></div>
+            </dl>
+          </figure>
+        </div>
+      </section>
+
       {/* ─── Pricing ─── */}
       <section id="pricing" className="py-20">
         <div className="mx-auto max-w-6xl px-6">
@@ -446,7 +458,7 @@ export default function ACOSPage() {
             Choose Your Path
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-white/50">
-            The code is free. Premium adds guides, templates, support, and direct access.
+            Clone the free system or follow a paid edition through its launch list.
           </p>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {tiers.map((tier) => (
@@ -480,7 +492,9 @@ export default function ACOSPage() {
                   ))}
                 </ul>
                 <div className="mt-8">
-                  {tier.ctaHref.startsWith('http') ? (
+                  {tier.name === 'Creator Kit' && kitOpen ? (
+                    <CheckoutButton productId="agentic-creator-os" price={kit.amount / 100} label="Get the Creator Kit" />
+                  ) : tier.ctaHref.startsWith('http') ? (
                     <a
                       href={tier.ctaHref}
                       target="_blank"
@@ -551,8 +565,8 @@ export default function ACOSPage() {
               <Github className="h-5 w-5" />
               View on GitHub
             </PremiumButton>
-            <PremiumButton variant="primary" size="lg" href={CHECKOUT.starter}>
-              Join Waitlist
+            <PremiumButton variant="primary" size="lg" href="#pricing">
+              View the Creator Kit
             </PremiumButton>
           </div>
         </div>

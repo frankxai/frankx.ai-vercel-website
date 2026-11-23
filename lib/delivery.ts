@@ -46,6 +46,7 @@ export const DELIVERY_CONFIG: Record<string, DeliveryConfig> = {
     productId: 'agentic-creator-os',
     deliveryType: 'access-code',
     files: [
+      'ACOS-Release-Desk-v1.zip',
       'ACOS-Quickstart-Guide.pdf',
       'ACOS-Complete-Reference.pdf',
       'ACOS-Custom-Agent-Guide.pdf',
