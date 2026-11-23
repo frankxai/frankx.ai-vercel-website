@@ -1,0 +1,46 @@
+{
+  "week": "2026-W48",
+  "generatedAt": "2026-11-23T07:11:05Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-11-16T07:11:05Z",
+  "windowEnd": "2026-11-23T07:11:05Z",
+  "pagesFetched": 1,
+  "paginationNote": "list_deployments with since=1794813065000 returned 79 items, pagination.count=79, no next cursor — complete result set.",
+  "metrics": {
+    "count_total": 79,
+    "count_production": 11,
+    "count_preview": 68,
+    "count_skipped": 35,
+    "count_error": 0,
+    "count_ready": 44,
+    "count_other": 0,
+    "state_note": "count_ready + count_error + count_skipped = 44+0+35 = 79 = count_total.",
+    "duration_p50_seconds": 146,
+    "duration_p95_seconds": 312,
+    "duration_max_seconds": 335,
+    "total_build_minutes": 138,
+    "total_build_minutes_basis": "READY deploys only (44 of 79 total; ERROR, CANCELED excluded)",
+    "duration_method": "readyAt_minus_buildingAt_sampled",
+    "ready_deploys_sampled": 10,
+    "ready_deploys_total": 44,
+    "duration_note": "10/44 READY deploys sampled evenly via get_deployment (ready - buildingAt). Sorted durations (s): 123.8, 126.2, 130.0, 135.3, 136.5, 156.4, 225.3, 233.8, 284.6, 335.0. p50=146s (mean of 5th+6th: (136.5+156.4)/2=146.4). p95=312s (linear interp at index 8.55: 284.6+0.55*(335.0-284.6)=312.3). total_build_minutes = mean 188.7s / 60 * 44 READY = 138 min.",
+    "error_deploys": []
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W46",
+    "prior_week_note": "W47 snapshot absent (no run that week). Comparing against W46, the most recent available snapshot.",
+    "duration_p50_seconds": "-51",
+    "count_total": "-73",
+    "total_build_minutes": "-20"
+  },
+  "verdict": "GREEN",
+  "alerts": [
+    "count_total=79 (W46=152, -73): deploy volume dropped significantly week-over-week — fewer open agent branches this week.",
+    "duration_p50=146s (W46=197s, -51s, -26%): builds measurably faster. Consistent with W46 skipCommand gains compounding.",
+    "count_error=0: no failed builds. GREEN.",
+    "count_production=11: same as W46 — steady shipping cadence maintained.",
+    "W47 snapshot missing: no data for 2026-11-09 to 2026-11-16. This delta is computed vs W46.",
+    "total_build_minutes=138 (W46=158, -20 min, -13%): build consumption stable-to-improving."
+  ]
+}
