@@ -1158,6 +1158,7 @@
         {
           "name": "Love & Poetry (PDF)",
           "blobKey": "books/love-and-poetry/love-and-poetry.pdf",
+          "publicPath": "/books/love-and-poetry.pdf",
           "format": "pdf",
           "size": "0.6 MB"
         }
@@ -1220,6 +1221,7 @@
         {
           "name": "Spartan Mindset (PDF)",
           "blobKey": "books/spartan-mindset/spartan-mindset.pdf",
+          "publicPath": "/books/spartan-mindset.pdf",
           "format": "pdf",
           "size": "0.8 MB"
         }
@@ -1282,6 +1284,7 @@
         {
           "name": "The Art of Self-Development (PDF)",
           "blobKey": "books/self-development/self-development.pdf",
+          "publicPath": "/books/self-development.pdf",
           "format": "pdf",
           "size": "0.9 MB"
         }
@@ -1344,6 +1347,7 @@
         {
           "name": "Imagination (PDF)",
           "blobKey": "books/imagination/imagination.pdf",
+          "publicPath": "/books/imagination.pdf",
           "format": "pdf",
           "size": "0.7 MB"
         }
@@ -1406,6 +1410,7 @@
         {
           "name": "Manifestation (PDF)",
           "blobKey": "books/manifestation/manifestation.pdf",
+          "publicPath": "/books/manifestation.pdf",
           "format": "pdf",
           "size": "0.7 MB"
         }
@@ -1440,6 +1445,7 @@
         {
           "name": "The Golden Age of Creators (PDF)",
           "blobKey": "books/golden-age/golden-age.pdf",
+          "publicPath": "/books/golden-age.pdf",
           "format": "pdf",
           "size": "1.0 MB"
         }

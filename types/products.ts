@@ -72,7 +72,8 @@ export type ProductCaseStudy = {
 export type ProductFile = {
   name: string
   format: 'pdf' | 'zip' | 'video' | 'audio' | 'notion'
-  blobKey: string // Vercel Blob storage key
+  blobKey: string // Stable key accepted by the legacy file download endpoint
+  publicPath?: `/books/${string}.pdf` // Edition bundled with the site
   sizeBytes?: number
   description?: string
 }

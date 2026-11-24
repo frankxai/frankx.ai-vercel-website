@@ -372,3 +372,24 @@ test('every free book remains direct without audience enrollment when Resend is 
     else process.env.RESEND_API_KEY = previousKey
   }
 })
+
+test('each registered free book resolves to its bundled PDF through all public download routes', async () => {
+  const noNetwork = () => assert.fail('unexpected network request')
+  const { GET, POST } = loadDownloadRoute(noNetwork)
+  const fileRoute = loadDownloadRoute(noNetwork, 'app/api/download/file/route.ts')
+  const products = JSON.parse(readFileSync(repoFile('data/products.json'), 'utf8'))
+  const books = products.filter(product => product.delivery?.files?.some(file => file.blobKey.startsWith('books/')))
+  assert.equal(books.length, 6)
+  for (const book of books) {
+    const file = book.delivery.files[0]
+    const expectedUrl = `https://frankx.ai/books/${book.slug}.pdf?download=1`
+    const get = await GET(new Request(`https://frankx.ai/api/download?product=${book.slug}`))
+    const post = await POST(postRequest(book.slug))
+    const legacy = await fileRoute.GET(new Request(`https://frankx.ai/api/download/file?key=${file.blobKey}`))
+    assert.equal(get.headers.get('location'), expectedUrl, book.slug)
+    assert.equal((await post.json()).file.url, expectedUrl, book.slug)
+    assert.equal(legacy.headers.get('location'), expectedUrl, book.slug)
+    const bytes = readFileSync(repoFile(`public/books/${book.slug}.pdf`))
+    assert.equal(bytes.subarray(0, 5).toString(), '%PDF-', book.slug)
+  }
+})
