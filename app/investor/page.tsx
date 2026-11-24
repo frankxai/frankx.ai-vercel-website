@@ -492,8 +492,14 @@ export default function InvestorHubPage() {
               </h2>
               <p className="mt-2 max-w-lg text-slate-400">
                 Three AI tools that can accelerate source gathering, comparison,
-                and thesis review. Verify every source and conclusion before
-                acting.
+                and thesis review. To trace a number in an investment memo back
+                to its source, use the{" "}
+                <a
+                  href="https://github.com/frankxai/geninvestor-skills/blob/d8de35a0dd9fd17667d8b0d32c63307d885207f2/skills/source-check/SKILL.md"
+                  className="rounded-sm text-cyan-300 underline underline-offset-4 hover:text-cyan-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+                >
+                  free GenInvestor source-check skill
+                </a>.
               </p>
             </motion.div>
             <div className="grid gap-6 sm:grid-cols-3">
