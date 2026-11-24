@@ -87,7 +87,14 @@ async function submitWaitlist(intent) {
   return { props: signup.props, body: requests[0].body, answerDemand }
 }
 
-for (const [intent, label] of [['bv-kit', 'Creator BV Kit'], ['prompt-vault', 'Prompt Vault']]) {
+for (const [intent, label] of [
+  ['bv-kit', 'Creator BV Kit'],
+  ['prompt-vault', 'Prompt Vault'],
+  ['command-center', 'The Command Center Template'],
+  ['command-center-template', 'The Command Center Template'],
+  ['aurora-ui-kit', 'Aurora UI Kit'],
+  ['agentic-content-engine', 'Agentic Content Engine'],
+]) {
   test(`${intent} reaches the signup request with its product identity and launch list`, async () => {
     const { props, body } = await submitWaitlist(`  ${intent}  `)
     assert.equal(props.intentLabel, label)
