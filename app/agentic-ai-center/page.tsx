@@ -164,6 +164,12 @@ const resourceTracks = [
     icon: GitBranch,
   },
   {
+    title: 'Route Work with Decision Models',
+    description: 'Compare typed routing, evidence checks and rubric scores. Set review and fallback in the workflow.',
+    href: '/llm-hub#decision-models',
+    icon: BrainCircuit,
+  },
+  {
     title: 'Build with ACOS',
     description: 'The Agentic Creator OS as a practical reference system for agent teams, skills, and workflows.',
     href: '/products/agentic-creator-os',
