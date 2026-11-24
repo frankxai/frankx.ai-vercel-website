@@ -1,3 +1,4 @@
+import MiniatureStoryboard from './MiniatureStoryboard'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
@@ -36,26 +37,7 @@ export function FounderStory() {
           </div>
         </div>
 
-        <div className="mt-16 grid items-start gap-8 lg:grid-cols-[1fr_1.4fr] lg:gap-14">
-          <div className="min-w-0 lg:pt-6">
-            <p className="mb-4 text-xs font-medium tracking-[0.14em] text-emerald-300">The miniature studio</p>
-            <h3 className="text-balance font-display text-2xl font-semibold tracking-tight sm:text-3xl">Big ideas deserve a little play.</h3>
-            <p className="mt-5 text-base leading-relaxed text-white/75">Mini Frank is my illustrated counterpart. Alongside the studio’s companions, he turns the messy parts of making things into stories: finding a melody, testing an idea, noticing what needs another pass.</p>
-            <p className="mt-4 text-base leading-relaxed text-white/75">These scenes are part of my visual practice. The field guide opens the process, with character references, storyboards, and prompts you can adapt for your own work.</p>
-            <Link href="/guides/mini-me-storyboard" className={`${textLink} mt-5`}>Explore the mini-me stories <ArrowRight aria-hidden="true" className="h-4 w-4" /></Link>
-            <p className="mt-5 text-sm leading-relaxed text-white/60">AI-generated illustrations. Echo is an original FrankX music companion.</p>
-          </div>
-          <div className="grid min-w-0 grid-cols-1 items-start sm:grid-cols-2 gap-3 sm:gap-5">
-            <figure>
-              <Image src="/images/guides/mini-me/collection-01-01.svg" alt="Mini Frank sits on piano keys beside Echo. The poster reads: A feeling. Then a song." width={1122} height={1402} loading="lazy" unoptimized className="h-auto w-full rounded-2xl" />
-              <figcaption className="mt-3 text-sm leading-relaxed text-white/65">Start with something you feel.</figcaption>
-            </figure>
-            <figure className="sm:pt-12">
-              <Image src="/images/guides/mini-me/collection-02-08.svg" alt="Mini Frank and Echo shape a music brief: restless then released, 139 BPM house, Afro percussion, a breathy German and English lead, and a close verse opening into a wide chorus." width={1080} height={1920} loading="lazy" unoptimized className="h-auto w-full rounded-2xl" />
-              <figcaption className="mt-3 text-sm leading-relaxed text-white/65">Give the idea a form you can make.</figcaption>
-            </figure>
-          </div>
-        </div>
+        <MiniatureStoryboard />
 
         <nav aria-label="Continue with Frank" className="mt-12 flex flex-wrap items-center gap-x-7 gap-y-2 border-t border-white/10 pt-6">
           <Link href="/coaching" className={textLink}>Explore coaching <ArrowRight aria-hidden="true" className="h-4 w-4" /></Link>
