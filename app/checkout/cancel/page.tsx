@@ -3,8 +3,9 @@ import { ArrowLeft, MessageSquare } from 'lucide-react'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'Checkout Cancelled | FrankX',
-  description: 'Your checkout was cancelled. No charges were made.',
+  noindex: true,
+  title: 'Return to checkout | FrankX',
+  description: 'Return to the product catalog or get help with an order.',
   path: '/checkout/cancel',
 })
 
@@ -12,11 +13,10 @@ export default function CheckoutCancel() {
   return (
     <div className="flex min-h-[80vh] items-center justify-center px-6">
       <div className="mx-auto max-w-lg text-center">
-        <h1 className="mb-4 text-3xl font-bold text-white">Checkout Cancelled</h1>
+        <h1 className="mb-4 text-3xl font-bold text-white">Back from checkout</h1>
 
         <p className="mb-8 text-lg leading-relaxed text-slate-400">
-          No worries — no charges were made. Your cart is still waiting if you
-          change your mind.
+          You can return to the catalog or contact us about an order.
         </p>
 
         <div className="mb-8 rounded-xl border border-white/[0.08] bg-white/[0.03] p-4">
