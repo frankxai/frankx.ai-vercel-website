@@ -25,6 +25,29 @@ const SOURCES = [
   { name: 'Vendor model cards', role: 'Self-reported benchmarks (labelled as such)', url: 'https://www.frankx.ai/ai-ops/models-2026' },
 ]
 
+const DECISION_APIS = [
+  {
+    name: 'Cloudflare Clef',
+    description: 'Clef-flash for short inputs on Workers AI. Clef-omni adds audio and video alongside text and images.',
+    href: 'https://developers.cloudflare.com/changelog/post/2026-10-09-clef-omni-workers-ai/',
+  },
+  {
+    name: 'OpenAI Decisions',
+    description: 'GPT-6 Luna evaluates predicates, choices and ordered scores over text, JSON and images.',
+    href: 'https://developers.openai.com/api/docs/guides/decisions',
+  },
+  {
+    name: 'Gemini Decision 1',
+    description: 'Typed answers with a separate confidence field. Accepts text, JSON, images, PDFs, audio and video.',
+    href: 'https://aistudio.google.com/docs/decisions-api',
+  },
+  {
+    name: 'Microsoft Decision 1.1',
+    description: 'Probability scores over supplied options for text and image tasks. Microsoft lists Foundry, OpenRouter and Vercel availability.',
+    href: 'https://commandline.microsoft.com/microsoft-decision-model-ga/',
+  },
+]
+
 const FAQ = [
   {
     q: 'What is the best LLM in 2026?',
@@ -152,6 +175,12 @@ export default async function LlmHubPage() {
                 <Compass className="h-4 w-4" /> Explore all models
               </Link>
               <Link
+                href="#decision-models"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition-colors hover:border-white/25"
+              >
+                Decision models
+              </Link>
+              <Link
                 href="/blog/frontier-model-routing-without-fable-5"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition-colors hover:border-white/25"
               >
@@ -183,6 +212,18 @@ export default async function LlmHubPage() {
               <Stat label="Agentic platforms" value={platforms.length.toString()} />
               <Stat label="Live-priced" value={liveCount > 0 ? `${liveCount}` : 'registry'} />
             </div>
+            <div className="mt-8 border-l border-emerald-400/40 pl-4">
+              <h2 className="text-base font-semibold">Frontier candidates for November</h2>
+              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-white/70">
+                For coding and multi-tool work, compare{' '}
+                <a href="https://developers.openai.com/api/docs/changelog" className="text-emerald-300 underline underline-offset-4">GPT-6.2 Sol and Astra</a>{' '}
+                with{' '}
+                <a href="https://www.anthropic.com/claude-fable-and-mythos-5-2" className="text-emerald-300 underline underline-offset-4">Claude Opus 5.5 and Fable 5.2</a>.
+                For long-context research, include{' '}
+                <a href="https://aistudio.google.com/docs/changelog" className="text-emerald-300 underline underline-offset-4">Gemini 4 Neon and Carbon</a>.
+                These are candidates from current provider releases. The October receipt below covers Argon on its own test set.
+              </p>
+            </div>
             <section aria-labelledby="argon-update" className="mt-10 rounded-3xl border border-cyan-500/30 bg-cyan-500/[0.06] p-6 md:p-8">
               <p className="mb-3 text-xs text-cyan-300 font-mono uppercase tracking-wider">October release · First-party Round 6 receipt verified 14 October 2026</p>
               <h2 id="argon-update" className="text-2xl font-semibold">Gemini 4 Argon: 5/5 Proving Ground pass at $2 / $10 ($0.10 cached input)</h2>
@@ -209,6 +250,35 @@ export default async function LlmHubPage() {
               </div>
               <p className="mt-5 text-xs leading-relaxed text-white/60">This update covers Astra and the Sonnet 5 price correction. The candidate policies below have their own review date. Historical comparisons retain their original scope.</p>
             </section>
+          </div>
+        </section>
+
+        <section id="decision-models" aria-labelledby="decision-models-title" className="scroll-mt-20 border-t border-white/5 px-6 py-14">
+          <div className="mx-auto max-w-6xl">
+            <p className="mb-3 font-mono text-xs text-emerald-300">Provider documentation checked 24 November 2026</p>
+            <h2 id="decision-models-title" className="text-2xl font-bold">Decision models</h2>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/75">
+              Use a predicate to check whether evidence supports a claim, a choice to assign a work queue, or a score to prioritize review against a rubric.
+              Keep thresholds, permissions, fallback and approvals in the application.
+            </p>
+            <ul className="mt-6 max-w-4xl divide-y divide-white/10 border-y border-white/10">
+              {DECISION_APIS.map((provider) => (
+                <li key={provider.name} className="grid gap-1 py-4 text-sm leading-relaxed sm:grid-cols-[12rem_1fr] sm:gap-5">
+                  <a href={provider.href} className="font-medium text-emerald-300 underline underline-offset-4">
+                    {provider.name}
+                  </a>
+                  <p className="text-white/75">{provider.description}</p>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 max-w-3xl text-sm leading-relaxed text-white/70">
+              The entries describe documented capabilities. For a workload comparison, run the same labeled cases against rules, constrained JSON and the typed APIs.
+              Track error at coverage, p95 latency and cost per accepted decision.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+              <Link href="/agentic-ai-center" className="text-emerald-300 underline underline-offset-4">Agentic AI Center</Link>
+              <Link href="/research/model-arena" className="text-emerald-300 underline underline-offset-4">Evaluation methods and receipts</Link>
+            </div>
           </div>
         </section>
 
