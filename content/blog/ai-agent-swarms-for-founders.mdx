@@ -1,0 +1,80 @@
+---
+title: "AI agent swarms for founders"
+description: "Google Antigravity /swarm, Replit Missions, and Vercel Board offer three ways to delegate work. Compare what each owns, what it costs to review, and where to start."
+date: "2026-11-22"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["agent-orchestration", "founders", "google-antigravity", "replit", "vercel"]
+image: "/images/blog/ai-agent-swarms-cover.webp"
+keywords: ["AI agent swarms", "Google Antigravity swarm", "Replit Missions", "Vercel Board", "multi-agent coding"]
+readingGoal: "Choose one way to delegate your next build and write the acceptance checks before you start."
+tldr: "Pilot Vercel Board for recurring handoffs across an existing stack. Run Antigravity /swarm when an engineering task splits into independent work. Try Replit Missions for a self-contained outcome with a spending cap. Begin with one agent when the work has one main dependency chain."
+---
+
+A workshop signup is small enough to expose what an agent team actually buys you. One worker can build the form while another prepares tests for validation and a third checks the analytics event. At the end, I want to open a preview, submit a test signup, and see one confirmation and one event. I also want to know how much of my morning it took to get there.
+
+That last number changes the buying decision. A faster build has limited value when I spend the afternoon reconstructing who changed what. For a founder, the useful unit is work you can accept. The useful comparison starts with the handoff you need to make.
+
+## Three ways to hand off the work
+
+Google Antigravity coordinates workers inside a task. Replit manages a mission against a success agreement. Vercel gives existing agents a place to coordinate across tools. The table and diagram use the same workshop example so you can see where each product takes over.
+
+| Tool | What you hand it | What it handles | What you still own |
+| --- | --- | --- | --- |
+| Google Antigravity `/swarm` | A repo task with independent parts | Coordinator, parallel workers, shared board and verifier | Scope, integration and the final diff |
+| Replit Missions | A goal, success criteria, spending cap and approval rules | Cloud execution, iteration and evaluation against the agreement | Criteria, approval calls and acceptance of the result |
+| Vercel Board | Tasks and agents you already operate | Channels, threads, claims and handoff history | The agents, their execution environments and release decisions |
+
+<ArticleFigure id="founder-agent-swarm-decision-map" />
+
+[Open the original infographic full size](/images/editorial/founder-agent-swarm-decision-map.svg)
+
+## Google Antigravity /swarm for parallel repo work
+
+Use it when you can name several useful jobs before the first worker starts. For the workshop flow, the form, test fixtures and analytics contract can progress independently once you agree on the payload and event name. If the payload is still changing every twenty minutes, settle it with one agent first. Otherwise each worker will faithfully implement a different version of the same decision.
+
+The [Antigravity documentation](https://antigravity.google/docs/swarm/) describes a coordinator, workers in separate conversations, and usually a verifier. Workers share a workspace by default. Ask for separate working copies when simultaneous changes or builds would collide. The shared board gives workers a way to exchange findings and gives you a record of the test results. Google marks the feature as preview and says running workers consume quota faster than one conversation.
+
+<ArticleVideo id="antigravity-swarm-coordinator-demo" />
+
+The telling moment in the clip is when the coordinator assigns named workers and a verifier starts posting to the board. On a real branch, look for the test command, what it covered, and which version of the combined change it ran against. A verified worker branch can still fail after integration.
+
+## Replit Missions for a bounded outcome
+
+Use it when what you need is easy to recognize and hard to schedule. A workshop prototype is a good candidate when it can use test data and be evaluated independently of your production stack. Agree on a spending cap, specify which actions need your approval, and decide how you will take possession of the work when the mission ends.
+
+[Replit’s announcement](https://replit.com/blog/introducing-replit-missions) describes cloud agents progressing while your laptop is closed. A separate AI judge evaluates the work against the mission agreement. Work can stop when the budget runs out or an approval is needed. Replit says its own DataCat monitoring project took two days within a $3,000 budget. That was Replit’s internal project. For your pilot, the useful numbers are the mission’s actual spend and the work left to make the result yours.
+
+<ArticleVideo id="replit-missions-slides-demo" />
+
+The clip shows work on Replit Slides. For a prototype you intend to keep, include a runnable source export and a brief inventory of services it depends on in the success criteria. Open the export yourself. A viewable demo and a codebase you can run later answer different questions.
+
+## Vercel Board for recurring handoffs
+
+This is where I’d start for a founder who already ships through GitHub and Vercel and works across several coding agents. Keep the brief and the acceptance decision in the GitHub issue or pull request. Use one Board thread to link the preview, hand off a regression check and carry the result back to the implementer.
+
+[Vercel’s documentation](https://vercel.com/docs/board) describes channels, threads, labels, task claims and access grants. Agents can use the CLI or JavaScript SDK. Board supplies the coordination record while the agents still run in the environments you choose. [Vercel lists it as experimental and available on all plans](https://vercel.com/changelog/vercel-board-is-now-available).
+
+<ArticleVideo id="vercel-board-founder-handoff" />
+
+The first Board trial can be one build and one review. If a reviewer can pick up a preview and report the one failing check without asking you to reconstruct the session, that may justify a recurring channel. When the same two people already do this comfortably in a pull request, count the time a new board would add.
+
+## One brief you can reuse
+
+Give whichever tool you choose the same definition of done. This is a proposed test for the [Agentic Builder Lab](/agentic-builder-lab), drawn from documented capabilities. The Google and Replit clips are vendor demos. The Board walkthrough illustrates the proposed handoff.
+
+> Build a workshop signup preview using synthetic entries. On a 390 px viewport, an invalid email shows one clear error without submitting. A valid signup shows a confirmation and records exactly one test analytics event, including after a rapid double click. Return the preview, the runnable source or PR, the checks you ran and the remaining decisions. Keep publication and any real email or analytics traffic behind founder approval.
+
+Measure the three comparisons independently:
+
+1. **Parallel work.** Give one agent and an Antigravity swarm separate branches from the same commit. Review both against the same checks. Start with two workers and a verifier.
+2. **Delegated outcome.** Give Replit the same visible requirements on a standalone prototype. Record the cap and spend, plus the time required to inspect the export. Treat it as a delivery trial with its own starting conditions.
+3. **Recurring handoff.** Keep the same two agents and acceptance checks. Try comparable handoffs in GitHub alone and in GitHub with Board. Track missing context, duplicate requests and founder time.
+
+A useful run log has five fields: elapsed time to acceptance, founder minutes, spend or quota, failed checks, and rework. Track founder minutes from writing the brief through reviewing the result. Use **cost per accepted result** for repeated runs, including failed attempts in the numerator. Keep quota separate when you lack a defensible dollar conversion.
+
+## Where I’d start
+
+For a solo founder with a fresh idea and little existing code, I’d try a capped Replit Mission to produce something a customer can react to. For a technical founder unblocking a multi-package change, I’d try Antigravity when file ownership and the integration check are already clear. For my own portfolio, I’d pilot Board on a single FrankX handoff and keep the GitHub issue as the record of what shipped.
+
+I’d expand any of the three only after I could open the result, reproduce the checks, and spend less of my own time getting to a decision. The work still needs to make somebody’s day better. A workshop participant should be able to sign up without thinking about how much software it took to get there.
