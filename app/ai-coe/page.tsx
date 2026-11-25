@@ -447,6 +447,12 @@ export default function AICoEPage() {
                 )
               })}
             </div>
+            <p className="mt-8 text-sm leading-6 text-zinc-400">
+              Bringing a university cohort or an industry partner?{' '}
+              <Link href="/partnerships" className="text-emerald-300 underline underline-offset-4">
+                Explore applied work and contact Frank.
+              </Link>
+            </p>
           </div>
         </section>
 
