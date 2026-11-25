@@ -16,7 +16,7 @@ The local rehearsal executes:
 4. Commit the event and one entitlement atomically. Unique event IDs and purchase binding prevent replay or owner changes. A confirmed positive refund revokes access conservatively; a refund-before-payment tombstone prevents delayed callbacks from restoring it.
 5. Authenticate the download through the host session, verify ownership/current entitlement, read only a configured private object and check its bytes/hash before returning it. Public buckets, unlisted keys, source mismatch, revoked access and corrupted content fail closed. Response is private/no-store, attachment and nosniff.
 
-`scripts/commerce/glass-sandbox-sqlite.mjs` is a real file-backed transactional adapter for **offline rehearsal only**. Tests close/reopen it and verify persisted grant/revocation. Never use this adapter as business truth on Vercel's ephemeral filesystem. The same domain interface has a Supabase transaction-RPC adapter; `glass-sandbox-ledger-proposal.sql` is a service-role-only schema/function proposal, **not an applied migration or a proven cloud database**. It keeps transactional truth in the existing Supabase/Postgres architecture. RLS, role grants, concurrency/replay and restore must be verified on a dedicated sandbox DB before wiring.
+`scripts/commerce/glass-sandbox-sqlite.mjs` is a real file-backed transactional adapter for **offline rehearsal only**. Tests close/reopen it and verify persisted grant/revocation. Never use this adapter as business truth on Vercel's ephemeral filesystem. The same domain interface has a Supabase transaction-RPC adapter; `glass-sandbox-ledger-proposal.sql` is a service-role-only schema/function proposal, **not an applied migration or a proven cloud database**. It keeps transactional truth in the existing Supabase/Postgres architecture. The disposable PostgreSQL rehearsal covers role grants, scoped reads, concurrent replay and refund ordering. A restore rehearsal and verification on the selected hosted sandbox still precede wiring.
 
 `glassSandboxCheckout` and `stripeSandboxReads` use the real installed Stripe SDK with an explicitly supplied fetch transport, five-second SDK timeout, no network retries and `sk_test_` enforcement. Fixture tests exercise the actual SDK checkout-create and Session/line-item/Charge request paths, including canonical request fields and idempotency. No Stripe request was made during this work. `supabasePrivateArtifactReader` exercises the expected existing storage client's bucket-metadata and download APIs with fixtures; no bucket was created, uploaded, made private or remotely read here.
 
@@ -41,3 +41,17 @@ Connected Stripe discovery currently exposes only live account context. Therefor
 Before launch: configure a genuine Stripe sandbox and test-only server credentials through the approved secret mechanism; review/apply the sandbox-only Postgres proposal; verify the existing authentication adapter and private storage owner; pin the approved SDI archive; complete provider purchase/retry/refund/download rehearsals including cross-user denial; obtain different-provider substantive review under this repository's release routing; approve source license/tax/refund/support terms separately; then request explicit owner approval for release. No part of this candidate supplies that approval.
 
 Official references consulted: [Stripe post-payment events](https://docs.stripe.com/payments/existing-customers?platform=web&ui=stripe-hosted), [Stripe automated testing](https://docs.stripe.com/automated-testing), [Node SQLite](https://nodejs.org/api/sqlite.html). Source existence, adapter fixture behavior, provider connectivity and customer acceptance remain separate evidence levels.
+
+## Disposable PostgreSQL verification
+
+Install PostgreSQL 17 client and server tools, put `initdb`, `pg_ctl` and `psql` on PATH, and run as a regular user:
+
+```sh
+node --test scripts/tests/glass-sandbox-postgres.test.mjs
+```
+
+The test creates a fresh password-authenticated cluster on a loopback port, applies the SQL proposal twice, runs independent SQL sessions, then removes the cluster. The production store and Stripe are never contacted. It checks service-only execution, subject-scoped reads, simultaneous retries, conflicting identities, rollback, refund-before-payment and one access event per state transition.
+
+`commerce_sandbox.access_events` records the v1 grant or revocation together with its originating provider event in the entitlement transaction. The event contains a session reference. Consumers must resolve the subject and authorize purpose and consent separately. No worker, customer messaging or installation is enabled.
+
+Set `GLASS_ESSENTIAL_ARCHIVE` to the local SDI Essential RC2 ZIP to run the archive acceptance case. It checks 80,099 bytes and SHA-256 `ed825d6a1b20336e1a38fc8f34466b96ded5266320dd9fd6935d0ab37160820c` from SDI revision `bf3d078d6f66afb37eb0e3f2d81fb4cb5569b00c`. It then sends SDK-generated signed fixture events through the real handler and PostgreSQL transaction, verifies an authorized download byte-for-byte, rejects a second buyer and revokes access on refund. The archive stays local. Provider reads, authentication, terms and the storage adapter are fixtures; running without the archive explicitly skips this case.

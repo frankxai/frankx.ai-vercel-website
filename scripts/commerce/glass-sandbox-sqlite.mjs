@@ -24,13 +24,17 @@ export function sqliteSandboxLedger(file) {
       db.prepare('INSERT OR IGNORE INTO attempts VALUES (?,?)').run(attempt.sessionId, JSON.stringify(attempt))
     }),
     attempt: async id => get('attempts', id),
-    entitlement: async id => get('entitlements', id),
+    entitlement: async (id, subjectId) => {
+      const row = get('entitlements', id)
+      return row && row.subjectId === subjectId ? row : null
+    },
     grant: async (eventId, entitlement) => transaction(() => {
-      if (replay(eventId, 'grant', entitlement.sessionId)) return 'duplicate'
       const attempt = get('attempts', entitlement.sessionId)
-      if (!attempt || Object.keys(attempt).some(key => attempt[key] !== entitlement[key])) throw Error('Unbound grant')
+      if (!attempt || entitlement.state !== 'active' || Object.keys(entitlement).length !== Object.keys(attempt).length + 2 ||
+          Object.keys(attempt).some(key => attempt[key] !== entitlement[key])) throw Error('Unbound grant')
       const previous = get('entitlements', entitlement.sessionId)
       if (previous && previous.paymentIntent !== entitlement.paymentIntent) throw Error('Payment identity conflict')
+      if (replay(eventId, 'grant', entitlement.sessionId)) return 'duplicate'
       const revoked = previous?.state === 'revoked' || Boolean(db.prepare('SELECT 1 FROM revoked_payments WHERE payment_intent=?').get(entitlement.paymentIntent))
       const value = { ...entitlement, state: revoked ? 'revoked' : 'active' }
       db.prepare('INSERT INTO entitlements VALUES (?,?,?) ON CONFLICT(session_id) DO UPDATE SET payload=excluded.payload').run(value.sessionId, value.paymentIntent, JSON.stringify(value))

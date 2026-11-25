@@ -16,7 +16,7 @@ function load(file, imports={}) {
   new Function('require','module','exports',outputText)(id=>{if(id.startsWith('node:'))return require(id);if(!Object.hasOwn(imports,id))throw Error('Unexpected rehearsal dependency');return imports[id]},module,module.exports)
   return module.exports
 }
-const core=load('lib/commerce/glass-sandbox-fulfillment.ts',{'../product-fulfillment':load('lib/product-fulfillment.ts'),stripe:Stripe})
+export const rehearsalCore=load('lib/commerce/glass-sandbox-fulfillment.ts',{'../product-fulfillment':load('lib/product-fulfillment.ts'),stripe:Stripe})
 const fixtureSecret='whsec_offline_fixture_only_not_a_credential'
 export async function startGlassSandboxHarness({ledgerFile,port=0}={}) {
   if(process.env.NODE_ENV==='production' || !ledgerFile)throw Error('Offline fixture ledger file required; production refused')
@@ -49,9 +49,9 @@ export async function startGlassSandboxHarness({ledgerFile,port=0}={}) {
       const headers=new Headers();for(const [key,value]of Object.entries(req.headers))if(typeof value==='string')headers.set(key,value)
       const request=new Request(url,{method:req.method,headers,...(req.method!=='GET'&&req.method!=='HEAD'?{body:req,duplex:'half'}:{})})
       let response
-      if(url.pathname==='/checkout')response=await core.glassSandboxCheckout(request,{...options,authenticate,transport,siteOrigin:origin,purchaseAttemptId:'host_offline_attempt_001'})
-      else if(url.pathname==='/webhook')response=await core.glassSandboxWebhook(request,options)
-      else if(url.pathname==='/download')response=await core.glassSandboxDownload(request,{...options,authenticate,readPrivateArtifact:async id=>{if(id!==release.artifactId)throw Error('Unlisted object');return bytes}})
+      if(url.pathname==='/checkout')response=await rehearsalCore.glassSandboxCheckout(request,{...options,authenticate,transport,siteOrigin:origin,purchaseAttemptId:'host_offline_attempt_001'})
+      else if(url.pathname==='/webhook')response=await rehearsalCore.glassSandboxWebhook(request,options)
+      else if(url.pathname==='/download')response=await rehearsalCore.glassSandboxDownload(request,{...options,authenticate,readPrivateArtifact:async id=>{if(id!==release.artifactId)throw Error('Unlisted object');return bytes}})
       else if(['/fixture-payment','/fixture-refund'].includes(url.pathname)){
         if(req.method!=='POST'||headers.get('origin')!==origin||!await authenticate(request))response=Response.json({error:'fixture_auth_origin_required'},{status:403})
         else if(!session)response=Response.json({error:'prepare_fixture_first'},{status:409})

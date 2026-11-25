@@ -49,7 +49,7 @@ test('signed paid event grants one durable entitlement and authenticated private
     assert.equal((await f.download()).status,404)
     assert.equal((await f.pay()).status,200)
     assert.equal((await (await f.pay()).json()).result,'duplicate')
-    f.reopen();assert.equal((await f.options.ledger.entitlement(f.session.id)).state,'active')
+    f.reopen();assert.equal((await f.options.ledger.entitlement(f.session.id, 'user_alice')).state,'active')
     const response=await f.download();assert.equal(response.status,200);assert.equal(response.headers.get('cache-control'),'private, no-store');assert.deepEqual(Buffer.from(await response.arrayBuffer()),bytes)
   }finally{await f.close()}
 })
@@ -78,7 +78,7 @@ test('real Stripe signature verification refuses tampering, wrong signature and 
     assert.equal((await core.glassSandboxWebhook(eventRequest('checkout.session.completed',{id:f.session.id},'evt_bad',false,'whsec_wrong'),f.options)).status,401)
     assert.equal((await core.glassSandboxWebhook(eventRequest('checkout.session.completed',{id:f.session.id},'evt_live',true),f.options)).status,422)
     assert.equal((await core.glassSandboxWebhook(new Request('https://test.invalid',{method:'POST',body:'{}'}),f.options)).status,400)
-    assert.equal(await f.options.ledger.entitlement(f.session.id),null)
+    assert.equal(await f.options.ledger.entitlement(f.session.id, 'user_alice'),null)
   }finally{await f.close()}
 })
 test('provider facts must match paid session, exact price, quantity, currency and immutable source',async()=>{
@@ -87,7 +87,7 @@ test('provider facts must match paid session, exact price, quantity, currency an
       const old=structuredClone(f.session);mutate(f.session);assert.equal((await f.pay()).status,422);Object.assign(f.session,old)
     }
     f.line.quantity=2;assert.equal((await f.pay()).status,422);f.line.quantity=1;f.line.price.id='price_wrong';assert.equal((await f.pay()).status,422)
-    assert.equal(await f.options.ledger.entitlement(f.session.id),null)
+    assert.equal(await f.options.ledger.entitlement(f.session.id, 'user_alice'),null)
   }finally{await f.close()}
 })
 test('refund revocation persists, duplicates are harmless and delayed payment cannot regrant',async()=>{
@@ -108,7 +108,7 @@ test('binding cannot change owner and a reused event cannot target a different o
   }finally{await f.close()}
 })
 test('live configuration and unavailable providers fail closed without a grant',async()=>{
-  const f=await fixture();try{f.options.secretKey='sk_live_never_use';assert.equal((await f.pay()).status,503);f.options.secretKey=key;f.options.reads.session=async()=>{throw Error('sensitive provider error')};const response=await f.pay();assert.equal(response.status,503);assert.doesNotMatch(await response.text(),/sensitive/);assert.equal(await f.options.ledger.entitlement(f.session.id),null)}finally{await f.close()}
+  const f=await fixture();try{f.options.secretKey='sk_live_never_use';assert.equal((await f.pay()).status,503);f.options.secretKey=key;f.options.reads.session=async()=>{throw Error('sensitive provider error')};const response=await f.pay();assert.equal(response.status,503);assert.doesNotMatch(await response.text(),/sensitive/);assert.equal(await f.options.ledger.entitlement(f.session.id, 'user_alice'),null)}finally{await f.close()}
 })
 test('Supabase adapter preserves the server-only transaction RPC contract and failure mode',async()=>{
   const calls=[];const ledger=core.supabaseSandboxLedger(async(name,args)=>{calls.push({name,args});return{data:args.operation==='grant'?'applied':null,error:null}})
@@ -136,7 +136,7 @@ test('body size and provider deadlines fail closed without recording an entitlem
   const f=await fixture();try{
     const oversized=new Request('https://test.invalid',{method:'POST',headers:{'stripe-signature':'fixture'},body:'x'.repeat(65_537)})
     assert.equal((await core.glassSandboxWebhook(oversized,f.options)).status,413)
-    f.options.deadlineMs=5;f.options.reads.session=()=>new Promise(()=>{});assert.equal((await f.pay()).status,503);assert.equal(await f.options.ledger.entitlement(f.session.id),null)
+    f.options.deadlineMs=5;f.options.reads.session=()=>new Promise(()=>{});assert.equal((await f.pay()).status,503);assert.equal(await f.options.ledger.entitlement(f.session.id, 'user_alice'),null)
   }finally{await f.close()}
 })
 

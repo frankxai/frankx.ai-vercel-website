@@ -17,7 +17,7 @@ export interface SandboxLedger {
   attempt(sessionId: string): Promise<SandboxAttempt | null>
   grant(eventId: string, entitlement: SandboxEntitlement): Promise<'applied' | 'duplicate'>
   revoke(eventId: string, paymentIntent: string): Promise<'applied' | 'duplicate'>
-  entitlement(sessionId: string): Promise<SandboxEntitlement | null>
+  entitlement(sessionId: string, subjectId: string): Promise<SandboxEntitlement | null>
 }
 export interface SandboxStripeReads {
   session(id: string): Promise<Stripe.Checkout.Session>
@@ -165,7 +165,7 @@ export async function glassSandboxDownload(request: Request, options: SandboxOpt
   try {
     const principal = await options.authenticate(request)
     if (!principal || !validSubject(principal.subjectId)) return refusal(401, 'authentication_required')
-    const entitlement = await options.ledger.entitlement(url.searchParams.get('session')!)
+    const entitlement = await options.ledger.entitlement(url.searchParams.get('session')!, principal.subjectId)
     if (!entitlement || entitlement.subjectId !== principal.subjectId) return refusal(404, 'download_not_found')
     if (entitlement.state !== 'active') return refusal(410, 'entitlement_revoked')
     if (!sameRelease(entitlement, options.release)) return refusal(409, 'artifact_version_unavailable')
@@ -216,6 +216,6 @@ export function supabaseSandboxLedger(rpc: (name: string, args: Record<string, u
     attempt: async id => await command('attempt', { sessionId: id }) as SandboxAttempt | null,
     grant: async (eventId, entitlement) => await command('grant', { eventId, entitlement }) as 'applied' | 'duplicate',
     revoke: async (eventId, paymentIntent) => await command('revoke', { eventId, paymentIntent }) as 'applied' | 'duplicate',
-    entitlement: async id => await command('entitlement', { sessionId: id }) as SandboxEntitlement | null,
+    entitlement: async (id, subjectId) => await command('entitlement', { sessionId: id, subjectId }) as SandboxEntitlement | null,
   }
 }
