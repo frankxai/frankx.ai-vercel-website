@@ -4,13 +4,18 @@ import { canonicalProduct } from '../product-fulfillment'
 import type { ProductRecord } from '@/types/products'
 
 /** A staged extension of the existing fulfillment owner. No route or default I/O. */
-export type GlassRelease = {
-  productId: 'aurora-ui-kit'; edition: 'essential'; sourceSha: string
+type SandboxItem =
+  | { productId: 'aurora-ui-kit'; edition: 'essential'; amount: 7900 }
+  | { productId: 'win-the-ai-client'; edition: '0.1'; amount: 1 }
+
+export type SandboxRelease = SandboxItem & {
+  sourceSha: string
   artifactId: string; artifactSha256: string; artifactBytes: number
-  priceId: string; amount: 7900; currency: 'eur'
+  priceId: string; currency: 'eur'
   termsVersion: string; termsSha256: string; termsScope: 'sandbox-rehearsal-only'
 }
-export type SandboxAttempt = GlassRelease & { sessionId: string; subjectId: string; acceptedAt: string }
+export type GlassRelease = Extract<SandboxRelease, { productId: 'aurora-ui-kit' }>
+export type SandboxAttempt = SandboxRelease & { sessionId: string; subjectId: string; acceptedAt: string }
 export type SandboxEntitlement = SandboxAttempt & { paymentIntent: string; state: 'active' | 'revoked' }
 export interface SandboxLedger {
   register(attempt: SandboxAttempt): Promise<void>
@@ -26,21 +31,26 @@ export interface SandboxStripeReads {
 }
 export type SandboxOptions = {
   mode: 'test'; secretKey: string; webhookSecret: string; products: readonly ProductRecord[]
-  release: GlassRelease; ledger: SandboxLedger; reads: SandboxStripeReads
+  release: SandboxRelease; ledger: SandboxLedger; reads: SandboxStripeReads
   deadlineMs?: number
 }
 const validSubject = (value: unknown): value is string => typeof value === 'string' && /^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$/.test(value)
 const sessionId = (value: unknown): value is string => typeof value === 'string' && /^cs_test_[A-Za-z0-9_]{1,200}$/.test(value)
 const intentId = (value: unknown): value is string => typeof value === 'string' && /^pi_[A-Za-z0-9_]{1,200}$/.test(value)
 const digest = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex')
-const sameRelease = (a: GlassRelease, b: GlassRelease) => ['productId', 'edition', 'sourceSha', 'artifactId', 'artifactSha256', 'artifactBytes', 'priceId', 'amount', 'currency', 'termsVersion', 'termsSha256', 'termsScope'].every(key => a[key as keyof GlassRelease] === b[key as keyof GlassRelease])
+const sameRelease = (a: SandboxRelease, b: SandboxRelease) => ['productId', 'edition', 'sourceSha', 'artifactId', 'artifactSha256', 'artifactBytes', 'priceId', 'amount', 'currency', 'termsVersion', 'termsSha256', 'termsScope'].every(key => a[key as keyof SandboxRelease] === b[key as keyof SandboxRelease])
 const validAcceptedAt = (value: string) => /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(value) && Number.isFinite(Date.parse(value)) && new Date(value).toISOString() === value && Date.parse(value) <= Date.now()
 
 function configured(options: SandboxOptions) {
   if (typeof window !== 'undefined' || options.mode !== 'test' || !/^sk_test_[A-Za-z0-9_]{8,}$/.test(options.secretKey)
     || !/^whsec_[A-Za-z0-9_]{16,}$/.test(options.webhookSecret)) throw new Error('SANDBOX_CONFIGURATION_REQUIRED')
   const r = options.release
-  if (r.productId !== 'aurora-ui-kit' || r.edition !== 'essential' || r.amount !== 7900 || r.currency !== 'eur'
+  const glass = r.productId === 'aurora-ui-kit' && r.edition === 'essential' && r.amount === 7900
+  // One synthetic minor unit, a fixed nonexistent price and a fixture-only key.
+  // This edition is available exclusively in the injected offline rehearsal.
+  const academy = r.productId === 'win-the-ai-client' && r.edition === '0.1' && r.amount === 1
+    && r.priceId === 'price_offline_academy' && options.secretKey === 'sk_test_academy_offline_fixture'
+  if ((!glass && !academy) || r.currency !== 'eur'
     || !/^[a-f0-9]{40}$/.test(r.sourceSha) || !/^[a-f0-9]{64}$/.test(r.artifactSha256)
     || !/^[a-z0-9][a-z0-9._-]{0,150}$/.test(r.artifactId) || !/^price_[A-Za-z0-9_]{1,200}$/.test(r.priceId)
     || !Number.isSafeInteger(r.artifactBytes) || r.artifactBytes < 1 || r.artifactBytes > 20_000_000
@@ -82,14 +92,15 @@ export async function glassSandboxCheckout(request: Request, options: SandboxOpt
     if (!principal || !validSubject(principal.subjectId)) return refusal(401, 'authentication_required')
     const release = options.release
     if (principal.termsSha256 !== release.termsSha256 || !validAcceptedAt(principal.acceptedAt)) return refusal(409, 'terms_acceptance_required')
-    const idempotencyKey = `glass-test-${digest(Buffer.from(JSON.stringify([principal.subjectId, release, options.purchaseAttemptId])))}`
+    const prefix = release.productId === 'aurora-ui-kit' ? 'glass-test' : 'academy-fixture'
+    const idempotencyKey = `${prefix}-${digest(Buffer.from(JSON.stringify([principal.subjectId, release, options.purchaseAttemptId])))}`
     const client = new Stripe(options.secretKey, { httpClient: Stripe.createFetchHttpClient(options.transport), maxNetworkRetries: 0, timeout: 5000 })
     const session = await bounded(() => client.checkout.sessions.create({
       mode: 'payment', payment_method_types: ['card'], line_items: [{ price: release.priceId, quantity: 1 }],
       client_reference_id: principal.subjectId,
       metadata: { productSlug: release.productId, tier: release.edition, edition: release.edition, sourceSha: release.sourceSha, termsVersion: release.termsVersion, termsSha256: release.termsSha256, termsScope: release.termsScope },
-      success_url: `${origin.origin}/products/aurora-ui-kit/sandbox/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin.origin}/products/aurora-ui-kit`,
+      success_url: `${origin.origin}/products/${release.productId}/sandbox/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin.origin}/products/${release.productId}`,
     }, { idempotencyKey }), options)
     if (!sessionId(session.id) || session.livemode !== false || session.mode !== 'payment' || session.status !== 'open'
       || !session.url || new URL(session.url).origin !== 'https://checkout.stripe.com') return refusal(502, 'sandbox_checkout_mismatch')
@@ -171,7 +182,8 @@ export async function glassSandboxDownload(request: Request, options: SandboxOpt
     if (!sameRelease(entitlement, options.release)) return refusal(409, 'artifact_version_unavailable')
     const bytes = await bounded(() => options.readPrivateArtifact(entitlement.artifactId),options)
     if (!(bytes instanceof Uint8Array) || bytes.byteLength !== entitlement.artifactBytes || digest(bytes) !== entitlement.artifactSha256) return refusal(502, 'artifact_integrity_failed')
-    return new Response(new Uint8Array(bytes), { headers: { ...responseHeaders, 'Content-Type': 'application/zip', 'Content-Length': String(bytes.byteLength), 'Content-Disposition': 'attachment; filename="starlight-glass-core-essential.zip"' } })
+    const filename = entitlement.productId === 'aurora-ui-kit' ? 'starlight-glass-core-essential.zip' : 'win-the-ai-client-0.1.zip'
+    return new Response(new Uint8Array(bytes), { headers: { ...responseHeaders, 'Content-Type': 'application/zip', 'Content-Length': String(bytes.byteLength), 'Content-Disposition': `attachment; filename="${filename}"` } })
   } catch { return refusal(503, 'sandbox_download_unavailable') }
 }
 

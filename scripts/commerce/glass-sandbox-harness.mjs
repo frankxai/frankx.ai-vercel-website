@@ -16,7 +16,7 @@ function load(file, imports={}) {
   new Function('require','module','exports',outputText)(id=>{if(id.startsWith('node:'))return require(id);if(!Object.hasOwn(imports,id))throw Error('Unexpected rehearsal dependency');return imports[id]},module,module.exports)
   return module.exports
 }
-const core=load('lib/commerce/glass-sandbox-fulfillment.ts',{'../product-fulfillment':load('lib/product-fulfillment.ts'),stripe:Stripe})
+export const core=load('lib/commerce/glass-sandbox-fulfillment.ts',{'../product-fulfillment':load('lib/product-fulfillment.ts'),stripe:Stripe})
 const fixtureSecret='whsec_offline_fixture_only_not_a_credential'
 export async function startGlassSandboxHarness({ledgerFile,port=0}={}) {
   if(process.env.NODE_ENV==='production' || !ledgerFile)throw Error('Offline fixture ledger file required; production refused')
