@@ -447,7 +447,16 @@ export default function AICoEPage() {
                 )
               })}
             </div>
-            <p className="mt-8 text-sm leading-6 text-zinc-400">
+            <p className="mt-8 max-w-3xl text-sm leading-6 text-zinc-400">
+              For a working example, open the{' '}
+              <Link href="https://github.com/AI-Architect-Studio/ai-coe/blob/beb1769d738ab6b9ecac3fa0bef5e0c339b56f22/examples/founder/workspace/decisions/first-mission.md" className="text-emerald-300 underline underline-offset-4">
+                founder decision brief from the review edition
+              </Link>. The synthetic interviews point toward a one-week pilot and preserve the objection that could stop it. The{' '}
+              <Link href="https://github.com/AI-Architect-Studio/ai-coe/blob/beb1769d738ab6b9ecac3fa0bef5e0c339b56f22/assessments/README.md" className="text-emerald-300 underline underline-offset-4">
+                evidence-based assessment
+              </Link>{' '}shows which capabilities the example actually demonstrates.
+            </p>
+            <p className="mt-4 text-sm leading-6 text-zinc-400">
               Bringing a university cohort or an industry partner?{' '}
               <Link href="/partnerships" className="text-emerald-300 underline underline-offset-4">
                 Explore applied work and contact Frank.
