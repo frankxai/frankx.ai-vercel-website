@@ -56,5 +56,5 @@ export const researchReadings = [
 
 export function buildCollaborationMessage(audience: AudienceId, format: string, challenge: string, message: string) {
   const person = audiences.find(item => item.id === audience)!
-  return `University collaboration inquiry\nRole: ${person.label}\nFormat: ${format}\nChallenge: ${challenge}\n\n${message.trim()}`
+  return `University collaboration inquiry\nRole: ${person.label}\nFormat: ${format}${challenge ? '\nChallenge: ' + challenge : ''}\n\n${message.trim()}`
 }

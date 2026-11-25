@@ -7,5 +7,32 @@
     "sourceUrl": "https://higgsfield.ai/blog/cinema-studio-4-0",
     "credit": "Higgsfield AI",
     "checkedOn": "2026-10-11"
+  },
+  "antigravity-swarm-coordinator-demo": {
+    "src": "https://antigravity.google/assets/video/swarm-blog-01-coordinator-board.mp4",
+    "poster": "/images/blog/antigravity-swarm-coordinator-poster.webp",
+    "title": "Google Antigravity swarm coordinator demo",
+    "caption": "In this silent product demo, the coordinator assigns Antigravity workers and a verifier, then their updates appear on the shared board.",
+    "sourceUrl": "https://antigravity.google/blog/gemini-4-carbon-in-google-antigravity",
+    "credit": "Google Antigravity",
+    "checkedOn": "2026-11-22"
+  },
+  "replit-missions-slides-demo": {
+    "src": "https://cdn.sanity.io/files/bj34pdbp/migration/2b9a948cc4f094f9cef1321748a2e4089a0aeaf2.mp4",
+    "poster": "/images/blog/replit-missions-slides-poster.webp",
+    "title": "Replit Missions swarm demo",
+    "caption": "This silent product demo shows Replit agents working on improvements to Replit Slides. Watch the parallel activity in the mission view.",
+    "sourceUrl": "https://replit.com/blog/introducing-replit-missions",
+    "credit": "Replit",
+    "checkedOn": "2026-11-22"
+  },
+  "vercel-board-founder-handoff": {
+    "src": "/videos/editorial/vercel-board-founder-handoff.mp4",
+    "poster": "/images/blog/vercel-board-founder-handoff-poster.webp",
+    "title": "FrankX walkthrough of a Vercel Board handoff",
+    "caption": "Original silent walkthrough of a proposed workflow. Open the issue, claim the task, share the preview and checks, and record the release decision in the pull request.",
+    "sourceUrl": "https://vercel.com/docs/board",
+    "credit": "Vercel Board documentation",
+    "checkedOn": "2026-11-22"
   }
 }

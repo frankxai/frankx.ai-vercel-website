@@ -176,6 +176,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: '/peak-performance', priority: 0.85, changeFrequency: 'monthly' as const },
     { url: '/products', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/prompt-library', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/alchemy', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/resources', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/guides', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/creators', priority: 0.8, changeFrequency: 'monthly' as const },

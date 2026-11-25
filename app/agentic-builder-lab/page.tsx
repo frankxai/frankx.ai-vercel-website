@@ -675,6 +675,13 @@ export default function AgenticBuilderLabPage() {
                   Honest write-ups from inside the lab. What shipped, what broke, which tool earned
                   which layer. No threads, no thought-leader content.
                 </p>
+                <Link
+                  href="/blog/ai-agent-swarms-for-founders"
+                  className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-cyan-300 underline underline-offset-4 hover:text-cyan-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+                >
+                  Read AI agent swarms for founders
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
                 <ul className="mt-5 space-y-2 text-sm text-slate-300">
                   {[
                     'Weekly build retrospective',

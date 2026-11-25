@@ -1,0 +1,110 @@
+[
+  {
+    "id": "blue",
+    "title": "Egyptian blue",
+    "group": "Chemistry",
+    "question": "What can a pigment reveal after its visible colour has faded?",
+    "source": "Accorsi et al. · Chemical Communications, 2009",
+    "url": "https://doi.org/10.1039/B902563D",
+    "locator": "Abstract · spectral maximum and lifetime"
+  },
+  {
+    "id": "indigo",
+    "title": "Indigo on cloth",
+    "group": "Chemistry",
+    "question": "Why does a blue dye need to lose its colour before it can dye cloth?",
+    "source": "The Importance of Natural Indigo Dye · review, 2023",
+    "url": "https://doi.org/10.1155/2023/2135014",
+    "locator": "Review · section on indigo dyeing"
+  },
+  {
+    "id": "carbonate",
+    "title": "Calcite and aragonite",
+    "group": "Materials",
+    "question": "What information disappears when we reduce a mineral to its formula?",
+    "source": "MIT · Why seashells’ mineral forms differently in seawater",
+    "url": "https://news.mit.edu/2015/why-seashell-mineral-forms-differently-in-seawater-0302",
+    "locator": "Research account · polymorphs and solution chemistry"
+  },
+  {
+    "id": "cellulose",
+    "title": "Cellulose photonic pigments",
+    "group": "Materials",
+    "question": "Can the same feedstock become several colours without a different dye for each one?",
+    "source": "Cellulose photonic pigments · Nature Communications, 2022",
+    "url": "https://doi.org/10.1038/s41467-022-31079-9",
+    "locator": "Results · optical characterisation and fabrication"
+  },
+  {
+    "id": "nitinol",
+    "title": "Nickel–titanium shape memory",
+    "group": "Materials",
+    "question": "How does a piece of metal recover a previous shape?",
+    "source": "Sandia National Laboratories · Shape Memory Alloy Model",
+    "url": "https://www.sandia.gov/files/sierra/SM_LAME_5_30/main/models/shape_memory_alloy.html",
+    "locator": "Section 4.25 · phase transformation and loading paths"
+  },
+  {
+    "id": "tandem",
+    "title": "Perovskite–silicon tandem cells",
+    "group": "Materials",
+    "question": "Which tandem-cell results matter to someone choosing a rooftop module?",
+    "source": "NLR · Best Research-Cell Efficiency Chart",
+    "url": "https://www.nlr.gov/pv/cell-efficiency",
+    "locator": "Chart and explanatory notes · scope of certified measurements"
+  },
+  {
+    "id": "archive-france",
+    "title": "Imitation jasper, folio 10r",
+    "group": "History",
+    "question": "What counted as making a stone in a sixteenth-century workshop?",
+    "source": "Making and Knowing · Imitation jasper",
+    "url": "https://cu-mkp.github.io/GR8975-edition/texts/p010r_1/",
+    "locator": "BnF Ms. Fr. 640 · folio 10r, entry 1"
+  },
+  {
+    "id": "archive-fez",
+    "title": "An alchemical notebook from Fez",
+    "group": "History",
+    "question": "Can we follow a body of alchemical writing across cities and centuries?",
+    "source": "Qatar Digital Library · British Library Or 13006",
+    "url": "https://www.qdl.qa/archive/81055/vdc_100000003591.0x000001",
+    "locator": "Contents and physical description · ff. 3–112 and 113–159"
+  },
+  {
+    "id": "transmutation",
+    "title": "Lead and gold at the LHC",
+    "group": "Physics",
+    "question": "What did the ALICE collaboration actually count?",
+    "source": "CERN · ALICE detects the conversion of lead into gold",
+    "url": "https://home.cern/alice-detects-conversion-lead-gold-lhc/",
+    "locator": "Mechanism, observables and fate of the gold nuclei"
+  },
+  {
+    "id": "ai-crystal",
+    "title": "A crystal designed by MatterGen",
+    "group": "AI",
+    "question": "When has a generated structure earned a claim about a physical material?",
+    "source": "Zeni et al. · Nature, 2025",
+    "url": "https://doi.org/10.1038/s41586-025-08628-5",
+    "locator": "Experimental validation · modulus-conditioned design"
+  },
+  {
+    "id": "ai-spectra",
+    "title": "AI identification of pigments",
+    "group": "AI",
+    "question": "Would a pigment classifier still recognise the material on another instrument?",
+    "source": "Infrared and Raman Users Group · Spectral database",
+    "url": "https://irug.org/about-us/the-database",
+    "locator": "Database description, reference collections and access"
+  },
+  {
+    "id": "night-glaze",
+    "title": "Night Glaze · a fiction exercise",
+    "group": "Fiction",
+    "question": "What would it cost a city to read a message only once?",
+    "source": "Scientific inspiration · Egyptian blue luminescence",
+    "url": "https://doi.org/10.1039/B902563D",
+    "locator": "Analogy only · measured optical property"
+  }
+]

@@ -56,7 +56,6 @@ const playbooks = [
     icon: Music,
     color: 'emerald',
     pages: '15+',
-    value: '$47',
     includes: [
       'Genre-specific prompt templates',
       'Structure tags reference guide',
@@ -72,7 +71,6 @@ const playbooks = [
     icon: FileText,
     color: 'cyan',
     pages: '20+',
-    value: '$37',
     includes: [
       'Writing & content prompts',
       'Coding & development prompts',
@@ -88,7 +86,6 @@ const playbooks = [
     icon: Zap,
     color: 'violet',
     pages: '12+',
-    value: '$27',
     includes: [
       'CLAUDE.md configuration guide',
       'Multi-file editing patterns',
@@ -184,8 +181,7 @@ export default function FreePlaybookPage() {
 
             <p className="mx-auto max-w-2xl text-lg text-slate-400 mb-8">
               Three battle-tested playbooks from Suno songs and years of Claude Code mastery.
-              Normally <span className="text-white font-semibold line-through">$111</span> total value.
-              <span className="text-emerald-400 font-semibold"> Free today.</span>
+              <span className="text-emerald-400 font-semibold"> All three are free.</span>
             </p>
 
             {/* Email Capture */}
@@ -249,7 +245,7 @@ export default function FreePlaybookPage() {
                 >
                   {/* Value badge */}
                   <div className="absolute -top-3 right-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-3 py-1 text-xs font-bold text-white">
-                    {playbook.value} VALUE
+                    Free
                   </div>
 
                   <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${colors.icon}`}>

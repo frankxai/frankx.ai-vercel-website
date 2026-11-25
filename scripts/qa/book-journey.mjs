@@ -4,6 +4,7 @@ import { execFileSync, spawn } from 'node:child_process'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { createJourneyClickHelpers } from './book-journey-click.mjs'
+import { runAlchemyReader } from './alchemy-reader.test.mjs'
 import { runHiggsfieldReader } from './higgsfield-reader-journey.mjs'
 
 // CI owns a disposable browser and production server. Interactive local browser
@@ -381,6 +382,7 @@ try {
     manifest.checks.push({ path, result: 'passed', status: response.status })
   }
   await runHiggsfieldReader({ browser, origin, manifest })
+  await runAlchemyReader({ browser, origin, manifest, output })
 } catch (error) {
   manifest.failures.push({ message: error.message, stack: error.stack })
   process.exitCode = 1

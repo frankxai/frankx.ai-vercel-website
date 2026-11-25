@@ -98,5 +98,18 @@
     "rights": "original",
     "createdOn": "2026-11-07",
     "kind": "diagram"
+  },
+  "founder-agent-swarm-decision-map": {
+    "src": "/images/editorial/founder-agent-swarm-decision-map.svg",
+    "width": 720,
+    "height": 1180,
+    "alt": "Three ways to hand off agent work. Antigravity receives independent tasks and returns worker diffs for integration testing. Replit receives a goal and cap and returns a demo and evaluation. Board receives tasks for existing agents and records handoff evidence. The founder reproduces checks, tracks time, spend or quota, and rework.",
+    "caption": "What you give each tool, what you get back, and the check you still own.",
+    "credit": "Original infographic by FrankX",
+    "sourceUrl": "https://www.frankx.ai/blog/ai-agent-swarms-for-founders",
+    "rights": "original",
+    "createdOn": "2026-11-22",
+    "kind": "diagram",
+    "aspectRatio": "720/1180"
   }
 }
