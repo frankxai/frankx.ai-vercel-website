@@ -310,6 +310,9 @@ importers:
       animejs:
         specifier: ^4.5.0
         version: 4.5.0(@types/three@0.186.0)(three@0.186.1)
+      axe-core:
+        specifier: 4.14.0
+        version: 4.14.0
       eslint:
         specifier: ^9.17.0
         version: 9.39.4(jiti@1.21.7)
@@ -322,6 +325,12 @@ importers:
       lint-staged:
         specifier: ^16.2.7
         version: 16.4.0
+      playwright-core:
+        specifier: 1.62.1
+        version: 1.62.1
+      pngjs:
+        specifier: 5.0.0
+        version: 5.0.0
       puppeteer:
         specifier: 25.16.0
         version: 25.16.0(yauzl@2.10.0)
@@ -6702,6 +6711,11 @@ packages:
 
   platform@1.3.6:
     resolution: {integrity: sha512-fnWVljUchTro6RiCFvCXBbNhJc2NijN7oIQxbwsyL0buWJPG85v81ehlHI9fXrJsMNgTofEoWIQeClKpgxFLrg==}
+
+  playwright-core@1.62.1:
+    resolution: {integrity: sha512-wPYSwEBJY9GHraISXqyqtx0na0LpO3XEX7jNDhntbex7tzUS7kLnZsOlFruFJB4Hi/rhDMjXGqHewDZ68nYZVw==}
+    engines: {node: '>=20'}
+    hasBin: true
 
   pngjs@5.0.0:
     resolution: {integrity: sha512-40QW5YalBNfQo5yRYmiw7Yz6TKKVr3h6970B2YE+3fQpsWcrbj1PzJgxeJ19DRQjhMbKPIuMY8rFaXc8moolVw==}
@@ -15078,6 +15092,8 @@ snapshots:
 
   platform@1.3.6:
     optional: true
+
+  playwright-core@1.62.1: {}
 
   pngjs@5.0.0: {}
 

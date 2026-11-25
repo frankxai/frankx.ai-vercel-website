@@ -1,0 +1,7 @@
+{
+  "name": "frankx-commerce-lighthouse-ci",
+  "private": true,
+  "devDependencies": {
+    "@lhci/cli": "0.16.1"
+  }
+}

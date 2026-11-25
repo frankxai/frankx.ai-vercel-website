@@ -119,6 +119,8 @@ jobs:
           pnpm run test:waitlist
           pnpm run test:book-reader
           pnpm run test:checkout-sku
+          pnpm run test:delivery
+          pnpm run test:paid-delivery
           pnpm run test:auction-bid
           pnpm run test:agentic-life-research
           pnpm run test:community-platform-guide

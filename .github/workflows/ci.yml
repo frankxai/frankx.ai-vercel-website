@@ -215,6 +215,46 @@ jobs:
         # requires root and would also put its browser cache in root's home.
         run: pnpm exec puppeteer browsers install chrome
 
+      - name: Install pinned Chrome Headless Shell for commerce QA
+        id: commerce-browser
+        run: |
+          pnpm exec puppeteer browsers install chrome-headless-shell
+          node --input-type=module <<'NODE'
+          import { appendFileSync } from 'node:fs'
+          import { executablePath } from 'puppeteer'
+          appendFileSync(process.env.GITHUB_OUTPUT, 'executable=' + await executablePath({ headless: 'shell' }) + '\n')
+          NODE
+
+      - name: Closed commerce editions on mobile and desktop
+        run: node scripts/qa/commerce-journey.mjs
+        timeout-minutes: 4
+        env:
+          REVIEWED_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PUPPETEER_EXECUTABLE_PATH: ${{ steps.commerce-browser.outputs.executable }}
+
+      - name: Mobile Lighthouse budgets for the Aurora product and checkout
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        timeout-minutes: 8
+        env:
+          PUPPETEER_EXECUTABLE_PATH: ${{ steps.commerce-browser.outputs.executable }}
+        run: |
+          npm ci --prefix scripts/qa/lighthouse --ignore-scripts --omit=optional --no-audit --no-fund
+          npm audit --prefix scripts/qa/lighthouse --audit-level=high
+          scripts/qa/lighthouse/node_modules/.bin/lhci autorun --config=scripts/qa/lighthouse/config.cjs
+
+      - name: Save commerce journey evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: commerce-journey-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/commerce-journey
+            .lighthouseci/*.json
+            .lighthouseci/reports
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 3
+
       - name: Mermaid CLI browser compatibility
         run: |
           printf 'flowchart LR\nA-->B\n' > "$RUNNER_TEMP/mermaid-ci.mmd"

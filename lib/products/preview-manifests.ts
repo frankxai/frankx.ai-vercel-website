@@ -14,6 +14,7 @@ export interface InspectableFileEntry {
 
 export interface ProductPreviewManifest {
   productId: string
+  previewEdition?: 'glass-core-essential'
   slug: string
   name: string
   lane: ProductLane
@@ -454,6 +455,7 @@ export const PRODUCT_PREVIEW_MANIFESTS: Record<string, ProductPreviewManifest> =
 
     const manifest: ProductPreviewManifest = {
       productId: p.id,
+      ...(p.id === 'aurora-ui-kit' ? { previewEdition: 'glass-core-essential' as const } : {}),
       slug: p.slug,
       name,
       lane,
