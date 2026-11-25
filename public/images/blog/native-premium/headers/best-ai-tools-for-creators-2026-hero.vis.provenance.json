@@ -1,0 +1,39 @@
+{
+  "$schema": "https://frankx.ai/schemas/vis-provenance-sidecar.schema.json",
+  "schema_version": "1.0.0",
+  "asset": {
+    "asset_id": "sha256:188e104d1491c566",
+    "media_type": "image",
+    "sha256": "188e104d1491c56617b2b92fa5c23183f37df338af02bb03a8827871e7c7f674",
+    "public_path": "/images/blog/native-premium/headers/best-ai-tools-for-creators-2026-hero.webp",
+    "relative_path": "public/images/blog/native-premium/headers/best-ai-tools-for-creators-2026-hero.webp"
+  },
+  "generation": {
+    "provider": "google",
+    "model": "gemini-native-image",
+    "prompt": "16:9 Linear x Stripe style studio key art on deep obsidian (#0a0f1c) matte desk with clean dark left negative space and right-side anodized aluminum creator console holding emerald code prism, cyan audio crystal, amber cinema cube, and brushed brass dial; zero text or logos",
+    "negative_prompt": "text, letters, words, numbers, logos, watermarks, robot faces",
+    "seed": null,
+    "settings": {
+      "brand": "frankx",
+      "dimensions": "1600x900",
+      "format": "webp"
+    },
+    "created_at": "2026-11-25T11:54:54.383Z"
+  },
+  "agent": {
+    "coding_agent": "antigravity",
+    "repo": "frankx.ai-vercel-website",
+    "session_ref": "225272e4-fd94-485b-b67a-28832fa77bd3",
+    "summary": "Native 16:9 editorial hero generated for best-ai-tools-for-creators-2026 and compressed to 1600x900 WebP"
+  },
+  "evaluation": {
+    "brand": "frankx",
+    "status": "accepted",
+    "notes": "Human-inspected via read_file: zero text hallucinations, clean left negative space for thumbnailHook overlay"
+  },
+  "rights": {
+    "rights_status": "generated-owned",
+    "license": "Proprietary Estate / frankxai"
+  }
+}

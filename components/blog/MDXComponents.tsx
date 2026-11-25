@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { ArticleVideo } from './ArticleVideo'
 import { ArticleFigure } from './ArticleFigure'
 import { ArticleRecommendation } from './ArticleRecommendation'
+import { ArticleStewardship } from './ArticleStewardship'
 import Link from 'next/link'
 import { TrackedLink } from '@/components/analytics/TrackedLink'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
@@ -328,6 +329,7 @@ export const mdxComponents: MDXComponents = {
   ArticleFigure,
   ArticleVideo,
   ArticleRecommendation,
+  ArticleStewardship,
   InfographicImage: LiquidGlassImage,
   Diagram,
   PlatformMarkGrid,

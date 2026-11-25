@@ -32,17 +32,24 @@ const includeAll = args.includes('--all')
 
 // Signals that a claim is pinned to a fast-moving fact (model versions, dated comparisons).
 const VERSION_RX =
-  /\b(gen-?\d(?:\.\d)?|veo ?\d|sora ?\d|gpt-?[45]\b|claude (?:opus |sonnet |haiku )?\d|gemini ?\d|kling ?\d|pika ?\d(?:\.\d)?|llama ?\d|deepseek[- ]?(?:r)?\d|grok ?\d|seedance ?\d|v\d+\.\d+)\b/gi
+  /\b(gen-?\d(?:\.\d)?|veo ?\d|sora ?\d?|gpt-?(?:4o|[45])\b|claude (?:opus |sonnet |haiku )?\d(?:\.\d)?|gemini ?\d(?:\.\d)?|kling ?\d|pika ?\d(?:\.\d)?|llama ?\d|deepseek[- ]?(?:r)?\d|grok ?\d|seedance ?\d|v\d+\.\d+)\b/gi
 const COMPARISON_RX = /\b(vs\.?|versus|compared|which (?:model|tool|one)|best .* (?:for|in 20\d\d)|ranked|landscape|roundup)\b/i
 
-const NOW = Date.parse('2026-06-05') // pinned: Date.now() is unavailable in some harnesses; bump when re-running
+const nowArgIdx = args.indexOf('--now')
+const parsedNow =
+  nowArgIdx !== -1 && args[nowArgIdx + 1]
+    ? Date.parse(args[nowArgIdx + 1])
+    : process.env.REFRESH_AUDIT_NOW
+      ? Date.parse(process.env.REFRESH_AUDIT_NOW)
+      : Date.now()
+const NOW = Number.isNaN(parsedNow) ? Date.now() : parsedNow
 
 function frontmatter(raw) {
-  const m = raw.match(/^---\n([\s\S]*?)\n---/)
+  const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/)
   if (!m) return { fm: {}, body: raw }
   const fm = {}
-  for (const line of m[1].split('\n')) {
-    const kv = line.match(/^(\w+):\s*"?([^"]*)"?\s*$/)
+  for (const line of m[1].split(/\r?\n/)) {
+    const kv = line.match(/^(\w+):\s*['"]?([^'"\r\n]*)['"]?\s*$/)
     if (kv) fm[kv[1]] = kv[2].trim()
   }
   return { fm, body: raw.slice(m[0].length) }
@@ -50,7 +57,9 @@ function frontmatter(raw) {
 
 function staleness(fm, body, slug) {
   const title = fm.title || slug
-  const ageDays = fm.date ? Math.max(0, (NOW - Date.parse(fm.date)) / 86400000) : 365
+  const effectiveDate = fm.lastUpdated || fm.updatedAt || fm.date
+  const parsedDate = effectiveDate ? Date.parse(effectiveDate) : NaN
+  const ageDays = !Number.isNaN(parsedDate) ? Math.max(0, (NOW - parsedDate) / 86400000) : 365
   const months = ageDays / 30
   const versionHits = (title + '\n' + body).match(VERSION_RX)?.length || 0
   const datedTitle = /\b20\d\d\b/.test(title) || /\b20\d\d\b/.test(slug)

@@ -34,6 +34,15 @@ export interface BlogSeries {
   total: number // total parts planned (for "Part N of M")
 }
 
+export interface BlogStewardship {
+  note?: string
+  humanLead?: string
+  roles?: string[]
+  models?: string[]
+  skills?: string[]
+  verifiedAt?: string
+}
+
 export interface BlogPost {
   slug: string
   title: string
@@ -44,6 +53,7 @@ export interface BlogPost {
   tags: string[]
   image?: string
   ogImage?: string
+  thumbnailHook?: string // Short 3-6 word high-contrast visual callout badge on HeroImage
   readingTime: string
   keywords?: string[]
   readingGoal?: string
@@ -62,6 +72,9 @@ export interface BlogPost {
 
   // Series membership (optional) — drives SeriesNav prev/next
   series?: BlogSeries
+
+  // Transparent AI studio team, LLM, and skill provenance
+  stewardship?: BlogStewardship
 
   /**
    * AI Architect Recommendation box (rendered after the Reading Goal).
@@ -95,6 +108,11 @@ function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
   if (typeof normalized.architectNote === 'string') {
     normalized.architectNote = {
       recommendation: normalized.architectNote,
+    }
+  }
+  if (typeof normalized.stewardship === 'string') {
+    normalized.stewardship = {
+      note: normalized.stewardship,
     }
   }
   return normalized

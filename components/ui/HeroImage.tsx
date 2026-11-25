@@ -8,6 +8,8 @@ type HeroImageProps = {
   alt?: string
   priority?: boolean
   className?: string
+  thumbnailHook?: string
+  category?: string
 }
 
 export default function HeroImage({
@@ -17,16 +19,42 @@ export default function HeroImage({
   alt,
   priority = true,
   className,
+  thumbnailHook,
+  category,
 }: HeroImageProps) {
   if (src) {
+    if (!thumbnailHook) {
+      return (
+        <LiquidGlassImage
+          src={src}
+          alt={alt || title}
+          caption={subtitle}
+          priority={priority}
+          className={className}
+        />
+      )
+    }
+
     return (
-      <LiquidGlassImage
-        src={src}
-        alt={alt || title}
-        caption={subtitle}
-        priority={priority}
-        className={className}
-      />
+      <div className="relative">
+        <LiquidGlassImage
+          src={src}
+          alt={alt || title}
+          caption={subtitle}
+          priority={priority}
+          className={className}
+        />
+        <div className="pointer-events-none absolute left-4 top-4 sm:left-6 sm:top-6 z-10 max-w-[min(26rem,calc(100%-2rem))] rounded-2xl border border-white/15 bg-[#0a0f1c]/85 px-4 py-2.5 backdrop-blur-xl shadow-2xl">
+          {category && (
+            <p className="text-[11px] font-medium tracking-wide text-emerald-400">
+              {category}
+            </p>
+          )}
+          <p className="text-sm sm:text-base font-semibold leading-snug tracking-tight text-white">
+            {thumbnailHook}
+          </p>
+        </div>
+      </div>
     )
   }
 
