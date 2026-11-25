@@ -210,7 +210,7 @@ export const products: Product[] = [
       },
       {
         label: '6 branch deep-dive videos',
-        description: '20-30 min each: Vercel AI SDK, Claude Agent SDK + MCP, OpenAI Agents + AgentKit, Google ADK + A2A, no-code (n8n/Notion/Dify), AI-builds-AI (Claude Code).',
+        description: '20-30 min each: Vercel AI SDK, Claude Agent SDK + MCP, OpenAI Agents SDK + Responses API, Google ADK + A2A, no-code (n8n/Notion/Dify), AI-builds-AI (Claude Code).',
         introducedAt: 'toolkit',
       },
       {

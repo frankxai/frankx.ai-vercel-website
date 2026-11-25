@@ -82,7 +82,7 @@ const partners: Partner[] = [
     url: 'https://openai.com',
     kind: 'none',
     description:
-      'OpenAI models (GPT-5, AgentKit) are taught in the OpenAI branch of the First AI Agent workshop. No direct affiliate program for consumer plans. We include OpenAI because it\'s the largest agent install base — teaching without partnership preserves editorial integrity.',
+      'OpenAI models (GPT-5, Agents SDK / Responses API) are taught in the OpenAI branch of the First AI Agent workshop. No direct affiliate program for consumer plans. We include OpenAI because it\'s the largest agent install base — teaching without partnership preserves editorial integrity.',
     usedIn: [
       '/workshops/build-first-ai-agent (OpenAI branch)',
       'Provider comparisons in /blog',
