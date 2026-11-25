@@ -11,8 +11,8 @@
 
 @media (max-width: 639px) {
   /* Hero CTAs share one column. The corner chip sits on the lower
-     button, Map the Ecosystem, so both stop short of that gutter. */
-  .order-1.min-w-0 a[href='/ai-architecture'],
+     button, Meet the projects, so both stop short of that gutter. */
+  .order-1.min-w-0 a[href='#featured-track'],
   .order-1.min-w-0 a[href='/ecosystem'] {
     max-width: calc(100% - var(--music-chip-reserve, 4.75rem));
   }

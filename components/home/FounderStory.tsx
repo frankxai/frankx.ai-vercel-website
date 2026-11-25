@@ -27,7 +27,7 @@ export function FounderStory() {
             <div className="mt-6 space-y-4 text-base leading-relaxed text-white/75">
               <p>One of my favorite songs is one I made with friends, Let the Stars Guide Your Way. That’s a good introduction to me. I love what happens when an idea I could only half explain becomes something we can put on and listen to together.</p>
               <p>Arcanea gives me room to follow that feeling into a whole world. I can write a story, imagine the people who live there, then go make their music. The books, recordings and drawings here are different ways in.</p>
-              <p>When I teach, I want you to leave with something that belongs to you. Take the storyboard below. Keep the sequence, change the character, and see what happens when the next frame is yours.</p>
+              <p>When I teach, I want you to leave with something that belongs to you. In the <Link href="/guides/mini-me-storyboard" className="underline underline-offset-4">Mini Me storyboard</Link>, you can keep the sequence, change the character, and draw the next frame yourself.</p>
             </div>
             <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
               <Link href="/work-with-me" className={textLink}>Work with me <ArrowRight aria-hidden="true" className="h-4 w-4" /></Link>
