@@ -29,7 +29,7 @@ jobs:
   guidelines:
     name: Web Interface Guidelines (mechanical)
     if: github.event.pull_request.draft == false
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v7
