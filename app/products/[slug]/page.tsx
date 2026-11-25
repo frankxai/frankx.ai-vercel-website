@@ -9,6 +9,7 @@ import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import ProductFileInspector from '@/components/products/ProductFileInspector'
+import GlassEssentialEdition from '@/components/products/GlassEssentialEdition'
 import type { ProductRecord } from '@/types/products'
 
 // Some registry entries (e.g. golden-age) predate the full ProductRecord shape:
@@ -248,6 +249,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 </>
               )}
 
+              {manifest?.previewEdition && (
+                <a href="#glass-essential" className="mt-4 block rounded-lg py-2 text-center text-sm font-medium text-cyan-300 underline underline-offset-4">
+                  Preview Glass Core Essential
+                </a>
+              )}
+
               {manifest ? (
                 <a
                   href="#inspect-files"
@@ -275,6 +282,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </div>
         </div>
 
+        {manifest?.previewEdition === 'glass-core-essential' && <GlassEssentialEdition listingPrice={activeOffer ? new Intl.NumberFormat('en-US', { style: 'currency', currency: activeOffer.currency, minimumFractionDigits: 0 }).format(activeOffer.primaryPrice) : undefined} />}
+
         {/* Interactive Two-Pane File Tree Inspector */}
         {manifest ? <ProductFileInspector manifest={manifest} /> : null}
 
@@ -282,7 +291,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         {Array.isArray(product.faq) && product.faq.length > 0 ? (
           <section aria-labelledby="product-faq-heading" className="mt-16 border-t border-white/[0.08] pt-14">
             <h2 id="product-faq-heading" className="text-2xl font-semibold text-white">
-              Questions and scope notes
+              {manifest?.previewEdition ? 'Aurora UI Kit questions and scope' : 'Questions and scope notes'}
             </h2>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
               {product.faq.map((item) => (
