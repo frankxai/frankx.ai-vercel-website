@@ -9,6 +9,7 @@
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')
   let active = 0
   let frame = 0
+  let announcementTimer
   let animation
   function select(index, animate) {
     const scene = scenes[index]
@@ -19,7 +20,12 @@
     scenes.forEach(item => item.inert = item !== scene)
     prev.disabled = index === 0
     next.disabled = index === scenes.length - 1
-    if (changed) document.querySelector('#announcement').textContent = scene.getAttribute('aria-label') + ', chapter ' + (index + 1) + ' of ' + scenes.length
+    if (changed) {
+      clearTimeout(announcementTimer)
+      announcementTimer = setTimeout(() => {
+        document.querySelector('#announcement').textContent = scene.getAttribute('aria-label') + ', chapter ' + (index + 1) + ' of ' + scenes.length
+      }, 220)
+    }
     if (!changed || !animate || reduced.matches || !window.gsap) return
     animation?.revert()
     animation = window.gsap.context(() => {
