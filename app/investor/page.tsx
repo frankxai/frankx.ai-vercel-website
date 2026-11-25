@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { ArrowDown, ArrowUpRight } from 'lucide-react'
 
 import s from './investor.module.css'
 
@@ -19,11 +20,11 @@ export default function InvestorHubPage() {
           <p className={s.byline}>Frank Riemer <span aria-hidden="true">/</span> Investor field notes</p>
           <div className={s.coverGrid}>
             <div className={s.coverCopy}>
-              <p className={s.label}>A case for the partner meeting</p>
+              <p className={s.label}>Fictional case for the partner meeting</p>
               <h1>Six paid-plan flags.<br /><em>How many paying studios?</em></h1>
               <p className={s.lead}>A film editor fixes a name in a transcript. The correction follows the film into its next cut. The founder says 75% of the pilot paid. What would you put in the memo?</p>
               <div className={s.actions}>
-                <a className={s.primary} href="#case">Try the case <span aria-hidden="true">↓</span></a>
+                <a className={s.primary} href="#case">Try the case <ArrowDown size={16} aria-hidden="true" /></a>
                 <Link className={s.quiet} href="/about">Meet Frank</Link>
               </div>
             </div>
@@ -31,7 +32,7 @@ export default function InvestorHubPage() {
               <div className={s.plateImage}>
                 <Image src="/images/gencreator/gencreator-framework-hero.webp" alt="A ring of translucent green glass panels surrounds the light at the centre of the GenCreator studio illustration." fill priority sizes="(max-width: 760px) 94vw, (max-width: 1200px) 43vw, 560px" />
               </div>
-              <figcaption><span>From the studio</span><a href="https://gencreator.ai">GenCreator <span aria-hidden="true">↗</span></a></figcaption>
+              <figcaption><span>Studio illustration</span><a href="https://gencreator.ai">GenCreator <ArrowUpRight size={14} aria-hidden="true" /></a></figcaption>
             </figure>
           </div>
         </div>
@@ -44,7 +45,7 @@ export default function InvestorHubPage() {
             <div>
               <h2 id="case-title">Write the sentence you would <em>say to the founder.</em></h2>
               <p>The packet contains a workspace roster, a dashboard snapshot, a settlement ledger and three first-cut delivery records. Give ChatGPT or Claude the same four records. Keep the answer key closed until you have a memo.</p>
-              <a className={s.inkButton} href={caseUrl}>Open the case on GitHub <span aria-hidden="true">↗</span></a>
+              <a className={s.inkButton} href={caseUrl}>Open the case on GitHub <ArrowUpRight size={16} aria-hidden="true" /></a>
               <p className={s.small}>Copy the single text block into a fresh chat. <a href="https://chatgpt.com/">Open ChatGPT</a> <span aria-hidden="true">·</span> <a href="https://claude.ai/new">Open Claude</a></p>
             </div>
             <div className={s.sourceSheet}>
@@ -58,7 +59,7 @@ export default function InvestorHubPage() {
               <details>
                 <summary>What changes when you remove the ledger?</summary>
                 <p>The team can still count flagged workspaces and describe the editors’ first cuts. The number of paying studios becomes unknown. Ask for dated receipts and refunds joined to studio IDs.</p>
-                <a href={reviewUrl}>Read the complete reviewer’s key ↗</a>
+                <a href={reviewUrl}>Read the complete reviewer’s key</a>
               </details>
             </div>
           </div>
@@ -69,7 +70,7 @@ export default function InvestorHubPage() {
         <div className={s.wrap}>
           <div className={s.rule}><span>Further work</span><span>FrankX · Amsterdam</span></div>
           <div className={s.routesGrid}>
-            <div><h2 id="further-title">Take the method <em>into the room.</em></h2><p>Give a portfolio team the instructions, teach a second case, or bring Frank a question about a build.</p></div>
+            <div><h2 id="further-title">Take the method <em>into the room.</em></h2><p>Give a portfolio team the instructions, teach a second case, or bring Frank a question about a build.</p><Link className={s.quiet} href="/ecosystem">Explore Frank’s portfolio</Link></div>
             <div className={s.directory}>
               <a href={archiveUrl}><strong>Download the free collection</strong><span>Four research skills, the studio case and its answer key. ZIP, 25 KB.</span></a>
               <a href={methodUrl}><strong>Read the source-check instructions</strong><span>One Markdown file for your next company memo.</span></a>

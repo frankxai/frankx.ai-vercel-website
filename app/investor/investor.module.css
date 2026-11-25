@@ -36,7 +36,7 @@
 .plateImage { position: relative; flex: 1; min-height: 230px; overflow: hidden; }
 .plateImage img { object-fit: cover; object-position: center; }
 .plate figcaption { display: flex; justify-content: space-between; align-items: center; padding: 10px 18px; background: #0b171e; color: #b6c9c6; border-top: 1px solid #273a3e; }
-.plate figcaption a { color: #dcf6e6; padding: 4px 0; }
+.plate figcaption a { display: inline-flex; align-items: center; gap: .25em; color: #dcf6e6; padding: 4px 0; }
 .case, .routes { padding: clamp(40px, 5.7vw, 82px) 0; scroll-margin-top: 66px; }
 .case { background: var(--paper); color: var(--ink); }
 .rule, .sheetHead { display: flex; gap: 14px; justify-content: space-between; align-items: baseline; font-variant-numeric: tabular-nums; }
@@ -66,7 +66,7 @@
 .directory strong, .directory span { display: block; }
 .directory strong { font-size: 19px; color: #f3f3e9; font-weight: 550; }
 .directory span { color: var(--muted); font-size: 15px; margin-top: 4px; }
-.directory a::after { content: '↗'; position: absolute; top: 50%; right: 2px; color: var(--mint); transform: translateY(-50%); }
+.directory a::after { content: ''; position: absolute; top: 50%; right: 4px; width: 8px; height: 8px; border-top: 1.5px solid var(--mint); border-right: 1.5px solid var(--mint); transform: translateY(-50%) rotate(45deg); }
 .retail { margin-top: 55px; padding-top: 14px; border-top: 1px solid #49605d; color: var(--muted); font-size: 14px; scroll-margin-top: 80px; }
 .retail summary { padding-top: 7px; }
 .retail p { margin: 4px 0; }
