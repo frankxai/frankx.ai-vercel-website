@@ -80,6 +80,51 @@ const worlds = [
   },
 ];
 
+const startingPoints = [
+  {
+    audience: "Developers and AI architects",
+    action: "Run a skill in your own project",
+    href: "/skills",
+    next: "Developer guides",
+    nextHref: "/developers",
+  },
+  {
+    audience: "Founders",
+    action: "Find the constraint in your AI stack",
+    href: "/founder-stack",
+    next: "Read my research",
+    nextHref: "/research",
+  },
+  {
+    audience: "Readers and creators",
+    action: "Build a storyboard from your photos",
+    href: "/guides/mini-me-storyboard",
+    next: "Browse the product catalogue",
+    nextHref: "/products",
+  },
+  {
+    audience: "Venture associates and investment partners",
+    action: "Inspect the investment research tools",
+    href: "/investor",
+    next: "Ask for the venture materials",
+    nextHref: "/connect",
+  },
+  {
+    audience: "Universities and teaching teams",
+    action: "Decide whether to sign an AI-written memo",
+    href: "/partnerships/universities/source-check",
+    next: "Explore the teaching proposal",
+    nextHref: "/partnerships/universities",
+  },
+  {
+    audience: "Technology partners",
+    action: "Bring a joint research or product question",
+    href: "/partnerships",
+    next: "Explore the portfolio map",
+    nextHref: "/ecosystem",
+  },
+] as const;
+
 export default function AboutPage() {
   return (
     <main className={styles.page}>
@@ -100,19 +145,20 @@ export default function AboutPage() {
             share the work, the experiments and what I learn along the way.
           </p>
           <p className={styles.intro}>
-            The question behind it all: how much can we create when we have
-            better tools, more freedom and people we love building with?
+            I publish the method alongside the work so you can try a workflow
+            in your own project, inspect the evidence, or build on it with me.
           </p>
           <TrackedLink
-            href="#the-work"
+            href="#start-with-the-work"
             eventName="about_explore_work"
             eventProperties={{ placement: "hero" }}
             className={styles.primary}
           >
-            Explore my work <ArrowDown size={17} aria-hidden="true" />
+            Find your starting point <ArrowDown size={17} aria-hidden="true" />
           </TrackedLink>
           <nav className={styles.chapterNav} aria-label="About page chapters">
             <a href="#my-story">My story</a>
+            <a href="#the-work">My projects</a>
             <a href="#mini-frank">Mini Frank</a>
             <a href="#connect">Build together</a>
           </nav>
@@ -130,6 +176,36 @@ export default function AboutPage() {
             Mini Frank · A little imagination, out in the world.
           </figcaption>
         </figure>
+      </section>
+
+      <section
+        id="start-with-the-work"
+        aria-labelledby="starting-points-title"
+        className={styles.work}
+      >
+        <div className={styles.sectionHeading}>
+          <div>
+            <p className={styles.label}>The work in practice</p>
+            <h2 id="starting-points-title">Where to begin.</h2>
+          </div>
+          <p>
+            Pick a project you can use today. Every example opens directly,
+            from the agent skills to the classroom exercise.
+          </p>
+        </div>
+        <ul className={styles.startingPoints}>
+          {startingPoints.map((point) => (
+            <li key={point.href}>
+              <span className={styles.audience}>{point.audience}</span>
+              <Link href={point.href} prefetch={false} className={styles.action}>
+                {point.action} <ArrowRight size={18} aria-hidden="true" />
+              </Link>
+              <Link href={point.nextHref} prefetch={false} className={styles.follow}>
+                {point.next} <ArrowUpRight size={15} aria-hidden="true" />
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section
@@ -175,7 +251,7 @@ export default function AboutPage() {
           </p>
           <p>
             My materials became software, music and stories. Working in
-            enterprise AI at Oracle gave me experience with the questions
+            enterprise AI at <a className={styles.sourceLink} href="https://www.linkedin.com/posts/frank-x-riemer_after-almost-5-years-today-im-saying-goodbye-activity-7466943560559427584-nEGk">Oracle</a> gave me experience with the questions
             companies face when they put these tools to work. Now, in Amsterdam,
             I’m building my own products and sharing the process.
           </p>
