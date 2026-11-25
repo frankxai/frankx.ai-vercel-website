@@ -215,6 +215,21 @@ jobs:
         # requires root and would also put its browser cache in root's home.
         run: pnpm exec puppeteer browsers install chrome
 
+      - name: Closed commerce edition on mobile and desktop
+        run: node scripts/qa/commerce-journey.mjs
+        timeout-minutes: 4
+        env:
+          REVIEWED_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Save commerce journey evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: commerce-journey-${{ github.sha }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/commerce-journey
+          if-no-files-found: ignore
+          retention-days: 3
+
       - name: Mermaid CLI browser compatibility
         run: |
           printf 'flowchart LR\nA-->B\n' > "$RUNNER_TEMP/mermaid-ci.mmd"
