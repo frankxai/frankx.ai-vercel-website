@@ -1,0 +1,58 @@
+{
+  "kind": "offline-request-plan",
+  "executionEnabled": false,
+  "requiresApproval": true,
+  "missionId": "synthetic-pricing-watch-001",
+  "sourceUrl": "https://research.example/pricing",
+  "inputSha256": "836be6c59cf9f4ac37910d44f3254e2b2cb2dc7d88be8625e7128410c0702dbe",
+  "dispatchKey": "de3f2a200c293ef0d901012e1c5a62af6a9b685dc8c7cbca647c4d5b5e82708e",
+  "mcp": {
+    "tool": "call-actor",
+    "arguments": {
+      "actor": "apify/rag-web-browser",
+      "input": {
+        "query": "https://research.example/pricing",
+        "maxResults": 1,
+        "outputFormats": [
+          "markdown"
+        ],
+        "scrapingTool": "raw-http",
+        "requestTimeoutSecs": 30,
+        "maxRequestRetries": 0,
+        "desiredConcurrency": 1
+      },
+      "callOptions": {
+        "build": "0.0.0",
+        "timeout": 60,
+        "memory": 1024,
+        "maxTotalChargeUsd": 0.1
+      },
+      "waitSecs": 0
+    }
+  },
+  "api": {
+    "method": "POST",
+    "url": "https://api.apify.com/v2/actors/apify~rag-web-browser/runs?build=0.0.0&timeout=60&memory=1024&maxTotalChargeUsd=0.1&waitForFinish=0&restartOnError=false&forcePermissionLevel=LIMITED_PERMISSIONS",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "auth": "Execution adapter must inject a scoped Bearer token from its secret manager",
+    "body": {
+      "query": "https://research.example/pricing",
+      "maxResults": 1,
+      "outputFormats": [
+        "markdown"
+      ],
+      "scrapingTool": "raw-http",
+      "requestTimeoutSecs": 30,
+      "maxRequestRetries": 0,
+      "desiredConcurrency": 1
+    }
+  },
+  "results": {
+    "actorRunId": null,
+    "datasetId": null,
+    "actualCostUsd": null,
+    "acceptedRecords": null
+  }
+}

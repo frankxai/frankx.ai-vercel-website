@@ -1,0 +1,61 @@
+---
+title: "Schedule an Apify Actor to monitor a changelog"
+description: "Build a weekly Apify changelog watch with a saved task, a verified baseline, and rules for empty runs, duplicate deliveries, and meaningful updates."
+date: "2026-11-22"
+lastUpdated: "2026-11-22"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["apify", "web-data", "automation", "ai-architecture"]
+keywords: ["schedule Apify Actor", "Apify task schedule", "changelog monitoring", "Apify webhooks"]
+featured: false
+image: "/images/blog/apify-scheduled-changelog-v1.webp"
+imageAlt: "A lavender beam meets one brass index pin on a dark-blue laboratory timing wheel."
+ogImage: "/images/blog/apify-scheduled-changelog-v1.webp"
+readingGoal: "Design a weekly Actor task that distinguishes real changelog updates from collection failures."
+tldr: "Schedule a tested Apify task against one approved changelog, then compare each valid dataset with the last accepted snapshot. Report collection failures separately and keep a person in charge of the published note."
+schema: ["Article"]
+---
+
+A weekly changelog watch should tell you what shipped and take you straight to the original entry. It also needs to tell you when it lost sight of the source. A selector returning an empty page on Monday morning can otherwise look like a quiet week.
+
+Start with one permitted public changelog and one decision it feeds. For a founder tracking an API dependency, that might be whether a release warrants an upgrade this week. Apify can handle the schedule and collection. Your comparison code gets to decide whether a run produced enough evidence to make the call. The worked example below uses fictional releases and URLs.
+
+*Disclosure: FrankX participates in Apify’s affiliate program.*
+
+## Watch Apify schedule the task
+
+The official walkthrough shows where to create the schedule at **0:17** and where finished runs appear at **0:41**. Use it for the Console mechanics. The baseline, comparison and review rules below are the work that turns those runs into something a teammate can use.
+
+<YouTubeEmbed id="1jI7WcVQmwM" title="Getting started with Apify: schedule your Actor" structuredData={false} emphasizeThumbnail />
+
+[Watch on YouTube](https://www.youtube.com/watch?v=1jI7WcVQmwM).
+
+## Keep the first accepted result as the baseline
+
+Use a changelog with stable entry permalinks and a clearly marked release date or version. Prefer its official feed when it already gives you the fields you need. When the page requires extraction, use a bounded Website Content Crawler input like the one in [the first-run guide](/blog/apify-actor-api-first-run). Run it by hand once. Confirm that the returned content actually includes the entries you intend to compare, then save the tested configuration as an Actor task.
+
+Schedule the task at **09:00 Monday** with `0 9 * * 1`. Select `Europe/Amsterdam` to keep 09:00 local through daylight-saving changes. Apify documents that startup can be delayed, so give the job a completion window before treating an absent result as a missed run. [Apify schedules](https://docs.apify.com/actors/running/schedules) · [Actor tasks](https://docs.apify.com/actors/running/tasks).
+
+Store the first accepted comparison as a snapshot, with a retrieval timestamp and the run and dataset IDs. For each entry, keep the stable URL, its title, its published date or version, and the normalized text you actually compare. A hash of that normalized text makes a future edit easy to detect. Keep the extraction and normalization version beside the snapshot so a parser change can be investigated without attributing it to the vendor.
+
+## Make the comparison produce one reviewable note
+
+For a source that shows only the last few releases, disappearance is normal. Give each permalink its own record. A new ID can be a new entry, a known ID with changed text can be an edit, and a missing ID can simply have moved to the archive.
+
+| Input to the weekly comparison | Example output |
+| --- | --- |
+| New permalink with a valid title and date | New release. “API v2.4 adds bulk export.” Link to the release entry. |
+| Known permalink with a changed content hash | Updated entry. Show the affected line and retain both snapshots. |
+| Known permalink aged off the rolling page | Preserve the archived observation. Check the permalink before calling it a removal. |
+| Empty output, unexpected page, or failed run | Collection issue. Retain the last accepted snapshot and show when it was retrieved. |
+| Valid snapshot with the same entries and hashes | Checked. No changes in the observed release window. |
+
+A small team might need only one sentence in its Monday brief. For example, *“Example API v2.4 added bulk export. Check whether the batch endpoint covers the exports we currently queue ourselves.”* The first sentence should point directly to verified source text. The second belongs to the team’s judgment.
+
+## Make repeated delivery safe
+
+Read the exact dataset for each completed run. Record its run ID before processing it, and use it as an idempotency key for that task’s comparison. If you use [Apify webhooks](https://docs.apify.com/integrations/webhooks/actions), non-2xx responses can trigger retries. Have the receiving endpoint authenticate the request and durably enqueue or record the run before acknowledging it. Update the accepted snapshot and its comparison record together, then send a review item linked to that record.
+
+Test three changes against your first snapshot before enabling the schedule. Add one entry, edit a previously seen entry and simulate an empty output. You should see one new release, one correction and one collection issue. Reprocess the same run ID and confirm it yields the same stored comparison without a duplicate review item.
+
+The first week needs very little machinery. Keep one task, one baseline and one place where someone can inspect the result. For more control over how jobs are launched, recovered or exposed to an agent, see [Apify MCP vs the Actor API](/blog/apify-mcp-vs-actor-api).

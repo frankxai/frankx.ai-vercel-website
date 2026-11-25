@@ -1,0 +1,93 @@
+---
+title: "How to run an Apify Actor and verify its dataset"
+description: "Run a one-page Apify Actor, retrieve its dataset through the API, and check the source before handing the output to an agent or a teammate."
+date: "2026-11-22"
+lastUpdated: "2026-11-22"
+author: "FrankX"
+category: "AI Architecture"
+tags: ["apify", "web-data", "automation", "ai-architecture"]
+keywords: ["run Apify Actor", "Apify Actor API tutorial", "Apify dataset API", "Apify Website Content Crawler"]
+featured: false
+image: "/images/blog/apify-actor-first-run-v1.webp"
+imageAlt: "An amber beam reveals rows of etched dots in three stacked smoked-glass plates."
+ogImage: "/images/blog/apify-actor-first-run-v1.webp"
+readingGoal: "Start one bounded Actor run, retrieve its dataset by ID, and verify one result against its source."
+tldr: "Start with one permitted page and an expected result. Save the run ID, wait for a terminal status, then read the exact dataset and check the returned URL and text before using it."
+schema: ["Article"]
+---
+
+Give your first Apify Actor one page whose contents you already know. When the run finishes, you should be able to show a teammate the original page, the exact run that read it and the part of its output you accepted. Carry those three things into your next automation and you can investigate a bad result without guessing what an agent saw.
+
+This guide uses Apify’s Website Content Crawler and the Actor API. The walkthrough follows Apify’s published interface. The example uses a placeholder URL for a fixture you host, and the review examples are illustrative.
+
+*Disclosure: FrankX participates in Apify’s affiliate program.*
+
+## See the run in Apify Console
+
+Apify’s own walkthrough shows the sequence in under a minute. At **0:15** it enters the Actor input, at **0:42** it starts the run, and at **0:51** it opens the export. The video uses a different Actor. Watch how the Console moves from input to run to output, then use the crawler input below.
+
+<YouTubeEmbed id="1OW8gOqlZbY" title="Getting started with Apify: set up and run an Actor" structuredData={false} emphasizeThumbnail />
+
+[Watch on YouTube](https://www.youtube.com/watch?v=1OW8gOqlZbY).
+
+## Give the Actor one page and a known answer
+
+Use a static page you own or have permission to process. Put one distinctive sentence in the main content, such as “The pilot opens on Monday.” Write down the source URL and the expected sentence before starting. You can then tell whether the extractor found the page’s actual content or brought back an access notice, navigation text or an empty result.
+
+Paste the following into the [Website Content Crawler input](https://apify.com/apify/website-content-crawler/input-schema) and replace the example URL with your page. Depth zero keeps the crawl on its start URLs. The page limit provides a second bound. Keep sitemap discovery off for this run.
+
+```json
+{
+  "startUrls": [{ "url": "https://example.com/actor-fixture" }],
+  "crawlerType": "cheerio",
+  "maxCrawlDepth": 0,
+  "maxCrawlPages": 1,
+  "useSitemaps": false
+}
+```
+
+Use the raw HTTP crawler for this fixture. A page that renders its main content only after JavaScript runs calls for a browser-capable configuration and a fresh comparison. Check the Actor’s pricing and execution settings before you start. The crawler’s page limit controls scope. Your expected spend also depends on the Actor’s pricing model and run settings.
+
+## Follow the run ID to the dataset
+
+Save the input as `actor-input.json`. With your API token in the local `APIFY_TOKEN` environment variable, the following starts one asynchronous run and prints its ID. The examples require `curl` and `jq`. Starting a run can incur charges.
+
+```bash
+curl -fsS -X POST \
+  'https://api.apify.com/v2/actors/apify~website-content-crawler/runs?timeout=60' \
+  -H "Authorization: Bearer ${APIFY_TOKEN:?Set APIFY_TOKEN}" \
+  -H 'Content-Type: application/json' \
+  --data-binary @actor-input.json | jq -er '.data.id'
+```
+
+Save the ID as `RUN_ID`. If the start request times out after you submit it, check the Actor’s recent runs in Console before repeating the POST. The server may already have accepted the first request. Once you have an ID, check that specific run and keep the response as the run record.
+
+```bash
+curl -fsS "https://api.apify.com/v2/actor-runs/${RUN_ID:?Set RUN_ID}" \
+  -H "Authorization: Bearer ${APIFY_TOKEN:?Set APIFY_TOKEN}" > run.json
+
+jq '.data | {id, status, defaultDatasetId, finishedAt}' run.json
+```
+
+Repeat the status read after a pause if the run is in progress. When it reports `SUCCEEDED`, read a small window from that run’s dataset.
+
+```bash
+DATASET_ID=$(jq -er '.data | select(.status == "SUCCEEDED") | .defaultDatasetId' run.json) &&
+curl -fsS "https://api.apify.com/v2/datasets/${DATASET_ID}/items?format=json&limit=5" \
+  -H "Authorization: Bearer ${APIFY_TOKEN:?Set APIFY_TOKEN}" > items.json
+```
+
+The query limit controls how many rows this GET returns. The input controls how much the crawler attempts. Using the exact dataset ID also protects the handoff from a teammate starting a newer run between your two requests. [Run an Actor](https://docs.apify.com/api/v2/actors-runs-post) · [Get a run](https://docs.apify.com/api/v2/actor-run-get) · [Read dataset items](https://docs.apify.com/api/v2/dataset-items-get).
+
+## Decide whether the result is usable
+
+| What you observe | What to do |
+| --- | --- |
+| The returned source and sentence match the fixture | Keep the relevant excerpt, retrieval time, run ID and dataset ID together. |
+| The run reports success and the dataset is empty | Inspect the log and the fixture. Keep the result out of the next workflow until the extraction is understood. |
+| One row contains an access notice, placeholder or unexpected URL | Reject the row and verify the request against the page you intended to read. |
+| The run failed or timed out | Save its status and inspect the log. Change one input or runtime setting before retesting. |
+
+As a second exercise, edit the sentence on the fixture and run the same input again. Retrieve both runs by ID and make sure the two evidence records still point to different results. That is a small test of the handoff your teammate or agent will depend on.
+
+When one observation holds up, [schedule the same Actor for a weekly changelog watch](/blog/apify-scheduled-changelog-monitor). To choose who owns execution and recovery when an agent is involved, read [Apify MCP vs the Actor API](/blog/apify-mcp-vs-actor-api).

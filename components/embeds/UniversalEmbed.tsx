@@ -37,6 +37,7 @@ interface UniversalEmbedProps {
   showControls?: boolean
   theme?: 'tech' | 'soul'
   className?: string
+  emphasizeThumbnail?: boolean
 }
 
 // ============================================================================
@@ -176,6 +177,7 @@ export function UniversalEmbed({
   showControls = true,
   theme = 'tech',
   className = '',
+  emphasizeThumbnail = false,
 }: UniversalEmbedProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [showEmbed, setShowEmbed] = useState(autoplay)
@@ -241,10 +243,10 @@ export function UniversalEmbed({
         {/* Click to load overlay (for non-autoplay) */}
         {!showEmbed && (
           <motion.button
-            initial={{ opacity: 0 }}
+            initial={emphasizeThumbnail ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             onClick={() => setShowEmbed(true)}
-            className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-[#18181b] to-[#0a0a0b] group cursor-pointer w-full h-full"
+            className={`absolute inset-0 flex flex-col items-center bg-gradient-to-br from-[#18181b] to-[#0a0a0b] group cursor-pointer w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-300 ${emphasizeThumbnail ? 'justify-end gap-1 pb-3 sm:pb-5' : 'justify-center gap-4'}`}
           >
             {/* Thumbnail Image */}
             {thumbnailUrl && (
@@ -252,19 +254,19 @@ export function UniversalEmbed({
                 src={thumbnailUrl}
                 alt={alt || title || `Preview of ${config.name} content`}
                 fill
-                className="object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300"
+                className={emphasizeThumbnail ? 'object-cover' : 'object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300'}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             )}
             
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+            <div className={emphasizeThumbnail ? 'absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent' : 'absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors'} />
 
             <motion.div
-              whileHover={{ scale: 1.1 }}
-              className="relative z-10 w-20 h-20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10"
-              style={{ backgroundColor: `${config.color}30` }}
+              whileHover={emphasizeThumbnail ? undefined : { scale: 1.1 }}
+              className={`relative z-10 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/15 ${emphasizeThumbnail ? 'w-12 h-12 bg-black/75' : 'w-20 h-20'}`}
+              style={emphasizeThumbnail ? undefined : { backgroundColor: `${config.color}30` }}
             >
-              <Play className="w-10 h-10 ml-1 fill-current" style={{ color: config.color }} />
+              <Play className={`${emphasizeThumbnail ? 'w-5 h-5 text-white' : 'w-10 h-10'} ml-0.5 fill-current`} style={emphasizeThumbnail ? undefined : { color: config.color }} />
             </motion.div>
             <span className="relative z-10 text-white/90 font-medium group-hover:text-white transition-colors bg-black/50 px-3 py-1 rounded-full text-sm backdrop-blur-md">
               Click to load {config.name}

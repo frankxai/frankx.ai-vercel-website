@@ -2,6 +2,8 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { readFileSync } from 'node:fs'
 import { resolveProgramDestination } from '../../lib/affiliates/resolve-destination.ts'
+import { resolveGoDestination } from '../../lib/tools/go-destination.ts'
+import { recordsFromPrograms } from '../../lib/tools/record.ts'
 
 const partner = { tool: 'Example', aliases: ['example'], hasProgram: true, status: 'active', ourLink: 'https://partner.example/start?ref=issued-id&sig=a%2Bb#offer' }
 const official = { name: 'Example', url: 'https://example.com/product' }
@@ -22,6 +24,20 @@ test('rejects unsafe destinations and never invents an affiliate URL', () => {
 })
 test('catalog-only programs do not invent a hop without a checked record', () => {
   assert.equal(resolveProgramDestination('Example', [partner]), undefined)
+})
+
+test('approved Apify referral uses the issued destination only while verification is fresh', () => {
+  const { programs } = JSON.parse(readFileSync(new URL('../../data/affiliate/programs.json', import.meta.url), 'utf8'))
+  const apify = programs.find(program => program.tool === 'Apify')
+  assert.ok(apify)
+  assert.equal(apify.status, 'active')
+  assert.equal(apify.ourLink, 'https://www.apify.com?fpr=vzmwk5')
+  const now = new Date('2026-11-15T12:00:00Z')
+  assert.deepEqual(resolveProgramDestination('apify', programs, undefined, now), { href: '/go/apify', sponsored: true })
+  assert.deepEqual(resolveGoDestination({ slug: 'apify', records: recordsFromPrograms(programs), now }), { action: 'hop', href: apify.ourLink })
+  const expired = new Date('2027-03-01T12:00:00Z')
+  assert.equal(resolveProgramDestination('apify', programs, undefined, expired).sponsored, false)
+  assert.equal(resolveGoDestination({ slug: 'apify', records: recordsFromPrograms(programs), now: expired }).action, 'stack')
 })
 
 

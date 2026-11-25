@@ -251,7 +251,7 @@ export default async function BlogPostPage({
                 src={post.image}
                 title={post.title}
                 subtitle={post.description}
-                alt={post.title}
+                alt={post.imageAlt || post.title}
                 priority
               />
             </div>

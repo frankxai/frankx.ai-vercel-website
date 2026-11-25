@@ -1,4 +1,6 @@
 import Image from 'next/image'
+import ApifyResearchWorkbench from '@/components/guides/ApifyResearchWorkbench'
+import ApifyResearchArchitecture from '@/components/guides/ApifyResearchArchitecture'
 import { ArticleVideo } from './ArticleVideo'
 import { ArticleFigure } from './ArticleFigure'
 import { ArticleRecommendation } from './ArticleRecommendation'
@@ -347,6 +349,8 @@ export const mdxComponents: MDXComponents = {
   VoiceReferenceArchitecture,
   HiggsfieldWorkbench,
   ElevenLabsAudioBriefingWorkbench,
+  ApifyResearchWorkbench,
+  ApifyResearchArchitecture,
   GuideSkillMap,
   GuideSkill,
   Link,
