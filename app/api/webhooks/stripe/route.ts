@@ -18,7 +18,6 @@ function getStripe(): Stripe {
 }
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
-const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID || '4d2e913e-6903-4dd4-8749-c02cdb844331'
 
 async function sendEmailViaResend(to: string, subject: string, html: string) {
   const res = await fetch('https://api.resend.com/emails', {
@@ -35,22 +34,6 @@ async function sendEmailViaResend(to: string, subject: string, html: string) {
     }),
   })
   return res.json()
-}
-
-async function addToResendAudience(email: string, name: string) {
-  await fetch(`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${RESEND_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email,
-      first_name: name.split(' ')[0],
-      last_name: name.split(' ').slice(1).join(' ') || undefined,
-      unsubscribed: false,
-    }),
-  })
 }
 
 export async function POST(request: Request) {
@@ -109,15 +92,9 @@ export async function POST(request: Request) {
       }
     }
 
-    // Add customer to Resend audience
-    if (RESEND_API_KEY) {
-      await addToResendAudience(customerEmail, customerName)
-    }
-
     console.log('[Stripe] Checkout completed:', {
       sessionId: session.id,
       product: productSlug,
-      email: customerEmail,
       amount: session.amount_total ? `${(session.amount_total / 100).toFixed(2)} ${session.currency?.toUpperCase()}` : 'unknown',
       emailSent: Boolean(RESEND_API_KEY && productSlug),
     })

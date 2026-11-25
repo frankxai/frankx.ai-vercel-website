@@ -372,3 +372,66 @@ test('every free book remains direct without audience enrollment when Resend is 
     else process.env.RESEND_API_KEY = previousKey
   }
 })
+
+const paymentEvents = [
+  {
+    provider: 'stripe',
+    event: { type: 'checkout.session.completed', data: { object: {
+      id: 'cs_test', payment_status: 'paid', metadata: { productSlug: 'fixture' },
+      customer_email: 'buyer@example.invalid',
+    } } },
+    receiptExpected: true,
+  },
+  {
+    provider: 'lemon-squeezy',
+    event: { meta: { event_name: 'order_created' }, data: {
+      id: 'fixture', attributes: { user_email: 'buyer@example.invalid',
+        user_name: 'Buyer', first_order_item: { product_name: 'Fixture' } },
+    } },
+    receiptExpected: true,
+  },
+  {
+    provider: 'lemon-squeezy',
+    event: { meta: { event_name: 'subscription_created' }, data: {
+      id: 'fixture', attributes: { user_email: 'buyer@example.invalid' },
+    } },
+    receiptExpected: false,
+  },
+]
+
+for (const { provider, event, receiptExpected } of paymentEvents) {
+  const kind = event.type ?? event.meta.event_name
+  test(`${provider} ${kind} does not change marketing preferences`, async (t) => {
+    const calls = []
+    const send = async (url) => {
+      calls.push(url)
+      return Response.json({ id: 'message_fixture' })
+    }
+    for (const name of ['RESEND_API_KEY', 'STRIPE_SECRET_KEY', 'STRIPE_WEBHOOK_SECRET']) {
+      const original = process.env[name]
+      process.env[name] = 'unit-test'
+      t.after(() => {
+        if (original === undefined) delete process.env[name]
+        else process.env[name] = original
+      })
+    }
+    const imports = {
+      'next/server': { NextResponse: Response },
+      stripe: { default: class { webhooks = { constructEvent: () => event } } },
+      '@/lib/lemon-squeezy': { verifyWebhookSignature: () => true },
+      '@/lib/clients': { getClientOrDefault: () => ({ id: 'fixture', commerce: {} }) },
+      '@/lib/delivery': { generateProductEmailData: () => ({
+        customerName: 'Buyer', productName: 'Fixture', downloadLinks: [],
+      }) },
+      '@/lib/email-templates': { purchaseConfirmationEmail: () => ({ subject: 'Receipt', html: 'Fixture' }) },
+    }
+    const route = loadModule(`app/api/webhooks/${provider}/route.ts`, imports, send)
+    const response = await route.POST(new Request('https://example.invalid/webhook', {
+      method: 'POST', body: JSON.stringify(event), headers: {
+        'stripe-signature': 'fixture', 'x-signature': 'fixture',
+      },
+    }))
+    assert.equal(response.status, 200)
+    assert.deepEqual(calls, receiptExpected ? ['https://api.resend.com/emails'] : [])
+  })
+}
