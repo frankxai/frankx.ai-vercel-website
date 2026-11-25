@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { Calendar, Clock, FileText, Tag } from 'lucide-react'
 
 import { MDXContent } from '@/components/blog/MDXContent'
 import TableOfContents from '@/components/blog/TableOfContents'
@@ -115,28 +114,20 @@ export default async function BlogPostPage({
     : new URL(siteConfig.ogImage, siteConfig.url).toString()
 
   // Article Schema
+  const isFrank = !post.author || ['Frank', 'FrankX', 'Frank Riemer'].includes(post.author)
+  const byline = isFrank ? 'Frank Riemer' : post.author
+
   const articleSchema = {
     headline: post.title,
     description: post.description,
     image: [imageUrl],
     author: {
       '@type': 'Person',
-      name: post.author,
-      url: siteConfig.url,
-      jobTitle: 'AI Architect',
-      description:
-        'Former Oracle AI architect and independent FrankX builder focused on agentic AI systems and creator operating systems.',
-      alumniOf: {
-        '@type': 'Organization',
-        name: 'Oracle',
-      },
-      sameAs: [
-        socialLinks.x,
-        socialLinks.linkedin,
-        socialLinks.github,
-        socialLinks.youtube,
-        socialLinks.instagram,
-      ],
+      name: byline,
+      ...(isFrank && {
+        url: new URL('/about', siteConfig.url).toString(),
+        sameAs: [socialLinks.x, socialLinks.linkedin, socialLinks.github, socialLinks.youtube, socialLinks.instagram],
+      }),
     },
     publisher: {
       '@type': 'Organization',
@@ -189,28 +180,10 @@ export default async function BlogPostPage({
           />
 
           <header className="mt-8 space-y-6">
-            {/* Category & Meta */}
-            <div className="flex flex-wrap items-center gap-3 text-xs font-medium">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-emerald-400">
-                <Tag className="h-3.5 w-3.5" />
-                {post.category}
-              </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-white/60">
-                <Calendar className="h-3.5 w-3.5 text-white/40" />
-                {new Date(post.date).toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                  year: 'numeric',
-                })}
-              </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-white/60">
-                <Clock className="h-3.5 w-3.5 text-white/40" />
-                {post.readingTime}
-              </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-white/60">
-                <FileText className="h-3.5 w-3.5 text-white/40" />
-                {wordCount.toLocaleString()} words
-              </span>
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm text-white/65">
+              <span className="font-medium text-emerald-300">{post.category}</span>
+              <time dateTime={post.date}>{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time>
+              <span>{post.readingTime}</span>
             </div>
 
             {/* Title */}
@@ -230,26 +203,16 @@ export default async function BlogPostPage({
               </p>
             )}
 
-            {/* Author Card */}
-            <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-md p-6 md:flex-row md:items-center md:justify-between transition-colors duration-200 hover:border-white/[0.14]">
-              <div className="flex items-center gap-4">
-                <Image src="/images/portraits/frankx-magical-forest.png" alt="Frank Riemer" width={48} height={48} className="rounded-full shadow-lg shadow-emerald-500/20 object-cover border border-emerald-500/30" />
-                <div>
-                  <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
-                  {(post.author === 'FrankX' || post.author === 'Frank Riemer' || !post.author) && (
-                    <Link href="/about" className="text-xs text-emerald-400 hover:underline">
-                      About Frank Riemer
-                    </Link>
-                  )}
-                </div>
-              </div>
+            <p className="flex items-center gap-2 text-sm text-white/75">
+              {isFrank ? (
+                <>
+                  <Image src="/images/portraits/frankx-magical-forest.png" alt="" width={28} height={28} className="h-7 w-7 rounded-full object-cover" />
+                  <Link href="/about" className="underline decoration-white/30 underline-offset-4 hover:text-white">By {byline}</Link>
+                </>
+              ) : <>By {byline}</>}
+            </p>
 
-              {/* Interactive Header Actions */}
-              <ArticleHeaderActions title={post.title} url={canonicalUrl} />
-            </div>
-
-            {/* Hero Image - 16/9 premium with proper margins, padding, sizing for overlays */}
-            <div className="mt-8 mb-8">
+            {post.image && (
               <HeroImage
                 src={post.image}
                 title={post.title}
@@ -257,7 +220,8 @@ export default async function BlogPostPage({
                 alt={post.title}
                 priority
               />
-            </div>
+            )}
+            <ArticleHeaderActions title={post.title} url={canonicalUrl} />
           </header>
 
           {/* Two-Column Grid on xl+: Article Content (Left) + Table of Contents (Right Rail) */}
