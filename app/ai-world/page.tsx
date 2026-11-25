@@ -157,7 +157,7 @@ const intelligenceGates = [
       'Anthropic Claude 2026',
     ],
     links: [
-      { label: 'MCP Ecosystem', href: '/research/mcp-ecosystem' },
+      { label: 'MCP Ecosystem', href: '/research/mcp-ecosystem-tool-calling' },
       { label: 'Intelligence Atlas', href: '/intelligence-atlas' },
     ],
   },
