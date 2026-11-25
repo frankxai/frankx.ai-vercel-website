@@ -25,9 +25,9 @@ export function FounderStory() {
               I want more people to make what they imagine.
             </h2>
             <div className="mt-6 space-y-4 text-base leading-relaxed text-white/75">
-              <p>I’m Frank. I build AI systems, make music, write, and teach from the work itself. My experience at Oracle shaped how I approach architecture. My creative practice keeps the question personal: what can someone actually make with it?</p>
-              <p>A song starts with a feeling. A useful system starts with a problem someone cares about. Both need attention, experimentation, and the patience to keep revising. This studio is where I share that process, from an early sketch to something you can listen to, read, or build on.</p>
-              <p>I care about ownership: your knowledge, your creative work, and your ability to keep building when a tool changes. Through FrankX and Starlight Intelligence, I’m working toward a future where more people have the skills and systems to turn their ideas into a life’s work.</p>
+              <p>One of my favorite songs is one I made with friends, Let the Stars Guide Your Way. That’s a good introduction to me. I love what happens when an idea I could only half explain becomes something we can put on and listen to together.</p>
+              <p>Arcanea gives me room to follow that feeling into a whole world. I can write a story, imagine the people who live there, then go make their music. The books, recordings and drawings here are different ways in.</p>
+              <p>When I teach, I want you to leave with something that belongs to you. Take the storyboard below. Keep the sequence, change the character, and see what happens when the next frame is yours.</p>
             </div>
             <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
               <Link href="/work-with-me" className={textLink}>Work with me <ArrowRight aria-hidden="true" className="h-4 w-4" /></Link>
