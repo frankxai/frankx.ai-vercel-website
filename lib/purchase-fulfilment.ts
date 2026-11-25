@@ -16,6 +16,7 @@ export interface PaidSession {
   created: number
   email: string | null
   name: string
+  receiptUrl?: string
   productSlug: string | undefined
 }
 
@@ -32,7 +33,6 @@ export type FulfilmentResult =
 
 export interface FulfilmentDeps {
   resendApiKey: string | undefined
-  audienceId: string
   fetch: typeof fetch
 }
 
@@ -51,7 +51,7 @@ export async function fulfilCheckoutSession(session: PaidSession, deps: Fulfilme
     customerName: emailData.customerName,
     productName: emailData.productName,
     downloadLinks: emailData.downloadLinks,
-    receiptUrl: undefined,
+    receiptUrl: session.receiptUrl,
   })
   const headers = { Authorization: `Bearer ${deps.resendApiKey}`, 'Content-Type': 'application/json' }
   const sent = await deps.fetch('https://api.resend.com/emails', {
@@ -68,22 +68,6 @@ export async function fulfilCheckoutSession(session: PaidSession, deps: Fulfilme
     }),
   })
   if (!sent.ok) return fail('email_rejected')
-
-  // The buyer has the product. A failed audience write must not make Stripe retry.
-  try {
-    await deps.fetch(`https://api.resend.com/audiences/${deps.audienceId}/contacts`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({
-        email: session.email,
-        first_name: session.name.split(' ')[0],
-        last_name: session.name.split(' ').slice(1).join(' ') || undefined,
-        unsubscribed: false,
-      }),
-    })
-  } catch (error) {
-    console.error('[Stripe] Audience write failed after delivery:', error instanceof Error ? error.message : error)
-  }
 
   return { status: 200, delivered: true }
 }

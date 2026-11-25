@@ -16,6 +16,7 @@ const load = (path) => import(pathToFileURL(resolve(ROOT, path)).href)
 process.env.EMAIL_TOKEN_SECRET = 'test-only-secret'
 process.env.NEXT_PUBLIC_SITE_URL = 'https://www.frankx.ai'
 // The Lemon Squeezy library reads its store config when it loads.
+process.env.LEMON_SQUEEZY_WEBHOOK_SECRET = 'local_lemon_fixture'
 process.env.LEMON_SQUEEZY_API_KEY = 'test-only-key'
 process.env.LEMON_SQUEEZY_STORE_ID = 'test-store'
 process.env.LEMON_SQUEEZY_VARIANT_STARTER_KIT = '111'
@@ -123,7 +124,7 @@ const session = (over = {}) => ({ id: 'cs_test_1', created: PURCHASED_AT / 1000,
 const fulfil = async (sessionOver, { resend = () => Response.json({ id: 'em_1' }), key = 're_test' } = {}) => {
   const calls = []
   const fetchStub = async (url, init) => { calls.push({ url: String(url), init }); return String(url).includes('/emails') ? resend() : Response.json({}) }
-  const result = await fulfilCheckoutSession(session(sessionOver), { resendApiKey: key, audienceId: 'aud_1', fetch: fetchStub })
+  const result = await fulfilCheckoutSession(session(sessionOver), { resendApiKey: key, fetch: fetchStub })
   return { result, calls, emails: calls.filter((call) => call.url.endsWith('/emails')) }
 }
 
@@ -168,10 +169,10 @@ test('an idempotency conflict is not proof of delivery', async () => {
   }
 })
 
-test('a failed audience write does not undo a delivery', async () => {
-  const fetchStub = async (url) => { if (String(url).includes('/audiences/')) throw new Error('network'); return Response.json({ id: 'em_1' }) }
-  const result = await fulfilCheckoutSession(session(), { resendApiKey: 're_test', audienceId: 'aud_1', fetch: fetchStub })
+test('transactional fulfillment makes only the receipt call', async () => {
+  const { result, calls } = await fulfil()
   assert.deepEqual(result, { status: 200, delivered: true })
+  assert.deepEqual(calls.map(call => call.url), ['https://api.resend.com/emails'])
 })
 
 test('a session this site did not create is acknowledged and untouched', async () => {
@@ -211,3 +212,93 @@ test('a buy button opens only for a wired, paid product that a reviewed edit mar
   assert.equal(lemonSqueezyCheckoutUrl({ ...kit, id: 'not-in-the-registry' }, open), null)
 })
 
+
+test('signed provider callbacks deliver only paid orders, with retryable receipts and zero contact writes', async t => {
+  const {readFileSync} = await import('node:fs')
+  const {createHmac} = await import('node:crypto')
+  const {default: ts} = await import('typescript')
+  const {default: Stripe} = await import('stripe')
+  // These values exist only in this isolated test process. All network I/O below is intercepted.
+  const priorHost = process.env.VERCEL_ENV
+  t.after(() => { if (priorHost === undefined) delete process.env.VERCEL_ENV; else process.env.VERCEL_ENV = priorHost })
+  process.env.VERCEL_ENV = 'production'
+  process.env.STRIPE_SECRET_KEY = 'sk_live_local_fixture_not_a_credential'
+  process.env.STRIPE_WEBHOOK_SECRET = 'whsec_fake_local_stripe'
+  process.env.RESEND_API_KEY = 'local_receipt_fixture'
+  const lemonSecret = 'local_lemon_fixture'
+  const lemon = await load('lib/lemon-squeezy.ts')
+  const {products} = await load('lib/products.ts')
+  const {canonicalProduct} = await load('lib/product-fulfillment.ts')
+  assert.equal(canonicalProduct([{id:'x',slug:'y'},{id:'y',slug:'z'}],'y'), undefined)
+  const routes = {}
+  // Execute each actual Route Handler and its real settlement, delivery and mail functions.
+  const imports = {
+    'next/server':{NextResponse:Response}, stripe:{default:Stripe},
+    '@/lib/paid-download':{PaidDownloadConfigError},
+    '@/lib/purchase-fulfilment':{fulfilCheckoutSession}, '@/lib/products':{products},
+    '@/lib/product-fulfillment':{canonicalProduct},
+    '@/lib/lemon-squeezy':lemon,
+  }
+  for (const name of ['lemon-squeezy','stripe']) {
+    const raw = readFileSync(resolve(ROOT,'app/api/webhooks/' + name + '/route.ts'),'utf8')
+    const compiled = ts.transpileModule(raw,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText
+    const exports = {}
+    new Function('require','exports',compiled)(key => { assert.ok(Object.hasOwn(imports,key),key); return imports[key] }, exports)
+    routes[name] = exports.POST
+  }
+  const logs = []
+  t.mock.method(console,'log',(...args) => logs.push(JSON.stringify(args)))
+  t.mock.method(console,'error',(...args) => logs.push(JSON.stringify(args)))
+  const buyer = 'isolated-buyer@example.invalid'
+  const stripeFacts = {id:'cs_fixture', created:PURCHASED_AT / 1000, mode:'payment', payment_status:'paid', livemode:true,
+    customer_email:buyer, metadata:{productSlug:DELIVERABLE.id}}
+  const stripeEvent = {type:'checkout.session.completed',livemode:true,data:{object:stripeFacts}}
+  const lemonFacts = {status:'paid', test_mode:false, created_at:new Date(PURCHASED_AT).toISOString(), user_email:buyer,
+    user_name:'Synthetic buyer', first_order_item:{variant_id:111,product_name:'Renamed display title'},
+    urls:{receipt:'https://app.lemonsqueezy.com/my-orders/example'}}
+  const lemonEvent = {meta:{event_name:'order_created'},data:{id:'300',type:'orders',attributes:lemonFacts}}
+  const deliver = async (name, event, {valid = true, accepted = true} = {}) => {
+    const body = JSON.stringify(event)
+    const headers = name === 'stripe'
+      ? {'stripe-signature':Stripe.webhooks.generateTestHeaderString({payload:body,secret:valid ? process.env.STRIPE_WEBHOOK_SECRET : 'wrong'})}
+      : {'x-signature':createHmac('sha256',valid ? lemonSecret : 'wrong').update(body).digest('hex')}
+    return withFetch(() => Response.json({id:'fixture_receipt'}, {status:accepted ? 200 : 503}),
+      () => routes[name](new Request('https://test.invalid/callback',{method:'POST',body,headers})))
+  }
+  for (const [name, event] of [['stripe',stripeEvent],['lemon-squeezy',lemonEvent]]) {
+    const [invalid, ignored] = await deliver(name,event,{valid:false})
+    assert.equal(invalid.status,401); assert.equal(ignored.length,0)
+    const [paid, sent] = await deliver(name,event)
+    assert.equal(paid.status,200)
+    assert.deepEqual(sent.map(([url]) => url),['https://api.resend.com/emails'])
+    assert.deepEqual(JSON.parse(sent[0][1].body).to,[buyer])
+    const [retry, repeated] = await deliver(name,event)
+    assert.equal(retry.status,200)
+    assert.deepEqual(repeated,sent)
+    assert.ok(sent[0][1].headers['Idempotency-Key'])
+    const [failed, attempts] = await deliver(name,event,{accepted:false})
+    assert.equal(failed.status,500)
+    assert.deepEqual(attempts.map(([url]) => url),['https://api.resend.com/emails'])
+  }
+  const stripeWith = patch => ({...stripeEvent,data:{object:{...stripeFacts,...patch}}})
+  const lemonWith = patch => ({...lemonEvent,data:{...lemonEvent.data,attributes:{...lemonFacts,...patch}}})
+  for (const [name, event] of [
+    ['stripe',stripeWith({payment_status:'unpaid'})],['stripe',stripeWith({livemode:false})],
+    ['lemon-squeezy',lemonWith({status:'pending'})],['lemon-squeezy',lemonWith({test_mode:true})],
+    ['lemon-squeezy',{...lemonEvent,meta:{event_name:'subscription_created'}}],
+  ]) {
+    const [response,calls] = await deliver(name,event)
+    assert.equal(response.status,200); assert.equal(calls.length,0)
+  }
+  const [late,delayed] = await deliver('stripe',{...stripeEvent,type:'checkout.session.async_payment_succeeded'})
+  assert.equal(late.status,200)
+  assert.equal(delayed[0][1].headers['Idempotency-Key'],'purchase-confirmation/cs_fixture')
+  const [unmapped,calls] = await deliver('lemon-squeezy',lemonWith({first_order_item:{variant_id:8888,product_name:'Starter Kit'}}))
+  assert.equal(unmapped.status,500); assert.equal(calls.length,0)
+  process.env.VERCEL_ENV = 'preview'
+  for (const [name,event] of [['stripe',stripeEvent],['lemon-squeezy',lemonEvent]]) {
+    const [preview,network] = await deliver(name,event)
+    assert.equal(preview.status,200); assert.equal(network.length,0)
+  }
+  assert.ok(logs.every(line => !line.includes(buyer) && !line.includes('Synthetic buyer')))
+})

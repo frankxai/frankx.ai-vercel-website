@@ -1,121 +1,43 @@
 import { NextResponse } from 'next/server'
-import { verifyWebhookSignature, type LemonSqueezyWebhookEvent } from '@/lib/lemon-squeezy'
-import { generateProductEmailData } from '@/lib/delivery'
-import { purchaseConfirmationEmail } from '@/lib/email-templates'
-import { getClientOrDefault } from '@/lib/clients'
-
-const RESEND_API_KEY = process.env.RESEND_API_KEY
-const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID || '4d2e913e-6903-4dd4-8749-c02cdb844331'
-
-async function sendEmailViaResend(to: string, subject: string, html: string) {
-  const res = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${RESEND_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: 'FrankX <frank@mail.frankx.ai>',
-      to: [to],
-      subject,
-      html,
-    }),
-  })
-  return res.json()
-}
-
-async function addToResendAudience(email: string, name: string, topics: string[]) {
-  await fetch(`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${RESEND_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email,
-      first_name: name.split(' ')[0],
-      last_name: name.split(' ').slice(1).join(' ') || undefined,
-      unsubscribed: false,
-    }),
-  })
-}
+import { LEMON_SQUEEZY_VARIANT_ENV_KEYS, verifyWebhookSignature, type LemonSqueezyWebhookEvent } from '@/lib/lemon-squeezy'
+import { products } from '@/lib/products'
+import { canonicalProduct } from '@/lib/product-fulfillment'
+import { fulfilCheckoutSession } from '@/lib/purchase-fulfilment'
 
 export async function POST(request: Request) {
   const body = await request.text()
-  const signature = request.headers.get('x-signature') || ''
-
-  if (!verifyWebhookSignature(body, signature)) {
+  if (!verifyWebhookSignature(body, request.headers.get('x-signature') || '')) {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
   }
-
   const event: LemonSqueezyWebhookEvent = JSON.parse(body)
-  const eventName = event.meta.event_name
-
-  switch (eventName) {
-    case 'order_created': {
-      const { user_email, user_name, first_order_item } = event.data.attributes
-      const productName = first_order_item.product_name
-      const productSlug = productName.toLowerCase().replace(/\s+/g, '-')
-
-      // Extract client context from custom_data (set during checkout)
-      const clientId = event.meta.custom_data?.clientId || 'frankx'
-      const client = getClientOrDefault(clientId)
-
-      // Use client-specific audience if configured
-      const audienceId = client.commerce.resendAudienceId || RESEND_AUDIENCE_ID
-
-      const emailData = generateProductEmailData(
-        productSlug,
-        user_name || 'Customer',
-        user_email
-      )
-
-      if (emailData && RESEND_API_KEY) {
-        const email = purchaseConfirmationEmail({
-          customerName: emailData.customerName,
-          productName: emailData.productName,
-          downloadLinks: emailData.downloadLinks,
-          receiptUrl: event.data.attributes.urls?.receipt,
-        })
-
-        await sendEmailViaResend(user_email, email.subject, email.html)
-      }
-
-      // Add customer to appropriate Resend audience
-      if (RESEND_API_KEY) {
-        await addToResendAudience(user_email, user_name || 'Customer', ['product-updates'])
-      }
-
-      console.log('[Lemon Squeezy] Order fulfilled:', {
-        orderId: event.data.id,
-        clientId: client.id,
-        artist: client.artistName,
-        product: productName,
-        email: user_email,
-        total: event.data.attributes.total_formatted,
-        emailSent: Boolean(RESEND_API_KEY),
-      })
-
-      break
-    }
-
-    case 'subscription_created': {
-      const { user_email, user_name } = event.data.attributes
-
-      if (RESEND_API_KEY) {
-        await addToResendAudience(user_email, user_name || 'Subscriber', ['product-updates'])
-      }
-
-      console.log('[Lemon Squeezy] Subscription created:', {
-        id: event.data.id,
-        email: user_email,
-      })
-      break
-    }
-
-    default:
-      console.log('[Lemon Squeezy] Unhandled event:', eventName)
+  if (event.meta.event_name !== 'order_created') return NextResponse.json({ received: true })
+  const order = event.data.attributes
+  if (process.env.VERCEL_ENV !== 'production' || event.data.type !== 'orders' || order.test_mode !== false || order.status !== 'paid') {
+    return NextResponse.json({ received: true })
   }
 
-  return NextResponse.json({ received: true })
+  // Reuse the two configured checkout variants. Display names can change.
+  const variant = order.first_order_item?.variant_id
+  const matches = Number.isSafeInteger(variant) && variant > 0
+    ? Object.entries(LEMON_SQUEEZY_VARIANT_ENV_KEYS).filter(([, env]) => process.env[env] === String(variant))
+    : []
+  const product = matches.length === 1 ? canonicalProduct(products, matches[0][0]) : undefined
+  const created = Date.parse(order.created_at)
+  if (!product || !event.data.id || !Number.isFinite(created)) {
+    return NextResponse.json({ error: 'Unresolved paid order' }, { status: 500 })
+  }
+
+  try {
+    const result = await fulfilCheckoutSession({
+      id: 'lemon-order-' + event.data.id, created: Math.floor(created / 1000),
+      productSlug: product.id, email: order.user_email, name: order.user_name || 'Customer',
+      receiptUrl: order.urls?.receipt,
+    }, { resendApiKey: process.env.RESEND_API_KEY, fetch })
+    if (result.status === 500) {
+      return NextResponse.json({ error: 'Delivery failed', failure: result.failure }, { status: 500 })
+    }
+    return NextResponse.json({ received: true })
+  } catch {
+    return NextResponse.json({ error: 'Delivery unavailable' }, { status: 500 })
+  }
 }

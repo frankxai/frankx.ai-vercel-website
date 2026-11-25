@@ -45,6 +45,8 @@ export interface LemonSqueezyWebhookEvent {
     id: string
     type: string
     attributes: {
+      test_mode: boolean
+      created_at: string
       user_email: string
       user_name: string
       first_order_item: {

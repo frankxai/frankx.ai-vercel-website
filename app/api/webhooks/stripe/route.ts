@@ -17,8 +17,6 @@ function getStripe(): Stripe {
   return stripeClient
 }
 
-const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID || '4d2e913e-6903-4dd4-8749-c02cdb844331'
-
 export async function POST(request: Request) {
   const body = await request.text()
   const signature = request.headers.get('stripe-signature')
@@ -36,14 +34,20 @@ export async function POST(request: Request) {
   let event: Stripe.Event
   try {
     event = getStripe().webhooks.constructEvent(body, signature, webhookSecret)
-  } catch (err) {
-    const message = err instanceof Error ? err.message : 'Unknown error'
-    console.error('[Stripe] Webhook signature verification failed:', message)
+  } catch {
+    console.error('[Stripe] Webhook signature verification failed')
     return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
   }
 
-  if (event.type === 'checkout.session.completed') {
+  if (event.type === 'checkout.session.completed' || event.type === 'checkout.session.async_payment_succeeded') {
     const session = event.data.object as Stripe.Checkout.Session
+
+    // A completed session can still have an outstanding asynchronous payment.
+    if (process.env.VERCEL_ENV !== 'production' || !/^(?:sk|rk)_live_/.test(process.env.STRIPE_SECRET_KEY ?? '') ||
+        event.livemode !== true || session.livemode !== true || event.account ||
+        session.mode !== 'payment' || session.payment_status !== 'paid') {
+      return NextResponse.json({ received: true })
+    }
 
     const productSlug = session.metadata?.productSlug || session.metadata?.product_slug
 
@@ -57,7 +61,7 @@ export async function POST(request: Request) {
           name: session.customer_details?.name || 'Customer',
           productSlug,
         },
-        { resendApiKey: process.env.RESEND_API_KEY, audienceId: RESEND_AUDIENCE_ID, fetch },
+        { resendApiKey: process.env.RESEND_API_KEY, fetch },
       )
     } catch (error) {
       if (!(error instanceof PaidDownloadConfigError)) throw error
