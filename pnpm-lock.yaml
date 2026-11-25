@@ -328,6 +328,9 @@ importers:
       playwright-core:
         specifier: 1.62.1
         version: 1.62.1
+      pngjs:
+        specifier: 5.0.0
+        version: 5.0.0
       puppeteer:
         specifier: 25.16.0
         version: 25.16.0(yauzl@2.10.0)

@@ -302,6 +302,7 @@
     "gsap": "^3.14.2",
     "lint-staged": "^16.2.7",
     "playwright-core": "1.62.1",
+    "pngjs": "5.0.0",
     "puppeteer": "25.16.0",
     "styled-jsx": "^5.1.7",
     "svgo": "^4.0.2",

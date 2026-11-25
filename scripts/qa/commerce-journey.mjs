@@ -2,6 +2,8 @@ import assert from 'node:assert/strict'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { execFileSync } from 'node:child_process'
+import { comparePrimaryAction } from './commerce-visual.mjs'
 import { chromium } from 'playwright-core'
 import { startNextServer, stopManagedProcess } from '../tests/helpers/managed-next-process.mjs'
 
@@ -12,6 +14,8 @@ const editions = [
 ]
 const evidence = resolve(process.env.RUNNER_TEMP ?? '.next', 'commerce-journey')
 const widths = [390, 1440]
+const visual = []
+const axePath = fileURLToPath(import.meta.resolve('axe-core/axe.min.js'))
 
 async function inspectClosedEdition(page, { slug, title }, width) {
   const detail = '/products/' + slug
@@ -35,7 +39,6 @@ async function inspectClosedEdition(page, { slug, title }, width) {
 
     // Scope WCAG results to this edition's primary actions; the shared site
     // chrome and the rest of the product page need their own accessibility QA.
-    await page.addScriptTag({ path: fileURLToPath(import.meta.resolve('axe-core/axe.min.js')) })
     const violations = await join.evaluate(async link => {
       const result = await window.axe.run(link.parentElement, {
         runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'] },
@@ -43,6 +46,16 @@ async function inspectClosedEdition(page, { slug, title }, width) {
       return result.violations.map(({ id, nodes }) => ({ id, elements: nodes.map(node => node.target) }))
     })
     assert.deepEqual(violations, [], 'Accessibility violations on ' + path)
+    await page.evaluate(() => document.fonts.ready)
+    if (slug === 'aurora-ui-kit') {
+      const filename = path.split('/')[1] + '-' + width + '.png'
+      const actual = await join.screenshot({
+        path: resolve(evidence, 'actual-' + filename),
+        animations: 'disabled',
+      })
+      const golden = resolve('scripts/qa/commerce-baselines', filename)
+      visual.push({ path, width, changedFraction: await comparePrimaryAction(golden, actual) })
+    }
     await page.screenshot({ path: resolve(evidence, path.slice(1).replace('/', '-') + '-' + width + '.png'), animations: 'disabled' })
     if (path === checkout) {
       await page.keyboard.press('Tab')
@@ -80,7 +93,7 @@ try {
   }
 
   await mkdir(evidence, { recursive: true })
-  const executablePath = process.env.PUPPETEER_EXECUTABLE_PATH || (await import('puppeteer')).executablePath()
+  const executablePath = process.env.PUPPETEER_EXECUTABLE_PATH || await (await import('puppeteer')).executablePath({ headless: 'shell' })
   browser = await chromium.launch({ executablePath })
   for (const width of widths) {
     const context = await browser.newContext({
@@ -91,6 +104,7 @@ try {
       serviceWorkers: 'block',
     })
     try {
+      await context.addInitScript({ path: axePath })
       await context.route('**/*', route => {
         const request = route.request()
         return new URL(request.url()).origin === origin && ['GET', 'HEAD'].includes(request.method())
@@ -104,7 +118,10 @@ try {
     }
   }
   await writeFile(resolve(evidence, 'result.json'), JSON.stringify({
-    editions, widths, head: process.env.REVIEWED_HEAD_SHA,
+    editions, widths, visual,
+    builtCommit: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
+    prHead: process.env.REVIEWED_HEAD_SHA || null,
+    browser: browser.version(),
     environment: 'local production build with synthetic merchant configuration',
   }, null, 2))
 } finally {
