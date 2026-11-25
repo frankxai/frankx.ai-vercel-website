@@ -183,9 +183,24 @@ test('Glass Essential PostgreSQL lifecycle', async t => {
       const response = await download(subjectId)
       assert.equal(response.status, 200)
       assert.equal(sha256(Buffer.from(await response.arrayBuffer())), artifactSha256)
+      const ticketPath = origin + '/delivery?session=' + sessionId
+      const ticketOptions = {
+        ...options, siteOrigin:origin,
+        ticketKeys:{currentId:'fixture', keys:new Map([['fixture',randomBytes(32)]])},
+        authenticate:async () => ({subjectId}),
+        readPrivateArtifact:async id => { assert.equal(id,release.artifactId); storageReads++; return bytes },
+      }
+      const issued = await core.issueGlassDownloadTicket(new Request(ticketPath,{method:'POST',headers:{origin}}),ticketOptions)
+      assert.equal(issued.status,200)
+      const {ticket} = await issued.json()
+      const redeem = () => core.redeemGlassDownloadTicket(new Request(ticketPath,{headers:{'x-starlight-download-ticket':ticket}}),ticketOptions)
+      const signed = await redeem()
+      assert.equal(signed.status,200)
+      assert.equal(sha256(Buffer.from(await signed.arrayBuffer())),artifactSha256)
       assert.equal(await notify('evt_archive_refund','charge.refunded','ch_archive'), 'applied')
       assert.equal((await download(subjectId)).status, 410)
-      assert.equal(storageReads, 1)
+      assert.equal((await redeem()).status, 410)
+      assert.equal(storageReads, 2)
       assert.equal(await query("SELECT count(*) FROM commerce_sandbox.access_events WHERE session_id='cs_test_real_archive'"), '2')
     })
   } finally {

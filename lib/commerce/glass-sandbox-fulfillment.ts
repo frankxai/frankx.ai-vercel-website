@@ -1,4 +1,4 @@
-import { createHash } from 'node:crypto'
+import { createHash, createHmac, timingSafeEqual } from 'node:crypto'
 import Stripe from 'stripe'
 import { canonicalProduct } from '../product-fulfillment'
 import type { ProductRecord } from '@/types/products'
@@ -153,25 +153,108 @@ export async function glassSandboxWebhook(request: Request, options: SandboxOpti
   } catch { return refusal(503, 'sandbox_verification_unavailable') }
 }
 
-/** Auth identity comes from the host's server session adapter, never a query/body/header claim. */
-export async function glassSandboxDownload(request: Request, options: SandboxOptions & {
+type BuyerAccess = SandboxOptions & {
   authenticate(request: Request): Promise<{ subjectId: string } | null>
+}
+type PrivateDelivery = BuyerAccess & {
   readPrivateArtifact(artifactId: string): Promise<Uint8Array>
-}): Promise<Response> {
-  if (request.method !== 'GET') return refusal(405, 'method_not_allowed')
+}
+
+async function authorizeDownload(request: Request, options: BuyerAccess): Promise<SandboxEntitlement | Response> {
   try { configured(options) } catch { return refusal(503, 'sandbox_unavailable') }
-  const url = new URL(request.url)
-  if (url.searchParams.getAll('session').length !== 1 || [...url.searchParams.keys()].some(key => key !== 'session') || !sessionId(url.searchParams.get('session'))) return refusal(400, 'invalid_download_request')
+  const params = new URL(request.url).searchParams
+  const session = params.get('session')
+  if (params.getAll('session').length !== 1 || [...params.keys()].some(key => key !== 'session') || !sessionId(session))
+    return refusal(400, 'invalid_download_request')
+  const principal = await options.authenticate(request)
+  if (!principal || !validSubject(principal.subjectId)) return refusal(401, 'authentication_required')
+  const entitlement = await options.ledger.entitlement(session, principal.subjectId)
+  if (!entitlement || entitlement.subjectId !== principal.subjectId || entitlement.sessionId !== session) return refusal(404, 'download_not_found')
+  if (entitlement.state !== 'active') return refusal(410, 'entitlement_revoked')
+  if (!sameRelease(entitlement, options.release)) return refusal(409, 'artifact_version_unavailable')
+  return entitlement
+}
+
+async function deliverBytes(entitlement: SandboxEntitlement, options: PrivateDelivery) {
+  const bytes = await bounded(() => options.readPrivateArtifact(entitlement.artifactId),options)
+  if (!(bytes instanceof Uint8Array) || bytes.byteLength !== entitlement.artifactBytes || digest(bytes) !== entitlement.artifactSha256) return refusal(502, 'artifact_integrity_failed')
+  return new Response(new Uint8Array(bytes), { headers: { ...responseHeaders, 'Content-Type': 'application/zip', 'Content-Length': String(bytes.byteLength), 'Content-Disposition': 'attachment; filename="starlight-glass-core-essential.zip"' } })
+}
+
+/** Auth identity comes from the host's server session adapter, never a query/body/header claim. */
+export async function glassSandboxDownload(request: Request, options: PrivateDelivery): Promise<Response> {
+  if (request.method !== 'GET') return refusal(405, 'method_not_allowed')
   try {
-    const principal = await options.authenticate(request)
-    if (!principal || !validSubject(principal.subjectId)) return refusal(401, 'authentication_required')
-    const entitlement = await options.ledger.entitlement(url.searchParams.get('session')!, principal.subjectId)
-    if (!entitlement || entitlement.subjectId !== principal.subjectId) return refusal(404, 'download_not_found')
-    if (entitlement.state !== 'active') return refusal(410, 'entitlement_revoked')
-    if (!sameRelease(entitlement, options.release)) return refusal(409, 'artifact_version_unavailable')
-    const bytes = await bounded(() => options.readPrivateArtifact(entitlement.artifactId),options)
-    if (!(bytes instanceof Uint8Array) || bytes.byteLength !== entitlement.artifactBytes || digest(bytes) !== entitlement.artifactSha256) return refusal(502, 'artifact_integrity_failed')
-    return new Response(new Uint8Array(bytes), { headers: { ...responseHeaders, 'Content-Type': 'application/zip', 'Content-Length': String(bytes.byteLength), 'Content-Disposition': 'attachment; filename="starlight-glass-core-essential.zip"' } })
+    const entitlement = await authorizeDownload(request, options)
+    return entitlement instanceof Response ? entitlement : await deliverBytes(entitlement, options)
+  } catch { return refusal(503, 'sandbox_download_unavailable') }
+}
+
+export type GlassTicketKeys = {
+  currentId: string
+  // Dedicated 32-byte random keys supplied by the server's secret owner.
+  keys: ReadonlyMap<string, Uint8Array>
+}
+const ticketLifetimeSeconds = 120
+const keyIdPattern = /^[A-Za-z0-9_-]{1,32}$/
+const ticketPattern = /^v1\.([A-Za-z0-9_-]{1,32})\.([1-9][0-9]{0,11})\.([A-Za-z0-9_-]{43})$/
+type TicketOptions = { ticketKeys: GlassTicketKeys; nowMs?: () => number }
+
+function ticketTime(options: TicketOptions) {
+  const seconds = Math.floor((options.nowMs?.() ?? Date.now()) / 1000)
+  if (!Number.isSafeInteger(seconds) || seconds < 0) throw Error('invalid ticket clock')
+  return seconds
+}
+
+function ticketMac(key: Uint8Array, kid: string, expires: number, order: SandboxEntitlement) {
+  // Only kid, expiry and MAC leave the server. Canonical order facts are read again on redemption.
+  return createHmac('sha256', key).update(JSON.stringify([
+    'frankx-glass-sandbox/download/v1', kid, expires, order.subjectId, order.sessionId,
+    order.paymentIntent, order.productId, order.edition, order.sourceSha, order.artifactId,
+    order.artifactSha256, order.artifactBytes, order.priceId, order.amount, order.currency,
+    order.termsVersion, order.termsSha256, order.termsScope, order.acceptedAt,
+  ])).digest()
+}
+
+export async function issueGlassDownloadTicket(request: Request, options: BuyerAccess & TicketOptions & {
+  siteOrigin: string
+}): Promise<Response> {
+  if (request.method !== 'POST') return refusal(405, 'method_not_allowed')
+  try {
+    const origin = new URL(options.siteOrigin)
+    if (origin.origin !== options.siteOrigin || !(origin.protocol === 'https:' || (origin.protocol === 'http:' && origin.hostname === '127.0.0.1')))
+      return refusal(503, 'ticket_unavailable')
+    if (request.headers.get('origin') !== origin.origin) return refusal(403, 'origin_required')
+    const order = await authorizeDownload(request, options)
+    if (order instanceof Response) return order
+    const kid = options.ticketKeys.currentId
+    const key = options.ticketKeys.keys.get(kid)
+    if (!keyIdPattern.test(kid) || !(key instanceof Uint8Array) || key.byteLength !== 32) return refusal(503, 'ticket_unavailable')
+    const expires = ticketTime(options) + ticketLifetimeSeconds
+    const signature = ticketMac(key, kid, expires, order).toString('base64url')
+    return Response.json({ticket: `v1.${kid}.${expires}.${signature}`, expiresAt: expires}, {headers: responseHeaders})
+  } catch { return refusal(503, 'ticket_unavailable') }
+}
+
+export async function redeemGlassDownloadTicket(request: Request, options: PrivateDelivery & TicketOptions): Promise<Response> {
+  if (request.method !== 'GET') return refusal(405, 'method_not_allowed')
+  try {
+    const ticket = request.headers.get('x-starlight-download-ticket')
+    const parts = ticket && ticket.length <= 100 ? ticketPattern.exec(ticket) : null
+    if (!parts) return refusal(401, 'invalid_ticket')
+    const [, kid, expiry, signature] = parts
+    const key = options.ticketKeys.keys.get(kid)
+    const now = ticketTime(options)
+    const expires = Number(expiry)
+    if (!(key instanceof Uint8Array) || key.byteLength !== 32 || expires <= now || expires > now + ticketLifetimeSeconds)
+      return refusal(401, 'invalid_ticket')
+    const order = await authorizeDownload(request, options)
+    if (order instanceof Response) return order
+    const received = Buffer.from(signature, 'base64url')
+    const expected = ticketMac(key, kid, expires, order)
+    if (received.length !== expected.length || received.toString('base64url') !== signature || !timingSafeEqual(expected, received) || expires <= ticketTime(options))
+      return refusal(401, 'invalid_ticket')
+    return await deliverBytes(order, options)
   } catch { return refusal(503, 'sandbox_download_unavailable') }
 }
 

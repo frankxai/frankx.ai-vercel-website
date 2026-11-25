@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { mkdtemp, rm } from 'node:fs/promises'
-import { createHash } from 'node:crypto'
+import { createHash, randomBytes } from 'node:crypto'
 import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
@@ -156,4 +156,64 @@ test('loopback HTTP rehearsal wires checkout, signed callback, ownership denial 
     assert.equal((await post('/fixture-refund')).status,200);assert.equal((await download()).status,410)
     assert.equal((await post('/fixture-payment')).status,200);assert.equal((await download()).status,410)
   }finally{await host.close();await rm(dir,{recursive:true,force:true})}
+})
+
+
+test('delivery ticket requires the same session, buyer, release, live grant, clock window and signing key', async () => {
+  const f = await fixture()
+  try {
+    let now = Date.parse('2026-06-01T12:00:00.000Z')
+    let reads = 0
+    const origin = 'https://test.invalid'
+    const ticketKeys = {currentId:'summer', keys:new Map([['summer',randomBytes(32)]])}
+    const path = origin + '/asset?session=' + f.session.id
+    const options = {
+      ...f.options, ticketKeys, siteOrigin:origin, nowMs:() => now,
+      authenticate:async () => ({subjectId:'user_alice'}),
+      readPrivateArtifact:async () => { reads++; return bytes },
+    }
+    const issue = (headers = {origin}, overrides = {}) =>
+      core.issueGlassDownloadTicket(new Request(path, {method:'POST',headers}), {...options,...overrides})
+    const redeem = (ticket, overrides = {}, url = path) =>
+      core.redeemGlassDownloadTicket(new Request(url, {headers:{'x-starlight-download-ticket':ticket}}), {...options,...overrides})
+
+    assert.equal((await issue()).status,404)
+    await f.pay()
+    assert.equal((await issue({origin:'https://other.invalid'})).status,403)
+    assert.equal((await issue({origin},{authenticate:async () => null})).status,401)
+    const issueResponse = await issue()
+    assert.equal(issueResponse.status,200)
+    assert.equal(issueResponse.headers.get('cache-control'),'private, no-store')
+    const {ticket, expiresAt} = await issueResponse.json()
+    assert.equal(expiresAt,Math.floor(now / 1000) + 120)
+    assert.doesNotMatch(ticket,/user_alice|cs_test|aurora|price_/)
+    assert.equal((await redeem(ticket,{authenticate:async () => null})).status,401)
+    assert.equal((await redeem(ticket,{authenticate:async () => ({subjectId:'user_bob'})})).status,404)
+    assert.equal((await redeem(ticket.replace('v1.','v2.'))).status,401)
+    const parts = ticket.split('.')
+    parts[3] = (parts[3][0] === 'A' ? 'B' : 'A') + parts[3].slice(1)
+    assert.equal((await redeem(parts.join('.'))).status,401)
+    assert.equal((await redeem(ticket,{release:{...release,sourceSha:'d'.repeat(40)}})).status,409)
+    const other = {...release,sessionId:'cs_test_another_order',subjectId:'user_alice',acceptedAt}
+    await options.ledger.register(other)
+    await options.ledger.grant('evt_order_two',{...other,paymentIntent:'pi_order_two',state:'active'})
+    assert.equal((await redeem(ticket,{},origin + '/asset?session=' + other.sessionId)).status,401)
+    now += 120000
+    assert.equal((await redeem(ticket)).status,401)
+    now -= 120000
+    assert.equal(reads,0)
+
+    ticketKeys.currentId='autumn'
+    ticketKeys.keys.set('autumn',randomBytes(32))
+    const rotated = (await (await issue()).json()).ticket
+    assert.match(rotated,/^v1\.autumn\./)
+    assert.deepEqual(Buffer.from(await (await redeem(ticket)).arrayBuffer()),bytes)
+    ticketKeys.keys.delete('summer')
+    assert.equal((await redeem(ticket)).status,401)
+    assert.equal((await redeem(rotated)).status,200)
+    await options.ledger.revoke('evt_ticket_refund',f.session.payment_intent)
+    assert.equal((await redeem(rotated)).status,410)
+    assert.equal((await issue()).status,410)
+    assert.equal(reads,2)
+  } finally { await f.close() }
 })
