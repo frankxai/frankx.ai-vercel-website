@@ -82,3 +82,7 @@ body[data-mode=sound] .scene-copy { align-self:end }
 }
 @media (max-width:370px) { .edition {display:none}.scene-copy {padding-inline:18px}.directory a {gap:6px} }
 @media (prefers-reduced-motion:reduce) { * {scroll-behavior:auto!important} }
+@media (max-width:750px) {
+  .index-link { white-space:nowrap; flex-shrink:0 }
+  .edition span { display:none }
+}
