@@ -105,6 +105,12 @@ test('Glass Essential PostgreSQL lifecycle', async t => {
       assert.equal(await query("SELECT kind FROM commerce_sandbox.access_events WHERE session_id='cs_test_second'"), 'entitlement.revoked')
     })
 
+    await t.test('assistance and creator projections require distinct current authorities', async () => {
+      await run('psql', [...dbArgs, '-f', fileURLToPath(new URL('../../docs/products/glass-sandbox-assistance.sql', import.meta.url))])
+      const {verifyAssistance} = await import('../commerce/glass-sandbox-assistance-check.mjs')
+      await verifyAssistance({query,command,grant,attempt})
+    })
+
     await t.test('signed checkout delivers the pinned SDI archive and refund revokes it', {
       skip: process.env.GLASS_ESSENTIAL_ARCHIVE ? false : 'Set GLASS_ESSENTIAL_ARCHIVE to the independently built release ZIP',
     }, async () => {
