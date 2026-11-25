@@ -236,8 +236,11 @@ export default async function BlogPostPage({
                 <Image src="/images/portraits/frankx-magical-forest.png" alt="Frank Riemer" width={48} height={48} className="rounded-full shadow-lg shadow-emerald-500/20 object-cover border border-emerald-500/30" />
                 <div>
                   <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
-                  <div className="text-xs font-medium text-emerald-400">AI Architect & Independent Creator</div>
-                  <div className="text-xs text-white/40">Ex-Oracle AI Architect · Starlight & ACOS Systems</div>
+                  {(post.author === 'FrankX' || post.author === 'Frank Riemer' || !post.author) && (
+                    <Link href="/about" className="text-xs text-emerald-400 hover:underline">
+                      About Frank Riemer
+                    </Link>
+                  )}
                 </div>
               </div>
 
@@ -250,7 +253,7 @@ export default async function BlogPostPage({
               <HeroImage
                 src={post.image}
                 title={post.title}
-                subtitle={post.description}
+                subtitle={post.tldr && post.tldr.trim() !== post.description.trim() ? post.description : undefined}
                 alt={post.title}
                 priority
               />
