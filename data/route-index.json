@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1082,
+    "total": 1085,
     "aliases": 61,
     "byType": {
       "core": 24,
@@ -9,10 +9,10 @@
       "community": 17,
       "tool": 79,
       "static": 15,
-      "blog": 279,
+      "blog": 281,
       "research": 23,
       "guide": 46,
-      "library": 88,
+      "library": 89,
       "newsletter": 1,
       "os": 11,
       "partnership": 7,
@@ -351,18 +351,6 @@
       "type": "section"
     },
     {
-      "href": "/ai-architect/multi-cloud-comparison",
-      "title": "Multi Cloud Comparison",
-      "tags": [
-        "ai",
-        "architect",
-        "multi",
-        "cloud",
-        "comparison"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/ai-architecture",
       "title": "AI Architecture",
       "type": "section"
@@ -555,24 +543,6 @@
         "intelligence",
         "health",
         "system"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/ai-architectures",
-      "title": "AI Architectures",
-      "tags": [
-        "ai",
-        "architectures"
-      ],
-      "type": "section"
-    },
-    {
-      "href": "/ai-art",
-      "title": "AI Art",
-      "tags": [
-        "ai",
-        "art"
       ],
       "type": "section"
     },
@@ -1262,6 +1232,20 @@
       "type": "blog"
     },
     {
+      "href": "/blog/ai-compute-stack-guide-october-2026",
+      "title": "The AI Compute Stack Guide, October 2026",
+      "description": "How much memory always-on agents need, which mini PC to buy, when a GPU earns its place, and what AI video really costs, with sources and gaps stated.",
+      "tags": [
+        "ai-computer",
+        "local-ai",
+        "mini-pc",
+        "strix-halo",
+        "agent-infrastructure",
+        "ai-hardware"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/ai-doesnt-have-to-be-soulless",
       "title": "AI Doesn't Have To Be Soulless (And Here's How I Know)",
       "description": "An architect's turning point: how collaborative creation with AI revealed a path where technology amplifies human creativity, not replaces it.",
@@ -1785,6 +1769,21 @@
       "type": "blog"
     },
     {
+      "href": "/blog/build-proof-before-you-send-the-cv-2026",
+      "title": "Job hunting in November 2026? Build the proof before you send the CV",
+      "description": "The CV pile doubled and AI-polished CVs read alike. Build one working project, publish it with a short video, and use prompts, skills and MCP to do it fast.",
+      "tags": [
+        "Careers",
+        "Job Search",
+        "Portfolio",
+        "Side Business",
+        "AI Skills",
+        "MCP",
+        "Prompts"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/build-your-own-jarvis-claude-code",
       "title": "Build Your Own Jarvis: Turn Claude Code Into Your Personal Intelligence System",
       "description": "Build a personal AI system that knows your work, runs your workflows, and gets sharper every week. The exact CLAUDE.md + MCP + skills + subagents stack I run, updated for June 2026.",
@@ -2197,8 +2196,8 @@
     },
     {
       "href": "/blog/do-you-need-rtx-5090-for-ai-2026",
-      "title": "Do You Need an RTX 5090 for AI?",
-      "description": "A grounded buyer guide comparing RTX 5090 workstations, cloud GPU rental, RTX 5080, DGX Spark, and Ryzen AI Max+ mini PCs.",
+      "title": "Do You Need an RTX 5090 for AI? Buy vs Rent a Cloud GPU (2026)",
+      "description": "When buying an RTX 5090 workstation beats renting a cloud GPU, compared against RTX 5080, DGX Spark, and Ryzen AI Max+ mini PCs for founders and creators.",
       "tags": [
         "ai-computer",
         "local-ai",
@@ -2724,8 +2723,8 @@
     },
     {
       "href": "/blog/heygen-vs-synthesia-vs-argil-2026",
-      "title": "HeyGen vs Synthesia vs Argil 2026: The Best AI Avatar and Talking-Head Tool",
-      "description": "A results-first comparison of HeyGen, Synthesia, and Argil for 2026 — avatar realism, custom clones, dubbing, API, and pricing. Which wins corporate training, faceless creator content, and ads.",
+      "title": "HeyGen vs Argil vs Synthesia (2026): Best Custom AI Avatar of Yourself",
+      "description": "Argil vs HeyGen for custom avatar quality: HeyGen makes the most realistic clone from a 15-second selfie, Argil is built for daily faceless short-form, Synthesia wins corporate training. Pricing, dubbing, and API compared.",
       "tags": [
         "AI avatars",
         "HeyGen",
@@ -3826,7 +3825,7 @@
     },
     {
       "href": "/blog/stanford-cs329z-engineering-ai-agents",
-      "title": "Stanford CS329Z: The AI Agent Engineering Roadmap",
+      "title": "Stanford CS329Z Engineering AI Agents: The Course Roadmap, Explained",
       "description": "A fact-checked architect’s roadmap to Stanford CS329Z: agent loops, compound systems, evaluation, safety and production adoption.",
       "tags": [
         "Stanford CS329Z",
@@ -4606,6 +4605,14 @@
       "type": "section"
     },
     {
+      "href": "/blueprints",
+      "title": "Blueprints",
+      "tags": [
+        "blueprints"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/books",
       "title": "Books",
       "tags": [
@@ -4734,7 +4741,8 @@
         "business",
         "plan"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/canon",
@@ -5248,6 +5256,19 @@
       "type": "section"
     },
     {
+      "href": "/design-lab/founder-ai-stack",
+      "title": "Founder AI Stack",
+      "tags": [
+        "design",
+        "lab",
+        "founder",
+        "ai",
+        "stack"
+      ],
+      "type": "section",
+      "sitemap": false
+    },
+    {
       "href": "/design-lab/frontend-design",
       "title": "Frontend Design",
       "tags": [
@@ -5473,7 +5494,8 @@
       "tags": [
         "experiments"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/familie",
@@ -5878,7 +5900,8 @@
       "tags": [
         "goals"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/golden-age",
@@ -7220,6 +7243,15 @@
       "type": "library"
     },
     {
+      "href": "/library/money-unlocked",
+      "title": "Money Unlocked",
+      "tags": [
+        "money",
+        "unlocked"
+      ],
+      "type": "library"
+    },
+    {
       "href": "/library/no-bad-parts",
       "title": "No Bad Parts",
       "tags": [
@@ -8319,10 +8351,28 @@
       "type": "tool"
     },
     {
+      "href": "/magazine",
+      "title": "Magazine",
+      "tags": [
+        "magazine"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/magic",
       "title": "Magic",
       "tags": [
         "magic"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/makers-of-light",
+      "title": "Makers OF Light",
+      "tags": [
+        "makers",
+        "of",
+        "light"
       ],
       "type": "section"
     },
@@ -8858,7 +8908,8 @@
         "ops",
         "calendar"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/ops/sites",
@@ -9098,6 +9149,14 @@
     {
       "href": "/plan",
       "title": "Plan",
+      "type": "section"
+    },
+    {
+      "href": "/playbooks",
+      "title": "Playbooks",
+      "tags": [
+        "playbooks"
+      ],
       "type": "section"
     },
     {
@@ -9735,14 +9794,6 @@
       "type": "section"
     },
     {
-      "href": "/prototypes",
-      "title": "Prototypes",
-      "tags": [
-        "prototypes"
-      ],
-      "type": "section"
-    },
-    {
       "href": "/qualities",
       "title": "Core Qualities",
       "description": "Freedom, Mastery, Meaning, and Connection — the governing qualities behind FrankX",
@@ -10185,16 +10236,6 @@
       "href": "/skills/builder",
       "title": "Skills Builder",
       "type": "community"
-    },
-    {
-      "href": "/soul-frequency-assessment",
-      "title": "Soul Frequency Assessment",
-      "tags": [
-        "soul",
-        "frequency",
-        "assessment"
-      ],
-      "type": "section"
     },
     {
       "href": "/soul-frequency-quiz",
@@ -10651,7 +10692,8 @@
       "tags": [
         "v0"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/valentines-day",

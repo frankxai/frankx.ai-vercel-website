@@ -1,0 +1,71 @@
+---
+title: 'How My Agents Get the Web'
+description: >-
+  The web-data stack behind my agent work: plain fetch first, Firecrawl, Apify
+  and Bright Data over MCP when fetch fails, and one rule that keeps the bill
+  flat.
+date: '2026-11-12'
+lastModified: '2026-11-12'
+author: Frank
+tags:
+  - Agents
+  - MCP
+  - Web Data
+  - Apify
+keywords:
+  - ai agent web scraping stack
+  - apify mcp claude code
+  - firecrawl mcp
+  - bright data mcp
+  - agent web data
+category: Intelligence Dispatches
+featured: false
+readingGoal: >-
+  Pick the right web-data layer for an agent job and keep scraped data out of
+  the model's context.
+readingTime: 7 min
+tldr: >-
+  My agents reach the web through Model Context Protocol servers: plain fetch
+  for single pages, Firecrawl when sites vary, Apify Actors for repeated pulls
+  from one kind of site, Bright Data when a site blocks automation. The rule
+  that matters more than any tool: the model reads status, counts and a few
+  sample rows, never the full dataset.
+---
+
+Most of what I ask agents to do touches the web somewhere. Pull a competitor's pricing page. Read the last fifty reviews of a tool before I recommend it. Gather the public talks of someone I want to work with. The model is good at the reasoning. Getting clean data into reach is where agent work breaks.
+
+This is the stack I run, and why each piece is there. Disclosure first: I'm an Apify affiliate. That changes nothing below, and Apify sits third in the order, after two free or cheaper options.
+
+## The order I try things in
+
+**1. Plain fetch.** Claude Code and most agent harnesses can read a public page out of the box. For documentation, an article, or anything I need once, that is the whole answer. I start here every time, and for me most jobs end here.
+
+**2. Firecrawl, when the sites vary.** If I need the same shape of output from twenty different sites, a general extractor beats twenty custom parsers. Firecrawl's MCP server turns a URL into markdown, or into JSON that matches a schema I hand it, and it can crawl a site to the end.
+
+**3. Apify, when the job repeats on one kind of site.** Apify packages scrapers as Actors, each built for one kind of site and maintained by its publisher. The agent calls them through Apify's hosted MCP server at `mcp.apify.com`. I reach for it when a job will run again next week, because someone else keeps the scraper working when the site changes. The store is huge, which means the work is finding an Actor that is actively maintained. I check the last update before I build on one.
+
+**4. Bright Data, when a site refuses automation.** Some sites block agents outright. Bright Data's MCP server handles search and page fetches through its own infrastructure, with browser control tools on by default. Getting past a block never settles whether I'm allowed to collect the data. That decision stays with me, every time.
+
+I keep a fifth layer, a remote browser, for pages that only show data after clicks or a login. I use it least.
+
+## The rule that matters more than the tools
+
+The costliest mistake I made in agent data work was letting the model read the data.
+
+I learned it on my own music catalog. The first approach had an agent scroll the page and read every entry, which meant every row passed through the model and the cost grew with the catalog. The version that worked wrote a small harvester once, let it save rows straight to disk, and had the model look only at a count and whether the job had finished.
+
+The same pattern now runs through everything:
+
+- The agent **starts** a job and keeps the run ID.
+- It **checks status** until the job is done.
+- It reads the **row count and about five sample rows**.
+- The full dataset moves **API to storage**, page by page, without touching the model.
+- The agent keeps a **pointer** to the data in its notes, never the data.
+
+Five sample rows are also where I check the work. If the scraper grabbed the wrong field, five rows show it in seconds.
+
+## What I would set up first
+
+If you are starting from zero, connect nothing new yet. Use plain fetch for a week and write down every time it failed you and why. The failures pick the layer: varied sites point to an extraction API, a repeated pull from one site points to a marketplace Actor, a block points to an unblocking service. Then add one server, run one job by hand, and compare the result with what you see in your browser before you schedule anything.
+
+I wrote the longer, evidence-labeled version of this for builders on Agentic Passive Income: [when Apify is the right layer, and when it is not](https://www.agenticpassiveincome.com/blog/apify-agent-web-layer), with a [weekly price-watch workflow](https://www.agenticpassiveincome.com/blog/apify-price-watch-workflow) built on it.
