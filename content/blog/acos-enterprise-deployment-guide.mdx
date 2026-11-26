@@ -1,8 +1,8 @@
 ---
 title: 'ACOS for Enterprise: Team Deployment and Governance Guide'
 description: >-
-  Enterprise guide to deploying Agentic Creator OS: SOC2 compliance, role-based
-  access, sandboxed environments, and telemetry.
+  Deploy Agentic Creator OS with approval workflows, role-based access,
+  sandboxed environments, and telemetry.
 date: '2026-01-27'
 lastModified: '2026-01-27'
 author: Frank
@@ -16,7 +16,7 @@ keywords:
   - acos enterprise deployment
   - enterprise ai compliance
   - sandboxed agent execution
-  - soc2 ai governance
+  - ai approval workflows
   - corporate llm security
 category: AI Architecture
 featured: false
@@ -27,16 +27,16 @@ readingGoal: >-
 readingTime: 12 min
 tldr: >-
   Scaling Agentic Creator OS across enterprise engineering teams demands
-  rigorous security postures, deterministic compliance, and centralized
+  rigorous security postures, clear approval rules, and centralized
   governance. This implementation guide details configuring single sign-on,
   role-based tool authorization, isolated Docker sandbox execution, automated
   vulnerability scanning, and enterprise-grade telemetry integration with
   Datadog and AWS CloudWatch.
 faq:
-  - question: Is Agentic Creator OS SOC2 compliant?
+  - question: Which actions should require approval?
     answer: >-
-      ACOS operates as an open-source framework that deploys cleanly within
-      existing SOC2-compliant corporate cloud VPCs.
+      Route actions such as publishing and deployment for human approval.
+      Define which roles can approve each action.
   - question: How does ACOS handle enterprise role-based access control?
     answer: >-
       By integrating with corporate identity providers via SAML/OAuth to enforce
@@ -63,7 +63,7 @@ _From solo creator to coordinated team. Scale without losing control._
 
 ## TL;DR
 
-Enterprise ACOS deployment requires: (1) Department structures for team organization, (2) Instance configs for brand/client separation, (3) Governance rules for approval workflows, (4) Access control for sensitive operations, and (5) Integration patterns for existing tools. This guide covers the architecture, implementation, and best practices for teams of 5-100+ users.
+This guide covers five parts of an enterprise ACOS deployment. Organize teams into departments, separate brands or clients with instance configs, define approval workflows, restrict sensitive operations, and connect the tools your team already uses.
 
 ---
 
@@ -80,7 +80,7 @@ Enterprise ACOS: Multiple people, multiple brands, coordinated governance.
 | Brand consistency | Your brain     | Documented + enforced   |
 | Quality control   | Trust yourself | Approval workflows      |
 | Access control    | N/A            | Role-based permissions  |
-| Audit trail       | N/A            | Required for compliance |
+| Audit trail       | N/A            | Logs for audit reviews  |
 | Scaling           | N/A            | Distributed instances   |
 
 ---
@@ -409,7 +409,7 @@ All teams share one ACOS installation, separated by instances:
   caption="Pattern 1: Centralized Hub"
 />
 
-**Best For:** Small-medium teams (5-30 people)
+**Suggested fit** for small to midsize teams of roughly 5 to 30 people.
 
 ### Pattern 2: Federated Instances
 
@@ -421,7 +421,7 @@ Each department/client gets their own ACOS installation:
   caption="Pattern 2: Federated Instances"
 />
 
-**Best For:** Large teams (30-100+), multi-client agencies
+**Suggested fit** for teams of roughly 30 people or more and for multi-client agencies.
 
 ### Pattern 3: Hybrid
 
@@ -571,7 +571,7 @@ Core skills shared, client-specific customization local:
 
 ### How many users can ACOS support?
 
-ACOS itself has no user limit. Scaling depends on your Claude API capacity and infrastructure. Teams of 100+ are feasible with proper architecture.
+Capacity depends on your Claude API limits, infrastructure, and workload. Load-test with representative traffic before expanding beyond the pilot.
 
 ### Do all users need Claude Pro?
 
