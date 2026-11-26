@@ -1669,7 +1669,7 @@
       "primaryPriceDisplay": "€497",
       "currency": "EUR",
       "ctaPrimary": "Join the Launch List",
-      "ctaPrimaryHref": "/waitlist?intent=command-center",
+      "ctaPrimaryHref": "/waitlist?intent=command-center-template",
       "ctaPrimaryTracking": "cc-template-purchase",
       "ctaSecondary": "Watch Preview",
       "ctaSecondaryHref": "/command-center/preview"

@@ -118,7 +118,7 @@ export default function PlaybooksPage() {
                       <span>
                         <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                           <span className="text-base font-semibold text-white">{item.title}</span>
-                          <span className="text-xs text-white/40">{item.format}</span>
+                          <span className="text-xs text-brand-tertiary">{item.format}</span>
                         </span>
                         <span className="mt-1.5 block text-sm leading-relaxed text-white/55">{item.description}</span>
                       </span>
@@ -155,7 +155,7 @@ export default function PlaybooksPage() {
                     <ArrowUpRight aria-hidden className="h-4 w-4 text-white/30 group-hover:text-emerald-300" />
                   </span>
                   <span className="mt-2 block text-sm leading-relaxed text-white/55">{item.description}</span>
-                  <span className="mt-4 block font-mono text-xs text-white/35">{item.href.replace('https://', '')}</span>
+                  <span className="mt-4 block font-mono text-xs text-brand-tertiary">{item.href.replace('https://', '')}</span>
                 </a>
               ))}
             </div>
@@ -193,7 +193,7 @@ export default function PlaybooksPage() {
               Build your first agent
               <ArrowRight aria-hidden className="h-4 w-4" />
             </Link>
-            <p className="mt-6 text-sm text-white/45">
+            <p className="mt-6 text-sm text-brand-tertiary">
               Want the long reads instead?{' '}
               <Link href="/magazine" className="text-white/70 underline-offset-4 hover:text-white hover:underline">
                 Open the magazine

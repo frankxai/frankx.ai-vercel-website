@@ -97,6 +97,46 @@ for (const [intent, label] of [['bv-kit', 'Creator BV Kit'], ['prompt-vault', 'P
   })
 }
 
+test('both Command Center Template CTAs lead to its labelled premium launch list', async () => {
+  const slug = 'command-center-template'
+  const label = 'The Command Center Template'
+  const registry = { '@/data/products.json': { default: require('../../data/products.json') } }
+  const links = { 'next/link': { default: 'a' }, 'next/image': { default: 'img' } }
+  const { default: CatalogPage } = loadModule('app/products/(index)/page.tsx', {
+    ...registry,
+    ...links,
+    react: {
+      useState: (initial) => [initial === 'All' ? 'Systems and code' : initial, () => {}],
+      useMemo: (compute) => compute(),
+    },
+    'framer-motion': { motion: { div: 'div' }, useReducedMotion: () => true },
+    '@/lib/analytics': { trackEvent() {} },
+    '@/components/ui/glow-card': { GlowCard: 'article' },
+  })
+  const { default: ProductPage } = loadModule('app/products/[slug]/page.tsx', {
+    ...links,
+    '@/lib/products': loadModule('lib/products.ts', registry),
+    '@/lib/products/preview-manifests': { getPreviewManifest: () => undefined },
+    '@/lib/seo': { siteConfig: { url: 'https://example.invalid' } },
+    '@/components/seo/JsonLd': { default: () => null },
+    '@/components/seo/Breadcrumbs': { default: () => null },
+    '@/components/products/ProductFileInspector': { default: () => null },
+  })
+
+  const catalogCard = findElement(CatalogPage(), (node) => node.type === 'article' &&
+    findElement(node, (heading) => heading.type === 'h3' && heading.props.children === label))
+  const detailPage = await ProductPage({ params: Promise.resolve({ slug }) })
+  const signups = []
+  for (const page of [catalogCard, detailPage]) {
+    const link = findElement(page, (node) => node.type === 'a' && node.props.href?.startsWith('/waitlist?'))
+    assert.ok(link, 'Command Center must have a waitlist CTA')
+    const url = new URL(link.props.href, 'https://example.invalid')
+    const { props, body } = await submitWaitlist(url.searchParams.get('intent'))
+    signups.push({ label: props.intentLabel, intent: body.intent, listType: body.listType })
+  }
+  assert.deepEqual(signups, Array(2).fill({ label, intent: slug, listType: 'premium-packs' }))
+})
+
 test('legacy waitlist entry points preserve their current list routing', async () => {
   for (const intent of ['course-creator-business-systems', 'creative-ai-toolkit']) {
     const { body } = await submitWaitlist(intent)

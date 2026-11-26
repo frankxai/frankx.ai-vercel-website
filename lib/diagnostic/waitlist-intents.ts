@@ -26,6 +26,7 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
   'bv-kit': { label: 'Creator BV Kit', listType: 'premium-packs' },
   'prompt-vault': { label: 'Prompt Vault', listType: 'premium-packs' },
   // Launch lists for products whose checkout or download is not open yet.
+  'command-center-template': { label: 'The Command Center Template', listType: 'premium-packs' },
   'starter-kit': { label: 'System Architect Starter Kit', listType: 'premium-packs' },
   'visual-creation-loop': { label: 'Visual Creation Loop', listType: 'premium-packs' },
   'income-blueprint': { label: 'Income Architecture Blueprint', listType: 'premium-packs' },
@@ -65,6 +66,7 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
 export const LAUNCH_LIST_INTENTS: ReadonlySet<string> = new Set([
   'bv-kit',
   'prompt-vault',
+  'command-center-template',
   'starter-kit',
   'visual-creation-loop',
   'income-blueprint',

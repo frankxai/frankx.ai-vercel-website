@@ -437,7 +437,7 @@ export function EmailSignup({
         </p>
       )}
 
-      <p className="mt-4 text-xs text-slate-500 text-center">
+      <p className="mt-4 text-xs text-slate-400 text-center">
         Occasional FrankX field notes. Unsubscribe anytime.{' '}
         <Link
           href="/privacy"
