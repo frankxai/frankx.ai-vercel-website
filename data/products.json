@@ -93,18 +93,17 @@
   {
     "id": "creative-ai-toolkit",
     "slug": "creative-ai-toolkit",
-    "name": "The Creative AI Toolkit",
+    "name": "Creative AI Toolkit",
     "category": "Creative Intelligence",
-    "badge": "Creator toolkit",
-    "headline": "Replace AI Panic with Proven Workflows",
-    "subheadline": "Prompts and automation recipes for storytelling, marketing, content and operations.",
-    "promise": "Move from scattered prompt notes to a repeatable daily workflow within one week.",
-    "summary": "Structured prompts, workflow templates, and daily rituals that keep AI work focused on finished creative output.",
+    "badge": "Prelaunch",
+    "headline": "Prompts and workflow recipes for creative work",
+    "subheadline": "Read the outline for a planned collection of prompts and workflow recipes for stories, marketing copy and email. Join the waitlist for release updates.",
+    "promise": "Planned prompts and workflow recipes for stories, marketing copy and email.",
+    "summary": "Planned prompts and workflow recipes for stories, marketing copy and email.",
     "transformation": [
-      "Use prompts across storytelling, marketing, content and operations.",
-      "Spend your working hours on the thinking, since the mechanical steps already come templated",
-      "Run plug-and-play automations (email, social, drafting) that handle the mechanical stuff",
-      "Build a repeatable daily ritual that ships consistently without burnout"
+      "Story prompts for outlining and drafting",
+      "Marketing prompts for briefs and copy revisions",
+      "Workflow recipes for drafting and reviewing email"
     ],
     "socialProof": {
       "stats": [],
@@ -121,51 +120,22 @@
     },
     "modules": [
       {
-        "title": "Creative Intelligence Prompts",
-        "description": "Prompts covering storytelling, marketing, operations, and delivery."
+        "title": "Writing prompts",
+        "description": "Prompts for outlining stories and drafting marketing copy and email."
       },
       {
-        "title": "Workflow Automations",
-        "description": "12 ready-to-deploy pipelines spanning content production, client delivery, and executive decision loops."
-      },
-      {
-        "title": "Multi-Agent Playbooks",
-        "description": "Learn to orchestrate the FrankX agent collective so every brief, campaign, or product ships with confidence."
-      },
-      {
-        "title": "Implementation Roadmaps",
-        "description": "30/60/90 day milestones with telemetry, KPIs, and retros so momentum stays compounding."
-      }
-    ],
-    "bonuses": [
-      {
-        "title": "Quick Reference Cards",
-        "value": "$27",
-        "description": "Top 20 prompts and decision frameworks in printable format for instant access."
-      },
-      {
-        "title": "Email Mastery Sprint",
-        "value": "$47",
-        "description": "Seven-day guided campaign to rebuild your communication rhythm with AI assistance."
-      },
-      {
-        "title": "Agent Team Strategy Session",
-        "value": "$197",
-        "description": "45-minute collective intelligence consult to personalize your rollout."
+        "title": "Workflow recipes",
+        "description": "Steps for taking a brief through drafting and review."
       }
     ],
     "faq": [
       {
-        "question": "What makes the FrankX.ai system different?",
-        "answer": "Every template here came out of work I actually shipped, with notes on when to use it and when to skip it. It isn't a scraped prompt list."
-      },
-      {
         "question": "Who is the toolkit for?",
-        "answer": "Creators, consultants, and teams who want a governed, repeatable AI workflow that scales from solo practice to enterprise delivery."
+        "answer": "Creators who want examples of using prompts and workflow recipes in their writing."
       },
       {
-        "question": "How fast will I see results?",
-        "answer": "The quick start is built to fit one working week: pick three prompts, wire up one automation, ship one piece."
+        "question": "How do I get release updates?",
+        "answer": "Join the waitlist to hear when the toolkit is available."
       }
     ],
     "analyticsId": "creative-ai-toolkit"
@@ -290,7 +260,7 @@
     "summary": "Strategic frameworks, AI-assisted workflows, and distribution rituals that ship stories consistently and build real authority.",
     "transformation": [
       "Replace scattered messaging with a core narrative arc that runs through every piece you ship (essays, videos, social)",
-      "Grow engaged community with distribution playbooks that send your best work to the right people every week",
+      "Plan how to share stories with readers across channels",
       "Track revenue impact: each piece connected to pipeline milestones so you see what storytelling actually returns"
     ],
     "socialProof": {
@@ -403,8 +373,8 @@
         "answer": "We show you how to layer AI responsibly. Every workflow includes both manual and AI-assisted versions so you can adopt at your own pace."
       },
       {
-        "question": "How much time should we expect to invest?",
-        "answer": "Plan for a 90-day rollout with weekly story sprints. Teams typically spend 4 to 6 hours per week implementing and reviewing."
+        "question": "What does the rollout outline cover?",
+        "answer": "It covers story planning, drafting, distribution and review."
       }
     ],
     "analyticsId": "creation-chronicles"
@@ -414,16 +384,16 @@
     "slug": "generative-creator-os",
     "name": "Creator Studio OS",
     "category": "Creator Systems",
-    "badge": "Studio cohort",
-    "headline": "Multiply Your Output. Protect Your Voice. Keep Creative Control.",
-    "subheadline": "Custom-built multi-modal studio that automates versioning, distribution, and QA while you stay in the director's chair. 2-week sprint to full deployment.",
-    "promise": "Go from 1-2 pieces per month to 3-4 per week. All channels. Same voice. Your standards.",
-    "summary": "Hands-on buildout that creates a governed AI studio pipeline for video, audio, writing, and visuals calibrated to your brand.",
+    "badge": "Planned",
+    "headline": "Studio workflows for video, audio, writing and visuals",
+    "subheadline": "A planned studio buildout for adapting creative work across formats and reviewing it before publication.",
+    "promise": "Map how ideas move from a brief through editing, review and distribution.",
+    "summary": "A studio buildout outline covering templates, brand guidelines and distribution across formats.",
     "transformation": [
-      "Map your complete creative pipeline and identify exactly where AI accelerates (without replacing craft)",
-      "Build templated workflows so every idea automatically versions for YouTube, TikTok, podcast, email (1 creation = 6 pieces)",
-      "Ship with QA rituals and brand guidelines baked in so AI stays on-brand and collaborative",
-      "Track output velocity, audience signals, and revenue per piece on a live dashboard that shows what's actually working"
+      "Map the steps from idea to publication",
+      "Outline templates for adapting an idea to video, audio and email",
+      "Draft brand guidelines and a checklist for editorial review",
+      "Plan a dashboard for tracking output and audience response"
     ],
     "socialProof": {
       "stats": [
@@ -471,7 +441,7 @@
       {
         "name": "Starter Studio",
         "price": "Projects from $4,800",
-        "description": "Two-week sprint to audit your creative stack and ship a pilot workflow.",
+        "description": "Creative workflow audit and pilot project.",
         "features": [
           "Creative pipeline map",
           "AI-assisted pilot workflow",
@@ -484,7 +454,7 @@
       {
         "name": "Creator Collective",
         "price": "Programs from $12k",
-        "description": "Six-week engagement to roll out multi-channel automations and training.",
+        "description": "Support for setting up workflows across channels and training your team.",
         "features": [
           "All Starter Studio deliverables",
           "Weekly build + coaching sessions",
@@ -515,8 +485,8 @@
         "answer": "No. We design for solo creators up to small crews. The system scales, but it starts creator-first."
       },
       {
-        "question": "How fast will we see impact?",
-        "answer": "Most sprints establish a steady weekly publishing rhythm within 30 days. We track output velocity and sentiment so you can see progress."
+        "question": "What does a pilot cover?",
+        "answer": "The outline covers workflow setup, editorial review and how to track what gets published."
       },
       {
         "question": "Do you train us on the tools?",
@@ -544,16 +514,16 @@
     "slug": "agentic-creator-os",
     "name": "Creator Lab OS",
     "category": "Creator Systems",
-    "badge": "Guided cohort",
-    "headline": "30-Day Lab to Ship Your Repeatable Launch Machine",
+    "badge": "Planned",
+    "headline": "Cohort outline for planning and reviewing a release",
     "subheadline": "Co-designed coaching + build sessions for your creator operating system.",
-    "promise": "Build the system that turns creative chaos into predictable weekly shipping. Momentum, clarity, and output, measured weekly.",
-    "summary": "Live cohort lab where you co-architect rituals, automations, and accountability that keep your practice consistently shipping.",
+    "promise": "Plan a creative release, from audience and offer through workflow setup and review.",
+    "summary": "A cohort outline covering audience, offers, publishing workflows and peer feedback.",
     "transformation": [
-      "Clarify exactly who you're creating for and what offer maps to your unique strengths (1-week sprint)",
-      "Design your complete idea-to-monetized-release pipeline with automations that handle the boring stuff",
-      "Establish weekly rituals and dashboard checkpoints so you can track shipping velocity with concrete artifacts",
-      "Ship one live release during the cohort with peer feedback, analytics, and your first real revenue signal"
+      "Define the audience and offer for a release",
+      "Map the steps from idea to publication and identify tasks to automate",
+      "Set up a review checklist and decide what to track",
+      "Review a release with peers and record what to change next"
     ],
     "socialProof": {
       "stats": [
@@ -610,7 +580,7 @@
       {
         "name": "Guided Cohort",
         "price": "$997",
-        "description": "Four-week live lab with Frank + agents to build your system together.",
+        "description": "Live build and review sessions with Frank.",
         "features": [
           "Weekly live build sessions",
           "1:1 agent desk feedback",
@@ -640,8 +610,8 @@
         "answer": "Creators with a body of work (songs, videos, essays, products) who want a reliable system to ship and monetise consistently."
       },
       {
-        "question": "How much time should I budget?",
-        "answer": "Plan on 4-6 focused hours per week during the cohort. The self-paced track can flex, but momentum matters."
+        "question": "What does the cohort cover?",
+        "answer": "The outline covers release planning, workflow setup and peer review."
       },
       {
         "question": "Do I need a team?",
@@ -666,7 +636,7 @@
           "name": "ACOS Quickstart Guide",
           "format": "pdf",
           "blobKey": "products/agentic-creator-os/ACOS-Quickstart-Guide.pdf",
-          "description": "Get started in 15 minutes"
+          "description": "Quick-start setup guide"
         },
         {
           "name": "ACOS Complete Reference",
@@ -689,23 +659,17 @@
     "name": "Suno Prompt Library Pack",
     "category": "Music Intelligence",
     "badge": "Coming soon",
-    "headline": "Suno Prompts for Every Genre",
-    "subheadline": "Skip the prompt guessing game. The prompts are organized by genre, mood, and energy for electronic, hip-hop, cinematic, ambient, and world music.",
-    "promise": "Stop wasting generations on prompts that don't work. Get prompts organized by genre, mood, and energy level.",
-    "summary": "A prompt library organized by genre, mood, and energy for a creative project.",
+    "headline": "Suno prompts by genre, mood and energy",
+    "subheadline": "The planned collection covers electronic, hip-hop, cinematic, ambient and world music prompts.",
+    "promise": "Browse the planned prompt categories and notes on how to vary them.",
+    "summary": "A planned Suno prompt library organized by genre, mood and energy.",
     "transformation": [
-      "Suno prompts organized by genre, mood and energy, each with notes on why it works.",
-      "Find the perfect prompt in seconds with genre, mood, and energy filters (no more scrolling through chaos)",
-      "Learn prompt structures that shape specific sounds (the 'why' behind each prompt so you can write your own)",
-      "Get bonus prompt modifiers for tempo, instrumentation, and vocal styles that stack with any base prompt"
+      "Prompt examples organized by genre, mood and energy",
+      "Notes on how to vary prompt structure and phrasing",
+      "Modifiers for tempo, instrumentation and vocals"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "12",
-          "label": "Genre Categories"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
@@ -736,30 +700,30 @@
       },
       {
         "title": "Modifier Library",
-        "description": "50+ stackable modifiers for tempo, instrumentation, vocals, and production style."
+        "description": "Prompt modifiers for tempo, instrumentation, vocals and production style."
       }
     ],
     "bonuses": [
       {
         "title": "Prompt Formula Cheatsheet",
         "value": "$17",
-        "description": "One-page reference showing the anatomy of a perfect Suno prompt with fill-in templates."
+        "description": "A reference for assembling a Suno prompt from reusable parts."
       },
       {
         "title": "Genre Quick-Start Cards",
         "value": "$12",
-        "description": "Printable reference cards for the top 5 prompts in each genre, formatted for studio sessions."
+        "description": "Printable genre references for studio sessions."
       },
       {
-        "title": "Monthly Prompt Updates",
+        "title": "Prompt update notes",
         "value": "$47/yr",
-        "description": "New prompts added monthly as Suno evolves and new techniques emerge."
+        "description": "Notes on additions and changes to the prompt collection."
       }
     ],
     "faq": [
       {
-        "question": "Are these prompts compatible with Suno v4/v4.5?",
-        "answer": "Yes. All prompts are tested on the latest Suno versions and updated when new features launch."
+        "question": "Which Suno versions will the library cover?",
+        "answer": "Version compatibility is part of the release information."
       },
       {
         "question": "Can I modify and customize these prompts?",
@@ -808,31 +772,18 @@
     "name": "Aurora UI Kit",
     "category": "Design + AI",
     "badge": "Component kit",
-    "headline": "30 Premium Components with AI Generation Built In",
-    "subheadline": "Production-ready Next.js components with glassmorphism, animations, and a Claude Code skill that generates new components in the same design language on demand.",
-    "promise": "Stop building UI from scratch. Get 30 polished components plus an AI system that creates new ones matching your design system.",
-    "summary": "A premium component library combining hand-crafted Next.js + Tailwind components with an agentic AI layer that generates custom variants on demand.",
+    "headline": "Next.js components and design tokens",
+    "subheadline": "The planned kit covers Tailwind components, animation patterns and a Claude Code skill for drafting variants.",
+    "promise": "Review the planned component, animation and design token scope.",
+    "summary": "A planned Next.js and Tailwind component kit for cards, backgrounds, buttons and animation patterns.",
     "transformation": [
-      "Drop 30 production-ready components into any Next.js project: PremiumCard, AuroraGradient, ShimmerButton, and more",
-      "Use the included Claude Code skill to generate new components that match the Aurora design language",
-      "Ship polished UIs in hours instead of weeks with pre-built dark/light mode, responsive layouts, and micro-interactions",
-      "Customize everything with documented design tokens: colors, spacing, animations, glass levels"
+      "Card, background and button examples for Next.js",
+      "A Claude Code skill outline for drafting component variants",
+      "Responsive layouts and light and dark theme patterns",
+      "Design tokens for color, spacing and animation"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "30+",
-          "label": "Components"
-        },
-        {
-          "number": "6",
-          "label": "Animation Systems"
-        },
-        {
-          "number": "AI",
-          "label": "Generation Skill"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
@@ -847,7 +798,7 @@
     "modules": [
       {
         "title": "Premium Component Library",
-        "description": "30+ components: PremiumCard (5 gradient presets, 4 glass levels, tilt, glow), AuroraGradient (6 variants), ShimmerButton, MagneticHover, FloatingElement, CursorSpotlight, and more."
+        "description": "Planned components include PremiumCard, AuroraGradient and ShimmerButton."
       },
       {
         "title": "Animation Systems",
@@ -864,9 +815,9 @@
     ],
     "bonuses": [
       {
-        "title": "6 Page Templates",
+        "title": "Page templates",
         "value": "$29",
-        "description": "Landing page, dashboard, pricing, blog, portfolio, and 404, all built with Aurora components."
+        "description": "Page layout examples for landing pages, dashboards, pricing, blogs, portfolios and error pages."
       },
       {
         "title": "Figma Design Tokens",
@@ -922,29 +873,16 @@
     "badge": "Content kit",
     "headline": "Next.js MDX Content and Editorial Pipeline",
     "subheadline": "A Next.js content platform with structured AI drafting prompts, metadata checks, social formatting scripts, and analytics.",
-    "promise": "Move from research brief to formatted, metadata-checked MDX draft and social queue in a single structured pass.",
-    "summary": "Production-ready content management system combining a premium blog platform with agentic AI capabilities for writing, SEO, and distribution.",
+    "promise": "Plan how a research brief becomes an MDX draft, then format it for other channels.",
+    "summary": "A planned Next.js content kit for MDX drafting, metadata checks and distribution.",
     "transformation": [
-      "Publish SEO-optimized articles with AI-assisted writing that maintains your voice and style",
-      "Auto-generate social media posts for every article across Twitter/X, LinkedIn, and newsletter formats",
-      "Track content performance with built-in analytics dashboard: pageviews, time on page, conversion events",
-      "Use Claude Code skills to run your entire content pipeline from the terminal: research, write, optimize, publish"
+      "MDX article templates for drafting and metadata review",
+      "Formatting scripts for X, LinkedIn and newsletters",
+      "Analytics views for pageviews, reading time and conversions",
+      "Claude Code skills for research, drafting and editing"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "AI",
-          "label": "Writing Assistant"
-        },
-        {
-          "number": "SEO",
-          "label": "Auto-Optimization"
-        },
-        {
-          "number": "5",
-          "label": "Distribution Channels"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
@@ -963,15 +901,15 @@
       },
       {
         "title": "AI Writing Pipeline",
-        "description": "Claude Code skills for research, outlining, drafting, and editing. Prompt library with 20+ content templates. Voice calibration system to match your style."
+        "description": "Claude Code skills and prompt templates for research, outlining, drafting and editing."
       },
       {
         "title": "SEO Engine",
-        "description": "Automatic meta tag generation, FAQ schema injection, internal linking suggestions, and keyword density analysis. Every article optimized before publish."
+        "description": "Metadata, FAQ schema and internal-link checks for article drafts."
       },
       {
         "title": "Social Distribution",
-        "description": "One-click generation of Twitter threads, LinkedIn posts, newsletter editions, and RSS feeds from any article. Scheduled publishing support."
+        "description": "Formats for adapting an article for X, LinkedIn, email and RSS."
       },
       {
         "title": "Analytics Dashboard",
@@ -998,7 +936,7 @@
     "faq": [
       {
         "question": "Is this a WordPress alternative?",
-        "answer": "Yes, but faster. Built on Next.js with static generation, so pages load instantly. No database required, content lives in MDX files in your repo."
+        "answer": "The planned platform uses Next.js and keeps article content in MDX files in the repository."
       },
       {
         "question": "Do I need Claude Code to use this?",
@@ -1563,30 +1501,17 @@
     "name": "System Architect Starter Kit",
     "category": "Creator Systems",
     "badge": "Starter kit",
-    "headline": "Pre-Built Workflow Automations for Fast Shipping",
-    "subheadline": "A premium bundle of ready-to-import n8n pipelines, Content Ops swarms, and ElevenLabs voice scripts.",
-    "promise": "Automate the repetitive overhead of content preparation, audio transcription, and cross-platform formatting in under 30 minutes.",
-    "summary": "Ready-to-use JSON pipelines and automation templates that run content atomization, guest research, and newsletter queueing.",
+    "headline": "n8n workflows for content preparation",
+    "subheadline": "A planned collection of n8n templates, drafting workflows and ElevenLabs audio scripts.",
+    "promise": "Review workflows for content preparation, transcription and formatting across channels.",
+    "summary": "A planned kit of workflow templates for repurposing content, researching guests and queueing newsletters.",
     "transformation": [
-      "Import pre-built n8n workflows for video-to-shorts and audio-to-prose transcriptions",
-      "Run the weekly Content Ops swarm to generate X, LinkedIn, and Threads threads",
-      "Deploy custom ElevenLabs scripts for high-fidelity voice cloning and generation"
+      "n8n templates for short-form video and audio transcription",
+      "Drafting workflows for X, LinkedIn and Threads",
+      "Audio scripts for use with ElevenLabs"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "8",
-          "label": "n8n Workflows"
-        },
-        {
-          "number": "5",
-          "label": "Voice Scripts"
-        },
-        {
-          "number": "30m",
-          "label": "Setup Time"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
@@ -1638,30 +1563,17 @@
     "name": "The Command Center Template",
     "category": "Creator Systems",
     "badge": "Core template",
-    "headline": "The Ultimate Visual Dashboard for Your Swarm",
-    "subheadline": "A premium Next.js 16 Glassmorphism dashboard app shell + the 5-move Architect's Loop video curriculum.",
+    "headline": "Next.js dashboard template for queues and ledger views",
+    "subheadline": "A planned dashboard shell and Architect’s Loop curriculum.",
     "promise": "Consolidate your local DPI ledger, Stripe webhook streams, content ops backlog, and HaaStA validation queues into one premium UI.",
-    "summary": "A fully responsive Next.js dashboard shell styled in dark obsidian void with tailwind Accents, pre-wired to read local queue files and display ledger analytics.",
+    "summary": "A planned Next.js dashboard with panels for local queues and ledger activity.",
     "transformation": [
       "Visualize your G1-G5 gate progression and DPI category distributions dynamically",
       "Interact with enqueued HaaStA validation requests using visual taste check editors",
-      "Access the full 5-Move curriculum teaching you how to setup ACOS and connect checkout webhooks"
+      "Curriculum covering ACOS setup and checkout webhooks"
     ],
     "socialProof": {
-      "stats": [
-        {
-          "number": "1",
-          "label": "Command Dashboard"
-        },
-        {
-          "number": "5",
-          "label": "Curriculum Modules"
-        },
-        {
-          "number": "100%",
-          "label": "Local Ownership"
-        }
-      ],
+      "stats": [],
       "quotes": []
     },
     "offer": {
@@ -1687,7 +1599,7 @@
     "faq": [
       {
         "question": "Can I deploy the dashboard to Vercel?",
-        "answer": "Yes. The codebase is standard Next.js 16 and can be deployed privately to your Vercel account with one click."
+        "answer": "The planned dashboard uses Next.js for deployment on Vercel."
       }
     ],
     "analyticsId": "command-center-template",
@@ -1777,13 +1689,13 @@
     "category": "Creative Intelligence",
     "badge": "Architecture kit",
     "headline": "Reference-Locked Visual Prompts, Style Tokens, and Critic Gates",
-    "subheadline": "Ship brand-coherent hero plates, diagrams, and social frames without burning image credits on guesswork.",
-    "promise": "Lock palette, camera geometry, negative constraints, and 30-point visual QA rubrics before generating a frame.",
+    "subheadline": "A planned kit for art direction, diagrams and visual review.",
+    "promise": "Plan the palette, camera framing and review criteria for an image.",
     "summary": "An inspectable visual art-direction kit pairing JSON style tokens, vector SVG diagram templates, and automated anti-slop critic checklists.",
     "transformation": [
       "Lock one reference aesthetic per surface with explicit hex tokens, lighting direction, and negative prompts",
       "Generate crisp vector SVG technical schematics for architecture diagrams and UI callouts",
-      "Score every visual draft against a 30-point craft rubric before publishing to web or social feeds"
+      "Use a visual review checklist before publishing images"
     ],
     "socialProof": {
       "stats": [],
@@ -1807,7 +1719,7 @@
         "description": "Deterministic Node scripts that render 16:9 vector topology and telemetry plates with zero raster text blur."
       },
       {
-        "title": "30-Point Visual Critic Rubric",
+        "title": "Visual review checklist",
         "description": "Pre-publish evaluation checklist catching generic neon gradients, unreadable labels, and composition drift."
       }
     ],
@@ -1843,7 +1755,7 @@
     "transformation": [
       "Compare twelve creator and software revenue lanes across setup hours, margin, and support burden",
       "Eliminate mismatched business models early using explicit Audience, Hours, and Proof filters",
-      "Select one primary monetization lane for the next 90 days with clear validation checkpoints"
+      "Plan validation checkpoints for the revenue model you choose"
     ],
     "socialProof": {
       "stats": [],
@@ -1867,7 +1779,7 @@
         "description": "Decision thresholds showing when to double down on an offer and when to sunset a stalled experiment."
       },
       {
-        "title": "90-Day Sequencing Playbook",
+        "title": "Validation plan",
         "description": "Recommended order of operations from productized skill packs to recurring continuity libraries."
       }
     ],
@@ -1962,7 +1874,7 @@
     "transformation": [
       "Initialize a local SQLite and JSONL ledger recording product releases, checkout receipts, and cost baselines",
       "Audit each digital offer against five operational readiness gates from initial spec to verified delivery",
-      "Run a 15-minute Friday CLI review summarizing net margin, support load, and catalog bottlenecks"
+      "Review net margin, support load and catalog bottlenecks from the CLI"
     ],
     "socialProof": {
       "stats": [],
@@ -2018,11 +1930,11 @@
     "headline": "Multi-Harness Worktree Leases, Role Constitutions, and Verification Gates",
     "subheadline": "Coordinate coding and research agents across isolated git worktrees without branch collisions or unreviewed merges.",
     "promise": "Run maker and independent-verifier agents in parallel using explicit file-path leases, pre-commit secret scans, and draft PR gates.",
-    "summary": "An engineering harness pack containing git worktree lease scripts, five role constitutions, loop contracts, and CI verification templates.",
+    "summary": "A planned kit of Git worktree lease scripts, role guides, loop contracts and CI verification templates.",
     "transformation": [
       "Enforce isolated git worktrees and file-scope leases so parallel agents never overwrite each other",
       "Separate maker implementation from independent-verifier review with explicit exit receipts",
-      "Block secret leaks and out-of-scope edits automatically via pre-commit hooks and path linters"
+      "Run pre-commit secret checks and file-path linting"
     ],
     "socialProof": {
       "stats": [],
@@ -2076,12 +1988,12 @@
     "category": "Knowledge Architecture",
     "badge": "Architecture kit",
     "headline": "Append-Only JSONL Vaults and SQLite FTS5 Search for Coding Agents",
-    "subheadline": "Turn scattered session notes into six typed semantic vaults queryable by local CLI and MCP tools.",
-    "promise": "Give every new agent session fast full-text recall over past architectural decisions, confirmed patterns, and operational lessons.",
+    "subheadline": "Group session notes by topic and search them with local CLI and MCP tools.",
+    "promise": "Search past architectural decisions, project notes and operational lessons.",
     "summary": "A local-first knowledge architecture combining markdown and JSONL vaults with SQLite FTS5 indexing and MCP retrieval tools.",
     "transformation": [
-      "Organize project knowledge into six typed vaults covering strategy, architecture, voice, operations, lessons, and roadmap",
-      "Index markdown and JSONL entries locally with SQLite FTS5 for sub-second keyword and tag recall",
+      "Organize project notes by strategy, architecture, voice, operations, lessons and roadmap",
+      "Index Markdown and JSONL entries with SQLite FTS5 for local keyword and tag searches",
       "Expose read and append tools over stdio MCP so coding agents cite prior decisions before editing code"
     ],
     "socialProof": {
@@ -2098,7 +2010,7 @@
     },
     "modules": [
       {
-        "title": "Six-Vault Directory Scaffold",
+        "title": "Vault directory scaffold",
         "description": "Typed JSONL and markdown schemas with confidence scores, timestamps, and contradiction flags."
       },
       {
@@ -2137,7 +2049,7 @@
     "badge": "Architecture kit",
     "headline": "Voice-Memo-to-Article, Social Thread, and Newsletter Packaging Pipeline",
     "subheadline": "Convert one technical demo or voice memo into fact-checked markdown essays, social drafts, and SVG diagrams.",
-    "promise": "Run a four-stage editorial pipeline from raw transcript to voice-linted drafts queued for human review before publishing.",
+    "promise": "Outline the steps from a transcript to edited drafts ready for human review.",
     "summary": "A content operations kit with transcript structuring prompts, voice-lint scripts, social thread formatters, and human approval queues.",
     "transformation": [
       "Ingest raw screen recordings or voice transcripts into structured markdown briefs with source citations",
@@ -2253,7 +2165,7 @@
     "badge": "Free guide",
     "headline": "Editorial Filter Rules, Banned Phrase Tables, and Rewrite Specimens",
     "subheadline": "Strip generated filler, rhetorical contrast tics, and vague prestige verbs out of your product pages and essays.",
-    "promise": "Audit markdown and JSON copy against fifty concrete anti-patterns with before-and-after rewrites you can drop into CI.",
+    "promise": "Review Markdown and JSON copy for common writing patterns and compare example edits.",
     "summary": "A free editorial reference sheet listing high-frequency AI writing tells, negative prompt rules, and plain-spoken replacements.",
     "transformation": [
       "Spot and remove rhetorical contrast formulas, inflated adjectives, and empty throat-clearing openers",
@@ -2274,12 +2186,12 @@
     },
     "modules": [
       {
-        "title": "50-Pattern Slop Taxonomy",
+        "title": "Editorial pattern reference",
         "description": "Categorized table of lexical, structural, and punctuation tells with plain-English fixes."
       },
       {
         "title": "Before-and-After Specimen Bank",
-        "description": "Twenty real hero headlines, CTAs, and product blurbs rewritten for technical clarity."
+        "description": "Examples of edits to headlines, calls to action and product blurbs."
       },
       {
         "title": "Starter Regex Rule List",
@@ -2311,12 +2223,12 @@
     "category": "Active Income",
     "badge": "Free guide",
     "headline": "Score Your Engineering and Creative Skills for Digital Product Fit",
-    "subheadline": "A 30-minute self-audit scoring your repeatable workflows by buyer urgency, packaging speed, and maintenance cost.",
+    "subheadline": "A worksheet for scoring workflows by buyer urgency, packaging effort and maintenance cost.",
     "promise": "Rank your existing scripts, templates, and domain playbooks to pick one shippable digital product without scope creep.",
     "summary": "A structured worksheet and scoring rubric that turns scattered consulting know-how into a prioritized digital product backlog.",
     "transformation": [
       "Inventory the scripts, checklists, and frameworks you already use in client or studio work",
-      "Score each candidate on buyer pain, proof clarity, support burden, and weekend shippability",
+      "Score each candidate on buyer need, evidence, packaging effort and support cost",
       "Leave with one scoped v1 product spec, file tree outline, and skip-if buyer boundary"
     ],
     "socialProof": {
@@ -2347,8 +2259,8 @@
     ],
     "faq": [
       {
-        "question": "How long does the audit take to complete?",
-        "answer": "Roughly 30 minutes with a single markdown worksheet or spreadsheet."
+        "question": "What do I use to complete the audit?",
+        "answer": "The outline uses a Markdown worksheet or spreadsheet."
       },
       {
         "question": "What is the output at the end of the worksheet?",
@@ -2484,9 +2396,9 @@
     "promise": "Stand up a disciplined local control plane with inbox/running/archive queues, run logs, and human-gated promotion scripts.",
     "summary": "An operator field kit packaging file-based dispatcher queues, `.loop` contract templates, heartbeat monitors, and session handovers.",
     "transformation": [
-      "Route scoped tasks through file-based inbox, running, report, and archive queues with zero message-broker overhead",
+      "Route tasks through file-based inbox, running, report and archive queues",
       "Enforce iteration caps, no-progress stops, and independent verifier checks on every recurring loop",
-      "Write clean cross-session handovers and health snapshots so any harness can resume work in under two minutes"
+      "Record handover notes and health snapshots for the next session"
     ],
     "socialProof": {
       "stats": [],

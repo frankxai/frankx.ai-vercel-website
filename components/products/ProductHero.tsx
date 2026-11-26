@@ -15,7 +15,7 @@ interface ProductHeroProps {
   badge?: string
   title: string
   subtitle: string
-  promise: string
+  promise?: string
   offer?: ProductOffer
 }
 
@@ -71,9 +71,11 @@ export default function ProductHero({ productId, badge, title, subtitle, promise
           </span>
         </h1>
         <p className="mt-6 text-lg text-white/70 sm:text-xl">{subtitle}</p>
-        <p className="mt-6 text-base font-medium uppercase tracking-[0.3em] text-cyan-200">
-          {promise}
-        </p>
+        {promise && (
+          <p className="mt-6 text-base font-medium uppercase tracking-[0.3em] text-cyan-200">
+            {promise}
+          </p>
+        )}
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           {COMING_SOON_MODE ? (
             <Link
