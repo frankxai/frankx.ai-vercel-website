@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
+import { programToRecord, sponsorDecision } from '../../lib/tools/record.ts'
 
 const SHOT_03 = `Reference: the approved studio character and room.
 Start: medium close view, seated character looking at the closed notebook.
@@ -8,11 +10,11 @@ End: hold the expression briefly so the editor has a clean exit.
 Continuity: same clothing, hair, window light and notebook position.
 Avoid: additional people, changing props, text overlays, scene transitions.`
 
-// The issued hop is the partner record through the 2026-11-24 recheck.
-// After that date the route falls back and this check has to move with a fresh record.
-const ISSUED_QUERY = 'fpr=frank-255866'
-
 export async function runHiggsfieldReader({ browser, origin, manifest }) {
+  const registry = JSON.parse(readFileSync(new URL('../../data/affiliate/programs.json', import.meta.url), 'utf8'))
+  const program = registry.programs.find(row => row.tool === 'Higgsfield')
+  assert.ok(program, 'The Higgsfield partner record exists')
+  const decision = sponsorDecision(programToRecord(program))
   const context = await browser.createBrowserContext()
   const page = await context.newPage()
   const errors = []
@@ -62,9 +64,15 @@ export async function runHiggsfieldReader({ browser, origin, manifest }) {
     assert.equal(reader.html.includes('fpr='), false, 'The rendered guide does not contain the issued referral')
     assert.equal(reader.html.includes('/go/higgsfield'), true, 'The call to action uses the hop')
     assert.equal(reader.prefetch, false, 'The hop is not prefetched')
-    assert.equal(reader.noteBeforeLink, true, 'Disclosure comes before the referral')
-    assert.match(reader.note, /^Affiliate link:/)
-    assert.match(reader.hopRel, /\bsponsored\b/)
+    assert.match(reader.hopRel, /\bnoopener\b/, 'The tool card links through the hop')
+    if (decision.sponsored) {
+      assert.equal(reader.noteBeforeLink, true, 'Disclosure comes before the referral')
+      assert.match(reader.note, /^Affiliate link:/)
+      assert.match(reader.hopRel, /\bsponsored\b/)
+    } else {
+      assert.equal(reader.note, '', 'The editorial fallback makes no affiliate claim')
+      assert.doesNotMatch(reader.hopRel, /\bsponsored\b/)
+    }
     assert.equal(reader.diagram, true, 'Stop-rule diagram is on the page')
     assert.equal(reader.iframe, 0, 'YouTube stays unloaded until the reader asks')
     assert.equal(reader.html.includes('tW40b122Rbs'), true)
@@ -122,9 +130,13 @@ export async function runHiggsfieldReader({ browser, origin, manifest }) {
     assert.equal(hop.status, 302, 'Higgsfield hop')
     const location = hop.headers.get('location')
     const destination = new URL(location)
-    assert.equal(destination.hostname, 'higgsfield.ai')
-    assert.equal(destination.search, `?${ISSUED_QUERY}`)
-    assert.deepEqual([...destination.searchParams.keys()], ['fpr'])
+    assert.equal(destination.origin, 'https://higgsfield.ai')
+    if (decision.sponsored) {
+      assert.equal(location, program.ourLink, 'The verified hop preserves the exact issued URL')
+      assert.deepEqual([...destination.searchParams.keys()], ['fpr'])
+    } else {
+      assert.equal(destination.href, 'https://higgsfield.ai/', 'The expired hop uses the untagged vendor homepage')
+    }
     assert.match(hop.headers.get('cache-control') || '', /no-store/)
     assert.equal(hop.headers.get('cache-control').includes('public'), false)
 
@@ -133,7 +145,8 @@ export async function runHiggsfieldReader({ browser, origin, manifest }) {
       result: 'passed',
       guide: '/guides/higgsfield-ai-video-guide',
       hop: location,
-      disclosureBeforeReferral: true,
+      sponsored: decision.sponsored,
+      disclosureBeforeReferral: reader.noteBeforeLink,
       youtubeLoadedOnClick: true,
       phoneBriefLink: briefBox,
     })

@@ -51,14 +51,12 @@ test('homepage markdown follows the page copy', async () => {
   assert.ok(body.length >= 20)
   assert.equal(body.includes('<!DOCTYPE'), false)
   assert.equal(body.includes('<html'), false)
-  assert.match(
-    body,
-    /Frank Riemer's living studio for music, agent systems, books, field notes, and practical tools\./,
-  )
-  assert.match(home, /aria-label="Build intelligence that compounds\."/)
-  assert.match(body, /Build intelligence that compounds\./)
-  assert.match(home, /const heroOutcome = 'Explore your highest-leverage AI move\.'/)
-  assert.match(body, /Explore your highest-leverage AI move\./)
+  const summary = page.match(/description:\s*"([^"]+)"/)[1]
+  const headline = home.match(/<h1\b[^>]*aria-label="([^"]+)"/s)[1]
+  const outcome = home.match(/const heroOutcome = '([^']+)'/)[1]
+  for (const line of [summary, headline, outcome]) {
+    assert.ok(body.includes(line), line)
+  }
 
   for (const question of quotedValues(faqs, 'question')) {
     assert.ok(body.includes(question), question)

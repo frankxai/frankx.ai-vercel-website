@@ -51,3 +51,22 @@ test('about story carries no unsourced revenue tier', () => {
   assert.doesNotMatch(aboutShell, /seven-figure|7-figure/i)
   assert.ok(aboutShell.includes('Alex built a solar business.'))
 })
+
+test('the public About page has working chapter and audience fragment links', () => {
+  const page = readFileSync(new URL('../../app/about/page.tsx', import.meta.url), 'utf8')
+  const ids = [...page.matchAll(/\bid="([^"]+)"/g)].map(([, id]) => id)
+  const links = [...page.matchAll(/\bhref(?:=|:\s*)"\#([^"]+)"/g)].map(([, id]) => id)
+  assert.ok(links.includes('investors'))
+  assert.ok(links.includes('start-with-the-work'))
+  for (const destination of links) {
+    assert.equal(ids.filter(id => id === destination).length, 1, destination)
+  }
+})
+
+test('the About loading boundary retains the founder portrait while announcing progress', () => {
+  const loading = readFileSync(new URL('../../app/about/loading.tsx', import.meta.url), 'utf8')
+  const page = readFileSync(new URL('../../app/about/page.tsx', import.meta.url), 'utf8')
+  assert.match(loading, /<p\b[^>]*role="status"[^>]*>[^<]+<\/p>/)
+  assert.match(loading, /<FounderPortrait\s*\/>/)
+  assert.match(page, /<FounderPortrait\s*\/>/)
+})

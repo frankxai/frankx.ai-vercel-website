@@ -6,6 +6,7 @@ import { FAQPageJsonLd } from "@/components/seo/JsonLd";
 import { coreQualitiesNavigationEvent } from "@/lib/core-qualities-analytics";
 import { createMetadata } from "@/lib/seo";
 import { socialLinks } from "@/lib/social-links";
+import { FounderPortrait } from "./FounderPortrait";
 import styles from "./about.module.css";
 
 export const metadata = createMetadata({
@@ -168,23 +169,7 @@ export default function AboutPage() {
                 Explore the work <ArrowDown size={17} aria-hidden="true" />
               </TrackedLink>
             </div>
-            <figure className={styles.heroArt}>
-              <div className={styles.heroFrame}>
-                <Image
-                  src="/images/portraits/frank-presenting-oracle-2025.jpg"
-                  alt="Frank Riemer on stage presenting how AI workflows evolve from prompts into agents"
-                  width={1920}
-                  height={1440}
-                  fetchPriority="high"
-                  loading="eager"
-                  sizes="(max-width: 680px) 92vw, (max-width: 1320px) 47vw, 640px"
-                />
-              </div>
-              <figcaption>
-                <span>Presenting agent workflows at Oracle</span>
-                <span>2025</span>
-              </figcaption>
-            </figure>
+            <FounderPortrait />
           </section>
           <section
             id="start-with-the-work"

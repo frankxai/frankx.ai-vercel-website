@@ -377,9 +377,6 @@
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 8/5;
-  object-fit: cover;
-  object-position: top;
 }
 
 .projectGrid {
@@ -690,10 +687,6 @@
     padding-bottom: 0;
   }
 
-  .projectGrid .projectImage img {
-    aspect-ratio: 1.85;
-  }
-
   .storyBreak {
     display: none;
   }
@@ -713,9 +706,4 @@
   .page *::after {
     scroll-behavior: auto;
   }
-}
-
-.loading {
-  min-height: 65vh;
-  padding-top: 6rem;
 }
