@@ -14,7 +14,7 @@ test('hero identity column and CTAs shrink inside a 320px viewport', async () =>
   )
   assert.match(
     homepage,
-    /className="min-w-0 text-sm text-white\/60">AI architecture · agentic systems · creator intelligence/,
+    /className="min-w-0 text-sm text-white\/60">(?:AI architecture · agentic systems · creator intelligence|Frank Riemer · Amsterdam)/,
   )
   assert.match(
     homepage,
