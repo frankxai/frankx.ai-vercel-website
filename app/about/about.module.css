@@ -1,24 +1,23 @@
 .page {
-  --paper: #f6f2e9;
-  --ink: #211e19;
-  --body: #514a40;
-  --brass: #725331;
-  --rule: #d3c9b9;
-  --obsidian: #0a0a0b;
-  --cream: #f6f0e5;
-  --light-body: #c4bbae;
-  --champagne: #d8bd91;
-  --dark-rule: #403a31;
-  --display: var(--font-serif-editorial), Georgia, serif;
+  --ground: var(--bg-void, #0a0a0b);
+  --raised: var(--bg-space, #111113);
+  --ink: #f2f6f4;
+  --body: #abb9b4;
+  --accent: #6ee7b7;
+  --cyan: var(--brand-cyan, #43bfe3);
+  --rule: var(--border-default, #2a2a3a);
+  --warm: #d8bd91;
+  --display: var(--font-poppins), system-ui, sans-serif;
+  --editorial: var(--font-serif-editorial), Georgia, serif;
   --measure: 51ch;
   --edge: clamp(1.25rem, 4.6vw, 4.5rem);
-  background: var(--paper);
+  background: var(--ground);
   color: var(--ink);
+  color-scheme: dark;
 }
 
-.paper {
-  background: var(--paper);
-  color: var(--ink);
+.surface {
+  background: var(--ground);
 }
 
 .wrap {
@@ -30,17 +29,17 @@
 .page h2,
 .page h3 {
   font-family: var(--display);
-  font-weight: 400;
-  letter-spacing: -0.045em;
+  font-weight: 650;
+  letter-spacing: -0.052em;
 }
 
 .page h2 {
-  font-size: clamp(2.75rem, 5.35vw, 5.15rem);
-  line-height: 1.04;
+  font-size: clamp(2.15rem, 4.8vw, 4.4rem);
+  line-height: 1.06;
 }
 
 .page h3 {
-  font-size: clamp(1.8rem, 2.8vw, 2.7rem);
+  font-size: clamp(1.45rem, 2.35vw, 2.4rem);
   line-height: 1.14;
 }
 
@@ -51,22 +50,18 @@
 
 .page a:focus-visible,
 .page summary:focus-visible {
-  outline: 2px solid var(--brass);
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
   border-radius: 2px;
 }
 
-.ventures a:focus-visible,
-.join a:focus-visible {
-  outline-color: var(--champagne);
-}
-
 .eyebrow {
-  color: var(--brass);
-  font-size: 0.72rem;
-  font-weight: 700;
-  line-height: 1.4;
-  letter-spacing: 0.105em;
+  color: var(--accent);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 550;
+  line-height: 1.5;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
@@ -109,19 +104,19 @@
   grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
   gap: clamp(2rem, 5.2vw, 5.4rem);
   align-items: center;
-  padding-block: clamp(2.8rem, 5vw, 5rem) clamp(3rem, 6vw, 5.6rem);
+  padding-block: clamp(2.4rem, 4.8vw, 4.5rem) clamp(2.5rem, 5vw, 4.4rem);
 }
 
 .heroCopy h1 {
-  font-size: clamp(4.5rem, 8.1vw, 8.1rem);
-  line-height: 0.93;
-  letter-spacing: -0.065em;
-  margin: 0.85rem 0 1.5rem;
+  font-size: clamp(3.4rem, 6.1vw, 5.8rem);
+  font-weight: 700;
+  line-height: 1.03;
+  letter-spacing: -0.072em;
+  margin: 0.65rem 0 0.9rem;
 }
 
-.heroCopy h1 em {
-  display: block;
-  color: var(--brass);
+.heroCopy h1 span {
+  color: var(--accent);
 }
 
 .role {
@@ -145,15 +140,16 @@
   gap: 0.9rem;
   min-height: 3rem;
   padding: 0.72rem 1rem 0.72rem 1.15rem;
-  color: var(--paper);
-  background: var(--ink);
+  border-radius: 999px;
+  color: var(--ground);
+  background: var(--primary, #10b981);
   font-size: 0.88rem;
   font-weight: 650;
   line-height: 1.35;
 }
 
 .primary:hover {
-  background: var(--brass);
+  background: var(--accent);
 }
 
 .primary svg,
@@ -171,23 +167,25 @@
 .heroArt {
   min-width: 0;
   align-self: center;
+  position: relative;
+  isolation: isolate;
 }
 
 .heroFrame {
-  background: #cfc4b3;
-  padding: clamp(0.35rem, 0.65vw, 0.65rem);
-  border: 1px solid #b9aa95;
-  border-bottom: 0;
+  background: var(--raised);
+  padding: 0.35rem;
+  border: 1px solid var(--border-strong, #3a3a4a);
+  border-radius: 1.4rem;
 }
 
 .heroFrame img {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 1.17;
+  aspect-ratio: 1.39;
   object-fit: cover;
-  object-position: 38% 50%;
-  filter: saturate(0.66);
+  object-position: 38% 62%;
+  border-radius: 1.05rem;
 }
 
 .heroArt figcaption,
@@ -197,12 +195,23 @@
 }
 
 .heroArt figcaption {
+  position: absolute;
+  inset: auto 1rem 1rem;
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 0.72rem clamp(0.5rem, 1vw, 0.85rem);
-  border: 1px solid var(--rule);
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.72rem 0.9rem;
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 0.75rem;
+  background: rgb(10 10 11 / 91%);
+  backdrop-filter: blur(12px);
+  color: var(--ink);
   line-height: 1.45;
+}
+
+.heroArt figcaption span:last-child {
+  color: var(--warm);
 }
 
 .start {
@@ -210,8 +219,8 @@
 }
 
 .start h2 {
-  font-size: clamp(1.85rem, 3.8vw, 3.15rem);
-  margin-bottom: 1.25rem;
+  font-size: clamp(1.6rem, 3.05vw, 2.6rem);
+  margin-bottom: 1.15rem;
 }
 
 .startingPoints {
@@ -253,20 +262,16 @@
 }
 
 .quickAction svg {
-  color: var(--brass);
+  color: var(--accent);
   align-self: center;
 }
 
 .ventures,
 .join {
-  color: var(--cream);
-  background: var(--obsidian);
+  color: var(--ink);
+  background: var(--raised);
+  border-block: 1px solid var(--rule);
   padding-block: clamp(3.9rem, 8vw, 7.5rem);
-}
-
-.ventures .eyebrow,
-.join .eyebrow {
-  color: var(--champagne);
 }
 
 .sectionHeading {
@@ -293,7 +298,7 @@
   min-height: 2.75rem;
   width: fit-content;
   max-width: 100%;
-  color: var(--brass);
+  color: var(--accent);
   font-size: 0.875rem;
   font-weight: 650;
   line-height: 1.4;
@@ -306,32 +311,54 @@
   text-decoration-color: currentColor;
 }
 
-.ventures .textLink,
-.join .textLink {
-  color: var(--champagne);
-}
-
 .featured {
   display: grid;
   grid-template-columns: minmax(0, 1.82fr) minmax(0, 1fr);
   gap: clamp(1.3rem, 4.8vw, 5rem);
   align-items: center;
   padding-bottom: clamp(2.25rem, 5.6vw, 5rem);
-  border-bottom: 1px solid var(--dark-rule);
+  border-bottom: 1px solid var(--rule);
 }
 
 .featured h3 {
   margin: 0.6rem 0 0.9rem;
-  font-size: clamp(2rem, 3.95vw, 4.15rem);
+  font-size: clamp(1.8rem, 3.45vw, 3.4rem);
 }
 
 .featuredCopy > p:not(.eyebrow),
 .project > p:not(.eyebrow),
 .join p:not(.eyebrow) {
   max-width: var(--measure);
-  color: var(--light-body);
+  color: var(--body);
   font-size: 1rem;
   line-height: 1.65;
+}
+
+.mission {
+  border-block: 1px solid var(--rule);
+  margin-top: 1.2rem;
+  padding-block: 0.55rem;
+}
+
+.mission > div {
+  display: grid;
+  grid-template-columns: 5.35rem minmax(0, 1fr);
+  gap: 0.5rem;
+  padding-block: 0.43rem;
+}
+
+.mission dt {
+  color: var(--cyan);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.mission dd {
+  color: var(--ink);
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
 .featuredCopy .textLink,
@@ -340,8 +367,9 @@
 }
 
 .projectImage {
-  background: #191815;
-  border: 1px solid var(--dark-rule);
+  background: var(--ground);
+  border: 1px solid var(--rule);
+  border-radius: 0.9rem;
   overflow: hidden;
 }
 
@@ -405,10 +433,6 @@
   line-height: 1.72;
 }
 
-.publication em {
-  color: var(--brass);
-}
-
 .publicationIntro > p:not(.eyebrow),
 .character p:not(.eyebrow) {
   margin-top: 1.1rem;
@@ -432,14 +456,14 @@
 .resourceTitle {
   font-family: var(--display);
   font-size: clamp(1.55rem, 2.15vw, 2rem);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: -0.035em;
   line-height: 1.2;
 }
 
 .resourceTitle svg {
   align-self: center;
-  color: var(--brass);
+  color: var(--accent);
 }
 
 .resourceDescription {
@@ -456,7 +480,7 @@
 
 .storyCopy > .lead {
   color: var(--ink);
-  font-family: var(--display);
+  font-family: var(--editorial);
   font-size: clamp(1.5rem, 2.55vw, 2.15rem);
   letter-spacing: -0.025em;
   line-height: 1.34;
@@ -487,7 +511,9 @@
   aspect-ratio: 1.2;
   object-fit: cover;
   object-position: 50% 32%;
-  background: #e8dfd1;
+  background: var(--raised);
+  border: 1px solid var(--rule);
+  border-radius: 1.1rem;
 }
 
 .characterArt figcaption {
@@ -509,7 +535,7 @@
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  border-top: 1px solid var(--dark-rule);
+  border-top: 1px solid var(--rule);
   padding-top: 1.25rem;
 }
 
@@ -522,17 +548,11 @@
 }
 
 .joinGrid .primary {
-  background: var(--champagne);
-  color: var(--obsidian);
   margin-top: 1.1rem;
 }
 
-.joinGrid .primary:hover {
-  background: var(--cream);
-}
-
 .socials {
-  border-top: 1px solid var(--dark-rule);
+  border-top: 1px solid var(--rule);
   padding-top: 0.75rem;
   margin-top: 2.25rem;
 }
@@ -589,7 +609,7 @@
   }
 
   .heroCopy h1 {
-    font-size: clamp(3.8rem, 9.5vw, 5.3rem);
+    font-size: clamp(3rem, 6.6vw, 4.3rem);
   }
 }
 
@@ -626,12 +646,8 @@
   }
 
   .heroCopy h1 {
-    font-size: clamp(3.15rem, 11.7vw, 5rem);
+    font-size: clamp(2.65rem, 11.1vw, 4.75rem);
     margin-block: 0.4rem 0.75rem;
-  }
-
-  .heroCopy h1 em {
-    display: inline;
   }
 
   .role {
@@ -643,7 +659,12 @@
   }
 
   .heroFrame img {
-    aspect-ratio: 1.48;
+    aspect-ratio: 1.5;
+  }
+
+  .heroArt figcaption {
+    inset: auto 0.7rem 0.7rem;
+    padding: 0.6rem 0.7rem;
   }
 
   .startingPoints {
@@ -660,7 +681,7 @@
   }
 
   .project {
-    border-bottom: 1px solid var(--dark-rule);
+    border-bottom: 1px solid var(--rule);
     padding-bottom: 1.35rem;
   }
 

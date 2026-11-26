@@ -19,9 +19,9 @@ export const metadata = createMetadata({
 const projects = [
   {
     name: "Starlight Intelligence",
-    field: "Agent infrastructure",
+    field: "Building your own AI practice",
     description:
-      "I’m building a place for specialist agents to work from the same brief. The public studio lets you explore a completed mission, follow its sources and prepare a brief of your own.",
+      "What used to take an enterprise AI team should be within reach of a founder. Starlight starts with a brief, a team of specialists and a record of what they found.",
     href: "https://starlightintelligence.ai/missions?example=recorded",
     action: "Inspect a completed mission",
     image: "starlight",
@@ -114,7 +114,13 @@ const questions = [
 
 const [starlight, ...otherProjects] = projects;
 
-function ProjectImage({ project }: { project: (typeof projects)[number] }) {
+function ProjectImage({
+  project,
+  sizes = "(max-width: 680px) 90vw, (max-width: 1400px) 29vw, 390px",
+}: {
+  project: (typeof projects)[number];
+  sizes?: string;
+}) {
   return (
     <div className={styles.projectImage}>
       <Image
@@ -122,7 +128,7 @@ function ProjectImage({ project }: { project: (typeof projects)[number] }) {
         alt={project.alt}
         width={960}
         height={600}
-        sizes={project === starlight ? "(max-width: 850px) 92vw, 51vw" : "(max-width: 680px) 92vw, 29vw"}
+        sizes={sizes}
       />
     </div>
   );
@@ -132,7 +138,7 @@ export default function AboutPage() {
   return (
     <main className={styles.page}>
       <FAQPageJsonLd faqs={questions} id="about-faq" />
-      <div className={styles.paper}>
+      <div className={styles.surface}>
         <div className={styles.wrap}>
           <div className={styles.masthead}>
             <p className={styles.eyebrow}>The founder atelier</p>
@@ -145,12 +151,13 @@ export default function AboutPage() {
           <section className={styles.hero} aria-labelledby="about-title">
             <div className={styles.heroCopy}>
               <p className={styles.eyebrow}>Amsterdam, Netherlands</p>
-              <h1 id="about-title">Frank <em>Riemer</em></h1>
+              <h1 id="about-title">Frank Riemer<span>.</span></h1>
               <p className={styles.role}>AI Architect, venture builder &amp; independent investor</p>
               <p className={styles.intro}>
-                I worked on enterprise AI at Oracle. Today I build agent
-                systems and creator tools, and publish the code and research
-                behind them here on FrankX.
+                At Oracle I worked on enterprise AI. Now I’m building the kind
+                of AI practice I wanted as an independent founder, with room
+                for original research, software and music. I share the work
+                here so you can try it and make it your own.
               </p>
               <TrackedLink
                 href="#start-with-the-work"
@@ -158,7 +165,7 @@ export default function AboutPage() {
                 eventProperties={{ placement: "hero" }}
                 className={styles.primary}
               >
-                Find your starting point <ArrowDown size={17} aria-hidden="true" />
+                Explore the work <ArrowDown size={17} aria-hidden="true" />
               </TrackedLink>
             </div>
             <figure className={styles.heroArt}>
@@ -213,11 +220,28 @@ export default function AboutPage() {
             </Link>
           </div>
           <article className={styles.featured}>
-            <ProjectImage project={starlight} />
+            <ProjectImage
+              project={starlight}
+              sizes="(max-width: 680px) 90vw, (max-width: 850px) 49vw, (max-width: 1400px) 55vw, 770px"
+            />
             <div className={styles.featuredCopy}>
               <p className={styles.eyebrow}>{starlight.field}</p>
               <h3>{starlight.name}</h3>
               <p>{starlight.description}</p>
+              <dl className={styles.mission}>
+                <div>
+                  <dt>Brief</dt>
+                  <dd>Review a public Node.js repository.</dd>
+                </div>
+                <div>
+                  <dt>Evidence</dt>
+                  <dd>Follow the findings back to source files.</dd>
+                </div>
+                <div>
+                  <dt>Takeaway</dt>
+                  <dd>Download the diagnostics and adapt the brief.</dd>
+                </div>
+              </dl>
               <a href={starlight.href} className={styles.textLink}>
                 {starlight.action} <ArrowUpRight size={16} aria-hidden="true" />
               </a>
@@ -239,12 +263,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <div className={styles.paper}>
+      <div className={styles.surface}>
         <div className={styles.wrap}>
           <section id="publication" className={styles.publication} aria-labelledby="publication-title">
             <div className={styles.publicationIntro}>
               <p className={styles.eyebrow}>The FrankX publication</p>
-              <h2 id="publication-title">Read it. <em>Run it.</em></h2>
+              <h2 id="publication-title">What holds up in practice.</h2>
               <p>I publish the tests, templates and source code so you can make your own call about what to use.</p>
               <div className={styles.publicationLinks}>
                 <Link href="/research" prefetch={false} className={styles.textLink}>
@@ -393,7 +417,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <div className={styles.paper}>
+      <div className={styles.surface}>
         <section className={`${styles.wrap} ${styles.questions}`} aria-labelledby="questions-title">
           <div>
             <h2 id="questions-title">More about Frank.</h2>
