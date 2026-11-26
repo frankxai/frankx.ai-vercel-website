@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="t d" font-family="Inter, 'Helvetica Neue', Arial, sans-serif">
+  <title id="t">Personal AI CoE with a creative production layer</title>
+  <desc id="d">Four layers. Governance sets budget, review and rights rules. The agent platform runs Claude with MCP connectors. Production uses Higgsfield for image and video and ElevenLabs for voice, music and sound. Distribution and measurement feed results back to governance.</desc>
+  <rect width="1200" height="760" fill="#0b1220"/>
+  <g fill="none" stroke="#1e293b"><path d="M0 95H1200M0 285H1200M0 475H1200M0 665H1200"/></g>
+
+  <text x="60" y="58" fill="#67e8f9" font-size="15" font-weight="600" letter-spacing="3">PERSONAL AI COE · CREATIVE STACK</text>
+
+  <!-- Layer 1 -->
+  <rect x="60" y="110" width="1080" height="150" rx="16" fill="#111a2e" stroke="#334155"/>
+  <text x="90" y="150" fill="#f8fafc" font-size="24" font-weight="700">1. Governance</text>
+  <text x="90" y="180" fill="#94a3b8" font-size="17">Decides what gets bought, generated and published</text>
+  <g font-size="16" fill="#e2e8f0">
+    <rect x="90" y="200" width="230" height="40" rx="20" fill="#0f172a" stroke="#475569"/><text x="205" y="226" text-anchor="middle">Budget per accepted asset</text>
+    <rect x="340" y="200" width="200" height="40" rx="20" fill="#0f172a" stroke="#475569"/><text x="440" y="226" text-anchor="middle">Human review gate</text>
+    <rect x="560" y="200" width="240" height="40" rx="20" fill="#0f172a" stroke="#475569"/><text x="680" y="226" text-anchor="middle">Voice and likeness rights</text>
+    <rect x="820" y="200" width="290" height="40" rx="20" fill="#0f172a" stroke="#475569"/><text x="965" y="226" text-anchor="middle">Renewal dates on a calendar</text>
+  </g>
+
+  <!-- Layer 2 -->
+  <rect x="60" y="300" width="1080" height="150" rx="16" fill="#111a2e" stroke="#334155"/>
+  <text x="90" y="340" fill="#f8fafc" font-size="24" font-weight="700">2. Agent platform</text>
+  <text x="90" y="370" fill="#94a3b8" font-size="17">One orchestrator holds the brief, references and history</text>
+  <g font-size="16" fill="#e2e8f0">
+    <rect x="90" y="390" width="250" height="40" rx="20" fill="#0f172a" stroke="#8b5cf6"/><text x="215" y="416" text-anchor="middle">Claude or another LLM</text>
+    <rect x="360" y="390" width="220" height="40" rx="20" fill="#0f172a" stroke="#8b5cf6"/><text x="470" y="416" text-anchor="middle">MCP connectors</text>
+    <rect x="600" y="390" width="240" height="40" rx="20" fill="#0f172a" stroke="#8b5cf6"/><text x="720" y="416" text-anchor="middle">Skills and prompt library</text>
+    <rect x="860" y="390" width="250" height="40" rx="20" fill="#0f172a" stroke="#8b5cf6"/><text x="985" y="416" text-anchor="middle">Memory and asset ledger</text>
+  </g>
+
+  <!-- Layer 3 -->
+  <rect x="60" y="490" width="1080" height="150" rx="16" fill="#111a2e" stroke="#334155"/>
+  <text x="90" y="530" fill="#f8fafc" font-size="24" font-weight="700">3. Production</text>
+  <text x="90" y="560" fill="#94a3b8" font-size="17">Picture and sound, generated against the same brief</text>
+  <rect x="90" y="578" width="500" height="48" rx="12" fill="#1c1408" stroke="#f59e0b"/>
+  <text x="110" y="609" fill="#fde68a" font-size="17" font-weight="600">Higgsfield</text>
+  <text x="220" y="609" fill="#e2e8f0" font-size="16">image, video, lipsync, Soul ID</text>
+  <rect x="610" y="578" width="500" height="48" rx="12" fill="#06202a" stroke="#06b6d4"/>
+  <text x="630" y="609" fill="#a5f3fc" font-size="17" font-weight="600">ElevenLabs</text>
+  <text x="745" y="609" fill="#e2e8f0" font-size="16">voice, music, sound effects, dubbing</text>
+
+  <!-- Layer 4 -->
+  <rect x="60" y="680" width="1080" height="56" rx="16" fill="#111a2e" stroke="#334155"/>
+  <text x="90" y="716" fill="#f8fafc" font-size="22" font-weight="700">4. Distribution and measurement</text>
+  <text x="520" y="716" fill="#94a3b8" font-size="16">publish, track cost per published minute, feed results back to 1</text>
+
+  <!-- feedback arrow -->
+  <path d="M1160 708 C1185 708 1185 185 1150 185" fill="none" stroke="#10b981" stroke-width="2.5" stroke-dasharray="6 6"/>
+  <path d="M1152 177 L1140 185 L1152 193 Z" fill="#10b981"/>
+</svg>

@@ -6,6 +6,15 @@
 
   "activation_rules": [
     {
+      "skill": "cinematic-editorial-production",
+      "triggers": {
+        "keywords": ["flagship article", "cinematic editorial", "black friday", "affiliate review", "claim ledger", "editorial production", "multi-agent editorial"],
+        "file_patterns": ["content/blog/**", "docs/editorial/**"],
+        "commands": ["/flagship", "/publish-content"]
+      },
+      "priority": "high"
+    },
+    {
       "skill": "multimodal-studio",
       "triggers": {
         "keywords": ["generate image", "generate video", "create character", "multimodal", "higgsfield", "image generation", "video generation", "b-roll", "cinematic", "thumbnail", "hero image", "character reference", "visual asset"],
