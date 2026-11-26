@@ -34,7 +34,7 @@
   <text x="90" y="560" fill="#94a3b8" font-size="17">Picture and sound, generated against the same brief</text>
   <rect x="90" y="578" width="500" height="48" rx="12" fill="#1c1408" stroke="#f59e0b"/>
   <text x="110" y="609" fill="#fde68a" font-size="17" font-weight="600">Higgsfield</text>
-  <text x="220" y="609" fill="#e2e8f0" font-size="16">image, video, lipsync, Soul ID</text>
+  <text x="220" y="609" fill="#e2e8f0" font-size="16">image, video, lipsync, characters</text>
   <rect x="610" y="578" width="500" height="48" rx="12" fill="#06202a" stroke="#06b6d4"/>
   <text x="630" y="609" fill="#a5f3fc" font-size="17" font-weight="600">ElevenLabs</text>
   <text x="745" y="609" fill="#e2e8f0" font-size="16">voice, music, sound effects, dubbing</text>

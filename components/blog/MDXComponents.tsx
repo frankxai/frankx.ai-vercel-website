@@ -19,6 +19,7 @@ import { LiquidGlassImage } from '@/components/blog/LiquidGlassImage'
 import PlatformMarkGrid from '@/components/blog/PlatformMarkGrid'
 import HiggsfieldWorkbench from '@/components/guides/HiggsfieldWorkbench'
 import ElevenLabsAudioBriefingWorkbench from '@/components/guides/ElevenLabsAudioBriefingWorkbench'
+import CreatorStackCostCalculator from '@/components/blog/CreatorStackCostCalculator'
 import { GuideSkill, GuideSkillMap } from '@/components/guides/GuideSkillMap'
 import {
   VoiceArchitectureChoice,
@@ -347,6 +348,7 @@ export const mdxComponents: MDXComponents = {
   VoiceReferenceArchitecture,
   HiggsfieldWorkbench,
   ElevenLabsAudioBriefingWorkbench,
+  CreatorStackCostCalculator,
   GuideSkillMap,
   GuideSkill,
   Link,
