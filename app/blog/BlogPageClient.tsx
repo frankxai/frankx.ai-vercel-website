@@ -90,13 +90,13 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
                 </div>
               </div>
               <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
-                Inside the build.
+                From my studio in Amsterdam
               </h1>
               <p className="mt-2 text-base text-white/60">
-                AI systems, creative workflows, and what&apos;s actually shipping.
+                Song arrangements, sketchbooks, and field notes for people making things with AI.
               </p>
               <p className="mt-3 text-sm text-white/60">
-                Writing shorter and more often over in the{' '}
+                For shorter notes from the work, read my{' '}
                 <Link
                   href="/journal"
                   className="text-emerald-400/80 underline decoration-emerald-400/25 underline-offset-4 transition-colors hover:text-emerald-400 hover:decoration-emerald-400/60"

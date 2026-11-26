@@ -19,7 +19,7 @@ const blogFaqs = [
   },
   {
     question: 'What topics does the blog cover?',
-    answer: 'The blog covers AI architecture, agent workflows, creative AI tools like Suno and Midjourney, and what I learn building AI systems.'
+    answer: 'The blog covers AI architecture, agent workflows, creative AI tools like Suno and Midjourney, and how an idea becomes a recording, an illustration or a working piece of software.'
   },
   {
     question: 'Can I get notified about new articles?',
@@ -32,9 +32,9 @@ const blogFaqs = [
 ]
 
 export const metadata = createMetadata({
-  title: 'Blog - AI Architecture, Creative Systems, and What Ships',
+  title: 'Writing by Frank Riemer · Music, worldbuilding and AI',
   description:
-    "Inside the build. Researched articles on AI systems, creative workflows, and what's actually shipping — from enterprise architecture to AI music production.",
+    "Frank Riemer’s writing from Amsterdam. Listen to two arrangements of a song, follow a storyboard, or open a technical field guide.",
   keywords: [
     'ai blog',
     'frankx blog',
