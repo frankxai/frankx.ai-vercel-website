@@ -74,7 +74,6 @@ export default function PlaybooksPage() {
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/65">
               Five steps, in the order I would take them again: pick the machine and the stack, build one agent
               that works, package it as skills, run a crew with quality gates, and architect it for production.
-              Every link is a working guide, tool, or open repository.
             </p>
             <nav aria-label="Playbook steps" className="mt-10 flex flex-wrap gap-2">
               {playbookTracks.map((track) => (

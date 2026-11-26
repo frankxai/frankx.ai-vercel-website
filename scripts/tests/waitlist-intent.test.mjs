@@ -97,6 +97,20 @@ for (const [intent, label] of [['bv-kit', 'Creator BV Kit'], ['prompt-vault', 'P
   })
 }
 
+test('Multi-agent Ops links from Playbooks to its tagged premium-pack waitlist', async () => {
+  const { playbookTracks } = loadModule('data/playbooks.ts')
+  const pack = playbookTracks.flatMap((track) => track.items).find((item) => item.title === 'Multi-agent Ops')
+  assert.equal(pack?.format, 'Prelaunch waitlist')
+  assert.equal(pack.href, '/waitlist?intent=multi-agent-ops')
+
+  const intent = new URL(pack.href, 'https://example.invalid').searchParams.get('intent')
+  const { props, body } = await submitWaitlist(intent)
+  assert.equal(props.intentLabel, pack.title)
+  assert.equal(props.askDemand, false)
+  assert.equal(body.intent, intent)
+  assert.equal(body.listType, 'premium-packs')
+})
+
 test('legacy waitlist entry points preserve their current list routing', async () => {
   for (const intent of ['course-creator-business-systems', 'creative-ai-toolkit']) {
     const { body } = await submitWaitlist(intent)

@@ -43,6 +43,7 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
   'suno-prompt-library': { label: 'Suno Prompt Library Pack', listType: 'premium-packs' },
   '5-suno-prompts': { label: '5 Suno Prompts', listType: 'premium-packs' },
   'vibe-os': { label: 'Vibe OS: Creative State Management', listType: 'premium-packs' },
+  'multi-agent-ops': { label: 'Multi-agent Ops', listType: 'premium-packs' },
   // Product rows in the knowledge-to-offer graph.
   'creative-ai-toolkit': { label: 'Creative AI Toolkit', listType: 'premium-packs' },
   'creation-chronicles': { label: 'Creation Chronicles', listType: 'creation-chronicles' },
@@ -82,6 +83,7 @@ export const LAUNCH_LIST_INTENTS: ReadonlySet<string> = new Set([
   'suno-prompt-library',
   '5-suno-prompts',
   'vibe-os',
+  'multi-agent-ops',
   'creation-chronicles',
 ])
 
