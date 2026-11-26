@@ -5,7 +5,7 @@ import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { FAQPageJsonLd } from "@/components/seo/JsonLd";
 import { coreQualitiesNavigationEvent } from "@/lib/core-qualities-analytics";
 import { createMetadata } from "@/lib/seo";
-import { socialLinks } from "@/lib/social-links";
+import { socialLinks, socialPosts } from "@/lib/social-links";
 import { FounderPortrait } from "./FounderPortrait";
 import styles from "./about.module.css";
 
@@ -306,7 +306,7 @@ export default function AboutPage() {
                 copy they can build on.
               </p>
               <div className={styles.inlineLinks}>
-                <a className={styles.textLink} href="https://www.linkedin.com/posts/frank-x-riemer_after-almost-5-years-today-im-saying-goodbye-activity-7466943560559427584-nEGk">
+                <a className={styles.textLink} href={socialPosts.oracleDeparture}>
                   My note on leaving Oracle <ArrowUpRight size={16} aria-hidden="true" />
                 </a>
                 <Link href="/journal" prefetch={false} className={styles.textLink}>

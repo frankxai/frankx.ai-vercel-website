@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import test from 'node:test'
+import { socialPosts } from '../../lib/social-links.ts'
 
 const article = readFileSync(
   new URL('../../content/blog/golden-age-of-intelligence.mdx', import.meta.url),
@@ -69,4 +70,13 @@ test('the About loading boundary retains the founder portrait while announcing p
   assert.match(loading, /<p\b[^>]*role="status"[^>]*>[^<]+<\/p>/)
   assert.match(loading, /<FounderPortrait\s*\/>/)
   assert.match(page, /<FounderPortrait\s*\/>/)
+})
+
+
+test('the About biography links to Frank’s published account of leaving Oracle', () => {
+  const page = readFileSync(new URL('../../app/about/page.tsx', import.meta.url), 'utf8')
+  const source = new URL(socialPosts.oracleDeparture)
+  assert.equal(source.origin, 'https://www.linkedin.com')
+  assert.match(source.pathname, /^\/posts\/frank-x-riemer_.*-activity-7466943560559427584-/)
+  assert.match(page, /href=\{socialPosts\.oracleDeparture\}/)
 })
