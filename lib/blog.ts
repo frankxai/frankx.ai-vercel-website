@@ -44,6 +44,7 @@ export interface BlogPost {
   tags: string[]
   image?: string
   ogImage?: string
+  coverAlt?: string
   readingTime: string
   keywords?: string[]
   readingGoal?: string

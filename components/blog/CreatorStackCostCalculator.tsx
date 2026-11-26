@@ -1,6 +1,6 @@
 'use client'
 
-import { useId, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 import { AlertTriangle, Calculator, Check } from 'lucide-react'
 
 // Prices read from vendor pricing pages on 2026-11-26
@@ -8,9 +8,11 @@ import { AlertTriangle, Calculator, Check } from 'lucide-react'
 // Update this object, and the source note at the bottom, when prices change.
 const PRICING = {
   checkedOn: 'November 26, 2026',
+  // Sale windows as printed on the vendor pages. Update the plans when a window closes.
+  higgsfieldSaleEnds: 'November 27, 2026, 00:00 UTC',
+  elevenlabsSaleEnds: 'December 1, 2026, 11:59pm ET',
   higgsfield: {
     plans: [
-      { id: 'starter', name: 'Starter', monthlyUsd: 19, creditsPerMonth: 270 },
       { id: 'plus', name: 'Plus', monthlyUsd: 30, creditsPerMonth: 1200 },
       { id: 'ultra-3k', name: 'Ultra 3K', monthlyUsd: 45, creditsPerMonth: 3000 },
     ],
@@ -125,7 +127,7 @@ function RadioGroup<T extends string>({
               />
               <span className={`${optionBase} ${checked ? optionOn : optionOff}`}>
                 <span>{opt.label}</span>
-                <span className={`font-mono text-[11px] font-normal tabular-nums ${checked ? 'text-emerald-300' : 'text-white/50'}`}>
+                <span className={`text-right font-mono text-[11px] font-normal tabular-nums ${checked ? 'text-emerald-300' : 'text-white/50'}`}>
                   {opt.detail}
                 </span>
               </span>
@@ -162,8 +164,11 @@ function CountField({
         min={0}
         max={MAX_COUNT}
         step={1}
+        name={id}
+        autoComplete="off"
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        onBlur={(e) => onChange(String(toCount(e.target.value)))}
         aria-describedby={`${id}-hint`}
         className={numberInput}
       />
@@ -177,7 +182,7 @@ function CountField({
 function CoverageStatus({ c }: { c: Coverage }) {
   if (c.over > 0) {
     return (
-      <div className="flex min-h-[3.25rem] items-start gap-2 rounded-lg border border-amber-500/30 bg-amber-500/[0.06] p-2.5 text-[11px] leading-snug text-amber-200">
+      <div className="flex min-h-[4rem] md:min-h-[3.25rem] items-start gap-2 rounded-lg border border-amber-500/30 bg-amber-500/[0.06] p-2.5 text-[11px] leading-snug text-amber-200">
         <AlertTriangle className="mt-px h-3.5 w-3.5 shrink-0 text-amber-400" aria-hidden="true" />
         <span>
           <strong className="font-semibold text-amber-300">Over by {credits.format(c.over)} credits a month.</strong>{' '}
@@ -187,7 +192,7 @@ function CoverageStatus({ c }: { c: Coverage }) {
     )
   }
   return (
-    <div className="flex min-h-[3.25rem] items-start gap-2 rounded-lg border border-emerald-500/20 bg-emerald-500/[0.04] p-2.5 text-[11px] leading-snug text-emerald-100/90">
+    <div className="flex min-h-[4rem] md:min-h-[3.25rem] items-start gap-2 rounded-lg border border-emerald-500/20 bg-emerald-500/[0.04] p-2.5 text-[11px] leading-snug text-emerald-100/90">
       <Check className="mt-px h-3.5 w-3.5 shrink-0 text-emerald-400" aria-hidden="true" />
       <span>
         <strong className="font-semibold text-emerald-300">Covered.</strong> {credits.format(c.spare)} credits spare, {percent.format(c.usedShare)} of
@@ -202,7 +207,7 @@ function Row({ label, value, sub }: { label: string; value: string; sub?: string
     <div className="flex items-baseline justify-between gap-3 border-t border-white/5 py-2 first:border-t-0">
       <dt className="text-[11px] leading-snug text-white/60">
         {label}
-        {sub ? <span className="block text-[10px] text-white/40">{sub}</span> : null}
+        {sub ? <span className="block text-[11px] text-white/55">{sub}</span> : null}
       </dt>
       <dd className="shrink-0 font-mono text-xs font-semibold tabular-nums text-white">{value}</dd>
     </div>
@@ -234,7 +239,7 @@ export default function CreatorStackCostCalculator() {
 
   const hf = PRICING.higgsfield
   const el = PRICING.elevenlabs
-  const hfPlan = hf.plans.find((p) => p.id === hfPlanId) ?? hf.plans[1]
+  const hfPlan = hf.plans.find((p) => p.id === hfPlanId) ?? hf.plans[0]
   const videoModel = hf.videoModels.find((m) => m.id === videoModelId) ?? hf.videoModels[0]
   const elPlan = el.plans.find((p) => p.id === elPlanId) ?? el.plans[0]
 
@@ -270,6 +275,13 @@ export default function CreatorStackCostCalculator() {
   )} credits a month${hfCoverage.over > 0 ? `, over by ${credits.format(hfCoverage.over)}` : ''}. ElevenLabs ${elPlan.name}: ${credits.format(
     elNeeded
   )} of ${credits.format(elPlan.creditsPerMonth)} credits a month${elCoverage.over > 0 ? `, over by ${credits.format(elCoverage.over)}` : ''}.`
+
+  // Announce the summary once input settles, not on every keystroke or slider step.
+  const [announced, setAnnounced] = useState(summary)
+  useEffect(() => {
+    const t = window.setTimeout(() => setAnnounced(summary), 600)
+    return () => window.clearTimeout(t)
+  }, [summary])
 
   return (
     <section
@@ -339,7 +351,7 @@ export default function CreatorStackCostCalculator() {
                 Keep rate
               </label>
               <output htmlFor={`${uid}-keep`} className="font-mono text-sm font-semibold tabular-nums text-emerald-300">
-                {keepRate}%
+                {percent.format(keepRate / 100)}
               </output>
             </div>
             <input
@@ -371,7 +383,7 @@ export default function CreatorStackCostCalculator() {
             options={el.plans.map((p) => ({
               id: p.id,
               label: p.name,
-              detail: `${usdWhole.format(p.firstYearUsd)} first year · ${credits.format(p.creditsPerMonth)} cr/mo`,
+              detail: `${usdWhole.format(p.firstYearUsd)}\u00a0first\u00a0year · ${credits.format(p.creditsPerMonth)}\u00a0cr/mo`,
             }))}
           />
           <CountField
@@ -397,7 +409,7 @@ export default function CreatorStackCostCalculator() {
           Results
         </p>
         <p className="sr-only" aria-live="polite" aria-atomic="true">
-          {summary}
+          {announced}
         </p>
 
         <div className="mt-3 grid gap-4 md:grid-cols-2">
@@ -460,14 +472,15 @@ export default function CreatorStackCostCalculator() {
             than the first.
           </p>
         </div>
-        <p className="mt-3 text-[10px] leading-snug text-white/40">
-          Per-generation costs use each plan&apos;s included credits. Credits beyond the plan cost extra and are not priced here.
+        <p className="mt-3 text-[11px] leading-snug text-white/55">
+          Per-generation costs use each plan’s included credits. Credits beyond the plan cost extra and are not priced here.
         </p>
       </div>
 
       <p className="mt-4 text-[11px] leading-snug text-white/50">
-        Source: higgsfield.ai/pricing and elevenlabs.io/pricing, read {PRICING.checkedOn}. Annual Black Friday prices; credit costs per
-        model as published by each vendor.
+        Source: higgsfield.ai/pricing and elevenlabs.io/pricing, read {PRICING.checkedOn}. Annual Black Friday prices, valid until{' '}
+        {PRICING.higgsfieldSaleEnds} (Higgsfield) and {PRICING.elevenlabsSaleEnds} (ElevenLabs); credit costs per model as published by
+        each vendor. Starter is left out because it does not include Seedance 2.5.
       </p>
     </section>
   )
