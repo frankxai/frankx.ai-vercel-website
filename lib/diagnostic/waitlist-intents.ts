@@ -28,6 +28,7 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
   // Launch lists for products whose checkout or download is not open yet.
   'starter-kit': { label: 'System Architect Starter Kit', listType: 'premium-packs' },
   'visual-creation-loop': { label: 'Visual Creation Loop', listType: 'premium-packs' },
+  'generative-creator-os': { label: 'Creator Studio OS', listType: 'premium-packs' },
   'income-blueprint': { label: 'Income Architecture Blueprint', listType: 'premium-packs' },
   'dpi-field-kit': { label: 'DPI Field Kit: Wealth Substrate Pro', listType: 'premium-packs' },
   'agent-fleet-pro': { label: 'Agent Fleet Pro: Turnkey Multi-Agent Mesh', listType: 'premium-packs' },
@@ -67,6 +68,7 @@ export const LAUNCH_LIST_INTENTS: ReadonlySet<string> = new Set([
   'prompt-vault',
   'starter-kit',
   'visual-creation-loop',
+  'generative-creator-os',
   'income-blueprint',
   'dpi-field-kit',
   'agent-fleet-pro',

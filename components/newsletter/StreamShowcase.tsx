@@ -3,6 +3,7 @@
 import { trackWaitlistJoin } from '@/lib/track'
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Mail,
@@ -328,9 +329,17 @@ function StreamCard({
             </div>
           </div>
 
-          {/* Subscribe form */}
+          {/* Stream signup */}
           <AnimatePresence mode="wait">
-            {status === 'success' ? (
+            {stream.id === 'inner-circle' ? (
+              <Link
+                key="interest-list"
+                href="/inner-circle"
+                className="inline-flex min-h-11 w-fit items-center rounded-sm text-sm font-medium text-amber-200 underline decoration-amber-200/40 underline-offset-4 hover:text-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
+              >
+                Get notified when it opens
+              </Link>
+            ) : status === 'success' ? (
               <motion.div
                 key="success"
                 initial={{ opacity: 0, scale: 0.95 }}

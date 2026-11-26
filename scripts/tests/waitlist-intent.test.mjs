@@ -97,6 +97,45 @@ for (const [intent, label] of [['bv-kit', 'Creator BV Kit'], ['prompt-vault', 'P
   })
 }
 
+test('Creator Studio OS waitlist links reach its labelled premium list', async () => {
+  const products = JSON.parse(readFileSync(repoFile('data/products.json'), 'utf8'))
+  const product = products.find((entry) => entry.id === 'generative-creator-os')
+  const ctaImports = {
+    'next/link': { default: 'a' },
+    '@/lib/analytics': {},
+    '@/lib/track': {},
+    '@/lib/products/preview-manifests': { getPreviewManifest: () => undefined },
+    '@/components/products/ProductFileInspector': { default: 'div' },
+  }
+  const ctas = Object.fromEntries(['ProductHero', 'OfferStack', 'FinalCTA'].map((name) => {
+    const path = `components/products/${name}`
+    return [`@/${path}`, loadModule(`${path}.tsx`, ctaImports)]
+  }))
+  const { default: ProductPage } = loadModule('app/products/generative-creator-os/page.tsx', {
+    ...ctas,
+    '@/data/products.json': { default: products },
+    '@/components/products/ProofRail': { default: 'div' },
+    '@/components/products/TransformationList': { default: 'div' },
+    '@/lib/seo': { comingSoonProductStructuredData: () => ({}), createMetadata: (value) => value },
+  })
+  const page = ProductPage()
+  const hrefs = Object.entries(ctas).map(([path, { default: CTA }]) => {
+    const component = findElement(page, (element) => element.type === CTA)
+    assert.ok(component, `${path} must render on the product page`)
+    const link = findElement(CTA(component.props), (element) => element.type === 'a' && element.props.href?.startsWith('/waitlist?'))
+    assert.ok(link, `${path} must link to the waitlist`)
+    return link.props.href
+  })
+  assert.deepEqual(hrefs, Array(3).fill('/waitlist?intent=generative-creator-os'))
+
+  const intent = new URL(hrefs[0], 'https://example.invalid').searchParams.get('intent')
+  const { props, body } = await submitWaitlist(intent)
+  assert.equal(props.intentLabel, product.name)
+  assert.equal(body.intent, product.id)
+  assert.equal(body.listType, 'premium-packs')
+  assert.equal(body.source, '/waitlist')
+})
+
 test('legacy waitlist entry points preserve their current list routing', async () => {
   for (const intent of ['course-creator-business-systems', 'creative-ai-toolkit']) {
     const { body } = await submitWaitlist(intent)
