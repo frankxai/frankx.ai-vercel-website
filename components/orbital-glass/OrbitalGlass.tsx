@@ -19,7 +19,7 @@ import styles from './orbital-glass.module.css'
 export interface OrbitalSatellite {
   id: string
   title: string
-  /** One short line on the chip. Keep it a fact, not a slogan. */
+  /** One short line on the chip, stating one fact. */
   detail?: string
   /**
    * A sentence the lens shows while this chip is hovered or focused. About 60
@@ -100,8 +100,8 @@ export function OrbitalGlass({
   const [paused, setPaused] = useState(false)
   const [activeId, setActiveId] = useState<string | null>(null)
   const motionAllowed = useSyncExternalStore(subscribeMotion, motionAllowedNow, motionAllowedOnServer)
-  // The controller holds the chip elements, so it must be rebuilt when they
-  // change, not only when their count does.
+  // The controller holds the chip elements, so it is rebuilt whenever the
+  // list of ids changes.
   const idsKey = satellites.map((satellite) => satellite.id).join('|')
 
   useEffect(() => {

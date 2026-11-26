@@ -10,14 +10,16 @@
  * Hard rules this file keeps:
  *  - No ancestor of a glass surface sets opacity, filter or mask. Any of those
  *    makes the ancestor a backdrop root and the blur then samples nothing.
- *    Depth is carried by the chip's own surface alpha (--og-a), not opacity.
+ *    Depth comes from the chip's own surface alpha (--og-a). Element opacity
+ *    stays at 1.
  *  - No `transition: all`. The vendored glass transitions `transform`, which
  *    would smooth GSAP's per-frame updates, so chips re-declare transitions.
  *  - box-shadow is inset only. No drop shadow on glass.
  */
 
 .root {
-  container: og-root / inline-size;
+  container-name: og-root;
+  container-type: inline-size;
   position: relative;
   color: var(--liquid-text, rgb(255 255 255 / 0.95));
   --og-focus: color-mix(in srgb, var(--liquid-tint-2) 85%, white);
@@ -77,9 +79,9 @@
   object-fit: cover;
 }
 
-/* A functional scrim, not decoration: it fixes the worst-case backdrop that
-   chip text has to read against and frames the focal point. It is kept light
-   so the photograph stays visible through the glass. */
+/* A functional scrim. It fixes the worst-case backdrop that chip text has to
+   read against and frames the focal point. It is kept light so the photograph
+   stays visible through the glass. */
 .root .veil {
   position: absolute;
   inset: 0;

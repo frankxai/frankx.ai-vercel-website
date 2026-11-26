@@ -14,7 +14,7 @@ export const ORBIT_RX_CQW = 36
 /**
  * Vertical semi-axis, same unit. Sized so a chip on the near or far side
  * clears the lens by a visible gap at ORBIT_MIN_WIDTH. A chip that only grazes
- * the lens reads as a collision, not as depth.
+ * the lens reads as a collision.
  */
 export const ORBIT_RY_CQW = 16
 
@@ -63,7 +63,8 @@ export function wrapPhase(phase: number): number {
  */
 export function restingPhase(index: number, count: number): number {
   if (count <= 0) return 0
-  return wrapPhase(count % 2 === 0 ? (index + 0.5) / count : index / count + 0.25)
+  const step = 1 / count
+  return wrapPhase(count % 2 === 0 ? (index + 0.5) * step : index * step + 0.25)
 }
 
 function smoothstep(t: number): number {

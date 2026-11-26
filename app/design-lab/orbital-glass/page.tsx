@@ -143,29 +143,29 @@ export default async function OrbitalGlassLabPage({ searchParams }: PageProps) {
         <h2 className="text-base font-medium text-white">What this costs</h2>
         <ul className="mt-4 max-w-3xl space-y-3 text-sm leading-relaxed text-white/60">
           <li>
-            <span className="text-white/80">Tier</span> — the ring turns when the container is 960 px or wider and
+            <span className="text-white/80">Tier</span>: the ring turns when the container is 960 px or wider and
             motion is allowed. At that width with reduced motion it holds still. Below it, the six steps become a
             stack.
           </li>
           <li>
-            <span className="text-white/80">Budget</span> — more than 35% of a 90-frame window over 22 ms between
+            <span className="text-white/80">Budget</span>: more than 35% of a 90-frame window over 22 ms between
             frames freezes the ring in place. A browser capped at 30 fps reads as over budget. The glass stays, with
             a lighter blur.
           </li>
           <li>
-            <span className="text-white/80">Pause</span> — hovering or focusing a chip eases the ring to a stop. It
+            <span className="text-white/80">Pause</span>: hovering or focusing a chip eases the ring to a stop. It
             also pauses off-screen, and a visible button pauses it until you resume.
           </li>
           <li>
-            <span className="text-white/80">Motion</span> — GSAP drives CSS custom properties for position and
+            <span className="text-white/80">Motion</span>: GSAP drives CSS custom properties for position and
             surface alpha, plus the backdrop&apos;s transform. No layout properties and no text.
           </li>
           <li>
-            <span className="text-white/80">Payload</span> — no new dependency. GSAP, the liquid tokens and the
+            <span className="text-white/80">Payload</span>: no new dependency. GSAP, the liquid tokens and the
             glass recipe already ship with the site.
           </li>
           <li>
-            <span className="text-white/80">Not applied anywhere yet</span> — this route is the only surface using
+            <span className="text-white/80">Not applied anywhere yet</span>: this route is the only surface using
             the component.
           </li>
         </ul>
