@@ -16,6 +16,7 @@ interface OfferStackProps {
   productId: string
   offer?: ProductOffer
   modules: ProductModule[]
+  modulesTitle?: string
   bonuses?: ProductBonus[]
   pricingTiers?: ProductPricingTier[]
 }
@@ -24,7 +25,7 @@ function isExternal(href: string) {
   return href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')
 }
 
-export default function OfferStack({ productId, offer, modules, bonuses, pricingTiers }: OfferStackProps) {
+export default function OfferStack({ productId, offer, modules, modulesTitle = 'What you receive', bonuses, pricingTiers }: OfferStackProps) {
   const waitlistHref = `/waitlist?intent=${productId}`
   const handleClick = (target: 'primary' | 'secondary' | string, href: string, label?: string) => {
     trackEvent('product_cta_click', {
@@ -45,7 +46,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
     <section className="bg-[#0a0a0b] py-20">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 lg:flex-row">
         <div className="flex-1 space-y-6">
-          <h2 className="text-3xl font-semibold text-white">What you receive</h2>
+          <h2 className="text-3xl font-semibold text-white">{modulesTitle}</h2>
           <div className="grid gap-4">
             {modules.map((module) => (
               <div

@@ -26,8 +26,10 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
   'bv-kit': { label: 'Creator BV Kit', listType: 'premium-packs' },
   'prompt-vault': { label: 'Prompt Vault', listType: 'premium-packs' },
   // Launch lists for products whose checkout or download is not open yet.
+  'command-center-template': { label: 'The Command Center Template', listType: 'premium-packs' },
   'starter-kit': { label: 'System Architect Starter Kit', listType: 'premium-packs' },
   'visual-creation-loop': { label: 'Visual Creation Loop', listType: 'premium-packs' },
+  'generative-creator-os': { label: 'Creator Studio OS', listType: 'premium-packs' },
   'income-blueprint': { label: 'Income Architecture Blueprint', listType: 'premium-packs' },
   'dpi-field-kit': { label: 'DPI Field Kit: Wealth Substrate Pro', listType: 'premium-packs' },
   'agent-fleet-pro': { label: 'Agent Fleet Pro: Turnkey Multi-Agent Mesh', listType: 'premium-packs' },
@@ -43,6 +45,7 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
   'suno-prompt-library': { label: 'Suno Prompt Library Pack', listType: 'premium-packs' },
   '5-suno-prompts': { label: '5 Suno Prompts', listType: 'premium-packs' },
   'vibe-os': { label: 'Vibe OS: Creative State Management', listType: 'premium-packs' },
+  'multi-agent-ops': { label: 'Multi-agent Ops', listType: 'premium-packs' },
   // Product rows in the knowledge-to-offer graph.
   'creative-ai-toolkit': { label: 'Creative AI Toolkit', listType: 'premium-packs' },
   'creation-chronicles': { label: 'Creation Chronicles', listType: 'creation-chronicles' },
@@ -65,8 +68,10 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
 export const LAUNCH_LIST_INTENTS: ReadonlySet<string> = new Set([
   'bv-kit',
   'prompt-vault',
+  'command-center-template',
   'starter-kit',
   'visual-creation-loop',
+  'generative-creator-os',
   'income-blueprint',
   'dpi-field-kit',
   'agent-fleet-pro',
@@ -82,6 +87,7 @@ export const LAUNCH_LIST_INTENTS: ReadonlySet<string> = new Set([
   'suno-prompt-library',
   '5-suno-prompts',
   'vibe-os',
+  'multi-agent-ops',
   'creation-chronicles',
 ])
 

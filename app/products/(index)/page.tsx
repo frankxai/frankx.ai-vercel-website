@@ -274,7 +274,7 @@ export default function ProductsPage() {
           headline,
           description,
           category,
-          badge: p.badge,
+          badge: isWaitlist ? 'Prelaunch' : p.badge,
           price,
           priceDisplay,
           currency,
@@ -416,7 +416,7 @@ export default function ProductsPage() {
               transition={{ duration: shouldReduceMotion ? 0 : 0.2, delay: shouldReduceMotion ? 0 : 0.1 }}
               className="max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
-              Each product lists its files before you get it.
+              Review available products and planned kit outlines.
             </motion.p>
           </div>
         </section>
@@ -469,7 +469,7 @@ export default function ProductsPage() {
 
                         <div className="mb-4 flex-1">
                           <span className="font-mono text-[11px] font-medium tracking-[0.06em] text-emerald-400/80 block mb-1">
-                            Flagship system
+                            {product.badge ?? 'Flagship system'}
                           </span>
                           <h3 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors duration-200 mb-2">
                             {product.name}
@@ -482,7 +482,7 @@ export default function ProductsPage() {
                         {product.highlights.length > 0 && (
                           <div className="mb-6 border-t border-white/5 pt-4">
                             <p className="text-[11px] font-semibold tracking-wider text-slate-400 mb-2.5">
-                              Core deliverables
+                              Scope
                             </p>
                             <ul className="space-y-2">
                               {product.highlights.map((highlight, hIdx) => (
@@ -732,7 +732,7 @@ export default function ProductsPage() {
                           {product.highlights.length > 0 && (
                             <div className="mb-6 border-t border-white/5 pt-4">
                               <p className="text-[11px] font-semibold tracking-wider text-slate-400 mb-2.5">
-                                Core deliverables
+                                Scope
                               </p>
                               <ul className="space-y-2">
                                 {product.highlights.map((highlight, hIdx) => (
@@ -839,8 +839,8 @@ export default function ProductsPage() {
             <div className="space-y-4">
               {[
                 {
-                  q: 'What formats and deliverables are included?',
-                  a: 'Assets are delivered as markdown documents, prompt files, Obsidian vaults or scripts, as listed on each product page.',
+                  q: 'What can I review before joining a launch list?',
+                  a: 'Product pages describe the planned modules and formats. Join a launch list for release updates.',
                 },
                 {
                   q: 'How does digital delivery work?',

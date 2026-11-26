@@ -98,9 +98,7 @@ Swarms fail when:
 - Stakes are high enough that "average of many opinions" is not good enough.
 - Long-running state matters (the swarm has no persistent identity to maintain).
 
-The failure pattern is consistent: more agents, more conflict, no center to resolve it, output that looks coherent but isn't, escalating tool costs, and users who can't tell why the system feels off.
-
-This is what happens to most production agent stacks built on the "more agents" philosophy. Not immediately — early demos look impressive. By month 3, the system is fighting itself in ways nobody can debug.
+Adding agents without a way to settle conflicts can drive up tool costs and leave users with output that looks coherent but feels off. Early demos can impress while those conflicts stay hard to spot and debug.
 
 ## 4. The family pattern
 
@@ -130,19 +128,19 @@ On a cadence, the orchestrator audits:
 - Which predictions ran on stale evidence?
 - Which role assignments need to change?
 
-This is the maintenance pattern that prevents drift. Without it, every governance pattern eventually decays into the same single-voice stack you started with.
+Use the integration loop to spot drift, such as agents repeatedly taking on work outside their roles.
 
 ![The Self-Led Agent Family — five role-typed agents governed by a Self orchestrator, with an integration loop for periodic rebalancing](/images/diagrams/self-led-agent-family.svg)
 
 ## 5. The migration path
 
-Most production stacks today are unintentional swarms — many agents added over time, no explicit governance layer, conflict resolved (or hidden) through emergent dynamics. Migrating to a family architecture doesn't require rebuilding from scratch.
+A stack can become an unintentional swarm as agents are added without explicit rules for resolving conflicts. You can migrate to a family architecture with the agents you already have.
 
 The pragmatic sequence:
 
 1. **Name the orchestrator.** Pick or build the governance layer. Even a thin orchestrator (system prompt + routing logic + decision log) beats no orchestrator.
 2. **Type the existing agents.** Assign each existing agent a role. Some will fit cleanly. Others will turn out to be doing two jobs poorly. The mismatch is information.
-3. **Make role conflict visible.** Add observability so the orchestrator can see when two roles are producing conflicting outputs. Most stacks hide this; expose it.
+3. **Make role conflict visible.** Add observability so the orchestrator can see when two roles are producing conflicting outputs.
 4. **Add an exile tier to memory.** Stop discarding rejected drafts, blocked actions, and painful user signals. Store them deliberately.
 5. **Run the integration loop.** Start with manual cadence (weekly review of the exile tier with the orchestrator). Move to automated cadence once the pattern stabilizes.
 
@@ -179,6 +177,5 @@ For the implementation pattern in detail, see [IFS as an AI Architecture Pattern
 - **Companion:** [AI Agents Need an Inner Family, Not Just a Task List](/blog/ai-agents-inner-family)
 - **Memory layer:** [Memory as Exile: Why AI Systems Need Integration Loops](/blog/memory-as-exile-ai)
 - **Implementation:** [IFS as an AI Architecture Pattern](/guides/ifs-ai-agent-architecture)
-- **Research:** [Self-Led AI Architecture](/research/self-led-ai-architecture)
 - **Series:** [The Architecture of Intelligence](/research/series/architecture-of-intelligence)
 - **Adjacent:** [Multi-Agent Orchestration Patterns 2026](/blog/multi-agent-orchestration-patterns-2026)

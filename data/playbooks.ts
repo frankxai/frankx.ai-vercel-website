@@ -16,6 +16,7 @@ export type PlaybookFormat =
   | 'Open source'
   | 'Comparison'
   | 'Blueprint'
+  | 'Prelaunch waitlist'
   | 'Engagement'
 
 export interface PlaybookItem {
@@ -199,8 +200,14 @@ export const playbookTracks: PlaybookTrack[] = [
     title: 'Go deeper with Frank',
     question: 'When is it worth bringing in a second architect?',
     summary:
-      'The playbooks are free. When the decision is consequential or the system has to be installed into a real business, work with me directly.',
+      'The guides are free. When the decision is consequential or the system has to be installed into a real business, work with me directly.',
     items: [
+      {
+        title: 'Multi-agent Ops',
+        href: '/waitlist?intent=multi-agent-ops',
+        description: 'A premium pack for running multiple AI agents as a team. Join the waitlist for launch updates.',
+        format: 'Prelaunch waitlist',
+      },
       {
         title: 'Workshops',
         href: '/workshops',
@@ -265,6 +272,6 @@ export const playbookFaqs = [
   {
     question: 'Are the playbooks free?',
     answer:
-      'Yes. The guides, hubs, skill tools, and open-source repositories are free. Workshops, the AI Architecture Studio, the Foundry, and the Founder\u2019s Circle are paid engagements for teams that want direct help.',
+      'The guides, hubs, skill tools, and open-source repositories are free. Multi-agent Ops is a planned premium pack with a waitlist. Workshops, the AI Architecture Studio, the Foundry, and the Founder\u2019s Circle are paid engagements for teams that want direct help.',
   },
 ]

@@ -1,14 +1,10 @@
 import Image from 'next/image'
 import Script from 'next/script'
 import products from '@/data/products.json'
-import { waitlistBonuses } from '@/lib/products/waitlist-public'
 import { comingSoonProductStructuredData, createMetadata } from '@/lib/seo'
 import ProductHero from '@/components/products/ProductHero'
-import TransformationList from '@/components/products/TransformationList'
-import ProofRail from '@/components/products/ProofRail'
 import OfferStack from '@/components/products/OfferStack'
 import FinalCTA from '@/components/products/FinalCTA'
-import CaseStudyGrid from '@/components/products/CaseStudyGrid'
 import type { ProductRecord } from '@/types/products'
 
 const product = products.find((entry) => entry.id === 'creative-ai-toolkit') as ProductRecord
@@ -17,56 +13,40 @@ if (!product) {
   throw new Error('Creative AI Toolkit product record missing')
 }
 
-export const metadata = createMetadata({
-  title: `${product.name} | FrankX.ai`,
-  description: product.promise,
-  path: `/products/${product.slug}`,
-  keywords: [
-    'creative ai toolkit',
-    'ai prompts',
-    'workflow automation',
-    'frankx ai products',
-    'agentic systems'
-  ]
-})
+const title = 'Creative AI Toolkit waitlist | FrankX'
+const description =
+  'Review the planned Creative AI Toolkit modules for prompts and workflow recipes. Join the FrankX waitlist for release updates.'
 
-const structuredData = comingSoonProductStructuredData(product.name, product.promise)
+export const metadata = {
+  ...createMetadata({
+    title,
+    description,
+    path: `/products/${product.slug}`,
+    keywords: ['creative ai toolkit', 'ai prompts', 'workflow recipes', 'frankx ai products'],
+  }),
+  title: { absolute: title },
+}
+
+const structuredData = comingSoonProductStructuredData(product.name, description)
 
 export default function CreativeAIToolkitPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-slate-100">
-      <div className="relative mb-8 overflow-hidden rounded-2xl">
-        <div className="relative aspect-[21/9]">
-          <Image src="/images/blog/agentic-creator-os-hero.png" alt="Creative AI Toolkit" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
-        </div>
-        <div className="absolute bottom-0 left-0 p-6">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-emerald-400/60 mb-2">Products</p>
-          <h1 className="text-2xl font-bold text-white">Creative AI Toolkit</h1>
-        </div>
+      <div className="relative mb-8 aspect-[21/9] overflow-hidden rounded-2xl">
+        <Image src="/images/blog/agentic-creator-os-hero.png" alt="" fill className="object-cover" />
       </div>
 
       <ProductHero
         productId={product.analyticsId ?? product.id}
         badge={product.badge}
-        title={product.headline}
+        title={product.name}
         subtitle={product.subheadline}
-        promise={product.promise}
       />
-
-      <TransformationList items={product.transformation} title="Immediate Transformation" />
-
-      <ProofRail stats={product.socialProof.stats} quotes={product.socialProof.quotes} />
 
       <OfferStack
         productId={product.analyticsId ?? product.id}
         modules={product.modules}
-        bonuses={waitlistBonuses(product.bonuses)}
-      />
-
-      <CaseStudyGrid
-        productId={product.analyticsId ?? product.id}
-        caseStudies={product.caseStudies ?? []}
+        modulesTitle="Planned modules"
       />
 
       <section className="bg-[#0a0a0b] py-16">
@@ -87,8 +67,8 @@ export default function CreativeAIToolkitPage() {
 
       <FinalCTA
         productId={product.analyticsId ?? product.id}
-        title="Join the Intelligence Revolution"
-        description="Install the operating system to orchestrate AI with soul and precision."
+        title="Get release updates"
+        description="Join the waitlist for Creative AI Toolkit release updates."
         primaryLabel={product.offer.ctaPrimary}
         primaryHref={product.offer.ctaPrimaryHref}
         primaryTracking={product.offer.ctaPrimaryTracking}
