@@ -21,9 +21,9 @@ export function ArticleStewardship({
   const humanLead = stewardship.humanLead || authorName || 'Frank Riemer'
   const verifiedAt = stewardship.verifiedAt || lastUpdated
   const note = stewardship.note?.trim() || DEFAULT_STEWARDSHIP_NOTE
-  const roles = stewardship.roles ?? []
-  const models = stewardship.models ?? []
-  const skills = stewardship.skills ?? []
+  const roles = Array.isArray(stewardship.roles) ? stewardship.roles : []
+  const models = Array.isArray(stewardship.models) ? stewardship.models : []
+  const skills = Array.isArray(stewardship.skills) ? stewardship.skills : []
 
   return (
     <aside
