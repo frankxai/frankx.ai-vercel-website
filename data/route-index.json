@@ -1,15 +1,15 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1089,
+    "total": 1092,
     "aliases": 61,
     "byType": {
       "core": 24,
-      "section": 448,
+      "section": 450,
       "community": 17,
       "tool": 79,
       "static": 15,
-      "blog": 282,
+      "blog": 283,
       "research": 23,
       "guide": 47,
       "library": 89,
@@ -1373,12 +1373,14 @@
     },
     {
       "href": "/blog/ai-video-generation-2026-sora-runway-kling-veo",
-      "title": "AI Video Generation in 2026: Sora, Runway, Kling, Veo",
-      "description": "In-depth benchmark of 2026 video models: Sora, Runway Gen-3, Kling 1.5, and Google Veo for cinematic creator workflows.",
+      "title": "AI Video in 2026: Runway, Kling, Veo and Sora Alternatives",
+      "description": "Compare Runway Gen-4.5, Kling 4.0, Google Veo 3.1, Seedance, Luma and Pika by shot, controls and API cost. Includes Sora’s shutdown and a worked budget.",
       "tags": [
         "AI Video",
         "Sora",
         "Runway",
+        "Kling",
+        "Google Veo",
         "Video Production",
         "Generative AI"
       ],
@@ -1766,6 +1768,21 @@
         "creator-systems",
         "multi-agent-systems",
         "marketing-automation"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Higgsfield and ElevenLabs Black Friday 2026 deals",
+      "description": "Higgsfield Black Friday 2026: up to 75% off annual plans and ElevenLabs Creator at $99 for the first year. Prices, cost per output, and other AI deals.",
+      "tags": [
+        "Black Friday",
+        "Higgsfield",
+        "ElevenLabs",
+        "AI Video",
+        "Voice AI",
+        "AI CoE",
+        "Creator Tools"
       ],
       "type": "blog"
     },
@@ -4798,7 +4815,8 @@
         "checkout",
         "cancel"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/checkout/success",
@@ -4807,7 +4825,8 @@
         "checkout",
         "success"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/chronicle",
@@ -4826,6 +4845,14 @@
       "href": "/coaching",
       "title": "Coaching",
       "type": "community"
+    },
+    {
+      "href": "/cohorts",
+      "title": "Cohorts",
+      "tags": [
+        "cohorts"
+      ],
+      "type": "section"
     },
     {
       "href": "/collectibles",
@@ -9212,6 +9239,14 @@
       "title": "Presence",
       "tags": [
         "presence"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/pricing",
+      "title": "Pricing",
+      "tags": [
+        "pricing"
       ],
       "type": "section"
     },
