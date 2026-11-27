@@ -98,7 +98,8 @@ export function OrbitalGlass({
   const controllerRef = useRef<OrbitController | null>(null)
   const pausedRef = useRef(false)
   const [paused, setPaused] = useState(false)
-  const [activeId, setActiveId] = useState<string | null>(null)
+  const [hoveredId, setHoveredId] = useState<string | null>(null)
+  const [focusedId, setFocusedId] = useState<string | null>(null)
   const motionAllowed = useSyncExternalStore(subscribeMotion, motionAllowedNow, motionAllowedOnServer)
   // The controller holds the chip elements, so it is rebuilt whenever the
   // list of ids changes.
@@ -127,6 +128,9 @@ export function OrbitalGlass({
     '--og-lens': `${ORBIT_LENS_CQW}cqw`,
   }
 
+  // The pointer wins while it is on a chip, otherwise the focused chip. Each
+  // interaction ends only its own claim, so leaving one never erases the other.
+  const activeId = hoveredId ?? focusedId
   const activeIndex = activeId === null ? -1 : satellites.findIndex((satellite) => satellite.id === activeId)
   const active = activeIndex >= 0 ? satellites[activeIndex] : null
   const reading = Boolean(active?.body)
@@ -204,10 +208,10 @@ export function OrbitalGlass({
                 className={styles.slot}
                 data-og-slot
                 style={slotVars}
-                onPointerEnter={() => setActiveId(satellite.id)}
-                onPointerLeave={() => setActiveId(null)}
-                onFocus={() => setActiveId(satellite.id)}
-                onBlur={() => setActiveId(null)}
+                onPointerEnter={() => setHoveredId(satellite.id)}
+                onPointerLeave={() => setHoveredId((current) => (current === satellite.id ? null : current))}
+                onFocus={() => setFocusedId(satellite.id)}
+                onBlur={() => setFocusedId((current) => (current === satellite.id ? null : current))}
               >
                 {satellite.href && isInternal(satellite.href) ? (
                   <Link href={satellite.href} className={chipClass}>

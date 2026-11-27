@@ -338,8 +338,22 @@ test('the ring states its own order, and the lens reads out the active step for 
   assert.match(component, /<ol className=\{styles\.ring\}/)
   assert.match(component, /className=\{styles\.chipIndex\} aria-hidden="true"/)
   assert.match(component, /className=\{styles\.reader\} aria-hidden="true"/)
-  assert.match(component, /onFocus=\{\(\) => setActiveId\(satellite\.id\)\}/)
   assert.match(css, /@container og-root \(min-width: 960px\)[\s\S]*\.lens\[data-reading\] \.reader\s*\{\s*display:\s*block/)
+})
+
+test('the lens readout tracks hover and focus separately, so leaving one keeps the other', () => {
+  // One shared id let a pointer leaving a chip erase the readout of a chip that
+  // was still focused. The controller already held the ring for hover and focus
+  // separately; the readout has to follow the same rule.
+  assert.doesNotMatch(component, /setActiveId/, 'a single shared id cannot keep both interactions')
+  assert.match(component, /const \[hoveredId, setHoveredId\] = useState<string \| null>\(null\)/)
+  assert.match(component, /const \[focusedId, setFocusedId\] = useState<string \| null>\(null\)/)
+  assert.match(component, /const activeId = hoveredId \?\? focusedId/, 'hover wins while the pointer is on a chip, otherwise the focused chip')
+  assert.match(component, /onPointerEnter=\{\(\) => setHoveredId\(satellite\.id\)\}/)
+  assert.match(component, /onFocus=\{\(\) => setFocusedId\(satellite\.id\)\}/)
+  // Each interaction ends only its own claim, and only if it is still the current one.
+  assert.match(component, /onPointerLeave=\{\(\) => setHoveredId\(\(current\) => \(current === satellite\.id \? null : current\)\)\}/)
+  assert.match(component, /onBlur=\{\(\) => setFocusedId\(\(current\) => \(current === satellite\.id \? null : current\)\)\}/)
 })
 
 test('copy on the lab page describes what the component actually does at each width', () => {
