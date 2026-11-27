@@ -109,6 +109,8 @@ test('private and internal surfaces are excluded and say noindex in their own me
   const surfaces = [
     ['/alea', 'app/alea/layout.tsx', '/alea/musik/klavier'],
     ['/business-plan', 'app/business-plan/page.tsx'],
+    ['/checkout/cancel', 'app/checkout/cancel/page.tsx'],
+    ['/checkout/success', 'app/checkout/success/page.tsx'],
     ['/design-lab', 'app/design-lab/layout.tsx', '/design-lab/nature/variants'],
     ['/experiments', 'app/experiments/page.tsx'],
     ['/familie/geschichte', 'app/familie/geschichte/layout.tsx', '/familie/geschichte/riemer-linie'],
