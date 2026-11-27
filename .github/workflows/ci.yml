@@ -63,7 +63,7 @@ env:
 jobs:
   dependency-audit:
     name: Dependency audit
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -84,7 +84,7 @@ jobs:
     # An authorized maintainer can opt a draft into full verification before a
     # synchronize/re-run event, without enabling automatic draft AI reviews.
     if: github.event_name != 'pull_request' || (github.event.pull_request.state == 'open' && (github.event.pull_request.draft == false || contains(github.event.pull_request.labels.*.name, 'ci:verify')))
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.CI_RUNNER == 'blacksmith' && github.event.repository.fork == false && (github.event_name == 'push' || github.event.pull_request.head.repo.id == github.event.repository.id) && 'blacksmith-4vcpu-ubuntu-2404' || 'ubuntu-latest' }}
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -208,6 +208,14 @@ jobs:
       - name: Private ops production authorization
         run: node scripts/qa/ops-authorization.mjs
         timeout-minutes: 2
+
+      - name: Cache Puppeteer Chrome browser
+        uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5
+        with:
+          path: ~/.cache/puppeteer
+          key: ${{ runner.os }}-puppeteer-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-puppeteer-
 
       - name: Install the reader QA browser
         # The GitHub-hosted Ubuntu image already provides Chrome's OS libraries.
