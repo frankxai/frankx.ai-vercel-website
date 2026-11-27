@@ -17,8 +17,8 @@ import {
 } from '@/lib/blog'
 import { contentLicense, createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
-import JsonLd, { buildFAQPageData } from '@/components/seo/JsonLd'
-import BodyFaqSchema from '@/components/blog/BodyFaqSchema'
+import JsonLd from '@/components/seo/JsonLd'
+import BodyFaqSchema, { FrontmatterFaqSchema } from '@/components/blog/BodyFaqSchema'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import HeroImage from '@/components/ui/HeroImage'
 import RelatedQualities from '@/components/qualities/RelatedQualities'
@@ -179,9 +179,8 @@ export default async function BlogPostPage({
       ) : post.faqSource === 'body' && post.content ? (
         <BodyFaqSchema source={post.content} id={`blog-faq-${post.slug}`} />
       ) : frontmatterFaqs.length > 0 ? (
-        <JsonLd
-          type="FAQPage"
-          data={buildFAQPageData(frontmatterFaqs)}
+        <FrontmatterFaqSchema
+          faqs={frontmatterFaqs}
           id={`blog-faq-${post.slug}`}
         />
       ) : null}
