@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="t d" font-family="Inter, 'Helvetica Neue', Arial, sans-serif">
 <title id="t">What the Black Friday discount buys per output</title>
-<desc id="d">Cost per generation at annual Black Friday prices: a Nano Banana Pro image on Higgsfield Ultra 3K costs $0.03; a 5-second 720p Seedance 2.5 clip costs $0.53 on Ultra 3K and $0.88 on Plus; a narration minute costs about $0.07 on ElevenLabs Creator and $0.06 on Pro. If you keep one clip in four, the Seedance clip on Ultra costs about $2.10 per accepted clip.</desc>
+<desc id="d">Cost per generation at annual Black Friday prices: a Nano Banana Pro image on Higgsfield Ultra 3K costs $0.03; a 5-second 720p Seedance 2.5 clip costs $0.47 on Ultra 3K and $0.88 on Plus; a narration minute costs about $0.07 on ElevenLabs Creator and $0.06 on Pro. If you keep one clip in four, the Seedance clip on Ultra costs about $1.87 per accepted clip.</desc>
 <rect width="1200" height="720" fill="#0b1220"/>
 <text x="60" y="58" fill="#67e8f9" font-size="15" font-weight="600" letter-spacing="3">COST PER OUTPUT · ANNUAL BLACK FRIDAY PRICES</text>
 <text x="60" y="96" fill="#f8fafc" font-size="26" font-weight="700">The price per generation is not the price per published asset</text>
@@ -17,12 +17,12 @@
 <text x="60" y="140" fill="#94a3b8" font-size="14" font-weight="600" letter-spacing="2">PER GENERATION</text>
 <text x="60" y="188" fill="#e2e8f0" font-size="18" font-weight="600">Nano Banana Pro image</text>
 <text x="60" y="210" fill="#94a3b8" font-size="15">Higgsfield Ultra 3K</text>
-<rect x="520" y="180" width="7.5" height="26" rx="3" fill="#f59e0b"/>
+<rect x="520" y="180" width="6.7" height="26" rx="3" fill="#f59e0b"/>
 <text x="539.5" y="199" fill="#f8fafc" font-size="16" font-family="'JetBrains Mono', monospace">$0.03 / image</text>
 <text x="60" y="250" fill="#e2e8f0" font-size="18" font-weight="600">Seedance 2.5 clip, 720p, 5 s</text>
 <text x="60" y="272" fill="#94a3b8" font-size="15">Higgsfield Ultra 3K</text>
-<rect x="520" y="242" width="132.5" height="26" rx="3" fill="#f59e0b"/>
-<text x="664.5" y="261" fill="#f8fafc" font-size="16" font-family="'JetBrains Mono', monospace">$0.53 / clip</text>
+<rect x="520" y="242" width="116.7" height="26" rx="3" fill="#f59e0b"/>
+<text x="648.7" y="261" fill="#f8fafc" font-size="16" font-family="'JetBrains Mono', monospace">$0.47 / clip</text>
 <text x="60" y="312" fill="#e2e8f0" font-size="18" font-weight="600">Seedance 2.5 clip, 720p, 5 s</text>
 <text x="60" y="334" fill="#94a3b8" font-size="15">Higgsfield Plus</text>
 <rect x="520" y="304" width="220.0" height="26" rx="3" fill="#f59e0b"/>
@@ -40,10 +40,10 @@
 <text x="60" y="548" fill="#e2e8f0" font-size="18" font-weight="600">Seedance 2.5 clip, 720p, 5 s</text>
 <text x="60" y="570" fill="#94a3b8" font-size="15">Higgsfield Ultra 3K</text>
 <defs><pattern id="h" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V8" stroke="#f59e0b" stroke-width="2" stroke-opacity=".55"/></pattern></defs>
-<rect x="520" y="540" width="132.5" height="26" rx="3" fill="#f59e0b"/>
-<rect x="652.5" y="540" width="392.5" height="26" fill="url(#h)" stroke="#f59e0b" stroke-opacity=".6"/>
-<text x="1057.0" y="559" fill="#f8fafc" font-size="16" font-family="'JetBrains Mono', monospace">≈ $2.10</text>
-<text x="664.5" y="590" fill="#94a3b8" font-size="14">three rejected generations paid for</text>
+<rect x="520" y="540" width="116.7" height="26" rx="3" fill="#f59e0b"/>
+<rect x="636.7" y="540" width="350.0" height="26" fill="url(#h)" stroke="#f59e0b" stroke-opacity=".6"/>
+<text x="998.7" y="559" fill="#f8fafc" font-size="16" font-family="'JetBrains Mono', monospace">≈ $1.87</text>
+<text x="648.7" y="590" fill="#94a3b8" font-size="14">three rejected generations paid for</text>
 <text x="60" y="676" fill="#64748b" font-size="14">Annual Black Friday prices and each vendor’s published credit costs, read on the vendor pages on November 26, 2026.</text>
 <text x="60" y="698" fill="#64748b" font-size="14">ElevenLabs minutes assume the included monthly credits are used for narration. Track your own keep rate.</text>
 </svg>

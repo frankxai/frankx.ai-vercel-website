@@ -702,5 +702,60 @@
     "status": "unverifiable",
     "evidence_quote": "",
     "correction": "Opinion; keep as judgment or soften to 'has changed hands more than once this year'."
+  },
+  {
+    "id": "C65",
+    "claim": "Higgsfield Black Friday plan sale: up to 75% off, ends 2026-11-28 00:00 UTC (new phase; the 69% phase ended 2026-11-27)",
+    "location": "Higgsfield Black Friday 2026",
+    "source_url": "https://higgsfield.ai/pricing.md",
+    "source_type": "primary",
+    "verified_at": "2026-11-27T00:40:00Z",
+    "status": "verified",
+    "evidence_quote": "Black Friday sale: up to 75% off, ends 2026-11-28 00:00 UTC.",
+    "correction": null
+  },
+  {
+    "id": "C66",
+    "claim": "Ultra 3K annual: $40/mo ($480/yr), list $129/mo",
+    "location": "Higgsfield plan table",
+    "source_url": "https://higgsfield.ai/pricing.md",
+    "source_type": "primary",
+    "verified_at": "2026-11-27T00:40:00Z",
+    "status": "verified",
+    "evidence_quote": "Ultra | 3,000 | ... | $40/mo, billed $480 yearly (list price $129/mo)",
+    "correction": null
+  },
+  {
+    "id": "C67",
+    "claim": "Plus annual unchanged at $30/mo ($360/yr), 1,200 credits",
+    "location": "Higgsfield plan table",
+    "source_url": "https://higgsfield.ai/pricing.md",
+    "source_type": "primary",
+    "verified_at": "2026-11-27T00:40:00Z",
+    "status": "verified",
+    "evidence_quote": "Plus | 1,200 | ... | $30/mo, billed $360 yearly (list price $59/mo)",
+    "correction": null
+  },
+  {
+    "id": "C68",
+    "claim": "Ultra 9K annual: $99/mo, list $387/mo",
+    "location": "Higgsfield plan table",
+    "source_url": "https://higgsfield.ai/pricing.md",
+    "source_type": "primary",
+    "verified_at": "2026-11-27T00:40:00Z",
+    "status": "verified",
+    "evidence_quote": "Ultra | 9,000 | ... | $99/mo, billed $1,188 yearly (list price $387/mo)",
+    "correction": null
+  },
+  {
+    "id": "C69",
+    "claim": "Recomputed: Ultra 3K $0.0133/credit; Seedance 2.5 720p clip $0.47; one kept in four $1.87; Nano Banana Pro image $0.03",
+    "location": "Cost per output",
+    "source_url": "https://higgsfield.ai/pricing.md",
+    "source_type": "primary",
+    "verified_at": "2026-11-27T00:40:00Z",
+    "status": "verified",
+    "evidence_quote": "Derived: 480/36000=0.01333; x35=0.467; x4=1.867; x2=0.027",
+    "correction": null
   }
 ]
