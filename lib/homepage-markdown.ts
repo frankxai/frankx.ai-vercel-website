@@ -42,17 +42,17 @@ const faqs = [
   {
     question: 'What is FrankX?',
     answer:
-      "FrankX is Frank Riemer's independent living studio: a public home for music, agent systems, books, experiments, and field notes. It is a personal project and is not affiliated with, endorsed by, or sponsored by Oracle.",
+      "FrankX is Frank Riemer's independent Amsterdam studio for music, books, imagined worlds and practical experiments with AI. It is a personal project and is not affiliated with, endorsed by, or sponsored by Oracle.",
   },
   {
     question: 'Where should I begin?',
     answer:
-      'Begin with what you need now. Listen for music, Learn for practical pathways, Build for open systems, Reflect for books and questions, Acquire for paid tools, or Explore for the wider FrankX ecosystem.',
+      'Play Star Show Us to hear the music. Open the Mini Me storyboard to see how a character travels from one frame to the next. The architecture guides are a good place to begin a technical project.',
   },
   {
     question: 'How does music fit into FrankX?',
     answer:
-      "Music is one of the studio's living practices and a form of creative AI experimentation. Listening is optional; the architecture, systems, products, books, and wider ecosystem are equally direct ways into the work.",
+      "Frank writes songs and makes records with friends. The music catalog is open to listeners. The production guides are for anyone who wants to try making a track of their own.",
   },
   {
     question: 'Can I use the systems and tools?',
@@ -114,13 +114,13 @@ export function homepageMarkdown(): string {
 
   return `# FrankX
 
-Frank Riemer's living studio for music, agent systems, books, field notes, and practical tools.
+Frank Riemer's Amsterdam studio for music, books, illustrated worlds and field guides for people making things with AI.
 
-Build intelligence that compounds.
+Build a world you can hear.
 
-Explore your highest-leverage AI move.
+Songs, stories and experiments from Amsterdam.
 
-AI architecture, agentic systems, and creator intelligence. Frank Riemer is an AI architect and musician, and a former AI architect at Oracle. FrankX is a personal project and is not affiliated with Oracle.
+Frank makes music with friends, writes books and imagines worlds like Arcanea. Listen to Star Show Us or explore his work in architecture. He previously worked at Oracle. FrankX is a personal project and is not affiliated with Oracle.
 
 ## Ways to go further
 

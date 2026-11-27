@@ -8,9 +8,9 @@ import { createMetadata, siteConfig } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
 
 export const metadata = createMetadata({
-  title: 'FrankX — AI Architect & Musician · Building Sovereign Systems',
+  title: 'FrankX · Music, books and imagined worlds by Frank Riemer',
   description:
-    "Frank Riemer's living studio for music, agent systems, books, field notes, and practical tools.",
+    "Frank Riemer's Amsterdam studio for music, books, illustrated worlds and field guides for people making things with AI.",
   keywords: [
     'Frank Riemer',
     'FrankX',
@@ -43,7 +43,7 @@ const websiteSchema = {
   alternateName: ['FrankX.AI', 'Frank Riemer'],
   url: siteUrl,
   description:
-    'FrankX is Frank Riemer\'s living studio for music, agent systems, books, field notes, and practical tools.',
+    'Frank Riemer’s independent studio in Amsterdam, home to original music, books, illustrated worlds and field guides.',
   publisher: {
     '@id': `${siteUrl}/#organization`,
   },
@@ -96,24 +96,24 @@ const organizationSchema = {
   },
   sameAs: [socialLinks.linkedin, socialLinks.github, socialLinks.suno],
   description:
-    'FrankX publishes music, inspectable creator systems, agent-workflow labs, books, and practical field notes from Frank Riemer.',
+    'Frank Riemer shares original music, books, storyboards and practical field guides from Amsterdam.',
 }
 
 const homepageFAQs = [
   {
     question: 'What is FrankX?',
     answer:
-      'FrankX is Frank Riemer\'s independent living studio: a public home for music, agent systems, books, experiments, and field notes. It is a personal project and is not affiliated with, endorsed by, or sponsored by Oracle.',
+      'FrankX is Frank Riemer\'s independent Amsterdam studio for music, books, imagined worlds and practical experiments with AI. It is a personal project and is not affiliated with, endorsed by, or sponsored by Oracle.',
   },
   {
     question: 'Where should I begin?',
     answer:
-      'Begin with what you need now. Listen for music, Learn for practical pathways, Build for open systems, Reflect for books and questions, Acquire for paid tools, or Explore for the wider FrankX ecosystem.',
+      'Play Star Show Us to hear the music. Open the Mini Me storyboard to see how a character travels from one frame to the next. The architecture guides are a good place to begin a technical project.',
   },
   {
     question: 'How does music fit into FrankX?',
     answer:
-      'Music is one of the studio\'s living practices and a form of creative AI experimentation. Listening is optional; the architecture, systems, products, books, and wider ecosystem are equally direct ways into the work.',
+      'Frank writes songs and makes records with friends. The music catalog is open to listeners. The production guides are for anyone who wants to try making a track of their own.',
   },
   {
     question: 'Can I use the systems and tools?',

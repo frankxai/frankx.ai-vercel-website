@@ -165,37 +165,18 @@ function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
 // HERO
 // ============================================================================
 
-// Both H1 lines rotate off one index, so there is one clock and one timer. The
-// Jan-2026 hero ran two desynced timers and crossed every verb with every tail;
-// that was only a problem because its tails were not all valid objects of its
-// verbs ("Create your golden age"). Here the constraint is explicit instead:
-//
-//   EVERY tail must read correctly after EVERY verb.
-//
-// Hold that and the cross-product is a feature — 3 x 7 gives 21 headlines from
-// ten lines of copy. Add to either list weekly; the only rule beyond the one
-// above is to keep the two lengths COPRIME, or the pairing repeats early
-// (4 verbs x 8 tails yields 8 combinations, not 32).
-//
-// Index 0 of each is the anchor headline: what SSR, no-JS, and reduced-motion
-// render, so it never depends on hydration. Keep the aria-label on the H1 in
-// sync with it.
-//
-// The verb owns line one alone so a width change (Build vs Architect differ by
-// ~120px at 7xl) only moves that line's ragged right edge; "your" rides on line
-// two with the noun it belongs to.
+// The first verb and tail form the server-rendered, accessible headline.
+// Both lists rotate on one timer. Keep their lengths coprime and read every
+// pairing aloud before changing them.
 const heroVerbs = ['Build', 'Design', 'Architect']
 const heroTails = [
-  'intelligence that compounds.',
-  'your AI Center of Excellence.',
-  'your AI Operating System.',
-  'your Agentic Creator OS.',
-  'your GenCreator OS.',
-  'your Music Production OS.',
-  'your Second Brain.',
+  'a world you can hear.',
+  'a studio for late nights.',
+  'a home for your stories.',
+  'a room for a loud idea.',
 ]
 
-const heroOutcome = 'Explore your highest-leverage AI move.'
+const heroOutcome = 'Songs, stories and experiments from Amsterdam.'
 
 // Serif italic on a two-stop emerald→cyan wash is the premium tell.
 const heroVerbClassName =
@@ -222,7 +203,7 @@ let splitTextRegistered = false
 // the column width and the loaded font, and because the lists are meant to grow
 // weekly — a hard-coded min-height would silently go stale on the first
 // addition. Candidates are measured in a detached probe instead of being
-// rendered invisibly in the H1, which would put all seven tails into the
+// rendered invisibly in the H1, which would put every candidate into the
 // heading's text content for crawlers.
 function useReservedLineHeight(
   ref: React.RefObject<HTMLSpanElement | null>,
@@ -420,12 +401,12 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
             <div className="space-y-6">
               <div className="inline-flex max-w-full min-w-0 flex-wrap items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="min-w-0 text-sm text-white/60">AI architecture · agentic systems · creator intelligence</span>
+                <span className="min-w-0 text-sm text-white/60">Frank Riemer · Amsterdam</span>
               </div>
 
               <h1
                 className="max-w-3xl font-display text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-6xl"
-                aria-label="Build intelligence that compounds."
+                aria-label="Build a world you can hear."
               >
                 <SplitFlipLine
                   text={heroVerbs[phraseIndex % heroVerbs.length]}
@@ -469,9 +450,8 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               </div>
 
               <p className="max-w-2xl text-lg leading-8 text-white/60 md:text-xl">
-                Most AI advice is noise. Here are the working blueprints: personal Centers of
-                Excellence and agentic operating systems—built
-                with your own keys on your own terms.
+                I make music with friends, write books and dream up worlds like Arcanea.
+                If you want a way into mine, start with Star Show Us. That violin has a whole dance floor to itself.
               </p>
 
               <div className="flex items-center gap-3">
@@ -485,11 +465,11 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
             {/* CTAs — full-width on 320px; labels wrap instead of overflowing the viewport */}
             <div className="flex w-full min-w-0 max-w-full flex-col gap-3 sm:flex-row sm:gap-4">
               <Link
-                href="/ai-architecture"
-                onClick={() => trackEvent('hero_cta_click', { type: 'ai_architecture' })}
+                href="#featured-track"
+                onClick={() => trackEvent('hero_cta_click', { type: 'featured_track' })}
                 className="group flex h-auto min-h-14 w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-black px-5 py-3 text-center text-base font-medium leading-snug shadow-lg shadow-emerald-500/20 transition-[background-color,box-shadow,transform] hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] sm:w-auto sm:px-8 sm:py-0"
               >
-                <span className="text-balance">Inspect the Blueprints</span>
+                <span className="text-balance">Open the record player</span>
                 <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
               </Link>
 
@@ -498,7 +478,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                 onClick={() => trackEvent('hero_cta_click', { type: 'ecosystem' })}
                 className="flex h-auto min-h-14 w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-center text-base font-medium leading-snug text-white backdrop-blur-xl transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] sm:w-auto sm:px-8 sm:py-0"
               >
-                <span className="text-balance">Map the Ecosystem</span>
+                <span className="text-balance">Meet the projects</span>
               </Link>
             </div>
 
@@ -509,7 +489,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
           </div>
 
           {/* Right Column — Featured Track */}
-          <div className="relative order-2 min-w-0">
+          <div id="featured-track" className="relative order-2 min-w-0 scroll-mt-24">
             <p className="mb-4 font-mono text-[11px] tracking-[0.08em] text-emerald-300/60 lg:hidden">
               Latest studio release · optional listening
             </p>

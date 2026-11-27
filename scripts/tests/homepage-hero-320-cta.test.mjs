@@ -22,7 +22,7 @@ test('hero identity column and CTAs shrink inside a 320px viewport', async () =>
   )
   assert.match(
     homepage,
-    /href="\/ai-architecture"[\s\S]{0,220}className="group flex h-auto min-h-14 w-full min-w-0 max-w-full items-center/,
+    /href="#featured-track"[\s\S]{0,220}className="group flex h-auto min-h-14 w-full min-w-0 max-w-full items-center/,
   )
   assert.match(
     homepage,
@@ -30,14 +30,14 @@ test('hero identity column and CTAs shrink inside a 320px viewport', async () =>
   )
   assert.doesNotMatch(
     homepage,
-    /href="\/ai-architecture"[\s\S]{0,220}className="group inline-flex h-auto min-h-14 w-full items-center/,
+    /href="#featured-track"[\s\S]{0,220}className="group inline-flex h-auto min-h-14 w-full items-center/,
   )
 })
 
-test('the music chip gutter includes Map the Ecosystem', async () => {
+test('the music chip gutter includes Meet the projects', async () => {
   const css = await readRepoFile('app/qa-overlay-clearance.css')
   assert.match(
     css,
-    /\.order-1\.min-w-0 a\[href='\/ai-architecture'\],\s*\.order-1\.min-w-0 a\[href='\/ecosystem'\]/,
+    /\.order-1\.min-w-0 a\[href='#featured-track'\],\s*\.order-1\.min-w-0 a\[href='\/ecosystem'\]/,
   )
 })
