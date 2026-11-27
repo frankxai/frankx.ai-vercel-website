@@ -9,10 +9,10 @@
     "optionalWebsiteCdnMirror": "Vercel Blob images/blog/<slug>/<filename>",
     "humanCampaignLibrary": "Google Drive: FrankX Visual OS / Blog Social Assets / 2026-06 Premium Batch",
     "counts": {
-      "posts": 43,
-      "assets": 172,
-      "heroes": 43,
-      "socialCards": 129
+      "posts": 44,
+      "assets": 187,
+      "heroes": 44,
+      "socialCards": 132
     },
     "publicCreativeRule": "Public social cards show title, angle, concise deck, and FrankX.ai only; quality scoring remains internal metadata.",
     "googleDriveExport": {
@@ -3870,6 +3870,778 @@
       "localPath": "public/images/social/blog/the-great-transition-build-your-own-business/portrait.png",
       "publicUrl": "/images/social/blog/the-great-transition-build-your-own-business/portrait.png",
       "vercelBlobKey": null
+    },
+    {
+      "slug": "black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Black Friday 2026: why I'm buying Higgsfield and ElevenLabs",
+      "contentType": "blog-post",
+      "qualityScore": null,
+      "qualityTier": "flagship",
+      "reviewStatus": "pending-independent-review",
+      "deploymentStatus": "draft",
+      "socialAngle": "builder",
+      "postUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "googleDriveUrl": null,
+      "fallbackPath": null,
+      "socialTitle": "Why I'm buying Higgsfield and ElevenLabs",
+      "googleDriveStatus": "not-uploaded",
+      "vercelBlobKey": null,
+      "spectrum": "soul",
+      "prompt": "A cinematic wide 16:9 film still of a quiet working studio in an old canal house at blue hour. On a long, worn oak worktable stand exactly two instruments facing each other: on the right, a compact cinema camera on a short tripod; beside it, a large-diaphragm studio microphone on a desk stand with its cable trailing across the wood. Between them lie a closed black notebook, a pencil and a ceramic mug. One small warm tungsten desk lamp is the only practical light, pooling amber on the table; the rest of the room falls into deep navy and slate shadow, never pure black. A tall window at the far right shows soft out-of-focus lights reflected on canal water. Composition: the instruments and lamp occupy the right 55 percent of the frame; the left 45 percent is an uncluttered, softly textured dark plaster wall with gentle falloff, left empty for a headline. Low eye-level camera, 40mm lens, shallow depth of field, restrained documentary realism, muted cinematic grade, fine 35mm film grain. The scene contains no people, no screens, no glowing lines, no holograms, no floating graphics, no text, no letters, no numbers, no logos or brand markings on any object.",
+      "sourceGeneratedFile": "elevenlabs-flow:BSRpkMqSvfneu6Z4rbV8/generation:gCB2pEBMZKWnU2fp6on4",
+      "assetType": "hero",
+      "localPath": "public/images/blog/black-friday-2026/black-friday-2026-studio-hero.webp",
+      "publicUrl": "/images/blog/black-friday-2026/black-friday-2026-studio-hero.webp",
+      "rights": "AI-generated illustration; generated in the FrankX ElevenLabs workspace; no third-party marks, text or likeness",
+      "provenance": {
+        "kind": "ai-generated-illustration",
+        "model": "gemini-3-pro-image",
+        "platform": "ElevenLabs Creative (flows)",
+        "flowId": "BSRpkMqSvfneu6Z4rbV8",
+        "sessionId": "W6JQIWhakYLT3yWQcAIx",
+        "generationId": "gCB2pEBMZKWnU2fp6on4",
+        "sourceDimensions": [
+          1376,
+          768
+        ],
+        "sourceSha256": "07529c9c9633ea1dda3cf4a18bdefcb65c751a48616041e2c9f156a7e6bc7db5",
+        "generatedOn": "2026-11-26",
+        "prompt": "A cinematic wide 16:9 film still of a quiet working studio in an old canal house at blue hour. On a long, worn oak worktable stand exactly two instruments facing each other: on the right, a compact cinema camera on a short tripod; beside it, a large-diaphragm studio microphone on a desk stand with its cable trailing across the wood. Between them lie a closed black notebook, a pencil and a ceramic mug. One small warm tungsten desk lamp is the only practical light, pooling amber on the table; the rest of the room falls into deep navy and slate shadow, never pure black. A tall window at the far right shows soft out-of-focus lights reflected on canal water. Composition: the instruments and lamp occupy the right 55 percent of the frame; the left 45 percent is an uncluttered, softly textured dark plaster wall with gentle falloff, left empty for a headline. Low eye-level camera, 40mm lens, shallow depth of field, restrained documentary realism, muted cinematic grade, fine 35mm film grain. The scene contains no people, no screens, no glowing lines, no holograms, no floating graphics, no text, no letters, no numbers, no logos or brand markings on any object.",
+        "containsLogos": false,
+        "containsReadableText": false,
+        "containsFaces": false,
+        "transform": "Lanczos upscale 1376x768 to 2400x1350 (center crop 18px), unsharp mask r1.8/55%, monochrome grain sigma 2.6, webp q82",
+        "sha256": "3221545afad4f88c51a720407be9b1a105a9d9452824ffe0d8ee5811484502a1",
+        "dimensions": [
+          2400,
+          1350
+        ]
+      },
+      "designReview": "Selected hero (candidate C of 4). Studio Film direction from CREATIVE-REFERENCE-LOCK-2026-11; headline-free because the blog route renders the H1 and description beside post.image. Upscaled 1.74x from a 1K source: acceptable at article width, inspect at 100% before any print or 4K use."
+    },
+    {
+      "slug": "black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Black Friday 2026: why I'm buying Higgsfield and ElevenLabs",
+      "contentType": "blog-post",
+      "qualityScore": null,
+      "qualityTier": "flagship",
+      "reviewStatus": "pending-independent-review",
+      "deploymentStatus": "draft",
+      "socialAngle": "builder",
+      "postUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "googleDriveUrl": null,
+      "fallbackPath": null,
+      "socialTitle": "Why I'm buying Higgsfield and ElevenLabs",
+      "googleDriveStatus": "not-uploaded",
+      "vercelBlobKey": null,
+      "spectrum": "soul",
+      "prompt": "A cinematic wide 16:9 film still of a quiet working studio in an old canal house at blue hour. On a long, worn oak worktable stand exactly two instruments facing each other: on the right, a compact cinema camera on a short tripod; beside it, a large-diaphragm studio microphone on a desk stand with its cable trailing across the wood. Between them lie a closed black notebook, a pencil and a ceramic mug. One small warm tungsten desk lamp is the only practical light, pooling amber on the table; the rest of the room falls into deep navy and slate shadow, never pure black. A tall window at the far right shows soft out-of-focus lights reflected on canal water. Composition: the instruments and lamp occupy the right 55 percent of the frame; the left 45 percent is an uncluttered, softly textured dark plaster wall with gentle falloff, left empty for a headline. Low eye-level camera, 40mm lens, shallow depth of field, restrained documentary realism, muted cinematic grade, fine 35mm film grain. The scene contains no people, no screens, no glowing lines, no holograms, no floating graphics, no text, no letters, no numbers, no logos or brand markings on any object.",
+      "sourceGeneratedFile": "elevenlabs-flow:BSRpkMqSvfneu6Z4rbV8/generation:gCB2pEBMZKWnU2fp6on4",
+      "assetType": "social-wide",
+      "localPath": "public/images/blog/black-friday-2026/black-friday-2026-studio-og.png",
+      "publicUrl": "/images/blog/black-friday-2026/black-friday-2026-studio-og.png",
+      "rights": "AI-generated illustration plate + original typography; vendor names set in type, no logos",
+      "provenance": {
+        "kind": "ai-generated-illustration",
+        "model": "gemini-3-pro-image",
+        "platform": "ElevenLabs Creative (flows)",
+        "flowId": "BSRpkMqSvfneu6Z4rbV8",
+        "sessionId": "W6JQIWhakYLT3yWQcAIx",
+        "generationId": "gCB2pEBMZKWnU2fp6on4",
+        "sourceDimensions": [
+          1376,
+          768
+        ],
+        "sourceSha256": "07529c9c9633ea1dda3cf4a18bdefcb65c751a48616041e2c9f156a7e6bc7db5",
+        "generatedOn": "2026-11-26",
+        "prompt": "A cinematic wide 16:9 film still of a quiet working studio in an old canal house at blue hour. On a long, worn oak worktable stand exactly two instruments facing each other: on the right, a compact cinema camera on a short tripod; beside it, a large-diaphragm studio microphone on a desk stand with its cable trailing across the wood. Between them lie a closed black notebook, a pencil and a ceramic mug. One small warm tungsten desk lamp is the only practical light, pooling amber on the table; the rest of the room falls into deep navy and slate shadow, never pure black. A tall window at the far right shows soft out-of-focus lights reflected on canal water. Composition: the instruments and lamp occupy the right 55 percent of the frame; the left 45 percent is an uncluttered, softly textured dark plaster wall with gentle falloff, left empty for a headline. Low eye-level camera, 40mm lens, shallow depth of field, restrained documentary realism, muted cinematic grade, fine 35mm film grain. The scene contains no people, no screens, no glowing lines, no holograms, no floating graphics, no text, no letters, no numbers, no logos or brand markings on any object.",
+        "containsLogos": false,
+        "containsReadableText": false,
+        "containsFaces": false,
+        "transform": "Plate composited in Playwright HTML with Poppins 600 (OFL, repo public/education/fonts), Inter and JetBrains Mono; left shade gradient for contrast; 256-colour palette PNG",
+        "compositeLayers": [
+          "plate: candidate C",
+          "shade gradient",
+          "type: eyebrow, headline, offer line, date line"
+        ],
+        "copyClaims": [
+          "Higgsfield up to 69% off annual plans",
+          "ElevenLabs up to 55% off the first year",
+          "prices read on vendor pages Nov 26, 2026"
+        ],
+        "sha256": "6a93498981c0203b2199855df9b48d9de4125b26cfd81e867804031897060486",
+        "dimensions": [
+          1200,
+          630
+        ]
+      },
+      "designReview": "OG 1200x630 for frontmatter ogImage. Offer percentages match the article and the vendor pages read on 2026-11-26."
+    },
+    {
+      "slug": "black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Black Friday 2026: why I'm buying Higgsfield and ElevenLabs",
+      "contentType": "blog-post",
+      "qualityScore": null,
+      "qualityTier": "flagship",
+      "reviewStatus": "pending-independent-review",
+      "deploymentStatus": "draft",
+      "socialAngle": "builder",
+      "postUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "googleDriveUrl": null,
+      "fallbackPath": null,
+      "socialTitle": "Why I'm buying Higgsfield and ElevenLabs",
+      "googleDriveStatus": "not-uploaded",
+      "vercelBlobKey": null,
+      "spectrum": "soul",
+      "prompt": "A cinematic wide 16:9 film still of a quiet working studio in an old canal house at blue hour. On a long, worn oak worktable stand exactly two instruments facing each other: on the right, a compact cinema camera on a short tripod; beside it, a large-diaphragm studio microphone on a desk stand with its cable trailing across the wood. Between them lie a closed black notebook, a pencil and a ceramic mug. One small warm tungsten desk lamp is the only practical light, pooling amber on the table; the rest of the room falls into deep navy and slate shadow, never pure black. A tall window at the far right shows soft out-of-focus lights reflected on canal water. Composition: the instruments and lamp occupy the right 55 percent of the frame; the left 45 percent is an uncluttered, softly textured dark plaster wall with gentle falloff, left empty for a headline. Low eye-level camera, 40mm lens, shallow depth of field, restrained documentary realism, muted cinematic grade, fine 35mm film grain. The scene contains no people, no screens, no glowing lines, no holograms, no floating graphics, no text, no letters, no numbers, no logos or brand markings on any object.",
+      "sourceGeneratedFile": "elevenlabs-flow:BSRpkMqSvfneu6Z4rbV8/generation:gCB2pEBMZKWnU2fp6on4",
+      "assetType": "social-portrait",
+      "localPath": "public/images/blog/black-friday-2026/black-friday-2026-studio-mobile.webp",
+      "publicUrl": "/images/blog/black-friday-2026/black-friday-2026-studio-mobile.webp",
+      "rights": "AI-generated illustration plate + original typography; vendor names set in type, no logos",
+      "provenance": {
+        "kind": "ai-generated-illustration",
+        "model": "gemini-3-pro-image",
+        "platform": "ElevenLabs Creative (flows)",
+        "flowId": "BSRpkMqSvfneu6Z4rbV8",
+        "sessionId": "W6JQIWhakYLT3yWQcAIx",
+        "generationId": "gCB2pEBMZKWnU2fp6on4",
+        "sourceDimensions": [
+          1376,
+          768
+        ],
+        "sourceSha256": "07529c9c9633ea1dda3cf4a18bdefcb65c751a48616041e2c9f156a7e6bc7db5",
+        "generatedOn": "2026-11-26",
+        "prompt": "A cinematic wide 16:9 film still of a quiet working studio in an old canal house at blue hour. On a long, worn oak worktable stand exactly two instruments facing each other: on the right, a compact cinema camera on a short tripod; beside it, a large-diaphragm studio microphone on a desk stand with its cable trailing across the wood. Between them lie a closed black notebook, a pencil and a ceramic mug. One small warm tungsten desk lamp is the only practical light, pooling amber on the table; the rest of the room falls into deep navy and slate shadow, never pure black. A tall window at the far right shows soft out-of-focus lights reflected on canal water. Composition: the instruments and lamp occupy the right 55 percent of the frame; the left 45 percent is an uncluttered, softly textured dark plaster wall with gentle falloff, left empty for a headline. Low eye-level camera, 40mm lens, shallow depth of field, restrained documentary realism, muted cinematic grade, fine 35mm film grain. The scene contains no people, no screens, no glowing lines, no holograms, no floating graphics, no text, no letters, no numbers, no logos or brand markings on any object.",
+        "containsLogos": false,
+        "containsReadableText": false,
+        "containsFaces": false,
+        "transform": "4:5 crop of the plate under a void type band, composited in Playwright; webp q82",
+        "compositeLayers": [
+          "plate: candidate C (right-hand crop)",
+          "top and bottom fades",
+          "type"
+        ],
+        "copyClaims": [
+          "Higgsfield up to 69% off annual plans",
+          "ElevenLabs up to 55% off the first year",
+          "prices read Nov 26, 2026"
+        ],
+        "sha256": "49b4413375530d54a0a963a8d503abe5b0210c703f69cb8b02757c7a0af374e2",
+        "dimensions": [
+          1080,
+          1350
+        ]
+      },
+      "designReview": "Mobile and social portrait crop, 1080x1350."
+    },
+    {
+      "slug": "black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Black Friday 2026: why I'm buying Higgsfield and ElevenLabs",
+      "contentType": "blog-post",
+      "qualityScore": null,
+      "qualityTier": "flagship",
+      "reviewStatus": "pending-independent-review",
+      "deploymentStatus": "draft",
+      "socialAngle": "builder",
+      "postUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "googleDriveUrl": null,
+      "fallbackPath": null,
+      "socialTitle": "Why I'm buying Higgsfield and ElevenLabs",
+      "googleDriveStatus": "not-uploaded",
+      "vercelBlobKey": null,
+      "spectrum": "tech",
+      "prompt": null,
+      "sourceGeneratedFile": null,
+      "assetType": "infographic",
+      "localPath": "public/images/blog/black-friday-2026/cost-per-output-black-friday-2026.svg",
+      "publicUrl": "/images/blog/black-friday-2026/cost-per-output-black-friday-2026.svg",
+      "rights": "original",
+      "provenance": {
+        "kind": "original-infographic",
+        "dataSource": "Article table \"What the discount buys per output\" (vendor prices and credit costs read 2026-11-26)",
+        "tool": "hand-authored SVG (Python generator)",
+        "sha256": "7fffc3c446bdc9814d53c53c093524418b897a2e2106c8d4af960da11a312597",
+        "dimensions": null
+      },
+      "designReview": "Chapter visual for \"What the discount buys per output\". Every value is taken from the article table; the hatched segment shows the article's keep-one-in-four example."
+    },
+    {
+      "slug": "black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Black Friday 2026: why I'm buying Higgsfield and ElevenLabs",
+      "contentType": "blog-post",
+      "qualityScore": null,
+      "qualityTier": "flagship",
+      "reviewStatus": "pending-independent-review",
+      "deploymentStatus": "draft",
+      "socialAngle": "builder",
+      "postUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "googleDriveUrl": null,
+      "fallbackPath": null,
+      "socialTitle": "Why I'm buying Higgsfield and ElevenLabs",
+      "googleDriveStatus": "not-uploaded",
+      "vercelBlobKey": null,
+      "spectrum": "tech",
+      "prompt": null,
+      "sourceGeneratedFile": null,
+      "assetType": "composite",
+      "localPath": "public/images/blog/black-friday-2026/black-friday-2026-ai-stack-hero.webp",
+      "publicUrl": "/images/blog/black-friday-2026/black-friday-2026-ai-stack-hero.webp",
+      "rights": "composite: third-party screenshots, editorial use + original typography",
+      "provenance": {
+        "kind": "composite",
+        "compositeLayers": [
+          "higgsfield-pricing-black-friday-2026.webp",
+          "elevenlabs-pricing-black-friday-2026.webp",
+          "type"
+        ],
+        "sourceUrls": [
+          "https://higgsfield.ai/pricing",
+          "https://elevenlabs.io/pricing"
+        ],
+        "capturedOn": "2026-11-26",
+        "sha256": "d68e8ed71a8b6f92c60f878271e9748f6db5724cd0387d7783b1f3c6bd0fb16e",
+        "dimensions": [
+          2400,
+          1350
+        ]
+      },
+      "designReview": "Previous cover. Recommended to keep as the in-body proof figure after the disclosure, since it carries the real pricing pages."
+    },
+    {
+      "slug": "black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Black Friday 2026: why I'm buying Higgsfield and ElevenLabs",
+      "contentType": "blog-post",
+      "qualityScore": null,
+      "qualityTier": "flagship",
+      "reviewStatus": "pending-independent-review",
+      "deploymentStatus": "draft",
+      "socialAngle": "builder",
+      "postUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "googleDriveUrl": null,
+      "fallbackPath": null,
+      "socialTitle": "Why I'm buying Higgsfield and ElevenLabs",
+      "googleDriveStatus": "not-uploaded",
+      "vercelBlobKey": null,
+      "spectrum": "tech",
+      "prompt": null,
+      "sourceGeneratedFile": null,
+      "assetType": "social-wide",
+      "localPath": "public/images/blog/black-friday-2026/black-friday-2026-ai-stack-og.png",
+      "publicUrl": "/images/blog/black-friday-2026/black-friday-2026-ai-stack-og.png",
+      "rights": "composite: third-party screenshots, editorial use + original typography",
+      "provenance": {
+        "kind": "composite",
+        "derivedFrom": "black-friday-2026-ai-stack-hero.webp",
+        "sourceUrls": [
+          "https://higgsfield.ai/pricing",
+          "https://elevenlabs.io/pricing"
+        ],
+        "capturedOn": "2026-11-26",
+        "note": "1200x675, not the 1200x630 OG standard",
+        "sha256": "d1d9c5adeee106309c076c8848714837fe87f333c8458dc1d237fa6222b231a9",
+        "dimensions": [
+          1200,
+          675
+        ]
+      },
+      "designReview": "Superseded by black-friday-2026-studio-og.png once the author sets ogImage; keep or delete at integration."
+    },
+    {
+      "slug": "black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Black Friday 2026: why I'm buying Higgsfield and ElevenLabs",
+      "contentType": "blog-post",
+      "qualityScore": null,
+      "qualityTier": "flagship",
+      "reviewStatus": "pending-independent-review",
+      "deploymentStatus": "draft",
+      "socialAngle": "builder",
+      "postUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "googleDriveUrl": null,
+      "fallbackPath": null,
+      "socialTitle": "Why I'm buying Higgsfield and ElevenLabs",
+      "googleDriveStatus": "not-uploaded",
+      "vercelBlobKey": null,
+      "spectrum": null,
+      "prompt": null,
+      "sourceGeneratedFile": null,
+      "assetType": "screenshot",
+      "localPath": "public/images/blog/black-friday-2026/higgsfield-pricing-black-friday-2026.webp",
+      "publicUrl": "/images/blog/black-friday-2026/higgsfield-pricing-black-friday-2026.webp",
+      "rights": "third-party-screenshot, editorial use",
+      "provenance": {
+        "kind": "third-party-screenshot",
+        "sourceUrl": "https://higgsfield.ai/pricing",
+        "capturedOn": "2026-11-26",
+        "capturedVia": "Firecrawl server-side screenshot (storage.googleapis.com download)",
+        "subject": "Higgsfield pricing page with Black Friday 69% off",
+        "transform": "cropped and encoded to 1440x900 webp",
+        "sha256": "406d30bb22479199986fa4f314489910806dfa2fa31b6c0a49c865f9fd1865fb",
+        "dimensions": [
+          1440,
+          900
+        ]
+      },
+      "designReview": "Product proof."
+    },
+    {
+      "slug": "black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Black Friday 2026: why I'm buying Higgsfield and ElevenLabs",
+      "contentType": "blog-post",
+      "qualityScore": null,
+      "qualityTier": "flagship",
+      "reviewStatus": "pending-independent-review",
+      "deploymentStatus": "draft",
+      "socialAngle": "builder",
+      "postUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "googleDriveUrl": null,
+      "fallbackPath": null,
+      "socialTitle": "Why I'm buying Higgsfield and ElevenLabs",
+      "googleDriveStatus": "not-uploaded",
+      "vercelBlobKey": null,
+      "spectrum": null,
+      "prompt": null,
+      "sourceGeneratedFile": null,
+      "assetType": "screenshot",
+      "localPath": "public/images/blog/black-friday-2026/elevenlabs-pricing-black-friday-2026.webp",
+      "publicUrl": "/images/blog/black-friday-2026/elevenlabs-pricing-black-friday-2026.webp",
+      "rights": "third-party-screenshot, editorial use",
+      "provenance": {
+        "kind": "third-party-screenshot",
+        "sourceUrl": "https://elevenlabs.io/pricing",
+        "capturedOn": "2026-11-26",
+        "capturedVia": "Firecrawl server-side screenshot (storage.googleapis.com download)",
+        "subject": "ElevenLabs Black Friday pricing page",
+        "transform": "cropped and encoded to 1440x900 webp",
+        "sha256": "8b18195592a59026ec75f1f797418afe3d6f3c6aaaca4f82ce84f2f9e7417cf1",
+        "dimensions": [
+          1440,
+          900
+        ]
+      },
+      "designReview": "Product proof."
+    },
+    {
+      "slug": "black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Black Friday 2026: why I'm buying Higgsfield and ElevenLabs",
+      "contentType": "blog-post",
+      "qualityScore": null,
+      "qualityTier": "flagship",
+      "reviewStatus": "pending-independent-review",
+      "deploymentStatus": "draft",
+      "socialAngle": "builder",
+      "postUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "googleDriveUrl": null,
+      "fallbackPath": null,
+      "socialTitle": "Why I'm buying Higgsfield and ElevenLabs",
+      "googleDriveStatus": "not-uploaded",
+      "vercelBlobKey": null,
+      "spectrum": null,
+      "prompt": null,
+      "sourceGeneratedFile": null,
+      "assetType": "screenshot",
+      "localPath": "public/images/blog/black-friday-2026/higgsfield-home-black-friday-2026.webp",
+      "publicUrl": "/images/blog/black-friday-2026/higgsfield-home-black-friday-2026.webp",
+      "rights": "third-party-screenshot, editorial use",
+      "provenance": {
+        "kind": "third-party-screenshot",
+        "sourceUrl": "https://higgsfield.ai",
+        "capturedOn": "2026-11-26",
+        "capturedVia": "Firecrawl server-side screenshot (storage.googleapis.com download)",
+        "subject": "Higgsfield home page with Black Friday banner",
+        "transform": "cropped and encoded to 1440x900 webp",
+        "sha256": "802e4b7886c015e9a62854e647317c039e69e2aeb9df4d0a0ffcbe5f5f3be9e2",
+        "dimensions": [
+          1440,
+          900
+        ]
+      },
+      "designReview": "Product proof."
+    },
+    {
+      "slug": "black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Black Friday 2026: why I'm buying Higgsfield and ElevenLabs",
+      "contentType": "blog-post",
+      "qualityScore": null,
+      "qualityTier": "flagship",
+      "reviewStatus": "pending-independent-review",
+      "deploymentStatus": "draft",
+      "socialAngle": "builder",
+      "postUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "googleDriveUrl": null,
+      "fallbackPath": null,
+      "socialTitle": "Why I'm buying Higgsfield and ElevenLabs",
+      "googleDriveStatus": "not-uploaded",
+      "vercelBlobKey": null,
+      "spectrum": null,
+      "prompt": null,
+      "sourceGeneratedFile": null,
+      "assetType": "screenshot",
+      "localPath": "public/images/blog/black-friday-2026/elevencreative-home-2026.webp",
+      "publicUrl": "/images/blog/black-friday-2026/elevencreative-home-2026.webp",
+      "rights": "third-party-screenshot, editorial use",
+      "provenance": {
+        "kind": "third-party-screenshot",
+        "sourceUrl": "https://elevenlabs.io/creative",
+        "capturedOn": "2026-11-26",
+        "capturedVia": "Firecrawl server-side screenshot (storage.googleapis.com download)",
+        "subject": "ElevenCreative landing page",
+        "transform": "cropped and encoded to 1440x900 webp",
+        "sha256": "8a44ddccf17d8d453ef8cd84adfa89adae4549b8621cacb986902bec97975561",
+        "dimensions": [
+          1440,
+          900
+        ]
+      },
+      "designReview": "Product proof."
+    },
+    {
+      "slug": "black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Black Friday 2026: why I'm buying Higgsfield and ElevenLabs",
+      "contentType": "blog-post",
+      "qualityScore": null,
+      "qualityTier": "flagship",
+      "reviewStatus": "pending-independent-review",
+      "deploymentStatus": "draft",
+      "socialAngle": "builder",
+      "postUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "googleDriveUrl": null,
+      "fallbackPath": null,
+      "socialTitle": "Why I'm buying Higgsfield and ElevenLabs",
+      "googleDriveStatus": "not-uploaded",
+      "vercelBlobKey": null,
+      "spectrum": "tech",
+      "prompt": null,
+      "sourceGeneratedFile": null,
+      "assetType": "diagram",
+      "localPath": "public/images/blog/black-friday-2026/ai-coe-creative-stack.svg",
+      "publicUrl": "/images/blog/black-friday-2026/ai-coe-creative-stack.svg",
+      "rights": "original",
+      "provenance": {
+        "kind": "original-diagram",
+        "tool": "hand-authored SVG",
+        "sha256": "b8fa7a6f144ad2b44c00c7988e48f3c229382d96a05a2390670f1ab2e29cb529",
+        "dimensions": null
+      },
+      "designReview": "Chapter diagram for the personal AI CoE section."
+    },
+    {
+      "slug": "black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Higgsfield and ElevenLabs Black Friday 2026 deals",
+      "contentType": "blog-post",
+      "qualityScore": null,
+      "qualityTier": "flagship",
+      "reviewStatus": "pending-independent-review",
+      "deploymentStatus": "draft",
+      "socialAngle": "builder",
+      "postUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "googleDriveUrl": null,
+      "fallbackPath": null,
+      "socialTitle": "Why I’m buying big on picture & sound",
+      "googleDriveStatus": "not-uploaded",
+      "vercelBlobKey": null,
+      "spectrum": "soul",
+      "prompt": "Cinematic 16:9 movie-poster background plate, absolutely no text, no letters, no logos. A private screening room converted into a creator's studio at night: deep navy velvet walls, a single warm projector beam crossing from upper left, a vintage cinema film camera on a tripod on the left and a studio condenser microphone on a stand on the right, facing each other like two lead actors under a narrow spotlight on a dark oak stage floor. Behind them a tall window shows an Amsterdam canal at blue hour with soft reflections. Palette: midnight navy, warm amber key light, a whisper of cyan rim light. Anamorphic lens look, shallow depth of field, fine 35mm grain, premium theatrical restraint.",
+      "sourceGeneratedFile": "elevenlabs-flow:BSRpkMqSvfneu6Z4rbV8/generation:qvB5FLhPh3SkNy314aEf",
+      "assetType": "hero",
+      "localPath": "public/images/blog/black-friday-2026/black-friday-2026-cinema-header.webp",
+      "publicUrl": "/images/blog/black-friday-2026/black-friday-2026-cinema-header.webp",
+      "rights": "AI-generated plate plus original layout; Composited official marks as separate layers: Claude, Google Gemini and ElevenLabs from Simple Icons (CC0 path data; trademarks remain with owners); OpenAI wordmark and xAI mark from the repo's verified brand files; Higgsfield glyph taken from higgsfield.ai header markup (animation mask removed); OpenArt and Grok names set in type. Editorial use, no endorsement implied. Frank Omega: canonical public/images/mascot/frank-omega-pointing-v1.png, background removed with birefnet-v2 (ElevenLabs generation f3Q3Zyh5iKS2h8wkihAO); character pixels unchanged, not regenerated.",
+      "provenance": {
+        "kind": "composite",
+        "sources": [
+          {
+            "kind": "ai-generated-plate",
+            "model": "gpt-image-2.6-sunburst",
+            "platform": "ElevenLabs Creative (flows)",
+            "flowId": "BSRpkMqSvfneu6Z4rbV8",
+            "sessionId": "7yBqZEFXzC1ngYtWyesd",
+            "generationId": "qvB5FLhPh3SkNy314aEf",
+            "sourceDimensions": [
+              1280,
+              720
+            ],
+            "sourceSha256": "35a0e7e771065770b0835d3a66734fb694ddb42d9ef7dde2a28301db86da99e9",
+            "generatedOn": "2026-11-27",
+            "prompt": "Cinematic 16:9 movie-poster background plate, absolutely no text, no letters, no logos. A private screening room converted into a creator's studio at night: deep navy velvet walls, a single warm projector beam crossing from upper left, a vintage cinema film camera on a tripod on the left and a studio condenser microphone on a stand on the right, facing each other like two lead actors under a narrow spotlight on a dark oak stage floor. Behind them a tall window shows an Amsterdam canal at blue hour with soft reflections. Palette: midnight navy, warm amber key light, a whisper of cyan rim light. Anamorphic lens look, shallow depth of field, fine 35mm grain, premium theatrical restraint. Keep the left 40 percent of the frame darker and calm for a title, and the bottom 20 percent dark and even for a credit block."
+          },
+          {
+            "kind": "canonical-character-cutout",
+            "source": "public/images/mascot/frank-omega-pointing-v1.png",
+            "operation": "background removal only (birefnet-v2-bg-removal)",
+            "platform": "ElevenLabs Creative (flows)",
+            "flowId": "BSRpkMqSvfneu6Z4rbV8",
+            "sessionId": "gxqAJDhvX1jC7AtufiSK",
+            "generationId": "f3Q3Zyh5iKS2h8wkihAO",
+            "sourceSha256": "e9b90195b7d07e4a85b14cef7d505d8b62dfc772ea0b623e4c759064b5293939",
+            "note": "character pixels unchanged; not regenerated"
+          }
+        ],
+        "layout": {
+          "kind": "original-layout",
+          "author": "Claude (HTML composition rendered with Playwright, deviceScaleFactor 2)",
+          "fonts": "Poppins ExtraBold/SemiBold, Playfair Display Italic, Inter, JetBrains Mono (google/fonts, OFL)",
+          "marks": "Claude, Google Gemini, ElevenLabs: Simple Icons SVG path data (CC0; trademarks with owners). OpenAI wordmark: public/images/brands/openai.svg. xAI mark: public/images/logos/xai.svg. Higgsfield glyph: higgsfield.ai header markup, mask removed. Grok and OpenArt names set in type."
+        }
+      },
+      "designReview": "Cinema header: GPT Image 2.6 plate (ElevenLabs flow BSRpkMqSvfneu6Z4rbV8, generation qvB5FLhPh3SkNy314aEf) composed in HTML by Claude with eyebrow, credit block and Frank Omega; no headline because the route renders the H1.",
+      "containsLogos": true,
+      "containsReadableText": true,
+      "containsFaces": false,
+      "transform": "HTML composition (Playwright, deviceScaleFactor 2), site fonts Poppins/Playfair Display/Inter/JetBrains Mono from google/fonts",
+      "sha256": "5e3d8310219db62addd36b4b0b93cdf617393c7d2bc1d168b0df47698e131af5",
+      "dimensions": [
+        2400,
+        1350
+      ]
+    },
+    {
+      "slug": "black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Higgsfield and ElevenLabs Black Friday 2026 deals",
+      "contentType": "blog-post",
+      "qualityScore": null,
+      "qualityTier": "flagship",
+      "reviewStatus": "pending-independent-review",
+      "deploymentStatus": "draft",
+      "socialAngle": "builder",
+      "postUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "googleDriveUrl": null,
+      "fallbackPath": null,
+      "socialTitle": "Why I’m buying big on picture & sound",
+      "googleDriveStatus": "not-uploaded",
+      "vercelBlobKey": null,
+      "spectrum": "soul",
+      "prompt": "Cinematic 16:9 movie-poster background plate, absolutely no text, no letters, no logos. A private screening room converted into a creator's studio at night: deep navy velvet walls, a single warm projector beam crossing from upper left, a vintage cinema film camera on a tripod on the left and a studio condenser microphone on a stand on the right, facing each other like two lead actors under a narrow spotlight on a dark oak stage floor. Behind them a tall window shows an Amsterdam canal at blue hour with soft reflections. Palette: midnight navy, warm amber key light, a whisper of cyan rim light. Anamorphic lens look, shallow depth of field, fine 35mm grain, premium theatrical restraint.",
+      "sourceGeneratedFile": "elevenlabs-flow:BSRpkMqSvfneu6Z4rbV8/generation:qvB5FLhPh3SkNy314aEf",
+      "assetType": "social-card",
+      "localPath": "public/images/blog/black-friday-2026/black-friday-2026-cinema-og.jpg",
+      "publicUrl": "/images/blog/black-friday-2026/black-friday-2026-cinema-og.jpg",
+      "rights": "AI-generated plate plus original layout; Composited official marks as separate layers: Claude, Google Gemini and ElevenLabs from Simple Icons (CC0 path data; trademarks remain with owners); OpenAI wordmark and xAI mark from the repo's verified brand files; Higgsfield glyph taken from higgsfield.ai header markup (animation mask removed); OpenArt and Grok names set in type. Editorial use, no endorsement implied. Frank Omega: canonical public/images/mascot/frank-omega-pointing-v1.png, background removed with birefnet-v2 (ElevenLabs generation f3Q3Zyh5iKS2h8wkihAO); character pixels unchanged, not regenerated.",
+      "provenance": {
+        "kind": "composite",
+        "sources": [
+          {
+            "kind": "ai-generated-plate",
+            "model": "gpt-image-2.6-sunburst",
+            "platform": "ElevenLabs Creative (flows)",
+            "flowId": "BSRpkMqSvfneu6Z4rbV8",
+            "sessionId": "7yBqZEFXzC1ngYtWyesd",
+            "generationId": "qvB5FLhPh3SkNy314aEf",
+            "sourceDimensions": [
+              1280,
+              720
+            ],
+            "sourceSha256": "35a0e7e771065770b0835d3a66734fb694ddb42d9ef7dde2a28301db86da99e9",
+            "generatedOn": "2026-11-27",
+            "prompt": "Cinematic 16:9 movie-poster background plate, absolutely no text, no letters, no logos. A private screening room converted into a creator's studio at night: deep navy velvet walls, a single warm projector beam crossing from upper left, a vintage cinema film camera on a tripod on the left and a studio condenser microphone on a stand on the right, facing each other like two lead actors under a narrow spotlight on a dark oak stage floor. Behind them a tall window shows an Amsterdam canal at blue hour with soft reflections. Palette: midnight navy, warm amber key light, a whisper of cyan rim light. Anamorphic lens look, shallow depth of field, fine 35mm grain, premium theatrical restraint. Keep the left 40 percent of the frame darker and calm for a title, and the bottom 20 percent dark and even for a credit block."
+          },
+          {
+            "kind": "canonical-character-cutout",
+            "source": "public/images/mascot/frank-omega-pointing-v1.png",
+            "operation": "background removal only (birefnet-v2-bg-removal)",
+            "platform": "ElevenLabs Creative (flows)",
+            "flowId": "BSRpkMqSvfneu6Z4rbV8",
+            "sessionId": "gxqAJDhvX1jC7AtufiSK",
+            "generationId": "f3Q3Zyh5iKS2h8wkihAO",
+            "sourceSha256": "e9b90195b7d07e4a85b14cef7d505d8b62dfc772ea0b623e4c759064b5293939",
+            "note": "character pixels unchanged; not regenerated"
+          }
+        ],
+        "layout": {
+          "kind": "original-layout",
+          "author": "Claude (HTML composition rendered with Playwright, deviceScaleFactor 2)",
+          "fonts": "Poppins ExtraBold/SemiBold, Playfair Display Italic, Inter, JetBrains Mono (google/fonts, OFL)",
+          "marks": "Claude, Google Gemini, ElevenLabs: Simple Icons SVG path data (CC0; trademarks with owners). OpenAI wordmark: public/images/brands/openai.svg. xAI mark: public/images/logos/xai.svg. Higgsfield glyph: higgsfield.ai header markup, mask removed. Grok and OpenArt names set in type."
+        }
+      },
+      "designReview": "Typed OG card 1200x630: same plate and composition with headline in Poppins ExtraBold and Playfair italic.",
+      "containsLogos": true,
+      "containsReadableText": true,
+      "containsFaces": false,
+      "transform": "HTML composition (Playwright, deviceScaleFactor 2), site fonts Poppins/Playfair Display/Inter/JetBrains Mono from google/fonts",
+      "sha256": "fb5b79b5c33bdd703c42a44e13edc45113107ca4d60cc26ddfe2c4060192418b",
+      "dimensions": [
+        1200,
+        630
+      ]
+    },
+    {
+      "slug": "black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Higgsfield and ElevenLabs Black Friday 2026 deals",
+      "contentType": "blog-post",
+      "qualityScore": null,
+      "qualityTier": "flagship",
+      "reviewStatus": "pending-independent-review",
+      "deploymentStatus": "draft",
+      "socialAngle": "builder",
+      "postUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "googleDriveUrl": null,
+      "fallbackPath": null,
+      "socialTitle": "Why I’m buying big on picture & sound",
+      "googleDriveStatus": "not-uploaded",
+      "vercelBlobKey": null,
+      "spectrum": "soul",
+      "prompt": "Cinematic 16:9 movie-poster background plate, absolutely no text, no letters, no logos. A private screening room converted into a creator's studio at night: deep navy velvet walls, a single warm projector beam crossing from upper left, a vintage cinema film camera on a tripod on the left and a studio condenser microphone on a stand on the right, facing each other like two lead actors under a narrow spotlight on a dark oak stage floor. Behind them a tall window shows an Amsterdam canal at blue hour with soft reflections. Palette: midnight navy, warm amber key light, a whisper of cyan rim light. Anamorphic lens look, shallow depth of field, fine 35mm grain, premium theatrical restraint.",
+      "sourceGeneratedFile": "elevenlabs-flow:BSRpkMqSvfneu6Z4rbV8/generation:qvB5FLhPh3SkNy314aEf",
+      "assetType": "social-card",
+      "localPath": "public/images/blog/black-friday-2026/black-friday-2026-cinema-social-4x5.webp",
+      "publicUrl": "/images/blog/black-friday-2026/black-friday-2026-cinema-social-4x5.webp",
+      "rights": "AI-generated plate plus original layout; Composited official marks as separate layers: Claude, Google Gemini and ElevenLabs from Simple Icons (CC0 path data; trademarks remain with owners); OpenAI wordmark and xAI mark from the repo's verified brand files; Higgsfield glyph taken from higgsfield.ai header markup (animation mask removed); OpenArt and Grok names set in type. Editorial use, no endorsement implied. Frank Omega: canonical public/images/mascot/frank-omega-pointing-v1.png, background removed with birefnet-v2 (ElevenLabs generation f3Q3Zyh5iKS2h8wkihAO); character pixels unchanged, not regenerated.",
+      "provenance": {
+        "kind": "composite",
+        "sources": [
+          {
+            "kind": "ai-generated-plate",
+            "model": "gpt-image-2.6-sunburst",
+            "platform": "ElevenLabs Creative (flows)",
+            "flowId": "BSRpkMqSvfneu6Z4rbV8",
+            "sessionId": "7yBqZEFXzC1ngYtWyesd",
+            "generationId": "qvB5FLhPh3SkNy314aEf",
+            "sourceDimensions": [
+              1280,
+              720
+            ],
+            "sourceSha256": "35a0e7e771065770b0835d3a66734fb694ddb42d9ef7dde2a28301db86da99e9",
+            "generatedOn": "2026-11-27",
+            "prompt": "Cinematic 16:9 movie-poster background plate, absolutely no text, no letters, no logos. A private screening room converted into a creator's studio at night: deep navy velvet walls, a single warm projector beam crossing from upper left, a vintage cinema film camera on a tripod on the left and a studio condenser microphone on a stand on the right, facing each other like two lead actors under a narrow spotlight on a dark oak stage floor. Behind them a tall window shows an Amsterdam canal at blue hour with soft reflections. Palette: midnight navy, warm amber key light, a whisper of cyan rim light. Anamorphic lens look, shallow depth of field, fine 35mm grain, premium theatrical restraint. Keep the left 40 percent of the frame darker and calm for a title, and the bottom 20 percent dark and even for a credit block."
+          },
+          {
+            "kind": "canonical-character-cutout",
+            "source": "public/images/mascot/frank-omega-pointing-v1.png",
+            "operation": "background removal only (birefnet-v2-bg-removal)",
+            "platform": "ElevenLabs Creative (flows)",
+            "flowId": "BSRpkMqSvfneu6Z4rbV8",
+            "sessionId": "gxqAJDhvX1jC7AtufiSK",
+            "generationId": "f3Q3Zyh5iKS2h8wkihAO",
+            "sourceSha256": "e9b90195b7d07e4a85b14cef7d505d8b62dfc772ea0b623e4c759064b5293939",
+            "note": "character pixels unchanged; not regenerated"
+          }
+        ],
+        "layout": {
+          "kind": "original-layout",
+          "author": "Claude (HTML composition rendered with Playwright, deviceScaleFactor 2)",
+          "fonts": "Poppins ExtraBold/SemiBold, Playfair Display Italic, Inter, JetBrains Mono (google/fonts, OFL)",
+          "marks": "Claude, Google Gemini, ElevenLabs: Simple Icons SVG path data (CC0; trademarks with owners). OpenAI wordmark: public/images/brands/openai.svg. xAI mark: public/images/logos/xai.svg. Higgsfield glyph: higgsfield.ai header markup, mask removed. Grok and OpenArt names set in type."
+        }
+      },
+      "designReview": "4:5 social cut 1080x1350 of the typed composition.",
+      "containsLogos": true,
+      "containsReadableText": true,
+      "containsFaces": false,
+      "transform": "HTML composition (Playwright, deviceScaleFactor 2), site fonts Poppins/Playfair Display/Inter/JetBrains Mono from google/fonts",
+      "sha256": "d1f47f62bcece1a0e812536344f816e23b030327234fb5dbb2e52cb545ef70d6",
+      "dimensions": [
+        1080,
+        1350
+      ]
+    },
+    {
+      "slug": "black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Higgsfield and ElevenLabs Black Friday 2026 deals",
+      "contentType": "blog-post",
+      "qualityScore": null,
+      "qualityTier": "flagship",
+      "reviewStatus": "pending-independent-review",
+      "deploymentStatus": "draft",
+      "socialAngle": "builder",
+      "postUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "googleDriveUrl": null,
+      "fallbackPath": null,
+      "socialTitle": "Why I’m buying big on picture & sound",
+      "googleDriveStatus": "not-uploaded",
+      "vercelBlobKey": null,
+      "spectrum": "soul",
+      "prompt": "Cinematic 16:9 movie-poster background plate, absolutely no text, no letters, no logos. A private screening room converted into a creator's studio at night: deep navy velvet walls, a single warm projector beam crossing from upper left, a vintage cinema film camera on a tripod on the left and a studio condenser microphone on a stand on the right, facing each other like two lead actors under a narrow spotlight on a dark oak stage floor. Behind them a tall window shows an Amsterdam canal at blue hour with soft reflections. Palette: midnight navy, warm amber key light, a whisper of cyan rim light. Anamorphic lens look, shallow depth of field, fine 35mm grain, premium theatrical restraint.",
+      "sourceGeneratedFile": "multiple: see provenance.panels",
+      "assetType": "chapter-illustration",
+      "localPath": "public/images/blog/black-friday-2026/black-friday-2026-engine-comparison.webp",
+      "publicUrl": "/images/blog/black-friday-2026/black-friday-2026-engine-comparison.webp",
+      "rights": "AI-generated plate plus original layout; Composited official marks as separate layers: Claude, Google Gemini and ElevenLabs from Simple Icons (CC0 path data; trademarks remain with owners); OpenAI wordmark and xAI mark from the repo's verified brand files; Higgsfield glyph taken from higgsfield.ai header markup (animation mask removed); OpenArt and Grok names set in type. Editorial use, no endorsement implied. Frank Omega: canonical public/images/mascot/frank-omega-pointing-v1.png, background removed with birefnet-v2 (ElevenLabs generation f3Q3Zyh5iKS2h8wkihAO); character pixels unchanged, not regenerated.",
+      "provenance": {
+        "kind": "composite-board",
+        "panels": {
+          "A": {
+            "kind": "original-layout",
+            "panel": "A",
+            "note": "no generated plate; CSS and SVG spotlight, stage and filmstrip-to-waveform motif"
+          },
+          "B": {
+            "kind": "ai-generated-plate",
+            "model": "gpt-image-2.6-sunburst",
+            "platform": "ElevenLabs Creative (flows)",
+            "flowId": "BSRpkMqSvfneu6Z4rbV8",
+            "sessionId": "7yBqZEFXzC1ngYtWyesd",
+            "generationId": "qvB5FLhPh3SkNy314aEf",
+            "sourceDimensions": [
+              1280,
+              720
+            ],
+            "sourceSha256": "35a0e7e771065770b0835d3a66734fb694ddb42d9ef7dde2a28301db86da99e9",
+            "generatedOn": "2026-11-27",
+            "prompt": "Cinematic 16:9 movie-poster background plate, absolutely no text, no letters, no logos. A private screening room converted into a creator's studio at night: deep navy velvet walls, a single warm projector beam crossing from upper left, a vintage cinema film camera on a tripod on the left and a studio condenser microphone on a stand on the right, facing each other like two lead actors under a narrow spotlight on a dark oak stage floor. Behind them a tall window shows an Amsterdam canal at blue hour with soft reflections. Palette: midnight navy, warm amber key light, a whisper of cyan rim light. Anamorphic lens look, shallow depth of field, fine 35mm grain, premium theatrical restraint. Keep the left 40 percent of the frame darker and calm for a title, and the bottom 20 percent dark and even for a credit block."
+          },
+          "C": {
+            "kind": "ai-generated-plate",
+            "model": "gemini-3-pro-image",
+            "platform": "ElevenLabs Creative (flows)",
+            "flowId": "BSRpkMqSvfneu6Z4rbV8",
+            "sessionId": "OkVGuBV8yaruAepVIVRa",
+            "generationId": "tAFOgH1AypkloBiI5WpM",
+            "sourceDimensions": [
+              1376,
+              768
+            ],
+            "sourceSha256": "92849ce65cc19cada88e38527515e17190a783c0d78fe0c1b45105dff993525c",
+            "generatedOn": "2026-11-27",
+            "prompt": "Cinematic 16:9 movie-poster background plate, absolutely no text, no letters, no logos. A private screening room converted into a creator's studio at night: deep navy velvet walls, a single warm projector beam crossing from upper left, a vintage cinema film camera on a tripod on the left and a studio condenser microphone on a stand on the right, facing each other like two lead actors under a narrow spotlight on a dark oak stage floor. Behind them a tall window shows an Amsterdam canal at blue hour with soft reflections. Palette: midnight navy, warm amber key light, a whisper of cyan rim light. Anamorphic lens look, shallow depth of field, fine 35mm grain, premium theatrical restraint. Keep the left 40 percent of the frame darker and calm for a title, and the bottom 20 percent dark and even for a credit block."
+          },
+          "D": {
+            "kind": "ai-generated-plate",
+            "model": "grok-imagine-image-2 (quality medium, 1K)",
+            "platform": "OpenArt",
+            "project": "Personal Project",
+            "historyId": "4yUNWv1fbbmeQTwUuaBy",
+            "resourceId": "sCSGiTa2HQeDb5jFFYNI",
+            "postProcess": "topaz-image-upscale-v2 2x via ElevenLabs flow BSRpkMqSvfneu6Z4rbV8 (generation JS9vAwrAf2sSZIOBmFyI)",
+            "sourceDimensions": [
+              2560,
+              1440
+            ],
+            "sourceSha256": "465ed7a0bbbca8413a033723566390980f5be35d93c2e79ecafe938e93a0a2ed",
+            "generatedOn": "2026-11-27",
+            "prompt": "Cinematic 16:9 movie-poster background plate, absolutely no text, no letters, no logos. A private screening room converted into a creator's studio at night: deep navy velvet walls, a single warm projector beam crossing from upper left, a vintage cinema film camera on a tripod on the left and a studio condenser microphone on a stand on the right, facing each other like two lead actors under a narrow spotlight on a dark oak stage floor. Behind them a tall window shows an Amsterdam canal at blue hour with soft reflections. Palette: midnight navy, warm amber key light, a whisper of cyan rim light. Anamorphic lens look, shallow depth of field, fine 35mm grain, premium theatrical restraint. Keep the left 40 percent of the frame darker and calm for a title, and the bottom 20 percent dark and even for a credit block."
+          }
+        },
+        "sharedLayers": [
+          {
+            "kind": "canonical-character-cutout",
+            "source": "public/images/mascot/frank-omega-pointing-v1.png",
+            "operation": "background removal only (birefnet-v2-bg-removal)",
+            "platform": "ElevenLabs Creative (flows)",
+            "flowId": "BSRpkMqSvfneu6Z4rbV8",
+            "sessionId": "gxqAJDhvX1jC7AtufiSK",
+            "generationId": "f3Q3Zyh5iKS2h8wkihAO",
+            "sourceSha256": "e9b90195b7d07e4a85b14cef7d505d8b62dfc772ea0b623e4c759064b5293939",
+            "note": "character pixels unchanged; not regenerated"
+          },
+          {
+            "kind": "original-layout",
+            "author": "Claude (HTML composition rendered with Playwright, deviceScaleFactor 2)",
+            "fonts": "Poppins ExtraBold/SemiBold, Playfair Display Italic, Inter, JetBrains Mono (google/fonts, OFL)",
+            "marks": "Claude, Google Gemini, ElevenLabs: Simple Icons SVG path data (CC0; trademarks with owners). OpenAI wordmark: public/images/brands/openai.svg. xAI mark: public/images/logos/xai.svg. Higgsfield glyph: higgsfield.ai header markup, mask removed. Grok and OpenArt names set in type."
+          }
+        ]
+      },
+      "designReview": "Comparison board: one brief rendered as plates by GPT Image 2.6 and Gemini 3 Pro Image (ElevenLabs connector) and Grok Imagine 2.0 via OpenArt (history 4yUNWv1fbbmeQTwUuaBy, Topaz 2x upscale), plus a no-plate layout designed by Claude, all with the same type, marks and character.",
+      "containsLogos": true,
+      "containsReadableText": true,
+      "containsFaces": false,
+      "transform": "HTML composition (Playwright, deviceScaleFactor 2), site fonts Poppins/Playfair Display/Inter/JetBrains Mono from google/fonts",
+      "sha256": "ea37fa2a9fe7a8da3f9ab35d55d4f2cf9d2ecd8dd2c86b919d20ad6b4395333b",
+      "dimensions": [
+        2472,
+        1510
+      ]
     }
   ]
 }

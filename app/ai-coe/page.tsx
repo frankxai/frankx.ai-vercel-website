@@ -104,7 +104,7 @@ const modes = [
     description:
       'Use the same structure for shared standards, reusable workflows, adoption planning, tool decisions, and governance across a small team or business unit.',
     href: '/workshops',
-    cta: 'Book the workshop',
+    cta: 'Explore workshop formats',
   },
 ]
 
@@ -114,6 +114,18 @@ const resourceLinks = [
     description: 'Seven dimensions. Two minutes. A clear starting point.',
     href: '/assess/ai-coe',
     icon: CheckCircle2,
+  },
+  {
+    title: 'Set up a company-of-one CoE',
+    description: 'Choose a recurring task. Use the public intake form to name its owner, data and approval boundary.',
+    href: 'https://github.com/AI-Architect-Studio/ai-coe',
+    icon: Network,
+  },
+  {
+    title: 'Practice reviewing an agent',
+    description: 'Inspect a synthetic case at Starlight Academy and decide which claim the record supports.',
+    href: 'https://starlightintelligence.academy/academy/evaluation',
+    icon: GraduationCap,
   },
   {
     title: 'Read the core article',
@@ -140,9 +152,9 @@ const resourceLinks = [
     icon: Sparkles,
   },
   {
-    title: 'Hire Frank for a sprint',
-    description: 'One-day workshop or 5–10 day implementation sprint for your CoE team.',
-    href: '/build',
+    title: 'Bring the work to your team',
+    description: 'Compare workshop formats and send a room brief with the outcome participants should take home.',
+    href: '/workshops',
     icon: ArrowRight,
   },
 ]
@@ -196,7 +208,7 @@ function JsonLd() {
       url: SITE_URL,
     },
     datePublished: '2026-05-07',
-    dateModified: '2026-05-07',
+    dateModified: '2026-11-25',
     mainEntityOfPage: `${SITE_URL}/ai-coe`,
     about: pillars.map((pillar) => pillar.name).join(', '),
     breadcrumb: {
@@ -435,6 +447,21 @@ export default function AICoEPage() {
                 )
               })}
             </div>
+            <p className="mt-8 max-w-3xl text-sm leading-6 text-zinc-400">
+              For a working example, open the{' '}
+              <Link href="https://github.com/AI-Architect-Studio/ai-coe/blob/a9d04d5c4f16a5beb63abfd4fc4814f125de587a/examples/founder/workspace/decisions/first-mission.md" className="text-emerald-300 underline underline-offset-4">
+                founder decision brief
+              </Link>. The synthetic interviews point toward a one-week pilot and preserve the objection that could stop it. The{' '}
+              <Link href="https://github.com/AI-Architect-Studio/ai-coe/blob/a9d04d5c4f16a5beb63abfd4fc4814f125de587a/assessments/README.md" className="text-emerald-300 underline underline-offset-4">
+                evidence-based assessment
+              </Link>{' '}shows which capabilities the example actually demonstrates.
+            </p>
+            <p className="mt-4 text-sm leading-6 text-zinc-400">
+              Bringing a university cohort or an industry partner?{' '}
+              <Link href="/partnerships" className="text-emerald-300 underline underline-offset-4">
+                Explore applied work and contact Frank.
+              </Link>
+            </p>
           </div>
         </section>
 

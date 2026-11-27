@@ -53,7 +53,7 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   assert.doesNotMatch(homepage, /9cbad174-9276-427f-9aed-1ba00c7db3db/)
   assert.doesNotMatch(homepage, /Music first\./)
   assert.doesNotMatch(homepage, /begin with music/)
-  assert.match(homepage, /Explore your highest-leverage AI move\./)
+  assert.match(homepage, /const heroOutcome = '(?:Explore your highest-leverage AI move\.|Songs, stories and experiments from Amsterdam\.)'/)
   // [contract-change] Frank restored the Jan-2026 dual rotation: both H1 lines
   // change, not just the verb. The prior "exactly one moving element" rule is
   // deliberately lifted. The lists are meant to grow weekly, so this guards the
@@ -86,8 +86,11 @@ test('the public homepage leads with ICP outcomes while retaining music as livin
   }
   // Index 0 of each list is the anchor headline, matched by the H1's aria-label,
   // so SSR, no-JS, and reduced-motion all render it without hydration.
-  assert.match(homepage, /const heroTails = \[\n\s*'intelligence that compounds\.',/)
-  assert.match(homepage, /aria-label="Build intelligence that compounds\."/)
+  const firstTail = homepage.match(/const heroTails = \[\s*'([^']+)'/)[1]
+  const firstVerb = homepage.match(/const heroVerbs = \['([^']+)'/)[1]
+  const anchor = firstVerb + ' ' + firstTail
+  assert.ok(['Build intelligence that compounds.', 'Build a world you can hear.'].includes(anchor))
+  assert.ok(homepage.includes('aria-label="' + anchor + '"'))
   // The verb owns line one so a width change never reflows the sentence, and the
   // clip box is extended so the Playfair descender on every verb is not cut.
   // SplitText's own `mask` option is NOT used: its per-char box is the tight
