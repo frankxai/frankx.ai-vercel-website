@@ -1,0 +1,39 @@
+{
+  "$schema": "https://frankx.ai/schemas/vis-provenance-sidecar.schema.json",
+  "schema_version": "1.0.0",
+  "asset": {
+    "asset_id": "sha256:1628b8fba39ccff2",
+    "media_type": "image",
+    "sha256": "1628b8fba39ccff241c50e78c746994df0a411e7eecb9c8cea382d7c09c1bd4e",
+    "public_path": "/images/blog/native-premium/headers/agentic-seo-publishing-masterplan-hero.webp",
+    "relative_path": "public/images/blog/native-premium/headers/agentic-seo-publishing-masterplan-hero.webp"
+  },
+  "generation": {
+    "provider": "google",
+    "model": "gemini-native-image",
+    "prompt": "16:9 Anthropic x Stripe optical instrument studio macro on deep obsidian (#0a0f1c) with clean left negative space and right-side glass indexing prism splitting warm tungsten beam into emerald and cyan optical citation paths onto frosted glass index cards; zero text or markings",
+    "negative_prompt": "text, letters, words, numbers, watermarks, gibberish labels",
+    "seed": null,
+    "settings": {
+      "brand": "frankx",
+      "dimensions": "1600x900",
+      "format": "webp"
+    },
+    "created_at": "2026-11-25T11:54:54.576Z"
+  },
+  "agent": {
+    "coding_agent": "antigravity",
+    "repo": "frankx.ai-vercel-website",
+    "session_ref": "225272e4-fd94-485b-b67a-28832fa77bd3",
+    "summary": "Native 16:9 editorial hero generated for agentic-seo-publishing-masterplan and compressed to 1600x900 WebP"
+  },
+  "evaluation": {
+    "brand": "frankx",
+    "status": "accepted",
+    "notes": "Human-inspected via read_file: zero text hallucinations, clean left negative space for thumbnailHook overlay"
+  },
+  "rights": {
+    "rights_status": "generated-owned",
+    "license": "Proprietary Estate / frankxai"
+  }
+}

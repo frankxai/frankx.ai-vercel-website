@@ -22,6 +22,7 @@ import BodyFaqSchema from '@/components/blog/BodyFaqSchema'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import HeroImage from '@/components/ui/HeroImage'
 import RelatedQualities from '@/components/qualities/RelatedQualities'
+import { ArticleStewardship } from '@/components/blog/ArticleStewardship'
 
 // Static generation - content is read at build time
 export const dynamicParams = false
@@ -237,7 +238,20 @@ export default async function BlogPostPage({
                 <div>
                   <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
                   <div className="text-xs font-medium text-emerald-400">AI Architect & Independent Creator</div>
-                  <div className="text-xs text-white/40">Ex-Oracle AI Architect · Starlight & ACOS Systems</div>
+                  <div className="text-xs text-white/40">
+                    Ex-Oracle AI Architect · Starlight & ACOS Systems
+                    {post.stewardship?.models?.length ? (
+                      <>
+                        {' · '}
+                        <a
+                          href="#studio-stewardship"
+                          className="text-emerald-400/90 underline decoration-emerald-400/30 underline-offset-2 hover:text-emerald-300"
+                        >
+                          Prepared with Frank’s AI studio team
+                        </a>
+                      </>
+                    ) : null}
+                  </div>
                 </div>
               </div>
 
@@ -252,6 +266,8 @@ export default async function BlogPostPage({
                 title={post.title}
                 subtitle={post.description}
                 alt={post.coverAlt || post.title}
+                thumbnailHook={post.thumbnailHook}
+                category={post.category}
                 priority
               />
             </div>
@@ -318,6 +334,17 @@ export default async function BlogPostPage({
               <div className="article-prose">
                 <MDXContent source={post.content} />
               </div>
+
+              {/* Transparent AI studio team provenance */}
+              {post.stewardship && (
+                <div id="studio-stewardship" className="scroll-mt-28">
+                  <ArticleStewardship
+                    stewardship={post.stewardship}
+                    authorName={post.author}
+                    lastUpdated={post.lastUpdated || post.date}
+                  />
+                </div>
+              )}
 
               {/* Value-driven CTA cards with SparkBorder */}
               <div className="mt-16">
