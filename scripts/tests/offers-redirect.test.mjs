@@ -17,9 +17,12 @@ test('next.config.mjs permanently redirects /offers to /products (HTTP 308)', as
     destination: '/products',
     permanent: true,
   })
+  const destinationPageExists =
+    existsSync(path.join(ROOT, 'app', 'products', '(index)', 'page.tsx')) ||
+    existsSync(path.join(ROOT, 'app', 'products', 'page.tsx'))
   assert.equal(
-    existsSync(path.join(ROOT, 'app', 'products', 'page.tsx')),
+    destinationPageExists,
     true,
-    'expected destination route app/products/page.tsx to exist',
+    'expected destination route app/products/(index)/page.tsx or app/products/page.tsx to exist',
   )
 })
