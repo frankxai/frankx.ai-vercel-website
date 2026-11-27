@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
+import { skillFrontmatter } from './frontmatter'
 import { Copy, Download, ArrowRight, Sparkles } from 'lucide-react'
 
 const categoryOptions = [
@@ -56,7 +57,7 @@ export default function SkillBuilderPage() {
 
     const sectionList = (items: string[]) => items.map((item) => `- ${item}`).join('\n')
 
-    return `---\nname: ${slug}\ndescription: ${form.description}\ncategory: ${form.category}\nversion: 1.0.0\nlast_updated: ${today}\n---\n\n# ${form.name}\n\n## Mission\n${form.mission}\n\n## Best For\n${form.bestFor}\n\n## Trigger Phrases\n${sectionList(triggers)}\n\n## Inputs\n${sectionList(inputs)}\n\n## Outputs\n${sectionList(outputs)}\n\n## Execution Steps\n${sectionList(steps)}\n\n## Guardrails\n${sectionList(guardrails)}\n`
+    return `${skillFrontmatter(slug, form.description, form.category, today)}\n\n# ${form.name}\n\n## Mission\n${form.mission}\n\n## Best For\n${form.bestFor}\n\n## Trigger Phrases\n${sectionList(triggers)}\n\n## Inputs\n${sectionList(inputs)}\n\n## Outputs\n${sectionList(outputs)}\n\n## Execution Steps\n${sectionList(steps)}\n\n## Guardrails\n${sectionList(guardrails)}\n`
   }, [form, slug])
 
   const handleCopy = async () => {
