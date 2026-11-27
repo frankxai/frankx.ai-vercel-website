@@ -4433,7 +4433,7 @@
       "containsReadableText": true,
       "containsFaces": false,
       "transform": "HTML composition (Playwright, deviceScaleFactor 2), site fonts Poppins/Playfair Display/Inter/JetBrains Mono from google/fonts",
-      "sha256": "77c5c32887f4cd268d1a7b2849e731f1a0acba4513cad4457206d34d3b857471",
+      "sha256": "fb5b79b5c33bdd703c42a44e13edc45113107ca4d60cc26ddfe2c4060192418b",
       "dimensions": [
         1200,
         630
