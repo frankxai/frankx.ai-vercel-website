@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight, Calendar, Check, FileText, Shield } from 'lucide-react'
+import { CopyLdEmailButton } from '@/components/cohorts/CopyLdEmailButton'
 import { EmailSignup } from '@/components/email-signup'
 import { createMetadata } from '@/lib/seo'
 
@@ -36,7 +37,7 @@ const SCHEDULE = [
     bullets: [
       'Weekly live architecture reviews and hands-on coding labs',
       'Lifetime re-join rights to all future cohorts so your curriculum never goes stale',
-      'VAT invoice (`NL005565287B89`) and employer L&D approval packet included',
+      'VAT-compliant EU Eenmanszaak invoice and employer L&D approval packet included',
     ],
   },
   {
@@ -192,7 +193,11 @@ export default function CohortsPage() {
                 Need manager sign-off for Q4 or Q1 training budget?
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-zinc-400">
-                Every cohort includes a formal Eenmanszaak VAT invoice (<span className="font-mono text-zinc-200">NL005565287B89</span>) and syllabus PDF. Share this summary with your engineering manager:
+                Every cohort includes a VAT-compliant EU Eenmanszaak invoice (entity details on{' '}
+                <Link href="/legal/imprint" className="text-cyan-300 underline underline-offset-4 hover:text-cyan-200">
+                  FrankX Legal Imprint
+                </Link>
+                ) and syllabus PDF. Share or copy the manager email below:
               </p>
               <pre className="mt-4 overflow-x-auto rounded-xl border border-white/[0.08] bg-black/50 p-4 font-mono text-xs leading-relaxed text-zinc-300">
 {`Program: AI Architect Academy — Q1 2027 Cohort
@@ -201,6 +206,7 @@ Outcomes: Trust-boundary firewalls, eval admission gates,
   multi-agent cost routing & internal team teardown.
 Open Syllabus: https://aiarchitectacademy.com`}
               </pre>
+              <CopyLdEmailButton />
             </div>
           </div>
         </div>

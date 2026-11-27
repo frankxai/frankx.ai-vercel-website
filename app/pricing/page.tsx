@@ -364,7 +364,11 @@ export default function PricingPage() {
                 <li className="flex gap-2.5">
                   <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-400" aria-hidden="true" />
                   <span>
-                    VAT-compliant EU Eenmanszaak invoices issued under BTW-id <span className="font-mono text-white">NL005565287B89</span> for corporate L&D reimbursement.
+                    VAT-compliant EU Eenmanszaak invoices (details on our{' '}
+                    <Link href="/legal/imprint" className="text-emerald-300 underline underline-offset-4 hover:text-emerald-200">
+                      Legal Imprint
+                    </Link>
+                    ) for corporate L&amp;D reimbursement.
                   </span>
                 </li>
                 <li className="flex gap-2.5">
