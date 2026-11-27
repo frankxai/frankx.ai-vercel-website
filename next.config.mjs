@@ -450,6 +450,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/offers',
+        destination: '/products',
+        permanent: true,
+      },
+      {
         source: '/cards',
         destination: '/collectibles/trading-cards',
         permanent: true,
