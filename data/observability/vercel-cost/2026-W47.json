@@ -1,0 +1,55 @@
+{
+  "week": "2026-W47",
+  "generatedAt": "2026-11-16T07:14:00Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-11-09T07:13:45Z",
+  "windowEnd": "2026-11-16T07:13:45Z",
+  "pagesFetched": 3,
+  "paginationNote": "list_deployments paginated via until=<oldest_created>. Page 1: 100 items (all within window); Page 2: 100 items (all within window); Page 3: 88 items (no next cursor, confirmed complete). Total raw rows: 288, all within 7-day window.",
+  "metrics": {
+    "count_total": 288,
+    "count_production": 29,
+    "count_preview": 259,
+    "count_skipped": 155,
+    "count_error": 9,
+    "count_ready": 104,
+    "count_other": 20,
+    "state_note": "count_ready(104) + count_error(9) + count_skipped(155) + count_other(20) = 288 = count_total. count_other includes BUILDING/QUEUED states still in-progress at snapshot time.",
+    "duration_p50_seconds": 145,
+    "duration_p95_seconds": 260,
+    "duration_max_seconds": 263,
+    "total_build_minutes": 312,
+    "total_build_minutes_basis": "READY deploys only (104 of 288 total; ERROR, CANCELED excluded)",
+    "duration_method": "readyAt_minus_buildingAt_sampled",
+    "ready_deploys_sampled": 10,
+    "ready_deploys_total": 104,
+    "duration_note": "10/104 READY deploys sampled via get_deployment (ready - buildingAt). Sorted durations (s): 118.5, 123.0, 139.4, 142.1, 143.6, 146.1, 222.7, 243.8, 256.5, 262.6. p50=144.8s≈145s (mean of 5th+6th: (143.6+146.1)/2). p95=259.9s≈260s (linear interp at index 8.55: 256.5+0.55×(262.6-256.5)). total_build_minutes = mean 179.8s/60 × 104 READY = 311.7 ≈ 312 min.",
+    "error_deploys": [
+      {"uid": "dpl_8s2E7PiTan42H4nLj42wRP63NSD9", "created": 1794711242084},
+      {"uid": "dpl_3pE5JDNiarytxuDQGYRBRAnBwW1A", "created": 1794635023794},
+      {"uid": "dpl_GrCpYcFhaKokxjWBSm5Y79f5XjQe", "created": 1794507385881},
+      {"uid": "dpl_FsTqcL8SN6BBRo1pD99ho6VrBCkf", "created": 1794506762539},
+      {"uid": "dpl_CAm2GjgPFTG1vqypkNNN8LemzjDX", "created": 1794325811450},
+      {"uid": "dpl_7Sh23asaLvQPJ33YbUjwDWvw4gxq", "created": 1794324590883},
+      {"uid": "dpl_3txyuvyELrnewWcVFLrpLJUHAvd1", "created": 1794324525130},
+      {"uid": "dpl_2BzRMK3x55XTp1tC1GMYiyG9hzXW", "created": 1794248345552},
+      {"uid": "dpl_68WeSBYeqSXwz72H5g3Q7N3vj7MW", "created": 1794236880968}
+    ]
+  },
+  "deltas_vs_prior_week": {
+    "prior_week": "2026-W46",
+    "duration_p50_seconds": "-52",
+    "count_total": "+136",
+    "total_build_minutes": "+154"
+  },
+  "verdict": "RED",
+  "alerts": [
+    "count_error=9 (W46=0, +9) — RED threshold (>=2 errors). 9 preview build failures this week across apify-product-lane, grokbot/webdev branches. Investigate error deploys listed above.",
+    "count_total=288 (W46=152, +136, +89.5% WoW) — RED threshold (+30% single-metric delta). Heavy grokbot/webdev agent branch activity (next security upgrades, AI SDK 7, tldraw removal) plus antigravity/eenmanszaak-kvk legal fix and codex/apify-product-lane previews drove volume spike.",
+    "total_build_minutes=312 (W46=158, +154, +97.5% WoW) — RED threshold (+30% single-metric delta). More READY builds (104 vs 43) despite 155 cancels; volume driven by agent branch churn.",
+    "duration_p50=145s (W46=197s, -52s, -26.4% WoW) — GREEN. Build speed improved significantly this week. Sampled mean 179.8s vs prior 220.4s.",
+    "count_production=29 (W46=11, +18) — elevated production deploys. 29 merges to main this week: legal entity fix, agentic-life research, citation/vision cleanup, blueprints, and 25 grokbot webdev merges.",
+    "count_skipped=155 (W46=109, +46) — ignoreCommand efficiency maintained; 53.8% of all deploys skipped."
+  ]
+}
