@@ -3,18 +3,18 @@
 import { useEffect, useId, useState } from 'react'
 import { AlertTriangle, Calculator, Check } from 'lucide-react'
 
-// Prices read from vendor pricing pages on 2026-11-26
+// Prices read from vendor pricing pages: ElevenLabs 2026-11-26, Higgsfield 2026-11-27 (new phase)
 // Sources: higgsfield.ai/pricing and elevenlabs.io/pricing (Black Friday annual plans).
 // Update this object, and the source note at the bottom, when prices change.
 const PRICING = {
-  checkedOn: 'November 26, 2026',
+  checkedOn: 'November 26–27, 2026',
   // Sale windows as printed on the vendor pages. Update the plans when a window closes.
-  higgsfieldSaleEnds: 'November 27, 2026, 00:00 UTC',
+  higgsfieldSaleEnds: 'November 28, 2026, 00:00 UTC',
   elevenlabsSaleEnds: 'December 1, 2026, 11:59pm ET',
   higgsfield: {
     plans: [
       { id: 'plus', name: 'Plus', monthlyUsd: 30, creditsPerMonth: 1200 },
-      { id: 'ultra-3k', name: 'Ultra 3K', monthlyUsd: 45, creditsPerMonth: 3000 },
+      { id: 'ultra-3k', name: 'Ultra 3K', monthlyUsd: 40, creditsPerMonth: 3000 },
     ],
     imageCredits: 2, // Nano Banana Pro, per image
     videoModels: [

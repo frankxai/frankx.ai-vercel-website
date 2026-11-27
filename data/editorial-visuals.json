@@ -213,13 +213,37 @@
     "src": "/images/blog/black-friday-2026/cost-per-output-black-friday-2026.svg",
     "width": 1200,
     "height": 720,
-    "alt": "Bar chart of cost per generation at annual Black Friday prices: a Nano Banana Pro image on Higgsfield Ultra 3K costs $0.03, a 5-second 720p Seedance 2.5 clip costs $0.53 on Ultra 3K and $0.88 on Plus, and a narration minute costs about $0.07 on ElevenLabs Creator and $0.06 on Pro. Keeping one clip in four raises the Ultra clip to about $2.10 per accepted clip.",
-    "caption": "Per-generation prices look small until you count the rejects. At one keeper in four, a $0.53 Seedance clip costs about $2.10.",
+    "alt": "Bar chart of cost per generation at annual Black Friday prices: a Nano Banana Pro image on Higgsfield Ultra 3K costs $0.03, a 5-second 720p Seedance 2.5 clip costs $0.47 on Ultra 3K and $0.88 on Plus, and a narration minute costs about $0.07 on ElevenLabs Creator and $0.06 on Pro. Keeping one clip in four raises the Ultra clip to about $1.87 per accepted clip.",
+    "caption": "Per-generation prices look small until you count the rejects. At one keeper in four, a $0.47 Seedance clip costs about $1.87.",
     "credit": "Original chart by FrankX; data from the vendor pricing pages read November 26, 2026",
     "sourceUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
     "rights": "original",
     "createdOn": "2026-11-26",
     "kind": "infographic",
     "aspectRatio": "1200/720"
+  },
+  "bf2026-cinema-header": {
+    "src": "/images/blog/black-friday-2026/black-friday-2026-cinema-header.webp",
+    "width": 2400,
+    "height": 1350,
+    "alt": "A dark screening room at night: a vintage film camera on a tripod and a studio microphone face each other on a lit oak floor, with the Frank Omega robot character standing between them and an Amsterdam canal through the window. A credit line along the bottom reads Featuring Higgsfield and ElevenLabs, made with Claude, OpenAI, Gemini, Grok and OpenArt.",
+    "caption": "Header plate rendered by GPT Image 2.6, composed by Claude with official marks and the approved Frank Omega art.",
+    "credit": "Composite by FrankX; plate GPT Image 2.6 via ElevenLabs; marks belong to their owners",
+    "sourceUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+    "rights": "ai-plate-original-layout-third-party-marks",
+    "createdOn": "2026-11-27",
+    "kind": "hero"
+  },
+  "bf2026-engine-comparison": {
+    "src": "/images/blog/black-friday-2026/black-friday-2026-engine-comparison.webp",
+    "width": 2472,
+    "height": 1510,
+    "alt": "Four versions of the same thumbnail in a grid: A, a layout designed by Claude with a spotlight and a filmstrip turning into a sound wave; B, a GPT Image 2.6 screening room with camera, microphone and canal window; C, a Gemini 3 Pro Image stage with curtains and an arched window; D, a darker Grok Imagine 2.0 room rendered through OpenArt. Each shares the same headline, credit line and Frank Omega character.",
+    "caption": "One brief, four engines. Type, logos and character stay fixed so the plates can be compared directly. B became the header.",
+    "credit": "Plates: GPT Image 2.6 and Gemini 3 Pro Image via ElevenLabs, Grok Imagine 2.0 via OpenArt; layout by Claude",
+    "sourceUrl": "https://www.frankx.ai/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+    "rights": "ai-plate-original-layout-third-party-marks",
+    "createdOn": "2026-11-27",
+    "kind": "illustration"
   }
 }
