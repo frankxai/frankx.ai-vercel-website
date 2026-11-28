@@ -1,4 +1,4 @@
-import JsonLd, { buildFAQPageData, type FAQItem } from '@/components/seo/JsonLd'
+import JsonLd, { buildFAQPageData } from '@/components/seo/JsonLd'
 import { extractFAQFromBody } from '../../scripts/generate-schema.mjs'
 
 /**
@@ -7,15 +7,6 @@ import { extractFAQFromBody } from '../../scripts/generate-schema.mjs'
  */
 export default function BodyFaqSchema({ source, id }: { source: string; id?: string }) {
   const faqs = extractFAQFromBody(source)
-  if (faqs.length === 0) return null
-  return <JsonLd type="FAQPage" data={buildFAQPageData(faqs)} id={id} />
-}
-
-/**
- * Emits FAQPage JSON-LD from frontmatter `faq` entries when a post does not
- * opt into body extraction via `faqSource: "body"`.
- */
-export function FrontmatterFaqSchema({ faqs, id }: { faqs: FAQItem[]; id?: string }) {
   if (faqs.length === 0) return null
   return <JsonLd type="FAQPage" data={buildFAQPageData(faqs)} id={id} />
 }
