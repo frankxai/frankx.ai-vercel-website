@@ -42,22 +42,21 @@ no workflow in this tree currently declares.
 
 ## Checking and repairing it
 
+Read the current allow-list:
+
 ```bash
 gh api -H "X-GitHub-Api-Version: 2026-03-10" \
   repos/frankxai/frankx.ai-vercel-website/actions/policies/12195 \
   --jq '.rules[] | select(.type=="restrict_action_events") | .parameters.allowed_events'
 ```
 
-To repair, `PUT` the policy with the full allowed list; omitting `conditions`
-preserves the existing workflow-path targeting:
-
-```bash
-curl -X PUT -H "Authorization: Bearer $TOKEN" \
-  -H "Accept: application/vnd.github+json" \
-  -H "X-GitHub-Api-Version: 2026-03-10" \
-  https://api.github.com/repos/frankxai/frankx.ai-vercel-website/actions/policies/12195 \
-  -d '{"name":"Allow surface guard triggers","enforcement":"active","rules":[{"type":"restrict_action_events","parameters":{"allowed_events":["pull_request","pull_request_target","push","workflow_dispatch","schedule","pull_request_review","pull_request_review_comment","issue_comment","workflow_run","release","repository_dispatch"]}}]}'
-```
+To repair it, send a `PUT` to
+`/repos/frankxai/frankx.ai-vercel-website/actions/policies/12195` with the
+policy `name` (`Allow surface guard triggers`), `enforcement` (`active`), and a
+`restrict_action_events` rule carrying the full `allowed_events` list above.
+Omit `conditions` from the body: the API then preserves the policy's existing
+workflow-path targeting (`include: ["~ALL"]`), so the update only changes the
+event list and cannot widen or narrow which workflow files the policy covers.
 
 A `/gate` comment on a pull request is the live check: the Review Gate run must
 reach `in_progress` and publish a `Review Gate` status on the head SHA. A
