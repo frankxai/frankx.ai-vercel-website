@@ -104,9 +104,9 @@ const ADVISORY = [
     href: '/work-with-me',
   },
   {
-    name: 'Implementation Sprint',
-    price: '€8,000',
-    detail: 'Scoped two-to-three-week build delivering a working agent workflow, evaluation harness, and team handoff.',
+    name: 'Architecture Sprint',
+    price: 'From €8,000',
+    detail: 'One-to-two-week engagement delivering end-to-end solution architecture, technology selection, a cost model, and an implementation plan.',
     href: '/work-with-me',
   },
   {
@@ -352,13 +352,13 @@ export default function PricingPage() {
                 </span>
               </div>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-white">
-                Transparent guarantees across every tier
+                Transparent guarantees by tier
               </h2>
               <ul className="mt-5 space-y-3 text-sm leading-relaxed text-zinc-300">
                 <li className="flex gap-2.5">
                   <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-400" aria-hidden="true" />
                   <span>
-                    30-day refund window starting on delivery date or cohort kickoff—never on pre-sell checkout day.
+                    30-day refund window on digital kits and cohorts starting on delivery date or cohort kickoff—never on pre-sell checkout day. Advisory &amp; Founder&apos;s Circle engagements carry a first-call fit guarantee, then pro-rate against calls used.
                   </span>
                 </li>
                 <li className="flex gap-2.5">
