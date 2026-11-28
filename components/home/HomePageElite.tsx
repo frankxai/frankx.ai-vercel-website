@@ -469,9 +469,8 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               </div>
 
               <p className="max-w-2xl text-lg leading-8 text-white/60 md:text-xl">
-                Most AI advice is noise. Here are the working blueprints: personal Centers of
-                Excellence and agentic operating systems—built
-                with your own keys on your own terms.
+                Open blueprints for personal AI systems, agentic workflows, and production
+                software—wired to your own keys and built to own.
               </p>
 
               <div className="flex items-center gap-3">
