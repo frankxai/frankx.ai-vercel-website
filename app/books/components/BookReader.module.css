@@ -7,12 +7,15 @@
 :global(#main):has(.reader) { overflow-x: clip; }
 
 .content {
-  max-width: 68ch;
+  max-width: var(--reading-width, 62ch);
+  font-family: var(--reading-face, var(--font-inter), Inter, sans-serif);
   color: rgba(255, 255, 255, 0.82);
-  font-size: 1.125rem;
+  font-size: var(--reading-size, 1.125rem);
   line-height: 1.85;
   overflow-wrap: anywhere;
 }
+.article { max-width: var(--reading-width, 62ch); margin-inline: auto; }
+.content :global(p) { text-wrap: pretty; }
 .content :global(p) { margin: 0 0 1.4em; }
 .content :global(h2), .content :global(h3), .content :global(h4) {
   color: rgba(255, 255, 255, 0.96);
@@ -68,5 +71,5 @@
 .content :global(.footnote-list) { padding-left: 1.5em; }
 .content :global(.footnote-item) { margin-bottom: 1rem; }
 .content :global(.footnote-back) { display: inline-flex; min-height: 2.75rem; min-width: 2.75rem; align-items: center; justify-content: center; margin-left: 0.25em; }
-@media (min-width: 640px) { .content { font-size: 1.1875rem; } }
+@media (min-width: 640px) { .content { font-size: calc(var(--reading-size, 1.125rem) + .0625rem); } }
 @media (prefers-reduced-motion: reduce) { .content { scroll-behavior: auto; } }

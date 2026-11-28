@@ -1,0 +1,30 @@
+.jacket {
+  --ink: #132c32;
+  --foil: #d9c7a0;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  container-type: inline-size;
+  overflow: hidden;
+  background: var(--ink);
+  border-radius: 2px 8px 8px 2px;
+  box-shadow: -5px 2px 0 #080e11, 3px 3px 0 #bbb4a5, 6px 6px 0 #e3dccb, 20px 28px 44px #0006;
+}
+.jacket[data-collection='Attention & practice'] { --ink: #25262d; --foil: #e2ccb0; }
+.jacket[data-collection='Poetry & reflection'] { --ink: #352323; --foil: #e8c5b5; }
+.jacket[data-collection='Arcanea fiction'] { --ink: #202c35; --foil: #dfcd9e; }
+.art { object-fit: cover; opacity: .5; }
+.jacket[data-treatment='illustrated'] .art { opacity: 1; }
+.jacket[data-treatment='illustrated'] .shade { background: linear-gradient(180deg, #07131e88, transparent 48%, transparent 83%, #07131eaa); }
+.jacket[data-treatment='illustrated'] .title { font-size: 9cqw; }
+.jacket[data-treatment='illustrated'] .imprint { margin-bottom: 9%; }
+.jacket[data-treatment='illustrated'] .author { text-shadow: 0 1px 5px #000; }
+.shade { position: absolute; inset: 0; background: linear-gradient(180deg, var(--ink) 0%, transparent 82%), linear-gradient(0deg, var(--ink), transparent 40%); }
+.weave { position: absolute; inset: 0; opacity: .12; background-image: repeating-linear-gradient(0deg, #fff3 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, #0004 0 1px, transparent 1px 3px); }
+.binding { position: absolute; inset: 0 auto 0 0; width: 5%; background: linear-gradient(90deg, #0007, #ffffff15 50%, #0003); }
+.type { position: relative; display: flex; flex-direction: column; min-height: 100%; padding: 10% 10% 9% 14%; color: #f5f0e6; }
+.imprint { color: var(--foil); font-size: 3.2cqw; letter-spacing: .16em; margin-bottom: 15%; }
+.title { font-family: var(--font-poppins), Poppins, sans-serif; font-weight: 600; font-size: 10cqw; line-height: 1.12; letter-spacing: -.035em; text-wrap: balance; overflow-wrap: anywhere; }
+.subtitle { color: #f4e9d4; margin-top: 7%; font-size: 4.1cqw; line-height: 1.5; max-width: 25ch; }
+.author { margin-top: auto; padding-top: 14%; color: var(--foil); font-size: 4cqw; letter-spacing: .08em; }
