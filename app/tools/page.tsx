@@ -66,6 +66,24 @@ const instruments = [
     time: '~15 min',
     href: '/tools/builder',
   },
+  {
+    index: '05',
+    name: 'Self-Service Webdesign Architect',
+    icon: Layers,
+    what: 'Configure a site archetype and design system, inspect desktop and mobile previews, audit copy and JSON-LD/llms.txt, and export a standalone bundle.',
+    output: 'Clean index.html, tokens.css, DESIGN.md, llms.txt, robots.txt, and schema.jsonld in one real .zip.',
+    time: '~3 min',
+    href: '/tools/webdesign',
+  },
+  {
+    index: '06',
+    name: 'AI Skill & Agent Stack Composer',
+    icon: Shield,
+    what: 'Select an operator role, coding harness, and verification rules to compile portable instruction files and installers.',
+    output: 'AGENTS.md, CLAUDE.md, skills-manifest.json, .mcp.json, install.sh, and install.ps1 in one .zip.',
+    time: '~2 min',
+    href: '/tools/skill-composer',
+  },
 ]
 
 /* Honest ledger. These preview pages exist; the instruments do not, yet. */
