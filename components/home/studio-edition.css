@@ -134,7 +134,7 @@
   min-width: 0;
 }
 .fx-take-photo {
-  aspect-ratio: 1.95;
+  aspect-ratio: 1.84;
   position: relative;
   overflow: hidden;
   background: #0c1110;
@@ -144,7 +144,7 @@
   inset: 0;
 }
 .fx-take-photo img {
-  object-fit: cover;
+  object-fit: contain;
   object-position: center 56%;
 }
 .fx-controls {
