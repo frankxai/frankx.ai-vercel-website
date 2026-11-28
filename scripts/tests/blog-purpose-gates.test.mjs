@@ -4,6 +4,7 @@ import { mkdtempSync, mkdirSync, copyFileSync, writeFileSync, rmSync } from 'nod
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import { execFileSync } from 'node:child_process'
+import { groupTocSections } from '../../lib/blog-toc.ts'
 
 const sourceHook = process.env.BLOG_GATE_TEST_HOOK || resolve('.claude/hooks/blog-commit-gate.sh')
 const sourceVoice = resolve('scripts/voice-audit.sh')
@@ -81,4 +82,105 @@ test('flagship with evidence metadata and an objection needs no FAQ quota', () =
   const post = frontmatter.replace('AI Architecture', 'Flagship')
     .replace('---\n', '---\ntldr: "What was measured and what remains unknown."\nlastModified: "2026-11-14"\n')
   assert.equal(gate(post + '## The finding\n\nMeasured locally.\n\n## The objection\n\nThe sample is small.\n').continue, true)
+})
+
+function scoreBrief(content) {
+  const root = mkdtempSync(join(tmpdir(), 'autoresearch-score-'))
+  try {
+    const filePath = join(root, 'brief.mdx')
+    writeFileSync(filePath, content)
+    const stdout = execFileSync(process.execPath, [resolve('scripts/autoresearch-score.mjs'), filePath, '--json'], {
+      encoding: 'utf8',
+    })
+    return JSON.parse(stdout)
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+}
+
+test('autoresearch scorer accepts concise essay without FAQ quotas and penalizes duplicate body TL;DR', () => {
+  const baseBody = [
+    '## Problem scope',
+    '',
+    'Teams often wait on resumes instead of shipping a small verifier ([Greenhouse 2026](https://www.greenhouse.io/blog/benchmark)).',
+    '',
+    '## Reproduction steps',
+    '',
+    '1. Run the script against a fixture.',
+    '2. Record pass or fail counts.',
+    '',
+    '## Limits and trade-offs',
+    '',
+    'This covers only deterministic checks and stops short of subjective review.',
+    '',
+    '## Sources',
+    '',
+    '- [Greenhouse hiring report (2026-10)](https://www.greenhouse.io/blog/benchmark)',
+  ].join('\n')
+
+  const singleSummary = [
+    '---',
+    'title: "Concise benchmark note"',
+    'description: "Short empirical note without synthetic FAQ quotas."',
+    'tldr: "Single-slot frontmatter summary."',
+    '---',
+    '',
+    baseBody,
+  ].join('\n')
+
+  const duplicateBodySummary = [
+    '---',
+    'title: "Concise benchmark note"',
+    'description: "Short empirical note without synthetic FAQ quotas."',
+    'tldr: "Single-slot frontmatter summary."',
+    '---',
+    '',
+    '## TL;DR',
+    '',
+    'Duplicate summary repeated right inside the body.',
+    '',
+    baseBody,
+  ].join('\n')
+
+  const cleanResult = scoreBrief(singleSummary)
+  const dupResult = scoreBrief(duplicateBodySummary)
+  assert.ok(cleanResult.score > 0)
+  assert.equal(cleanResult.components.aeo_score, 1)
+  assert.ok(dupResult.components.aeo_score < cleanResult.components.aeo_score)
+
+  const duplicateAfterIntro = [
+    '---',
+    'title: "Concise benchmark note"',
+    'description: "Short empirical note without synthetic FAQ quotas."',
+    'tldr: "Single-slot frontmatter summary."',
+    '---',
+    '',
+    'Opening paragraph that sets the scene before any summary block appears.',
+    '',
+    '## TL;DR',
+    '',
+    'Duplicate summary repeated after an introductory paragraph.',
+    '',
+    baseBody,
+  ].join('\n')
+  assert.ok(scoreBrief(duplicateAfterIntro).components.aeo_score < cleanResult.components.aeo_score)
+})
+
+test('groupTocSections counts top-level H2 sections only and nests H3 items beneath them', () => {
+  const sections = groupTocSections([
+    { id: 'orphan-sub', text: 'Ignored orphan', level: 3 },
+    { id: 'sec-1', text: 'First Section', level: 2 },
+    { id: 'sec-1-sub', text: 'Subsection', level: 3 },
+    { id: 'sec-2', text: 'FAQ', level: 2 },
+    { id: 'faq-1', text: 'Question 1', level: 3 },
+    { id: 'faq-2', text: 'Question 2', level: 3 },
+  ])
+
+  assert.equal(sections.length, 2)
+  assert.deepEqual(
+    sections.map((section) => section.id),
+    ['sec-1', 'sec-2'],
+  )
+  assert.equal(sections[0].children.length, 1)
+  assert.equal(sections[1].children.length, 2)
 })
