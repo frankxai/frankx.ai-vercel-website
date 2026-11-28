@@ -568,6 +568,20 @@ export default function StackGalleryClient() {
           </motion.div>
         </section>
 
+        <section aria-labelledby="workstation-lab-heading" className="mx-auto max-w-6xl px-6 pb-2">
+          <div className="flex flex-col gap-6 border-t border-white/10 py-7 sm:flex-row sm:items-center sm:justify-between">
+            <div className="max-w-2xl">
+              <h2 id="workstation-lab-heading" className="font-serif text-2xl text-white sm:text-3xl">Workstation Lab</h2>
+              <p className="mt-2 text-sm leading-relaxed text-white/65">
+                Compare the exact hardware, delivered cost and upgrade options for local AI and creative work.
+              </p>
+            </div>
+            <Link href="/workstation-lab" className="inline-flex min-h-11 shrink-0 items-center gap-2 self-start border border-white/20 px-4 py-2 text-sm font-medium text-white transition-colors hover:border-[#D4AF37]/60 hover:text-[#D4AF37] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:self-auto">
+              Compare workstations <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+            </Link>
+          </div>
+        </section>
+
         <section aria-label="XR device guide" className="mx-auto max-w-6xl px-6 pb-2">
           <div className="flex flex-col gap-6 border-y border-white/10 py-7 sm:flex-row sm:items-center sm:justify-between">
             <div className="max-w-2xl">
