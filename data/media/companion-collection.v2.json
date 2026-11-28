@@ -1,0 +1,809 @@
+{
+  "schema_version": 1,
+  "collection_id": "fx-companions-20261030-v2",
+  "status": "review",
+  "assets": [
+    {
+      "asset_id": "ast_fx_collective_gathering_20261030",
+      "version_id": "ver_ed0ff52b36248bdc",
+      "slug": "gathering",
+      "title": "The open workshop",
+      "category": "Guests",
+      "entity_ids": [
+        "host.frank",
+        "external.codex",
+        "external.mona",
+        "external.clawd"
+      ],
+      "mode": "narrative",
+      "role": "Thesis",
+      "tags": [
+        "guests",
+        "wave-1",
+        "narrative",
+        "host.frank",
+        "external.codex",
+        "external.mona",
+        "external.clawd"
+      ],
+      "alt": "Frank, Codex, a Clawd rendition and Mona launch a miniature sailboat together.",
+      "review_note": "Previous packet review retained; not public approval. See handoff/previous-REVIEW.md.",
+      "rights": {
+        "status": "pending",
+        "third_party_characters": true,
+        "relationship": "editorial_reference",
+        "public_approved": false
+      },
+      "placements": [
+        "frankx.design-lab.collective.guests"
+      ],
+      "master": {
+        "sha256": "ed0ff52b36248bdc6c17f6b71e15a67ca27291a778356c864db418a6ddf4016c",
+        "bytes": 2583364,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/png",
+        "mode": "RGB"
+      },
+      "web": {
+        "sha256": "837f88f8807eb94ecca728ca7499246687db43536e437a0305a8164d817ca81c",
+        "bytes": 335374,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/webp",
+        "mode": "RGB"
+      }
+    },
+    {
+      "asset_id": "ast_fx_collective_model_garden_20261030",
+      "version_id": "ver_3c3341936421e407",
+      "slug": "model-garden",
+      "title": "The model garden — original cast candidates",
+      "category": "Worlds",
+      "entity_ids": [
+        "candidate.facet",
+        "candidate.pico",
+        "candidate.omni",
+        "candidate.reel",
+        "candidate.sprout",
+        "candidate.lune",
+        "candidate.pelago"
+      ],
+      "mode": "narrative",
+      "role": "Thesis",
+      "tags": [
+        "worlds",
+        "wave-1",
+        "narrative",
+        "candidate.facet",
+        "candidate.pico",
+        "candidate.omni",
+        "candidate.reel",
+        "candidate.sprout",
+        "candidate.lune",
+        "candidate.pelago"
+      ],
+      "alt": "Seven original candidates perform distinct craft tasks in a sunlit workshop garden.",
+      "review_note": "Previous packet review retained; not public approval. See handoff/previous-REVIEW.md.",
+      "rights": {
+        "status": "pending",
+        "third_party_characters": false,
+        "relationship": "original_interpretation",
+        "public_approved": false
+      },
+      "placements": [
+        "frankx.design-lab.collective.cast"
+      ],
+      "master": {
+        "sha256": "3c3341936421e4072d34d905c15697ca78977d86b7aa88dda836760f9a47f7e1",
+        "bytes": 2691243,
+        "width": 1536,
+        "height": 1024,
+        "mime": "image/png",
+        "mode": "RGB"
+      },
+      "web": {
+        "sha256": "a1b46bb994250ae3d882d3ffe86c81ccc2574ebfbbf5da7d56762f8e96d952d6",
+        "bytes": 327538,
+        "width": 1536,
+        "height": 1024,
+        "mime": "image/webp",
+        "mode": "RGB"
+      }
+    },
+    {
+      "asset_id": "ast_fx_collective_bridge_20261030",
+      "version_id": "ver_5b696692c0a420a0",
+      "slug": "bridge",
+      "title": "A bridge made together",
+      "category": "Turtles",
+      "entity_ids": [
+        "host.frank",
+        "candidate.sprout",
+        "candidate.facet",
+        "custom.brio"
+      ],
+      "mode": "narrative",
+      "role": "Thesis",
+      "tags": [
+        "turtles",
+        "wave-1",
+        "narrative",
+        "host.frank",
+        "candidate.sprout",
+        "candidate.facet",
+        "custom.brio"
+      ],
+      "alt": "Frank and Brio seat a bridge plank while Sprout nudges a seedling cart and Facet aligns the crossing.",
+      "review_note": "Previous packet review retained; not public approval. See handoff/previous-REVIEW.md.",
+      "rights": {
+        "status": "pending",
+        "third_party_characters": false,
+        "relationship": "original_interpretation",
+        "public_approved": false
+      },
+      "placements": [
+        "frankx.design-lab.collective.build"
+      ],
+      "master": {
+        "sha256": "5b696692c0a420a0871ab35c57812f028a4211b2c5fcb683bdd5b49ca4ea429e",
+        "bytes": 2892334,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/png",
+        "mode": "RGB"
+      },
+      "web": {
+        "sha256": "18ffb4f9535173e0ef2e9d4269748e6dc89389d78d3c846456d7795f783b5159",
+        "bytes": 395366,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/webp",
+        "mode": "RGB"
+      }
+    },
+    {
+      "asset_id": "ast_fx_collective_film_room_20261030",
+      "version_id": "ver_ed199db1c12d64ac",
+      "slug": "film-room",
+      "title": "The moving-image workshop",
+      "category": "Studio",
+      "entity_ids": [
+        "candidate.omni",
+        "candidate.reel",
+        "candidate.pico"
+      ],
+      "mode": "narrative",
+      "role": "Thesis",
+      "tags": [
+        "studio",
+        "wave-1",
+        "narrative",
+        "candidate.omni",
+        "candidate.reel",
+        "candidate.pico"
+      ],
+      "alt": "Pico trims paper waves, Reel operates a camera rail, and Omni assembles a filmstrip beside a miniature sea.",
+      "review_note": "Previous packet review retained; not public approval. See handoff/previous-REVIEW.md.",
+      "rights": {
+        "status": "pending",
+        "third_party_characters": false,
+        "relationship": "original_interpretation",
+        "public_approved": false
+      },
+      "placements": [
+        "frankx.design-lab.collective.create"
+      ],
+      "master": {
+        "sha256": "ed199db1c12d64accd0d38418864ac0a304cb1b28ee41cdb02372d277da77a76",
+        "bytes": 2375981,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/png",
+        "mode": "RGB"
+      },
+      "web": {
+        "sha256": "e6c8fb81a5a99e33d337f0e416fa47a34015e9715befe046deb4065e0b7b96c1",
+        "bytes": 280382,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/webp",
+        "mode": "RGB"
+      }
+    },
+    {
+      "asset_id": "ast_fx_collective_field_kit_20261030",
+      "version_id": "ver_bd89ba2d261a0c15",
+      "slug": "field-kit",
+      "title": "The pocket expedition",
+      "category": "Whales",
+      "entity_ids": [
+        "host.frank",
+        "candidate.lune",
+        "candidate.pelago"
+      ],
+      "mode": "narrative",
+      "role": "Thesis",
+      "tags": [
+        "whales",
+        "wave-1",
+        "narrative",
+        "host.frank",
+        "candidate.lune",
+        "candidate.pelago"
+      ],
+      "alt": "Frank, Lune and Pelago share a found stone beside a miniature bridge in a sample case.",
+      "review_note": "Previous packet review retained; not public approval. See handoff/previous-REVIEW.md.",
+      "rights": {
+        "status": "pending",
+        "third_party_characters": false,
+        "relationship": "original_interpretation",
+        "public_approved": false
+      },
+      "placements": [
+        "frankx.design-lab.collective.mobile"
+      ],
+      "master": {
+        "sha256": "bd89ba2d261a0c15d0f6b0e652d53b76a7230353e98767ca216a930eef9c2c40",
+        "bytes": 2621933,
+        "width": 1122,
+        "height": 1402,
+        "mime": "image/png",
+        "mode": "RGB"
+      },
+      "web": {
+        "sha256": "780d8fc5153d5dd13bf87cd97befd309cdcec99fcd70e2fc09e60879f93972ce",
+        "bytes": 308904,
+        "width": 1122,
+        "height": 1402,
+        "mime": "image/webp",
+        "mode": "RGB"
+      }
+    },
+    {
+      "asset_id": "ast_fx_collective_living_archive_20261030",
+      "version_id": "ver_776a1b9606158155",
+      "slug": "living-archive",
+      "title": "The living archive",
+      "category": "Studio",
+      "entity_ids": [
+        "host.frank",
+        "custom.nilo",
+        "custom.brio",
+        "candidate.sprout"
+      ],
+      "mode": "narrative",
+      "role": "Thesis",
+      "tags": [
+        "studio",
+        "wave-1",
+        "narrative",
+        "host.frank",
+        "custom.nilo",
+        "custom.brio",
+        "candidate.sprout"
+      ],
+      "alt": "Frank seats a photographic slide while Nilo lights the source and Brio indexes a carousel in a planted library.",
+      "review_note": "Previous packet review retained; not public approval. See handoff/previous-REVIEW.md.",
+      "rights": {
+        "status": "pending",
+        "third_party_characters": false,
+        "relationship": "original_interpretation",
+        "public_approved": false
+      },
+      "placements": [
+        "frankx.design-lab.collective.library"
+      ],
+      "master": {
+        "sha256": "776a1b96061581558ff32968793f4c229f2fede0db06c5a4145627fd22a47da5",
+        "bytes": 2545111,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/png",
+        "mode": "RGB"
+      },
+      "web": {
+        "sha256": "b6a39a57dc4ece43a5f8d48df6553d3386a30823bab12ea4e3848c0a20411239",
+        "bytes": 312026,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/webp",
+        "mode": "RGB"
+      }
+    },
+    {
+      "asset_id": "ast_fx_companion_wolf_isolate_20261030",
+      "version_id": "ver_55fc5e2059614946",
+      "slug": "wolf-isolate",
+      "title": "Vigil — trail scout",
+      "category": "Wolves",
+      "entity_ids": [
+        "candidate.vigil"
+      ],
+      "mode": "identity",
+      "role": "Orientation",
+      "tags": [
+        "wolves",
+        "identity",
+        "wave-2",
+        "candidate.vigil"
+      ],
+      "alt": "A midnight-blue wolf with silver muzzle, rust neck band and metal ear cuff stands alert.",
+      "review_note": "Candidate identity; real alpha with faint edge fringe/noise. Inspect on actual light/dark background before publishing.",
+      "rights": {
+        "status": "pending",
+        "third_party_characters": false,
+        "relationship": "original_candidate",
+        "public_approved": false
+      },
+      "placements": [
+        "frankx.design-lab.companions.wolf-isolate"
+      ],
+      "master": {
+        "sha256": "55fc5e2059614946562201a344e3ace9b2ad510b8b1cd694e721f0cd578d7b44",
+        "bytes": 1683105,
+        "width": 1254,
+        "height": 1254,
+        "mime": "image/png",
+        "mode": "RGBA"
+      },
+      "web": {
+        "sha256": "24ddb2f723848b4c782595215cdadcb3660c39ab028f457b6604e1f607746744",
+        "bytes": 351598,
+        "width": 1254,
+        "height": 1254,
+        "mime": "image/webp",
+        "mode": "RGBA"
+      }
+    },
+    {
+      "asset_id": "ast_fx_companion_turtle_isolate_20261030",
+      "version_id": "ver_7fbdfa26e03183d0",
+      "slug": "turtle-isolate",
+      "title": "The living glasshouse tortoise",
+      "category": "Turtles",
+      "entity_ids": [
+        "candidate.glasshouse-tortoise"
+      ],
+      "mode": "identity",
+      "role": "Orientation",
+      "tags": [
+        "turtles",
+        "identity",
+        "wave-2",
+        "candidate.glasshouse-tortoise"
+      ],
+      "alt": "An ivory and brass tortoise carries a transparent fern-filled greenhouse shell.",
+      "review_note": "Recovered reference edition, not renamed Moss/Sprout. Real alpha; target-background edge review pending.",
+      "rights": {
+        "status": "pending",
+        "third_party_characters": false,
+        "relationship": "original_candidate",
+        "public_approved": false
+      },
+      "placements": [
+        "frankx.design-lab.companions.turtle-isolate"
+      ],
+      "master": {
+        "sha256": "7fbdfa26e03183d0775d124a8277b61688d1d67165e4dbafd543a25a1e89e00d",
+        "bytes": 1961043,
+        "width": 1254,
+        "height": 1254,
+        "mime": "image/png",
+        "mode": "RGBA"
+      },
+      "web": {
+        "sha256": "2ebb69ca2251b9caed2afb4072295e9e0f8e81f8153428d9288cda4df10acaa3",
+        "bytes": 427474,
+        "width": 1254,
+        "height": 1254,
+        "mime": "image/webp",
+        "mode": "RGBA"
+      }
+    },
+    {
+      "asset_id": "ast_fx_companion_whale_isolate_20261030",
+      "version_id": "ver_90d78ca440f787ee",
+      "slug": "whale-isolate",
+      "title": "Pelago — deep listener",
+      "category": "Whales",
+      "entity_ids": [
+        "candidate.pelago"
+      ],
+      "mode": "identity",
+      "role": "Orientation",
+      "tags": [
+        "whales",
+        "identity",
+        "wave-2",
+        "candidate.pelago"
+      ],
+      "alt": "A cobalt porcelain whale with ivory belly, two flippers and raised tail swims in place.",
+      "review_note": "Pelago candidate edition; real alpha; target-background edge review pending.",
+      "rights": {
+        "status": "pending",
+        "third_party_characters": false,
+        "relationship": "original_candidate",
+        "public_approved": false
+      },
+      "placements": [
+        "frankx.design-lab.companions.whale-isolate"
+      ],
+      "master": {
+        "sha256": "90d78ca440f787ee95281570e2fe0f24be53b8ef98dc3f506a0eceb2a76f0787",
+        "bytes": 1304048,
+        "width": 1254,
+        "height": 1254,
+        "mime": "image/png",
+        "mode": "RGBA"
+      },
+      "web": {
+        "sha256": "de00d6e3c6164937bb667d7b58a592cae2c3d7ef41f7a2bbfa257b74c6a0c566",
+        "bytes": 280142,
+        "width": 1254,
+        "height": 1254,
+        "mime": "image/webp",
+        "mode": "RGBA"
+      }
+    },
+    {
+      "asset_id": "ast_fx_companion_robot_isolate_20261030",
+      "version_id": "ver_69c31b08302152bb",
+      "slug": "robot-isolate",
+      "title": "Maker — precise hands",
+      "category": "Robots",
+      "entity_ids": [
+        "candidate.porcelain-maker"
+      ],
+      "mode": "identity",
+      "role": "Orientation",
+      "tags": [
+        "robots",
+        "identity",
+        "wave-2",
+        "candidate.porcelain-maker"
+      ],
+      "alt": "A compact porcelain droid with red shoulders pinches a strip of red paper.",
+      "review_note": "Maker candidate edition; credible red-strip pinch; alpha edge review pending.",
+      "rights": {
+        "status": "pending",
+        "third_party_characters": false,
+        "relationship": "original_candidate",
+        "public_approved": false
+      },
+      "placements": [
+        "frankx.design-lab.companions.robot-isolate"
+      ],
+      "master": {
+        "sha256": "69c31b08302152bb87d6a0314ee834e1cc2cb3b5341c4cbb811f20b4a354ba0c",
+        "bytes": 1462107,
+        "width": 1254,
+        "height": 1254,
+        "mime": "image/png",
+        "mode": "RGBA"
+      },
+      "web": {
+        "sha256": "be6dbd1847d0fb2848a260f874a5ac9118eb1b5d8baa733199afa32aa986eec1",
+        "bytes": 245848,
+        "width": 1254,
+        "height": 1254,
+        "mime": "image/webp",
+        "mode": "RGBA"
+      }
+    },
+    {
+      "asset_id": "ast_fx_companion_wolf_crossing_20261030",
+      "version_id": "ver_af5e122831c22aec",
+      "slug": "wolf-crossing",
+      "title": "The scout waits",
+      "category": "Wolves",
+      "entity_ids": [
+        "candidate.vigil"
+      ],
+      "mode": "narrative",
+      "role": "Thesis",
+      "tags": [
+        "wolves",
+        "narrative",
+        "wave-2",
+        "candidate.vigil"
+      ],
+      "alt": "A wolf pins a trail cord on a stone crossing as two pack members wait behind.",
+      "review_note": "Cord/paw contact and pack relationship visible. Main wolf watches onward rather than looking back; caption follows actual frame.",
+      "rights": {
+        "status": "pending",
+        "third_party_characters": false,
+        "relationship": "original_candidate",
+        "public_approved": false
+      },
+      "placements": [
+        "frankx.design-lab.companions.wolf-crossing"
+      ],
+      "master": {
+        "sha256": "af5e122831c22aec7f99b85e8886193f7bcc9a91f161a56cc525fac87f165f66",
+        "bytes": 3018613,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/png",
+        "mode": "RGB"
+      },
+      "web": {
+        "sha256": "fa42cf0d2738155632c81f5243f9098a2cd8e7af2903767cb188559a31e65aab",
+        "bytes": 483636,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/webp",
+        "mode": "RGB"
+      }
+    },
+    {
+      "asset_id": "ast_fx_companion_turtle_tide_20261030",
+      "version_id": "ver_e77f2ae4c36b38ee",
+      "slug": "turtle-tide",
+      "title": "A living shore",
+      "category": "Turtles",
+      "entity_ids": [
+        "candidate.glasshouse-tortoise"
+      ],
+      "mode": "narrative",
+      "role": "Thesis",
+      "tags": [
+        "turtles",
+        "narrative",
+        "wave-2",
+        "candidate.glasshouse-tortoise"
+      ],
+      "alt": "A glasshouse tortoise nudges a pebble from a water channel above young plants.",
+      "review_note": "Beak/pebble contact, channel opening and planted terrace visible; water flow is illustrative.",
+      "rights": {
+        "status": "pending",
+        "third_party_characters": false,
+        "relationship": "original_candidate",
+        "public_approved": false
+      },
+      "placements": [
+        "frankx.design-lab.companions.turtle-tide"
+      ],
+      "master": {
+        "sha256": "e77f2ae4c36b38eead7433881c741639a05127e7dc82ce5ff7a5f0d3f562f531",
+        "bytes": 3007994,
+        "width": 1122,
+        "height": 1402,
+        "mime": "image/png",
+        "mode": "RGB"
+      },
+      "web": {
+        "sha256": "5cd6301bcb06c95e95c2f5060ed5504aba54fefe56ea411f28dc623b4fe25e63",
+        "bytes": 470180,
+        "width": 1122,
+        "height": 1402,
+        "mime": "image/webp",
+        "mode": "RGB"
+      }
+    },
+    {
+      "asset_id": "ast_fx_companion_whale_listening_20261030",
+      "version_id": "ver_3a581f0637141246",
+      "slug": "whale-listening",
+      "title": "The small signal",
+      "category": "Whales",
+      "entity_ids": [
+        "candidate.pelago"
+      ],
+      "mode": "narrative",
+      "role": "Thesis",
+      "tags": [
+        "whales",
+        "narrative",
+        "wave-2",
+        "candidate.pelago"
+      ],
+      "alt": "Two porcelain whales investigate a mechanical songbird and copper cylinder in a submerged archive.",
+      "review_note": "Whale flipper braces stone beside copper cylinder; fictional underwater scene, not physical simulation.",
+      "rights": {
+        "status": "pending",
+        "third_party_characters": false,
+        "relationship": "original_candidate",
+        "public_approved": false
+      },
+      "placements": [
+        "frankx.design-lab.companions.whale-listening"
+      ],
+      "master": {
+        "sha256": "3a581f06371412467a1e096139c8859e35ab23afc3918bac20cb3809afe15740",
+        "bytes": 2693993,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/png",
+        "mode": "RGB"
+      },
+      "web": {
+        "sha256": "a2e64613c9364e09c1a6f47127bd6404010826a02e68cc993ad0e34cff870b23",
+        "bytes": 424848,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/webp",
+        "mode": "RGB"
+      }
+    },
+    {
+      "asset_id": "ast_fx_companion_robot_repair_20261030",
+      "version_id": "ver_e110b6074491cde2",
+      "slug": "robot-repair",
+      "title": "The light comes back",
+      "category": "Robots",
+      "entity_ids": [
+        "candidate.porcelain-maker",
+        "candidate.latch"
+      ],
+      "mode": "narrative",
+      "role": "Demonstration",
+      "tags": [
+        "robots",
+        "narrative",
+        "wave-2",
+        "candidate.porcelain-maker",
+        "candidate.latch"
+      ],
+      "alt": "A porcelain droid fits a lamp lens while a wheeled robot holds spare parts beside a lit paper crane.",
+      "review_note": "Hands/lens contact and lit crane visible. Latch is a new scene candidate, not locked identity.",
+      "rights": {
+        "status": "pending",
+        "third_party_characters": false,
+        "relationship": "original_candidate",
+        "public_approved": false
+      },
+      "placements": [
+        "frankx.design-lab.companions.robot-repair"
+      ],
+      "master": {
+        "sha256": "e110b6074491cde2476422386d9d283de513d0978b3b7d9b5703915f9b702b28",
+        "bytes": 2504806,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/png",
+        "mode": "RGB"
+      },
+      "web": {
+        "sha256": "2e9c70c310e88a6876b3c1f36ab2e3d7e3edef300e3cc7d342f0471361e616b1",
+        "bytes": 359348,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/webp",
+        "mode": "RGB"
+      }
+    },
+    {
+      "asset_id": "ast_fx_companion_guest_observatory_20261030",
+      "version_id": "ver_5d4d203d163ef9de",
+      "slug": "guest-observatory",
+      "title": "Guests at the observatory",
+      "category": "Guests",
+      "entity_ids": [
+        "external.codex",
+        "external.mona",
+        "external.clawd"
+      ],
+      "mode": "narrative",
+      "role": "Orientation",
+      "tags": [
+        "guests",
+        "narrative",
+        "wave-2",
+        "external.codex",
+        "external.mona",
+        "external.clawd"
+      ],
+      "alt": "Generated Codex, Mona and Clawd renditions gather around an observatory telescope.",
+      "review_note": "Snout repaired from official product-capture evidence. Generated guest renditions remain private; hidden/rear construction interpretive.",
+      "rights": {
+        "status": "pending",
+        "third_party_characters": true,
+        "relationship": "editorial_reference",
+        "public_approved": false
+      },
+      "placements": [
+        "frankx.design-lab.companions.guest-observatory"
+      ],
+      "master": {
+        "sha256": "5d4d203d163ef9de75e17b21d4c415fe7254a0852c038bbf3b26cb4fd5f4c057",
+        "bytes": 1919685,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/png",
+        "mode": "RGB"
+      },
+      "web": {
+        "sha256": "76adc5d16ff3aee132aced7324b31f62922293dd8722afcfa8aa8d7ca84577f6",
+        "bytes": 199628,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/webp",
+        "mode": "RGB"
+      }
+    },
+    {
+      "asset_id": "ast_fx_companion_connected_habitat_20261030",
+      "version_id": "ver_e8a50d4b5469fc28",
+      "slug": "connected-habitat",
+      "title": "A world of useful companions",
+      "category": "Worlds",
+      "entity_ids": [
+        "candidate.vigil",
+        "candidate.glasshouse-tortoise",
+        "candidate.pelago",
+        "candidate.porcelain-maker",
+        "candidate.utility-cart"
+      ],
+      "mode": "narrative",
+      "role": "Thesis",
+      "tags": [
+        "worlds",
+        "narrative",
+        "wave-2",
+        "candidate.vigil",
+        "candidate.glasshouse-tortoise",
+        "candidate.pelago",
+        "candidate.porcelain-maker",
+        "candidate.utility-cart"
+      ],
+      "alt": "Wolves, glasshouse tortoises, porcelain whales and robots inhabit a connected coastal village.",
+      "review_note": "Original noncanonical world. Wheeled carrier differs from Latch; record as separate cart candidate, not identity continuity.",
+      "rights": {
+        "status": "pending",
+        "third_party_characters": false,
+        "relationship": "original_candidate",
+        "public_approved": false
+      },
+      "placements": [
+        "frankx.design-lab.companions.connected-habitat"
+      ],
+      "master": {
+        "sha256": "e8a50d4b5469fc28084f6c57faf31da926eb9a0061eb59ffad50b48892a3e501",
+        "bytes": 3619401,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/png",
+        "mode": "RGB"
+      },
+      "web": {
+        "sha256": "3c3a6d36d78b0b1db6f4da7dce50cd4911785cff9e296a00432c9e3fb9514888",
+        "bytes": 711886,
+        "width": 1672,
+        "height": 941,
+        "mime": "image/webp",
+        "mode": "RGB"
+      }
+    }
+  ],
+  "foundation": {
+    "purpose": "Reusable original character candidates and source-referenced guest renditions for owner selection across websites and content.",
+    "owning_issue": "https://github.com/frankxai/frankx.ai-vercel-website/issues/706",
+    "source_base": "a9be241cc3d54667c9c1ecfac098abee66f6b258",
+    "selected_assets": 16,
+    "new_assets": 10,
+    "classes": {
+      "isolated_new": 4,
+      "narrative_new": 6
+    },
+    "review": "Independent visual and 48-file technical review completed; target-background alpha edge review pending.",
+    "states": {
+      "atlas": "10 new private review records and thumbnails created; previous six records retained",
+      "canonical_blob": "not_uploaded",
+      "runtime_integration": "previous patch staged, not applied",
+      "public_approval": false
+    },
+    "source_notes": {
+      "codex": "Native source artwork recovered; generated scenes are renditions.",
+      "mona": "Native current source artwork recovered; no public-use approval inferred.",
+      "clawd": "Native pixel form recovered in official anthropics/claude-code demo.gif; generated 3D scene remains a rendition."
+    },
+    "reuse_rules": [
+      "Stable asset/version/rendition/placement identities remain separate.",
+      "No new model or harness binding, canon promotion, partnership, runtime or public-use claims.",
+      "Never hardcode provider URLs in content or write unapproved art into the public manifest.",
+      "Use the existing Vercel-first publisher; do not add a second store as an access workaround.",
+      "Preserve all approved public URLs and homepage structure. No runtime changes in this collection commit."
+    ]
+  }
+}
