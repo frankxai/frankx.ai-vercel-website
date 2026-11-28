@@ -164,7 +164,7 @@ const resourceTracks = [
     icon: GitBranch,
   },
   {
-    title: 'Route Work with Decision Models',
+    title: 'Route work with decision models',
     description: 'Compare typed routing, evidence checks and rubric scores. Set review and fallback in the workflow.',
     href: '/llm-hub#decision-models',
     icon: BrainCircuit,
