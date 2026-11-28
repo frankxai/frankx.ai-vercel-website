@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1095,
+    "total": 1097,
     "aliases": 61,
     "byType": {
       "core": 24,
@@ -4907,6 +4907,14 @@
       "type": "community"
     },
     {
+      "href": "/cohorts",
+      "title": "Cohorts",
+      "tags": [
+        "cohorts"
+      ],
+      "type": "section"
+    },
+    {
       "href": "/collectibles",
       "title": "Collectibles",
       "tags": [
@@ -9291,6 +9299,14 @@
       "title": "Presence",
       "tags": [
         "presence"
+      ],
+      "type": "section"
+    },
+    {
+      "href": "/pricing",
+      "title": "Pricing",
+      "tags": [
+        "pricing"
       ],
       "type": "section"
     },
