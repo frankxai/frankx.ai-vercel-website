@@ -26,6 +26,7 @@ export function buildHubManifest(live: LivePricingMap = {}) {
       models: 'https://www.frankx.ai/llm-hub.json',
       receipts: 'https://www.frankx.ai/research/model-arena/receipts.json',
       methodology: 'https://www.frankx.ai/research/model-arena',
+      decisionModelsGuide: 'https://www.frankx.ai/llm-hub#decision-models',
       imageWorkflowProtocol: 'https://www.frankx.ai/research/image-workflows/protocol.json',
       imageWorkflowGuide: 'https://www.frankx.ai/guides/reference-to-campaign',
       imageWorkflowRoutes: 'https://www.frankx.ai/research/image-workflows/routes.json',
