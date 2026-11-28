@@ -4,6 +4,8 @@
  */
 
 import crypto from 'crypto'
+import { PURCHASABLE_STATUS_PREFIX } from './checkout-gate'
+import { CHECKOUT_PRODUCTS, type CheckoutProduct } from './checkout-products'
 
 // Environment variables (set in .env.local)
 const API_KEY = process.env.LEMON_SQUEEZY_API_KEY || ''
@@ -161,4 +163,44 @@ export function isConfigured(): boolean {
  */
 export function buildDirectCheckoutUrl(variantId: string): string {
   return `https://${STORE_ID}.lemonsqueezy.com/checkout/buy/${variantId}`
+}
+
+// ── Buy-page gate ───────────────────────────────────────────────────────────
+
+/**
+ * Only slugs listed here can ever render a live buy button. The value is the
+ * env var that must hold the Lemon Squeezy variant ID for that product.
+ */
+export const LEMON_SQUEEZY_VARIANT_ENV_KEYS: Record<string, string> = {
+  'starter-kit': 'LEMON_SQUEEZY_VARIANT_STARTER_KIT',
+  'command-center-template': 'LEMON_SQUEEZY_VARIANT_COMMAND_CENTER_TEMPLATE',
+}
+
+export interface BuyPageProduct {
+  id: string
+  slug: string
+  primaryPrice: number | undefined
+}
+
+/**
+ * Hosted-checkout URL for a product, or null. Every gate must pass:
+ * (a) the product has a price above zero,
+ * (b) the for-sale registry marks it "for sale", which is a reviewed edit,
+ * (c) its slug is wired in LEMON_SQUEEZY_VARIANT_ENV_KEYS,
+ * (d) the store config and that product's variant ID are both set.
+ * Gate (b) is why setting env vars alone cannot open a checkout: the same
+ * rule lib/checkout-gate.ts applies to Stripe. Fail closed.
+ */
+export function lemonSqueezyCheckoutUrl(
+  product: BuyPageProduct,
+  registry: Record<string, CheckoutProduct> = CHECKOUT_PRODUCTS,
+): string | null {
+  if (!product.primaryPrice || product.primaryPrice <= 0) return null
+  const status = registry[product.id]?.status ?? ''
+  if (!status.trim().toLowerCase().startsWith(PURCHASABLE_STATUS_PREFIX)) return null
+  const envKey = LEMON_SQUEEZY_VARIANT_ENV_KEYS[product.slug]
+  if (!envKey) return null
+  const variantId = process.env[envKey]
+  if (!variantId || !isConfigured()) return null
+  return buildDirectCheckoutUrl(variantId)
 }

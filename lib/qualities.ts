@@ -78,7 +78,7 @@ export const qualities: Quality[] = [
       },
       {
         title: 'Creator Economy & AI',
-        href: '/research/creator-economy-ai',
+        href: '/research/creator-economy-ai-monetization',
         note: 'The live research domain tracking how AI changes creator leverage, ownership, and dependency.',
         kind: 'Research',
       },

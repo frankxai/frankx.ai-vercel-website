@@ -3,7 +3,7 @@ export const featuredWorkspaceCase = {
   title: 'Intent Architecture',
   description:
     'A research synthesis for turning human purpose into bounded, reviewable execution across agents, people, tools, and organizational memory.',
-  href: '/research/intent-architecture',
+  href: '/research/intent-architecture-semantic-compilers',
   outputLabel: 'Read the research synthesis',
   sources: [
     'DeepMind · Intelligent AI Delegation · 2026 preprint',

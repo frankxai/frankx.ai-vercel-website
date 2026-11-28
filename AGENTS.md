@@ -177,9 +177,14 @@ Multiple harnesses (Claude, Codex, Gemini, Grok, Cursor, Cline) may work this re
 - **Do not use `[skip ci]`** for changes under `app/`, `components/`, `content/`, `lib/`, or `taste.md`; those paths carry required release gates. Use it only for truly non-executable documentation after checking the workflow path rules.
 - **Verify locally first.** Run `pnpm run type-check`, `pnpm run lint`, `pnpm run ai-slop:audit:strict`, and `pnpm run build` before pushing. Cloud CI is the merge-boundary check, not the iteration loop.
 - **Vercel deploys via git integration only.** Never add a GitHub Actions deploy step — Vercel's own git integration already deploys `main` on push; an Actions-based deploy would double-build and fight it.
+- **Evidence in every PR.** Fill the Evidence section of `.github/pull_request_template.md`; UI PRs commit a design lock and screenshots; state test counts as `N pass, 0 fail`.
 - **Don't touch another agent's in-flight work.** Check `git branch -a`, `git status`, and any dirty/untracked state before editing — foreign state usually means another harness is mid-task.
 
 ---
+
+## Frontier Experience Constitution
+
+Before work on interfaces, editorial experiences, or brand and media assets, read the [Frontier Experience Constitution](https://github.com/Starlight-Intelligence/starlight-design-intelligence/blob/e25fab4c5a0dac2ea8c7b91e9397972f5af4b454/portfolio/frontier-experience-constitution.md) and record the revision in the handoff. Resolve the owning product, Figma, brand pack, and VIS authorities for the change. Hold generation and release of owned identity when its source or approval is unresolved. Apply the repository's existing checks and attach the workflow, responsive, provenance, and independent review evidence the constitution requires.
 
 ## 4. Brand + content discipline
 

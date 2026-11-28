@@ -91,7 +91,7 @@ const stack = [
     icon: Star,
     title: 'Starlight Intelligence',
     desc: 'Persistent memory · Trajectory classification · Compound learning',
-    href: '/blog/starlight-intelligence-system',
+    href: '/starlight-intelligence-system',
     color: '#10B981',
   },
   {

@@ -5,7 +5,7 @@ import TrinityAllianceClient from './TrinityAllianceClient'
 export const metadata: Metadata = {
   title: 'Arcanea × Trinity AI — Strategic Alliance',
   description:
-    'Two sovereign architectures. One shared infrastructure. A strategic alliance between Arcanea BV and Trinity AI.',
+    'Two sovereign architectures. One shared infrastructure. A strategic alliance between Arcanea and Trinity AI.',
   robots: { index: false, follow: false },
   openGraph: {
     images: defaultOpenGraphImages,
