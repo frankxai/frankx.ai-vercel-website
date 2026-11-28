@@ -373,8 +373,9 @@ try {
     const product = products.find(item => item.slug === slug)
     const firstFile = product.delivery.files[0]
     if (firstFile.publicPath) {
-      // Bundled editions redirect to the site's own /books/<slug>.pdf, so the origin follows the request.
-      assert.equal(destination.origin, new URL(origin).origin, slug)
+      // Bundled editions redirect to the site's own /books/<slug>.pdf; Next resolves the host from request.url,
+      // which may differ from the journey's origin (localhost vs 127.0.0.1), so only the path is pinned.
+      assert.notEqual(destination.hostname, 'vbmwpibfe0yzx3fd.public.blob.vercel-storage.com', slug)
       assert.equal(destination.pathname, firstFile.publicPath, slug)
     } else {
       assert.equal(destination.origin, 'https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com')
