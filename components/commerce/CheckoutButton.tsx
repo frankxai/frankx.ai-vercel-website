@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { allowsAnalyticsMeasurement } from '@/lib/analytics-policy'
+import { getInboundUtm } from '@/lib/utm'
 
 interface CheckoutButtonProps {
   productId?: string
@@ -41,12 +43,15 @@ export default function CheckoutButton({
 
     setLoading(true)
     try {
+      const browser = window.navigator as Navigator & { globalPrivacyControl?: boolean }
+      const measure = targetId === 'agentic-creator-os' &&
+        allowsAnalyticsMeasurement(browser.doNotTrack, browser.globalPrivacyControl)
       const response = await fetch('/api/checkout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ productId: targetId }),
+        body: JSON.stringify({ productId: targetId, attribution: measure ? getInboundUtm() : undefined }),
       })
 
       const data = await response.json()
