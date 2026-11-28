@@ -154,7 +154,7 @@ function buildVerifiedBookEntries(p: any): InspectableFileEntry[] {
 
   if (blobFile?.blobKey) {
     entries.push({
-      path: blobFile.blobKey,
+      path: blobFile.publicPath ?? blobFile.blobKey,
       kind: 'pdf',
       sizeLabel: blobFile.size ?? 'Registered PDF',
       summary: normalizePunctuation(

@@ -533,6 +533,11 @@ const nextConfig = {
   async headers() {
     return [
       {
+        source: '/books/:slug.pdf',
+        has: [{ type: 'query', key: 'download', value: '1' }],
+        headers: [{ key: 'Content-Disposition', value: 'attachment' }],
+      },
+      {
         // Strict site-wide CSP — excludes /palace, which needs a WebGL-friendly
         // policy (see the dedicated block below).
         source: '/((?!palace).*)',

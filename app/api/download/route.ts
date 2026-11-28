@@ -1,7 +1,7 @@
 import { after, type NextRequest, NextResponse } from 'next/server'
 import registry from '@/data/products.json'
 import type { ProductRecord } from '@/types/products'
-import { isPublicDownloadProduct } from '@/lib/download-access'
+import { isPublicDownloadProduct, publicDownloadUrl } from '@/lib/download-access'
 import { describeStoreFailure } from '@/lib/store-failure'
 import { TRACKED_GUIDES, trackDirectDownloadOnce } from '@/lib/pdf-analytics'
 import { bookDownloadRatelimit, getClientIdentifier } from '@/lib/ratelimit'
@@ -9,15 +9,9 @@ import { bookDownloadRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 const products = registry as ProductRecord[]
 
 /**
- * Your existing Vercel Blob storage base URL
- * Files are publicly accessible at this URL
- */
-const BLOB_BASE_URL = 'https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com'
-
-/**
  * Product Download API
  *
- * Handles file downloads from your existing Vercel Blob storage.
+ * Resolves catalogued downloads from the app bundle or Vercel Blob.
  * Provides direct free downloads; legacy POST validates email without enrollment.
  *
  * GET /api/download?product={slug}&file={filename}
@@ -80,9 +74,6 @@ export async function GET(request: NextRequest) {
     )
   }
 
-  // Construct the public blob URL
-  const blobUrl = `${BLOB_BASE_URL}/${file.blobKey}?download=1`
-
   // Count a production redirect once per rendered link. The attempt token is
   // short-lived and never enters the stored event or the public Blob URL.
   const attemptId = searchParams.get('attempt')
@@ -106,8 +97,7 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  // Redirect to the public blob URL for download
-  return NextResponse.redirect(blobUrl)
+  return NextResponse.redirect(publicDownloadUrl(file, request.url))
 }
 
 export async function POST(request: NextRequest) {
@@ -173,9 +163,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Generate direct download URL from your blob storage
-    const downloadUrl = `${BLOB_BASE_URL}/${file.blobKey}?download=1`
-
     return NextResponse.json({
       success: true,
       product: {
@@ -186,7 +173,7 @@ export async function POST(request: NextRequest) {
       file: {
         name: file.name,
         format: file.format,
-        url: downloadUrl
+        url: publicDownloadUrl(file, request.url)
       },
       message: 'Your download is ready.'
     })
