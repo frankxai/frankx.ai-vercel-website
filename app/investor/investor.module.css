@@ -10,7 +10,7 @@
   line-height: 1.55;
 }
 .wrap { width: min(1240px, calc(100% - 96px)); margin: 0 auto; }
-.page h1, .page h2 { margin: 0; font-family: Georgia, 'Times New Roman', serif; font-weight: 400; text-wrap: balance; }
+.page h1, .page h2 { margin: 0; font-family: var(--font-poppins), "Poppins", system-ui, sans-serif; font-weight: 600; text-wrap: balance; }
 .page h1 { font-size: clamp(50px, 5.25vw, 83px); letter-spacing: -.055em; line-height: 1.02; }
 .page h2 { font-size: clamp(36px, 3.7vw, 60px); line-height: 1.08; letter-spacing: -.045em; }
 .page h1 em, .page h2 em { font-family: inherit; font-weight: 400; }
