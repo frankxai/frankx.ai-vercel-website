@@ -1,0 +1,95 @@
+{
+  "schema": "starlight.ui_inventory.v1",
+  "generated": "2026-11-28",
+  "author": "OpenCode (DeepSeek V4.1 Flash)",
+  "method": "read from source on disk; homepage measurements from one fetch per public URL",
+  "material_systems": [
+    {
+      "id": "starlight-materials",
+      "path": "C:/Users/frank/starlight/repos/starlight-design-intelligence/packages/materials",
+      "version": "0.1.0",
+      "published": false,
+      "runtime": "Next.js 16, React 19, shadcn 4.22, Tailwind 4",
+      "entries": ["materials-styles", "material", "glass-gate", "glass-surface", "material-button", "material-card", "material-sheet"],
+      "gate": { "mode": "webgl|css", "frame_budget_ms": 8, "min_width_px": 900, "min_device_memory_gb": 4, "reduced_motion": "css", "reduced_transparency": "css", "save_data": "css" },
+      "install": "npx shadcn@latest add @starlight/glass-surface"
+    },
+    {
+      "id": "starlight-liquid",
+      "path": "C:/Users/frank/starlight/repos/starlight-liquid",
+      "version": "0.1.0",
+      "published": false,
+      "modules": ["field", "form", "magnetic", "scroll", "cursor", "tilt", "text", "gallery", "spotlight", "env"],
+      "note": "framework-free plus React wrappers and autoMount() for plain HTML"
+    },
+    {
+      "id": "aurora-kit",
+      "path": "C:/Users/frank/starlight/repos/aurora-kit",
+      "version": "0.1.0",
+      "state": "dirty local checkout, unattributed in-flight edits, not a canonical repo",
+      "use": "inventory only until reconciled"
+    }
+  ],
+  "brand_packs": {
+    "path": "C:/Users/frank/starlight/repos/starlight-design-intelligence/brand-packs",
+    "count": 11,
+    "brands": ["agentic-income", "ai-coe", "animelegends", "arcanea", "frankx", "gencreator", "reality-architect", "rial-energy", "sis", "starlight-technology", "vibeclubs"],
+    "files_per_pack": ["BRAND.md", "COPY.md", "DESIGN.md", "MOTION.md", "NARRATIVE.md", "SURFACE_MODES.md", "TOKENS.md"]
+  },
+  "tokens": {
+    "canonical_palette": {
+      "surface": "#070a10",
+      "surface_paper": "#efede7",
+      "surface_ivory": "#ede6d8",
+      "on_surface": "#fbf6eb",
+      "on_paper": "#070a10",
+      "accent": "#c9a15c",
+      "accent_bright": "#f0c87e",
+      "signal": "#82d8e6",
+      "hairline": "#fbf6eb1a",
+      "highlight": "#fbf6eb2e",
+      "focus": "#f0c87e"
+    },
+    "generated_from": "DESIGN.md via pnpm tokens",
+    "file": "packages/materials/src/tokens/tokens.css"
+  },
+  "design_skills": {
+    "path": "C:/Users/frank/starlight/repos/starlight-design-intelligence/skills",
+    "count": 15,
+    "names": ["anti-slop-frontend", "brand-constitution", "brand-strategy-to-identity", "conversion-clarity", "design-audit", "design-system-extractor", "editorial-articulation", "font-licensing-gate", "landing-page-polish", "logo-system", "motion-and-interaction", "product-ui-polish", "typography-art-direction", "visual-research-and-direction", "world-class-web-release"]
+  },
+  "characters": [
+    { "set": "mini-frank", "canon": "host plus custom companions", "source": "installed mini-me-storyboard skill (private), protocol at playbooks/character-canon-retrieval.md", "status": "private, requires hashed retrieval receipt" },
+    { "set": "anime-legends", "canon": ["Akashi", "Kage", "Mira"], "source": "owner sheets plus native art", "status": "canonical, generation studies separate" },
+    { "set": "arcanea", "canon": "world cast per brand pack and arcanea-canon repo", "status": "do not add characters by generated image" }
+  ],
+  "toolchain": {
+    "figma": { "foundation": "FrankX: 4 collections, 60 variables, 14 text styles, 5 effect styles", "projection": "scripts/compile-figma-projection.mjs", "screens_mapped": 0, "screens_catalogued": 77 },
+    "v0": { "profiles": 6, "export": "scripts/export-v0-import.mjs", "variants_in_frankx": 16 },
+    "vercel": { "live_properties": 24, "team": "starlight-intelligence" },
+    "cloudflare": { "web_fronted_sites_measured": 0, "workers_known": ["starlightintelligence.ai/workers"] }
+  },
+  "measured_surfaces": [
+    { "domain": "agenticpassiveincome.com", "words": 1811, "visuals": 4, "words_per_visual": 453 },
+    { "domain": "starlight.technology", "words": 622, "visuals": 3, "words_per_visual": 207 },
+    { "domain": "agenticincome.ai", "words": 1257, "visuals": 7, "words_per_visual": 180 },
+    { "domain": "starlightintelligence.academy", "words": 1440, "visuals": 19, "words_per_visual": 76 },
+    { "domain": "realityarchitect.ai", "words": 893, "visuals": 12, "words_per_visual": 74 },
+    { "domain": "cecilia.chat", "words": 367, "visuals": 5, "words_per_visual": 73 },
+    { "domain": "bluelifecommons.org", "words": 970, "visuals": 15, "words_per_visual": 65 },
+    { "domain": "gencreator.ai", "words": 486, "visuals": 9, "words_per_visual": 54 },
+    { "domain": "starlightintelligence.org", "words": 1781, "visuals": 70, "words_per_visual": 25 },
+    { "domain": "anaceciliacancino.com", "words": 883, "visuals": 35, "words_per_visual": 25 },
+    { "domain": "starlightintelligence.ai", "words": 2151, "visuals": 99, "words_per_visual": 22 },
+    { "domain": "animelegends.ai", "words": 628, "visuals": 29, "words_per_visual": 22 },
+    { "domain": "frankx.ai", "words": 2245, "visuals": 162, "words_per_visual": 14 },
+    { "domain": "arcanea.ai", "words": 248, "visuals": 24, "words_per_visual": 10 }
+  ],
+  "zero_image_surfaces": ["gencreator.community", "aiarchitectacademy.com", "go.agenticincome.ai", "agenticpassiveincome.com", "vibeclubs.ai", "arcanea.academy", "oceanintelligence.app", "starlight.you", "starlight.domains"],
+  "open": [
+    "whether the Figma projection has been imported for any brand other than FrankX",
+    "production reachability of each mapped screen",
+    "current 28/30 web rubric score per property",
+    "Cloudflare account site list"
+  ]
+}

@@ -1,0 +1,1061 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Glass lab · Starlight materials</title>
+<style>
+  :root {
+    --surface: #070a10;
+    --on-surface: #fbf6eb;
+    --ivory: #ede6d8;
+    --paper: #efede7;
+    --accent: #c9a15c;
+    --accent-bright: #f0c87e;
+    --signal: #82d8e6;
+    --hairline: rgba(251,246,235,.10);
+    --highlight: rgba(251,246,235,.18);
+    --muted: rgba(251,246,235,.68);
+    --subtle: rgba(251,246,235,.50);
+    --glass-tint: rgba(7,10,16,.62);
+    --glass-opaque: #111113;
+    --ease-out: cubic-bezier(.22,.61,.36,1);
+    --ease-spring: cubic-bezier(.34,1.56,.64,1);
+    --dur-press: 120ms;
+    --dur-state: 220ms;
+    --dur-reveal: 420ms;
+    --rim-angle: 118deg;
+    --dispersion: 1.5px;
+    --grain: .035;
+    --radius-lg: 24px;
+    --radius-md: 14px;
+    --radius-sm: 8px;
+    --shell: 1180px;
+    --gutter: 24px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body { margin: 0; padding: 0; }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background: var(--surface);
+    color: var(--on-surface);
+    font-family: ui-sans-serif, "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    letter-spacing: -0.006em;
+    min-height: 100svh;
+    overflow-x: hidden;
+  }
+
+  button, a, [role="button"] { touch-action: manipulation; }
+
+  ::selection { background: rgba(201,161,92,.35); color: var(--on-surface); }
+
+  :focus-visible {
+    outline: 2px solid var(--accent-bright);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ---------- field: the scene behind the glass ---------- */
+
+  .field {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(900px 620px at 78% -8%, rgba(201,161,92,.16), transparent 62%),
+      radial-gradient(720px 520px at 8% 22%, rgba(130,216,230,.10), transparent 60%),
+      radial-gradient(1000px 800px at 50% 118%, rgba(40,52,78,.55), transparent 70%),
+      linear-gradient(180deg, #05070c 0%, var(--surface) 44%, #06080d 100%);
+  }
+
+  .field::after {
+    content: "";
+    position: absolute;
+    inset: -10%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    opacity: var(--grain);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  /* ---------- shell ---------- */
+
+  .shell {
+    width: min(var(--shell), 100% - var(--gutter) * 2);
+    margin-inline: auto;
+  }
+
+  .bar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px max(var(--gutter), env(safe-area-inset-left)) 14px max(var(--gutter), env(safe-area-inset-right));
+    border-bottom: 1px solid var(--hairline);
+    background: rgba(7,10,16,.72);
+    backdrop-filter: blur(18px) saturate(1.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  }
+
+  .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .wordmark b {
+    color: var(--on-surface);
+    font-weight: 600;
+    letter-spacing: .14em;
+  }
+
+  .mark {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid rgba(240,200,126,.6);
+    box-shadow: inset 0 0 10px rgba(240,200,126,.35), 0 0 12px rgba(240,200,126,.18);
+  }
+
+  .bar-meta {
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 11px;
+    color: var(--subtle);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- hero ---------- */
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 48px;
+    padding: 72px 0 40px;
+    min-height: 84svh;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 22px;
+    font-size: 11px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--accent-bright);
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent));
+  }
+
+  h1 {
+    margin: 0;
+    font-family: ui-serif, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(2.5rem, 6.2vw, 4.6rem);
+    line-height: .98;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent-bright);
+  }
+
+  .lede {
+    max-width: 34ch;
+    margin: 22px 0 0;
+    font-size: clamp(1rem, 1.4vw, 1.125rem);
+    color: var(--muted);
+    text-wrap: pretty;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .meta-row div { min-width: 76px; }
+
+  .meta-row dt {
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--subtle);
+  }
+
+  .meta-row dd {
+    margin: 4px 0 0;
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 20px;
+    font-variant-numeric: tabular-nums;
+    color: var(--on-surface);
+  }
+
+  .meta-row dd span { font-size: 11px; color: var(--subtle); margin-left: 4px; letter-spacing: .04em; }
+
+  /* ---------- orbital object ---------- */
+
+  .orbit {
+    position: relative;
+    aspect-ratio: 1;
+    width: 100%;
+    max-width: 540px;
+    margin-inline: auto;
+    display: grid;
+    place-items: center;
+  }
+
+  .orbit svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+  .ring-a { transform-origin: 50% 50%; animation: spin 96s linear infinite; }
+  .ring-b { transform-origin: 50% 50%; animation: spin 148s linear infinite reverse; }
+  .ring-c { transform-origin: 50% 50%; animation: spin 210s linear infinite; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .datum {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 44%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    text-align: center;
+    background:
+      radial-gradient(circle at 34% 28%, rgba(251,246,235,.16), transparent 46%),
+      linear-gradient(158deg, rgba(251,246,235,.10), rgba(251,246,235,.02) 58%, rgba(7,10,16,.35));
+    border: 1px solid rgba(251,246,235,.14);
+    box-shadow:
+      inset 0 1px 0 rgba(251,246,235,.28),
+      inset 0 -20px 40px -20px rgba(7,10,16,.9),
+      0 40px 90px -34px rgba(0,0,0,.95),
+      0 0 60px -10px rgba(201,161,92,.18);
+    backdrop-filter: blur(26px) saturate(1.4);
+    -webkit-backdrop-filter: blur(26px) saturate(1.4);
+  }
+
+  /* specular rim: light travels around one edge only */
+  .datum::before,
+  .glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(from var(--rim-angle),
+      transparent 0 46%,
+      rgba(201,161,92,.28) 58%,
+      rgba(240,200,126,.85) 68%,
+      rgba(251,246,235,.95) 72%,
+      rgba(130,216,230,.42) 77%,
+      transparent 88%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* dispersion: two 1.5px offsets, never a rainbow field */
+  .datum::after,
+  .glass::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow:
+      inset var(--dispersion) 0 0 -1px rgba(130,216,230,.28),
+      inset calc(var(--dispersion) * -1) 0 0 -1px rgba(240,200,126,.26);
+    pointer-events: none;
+  }
+
+  .datum-num {
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: clamp(2.2rem, 5.4vw, 3.4rem);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.04em;
+  }
+
+  .datum-label {
+    margin-top: 6px;
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .ring-label {
+    position: absolute;
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 10px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    background: rgba(7,10,16,.72);
+    padding: 2px 7px;
+    border-radius: 999px;
+    border: 1px solid var(--hairline);
+    white-space: nowrap;
+  }
+
+  .r1 { top: 6%; right: 12%; }
+  .r2 { bottom: 20%; right: -2%; }
+  .r3 { bottom: 2%; left: 18%; }
+
+  /* ---------- lab ---------- */
+
+  section { padding-block: 56px; }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 26px;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: ui-serif, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+    letter-spacing: -0.02em;
+  }
+
+  .section-note {
+    margin: 0;
+    max-width: 40ch;
+    font-size: 13px;
+    color: var(--subtle);
+    text-wrap: pretty;
+  }
+
+  .lab {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .stage {
+    position: relative;
+    min-height: 384px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--hairline);
+    background:
+      radial-gradient(500px 320px at 22% 16%, rgba(130,216,230,.12), transparent 62%),
+      radial-gradient(520px 340px at 82% 88%, rgba(201,161,92,.16), transparent 62%),
+      #080b12;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    isolation: isolate;
+  }
+
+  .stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(251,246,235,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(251,246,235,.045) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(circle at 50% 50%, #000, transparent 78%);
+    pointer-events: none;
+  }
+
+  .pane {
+    position: relative;
+    width: min(420px, 88%);
+    padding: 22px;
+    border-radius: 20px;
+    border: 1px solid rgba(251,246,235,.12);
+    background:
+      linear-gradient(158deg, rgba(251,246,235,.085), rgba(251,246,235,.018) 60%, rgba(7,10,16,.30));
+    backdrop-filter: blur(24px) saturate(1.35);
+    -webkit-backdrop-filter: blur(24px) saturate(1.35);
+    box-shadow:
+      inset 0 1px 0 rgba(251,246,235,.24),
+      0 30px 70px -28px rgba(0,0,0,.95);
+    transition:
+      transform var(--dur-state) var(--ease-out),
+      background var(--dur-state) linear,
+      backdrop-filter var(--dur-state) linear,
+      border-color var(--dur-state) linear;
+    z-index: 2;
+  }
+
+  .pane-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .pane-title {
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid rgba(130,216,230,.35);
+    background: rgba(130,216,230,.10);
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 10px;
+    letter-spacing: .08em;
+    color: #bdeef7;
+  }
+
+  .chip::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--signal);
+    box-shadow: 0 0 8px var(--signal);
+  }
+
+  .pane-value {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pane-value strong {
+    font-size: 34px;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .pane-value span { font-size: 11px; color: var(--subtle); letter-spacing: .06em; }
+
+  .pane-sub {
+    margin: 8px 0 18px;
+    font-size: 12px;
+    color: var(--subtle);
+  }
+
+  .pane-controls { display: flex; gap: 8px; }
+
+  .press {
+    flex: 1;
+    appearance: none;
+    border: 1px solid rgba(251,246,235,.14);
+    background: rgba(251,246,235,.06);
+    color: var(--on-surface);
+    font: inherit;
+    font-size: 12px;
+    padding: 9px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform var(--dur-press) var(--ease-spring), background var(--dur-press) linear;
+  }
+
+  .press:active { transform: scale(.97); }
+
+  /* liquid state: pointer highlight, only where a fine pointer exists */
+  @media (hover: hover) and (pointer: fine) {
+    .pane[data-material="liquid"]::marker { content: ""; }
+
+    .pane[data-material="liquid"] .sheen {
+      opacity: 1;
+    }
+  }
+
+  .sheen {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    pointer-events: none;
+    background: radial-gradient(220px 220px at var(--mx, 50%) var(--my, 0%), rgba(251,246,235,.16), transparent 62%);
+    transition: opacity var(--dur-state) linear;
+  }
+
+  .pane[data-material="orbital"] {
+    border-radius: 22px;
+  }
+
+  .pane[data-material="orbital"] .liquid-body { opacity: 0; }
+
+  .liquid-body {
+    position: absolute;
+    inset: -18%;
+    border-radius: 50%;
+    filter: blur(34px);
+    opacity: 1;
+    transition: opacity var(--dur-state) linear, transform 520ms var(--ease-out);
+    background:
+      radial-gradient(closest-side at 32% 34%, rgba(201,161,92,.42), transparent 72%),
+      radial-gradient(closest-side at 68% 62%, rgba(130,216,230,.30), transparent 72%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .pane[data-state="stale"] {
+    backdrop-filter: blur(26px) saturate(.55) brightness(.9);
+    -webkit-backdrop-filter: blur(26px) saturate(.55) brightness(.9);
+    border-color: rgba(251,246,235,.07);
+  }
+
+  .pane[data-state="stale"] .chip {
+    border-color: rgba(251,246,235,.18);
+    background: rgba(251,246,235,.05);
+    color: var(--subtle);
+  }
+
+  .pane[data-state="stale"] .chip::before { background: var(--subtle); box-shadow: none; }
+
+  .pane[data-state="stale"] .pane-value strong { color: var(--muted); }
+
+  /* controls column */
+
+  .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 22px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--hairline);
+    background: rgba(17,17,19,.72);
+  }
+
+  .control-group { display: grid; gap: 8px; }
+
+  .control-label {
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--subtle);
+  }
+
+  .segmented {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 12px;
+    border: 1px solid var(--hairline);
+    background: rgba(7,10,16,.6);
+  }
+
+  .segmented button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 12px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background var(--dur-press) linear, color var(--dur-press) linear;
+  }
+
+  .segmented button[aria-pressed="true"] {
+    background: rgba(251,246,235,.10);
+    color: var(--on-surface);
+    box-shadow: inset 0 1px 0 rgba(251,246,235,.18);
+  }
+
+  .caption {
+    margin: 0;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--muted);
+    min-height: 3.1em;
+  }
+
+  .gate-note {
+    margin: 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--hairline);
+    display: grid;
+    gap: 8px;
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--subtle);
+  }
+
+  .gate-note b {
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .gate-rail {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 8px;
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 10px;
+    letter-spacing: .06em;
+    color: var(--subtle);
+  }
+
+  .gate-rail i {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(130,216,230,.6), rgba(240,200,126,.7));
+  }
+
+  /* ---------- signals ---------- */
+
+  .signals {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .tile {
+    position: relative;
+    padding: 20px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--hairline);
+    background: linear-gradient(170deg, rgba(251,246,235,.05), rgba(251,246,235,.012));
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 132px;
+    transition: transform var(--dur-state) var(--ease-out), border-color var(--dur-state) linear;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .tile:hover { transform: translateY(-2px); border-color: rgba(251,246,235,.18); }
+  }
+
+  .tile dt {
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--subtle);
+  }
+
+  .tile dd {
+    margin: 0;
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-top: auto;
+  }
+
+  .tile small {
+    font-size: 10.5px;
+    color: var(--subtle);
+    letter-spacing: .02em;
+  }
+
+  .tile[data-tone="warn"] dd { color: var(--accent-bright); }
+  .tile[data-tone="good"] dd { color: #bdeef7; }
+
+  /* ---------- ratio ---------- */
+
+  .ratio { display: grid; gap: 10px; }
+
+  .ratio-row {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr) 64px;
+    align-items: center;
+    gap: 14px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .ratio-row .name {
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 11px;
+    color: var(--subtle);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .bar {
+    position: relative;
+    height: 22px;
+    border-radius: 6px;
+    background: rgba(251,246,235,.05);
+    overflow: hidden;
+  }
+
+  .bar i {
+    position: absolute;
+    inset: 0 auto 0 0;
+    display: block;
+    border-radius: 6px;
+    background: linear-gradient(90deg, rgba(201,161,92,.85), rgba(240,200,126,.95));
+    width: var(--w, 10%);
+  }
+
+  .bar i.quiet { background: linear-gradient(90deg, rgba(130,216,230,.55), rgba(130,216,230,.85)); }
+
+  .ratio-row .num {
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    color: var(--on-surface);
+    font-size: 12px;
+  }
+
+  .ratio-rule {
+    margin-top: 18px;
+    font-size: 12px;
+    color: var(--subtle);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ratio-rule::before {
+    content: "";
+    width: 26px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    margin-top: 40px;
+    padding: 26px 0 48px;
+    border-top: 1px solid var(--hairline);
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+
+  code {
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 11.5px;
+    color: var(--accent-bright);
+  }
+
+  .provenance {
+    font-size: 11px;
+    color: var(--subtle);
+    letter-spacing: .02em;
+  }
+
+  /* ---------- preferences ---------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .ring-a, .ring-b, .ring-c { animation: none; }
+    * { transition-duration: 1ms !important; animation-duration: 1ms !important; }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .bar, .pane, .datum, .controls, .tile, .stage {
+      background: var(--glass-opaque) !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    .pane::before, .pane::after, .datum::before, .datum::after { display: none; }
+  }
+
+  /* ---------- responsive ---------- */
+
+  @media (max-width: 980px) {
+    .hero { grid-template-columns: 1fr; gap: 30px; padding-top: 44px; min-height: 0; }
+    .orbit { max-width: 400px; order: -1; }
+    .lab { grid-template-columns: 1fr; }
+    .controls { order: 2; }
+    .signals { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 560px) {
+    :root { --gutter: 18px; }
+    .hero { padding-top: 30px; }
+    .bar-meta { display: none; }
+    .stage { min-height: 360px; }
+    .pane { width: 90%; padding: 18px; }
+    .ratio-row { grid-template-columns: 116px minmax(0, 1fr) 52px; gap: 10px; }
+    .ratio-row .name { font-size: 10px; }
+    .signals { gap: 10px; }
+    .tile { min-height: 116px; padding: 16px; }
+    footer { flex-direction: column; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="field" aria-hidden="true"></div>
+
+<header class="bar">
+  <div class="wordmark"><span class="mark" aria-hidden="true"></span><b>Glass lab</b> materials 0.1</div>
+  <div class="bar-meta">25 surfaces · 11 brands · 8 ms budget</div>
+</header>
+
+<main class="shell">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div>
+      <p class="eyebrow">Starlight design intelligence</p>
+      <h1 id="hero-title">Glass that carries <em>the argument</em>.</h1>
+      <p class="lede">Two materials, one gate. Depth where it explains a system, clarity where it reports state.</p>
+      <dl class="meta-row">
+        <div><dt>Surfaces</dt><dd>25<span>live</span></dd></div>
+        <div><dt>Brands</dt><dd>11<span>packs</span></dd></div>
+        <div><dt>Frame budget</dt><dd>8<span>ms</span></dd></div>
+      </dl>
+    </div>
+
+    <div class="orbit" aria-hidden="true">
+      <svg viewBox="0 0 400 400" fill="none">
+        <defs>
+          <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+            <stop offset="60%" stop-color="#c9a15c" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#c9a15c" stop-opacity=".10"/>
+          </radialGradient>
+        </defs>
+        <circle cx="200" cy="200" r="188" fill="url(#glow)"/>
+        <g class="ring-a" stroke="rgba(251,246,235,.16)">
+          <circle cx="200" cy="200" r="176" stroke-dasharray="1 7"/>
+        </g>
+        <g class="ring-b" stroke="rgba(251,246,235,.20)">
+          <circle cx="200" cy="200" r="140" stroke-dasharray="2 10"/>
+        </g>
+        <g class="ring-c" stroke="rgba(240,200,126,.28)">
+          <circle cx="200" cy="200" r="104" stroke-dasharray="1 4"/>
+          <circle cx="200" cy="96" r="3" fill="#f0c87e"/>
+        </g>
+        <circle cx="200" cy="200" r="188" stroke="rgba(251,246,235,.07)"/>
+        <circle cx="200" cy="200" r="140" stroke="rgba(251,246,235,.07)"/>
+        <circle cx="200" cy="200" r="104" stroke="rgba(251,246,235,.07)"/>
+      </svg>
+      <span class="ring-label r1">delivery</span>
+      <span class="ring-label r2">runtime</span>
+      <span class="ring-label r3">memory</span>
+      <div class="datum">
+        <div>
+          <div class="datum-num">25</div>
+          <div class="datum-label">live surfaces</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="lab-title">
+    <div class="section-head">
+      <h2 id="lab-title">The material, in state</h2>
+      <p class="section-note">The pulse shown is the estate's last measured pulse, 74 days old. Freshness is a visual property, so the pane frosts.</p>
+    </div>
+
+    <div class="lab">
+      <div class="stage">
+        <div class="pane" id="pane" data-material="orbital" data-state="stale">
+          <div class="liquid-body" aria-hidden="true"></div>
+          <div class="sheen" aria-hidden="true"></div>
+          <div class="pane-head">
+            <span class="pane-title">System pulse</span>
+            <span class="chip" id="chip">stale · 74 d</span>
+          </div>
+          <div class="pane-value"><strong>24</strong><span>/ 24 up</span></div>
+          <p class="pane-sub">Last pulse 2026-09-15 02:33 UTC</p>
+          <div class="pane-controls">
+            <button class="press" type="button">Open log</button>
+            <button class="press" type="button">Re-probe</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="control-group">
+          <span class="control-label">Material</span>
+          <div class="segmented" role="group" aria-label="Material">
+            <button type="button" data-material="orbital" aria-pressed="true">Orbital</button>
+            <button type="button" data-material="liquid" aria-pressed="false">Liquid</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <span class="control-label">State</span>
+          <div class="segmented" role="group" aria-label="State">
+            <button type="button" data-state="fresh" aria-pressed="false">Fresh</button>
+            <button type="button" data-state="stale" aria-pressed="true">Stale</button>
+          </div>
+        </div>
+
+        <p class="caption" id="caption" aria-live="polite">Orbital: a system with layers. Clarity is the data.</p>
+
+        <p class="gate-note">
+          <span><b>Gate</b> keeps phones on CSS and capable desktops on WebGL. Budget: 8 ms median.</span>
+          <span class="gate-rail"><span>CSS</span><i></i><span>WEBGL</span></span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="signal-title">
+    <div class="section-head">
+      <h2 id="signal-title">What the estate looks like today</h2>
+      <p class="section-note">Measured 2026-11-28 from the live homepages.</p>
+    </div>
+    <dl class="signals">
+      <div class="tile" data-tone="good"><dt>Best ratio</dt><dd>10</dd><small>words per visual, arcanea.ai</small></div>
+      <div class="tile" data-tone="warn"><dt>Worst ratio</dt><dd>453</dd><small>words per visual, agenticpassiveincome.com</small></div>
+      <div class="tile" data-tone="warn"><dt>No imagery</dt><dd>9</dd><small>of 25 homepages contain no image</small></div>
+      <div class="tile"><dt>Cloudflare in front</dt><dd>0</dd><small>of 18 domains probed</small></div>
+    </dl>
+  </section>
+
+  <section aria-labelledby="ratio-title">
+    <div class="section-head">
+      <h2 id="ratio-title">The text budget</h2>
+      <p class="section-note">Rule: 25 words per visual or fewer on a public surface.</p>
+    </div>
+
+    <div class="ratio">
+      <div class="ratio-row">
+        <span class="name">agenticpassiveincome.com</span>
+        <span class="bar"><i style="--w:100%"></i></span>
+        <span class="num">453</span>
+      </div>
+      <div class="ratio-row">
+        <span class="name">starlight.technology</span>
+        <span class="bar"><i style="--w:46%"></i></span>
+        <span class="num">207</span>
+      </div>
+      <div class="ratio-row">
+        <span class="name">agenticincome.ai</span>
+        <span class="bar"><i style="--w:40%"></i></span>
+        <span class="num">180</span>
+      </div>
+      <div class="ratio-row">
+        <span class="name">realityarchitect.ai</span>
+        <span class="bar"><i style="--w:16%"></i></span>
+        <span class="num">74</span>
+      </div>
+      <div class="ratio-row">
+        <span class="name">gencreator.ai</span>
+        <span class="bar"><i style="--w:12%"></i></span>
+        <span class="num">54</span>
+      </div>
+      <div class="ratio-row">
+        <span class="name">starlightintelligence.org</span>
+        <span class="bar"><i class="quiet" style="--w:8%"></i></span>
+        <span class="num">25</span>
+      </div>
+      <div class="ratio-row">
+        <span class="name">frankx.ai</span>
+        <span class="bar"><i class="quiet" style="--w:6%"></i></span>
+        <span class="num">14</span>
+      </div>
+      <div class="ratio-row">
+        <span class="name">arcanea.ai</span>
+        <span class="bar"><i class="quiet" style="--w:5%"></i></span>
+        <span class="num">10</span>
+      </div>
+    </div>
+
+    <p class="ratio-rule">Above the line the page is a document. Below it, the page is an interface.</p>
+  </section>
+
+  <footer>
+    <div><code>npx shadcn@latest add @starlight/glass-surface</code></div>
+    <div class="provenance">Glass lab · OpenCode · 2026-11-28 · tokens from packages/materials/src/tokens/tokens.css</div>
+  </footer>
+
+</main>
+
+<script>
+  (function () {
+    var pane = document.getElementById("pane");
+    var chip = document.getElementById("chip");
+    var caption = document.getElementById("caption");
+    var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    var captions = {
+      orbital: "Orbital: a system with layers. Clarity is the data.",
+      liquid: "Liquid: the surface answers to a press, then settles."
+    };
+
+    document.querySelectorAll("[data-material]").forEach(function (button) {
+      if (button === pane) return;
+      button.addEventListener("click", function () {
+        var material = button.getAttribute("data-material");
+        pane.setAttribute("data-material", material);
+        caption.textContent = captions[material];
+        document.querySelectorAll(".segmented button[data-material]").forEach(function (other) {
+          other.setAttribute("aria-pressed", String(other === button));
+        });
+      });
+    });
+
+    document.querySelectorAll(".segmented button[data-state]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var state = button.getAttribute("data-state");
+        pane.setAttribute("data-state", state);
+        chip.textContent = state === "fresh" ? "24 up" : "stale · 74 d";
+        document.querySelectorAll(".segmented button[data-state]").forEach(function (other) {
+          other.setAttribute("aria-pressed", String(other === button));
+        });
+      });
+    });
+
+    // Pointer highlight: fine pointers only, and never when motion is reduced.
+    if (finePointer.matches && !reduceMotion.matches) {
+      pane.addEventListener("pointermove", function (event) {
+        var rect = pane.getBoundingClientRect();
+        pane.style.setProperty("--mx", ((event.clientX - rect.left) / rect.width) * 100 + "%");
+        pane.style.setProperty("--my", ((event.clientY - rect.top) / rect.height) * 100 + "%");
+      });
+    }
+
+    // Press depth on the two placeholder controls, so the state contract is visible.
+    pane.querySelectorAll(".press").forEach(function (button) {
+      button.addEventListener("click", function () {
+        button.animate(
+          [{ transform: "scale(.97)" }, { transform: "scale(1)" }],
+          { duration: 220, easing: "cubic-bezier(.34,1.56,.64,1)" }
+        );
+      });
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+/* Palette mirror for the Starlight glass materials.
+ *
+ * Verbatim value mirror of the estate materials package token file:
+ * starlight-design-intelligence/packages/materials/src/tokens/tokens.css
+ * (read 2026-11-28). This site does not depend on that package, so the same
+ * --sl-* names and values are declared here exactly once.
+ *
+ * lib/glass/materials.ts documents the same values for TypeScript; every
+ * component under components/glass/ reads them through var(--sl-*).
+ *
+ * If @starlight/materials is ever installed in this repo, delete this file
+ * and import the package stylesheet instead. Never tune values here.
+ */
+:root {
+  --sl-color-primary: #070a10;
+  --sl-color-secondary: #efede7;
+  --sl-color-tertiary: #c9a15c;
+  --sl-color-neutral: #ede6d8;
+  --sl-color-surface: #070a10;
+  --sl-color-surface-paper: #efede7;
+  --sl-color-surface-ivory: #ede6d8;
+  --sl-color-on-surface: #fbf6eb;
+  --sl-color-on-paper: #070a10;
+  --sl-color-accent: #c9a15c;
+  --sl-color-accent-bright: #f0c87e;
+  --sl-color-signal: #82d8e6;
+  --sl-color-glass-tint: #070a109e;
+  --sl-color-glass-tint-webgl: #070a104d;
+  --sl-color-glass-opaque: #111113;
+  --sl-color-hairline: #fbf6eb1a;
+  --sl-color-highlight: #fbf6eb2e;
+  --sl-color-focus: #f0c87e;
+  --sl-color-error: #e06c5b;
+  --sl-spacing-base: 16px;
+  --sl-spacing-xs: 4px;
+  --sl-spacing-sm: 8px;
+  --sl-spacing-md: 16px;
+  --sl-spacing-lg: 24px;
+  --sl-spacing-xl: 40px;
+  --sl-spacing-2xl: 64px;
+  --sl-spacing-gutter: 24px;
+  --sl-spacing-margin: 32px;
+  --sl-rounded-sm: 8px;
+  --sl-rounded-md: 14px;
+  --sl-rounded-lg: 24px;
+  --sl-rounded-xl: 40px;
+  --sl-rounded-full: 9999px;
+}

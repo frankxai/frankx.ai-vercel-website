@@ -1,0 +1,237 @@
+.pane {
+  position: relative;
+  width: min(420px, 88%);
+  padding: 22px;
+  border-radius: 20px;
+  border: 1px solid rgba(251, 246, 235, 0.12);
+  background: linear-gradient(
+    158deg,
+    rgba(251, 246, 235, 0.085),
+    rgba(251, 246, 235, 0.018) 60%,
+    rgba(7, 10, 16, 0.3)
+  );
+  backdrop-filter: blur(var(--pane-blur, 24px)) saturate(var(--pane-saturate, 1.35));
+  -webkit-backdrop-filter: blur(var(--pane-blur, 24px)) saturate(var(--pane-saturate, 1.35));
+  box-shadow:
+    inset 0 1px 0 rgba(251, 246, 235, 0.24),
+    0 30px 70px -28px rgba(0, 0, 0, 0.95);
+  transition:
+    transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    background 220ms linear,
+    backdrop-filter 220ms linear,
+    border-color 220ms linear;
+  z-index: 2;
+}
+
+/* Specular rim: one arc of light travels the edge. */
+.pane::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from 118deg,
+    transparent 0 46%,
+    rgba(201, 161, 92, 0.28) 58%,
+    rgba(240, 200, 126, 0.85) 68%,
+    rgba(251, 246, 235, 0.95) 72%,
+    rgba(130, 216, 230, 0.42) 77%,
+    transparent 88%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Dispersion: two 1.5px offsets, never a rainbow field. */
+.pane::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset 1.5px 0 0 -1px rgba(130, 216, 230, 0.28),
+    inset -1.5px 0 0 -1px rgba(240, 200, 126, 0.26);
+  pointer-events: none;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.title {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(251, 246, 235, 0.68);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(130, 216, 230, 0.35);
+  background: rgba(130, 216, 230, 0.1);
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: #bdeef7;
+  white-space: nowrap;
+}
+
+.chip::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--sl-color-signal);
+  box-shadow: 0 0 8px var(--sl-color-signal);
+}
+
+.value {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.value strong {
+  font-size: 34px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.value span {
+  font-size: 11px;
+  color: rgba(251, 246, 235, 0.5);
+  letter-spacing: 0.06em;
+}
+
+.meta {
+  margin: 8px 0 18px;
+  font-size: 12px;
+  color: rgba(251, 246, 235, 0.5);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.press {
+  flex: 1;
+  border: 1px solid rgba(251, 246, 235, 0.14);
+  background: rgba(251, 246, 235, 0.06);
+  color: var(--sl-color-on-surface);
+  font: inherit;
+  font-size: 12px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 120ms cubic-bezier(0.34, 1.56, 0.64, 1), background 120ms linear;
+}
+
+.press:active {
+  transform: scale(0.97);
+}
+
+.sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    220px 220px at var(--mx, 50%) var(--my, 0%),
+    rgba(251, 246, 235, 0.16),
+    transparent 62%
+  );
+  transition: opacity 220ms linear;
+}
+
+.liquidBody {
+  position: absolute;
+  inset: -18%;
+  border-radius: 50%;
+  filter: blur(34px);
+  background:
+    radial-gradient(closest-side at 32% 34%, rgba(201, 161, 92, 0.42), transparent 72%),
+    radial-gradient(closest-side at 68% 62%, rgba(130, 216, 230, 0.3), transparent 72%);
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 220ms linear;
+}
+
+/* Liquid shows the body and the sheen; orbital keeps both off. */
+.pane[data-material="orbital"] .liquidBody {
+  opacity: 0;
+}
+.pane[data-material="orbital"] .sheen {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pane[data-material="liquid"] .sheen {
+    opacity: 1;
+  }
+}
+
+/* Stale signal: frosted, desaturated, quieter chrome. */
+.pane[data-state="stale"] {
+  --pane-saturate: 0.55;
+  backdrop-filter: blur(26px) saturate(0.55) brightness(0.9);
+  -webkit-backdrop-filter: blur(26px) saturate(0.55) brightness(0.9);
+  border-color: rgba(251, 246, 235, 0.07);
+}
+
+.pane[data-state="stale"] .chip {
+  border-color: var(--sl-color-highlight);
+  background: rgba(251, 246, 235, 0.05);
+  color: rgba(251, 246, 235, 0.5);
+}
+
+.pane[data-state="stale"] .chip::before {
+  background: rgba(251, 246, 235, 0.5);
+  box-shadow: none;
+}
+
+.pane[data-state="stale"] .value strong {
+  color: rgba(251, 246, 235, 0.68);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pane,
+  .press,
+  .sheen,
+  .liquidBody {
+    transition-duration: 1ms;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .pane {
+    background: var(--sl-color-glass-opaque) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .pane::before,
+  .pane::after,
+  .sheen {
+    display: none;
+  }
+}

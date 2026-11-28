@@ -1,0 +1,180 @@
+.orbit {
+  position: relative;
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 540px;
+  margin-inline: auto;
+  display: grid;
+  place-items: center;
+}
+
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ringA,
+.ringB,
+.ringC {
+  transform-origin: 50% 50%;
+  animation: spin linear infinite;
+}
+.ringA { animation-duration: 96s; }
+.ringB { animation-duration: 148s; animation-direction: reverse; }
+.ringC { animation-duration: 210s; }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.datum {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 44%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  text-align: center;
+  background:
+    radial-gradient(circle at 34% 28%, rgba(251, 246, 235, 0.16), transparent 46%),
+    linear-gradient(158deg, var(--sl-color-hairline), rgba(251, 246, 235, 0.02) 58%, rgba(7, 10, 16, 0.35));
+  border: 1px solid rgba(251, 246, 235, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(251, 246, 235, 0.28),
+    inset 0 -20px 40px -20px rgba(7, 10, 16, 0.9),
+    0 40px 90px -34px rgba(0, 0, 0, 0.95),
+    0 0 60px -10px rgba(201, 161, 92, 0.18);
+  backdrop-filter: blur(26px) saturate(1.4);
+  -webkit-backdrop-filter: blur(26px) saturate(1.4);
+}
+
+.datum::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from 118deg,
+    transparent 0 46%,
+    rgba(201, 161, 92, 0.28) 58%,
+    rgba(240, 200, 126, 0.85) 68%,
+    rgba(251, 246, 235, 0.95) 72%,
+    rgba(130, 216, 230, 0.42) 77%,
+    transparent 88%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.num {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: clamp(2.2rem, 5.4vw, 3.4rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+}
+
+.label {
+  margin-top: 6px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(251, 246, 235, 0.5);
+}
+
+.ringLabel {
+  position: absolute;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(251, 246, 235, 0.5);
+  background: rgba(7, 10, 16, 0.72);
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--sl-color-hairline);
+  white-space: nowrap;
+}
+
+.signals {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+}
+
+.tile {
+  padding: 20px;
+  border-radius: 14px;
+  border: 1px solid var(--sl-color-hairline);
+  background: linear-gradient(170deg, rgba(251, 246, 235, 0.05), rgba(251, 246, 235, 0.012));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 132px;
+  transition: transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1), border-color 220ms linear;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tile:hover {
+    transform: translateY(-2px);
+    border-color: var(--sl-color-highlight);
+  }
+}
+
+.tileTerm {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(251, 246, 235, 0.5);
+}
+
+.tileValue {
+  margin: auto 0 0;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.tile[data-tone="warn"] .tileValue { color: var(--sl-color-accent-bright); }
+.tile[data-tone="good"] .tileValue { color: #bdeef7; }
+
+.tileNote {
+  font-size: 10.5px;
+  color: rgba(251, 246, 235, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ringA,
+  .ringB,
+  .ringC { animation: none; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .datum {
+    background: var(--sl-color-glass-opaque) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .datum::before { display: none; }
+}
+
+@media (max-width: 980px) {
+  .signals { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .orbit { max-width: 400px; }
+  .signals { gap: 10px; }
+  .tile { min-height: 116px; padding: 16px; }
+}

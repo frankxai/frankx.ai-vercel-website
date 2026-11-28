@@ -1,0 +1,137 @@
+.lab {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.stage {
+  position: relative;
+  min-height: 384px;
+  border-radius: 24px;
+  border: 1px solid var(--sl-color-hairline);
+  background:
+    radial-gradient(500px 320px at 22% 16%, rgba(130, 216, 230, 0.12), transparent 62%),
+    radial-gradient(520px 340px at 82% 88%, rgba(201, 161, 92, 0.16), transparent 62%),
+    #080b12;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(251, 246, 235, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(251, 246, 235, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at 50% 50%, #000, transparent 78%);
+  pointer-events: none;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 22px;
+  border-radius: 24px;
+  border: 1px solid var(--sl-color-hairline);
+  background: rgba(17, 17, 19, 0.72);
+}
+
+.group {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(251, 246, 235, 0.5);
+}
+
+.segmented {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid var(--sl-color-hairline);
+  background: rgba(7, 10, 16, 0.6);
+}
+
+.segmented button {
+  border: 0;
+  background: transparent;
+  color: rgba(251, 246, 235, 0.68);
+  font: inherit;
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 120ms linear, color 120ms linear;
+}
+
+.segmented button[aria-pressed="true"] {
+  background: var(--sl-color-hairline);
+  color: var(--sl-color-on-surface);
+  box-shadow: inset 0 1px 0 var(--sl-color-highlight);
+}
+
+.caption {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(251, 246, 235, 0.68);
+  min-height: 3.1em;
+}
+
+.note {
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--sl-color-hairline);
+  display: grid;
+  gap: 8px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(251, 246, 235, 0.5);
+}
+
+.note b {
+  color: rgba(251, 246, 235, 0.68);
+  font-weight: 500;
+}
+
+.rail {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+
+.rail i {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(130, 216, 230, 0.6), rgba(240, 200, 126, 0.7));
+}
+
+@media (max-width: 980px) {
+  .lab {
+    grid-template-columns: 1fr;
+  }
+  .controls {
+    order: 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .stage {
+    min-height: 360px;
+  }
+}
