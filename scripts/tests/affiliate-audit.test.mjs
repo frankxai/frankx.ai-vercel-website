@@ -58,3 +58,11 @@ test('ignores examples and drafts and asks for review of a stale hop', () => {
     { tool: 'ElevenLabs', forms: ['hop'], state: 'review destination' },
   ])
 })
+
+test('flags an expired program that still renders a component placement', () => {
+  const stale = { ...elevenLabs, checkedOn: '2026-08-01' }
+  assert.deepEqual(
+    inspectArticle('<ArticleRecommendation affiliateId="elevenlabs">Test</ArticleRecommendation>', [stale], now).placements,
+    [{ tool: 'ElevenLabs', forms: ['component'], state: 'review destination' }],
+  )
+})

@@ -60,9 +60,12 @@ export function inspectArticle(source, programs, now = new Date()) {
     if (!program.hasProgram) continue
     const decision = sponsorDecision(programToRecord(program), now)
     const aliases = [program.tool, ...(program.aliases ?? [])]
+    // A component is a placement when it resolves to this program at all, not only while sponsorship is current: an
+    // expired hop program still renders a local /go/ link from its component, so the audit must flag it for review
+    // rather than hide the placement that needs renewed verification.
     const component = componentIds.some(id => {
       if (!aliases.some(alias => alias.toLowerCase() === id.toLowerCase())) return false
-      return resolveProgramDestination(id, [program], undefined, now)?.sponsored === true
+      return resolveProgramDestination(id, [program], undefined, now) !== undefined
     })
     const hop = localTargets.has('/go/' + toolSlug(program.tool))
     const issued = Boolean(program.ourLink && targets.has(program.ourLink))
