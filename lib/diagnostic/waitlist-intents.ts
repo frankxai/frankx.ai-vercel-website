@@ -21,11 +21,21 @@ export interface WaitlistIntent {
   listType: WaitlistListType
 }
 
+const commandCenterTemplate: WaitlistIntent = {
+  label: 'The Command Center Template',
+  listType: 'premium-packs',
+}
+
 export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
   // Product launch lists linked from their existing product pages.
   'bv-kit': { label: 'Creator BV Kit', listType: 'premium-packs' },
   'prompt-vault': { label: 'Prompt Vault', listType: 'premium-packs' },
   // Launch lists for products whose checkout or download is not open yet.
+  // The catalog CTA and checkout fallback use different long-standing URLs.
+  'command-center': commandCenterTemplate,
+  'command-center-template': commandCenterTemplate,
+  'aurora-ui-kit': { label: 'Aurora UI Kit', listType: 'premium-packs' },
+  'agentic-content-engine': { label: 'Agentic Content Engine', listType: 'premium-packs' },
   'starter-kit': { label: 'System Architect Starter Kit', listType: 'premium-packs' },
   'visual-creation-loop': { label: 'Visual Creation Loop', listType: 'premium-packs' },
   'income-blueprint': { label: 'Income Architecture Blueprint', listType: 'premium-packs' },
@@ -65,6 +75,10 @@ export const WAITLIST_INTENTS: Record<string, WaitlistIntent> = {
 export const LAUNCH_LIST_INTENTS: ReadonlySet<string> = new Set([
   'bv-kit',
   'prompt-vault',
+  'command-center',
+  'command-center-template',
+  'aurora-ui-kit',
+  'agentic-content-engine',
   'starter-kit',
   'visual-creation-loop',
   'income-blueprint',

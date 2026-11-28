@@ -25,8 +25,6 @@ const intentLabelMap: Record<string, string> = {
   'creative-ai-toolkit': 'Creative AI Toolkit',
   'creation-chronicles': 'Creation Chronicles',
   'suno-prompt-library': 'Suno Prompt Library',
-  'aurora-ui-kit': 'Aurora UI Kit',
-  'agentic-content-engine': 'Agentic Content Engine',
 }
 
 export default async function WaitlistPage({ searchParams }: WaitlistPageProps) {
