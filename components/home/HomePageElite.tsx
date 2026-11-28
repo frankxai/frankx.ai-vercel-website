@@ -73,6 +73,7 @@ interface LibraryBookData {
 }
 
 interface HomePageEliteProps {
+  opening?: React.ReactNode
   latestPosts?: LatestPost[]
   faqs?: FAQItem[]
   featuredTrack?: FeaturedTrackData
@@ -1546,6 +1547,7 @@ function FinalCTA() {
 // ============================================================================
 
 export default function HomePageElite({
+  opening,
   latestPosts = [],
   faqs = [],
   featuredTrack,
@@ -1558,7 +1560,7 @@ export default function HomePageElite({
 
       <div className="relative z-10 overflow-x-hidden">
         {/* 1-3. Hero with featured track */}
-        <Hero featuredTrack={featuredTrack} />
+        {opening ?? <Hero featuredTrack={featuredTrack} />}
 
         {/* 4. Authority bar */}
         <AuthorityBar />

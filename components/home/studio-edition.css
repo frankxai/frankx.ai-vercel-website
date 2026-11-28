@@ -1,0 +1,326 @@
+.fx-edition {
+  --paper: #f1eee6;
+  --mute: #c5c3bd;
+  --mint: #9de2c9;
+  background: #101515;
+  color: var(--paper);
+  padding-top: 64px;
+}
+.fx-opening,
+.fx-test {
+  width: min(100%, 1550px);
+  margin: auto;
+}
+.fx-opening {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: clamp(510px, 62vh, 740px);
+  display: grid;
+  align-items: center;
+  background: #101515;
+}
+.fx-hero-art {
+  position: absolute;
+  inset: 0 0 0 38%;
+  z-index: -1;
+}
+.fx-hero-art img {
+  object-fit: cover;
+  object-position: 55% 57%;
+}
+.fx-hero-art::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background:
+    linear-gradient(90deg, #101515 0%, #10151520 30%, transparent 68%),
+    linear-gradient(0deg, #101515 0%, transparent 14%);
+}
+.fx-opening-copy {
+  padding: 46px 0 68px;
+  margin-left: clamp(24px, 7vw, 112px);
+  max-width: 43%;
+}
+.fx-kicker,
+.fx-folio {
+  font:
+    600 12px/1.45 ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    monospace;
+  letter-spacing: 0.06em;
+}
+.fx-kicker {
+  color: var(--mint);
+  margin: 0 0 24px;
+}
+.fx-kicker span {
+  margin: 0 0.6em;
+  color: #88a79a;
+}
+.fx-opening h1,
+.fx-test h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  letter-spacing: -0.074em;
+  line-height: 0.87;
+  color: var(--paper);
+  margin: 0;
+}
+.fx-opening h1 {
+  font-size: clamp(80px, 8.65vw, 142px);
+}
+.fx-edition em {
+  font-weight: 400;
+  color: var(--mint);
+}
+.fx-intro,
+.fx-test-heading > p:last-child,
+.fx-caption p {
+  font-size: clamp(16px, 1.25vw, 20px);
+  line-height: 1.52;
+  color: var(--mute);
+  max-width: 37ch;
+}
+.fx-intro {
+  margin: 24px 0 20px;
+}
+.fx-button,
+.fx-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 46px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.fx-button {
+  background: var(--paper);
+  color: #101515;
+  padding: 0 17px;
+  border-radius: 4px;
+}
+.fx-button:hover {
+  background: var(--mint);
+}
+.fx-folio {
+  position: absolute;
+  bottom: 14px;
+  right: 5%;
+  font-size: 11px;
+  color: #e8ece6;
+}
+.fx-folio span {
+  margin-left: 14px;
+}
+.fx-test {
+  scroll-margin-top: 70px;
+  border-block: 1px solid #34413c;
+  display: grid;
+  grid-template-columns: 0.83fr 1.17fr;
+  gap: 7%;
+  padding: clamp(46px, 6vw, 90px) clamp(24px, 7vw, 112px);
+  background: #141b18;
+}
+.fx-test h2 {
+  font-size: clamp(55px, 5.7vw, 88px);
+  margin: 0 0 24px;
+}
+.fx-test-heading {
+  align-self: center;
+}
+.fx-takes {
+  min-width: 0;
+}
+.fx-take-photo {
+  aspect-ratio: 1.84;
+  position: relative;
+  overflow: hidden;
+  background: #0c1110;
+}
+.fx-take-photo > div {
+  position: absolute;
+  inset: 0;
+}
+.fx-take-photo img {
+  object-fit: contain;
+  object-position: center 56%;
+}
+.fx-controls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid #48534b;
+}
+.fx-controls button {
+  min-height: 48px;
+  font-size: 14px;
+  color: var(--mute);
+}
+.fx-controls button[aria-pressed='true'] {
+  color: var(--paper);
+  box-shadow: inset 0 -2px var(--mint);
+}
+.fx-caption {
+  padding: 16px 0 4px;
+  min-height: 94px;
+}
+.fx-caption strong {
+  font-size: 18px;
+}
+.fx-caption p {
+  font-size: 16px;
+  max-width: 58ch;
+  margin: 5px 0;
+}
+.fx-link {
+  color: var(--mint);
+  text-underline-offset: 5px;
+  text-decoration: underline;
+}
+.fx-edition :is(a, button):focus-visible {
+  outline: 3px solid #b4f8ce;
+  outline-offset: 3px;
+}
+@media (max-width: 720px) {
+  .fx-edition {
+    padding-top: 58px;
+  }
+  .fx-opening {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+  }
+  .fx-hero-art {
+    position: relative;
+    inset: auto;
+    z-index: 0;
+    height: clamp(170px, 28svh, 258px);
+  }
+  .fx-hero-art img {
+    object-position: center 52%;
+  }
+  .fx-hero-art::after {
+    background: linear-gradient(0deg, #101515, transparent 22%);
+  }
+  .fx-opening-copy {
+    margin: 0;
+    max-width: none;
+    padding: 12px 22px 28px;
+  }
+  .fx-kicker {
+    font-size: 11px;
+    margin-bottom: 13px;
+  }
+  .fx-opening h1 {
+    font-size: clamp(57px, 12.8vw, 89px);
+    line-height: 1;
+  }
+  .fx-opening h1 br {
+    display: none;
+  }
+  .fx-opening h1 em::before {
+    content: ' ';
+  }
+  .fx-intro {
+    margin: 13px 0 14px;
+    font-size: 16px;
+  }
+  .fx-folio {
+    position: static;
+    margin: 0;
+    padding: 0 22px 13px;
+    color: #acb6af;
+  }
+  .fx-test {
+    display: block;
+    padding: 32px 22px;
+  }
+  .fx-test h2 {
+    font-size: clamp(42px, 9vw, 60px);
+    line-height: 1;
+    margin: 0;
+  }
+  .fx-test h2 br {
+    display: none;
+  }
+  .fx-test h2 em::before {
+    content: ' ';
+  }
+  .fx-test-heading > p:last-child {
+    margin: 12px 0 20px;
+  }
+  .fx-controls button {
+    font-size: 13px;
+  }
+  .fx-caption {
+    min-height: 93px;
+  }
+}
+.fx-shelf {
+  width: min(100%, 1550px);
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 32px 7%;
+  padding: 54px clamp(24px, 7vw, 112px);
+  background: #101515;
+}
+.fx-shelf h2 {
+  font:
+    400 clamp(32px, 3.1vw, 53px)/1.05 Georgia,
+    serif;
+  letter-spacing: -0.055em;
+}
+.fx-shelf p:not(.fx-kicker) {
+  max-width: 51ch;
+  color: var(--mute);
+  line-height: 1.55;
+  margin: 14px 0 4px;
+}
+.fx-listen {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.fx-listen img {
+  width: clamp(82px, 10vw, 145px);
+  height: auto;
+  align-self: center;
+}
+.fx-listen .fx-kicker {
+  margin-bottom: 8px;
+}
+.fx-deeper {
+  grid-column: 1/-1;
+  border-top: 1px solid #39443e;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 27px;
+  padding-top: 12px;
+}
+.fx-deeper a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--mint);
+  font-size: 14px;
+}
+@media (max-width: 720px) {
+  .fx-shelf {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 32px 22px;
+  }
+  .fx-listen {
+    padding-top: 20px;
+    border-top: 1px solid #39443e;
+  }
+  .fx-deeper {
+    gap: 0 16px;
+  }
+  .fx-shelf h2 {
+    font-size: 34px;
+  }
+}
