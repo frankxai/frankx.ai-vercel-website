@@ -52,6 +52,8 @@ export interface BlogPost {
   category: string
   tags: string[]
   image?: string
+  imageCaption?: string
+  coverAlt?: string
   ogImage?: string
   thumbnailHook?: string // Short 3-6 word high-contrast visual callout badge on HeroImage
   coverAlt?: string
