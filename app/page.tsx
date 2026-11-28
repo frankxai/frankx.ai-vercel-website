@@ -1,3 +1,4 @@
+import { StudioEdition } from '@/components/home/StudioEdition'
 import HomePageElite from '@/components/home/HomePageElite'
 import { getPublishedBooks } from '@/app/books/lib/books-registry'
 import JsonLd, { FAQPageJsonLd } from '@/components/seo/JsonLd'
@@ -172,6 +173,7 @@ export default function Page() {
   return (
     <>
       <HomePageElite
+        opening={<StudioEdition />}
         latestPosts={latestPosts}
         faqs={homepageFAQs}
         books={books}
