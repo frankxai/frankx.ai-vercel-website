@@ -13,6 +13,7 @@
     "test:wealth-privacy:rendered": "node scripts/qa/wealth-privacy-journey.mjs",
     "changelog:validate": "node scripts/validate-changelog.mjs",
     "test:governance": "node --test scripts/tests/governance-gates.test.mjs",
+    "test:estate-guard": "node --test tests/estate-guard-gate.test.mjs",
     "test:changelog-release": "node scripts/validate-changelog.mjs && node --test scripts/tests/changelog-release-contract.test.mjs",
     "test:delivery": "node --experimental-strip-types scripts/test-delivery.mjs",
     "test:paid-delivery": "node --experimental-strip-types --test scripts/tests/paid-delivery.test.mjs",
