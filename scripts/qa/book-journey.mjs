@@ -371,8 +371,15 @@ try {
     assert.equal(response.status, 307, slug)
     const destination = new URL(response.headers.get('location'))
     const product = products.find(item => item.slug === slug)
-    assert.equal(destination.origin, 'https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com')
-    assert.equal(destination.pathname, `/${product.delivery.files[0].blobKey}`)
+    const firstFile = product.delivery.files[0]
+    if (firstFile.publicPath) {
+      // Bundled editions redirect to the site's own /books/<slug>.pdf, so the origin follows the request.
+      assert.equal(destination.origin, new URL(origin).origin, slug)
+      assert.equal(destination.pathname, firstFile.publicPath, slug)
+    } else {
+      assert.equal(destination.origin, 'https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com')
+      assert.equal(destination.pathname, `/${firstFile.blobKey}`)
+    }
     assert.equal(destination.search, '?download=1')
     manifest.checks.push({ slug, result: 'passed', redirectStatus: response.status, destination: destination.toString(), scope: 'Built route; live file availability checked separately at release' })
   }
