@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "stats": {
-    "total": 1089,
+    "total": 1095,
     "aliases": 61,
     "byType": {
       "core": 24,
@@ -9,7 +9,7 @@
       "community": 17,
       "tool": 79,
       "static": 15,
-      "blog": 282,
+      "blog": 288,
       "research": 23,
       "guide": 47,
       "library": 89,
@@ -1267,6 +1267,18 @@
       "type": "blog"
     },
     {
+      "href": "/blog/ai-creator-stack-black-friday-2026-verified-deals",
+      "title": "AI Creator Stack Black Friday 2026: Verified Deals vs Skip List",
+      "description": "Verified Black Friday 2026 deals for ElevenLabs, Suno, Synthesia, Beehiiv, Kit, and Hostinger—plus the frontier tools offering zero discounts.",
+      "tags": [
+        "black-friday",
+        "ai-tools",
+        "creator-systems",
+        "affiliate-stack"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/ai-doesnt-have-to-be-soulless",
       "title": "AI Doesn't Have To Be Soulless (And Here's How I Know)",
       "description": "An architect's turning point: how collaborative creation with AI revealed a path where technology amplifies human creativity, not replaces it.",
@@ -1373,12 +1385,14 @@
     },
     {
       "href": "/blog/ai-video-generation-2026-sora-runway-kling-veo",
-      "title": "AI Video Generation in 2026: Sora, Runway, Kling, Veo",
-      "description": "In-depth benchmark of 2026 video models: Sora, Runway Gen-3, Kling 1.5, and Google Veo for cinematic creator workflows.",
+      "title": "AI Video in 2026: Runway, Kling, Veo and Sora Alternatives",
+      "description": "Compare Runway Gen-4.5, Kling 4.0, Google Veo 3.1, Seedance, Luma and Pika by shot, controls and API cost. Includes Sora’s shutdown and a worked budget.",
       "tags": [
         "AI Video",
         "Sora",
         "Runway",
+        "Kling",
+        "Google Veo",
         "Video Production",
         "Generative AI"
       ],
@@ -1766,6 +1780,21 @@
         "creator-systems",
         "multi-agent-systems",
         "marketing-automation"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/black-friday-2026-higgsfield-elevenlabs-ai-stack",
+      "title": "Higgsfield and ElevenLabs Black Friday 2026 deals",
+      "description": "Higgsfield Black Friday 2026: up to 75% off annual plans and ElevenLabs Creator at $99 for the first year. Prices, cost per output, and other AI deals.",
+      "tags": [
+        "Black Friday",
+        "Higgsfield",
+        "ElevenLabs",
+        "AI Video",
+        "Voice AI",
+        "AI CoE",
+        "Creator Tools"
       ],
       "type": "blog"
     },
@@ -2178,6 +2207,18 @@
       "type": "blog"
     },
     {
+      "href": "/blog/cyber-monday-developers-ai-spend-guide-2026",
+      "title": "Cyber Monday for AI Developers: Cut LLM Spend Without Flash Sales",
+      "description": "Claude Code, Cursor, and Vercel rarely discount on Cyber Monday. Cut engineering token spend 50-80% with prompt caching, Batch API, and model routing.",
+      "tags": [
+        "claude-code",
+        "cyber-monday",
+        "llm-cost",
+        "ai-architecture"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/deepseek-r1-open-weight-reasoning-analysis",
       "title": "DeepSeek R1: What Open-Weight Reasoning Actually Means",
       "description": "The model that disrupted AI pricing. How DeepSeek R1 works, where it excels, and what it means for builders choosing between open and closed models.",
@@ -2225,6 +2266,18 @@
         "rtx-5090",
         "creator-systems",
         "ai-hardware"
+      ],
+      "type": "blog"
+    },
+    {
+      "href": "/blog/elevenlabs-black-friday-2026-annual-plan-math",
+      "title": "ElevenLabs Black Friday 2026: Annual Plan Math vs Local TTS",
+      "description": "Math-first guide to ElevenLabs Black Friday 2026 (Creator $99/yr, Pro $445.50/yr): break-even minutes, Year-2 renewal, and when local TTS wins.",
+      "tags": [
+        "elevenlabs",
+        "black-friday",
+        "voice-ai",
+        "creator-systems"
       ],
       "type": "blog"
     },
@@ -3935,6 +3988,18 @@
       "type": "blog"
     },
     {
+      "href": "/blog/suno-pro-black-friday-2026-music-licensing-guide",
+      "title": "Suno Pro Black Friday 2026: Annual Pricing and Rights Audit",
+      "description": "An honest licensing and workflow audit of Suno Pro's 30% off Black Friday 2026 annual deal, backed by 919 cataloged studio sessions.",
+      "tags": [
+        "suno-ai",
+        "black-friday",
+        "music-intelligence",
+        "licensing"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/suno-prompt-engineering-complete-guide",
       "title": "The Complete Suno Prompt Engineering Guide: From Beginner to Pro",
       "description": "Master Suno AI music creation with one reusable prompt formula: genre, tempo, instruments, vocals, mood and special elements.",
@@ -4448,6 +4513,18 @@
       "type": "blog"
     },
     {
+      "href": "/blog/year-end-software-budget-personal-ai-stack-2027",
+      "title": "Year-End L&D Budget: Building a Personal AI Stack for 2027",
+      "description": "How engineers and solo founders can allocate expiring 2026 L&D or software budgets into a lean sub-$100/mo or $250/mo 2027 AI operating stack.",
+      "tags": [
+        "ld-budget",
+        "ai-stack",
+        "personal-ai-coe",
+        "year-end"
+      ],
+      "type": "blog"
+    },
+    {
       "href": "/blog/your-mind-is-a-temporary-library",
       "title": "Your Mind Is a Temporary Library",
       "description": "A Mindvalley field note on turning lived experience into durable knowledge, agentic systems, and public capability that can outlast us.",
@@ -4798,7 +4875,8 @@
         "checkout",
         "cancel"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/checkout/success",
@@ -4807,7 +4885,8 @@
         "checkout",
         "success"
       ],
-      "type": "section"
+      "type": "section",
+      "sitemap": false
     },
     {
       "href": "/chronicle",
