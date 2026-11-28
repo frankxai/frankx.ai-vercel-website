@@ -9,7 +9,7 @@ export default function PrivacyPage() {
   return (
     <article className="prose prose-invert prose-zinc max-w-none">
       <h1 className="text-3xl font-bold text-white mb-2">Privacy Policy</h1>
-      <p className="text-zinc-500 text-sm mb-8">Effective: [DATE] &bull; Last updated: March 2026</p>
+      <p className="text-zinc-500 text-sm mb-8">Effective: October 7, 2026 &bull; Last updated: November 2026</p>
 
       <Section title="1. Who We Are">
         <p>Frank Riemer (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;), a Dutch eenmanszaak trading as FrankX, is the data controller responsible for your personal data.</p>
@@ -17,6 +17,7 @@ export default function PrivacyPage() {
           ['Business', 'Frank Riemer (eenmanszaak), trading as FrankX'],
           ['Address', 'Amsterdam, Netherlands'],
           ['KvK', '42186809'],
+          ['BTW-id', 'NL005565287B89'],
           ['Email', 'privacy@frankx.ai'],
           ['DPO', 'Frank Riemer'],
         ]} />
@@ -118,7 +119,7 @@ export default function PrivacyPage() {
         <p>We may update this privacy policy from time to time. We will notify you of significant changes via email or a notice on our website. The &ldquo;last updated&rdquo; date at the top indicates the most recent revision.</p>
       </Section>
 
-      <p className="text-zinc-600 text-xs mt-12">Last updated: March 2026</p>
+      <p className="text-zinc-600 text-xs mt-12">Last updated: November 2026</p>
     </article>
   )
 }

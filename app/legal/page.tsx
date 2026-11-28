@@ -68,6 +68,7 @@ export default function LegalPage() {
               <p><strong className="text-white">Trading as:</strong> FrankX / frankx.ai</p>
               <p><strong className="text-white">Location:</strong> Amsterdam, Netherlands</p>
               <p><strong className="text-white">KvK:</strong> 42186809</p>
+              <p><strong className="text-white">BTW-id:</strong> NL005565287B89</p>
               <p><strong className="text-white">Contact:</strong>{' '}
                 <a href="mailto:frank@frankx.ai" className="text-emerald-400 hover:text-emerald-300">
                   frank@frankx.ai

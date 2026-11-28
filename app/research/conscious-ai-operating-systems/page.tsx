@@ -203,7 +203,7 @@ export default function ConsciousAIOperatingSystemsPage() {
         {/* Status */}
         <footer className="border-t border-zinc-800 pt-8">
           <p className="text-sm text-zinc-500">
-            Active Research · Arcanea BV × Trinity AI · 2026
+            Active Research · Arcanea × Trinity AI · 2026
           </p>
         </footer>
       </div>
