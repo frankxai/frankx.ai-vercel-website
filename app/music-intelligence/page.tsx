@@ -76,7 +76,9 @@ const jsonLd = {
         '@type': 'ListItem',
         position: index + 1,
         name: system.name,
-        url: system.external ? system.href : `${siteConfig.url}${system.href}`,
+        ...(system.href
+          ? { url: system.external ? system.href : `${siteConfig.url}${system.href}` }
+          : {}),
       })),
     },
     {
@@ -111,7 +113,8 @@ function SystemCard({ system }: { system: SystemEntry }) {
         ))}
       </div>
       <div className="flex flex-col gap-1.5 border-t border-white/[0.06] pt-4 text-sm">
-        {system.external ? (
+        {system.href && system.linkLabel ? (
+          system.external ? (
           <a
             href={system.href}
             target="_blank"
@@ -129,7 +132,8 @@ function SystemCard({ system }: { system: SystemEntry }) {
             {system.linkLabel}
             <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
           </Link>
-        )}
+        )
+        ) : null}
         {system.secondaryLinks.map((link) =>
           link.external ? (
             <a
