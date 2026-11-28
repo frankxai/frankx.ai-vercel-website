@@ -24,7 +24,6 @@ export function GlassLab() {
           value="24"
           unit="/ 24 up"
           meta="Last pulse 2026-09-15 02:33 UTC"
-          actions={[{ label: "Open log" }, { label: "Re-probe" }]}
         />
       </div>
 

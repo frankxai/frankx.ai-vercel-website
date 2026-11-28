@@ -472,28 +472,10 @@
   .pane-value span { font-size: 11px; color: var(--subtle); letter-spacing: .06em; }
 
   .pane-sub {
-    margin: 8px 0 18px;
+    margin: 8px 0 0;
     font-size: 12px;
     color: var(--subtle);
   }
-
-  .pane-controls { display: flex; gap: 8px; }
-
-  .press {
-    flex: 1;
-    appearance: none;
-    border: 1px solid rgba(251,246,235,.14);
-    background: rgba(251,246,235,.06);
-    color: var(--on-surface);
-    font: inherit;
-    font-size: 12px;
-    padding: 9px 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform var(--dur-press) var(--ease-spring), background var(--dur-press) linear;
-  }
-
-  .press:active { transform: scale(.97); }
 
   /* liquid state: pointer highlight, only where a fine pointer exists */
   @media (hover: hover) and (pointer: fine) {
@@ -837,7 +819,7 @@
       <h1 id="hero-title">Glass that carries <em>the argument</em>.</h1>
       <p class="lede">Two materials, one gate. Depth where it explains a system, clarity where it reports state.</p>
       <dl class="meta-row">
-        <div><dt>Surfaces</dt><dd>25<span>live</span></dd></div>
+        <div><dt>Surfaces</dt><dd>24<span>live</span></dd></div>
         <div><dt>Brands</dt><dd>11<span>packs</span></dd></div>
         <div><dt>Frame budget</dt><dd>8<span>ms</span></dd></div>
       </dl>
@@ -871,7 +853,7 @@
       <span class="ring-label r3">memory</span>
       <div class="datum">
         <div>
-          <div class="datum-num">25</div>
+          <div class="datum-num">24</div>
           <div class="datum-label">live surfaces</div>
         </div>
       </div>
@@ -895,10 +877,6 @@
           </div>
           <div class="pane-value"><strong>24</strong><span>/ 24 up</span></div>
           <p class="pane-sub">Last pulse 2026-09-15 02:33 UTC</p>
-          <div class="pane-controls">
-            <button class="press" type="button">Open log</button>
-            <button class="press" type="button">Re-probe</button>
-          </div>
         </div>
       </div>
 
@@ -1046,15 +1024,6 @@
       });
     }
 
-    // Press depth on the two placeholder controls, so the state contract is visible.
-    pane.querySelectorAll(".press").forEach(function (button) {
-      button.addEventListener("click", function () {
-        button.animate(
-          [{ transform: "scale(.97)" }, { transform: "scale(1)" }],
-          { duration: 220, easing: "cubic-bezier(.34,1.56,.64,1)" }
-        );
-      });
-    });
   })();
 </script>
 </body>

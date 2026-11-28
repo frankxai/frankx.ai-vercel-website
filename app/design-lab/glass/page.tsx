@@ -40,7 +40,7 @@ export default function GlassLabPage() {
               <div>
                 <dt>Surfaces</dt>
                 <dd>
-                  25<span>live</span>
+                  24<span>live</span>
                 </dd>
               </div>
               <div>
@@ -57,7 +57,7 @@ export default function GlassLabPage() {
               </div>
             </dl>
           </div>
-          <OrbitalField value="25" label="live surfaces" rings={["delivery", "runtime", "memory"]} />
+          <OrbitalField value="24" label="live surfaces" rings={["delivery", "runtime", "memory"]} />
         </section>
 
         <section className={styles.section} aria-labelledby="state-title">
