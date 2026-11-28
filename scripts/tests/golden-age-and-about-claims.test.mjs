@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import test from 'node:test'
+import { socialPosts } from '../../lib/social-links.ts'
 
 const article = readFileSync(
   new URL('../../content/blog/golden-age-of-intelligence.mdx', import.meta.url),
@@ -50,4 +51,32 @@ test('case signals omit unsourced client results and the pipeline signals block'
 test('about story carries no unsourced revenue tier', () => {
   assert.doesNotMatch(aboutShell, /seven-figure|7-figure/i)
   assert.ok(aboutShell.includes('Alex built a solar business.'))
+})
+
+test('the public About page has working chapter and audience fragment links', () => {
+  const page = readFileSync(new URL('../../app/about/page.tsx', import.meta.url), 'utf8')
+  const ids = [...page.matchAll(/\bid="([^"]+)"/g)].map(([, id]) => id)
+  const links = [...page.matchAll(/\bhref(?:=|:\s*)"\#([^"]+)"/g)].map(([, id]) => id)
+  assert.ok(links.includes('investors'))
+  assert.ok(links.includes('start-with-the-work'))
+  for (const destination of links) {
+    assert.equal(ids.filter(id => id === destination).length, 1, destination)
+  }
+})
+
+test('the About loading boundary retains the founder portrait while announcing progress', () => {
+  const loading = readFileSync(new URL('../../app/about/loading.tsx', import.meta.url), 'utf8')
+  const page = readFileSync(new URL('../../app/about/page.tsx', import.meta.url), 'utf8')
+  assert.match(loading, /<p\b[^>]*role="status"[^>]*>[^<]+<\/p>/)
+  assert.match(loading, /<FounderPortrait\s*\/>/)
+  assert.match(page, /<FounderPortrait\s*\/>/)
+})
+
+
+test('the About biography links to Frank’s published account of leaving Oracle', () => {
+  const page = readFileSync(new URL('../../app/about/page.tsx', import.meta.url), 'utf8')
+  const source = new URL(socialPosts.oracleDeparture)
+  assert.equal(source.origin, 'https://www.linkedin.com')
+  assert.match(source.pathname, /^\/posts\/frank-x-riemer_.*-activity-7466943560559427584-/)
+  assert.match(page, /href=\{socialPosts\.oracleDeparture\}/)
 })

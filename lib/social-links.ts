@@ -109,6 +109,11 @@ export const socialLinks = {
   suno: SOCIAL_PROFILES.suno.url,
 } as const
 
+/** First-person sources cited in Frank’s public biography. */
+export const socialPosts = {
+  oracleDeparture: 'https://www.linkedin.com/posts/frank-x-riemer_after-almost-5-years-today-im-saying-goodbye-activity-7466943560559427584-nEGk',
+} as const
+
 /**
  * Social @-handles (not URLs) — used for metadata cards (Twitter `creator`, etc.).
  */
