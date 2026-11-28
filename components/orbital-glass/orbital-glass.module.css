@@ -1,0 +1,435 @@
+/*
+ * Orbital glass. Geometry and layering only: the glass material itself is the
+ * repo's vendored `.liquid-glass` recipe (lib/liquid/liquid.css), applied as a
+ * second class in the markup. No second set of opacity values lives here.
+ *
+ * Layers, back to front inside the stage:
+ *   0 backdrop (real imagery)  1 veil  2 orbit path  3 far-side chips
+ *   4 focal lens               5 near-side chips     6 pause control
+ *
+ * Hard rules this file keeps:
+ *  - No ancestor of a glass surface sets opacity, filter or mask. Any of those
+ *    makes the ancestor a backdrop root and the blur then samples nothing.
+ *    Depth comes from the chip's own surface alpha (--og-a). Element opacity
+ *    stays at 1.
+ *  - No `transition: all`. The vendored glass transitions `transform`, which
+ *    would smooth GSAP's per-frame updates, so chips re-declare transitions.
+ *  - box-shadow is inset only. No drop shadow on glass.
+ */
+
+.root {
+  container-name: og-root;
+  container-type: inline-size;
+  position: relative;
+  color: var(--liquid-text, rgb(255 255 255 / 0.95));
+  --og-focus: color-mix(in srgb, var(--liquid-tint-2) 85%, white);
+}
+
+/* Two spectra, never mixed on one page. The vendored layer defaults its first
+   tint to Arcanea purple; both spectra replace that. Values are the design
+   system's tokens of record (design.md section 3, lib/design-system.ts):
+   tech emerald #10b981 and cyan #06b6d4, soul amber #f59e0b and #fbbf24. */
+.root[data-spectrum='tech'] {
+  --liquid-tint-1: var(--brand-emerald, #10b981);
+  --liquid-tint-2: #06b6d4;
+  --liquid-tint-3: var(--brand-emerald, #10b981);
+}
+
+.root[data-spectrum='soul'] {
+  --liquid-tint-1: var(--brand-gold, #f59e0b);
+  --liquid-tint-2: #fbbf24;
+  --liquid-tint-3: var(--brand-gold, #f59e0b);
+}
+
+/* ------------------------------------------------------------------ stage */
+
+/* Default layout: a stack. Used below the orbit breakpoint. The lens sits on
+   top, the chips at the bottom, and the photograph shows between them. */
+.root .stage {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 32rem;
+  padding: 1.25rem;
+  border-radius: 2rem;
+  /* The photograph fades to the page void on its dark side; a hairline keeps
+     the stage's edge readable there. */
+  border: 1px solid rgb(255 255 255 / 0.1);
+  background: var(--void, #0a0a0b);
+}
+
+.root .stage:focus-visible {
+  outline: 2px solid var(--og-focus);
+  outline-offset: 3px;
+}
+
+.root .backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  /* Individual `scale`, so GSAP's transform on the same element never fights it. */
+  scale: 1.06;
+}
+
+.root .backdrop img {
+  object-fit: cover;
+}
+
+/* A functional scrim. It fixes the worst-case backdrop that chip text has to
+   read against and frames the focal point. It is kept light so the photograph
+   stays visible through the glass. */
+.root .veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 90% at 50% 50%,
+    rgb(10 10 11 / 0.26),
+    rgb(10 10 11 / 0.56)
+  );
+}
+
+.root .path {
+  display: none;
+}
+
+/* The SVG's viewBox is 160 x 90, the stage's exact 16:9, so it scales
+   uniformly and the hairline keeps its proportions. Units are viewBox units. */
+.root .pathLine {
+  fill: none;
+  stroke: color-mix(in srgb, var(--liquid-tint-2) 42%, transparent);
+  stroke-width: 0.2;
+}
+
+/* ------------------------------------------------------------------- lens */
+
+.root .lens {
+  position: relative;
+  z-index: 4;
+  overflow: hidden;
+  padding: 1.5rem 1.75rem;
+  min-height: 8.5rem;
+  border-radius: 2rem;
+  background: rgb(18 18 20 / 0.82);
+  /* Inset highlight only; taste.md refuses drop shadow + border + blur. */
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.14);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .root .lens {
+    background: rgb(18 18 20 / 0.5);
+  }
+}
+
+/* The reader replaces the subject while a chip is active. It exists only in
+   the ring layout; in the stack a swap would move the chips below it. */
+.root .reader {
+  display: none;
+}
+
+.root .readerEyebrow {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.6);
+}
+
+.root .readerTitle {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-poppins), 'Poppins', system-ui, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.15;
+  color: #fff;
+}
+
+.root .readerBody {
+  margin: 0.5rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  color: rgb(255 255 255 / 0.85);
+}
+
+/* ------------------------------------------------------------------- ring */
+
+.root .ring {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.root .slot {
+  --og-a: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.root .slot .chip {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.75rem; /* 44px touch target */
+  padding: 0.5rem 1.1rem 0.5rem 0.85rem;
+  border-radius: 999px;
+  color: inherit;
+  text-decoration: none;
+  background: rgb(18 18 20 / calc(0.92 * var(--og-a)));
+  transition:
+    background-color var(--liquid-duration-fast, 200ms) var(--liquid-ease, ease),
+    border-color var(--liquid-duration-fast, 200ms) var(--liquid-ease, ease);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .root .slot .chip {
+    background: rgb(18 18 20 / calc(0.7 * var(--og-a)));
+  }
+}
+
+.root .chipIcon {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--liquid-tint-2);
+}
+
+.root .chipIcon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.root .chipText {
+  display: grid;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.root .chipHead {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+/* Order, stated: the ring has no start mark of its own. Decorative to
+   assistive tech; the list's own numbering carries it there. */
+.root .chipIndex {
+  font-family: var(--font-mono), 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  color: var(--liquid-tint-2);
+}
+
+.root .chipTitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.root .chipDetail {
+  font-size: 0.75rem;
+  line-height: 1.25;
+  color: rgb(255 255 255 / 0.82);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .root .slot a.chip:hover {
+    background: rgb(18 18 20 / calc(0.78 * var(--og-a)));
+    border-color: color-mix(in srgb, var(--liquid-tint-2) 75%, transparent);
+  }
+}
+
+.root .slot .chip:focus-visible,
+.root .control:focus-visible {
+  outline: 2px solid var(--og-focus);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------------- control */
+
+.root .control {
+  display: none;
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 6;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.75rem;
+  color: inherit;
+  cursor: pointer;
+  background: rgb(18 18 20 / 0.62);
+  transition:
+    background-color var(--liquid-duration-fast, 200ms) var(--liquid-ease, ease),
+    border-color var(--liquid-duration-fast, 200ms) var(--liquid-ease, ease);
+}
+
+/* Only exists while motion is running: a pause mechanism for moving content
+   (WCAG 2.2.2) has nothing to control when nothing moves. */
+.root[data-state] .control {
+  display: inline-flex;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .root .control:hover {
+    background: rgb(18 18 20 / 0.78);
+    border-color: color-mix(in srgb, var(--liquid-tint-2) 75%, transparent);
+  }
+}
+
+.root .controlIcon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--liquid-tint-2);
+}
+
+/* ------------------------------------------------------------ wider stack */
+
+/* From 640 px the stack becomes two columns, so the photograph shows between
+   the chips instead of being covered by one wide column of pills. This block
+   must stay above the orbit block so the orbit's `display` wins at 960. */
+@container og-root (min-width: 640px) {
+  .root .ring {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ------------------------------------------------------------------ orbit */
+
+/* Keep this width equal to ORBIT_MIN_WIDTH in lib/orbital-glass/orbit.ts.
+   scripts/tests/orbital-glass-contract.test.mjs fails if they drift. */
+@container og-root (min-width: 960px) {
+  .root .stage {
+    display: block;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .root .path {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .root .lens {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    display: grid;
+    place-items: center;
+    width: var(--og-lens);
+    min-height: 0;
+    aspect-ratio: 1;
+    padding: 2cqw;
+    border-radius: 50%;
+    text-align: center;
+    /* Decorative focal point: leave the chips beside it reachable. */
+    pointer-events: none;
+  }
+
+  .root .lens[data-reading] .subject {
+    display: none;
+  }
+
+  .root .lens[data-reading] .reader {
+    display: block;
+  }
+
+  .root .ring {
+    position: absolute;
+    inset: 0;
+    z-index: auto;
+    display: block;
+  }
+
+  .root .slot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: calc(var(--og-z, 2) + 3);
+    --og-a: var(--og-o, 1);
+    transform: translate3d(
+      calc(-50% + var(--og-x, 0) * var(--og-rx)),
+      calc(-50% + var(--og-y, 0) * var(--og-ry)),
+      0
+    );
+  }
+
+  .root .slot .chip {
+    max-width: 18rem;
+  }
+}
+
+/* ------------------------------------------------------------ preferences */
+
+@media (prefers-reduced-transparency: reduce) {
+  .root .lens,
+  .root .slot .chip,
+  .root .control {
+    background: var(--elevated, #1a1a1f);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root .slot .chip,
+  .root .control {
+    transition: none;
+  }
+}
+
+/* A device that missed the frame budget keeps the composition and loses the
+   most expensive part of the material. */
+.root[data-tier='lite'] .slot .chip,
+.root[data-tier='lite'] .lens,
+.root[data-tier='lite'] .control {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+@media (forced-colors: active) {
+  .root .lens,
+  .root .slot .chip,
+  .root .control {
+    background: Canvas;
+    border: 1px solid CanvasText;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .root .stage {
+    border-color: CanvasText;
+  }
+
+  .root .slot .chip:focus-visible,
+  .root .control:focus-visible,
+  .root .stage:focus-visible {
+    outline-color: Highlight;
+  }
+
+  .root .pathLine {
+    stroke: CanvasText;
+  }
+}
