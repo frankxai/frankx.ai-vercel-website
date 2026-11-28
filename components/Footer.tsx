@@ -104,6 +104,7 @@ const NAV_COLUMNS = [
       { label: 'Licensing', href: '/licensing' },
       { label: 'Newsletter', href: '/newsletter' },
       { label: 'About', href: '/about' },
+      { label: 'Amsterdam', href: '/amsterdam' },
       { label: 'Contact', href: '/contact' },
     ],
   },

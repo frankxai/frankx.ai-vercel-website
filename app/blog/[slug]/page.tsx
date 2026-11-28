@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation'
 import { Calendar, Clock, FileText, Tag } from 'lucide-react'
 
 import { MDXContent } from '@/components/blog/MDXContent'
+import FieldNotePreview from '@/components/amsterdam/FieldNotePreview'
+import { amsterdamPhotos, fieldNotePath, fieldNoteSlug } from '@/content/amsterdam/editorial'
 import TableOfContents from '@/components/blog/TableOfContents'
 import RelatedResearch from '@/components/blog/RelatedResearch'
 import BlogFooterCTA from '@/components/blog/BlogFooterCTA'
@@ -13,6 +15,7 @@ import { ArticleHeaderActions } from '@/components/blog/ArticleHeaderActions'
 import {
   getAllBlogPostSummaries,
   getAllBlogPosts,
+  getAmsterdamDraft,
   getBlogPost,
 } from '@/lib/blog'
 import { contentLicense, createMetadata, siteConfig } from '@/lib/seo'
@@ -28,13 +31,30 @@ import { ArticleStewardship } from '@/components/blog/ArticleStewardship'
 export const dynamicParams = false
 
 export async function generateStaticParams() {
-  const posts = getAllBlogPosts()
-  return posts.map((post) => ({ slug: post.slug }))
+  const slugs = new Set(getAllBlogPosts().map((post) => post.slug))
+  if (getAmsterdamDraft()) slugs.add(fieldNoteSlug)
+  return Array.from(slugs, (slug) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const post = getBlogPost(slug)
+  const draft = !post && slug === fieldNoteSlug ? getAmsterdamDraft() : null
+
+  if (draft) {
+    const photo = amsterdamPhotos.oosterdok
+    const metadata = createMetadata({
+      title: draft.title, description: draft.description, path: fieldNotePath,
+      type: 'article', image: photo.src, authors: [draft.author], noindex: true,
+    })
+    return {
+      ...metadata,
+      openGraph: {
+        ...metadata.openGraph,
+        images: [{ url: photo.src, width: photo.width, height: photo.height, alt: photo.alt }],
+      },
+    }
+  }
 
   if (!post) {
     return createMetadata({
@@ -68,6 +88,9 @@ export default async function BlogPostPage({
 }) {
   const { slug } = await params
   const post = getBlogPost(slug)
+  const draft = !post && slug === fieldNoteSlug ? getAmsterdamDraft() : null
+
+  if (draft?.content) return <FieldNotePreview post={draft} />
 
   if (!post || !post.content) {
     notFound()

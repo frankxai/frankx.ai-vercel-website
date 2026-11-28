@@ -122,6 +122,12 @@ export default async function CityEcosystemPage({ params }: PageProps) {
             All spaces mapped and priced — plus the free circuit, academic clusters, and a weighted decision matrix. Built around field-tested builder motions.
           </p>
 
+          {city === 'amsterdam' && (
+            <Link href="/amsterdam" className="mt-5 inline-flex min-h-11 items-center text-sm font-medium text-emerald-300 underline underline-offset-4">
+              FrankX teaching and fieldwork in Amsterdam
+            </Link>
+          )}
+
           <div className="mt-8 flex items-center gap-3 text-xs text-zinc-500 font-mono">
             <span>Doctrine:</span>
             <span className="text-zinc-300 italic">"{data.doctrine}"</span>
