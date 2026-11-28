@@ -1,433 +1,96 @@
-import Image from "next/image";
-import Link from "next/link";
-import type { ReactNode } from "react";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-
-import {
-  listActivePartners,
-  listOpenOpportunities,
-  listStrategicAlignment,
-} from "@/content/partnerships";
-import type { Partner } from "@/content/partnerships/types";
-import { MEET_AND_GROW_URL } from "@/lib/cta-links";
-import { createMetadata, siteConfig } from "@/lib/seo";
-
+import Image from 'next/image';
+import Link from 'next/link';
+import type { CSSProperties, ReactNode } from 'react';
+import { ArrowDown, ArrowRight, ArrowUpRight, Plus } from 'lucide-react';
+import { listActivePartners, listOpenOpportunities, listStrategicAlignment } from '@/content/partnerships';
+import { cloudflareProgramme, listTechnologyAffiliates } from '@/content/partnerships/technology';
+import type { Partner } from '@/content/partnerships/types';
+import { MEET_AND_GROW_URL } from '@/lib/cta-links';
+import { createMetadata, siteConfig } from '@/lib/seo';
+import s from './partnerships.module.css';
 export const metadata = createMetadata({
-  title: "Partnerships and Applied Work",
-  description:
-    "See how Frank Riemer approaches bounded AI architecture, research, workshops, and partnership systems—and how each relationship is represented.",
-  path: "/partnerships",
+    title: 'Partnerships and applied work',
+    description: 'Build with Frank Riemer: AI architecture, workshops and creative work. Explore current programme relationships, affiliate partners and independent proposals.',
+    path: '/partnerships',
 });
-
-const SITE_URL = siteConfig.url;
-
-const tierLabel: Record<Partner["tier"], string> = {
-  distribution: "Distribution",
-  cloud: "Cloud",
-  "model-provider": "Model and infrastructure",
-  silicon: "Silicon",
-  tooling: "Tooling",
-  services: "Services",
-};
-
-const operatingEvidence = [
-  {
-    number: "01",
-    title: "Public build practice",
-    description:
-      "Claude Code and Cursor for coding workflows; GitHub for public review; Vercel for the current frankx.ai deployment. Tool choice varies by task.",
-  },
-  {
-    number: "02",
-    title: "Model-learning surface",
-    description:
-      "Claude, Gemini, Codex, ADK, A2A, and MCP appear in public workshops, guides, or research. Inclusion does not imply endorsement or production use.",
-  },
-  {
-    number: "03",
-    title: "Cloud context",
-    description:
-      "Vercel is inspectable in the current deployment. Oracle Cloud reflects disclosed prior experience. No current OCI, GCP, or AWS workload count is claimed.",
-  },
-  {
-    number: "04",
-    title: "Accelerated-computing research",
-    description:
-      "NVIDIA NIM and accelerator patterns appear as public research topics. No NVIDIA relationship, event work, or hands-on delivery is claimed.",
-  },
+const routes = [
+    { title: 'Build a useful system', text: 'Bring a product idea or an architecture decision. Work through the tradeoffs and define a prototype worth testing.', href: '/ai-architecture', action: 'Explore architecture', row: 2, name: 'Brio' },
+    { title: 'Learn by making', text: 'Turn a workshop into something people can inspect, change and use after the room empties.', href: '/workshops', action: 'Explore workshops', row: 1, name: 'Nilo' },
+    { title: 'Ask a better question', text: 'Connect a research question to sources, a practical experiment and an honest account of what remains uncertain.', href: '/research', action: 'Explore research', row: 3, name: 'Riff' },
 ] as const;
-
+function Crew({ row, column = 0, name }: {
+    row: number;
+    column?: number;
+    name: string;
+}) {
+    return <span role="img" aria-label={name} className={s.crew} style={{ '--crew-x': `${column * 100 / 3}%`, '--crew-y': `${row * 100 / 3}%` } as CSSProperties}/>;
+}
+function External({ href, children, className = '', sponsored = false }: {
+    href: string;
+    children: ReactNode;
+    className?: string;
+    sponsored?: boolean;
+}) {
+    return <a href={href} target="_blank" rel={sponsored ? 'sponsored noopener noreferrer' : 'noopener noreferrer'} className={className}>{children}<ArrowUpRight size={16} aria-hidden="true"/><span className={s.srOnly}> (opens in a new tab)</span></a>;
+}
 export default function PartnershipsHubPage() {
-  const active = listActivePartners();
-  const strategicAlignment = listStrategicAlignment();
-  const opportunities = listOpenOpportunities();
-  const all = [...active, ...strategicAlignment, ...opportunities];
-
-  const breadcrumbLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Partnerships",
-        item: `${SITE_URL}/partnerships`,
-      },
-    ],
-  };
-
-  const collectionLd = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: "FrankX partnership proposals and platform briefs",
-    description:
-      "Independently authored FrankX proposals, documented platform use, and exploratory alignment briefs with endorsement status kept explicit.",
-    url: `${SITE_URL}/partnerships`,
-    hasPart: all.map((partner: Partner) => ({
-      "@type": "WebPage",
-      name: partner.name,
-      url: `${SITE_URL}/partnerships/${partner.slug}`,
-    })),
-  };
-
-  return (
-    <main className="min-h-screen overflow-hidden bg-[#f3efe6] text-[#171915] selection:bg-[#2157d5] selection:text-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }}
-      />
-
-      <section className="relative border-b border-[#171915]/15 px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-32 lg:px-12 lg:pb-24 lg:pt-36">
-        <div className="mx-auto max-w-[1380px]">
-          <div className="mb-10 flex items-center justify-between border-b border-[#171915]/20 pb-4 text-sm sm:mb-14">
-            <Link
-              href="/connect"
-              className="font-semibold text-[#171915] underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2157d5]"
-            >
-              Frank Riemer · AI Architect
-            </Link>
-            <p className="text-[#555950]">Partnerships and applied work</p>
-          </div>
-
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(440px,1.1fr)] lg:items-start lg:gap-16 xl:gap-24">
-            <div>
-              <div className="mb-7 flex items-center gap-3 text-sm font-medium text-[#39423b]">
-                <span className="h-3 w-3 bg-[#2157d5]" aria-hidden />
-                Relationship before machinery
-              </div>
-              <h1 className="max-w-[780px] text-[clamp(3.1rem,4.8vw,5.6rem)] font-medium leading-[0.95] tracking-[-0.052em] text-[#11130f]">
-                Start with a real question, not a logo wall.
-              </h1>
-              <PartnershipHeroFigure className="mt-8 lg:hidden" />
-              <p className="mt-8 max-w-2xl text-lg leading-8 text-[#44483f] sm:text-xl sm:leading-9">
-                I build bounded research, architecture, workshop, and product
-                systems around questions that matter to both sides. Specialist
-                agents accelerate the work. I own the relationship, the
-                judgment, and the result.
-              </p>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href="#documented-work"
-                  className="group inline-flex min-h-12 items-center justify-center gap-3 bg-[#171915] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#2157d5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2157d5] focus-visible:ring-offset-4 focus-visible:ring-offset-[#f3efe6]"
-                >
-                  Inspect the documented work
-                  <ArrowRight
-                    className="h-4 w-4 transition-transform group-hover:translate-x-1 motion-reduce:transition-none"
-                    aria-hidden
-                  />
-                </Link>
-                <Link
-                  href={MEET_AND_GROW_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 border border-[#171915]/30 px-6 py-3.5 text-sm font-semibold text-[#171915] hover:border-[#171915] hover:bg-[#ebe3d4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2157d5]"
-                >
-                  Open a conversation
-                  <ArrowUpRight className="h-4 w-4" aria-hidden />
-                </Link>
-              </div>
-            </div>
-
-            <PartnershipHeroFigure className="hidden lg:block" />
-          </div>
+    const proposals = [...listActivePartners(), ...listStrategicAlignment(), ...listOpenOpportunities()];
+    const affiliates = listTechnologyAffiliates();
+    const breadcrumb = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url }, { '@type': 'ListItem', position: 2, name: 'Partnerships', item: `${siteConfig.url}/partnerships` }] };
+    const structuredData = {
+        '@context': 'https://schema.org', '@type': 'CollectionPage',
+        name: 'FrankX partnerships and applied work', url: `${siteConfig.url}/partnerships`,
+        hasPart: proposals.map(partner => ({ '@type': 'WebPage', name: partner.name, url: `${siteConfig.url}/partnerships/${partner.slug}` })),
+    };
+    return <main className={s.root}>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumb, structuredData]) }}/>
+    <section className={`${s.section} ${s.hero}`} aria-labelledby="partnership-title">
+      <div className={s.topline}><Link href="/connect">Frank Riemer <span> / AI Architect</span></Link><span>Partnerships &amp; applied work</span></div>
+      <div className={s.heroGrid}>
+        <div className={s.heroCopy}>
+          <h1 id="partnership-title">What can we<br />build together?</h1>
+          <p className={s.lead}>A useful prototype. A workshop that stays with people. A question worth researching.</p>
+          <p className={s.intro}>I bring enterprise workshop experience and the systems I build through FrankX and Starlight Intelligence. You bring the problem, the perspective and the people it matters to.</p>
+          <div className={s.actions}><External href={MEET_AND_GROW_URL} className={s.primary}>Start a conversation</External><a href="#documented-work" className={s.textLink}>Explore the work <ArrowDown size={16} aria-hidden="true"/></a></div>
+          <div className={s.founderNote}><Crew row={0} column={2} name="Mini Frank, the original illustrated founder"/><p>Human judgment.<br /><strong>Room for imagination.</strong></p></div>
         </div>
-      </section>
-
-      <section className="bg-[#171915] px-5 py-9 text-[#f3efe6] sm:px-8 lg:px-12">
-        <div className="mx-auto grid max-w-[1380px] gap-7 sm:grid-cols-3 sm:gap-8">
-          <div className="border-l border-white/25 pl-4">
-            <p className="text-lg font-medium">One consequential question</p>
-            <p className="mt-2 text-sm leading-6 text-white/65">
-              Scope the decision before the deliverable.
-            </p>
-          </div>
-          <div className="border-l border-white/25 pl-4">
-            <p className="text-lg font-medium">One bounded system</p>
-            <p className="mt-2 text-sm leading-6 text-white/65">
-              Make ownership, evidence, and limits explicit.
-            </p>
-          </div>
-          <div className="border-l border-white/25 pl-4">
-            <p className="text-lg font-medium">One inspectable result</p>
-            <p className="mt-2 text-sm leading-6 text-white/65">
-              Leave the team with something it can operate.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="documented-work"
-        className="scroll-mt-24 px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28"
-      >
-        <div className="mx-auto max-w-[1380px]">
-          <div className="grid gap-8 border-b border-[#171915] pb-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-            <div>
-              <p className="text-sm font-semibold text-[#2157d5]">
-                Relationship ledger
-              </p>
-              <h2 className="mt-4 max-w-xl text-4xl font-medium leading-[1.02] tracking-[-0.045em] sm:text-5xl">
-                Every status is stated next to the claim.
-              </h2>
-            </div>
-            <p className="max-w-2xl text-base leading-7 text-[#555950] lg:justify-self-end">
-              Public proposals, independent platform briefs, and exploratory
-              notes are different things. This page keeps them separate so the
-              evidence can be judged without borrowed authority.
-            </p>
-          </div>
-
-          {active.length > 0 && (
-            <RelationshipSection
-              label="Active FrankX proposal"
-              title="Public proposals currently in development"
-              description="Active describes the state of FrankX work—not a partner endorsement or formal relationship. Each detail page separates evidence from the proposed next step."
-            >
-              {active.map((partner) => (
-                <PartnerRow
-                  key={partner.slug}
-                  partner={partner}
-                  mode="active"
-                />
-              ))}
-            </RelationshipSection>
-          )}
-
-          {strategicAlignment.length > 0 && (
-            <RelationshipSection
-              label="Independent platform alignment"
-              title="Briefs about platforms visible in the work"
-              description="These pages document public artifacts and, where a linked artifact supports it, Frank's own use or prior work. A proposed next step is not evidence of partnership, conversation, or endorsement."
-            >
-              {strategicAlignment.map((partner) => (
-                <PartnerRow
-                  key={partner.slug}
-                  partner={partner}
-                  mode="alignment"
-                />
-              ))}
-            </RelationshipSection>
-          )}
-
-          {opportunities.length > 0 && (
-            <RelationshipSection
-              label="Open notes"
-              title="Opportunities with relationship status attached"
-              description="Independent opportunity notes remain distinct from exploratory conversations and formal relationships. Each detail page states which one it is."
-            >
-              {opportunities.map((partner) => (
-                <PartnerRow
-                  key={partner.slug}
-                  partner={partner}
-                  mode="opportunity"
-                />
-              ))}
-            </RelationshipSection>
-          )}
-        </div>
-      </section>
-
-      <section className="border-y border-[#171915]/15 bg-[#ebe3d4] px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28">
-        <div className="mx-auto grid max-w-[1380px] gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
-          <div>
-            <p className="text-sm font-semibold text-[#2157d5]">
-              What can be inspected now
-            </p>
-            <h2 className="mt-4 max-w-md text-4xl font-medium leading-[1.02] tracking-[-0.045em] sm:text-5xl">
-              Current tools and public evidence.
-            </h2>
-            <p className="mt-6 max-w-md text-base leading-7 text-[#555950]">
-              Declared use, public artifacts, and relevant prior experience—not
-              a claim that every company listed here has worked with FrankX.
-            </p>
-          </div>
-          <div className="border-t border-[#171915]">
-            {operatingEvidence.map((item) => (
-              <div
-                key={item.number}
-                className="grid gap-3 border-b border-[#171915]/25 py-6 sm:grid-cols-[52px_190px_minmax(0,1fr)] sm:gap-6 sm:py-7"
-              >
-                <span className="font-mono text-xs text-[#2157d5]">
-                  {item.number}
-                </span>
-                <h3 className="text-base font-semibold text-[#171915]">
-                  {item.title}
-                </h3>
-                <p className="text-sm leading-6 text-[#555950]">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28">
-        <div className="mx-auto grid max-w-[1380px] gap-8 bg-[#171915] px-6 py-10 text-[#f3efe6] sm:px-10 sm:py-12 lg:grid-cols-[1fr_auto] lg:items-center lg:px-14 lg:py-14">
-          <div>
-            <p className="text-sm font-semibold text-[#8aa9ff]">
-              A useful first conversation
-            </p>
-            <h2 className="mt-3 max-w-3xl text-3xl font-medium leading-[1.08] tracking-[-0.04em] sm:text-4xl">
-              Bring the decision your team cannot afford to get wrong.
-            </h2>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/65">
-              In 30 minutes, we map the destination, the bottleneck, and whether
-              a bounded partnership makes sense. No deck and no follow-up
-              sequence unless we both want one.
-            </p>
-          </div>
-          <Link
-            href={MEET_AND_GROW_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex min-h-12 items-center justify-center gap-2 bg-[#f3efe6] px-6 py-3.5 text-sm font-semibold text-[#171915] transition-colors hover:bg-[#8aa9ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8aa9ff] focus-visible:ring-offset-4 focus-visible:ring-offset-[#171915]"
-          >
-            Book Meet &amp; Grow
-            <ArrowUpRight
-              className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
-              aria-hidden
-            />
-          </Link>
-        </div>
-
-        <div className="mx-auto mt-8 flex max-w-[1380px] flex-col gap-2 text-sm text-[#555950] sm:flex-row sm:items-center sm:justify-between">
-          <span>Looking for recommended tools and disclosure rules?</span>
-          <Link
-            href="/partners"
-            className="inline-flex items-center gap-1.5 font-semibold text-[#2157d5] underline decoration-[#2157d5]/35 underline-offset-4 hover:decoration-[#2157d5]"
-          >
-            Read the tools and affiliate policy
-            <ArrowUpRight className="h-4 w-4" aria-hidden />
-          </Link>
-        </div>
-      </section>
-    </main>
-  );
-}
-
-function PartnershipHeroFigure({ className }: { className: string }) {
-  return (
-    <figure className={className}>
-      <div className="relative aspect-[4/3] overflow-hidden bg-[#d7d0c3]">
-        <Image
-          src="/images/oracle-events/oracle-workshop-P1081706.jpg"
-          alt="Frank Riemer facilitating a workshop discussion with an enterprise team"
-          fill
-          priority
-          sizes="(max-width: 1023px) 100vw, 55vw"
-          className="object-cover object-center saturate-[0.78] contrast-[1.04]"
-        />
-        <span className="absolute bottom-0 right-0 bg-[#2157d5] px-4 py-2 text-xs font-semibold text-white">
-          Workshop practice
-        </span>
+        <figure className={s.heroFigure}>
+          <div className={s.photo}><Image src="/images/oracle-events/oracle-workshop-P1081706.jpg" alt="Frank Riemer facilitating an enterprise workshop beside a flip chart" fill preload sizes="(max-width: 767px) 100vw, 48vw" className={s.heroImage}/><div className={s.photoCaption}><span>From a real room</span><strong>Ideas become useful<br />when people work on them.</strong></div></div>
+          <figcaption>Enterprise workshop, 2024 · During my former Oracle role.</figcaption>
+        </figure>
       </div>
-      <figcaption className="mt-3 flex flex-col gap-1 text-xs leading-5 text-[#62665d] sm:flex-row sm:justify-between">
-        <span>Facilitating an enterprise workshop, 2024.</span>
-        <span className="sm:text-right">
-          Former Oracle role · no current endorsement implied
-        </span>
-      </figcaption>
-    </figure>
-  );
-}
-
-function RelationshipSection({
-  label,
-  title,
-  description,
-  children,
-}: {
-  label: string;
-  title: string;
-  description: string;
-  children: ReactNode;
-}) {
-  return (
-    <section className="grid gap-8 border-b border-[#171915]/20 py-14 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20 lg:py-16">
-      <div>
-        <p className="text-sm font-semibold text-[#2157d5]">{label}</p>
-        <h3 className="mt-3 text-2xl font-medium leading-8 tracking-[-0.03em] text-[#171915] sm:text-3xl">
-          {title}
-        </h3>
-        <p className="mt-4 max-w-md text-sm leading-6 text-[#555950]">
-          {description}
-        </p>
-      </div>
-      <div className="border-t border-[#171915]">{children}</div>
+      <nav className={s.sectionNav} aria-label="On this page"><a href="#documented-work">Ways to collaborate <ArrowRight size={14} aria-hidden="true"/></a><a href="#technology-partners">Technology &amp; creator partners <ArrowRight size={14} aria-hidden="true"/></a><a href="#platform-proposals">Platform proposals <ArrowRight size={14} aria-hidden="true"/></a></nav>
     </section>
-  );
+    <section id="documented-work" className={s.section} aria-labelledby="work-title">
+      <header className={s.sectionHeading}><h2 id="work-title">A starting point<br />for the work.</h2><p>Choose the question that brings us together. We agree the scope, make the work inspectable and leave something the team can carry forward.</p></header>
+      <div className={s.workRows}>{routes.map(route => <article className={s.workRow} key={route.href}><div className={s.character}><Crew row={route.row} column={1} name={`${route.name}, original crew illustration`}/></div><div><h3>{route.title}</h3><p>{route.text}</p></div><Link href={route.href} className={s.textLink}>{route.action}<ArrowUpRight size={17} aria-hidden="true"/></Link></article>)}</div>
+      <p className={s.smallNote}>Mini Frank, Nilo, Brio and Riff are the original illustrated crew. Frank owns the relationship and the result.</p>
+    </section>
+    <section id="technology-partners" className={`${s.section} ${s.partnerSection}`} aria-labelledby="partners-title">
+      <header className={s.sectionHeading}><h2 id="partners-title">Technology &amp;<br />creator partners.</h2><p>Programme support and affiliate relationships across the tools that make building and creating possible. Each relationship is labeled below.</p></header>
+      <article className={s.cloudflare}>
+        <div className={s.cloudflareIntro}><div className={s.programmeLabel}>Startup programme</div><h3>Cloudflare<span>®</span></h3><p>{cloudflareProgramme.description}</p><External href={cloudflareProgramme.href} className={s.textLink}>Cloudflare for Startups</External></div>
+        <div className={s.cloudflareDetail}><p className={s.status}>{cloudflareProgramme.status}</p><div className={s.products}>{cloudflareProgramme.products.map(product => <External key={product.name} href={product.href} className={s.product}><span><strong>{product.name}</strong><small>{product.description}</small></span></External>)}</div><p className={s.smallNote}>Programme member: Starlight Intelligence. Product links explain the platform; they are not claims of joint delivery or endorsement.</p></div>
+      </article>
+      <p className={s.disclosure}>Affiliate links below may earn FrankX a commission when you purchase. <Link href="/partners">Read the disclosure policy <ArrowUpRight size={13} aria-hidden="true"/></Link></p>
+      <div className={s.affiliates}>{affiliates.map(partner => <article className={s.affiliate} key={partner.id}>
+        <div className={s.logoStage}><Image src={partner.logo} width={partner.width} height={partner.height} alt={partner.name} className={s.wordmark}/></div>
+        <span className={s.status}>Affiliate partner</span><h3>{partner.title}</h3><p>{partner.description}</p>
+        <details className={s.details}><summary>About this relationship <Plus size={15} aria-hidden="true"/></summary><p>{partner.detail}</p><p>Affiliate programme confirmed. Link record checked {partner.verifiedOn}. Recommendations remain Frank&apos;s own.</p></details>
+        {partner.href && <External href={partner.href} className={s.partnerLink} sponsored>Explore {partner.name}<span className={s.srOnly}> (affiliate link)</span></External>}
+      </article>)}</div>
+      <p className={s.smallNote}>Cloudflare and Cloudflare Workers are trademarks and/or registered trademarks of Cloudflare, Inc. Other names and logos belong to their respective owners.</p>
+    </section>
+    <section id="platform-proposals" className={s.section} aria-labelledby="proposals-title">
+      <header className={s.sectionHeading}><h2 id="proposals-title">Ideas for<br />working together.</h2><p>Independent briefs about platforms and possible collaborations. These proposals are separate from the confirmed programme and affiliate relationships above.</p></header>
+      <div className={s.proposals}>{proposals.map(partner => <ProposalRow key={partner.slug} partner={partner}/>)}</div>
+    </section>
+    <section className={`${s.section} ${s.close}`} aria-labelledby="conversation-title"><div><h2 id="conversation-title">Bring the question.<br />Let&apos;s shape the work.</h2><p>A first conversation to compare perspectives, find a useful starting point and decide what is worth doing together.</p><External href={MEET_AND_GROW_URL} className={s.primary}>Meet &amp; grow</External></div><div className={s.closeCrew}><Crew row={0} column={3} name="Mini Frank listening"/><span>Frank Riemer<br /><strong>Founder · AI Architect</strong></span></div></section>
+  </main>;
 }
-
-function PartnerRow({
-  partner,
-  mode,
-}: {
-  partner: Partner;
-  mode: "active" | "alignment" | "opportunity";
+function ProposalRow({ partner }: {
+    partner: Partner;
 }) {
-  const status =
-    mode === "active"
-      ? "Independent FrankX proposal · no endorsement implied"
-      : mode === "alignment"
-        ? "Independent alignment brief · no partnership implied"
-        : partner.status === "in-conversation"
-          ? "Exploratory conversation · no formal relationship"
-          : "Independent opportunity note · no conversation claimed";
-
-  return (
-    <Link
-      href={`/partnerships/${partner.slug}`}
-      className="group grid gap-4 border-b border-[#171915]/25 py-6 outline-none transition-colors hover:bg-[#ebe3d4] focus-visible:bg-[#ebe3d4] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#2157d5] sm:grid-cols-[150px_minmax(0,1fr)_auto] sm:gap-6 sm:px-4 sm:py-7"
-    >
-      <span className="text-xs font-semibold text-[#2157d5]">
-        {tierLabel[partner.tier]}
-      </span>
-      <span>
-        <span className="block text-xl font-medium tracking-[-0.025em] text-[#171915]">
-          {partner.name}
-        </span>
-        <span className="mt-2 block text-sm leading-6 text-[#555950]">
-          {partner.tagline}
-        </span>
-        {partner.programStatus ? (
-          <span className="mt-2 block text-xs leading-5 text-[#6a6e65]">
-            {partner.programStatus}
-          </span>
-        ) : null}
-        <span className="mt-3 block text-xs font-medium leading-5 text-[#373b34]">
-          {status}
-        </span>
-      </span>
-      <ArrowUpRight
-        className="h-5 w-5 text-[#2157d5] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
-        aria-hidden
-      />
-    </Link>
-  );
+    const status = partner.status === 'in-conversation' ? 'Exploratory conversation' : 'Independent proposal';
+    return <Link href={`/partnerships/${partner.slug}`} className={s.proposal}><div className={s.proposalName}>{partner.partnerLogoUrl && <Image src={partner.partnerLogoUrl} alt="" width={32} height={32} className={`${s.proposalLogo} ${partner.slug === 'arrow' ? s.wideLogo : ''}`}/>}<h3>{partner.name}</h3></div><p>{partner.tagline}</p><span className={s.proposalStatus}>{status}<small>No formal partnership implied</small></span><ArrowUpRight size={19} aria-hidden="true"/></Link>;
 }
