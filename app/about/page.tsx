@@ -16,6 +16,8 @@ import { sitePositioning } from '@/data/site-positioning'
 import { coreQualitiesNavigationEvent } from '@/lib/core-qualities-analytics'
 import { createMetadata } from '@/lib/seo'
 import { socialLinks } from '@/lib/social-links'
+import { FounderSignature, TrustAndOwnership } from '@/components/founder-identity/FounderIdentity'
+import { founderBrands } from '@/lib/founder-identity/brands'
 
 export const metadata = createMetadata({
   title: 'About Frank Riemer',
@@ -113,7 +115,8 @@ export default function AboutPage() {
             <p className="mt-4 max-w-2xl text-base leading-7 text-white/60">
               I translate enterprise experience into inspectable architectures, agent workflows, evaluation boundaries, and practical build decisions, and I publish the work.
             </p>
-            <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <FounderSignature brand={founderBrands.frankx} />
+            <div className="mt-4 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <Link
                 href="/#current-work"
                 className="inline-flex min-h-12 items-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-[#07120d] transition-colors hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
@@ -277,7 +280,7 @@ export default function AboutPage() {
               ambiguous.
             </p>
           </div>
-          <ul className="space-y-4">
+          <div><ul className="space-y-4">
             {boundaries.map((boundary) => (
               <li
                 key={boundary}
@@ -286,7 +289,7 @@ export default function AboutPage() {
                 {boundary}
               </li>
             ))}
-          </ul>
+          </ul><TrustAndOwnership brand={founderBrands.frankx} /></div>
         </div>
       </section>
 
