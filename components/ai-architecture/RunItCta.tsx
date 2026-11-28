@@ -29,7 +29,7 @@ export default function RunItCta() {
             placement: 'field_guide_close',
           })
         }
-        className={`inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-emerald-100 ${FOCUS_RING}`}
+        className={`inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition-colors motion-reduce:transition-none hover:bg-emerald-100 ${FOCUS_RING}`}
       >
         Run the architecture review
         <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -47,7 +47,7 @@ export default function RunItCta() {
             placement: 'field_guide_close',
           })
         }
-        className={`rounded-sm text-sm font-medium text-slate-300 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white ${FOCUS_RING}`}
+        className={`inline-flex min-h-11 items-center rounded-sm text-sm font-medium text-slate-300 underline decoration-white/20 underline-offset-4 transition-colors motion-reduce:transition-none hover:text-white ${FOCUS_RING}`}
       >
         Get the skill (MIT)
       </a>

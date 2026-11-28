@@ -79,35 +79,55 @@ export default function AIArchitecturePage() {
             The field guide
           </p>
           <ul className="mt-4 flex flex-wrap gap-2">
-            {CONTENTS.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className="surface-2 inline-block rounded-full border border-white/[0.1] px-4 py-2 text-sm text-slate-300 transition-colors hover:border-emerald-300/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+            {CONTENTS.map((item) => {
+              const external = item.href.startsWith('http')
+              return (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    target={external ? '_blank' : undefined}
+                    rel={external ? 'noopener noreferrer' : undefined}
+                    className="surface-2 inline-flex min-h-11 items-center gap-1.5 rounded-full border border-white/[0.1] px-4 py-2 text-sm text-slate-300 transition-colors motion-reduce:transition-none hover:border-emerald-300/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
+                  >
+                    {item.label}
+                    {external ? (
+                      <>
+                        <span aria-hidden="true">↗</span>
+                        <span className="sr-only"> (opens in new tab)</span>
+                      </>
+                    ) : null}
+                  </a>
+                </li>
+              )
+            })}
           </ul>
-          <p className="mt-6 max-w-3xl text-sm leading-6 text-slate-400">
+          <p className="mt-6 max-w-3xl text-sm leading-6 text-slate-300">
             The AI Architect Guide 2026 working edition adds 16 manuscript files, a source and
             claim ledger, an executable authority-boundary lab, and a September briefing. Its
             GitHub link is pinned to the reviewed source version.{' '}
             <a
               href={GUIDE_REVIEWS}
-              className="rounded-sm text-emerald-300 underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-sm text-emerald-300 underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
             >
               Final-book reviews remain open.
+              <span className="sr-only"> (opens in new tab)</span>
             </a>
           </p>
-          <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-400">
+          <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-300">
             By{' '}
-            <Link href="/frank-riemer" className="text-emerald-300 underline underline-offset-4">
+            <Link
+              href="/frank-riemer"
+              className="rounded-sm text-emerald-300 underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
+            >
               Frank Riemer, AI Architect
             </Link>
             . For speaking topics and contact details, read the{' '}
-            <Link href="/media-kit" className="text-emerald-300 underline underline-offset-4">
+            <Link
+              href="/media-kit"
+              className="rounded-sm text-emerald-300 underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
+            >
               media kit
             </Link>
             .
@@ -128,7 +148,7 @@ export default function AIArchitecturePage() {
           <h2 className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
             Seven planes map the system. Four decisions produce a verdict.
           </h2>
-          <p className="mt-5 leading-7 text-slate-400">
+          <p className="mt-5 leading-7 text-slate-300">
             The architecture review asks four questions about the decisions that are expensive to
             reverse. Answer them for your own system and you get a report naming which are made,
             which are still open, and which to close first — or install the same rubric into the
