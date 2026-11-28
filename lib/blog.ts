@@ -56,7 +56,6 @@ export interface BlogPost {
   coverAlt?: string
   ogImage?: string
   thumbnailHook?: string // Short 3-6 word high-contrast visual callout badge on HeroImage
-  coverAlt?: string
   readingTime: string
   keywords?: string[]
   readingGoal?: string
